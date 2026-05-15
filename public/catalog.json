@@ -16,5 +16,39 @@
         { "order": 4, "slug": "master", "title": "MASTER.S", "description": "Game flow controller: boot, attract mode, save/load, level sequencing" }
       ]
     }
+    ,
+    {
+      "slug": "zork",
+      "title": "Zork",
+      "subtitle": "PDP-10 / ITS, 1977–1979",
+      "author": "Anderson, Blank, Daniels, Lebling",
+      "year": 1977,
+      "language": "MDL (Muddle)",
+      "description": "The game that invented the text adventure — built organically at MIT on a PDP-10, recovered from a 1990 tape, and released open-source in 2025. Its parser, its puzzles, and its sarcastic error messages changed computing forever.",
+      "github_url": "https://github.com/MITDDC/zork",
+      "files": [
+        { "order": 1, "slug": "defs", "title": "defs.63", "description": "The complete type system — ROOM, OBJECT, SYNTAX, and the parser data structures" },
+        { "order": 2, "slug": "np", "title": "np.93", "description": "The 93rd version of the natural language parser" },
+        { "order": 3, "slug": "dung", "title": "dung.56", "description": "The world itself — every room, exit, and object in the dungeon" },
+        { "order": 4, "slug": "act1", "title": "act1.38", "description": "Game loop, action handlers, and the real access-control guard" }
+      ]
+    }
+  ,
+    {
+      "slug": "ms-dos",
+      "title": "MS-DOS",
+      "subtitle": "IBM PC, 1981–1983",
+      "author": "Tim Paterson / Microsoft",
+      "year": 1981,
+      "language": "8086 Assembly",
+      "description": "Written in six weeks by one programmer, acquired by Microsoft for $25,000, and licensed to IBM — then to every IBM clone maker on earth. The source code of the PC era.",
+      "github_url": "https://github.com/microsoft/MS-DOS",
+      "files": [
+        { "order": 1, "slug": "msdos", "title": "MSDOS.ASM", "description": "The original 86-DOS kernel — Tim Paterson's byline and a revision history written in assembly comments" },
+        { "order": 2, "slug": "command", "title": "COMMAND.ASM", "description": "The command interpreter — 'Abort, Retry, Ignore?' in its original form" },
+        { "order": 3, "slug": "xenix", "title": "XENIX.ASM", "description": "The Unix layer that gave DOS subdirectories, pipes, and file handles" },
+        { "order": 4, "slug": "mscode", "title": "MSCODE.ASM", "description": "The v2.0 kernel — the INT 21h dispatcher and a comment that says 'Here comes multitasking!!!'" }
+      ]
+    }
   ]
 }

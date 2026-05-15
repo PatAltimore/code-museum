@@ -165,9 +165,9 @@ a:hover {
 }
 
 .program-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .program-card {
@@ -214,12 +214,6 @@ a:hover {
   flex-shrink: 0;
 }
 
-.program-subtitle {
-  font-size: 0.85rem;
-  color: var(--accent);
-  margin-bottom: 0.75rem;
-  font-weight: 600;
-}
 
 .program-desc {
   font-size: 0.9rem;
@@ -237,11 +231,6 @@ a:hover {
   flex-wrap: wrap;
 }
 
-.program-meta .github-link {
-  margin-left: auto;
-  color: var(--link);
-  font-size: 0.8rem;
-}
 
 .program-page {
   max-width: 860px;
@@ -749,9 +738,6 @@ a:hover {
 @media (max-width: 600px) {
   .page {
     padding: 1.5rem 1rem;
-  }
-  .program-grid {
-    grid-template-columns: 1fr;
   }
   .reader-content {
     padding: 1rem 0.75rem;

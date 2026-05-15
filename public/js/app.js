@@ -246,7 +246,7 @@ async function loadFile(programSlug, fileSlug) {
 
 function renderShelf(catalog) {
   const programs = catalog.programs || [];
-  document.title = 'Historical Code';
+  document.title = 'Code Museum';
 
   const cards = programs.map(p => `
     <a class="program-card" href="#/${p.slug}">
@@ -254,7 +254,6 @@ function renderShelf(catalog) {
         <div class="program-title">${escapeHtml(p.title)}</div>
         <span class="lang-badge">${escapeHtml(p.language)}</span>
       </div>
-      <div class="program-subtitle">${escapeHtml(p.subtitle)}</div>
       <p class="program-desc">${escapeHtml(p.description)}</p>
       <div class="program-meta">
         <span>${escapeHtml(p.author)}</span>
@@ -262,14 +261,13 @@ function renderShelf(catalog) {
         <span>${p.year}</span>
         <span>·</span>
         <span>${(p.files || []).length} files</span>
-        ${p.github_url ? `<a class="github-link" href="${escapeAttr(p.github_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>` : ''}
       </div>
     </a>`).join('');
 
   return `
 <div class="page">
   <div class="shelf-header">
-    <h1>Historical Code</h1>
+    <h1>Code Museum</h1>
     <p>Annotated source code from historically significant open-source programs. Read the code that changed computing.</p>
   </div>
   <div class="program-grid">${cards}</div>
@@ -277,7 +275,7 @@ function renderShelf(catalog) {
 }
 
 function renderProgramPage(program) {
-  document.title = `${program.title} — Historical Code`;
+  document.title = `${program.title} — Code Museum`;
 
   const files = (program.files || []).map(f => `
     <a class="file-item" href="#/${program.slug}/${f.slug}">
@@ -304,7 +302,7 @@ function renderProgramPage(program) {
 function renderHeader(opts = {}) {
   const { programSlug, programTitle, fileTitle, githubUrl } = opts;
 
-  let left = `<a class="header-logo" href="#/">Historical Code</a>`;
+  let left = `<a class="header-logo" href="#/">Code Museum</a>`;
 
   if (programSlug && programTitle) {
     left += `<span class="header-sep">/</span>`;
@@ -338,7 +336,7 @@ function renderHeader(opts = {}) {
 }
 
 function renderReader(meta, body, program) {
-  document.title = `${meta.title} — ${meta.program} — Historical Code`;
+  document.title = `${meta.title} — ${meta.program} — Code Museum`;
 
   const files = program ? program.files || [] : [];
   const currentOrder = meta.order || 0;
