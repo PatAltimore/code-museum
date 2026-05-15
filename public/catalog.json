@@ -1,0 +1,20 @@
+{
+  "programs": [
+    {
+      "slug": "prince-of-persia",
+      "title": "Prince of Persia",
+      "subtitle": "Apple II, 1989",
+      "author": "Jordan Mechner",
+      "year": 1989,
+      "language": "6502 Assembly",
+      "description": "The game that invented cinematic platformers — built by one developer over four years on Apple II hardware with 128K of RAM. The source code was recovered in 2012 from 22-year-old floppy disks.",
+      "github_url": "https://github.com/jmechner/Prince-of-Persia-Apple-II",
+      "files": [
+        { "order": 1, "slug": "sound", "title": "SOUND.S", "description": "The complete sound engine — twenty sounds, one speaker, zero compromises" },
+        { "order": 2, "slug": "boot", "title": "BOOT.S", "description": "The two-stage disk boot loader with 128K memory check" },
+        { "order": 3, "slug": "seqtable", "title": "SEQTABLE.S", "description": "The animation state machine — every movement rotoscoped from film" },
+        { "order": 4, "slug": "master", "title": "MASTER.S", "description": "Game flow controller: boot, attract mode, save/load, level sequencing" }
+      ]
+    }
+  ]
+}
