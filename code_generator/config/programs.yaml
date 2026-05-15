@@ -1,0 +1,191 @@
+output_dir: ../public/programs
+
+models:
+  primary: gpt-4o
+  fallback:
+    - Llama-3.3-70B-Instruct
+    - Mistral-Large-3
+
+generation:
+  temperature: 0.3
+  max_tokens: 4096
+  default_max_lines: 200
+
+programs:
+
+  - slug: prince-of-persia
+    title: "Prince of Persia"
+    subtitle: "Apple II, 1989"
+    author: "Jordan Mechner"
+    year: 1989
+    language: "6502 Assembly"
+    description: "The game that invented cinematic platformers — built by one developer over four years on Apple II hardware with 128K of RAM. The source code was recovered in 2012 from 22-year-old floppy disks."
+    github_url: "https://github.com/jmechner/Prince-of-Persia-Apple-II"
+    github_repo: "jmechner/Prince-of-Persia-Apple-II"
+    github_branch: "master"
+    context: >
+      6502 assembly for the Apple IIe/IIc, written solo by Jordan Mechner 1985–1989.
+      Uses bank-switched memory (aux/main, language card banks 1/2) to fit in 128K.
+      Animation uses rotoscoping: Mechner filmed his brother performing moves and traced
+      each frame. The game is the first cinematic platformer.
+    files:
+      - order: 1
+        slug: sound
+        title: "SOUND.S"
+        path: "01 POP Source/Source/SOUND.S"
+        description: "The complete sound engine — twenty sounds, one speaker, zero compromises"
+      - order: 2
+        slug: boot
+        title: "BOOT.S"
+        path: "01 POP Source/Source/BOOT.S"
+        description: "The two-stage disk boot loader with 128K memory check"
+      - order: 3
+        slug: seqtable
+        title: "SEQTABLE.S"
+        path: "01 POP Source/Source/SEQTABLE.S"
+        description: "The animation state machine — every movement rotoscoped from film"
+        max_lines: 200
+      - order: 4
+        slug: master
+        title: "MASTER.S"
+        path: "01 POP Source/Source/MASTER.S"
+        description: "Game flow controller: boot, attract mode, save/load, level sequencing"
+        max_lines: 200
+      - order: 5
+        slug: ctrl
+        title: "CTRL.S"
+        path: "01 POP Source/Source/CTRL.S"
+        description: "Player input and game control logic"
+        max_lines: 200
+        context: "Handles joystick/keyboard input, translates hardware state into game actions."
+      - order: 6
+        slug: mover
+        title: "MOVER.S"
+        path: "01 POP Source/Source/MOVER.S"
+        description: "Physics engine — gravity, momentum, and movement resolution"
+        max_lines: 200
+        context: "Implements the physics model that made Prince of Persia feel weighted and real compared to other platformers."
+      - order: 7
+        slug: coll
+        title: "COLL.S"
+        path: "01 POP Source/Source/COLL.S"
+        description: "Collision detection between the prince and the dungeon environment"
+        max_lines: 200
+
+  - slug: zork
+    title: "Zork"
+    subtitle: "PDP-10 / ITS, 1977–1979"
+    author: "Anderson, Blank, Daniels, Lebling"
+    year: 1977
+    language: "MDL (Muddle)"
+    description: "The game that invented the text adventure — built organically at MIT on a PDP-10, recovered from a 1990 tape, and released open-source in 2025. Its parser, its puzzles, and its sarcastic error messages changed computing forever."
+    github_url: "https://github.com/MITDDC/zork"
+    github_repo: "MITDDC/zork"
+    github_branch: "master"
+    context: >
+      MDL (Muddle) is a Lisp dialect developed at MIT. The game ran on a DEC PDP-10
+      under ITS (Incompatible Timesharing System). Players accessed it over ARPANET
+      during development. The source came from MIT's Tapes of Tech Square collection,
+      extracted from a 1990 tape image. File suffixes are version numbers (np.93 = 93rd revision).
+      MIT released it open-source in 2025 under MIT No Attribution License.
+    files:
+      - order: 1
+        slug: defs
+        title: "defs.63"
+        path: "zork/lcf/defs.63"
+        description: "The complete type system — ROOM, OBJECT, SYNTAX, and the parser data structures"
+      - order: 2
+        slug: np
+        title: "np.93"
+        path: "zork/lcf/np.93"
+        description: "The 93rd version of the natural language parser"
+      - order: 3
+        slug: dung
+        title: "dung.56"
+        path: "zork/dung.56"
+        description: "The world itself — every room, exit, and object in the dungeon"
+        max_lines: 200
+      - order: 4
+        slug: act1
+        title: "act1.38"
+        path: "zork/lcf/act1.38"
+        description: "Game loop, action handlers, and the real access-control guard"
+        max_lines: 200
+      - order: 5
+        slug: rooms
+        title: "rooms.99"
+        path: "zork/lcf/rooms.99"
+        description: "Room definitions — every location in the dungeon described in MDL"
+        max_lines: 200
+        context: "Contains the complete set of room definitions. Version 99 of the file, showing iterative development."
+      - order: 6
+        slug: act3
+        title: "act3.13"
+        path: "zork/lcf/act3.13"
+        description: "Additional action handlers — puzzles, objects, and their interactions"
+        context: "Handles specific puzzle actions and object interactions in the game world."
+
+  - slug: ms-dos
+    title: "MS-DOS"
+    subtitle: "IBM PC, 1981–1983"
+    author: "Tim Paterson / Microsoft"
+    year: 1981
+    language: "8086 Assembly"
+    description: "Written in six weeks by one programmer, acquired by Microsoft for $25,000, and licensed to IBM — then to every IBM clone maker on earth. The source code of the PC era."
+    github_url: "https://github.com/microsoft/MS-DOS"
+    github_repo: "microsoft/MS-DOS"
+    github_branch: "main"
+    context: >
+      Tim Paterson wrote 86-DOS at Seattle Computer Products in 1980 in roughly six weeks.
+      Microsoft bought it for $25,000 in July 1981 and hired Paterson.
+      IBM PC launched August 12 1981 with PC DOS 1.0 (= MS-DOS 1.10).
+      Microsoft kept the right to license MS-DOS to any OEM — within a year they had 70+
+      licensees. v2.0 (1983) was a near-complete rewrite inspired by Unix/XENIX, adding
+      subdirectories, file handles, pipes, and device drivers.
+      Source first released to the Computer History Museum in March 2014; MIT licensed.
+    files:
+      - order: 1
+        slug: msdos
+        title: "MSDOS.ASM"
+        path: "v1.25/source/MSDOS.ASM"
+        description: "The original 86-DOS kernel — Tim Paterson's byline and a revision history written in assembly comments"
+        max_lines: 200
+      - order: 2
+        slug: command
+        title: "COMMAND.ASM"
+        path: "v1.25/source/COMMAND.ASM"
+        description: "The command interpreter — 'Abort, Retry, Ignore?' in its original form"
+        max_lines: 200
+      - order: 3
+        slug: xenix
+        title: "XENIX.ASM"
+        path: "v2.0/source/XENIX.ASM"
+        description: "The Unix layer that gave DOS subdirectories, pipes, and file handles"
+        max_lines: 200
+      - order: 4
+        slug: mscode
+        title: "MSCODE.ASM"
+        path: "v2.0/source/MSCODE.ASM"
+        description: "The v2.0 kernel — the INT 21h dispatcher and a comment that says 'Here comes multitasking!!!'"
+        max_lines: 200
+      - order: 5
+        slug: sysinit
+        title: "SYSINIT.ASM"
+        path: "v2.0/source/SYSINIT.ASM"
+        description: "The boot sequence — memory sizing, CONFIG.SYS parsing, and the launch of COMMAND.COM"
+        max_lines: 200
+        context: "Runs at power-on. Sizes RAM by writing/reading bit patterns, relocates itself into high memory, loads DOS, parses CONFIG.SYS, and EXECs COMMAND.COM."
+      - order: 6
+        slug: fat
+        title: "FAT.ASM"
+        path: "v2.0/source/FAT.ASM"
+        description: "The FAT filesystem — the file allocation table that outlasted DOS by decades"
+        max_lines: 200
+        context: "Implements FAT12/FAT16 filesystem operations. The FAT filesystem design survived into the 21st century in USB drives and SD cards."
+      - order: 7
+        slug: exec
+        title: "EXEC.ASM"
+        path: "v2.0/source/EXEC.ASM"
+        description: "Program loader — how DOS launches and returns from .COM and .EXE files"
+        max_lines: 200
+        context: "Implements the EXEC system call (INT 21h function 4Bh) that loads and runs programs. Handles both .COM (flat) and .EXE (segmented) formats."

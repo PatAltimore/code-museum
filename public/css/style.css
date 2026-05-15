@@ -214,7 +214,6 @@ a:hover {
   flex-shrink: 0;
 }
 
-
 .program-desc {
   font-size: 0.9rem;
   color: var(--muted);
@@ -230,7 +229,6 @@ a:hover {
   color: var(--muted);
   flex-wrap: wrap;
 }
-
 
 .program-page {
   max-width: 860px;
@@ -449,23 +447,10 @@ a:hover {
   flex: 1;
 }
 
-.line-code.asm-comment {
-  color: var(--comment);
-  font-style: italic;
-}
-
-.line-code.asm-label {
-  color: var(--label);
-  font-weight: 700;
-}
-
-.line-code.asm-directive {
-  color: var(--directive);
-}
-
-.line-code.asm-empty {
-  color: var(--muted);
-}
+.line-code.asm-comment { color: var(--comment); font-style: italic; }
+.line-code.asm-label   { color: var(--label); font-weight: 700; }
+.line-code.asm-directive { color: var(--directive); }
+.line-code.asm-empty   { color: var(--muted); }
 
 .enhancement-panel {
   background: var(--surface);
@@ -528,6 +513,10 @@ a:hover {
   align-items: start;
 }
 
+.enhancement-content-grid.no-image {
+  grid-template-columns: 1fr;
+}
+
 @media (max-width: 640px) {
   .enhancement-content-grid {
     grid-template-columns: 1fr;
@@ -565,19 +554,12 @@ a:hover {
   margin-top: 1rem;
   padding-top: 0.75rem;
   border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 0.8rem;
   color: var(--muted);
 }
 
 .enhancement-footer a {
   color: var(--link);
-}
-
-.no-image .enhancement-content-grid {
-  grid-template-columns: 1fr;
 }
 
 .file-nav {

@@ -39,6 +39,40 @@ Serve the `public/` directory with any static file server:
 npx serve public
 ```
 
+## Deployment
+
+### Azure Developer CLI (azd)
+
+Provision and deploy to Azure Static Web Apps:
+
+```bash
+azd auth login
+azd up
+```
+
+`azd up` creates a resource group, provisions the Static Web App via `infra/main.bicep`, and deploys the `public/` directory. The deployed URL is printed at the end.
+
+To reprovision infrastructure without redeploying content:
+
+```bash
+azd provision
+```
+
+To redeploy content without reprovisioning:
+
+```bash
+azd deploy
+```
+
+### GitHub Actions
+
+The workflow in `.github/workflows/azure-static-web-apps.yml` deploys on every push to `main` and manages preview environments for pull requests.
+
+Add the deployment token as a repository secret:
+
+1. In the Azure portal, open the Static Web App → **Manage deployment token**
+2. In GitHub, go to **Settings → Secrets → Actions** and add `AZURE_STATIC_WEB_APPS_API_TOKEN`
+
 ## Project structure
 
 ```
@@ -66,8 +100,60 @@ public/
         └── mscode.md
 ```
 
-## Adding a program
+## Generator
 
-1. Add an entry to `public/catalog.json`
-2. Create a folder at `public/programs/{slug}/`
-3. Add `.md` files — YAML frontmatter with enhancements, raw source code as the body
+`code_generator/` is a Python pipeline that uses Azure AI Foundry to generate annotated content files from GitHub source code.
+
+```
+code_generator/
+├── generator.py        # Main CLI
+├── client.py           # Azure AI Foundry client with fallback chain
+├── fetch_code.py       # Downloads source files from GitHub (cached)
+├── prompts.py          # Prompt construction for code analysis
+├── formatter.py        # Assembles YAML frontmatter + source body
+├── catalog_sync.py     # Keeps catalog.json in sync with generated files
+├── checkpointer.py     # Skips files that already exist on disk
+├── requirements.txt
+├── .env.example        # Copy to .env and fill in your keys
+└── config/
+    └── programs.yaml   # All programs and files — existing + to generate
+```
+
+### Setup
+
+```bash
+cd code_generator
+pip install -r requirements.txt
+cp .env.example .env
+# fill in AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_KEY (and optionally Llama/Mistral)
+```
+
+### Usage
+
+```bash
+# Generate all files not yet on disk
+python generator.py
+
+# Generate a specific program
+python generator.py --program prince-of-persia
+
+# Generate a specific file
+python generator.py --program ms-dos --file sysinit
+
+# Regenerate an existing file
+python generator.py --program zork --file rooms --force
+
+# Preview prompts without calling the API
+python generator.py --dry-run
+
+# Sync catalog.json without generating anything
+python generator.py --sync-catalog
+```
+
+Files already present in `public/programs/` are skipped unless `--force` is passed. After generation, `catalog.json` is updated automatically.
+
+### Adding a program
+
+1. Add an entry to `config/programs.yaml` with `github_repo`, `github_branch`, and a `files` list
+2. Run `python generator.py --program your-slug`
+3. The generator fetches the source from GitHub, calls the model, and writes the `.md` files

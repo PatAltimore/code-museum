@@ -1,0 +1,14 @@
+{
+  "routes": [
+    { "route": "/programs/*", "allowedRoles": ["anonymous"] },
+    { "route": "/catalog.json", "allowedRoles": ["anonymous"] }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/css/*", "/js/*", "/programs/*", "/catalog.json", "/manifest.json", "/sw.js", "/icon.*"]
+  },
+  "mimeTypes": { ".md": "text/plain" },
+  "globalHeaders": {
+    "Referrer-Policy": "no-referrer-when-downgrade"
+  }
+}
