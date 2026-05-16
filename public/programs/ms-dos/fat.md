@@ -9,50 +9,50 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "fat"
 order: 6
-description: "This file implements FAT filesystem operations, a cornerstone of MS-DOS that shaped personal computing for decades."
+description: "This file implements FAT filesystem operations, a design that shaped personal computing storage for decades."
 
 summary:
-  - point: "Implements FAT12/FAT16 filesystem operations, foundational to MS-DOS"
+  - point: "Implements FAT12/FAT16 filesystem operations, crucial for early PC storage"
     link: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     link_label: "File Allocation Table"
-  - point: "Introduces routines for packing and unpacking FAT entries, crucial for disk management"
+  - point: "Introduces routines for packing and unpacking FAT entries, optimizing cluster management"
+    link: "https://en.wikipedia.org/wiki/Cluster_(computing)"
+    link_label: "Cluster (computing)"
+  - point: "Demonstrates early error handling techniques for corrupted FAT entries"
+    link: "https://en.wikipedia.org/wiki/Error_handling"
+    link_label: "Error handling"
+  - point: "Reflects the transition from single-tasking to multi-tasking operating systems in MS-DOS v2.0"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Reflects constraints of early 1980s hardware, optimizing for limited memory and processing power"
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "Highlights Tim Paterson's influence in adapting FAT for MS-DOS"
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
-  - point: "FAT filesystem design persisted into modern USB drives and SD cards"
-    link: "https://en.wikipedia.org/wiki/USB_flash_drive"
-    link_label: "USB Flash Drive"
+  - point: "Highlights low-level assembly optimizations for performance on 8086 processors"
+    link: "https://en.wikipedia.org/wiki/Intel_8086"
+    link_label: "Intel 8086"
 
 enhancements:
   - id: "fat-maintenance-routines"
     line_start: 33
     line_end: 35
-    title: "FAT Maintenance Routines: A Core Innovation"
+    title: "FAT Maintenance: A Legacy Begins"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    image_url: ""
-    image_caption: ""
-    content: "These lines introduce the FAT maintenance routines, the backbone of MS-DOS's disk management system. Tim Paterson, adapting ideas from CP/M and his earlier work on 86-DOS, designed the FAT filesystem to efficiently manage files on floppy disks and hard drives. In 1983, when this version was written, the IBM PC had just begun to dominate the personal computing market, and MS-DOS was becoming the de facto standard. The FAT design, simple yet powerful, balanced the constraints of limited memory (640 KB maximum) and slow disk access speeds. This section sets the stage for routines that would ensure data integrity and efficient storage, a necessity for the era's burgeoning software ecosystem."
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png/330px-FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "FAT 12 et 16 - Entrée d'un fichier (CC BY-SA 4.0)"
+    content: "These lines introduce the FAT maintenance routines, the backbone of MS-DOS's file storage system. Tim Paterson, the original author of 86-DOS, designed the FAT filesystem to manage storage on floppy disks and early hard drives efficiently. By 1983, when MS-DOS v2.0 was released, the FAT design had evolved to support hierarchical directories and larger storage devices. At the time, storage constraints were severe—floppy disks held just 160 KB, and hard drives were rare and expensive. The FAT system's simplicity and adaptability made it a natural choice for the IBM PC and its clones, ensuring compatibility across a rapidly growing ecosystem. This foundational design would persist for decades, powering everything from early PCs to modern USB drives and SD cards."
   - id: "unpack-fat-entries"
-    line_start: 63
+    line_start: 71
     line_end: 141
-    title: "Unpacking FAT Entries: A Precision Task"
+    title: "Unpacking FAT Entries: Decoding Storage"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    image_url: ""
-    image_caption: ""
-    content: "The 'UNPACK' routine extracts information from the FAT for a given cluster number, translating raw disk data into meaningful file system entries. In 1983, this was cutting-edge work, enabling MS-DOS to manage files on increasingly complex storage devices. The routine checks cluster validity, retrieves data, and handles errors gracefully, signaling fatal issues when necessary. This reflects the careful engineering required to ensure reliability on hardware like the IBM PC's 5.25-inch floppy drives. Paterson and Microsoft's team were working under tight constraints, optimizing every byte of code to fit within the limited resources of early PCs. The error handling here underscores the importance of robustness in an era when disk corruption could mean losing critical business data."
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png/330px-FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "FAT 12 et 16 - Entrée d'un fichier (CC BY-SA 4.0)"
+    content: "The UNPACK routine decodes FAT entries to retrieve the cluster data associated with a file. In this moment, the programmer is solving the problem of efficiently mapping logical file clusters to physical storage locations. The inputs and outputs are carefully documented, reflecting the precision required in assembly programming. In 1983, storage devices were slow and prone to errors, so the code includes error handling for invalid clusters—a critical safeguard in an era when data corruption was common. The use of bitwise operations and register manipulation demonstrates the low-level optimization necessary to maximize performance on the Intel 8086 processor, which had limited computational power compared to modern CPUs. This routine exemplifies the ingenuity required to build reliable systems under tight hardware constraints."
   - id: "pack-fat-entries"
-    line_start: 145
+    line_start: 149
     line_end: 199
-    title: "Packing FAT Entries: Writing to the Disk"
+    title: "Packing FAT Entries: Writing to Disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    image_url: ""
-    image_caption: ""
-    content: "The 'PACK' routine writes data into the FAT for a specified cluster, ensuring that file system changes are accurately recorded. This operation is vital for tasks like saving files or updating directory structures. In 1983, storage devices were slow and prone to errors, making efficient and reliable disk writes a priority. The routine's design reflects the constraints of early PCs, where every operation had to be optimized for performance and memory usage. By carefully aligning data and handling edge cases, this code helped MS-DOS achieve the reliability that made it indispensable for businesses and home users alike. The FAT system's simplicity and effectiveness ensured its survival well into the 21st century, influencing storage technologies from USB drives to SD cards."
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png/330px-FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "FAT 12 et 16 - Entrée d'un fichier (CC BY-SA 4.0)"
+    content: "The PACK routine writes data to the FAT, associating a cluster number with its corresponding storage location. This operation is fundamental to file creation and modification, ensuring that data is correctly mapped and retrievable. In 1983, disk storage was a precious resource, and every byte mattered. The routine uses bitwise operations to pack data efficiently, minimizing overhead. The code reflects the careful balance between functionality and performance, as the programmer must account for alignment issues and handle partial clusters. This approach was inspired by earlier systems like CP/M but refined for the IBM PC's architecture. The FAT system's ability to manage storage dynamically was a key factor in MS-DOS's success, enabling it to scale from floppy disks to hard drives seamlessly. The techniques seen here influenced later operating systems and remain relevant in modern storage technologies."
 
 ---
 

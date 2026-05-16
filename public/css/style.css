@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap');
 
 :root {
   --bg: #0d1117;
@@ -6,15 +6,15 @@
   --border: #30363d;
   --text: #e6edf3;
   --muted: #8b949e;
-  --accent: #f78166;
+  --accent: #39d353;       /* green phosphor */
   --gold: #e3b341;
-  --link: #58a6ff;
+  --link: #ffb000;         /* amber phosphor */
   --code-bg: #0d1117;
   --comment: #8b949e;
-  --label: #79c0ff;
-  --directive: #ff9f0a;
+  --label: #ffc640;        /* lighter amber phosphor */
+  --directive: #85e89d;    /* soft phosphor green for directives */
   --highlight-bg: #1c2128;
-  --highlight-border: #f78166;
+  --highlight-border: #39d353; /* green phosphor */
   --code-size: 13px;
 }
 
@@ -203,7 +203,7 @@ a:hover {
 }
 
 .lang-badge {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   font-size: 0.7rem;
   background: var(--highlight-bg);
   color: var(--directive);
@@ -312,7 +312,7 @@ a:hover {
 }
 
 .file-order {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   font-size: 0.75rem;
   color: var(--muted);
   width: 1.5rem;
@@ -326,7 +326,7 @@ a:hover {
 }
 
 .file-name {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--label);
@@ -341,6 +341,100 @@ a:hover {
 .file-arrow {
   color: var(--muted);
   flex-shrink: 0;
+}
+
+/* ── CRT effect — catalog / home page ───────────────────────────────────── */
+
+/* Refresh-line sweep: a faint bright band drifts slowly down the screen     */
+@keyframes crt-sweep {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(350%);  }
+}
+
+/* Phosphor flicker: the overlay dims briefly at irregular intervals,         */
+/* simulating the voltage instability of an old CRT power supply.             */
+@keyframes crt-flicker {
+  0%,  41.9%, 42.6%, 43.2%, 100% { opacity: 1;    }
+  42%                             { opacity: 0.55; }
+  42.3%                           { opacity: 0.85; }
+  43%                             { opacity: 0.7;  }
+}
+
+/* Layer 1 — scanlines + edge vignette                                        */
+/* Two backgrounds in one rule: the repeating scanline gradient sits on top   */
+/* of a radial vignette that darkens the corners like a convex glass screen.  */
+.page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent     0px,
+      transparent     3px,
+      rgba(0,0,0,.18) 3px,
+      rgba(0,0,0,.18) 4px
+    ),
+    radial-gradient(
+      ellipse at 50% 45%,
+      transparent 50%,
+      rgba(0,0,0,.65) 100%
+    );
+  animation: crt-flicker 11s step-end infinite;
+}
+
+/* Layer 2 — slow CRT beam sweep                                              */
+/* A tall, nearly-invisible gradient panel that travels top-to-bottom once    */
+/* every 12 seconds, mimicking the electron beam's vertical retrace.          */
+.page::after {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 35%;
+  pointer-events: none;
+  z-index: 51;
+  background: linear-gradient(
+    to bottom,
+    transparent          0%,
+    rgba(255,255,255,.04) 50%,
+    transparent          100%
+  );
+  animation: crt-sweep 12s linear infinite;
+}
+
+/* Phosphor glow — text on the catalog page glows like lit phosphor           */
+.shelf-header h1 {
+  text-shadow:
+    0 0 8px  rgba(57,  211, 83,  0.8),
+    0 0 20px rgba(39,  185, 60,  0.5),
+    0 0 45px rgba(20,  150, 40,  0.3);
+}
+
+.shelf-header p {
+  text-shadow:
+    0 0 6px  rgba(57,  211, 83,  0.55),
+    0 0 16px rgba(39,  185, 60,  0.3);
+}
+
+.program-card .program-title {
+  text-shadow:
+    0 0 6px  rgba(57,  211, 83,  0.65),
+    0 0 18px rgba(39,  185, 60,  0.35);
+}
+
+.program-card .program-desc,
+.program-card .program-meta {
+  text-shadow:
+    0 0 5px  rgba(57,  211, 83,  0.4),
+    0 0 12px rgba(39,  185, 60,  0.2);
+}
+
+.program-card .lang-badge {
+  text-shadow:
+    0 0 5px  rgba(57,  211, 83,  0.5),
+    0 0 12px rgba(39,  185, 60,  0.28);
 }
 
 /* ── Source tree ─────────────────────────────────────────────────────────── */
@@ -375,7 +469,7 @@ a:hover {
 }
 
 .tree-dir-name {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   font-size: 0.8rem;
   color: var(--muted);
   font-weight: 600;
@@ -417,7 +511,7 @@ a:hover {
 }
 
 .tree-file-name {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--label);
@@ -460,7 +554,7 @@ a:hover {
 }
 
 .reader-header-meta h1 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--label);
@@ -546,7 +640,7 @@ a:hover {
 }
 
 .line-num {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   color: var(--muted);
   opacity: 0.4;
   width: 3.5rem;
@@ -559,7 +653,9 @@ a:hover {
 }
 
 .line-code {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+  font-variant-ligatures: common-ligatures;
+  font-feature-settings: "liga" 1, "calt" 1;
   white-space: pre;
   color: var(--text);
   flex: 1;
@@ -761,7 +857,7 @@ a:hover {
 }
 
 .file-nav-link .nav-name {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   color: var(--label);
   font-size: 0.85rem;
 }
@@ -786,7 +882,7 @@ a:hover {
 }
 
 .lookup-popup .lookup-word {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   font-weight: 700;
   color: var(--label);
   margin-bottom: 0.4rem;

@@ -1,53 +1,87 @@
 ---
 title: "SEQTABLE.S"
-program: "Prince of Persia (Apple II)"
+program: "Prince of Persia"
 program_slug: "prince-of-persia"
 file_path: "01 POP Source/Source/SEQTABLE.S"
 language: "6502 Assembly"
-github_url: "https://github.com/jmechner/Prince-of-Persia-Apple-II/blob/master/01%20POP%20Source/Source/SEQTABLE.S"
+github_url: "https://github.com/jmechner/Prince-of-Persia-Apple-II/blob/master/01 POP Source/Source/SEQTABLE.S"
 year: 1989
 author: "Jordan Mechner"
 slug: "seqtable"
 order: 3
-description: "The animation state machine — 114 named movement sequences, each one a byte stream encoding frames filmed from real human motion."
+description: "The sequence table for Prince of Persia (1989) defines the game's cinematic animations in 6502 assembly, showcasing Jordan Mechner's ingenuity in crafting fluid motion on constrained Apple II hardware."
 
 summary:
-  - point: "114 movement sequences cover every action: running, jumping, sword fighting, dying, drinking a potion"
+  - point: "Defines animation sequences as data-driven routines"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
+  - point: "Uses compact encoding to fit animations into memory"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II series"
+  - point: "Demonstrates rotoscoping-inspired animation logic"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Mechner filmed his brother David performing moves, then traced every frame into sprite data"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "The sequence byte stream uses a tiny virtual machine: goto, chx, chy, act, die, nextlevel"
+  - point: "Innovative use of bank-switched memory for 128K systems"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank switching"
+  - point: "Sequence table reflects cinematic platformer design"
+    link: "https://en.wikipedia.org/wiki/Cinematic_platformer"
+    link_label: "Cinematic platformer"
 
 enhancements:
-  - id: "seq-opcodes"
-    line_start: 1
-    line_end: 22
-    title: "A Tiny Animation Virtual Machine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Virtual_machine"
+  - id: "sequence-table-instructions"
+    line_start: 8
+    line_end: 25
+    title: "Mapping Actions to Compact Codes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/US_patent_1242674_figure_3.png/330px-US_patent_1242674_figure_3.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Patent drawing for Fleischer's original rotoscope. (Public domain)"
+    content: "This section defines compact numeric codes for various player actions, such as 'goto', 'aboutface', and 'die'. These codes are later referenced in animation sequences, making the game's logic data-driven. In 1989, memory constraints on the Apple II meant every byte mattered. Jordan Mechner, working solo, had to encode complex animations and gameplay mechanics into a mere 128K of bank-switched memory. By using small integers to represent actions, he minimized the footprint of the game's logic while keeping it flexible. This approach allowed him to focus on the cinematic quality of the animations, inspired by rotoscoping techniques. The compact encoding here reflects the game's innovative design, where fluid motion and storytelling were prioritized despite hardware limitations. This data-driven approach influenced later games, where animation systems became increasingly modular and reusable."
+  - id: "sequence-table-animation-entries"
+    line_start: 28
+    line_end: 147
+    title: "Defining the Cinematic Moves"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Prince_of_Persia_1_-_MS-DOS_-_Gameplay.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "Game play animation of the IBM PC version of Prince of Persia. (CC BY-SA 4.0)"
+    content: "Here, Mechner defines the sequence table that maps animations to routines. Each entry, such as 'startrun', 'standjump', and 'impale', corresponds to a specific movement or action in the game. The table is a direct result of Mechner's rotoscoping process, where he filmed his brother performing moves and traced them frame by frame. In the mid-1980s, this technique was groundbreaking for video games, as it brought a level of realism and fluidity rarely seen before. The Apple II's limited graphics capabilities required Mechner to be highly efficient in encoding these animations, using direct memory references and compact routines. This table is the backbone of Prince of Persia's cinematic platformer experience, ensuring that every jump, fall, and sword strike feels lifelike. The influence of this design can be seen in modern animation systems, where motion capture and data-driven tables are standard practice."
+  - id: "running-animation-sequence"
+    line_start: 149
+    line_end: 155
+    title: "Looping the Running Cycle"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Prince_of_Persia_1_-_MS-DOS_-_Gameplay.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "Game play animation of the IBM PC version of Prince of Persia. (CC BY-SA 4.0)"
+    content: "The 'running' sequence defines the logic for the protagonist's continuous running animation. It uses a looped cycle ('runcyc1') to create the illusion of smooth, uninterrupted motion. On the Apple II, achieving fluid animation was a challenge due to the hardware's limited processing power and memory. Mechner's solution was to encode the animation as a series of discrete frames, each tied to specific player actions or states. This approach reflects the constraints of the era, where developers had to balance realism with performance. The running sequence is a testament to Mechner's ability to create lifelike movement within tight technical limits. It set a standard for platformers, influencing how character motion was handled in subsequent games."
+  - id: "start-run-sequence"
+    line_start: 157
+    line_end: 178
+    title: "Transitioning into Motion"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "Before the sequence data comes the instruction set for the animation interpreter — a tiny virtual machine with 15 opcodes, all stored as negative byte values so they can be distinguished from positive frame indices. goto jumps to another sequence. chx and chy adjust the character's position. act triggers a game-logic action. die kills the character. nextlevel advances to the next dungeon level. The interpreter that consumes these byte streams is elsewhere in the codebase, but the vocabulary is defined right here. It's a domain-specific language for cinematic movement, invented in 1985."
-
-  - id: "sequence-index"
-    line_start: 29
-    line_end: 117
-    title: "114 Movements: A Game Design in Names"
+    content: "The 'startrun' sequence handles the transition from standing to running. It begins with discrete steps ('runstt1' to 'runstt6') before looping into the running cycle ('runcyc1'). This smooth transition is a hallmark of Prince of Persia's cinematic style, where every movement feels deliberate and natural. In 1989, most platformers had abrupt, mechanical animations, but Mechner's rotoscoping-inspired approach brought a new level of realism. The sequence reflects his attention to detail, ensuring that the protagonist's movements mirrored human motion. This innovation contributed to the game's immersive quality, setting it apart from other titles of the era. The concept of smooth transitions between states has since become a staple in animation systems across genres."
+  - id: "stand-animation-sequence"
+    line_start: 180
+    line_end: 187
+    title: "Stillness as a Cinematic Choice"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
+    image_url: ""
+    image_caption: ""
+    content: "The 'stand' sequence defines the protagonist's idle state, where no action is performed. While seemingly simple, this sequence is crucial for maintaining the game's cinematic feel. In traditional platformers of the 1980s, idle states were often overlooked or static, but Mechner's approach treated every frame as part of the storytelling. The idle animation adds to the game's realism, making the character feel alive even when stationary. This design choice reflects Mechner's background in filmmaking, where every moment contributes to the narrative. The 'stand' sequence is a small but significant part of Prince of Persia's legacy, influencing how idle states are handled in modern games."
+  - id: "alert-stand-sequence"
+    line_start: 189
+    line_end: 197
+    title: "Heightened Awareness in Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Popap2.png/220px-Popap2.png"
-    image_caption: "Prince of Persia on the Apple II. The fluid animation was unlike anything else in 1989. Fair use."
-    content: "The dispatch table at the top of the file is an index of every movement in the game. Read the names as a design document: startrun, standjump, runjump, stepfall, jumphangMed, climbup, hangdrop, freefall. The combat system: engarde, advance, retreat, strike, flee, strikeblock, readyblock, blocktostrike, stabkill. The deaths: impale, crush, deadfall, halve. The story: drinkpotion, climbstairs, Pembrace, Pwaiting, Pstroke, Pslump. Every name corresponds to real film footage of David Mechner (Jordan's younger brother) performing the move in a parking lot wearing white clothing, shot with a consumer VHS camera."
+    image_url: ""
+    image_caption: ""
+    content: "The 'alert stand' sequence represents a heightened state of awareness for the protagonist. This animation is triggered in moments of tension, such as when enemies are nearby. By encoding this state separately, Mechner added a layer of emotional depth to the character's behavior. In 1989, such nuanced animations were rare in video games, where characters typically had limited states. The 'alert stand' reflects Mechner's cinematic vision, where the protagonist's movements convey his inner state. This innovation contributed to the game's immersive storytelling, influencing how character animations are used to express emotion in modern games."
 
-  - id: "run-cycle"
-    line_start: 118
-    line_end: 160
-    title: "The Run Cycle: 14 Frames of Rotoscoped Film"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Muybridge_race_horse_animated.gif/320px-Muybridge_race_horse_animated.gif"
-    image_caption: "Eadweard Muybridge's motion studies (1878) pioneered the frame-by-frame analysis that Mechner applied to human movement. Public domain."
-    content: "The running animation is split into startrun (the acceleration) and runcyc1 through runcyc8 (the looping cycle). Each db line is one animation frame — a sprite index — followed by chx commands that move the character horizontally by the right number of pixels. The tap command triggers a footstep sound at the right frame. The goto at the end loops back to runcyc1. Jordan Mechner spent months calibrating these offsets to match the filmed footage: the run cycle has 14 frames where competing games had 2 or 3. Players in 1989 described it as 'watching a cartoon.' It was unlike anything they had seen in a game."
 ---
+
+; excerpt — first 200 lines of 01 POP Source/Source/SEQTABLE.S
+
 * seqtable
 org = $3000
  tr on ;TABS 15,20,40
@@ -225,3 +259,26 @@ runcyc7 db tap,1,13,chx,3
 runcyc8 db 14,chx,4
  db goto
  dw runcyc1
+
+*-------------------------------
+*  s t a n d
+*-------------------------------
+stand
+ db act,0
+ db 15
+ db goto
+ dw stand
+
+*-------------------------------
+* a l e r t   s t a n d
+*-------------------------------
+goalertstand
+ db act,1
+alertstand
+:loop db 166
+ db goto
+ dw :loop
+
+*-------------------------------
+* a r i s e (skeleton)
+*-------------------------------

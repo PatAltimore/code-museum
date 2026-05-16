@@ -1,65 +1,78 @@
 ---
-title: "MSCODE.ASM (v2.0)"
+title: "MSCODE.ASM"
 program: "MS-DOS"
 program_slug: "ms-dos"
 file_path: "v2.0/source/MSCODE.ASM"
 language: "8086 Assembly"
 github_url: "https://github.com/microsoft/MS-DOS/blob/main/v2.0/source/MSCODE.ASM"
-year: 1983
-author: "Microsoft"
+year: 1981
+author: "Tim Paterson / Microsoft"
 slug: "mscode"
 order: 4
-description: "The kernel entry point — the INT 21h dispatcher, the INDOS flag, and a comment that says 'Here comes multitasking!!!'"
+description: "The source code for MS-DOS 2.0 represents a pivotal moment in computing history, where Microsoft transitioned from a simple single-tasking OS to a more Unix-inspired system, enabling subdirectories, file handles, and device drivers."
 
 summary:
-  - point: "MSCODE.ASM is the main kernel module for MS-DOS 2.0 — the INT 21h entry point and system call dispatcher"
-    link: "https://en.wikipedia.org/wiki/INT_21H"
-    link_label: "INT 21H"
-  - point: "The INDOS flag prevented re-entrant DOS calls — the mechanism that all TSR programs checked before calling DOS"
-    link: "https://en.wikipedia.org/wiki/Terminate_and_stay_resident_program"
-    link_label: "TSR programs"
-  - point: "'Here comes multitasking!!!' — the comment in the code; real DOS multitasking would not arrive for nearly a decade"
-    link: "https://en.wikipedia.org/wiki/Windows_3.1x"
-    link_label: "Windows 3.1"
+  - point: "Conditional assembly directives reflect the need for OEM-specific customization."
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Kanji support demonstrates early localization efforts for Japanese markets."
+    link: "https://en.wikipedia.org/wiki/Kanji"
+    link_label: "Kanji"
+  - point: "System call dispatcher reveals the multitasking aspirations of MS-DOS 2.0."
+    link: "https://en.wikipedia.org/wiki/System_call"
+    link_label: "System call"
+  - point: "Stack manipulation showcases the constraints of 8086 architecture."
+    link: "https://en.wikipedia.org/wiki/Intel_8086"
+    link_label: "Intel 8086"
+  - point: "OEM handler customization highlights Microsoft's licensing strategy."
+    link: "https://en.wikipedia.org/wiki/MS-DOS#OEM_versions"
+    link_label: "OEM versions"
 
 enhancements:
-  - id: "copyright"
-    line_start: 56
-    line_end: 80
-    title: "Microsoft Stamps Its Name on Paterson's Code"
+  - id: "conditional-assembly-directives"
+    line_start: 17
+    line_end: 27
+    title: "Conditional assembly: OEMs and localization"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Microsoft_logo_%281987%29.svg/440px-Microsoft_logo_%281987%29.svg.png"
-    image_caption: "The Microsoft logo as it appeared in 1983. The copyright string in MSCODE.ASM reads 'Copyright 1981,82,83 Microsoft Corp.' Public domain."
-    content: "The HEADER string beginning at line 62 is the version banner that appears when MS-DOS boots: 'Microsoft MS-DOS version X.XX' followed by 'Copyright 1981,82,83 Microsoft Corp.' The year 1981 in the copyright refers to PC DOS 1.0 — the year Microsoft shipped Tim Paterson's code to IBM. Paterson had written 86-DOS for Seattle Computer Products in 1980; Microsoft bought the full rights for $25,000 in July 1981. The copyright string in v2.0 spans three years, 1981 through 1983, marking the period in which a small language company became the dominant force in personal computer software. The KANJI conditional block (lines 67-73) shows a parallel Japanese version of the same header in double-byte Shift-JIS encoding — Microsoft was simultaneously building for the Japanese PC market, where NEC's PC-98 was becoming the dominant platform. The conditional IBM flag suppresses the header entirely on IBM-branded builds, where IBM's own copyright message appeared instead."
-
-  - id: "int21-dispatcher"
-    line_start: 82
-    line_end: 130
-    title: "The INT 21h Dispatcher"
-    wikipedia_url: "https://en.wikipedia.org/wiki/INT_21H"
-    image_url: ""
-    image_caption: ""
-    content: "The SYSTEM_CALL procedure is the entry point for every operating system service that any DOS program ever called. Entry QUIT handles INT 20H (terminate program) by setting AH to 0 and falling through. Entry COMMAND handles INT 21H — the main dispatch interrupt. The non-IBM build first checks for SET_OEM_HANDLER, which allowed OEM manufacturers to hook the DOS kernel. Then CMP AH,MAXCOM / JBE SAVREGS validates the function number: if the requested function exceeds the maximum, it jumps to BADCALL, which returns AL=0. Entry CALL_ENTRY is the CP/M compatibility path — it reconstructs a stack frame from the CALL 5 convention (pop IP, pop segment, pop the CP/M-style CL function number) and falls through to SAVREGS. SAVREGS calls save_world to preserve all registers. This single procedure, called trillions of times across hundreds of millions of machines over two decades, is the INT 21h contract made executable."
-
-  - id: "indos"
-    line_start: 131
-    line_end: 155
-    title: "The INDOS Flag: How TSRs Knew When to Call DOS"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Terminate_and_stay_resident_program"
-    image_url: ""
-    image_caption: ""
-    content: "INC [INDOS] on line 141 is the increment of the most important flag in the DOS ecosystem. INDOS is a byte counter that tracks whether execution is currently inside a DOS system call. Every entry into SYSTEM_CALL increments it; every exit decrements it. Terminate-and-stay-resident programs (TSRs) — the memory-resident utilities like SideKick, print spoolers, and antivirus programs that popped up over any running application — needed to call DOS themselves. But DOS was not re-entrant: calling INT 21H while already inside a DOS call corrupted the kernel's internal state. The solution was for TSRs to check INDOS before calling DOS: if it was nonzero, DOS was busy and the TSR had to wait. Finding INDOS required knowing its address, which meant either a documented interface (which DOS didn't officially provide) or a published hack. The address was eventually documented in technical references, and INDOS checking became universal TSR practice. This single byte variable defined the rules of engagement for a decade of memory-resident programming."
-
-  - id: "multitasking"
-    line_start: 155
-    line_end: 168
-    title: "Here Comes Multitasking!!!"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Multitasking"
-    image_url: ""
-    image_caption: ""
-    content: "Lines 158-162 contain what may be the most prophetic comment in the history of operating systems. After saving the user's stack pointer into the current Process Descriptor Block (PDB_User_stack), a comment reads: 'save user stack in his area for later returns (possibly from EXEC) / Here comes multitasking!!!' The code is saving the per-process stack pointer — a prerequisite for context switching between processes. The programmers could see where this was going. The data structure was in place. The concept was understood. But MS-DOS 2.0 was still single-tasking: there was no scheduler, no preemption, no way to run two programs simultaneously. Real multitasking for PC DOS users arrived with Windows 3.0 in 1990 — seven years later. The three exclamation points are the sound of engineers who knew exactly what they were building toward, working within constraints that would prevent them from finishing for nearly a decade."
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
+    content: "This section of code uses conditional assembly directives to define constants based on the target environment. For example, `KANJI` and `IBM` flags are set to `0` by default, but could be overridden to enable specific features for Japanese markets or IBM hardware. In 1983, MS-DOS 2.0 was designed to be highly adaptable for OEMs, reflecting Microsoft's strategy to license the operating system to multiple hardware manufacturers. This flexibility was crucial for Microsoft's dominance in the PC market, as it allowed MS-DOS to run on a variety of hardware configurations. The inclusion of Kanji support also highlights Microsoft's early efforts to localize software for non-English-speaking markets, particularly Japan, where the PC-98 series was gaining traction. These directives reveal the balancing act between customization and standardization that shaped MS-DOS's development."
+  - id: "header-generation-kanji-support"
+    line_start: 61
+    line_end: 86
+    title: "Header generation: ASCII vs Kanji"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Kanji_furigana.svg/330px-Kanji_furigana.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Kanji with Furigana (CC BY-SA 3.0)"
+    content: "This section generates the version header displayed when MS-DOS starts. The code dynamically constructs the version string using the major and minor version numbers, with special handling for high memory configurations (`HIGHMEM`). Notably, the code includes an alternate header for Kanji systems, using Japanese character encoding. In the early 1980s, localization was a significant challenge due to the limitations of hardware and software. Supporting Kanji required careful encoding and additional memory, as the 8086 architecture was not inherently designed for multi-byte character sets. Microsoft's decision to include Kanji support reflects the growing importance of the Japanese market, where NEC's PC-98 series was a dominant force. This header generation routine is a small but telling example of how MS-DOS 2.0 was tailored for global use, laying the groundwork for Microsoft's international expansion."
+  - id: "system-call-dispatcher"
+    line_start: 91
+    line_end: 193
+    title: "System call dispatcher: Multitasking ambitions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Linux_kernel_interfaces.svg/330px-Linux_kernel_interfaces.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Illustration of Linux kernel interfaces (CC BY-SA 3.0)"
+    content: "This section implements the system call dispatcher for MS-DOS, handling interrupts like `INT 20H` and `INT 21H`. It includes routines for saving the processor state, managing stacks, and dispatching system calls based on the value of the `AH` register. The code also introduces multitasking concepts, such as saving the user stack for later use, hinting at MS-DOS's aspirations to support more advanced features. In 1983, multitasking was still a rarity in personal computing, largely constrained by the limited memory and processing power of machines like the IBM PC. MS-DOS 2.0's dispatcher reflects the influence of Unix and XENIX, which inspired many of its design decisions. While true multitasking would not arrive until later versions of Windows, this code represents an early step toward more sophisticated operating system functionality. The dispatcher also highlights the challenges of working within the constraints of the 8086 architecture, where careful stack manipulation and interrupt handling were essential for system stability."
+  - id: "stack-manipulation-and-error-handling"
+    line_start: 143
+    line_end: 193
+    title: "Stack manipulation: Error handling and multitasking"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8086"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Intel_C8086.jpg/330px-Intel_C8086.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "A processor Intel C8086, 5 MHz. (CC BY-SA 4.0)"
+    content: "This section demonstrates intricate stack manipulation to manage system calls and error handling. The code saves the user stack state, reorders the stack for interrupt handling, and switches between different stacks (`AUXSTACK`, `IOSTACK`, and `DSKSTACK`) depending on the operation. This approach reflects the constraints of the 8086 architecture, where the lack of hardware support for multitasking required software-based solutions. In 1983, the IBM PC was equipped with an Intel 8088 processor, a variant of the 8086, which had limited memory and processing capabilities. MS-DOS 2.0's stack management routines were a clever workaround to enable more advanced features, such as error handling and pseudo-multitasking. These techniques would influence later operating systems, including Windows, which built upon MS-DOS's foundations to implement true multitasking. The stack manipulation code also underscores the ingenuity required to maximize the capabilities of early PC hardware."
+  - id: "oem-handler-customization"
+    line_start: 50
+    line_end: 52
+    title: "OEM handler: Tailoring MS-DOS for hardware"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS#OEM_versions"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
+    content: "This brief section introduces the `OEM_HANDLER` directive, which allows for customization of MS-DOS to support specific hardware configurations. In the early 1980s, Microsoft's licensing strategy was to provide MS-DOS as a flexible platform that OEMs could adapt to their machines. This approach was a key factor in Microsoft's success, as it enabled MS-DOS to become the standard operating system for a wide range of IBM-compatible PCs. The ability to define OEM-specific handlers reflects the modularity of MS-DOS 2.0, which was designed to accommodate diverse hardware needs while maintaining a consistent user experience. This modularity would later influence the design of Windows, which continued to prioritize compatibility with a broad array of devices and manufacturers."
 
 ---
+
+; excerpt — first 200 lines of v2.0/source/MSCODE.ASM
 
 ;
 ; MSCODE.ASM -- MSDOS code
@@ -254,3 +267,10 @@ DISPCALL:
         MOV     DS,[SaveDS]
 ASSUME  DS:NOTHING
         return
+
+        entry LEAVE
+ASSUME  SS:NOTHING                      ; User routines may misbehave
+        CLI
+        DEC     [INDOS]
+        MOV     SP,[user_SP]
+        MOV     SS,[user_SS]

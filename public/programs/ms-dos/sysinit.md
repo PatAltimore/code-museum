@@ -9,58 +9,58 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "sysinit"
 order: 5
-description: "The SYSINIT.ASM file is the foundational system initialization code for MS-DOS v2.0, a pivotal operating system that shaped the PC era."
+description: "This file initializes the MS-DOS operating system at power-on, setting up memory, devices, and loading the command interpreter."
 
 summary:
-  - point: "Conditional assembly directives for OEM customization"
+  - point: "Defines conditional assembly flags for different OEM versions"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Memory sizing and relocation routines"
+  - point: "Structures memory and device pointers for system initialization"
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
-  - point: "Integration of CONFIG.SYS and COMMAND.COM"
-    link: "https://en.wikipedia.org/wiki/CONFIG.SYS"
-    link_label: "CONFIG.SYS"
-  - point: "Structuring internal DOS data for device management"
-    link: "https://en.wikipedia.org/wiki/Device_driver"
-    link_label: "Device driver"
-  - point: "Support for international versions like IBM Japan"
-    link: "https://en.wikipedia.org/wiki/IBM"
-    link_label: "IBM"
+  - point: "Introduces subdirectory and file handle concepts inspired by Unix"
+    link: "https://en.wikipedia.org/wiki/Unix"
+    link_label: "Unix"
+  - point: "Uses assembly macros to handle hardware-specific variations"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly language"
+  - point: "Executes COMMAND.COM as the final step of initialization"
+    link: "https://en.wikipedia.org/wiki/COMMAND.COM"
+    link_label: "COMMAND.COM"
 
 enhancements:
-  - id: "conditional-assembly-for-oem-customization"
-    line_start: 5
+  - id: "conditional-flags-for-oem-versions"
+    line_start: 11
     line_end: 35
-    title: "Conditional Assembly: Tailoring MS-DOS for OEMs"
+    title: "Conditional Flags for OEM Versions"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "These lines define a series of conditional assembly directives that enable MS-DOS to be customized for different OEMs. By setting flags like `IBMVER`, `MSVER`, and `KANJI`, the assembler could generate tailored versions of the operating system for IBM, Microsoft, or Japanese markets. In 1983, this flexibility was critical; MS-DOS was licensed to over 70 OEMs, each with unique hardware configurations and market needs. Tim Paterson and Microsoft's engineers designed this mechanism to accommodate those variations without rewriting the codebase for each customer. This approach reflects the modular philosophy inspired by Unix, which MS-DOS v2.0 increasingly emulated. The consequence was a scalable licensing model that helped Microsoft dominate the PC software market. Today, conditional compilation remains a standard practice in software development, a testament to its utility and foresight."
-  - id: "internal-dos-data-structure"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
+    content: "This section defines conditional assembly flags that control the behavior of the system initialization code based on the OEM version being built. For example, `IBMVER` and `IBMJAPVER` toggle features specific to IBM and Japanese versions of DOS, while `MSVER` ensures compatibility with Microsoft's standard release. In 1983, MS-DOS was rapidly expanding its reach, with over 70 OEMs licensing the software. Each OEM often required slight modifications to accommodate their hardware or regional needs. Tim Paterson and Microsoft's engineers had to ensure the codebase was flexible enough to support these variations without duplicating effort. These flags reflect the modularity and foresight needed to scale MS-DOS across a fragmented hardware landscape. The approach of using conditional assembly remains a common practice in embedded systems and cross-platform development."
+  - id: "sysinitvar-memory-and-device-structure"
     line_start: 55
     line_end: 79
-    title: "SYSINITVAR: Structuring DOS for Device Management"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
-    image_url: ""
-    image_caption: ""
-    content: "The `SYSINITVAR` structure defines key internal data used by DOS during initialization. It includes pointers to device lists, buffer queues, and disk tables, as well as sector size limits. In 1983, managing hardware devices was a complex task, as PCs lacked standardized interfaces. MS-DOS v2.0 introduced a more sophisticated device driver model, allowing developers to write software that interacted seamlessly with hardware. This structure encapsulates the data necessary for those interactions, ensuring that devices like consoles, clocks, and disk drives could be initialized and accessed efficiently. The design was influenced by Unix's device abstraction, which Microsoft had studied while developing XENIX. This innovation laid the groundwork for the modular hardware support seen in later operating systems, including Windows."
-  - id: "memory-sizing-and-relocation"
-    line_start: 101
-    line_end: 145
-    title: "Memory Sizing: Maximizing Limited Resources"
+    title: "SYSINITVAR: Memory and Device Structure"
     wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
-    image_url: ""
-    image_caption: ""
-    content: "The `SYSINITSEG` segment begins the process of sizing and relocating memory. Early PCs typically had between 16 KB and 640 KB of RAM, and MS-DOS needed to determine the available memory at startup. This code writes and reads bit patterns to test memory boundaries, ensuring the operating system could utilize the full extent of installed RAM. Once sized, MS-DOS relocates itself into high memory, freeing up lower memory for user applications. In 1983, memory was a scarce and expensive resource, so efficient management was paramount. Tim Paterson's original 86-DOS had been designed for the Intel 8086, a processor with a segmented memory model that made such operations necessary. The techniques developed here influenced memory management strategies in later DOS versions and other operating systems, including Windows."
-  - id: "config-sys-and-command-com-integration"
-    line_start: 195
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Motorola_6800_Assembly_Language.png/330px-Motorola_6800_Assembly_Language.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Motorola 6800 Assembly Language (Public domain)"
+    content: "The `SYSINITVAR` structure organizes critical pointers and variables for system initialization. It includes entries for the disk parameter block (DPB), file control block (FCB), and device headers for the console and clock. In the early 1980s, memory was scarce, with the IBM PC shipping with as little as 16 KB of RAM. Efficient memory management was paramount, and structures like this allowed MS-DOS to allocate resources dynamically and interact with hardware devices seamlessly. Tim Paterson's experience with CP/M influenced this design, as CP/M also relied on structured memory layouts for device and file management. This structure laid the groundwork for MS-DOS's ability to support multiple devices and file systems, a feature that became increasingly important as PCs evolved."
+  - id: "public-symbols-for-system-integration"
+    line_start: 119
+    line_end: 135
+    title: "Public Symbols for System Integration"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Command.com_Win10.png/330px-Command.com_Win10.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Screenshot of Command.com in Windows 10 Pro, 32-bit edition. (Public domain)"
+    content: "This block declares public symbols like `CURRENT_DOS_LOCATION`, `DEVICE_LIST`, and `MEMORY_SIZE`, which are accessible to other parts of the operating system. These symbols act as shared variables, enabling different modules of MS-DOS to communicate and coordinate. In the early 1980s, modular programming was still emerging as a best practice, and assembly language offered limited tools for abstraction. By exposing key variables as public symbols, the developers ensured that the system could be extended or debugged without rewriting core components. This approach reflects the pragmatic engineering mindset of the time, balancing simplicity with the need for flexibility in a rapidly evolving software ecosystem."
+  - id: "sysinit-entry-point"
+    line_start: 145
     line_end: 199
-    title: "Boot Sequence: Parsing CONFIG.SYS and EXECing COMMAND.COM"
-    wikipedia_url: "https://en.wikipedia.org/wiki/CONFIG.SYS"
+    title: "SYSINIT: The Entry Point to MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""
     image_caption: ""
-    content: "The final lines of the file execute the boot sequence, parsing `CONFIG.SYS` and launching `COMMAND.COM`. `CONFIG.SYS` allowed users to configure device drivers and system settings, while `COMMAND.COM` provided the command-line interface. This integration marked a significant evolution from earlier versions of MS-DOS, which lacked such configurability. Inspired by Unix's initialization scripts, these features gave users greater control over their systems, enabling customization for specific hardware or software environments. In 1983, this was a groundbreaking step toward making PCs more versatile and user-friendly. The boot sequence became a defining characteristic of MS-DOS, influencing the design of subsequent operating systems, including Windows and Linux."
+    content: "The `SYSINIT` routine is the heart of the initialization process. It begins by jumping to `GOINIT`, which handles hardware setup and memory relocation. The routine then sets up key variables like `MEMORY_SIZE` and `DEFAULT_DRIVE`, ensuring the system is ready to load and execute `COMMAND.COM`. In 1983, MS-DOS 2.0 introduced major features inspired by Unix, such as hierarchical directories and file handles. These innovations required a robust initialization sequence to prepare the system for more complex operations. The final step, executing `COMMAND.COM`, reflects the user-centric design philosophy of MS-DOS: the operating system's primary role was to provide a simple and accessible interface for running programs. This entry point became iconic, as millions of users worldwide booted their PCs into MS-DOS using this very sequence."
 
 ---
 

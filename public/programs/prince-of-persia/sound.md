@@ -1,64 +1,85 @@
 ---
 title: "SOUND.S"
-program: "Prince of Persia (Apple II)"
+program: "Prince of Persia"
 program_slug: "prince-of-persia"
 file_path: "01 POP Source/Source/SOUND.S"
 language: "6502 Assembly"
-github_url: "https://github.com/jmechner/Prince-of-Persia-Apple-II/blob/master/01%20POP%20Source/Source/SOUND.S"
+github_url: "https://github.com/jmechner/Prince-of-Persia-Apple-II/blob/master/01 POP Source/Source/SOUND.S"
 year: 1989
 author: "Jordan Mechner"
 slug: "sound"
 order: 1
-description: "The entire sound system for Prince of Persia — twenty distinct sounds, built on a single toggling bit."
+description: "The sound system for Prince of Persia (1989), showcasing Jordan Mechner's ingenuity in crafting cinematic audio on the Apple II's limited hardware."
 
 summary:
-  - point: "The complete sound engine fits in under 150 lines of 6502 assembly"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II hardware"
-  - point: "A dispatch table of 20 named sounds driven by self-modifying code"
+  - point: "Self-modifying code used for sound playback"
     link: "https://en.wikipedia.org/wiki/Self-modifying_code"
     link_label: "Self-modifying code"
-  - point: "Every sound reduces to a single primitive: a busy-loop toggling address $C030"
-    link: "https://en.wikipedia.org/wiki/Apple_II_sound"
-    link_label: "Apple II sound"
+  - point: "Lookup table for sound routines demonstrates efficient memory use"
+    link: "https://en.wikipedia.org/wiki/Lookup_table"
+    link_label: "Lookup table"
+  - point: "Direct interaction with Apple II speaker hardware"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II hardware"
+  - point: "Routines for cinematic sound effects tied to gameplay events"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia (1989)"
+  - point: "Tone generation algorithm tailored to Apple II constraints"
+    link: "https://en.wikipedia.org/wiki/Sound_synthesis"
+    link_label: "Sound synthesis"
 
 enhancements:
-  - id: "speaker-hw"
-    line_start: 1
-    line_end: 15
-    title: "One Bit of Sound"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Apple_II_typical_configuration_1977.png/440px-Apple_II_typical_configuration_1977.png"
-    image_caption: "Apple II (1977). The only audio hardware: a single speaker wired to one memory address. Public domain."
-    content: "The Apple II had no sound chip. Its only audio capability was a single-bit speaker that could be toggled by reading or writing to memory address $C030. Every time you touched that address, the speaker cone moved — in or out. Everything — pitch, duration, timbre — had to be synthesized entirely in software by precisely controlling how often that toggle happened. Prince of Persia's entire sound engine is built on this single primitive."
-
-  - id: "dispatch-table"
-    line_start: 22
-    line_end: 47
-    title: "The Sound Dispatch Table"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Dispatch_table"
+  - id: "sound-routine-lookup-table"
+    line_start: 30
+    line_end: 55
+    title: "Efficient sound routine lookup table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "This lookup table maps 20 named sound identifiers to the addresses of their handler routines. The names themselves — DoPlateDown, DoSplat, DoImpaled, DoSwordClash1, DoJawsClash — read like a storyboard for every way the prince can die or interact with the dungeon. Each entry is a 16-bit address stored as two bytes (low byte, high byte), the standard 6502 little-endian convention. The table is the entire interface between the game logic and the sound engine."
-
-  - id: "self-modifying"
-    line_start: 97
-    line_end: 115
-    title: "Self-Modifying Code: jmp $ffff"
+    content: "This section defines a lookup table mapping sound IDs to their corresponding subroutines. Each entry in the table points to a specific sound effect routine, such as 'DoPlateDown' or 'DoGateSlam.' The programmer's goal here was to efficiently organize and reference sound routines without wasting precious memory. In 1989, the Apple II's 128K memory was a tight constraint, and every byte mattered. Jordan Mechner, working solo, had to balance cinematic ambitions with technical limitations. Lookup tables like this were a common technique in assembly programming, allowing rapid access to routines without complex branching logic. This approach not only saved memory but also made the code modular and easier to expand. The lookup table reflects the game's cinematic nature, with sound effects tied closely to gameplay events, enhancing immersion. This pattern of organizing sound routines persisted in later games, though modern systems use higher-level abstractions."
+  - id: "zero-sound-initialization"
+    line_start: 64
+    line_end: 67
+    title: "Zero sound table initialization"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: ""
+    image_caption: ""
+    content: "The 'ZEROSOUND' routine clears the sound table, setting the number of sounds to zero. This initialization step ensures that no residual data corrupts gameplay. In the late 1980s, memory management was a critical concern for programmers working on systems like the Apple II. Unlike modern systems with dynamic memory allocation, programmers had to manually manage every byte. Jordan Mechner's careful attention to initialization reflects his understanding of these constraints. The Apple II's hardware was unforgiving; uninitialized memory could lead to unpredictable behavior. This routine exemplifies the meticulousness required to create stable software on such limited hardware. The practice of initializing data structures remains a cornerstone of programming today, though modern languages often automate this process."
+  - id: "add-sound-to-table"
+    line_start: 79
+    line_end: 91
+    title: "Adding sounds dynamically to the table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_synthesis"
+    image_url: ""
+    image_caption: ""
+    content: "The 'ADDSOUND' routine dynamically adds a sound to the sound table while preserving registers. This allows the game to queue up sound effects for playback later. In 1989, dynamic sound management was an advanced feature for a game running on the Apple II. Mechner's approach reflects his desire to create a cinematic experience, where sound effects respond to gameplay events in real-time. The routine checks if the table is full before adding a sound, demonstrating careful memory management. This dynamic system contrasts with simpler games of the era, which often used static sound effects triggered directly by events. By queuing sounds, Mechner enabled layered audio effects, enhancing the game's immersive quality. This technique laid groundwork for more sophisticated audio systems in later games."
+  - id: "playback-sound-table"
+    line_start: 100
+    line_end: 118
+    title: "Playback queued sounds from the table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: ""
+    image_caption: ""
+    content: "The 'PLAYBACK' routine iterates through the sound table and plays each queued sound. It checks if sound is enabled and whether the table is empty before proceeding. This routine exemplifies Mechner's focus on creating a responsive and immersive audio experience. In the late 1980s, real-time sound playback on the Apple II was a technical challenge due to limited processing power and memory. Mechner's solution was elegant: a loop that calls the 'makesound' routine for each sound in the table. This modular design allowed him to manage audio playback efficiently while leaving room for expansion. The playback system reflects the game's cinematic ambitions, with sound effects synchronized to gameplay events. This approach influenced later games, which adopted similar systems for dynamic audio playback."
+  - id: "self-modifying-code-for-sound"
+    line_start: 127
+    line_end: 140
+    title: "Self-modifying code for sound playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""
     image_caption: ""
-    content: "This is the heart of the dispatch mechanism. makesound receives a sound number in the accumulator, doubles it (asl) to get a byte offset into the lookup table, reads the two-byte address stored there, and writes those bytes directly into the operand of the jmp instruction at :sm. The CPU then executes jmp $ffff — except by the time it runs, the $ffff has been overwritten with the real destination. This was a common and accepted technique in 6502 programming: using RAM as its own instruction stream. Modern CPUs with instruction caches make this approach impossible on general hardware."
-
-  - id: "tone-primitive"
-    line_start: 194
-    line_end: 225
-    title: "The tone Primitive"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Pulse-width_modulation"
+    content: "The 'makesound' routine uses self-modifying code to jump to the appropriate sound routine. It calculates the address of the sound routine from the lookup table and modifies the jump instruction at runtime. Self-modifying code was a controversial but powerful technique in assembly programming, especially on constrained systems like the Apple II. Mechner employed it here to optimize performance, bypassing the need for complex branching logic. In 1989, this approach was both ingenious and risky; it required deep understanding of the hardware and careful debugging. Mechner's use of self-modifying code reflects his mastery of the Apple II's architecture and his commitment to squeezing every ounce of performance from the machine. While this technique fell out of favor in later years due to its complexity and potential for bugs, it remains a fascinating example of the lengths programmers went to in the early days of gaming."
+  - id: "tone-generation-algorithm"
+    line_start: 331
+    line_end: 352
+    title: "Tone generation tailored to Apple II"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_synthesis"
     image_url: ""
     image_caption: ""
-    content: "Every sound in the game ultimately calls this single subroutine. The Y and X registers carry a 16-bit pitch value; the accumulator carries duration. The outer loop (outloop) toggles the speaker by hitting the spkr address with bit, then runs two inner busy-loops (midloop, inloop) counting up to the pitch value. The tighter the loop, the higher the frequency. Duration counts down in the outer loop. There is no timer, no interrupt, no DMA — just the CPU counting cycles, hoping the game loop calls it at the right time. The result is surprisingly recognizable: the gate slam, the sword clash, the death splat all emerge from this same dozen lines."
+    content: "The 'tone' routine generates sound by toggling the Apple II's speaker hardware. It uses nested loops to control pitch and duration based on input parameters. This low-level approach was necessary on the Apple II, which lacked dedicated sound hardware. Mechner's algorithm manipulates the speaker directly, producing tones by rapidly toggling its state. In 1989, sound synthesis on home computers was still in its infancy, and programmers had to innovate within severe constraints. Mechner's tone generation reflects his resourcefulness, creating a variety of sound effects with minimal hardware support. The routine's simplicity belies its importance; it forms the foundation for all sound effects in the game. While modern systems use sophisticated audio engines, this algorithm is a reminder of the ingenuity required to create immersive experiences on early computers."
+
 ---
+
 * sound
 org = $ea00
  lst off

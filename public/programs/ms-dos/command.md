@@ -1,65 +1,78 @@
 ---
-title: "COMMAND.ASM (v1.25)"
+title: "COMMAND.ASM"
 program: "MS-DOS"
 program_slug: "ms-dos"
 file_path: "v1.25/source/COMMAND.ASM"
 language: "8086 Assembly"
 github_url: "https://github.com/microsoft/MS-DOS/blob/main/v1.25/source/COMMAND.ASM"
-year: 1982
-author: "Tim Paterson"
+year: 1981
+author: "Tim Paterson / Microsoft"
 slug: "command"
 order: 2
-description: "The command interpreter — including the prompt, the error messages, and the IBM/MS-DOS split visible in a single character"
+description: "The COMMAND.ASM file is the source code for the MS-DOS command interpreter, a foundational piece of software that shaped personal computing in the 1980s."
 
 summary:
-  - point: "COMMAND.COM is split into three parts: resident (always in memory), init (discarded after boot), and transient (reloadable)"
-    link: "https://en.wikipedia.org/wiki/COMMAND.COM"
-    link_label: "COMMAND.COM"
-  - point: "The IBM version used '>' as the prompt; MS-DOS used ':' — identical code, one character apart"
+  - point: "Resident and transient portions divide memory use for efficiency"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Error messages and prompts reflect constraints of early user interfaces"
     link: "https://en.wikipedia.org/wiki/Command-line_interface"
     link_label: "Command-line interface"
-  - point: "'Abort, Retry, Ignore?' — one of the most recognizable phrases in computing history, here in its original form"
-    link: "https://en.wikipedia.org/wiki/Abort,_Retry,_Fail%3F"
-    link_label: "Abort, Retry, Ignore"
+  - point: "Boolean flags toggle between IBM and Microsoft builds"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS versions"
+  - point: "Hardcoded command table defines internal commands"
+    link: "https://en.wikipedia.org/wiki/Command-line_interface"
+    link_label: "Command-line commands"
+  - point: "Memory segments reflect early 8086 assembly practices"
+    link: "https://en.wikipedia.org/wiki/Intel_8086"
+    link_label: "Intel 8086"
 
 enhancements:
-  - id: "architecture"
-    line_start: 1
-    line_end: 17
-    title: "The Three-Part Architecture"
-    wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
-    image_url: ""
-    image_caption: ""
-    content: "The opening comment describes an architectural decision that shaped how DOS handled memory for the next decade. COMMAND.COM is divided into three distinct segments. The resident portion — always present in memory — handles the four critical interrupts: INT 22H (program terminate), INT 23H (Ctrl-C), INT 24H (fatal disk error), and INT 27H (stay-resident). The init portion runs once at boot and is then overwritten — that memory is reclaimed for programs. The transient portion, which contains all the actual command processing (DIR, COPY, TYPE, and so on), loads at the highest available memory address. Programs that need maximum memory can overwrite the transient portion entirely. When they terminate, the resident portion checksums the transient area to detect if it was overwritten, and reloads it from disk if necessary. This design meant that even a 64K machine could run large programs and still have COMMAND.COM available — at the cost of a brief disk read after each program exited."
-
-  - id: "ibm-prompt"
-    line_start: 20
-    line_end: 34
-    title: "One Character Apart: '>' vs ':'"
+  - id: "resident-and-transient-memory-management"
+    line_start: 3
+    line_end: 15
+    title: "Resident vs transient: memory management innovation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
+    content: "These lines describe the division of the MS-DOS COMMAND interpreter into resident and transient portions. The resident portion remains in memory at all times, handling critical interrupts and ensuring the transient portion can be reloaded if overwritten. The transient portion, which handles command processing, is loaded at the end of physical memory and may be overwritten by programs requiring maximum memory. This design reflects the constraints of early personal computers like the IBM PC, which typically had only 16 KB to 64 KB of RAM. Tim Paterson, the original author of 86-DOS, likely borrowed this approach from CP/M, which used a similar transient command processor. By dividing the interpreter, MS-DOS maximized available memory for user programs—a critical feature in an era when memory was scarce and expensive. This memory management strategy influenced later operating systems and demonstrated how software could adapt to hardware limitations."
+  - id: "boolean-flags-for-build-variants"
+    line_start: 21
+    line_end: 38
+    title: "Boolean flags: tailoring builds for IBM and Microsoft"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
+    content: "These lines define boolean flags that toggle between building the IBM version of COMMAND and the Microsoft version. The IBM version uses '>' as the command prompt symbol, while the Microsoft version uses ':'. This distinction reflects the dual licensing strategy Microsoft adopted after acquiring 86-DOS. IBM's PC DOS was tailored for the IBM PC, while MS-DOS was licensed to other OEMs. This flexibility was critical to Microsoft's success, as it allowed them to dominate the emerging personal computer market. The flags also highlight the modularity of the code, enabling rapid adaptation to different hardware and branding requirements. This approach became a hallmark of Microsoft's software development, allowing them to scale their products across diverse platforms."
+  - id: "error-messages-and-user-prompts"
+    line_start: 98
+    line_end: 133
+    title: "Error messages: human-readable simplicity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
-    image_url: ""
-    image_caption: ""
-    content: "The IBM and MS-DOS versions of COMMAND.COM were built from the same source file, distinguished only by two boolean constants at the top: IBMVER EQU FALSE and MSVER EQU TRUE. The most visible consequence is the command prompt character. SYM EQU '>' for IBMVER — the familiar IBM PC prompt that millions of users would type beside for years. SYM EQU ':' for MSVER — the generic MS-DOS prompt used on non-IBM machines. COMDRV EQU 1 for IBM (look for COMMAND.COM on drive B by default) versus COMDRV EQU 0 for MS-DOS (use the default drive). These two lines represent the entire product differentiation between IBM PC DOS and the MS-DOS that shipped on Compaq, Tandy, and dozens of other machines. The '>' prompt became so associated with personal computing that it entered popular culture — it is still the default shell prompt symbol on Windows systems today."
-
-  - id: "error-messages"
-    line_start: 89
-    line_end: 107
-    title: "Abort, Retry, Ignore?"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Abort,_Retry,_Fail%3F"
-    image_url: ""
-    image_caption: ""
-    content: "The error message table in DATARES is a catalog of everything that could go wrong with a floppy disk in 1982 — and the vocabulary is instantly recognizable to anyone who used a PC in that era. ERR0: 'Write protect' — the little tab on the floppy was covered. ERR2: 'Not ready' — no disk in the drive. ERR4: 'Data' — a sector was unreadable. ERR8: 'Sector not found' — the disk format was wrong or damaged. ERR12: 'Disk' — a catch-all. Then the message that defined a generation's relationship with computers: REQUEST DB 'Abort, Retry, Ignore? $'. Three words that presented three options and implied a fourth — the situation was already bad enough that all three options were reasonable. The question mark at the end was grammatically odd and practically perfect. When IBM changed this to 'Abort, Retry, Fail?' in a later version, it felt like a loss. The original Paterson phrasing had personality: Ignore acknowledged that sometimes the right answer was to lie to the computer and continue anyway."
-
-  - id: "checksum"
-    line_start: 10
-    line_end: 16
-    title: "The Transient Checksum: Self-Healing COMMAND.COM"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Checksum"
-    image_url: ""
-    image_caption: ""
-    content: "The variable SUM DW ? in the resident data area is the transient portion checksum — the mechanism that makes COMMAND.COM self-healing. When a program terminates and returns control to the resident portion, the resident code checksums the entire transient segment (which lives at the top of memory) and compares it against the stored SUM value. If they differ, the transient portion was overwritten by the program that just ran. The resident then displays the NEEDCOM message — 'Insert DOS disk in drive A' or 'Insert DOS disk in default drive' — waits for a keypress, and reloads COMMAND.COM from disk. This design meant you could run a program that used every byte of available memory, and DOS would still recover cleanly. The cost was an occasional floppy disk seek and a brief pause. The mechanism was elegant: no memory protection hardware existed on the 8086, so COMMAND.COM used arithmetic to detect interference after the fact."
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Linux_command-line._Bash._GNOME_Terminal._screenshot.png/330px-Linux_command-line._Bash._GNOME_Terminal._screenshot.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Sample of Bash in GNOME Terminal. Screenshot taken in Fedora. Outputs of ping, pwd, cd, yum and ls command. (GPL)"
+    content: "This section defines error messages and user prompts for the resident portion of COMMAND. Messages like 'Write protect' and 'Abort, Retry, Ignore?' reflect the simplicity and directness required in early command-line interfaces. In the early 1980s, most users were unfamiliar with computers, and clear, concise messages were essential for usability. These messages also reveal the constraints of the era: limited screen space, no graphical interface, and the need to fit functionality into a few kilobytes of memory. Tim Paterson's work on 86-DOS, and later MS-DOS, was influenced by CP/M, which used similar error handling conventions. These messages became iconic, shaping user expectations for decades and influencing the design of later operating systems."
+  - id: "memory-segments-and-grouping"
+    line_start: 70
+    line_end: 95
+    title: "Memory segments: organizing the interpreter"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8086"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Intel_C8086.jpg/330px-Intel_C8086.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "A processor Intel C8086, 5 MHz. (CC BY-SA 4.0)"
+    content: "This section defines memory segments for the resident and transient portions of COMMAND. Segments like CODERES, DATARES, and TRANCODE reflect the practices of 8086 assembly programming, where memory was divided into discrete blocks for code, data, and stack. The grouping of segments into RESGROUP and TRANGROUP further organizes the interpreter, ensuring efficient memory use and simplifying relocation. In the early 1980s, the Intel 8086 processor's segmented memory model was both a constraint and an opportunity. Programmers had to carefully manage memory to avoid fragmentation and ensure compatibility with hardware. Tim Paterson's design demonstrates a deep understanding of these constraints, creating a flexible and efficient interpreter that could run on a wide range of systems."
+  - id: "hardcoded-command-table"
+    line_start: 181
+    line_end: 200
+    title: "Command table: defining internal commands"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Linux_command-line._Bash._GNOME_Terminal._screenshot.png/330px-Linux_command-line._Bash._GNOME_Terminal._screenshot.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Sample of Bash in GNOME Terminal. Screenshot taken in Fedora. Outputs of ping, pwd, cd, yum and ls command. (GPL)"
+    content: "This section defines a hardcoded table of internal commands, including 'DIR,' 'RENAME,' and 'COPY.' Each command is associated with a string and a pointer to its corresponding routine in the transient portion. This design reflects the simplicity of early command-line interfaces, where commands were limited and hardcoded for efficiency. In 1981, personal computers were just beginning to reach mainstream users, and the command-line interface was the primary way to interact with the system. Tim Paterson's choice to hardcode commands ensured fast execution and minimized memory use, crucial in an era of limited resources. This approach influenced the design of later operating systems, where internal commands remained a core feature of the command-line interface."
 
 ---
+
+; excerpt — first 200 lines of v1.25/source/COMMAND.ASM
 
 ; COMMAND version 1.17
 ;
@@ -67,7 +80,7 @@ enhancements:
 ; is the resident portion, which includes handlers for interrupts
 ; 22H (terminate), 23H (Cntrl-C), 24H (fatal error), and 27H (stay
 ; resident); it also has code to test and, if necessary, reload the
-; transient portion. Following the resident is the init code, which
+; transient portion. Following the resident is the init code, which is
 ; overwritten after use. Then comes the transient portion, which
 ; includes all command processing (whether internal or external).
 ; The transient portion loads at the end of physical memory, and it may
@@ -211,3 +224,53 @@ SUM     DW      ?
 INITADD DB      4 DUP(?)
 RESDATASIZE     EQU     $-ZERO
 DATARES ENDS
+
+;Data for transient portion
+
+TRANDATA        SEGMENT BYTE
+        ORG     0
+ZERO    EQU     $
+BADNAM  DB      "Bad command or file name",13,10,"$"
+MISNAM  DB      "Missing file name$"
+RENERR  DB      "Duplicate file name or "
+NOTFND  DB      "File not found$"
+EXEBAD  DB      "Error in EXE file$"
+NOSPACE DB      "Insufficient disk space",13,10,"$"
+FULDIR  DB      "File creation error",13,10,"$"
+OVERWR  DB      "File cannot be copied onto itself",13,10,"$"
+LOSTERR DB      "Content of destination lost before copy",13,10,"$"
+COPIED  DB      " File(s) copied$"
+DIRMES  DB      " File(s)$"
+TOOBIG  DB      "Program too big to fit in memory$"
+BADDRV  DB      "Invalid drive specification$"
+PAUSMES DB      "Strike a key when ready . . . $"
+BADSWT  DB      "Illegal switch",13,10,"$"
+WEEKTAB DB      "SunMonTueWedThuFriSat"
+BADDAT  DB      13,10,"Invalid date$"
+CURDAT  DB      "Current date is $"
+NEWDAT  DB      13,10,"Enter new date: $"
+BADTIM  DB      13,10,"Invalid time$"
+CURTIM  DB      "Current time is $"
+NEWTIM  DB      13,10,"Enter new time: $"
+SUREMES DB      "Are you sure (Y/N)? $"
+
+COMTAB  DB      4,"DIR",1
+        DW      OFFSET TRANGROUP:CATALOG
+        DB      7,"RENAME",1
+        DW      OFFSET TRANGROUP:RENAME
+        DB      4,"REN",1
+        DW      OFFSET TRANGROUP:RENAME
+        DB      6,"ERASE",1
+        DW      OFFSET TRANGROUP:ERASE
+        DB      4,"DEL",1
+        DW      OFFSET TRANGROUP:ERASE
+        DB      5,"TYPE",1
+        DW      OFFSET TRANGROUP:TYPEFIL
+        DB      4,"REM",1
+        DW      OFFSET TRANGROUP:COMMAND
+        DB      5,"COPY",1
+        DW      OFFSET TRANGROUP:COPY
+        DB      6,"PAUSE",1
+        DW      OFFSET TRANGROUP:PAUSE
+        DB      5,"DATE",0
+        DW      OFFSET TRANGROUP:DATE
