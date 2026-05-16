@@ -101,15 +101,15 @@ def generate_intro(program: dict, client, gen_cfg: dict, force: bool, fetch_imag
             console.print("  [red]could not parse intro response[/red]")
             return False
     save_introduction(slug, intro_text)
-    console.print(f"  [green]→ saved {slug}/introduction[/green]")
+    console.print(f"  [green]-> saved {slug}/introduction[/green]")
 
     if fetch_images:
         console.print(f"  searching for program image…")
         try:
-            img = find_program_image(program)
+            img = find_program_image(program, client=client)
             if img:
                 save_program_image(slug, img[0], img[1])
-                console.print(f"  [green]→ program image saved[/green]")
+                console.print(f"  [green]-> program image saved[/green]")
             else:
                 console.print(f"  [dim]no program image found[/dim]")
         except Exception as e:
@@ -143,6 +143,9 @@ def main() -> None:
         console.print("[green]catalog.json updated[/green]")
         return
 
+    gen_cfg = config.get("generation", {})
+    client = ModelClient(config["models"]) if not args.dry_run else None
+
     if args.find_images:
         programs = config["programs"]
         if args.program:
@@ -154,9 +157,9 @@ def main() -> None:
             if prog_dir.is_dir():
                 for md in sorted(prog_dir.glob("*.md")):
                     console.print(f"[cyan]images  {prog_slug}/{md.stem}[/cyan]")
-                    count = fill_file_images(md, console=console)
+                    count = fill_file_images(md, console=console, client=client)
                     if count:
-                        console.print(f"  [green]→ {count} image(s) added[/green]")
+                        console.print(f"  [green]-> {count} image(s) added[/green]")
                     total_imgs += count
             # Check if program is missing image_url in catalog
             if _CATALOG_PATH.exists():
@@ -166,19 +169,16 @@ def main() -> None:
                 if not entry.get("image_url"):
                     console.print(f"[cyan]prog-image  {prog_slug}[/cyan]")
                     try:
-                        img = find_program_image(program)
+                        img = find_program_image(program, client=client)
                         if img:
                             save_program_image(prog_slug, img[0], img[1])
-                            console.print(f"  [green]→ program image saved[/green]")
+                            console.print(f"  [green]-> program image saved[/green]")
                         else:
                             console.print(f"  [dim]no program image found[/dim]")
                     except Exception as e:
                         console.print(f"  [yellow]program image search failed: {e}[/yellow]")
         console.print(f"[green]Done — {total_imgs} file image(s) added.[/green]")
         return
-
-    gen_cfg = config.get("generation", {})
-    client = ModelClient(config["models"]) if not args.dry_run else None
     generated = []
 
     programs = config["programs"]
@@ -221,7 +221,7 @@ def main() -> None:
 
             console.print(f"[cyan]gen   {prog_slug}/{file_slug}[/cyan]")
 
-            max_lines = file_cfg.get("max_lines", gen_cfg.get("default_max_lines", 200))
+            max_lines = file_cfg.get("max_lines") or gen_cfg.get("default_max_lines") or None
             try:
                 code_lines, is_excerpt = fetch_source(
                     program["github_repo"],
@@ -255,13 +255,13 @@ def main() -> None:
 
             content = format_file(program, file_cfg, code_lines, raw, is_excerpt)
             path = ckpt.save(prog_slug, file_slug, content)
-            console.print(f"  [green]→ {path}[/green]")
+            console.print(f"  [green]-> {path}[/green]")
             generated.append((prog_slug, file_slug))
 
             if not args.no_images:
-                count = fill_file_images(path, console=console)
+                count = fill_file_images(path, console=console, client=client)
                 if count:
-                    console.print(f"  [green]→ {count} image(s) added[/green]")
+                    console.print(f"  [green]-> {count} image(s) added[/green]")
 
     if generated and not args.no_catalog_sync:
         catalog_sync.sync(config, output_dir)

@@ -232,25 +232,144 @@ const INSTRUCTIONS_MDL = {
   IN:      { full: 'Advance Sequence Pointer', desc: 'Advances a sequence pointer by n positions, returning the new pointer.' },
 };
 
+// ---------------------------------------------------------------------------
+// C language — keywords, stdlib, and Borland DOS extensions
+// ---------------------------------------------------------------------------
+
+const INSTRUCTIONS_C = {
+  // ── Control flow ────────────────────────────────────────────────────────
+  if:        { full: 'Conditional Branch',          desc: 'Executes the following block only if the condition is non-zero (true). In game code, conditions testing bit-flags with & are especially common: if (actor->flags & FL_ATTACKMODE).' },
+  else:      { full: 'Alternative Branch',           desc: 'Executes when the preceding if condition was false. Can chain: else if (…) for multi-way logic without a switch.' },
+  for:       { full: 'Count-Controlled Loop',        desc: 'Three-part header: initializer; condition; increment. Standard for iterating arrays, tile maps, and actor lists. The body runs as long as condition is non-zero.' },
+  while:     { full: 'Pre-Test Loop',                desc: 'Checks condition before each iteration. If condition is false initially, the body never runs. Used for polling loops and event queues.' },
+  do:        { full: 'Post-Test Loop',               desc: 'Runs the body at least once before checking the condition. Less common than while; useful for "execute once, retry if needed" patterns like input waiting.' },
+  switch:    { full: 'Multi-Way Branch',             desc: 'Jumps to a matching case label. Without break, execution falls through to subsequent cases — sometimes intentional for shared code paths. Faster than a chain of if/else for dense integer ranges.' },
+  case:      { full: 'Switch Case Label',            desc: 'A jump target within switch. Execution continues until break, return, goto, or the end of the switch block. Fall-through to the next case is legal and sometimes deliberate.' },
+  default:   { full: 'Default Switch Case',          desc: 'Catches any switch value not matched by an explicit case. Good practice to always include one, even if only for an error handler.' },
+  break:     { full: 'Exit Loop or Switch',          desc: 'Immediately exits the nearest enclosing for/while/do/switch. Does not exit multiple levels — use goto or a flag for that.' },
+  continue:  { full: 'Next Iteration',               desc: 'Skips the rest of the current loop body and jumps to the iteration check (for: increment then condition; while/do: condition). Does not exit the loop.' },
+  return:    { full: 'Return from Function',         desc: 'Exits the current function. With an expression: passes the value to the caller. Without: exits a void function. Execution resumes at the call site.' },
+  goto:      { full: 'Unconditional Jump',           desc: 'Transfers control to a named label in the same function. Avoided in structured code but useful for breaking out of nested loops or centralizing error-handling cleanup.' },
+  // ── Type keywords ────────────────────────────────────────────────────────
+  int:       { full: 'Signed Integer',               desc: 'On 16-bit DOS (Wolfenstein\'s target: Borland C++ 3.1), int was 16 bits — range −32,768 to 32,767. Overflow in screen coordinate or distance arithmetic was a real bug risk; many values used long instead.' },
+  long:      { full: 'Long Integer (32-bit)',         desc: 'Guaranteed at least 32 bits. On DOS, long = 32 bits — used for distances, scores, and anything that could exceed 16-bit range. Borland C++ generated 32-bit arithmetic via emulated instructions on 286 CPUs.' },
+  short:     { full: 'Short Integer (16-bit)',        desc: 'Exactly 16 bits. On 16-bit DOS, short and int were the same size. Explicit short signals the programmer intended a half-word value.' },
+  unsigned:  { full: 'Unsigned Modifier',            desc: 'Removes the sign bit, doubling the positive range. unsigned int on DOS: 0 to 65,535. Used for byte offsets, bitfields, and anything that\'s never negative — map indices, tile numbers, pixel offsets.' },
+  char:      { full: 'Character / Byte',             desc: 'One byte. Used both for text strings (null-terminated char arrays) and as a compact 0–255 integer. Wolf3D uses it for map tile data, sprite palette indices, and flag bytes.' },
+  void:      { full: 'No Type',                      desc: 'Marks a function as returning nothing, or a pointer as typeless (void*). A void* can be assigned to any pointer type without a cast — used in memory manager interfaces.' },
+  float:     { full: 'Single-Precision Float (32-bit)', desc: 'Wolf3D avoided floats entirely. On 286/386 without an FPU, floating-point operations were software-emulated and roughly 10× slower than integer math. All angles and distances used fixed-point integers or precomputed tables.' },
+  double:    { full: 'Double-Precision Float (64-bit)', desc: 'Even slower than float on CPUs without an 8087/387 FPU. Absent from Wolf3D\'s hot paths — used only where precision mattered more than speed (startup calculations, etc.).' },
+  struct:    { full: 'Structured Type',              desc: 'Groups named fields into one contiguous memory block. The core data structuring tool in C. Key Wolf3D structs: objtype (all actor state), statobj_t (static props), gametype (save-game state), mminfotype (memory manager bookkeeping).' },
+  union:     { full: 'Overlapping Fields',           desc: 'Members share the same memory — size equals the largest. Used to reinterpret bytes as different types, or store variant data compactly. Common in low-level DOS code for accessing high/low bytes of a 16-bit register.' },
+  enum:      { full: 'Named Integer Constants',      desc: 'Defines a set of named integers starting from 0 (unless overridden). Wolf3D uses enums for: game states (GS_PLAYING, GS_DIED), actor classes (en_dog, en_guard, en_officer…), weapon types (wp_knife, wp_pistol, wp_machinegun…).' },
+  typedef:   { full: 'Type Alias',                   desc: 'Declares a new name for a type. Wolf3D\'s id_types.h defines the canonical aliases: byte = unsigned char, word = unsigned, longword = unsigned long, boolean = int. These names appear throughout the engine.' },
+  // ── Storage / qualifiers ─────────────────────────────────────────────────
+  static:    { full: 'Static Storage / File-Private', desc: 'On a local variable: persists its value between calls (stored in BSS/data, not on the stack). On a file-scope symbol: internal linkage — hidden from other .c files. Wolf3D uses static heavily to keep subsystem internals private.' },
+  extern:    { full: 'External Symbol Declaration',  desc: 'Declares that a variable or function is defined in another translation unit. The linker resolves the address. Wolf3D\'s global state (gamestate, player, tilemap, etc.) is declared extern in header files shared across modules.' },
+  volatile:  { full: 'No-Cache / No-Reorder Guarantee', desc: 'Forces every read/write to go to actual memory, preventing the compiler from caching the value in a register or reordering accesses. Used for hardware-mapped I/O ports and variables shared with interrupt service routines (like the keyboard state table).' },
+  const:     { full: 'Read-Only',                    desc: 'Marks a variable as non-modifiable after initialisation. Used for string literals, lookup tables, and sin/cos tables. The compiler can place const data in ROM or a read-only data segment.' },
+  register:  { full: 'Register Hint',                desc: 'Requests the compiler store this variable in a CPU register. Borland C++ 3.1 honored this hint for loop counters and inner-loop variables — meaningfully faster on 286/386 where memory accesses were slow relative to register ops. Ignored by modern compilers.' },
+  // ── Borland DOS extensions ────────────────────────────────────────────────
+  far:       { full: 'Far Pointer — DOS Memory Model', desc: 'A 32-bit segment:offset pointer, allowing access to any byte in the 1MB real-mode address space. Essential for Wolf3D\'s graphics data — each texture/sprite chunk lives in a separate 64KB segment managed by the memory manager. Without far pointers, you\'re limited to 64KB.' },
+  near:      { full: 'Near Pointer — Current Segment', desc: 'A 16-bit offset within the default data segment. Faster than far (one word, not two) but limited to 64KB. Used for stack variables, small structs, and anything guaranteed to stay within one segment.' },
+  huge:      { full: 'Huge Pointer — Normalised Far', desc: 'A far pointer that is automatically normalised when incremented, so it can safely cross 64KB boundaries. Used when a single array or buffer exceeds 64KB — e.g., a full-screen bitmap or a large sound sample.' },
+  interrupt: { full: 'ISR Attribute — Borland',       desc: 'Marks a function as an interrupt service routine. The compiler generates an IRET (interrupt return) instead of RET, saves/restores all registers on entry/exit, and disables interrupts at entry. Wolf3D\'s keyboard handler (INL_KeyService) and timer handler are declared interrupt.' },
+  // ── Preprocessor directives ───────────────────────────────────────────────
+  define:    { full: '#define — Macro',               desc: 'Textual substitution before compilation. Every occurrence of the name is replaced by its expansion. Wolf3D defines screen dimensions, tile IDs, sprite constants, and game limits as macros — changing one #define ripples through the whole build.' },
+  include:   { full: '#include — Insert Header',      desc: 'Pastes the contents of another file at this point. <angle brackets> search the compiler\'s include path (standard headers); "quotes" search the project directory first. Wolf3D headers declare shared types, extern globals, and function prototypes.' },
+  ifdef:     { full: '#ifdef — Conditional Compile',  desc: 'Includes the following block only if the named macro has been defined. Wolf3D uses this for debug builds (DEBUGKEYS, SPEAR), platform variants, and EGA vs VGA code paths.' },
+  ifndef:    { full: '#ifndef — Include Guard',       desc: 'Includes the block only if the macro is NOT defined. The classic header-guard pattern uses #ifndef HEADER_H / #define HEADER_H / … / #endif to prevent double-inclusion.' },
+  endif:     { full: '#endif — Close Conditional',    desc: 'Closes a #if, #ifdef, or #ifndef block. In a large file with many conditional sections, #endifs can be hard to match — Borland C++ had no diagnostic for mismatched conditionals.' },
+  pragma:    { full: '#pragma — Compiler Directive',  desc: 'Non-standard hint to the compiler. Borland C++ used #pragma for memory model selection, warning suppression, and inline-assembly alignment. Silently ignored by compilers that don\'t understand it.' },
+  // ── Standard library — memory ─────────────────────────────────────────────
+  malloc:    { full: 'Allocate Heap Memory',          desc: 'Requests a contiguous uninitialised block from the heap. Returns NULL on failure — always check. Wolf3D bypassed raw malloc with its MM_ memory manager, which handled far memory, cache tiers, and EMS. Direct malloc calls in Wolf3D are rare.' },
+  free:      { full: 'Release Heap Memory',           desc: 'Returns a malloc\'d block to the heap. Double-free or use-after-free were common DOS crash sources — no memory-safety tooling existed. Wolf3D\'s MM_FreePtr wrapper zeroed the pointer after freeing to catch some misuse.' },
+  memcpy:    { full: 'Copy Memory Block',             desc: 'Copies n bytes from src to dst. Source and destination must not overlap (use memmove if they might). The workhorse of every blit, buffer-copy, asset-load, and save-game operation.' },
+  memmove:   { full: 'Copy Memory (overlap-safe)',    desc: 'Like memcpy but handles overlapping regions correctly by choosing the copy direction. Slower than memcpy because it must check for overlap or always use the safe direction.' },
+  memset:    { full: 'Fill Memory',                   desc: 'Sets n consecutive bytes to a given value. memset(buf, 0, size) is the standard way to zero a struct or buffer. Used in Wolf3D to clear the screen, reset game state, and zero newly allocated memory.' },
+  memcmp:    { full: 'Compare Memory Blocks',         desc: 'Byte-by-byte comparison of two regions. Returns 0 if identical, negative if first < second, positive otherwise. Used for save-slot comparison and data validation.' },
+  // ── Standard library — strings ────────────────────────────────────────────
+  sprintf:   { full: 'Format String into Buffer',     desc: 'Writes printf-style output into a char array. Wolf3D uses sprintf to render score digits, ammo counts, and status messages as strings that the screen renderer then blits as character tiles.' },
+  strcpy:    { full: 'Copy String',                   desc: 'Copies src into dst including the null terminator. Writes past the end of dst if src is too long — the original buffer overflow. Wolf3D uses fixed-size buffers and known-length strings, making this safe in context.' },
+  strncpy:   { full: 'Bounded String Copy',           desc: 'Copies at most n characters. Does not guarantee null termination if src is longer than n — the destination may need an explicit nul written afterwards.' },
+  strcmp:    { full: 'Compare Strings',               desc: 'Lexicographic comparison. Returns 0 if equal, <0 if s1 < s2, >0 if s1 > s2. Used for command-line argument matching and save-game name comparison.' },
+  strlen:    { full: 'String Length',                 desc: 'Counts bytes up to (not including) the null terminator. O(n) — rescanning every access. Wolf3D caches lengths where string copying is performance-sensitive.' },
+  strcat:    { full: 'Append String',                 desc: 'Appends src to dst. dst must have room for both strings plus the null terminator. Another classic overflow; safe only when buffer sizes are tightly controlled.' },
+  // ── Standard library — I/O ────────────────────────────────────────────────
+  printf:    { full: 'Formatted Print to stdout',     desc: 'Writes formatted text to the console. Rare in game hot paths; used for startup diagnostics, version banners, and error messages before the graphics mode is set.' },
+  fopen:     { full: 'Open File',                     desc: 'Opens a file by path, returning a FILE* on success or NULL on failure. Mode: "r" text read, "w" text write, "rb"/"wb" binary. Wolf3D opens all asset files in binary mode — text translation would corrupt level data.' },
+  fclose:    { full: 'Close File',                    desc: 'Flushes pending writes and closes the stream. Forgetting fclose leaks a DOS file handle; DOS limited processes to 20 open files by default.' },
+  fread:     { full: 'Read from File',                desc: 'Reads count items of size bytes each into buffer. Returns the number of items successfully read — less than count signals EOF or error. Wolf3D uses fread to load compressed asset chunks from VGAGRAPH and VSWAP.' },
+  fwrite:    { full: 'Write to File',                 desc: 'Writes count items from buffer to the stream. Returns items written. Wolf3D uses fwrite for save-game data and high-score persistence.' },
+  fseek:     { full: 'Set File Position',             desc: 'Moves the stream position to offset from origin: SEEK_SET (start of file), SEEK_CUR (current position), SEEK_END (end). Used to jump directly to a chunk\'s offset in the VGAHEAD/VGAGRAPH file pair.' },
+  ftell:     { full: 'Get File Position',             desc: 'Returns the current byte offset from the start of the file. Used with fseek to save and restore a position, or to measure file size (fseek to end, ftell).' },
+  // ── Standard library — misc ───────────────────────────────────────────────
+  exit:      { full: 'Terminate Program',             desc: 'Flushes stdio buffers, runs atexit() handlers, and exits. Status 0 = success. Wolf3D calls this at the end of its shutdown sequence after restoring video mode and freeing resources.' },
+  abort:     { full: 'Abnormal Termination',          desc: 'Terminates immediately without cleanup. Generates SIGABRT. Used for truly unrecoverable states — typically an assertion failure or corrupted memory manager.' },
+  atoi:      { full: 'String to Integer',             desc: 'Converts a decimal string to int. No error reporting — invalid input silently returns 0. Wolf3D uses it for command-line parameters like episode and skill level.' },
+  sizeof:    { full: 'Size of Type or Object',        desc: 'Compile-time operator yielding the byte size of a type or variable expression. sizeof(objtype) used with malloc; sizeof(array)/sizeof(array[0]) for array length. Fully resolved at compile time — zero runtime cost.' },
+  NULL:      { full: 'Null Pointer Constant',         desc: 'Conventionally 0 or (void*)0. Comparing a pointer to NULL tests whether malloc, fopen, or a lookup succeeded. Dereferencing NULL on DOS would typically crash to a garbled screen rather than a clean error.' },
+};
+
+// Wolf3D / id Software engine subsystem prefixes.
+// When a C function isn't in the table above, these patterns identify the
+// subsystem it belongs to, giving the reader useful context.
+const C_ENGINE_PREFIXES = [
+  // [prefix (uppercase), system name, description]
+  ['VW_',  'Video — framebuffer',   'Part of Wolf3D\'s VGA rendering module. VW_ functions write directly to the off-screen buffer: blitting masked sprites, clearing regions, scaling walls, and flipping the double buffer to visible memory.'],
+  ['VL_',  'Video — hardware',      'Low-level VGA hardware access. VL_ functions set palette entries, trigger screen fades, switch video modes, and write directly to VGA registers — the layer below the VW_ blitter.'],
+  ['US_',  'User Shell',            'Text and window rendering for menus, dialogs, and in-game messages. US_ functions draw bordered windows, center text strings, and handle the font engine that blits character tiles to the screen.'],
+  ['IN_',  'Input Manager',         'Polls keyboard, mouse, and joystick state. Abstracts all input devices behind a unified ControlInfo struct. Also handles demo record/playback: every IN_ event can be serialised to a byte stream and replayed exactly.'],
+  ['INL_', 'Input — internal',      'Internal helpers for the input manager: low-level ISR-based keyboard scanning, raw joystick A/D reads, and mouse delta accumulation. Not part of the public IN_ API.'],
+  ['SD_',  'Sound Manager',         'Abstraction layer over PC speaker, OPL2 AdLib FM synthesis, and Sound Blaster digitised audio. A single SD_PlaySound() call routes to whatever hardware is available and has been configured by the user.'],
+  ['SDL_', 'Sound — internal',      'Internal sound driver helpers: hardware detection, interrupt service routines for the PC speaker and SoundBlaster DMA, and OPL2 register writes. The SDL_ prefix (unrelated to the modern SDL library) means Sound Driver Layer.'],
+  ['CA_',  'Cache Manager',         'Loads and decompresses asset chunks from the VGAGRAPH, VSWAP, and AUDIOT files. Manages the chunk directory (VGAHEAD), decompresses Huffman-encoded data, and places results in MM_-managed far memory segments.'],
+  ['MM_',  'Memory Manager',        'Wolf3D\'s custom heap. Manages near, far, and EMS/XMS memory in tiers: locked (never moved), cached (purgeable under pressure), and free. MM_GetPtr allocates; MM_SetPurge marks a block purgeable; MM_SortMem compacts the heap.'],
+  ['PM_',  'Page Manager',          'Maps the VSWAP page file (wall textures, sprites, sound pages) into memory. Maintains a page table; caches frequently accessed pages; tracks a main-memory pool and optionally an EMS pool for overflow.'],
+  ['BJ_',  'BJ Blazkowicz',         'Player-character routines specific to the intro and ending sequences — not in-game player movement. Named for the protagonist of Wolfenstein 3D.'],
+  ['WL_',  'Game Module',           'Core game logic: actor AI state machines, collision detection, level loading, player movement, weapon firing, and game-state transitions. WL_ groups the game-specific layer above the engine subsystems.'],
+  ['RF_',  'Refresh',               'Screen refresh scheduling and dirty-region tracking — decides which parts of the screen need redrawing each frame.'],
+  ['MS_',  'Misc / System',         'Miscellaneous system utilities: command-line parsing, file path helpers, error dialogs, and the quit/restart sequence.'],
+  ['CP_',  'Control Panel',         'The in-game menu and options screens. CP_ functions render menu items, handle navigation input, and persist settings to the config file.'],
+  ['STR_', 'String Resource',       'Named string constants for user-visible text. Centralising them in macros made it easier to produce localised versions of the game.'],
+  ['SPR_', 'Sprite Constant',       'Named indices into the sprite sheet. SPR_KNIFEREADY, SPR_DEMO, SPR_DEATHCAM, etc. identify specific animation frames by purpose rather than raw number.'],
+  ['FL_',  'Actor Flag Bit',        'Bit-flag constants for the objtype.flags field. Tested with bitwise AND: (ob->flags & FL_ATTACKMODE). Common flags: FL_ATTACKMODE, FL_VISABLE, FL_NEVERMARK, FL_BONUS.'],
+  ['GC_',  'Graphics Controller',   'VGA Graphics Controller register constants — port 0x3CE/0x3CF. GC_INDEX selects the register; GC_MODE, GC_BITMASK etc. are the register indices for controlling write modes and plane masks.'],
+  ['SC_',  'Sequencer',             'VGA Sequencer register constants — port 0x3C4/0x3C5. SC_INDEX selects the register; SC_MAPMASK controls which bitplanes receive writes during planar VGA rendering.'],
+];
+
 function extractInstruction(lineText, language) {
   const lang = language.toLowerCase();
   const trimmed = lineText.trim();
   if (!trimmed) return null;
 
   if (lang.includes('mdl') || lang.includes('muddle')) {
-    // MDL: look for <FUNCNAME at the start of a form
     const m = trimmed.match(/<([A-Z][A-Z0-9?!-]*)/i);
     if (m) return m[1].toUpperCase();
+    return null;
+  }
+
+  if (lang === 'c' || lang.startsWith('c ') || lang.startsWith('c,') || lang.includes('c++')) {
+    // Strip line comments and leading whitespace
+    const stripped = trimmed.replace(/\/\/.*/, '').replace(/\/\*.*?\*\//g, '').trim();
+    if (!stripped) return null;
+    // Preprocessor directives: extract the directive name
+    const pp = stripped.match(/^#\s*([a-z]+)/);
+    if (pp) return pp[1];
+    // Prefer a function/macro call: identifier immediately followed by (
+    const call = stripped.match(/\b([A-Za-z_][A-Za-z0-9_]*)\s*\(/);
+    if (call) return call[1];
+    // Fall back to first identifier (handles return, break, assignments…)
+    const first = stripped.match(/\b([A-Za-z_][A-Za-z0-9_]+)\b/);
+    if (first) return first[1];
     return null;
   }
 
   // Assembly (6502 or 8086): skip pure comment/directive-only lines
   if (trimmed.startsWith(';') || trimmed.startsWith('*')) return null;
 
-  // If line starts at column 0 it may have a label — skip past it
   let rest = lineText;
   if (!/^ /.test(lineText)) {
-    // Remove a label token (word followed by colon or whitespace at col 0)
     rest = lineText.replace(/^[A-Za-z_?.][A-Za-z0-9_?.]*[:\s]+/, '').trim();
   } else {
     rest = trimmed;
@@ -267,8 +386,23 @@ function lookupInstruction(opcode, language) {
   if (lang.includes('6502')) table = INSTRUCTIONS_6502;
   else if (lang.includes('8086') || lang.includes('x86') || lang.includes('dos')) table = INSTRUCTIONS_8086;
   else if (lang.includes('mdl') || lang.includes('muddle')) table = INSTRUCTIONS_MDL;
+  else if (lang === 'c' || lang.startsWith('c ') || lang.startsWith('c,') || lang.includes('c++')) table = INSTRUCTIONS_C;
   else return null;
-  return table[opcode] || null;
+
+  const hit = table[opcode] || table[opcode.toLowerCase()];
+  if (hit) return hit;
+
+  // For C: try engine-subsystem prefix matching when the function isn't in the table.
+  // Covers Wolf3D engine APIs (VW_, SD_, CA_, MM_, IN_, US_…) and similar patterns.
+  if (table === INSTRUCTIONS_C) {
+    for (const [pfx, system, desc] of C_ENGINE_PREFIXES) {
+      if (opcode.toUpperCase().startsWith(pfx)) {
+        return { full: `${opcode}  ·  ${system}`, desc };
+      }
+    }
+  }
+
+  return null;
 }
 
 function showInstructionPopup(opcode, info, lineEl) {
@@ -287,16 +421,31 @@ function showInstructionPopup(opcode, info, lineEl) {
   lookupPopup = el;
 }
 
-function setupInstructionLookup(container, language) {
+function effectiveLanguage(language, filePath) {
+  // For mixed-language programs (e.g. "C, x86 Assembly") derive the actual
+  // file type from the source file extension so each file gets the right table.
+  if (!filePath) return language;
+  const ext = filePath.split('.').pop().toLowerCase();
+  if (ext === 'c' || ext === 'h' || ext === 'cpp' || ext === 'cc') return 'C';
+  if (ext === 'asm' || ext === 's' || ext === 'a') {
+    // Strip 'C' from mixed language strings like "C, x86 Assembly"
+    const asmOnly = language.replace(/\bC\b\s*,?\s*/i, '').trim();
+    return asmOnly || language;
+  }
+  return language;
+}
+
+function setupInstructionLookup(container, language, filePath) {
   if (!language) return;
+  const lang = effectiveLanguage(language, filePath);
   container.addEventListener('click', e => {
     const line = e.target.closest('.code-line');
     if (!line) return;
     const codeSpan = line.querySelector('.line-code');
     if (!codeSpan) return;
-    const opcode = extractInstruction(codeSpan.textContent, language);
+    const opcode = extractInstruction(codeSpan.textContent, lang);
     if (!opcode) return;
-    const info = lookupInstruction(opcode, language);
+    const info = lookupInstruction(opcode, lang);
     if (!info) return;
     e.stopPropagation();
     showInstructionPopup(opcode, info, line);
@@ -594,18 +743,83 @@ function renderShelf(catalog) {
 </div>`;
 }
 
+// ---------------------------------------------------------------------------
+// Source tree builder — mirrors the repo directory structure
+// ---------------------------------------------------------------------------
+
+function buildFileTree(files) {
+  const sorted = [...files].sort((a, b) => (a.order || 0) - (b.order || 0));
+  const root = { dirs: {}, files: [] };
+  for (const file of sorted) {
+    const path = file.path || '';
+    // Split on / — if no path, treat file as root-level
+    const parts = path ? path.split('/').filter(Boolean) : [];
+    if (parts.length === 0) {
+      root.files.push(file);
+      continue;
+    }
+    const dirParts = parts.slice(0, -1);
+    let node = root;
+    for (const dir of dirParts) {
+      if (!node.dirs[dir]) node.dirs[dir] = { dirs: {}, files: [] };
+      node = node.dirs[dir];
+    }
+    node.files.push(file);
+  }
+  return root;
+}
+
+function renderFileTree(node, programSlug, depth) {
+  if (depth === undefined) depth = 0;
+  let html = '';
+  const pad  = (depth * 1.25 + 0.5).toFixed(2);  // rem — directory row indent
+  const fpad = (depth * 1.25 + 1.75).toFixed(2); // rem — file row (icon column + dir indent)
+
+  for (const dirName of Object.keys(node.dirs)) {
+    const dirNode = node.dirs[dirName];
+    const isRoot = depth === 0;
+    html += `<div class="tree-group${isRoot ? ' tree-group-root' : ''}">`;
+    html += `<div class="tree-dir" style="padding-left:${pad}rem">`;
+    html += `<span class="tree-dir-icon">▾</span>`;
+    html += `<span class="tree-dir-name">${escapeHtml(dirName)}/</span>`;
+    html += `</div>`;
+    html += renderFileTree(dirNode, programSlug, depth + 1);
+    html += `</div>`;
+  }
+
+  for (const file of node.files) {
+    // Backward-compat: files without a `generated` field are from old catalog — treat as linked
+    const linked = file.generated !== false;
+    if (linked) {
+      html += `<a class="tree-file tree-file-link" href="#/${escapeAttr(programSlug)}/${escapeAttr(file.slug)}" style="padding-left:${fpad}rem">`;
+      html += `<span class="tree-file-icon">▶</span>`;
+      html += `<div class="tree-file-body">`;
+      html += `<div class="tree-file-name">${escapeHtml(file.title)}</div>`;
+      if (file.description) {
+        html += `<div class="tree-file-desc">${escapeHtml(file.description)}</div>`;
+      }
+      html += `</div>`;
+      html += `</a>`;
+    } else {
+      html += `<div class="tree-file tree-file-plain" style="padding-left:${fpad}rem">`;
+      html += `<span class="tree-file-icon">·</span>`;
+      html += `<span class="tree-file-name">${escapeHtml(file.title)}</span>`;
+      html += `</div>`;
+    }
+  }
+
+  return html;
+}
+
+// ---------------------------------------------------------------------------
+
 function renderProgramPage(program) {
   document.title = `${program.title} — Code Museum`;
 
-  const files = (program.files || []).map(f => `
-    <a class="file-item" href="#/${program.slug}/${f.slug}">
-      <span class="file-order">${f.order}.</span>
-      <div class="file-info">
-        <div class="file-name">${escapeHtml(f.title)}</div>
-        <div class="file-desc">${escapeHtml(f.description)}</div>
-      </div>
-      <span class="file-arrow">›</span>
-    </a>`).join('');
+  const files = program.files || [];
+  const treeHtml = files.length > 0
+    ? renderFileTree(buildFileTree(files), program.slug)
+    : '';
 
   let introHtml;
   if (program.introduction && program.introduction.trim()) {
@@ -637,7 +851,7 @@ function renderProgramPage(program) {
     ${introHtml}
     ${program.github_url ? `<a class="github-badge" href="${escapeAttr(program.github_url)}" target="_blank" rel="noopener">⎋ View on GitHub</a>` : ''}
   </div>
-  <div class="file-list">${files}</div>
+  <div class="file-tree">${treeHtml}</div>
 </div>`;
 }
 
@@ -680,10 +894,14 @@ function renderHeader(opts = {}) {
 function renderReader(meta, body, program) {
   document.title = `${meta.title} — ${meta.program} — Code Museum`;
 
-  const files = program ? program.files || [] : [];
-  const currentOrder = meta.order || 0;
-  const prevFile = files.find(f => f.order === currentOrder - 1);
-  const nextFile = files.find(f => f.order === currentOrder + 1);
+  const allFiles = program ? program.files || [] : [];
+  // Only navigate to generated files (skip stubs with no annotated page)
+  const files = allFiles
+    .filter(f => f.generated !== false)
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
+  const currentIdx = files.findIndex(f => f.slug === meta.slug);
+  const prevFile = currentIdx > 0 ? files[currentIdx - 1] : null;
+  const nextFile = currentIdx >= 0 && currentIdx < files.length - 1 ? files[currentIdx + 1] : null;
 
   const summaryHtml = (meta.summary || []).map(s =>
     `<li>${escapeHtml(s.point)}${s.link ? ` <a href="${escapeAttr(s.link)}" target="_blank" rel="noopener">${escapeHtml(s.link_label || 'Wikipedia')}</a>` : ''}</li>`
@@ -838,7 +1056,7 @@ async function route() {
         githubUrl: meta.github_url
       }) + renderReader(meta, body, program);
       setupWordLookup(app);
-      setupInstructionLookup(app, meta.language);
+      setupInstructionLookup(app, meta.language, meta.file_path);
       loadImagesAsBlobUrls(app);
     }
   } catch (err) {

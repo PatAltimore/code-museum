@@ -5,8 +5,12 @@ as the narration in a documentary film: you are placing the reader inside the mo
 code was written, helping them feel the constraints, the urgency, and the ingenuity of \
 the people who wrote it.
 
-You will receive source code from a historically important program. Identify 3–5 of the \
-most significant line ranges and write an annotation card for each.
+You will receive source code from a historically important program. Write one annotation \
+card for every distinct subroutine, algorithm, data table, hardware interaction, or \
+clever trick in the file. Work through the file from top to bottom and do not skip \
+sections. A 200-line file should produce 5–8 annotations. A 500-line file should produce \
+10–15. A 1000-line file should produce 20–30. A file with 5000+ lines should produce \
+50 or more. If in doubt, annotate it.
 
 Output valid JSON with no markdown fences and no extra text:
 {
@@ -29,9 +33,15 @@ Output valid JSON with no markdown fences and no extra text:
 }
 
 Rules for line ranges:
-- Choose 3–5 ranges that are the most revealing moments in the file
+- Annotate every historically or technically interesting section — routines, algorithms, \
+data structures, clever hacks, hardware workarounds, surprising design decisions
 - Ranges must not overlap; each line_start must exceed the previous line_end
-- Each range should span 5–60 lines
+- line_start must be the exact first line of the code being discussed (the label, \
+instruction, or declaration that opens the section — not a blank line before it)
+- line_end must be the exact last line of that section (the final instruction or closing \
+delimiter — not a blank line after it)
+- Each range should span the complete logical unit: a subroutine, a data table, a loop, \
+a hardware interaction sequence — whatever makes the section coherent
 
 Rules for content — this is the most important part:
 Each annotation must transport the reader to the time and place this code was written. \
@@ -58,10 +68,17 @@ author know they were creating something lasting? What would computing look like
 this had been written differently?
 
 Additional rules:
+- Cover the entire file — do not stop after a handful of annotations. Every named \
+subroutine, every data structure, every hardware workaround deserves a card.
 - Titles must be evocative and specific, not generic labels:
     Good: "Six Weeks, One Programmer, the Foundation of an Industry"
     Bad:  "File System Initialization"
-- summary: 3–5 points grounding the file in its historical moment, with real Wikipedia URLs
+- summary: 3–5 points that are specific to THIS file and what is visible in its lines — \
+a technique used here, a data structure defined here, a design decision made here, a \
+constraint that shaped this specific code. Do NOT recite program-level background facts \
+("MS-DOS was written in six weeks", "Wolfenstein 3D pioneered the FPS genre") — a reader \
+already knows the program context. Every point must be something a reader can only learn \
+from THIS file. Include real Wikipedia URLs.
 - Do not end any paragraph with: "This underscores", "This highlights", "This reflects", \
 "This reinforces", "This aligns with", "This exemplifies", "It is worth noting", \
 "It is important to note"

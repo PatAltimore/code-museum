@@ -100,18 +100,55 @@ def _commons_search(query: str) -> tuple[str, str] | None:
 
 
 # ---------------------------------------------------------------------------
+# Relevance check
+# ---------------------------------------------------------------------------
+
+def _is_relevant(topic: str, image_name: str, caption: str, client) -> bool:
+    """Ask the model whether an image is directly relevant to a topic.
+
+    Returns True (accept) or False (reject). Fails open on errors so a
+    network hiccup never silently drops all images.
+    """
+    image_name_clean = re.sub(r"\.\w+$", "", image_name.replace("_", " ")).strip()
+    prompt = (
+        f"Topic: {topic}\n"
+        f"Image name: {image_name_clean}\n"
+        f"Caption: {caption}\n"
+        f"Does this image directly illustrate or depict the topic above? "
+        f"Answer YES or NO only."
+    )
+    messages = [
+        {"role": "system", "content": "You are a strict image-relevance checker. Answer YES or NO only."},
+        {"role": "user", "content": prompt},
+    ]
+    try:
+        raw = client.complete(messages, temperature=0, max_tokens=5)
+        return raw.strip().upper().startswith("Y")
+    except Exception:
+        return True  # fail open
+
+
+# ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
 
-def find_image(wiki_url: str | None = None, query: str | None = None) -> tuple[str, str] | None:
+def find_image(
+    wiki_url: str | None = None,
+    query: str | None = None,
+    topic: str | None = None,
+    client=None,
+) -> tuple[str, str] | None:
     """4-tier fallback image search.
 
-    1. Wikipedia pageimages API (if wiki_url given)
-    2. Commons search using article title from wiki_url
-    3. Commons search using query
+    1. Wikipedia pageimages API (if wiki_url given) — trusted, no relevance check
+    2. Commons search using article title from wiki_url — relevance-checked if client given
+    3. Commons search using query — relevance-checked if client given
     4. Return None
+
+    Pass ``topic`` (the enhancement title or program title) and ``client``
+    (a ModelClient) to enable automatic relevance filtering on Tiers 2 and 3.
     """
-    # Tier 1: Wikipedia pageimages
+    # Tier 1: Wikipedia pageimages — curated, trusted unconditionally
     if wiki_url:
         m = re.search(r"/wiki/(.+)$", wiki_url)
         if m:
@@ -139,39 +176,67 @@ def find_image(wiki_url: str | None = None, query: str | None = None) -> tuple[s
             except Exception:
                 pass
 
-            # Tier 2: Commons search using article title
+            # Tier 2: Commons search using article title — relevance-checked
             readable = title.replace("_", " ")
             time.sleep(DELAY)
             try:
                 result = _commons_search(readable)
                 if result:
-                    return result
+                    thumb_url, caption = result
+                    if client and topic:
+                        img_name = re.search(r"/([^/]+)\?", thumb_url)
+                        img_name = img_name.group(1) if img_name else thumb_url
+                        if not _is_relevant(topic, img_name, caption, client):
+                            result = None
+                    if result:
+                        return result
             except Exception:
                 pass
 
-    # Tier 3: Commons search using query
+    # Tier 3: Commons search using query — relevance-checked
     if query:
         time.sleep(DELAY)
         try:
             result = _commons_search(query)
             if result:
-                return result
+                thumb_url, caption = result
+                if client and topic:
+                    img_name = re.search(r"/([^/]+)\?", thumb_url)
+                    img_name = img_name.group(1) if img_name else thumb_url
+                    if not _is_relevant(topic, img_name, caption, client):
+                        result = None
+                if result:
+                    return result
         except Exception:
             pass
 
     return None
 
 
-def find_program_image(program: dict) -> tuple[str, str] | None:
+def find_program_image(program: dict, client=None) -> tuple[str, str] | None:
     """Find a representative image for the whole program by title search."""
     title = program.get("title", "")
     year  = program.get("year", "")
+    topic = f"{title} ({year})" if year else title
     try:
         result = _commons_search(f"{title} {year}".strip())
         if result:
-            return result
+            if client:
+                thumb_url, caption = result
+                img_name = re.search(r"/([^/]+)\?", thumb_url)
+                img_name = img_name.group(1) if img_name else thumb_url
+                if not _is_relevant(topic, img_name, caption, client):
+                    result = None
+            if result:
+                return result
         time.sleep(DELAY)
         result = _commons_search(title)
+        if result and client:
+            thumb_url, caption = result
+            img_name = re.search(r"/([^/]+)\?", thumb_url)
+            img_name = img_name.group(1) if img_name else thumb_url
+            if not _is_relevant(topic, img_name, caption, client):
+                result = None
         return result
     except Exception:
         return None
@@ -189,8 +254,11 @@ _WIKI_URL_RE = re.compile(r'    wikipedia_url: "([^"]*)"')
 _TITLE_RE    = re.compile(r'    title: "([^"]*)"')
 
 
-def fill_file_images(md_path: pathlib.Path, console=None) -> int:
+def fill_file_images(md_path: pathlib.Path, console=None, client=None) -> int:
     """Patch empty image_url/image_caption fields in a .md frontmatter file.
+
+    Pass ``client`` (a ModelClient) to enable relevance checking — images that
+    the model deems unrelated to the enhancement topic are silently skipped.
 
     Returns the number of images found and written.
     """
@@ -215,7 +283,12 @@ def fill_file_images(md_path: pathlib.Path, console=None) -> int:
 
         result = None
         try:
-            result = find_image(wiki_url=wiki_url or None, query=enh_title or None)
+            result = find_image(
+                wiki_url=wiki_url or None,
+                query=enh_title or None,
+                topic=enh_title or None,
+                client=client,
+            )
         except Exception as e:
             if console:
                 console.print(f"    [red]image search error: {e}[/red]")

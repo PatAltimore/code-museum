@@ -38,12 +38,25 @@ def sync(config: dict, output_dir: Path) -> None:
         existing_files = {f["slug"]: f for f in entry.get("files", [])}
         for f in prog.get("files", []):
             file_path = output_dir / slug / f"{f['slug']}.md"
-            if file_path.exists() and f["slug"] not in existing_files:
-                existing_files[f["slug"]] = {
+            generated = file_path.exists()
+            slug_key = f["slug"]
+            if slug_key in existing_files:
+                # Refresh fields that come from yaml; preserve nothing else
+                existing_files[slug_key].update({
                     "order": f["order"],
-                    "slug": f["slug"],
                     "title": f["title"],
                     "description": f.get("description", ""),
+                    "path": f.get("path", ""),
+                    "generated": generated,
+                })
+            else:
+                existing_files[slug_key] = {
+                    "order": f["order"],
+                    "slug": slug_key,
+                    "title": f["title"],
+                    "description": f.get("description", ""),
+                    "path": f.get("path", ""),
+                    "generated": generated,
                 }
 
         entry["files"] = sorted(existing_files.values(), key=lambda x: x["order"])

@@ -8,8 +8,7 @@ models:
 
 generation:
   temperature: 0.3
-  max_tokens: 4096
-  default_max_lines: 200
+  max_tokens: 16384
 
 programs:
 
@@ -189,3 +188,150 @@ programs:
         description: "Program loader — how DOS launches and returns from .COM and .EXE files"
         max_lines: 200
         context: "Implements the EXEC system call (INT 21h function 4Bh) that loads and runs programs. Handles both .COM (flat) and .EXE (segmented) formats."
+
+  - slug: basic-m6502
+    title: Microsoft BASIC for 6502 Microprocessor
+    subtitle: 6502 Microprocessor, 1977
+    author: Bill Gates, Paul Allen
+    year: 1977
+    language: "6502 Assembly"
+    description: Microsoft's implementation of BASIC for the 6502 microprocessor, a pivotal moment in personal computing history.
+    context: Microsoft BASIC for the 6502 was a key enabler for early personal computers, including the Apple II. Written in
+      assembly language, it was designed to fit within the tight memory constraints of the era, often just a few kilobytes.
+      This version showcases the ingenuity required to deliver a functional programming language on limited hardware.
+    files:
+    - order: 1
+      slug: m6502-asm
+      title: m6502.asm
+      path: m6502.asm
+      description: The complete source code for Microsoft BASIC 1.1, demonstrating early microprocessor programming techniques.
+      context: This file contains the assembly language implementation of BASIC for the 6502 microprocessor, showcasing the
+        optimization required to run on hardware with minimal resources.
+    github_url: https://github.com/microsoft/BASIC-M6502
+    github_repo: microsoft/BASIC-M6502
+    github_branch: main
+
+  - slug: wolf3d
+    title: Wolfenstein 3D
+    subtitle: MS-DOS, 1992
+    author: John Carmack, John Romero, Tom Hall
+    year: 1992
+    language: C, x86 Assembly
+    description: The groundbreaking source code for Wolfenstein 3D, a seminal first-person shooter that defined the genre.
+    context: Wolfenstein 3D was developed by id Software and released in 1992 for MS-DOS. It introduced fast-paced, first-person
+      action with smooth scrolling and immersive gameplay, pushing the limits of hardware at the time. The source code, later
+      released as open source, showcases the ingenuity behind one of gaming's most influential titles.
+    files:
+    - order: 1
+      slug: c0-asm
+      title: C0.ASM
+      path: WOLFSRC/C0.ASM
+      description: Low-level assembly routines for initialization, showcasing the hardware-specific optimizations of the era.
+      context: This file contains critical startup code for the game, written in x86 Assembly to ensure compatibility and performance
+        on MS-DOS systems.
+    - order: 2
+      slug: id-ca-c
+      title: ID_CA.C
+      path: WOLFSRC/ID_CA.C
+      description: Handles caching and memory management, a key innovation for running large games on limited hardware.
+      context: Memory constraints on early PCs required efficient caching systems, and this file demonstrates id Software's
+        approach to managing assets dynamically.
+    - order: 3
+      slug: id-in-c
+      title: ID_IN.C
+      path: WOLFSRC/ID_IN.C
+      description: Input handling code, enabling responsive controls that were critical for the game's fast-paced action.
+      context: This file processes keyboard and mouse input, ensuring smooth gameplay and quick reactions in a genre-defining
+        shooter.
+    - order: 4
+      slug: id-sd-c
+      title: ID_SD.C
+      path: WOLFSRC/ID_SD.C
+      description: Sound driver code, bringing immersive audio to the Wolfenstein 3D experience.
+      context: Audio was a key component of Wolfenstein 3D's atmosphere, and this file demonstrates how sound effects and music
+        were integrated into the game.
+    - order: 5
+      slug: wl-main-c
+      title: WL_MAIN.C
+      path: WOLFSRC/WL_MAIN.C
+      description: The main game loop, orchestrating gameplay and tying together all subsystems.
+      context: This file is the heart of Wolfenstein 3D, showcasing the structure and flow of the game's execution.
+    - order: 6
+      slug: wl-draw-c
+      title: WL_DRAW.C
+      path: WOLFSRC/WL_DRAW.C
+      description: Rendering code for the game's 3D environments, a technical marvel of its time.
+      context: Wolfenstein 3D's pseudo-3D graphics were groundbreaking, and this file demonstrates the techniques used to achieve
+        them on limited hardware.
+    - order: 7
+      slug: wl-play-c
+      title: WL_PLAY.C
+      path: WOLFSRC/WL_PLAY.C
+      description: Gameplay logic, including player movement and interactions with the environment.
+      context: This file encapsulates the core mechanics that made Wolfenstein 3D engaging and replayable.
+    - order: 8
+      slug: wl-menu-c
+      title: WL_MENU.C
+      path: WOLFSRC/WL_MENU.C
+      description: Code for the game's menus, providing a user-friendly interface for starting and configuring gameplay.
+      context: The menu system was designed to be intuitive, allowing players to quickly jump into the action or adjust settings.
+    github_url: https://github.com/id-Software/wolf3d
+    github_repo: id-Software/wolf3d
+    github_branch: master
+
+  - slug: doom
+    title: DOOM
+    subtitle: PC, 1993
+    author: John Carmack, John Romero, Dave Taylor
+    year: 1993
+    language: C
+    description: The source code for DOOM, one of the most influential video games of all time, showcasing early 3D graphics
+      and multiplayer networking.
+    context: DOOM revolutionized gaming with its fast-paced action, immersive 3D environments, and multiplayer capabilities.
+      Originally released in 1993, its source code was later made available, allowing developers and enthusiasts to study its
+      groundbreaking techniques. The game ran on modest hardware of the era, pushing the limits of what was possible on consumer
+      PCs.
+    files:
+    - order: 1
+      slug: d-main-c
+      title: d_main.c
+      path: linuxdoom-1.10/d_main.c
+      description: The main entry point for the DOOM game engine, orchestrating initialization and the game loop.
+      context: This file is central to understanding how DOOM's engine starts and manages gameplay, including handling user
+        input and rendering.
+    - order: 2
+      slug: r-main-c
+      title: r_main.c
+      path: linuxdoom-1.10/r_main.c
+      description: Handles the rendering pipeline for DOOM's 3D graphics, a key innovation of the game.
+      context: This file showcases the techniques used to render DOOM's pseudo-3D environments efficiently on 1990s hardware.
+    - order: 3
+      slug: p-map-c
+      title: p_map.c
+      path: linuxdoom-1.10/p_map.c
+      description: Manages the game's map logic, including collision detection and spatial queries.
+      context: Understanding this file provides insight into how DOOM's levels were structured and navigated by both players
+        and AI.
+    - order: 4
+      slug: s-sound-c
+      title: s_sound.c
+      path: linuxdoom-1.10/s_sound.c
+      description: Implements DOOM's sound system, including effects and music playback.
+      context: This file is crucial for understanding how DOOM created its immersive audio experience, which complemented its
+        fast-paced gameplay.
+    - order: 5
+      slug: w-wad-c
+      title: w_wad.c
+      path: linuxdoom-1.10/w_wad.c
+      description: Handles loading and accessing WAD files, which store game assets like textures, sounds, and level data.
+      context: The WAD file format became iconic in modding communities, enabling users to create custom levels and content
+        for DOOM.
+    - order: 6
+      slug: z-zone-c
+      title: z_zone.c
+      path: linuxdoom-1.10/z_zone.c
+      description: Manages memory allocation within the DOOM engine, ensuring efficient use of system resources.
+      context: This file demonstrates how DOOM optimized memory usage on limited hardware, a critical aspect of its performance.
+    github_url: https://github.com/id-Software/DOOM
+    github_repo: id-Software/DOOM
+    github_branch: master

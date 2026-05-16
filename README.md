@@ -8,10 +8,16 @@ A code reader for historically significant open-source programs. Each featured f
 Jordan Mechner's solo four-year project, written in 6502 assembly for a machine with 128K of RAM. The source code was recovered in 2012 from 22-year-old floppy disks. Featured files: the one-bit sound engine, the two-stage boot loader, the rotoscoping-encoded animation state machine, and the top-level game controller.
 
 ### Zork (PDP-10 / ITS, 1977–1979)
-Built organically at MIT by four collaborators in MDL (Muddle), a Lisp dialect. Played live on ARPANET during development. Its natural language parser went through 93 iterations; its sarcastic error messages set a template for conversational interfaces still in use today. Released open-source by MIT in 2025. Featured files: the type system, the parser, the dungeon world definition, and the action handlers.
+Built organically at MIT by four collaborators in MDL (Muddle), a Lisp dialect. Played live on ARPANET during development. Its natural language parser went through 93 iterations; its sarcastic error messages set a template for conversational interfaces still in use today. Released open-source by MIT in 2025.
 
 ### MS-DOS (IBM PC, 1981–1983)
-Written in roughly six weeks by Tim Paterson at Seattle Computer Products in 1980, acquired by Microsoft for $25,000, and licensed to IBM for the August 1981 PC launch — then to every IBM clone maker on earth. Within a year Microsoft had licensed it to over 70 manufacturers. This single non-exclusive deal transformed Microsoft from a $7M/year languages company into the dominant force in personal computing. Featured files: the MSDOS.ASM kernel with its complete revision history, COMMAND.ASM with "Abort, Retry, Ignore?" in its original form, XENIX.ASM (the Unix layer that gave DOS subdirectories and pipes), and MSCODE.ASM (the v2.0 dispatcher containing the comment "Here comes multitasking!!!"). Source first released to the Computer History Museum in March 2014; currently MIT licensed.
+Written in roughly six weeks by Tim Paterson at Seattle Computer Products in 1980, acquired by Microsoft for $25,000, and licensed to IBM for the August 1981 PC launch — then to every IBM clone maker on earth. Within a year Microsoft had licensed it to over 70 manufacturers. Source first released to the Computer History Museum in March 2014; currently MIT licensed.
+
+### Microsoft BASIC for 6502 (1977)
+Written by Bill Gates and Paul Allen for the MOS Technology 6502 processor, fitting a complete BASIC interpreter into 4KB of ROM. Licensed to dozens of manufacturers and shipped in the Apple II, Commodore PET, and OSI machines — the software layer that made the microcomputer revolution possible.
+
+### Wolfenstein 3D (MS-DOS, 1992)
+id Software's landmark first-person shooter, written in C and x86 assembly by John Carmack, John Romero, and Tom Hall. The raycasting engine, the sound driver, and the memory manager became the blueprint for every DOS-era game that followed.
 
 ## How it works
 
@@ -29,7 +35,16 @@ enhancements:
     content: "The Apple II had no sound chip..."
 ```
 
-The body of each file is the raw source code. The reader splits the code into sections at enhancement boundaries, highlights the annotated lines, and inserts expandable panels inline.
+The body of each file is the raw source code. The reader splits the code into sections at enhancement boundaries, highlights the annotated lines, and inserts expandable panels inline. Each enhancement panel can include a Wikipedia Commons image with attribution. Program pages display a historical introduction with a hero image.
+
+## Reader features
+
+- **Source tree browser** — program pages show files in the repo's actual directory structure. Generated files with annotations are stylized links; files not yet annotated appear as plain stubs in the tree
+- **Instruction lookup** — click any line of code to see what the instruction does (6502, 8086, MDL, and C supported). For C, covers keywords, stdlib functions, Borland DOS extensions (`far`, `near`, `interrupt`), and Wolf3D engine subsystems (`VW_`, `SD_`, `CA_`, `MM_`, `IN_`, and more via prefix matching)
+- **Word lookup** — right-click any word in an annotation panel to look it up in the dictionary
+- **Font size controls** — A− / A+ buttons in the header
+- **Offline support** — service worker caches all content for offline reading
+- **Install to home screen** — works as a PWA on iOS and Android
 
 ## Running locally
 
@@ -107,9 +122,12 @@ public/
 ```
 code_generator/
 ├── generator.py        # Main CLI
+├── add_program.py      # Add a new GitHub repo to the catalog
+├── find_images.py      # Fetch Wikipedia Commons images with relevance filtering
 ├── client.py           # Azure AI Foundry client with fallback chain
 ├── fetch_code.py       # Downloads source files from GitHub (cached)
-├── prompts.py          # Prompt construction for code analysis
+├── prompts.py          # Prompt construction for file annotations
+├── intro_prompts.py    # Prompt construction for program introductions
 ├── formatter.py        # Assembles YAML frontmatter + source body
 ├── catalog_sync.py     # Keeps catalog.json in sync with generated files
 ├── checkpointer.py     # Skips files that already exist on disk
@@ -128,10 +146,26 @@ cp .env.example .env
 # fill in AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_KEY (and optionally Llama/Mistral)
 ```
 
-### Usage
+Set `GITHUB_TOKEN` in `.env` to avoid GitHub API rate limits when using `add_program.py`.
+
+### Adding a program
 
 ```bash
-# Generate all files not yet on disk
+python add_program.py https://github.com/microsoft/BASIC-M6502
+```
+
+Fetches the repository's file tree from GitHub, asks the model to identify every historically significant source file and write a complete `programs.yaml` entry, then appends it to `config/programs.yaml` and immediately syncs `catalog.json` — so the new program's source tree is visible as stubs before any content is generated. Use `--dry-run` to preview without writing.
+
+After adding, generate content:
+
+```bash
+python generator.py --program basic-m6502
+```
+
+### Generating content
+
+```bash
+# Generate all missing file annotations and introductions
 python generator.py
 
 # Generate a specific program
@@ -140,8 +174,14 @@ python generator.py --program prince-of-persia
 # Generate a specific file
 python generator.py --program ms-dos --file sysinit
 
-# Regenerate an existing file
-python generator.py --program zork --file rooms --force
+# Regenerate everything for a program (overwrites existing files and introduction)
+python generator.py --program zork --force
+
+# Generate only the program introduction
+python generator.py --program prince-of-persia --intro-only
+
+# Regenerate an existing introduction
+python generator.py --program prince-of-persia --intro-only --force
 
 # Preview prompts without calling the API
 python generator.py --dry-run
@@ -150,10 +190,32 @@ python generator.py --dry-run
 python generator.py --sync-catalog
 ```
 
-Files already present in `public/programs/` are skipped unless `--force` is passed. After generation, `catalog.json` is updated automatically.
+### Finding images
 
-### Adding a program
+Images are fetched automatically from Wikipedia Commons during generation and filtered for relevance — images that the model judges unrelated to the enhancement topic are rejected before being saved. To backfill images for existing files:
 
-1. Add an entry to `config/programs.yaml` with `github_repo`, `github_branch`, and a `files` list
-2. Run `python generator.py --program your-slug`
-3. The generator fetches the source from GitHub, calls the model, and writes the `.md` files
+```bash
+# Fill images across all files
+python generator.py --find-images
+
+# Fill images for one program
+python generator.py --find-images --program prince-of-persia
+
+# Skip image fetching during generation
+python generator.py --no-images
+```
+
+### Generator options
+
+| Option | Description |
+|---|---|
+| `--program SLUG` | Only process this program |
+| `--file SLUG` | Only process this file (requires `--program`) |
+| `--force` | Regenerate files and introductions even if they already exist |
+| `--intro-only` | Only generate program introductions; skip file annotations |
+| `--find-images` | Backfill Wikipedia Commons images in existing files and exit |
+| `--no-images` | Skip image fetching during generation |
+| `--dry-run` | Build prompts without calling the model |
+| `--sync-catalog` | Update `catalog.json` from disk and exit |
+| `--no-catalog-sync` | Skip the automatic catalog update after generation |
+| `--config PATH` | Use a different config file (default: `config/programs.yaml`) |
