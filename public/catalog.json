@@ -10,13 +10,33 @@
       "description": "The game that invented cinematic platformers — built by one developer over four years on Apple II hardware with 128K of RAM. The source code was recovered in 2012 from 22-year-old floppy disks.",
       "github_url": "https://github.com/jmechner/Prince-of-Persia-Apple-II",
       "files": [
-        { "order": 1, "slug": "sound", "title": "SOUND.S", "description": "The complete sound engine — twenty sounds, one speaker, zero compromises" },
-        { "order": 2, "slug": "boot", "title": "BOOT.S", "description": "The two-stage disk boot loader with 128K memory check" },
-        { "order": 3, "slug": "seqtable", "title": "SEQTABLE.S", "description": "The animation state machine — every movement rotoscoped from film" },
-        { "order": 4, "slug": "master", "title": "MASTER.S", "description": "Game flow controller: boot, attract mode, save/load, level sequencing" }
-      ]
-    }
-    ,
+        {
+          "order": 1,
+          "slug": "sound",
+          "title": "SOUND.S",
+          "description": "The complete sound engine — twenty sounds, one speaker, zero compromises"
+        },
+        {
+          "order": 2,
+          "slug": "boot",
+          "title": "BOOT.S",
+          "description": "The two-stage disk boot loader with 128K memory check"
+        },
+        {
+          "order": 3,
+          "slug": "seqtable",
+          "title": "SEQTABLE.S",
+          "description": "The animation state machine — every movement rotoscoped from film"
+        },
+        {
+          "order": 4,
+          "slug": "master",
+          "title": "MASTER.S",
+          "description": "Game flow controller: boot, attract mode, save/load, level sequencing"
+        }
+      ],
+      "introduction": "In 1985, Jordan Mechner, a young programmer and aspiring filmmaker, sat down at his Apple II computer in his parents’ home in Chappaqua, New York, to begin work on what would become one of the most influential video games of all time. At the age of 21, fresh off the success of his first game, *Karateka*, Mechner was determined to push the boundaries of what a computer game could achieve. He envisioned a game that would combine fluid, lifelike animation with a gripping narrative, creating an experience that felt more like a movie than a traditional arcade game. Over the next four years, Mechner would pour his creativity, technical skill, and sheer determination into crafting *Prince of Persia*, a groundbreaking cinematic platformer that would redefine the genre.\n\nThe computing world of the mid-1980s was a place of severe constraints and ingenious solutions. The Apple II, released in 1977, was still a popular platform, but its hardware was aging rapidly in the face of newer, more powerful machines like the Commodore Amiga and IBM PC. The Apple IIe, the model Mechner used, had a mere 128K of RAM and relied on the 6502 microprocessor, a chip with just 3,510 transistors and no built-in multiplication or division instructions. Every byte of memory was precious, and developers had to squeeze every ounce of performance from the hardware. Mechner embraced these limitations, using techniques like bank-switched memory and hand-optimized assembly code to fit his ambitious vision into the confines of the Apple II.\n\nMechner’s background as both a programmer and a filmmaker shaped the game’s development. To create the prince’s fluid movements, he turned to rotoscoping, a technique borrowed from animation. He filmed his younger brother, David, performing acrobatic moves like running, jumping, and climbing, then traced each frame by hand to create lifelike animations. “I wanted the prince to move like a human being, not like a robot,” Mechner later recalled. This painstaking process resulted in some of the most realistic character animations ever seen in a video game at the time. Mechner also wrote every line of the game’s code himself, crafting modules for collision detection, physics, sound, and game flow, all while juggling the constraints of the Apple II’s limited hardware.\n\nThe final product, released in 1989, was nothing short of revolutionary. *Prince of Persia* combined fluid animation, tight controls, and a sense of cinematic drama that had never been seen in a platformer. Players guided the prince through treacherous dungeons filled with traps, enemies, and puzzles, all while racing against a ticking clock to rescue the princess. The game’s innovative design and storytelling captivated players and critics alike, earning it widespread acclaim and spawning ports to nearly every major platform of the era. It also laid the foundation for the cinematic platformer genre, influencing countless games that followed.\n\nDecades later, the legacy of *Prince of Persia* endures. The source code, long thought lost, was recovered in 2012 from a set of 22-year-old floppy disks, allowing fans and historians to study the inner workings of this landmark game. Mechner’s creation not only reshaped the video game industry but also demonstrated the power of individual creativity in the face of technical limitations. Today, *Prince of Persia* is remembered as a masterpiece of design and innovation, a testament to what one person can achieve with vision, perseverance, and a willingness to push boundaries."
+    },
     {
       "slug": "zork",
       "title": "Zork",
@@ -27,13 +47,32 @@
       "description": "The game that invented the text adventure — built organically at MIT on a PDP-10, recovered from a 1990 tape, and released open-source in 2025. Its parser, its puzzles, and its sarcastic error messages changed computing forever.",
       "github_url": "https://github.com/MITDDC/zork",
       "files": [
-        { "order": 1, "slug": "defs", "title": "defs.63", "description": "The complete type system — ROOM, OBJECT, SYNTAX, and the parser data structures" },
-        { "order": 2, "slug": "np", "title": "np.93", "description": "The 93rd version of the natural language parser" },
-        { "order": 3, "slug": "dung", "title": "dung.56", "description": "The world itself — every room, exit, and object in the dungeon" },
-        { "order": 4, "slug": "act1", "title": "act1.38", "description": "Game loop, action handlers, and the real access-control guard" }
+        {
+          "order": 1,
+          "slug": "defs",
+          "title": "defs.63",
+          "description": "The complete type system — ROOM, OBJECT, SYNTAX, and the parser data structures"
+        },
+        {
+          "order": 2,
+          "slug": "np",
+          "title": "np.93",
+          "description": "The 93rd version of the natural language parser"
+        },
+        {
+          "order": 3,
+          "slug": "dung",
+          "title": "dung.56",
+          "description": "The world itself — every room, exit, and object in the dungeon"
+        },
+        {
+          "order": 4,
+          "slug": "act1",
+          "title": "act1.38",
+          "description": "Game loop, action handlers, and the real access-control guard"
+        }
       ]
-    }
-  ,
+    },
     {
       "slug": "ms-dos",
       "title": "MS-DOS",
@@ -44,10 +83,48 @@
       "description": "Written in six weeks by one programmer, acquired by Microsoft for $25,000, and licensed to IBM — then to every IBM clone maker on earth. The source code of the PC era.",
       "github_url": "https://github.com/microsoft/MS-DOS",
       "files": [
-        { "order": 1, "slug": "msdos", "title": "MSDOS.ASM", "description": "The original 86-DOS kernel — Tim Paterson's byline and a revision history written in assembly comments" },
-        { "order": 2, "slug": "command", "title": "COMMAND.ASM", "description": "The command interpreter — 'Abort, Retry, Ignore?' in its original form" },
-        { "order": 3, "slug": "xenix", "title": "XENIX.ASM", "description": "The Unix layer that gave DOS subdirectories, pipes, and file handles" },
-        { "order": 4, "slug": "mscode", "title": "MSCODE.ASM", "description": "The v2.0 kernel — the INT 21h dispatcher and a comment that says 'Here comes multitasking!!!'" }
+        {
+          "order": 1,
+          "slug": "msdos",
+          "title": "MSDOS.ASM",
+          "description": "The original 86-DOS kernel — Tim Paterson's byline and a revision history written in assembly comments"
+        },
+        {
+          "order": 2,
+          "slug": "command",
+          "title": "COMMAND.ASM",
+          "description": "The command interpreter — 'Abort, Retry, Ignore?' in its original form"
+        },
+        {
+          "order": 3,
+          "slug": "xenix",
+          "title": "XENIX.ASM",
+          "description": "The Unix layer that gave DOS subdirectories, pipes, and file handles"
+        },
+        {
+          "order": 4,
+          "slug": "mscode",
+          "title": "MSCODE.ASM",
+          "description": "The v2.0 kernel — the INT 21h dispatcher and a comment that says 'Here comes multitasking!!!'"
+        },
+        {
+          "order": 5,
+          "slug": "sysinit",
+          "title": "SYSINIT.ASM",
+          "description": "The boot sequence — memory sizing, CONFIG.SYS parsing, and the launch of COMMAND.COM"
+        },
+        {
+          "order": 6,
+          "slug": "fat",
+          "title": "FAT.ASM",
+          "description": "The FAT filesystem — the file allocation table that outlasted DOS by decades"
+        },
+        {
+          "order": 7,
+          "slug": "exec",
+          "title": "EXEC.ASM",
+          "description": "Program loader — how DOS launches and returns from .COM and .EXE files"
+        }
       ]
     }
   ]

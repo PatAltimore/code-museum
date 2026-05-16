@@ -26,6 +26,15 @@ def sync(config: dict, output_dir: Path) -> None:
             "files": [],
         })
 
+        # Always sync scalar metadata from yaml so changes propagate
+        entry["title"] = prog["title"]
+        entry["author"] = prog["author"]
+        entry["year"] = prog["year"]
+        entry["language"] = prog["language"]
+        entry["description"] = prog["description"]
+        entry["subtitle"] = prog.get("subtitle", "")
+        entry["github_url"] = prog.get("github_url", "")
+
         existing_files = {f["slug"]: f for f in entry.get("files", [])}
         for f in prog.get("files", []):
             file_path = output_dir / slug / f"{f['slug']}.md"

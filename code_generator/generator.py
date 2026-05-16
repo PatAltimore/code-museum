@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import argparse
+import json
+import re
 import sys
 from pathlib import Path
 
@@ -11,21 +13,122 @@ from client import ModelClient, ContentFilterError
 from checkpointer import Checkpointer
 from fetch_code import fetch_source
 from prompts import build_prompt
+from intro_prompts import build_intro_prompt
 from formatter import format_file
+from find_images import fill_file_images, find_program_image
 import catalog_sync
 
 load_dotenv()
 console = Console()
+
+_CATALOG_PATH = Path(__file__).parent.parent / "public" / "catalog.json"
+
+
+def save_introduction(slug: str, intro_text: str) -> None:
+    if _CATALOG_PATH.exists():
+        catalog = json.loads(_CATALOG_PATH.read_text(encoding="utf-8"))
+    else:
+        catalog = {"programs": []}
+
+    existing = {p["slug"]: p for p in catalog.get("programs", [])}
+    entry = existing.setdefault(slug, {"slug": slug})
+    entry["introduction"] = intro_text
+
+    catalog["programs"] = list(existing.values())
+    _CATALOG_PATH.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def save_program_image(slug: str, image_url: str, image_caption: str) -> None:
+    if _CATALOG_PATH.exists():
+        catalog = json.loads(_CATALOG_PATH.read_text(encoding="utf-8"))
+    else:
+        catalog = {"programs": []}
+
+    existing = {p["slug"]: p for p in catalog.get("programs", [])}
+    entry = existing.setdefault(slug, {"slug": slug})
+    entry["image_url"] = image_url
+    entry["image_caption"] = image_caption
+
+    catalog["programs"] = list(existing.values())
+    _CATALOG_PATH.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def generate_intro(program: dict, client, gen_cfg: dict, force: bool, fetch_images: bool = True) -> bool:
+    slug = program["slug"]
+
+    if _CATALOG_PATH.exists():
+        catalog = json.loads(_CATALOG_PATH.read_text(encoding="utf-8"))
+        existing = {p["slug"]: p for p in catalog.get("programs", [])}
+        entry = existing.get(slug, {})
+        if entry.get("introduction") and not force:
+            console.print(f"[dim]skip  {slug}/introduction[/dim]")
+            return False
+
+    console.print(f"[cyan]gen   {slug}/introduction[/cyan]")
+
+    messages = build_intro_prompt(program)
+
+    console.print("  calling model (intro)…")
+    try:
+        raw = client.complete(messages, temperature=0.3, max_tokens=2048)
+    except ContentFilterError as e:
+        console.print(f"  [red]content filter: {e}[/red]")
+        return False
+    except RuntimeError as e:
+        console.print(f"  [red]{e}[/red]")
+        return False
+
+    # Strip markdown fences if present
+    text = raw.strip()
+    text = re.sub(r'^```(?:json)?\s*', '', text)
+    text = re.sub(r'\s*```$', '', text)
+    text = text.strip()
+
+    # Try a standard parse first; fall back to regex extraction which handles
+    # models that emit literal newlines inside the JSON string (invalid JSON)
+    intro_text = None
+    try:
+        if not text.endswith('}'):
+            last_quote = text.rfind('"')
+            text = text[:last_quote + 1] + '"}' if last_quote != -1 else text + '"}'
+        intro_text = json.loads(text)["introduction"]
+    except (json.JSONDecodeError, KeyError):
+        # Extract the value with a DOTALL regex, then unescape manually
+        m = re.search(r'"introduction"\s*:\s*"(.*?)(?<!\\)"', text, re.DOTALL)
+        if m:
+            intro_text = m.group(1).replace('\\"', '"')
+        else:
+            console.print("  [red]could not parse intro response[/red]")
+            return False
+    save_introduction(slug, intro_text)
+    console.print(f"  [green]→ saved {slug}/introduction[/green]")
+
+    if fetch_images:
+        console.print(f"  searching for program image…")
+        try:
+            img = find_program_image(program)
+            if img:
+                save_program_image(slug, img[0], img[1])
+                console.print(f"  [green]→ program image saved[/green]")
+            else:
+                console.print(f"  [dim]no program image found[/dim]")
+        except Exception as e:
+            console.print(f"  [yellow]program image search failed: {e}[/yellow]")
+
+    return True
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Code Museum content generator")
     parser.add_argument("--program", help="Only process this program slug")
     parser.add_argument("--file", help="Only process this file slug (requires --program)")
-    parser.add_argument("--force", action="store_true", help="Regenerate existing files")
+    parser.add_argument("--force", action="store_true", help="Regenerate existing files and introductions")
+    parser.add_argument("--intro-only", action="store_true", help="Only generate missing introductions; skip file annotations")
     parser.add_argument("--dry-run", action="store_true", help="Build prompts without calling the API")
     parser.add_argument("--sync-catalog", action="store_true", help="Update catalog.json from disk and exit")
     parser.add_argument("--no-catalog-sync", action="store_true", help="Skip catalog.json sync after generation")
+    parser.add_argument("--no-images", action="store_true", help="Skip Wikipedia Commons image fetching")
+    parser.add_argument("--find-images", action="store_true", help="Fill missing images in all existing files and exit")
     parser.add_argument("--config", default="config/programs.yaml", help="Path to programs.yaml")
     args = parser.parse_args()
 
@@ -38,6 +141,40 @@ def main() -> None:
     if args.sync_catalog:
         catalog_sync.sync(config, output_dir)
         console.print("[green]catalog.json updated[/green]")
+        return
+
+    if args.find_images:
+        programs = config["programs"]
+        if args.program:
+            programs = [p for p in programs if p["slug"] == args.program]
+        total_imgs = 0
+        for program in programs:
+            prog_slug = program["slug"]
+            prog_dir = output_dir / prog_slug
+            if prog_dir.is_dir():
+                for md in sorted(prog_dir.glob("*.md")):
+                    console.print(f"[cyan]images  {prog_slug}/{md.stem}[/cyan]")
+                    count = fill_file_images(md, console=console)
+                    if count:
+                        console.print(f"  [green]→ {count} image(s) added[/green]")
+                    total_imgs += count
+            # Check if program is missing image_url in catalog
+            if _CATALOG_PATH.exists():
+                catalog = json.loads(_CATALOG_PATH.read_text(encoding="utf-8"))
+                existing = {p["slug"]: p for p in catalog.get("programs", [])}
+                entry = existing.get(prog_slug, {})
+                if not entry.get("image_url"):
+                    console.print(f"[cyan]prog-image  {prog_slug}[/cyan]")
+                    try:
+                        img = find_program_image(program)
+                        if img:
+                            save_program_image(prog_slug, img[0], img[1])
+                            console.print(f"  [green]→ program image saved[/green]")
+                        else:
+                            console.print(f"  [dim]no program image found[/dim]")
+                    except Exception as e:
+                        console.print(f"  [yellow]program image search failed: {e}[/yellow]")
+        console.print(f"[green]Done — {total_imgs} file image(s) added.[/green]")
         return
 
     gen_cfg = config.get("generation", {})
@@ -56,6 +193,17 @@ def main() -> None:
         sys.exit(1)
 
     for program in programs:
+        # Generate introduction unless targeting a specific file
+        if not args.file:
+            if args.dry_run:
+                console.print(f"[dim]dry-run: intro prompt ready[/dim]")
+            else:
+                generate_intro(program, client, gen_cfg, args.force, fetch_images=not args.no_images)
+
+        # Skip file annotation loop when --intro-only is set
+        if args.intro_only:
+            continue
+
         files = program.get("files", [])
         if args.file:
             files = [f for f in files if f["slug"] == args.file]
@@ -109,6 +257,11 @@ def main() -> None:
             path = ckpt.save(prog_slug, file_slug, content)
             console.print(f"  [green]→ {path}[/green]")
             generated.append((prog_slug, file_slug))
+
+            if not args.no_images:
+                count = fill_file_images(path, console=console)
+                if count:
+                    console.print(f"  [green]→ {count} image(s) added[/green]")
 
     if generated and not args.no_catalog_sync:
         catalog_sync.sync(config, output_dir)
