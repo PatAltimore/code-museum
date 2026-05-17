@@ -1078,6 +1078,22 @@ a:hover {
   color: var(--accent);
 }
 
+.stepper-mnemonic {
+  color: var(--label);
+}
+
+.stepper-instr-title {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-left: 0.4rem;
+  font-style: italic;
+}
+
+.stepper-halted {
+  color: var(--link);
+  margin-left: 0.4rem;
+}
+
 .stepper-btn {
   background: transparent;
   border: 1px solid var(--border);

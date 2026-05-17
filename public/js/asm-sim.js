@@ -1272,3 +1272,146 @@ function runToLine(state, parsedLines, arch, targetLineIdx, maxSteps) {
   }
   return state;
 }
+
+// Jump (teleport) the program counter to targetLineIdx without simulating.
+// Finds the nearest code line at or after targetIdx (falls back to before).
+// Resets lastEffect to show the jump; registers are preserved.
+function jumpToLine(state, parsedLines, targetLineIdx) {
+  var codeIdx = findNextCodeLine(parsedLines, targetLineIdx);
+  if (codeIdx < 0) codeIdx = findPrevCodeLine(parsedLines, targetLineIdx + 1);
+  if (codeIdx < 0) return state;
+  state.curLine = codeIdx;
+  var p = parsedLines[codeIdx];
+  var instr = p ? ((p.mnemonic || '') + (p.operands ? ' ' + p.operands : '')) : '';
+  state.lastEffect = 'Jumped to line ' + (codeIdx + 1) + (instr ? ' — ' + instr : '');
+  return state;
+}
+
+// ── Instruction title lookup ─────────────────────────────────────────────────
+
+var INSTRUCTION_TITLES = {
+  // 6502
+  LDA: 'Load Accumulator',
+  LDX: 'Load X Register',
+  LDY: 'Load Y Register',
+  STA: 'Store Accumulator',
+  STX: 'Store X Register',
+  STY: 'Store Y Register',
+  TAX: 'Transfer A → X',
+  TAY: 'Transfer A → Y',
+  TXA: 'Transfer X → A',
+  TYA: 'Transfer Y → A',
+  TSX: 'Transfer Stack Pointer → X',
+  TXS: 'Transfer X → Stack Pointer',
+  PHA: 'Push Accumulator',
+  PLA: 'Pull Accumulator',
+  PHP: 'Push Processor Status',
+  PLP: 'Pull Processor Status',
+  ADC: 'Add with Carry',
+  SBC: 'Subtract with Borrow',
+  INC: 'Increment Memory',
+  DEC: 'Decrement Memory',
+  INX: 'Increment X',
+  INY: 'Increment Y',
+  DEX: 'Decrement X',
+  DEY: 'Decrement Y',
+  AND: 'Logical AND',
+  ORA: 'Logical OR',
+  EOR: 'Exclusive OR',
+  ASL: 'Arithmetic Shift Left',
+  LSR: 'Logical Shift Right',
+  ROL: 'Rotate Left',
+  ROR: 'Rotate Right',
+  BIT: 'Bit Test',
+  CMP: 'Compare Accumulator',
+  CPX: 'Compare X',
+  CPY: 'Compare Y',
+  BEQ: 'Branch if Equal (Z=1)',
+  BNE: 'Branch if Not Equal (Z=0)',
+  BCC: 'Branch if Carry Clear (C=0)',
+  BCS: 'Branch if Carry Set (C=1)',
+  BMI: 'Branch if Minus (N=1)',
+  BPL: 'Branch if Plus (N=0)',
+  BVC: 'Branch if Overflow Clear',
+  BVS: 'Branch if Overflow Set',
+  JMP: 'Jump',
+  JSR: 'Jump to Subroutine',
+  RTS: 'Return from Subroutine',
+  RTI: 'Return from Interrupt',
+  BRK: 'Software Interrupt',
+  NOP: 'No Operation',
+  SEC: 'Set Carry Flag',
+  CLC: 'Clear Carry Flag',
+  SEI: 'Set Interrupt Disable',
+  CLI: 'Clear Interrupt Disable',
+  SED: 'Set Decimal Mode',
+  CLD: 'Clear Decimal Mode',
+  CLV: 'Clear Overflow Flag',
+  // 8086
+  MOV: 'Move',
+  ADD: 'Add',
+  SUB: 'Subtract',
+  MUL: 'Unsigned Multiply',
+  IMUL: 'Signed Multiply',
+  DIV: 'Unsigned Divide',
+  IDIV: 'Signed Divide',
+  NEG: 'Negate (Two\'s Complement)',
+  XOR: 'Exclusive OR',
+  OR:  'Logical OR',
+  NOT: 'Bitwise NOT',
+  CMP: 'Compare',
+  TEST: 'Bit Test (AND, no store)',
+  JMP:  'Unconditional Jump',
+  JE:   'Jump if Equal (ZF=1)',
+  JZ:   'Jump if Zero (ZF=1)',
+  JNE:  'Jump if Not Equal (ZF=0)',
+  JNZ:  'Jump if Not Zero (ZF=0)',
+  JG:   'Jump if Greater (signed)',
+  JNLE: 'Jump if Not Less or Equal',
+  JL:   'Jump if Less (signed)',
+  JNGE: 'Jump if Not Greater or Equal',
+  JGE:  'Jump if Greater or Equal',
+  JNL:  'Jump if Not Less',
+  JLE:  'Jump if Less or Equal',
+  JNG:  'Jump if Not Greater',
+  JA:   'Jump if Above (unsigned)',
+  JNBE: 'Jump if Not Below or Equal',
+  JB:   'Jump if Below (unsigned)',
+  JNAE: 'Jump if Not Above or Equal',
+  JS:   'Jump if Sign (SF=1)',
+  JNS:  'Jump if Not Sign (SF=0)',
+  CALL: 'Call Procedure',
+  RET:  'Return from Procedure',
+  PUSH: 'Push onto Stack',
+  POP:  'Pop from Stack',
+  PUSHF:'Push Flags',
+  POPF: 'Pop Flags',
+  NOP:  'No Operation',
+  HLT:  'Halt Processor',
+  INT:  'Software Interrupt',
+  IRET: 'Interrupt Return',
+  LEA:  'Load Effective Address',
+  XCHG: 'Exchange',
+  SHL:  'Shift Left',
+  SHR:  'Shift Right Logical',
+  SAR:  'Shift Arithmetic Right',
+  RCL:  'Rotate Left through Carry',
+  RCR:  'Rotate Right through Carry',
+  CBW:  'Convert Byte to Word',
+  CWD:  'Convert Word to Doubleword',
+  LOOP: 'Loop (decrement CX, branch if ≠ 0)',
+  IN:   'Input from Port',
+  OUT:  'Output to Port',
+  STC:  'Set Carry Flag',
+  STD:  'Set Direction Flag',
+  CLD:  'Clear Direction Flag',
+  STI:  'Set Interrupt Flag',
+  CLI:  'Clear Interrupt Flag',
+  XCHG: 'Exchange Registers',
+  XLAT: 'Translate Byte',
+};
+
+function getInstructionTitle(mnemonic) {
+  if (!mnemonic) return '';
+  return INSTRUCTION_TITLES[mnemonic.toUpperCase()] || '';
+}

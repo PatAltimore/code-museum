@@ -1147,6 +1147,7 @@ function renderStepperPanel() {
   const lineInfo = p ? ((p.mnemonic || '') + (p.operands ? ' ' + p.operands : '')) : 'End of code';
 
   const halted = state.halted;
+  const instrTitle = p ? getInstructionTitle(p.mnemonic) : '';
 
   // Register HTML
   let regsHtml = '';
@@ -1216,7 +1217,12 @@ function renderStepperPanel() {
   panel.innerHTML = `
     <div class="stepper-toolbar">
       <button class="stepper-btn" onclick="stepperBack()">◀ Back</button>
-      <span class="stepper-line-info">Line <strong>${lineNum}</strong>${halted ? ' — <em>Halted</em>' : ' — ' + escapeHtml(lineInfo)}</span>
+      <span class="stepper-line-info">
+        Line <strong>${lineNum}</strong> —
+        <span class="stepper-mnemonic">${escapeHtml(lineInfo)}</span>
+        ${instrTitle ? `<span class="stepper-instr-title">${escapeHtml(instrTitle)}</span>` : ''}
+        ${halted ? '<em class="stepper-halted">Halted</em>' : ''}
+      </span>
       <button class="stepper-btn primary" onclick="stepperForward()"${halted ? ' disabled' : ''}>Step ▶</button>
       <button class="stepper-btn" onclick="toggleStepper()">✕ Exit</button>
     </div>
@@ -1258,8 +1264,9 @@ function setupStepperClickDelegation() {
     if (!_stepperActive) return;
     const line = e.target.closest('.code-line');
     if (!line) return;
+    e.stopPropagation();
     const lineNum = parseInt(line.dataset.line, 10);
-    if (!isNaN(lineNum)) stepperRunTo(lineNum - 1);
+    if (!isNaN(lineNum)) stepperJumpTo(lineNum - 1);
   });
 }
 
@@ -1278,6 +1285,12 @@ window.stepperBack = function() {
 window.stepperRunTo = function(targetIdx) {
   if (!_stepperActive || !_stepperState) return;
   _stepperState = runToLine(_stepperState, _stepperParsed, _stepperArch, targetIdx);
+  renderStepperPanel();
+};
+
+window.stepperJumpTo = function(targetIdx) {
+  if (!_stepperActive || !_stepperState || !_stepperParsed) return;
+  _stepperState = jumpToLine(_stepperState, _stepperParsed, targetIdx);
   renderStepperPanel();
 };
 
