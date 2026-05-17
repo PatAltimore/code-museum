@@ -1119,6 +1119,7 @@ function initStepper() {
   if (!_stepperBody) return;
   const lines = _stepperBody.replace(/\r/g, '').split('\n');
   while (lines.length && lines[0] === '') lines.shift();
+  if (lines.length && lines[lines.length - 1] === '') lines.pop();
   _stepperParsed = parseAsmLines(lines);
   _stepperArch = detectArch(_stepperParsed);
   _stepperState = _stepperArch === '8086' ? create8086State() : create6502State();
@@ -1231,6 +1232,7 @@ function renderStepperPanel(opts) {
         ${halted ? '<em class="stepper-halted">Halted</em>' : ''}
       </span>
       <button class="stepper-btn primary" onclick="stepperForward()"${halted ? ' disabled' : ''}>Step ▶</button>
+      ${halted ? '<button class="stepper-btn" onclick="stepperReset()">↺ Reset</button>' : ''}
       <button class="stepper-btn" onclick="toggleStepper()">✕ Exit</button>
     </div>
     <div class="stepper-body">
@@ -1299,6 +1301,12 @@ window.stepperJumpTo = function(targetIdx) {
   if (!_stepperActive || !_stepperState || !_stepperParsed) return;
   _stepperState = jumpToLine(_stepperState, _stepperParsed, targetIdx);
   renderStepperPanel();
+};
+
+window.stepperReset = function() {
+  if (!_stepperActive) return;
+  initStepper();
+  renderStepperPanel({ skipScroll: true });
 };
 
 function h8(n) {

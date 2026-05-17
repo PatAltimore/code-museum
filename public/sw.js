@@ -1,4 +1,4 @@
-const VERSION = 'hc-v7';
+const VERSION = 'hc-v8';
 const SHELL = [
   '/',
   '/index.html',

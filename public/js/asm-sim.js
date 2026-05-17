@@ -339,8 +339,13 @@ function exec6502(state, parsedLines, lblMap) {
   var p = parsedLines[state.curLine];
   if (!p || !p.mnemonic) {
     var next = findNextCodeLine(parsedLines, state.curLine + 1);
-    state.curLine = next >= 0 ? next : parsedLines.length;
-    state.lastEffect = 'Skipped non-instruction line';
+    if (next >= 0) {
+      state.curLine = next;
+      state.lastEffect = 'Skipped non-instruction line';
+    } else {
+      state.halted = true;
+      state.lastEffect = 'End of executable code';
+    }
     return;
   }
 
@@ -364,7 +369,7 @@ function exec6502(state, parsedLines, lblMap) {
     if (target < 0) {
       state.lastEffect = "Jump target '" + labelName + "' not found — staying";
       jumped = true;
-      state.curLine = nextLine >= 0 ? nextLine : parsedLines.length;
+      if (nextLine >= 0) { state.curLine = nextLine; } else { state.halted = true; }
       return;
     }
     state.curLine = target;
@@ -802,7 +807,12 @@ function exec6502(state, parsedLines, lblMap) {
   }
 
   if (!jumped) {
-    state.curLine = nextLine >= 0 ? nextLine : parsedLines.length;
+    if (nextLine >= 0) {
+      state.curLine = nextLine;
+    } else {
+      state.halted = true;
+      state.lastEffect += ' — end of code';
+    }
   }
 }
 
@@ -812,8 +822,13 @@ function exec8086(state, parsedLines, lblMap) {
   var p = parsedLines[state.curLine];
   if (!p || !p.mnemonic) {
     var next = findNextCodeLine(parsedLines, state.curLine + 1);
-    state.curLine = next >= 0 ? next : parsedLines.length;
-    state.lastEffect = 'Skipped non-instruction line';
+    if (next >= 0) {
+      state.curLine = next;
+      state.lastEffect = 'Skipped non-instruction line';
+    } else {
+      state.halted = true;
+      state.lastEffect = 'End of executable code';
+    }
     return;
   }
 
@@ -833,7 +848,7 @@ function exec8086(state, parsedLines, lblMap) {
     var target = resolveLabel(name);
     if (target < 0) {
       state.lastEffect = "Jump target '" + name + "' not found — staying";
-      state.curLine = nextLine >= 0 ? nextLine : parsedLines.length;
+      if (nextLine >= 0) { state.curLine = nextLine; } else { state.halted = true; }
     } else {
       state.curLine = target;
     }
@@ -860,8 +875,13 @@ function exec8086(state, parsedLines, lblMap) {
   // Directives as no-ops
   var nopDirectives = ['PROC','ENDP','ASSUME','SEGMENT','ENDS'];
   if (nopDirectives.indexOf(mn) >= 0) {
-    state.lastEffect = mn + ' directive (no-op)';
-    state.curLine = nextLine >= 0 ? nextLine : parsedLines.length;
+    if (nextLine >= 0) {
+      state.lastEffect = mn + ' directive (no-op)';
+      state.curLine = nextLine;
+    } else {
+      state.halted = true;
+      state.lastEffect = 'End of executable code';
+    }
     return;
   }
 
@@ -1216,7 +1236,12 @@ function exec8086(state, parsedLines, lblMap) {
   }
 
   if (!jumped) {
-    state.curLine = nextLine >= 0 ? nextLine : parsedLines.length;
+    if (nextLine >= 0) {
+      state.curLine = nextLine;
+    } else {
+      state.halted = true;
+      state.lastEffect += ' — end of code';
+    }
   }
 }
 
