@@ -1006,3 +1006,155 @@ a:hover {
     padding: 1rem 0.75rem;
   }
 }
+
+/* ── Assembly stepper ──────────────────────────────────────────────────────── */
+
+/* Step button in header */
+.btn-step {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-step:hover, .btn-step.active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Current line highlight in stepper mode */
+.code-line.stepper-current {
+  background: rgba(57, 211, 83, 0.18);
+  border-left: 2px solid var(--accent);
+  margin-left: -2px;
+  outline: none;
+}
+
+/* Clickable code lines when stepper is active */
+.stepper-mode-active .code-line {
+  cursor: pointer;
+}
+.stepper-mode-active .code-line:hover {
+  background: var(--highlight-bg);
+}
+
+/* Stepper panel */
+.stepper-panel {
+  position: sticky;
+  bottom: 0;
+  background: var(--surface);
+  border-top: 2px solid var(--accent);
+  z-index: 100;
+  margin-top: 1rem;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+}
+
+.stepper-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.stepper-line-info {
+  flex: 1;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: var(--text);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stepper-line-info strong {
+  color: var(--accent);
+}
+
+.stepper-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.stepper-btn:hover { background: var(--highlight-bg); }
+.stepper-btn:disabled { opacity: 0.4; cursor: default; }
+.stepper-btn.primary {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.stepper-btn.primary:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.stepper-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+@media (max-width: 700px) {
+  .stepper-body { grid-template-columns: 1fr; }
+}
+
+.stepper-effect {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: var(--link);
+  line-height: 1.5;
+  align-self: start;
+}
+
+.stepper-registers {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  line-height: 1.8;
+}
+
+.stepper-reg-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.stepper-reg {
+  color: var(--muted);
+}
+
+.stepper-reg span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.stepper-flags {
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.stepper-flags span { color: var(--text); }
+.stepper-flags .flag-set { color: var(--accent); }
+
+.stepper-memory {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.stepper-mem-row span { color: var(--text); }

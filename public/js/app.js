@@ -628,7 +628,7 @@ function renderSection({ lines, startLine, enhancement, highlighted }) {
     const cls = syntaxClass(line);
     const hl = highlighted ? ' highlighted' : '';
     const escaped = escapeHtml(line);
-    return `<div class="code-line${hl}"><span class="line-num">${lineNum}</span><span class="line-code${cls ? ' ' + cls : ''}">${escaped}</span></div>`;
+    return `<div class="code-line${hl}" data-line="${lineNum}"><span class="line-num">${lineNum}</span><span class="line-code${cls ? ' ' + cls : ''}">${escaped}</span></div>`;
   }).join('');
 
   let html = '';
@@ -862,6 +862,10 @@ function renderProgramPage(program) {
 </div>`;
 }
 
+function isAsmLanguage(lang) {
+  return /assembly|asm/i.test(lang || '');
+}
+
 function renderHeader(opts = {}) {
   const { programSlug, programTitle, fileTitle, githubUrl } = opts;
 
@@ -882,6 +886,9 @@ function renderHeader(opts = {}) {
 
   let right = '';
   if (fileTitle) {
+    if (opts.isAsm) {
+      right += `<button class="btn-step" id="btn-step" onclick="toggleStepper()" title="Step through code">▶ Step</button>`;
+    }
     right += `<div class="font-size-controls">
       <button onclick="adjustFontSize(-1)" title="Smaller">A−</button>
       <button onclick="adjustFontSize(1)" title="Larger">A+</button>
@@ -938,6 +945,13 @@ function renderReader(meta, body, program) {
 }
 
 let _catalog = null;
+
+// ── Assembly stepper state ────────────────────────────────────────────────────
+let _stepperActive = false;
+let _stepperArch = null;
+let _stepperParsed = null;
+let _stepperState = null;
+let _stepperBody = null;
 
 async function getCatalog() {
   if (!_catalog) _catalog = await loadCatalog();
@@ -1040,6 +1054,13 @@ async function route() {
   window.scrollTo(0, 0);
   setLoading();
 
+  // Reset stepper state on every navigation
+  _stepperActive = false;
+  _stepperState = null;
+  _stepperParsed = null;
+  _stepperArch = null;
+  _stepperBody = null;
+
   try {
     if (parts.length === 0 || (parts.length === 1 && parts[0] === '')) {
       const catalog = await getCatalog();
@@ -1058,18 +1079,214 @@ async function route() {
       const catalog = await getCatalog();
       const program = getProgramFromCatalog(catalog, programSlug);
       const { meta, body } = await loadFile(programSlug, fileSlug);
+      const isAsm = isAsmLanguage(meta.language);
+      if (isAsm) _stepperBody = body;
       app.innerHTML = renderHeader({
         programSlug,
         programTitle: program ? program.title : programSlug,
         fileTitle: meta.title,
+        isAsm,
       }) + renderReader(meta, body, program);
       setupWordLookup(app);
       setupInstructionLookup(app, meta.language, meta.file_path);
       loadImagesAsBlobUrls(app);
+      if (isAsm) setupStepperClickDelegation();
     }
   } catch (err) {
     setError('Failed to load: ' + err.message);
   }
+}
+
+// ── Assembly stepper functions ────────────────────────────────────────────────
+
+window.toggleStepper = function() {
+  _stepperActive = !_stepperActive;
+  const btn = document.getElementById('btn-step');
+  if (btn) btn.classList.toggle('active', _stepperActive);
+  const readerWrap = document.querySelector('.reader-wrap');
+  if (readerWrap) readerWrap.classList.toggle('stepper-mode-active', _stepperActive);
+  if (_stepperActive) {
+    if (!_stepperState) initStepper();
+    renderStepperPanel();
+  } else {
+    const panel = document.getElementById('stepper-panel');
+    if (panel) panel.remove();
+    clearStepHighlight();
+  }
+};
+
+function initStepper() {
+  if (!_stepperBody) return;
+  const lines = _stepperBody.replace(/\r/g, '').split('\n');
+  while (lines.length && lines[0] === '') lines.shift();
+  _stepperParsed = parseAsmLines(lines);
+  _stepperArch = detectArch(_stepperParsed);
+  _stepperState = _stepperArch === '8086' ? create8086State() : create6502State();
+  const first = findNextCodeLine(_stepperParsed, 0);
+  if (first >= 0) _stepperState.curLine = first;
+}
+
+function renderStepperPanel() {
+  if (!_stepperState || !_stepperParsed) return;
+  const readerWrap = document.querySelector('.reader-wrap');
+  if (!readerWrap) return;
+
+  let panel = document.getElementById('stepper-panel');
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.id = 'stepper-panel';
+    panel.className = 'stepper-panel';
+    readerWrap.appendChild(panel);
+  }
+
+  const state = _stepperState;
+  const parsed = _stepperParsed;
+  const curLine = state.curLine;
+  const lineNum = curLine + 1;
+  const p = parsed[curLine];
+  const lineInfo = p ? ((p.mnemonic || '') + (p.operands ? ' ' + p.operands : '')) : 'End of code';
+
+  const halted = state.halted;
+
+  // Register HTML
+  let regsHtml = '';
+  if (_stepperArch === '6502') {
+    const r = state.regs;
+    const f = state.flags;
+    regsHtml = `
+      <div class="stepper-reg-row">
+        <span class="stepper-reg">A: <span>$${h8(r.A)}</span></span>
+        <span class="stepper-reg">X: <span>$${h8(r.X)}</span></span>
+        <span class="stepper-reg">Y: <span>$${h8(r.Y)}</span></span>
+        <span class="stepper-reg">SP: <span>$${h8(r.SP)}</span></span>
+      </div>
+      <div class="stepper-flags">
+        Flags: <span>N</span> <span>V</span> <span>-</span> <span>B</span> <span>D</span> <span>I</span> <span>Z</span> <span>C</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="${f.N ? 'flag-set' : ''}">${f.N}</span>
+        <span class="${f.V ? 'flag-set' : ''}">${f.V}</span>
+        <span>-</span>
+        <span class="${f.B ? 'flag-set' : ''}">${f.B}</span>
+        <span class="${f.D ? 'flag-set' : ''}">${f.D}</span>
+        <span class="${f.I ? 'flag-set' : ''}">${f.I}</span>
+        <span class="${f.Z ? 'flag-set' : ''}">${f.Z}</span>
+        <span class="${f.C ? 'flag-set' : ''}">${f.C}</span>
+      </div>`;
+  } else {
+    const r = state.regs;
+    const f = state.flags;
+    regsHtml = `
+      <div class="stepper-reg-row">
+        <span class="stepper-reg">AX: <span>$${h16(r.AX)}</span></span>
+        <span class="stepper-reg">BX: <span>$${h16(r.BX)}</span></span>
+        <span class="stepper-reg">CX: <span>$${h16(r.CX)}</span></span>
+        <span class="stepper-reg">DX: <span>$${h16(r.DX)}</span></span>
+      </div>
+      <div class="stepper-reg-row">
+        <span class="stepper-reg">SI: <span>$${h16(r.SI)}</span></span>
+        <span class="stepper-reg">DI: <span>$${h16(r.DI)}</span></span>
+        <span class="stepper-reg">BP: <span>$${h16(r.BP)}</span></span>
+        <span class="stepper-reg">SP: <span>$${h16(r.SP)}</span></span>
+      </div>
+      <div class="stepper-flags">
+        Flags: <span>CF</span> <span>ZF</span> <span>SF</span> <span>OF</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="${f.CF ? 'flag-set' : ''}">${f.CF}</span>&nbsp;&nbsp;
+        <span class="${f.ZF ? 'flag-set' : ''}">${f.ZF}</span>&nbsp;&nbsp;
+        <span class="${f.SF ? 'flag-set' : ''}">${f.SF}</span>&nbsp;&nbsp;
+        <span class="${f.OF ? 'flag-set' : ''}">${f.OF}</span>
+      </div>`;
+  }
+
+  if (state.callStack.length > 0) {
+    regsHtml += `<div class="stepper-flags">Call stack: ${state.callStack.length} deep</div>`;
+  }
+
+  // Memory HTML — last 8 writes
+  let memHtml = '';
+  if (state.memory.size === 0) {
+    memHtml = '<span>No memory activity yet.</span>';
+  } else {
+    const entries = Array.from(state.memory.entries()).slice(-8);
+    memHtml = entries.map(([addr, val]) =>
+      `<div class="stepper-mem-row">$${h16(addr)}&nbsp;&nbsp;<span>$${h8(val)}</span></div>`
+    ).join('');
+  }
+
+  panel.innerHTML = `
+    <div class="stepper-toolbar">
+      <button class="stepper-btn" onclick="stepperBack()">◀ Back</button>
+      <span class="stepper-line-info">Line <strong>${lineNum}</strong>${halted ? ' — <em>Halted</em>' : ' — ' + escapeHtml(lineInfo)}</span>
+      <button class="stepper-btn primary" onclick="stepperForward()"${halted ? ' disabled' : ''}>Step ▶</button>
+      <button class="stepper-btn" onclick="toggleStepper()">✕ Exit</button>
+    </div>
+    <div class="stepper-body">
+      <div class="stepper-effect">${escapeHtml(state.lastEffect || '')}</div>
+      <div class="stepper-registers">${regsHtml}</div>
+      <div class="stepper-memory">${memHtml}</div>
+    </div>`;
+
+  scrollToStepLine();
+  highlightStepLine();
+}
+
+function highlightStepLine() {
+  clearStepHighlight();
+  if (!_stepperState) return;
+  const lineNum = _stepperState.curLine + 1;
+  const el = document.querySelector(`.code-line[data-line="${lineNum}"]`);
+  if (el) el.classList.add('stepper-current');
+}
+
+function clearStepHighlight() {
+  document.querySelectorAll('.code-line.stepper-current').forEach(function(el) {
+    el.classList.remove('stepper-current');
+  });
+}
+
+function scrollToStepLine() {
+  if (!_stepperState) return;
+  const lineNum = _stepperState.curLine + 1;
+  const el = document.querySelector(`.code-line[data-line="${lineNum}"]`);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function setupStepperClickDelegation() {
+  const content = document.querySelector('.reader-content');
+  if (!content) return;
+  content.addEventListener('click', function(e) {
+    if (!_stepperActive) return;
+    const line = e.target.closest('.code-line');
+    if (!line) return;
+    const lineNum = parseInt(line.dataset.line, 10);
+    if (!isNaN(lineNum)) stepperRunTo(lineNum - 1);
+  });
+}
+
+window.stepperForward = function() {
+  if (!_stepperState || !_stepperParsed) return;
+  _stepperState = stepForward(_stepperState, _stepperParsed, _stepperArch);
+  renderStepperPanel();
+};
+
+window.stepperBack = function() {
+  if (!_stepperState) return;
+  _stepperState = stepBackward(_stepperState);
+  renderStepperPanel();
+};
+
+window.stepperRunTo = function(targetIdx) {
+  if (!_stepperActive || !_stepperState) return;
+  _stepperState = runToLine(_stepperState, _stepperParsed, _stepperArch, targetIdx);
+  renderStepperPanel();
+};
+
+function h8(n) {
+  return ('00' + ((n || 0) & 0xFF).toString(16).toUpperCase()).slice(-2);
+}
+
+function h16(n) {
+  return ('0000' + ((n || 0) & 0xFFFF).toString(16).toUpperCase()).slice(-4);
 }
 
 window.addEventListener('hashchange', route);

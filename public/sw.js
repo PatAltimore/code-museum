@@ -1,8 +1,9 @@
-const VERSION = 'hc-v6';
+const VERSION = 'hc-v7';
 const SHELL = [
   '/',
   '/index.html',
   '/js/app.js',
+  '/js/asm-sim.js',
   '/css/style.css',
   '/icon.svg',
   '/manifest.json'
