@@ -153,43 +153,6 @@
       "image_caption": "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
     },
     {
-      "slug": "apple-lisa",
-      "title": "Apple Lisa Source Code",
-      "subtitle": "Apple Lisa, 1983",
-      "author": "Apple Computer, Inc.",
-      "year": 1983,
-      "language": "Assembly (Motorola 68000)",
-      "description": "The source code for the Apple Lisa operating system, showcasing early GUI development.",
-      "github_url": "https://github.com/azumanga/apple-lisa",
-      "files": [
-        {
-          "order": 1,
-          "slug": "applew-f",
-          "title": "APPLEW.F",
-          "description": "Defines the default Apple Lisa system font, central to its user interface.",
-          "path": "LISA_OS/FONTS/APPLEW.F",
-          "generated": false
-        },
-        {
-          "order": 2,
-          "slug": "toolkits-f",
-          "title": "TOOLKITS.F",
-          "description": "Contains font definitions for Lisa's toolkit applications, showcasing modular design.",
-          "path": "LISA_OS/FONTS/TOOLKITS.F",
-          "generated": true
-        },
-        {
-          "order": 3,
-          "slug": "wmfonts-f",
-          "title": "WMFONTS.F",
-          "description": "Defines fonts used in the Lisa's window manager, integral to its GUI functionality.",
-          "path": "LISA_OS/FONTS/WMFONTS.F",
-          "generated": true
-        }
-      ],
-      "introduction": "In the early months of 1983, inside Apple's headquarters in Cupertino, California, a team of engineers and designers worked feverishly to finalize the Apple Lisa, a machine that promised to redefine personal computing. The Lisa was not just another computer; it was a bold experiment in making technology more human, more intuitive. At the heart of this effort was the Lisa's graphical user interface (GUI), a revolutionary concept that aimed to replace cryptic command-line inputs with visual metaphors like windows, icons, and menus. The source code for the Lisa operating system, written in assembly language for the Motorola 68000 processor, was a testament to the team's ambition and ingenuity. Among the many files that shaped the Lisa experience were its font definitions, which played a critical role in making the GUI visually coherent and user-friendly.\n\nThe computing world of 1983 was still dominated by text-based interfaces. Machines like the IBM PC, introduced two years earlier, relied on DOS and monochrome displays, catering to a technically proficient audience. Apple, however, had glimpsed a different future. Inspired by the experimental work at Xerox PARC, where the Alto computer had demonstrated the potential of GUIs, Apple set out to bring this vision to the masses. The Lisa was their first attempt, and it was a costly one. Priced at $9,995, the Lisa targeted business professionals who could afford its groundbreaking features. But the high price tag came with high stakes; every decision, from memory allocation to font rendering, had to justify the machine's premium positioning.\n\nThe Lisa's development team was a mix of seasoned engineers and fresh talent, united by their passion for innovation. Bill Atkinson, one of the key figures behind the Lisa's GUI, famously said, \"We wanted to make the computer disappear, to make it feel like an extension of the user.\" Typography was central to this vision. Fonts like APPLEW.F, the default system font, were meticulously designed to be legible and aesthetically pleasing, even on the Lisa's relatively low-resolution display. TOOLKITS.F and WMFONTS.F extended this philosophy, ensuring that every application and window manager element adhered to a consistent visual language. These files were not just technical artifacts; they were expressions of Apple's belief that design mattered as much as functionality.\n\nThe Lisa was not a commercial success. Its high cost and performance issues limited its appeal, and it was soon overshadowed by the more affordable and faster Macintosh, released in 1984. Yet, the Lisa's influence was profound. It introduced concepts like overlapping windows, pull-down menus, and drag-and-drop functionality, which would become staples of modern computing. The font files in the Lisa OS were among the first to demonstrate how typography could enhance usability, setting a precedent for future GUI systems. The Lisa may not have conquered the market, but it laid the groundwork for Apple's design philosophy, which continues to shape the industry.\n\nToday, the Apple Lisa source code stands as a historical artifact, offering a glimpse into the early days of GUI development. It reminds us of a time when computing was transitioning from a tool for specialists to a medium for creativity and communication. The Lisa's fonts, though simple by today's standards, were pioneering in their ability to make technology more approachable. They are a testament to the vision and determination of the team that dared to imagine a different future for computing, one where design and functionality were inseparable."
-    },
-    {
       "slug": "prince-of-persia",
       "title": "Prince of Persia",
       "subtitle": "Apple II, 1989",
@@ -401,6 +364,75 @@
           "generated": true
         }
       ]
+    },
+    {
+      "slug": "quake",
+      "title": "Quake",
+      "subtitle": "PC, 1996",
+      "author": "John Carmack, Michael Abrash, John Cash",
+      "year": 1996,
+      "language": "C, x86 Assembly",
+      "description": "The groundbreaking source code for Quake, a seminal first-person shooter that defined 3D gaming.",
+      "github_url": "https://github.com/id-Software/Quake",
+      "files": [
+        {
+          "order": 1,
+          "slug": "cl-main-c",
+          "title": "cl_main.c",
+          "description": "Handles the main client-side logic, including initialization and connection to the server.",
+          "path": "QW/client/cl_main.c",
+          "generated": true
+        },
+        {
+          "order": 2,
+          "slug": "r-main-c",
+          "title": "r_main.c",
+          "description": "Core rendering logic for the Quake engine, including setup and frame rendering.",
+          "path": "QW/client/r_main.c",
+          "generated": true
+        },
+        {
+          "order": 3,
+          "slug": "d-surf-c",
+          "title": "d_surf.c",
+          "description": "Manages surface caching and drawing, a key component of Quake's rendering pipeline.",
+          "path": "QW/client/d_surf.c",
+          "generated": true
+        },
+        {
+          "order": 4,
+          "slug": "snd-dma-c",
+          "title": "snd_dma.c",
+          "description": "Implements sound mixing and Direct Memory Access (DMA) for audio playback.",
+          "path": "QW/client/snd_dma.c",
+          "generated": true
+        },
+        {
+          "order": 5,
+          "slug": "sys-win-c",
+          "title": "sys_win.c",
+          "description": "Windows-specific system code for handling input, window management, and OS interactions.",
+          "path": "QW/client/sys_win.c",
+          "generated": true
+        },
+        {
+          "order": 6,
+          "slug": "mathlib-c",
+          "title": "mathlib.c",
+          "description": "Contains mathematical functions used throughout the engine, including vector and matrix operations.",
+          "path": "QW/client/mathlib.c",
+          "generated": true
+        },
+        {
+          "order": 7,
+          "slug": "quakeasm-h",
+          "title": "quakeasm.h",
+          "description": "Defines assembly routines used for performance-critical operations in the engine.",
+          "path": "QW/client/quakeasm.h",
+          "generated": true
+        }
+      ],
+      "introduction": "In the spring of 1996, inside the unassuming offices of id Software in Mesquite, Texas, a small team of developers was about to change the gaming world forever. John Carmack, the programming prodigy behind Doom, was leading the charge alongside Michael Abrash, a renowned expert in graphics optimization, and John Cash, a versatile systems programmer. Their mission was ambitious: to create a game that would push the boundaries of what personal computers could achieve, delivering true 3D environments and multiplayer capabilities at a time when such feats were considered nearly impossible. The result of their efforts was Quake, a first-person shooter that redefined the genre and laid the foundation for modern gaming.\n\nThe computing world of 1996 was a landscape of limitations and ingenuity. PCs were powered by Intel’s x86 processors, with clock speeds hovering around 100 MHz and memory capacities often capped at 16 MB. Graphics cards were rudimentary, lacking hardware acceleration for 3D rendering, which meant every polygon, texture, and lighting effect had to be calculated in software. These constraints shaped every decision made by the Quake team. Carmack and Abrash wrote the core engine in C and x86 Assembly, squeezing every ounce of performance from the hardware. Abrash’s expertise in optimization proved invaluable, as he developed techniques to accelerate rendering and ensure smooth gameplay even on modest systems.\n\nEach member of the team brought unique skills and perspectives to the project. Carmack, driven by a relentless pursuit of technical excellence, focused on building the engine’s architecture and solving the challenges of real-time 3D rendering. Abrash, who had previously worked on graphics for Windows and published influential programming books, tackled performance bottlenecks with surgical precision. Cash contributed to the client-server networking model that enabled Quake’s groundbreaking multiplayer mode, allowing players to connect and compete over the nascent internet. Together, they made key decisions that defined the game’s identity, from the use of BSP trees for efficient level rendering to the implementation of surface caching for texture mapping.\n\nWhen Quake was released in June 1996, it was hailed as a technological marvel. Players were awestruck by its immersive 3D environments, dynamic lighting, and fluid animations. The multiplayer mode, which allowed up to 16 players to battle in deathmatches, became an instant phenomenon, spawning a new era of competitive gaming. The game’s influence extended far beyond its initial release. In 1999, id Software released the Quake source code under the GNU General Public License (GPL), empowering developers to study, modify, and build upon its groundbreaking engine. This decision catalyzed the creation of countless mods, spin-offs, and even entirely new engines, solidifying Quake’s legacy as a cornerstone of game development.\n\nToday, the Quake source code remains a touchstone for programmers and historians alike. Its files, such as cl_main.c and r_main.c, reveal the ingenuity behind the client-server architecture and rendering pipeline, while mathlib.c showcases the mathematical foundations of 3D graphics. The assembly routines in quakeasm.h are a testament to the lengths the team went to optimize performance on mid-90s hardware. Quake’s impact can still be felt in modern engines like Unity and Unreal, which trace their lineage back to the innovations pioneered by Carmack and his team. More than just a game, Quake was a revolution—a moment when technology and creativity converged to reshape an industry forever."
     }
   ]
 }

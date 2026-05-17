@@ -8,42 +8,6 @@ generation:
   temperature: 0.3
   max_tokens: 16384
 programs:
-- slug: apple-lisa
-  title: Apple Lisa Source Code
-  subtitle: Apple Lisa, 1983
-  author: Apple Computer, Inc.
-  year: 1983
-  language: Assembly (Motorola 68000)
-  description: The source code for the Apple Lisa operating system, showcasing early GUI development.
-  context: The Apple Lisa was one of the first personal computers to feature a graphical user interface (GUI), pioneering
-    concepts that would later become standard in computing. Released in 1983, it was powered by the Motorola 68000 processor
-    and aimed at business users. This repository contains the font files used in the Lisa OS, reflecting the importance of
-    typography in early GUI design.
-  files:
-  - order: 1
-    slug: applew-f
-    title: APPLEW.F
-    path: LISA_OS/FONTS/APPLEW.F
-    description: Defines the default Apple Lisa system font, central to its user interface.
-    context: This file represents the foundational font used across the Lisa OS, emphasizing clarity and usability in early
-      GUI design.
-  - order: 2
-    slug: toolkits-f
-    title: TOOLKITS.F
-    path: LISA_OS/FONTS/TOOLKITS.F
-    description: Contains font definitions for Lisa's toolkit applications, showcasing modular design.
-    context: This file highlights the Lisa's approach to application-specific font customization, a precursor to modern UI
-      frameworks.
-  - order: 3
-    slug: wmfonts-f
-    title: WMFONTS.F
-    path: LISA_OS/FONTS/WMFONTS.F
-    description: Defines fonts used in the Lisa's window manager, integral to its GUI functionality.
-    context: The window manager fonts were critical for rendering text in menus, dialogs, and other GUI elements, demonstrating
-      early GUI engineering.
-  github_url: https://github.com/azumanga/apple-lisa
-  github_repo: azumanga/apple-lisa
-  github_branch: main
 - slug: prince-of-persia
   title: Prince of Persia
   subtitle: Apple II, 1989
@@ -366,4 +330,62 @@ programs:
     context: This file demonstrates how DOOM optimized memory usage on limited hardware, a critical aspect of its performance.
   github_url: https://github.com/id-Software/DOOM
   github_repo: id-Software/DOOM
+  github_branch: master
+- slug: quake
+  title: Quake
+  subtitle: PC, 1996
+  author: John Carmack, Michael Abrash, John Cash
+  year: 1996
+  language: C, x86 Assembly
+  description: The groundbreaking source code for Quake, a seminal first-person shooter that defined 3D gaming.
+  context: Quake was developed by id Software and released in 1996, introducing true 3D environments and multiplayer capabilities
+    that revolutionized the gaming industry. The codebase showcases advanced rendering techniques and optimization for hardware
+    constraints of the era, such as x86 processors and limited memory. The release of the source code under the GPL in 1999
+    further cemented its legacy, influencing countless developers and projects.
+  files:
+  - order: 1
+    slug: cl-main-c
+    title: cl_main.c
+    path: QW/client/cl_main.c
+    description: Handles the main client-side logic, including initialization and connection to the server.
+    context: This file is central to the client-side architecture, showcasing how Quake managed multiplayer connections and
+      game state updates.
+  - order: 2
+    slug: r-main-c
+    title: r_main.c
+    path: QW/client/r_main.c
+    description: Core rendering logic for the Quake engine, including setup and frame rendering.
+    context: Demonstrates the innovative rendering techniques used to create Quake's groundbreaking 3D graphics.
+  - order: 3
+    slug: d-surf-c
+    title: d_surf.c
+    path: QW/client/d_surf.c
+    description: Manages surface caching and drawing, a key component of Quake's rendering pipeline.
+    context: Highlights the optimization strategies employed to handle complex 3D environments on limited hardware.
+  - order: 4
+    slug: snd-dma-c
+    title: snd_dma.c
+    path: QW/client/snd_dma.c
+    description: Implements sound mixing and Direct Memory Access (DMA) for audio playback.
+    context: Illustrates how Quake achieved immersive audio experiences alongside its visual innovations.
+  - order: 5
+    slug: sys-win-c
+    title: sys_win.c
+    path: QW/client/sys_win.c
+    description: Windows-specific system code for handling input, window management, and OS interactions.
+    context: Provides insight into how Quake interfaced with the Windows operating system to deliver a seamless user experience.
+  - order: 6
+    slug: mathlib-c
+    title: mathlib.c
+    path: QW/client/mathlib.c
+    description: Contains mathematical functions used throughout the engine, including vector and matrix operations.
+    context: Essential for understanding the mathematical foundation of Quake's 3D graphics and physics systems.
+  - order: 7
+    slug: quakeasm-h
+    title: quakeasm.h
+    path: QW/client/quakeasm.h
+    description: Defines assembly routines used for performance-critical operations in the engine.
+    context: Showcases the low-level optimizations that enabled Quake to run efficiently on 1990s hardware.
+  github_url: https://github.com/id-Software/Quake
+  github_repo: id-Software/Quake
   github_branch: master

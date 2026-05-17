@@ -1,0 +1,771 @@
+---
+title: "sys_win.c"
+program: "Quake"
+program_slug: "quake"
+file_path: "QW/client/sys_win.c"
+language: "C, x86 Assembly"
+github_url: "https://github.com/id-Software/Quake/blob/master/QW/client/sys_win.c"
+year: 1996
+author: "John Carmack, Michael Abrash, John Cash"
+slug: "sys-win-c"
+order: 5
+description: "This file provides the interface between Quake and the Windows operating system, showcasing how id Software optimized for hardware constraints and system-level integration in 1996."
+
+summary:
+  - point: "Dynamic memory allocation based on system capabilities"
+    link: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
+    link_label: "Dynamic Memory Allocation"
+  - point: "Use of Windows-specific APIs for performance and compatibility"
+    link: "https://en.wikipedia.org/wiki/Windows_API"
+    link_label: "Windows API"
+  - point: "Implementation of high-precision timing using QueryPerformanceCounter"
+    link: "https://en.wikipedia.org/wiki/QueryPerformance_Counter"
+    link_label: "QueryPerformanceCounter"
+  - point: "Semaphore-based synchronization for preventing multiple instances"
+    link: "https://en.wikipedia.org/wiki/Semaphore_(programming)"
+    link_label: "Semaphore"
+  - point: "Handling console input for debugging and user interaction"
+    link: "https://en.wikipedia.org/wiki/Console_application"
+    link_label: "Console Application"
+
+enhancements:
+  - id: "debug-log-file-writing"
+    line_start: 57
+    line_end: 69
+    title: "Debug Logging: A Window into Development"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Logging_(software)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/ZmEu_Access_Log.png/330px-ZmEu_Access_Log.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Log of a hacker running ZmEu on a webserver, trying to access phpMyAdmin. (CC BY-SA 4.0)"
+    content: "The `Sys_DebugLog` function writes formatted debug messages to a specified file, providing developers with a way to trace and diagnose issues during runtime. This was crucial in the mid-1990s, as debugging tools were not as advanced as they are today. Developers relied heavily on log files to understand the behavior of their programs and identify bugs. John Carmack and his team at id Software were known for their meticulous attention to detail, and this function reflects their commitment to robust debugging practices. The use of low-level file operations (`open`, `write`, `close`) highlights the team's focus on performance and direct control over system resources. Debug logging remains a cornerstone of software development, but modern systems often use more sophisticated logging frameworks. This function is a snapshot of a simpler, yet highly effective approach to debugging in an era of constrained computing resources."
+  - id: "file-length-calculation"
+    line_start: 84
+    line_end: 95
+    title: "Calculating File Length: A Simple Utility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_(computing)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/330px-Operating_system_placement.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Graph of Operating System placement on computer usage (CC BY-SA 3.0)"
+    content: "The `filelength` function calculates the size of a file by seeking to its end and measuring the offset. This utility was a common necessity in the 1990s, as file sizes were often used to allocate memory or verify data integrity. At the time, id Software was pushing the boundaries of game development, and efficient file handling was critical for loading game assets like textures and models. The use of standard C library functions (`ftell`, `fseek`) reflects the team's pragmatic approach to cross-platform compatibility, even though this file specifically targets Windows. Today, file size calculations are often abstracted by higher-level APIs, but this function serves as a reminder of the hands-on nature of programming during Quake's development."
+  - id: "windows-memory-management"
+    line_start: 155
+    line_end: 226
+    title: "Memory Management: Balancing Constraints and Performance"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "The `Sys_Init` function initializes system-level resources, including memory management and exception handling. It dynamically allocates memory based on available physical memory, ensuring Quake could run efficiently on a wide range of hardware. In 1996, PCs varied greatly in specifications, from low-end systems with 8 MB of RAM to high-end machines with 16 MB or more. This function reflects id Software's commitment to making Quake accessible to as many players as possible. The use of Windows-specific APIs like `GlobalMemoryStatus` and `VirtualProtect` demonstrates the team's deep understanding of the operating system. Memory management remains a critical aspect of game development, but modern engines often handle these tasks automatically. This code showcases the manual optimization required to deliver cutting-edge performance in an era of limited resources."
+  - id: "high-precision-timing"
+    line_start: 284
+    line_end: 343
+    title: "High-Precision Timing: Synchronizing the Game Loop"
+    wikipedia_url: "https://en.wikipedia.org/wiki/QueryPerformance_Counter"
+    image_url: ""
+    image_caption: ""
+    content: "The `Sys_DoubleTime` function uses the `QueryPerformanceCounter` API to achieve high-precision timing, critical for synchronizing Quake's game loop. In 1996, most PCs relied on hardware timers with varying resolutions, and achieving consistent timing across systems was a challenge. John Carmack and Michael Abrash prioritized precision to ensure smooth gameplay and accurate physics calculations. The function converts 64-bit timer values into microsecond-resolution timestamps, a technique that reflects the team's deep understanding of hardware and performance optimization. High-precision timing remains essential in modern game development, but the methods have evolved with advancements in hardware and operating systems. This function is a testament to id Software's innovative approach to overcoming technical limitations."
+  - id: "winmain-entry-point"
+    line_start: 552
+    line_end: 697
+    title: "WinMain: Launching a Revolution in Gaming"
+    wikipedia_url: "https://en.wikipedia.org/wiki/WinMain"
+    image_url: ""
+    image_caption: ""
+    content: "The `WinMain` function serves as the entry point for Quake on Windows, initializing system resources, parsing command-line arguments, and starting the main game loop. This function encapsulates the complexity of launching a 3D game in the mid-1990s, handling tasks like memory allocation, event creation, and compatibility checks. At the time, Windows 95 was rapidly becoming the dominant operating system, and id Software's decision to target it was both pragmatic and forward-thinking. The function's meticulous setup ensures Quake could run smoothly on a wide range of hardware, from budget PCs to high-end gaming rigs. The use of semaphores and events reflects the team's expertise in system-level programming. `WinMain` is more than just an entry point; it's the foundation of a game that redefined the industry. Modern game engines have abstracted much of this complexity, but this code offers a glimpse into the challenges and ingenuity of early 3D game development."
+
+---
+
+/*
+Copyright (C) 1996-1997 Id Software, Inc.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+*/
+// sys_win.h
+
+#include "quakedef.h"
+#include "winquake.h"
+#include "resource.h"
+#include "errno.h"
+#include "fcntl.h"
+#include <limits.h>
+
+#define MINIMUM_WIN_MEMORY	0x0c00000
+#define MAXIMUM_WIN_MEMORY	0x1000000
+
+#define PAUSE_SLEEP		50				// sleep time on pause or minimization
+#define NOT_FOCUS_SLEEP	20				// sleep time when not focus
+
+int		starttime;
+qboolean ActiveApp, Minimized;
+qboolean	WinNT;
+
+HWND	hwnd_dialog;		// startup dialog box
+
+static double		pfreq;
+static double		curtime = 0.0;
+static double		lastcurtime = 0.0;
+static int			lowshift;
+static HANDLE		hinput, houtput;
+
+HANDLE		qwclsemaphore;
+
+static HANDLE	tevent;
+
+void Sys_InitFloatTime (void);
+
+void MaskExceptions (void);
+void Sys_PopFPCW (void);
+void Sys_PushFPCW_SetHigh (void);
+
+void Sys_DebugLog(char *file, char *fmt, ...)
+{
+    va_list argptr; 
+    static char data[1024];
+    int fd;
+    
+    va_start(argptr, fmt);
+    vsprintf(data, fmt, argptr);
+    va_end(argptr);
+    fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0666);
+    write(fd, data, strlen(data));
+    close(fd);
+};
+
+/*
+===============================================================================
+
+FILE IO
+
+===============================================================================
+*/
+
+/*
+================
+filelength
+================
+*/
+int filelength (FILE *f)
+{
+	int		pos;
+	int		end;
+
+	pos = ftell (f);
+	fseek (f, 0, SEEK_END);
+	end = ftell (f);
+	fseek (f, pos, SEEK_SET);
+
+	return end;
+}
+
+
+int	Sys_FileTime (char *path)
+{
+	FILE	*f;
+	int		t, retval;
+
+	t = VID_ForceUnlockedAndReturnState ();
+	
+	f = fopen(path, "rb");
+
+	if (f)
+	{
+		fclose(f);
+		retval = 1;
+	}
+	else
+	{
+		retval = -1;
+	}
+	
+	VID_ForceLockState (t);
+	return retval;
+}
+
+void Sys_mkdir (char *path)
+{
+	_mkdir (path);
+}
+
+
+/*
+===============================================================================
+
+SYSTEM IO
+
+===============================================================================
+*/
+
+/*
+================
+Sys_MakeCodeWriteable
+================
+*/
+void Sys_MakeCodeWriteable (unsigned long startaddr, unsigned long length)
+{
+	DWORD  flOldProtect;
+
+//@@@ copy on write or just read-write?
+	if (!VirtualProtect((LPVOID)startaddr, length, PAGE_READWRITE, &flOldProtect))
+   		Sys_Error("Protection change failed\n");
+}
+
+
+/*
+================
+Sys_Init
+================
+*/
+void Sys_Init (void)
+{
+	LARGE_INTEGER	PerformanceFreq;
+	unsigned int	lowpart, highpart;
+	OSVERSIONINFO	vinfo;
+
+#ifndef SERVERONLY
+	// allocate a named semaphore on the client so the
+	// front end can tell if it is alive
+
+	// mutex will fail if semephore allready exists
+    qwclsemaphore = CreateMutex(
+        NULL,         /* Security attributes */
+        0,            /* owner       */
+        "qwcl"); /* Semaphore name      */
+	if (!qwclsemaphore)
+		Sys_Error ("QWCL is already running on this system");
+	CloseHandle (qwclsemaphore);
+
+    qwclsemaphore = CreateSemaphore(
+        NULL,         /* Security attributes */
+        0,            /* Initial count       */
+        1,            /* Maximum count       */
+        "qwcl"); /* Semaphore name      */
+#endif
+
+	MaskExceptions ();
+	Sys_SetFPCW ();
+
+#if 0
+	if (!QueryPerformanceFrequency (&PerformanceFreq))
+		Sys_Error ("No hardware timer available");
+
+// get 32 out of the 64 time bits such that we have around
+// 1 microsecond resolution
+	lowpart = (unsigned int)PerformanceFreq.LowPart;
+	highpart = (unsigned int)PerformanceFreq.HighPart;
+	lowshift = 0;
+
+	while (highpart || (lowpart > 2000000.0))
+	{
+		lowshift++;
+		lowpart >>= 1;
+		lowpart |= (highpart & 1) << 31;
+		highpart >>= 1;
+	}
+
+	pfreq = 1.0 / (double)lowpart;
+
+	Sys_InitFloatTime ();
+#endif
+
+	// make sure the timer is high precision, otherwise
+	// NT gets 18ms resolution
+	timeBeginPeriod( 1 );
+
+	vinfo.dwOSVersionInfoSize = sizeof(vinfo);
+
+	if (!GetVersionEx (&vinfo))
+		Sys_Error ("Couldn't get OS info");
+
+	if ((vinfo.dwMajorVersion < 4) ||
+		(vinfo.dwPlatformId == VER_PLATFORM_WIN32s))
+	{
+		Sys_Error ("QuakeWorld requires at least Win95 or NT 4.0");
+	}
+	
+	if (vinfo.dwPlatformId == VER_PLATFORM_WIN32_NT)
+		WinNT = true;
+	else
+		WinNT = false;
+}
+
+
+void Sys_Error (char *error, ...)
+{
+	va_list		argptr;
+	char		text[1024], text2[1024];
+	DWORD		dummy;
+
+	Host_Shutdown ();
+
+	va_start (argptr, error);
+	vsprintf (text, error, argptr);
+	va_end (argptr);
+
+	MessageBox(NULL, text, "Error", 0 /* MB_OK */ );
+
+#ifndef SERVERONLY
+	CloseHandle (qwclsemaphore);
+#endif
+
+	exit (1);
+}
+
+void Sys_Printf (char *fmt, ...)
+{
+	va_list		argptr;
+	char		text[1024];
+	DWORD		dummy;
+	
+	va_start (argptr,fmt);
+	vprintf (fmt, argptr);
+	va_end (argptr);
+}
+
+void Sys_Quit (void)
+{
+	VID_ForceUnlockedAndReturnState ();
+
+	Host_Shutdown();
+#ifndef SERVERONLY
+	if (tevent)
+		CloseHandle (tevent);
+
+	if (qwclsemaphore)
+		CloseHandle (qwclsemaphore);
+#endif
+
+	exit (0);
+}
+
+
+#if 0
+/*
+================
+Sys_DoubleTime
+================
+*/
+double Sys_DoubleTime (void)
+{
+	static int			sametimecount;
+	static unsigned int	oldtime;
+	static int			first = 1;
+	LARGE_INTEGER		PerformanceCount;
+	unsigned int		temp, t2;
+	double				time;
+
+	Sys_PushFPCW_SetHigh ();
+
+	QueryPerformanceCounter (&PerformanceCount);
+
+	temp = ((unsigned int)PerformanceCount.LowPart >> lowshift) |
+		   ((unsigned int)PerformanceCount.HighPart << (32 - lowshift));
+
+	if (first)
+	{
+		oldtime = temp;
+		first = 0;
+	}
+	else
+	{
+	// check for turnover or backward time
+		if ((temp <= oldtime) && ((oldtime - temp) < 0x10000000))
+		{
+			oldtime = temp;	// so we can't get stuck
+		}
+		else
+		{
+			t2 = temp - oldtime;
+
+			time = (double)t2 * pfreq;
+			oldtime = temp;
+
+			curtime += time;
+
+			if (curtime == lastcurtime)
+			{
+				sametimecount++;
+
+				if (sametimecount > 100000)
+				{
+					curtime += 1.0;
+					sametimecount = 0;
+				}
+			}
+			else
+			{
+				sametimecount = 0;
+			}
+
+			lastcurtime = curtime;
+		}
+	}
+
+	Sys_PopFPCW ();
+
+    return curtime;
+}
+
+/*
+================
+Sys_InitFloatTime
+================
+*/
+void Sys_InitFloatTime (void)
+{
+	int		j;
+
+	Sys_DoubleTime ();
+
+	j = COM_CheckParm("-starttime");
+
+	if (j)
+	{
+		curtime = (double) (Q_atof(com_argv[j+1]));
+	}
+	else
+	{
+		curtime = 0.0;
+	}
+
+	lastcurtime = curtime;
+}
+
+#endif
+
+double Sys_DoubleTime (void)
+{
+	static DWORD starttime;
+	static qboolean first = true;
+	DWORD now;
+	double t;
+
+	now = timeGetTime();
+
+	if (first) {
+		first = false;
+		starttime = now;
+		return 0.0;
+	}
+	
+	if (now < starttime) // wrapped?
+		return (now / 1000.0) + (LONG_MAX - starttime / 1000.0);
+
+	if (now - starttime == 0)
+		return 0.0;
+
+	return (now - starttime) / 1000.0;
+}
+
+char *Sys_ConsoleInput (void)
+{
+	static char	text[256];
+	static int		len;
+	INPUT_RECORD	recs[1024];
+	int		count;
+	int		i, dummy;
+	int		ch, numread, numevents;
+	HANDLE	th;
+	char	*clipText, *textCopied;
+
+	for ( ;; )
+	{
+		if (!GetNumberOfConsoleInputEvents (hinput, &numevents))
+			Sys_Error ("Error getting # of console events");
+
+		if (numevents <= 0)
+			break;
+
+		if (!ReadConsoleInput(hinput, recs, 1, &numread))
+			Sys_Error ("Error reading console input");
+
+		if (numread != 1)
+			Sys_Error ("Couldn't read console input");
+
+		if (recs[0].EventType == KEY_EVENT)
+		{
+			if (!recs[0].Event.KeyEvent.bKeyDown)
+			{
+				ch = recs[0].Event.KeyEvent.uChar.AsciiChar;
+
+				switch (ch)
+				{
+					case '\r':
+						WriteFile(houtput, "\r\n", 2, &dummy, NULL);	
+
+						if (len)
+						{
+							text[len] = 0;
+							len = 0;
+							return text;
+						}
+						break;
+
+					case '\b':
+						WriteFile(houtput, "\b \b", 3, &dummy, NULL);	
+						if (len)
+						{
+							len--;
+							putch('\b');
+						}
+						break;
+
+					default:
+						Con_Printf("Stupid: %d\n", recs[0].Event.KeyEvent.dwControlKeyState);
+						if (((ch=='V' || ch=='v') && (recs[0].Event.KeyEvent.dwControlKeyState & 
+							(LEFT_CTRL_PRESSED | RIGHT_CTRL_PRESSED))) || ((recs[0].Event.KeyEvent.dwControlKeyState 
+							& SHIFT_PRESSED) && (recs[0].Event.KeyEvent.wVirtualKeyCode
+							==VK_INSERT))) {
+							if (OpenClipboard(NULL)) {
+								th = GetClipboardData(CF_TEXT);
+								if (th) {
+									clipText = GlobalLock(th);
+									if (clipText) {
+										textCopied = malloc(GlobalSize(th)+1);
+										strcpy(textCopied, clipText);
+/* Substitutes a NULL for every token */strtok(textCopied, "\n\r\b");
+										i = strlen(textCopied);
+										if (i+len>=256)
+											i=256-len;
+										if (i>0) {
+											textCopied[i]=0;
+											text[len]=0;
+											strcat(text, textCopied);
+											len+=dummy;
+											WriteFile(houtput, textCopied, i, &dummy, NULL);
+										}
+										free(textCopied);
+									}
+									GlobalUnlock(th);
+								}
+								CloseClipboard();
+							}
+						} else if (ch >= ' ')
+						{
+							WriteFile(houtput, &ch, 1, &dummy, NULL);	
+							text[len] = ch;
+							len = (len + 1) & 0xff;
+						}
+
+						break;
+
+				}
+			}
+		}
+	}
+
+	return NULL;
+}
+
+void Sys_Sleep (void)
+{
+}
+
+
+void Sys_SendKeyEvents (void)
+{
+    MSG        msg;
+
+	while (PeekMessage (&msg, NULL, 0, 0, PM_NOREMOVE))
+	{
+	// we always update if there are any event, even if we're paused
+		scr_skipupdate = 0;
+
+		if (!GetMessage (&msg, NULL, 0, 0))
+			Sys_Quit ();
+      	TranslateMessage (&msg);
+      	DispatchMessage (&msg);
+	}
+}
+
+
+
+/*
+==============================================================================
+
+ WINDOWS CRAP
+
+==============================================================================
+*/
+
+/*
+==================
+WinMain
+==================
+*/
+void SleepUntilInput (int time)
+{
+
+	MsgWaitForMultipleObjects(1, &tevent, FALSE, time, QS_ALLINPUT);
+}
+
+
+
+/*
+==================
+WinMain
+==================
+*/
+HINSTANCE	global_hInstance;
+int			global_nCmdShow;
+char		*argv[MAX_NUM_ARGVS];
+static char	*empty_string = "";
+HWND		hwnd_dialog;
+
+
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+    MSG				msg;
+	quakeparms_t	parms;
+	double			time, oldtime, newtime;
+	MEMORYSTATUS	lpBuffer;
+	static	char	cwd[1024];
+	int				t;
+	RECT			rect;
+
+    /* previous instances do not exist in Win32 */
+    if (hPrevInstance)
+        return 0;
+
+	global_hInstance = hInstance;
+	global_nCmdShow = nCmdShow;
+
+	lpBuffer.dwLength = sizeof(MEMORYSTATUS);
+	GlobalMemoryStatus (&lpBuffer);
+
+	if (!GetCurrentDirectory (sizeof(cwd), cwd))
+		Sys_Error ("Couldn't determine current directory");
+
+	if (cwd[Q_strlen(cwd)-1] == '/')
+		cwd[Q_strlen(cwd)-1] = 0;
+
+	parms.basedir = cwd;
+	parms.cachedir = NULL;
+
+	parms.argc = 1;
+	argv[0] = empty_string;
+
+	while (*lpCmdLine && (parms.argc < MAX_NUM_ARGVS))
+	{
+		while (*lpCmdLine && ((*lpCmdLine <= 32) || (*lpCmdLine > 126)))
+			lpCmdLine++;
+
+		if (*lpCmdLine)
+		{
+			argv[parms.argc] = lpCmdLine;
+			parms.argc++;
+
+			while (*lpCmdLine && ((*lpCmdLine > 32) && (*lpCmdLine <= 126)))
+				lpCmdLine++;
+
+			if (*lpCmdLine)
+			{
+				*lpCmdLine = 0;
+				lpCmdLine++;
+			}
+			
+		}
+	}
+
+	parms.argv = argv;
+
+	COM_InitArgv (parms.argc, parms.argv);
+
+	parms.argc = com_argc;
+	parms.argv = com_argv;
+
+	hwnd_dialog = CreateDialog(hInstance, MAKEINTRESOURCE(IDD_DIALOG1), NULL, NULL);
+
+	if (hwnd_dialog)
+	{
+		if (GetWindowRect (hwnd_dialog, &rect))
+		{
+			if (rect.left > (rect.top * 2))
+			{
+				SetWindowPos (hwnd_dialog, 0,
+					(rect.left / 2) - ((rect.right - rect.left) / 2),
+					rect.top, 0, 0,
+					SWP_NOZORDER | SWP_NOSIZE);
+			}
+		}
+
+		ShowWindow (hwnd_dialog, SW_SHOWDEFAULT);
+		UpdateWindow (hwnd_dialog);
+		SetForegroundWindow (hwnd_dialog);
+	}
+
+// take the greater of all the available memory or half the total memory,
+// but at least 8 Mb and no more than 16 Mb, unless they explicitly
+// request otherwise
+	parms.memsize = lpBuffer.dwAvailPhys;
+
+	if (parms.memsize < MINIMUM_WIN_MEMORY)
+		parms.memsize = MINIMUM_WIN_MEMORY;
+
+	if (parms.memsize < (lpBuffer.dwTotalPhys >> 1))
+		parms.memsize = lpBuffer.dwTotalPhys >> 1;
+
+	if (parms.memsize > MAXIMUM_WIN_MEMORY)
+		parms.memsize = MAXIMUM_WIN_MEMORY;
+
+	if (COM_CheckParm ("-heapsize"))
+	{
+		t = COM_CheckParm("-heapsize") + 1;
+
+		if (t < com_argc)
+			parms.memsize = Q_atoi (com_argv[t]) * 1024;
+	}
+
+	parms.membase = malloc (parms.memsize);
+
+	if (!parms.membase)
+		Sys_Error ("Not enough memory free; check disk space\n");
+
+	tevent = CreateEvent(NULL, FALSE, FALSE, NULL);
+
+	if (!tevent)
+		Sys_Error ("Couldn't create event");
+
+	Sys_Init ();
+
+// because sound is off until we become active
+	S_BlockSound ();
+
+	Sys_Printf ("Host_Init\n");
+	Host_Init (&parms);
+
+	oldtime = Sys_DoubleTime ();
+
+    /* main window message loop */
+	while (1)
+	{
+	// yield the CPU for a little while when paused, minimized, or not the focus
+		if ((cl.paused && (!ActiveApp && !DDActive)) || Minimized || block_drawing)
+		{
+			SleepUntilInput (PAUSE_SLEEP);
+			scr_skipupdate = 1;		// no point in bothering to draw
+		}
+		else if (!ActiveApp && !DDActive)
+		{
+			SleepUntilInput (NOT_FOCUS_SLEEP);
+		}
+
+		newtime = Sys_DoubleTime ();
+		time = newtime - oldtime;
+		Host_Frame (time);
+		oldtime = newtime;
+	}
+
+    /* return success of application */
+    return TRUE;
+}

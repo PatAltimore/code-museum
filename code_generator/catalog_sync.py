@@ -61,5 +61,10 @@ def sync(config: dict, output_dir: Path) -> None:
 
         entry["files"] = sorted(existing_files.values(), key=lambda x: x["order"])
 
-    catalog["programs"] = sorted(existing.values(), key=lambda p: p.get("year", 0))
+    # Only keep programs that are still in programs.yaml — removes deleted entries
+    active_slugs = {p["slug"] for p in config["programs"]}
+    catalog["programs"] = sorted(
+        (p for p in existing.values() if p["slug"] in active_slugs),
+        key=lambda p: p.get("year", 0),
+    )
     catalog_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
