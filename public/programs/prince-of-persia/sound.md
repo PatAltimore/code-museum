@@ -9,58 +9,58 @@ year: 1989
 author: "Jordan Mechner"
 slug: "sound"
 order: 1
-description: "The sound system for Prince of Persia (1989), showcasing Jordan Mechner's ingenuity in crafting cinematic audio on constrained Apple II hardware."
+description: "The sound system of Prince of Persia (1989) for the Apple II, showcasing Jordan Mechner's ingenuity in crafting cinematic audio on constrained hardware."
 
 summary:
   - point: "Self-modifying code used for sound playback"
     link: "https://en.wikipedia.org/wiki/Self-modifying_code"
     link_label: "Self-modifying code"
-  - point: "Lookup table maps sound effects to routines"
+  - point: "Lookup table organizes sound routines by event"
     link: "https://en.wikipedia.org/wiki/Lookup_table"
     link_label: "Lookup table"
-  - point: "Direct manipulation of Apple II speaker hardware"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Routines for cinematic sound effects tied to gameplay events"
-    link: "https://en.wikipedia.org/wiki/Cinematic_platformer"
-    link_label: "Cinematic platformer"
-  - point: "Efficient sound generation using pitch and duration parameters"
+  - point: "Direct manipulation of the Apple II speaker hardware"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II series"
+  - point: "Efficient pitch and duration encoding for tones"
     link: "https://en.wikipedia.org/wiki/Sound_synthesis"
     link_label: "Sound synthesis"
+  - point: "Bank-switched memory constraints shaped design"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank switching"
 
 enhancements:
   - id: "sound-lookup-table"
     line_start: 30
     line_end: 55
-    title: "Mapping gameplay events to sound effects"
+    title: "Mapping events to sound routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Electronic_Dream_Plant_Wasp_Synthesizer.jpg/330px-Electronic_Dream_Plant_Wasp_Synthesizer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Electronic Dream Plant Wasp Synthesizer (CC BY-SA 2.5)"
-    content: "This section defines the lookup table that maps gameplay events to specific sound routines. Each entry in the table corresponds to a sound effect, such as the clang of a gate hitting the floor or the crack of a mirror. The table is implemented using `dw` (define word) instructions, which store the memory addresses of the sound routines. In the late 1980s, lookup tables were a common technique for efficient data retrieval, especially in resource-constrained environments like the Apple II. Jordan Mechner used this approach to ensure that sound effects could be triggered quickly during gameplay without complex logic. The table's design reflects the cinematic ambitions of Prince of Persia, where sound effects were tightly integrated with visual and gameplay events to enhance immersion. This method of organizing sound routines would later influence similar systems in other games, demonstrating the lasting impact of Mechner's work."
+    image_url: ""
+    image_caption: ""
+    content: "This section defines a lookup table that maps game events to their corresponding sound routines. Each entry in the table points to a subroutine responsible for generating a specific sound effect, such as the clang of a gate or the crack of a mirror. In the late 1980s, lookup tables were a common technique for efficiently organizing and accessing data, especially on hardware with limited memory and processing power like the Apple II. Jordan Mechner, working solo on Prince of Persia, had to carefully allocate every byte of memory in the 128K system. This table allowed the game to dynamically trigger sound effects based on gameplay events without hardcoding each sound's logic repeatedly. The use of a lookup table also made it easier to expand or modify the sound system during development. This approach remains foundational in game development, influencing how modern engines handle event-driven sound playback."
   - id: "zero-sound-table"
     line_start: 64
     line_end: 67
-    title: "Clearing the sound table for new events"
+    title: "Resetting the sound table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_synthesis"
     image_url: ""
     image_caption: ""
-    content: "The `ZEROSOUND` routine is a simple yet essential function that clears the sound table by setting the number of sounds to zero. This ensures that the table is ready to accept new sound effects during gameplay. The Apple II's limited memory required careful management of resources, and routines like this were critical for maintaining performance. By resetting the sound table, Mechner could dynamically adapt the audio experience to the player's actions, a key feature of the game's cinematic style. This approach highlights the meticulous attention to detail required to create immersive experiences on early hardware."
+    content: "The ZEROSOUND routine clears the sound table by setting the number of sounds to zero. This ensures that no residual sound effects from previous gameplay sessions interfere with the current state. On the Apple II, memory management was manual and unforgiving, requiring programmers to explicitly reset data structures to avoid unpredictable behavior. Mechner's decision to include this routine reflects his meticulous approach to stability and user experience. By resetting the sound table, he ensured that the audio system started fresh each time it was initialized, a practice that became standard in later game development."
   - id: "add-sound-to-table"
     line_start: 79
     line_end: 91
-    title: "Adding sound effects dynamically"
+    title: "Adding sounds dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_synthesis"
     image_url: ""
     image_caption: ""
-    content: "The `ADDSOUND` routine allows the game to dynamically add sound effects to the sound table during gameplay. It first checks if the table is full, ensuring that new sounds do not overwrite existing ones. If there is space, the sound effect is added to the table, and the number of sounds is updated. This routine demonstrates the constraints of working within the Apple II's limited memory, where dynamic allocation and careful bookkeeping were necessary to manage resources effectively. Mechner's design reflects his ability to balance technical limitations with the need for a rich and responsive audio experience, a hallmark of Prince of Persia's groundbreaking approach to game design."
+    content: "The ADDSOUND routine dynamically adds a sound effect to the sound table, preserving the current registers to avoid disrupting other processes. This routine checks if the table is full before adding a new sound, ensuring efficient use of memory. In the 1980s, dynamic data structures like this were rare in assembly programming due to the complexity of implementation and the constraints of hardware. Mechner's use of such a system highlights his innovative approach to game design, allowing Prince of Persia to manage sound effects flexibly based on gameplay events. This dynamic handling of sound effects foreshadows modern game audio systems, where sounds are queued and played based on real-time events."
   - id: "playback-sound-table"
     line_start: 100
     line_end: 118
-    title: "Sequencing sound effects for gameplay"
+    title: "Sequential sound playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_synthesis"
     image_url: ""
     image_caption: ""
-    content: "The `PLAYBACK` routine is responsible for playing all the sounds listed in the sound table. It checks if sound is enabled and if the table contains any entries, then iterates through the table to play each sound using the `makesound` subroutine. This design reflects the cinematic aspirations of Prince of Persia, where sound effects were carefully timed to enhance the drama of gameplay. The routine's efficiency was crucial given the Apple II's limited processing power, ensuring that audio playback did not interfere with the game's smooth animation and controls. Mechner's use of a sound table and playback loop showcases his ingenuity in creating a responsive audio system within the constraints of 1980s hardware."
+    content: "The PLAYBACK routine iterates through the sound table and plays each sound listed. It checks if sound is enabled and if the table contains any sounds before proceeding. This sequential playback mechanism was a clever way to handle multiple sound effects on the Apple II, which lacked advanced audio hardware. Mechner had to rely on direct manipulation of the speaker hardware to produce sound, making routines like this essential for creating the game's cinematic atmosphere. The use of a sound table allowed for efficient management of audio, ensuring that sounds were played in the correct order without overlapping or skipping. This approach laid the groundwork for more sophisticated audio systems in later games."
   - id: "self-modifying-code-for-sound"
     line_start: 127
     line_end: 140
@@ -68,15 +68,15 @@ enhancements:
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""
     image_caption: ""
-    content: "The `makesound` routine employs self-modifying code to dynamically jump to the appropriate sound routine based on the sound number. After calculating the address of the routine using the lookup table, the code modifies itself to replace the placeholder jump instruction (`jmp $ffff`) with the actual address. Self-modifying code was a daring technique, often used in assembly programming to optimize performance on systems with limited resources. On the Apple II, where every byte and cycle mattered, this approach allowed Mechner to implement a flexible and efficient sound system. While self-modifying code is rarely used today due to its complexity and potential for errors, it was a testament to the ingenuity required to push the boundaries of early computing hardware."
+    content: "The MAKESOUND routine employs self-modifying code to dynamically jump to the appropriate sound routine based on the sound number. It calculates the address of the routine using the lookup table and inserts it into the instruction at runtime. Self-modifying code was a controversial but powerful technique, particularly on constrained systems like the Apple II, where every byte of memory mattered. Mechner's use of this technique allowed him to efficiently manage sound playback without hardcoding jumps to each routine. While self-modifying code is rarely used today due to its complexity and potential for bugs, it was a hallmark of ingenuity in early game development, enabling programmers to push the limits of their hardware."
   - id: "tone-generation"
     line_start: 331
     line_end: 352
-    title: "Generating tones with direct hardware control"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_synthesis"
+    title: "Direct tone generation via speaker hardware"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""
     image_caption: ""
-    content: "The `tone` routine generates sound by directly manipulating the Apple II's speaker hardware at address `$c030`. It uses nested loops to create a waveform based on pitch and duration parameters passed in registers. This low-level approach reflects the constraints of the Apple II, which lacked dedicated sound hardware and required programmers to interact directly with the speaker. Mechner's implementation is both efficient and flexible, allowing a wide range of tones to be produced for different gameplay events. The routine's simplicity belies its importance in creating the immersive audio experience that defined Prince of Persia's cinematic style. By working within the limitations of the Apple II, Mechner demonstrated how creativity and technical skill could transform hardware constraints into artistic achievements."
+    content: "The TONE routine directly manipulates the Apple II's speaker hardware to generate sound. It uses the pitch and duration parameters to produce tones by toggling the speaker's state in a loop. This low-level approach was necessary on the Apple II, which lacked dedicated sound hardware. Mechner's implementation is a testament to the ingenuity required to create audio effects on early computers. By carefully timing the toggling of the speaker, he was able to produce a variety of sounds that contributed to the game's immersive experience. This method of sound generation is a reminder of the challenges faced by early game developers and the creative solutions they devised to overcome hardware limitations."
 
 ---
 

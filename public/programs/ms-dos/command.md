@@ -9,59 +9,70 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "command"
 order: 2
-description: "The COMMAND.ASM file from MS-DOS v1.25 is a foundational piece of computing history, showcasing the early design of a command-line interface that shaped personal computing for decades."
+description: "The COMMAND.ASM file for MS-DOS v1.25 represents the core command interpreter, a foundational piece of software that shaped personal computing in the early 1980s."
+is_excerpt: true
+excerpt_lines: 200
 
 summary:
-  - point: "Resident-transient memory model for efficient command execution"
+  - point: "Resident and transient memory model for efficient resource use"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Assembly flags for IBM and Microsoft versions"
+  - point: "Error messages and prompts tailored for user interaction"
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
-  - point: "Error message table for user feedback"
+  - point: "Command table linking keywords to subroutine addresses"
     link: "https://en.wikipedia.org/wiki/Command-line_interface"
     link_label: "Command-line interface"
-  - point: "Command table mapping keywords to routines"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS commands"
+  - point: "Assembly flags for IBM and MS versions of COMMAND.COM"
+    link: "https://en.wikipedia.org/wiki/IBM_PC_DOS"
+    link_label: "IBM PC DOS"
+  - point: "Segmented memory model reflecting 8086 architecture constraints"
+    link: "https://en.wikipedia.org/wiki/Intel_8086"
+    link_label: "Intel 8086"
 
 enhancements:
   - id: "resident-transient-memory-model"
     line_start: 3
     line_end: 15
-    title: "Resident-transient memory model innovation"
+    title: "Resident and transient memory: a clever split"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
-    content: "These lines describe the dual memory model used in COMMAND.COM, dividing the program into resident and transient portions. The resident portion handles essential interrupts and remains in memory, while the transient portion, responsible for command processing, can be overwritten by user programs needing maximum memory. This design reflects the constraints of early PCs, which often had only 64KB or 128KB of RAM. Tim Paterson, who originally developed 86-DOS, likely borrowed this approach from CP/M, which had a similar transient-resident structure. The checksum mechanism ensures that the transient portion is reloaded only when necessary, optimizing performance. This model was crucial for enabling multitasking-like behavior on hardware that lacked native support for it, and it influenced later operating systems that sought to balance memory usage with functionality."
-  - id: "assembly-flags-for-versioning"
-    line_start: 17
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Intel_C8086.jpg/330px-Intel_C8086.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "A processor Intel C8086, 5 MHz. (CC BY-SA 4.0)"
+    content: "This section describes the division of COMMAND.COM into resident and transient portions. The resident portion handles critical tasks like interrupt processing and memory management, while the transient portion processes commands and can be overwritten by user programs. This design reflects the constraints of early PCs, which often had less than 64KB of RAM. Tim Paterson, the original author of 86-DOS, adapted this model to maximize memory availability for user applications while ensuring the command interpreter could reload itself efficiently. The transient portion's checksum mechanism is a clever optimization, saving reload time when memory hasn't been overwritten. This memory model became a hallmark of MS-DOS, influencing how operating systems managed limited resources in the early 1980s."
+  - id: "assembly-flags-for-ibm-ms-versions"
+    line_start: 21
     line_end: 38
-    title: "Assembly flags for IBM and MS versions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Linux_command-line._Bash._GNOME_Terminal._screenshot.png/330px-Linux_command-line._Bash._GNOME_Terminal._screenshot.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Sample of Bash in GNOME Terminal. Screenshot taken in Fedora. Outputs of ping, pwd, cd, yum and ls command. (GPL)"
-    content: "These lines define assembly flags to differentiate between the IBM and Microsoft versions of COMMAND.COM. The IBM version uses '>' as the command prompt symbol, while the MS-DOS version uses ':'. This distinction reflects the licensing agreement between Microsoft and IBM, where Microsoft retained the rights to sell MS-DOS to other OEMs. The flags also set parameters like the default drive and memory configuration. In 1981, the IBM PC was a groundbreaking machine, and its success depended heavily on the software ecosystem, including PC DOS (a rebranded MS-DOS). These flags allowed Microsoft to maintain a single codebase while tailoring builds for different partners, a strategy that contributed to MS-DOS's widespread adoption."
-  - id: "error-message-table"
+    title: "Assembly flags for IBM and MS-DOS builds"
+    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC_DOS"
+    image_url: ""
+    image_caption: ""
+    content: "These lines define assembly flags that allow the same source code to compile into either the IBM version of COMMAND.COM or the MS-DOS version. The IBM version uses a '>' symbol for prompts and assumes drive A as the default, while the MS-DOS version uses ':' and allows for a configurable default drive. This dual-build capability reflects Microsoft's licensing strategy, which allowed them to sell MS-DOS to multiple OEMs while maintaining compatibility with IBM's PC DOS. The flags highlight the flexibility required to support different hardware configurations and branding requirements in the rapidly expanding PC market of the early 1980s."
+  - id: "segmented-memory-model"
+    line_start: 70
+    line_end: 94
+    title: "Segmented memory: a nod to the 8086"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8086"
+    image_url: ""
+    image_caption: ""
+    content: "The memory segments defined here—CODERES, DATARES, INIT, TAIL, TRANCODE, TRANDATA, and TRANSPACE—reflect the segmented architecture of the Intel 8086 processor. Each segment serves a specific purpose, from resident code to transient data, optimizing memory usage in a system where every byte mattered. This segmentation was a direct response to the limitations of the 8086, which could only address 64KB at a time. By grouping related data and code into segments, the designers ensured efficient execution and easier debugging. This approach influenced not just MS-DOS but also other operating systems of the era, showcasing the ingenuity required to work within hardware constraints."
+  - id: "error-messages-and-prompts"
     line_start: 98
-    line_end: 149
-    title: "Error message table for user feedback"
+    line_end: 133
+    title: "Error messages: human-readable diagnostics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
-    content: "This section defines error messages and prompts displayed to users during command execution. Each message is stored as a string in memory, with placeholders for dynamic content like drive letters. In the early 1980s, user interfaces were predominantly text-based, and clear error messages were vital for usability. Tim Paterson's design ensured that even novice users could understand and respond to errors, a significant improvement over the cryptic messages of earlier systems. The inclusion of prompts like 'Abort, Retry, Ignore?' became iconic, symbolizing the era of command-line computing. These messages also highlight the importance of user interaction in the design of early operating systems, laying the groundwork for more sophisticated interfaces in later years."
+    image_url: ""
+    image_caption: ""
+    content: "This section defines error messages and user prompts displayed by COMMAND.COM. Messages like 'Write protect' and 'Abort, Retry, Ignore?' became iconic in the early PC era, reflecting the need for clear communication with non-technical users. The prompts are carefully crafted to guide users through common issues, such as disk errors or missing files, in an era when graphical interfaces were rare. Tim Paterson's work on 86-DOS laid the groundwork for these messages, which were later refined by Microsoft engineers. These user-facing strings helped establish MS-DOS as an accessible operating system for the masses, contributing to its widespread adoption."
   - id: "command-table-keyword-mapping"
     line_start: 181
     line_end: 200
-    title: "Command table mapping keywords to routines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "Command table: mapping keywords to routines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "This section defines a table mapping command keywords like 'DIR' and 'COPY' to their corresponding routines in memory. Each entry includes the command name, its length, and a pointer to the routine. This design allows COMMAND.COM to efficiently parse and execute user input. In 1981, MS-DOS was competing with CP/M, which had a similar command structure. By organizing commands in a table, Tim Paterson ensured extensibility and maintainability, enabling new commands to be added with minimal disruption. This approach influenced the design of command interpreters in later operating systems, including Windows and Unix shells. The table also reflects the constraints of early PCs, where memory and processing power were limited, necessitating compact and efficient code."
+    content: "The command table maps user-entered keywords like 'DIR' and 'COPY' to their corresponding routines in the transient portion of COMMAND.COM. Each entry consists of the command name, its length, and the address of the associated subroutine. This design allows the command interpreter to quickly identify and execute commands, a critical feature for an operating system designed to run on hardware with limited processing power. The table reflects the simplicity and efficiency required in the early days of personal computing, where speed and resource conservation were paramount. This approach to command parsing became a standard in many subsequent operating systems, influencing the development of command-line interfaces for decades."
 
 ---
-
-; excerpt — first 200 lines of v1.25/source/COMMAND.ASM
 
 ; COMMAND version 1.17
 ;

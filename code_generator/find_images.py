@@ -113,12 +113,17 @@ def _is_relevant(topic: str, image_name: str, caption: str, client) -> bool:
     prompt = (
         f"Topic: {topic}\n"
         f"Image name: {image_name_clean}\n"
-        f"Caption: {caption}\n"
-        f"Does this image directly illustrate or depict the topic above? "
+        f"Caption: {caption}\n\n"
+        f"Is this image clearly and specifically about the topic? "
+        f"Answer YES only if the image directly depicts the subject matter of the topic — "
+        f"a diagram, screenshot, photograph, or illustration of the exact concept, "
+        f"machine, person, or algorithm being discussed. "
+        f"Answer NO if the image is generic, decorative, only loosely related, or depicts "
+        f"something that merely shares a word with the topic. "
         f"Answer YES or NO only."
     )
     messages = [
-        {"role": "system", "content": "You are a strict image-relevance checker. Answer YES or NO only."},
+        {"role": "system", "content": "You are a strict image-relevance checker. Be conservative — when in doubt, answer NO. Answer YES or NO only."},
         {"role": "user", "content": prompt},
     ]
     try:
@@ -148,7 +153,7 @@ def find_image(
     Pass ``topic`` (the enhancement title or program title) and ``client``
     (a ModelClient) to enable automatic relevance filtering on Tiers 2 and 3.
     """
-    # Tier 1: Wikipedia pageimages — curated, trusted unconditionally
+    # Tier 1: Wikipedia pageimages — curated but still relevance-checked
     if wiki_url:
         m = re.search(r"/wiki/(.+)$", wiki_url)
         if m:
@@ -168,11 +173,15 @@ def find_image(
                         file_title = f"File:{page_image}"
                         time.sleep(DELAY)
                         thumb_url, caption = _thumb_and_caption(file_title)
-                        if thumb_url:
-                            return thumb_url, caption
-                        caption = re.sub(r"\.\w+$", "", page_image.replace("_", " "))
-                        caption = caption.replace('"', '\\"').replace('\n', ' ').strip()[:200]
-                        return thumb_info["source"], caption
+                        if not thumb_url:
+                            caption = re.sub(r"\.\w+$", "", page_image.replace("_", " "))
+                            caption = caption.replace('"', '\\"').replace('\n', ' ').strip()[:200]
+                            thumb_url = thumb_info["source"]
+                        if client and topic:
+                            img_name = page_image
+                            if not _is_relevant(topic, img_name, caption, client):
+                                break  # fall through to Tier 2
+                        return thumb_url, caption
             except Exception:
                 pass
 
@@ -249,13 +258,22 @@ _EMPTY_IMG_RE = re.compile(
     re.MULTILINE,
 )
 
+# Regex to match any image_url/image_caption pair (empty or populated).
+_ANY_IMG_RE = re.compile(
+    r'(    image_url: "([^"]*)"\n    image_caption: "([^"]*)")',
+    re.MULTILINE,
+)
+
 # Regex to extract wikipedia_url and title from nearby preceding lines
 _WIKI_URL_RE = re.compile(r'    wikipedia_url: "([^"]*)"')
 _TITLE_RE    = re.compile(r'    title: "([^"]*)"')
 
 
-def fill_file_images(md_path: pathlib.Path, console=None, client=None) -> int:
-    """Patch empty image_url/image_caption fields in a .md frontmatter file.
+def fill_file_images(md_path: pathlib.Path, console=None, client=None, replace: bool = False) -> int:
+    """Patch image_url/image_caption fields in a .md frontmatter file.
+
+    With replace=False (default): only fills slots that are currently empty.
+    With replace=True: clears and re-fetches every slot, replacing bad images.
 
     Pass ``client`` (a ModelClient) to enable relevance checking — images that
     the model deems unrelated to the enhancement topic are silently skipped.
@@ -263,6 +281,11 @@ def fill_file_images(md_path: pathlib.Path, console=None, client=None) -> int:
     Returns the number of images found and written.
     """
     text = md_path.read_text(encoding="utf-8").replace("\r\n", "\n")
+
+    if replace:
+        # Blank out all existing image fields so _EMPTY_IMG_RE matches them all
+        text = _ANY_IMG_RE.sub('    image_url: ""\n    image_caption: ""', text)
+
     new_text = text
     patches  = 0
 

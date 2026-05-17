@@ -50,8 +50,8 @@ enhancements:
     line_end: 85
     title: "Finding Perpendicular Vectors in 3D Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Orthogonality"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Perpendicular-coloured.svg/330px-Perpendicular-coloured.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Perpendicular-coloured (CC BY-SA 3.0)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Orthogonal_decomposition_unit_vector_2.svg/330px-Orthogonal_decomposition_unit_vector_2.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Orthogonal decomposition unit vector 2 (CC0)"
     content: "The `PerpendicularVector` function computes a vector perpendicular to a given normalized vector in 3D space. This operation is crucial for creating coordinate systems around arbitrary axes, enabling the rotation and positioning of objects in Quake's 3D environment. In 1996, when this code was written, such calculations were groundbreaking for real-time applications, as they allowed dynamic transformations without precomputed data. The algorithm cleverly identifies the smallest component of the input vector to construct an initial candidate perpendicular vector, which is then projected onto the plane orthogonal to the input vector. This method ensures numerical stability and efficiency, critical for the hardware of the era. The function's influence persists in modern graphics engines, where orthogonal vectors are a staple of 3D transformations."
   - id: "rotate-point-around-vector"
     line_start: 93
@@ -90,16 +90,16 @@ enhancements:
     line_end: 414
     title: "Basic Vector Operations: Building Blocks of 3D"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vector_space"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Divide20by4.svg/330px-Divide20by4.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "divition: 20/4=5 (Public domain)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Greatest_common_divisor_chart.svg/330px-Greatest_common_divisor_chart.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Greatest common divisor of numbers 0-10. Line labels = first number. X axis = second number. Y axis = GCD. (CC0)"
     content: "This section defines fundamental vector operations, including addition, subtraction, scaling, normalization, and cross products. These operations are the building blocks of 3D graphics and physics, enabling calculations for movement, collision detection, and rendering in Quake's engine. The simplicity and efficiency of these functions reflect the team's focus on performance optimization, a necessity for real-time applications on hardware like the Intel 486. These operations are ubiquitous in modern graphics programming, highlighting the lasting impact of Quake's codebase. The team's implementation demonstrates their mastery of mathematics and their ability to translate it into practical solutions for game development."
   - id: "floor-div-mod"
     line_start: 498
     line_end: 537
     title: "Floor-Based Division: Precision in Integer Math"
     wikipedia_url: "https://en.wikipedia.org/wiki/Division_(mathematics)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Greatest_common_divisor_chart.svg/330px-Greatest_common_divisor_chart.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Greatest common divisor of numbers 0-10. Line labels = first number. X axis = second number. Y axis = GCD. (CC0)"
+    image_url: ""
+    image_caption: ""
     content: "The `FloorDivMod` function calculates the quotient and remainder of a division operation using floor-based arithmetic. This ensures mathematically correct results for integer inputs, a critical requirement for collision detection and physics calculations in Quake's engine. The function reflects the team's attention to precision and stability, addressing edge cases like negative numerators and denominators. In 1996, such considerations were vital for maintaining consistency in real-time applications on limited hardware. The function's design highlights the team's expertise in numerical methods and their commitment to robust programming practices. Floor-based division remains a standard approach in modern programming, underscoring the enduring relevance of this technique."
   - id: "greatest-common-divisor"
     line_start: 545

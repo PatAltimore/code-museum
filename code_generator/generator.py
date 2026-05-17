@@ -129,6 +129,7 @@ def main() -> None:
     parser.add_argument("--no-catalog-sync", action="store_true", help="Skip catalog.json sync after generation")
     parser.add_argument("--no-images", action="store_true", help="Skip Wikipedia Commons image fetching")
     parser.add_argument("--find-images", action="store_true", help="Fill missing images in all existing files and exit")
+    parser.add_argument("--replace-images", action="store_true", help="Clear and re-fetch all images (replaces bad ones); implies --find-images")
     parser.add_argument("--config", default="config/programs.yaml", help="Path to programs.yaml")
     args = parser.parse_args()
 
@@ -146,7 +147,8 @@ def main() -> None:
     gen_cfg = config.get("generation", {})
     client = ModelClient(config["models"]) if not args.dry_run else None
 
-    if args.find_images:
+    if args.find_images or args.replace_images:
+        replace = args.replace_images
         programs = config["programs"]
         if args.program:
             programs = [p for p in programs if p["slug"] == args.program]
@@ -157,7 +159,7 @@ def main() -> None:
             if prog_dir.is_dir():
                 for md in sorted(prog_dir.glob("*.md")):
                     console.print(f"[cyan]images  {prog_slug}/{md.stem}[/cyan]")
-                    count = fill_file_images(md, console=console, client=client)
+                    count = fill_file_images(md, console=console, client=client, replace=replace)
                     if count:
                         console.print(f"  [green]-> {count} image(s) added[/green]")
                     total_imgs += count

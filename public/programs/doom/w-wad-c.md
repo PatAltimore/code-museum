@@ -42,8 +42,8 @@ enhancements:
     line_end: 112
     title: "String Manipulation: A Programmer's Toolkit"
     wikipedia_url: "https://en.wikipedia.org/wiki/String_(computer_science)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Cache%2Cbasic.svg/330px-Cache%2Cbasic.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Diagram of the basic operation of a cache (CC BY-SA 3.0)"
+    image_url: ""
+    image_caption: ""
     content: "This section introduces utility functions for string manipulation, such as `strupr` for converting strings to uppercase and `ExtractFileBase` for extracting base filenames. These functions were essential for handling lump names in a case-insensitive manner, a practical necessity given the varied naming conventions of user-created WAD files. In the early 1990s, developers often had to implement their own utility functions, as standard libraries were less comprehensive than they are today. The decision to enforce uppercase filenames reflects the era's constraints, where simplicity and consistency were paramount. These utilities also highlight the hands-on approach of id Software's team, who were deeply involved in every aspect of the game's development. While these functions may seem trivial, they are part of the foundational code that enabled DOOM's modular architecture and its thriving modding ecosystem."
   - id: "wad-file-loading"
     line_start: 137

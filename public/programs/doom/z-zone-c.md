@@ -34,40 +34,40 @@ enhancements:
     line_end: 41
     title: "Zone Memory Allocation: A Game-Changer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/330px-Operating_system_placement.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Graph of Operating System placement on computer usage (CC BY-SA 3.0)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Memory_Pool.svg/330px-Memory_Pool.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "A Memory Pool Diagram (CC0)"
     content: "This section introduces DOOM's zone memory allocation system, a method designed to manage memory efficiently on early 1990s hardware. Memory blocks are organized in a linked list, ensuring there are no gaps or contiguous free blocks. This approach minimizes fragmentation, a common problem in memory management, and optimizes performance by keeping the 'rover' pointer ready to allocate memory without extensive searching. In 1993, personal computers typically had 4–8 MB of RAM, and games like DOOM had to make every byte count. John Carmack, the lead programmer, was known for his ability to push hardware to its limits, and this system reflects his ingenuity. Zone memory allocation became a foundational technique in game development, influencing later engines and software systems."
   - id: "memzone-structure-definition"
     line_start: 46
     line_end: 56
     title: "Defining the Memory Zone Structure"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/330px-Hash_table_3_1_1_0_1_0_0_SP.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Hash table 3 1 1 0 1 0 0 SP (CC BY-SA 3.0)"
+    image_url: ""
+    image_caption: ""
     content: "Here, the 'memzone_t' structure is defined, encapsulating the memory zone's size, block list, and rover pointer. This structure is the backbone of DOOM's memory management system, enabling efficient allocation and deallocation of memory blocks. The design reflects the constraints of the era, where developers had to carefully manage limited resources. By organizing memory into zones, Carmack and his team ensured that the game could dynamically allocate memory for textures, sounds, and gameplay elements without crashing or slowing down. This structure's simplicity and effectiveness made it a model for future game engines."
   - id: "z-clearzone-initialization"
     line_start: 67
     line_end: 86
     title: "Clearing the Zone: Memory Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(programming)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/330px-Operating_system_placement.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Graph of Operating System placement on computer usage (CC BY-SA 3.0)"
+    image_url: ""
+    image_caption: ""
     content: "The 'Z_ClearZone' function initializes a memory zone by setting it to a single free block. This operation is crucial for ensuring that the memory zone starts in a clean state, ready for allocation. The function calculates the size of the free block, sets up pointers for the linked list, and marks the block as free. In the early 1990s, initializing memory zones efficiently was vital for performance, as games like DOOM had to run on hardware with limited processing power and memory. This function exemplifies the meticulous attention to detail that characterized Carmack's programming style, laying the groundwork for the game's smooth performance."
   - id: "z-init-mainzone-setup"
     line_start: 93
     line_end: 116
     title: "Setting Up the Main Memory Zone"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/330px-Operating_system_placement.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Graph of Operating System placement on computer usage (CC BY-SA 3.0)"
+    image_url: ""
+    image_caption: ""
     content: "The 'Z_Init' function sets up the main memory zone, which serves as the central pool for all memory allocations in DOOM. It calls 'I_ZoneBase' to determine the size of the memory zone and initializes it as a single free block. This setup ensures that the game has a dedicated memory pool to manage resources like textures, sprites, and sound effects. The function reflects the challenges of developing software for early PCs, where memory constraints required innovative solutions. By creating a centralized memory zone, Carmack and his team optimized performance and reliability, enabling DOOM to deliver its groundbreaking gameplay."
   - id: "z-free-memory-deallocation"
     line_start: 122
     line_end: 172
     title: "Freeing Memory: A Delicate Operation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Memory_Pool.svg/330px-Memory_Pool.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "A Memory Pool Diagram (CC0)"
+    image_url: ""
+    image_caption: ""
     content: "The 'Z_Free' function deallocates memory blocks, marking them as free and merging them with adjacent free blocks to prevent fragmentation. This operation is crucial for maintaining the integrity of the memory zone, ensuring that the game can reuse memory efficiently. The function includes error-checking mechanisms to prevent invalid memory accesses, which could crash the game. In the early 1990s, memory management was a delicate task, as bugs could lead to unpredictable behavior. Carmack's implementation demonstrates a deep understanding of these challenges, creating a robust system that contributed to DOOM's stability and performance."
   - id: "z-malloc-memory-allocation"
     line_start: 183

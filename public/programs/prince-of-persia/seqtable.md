@@ -9,75 +9,72 @@ year: 1989
 author: "Jordan Mechner"
 slug: "seqtable"
 order: 3
-description: "The animation sequence table for Prince of Persia (1989), defining the game's cinematic movements and transitions."
+description: "Animation sequence table for Prince of Persia's cinematic platforming"
+is_excerpt: true
+excerpt_lines: 200
 
 summary:
-  - point: "Defines animation sequences for Prince's movements"
+  - point: "Sequence table defines animation states and transitions"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Uses compact data structures to fit within Apple II memory constraints"
-    link: "https://en.wikipedia.org/wiki/Apple_II_series"
-    link_label: "Apple II series"
-  - point: "Rotoscoping-inspired sequences mapped to assembly routines"
+    link_label: "Prince of Persia"
+  - point: "Rotoscoping inspired realistic character movement"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Bank-switched memory techniques for 128K Apple II"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank switching"
+  - point: "Bank-switched memory used to fit animations into 128K"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
 
 enhancements:
-  - id: "sequence-table-instructions"
-    line_start: 8
+  - id: "seqtable-instructions"
+    line_start: 10
     line_end: 24
-    title: "Mapping game actions to numeric codes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/US_patent_1242674_figure_3.png/330px-US_patent_1242674_figure_3.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Patent drawing for Fleischer's original rotoscope. (Public domain)"
-    content: "This section defines numeric codes for various actions and events in the game, such as 'goto', 'aboutface', 'up', 'down', and 'die'. These codes serve as shorthand for animation sequences and gameplay mechanics, enabling compact representation in memory. In 1989, Jordan Mechner faced the challenge of fitting an ambitious cinematic platformer into the limited memory of the Apple IIe/IIc, which had only 128K of RAM. By using numeric codes, Mechner could efficiently reference actions without duplicating large blocks of data. This approach reflects the ingenuity required to work within hardware constraints of the era. These codes would later be referenced throughout the sequence table, forming the backbone of Prince's fluid movements and interactions. The compactness of this system allowed Mechner to implement a wide range of animations while leaving room for other game logic, a critical factor in achieving the game's groundbreaking cinematic quality."
-  - id: "sequence-table-animation-mapping"
+    title: "Command shortcuts for animation logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Ranger-Idle.gif/330px-Ranger-Idle.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Character animation, video game sprite made using Adobe Animate CC0 Public Domain (CC0)"
+    content: "These lines define symbolic constants for various animation commands, such as `goto`, `up`, `down`, and `die`. Each constant is assigned a negative numerical value, which will later be used to encode sequences of actions in the animation system. In 1989, Jordan Mechner was working within the constraints of the Apple II's 6502 processor, which had limited memory and processing power. By using symbolic constants, he could make the code more readable and manageable while ensuring efficient execution. This approach reflects the careful planning required to fit a cinematic platformer into the Apple II's 128K memory. These constants were used to control the transitions between animation states, enabling fluid and realistic character movement. The use of negative values was likely a deliberate choice to distinguish commands from other data types in the sequence table."
+  - id: "sequence-table-data"
     line_start: 33
     line_end: 146
-    title: "Defining animation sequences for Prince's movements"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Still_Waters%2C_Silent_Watcher.jpg/330px-Still_Waters%2C_Silent_Watcher.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Still Waters, Silent Watcher (CC BY-SA 4.0)"
-    content: "This section maps numeric codes to specific animation routines, such as 'startrun', 'stand', 'runjump', and 'impale'. Each routine corresponds to a distinct movement or action performed by the Prince, creating the game's signature fluidity. Mechner used rotoscoping to trace animations from footage of his brother performing the moves, ensuring lifelike motion. The Apple II's limited graphical capabilities required these animations to be encoded efficiently, with each routine represented by a small set of instructions. This mapping is a testament to Mechner's ability to translate cinematic ideas into technical implementations. The result was a game that felt alive, with realistic character movements that set a new standard for the platformer genre. These sequences became iconic, influencing later games and demonstrating the potential of animation-driven storytelling in video games."
-  - id: "running-sequence"
+    title: "Mapping animation states to routines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines the sequence table, which maps animation states to their corresponding routines. Each state is represented by a label (e.g., `:1`, `:2`) and a pointer to the routine that handles it (e.g., `dw startrun`, `dw stand`). The table includes a wide range of animations, from basic movements like running and jumping to complex actions like sword fighting and drinking potions. Mechner's use of rotoscoping—tracing live-action footage of his brother performing these moves—allowed him to create realistic animations that were groundbreaking for the time. The sequence table is a testament to Mechner's meticulous attention to detail, as he had to manually encode each animation and ensure smooth transitions between states. This system laid the foundation for the game's cinematic feel, which was a major innovation in platforming games. The table also highlights the constraints of the Apple II, as Mechner had to fit all these animations into the limited memory available."
+  - id: "running-animation"
     line_start: 151
     line_end: 154
-    title: "The running sequence: fluid motion in assembly"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Defining the running animation cycle"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
-    content: "The 'running' sequence is a key animation in Prince of Persia, encapsulating the fluid motion that defines the game's aesthetic. This section uses compact data structures to specify the actions and transitions involved in running, including references to 'runcyc1', which details the cyclical movement of the Prince's legs. Mechner's rotoscoping technique ensured that even this basic action felt lifelike, a significant achievement given the limitations of the Apple II's graphical capabilities. The running sequence is a microcosm of the game's design philosophy: prioritizing realism and cinematic quality within tight technical constraints. This approach influenced the development of future platformers, which sought to replicate the seamless animation and immersive gameplay pioneered by Prince of Persia."
-  - id: "start-run-sequence"
+    content: "The `running` routine defines the animation cycle for the character's running motion. It uses a combination of commands (`act`, `goto`) and pointers (`dw runcyc1`) to orchestrate the sequence of frames. Running is a fundamental action in Prince of Persia, as the game's platforming challenges often require precise timing and movement. Mechner's design ensures that the running animation is smooth and responsive, enhancing the player's immersion. The use of a separate routine for running reflects the modular nature of the game's animation system, which allowed Mechner to reuse and adapt routines for different contexts. This approach was crucial for fitting the game's complex animations into the Apple II's limited memory."
+  - id: "start-run-animation"
     line_start: 159
     line_end: 177
-    title: "Starting the run: building momentum"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Transitioning into a running state"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_animation"
     image_url: ""
     image_caption: ""
-    content: "The 'startrun' sequence captures the initial movements of the Prince as he begins to run. This section includes a series of 'db' (define byte) instructions that specify the frames and transitions required to build momentum. Each frame is carefully crafted to ensure a smooth transition from standing to running, reflecting Mechner's commitment to realism. The use of 'chx' commands to adjust the character's horizontal position demonstrates the meticulous attention to detail in creating lifelike movement. In the late 1980s, such fluid transitions were rare in video games, especially on hardware as limited as the Apple II. Mechner's innovative use of assembly language allowed him to overcome these limitations, setting a new standard for animation in platformers. The 'startrun' sequence is a foundational element of the game's dynamic movement system, influencing the design of countless action games that followed."
-  - id: "stand-sequence"
+    content: "The `startrun` routine handles the transition from a standing state to a running state. It defines a sequence of frames (`runstt1` to `runstt6`) that gradually accelerate the character into full motion. This attention to detail was part of Mechner's effort to create realistic animations that mirrored human movement. The routine also includes the running cycle (`runcyc1` to `runcyc8`), which loops to sustain the running motion. In 1989, animation systems like this were rare in video games, as most platformers used simple, repetitive sprites. Mechner's approach was inspired by his background in filmmaking, where he learned the importance of timing and fluidity in motion. The `startrun` routine exemplifies how Mechner combined technical ingenuity with artistic vision to push the boundaries of what was possible on the Apple II."
+  - id: "stand-animation"
     line_start: 182
     line_end: 186
-    title: "Standing still: a moment of calm"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Idle animation for standing still"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Idle_animation"
     image_url: ""
     image_caption: ""
-    content: "The 'stand' sequence represents the Prince in a neutral, stationary pose. While seemingly simple, this sequence is crucial for transitions between actions, serving as a baseline state. The 'db act,0' instruction indicates no active movement, while the 'goto' command loops back to the same state, ensuring the Prince remains idle until another input is received. In the context of the Apple II's limited processing power, even this basic sequence required careful optimization to avoid unnecessary memory usage. Mechner's attention to detail ensured that every frame, even those depicting inactivity, contributed to the game's cinematic feel. The 'stand' sequence exemplifies the balance between technical efficiency and artistic expression that defines Prince of Persia."
-  - id: "alert-stand-sequence"
+    content: "The `stand` routine defines the animation for the character standing still. It uses a simple sequence (`db act,0`, `db 15`) to maintain the idle state. While seemingly trivial, idle animations like this add a layer of realism to the game, making the character feel alive even when not in motion. In the context of the Apple II, where every byte of memory was precious, including an idle animation was a deliberate choice that reflected Mechner's commitment to creating a cinematic experience. The routine also loops back to itself (`dw stand`), ensuring that the character remains in the idle state until another action is triggered. This design decision highlights the modularity of Mechner's animation system, which allowed him to create complex behaviors with minimal code."
+  - id: "alert-stand-animation"
     line_start: 191
     line_end: 196
-    title: "Alert stand: tension in stillness"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Alert stance for heightened tension"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
-    content: "The 'alert stand' sequence portrays the Prince in a heightened state of readiness, adding a layer of tension to the gameplay. This section uses a loop to maintain the alert pose, with the 'db goto' command cycling back to the same state. The subtle difference between 'stand' and 'alert stand' reflects Mechner's cinematic approach to game design, where even minor variations in posture contribute to the narrative. In 1989, such attention to detail was groundbreaking, as most games focused on functional rather than expressive animations. By incorporating these nuances, Mechner elevated Prince of Persia beyond a typical platformer, creating a game that felt alive and immersive. The 'alert stand' sequence is a small but significant example of how Mechner's background in filmmaking influenced his approach to game development."
+    content: "The `goalertstand` routine transitions the character into an alert stance, signaling heightened tension or readiness. This animation is triggered in situations where the character needs to be prepared for immediate action, such as encountering an enemy or navigating a dangerous environment. The routine loops back to itself (`dw :loop`), maintaining the alert state until interrupted. Mechner's inclusion of an alert stance reflects his cinematic approach to game design, where character animations convey emotion and narrative context. In 1989, this level of detail was rare in video games, as most characters had limited animations that did not change based on context. The `goalertstand` routine demonstrates how Mechner used animation to enhance the storytelling and immersion of Prince of Persia."
 
 ---
-
-; excerpt — first 200 lines of 01 POP Source/Source/SEQTABLE.S
 
 * seqtable
 org = $3000

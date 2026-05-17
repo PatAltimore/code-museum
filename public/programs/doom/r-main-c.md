@@ -34,56 +34,56 @@ enhancements:
     line_end: 48
     title: "2048 Fine Angles for Field of View"
     wikipedia_url: "https://en.wikipedia.org/wiki/Field_of_view"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/FOV_both_eyes.svg/330px-FOV_both_eyes.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "field of view for both eye - human binocular vision (CC BY-SA 4.0)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/d/db/Binary_space_partitioning_point_inside.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "Binary space partitioning point inside (CC BY-SA 3.0)"
     content: "The `FIELDOFVIEW` constant defines the number of fine angles in the screen's width, representing the field of view for the player. This value, set to 2048, is a key parameter for determining how much of the game world is visible at any given time. In 1993, rendering a wide field of view on consumer hardware was a significant challenge due to limited processing power. John Carmack and the id Software team optimized DOOM's rendering engine to create a fast and immersive experience, balancing performance with visual fidelity. This constant directly influenced the game's ability to simulate a 3D perspective, making it a cornerstone of DOOM's revolutionary graphics."
   - id: "bbox-expansion-algorithm"
     line_start: 133
     line_end: 152
     title: "Bounding Box Expansion for Efficient Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/7/7e/BoundingBox.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "BoundingBox (CC BY 2.0)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Angle.svg/330px-Angle.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Angle at the Cartesian coordinate system. Adapted from Gerade.svg by Adrian Neumann, CC-BY-SA 3.0. (also, finally, a generic file name!) (CC BY-SA 4.0)"
     content: "The `R_AddPointToBox` function adjusts a bounding box to encompass a given point. This is a fundamental operation for spatial calculations, ensuring that objects are efficiently enclosed within a defined area. In the early 1990s, memory and processing power were scarce, so bounding boxes were crucial for optimizing collision detection and rendering. By expanding the box dynamically, the game could minimize unnecessary computations, focusing only on visible or relevant areas. This technique, while simple, was instrumental in enabling DOOM's fast-paced gameplay on hardware with limited capabilities."
   - id: "bsp-tree-side-calculation"
     line_start: 156
     line_end: 211
     title: "Determining Sides in a BSP Tree"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Binary_space_partition.png/330px-Binary_space_partition.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Binary space partition (Public domain)"
+    image_url: ""
+    image_caption: ""
     content: "The `R_PointOnSide` function is a key component of DOOM's Binary Space Partitioning (BSP) system. It determines whether a point lies on the front or back side of a partition plane, enabling efficient traversal of the BSP tree. BSP trees were a groundbreaking technique in the early '90s, allowing games like DOOM to quickly determine which parts of the game world were visible to the player. John Carmack adapted this method from computer graphics research, leveraging it to achieve real-time rendering on hardware that lacked modern GPUs. This function exemplifies the ingenuity required to overcome the technical limitations of the era."
   - id: "point-to-angle-conversion"
     line_start: 277
     line_end: 388
     title: "Mapping Cartesian Coordinates to Global Angles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Angle"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Angle.svg/330px-Angle.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Angle at the Cartesian coordinate system. Adapted from Gerade.svg by Adrian Neumann, CC-BY-SA 3.0. (also, finally, a generic file name!) (CC BY-SA 4.0)"
+    image_url: ""
+    image_caption: ""
     content: "The `R_PointToAngle` and `R_PointToAngle2` functions convert Cartesian coordinates into angles within DOOM's coordinate system. This is achieved by flipping coordinates into the first octant and using precomputed tangent tables for efficient angle calculation. In 1993, trigonometric functions were computationally expensive, especially on hardware without floating-point units. Carmack's use of lookup tables for trigonometric calculations was a masterstroke, drastically reducing the computational overhead and enabling the game to run smoothly on machines with limited processing power. This approach became a hallmark of performance optimization in early 3D games."
   - id: "texture-mapping-initialization"
     line_start: 542
     line_end: 603
     title: "Mapping Angles to Screen Coordinates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Texture_mapping_demonstration_animation.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "Texture mapping demonstration animation (CC0)"
+    image_url: ""
+    image_caption: ""
     content: "The `R_InitTextureMapping` function sets up the mapping between view angles and screen coordinates, a critical step in DOOM's rendering pipeline. By using precomputed tangent tables, the function calculates the relationship between the player's field of view and the screen's pixel grid. This mapping allows DOOM to flatten its 3D world onto a 2D screen, creating the illusion of depth and perspective. The function also handles edge cases to ensure smooth rendering across the entire screen. This technique was essential for achieving the game's signature visual style while maintaining high performance on 1990s hardware."
   - id: "light-table-initialization"
     line_start: 608
     line_end: 642
     title: "Dynamic Lighting with Precomputed Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(computer_graphics)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Display_resolution_standards.svg/330px-Display_resolution_standards.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Double-logarithmic comparison of common display resolution standards, ranging from QVGA to WQUXGA. (CC BY-SA 3.0)"
+    image_url: ""
+    image_caption: ""
     content: "The `R_InitLightTables` function initializes the `zlight` table, which calculates light levels based on distance and angle. Dynamic lighting was a standout feature of DOOM, adding realism and atmosphere to its environments. The use of precomputed tables allowed the game to simulate lighting effects efficiently, avoiding the computational cost of real-time calculations. This approach was inspired by techniques from earlier games and graphics research, adapted by Carmack to fit DOOM's unique requirements. The result was a visually striking game that ran smoothly on hardware with limited capabilities, setting a new standard for graphical fidelity in gaming."
   - id: "view-size-adjustment"
     line_start: 647
     line_end: 761
     title: "Scaling View Size for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_display_resolution"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Glasses_800_edit.png/330px-Glasses_800_edit.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "This image using POV-Ray 3.6 with Radiosity. The glasses, ashtray and pitcher were modeled with Rhino and the dice with Cinema 4D. (Public domain)"
+    image_url: ""
+    image_caption: ""
     content: "The `R_SetViewSize` and `R_ExecuteSetViewSize` functions allow DOOM to dynamically adjust its rendering resolution and detail level. This feature was critical for accommodating the wide range of hardware available in the early 1990s, from high-end PCs to more modest configurations. By scaling the view size, players could trade visual fidelity for performance, ensuring the game remained playable even on slower machines. This modular approach to rendering was ahead of its time, reflecting id Software's commitment to accessibility and optimization. The ability to adjust view size also influenced later games, becoming a standard feature in PC gaming."
   - id: "rendering-player-view"
     line_start: 868

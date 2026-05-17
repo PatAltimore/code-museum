@@ -51,6 +51,21 @@ lines of surrounding context
 above. Confirm line_start and line_end refer to non-blank lines within the section \
 you described, and that the range does not spill into adjacent sections
 
+Rules specific to assembly language files:
+- A subroutine's range runs from its entry label through its COMPLETE closing — include \
+the ENDP, ENDS, or equivalent closing directive if present, not just the final RET/RTS/JMP
+- Data tables or lookup tables immediately following a label are part of that label's \
+range — include every .byte, .word, db, dw, or data row until the next label or blank \
+separator
+- Inline comments that follow an instruction on the same line are part of that line — \
+they do not extend the range
+- When a subroutine ends with RTS or RET and is followed immediately by a data block \
+with no intervening label, include the data block in the range
+- Count lines with extreme care in assembly: every label line, every instruction line, \
+every comment-only line, and every blank line counts as exactly one line. Re-verify \
+line_end by looking at the line number printed beside the last line of the section in \
+the source listing above
+
 Rules for content — this is the most important part:
 Each annotation must transport the reader to the time and place this code was written. \
 Every card should answer: who wrote this, what problem were they solving, what was the \

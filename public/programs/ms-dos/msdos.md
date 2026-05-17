@@ -9,86 +9,70 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "msdos"
 order: 1
-description: "The foundational assembly code for MS-DOS 1.25, a pivotal operating system that shaped personal computing."
+description: "The foundational assembly code for MS-DOS 1.25, a pivotal operating system in personal computing history."
+is_excerpt: true
+excerpt_lines: 200
 
 summary:
-  - point: "Revision history documents rapid iteration from 86-DOS to MS-DOS 1.25"
+  - point: "Revision history documents rapid iteration over two years"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Interrupt entry points reveal the system's reliance on BIOS routines"
-    link: "https://en.wikipedia.org/wiki/BIOS"
-    link_label: "BIOS"
-  - point: "File Control Block (FCB) structure reflects CP/M legacy"
+  - point: "Interrupt vector table defines key system entry points"
+    link: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
+    link_label: "Interrupt Vector Table"
+  - point: "File Control Block (FCB) structure reflects CP/M heritage"
     link: "https://en.wikipedia.org/wiki/CP/M"
     link_label: "CP/M"
-  - point: "Drive Parameter Block (DPB) optimizes disk access and FAT management"
+  - point: "File Allocation Table (FAT) algorithm introduced efficient disk management"
     link: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     link_label: "File Allocation Table"
-  - point: "Segment definitions show the modular design of MS-DOS"
-    link: "https://en.wikipedia.org/wiki/Memory_segmentation"
-    link_label: "Memory Segmentation"
+  - point: "Drive Parameter Block (DPB) defines hardware abstraction for storage devices"
+    link: "https://en.wikipedia.org/wiki/DOS"
+    link_label: "DOS"
 
 enhancements:
   - id: "revision-history-rapid-iteration"
     line_start: 5
     line_end: 31
-    title: "Six Weeks, One Programmer, the Foundation of an Industry"
+    title: "Two Years of Rapid Iteration"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
-    content: "This section documents the revision history of 86-DOS, later branded as MS-DOS. Tim Paterson's work began in late 1980, and within six weeks, he had created a working operating system for Seattle Computer Products. The revision history here shows the rapid iteration and refinement of the code, with updates addressing directory handling, buffer management, and device recognition. By March 1981, Microsoft had purchased the rights to 86-DOS for $25,000, and Paterson joined Microsoft to adapt it for IBM's upcoming PC. Each version listed here reflects the intense pressure to meet deadlines and improve functionality for a rapidly evolving market. These updates laid the groundwork for MS-DOS's dominance in the 1980s, with features like hidden files, date and time stamping, and error trapping becoming industry standards."
-  - id: "interrupt-entry-points"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png/330px-FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "FAT 12 et 16 - Entrée d'un fichier (CC BY-SA 4.0)"
+    content: "The revision history section provides a fascinating glimpse into the development process of MS-DOS, originally 86-DOS. Each entry documents incremental improvements and bug fixes over a two-year period, from late 1980 to early 1982. Tim Paterson, initially working at Seattle Computer Products, wrote the first version in just six weeks. After Microsoft acquired the system in July 1981, the pace of development accelerated, driven by the looming IBM PC launch. The entries reveal how the team adapted to hardware constraints, added features like hidden files and device mapping, and fixed critical bugs like the 'no write-through' error. This iterative approach, common in early software development, highlights the urgency and experimental nature of the era. The revision history also reflects the influence of CP/M, the dominant OS for microcomputers at the time, and the team's efforts to improve upon it."
+  - id: "interrupt-vector-table"
     line_start: 36
     line_end: 45
-    title: "Interrupts: The Glue Between Hardware and Software"
-    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/IBM_PC-IMG_7271.jpg/330px-IBM_PC-IMG_7271.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "IBM Personal Computer  On display at the Musée Bolo, EPFL, Lausanne. (CC BY-SA 2.0 fr)"
-    content: "This section defines the interrupt entry points for MS-DOS, which serve as critical interfaces between the operating system and the underlying hardware. Each interrupt corresponds to a specific function, such as disk reads, writes, or handling fatal errors. In the early 1980s, the IBM PC's BIOS provided a standardized way for software to interact with hardware, and MS-DOS leveraged this heavily. The use of interrupts reflects the modular design philosophy of the era, allowing MS-DOS to function across different hardware configurations. These entry points were essential for enabling compatibility with the IBM PC and later clones, ensuring MS-DOS's widespread adoption."
-  - id: "conditional-assembly-ibm-vs-non-ibm"
-    line_start: 47
-    line_end: 61
-    title: "Conditional Assembly: Adapting to IBM and Beyond"
-    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/CPM-86.png/330px-CPM-86.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "CP/M-86 screenshot (Public domain)"
-    content: "This section uses conditional assembly directives to differentiate between IBM-specific and non-IBM configurations. For example, the escape character and device count vary depending on whether the code is compiled for IBM systems. In 1981, IBM's entry into the personal computing market was transformative, and MS-DOS had to accommodate both IBM's specifications and the broader ecosystem of compatible hardware. This flexibility was key to Microsoft's strategy of licensing MS-DOS to multiple OEMs, allowing it to dominate the operating system market. The conditional assembly approach ensured that MS-DOS could be tailored to different hardware environments without duplicating code."
+    title: "Mapping the System's Nervous System"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines the interrupt vector table, a critical mechanism for handling system-level events and hardware interactions. Each entry corresponds to a specific function, such as disk reads, fatal error handling, or Control-C aborts. In the early 1980s, interrupt-driven programming was essential for efficient operation on resource-constrained hardware like the Intel 8086. Tim Paterson's design reflects the influence of CP/M, which also used interrupts to manage I/O devices. By standardizing these entry points, MS-DOS provided a consistent interface for hardware and software developers, enabling the rapid proliferation of compatible applications and peripherals. This design choice was crucial for the success of the IBM PC and its clones, as it allowed third-party developers to create software that could run on a wide range of hardware."
   - id: "file-control-block-structure"
     line_start: 76
-    line_end: 96
-    title: "File Control Block: A Legacy from CP/M"
+    line_end: 97
+    title: "File Control Blocks: A Nod to CP/M"
     wikipedia_url: "https://en.wikipedia.org/wiki/CP/M"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Pair_of_BIOS_chips.jpg/330px-Pair_of_BIOS_chips.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Pair of BIOS chips (CC BY-SA 4.0)"
-    content: "The File Control Block (FCB) structure defined here is a direct inheritance from CP/M, the operating system that inspired MS-DOS. It includes fields for file name, size, date, and time, as well as cluster information for disk storage. In 1981, the concept of a hierarchical file system was still evolving, and the FCB provided a simple yet effective way to manage files. Tim Paterson adapted this structure from CP/M to ensure compatibility with existing software, a decision that helped MS-DOS gain traction in the market. While the FCB was eventually replaced by more advanced file management techniques in later versions, its presence in MS-DOS 1.25 highlights the transitional nature of early personal computing."
-  - id: "drive-parameter-block"
-    line_start: 126
-    line_end: 142
-    title: "Optimizing Disk Access with Drive Parameter Blocks"
+    image_url: ""
+    image_caption: ""
+    content: "The File Control Block (FCB) structure is a direct inheritance from CP/M, the operating system that inspired MS-DOS. FCBs were used to manage file metadata, including file names, sizes, dates, and cluster locations. This structure was central to file management in MS-DOS 1.x, though it was later replaced by file handles in version 2.0. The design reflects the constraints of the era, such as the need to minimize memory usage and optimize disk access. Paterson's decision to retain the FCB model ensured compatibility with existing CP/M software, easing the transition for users and developers. However, the limitations of FCBs—such as their fixed size and lack of support for hierarchical directories—highlight the growing pains of early personal computing. These constraints were addressed in later versions of MS-DOS, which moved toward a more Unix-like file system."
+  - id: "file-allocation-table-algorithm"
+    line_start: 99
+    line_end: 123
+    title: "The Birth of the File Allocation Table"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The Drive Parameter Block (DPB) structure encapsulates critical information about the physical and logical configuration of storage devices, including sector size, cluster size, and the location of the File Allocation Table (FAT). In the early 1980s, storage devices were limited in capacity and performance, making efficient disk access a priority. The DPB allowed MS-DOS to abstract the details of different disk formats, enabling the operating system to work seamlessly across various hardware. This abstraction was crucial for MS-DOS's success, as it allowed the OS to support the diverse range of storage devices used by IBM PCs and compatible systems. The DPB's design reflects the ingenuity required to optimize performance within the constraints of the era."
-  - id: "segment-definitions"
-    line_start: 148
-    line_end: 160
-    title: "Memory Segmentation: Organizing Code for Efficiency"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
+    content: "This section describes the File Allocation Table (FAT) algorithm, a groundbreaking approach to disk management. FAT uses a 12-bit entry for each allocation unit, packed into three bytes for every two entries. The algorithm efficiently tracks file clusters, marking unused clusters with zeros and end-of-file clusters with values greater than 0FF8H. This design was revolutionary for its simplicity and adaptability, making it ideal for the limited storage capacities and processing power of early PCs. Tim Paterson's implementation of FAT in MS-DOS laid the foundation for its widespread adoption in later operating systems, including Windows. The FAT file system became a standard for floppy disks, hard drives, and even flash storage, demonstrating the enduring impact of this early innovation."
+  - id: "drive-parameter-block"
+    line_start: 126
+    line_end: 142
+    title: "Abstracting Hardware with Drive Parameter Blocks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOS"
     image_url: ""
     image_caption: ""
-    content: "The segment definitions in this section outline the modular organization of MS-DOS's code, separating it into distinct areas for executable code, constants, and data. This approach was essential for working within the constraints of the 8086 processor, which used segmented memory addressing. By dividing the program into segments, developers could optimize memory usage and ensure that the operating system could run efficiently on machines with limited RAM. This design choice was a hallmark of early PC software development, influencing the architecture of many subsequent operating systems. The segmentation strategy allowed MS-DOS to scale with the evolving hardware capabilities of the 1980s."
-  - id: "bios-segment"
-    line_start: 162
-    line_end: 193
-    title: "BIOS Segment: Bridging Software and Hardware"
-    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
-    image_url: ""
-    image_caption: ""
-    content: "The BIOS segment contains definitions for various low-level hardware interaction routines, such as reading and writing to disks, managing console input/output, and handling system time. These routines are stored at fixed memory locations, enabling MS-DOS to interact directly with the IBM PC's BIOS. In 1981, this tight coupling between the operating system and hardware was a necessity, as it provided a standardized way to perform essential functions across different machines. The BIOS segment represents the foundational layer of MS-DOS, ensuring compatibility with the IBM PC and its clones. This design choice was instrumental in establishing MS-DOS as the de facto standard for personal computing."
+    content: "The Drive Parameter Block (DPB) structure abstracts the physical characteristics of storage devices, such as sector size, cluster size, and the layout of the File Allocation Table (FAT). This abstraction was crucial for MS-DOS's ability to support a wide variety of hardware, from floppy drives to hard disks. By encapsulating device-specific details in a standardized structure, DPBs enabled the operating system to interact with storage devices in a consistent manner. This design reflects the modular philosophy of MS-DOS, which prioritized compatibility and extensibility. The DPB concept influenced later operating systems, which adopted similar abstractions to manage diverse hardware environments. In the context of 1981, this approach was a forward-thinking solution to the challenges of a rapidly evolving computing landscape."
 
 ---
-
-; excerpt — first 200 lines of v1.25/source/MSDOS.ASM
 
 ; 86-DOS  High-performance operating system for the 8086  version 1.25
 ;       by Tim Paterson

@@ -9,54 +9,62 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "mscode"
 order: 4
-description: "The foundational assembly code for MS-DOS 2.0, a pivotal operating system that shaped personal computing in the 1980s."
+description: "This file represents the core assembly code for MS-DOS 2.0, a pivotal operating system that shaped personal computing in the 1980s."
+is_excerpt: true
+excerpt_lines: 200
 
 summary:
-  - point: "Conditional assembly directives for OEM-specific features"
+  - point: "Conditional compilation for OEM-specific features"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Version header generation with support for Kanji characters"
-    link: "https://en.wikipedia.org/wiki/Kanji"
-    link_label: "Kanji"
-  - point: "System call dispatcher enabling multitasking and device handling"
-    link: "https://en.wikipedia.org/wiki/System_call"
-    link_label: "System Call"
-  - point: "Stack manipulation for interrupt handling and task switching"
+  - point: "Header string generation for different locales"
+    link: "https://en.wikipedia.org/wiki/Code_page"
+    link_label: "Code Page"
+  - point: "System call dispatcher enabling multitasking-like behavior"
+    link: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    link_label: "Interrupt Handler"
+  - point: "Stack manipulation for system calls and error handling"
     link: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
     link_label: "Stack"
-  - point: "Error mode management and device-specific routines"
-    link: "https://en.wikipedia.org/wiki/Error_handling"
-    link_label: "Error Handling"
+  - point: "OEM handler integration for non-IBM systems"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
 
 enhancements:
-  - id: "conditional-assembly-directives"
+  - id: "conditional-compilation-oem-kanji-highmem"
     line_start: 17
     line_end: 27
-    title: "Conditional assembly for OEM-specific features"
+    title: "Conditional compilation for OEM-specific features"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
-    content: "These lines define conditional assembly directives for features like Kanji support, IBM compatibility, and high memory usage. In the early 1980s, MS-DOS was designed to be adaptable for different hardware manufacturers, a critical decision that allowed Microsoft to license the operating system to over 70 OEMs within a year. Each OEM could tailor MS-DOS to their hardware, ensuring compatibility and differentiation. Tim Paterson, the original author of 86-DOS, laid the groundwork for this modularity, and Microsoft expanded it in MS-DOS 2.0. This adaptability was inspired by Unix's portability, but constrained by the limited memory and processing power of early PCs. These directives reflect the foresight of building a system flexible enough to dominate the fragmented PC market."
-  - id: "version-header-generation"
+    image_url: ""
+    image_caption: ""
+    content: "These lines define conditional compilation flags for OEM-specific features, including support for Kanji characters and high memory configurations. In the early 1980s, MS-DOS was licensed to over 70 OEMs, each with unique hardware requirements. These flags allowed Microsoft to tailor the operating system to specific machines without duplicating effort. For example, Kanji support was critical for Japanese systems, reflecting the global ambitions of MS-DOS. High memory configurations addressed the limitations of the 640 KB barrier imposed by the IBM PC architecture. This modular approach was inspired by Unix's portability and proved essential as MS-DOS became the foundation for countless systems worldwide."
+  - id: "oem-handler-integration"
+    line_start: 50
+    line_end: 52
+    title: "OEM handler integration for non-IBM systems"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "These lines define an OEM-specific handler for systems not manufactured by IBM. When MS-DOS was licensed to OEMs, each had unique hardware and software requirements. This handler allowed customization for non-IBM systems, ensuring compatibility while maintaining a unified codebase. Microsoft's decision to retain licensing rights for MS-DOS was revolutionary, enabling them to dominate the operating system market. By accommodating OEMs through modular design, MS-DOS became the backbone of personal computing, powering machines from Compaq to Zenith. This flexibility was inspired by Unix's portability and proved critical in establishing Microsoft's dominance during the 1980s."
+  - id: "header-string-generation"
     line_start: 61
     line_end: 86
-    title: "Dynamic version header with Kanji support"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Kanji_furigana.svg/330px-Kanji_furigana.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Kanji with Furigana (CC BY-SA 3.0)"
-    content: "This section generates a dynamic version header, displaying the MS-DOS version number and copyright information. Notably, it includes support for Kanji characters, addressing the needs of Japanese users. By 1983, Japan was a burgeoning market for personal computers, and Microsoft recognized the importance of localization. The Kanji encoding here demonstrates the challenges of adapting software for non-Latin scripts, requiring careful manipulation of byte values to represent complex characters. This approach was a precursor to the broader internationalization efforts that would become standard in software development. The inclusion of Kanji support in MS-DOS 2.0 highlights Microsoft's ambition to make its operating system globally relevant, a strategy that contributed to its widespread adoption."
+    title: "Header string generation for different locales"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Code_page"
+    image_url: ""
+    image_caption: ""
+    content: "This section generates the header string displayed during MS-DOS startup, with variations for Kanji-enabled systems. The code dynamically constructs the version number and appends locale-specific strings. For Kanji systems, it uses extended ASCII codes to represent Japanese characters. In the early 1980s, localization was a novel challenge for software developers, as ASCII was primarily designed for English text. Microsoft's decision to support Kanji reflects their strategic entry into the Japanese market, a critical step in establishing MS-DOS as a global standard. This approach also highlights the constraints of early computing, where every byte mattered, and localization required intricate assembly-level manipulation."
   - id: "system-call-dispatcher"
     line_start: 91
     line_end: 193
-    title: "System call dispatcher and multitasking"
-    wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Linux_kernel_interfaces.svg/330px-Linux_kernel_interfaces.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Illustration of Linux kernel interfaces (CC BY-SA 3.0)"
-    content: "This extensive section implements the system call dispatcher, which handles various interrupt-driven operations in MS-DOS. It includes entry points for quitting programs, executing commands, and managing system calls. The code also introduces multitasking capabilities, a significant step forward for MS-DOS. By saving and restoring user stack states, the operating system could manage multiple tasks more effectively, a feature inspired by Unix but adapted for the constrained environment of the IBM PC. In 1983, multitasking was a novel concept for personal computers, which were primarily single-task systems. This innovation laid the groundwork for more advanced operating systems and demonstrated Microsoft's commitment to evolving MS-DOS into a robust platform. While true multitasking wouldn't arrive until later, these early efforts were crucial in setting the stage for future developments."
+    title: "System call dispatcher enabling multitasking-like behavior"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements the system call dispatcher, a cornerstone of MS-DOS's functionality. It handles interrupts (INT 20H and INT 21H) and routes them to the appropriate routines. The dispatcher saves the current state, manipulates the stack, and flags that the system is in DOS mode. Notably, it includes rudimentary multitasking-like behavior by saving and restoring user stack pointers, a nod to Unix's process management. In 1983, multitasking was rare in consumer operating systems due to hardware limitations, but MS-DOS 2.0's dispatcher laid the groundwork for future enhancements. This design was influenced by Unix's simplicity and modularity, showcasing Microsoft's ambition to evolve MS-DOS beyond its origins as a single-tasking system."
 
 ---
-
-; excerpt — first 200 lines of v2.0/source/MSCODE.ASM
 
 ;
 ; MSCODE.ASM -- MSDOS code

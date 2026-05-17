@@ -9,62 +9,62 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "exec"
 order: 7
-description: "Implements the EXEC system call in MS-DOS v2.0, enabling program loading and execution in both .COM and .EXE formats."
+description: "Implements the EXEC system call in MS-DOS v2.0, enabling program execution and overlay loading in a segmented memory model."
+is_excerpt: true
+excerpt_lines: 200
 
 summary:
-  - point: "Supports both .COM and .EXE formats for program execution"
+  - point: "Supports .COM and .EXE program formats for execution"
     link: "https://en.wikipedia.org/wiki/COM_file"
-    link_label: ".COM file"
-  - point: "Introduces segmented memory handling for .EXE files"
-    link: "https://en.wikipedia.org/wiki/EXE_(file_format)"
-    link_label: ".EXE file format"
-  - point: "Includes error handling for memory constraints and file issues"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
-  - point: "Reflects Unix-inspired design in MS-DOS v2.0"
-    link: "https://en.wikipedia.org/wiki/Xenix"
-    link_label: "XENIX"
-  - point: "Demonstrates early IBM PC compatibility considerations"
+    link_label: ".COM File Format"
+  - point: "Introduces overlay loading for memory-constrained systems"
+    link: "https://en.wikipedia.org/wiki/Overlay_(programming)"
+    link_label: "Overlay Programming"
+  - point: "Handles environment setup and command-line arguments"
+    link: "https://en.wikipedia.org/wiki/Environment_variable"
+    link_label: "Environment Variables"
+  - point: "Reflects MS-DOS's adaptation to IBM PC hardware constraints"
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
+  - point: "Demonstrates early multitasking and memory management techniques"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
 
 enhancements:
   - id: "exec-system-call-overview"
     line_start: 1
     line_end: 17
-    title: "EXEC: The Heart of Program Execution"
+    title: "EXEC: The Gateway to Program Execution"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
-    content: "This section introduces the EXEC system call, a cornerstone of MS-DOS's ability to load and execute programs. The call is invoked via INT 21h, function 4Bh, and supports three primary functions: loading and executing a program (AL=0), loading a program without execution (AL=1), and loading overlays (AL=3). The programmer's goal here was to provide a flexible mechanism for running software in the constrained environment of early PCs. At the time, the IBM PC had just launched, equipped with an Intel 8088 processor and limited memory. MS-DOS needed to handle both flat .COM files and segmented .EXE files, reflecting the growing complexity of software development. Tim Paterson, who originally wrote 86-DOS, laid the groundwork for this functionality, while Microsoft's adaptation for v2.0 added features inspired by Unix, such as subdirectories and file handles. The EXEC call's design influenced generations of operating systems, establishing conventions for program execution and error handling that persisted long after MS-DOS's dominance."
-  - id: "exec-error-handling"
-    line_start: 66
-    line_end: 71
-    title: "Error Codes: Coping with Constraints"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
-    content: "The EXEC system call includes robust error handling, returning specific codes for invalid functions, bad file formats, insufficient memory, and missing files. These codes reflect the challenges of programming for early PCs, where hardware limitations were a constant concern. Memory was scarce, and disk drives were slow and unreliable. By providing clear error codes, MS-DOS empowered developers to diagnose and address issues in their software, fostering a more resilient ecosystem of applications. This approach was influenced by Unix, which emphasized clear communication between the operating system and user programs. The error codes also highlight the meticulous attention to detail in MS-DOS's design, ensuring it could operate reliably in a wide range of environments."
-  - id: "ibm-specific-code"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Elf-layout--en.svg/330px-Elf-layout--en.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Layout of an ELF file (CC BY-SA 3.0)"
+    content: "These opening lines define the EXEC system call, a cornerstone of MS-DOS's ability to load and execute programs. The programmer's immediate goal was to provide a unified interface for running both .COM files (simple, flat memory layout) and .EXE files (segmented, with headers). This section outlines the three main functions of EXEC: load and execute, load without execution, and load overlays. In 1983, MS-DOS v2.0 was heavily influenced by Unix concepts, and this design reflects that influence by introducing structured program loading and overlays, which allowed developers to manage memory more efficiently in constrained environments. At the time, the IBM PC's 8086 processor and its 1MB address space imposed strict limits on program size and complexity. The EXEC call was a direct response to these constraints, enabling multitasking-like behavior by carefully managing memory and execution contexts. This foundational mechanism paved the way for MS-DOS's widespread adoption and compatibility with diverse software ecosystems."
+  - id: "exec-data-structure-definitions"
     line_start: 74
-    line_end: 126
-    title: "IBM-Specific Adjustments in EXEC"
-    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
-    content: "This section includes code tailored for IBM PCs, reflecting Microsoft's commitment to supporting the new platform. It handles tasks like saving and disabling Ctrl-C trapping, managing the program's default drive, and setting up the user return stack. These adjustments were necessary to ensure compatibility with IBM's hardware and BIOS, which differed from other systems of the era. Microsoft's decision to prioritize IBM compatibility was strategic, as the IBM PC quickly became the standard for personal computing. This code showcases the collaborative effort between Microsoft and IBM, which helped establish MS-DOS as the dominant operating system for PCs and cemented Microsoft's role as a key player in the industry."
-  - id: "exec-function-validation"
-    line_start: 132
-    line_end: 200
-    title: "Validating EXEC Function Calls"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    line_end: 120
+    title: "Data Structures for Program Loading"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Executable_and_Linkable_Format"
     image_url: ""
     image_caption: ""
-    content: "This section validates the function specified in the EXEC system call, ensuring it is one of the supported options (0, 1, or 3). Invalid functions trigger an error, preventing unintended behavior. The validation logic reflects the careful design of MS-DOS, which aimed to balance flexibility with reliability. By enforcing strict rules for function calls, the system reduced the risk of crashes and corruption, which were common issues in early computing. This approach was influenced by Unix, which emphasized robust error handling and predictable behavior. The validation code highlights the evolution of MS-DOS from a simple CP/M clone to a more sophisticated operating system, capable of meeting the demands of a rapidly growing software ecosystem."
+    content: "This section defines the data structures used by the EXEC system call to manage program loading. From environment segment addresses to file control blocks (FCBs), these variables encapsulate the state required to load and execute programs. The inclusion of fields like `exec_signature` (which must contain 'MZ', the magic number for .EXE files) highlights the transition from simple .COM files to more sophisticated .EXE files with headers and relocation tables. In the early 1980s, these structures represented cutting-edge techniques for handling segmented memory and program metadata. Tim Paterson, who originally developed 86-DOS, likely drew inspiration from CP/M and Unix while designing these mechanisms. The careful organization of these fields ensured compatibility with the IBM PC's hardware and allowed MS-DOS to become a versatile operating system. These structures influenced later executable formats, including the Portable Executable (PE) format used in Windows."
+  - id: "validate-function-and-user-context"
+    line_start: 132
+    line_end: 182
+    title: "Validating Functionality and User Context"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Control-C"
+    image_url: ""
+    image_caption: ""
+    content: "This segment validates the EXEC function and sets up the user context for program execution. It begins by saving and disabling the Ctrl-C trapping mechanism, a critical feature for handling user interrupts. The code then retrieves the current Program Segment Prefix (PDB), which contains metadata about the running program, and sets up the user return stack. These steps ensure a seamless transition between the calling program and the loaded program. In 1983, these techniques were essential for managing the limited resources of the IBM PC while providing a robust user experience. The decision to disable Ctrl-C during execution reflects the need to prevent interruptions that could corrupt memory or destabilize the system. This section also demonstrates MS-DOS's ability to adapt to hardware quirks, such as segment alignment issues. By carefully managing the stack and segment addresses, the code ensures compatibility across different configurations. These practices laid the groundwork for modern operating systems' handling of program execution and user interrupts."
+  - id: "exec-function-dispatch"
+    line_start: 184
+    line_end: 200
+    title: "Dispatching EXEC Functions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
+    image_url: ""
+    image_caption: ""
+    content: "This final section dispatches the EXEC functions based on the value of the AL register. It checks for valid function codes (0, 1, or 3) and prepares the necessary arguments for program loading. Invalid function codes result in an error being raised, showcasing early error-handling mechanisms in MS-DOS. The careful validation and dispatching reflect the operating system's emphasis on reliability and compatibility. In the early 1980s, these checks were crucial for preventing crashes and ensuring predictable behavior in a rapidly growing software ecosystem. The use of interrupts (INT 21h) to invoke system calls was a hallmark of MS-DOS, providing a simple yet powerful interface for developers. This design influenced later operating systems, including Windows, which retained the interrupt-driven model for backward compatibility. The EXEC function's ability to handle overlays also foreshadows modern techniques for dynamic linking and modular software design."
 
 ---
-
-; excerpt — first 200 lines of v2.0/source/EXEC.ASM
 
 SUBTTL $exec - load/go a program
 PAGE

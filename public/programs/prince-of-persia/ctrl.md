@@ -9,70 +9,70 @@ year: 1989
 author: "Jordan Mechner"
 slug: "ctrl"
 order: 5
-description: "This file translates joystick and keyboard input into game actions for Prince of Persia, showcasing Jordan Mechner's mastery of 6502 assembly and cinematic game design."
+description: "This file translates hardware input into game actions for Prince of Persia, a groundbreaking cinematic platformer."
+is_excerpt: true
+excerpt_lines: 200
 
 summary:
-  - point: "Bank-switched memory management for Apple IIe/IIc"
+  - point: "Memory bank switching to fit within 128K constraints"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank Switching"
   - point: "Rotoscoping animation technique traced from live-action footage"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Precision handling of player movement and collision detection"
-    link: "https://en.wikipedia.org/wiki/Collision_detection"
-    link_label: "Collision Detection"
-  - point: "Cinematic platformer design principles in assembly language"
+  - point: "Complex handling of player states like freefall, hanging, and impalement"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     link_label: "Prince of Persia (1989)"
-  - point: "Innovative use of parameters for realistic character physics"
-    link: "https://en.wikipedia.org/wiki/Physics_engine"
-    link_label: "Physics Engine"
+  - point: "Apple II hardware constraints shaped game design decisions"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II"
+  - point: "Solo development by Jordan Mechner over four years"
+    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
+    link_label: "Jordan Mechner"
 
 enhancements:
-  - id: "jump-table-for-control-handling"
+  - id: "jump-table-for-subroutine-dispatch"
     line_start: 8
     line_end: 16
-    title: "Jump Table: Efficient Control Handling"
+    title: "Jump Table: Efficient Subroutine Dispatch"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/PhysicsEngine.ogv/330px--PhysicsEngine.ogv.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo"
-    image_caption: "PhysicsEngine (CC BY-SA 3.0)"
-    content: "These lines implement a jump table, a classic technique in assembly programming that allows rapid branching to specific subroutines based on input or state. Here, Mechner sets up jumps to routines like PLAYERCTRL, CHECKFLOOR, and SHADCTRL, each handling a distinct aspect of gameplay. In the mid-1980s, this approach was essential for squeezing performance out of the Apple II's 1 MHz 6502 processor. Mechner, working solo, had to optimize every byte of memory and every clock cycle to fit his ambitious vision of fluid animation and responsive controls into the constraints of the hardware. Jump tables were a common solution, borrowed from earlier assembly traditions, but their use here underscores the complexity of translating cinematic gameplay into raw machine code. This structure would later influence how game developers approached modular design in assembly and higher-level languages."
-  - id: "misc-changeable-parameters"
+    image_url: ""
+    image_caption: ""
+    content: "The code begins with a jump table—a compact mechanism for dispatching execution to various subroutines. Each `jmp` instruction points to a specific routine responsible for handling a distinct aspect of gameplay, such as player control (`PLAYERCTRL`), floor collision (`CHECKFLOOR`), or shadow behavior (`SHADCTRL`). This design reflects the constraints of the 6502 processor, which lacked advanced branching instructions or indirect function calls. By centralizing these jumps, Jordan Mechner streamlined the game's logic flow while conserving memory—a critical consideration for the Apple II's 128K limit. In the mid-1980s, jump tables were a common solution for managing state transitions in games and operating systems. They allowed developers to bypass the overhead of conditional branching, which could slow down performance on hardware like the Apple IIe. Mechner's use of this technique demonstrates his deep understanding of the platform's limitations and his ability to optimize for speed and clarity. This structure influenced later game development, where similar dispatch mechanisms became standard in state-driven systems. While modern languages abstract away such details, the jump table remains a testament to the ingenuity required to make complex games run on early hardware. Mechner's work here laid the groundwork for the fluid gameplay that made Prince of Persia a classic."
+  - id: "game-parameters-for-character-behavior"
     line_start: 40
-    line_end: 68
-    title: "Physics Parameters: Fine-Tuning Realism"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/PhysicsEngine.ogv/330px--PhysicsEngine.ogv.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo"
-    image_caption: "PhysicsEngine (CC BY-SA 3.0)"
-    content: "This section defines key parameters for character physics, such as velocities, thresholds, and timing values. Mechner meticulously adjusts values like DeathVelocity (33) and OofVelocity (22) to create a sense of weight and danger in the protagonist's movements. These constants reflect Mechner's background in film and his desire to imbue the game with cinematic realism. The grabreach and grabspeed parameters, for instance, determine the hero's ability to catch ledges—a critical mechanic that adds tension and precision to gameplay. In the late 1980s, such attention to detail was rare in video games, especially on hardware as limited as the Apple II. Mechner's work here laid the groundwork for future physics engines, influencing how games simulate movement and interaction."
-  - id: "falling-routine"
+    line_end: 65
+    title: "Game Parameters: Tuning Character Physics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines key parameters governing the player's movement and interactions, such as `DeathVelocity`, `grabreach`, and `swordthres`. These values control how the character reacts to falling, grabbing ledges, and engaging in combat, encapsulating the game's physics and mechanics in a series of constants. In the 1980s, game physics were often hardcoded into assembly, as there were no high-level physics engines or libraries. Mechner had to manually tweak these values to achieve the precise, cinematic feel he envisioned. For example, `grabspeed` and `grablead` determine the timing and conditions for ledge grabs—a critical feature in a platformer where precision is paramount. The iterative process of adjusting these parameters likely involved extensive playtesting. These constants highlight the balance between realism and playability. Mechner's background in filmmaking influenced his approach, as he sought to create animations and interactions that felt natural yet responsive. The success of Prince of Persia's fluid gameplay owes much to the careful calibration seen here. Modern games often use similar parameter-driven systems, albeit implemented with more sophisticated tools. Mechner's work reminds us that even the simplest constants can shape the player's experience profoundly."
+  - id: "falling-subroutine-handling-freefall"
     line_start: 76
     line_end: 99
-    title: "Falling: A Cinematic Descent"
+    title: "Falling: Handling Freefall and Floor Collisions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "This routine handles the player's descent through the game world, checking whether the character has passed through the floor plane and determining the consequences. Mechner's code checks for solid blocks, adjusts the character's position, and decides whether to continue falling or stop. The logic is intricate, reflecting the game's emphasis on realistic movement and perilous environments. In 1989, collision detection was still a developing field, and Mechner's implementation on the Apple II was a technical marvel. He had to account for the machine's limited memory and processing power while delivering smooth, believable gameplay. This routine captures the essence of Prince of Persia's design: every fall feels consequential, every landing precise. The techniques here would influence platformer design for decades, from Super Mario Bros. to modern indie titles."
-  - id: "check-floor-routine"
+    content: "The `falling` subroutine handles the player's descent during freefall, checking whether they have passed through the floor plane and determining the consequences. It begins by comparing the character's vertical position (`CharY`) with the floor's height (`FloorY`). If the player is above the floor, the routine jumps to `fallon`, allowing the fall to continue. If the player has reached or passed the floor, the code checks whether the floor is solid or contains special elements like spikes. In the mid-1980s, collision detection was a challenging problem for game developers. The Apple II lacked hardware support for such calculations, so Mechner had to implement them manually in assembly. His approach here is both efficient and adaptable, using subroutines like `getunderft` and `InsideBlock` to handle specific scenarios. This modularity allowed him to account for edge cases, such as falling through loose floors or landing on spikes. The falling mechanics are central to Prince of Persia's gameplay, emphasizing the perilous nature of the environment. Mechner's cinematic vision required precise control over these interactions, ensuring that every fall felt dramatic yet fair. The techniques seen here influenced later platformers, where collision detection and physics became increasingly sophisticated. Mechner's work remains a masterclass in achieving complex behavior within severe hardware constraints."
+  - id: "checkfloor-subroutine-player-state"
     line_start: 106
     line_end: 133
-    title: "Check Floor: Grounding the Hero"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
+    title: "CHECKFLOOR: Decoding Player State"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
     image_caption: ""
-    content: "The CHECKFLOOR routine determines whether the protagonist is hanging, freefalling, or grounded. It uses a series of comparisons to evaluate the character's action and position, ensuring smooth transitions between states. Mechner's code reflects his cinematic ambitions: every movement is calculated to maintain immersion and drama. In the late 1980s, such detailed state management was rare, especially in assembly language. Mechner's work here demonstrates his ability to translate filmic principles into interactive mechanics. This routine ensures that the hero's movements feel grounded and believable, a hallmark of Prince of Persia's design. The logic here would inspire future developers to prioritize realism and fluidity in character animation."
-  - id: "hit-floor-routine"
+    content: "The `CHECKFLOOR` subroutine evaluates the player's current state, determining whether they are hanging, freefalling, or on the ground. By examining the `CharAction` and `CharPosn` variables, the routine decides the appropriate course of action, such as jumping to `falling` for freefall or `onground` for stable footing. This logic is a classic example of a finite-state machine, a common design pattern in game development. In the constrained environment of the Apple II, state machines were a practical way to manage complex interactions without consuming excessive memory or processing power. Mechner's implementation is notable for its clarity and efficiency, with each state transition clearly defined. The ability to accurately track and respond to the player's state was crucial for Prince of Persia's immersive gameplay. Mechner's cinematic aspirations required seamless transitions between actions, ensuring that the character's movements felt fluid and natural. This subroutine exemplifies the meticulous attention to detail that made the game a landmark achievement. The principles seen here continue to underpin modern game design, where state machines remain a foundational tool."
+  - id: "hitflr-handling-floor-collisions"
     line_start: 140
     line_end: 199
-    title: "Hit Floor: Landing with Impact"
+    title: "Hit Floor: Handling Collisions and Consequences"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
-    content: "This routine handles the consequences of landing, checking for spikes, edges, and impact severity. Mechner's code adjusts the character's position, triggers animations, and calculates damage based on velocity. The attention to detail here is remarkable, reflecting Mechner's desire to create a game that feels cinematic and visceral. In 1989, such nuanced handling of collisions and landings was groundbreaking, especially on the Apple II's limited hardware. Mechner's approach combines physics calculations with dramatic flair, ensuring that every landing feels significant. This routine exemplifies the game's commitment to realism and tension, influencing how platformers handle character-environment interactions."
+    content: "The `hitflr` subroutine manages the player's interactions upon hitting the floor, aligning their position with the surface and determining the outcome based on factors like velocity and the type of floor. If the player lands on spikes, the routine checks whether they are lethal, potentially triggering the `impale` sequence. For non-lethal landings, it assesses the player's velocity to decide between soft, medium, or hard landings, each with its own consequences. This section showcases Mechner's attention to detail in simulating realistic physics and interactions. The Apple II's hardware lacked support for complex physics calculations, so Mechner had to implement them manually in assembly. The use of subroutines like `getunderft` and `getdist` demonstrates his modular approach, allowing him to handle diverse scenarios within the game's constraints. The handling of floor collisions is a defining feature of Prince of Persia, contributing to its sense of danger and realism. Mechner's cinematic vision required precise control over these interactions, ensuring that every landing felt impactful. This subroutine reflects the game's broader emphasis on fluid, lifelike animations and interactions. Its influence can be seen in later platformers, where physics engines and collision detection became increasingly sophisticated. Mechner's work here remains a benchmark for achieving complex behavior on limited hardware."
 
 ---
-
-; excerpt — first 200 lines of 01 POP Source/Source/CTRL.S
 
 * ctrl
 org = $3a00

@@ -9,62 +9,62 @@ year: 1989
 author: "Jordan Mechner"
 slug: "coll"
 order: 7
-description: "Collision detection routines for Prince of Persia's cinematic platforming on the Apple II, showcasing the ingenuity required to fit complex gameplay into 6502 assembly."
+description: "Collision detection routines for Prince of Persia (1989), showcasing cinematic platformer innovations."
+is_excerpt: true
+excerpt_lines: 200
 
 summary:
-  - point: "Collision detection relies on comparing frame-by-frame data stored in buffers."
-    link: "https://en.wikipedia.org/wiki/Collision_detection"
-    link_label: "Collision detection"
-  - point: "Memory constraints shaped the use of bank-switched memory and compact data structures."
+  - point: "Bank-switched memory techniques to fit complex game logic into 128K"
     link: "https://en.wikipedia.org/wiki/Bank-switching"
     link_label: "Bank-switching"
-  - point: "Rotoscoping animation influenced the precision of collision mechanics."
+  - point: "Rotoscoping animation inspired by Jordan Mechner's brother's movements"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "The game uses a pixel-perfect approach to barriers and edges."
-    link: "https://en.wikipedia.org/wiki/Pixel_art"
-    link_label: "Pixel art"
-  - point: "Jordan Mechner's solo development required balancing technical constraints and artistic vision."
+  - point: "Collision detection using pixel-level precision"
+    link: "https://en.wikipedia.org/wiki/Collision_detection"
+    link_label: "Collision Detection"
+  - point: "Apple II hardware constraints shaped game design"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II Series"
+  - point: "Solo development by Jordan Mechner over four years"
     link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
     link_label: "Jordan Mechner"
 
 enhancements:
-  - id: "jump-table-organization"
+  - id: "jmp-table-for-collision-routines"
     line_start: 13
     line_end: 25
-    title: "Jump Table: Organizing Collision Logic"
+    title: "Jump Table: Routing Collision Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/330px-Hash_table_3_1_1_0_1_0_0_SP.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Hash table 3 1 1 0 1 0 0 SP (CC BY-SA 3.0)"
-    content: "This section begins with a jump table, a common technique in assembly programming to organize and quickly access subroutines. Each `jmp` instruction points to a specific collision-related routine, such as `CHECKBARR` for vertical barriers or `ENEMYCOLL` for enemy collisions. In the constrained environment of the Apple II, where every byte mattered, jump tables were a way to structure code efficiently and reduce branching overhead. Jordan Mechner, working solo on Prince of Persia, needed to ensure that the game could handle complex interactions like character movement, enemy behavior, and environmental obstacles within the limited 128K memory available. This jump table reflects his effort to modularize the code for clarity and reuse. The approach survives in modern programming, where function pointers or virtual tables serve similar purposes in higher-level languages."
-  - id: "barrier-data-table"
+    image_url: ""
+    image_caption: ""
+    content: "The jump table here provides a centralized way to route execution to various collision-related routines, such as `CHECKBARR`, `COLLISIONS`, and `GETFWDDIST`. This design allows the programmer to efficiently organize and access subroutines without hardcoding specific calls throughout the program. In the mid-1980s, memory and processing power were precious commodities on machines like the Apple IIe, which had a 1 MHz 6502 processor and limited RAM. By using a jump table, Jordan Mechner could ensure that the game logic remained modular and adaptable, even as the complexity of Prince of Persia's cinematic gameplay grew. This technique, though common in assembly programming, was particularly vital for a solo developer managing an ambitious project. The jump table also reflects the influence of structured programming principles, which were gaining traction during this era. Its modularity would later inspire similar designs in other games and systems, as developers sought to balance performance with maintainability."
+  - id: "barrier-distance-data-table"
     line_start: 55
     line_end: 56
-    title: "Barrier Data Table: Mapping the Environment"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Fighter_hitbox.svg/330px-Fighter_hitbox.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Fighter hitbox (CC BY 3.0)"
-    content: "The `BarL` and `BarR` tables define the distances in pixels from the edges of blocks to barriers, indexed by barrier type. This compact representation allows the game to quickly determine collision boundaries for different objects, such as gates, flasks, and slicers. In the late 1980s, memory was precious, and every data structure had to be as small and efficient as possible. Mechner's design reflects the constraints of the Apple II's 6502 processor, which had limited addressing capabilities and no built-in support for complex data structures. By encoding environmental details in small tables, he ensured the game could handle dynamic interactions without exceeding memory limits. This technique of using indexed tables for environmental logic remains a foundational approach in game development."
-  - id: "check-barrier-collision"
-    line_start: 72
-    line_end: 185
-    title: "Pixel-Perfect Collision Detection"
+    title: "Barrier Distance Table: Precision Collisions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `CHECKBARR` routine is a cornerstone of Prince of Persia's gameplay. It checks for collisions with vertical barriers by comparing frame-by-frame data stored in buffers (`thisframe` and `lastframe`). The routine begins by setting a 'no-collision' flag and verifying whether the character is temporarily immune to collisions, such as during a turning animation. It then calculates the range of blocks to check, retrieves collision data for the current frame, and compares it with the previous frame. If a change from 0 to 1 is detected in the data, a collision is registered. This pixel-perfect approach was essential for the game's precise platforming mechanics, where the player's movements had to align seamlessly with the environment. In 1989, such precision was rare, especially on hardware as limited as the Apple II. Mechner's background in film and his use of rotoscoping influenced this meticulous attention to detail, ensuring the game felt fluid and cinematic. The collision detection system set a standard for platformers, influencing future titles that sought to achieve similar levels of realism."
+    content: "The `BarL` and `BarR` tables define the pixel distances from the edges of various barriers, such as gates, flasks, and slicers. This data is indexed by barrier type and plays a critical role in the game's collision detection system. In the late 1980s, pixel-perfect collision detection was a groundbreaking feature, especially for a platformer. It enabled the fluid and precise interactions that defined Prince of Persia's gameplay, such as narrowly avoiding traps or interacting with objects. Mechner's decision to implement this level of detail reflects his commitment to creating a cinematic experience, where every movement and interaction feels intentional. The reliance on data tables like these also highlights the constraints of the Apple II hardware, where memory efficiency was paramount. By precomputing and storing values, the game could quickly access and use them during runtime, avoiding costly calculations. This approach influenced later games, which adopted similar techniques to achieve precision in collision detection."
+  - id: "check-barrier-collision"
+    line_start: 72
+    line_end: 185
+    title: "Collision Logic: Navigating Barriers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
+    image_url: ""
+    image_caption: ""
+    content: "The `CHECKBARR` routine is a cornerstone of Prince of Persia's collision detection system. It checks for interactions between the protagonist and vertical barriers, such as walls and gates. The routine begins by initializing collision flags (`collideL` and `collideR`) to a 'no-collision' state. It then evaluates whether the character is temporarily 'collision-proof,' such as during specific animations like turning. Next, it initializes buffers and calculates the range of blocks to check, ensuring that collision detection covers the relevant area of the screen. The routine retrieves collision data (`CD`) and screen data (`SN`) for the current frame, as well as for levels above and below the character. Finally, it compares the data from the current and previous frames to detect changes that indicate a collision. This approach, while computationally intensive, allowed Mechner to achieve the fluid and responsive gameplay that defined Prince of Persia. The routine exemplifies the challenges of programming for the Apple II, where every byte and cycle mattered. Mechner's meticulous attention to detail ensured that the game could handle complex interactions without sacrificing performance. This collision logic set a standard for platformers, influencing future titles that sought to replicate its precision and realism."
   - id: "get-collision-data"
     line_start: 194
     line_end: 200
-    title: "Fetching Frame Data for Collision Checks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    title: "Fetching Collision Data for Frames"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `getCData` subroutine retrieves collision data for the current frame, using the `blocky` variable to determine the vertical position and the `begrange` variable for the horizontal range. It modifies specific memory locations (`:smodSN` and `:smodCD`) to point to the relevant data buffers. This routine is part of the larger collision detection system, which relies on comparing data across frames to identify changes that indicate collisions. In the context of the Apple II's limited processing power and memory, this approach was both innovative and necessary. By precomputing and storing frame data, Mechner reduced the computational overhead during gameplay, allowing the game to run smoothly despite the hardware constraints. This method of using buffers to manage dynamic data is still widely used in modern programming, particularly in real-time applications like video games."
+    content: "The `getCData` routine retrieves collision data for a specific block and frame, ensuring that the game can accurately detect interactions between the character and the environment. It uses the `begrange` variable to determine the left edge of the block and calls `getblockej` to fetch the necessary data. This routine is part of a larger system that handles collision detection across multiple levels and frames, enabling the game to maintain its cinematic and immersive feel. In the context of the Apple II hardware, this level of detail was a remarkable achievement. The machine's limited processing power and memory required developers to optimize every aspect of their code. Mechner's implementation demonstrates his ability to balance technical constraints with creative ambition, resulting in a game that felt ahead of its time. The techniques used here would later influence collision detection systems in other games, as developers sought to replicate the precision and responsiveness of Prince of Persia."
 
 ---
-
-; excerpt — first 200 lines of 01 POP Source/Source/COLL.S
 
 * coll
 org = $4500

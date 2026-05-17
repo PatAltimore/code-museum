@@ -9,70 +9,62 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "sysinit"
 order: 5
-description: "The SYSINIT.ASM file is the entry point for MS-DOS v2.0, initializing the system at power-on and setting the stage for the operating system's functionality."
+description: "The SYSINIT.ASM file is the starting point for MS-DOS v2.0, initializing the system at boot and laying the groundwork for the operating system's functionality."
+is_excerpt: true
+excerpt_lines: 200
 
 summary:
-  - point: "Defines key constants and flags for system configuration"
+  - point: "Defines key system constants and conditional compilation flags"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Introduces a structure for internal DOS data management"
-    link: "https://en.wikipedia.org/wiki/Data_structure"
+  - point: "Introduces the SYSINITVAR structure for internal DOS data"
+    link: "https://en.wikipedia.org/wiki/Structure_(computer_science)"
     link_label: "Data Structure"
-  - point: "Handles memory relocation and system initialization"
+  - point: "Handles memory relocation and prepares system variables"
     link: "https://en.wikipedia.org/wiki/Memory_management"
     link_label: "Memory Management"
-  - point: "Parses configuration files and launches COMMAND.COM"
+  - point: "Parses CONFIG.SYS and prepares for COMMAND.COM execution"
     link: "https://en.wikipedia.org/wiki/CONFIG.SYS"
     link_label: "CONFIG.SYS"
-  - point: "Reflects the shift from single-tasking to Unix-inspired multitasking in MS-DOS v2.0"
+  - point: "Reflects the transition from single-tasking to Unix-inspired multitasking"
     link: "https://en.wikipedia.org/wiki/Unix"
     link_label: "Unix"
 
 enhancements:
-  - id: "initialization-flags-and-constants"
+  - id: "conditional-compilation-flags"
     line_start: 5
     line_end: 35
-    title: "Initialization Flags: A System's Identity"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
-    content: "These lines define key constants and flags that determine the behavior of the operating system during initialization. The `TRUE` and `FALSE` constants provide a basic mechanism for conditional assembly, while the `IBMVER`, `MSVER`, and `IBMJAPVER` flags indicate which version of the system is being built — whether for IBM PCs, Japanese IBM PCs, or other MS-DOS-compatible systems. This section reflects the fragmented hardware landscape of the early 1980s, when operating systems had to be tailored for specific hardware configurations. Tim Paterson and Microsoft's engineers were navigating a world where IBM's dominance was emerging, but compatibility with other OEMs was crucial for MS-DOS's success. These flags allowed the same codebase to be adapted for different hardware platforms, a key factor in MS-DOS's widespread adoption. The conditional assembly techniques seen here are a precursor to modern software practices like feature toggles and platform-specific builds."
-  - id: "internal-dos-data-structure"
+    title: "Conditional compilation flags: tailoring MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Conditional_compilation"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Flow-diagram-computer-booting-sequences.svg/330px-Flow-diagram-computer-booting-sequences.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Describes the process from power button to OS load, from File:Flow-diagram-computer-booting-sequences.jpg (CC BY-SA 4.0)"
+    content: "This section defines a series of conditional compilation flags that allow the assembly code to be tailored for different environments and versions. For example, `IBMVER` and `IBMJAPVER` determine whether the code is compiled for IBM systems or Japanese IBM systems, while `MSVER` ensures compatibility with Microsoft's version of DOS. These flags reflect the modularity and adaptability of MS-DOS, which was designed to run on a wide variety of hardware platforms. In 1983, MS-DOS v2.0 was a major rewrite inspired by Unix, and these flags demonstrate the effort to maintain flexibility while expanding functionality. The modular approach allowed Microsoft to license MS-DOS to over 70 OEMs within a year, cementing its dominance in the PC market. This adaptability would become a hallmark of Microsoft's software strategy, influencing later products like Windows."
+  - id: "sysinitvar-structure"
     line_start: 55
     line_end: 79
-    title: "SYSINITVAR: The Operating System's Internal Map"
+    title: "SYSINITVAR: A snapshot of DOS internals"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/330px-Hash_table_3_1_1_0_1_0_0_SP.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Hash table 3 1 1 0 1 0 0 SP (CC BY-SA 3.0)"
-    content: "The `SYSINITVAR` structure defines key pointers and variables that MS-DOS uses internally during initialization. It includes entries for device pointers, buffer queues, and sector size limits. This structure serves as a centralized repository for critical system data, enabling efficient access and manipulation during runtime. In the early 1980s, memory was a scarce resource; the IBM PC shipped with as little as 16KB of RAM, and MS-DOS had to fit within these constraints while still providing robust functionality. The design of `SYSINITVAR` reflects the careful planning required to manage limited resources effectively. Tim Paterson's original 86-DOS laid the groundwork for this approach, but Microsoft's engineers expanded it significantly for MS-DOS v2.0, inspired by Unix's emphasis on structured data management. This structure would evolve in later versions of MS-DOS, influencing the design of system-level data management in operating systems for decades."
-  - id: "memory-relocation-and-segment-assumptions"
-    line_start: 101
-    line_end: 105
-    title: "Memory Relocation: Making Room for DOS"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/330px-Operating_system_placement.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Graph of Operating System placement on computer usage (CC BY-SA 3.0)"
-    content: "The `SYSINITSEG` segment declaration and `ASSUME` directive set up the memory environment for MS-DOS initialization. By relocating itself into high memory, the system frees up lower memory for application programs, a critical feature for the memory-constrained IBM PC. In the early 1980s, the 8086 processor's segmented memory model was both a limitation and an opportunity; programmers had to work within its constraints while finding creative ways to maximize usable memory. Microsoft's engineers were acutely aware of these challenges, as the IBM PC's design prioritized cost over performance, resulting in limited memory and computational power. The decision to use high memory for the operating system reflects the influence of Unix, which also emphasized efficient memory management. This approach became a hallmark of MS-DOS and influenced memory management strategies in later operating systems."
-  - id: "system-variables-and-defaults"
-    line_start: 145
-    line_end: 189
-    title: "Default Settings: Building a Usable System"
-    wikipedia_url: "https://en.wikipedia.org/wiki/CONFIG.SYS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Command.com_Win10.png/330px-Command.com_Win10.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Screenshot of Command.com in Windows 10 Pro, 32-bit edition. (Public domain)"
-    content: "This section initializes key system variables and default settings, including memory size, default drive, buffer count, and file handles. It also defines the default command-line arguments for `COMMAND.COM`, the MS-DOS command interpreter. These defaults were carefully chosen to balance usability and performance on the limited hardware of the IBM PC. In 1983, the concept of user-configurable system settings was still in its infancy, but MS-DOS v2.0 introduced the `CONFIG.SYS` file to allow users to customize these parameters. This innovation was inspired by Unix's configuration flexibility and marked a significant step toward making personal computers more adaptable to individual needs. The default values seen here reflect the assumptions of the time: small memory sizes, single floppy drives, and limited multitasking capabilities. As hardware evolved, these defaults would change, but the underlying mechanism for system configuration remained a cornerstone of MS-DOS and its successors."
-  - id: "command-com-execution"
-    line_start: 195
-    line_end: 199
-    title: "Launching COMMAND.COM: The User's Gateway"
-    wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""
     image_caption: ""
-    content: "The final lines of this file execute `COMMAND.COM`, the MS-DOS command interpreter, using the `COMEXE` macro. This step is the culmination of the initialization process, handing control from the system to the user. In 1983, `COMMAND.COM` was the user's primary interface with the operating system, providing a simple yet powerful way to interact with files, directories, and devices. The decision to include this step directly in the initialization code reflects the importance of usability in MS-DOS's design. Tim Paterson and Microsoft's engineers were keenly aware that the success of MS-DOS depended not just on technical excellence but also on its ability to empower users. By launching `COMMAND.COM` as the final step, they ensured that the system was ready for immediate use, a design philosophy that would influence operating systems for decades to come."
+    content: "The `SYSINITVAR` structure encapsulates key internal data used during system initialization. It includes pointers to the DPB-FAT list, device headers, and buffer queues, as well as variables like `NUMIO` and `MAXSEC` that define disk table counts and maximum sector sizes. This structure is a window into the low-level workings of MS-DOS, showing how the operating system manages devices, buffers, and file systems. In the early 1980s, operating systems were tightly coupled to hardware constraints, and every byte mattered. Tim Paterson's original 86-DOS was written in six weeks, and its simplicity carried over into MS-DOS. However, by v2.0, the system had evolved to support more complex features like subdirectories and device drivers. The `SYSINITVAR` structure is a testament to this transition, balancing legacy simplicity with new capabilities."
+  - id: "public-symbols-declaration"
+    line_start: 119
+    line_end: 141
+    title: "Public symbols: exposing system variables"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Symbol_table"
+    image_url: ""
+    image_caption: ""
+    content: "This section declares public symbols such as `CURRENT_DOS_LOCATION`, `FINAL_DOS_LOCATION`, and `DEVICE_LIST`, making them accessible to other parts of the operating system. These symbols represent critical system variables, including memory locations and device lists, that are essential for DOS's operation. In the early 1980s, software development was often a collaborative effort, with different teams working on separate modules. By exposing these symbols, the SYSINIT.ASM file ensures that other components of MS-DOS can interact seamlessly with the system initialization code. This approach reflects the growing complexity of software systems at the time, as operating systems transitioned from monolithic designs to modular architectures inspired by Unix. The public symbols also highlight the importance of interoperability, a principle that would become increasingly important as MS-DOS expanded to support a wide range of hardware and software."
+  - id: "sysinit-entry-point"
+    line_start: 145
+    line_end: 199
+    title: "SYSINIT: The heartbeat of system startup"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
+    image_url: ""
+    image_caption: ""
+    content: "The `SYSINIT` entry point is the core of the system initialization process. It begins with a jump to `GOINIT`, setting the stage for memory relocation, system variable setup, and the eventual execution of COMMAND.COM. This sequence is the first step in transforming a powered-on machine into a functional operating system. In 1983, MS-DOS v2.0 introduced significant enhancements inspired by Unix, including support for subdirectories and pipes. The initialization code reflects this evolution, preparing the system to handle these new features while maintaining backward compatibility. The inclusion of default values for variables like `BUFFERS` and `FILES` demonstrates the careful balance between flexibility and resource constraints. At the time, PCs typically had limited RAM and storage, so every decision in this code was shaped by the need to optimize performance within tight hardware limits. The `SYSINIT` routine is a reminder of the ingenuity required to build an operating system that could run on a wide variety of machines, from IBM PCs to clones."
 
 ---
-
-; excerpt — first 200 lines of v2.0/source/SYSINIT.ASM
 
 TITLE   BIOS SYSTEM INITIALIZATION
 
