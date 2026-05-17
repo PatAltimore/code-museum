@@ -1034,6 +1034,7 @@ async function route() {
   const hash = location.hash.replace(/^#\/?/, '');
   const parts = hash ? hash.split('/') : [];
 
+  window.scrollTo(0, 0);
   setLoading();
 
   try {
