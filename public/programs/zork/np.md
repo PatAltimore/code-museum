@@ -34,24 +34,24 @@ enhancements:
     line_end: 8
     title: "Global symbols for parsing: the game's backbone"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Python_add5_syntax.svg/330px-Python_add5_syntax.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "example of Python language (Copyrighted free use)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Zork-map.jpg/330px-Zork-map.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Zork map (CC BY 4.0)"
     content: "The opening lines establish global variables that serve as the foundation for Zork's text parsing system. 'WORDS', 'OBJECT-OBL', 'ACTIONS', and 'ORPHANS' are initialized to hold lists of words, objects, actions, and orphaned commands respectively. These symbols are the scaffolding for interpreting player input, enabling the game to match typed commands to in-game entities and actions. In 1977, the challenge was to create a system that could understand natural language on hardware with limited memory and processing power. The DEC PDP-10, running ITS, was a mainframe with 36-bit words and a maximum of 256K words of memory—constraints that forced the authors to be resourceful. The use of 'MOBLIST' (a MDL construct for creating lists) reflects the Lisp-inspired nature of MDL, which was ideal for symbolic computation. These global lists would later be populated with game-specific data, allowing Zork to simulate a rich and interactive world. The decision to centralize these lists as global variables ensured efficiency and modularity, a design choice that influenced future text-based games and interactive fiction engines."
   - id: "conditional-preposition-handling"
     line_start: 10
     line_end: 17
     title: "Handling prepositions: parsing nuance in commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Zork-map.jpg/330px-Zork-map.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Zork map (CC BY 4.0)"
+    image_url: ""
+    image_caption: ""
     content: "This section introduces conditional logic to handle prepositions in player commands. The 'PREPVEC' and 'PREP2VEC' arrays are initialized with placeholders for phrases like 'WITH #####', where the game expects an object to follow the preposition. This anticipates the need to parse complex commands such as 'take the sword with the scabbard.' In the late 1970s, natural language processing was in its infancy, and Zork's authors were pioneering techniques to make text-based interaction feel intuitive. The use of placeholders ('#####') reflects the need for flexibility in parsing incomplete or ambiguous input. The conditional check for 'COMPILE' or 'GROUP-GLUE' suggests that these routines were part of a larger modular system, possibly enabling dynamic updates to the game's vocabulary or syntax during development. This approach laid the groundwork for more sophisticated parsers in later games, influencing the evolution of interactive fiction and even modern conversational AI."
   - id: "sparse-parsing-subroutine"
     line_start: 19
     line_end: 129
     title: "Sparse parsing: decoding player input"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/RecursiveTree.JPG/330px-RecursiveTree.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Tree recreated in LOGO programming language using recursion. (Public domain)"
+    image_url: ""
+    image_caption: ""
     content: "The 'SPARSE' subroutine is a centerpiece of Zork's text parser, responsible for breaking down player input into actionable components. It takes a string of words ('SV') and a verb ('VB') and attempts to match them to objects, actions, and prepositions stored in the game's global lists. The subroutine uses nested conditional statements to handle various cases, such as identifying actions, directions, and objects, and resolving ambiguities. In the late 1970s, the authors—Anderson, Blank, Daniels, and Lebling—were working on the PDP-10 under ITS, leveraging MDL's symbolic processing capabilities to create a parser that could interpret natural language commands. The complexity of this subroutine reflects the ambition to make Zork feel like a living world, where players could interact with objects and characters using plain English. The use of 'MAPF' (a MDL function for mapping over lists) and 'LOOKUP' showcases the Lisp-like elegance of MDL, enabling concise yet powerful operations on data structures. This parsing logic became a hallmark of interactive fiction, influencing not only Zork's successors but also modern text-based games and conversational interfaces."
   - id: "orphaned-command-handling"
     line_start: 133

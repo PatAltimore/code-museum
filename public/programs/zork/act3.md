@@ -34,8 +34,8 @@ enhancements:
     line_end: 17
     title: "Magic glass bottles: whimsy meets programming"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Zork-map.jpg/330px-Zork-map.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Zork map (CC BY 4.0)"
     content: "This subroutine handles the interaction with 'magic glass bottles,' a quintessential example of Zork's playful design. When the player attempts to throw or otherwise 'mung' the bottles, the game congratulates them for breaking them, only to reveal they vanish harmlessly due to their magical nature. In 1977, the Zork team—Marc Blank, Dave Lebling, Tim Anderson, and Bruce Daniels—crafted puzzles that encouraged experimentation. The DEC PDP-10 hardware they worked on had limited memory and processing power, requiring careful optimization. The use of MDL, a Lisp dialect, allowed for sophisticated handling of objects and verbs, enabling nuanced responses like this one. This playful interaction reflects the team's goal of creating a game that felt alive and reactive, a hallmark of interactive fiction. The magic glass bottles are a small but memorable detail that contributed to Zork's lasting legacy as a pioneer in the genre."
   - id: "tampering-with-remains"
     line_start: 19
