@@ -1107,7 +1107,7 @@ window.toggleStepper = function() {
   if (readerWrap) readerWrap.classList.toggle('stepper-mode-active', _stepperActive);
   if (_stepperActive) {
     if (!_stepperState) initStepper();
-    renderStepperPanel();
+    renderStepperPanel({ skipScroll: true });  // don't scroll away from top on open
   } else {
     const panel = document.getElementById('stepper-panel');
     if (panel) panel.remove();
@@ -1122,11 +1122,14 @@ function initStepper() {
   _stepperParsed = parseAsmLines(lines);
   _stepperArch = detectArch(_stepperParsed);
   _stepperState = _stepperArch === '8086' ? create8086State() : create6502State();
-  const first = findNextCodeLine(_stepperParsed, 0);
-  if (first >= 0) _stepperState.curLine = first;
+  // Stay at line 0 — let the user scroll and step from wherever they like.
+  // exec6502/exec8086 already handle skipping non-code lines on first Step.
+  _stepperState.curLine = 0;
+  _stepperState.lastEffect = 'Ready — click any line or press Step ▶';
 }
 
-function renderStepperPanel() {
+function renderStepperPanel(opts) {
+  opts = opts || {};
   if (!_stepperState || !_stepperParsed) return;
   const readerWrap = document.querySelector('.reader-wrap');
   if (!readerWrap) return;
@@ -1144,7 +1147,11 @@ function renderStepperPanel() {
   const curLine = state.curLine;
   const lineNum = curLine + 1;
   const p = parsed[curLine];
-  const lineInfo = p ? ((p.mnemonic || '') + (p.operands ? ' ' + p.operands : '')) : 'End of code';
+  const lineInfo = p
+    ? (p.mnemonic
+        ? (p.mnemonic + (p.operands ? ' ' + p.operands : ''))
+        : (p.raw || '').trim() || '—')
+    : 'End of code';
 
   const halted = state.halted;
   const instrTitle = p ? getInstructionTitle(p.mnemonic) : '';
@@ -1232,7 +1239,7 @@ function renderStepperPanel() {
       <div class="stepper-memory">${memHtml}</div>
     </div>`;
 
-  scrollToStepLine();
+  if (!opts.skipScroll) scrollToStepLine();
   highlightStepLine();
 }
 

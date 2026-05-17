@@ -1274,16 +1274,15 @@ function runToLine(state, parsedLines, arch, targetLineIdx, maxSteps) {
 }
 
 // Jump (teleport) the program counter to targetLineIdx without simulating.
-// Finds the nearest code line at or after targetIdx (falls back to before).
-// Resets lastEffect to show the jump; registers are preserved.
+// Sets curLine to exactly the clicked line — no skipping to nearest code line.
+// When the user then steps forward, exec6502/8086 will advance past any
+// non-executable lines naturally.  Registers are preserved.
 function jumpToLine(state, parsedLines, targetLineIdx) {
-  var codeIdx = findNextCodeLine(parsedLines, targetLineIdx);
-  if (codeIdx < 0) codeIdx = findPrevCodeLine(parsedLines, targetLineIdx + 1);
-  if (codeIdx < 0) return state;
-  state.curLine = codeIdx;
-  var p = parsedLines[codeIdx];
-  var instr = p ? ((p.mnemonic || '') + (p.operands ? ' ' + p.operands : '')) : '';
-  state.lastEffect = 'Jumped to line ' + (codeIdx + 1) + (instr ? ' — ' + instr : '');
+  var idx = Math.max(0, Math.min(targetLineIdx, parsedLines.length - 1));
+  state.curLine = idx;
+  var p = parsedLines[idx];
+  var display = p ? (p.mnemonic ? (p.mnemonic + (p.operands ? ' ' + p.operands : '')) : (p.raw || '').trim()) : '';
+  state.lastEffect = 'Jumped to line ' + (idx + 1) + (display ? ' — ' + display : '');
   return state;
 }
 
