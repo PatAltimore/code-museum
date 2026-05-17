@@ -9,66 +9,74 @@ year: 1989
 author: "Jordan Mechner"
 slug: "master"
 order: 4
-description: "The foundational assembly code for Prince of Persia (1989), showcasing memory management, hardware interaction, and cinematic innovation on the Apple II."
+description: "The foundational assembly code for Prince of Persia, showcasing ingenious memory management and cinematic design on the Apple II."
 
 summary:
-  - point: "Bank-switched memory management to fit the game in 128K"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank switching"
-  - point: "Routines for loading game levels and assets dynamically"
+  - point: "Bank-switched memory management for 128K Apple II"
     link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II hardware"
-  - point: "Hardcoded soft switches for Apple II graphics modes"
-    link: "https://en.wikipedia.org/wiki/Apple_II_graphics"
-    link_label: "Apple II graphics"
-  - point: "Rotoscoping-inspired animation techniques encoded in assembly"
+    link_label: "Apple II"
+  - point: "Routines for cinematic animation and gameplay"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia (1989)"
+  - point: "Use of rotoscoping for realistic character movement"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Drive interaction routines for RW18 disk controller"
-    link: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
-    link_label: "Floppy disk controller"
+  - point: "Soft switches for hardware control on Apple II"
+    link: "https://en.wikipedia.org/wiki/Apple_II_technical_details"
+    link_label: "Apple II technical details"
+  - point: "Jordan Mechner's solo development effort"
+    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
+    link_label: "Jordan Mechner"
 
 enhancements:
-  - id: "jump-table-master-control"
+  - id: "jump-table-master-section"
     line_start: 18
-    line_end: 32
-    title: "Jump Table: Master Control of Game States"
+    line_end: 31
+    title: "Jump Table: Organizing the Game's Core"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/IBM_PC_Original_5.25_Diskette_Drive_Adapter.jpg/330px-IBM_PC_Original_5.25_Diskette_Drive_Adapter.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Original 5 1/4 Diskette Drive Adapter found on the IBM PC (IBM 5150) (CC BY-SA 3.0)"
-    content: "This section defines a jump table, a compact mechanism for routing control to various subroutines based on game state. Each `jmp` instruction points to a specific routine, such as `FIRSTBOOT`, `LOADLEVEL`, or `ATTRACTMODE`. In the late 1980s, jump tables were a common way to optimize control flow in assembly language, avoiding the overhead of conditional branching. Jordan Mechner, working solo on Prince of Persia, needed to ensure the game could handle complex transitions between states—booting, loading levels, saving games, and displaying cinematic sequences—all within the constraints of the Apple II's 128K memory. This jump table reflects the modularity of his design, allowing the game to pivot seamlessly between gameplay and storytelling. The approach survives in modern programming, though often abstracted into higher-level constructs like function pointers or event-driven frameworks."
-  - id: "rw18-disk-controller-commands"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Flow-diagram-computer-booting-sequences.svg/330px-Flow-diagram-computer-booting-sequences.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Describes the process from power button to OS load, from File:Flow-diagram-computer-booting-sequences.jpg (CC BY-SA 4.0)"
+    content: "This section defines a jump table, a compact way to organize entry points for core routines like FIRSTBOOT, LOADLEVEL, and ATTRACTMODE. Each 'jmp' instruction points to a specific subroutine, allowing the game to quickly branch to different functionalities. In 1989, memory was at a premium, especially on the Apple II, which had only 128K of RAM. Jordan Mechner used this technique to efficiently manage the game's logic without wasting precious bytes. The jump table reflects the modular design philosophy of the era, enabling easier debugging and updates. This approach persists in modern programming, especially in embedded systems and game engines, where performance and memory efficiency remain critical."
+  - id: "rw18-commands"
     line_start: 56
     line_end: 67
-    title: "RW18 Disk Controller: Direct Hardware Commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Apple_II_high-resolution_graphics_fringe_effects.png/330px-Apple_II_high-resolution_graphics_fringe_effects.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Apple II high-resolution graphics fringe effects (CC0)"
-    content: "Here, Mechner defines commands for the RW18 disk controller, the hardware responsible for reading and writing data to the floppy disk. Each command, such as `DrvOn` or `Seek`, corresponds to a specific operation, encoded as a hexadecimal value. In the Apple II era, programmers often interacted directly with hardware, bypassing operating system abstractions to maximize performance. These commands enabled precise control over disk operations, crucial for loading game assets like levels and animations on demand. Mechner's use of the RW18 reflects the era's reliance on low-level programming, where developers needed intimate knowledge of hardware quirks. This direct interaction with the disk controller ensured that Prince of Persia could deliver its groundbreaking cinematic experience without excessive loading times—a critical factor in its success."
-  - id: "soft-switches-graphics-modes"
-    line_start: 135
-    line_end: 162
-    title: "Soft Switches: Toggling Apple II Graphics Modes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Prince_of_Persia_1_-_MS-DOS_-_Gameplay.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "Game play animation of the IBM PC version of Prince of Persia. (CC BY-SA 4.0)"
-    content: "This section lists 'soft switches,' memory-mapped locations that control the Apple II's graphics and memory modes. For example, `HIRESon` enables high-resolution graphics, while `PAGE2on` switches to the second graphics page. These switches were a hallmark of Apple II programming, allowing developers to manipulate the hardware directly for visual effects. Mechner's use of these switches reflects his meticulous attention to detail, as he sought to push the Apple II's graphical capabilities to their limits. The cinematic platformer genre he pioneered demanded smooth transitions and visually striking scenes, which he achieved by toggling these modes dynamically during gameplay. This low-level control was essential for creating the immersive experience that defined Prince of Persia, influencing game design for decades."
+    title: "RW18 Commands: Disk Drive Communication"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_Disk_II"
+    image_url: ""
+    image_caption: ""
+    content: "These lines define commands for the RW18 disk drive interface, including operations like turning the drive on/off, seeking tracks, and reading/writing data. The Apple II relied heavily on disk-based storage, and efficient disk I/O was crucial for games like Prince of Persia, which had to load large amounts of data for animations and levels. Mechner's code reflects the low-level nature of programming for the Apple II, where developers directly manipulated hardware registers and memory-mapped I/O. This section highlights the ingenuity required to make the most of limited hardware, a skill that defined the early era of game development."
+  - id: "local-vars-memory-allocation"
+    line_start: 73
+    line_end: 83
+    title: "Local Variables: Memory Allocation in Assembly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
+    image_url: ""
+    image_caption: ""
+    content: "Here, Mechner allocates memory for local variables using the 'ds' directive, which reserves space for data storage. Variables like 'dest', 'source', and 'newBGset1' are used to manage graphics and gameplay elements. On the Apple II, memory was divided into pages, with the zero page offering faster access due to shorter addressing. This section demonstrates how Mechner carefully planned memory usage to optimize performance, a necessity given the constraints of the hardware. The practice of efficient memory management remains relevant today, especially in embedded systems and mobile devices."
   - id: "default-level-coordinates"
     line_start: 91
-    line_end: 95
+    line_end: 94
     title: "Default Level Coordinates: Setting the Stage"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Apple_II-IMG_7064.jpg/330px-Apple_II-IMG_7064.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Apple II computer.  On display at the Musée Bolo, EPFL, Lausanne. (CC BY-SA 2.0 fr)"
-    content: "These lines define the coordinates for the default levels loaded at the start of the game. `demolevel` and `firstlevel` specify the initial positions, ensuring a consistent entry point for players. In the late 1980s, games often relied on hardcoded values for level initialization, as dynamic loading systems were rare. Mechner's decision to encode these coordinates reflects the constraints of the Apple II, where memory was limited and every byte counted. By predefining these values, he ensured that the game could quickly load and display its opening scenes, minimizing delays and enhancing the cinematic flow. This technique, while simple, underscores the careful planning required to deliver a seamless experience on early hardware."
+    wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines the default coordinates for the game's starting levels, 'demolevel' and 'firstlevel'. These values determine where the player begins their journey in Prince of Persia. In the late 1980s, level design was a meticulous process, often constrained by hardware limitations. Mechner's choice to hard-code these coordinates reflects the era's reliance on static data structures. This approach ensured consistent gameplay experiences across different Apple II models. The concept of predefined starting points has evolved into dynamic level generation in modern games, but the principle of carefully crafted entry points remains a cornerstone of game design."
+  - id: "soft-switches-hardware-control"
+    line_start: 133
+    line_end: 161
+    title: "Soft Switches: Direct Hardware Manipulation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_technical_details"
+    image_url: ""
+    image_caption: ""
+    content: "Soft switches are memory-mapped locations that control hardware features on the Apple II, such as enabling high-resolution graphics or switching between main and auxiliary memory. This section lists the addresses for these switches, which Mechner used to toggle hardware states dynamically during gameplay. In the 1980s, developers often had to interact directly with hardware to achieve desired effects, as operating systems provided minimal abstraction. Mechner's mastery of these low-level techniques allowed him to push the Apple II's capabilities to their limits, creating a visually stunning and responsive game. The use of soft switches exemplifies the hands-on approach of early game programming, a stark contrast to the high-level APIs of today."
   - id: "firstboot-initialization"
     line_start: 186
     line_end: 199
-    title: "FirstBoot: Initializing the Game Environment"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    title: "First Boot: Game Initialization Routine"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
     image_caption: ""
-    content: "The `FIRSTBOOT` routine initializes the game environment, setting up graphics modes and loading essential assets. It begins by disabling mixed graphics mode (`MIXEDoff`) and configuring auxiliary memory (`setaux`). Mechner then sets the game's ID byte (`POPside1`), a unique identifier for the floppy disk, and loads high-resolution graphics tables. This sequence reflects the meticulous setup required to optimize the Apple II's limited resources. In 1989, developers often had to balance memory constraints with performance demands, carefully orchestrating initialization routines to avoid crashes or slowdowns. Mechner's approach ensured that Prince of Persia could deliver its ambitious visuals and gameplay without exceeding the hardware's capabilities. This routine exemplifies the ingenuity required to create complex games on early computers."
+    content: "The FIRSTBOOT routine initializes key game elements, including turning off mixed graphics mode, setting the BBund ID byte, and loading high-resolution tables. This sequence ensures the game starts in a consistent state, ready to display its cinematic visuals. In the late 1980s, boot routines were critical for managing hardware quirks and preparing the system for complex software. Mechner's attention to detail in this routine reflects his commitment to creating a polished experience on the Apple II. Boot routines like this laid the groundwork for modern initialization processes in operating systems and applications, emphasizing reliability and user experience."
 
 ---
 

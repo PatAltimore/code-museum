@@ -9,58 +9,58 @@ year: 1989
 author: "Jordan Mechner"
 slug: "mover"
 order: 6
-description: "The physics engine of Prince of Persia, a groundbreaking cinematic platformer, written in 6502 assembly for the Apple II."
+description: "The physics engine for Prince of Persia, a groundbreaking cinematic platformer, written in 6502 assembly for the Apple II."
 
 summary:
-  - point: "Implements object transitions and interactions in the game world"
+  - point: "Implements bank-switched memory techniques to fit within 128K constraints"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank Switching"
+  - point: "Defines physics parameters for falling floors, gates, and spikes"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Uses memory-efficient techniques to fit within 128K constraints"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Defines timers and parameters for dynamic elements like spikes and falling floors"
-    link: "https://en.wikipedia.org/wiki/Physics_engine"
-    link_label: "Physics engine"
-  - point: "Introduces rotoscoped animation techniques for realistic movement"
+    link_label: "Prince of Persia"
+  - point: "Uses rotoscoping-inspired animation transitions for realistic movement"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Demonstrates clever use of lookup tables for game physics"
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup table"
+  - point: "Optimizes object management with transition and MOB lists"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Pushes the limits of 6502 assembly for cinematic realism"
+    link: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
+    link_label: "6502 Assembly"
 
 enhancements:
-  - id: "jump-table-for-game-interactions"
+  - id: "jump-table-for-animation-and-events"
     line_start: 9
-    line_end: 31
-    title: "Jump Table for Game Interactions"
+    line_end: 30
+    title: "Jump Table: Animation and Event Routing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
     image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/PhysicsEngine.ogv/330px--PhysicsEngine.ogv.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo"
     image_caption: "PhysicsEngine (CC BY-SA 3.0)"
-    content: "This section of the code sets up a jump table, a common technique in assembly programming to efficiently handle multiple subroutine calls. Each `jmp` instruction points to a specific routine responsible for handling game interactions, such as triggering spikes (`TRIGSPIKES`), animating mobs (`ANIMMOBS`), or smashing mirrors (`SMASHMIRROR`). At this moment, Jordan Mechner is organizing the game's logic into discrete, callable pieces, ensuring the physics and interactions feel responsive and fluid. In 1989, the Apple IIe/IIc was nearing the end of its dominance, but it remained a popular platform for games due to its affordability and accessibility. With only 128K of memory available, Mechner had to use every trick in the book to fit the game's cinematic ambitions into the hardware constraints. Jump tables were a natural choice for this era, minimizing the overhead of conditional branching and keeping the code compact. This approach laid the groundwork for modular game design, where interactions are abstracted into reusable components. While jump tables are less common in modern high-level languages, the principle of organizing functionality into discrete units persists in object-oriented programming and event-driven architectures. Mechner's work here reflects the ingenuity required to push the limits of the Apple II hardware while delivering a groundbreaking experience."
-  - id: "game-physics-parameters"
+    content: "This section begins with a jump table, a classic technique in assembly programming to route execution to different subroutines based on specific conditions or events. Here, Jordan Mechner defines jumps to routines handling animations, spikes, slicers, torches, and other interactive elements in the game world. The jump table is a compact way to organize the game's logic, allowing rapid branching without complex conditional checks. In the mid-1980s, the Apple IIe and IIc were constrained by limited memory and processing power. The 6502 processor had no native support for high-level constructs like switch statements, so programmers relied on jump tables for efficiency. Mechner, working alone on Prince of Persia, had to make every byte count while ensuring the game felt fluid and responsive. This design choice reflects Mechner's focus on creating a cinematic experience. By centralizing event routing, he could ensure consistent behavior across the game's various interactive elements, such as falling floors and retracting spikes. This modularity also made it easier to debug and expand the game's mechanics. Jump tables remain a foundational technique in low-level programming, though they are less visible in modern high-level languages. Mechner's use of this method exemplifies the ingenuity required to deliver complex gameplay on limited hardware. Without this efficient routing mechanism, the game's responsiveness and realism might have suffered."
+  - id: "physics-parameters-for-interactive-elements"
     line_start: 54
-    line_end: 93
-    title: "Game Physics Parameters: Timers and Velocities"
+    line_end: 92
+    title: "Physics Parameters: Falling Floors, Spikes, and Gates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/330px-Hash_table_3_1_1_0_1_0_0_SP.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
     image_caption: "Hash table 3 1 1 0 1 0 0 SP (CC BY-SA 3.0)"
-    content: "This section defines the parameters that control the game's physics, including timers for retracting spikes (`spiketimer`), falling floors (`loosetimer`), and gates (`gatetimer`). It also specifies acceleration and terminal velocity for falling floors (`FFaccel`, `FFtermvel`) and the incremental movement of gates (`gateinc`). These values are meticulously tuned to create the game's signature sense of weight and realism. In the mid-1980s, most platformers relied on simplistic physics models, often limited to basic gravity and collision detection. Mechner's decision to include nuanced parameters for elements like crumbling floors and retracting spikes was inspired by his desire to make Prince of Persia feel cinematic and immersive. He famously rotoscoped his brother's movements to ensure the animations matched the physics, a technique that added realism but demanded precise control over timing and motion. These parameters became a hallmark of the game's design, influencing how players perceived the environment as dynamic and alive. The attention to detail in this section foreshadows the complexity of modern physics engines, which now handle far more sophisticated simulations but still rely on foundational principles like those seen here. Mechner's work demonstrates how thoughtful parameterization can transform a game from functional to unforgettable."
-  - id: "search-and-add-object-transitions"
+    content: "This block defines the physics parameters for key interactive elements in Prince of Persia, such as gates, spikes, and falling floors. Each parameter controls timing, acceleration, terminal velocity, and other behaviors, ensuring the game world feels consistent and believable. In 1989, most platformers relied on simple physics models, often limited to basic gravity and collision detection. Mechner's approach was revolutionary: he aimed to simulate realistic movement and interactions. Inspired by rotoscoping techniques, he filmed his brother performing stunts and traced the frames to create lifelike animations. These parameters translate that realism into gameplay, dictating how objects like gates open and close, how spikes retract, and how floors crumble under the player's weight. The Apple II's hardware limitations meant Mechner had to optimize every calculation. For example, the falling floor parameters include acceleration and terminal velocity values, ensuring the floor's movement feels natural despite the system's low processing power. The crumble and disappear times add visual feedback, enhancing the player's immersion. These physics parameters laid the groundwork for modern cinematic platformers. By prioritizing realism and detail, Mechner set a new standard for game design. Today, advanced physics engines like Unity and Unreal build on these principles, but the seeds of their sophistication can be traced back to Mechner's meticulous work on the Apple II."
+  - id: "search-and-add-transition-objects"
     line_start: 105
     line_end: 156
-    title: "Search and Add Object Transitions"
+    title: "Managing Transition Objects: Search and Add"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/ECS_Simple_Layout.svg/330px-ECS_Simple_Layout.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
     image_caption: "ECS Simple Layout (CC0)"
-    content: "The `searchtrob` and `addtrob` routines manage the game's transition list, which tracks objects like gates, spikes, and pressure plates as they change state. `searchtrob` scans the list to find an object based on its location and screen coordinates, while `addtrob` either updates an existing object's direction or adds a new object to the list. This ensures the game can dynamically respond to player actions and environmental changes. In the late 1980s, dynamic object management was a relatively novel concept in platformers, which often relied on static level designs. Mechner's implementation reflects his background in film and storytelling, where dynamic environments are essential for creating tension and drama. The Apple II's limited memory forced him to optimize these routines for speed and efficiency, using direct memory access and compact data structures. This approach to object transitions influenced later games, which increasingly relied on dynamic environments to enhance gameplay. While modern engines automate much of this functionality, the principles of efficient object management remain relevant, especially in resource-constrained systems like mobile devices or embedded platforms. Mechner's work here showcases the creativity required to bring cinematic storytelling to life within the constraints of 6502 assembly."
-  - id: "add-and-save-mob-data"
+    content: "This section implements routines to manage transition objects in the game world. The `searchtrob` subroutine searches for an object in the transition list, while `addtrob` adds a new object or updates an existing one. These routines are essential for handling dynamic interactions, such as gates opening or spikes retracting. In the late 1980s, memory management was a critical challenge for game developers. The Apple II's 128K memory was divided into bank-switched segments, requiring careful organization of data. Mechner's transition list is a compact data structure that tracks the state and location of interactive objects. By limiting the number of objects and using efficient search and update algorithms, he maximized performance while minimizing memory usage. The logic here is straightforward but effective. `searchtrob` iterates through the list, comparing each object's location and screen position to the input values. If a match is found, the routine returns the object's index; otherwise, it returns zero. `addtrob` builds on this by either updating the object's direction or adding a new entry if the list isn't full. This approach reflects Mechner's ability to balance technical constraints with gameplay needs. The transition list ensures the game can handle complex interactions without sacrificing speed or responsiveness. Similar data structures are still used in modern games, though they benefit from vastly greater memory and processing power. Mechner's work demonstrates how ingenuity can overcome even the most daunting limitations."
+  - id: "mob-management-save-and-load"
     line_start: 163
-    line_end: 193
-    title: "Add and Save MOB Data"
+    line_end: 200
+    title: "MOB Management: Save and Load"
     wikipedia_url: "https://en.wikipedia.org/wiki/Entity_component_system"
     image_url: ""
     image_caption: ""
-    content: "The `addamob` and `savemob` routines handle the game's MOB (mobile object) list, which tracks dynamic entities like enemies and moving platforms. `addamob` adds a new MOB to the list, while `savemob` stores its properties, including position (`mobx`, `moby`), velocity (`mobvel`), and type (`mobtype`). These routines enable the game to manage multiple active entities simultaneously. In 1989, managing dynamic entities was a significant challenge for game developers, especially on hardware as limited as the Apple II. Mechner's solution reflects his deep understanding of the platform's capabilities, using indexed memory access to keep the MOB list compact and efficient. This approach was likely inspired by techniques used in earlier arcade games, which also had to manage multiple entities within strict resource constraints. The concept of a MOB list is an early precursor to modern entity-component systems, which are now standard in game development. By abstracting entity management into discrete routines, Mechner laid the groundwork for scalable and modular game design. His work here highlights the ingenuity required to create complex, dynamic worlds on hardware that was never designed for such ambitious projects."
+    content: "The `addamob` and `savemob` routines manage MOBs (mobile objects) in the game world. MOBs include characters, enemies, and other moving entities. These routines handle adding new MOBs to the list and saving their state, including position, velocity, type, and level. In the era of the Apple II, dynamic object management was a complex task. The 6502 processor had no native support for advanced data structures, so programmers had to implement their own systems from scratch. Mechner's MOB list is a simple but effective solution, allowing the game to track and update multiple moving objects in real time. The `addamob` routine checks if the MOB list has reached its maximum capacity before adding a new entry. If there's space, it increments the MOB count and jumps to `savemob`, which stores the object's attributes in the list. This modular design makes it easy to expand or modify the game's behavior. The MOB management system is a precursor to modern entity-component systems used in game development. These systems allow developers to manage complex interactions between numerous objects efficiently. Mechner's work on Prince of Persia demonstrates the power of well-designed data structures, even on hardware with severe limitations. His approach to MOB management contributed to the game's fluid and dynamic feel, setting a benchmark for future platformers."
 
 ---
 

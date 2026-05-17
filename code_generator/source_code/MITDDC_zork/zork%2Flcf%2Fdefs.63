@@ -1,101 +1,3 @@
----
-title: "defs.63"
-program: "Zork"
-program_slug: "zork"
-file_path: "zork/lcf/defs.63"
-language: "MDL (Muddle)"
-github_url: "https://github.com/MITDDC/zork/blob/master/zork/lcf/defs.63"
-year: 1977
-author: "Anderson, Blank, Daniels, Lebling"
-slug: "defs"
-order: 1
-description: "This file defines Zork's foundational data structures and utility macros, showcasing the ingenuity of early text adventure programming on the PDP-10."
-
-summary:
-  - point: "Defines MDL macros for manipulating object and room flags"
-    link: "https://en.wikipedia.org/wiki/Zork"
-    link_label: "Zork"
-  - point: "Introduces structured data types for rooms, objects, and actions"
-    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    link_label: "MDL programming language"
-  - point: "Encodes the logic for inventory and room interactions"
-    link: "https://en.wikipedia.org/wiki/DEC_PDP-10"
-    link_label: "DEC PDP-10"
-  - point: "Implements probabilistic item theft mechanics"
-    link: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    link_label: "Interactive Fiction"
-  - point: "Uses flagwords to efficiently manage game state"
-    link: "https://en.wikipedia.org/wiki/Flag_(computing)"
-    link_label: "Flag (computing)"
-
-enhancements:
-  - id: "muddle-macros-for-flag-manipulation"
-    line_start: 19
-    line_end: 32
-    title: "Muddle macros for flag manipulation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Flag_(computing)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Zork-map.jpg/330px-Zork-map.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Zork map (CC BY 4.0)"
-    content: "These macros, such as `TRNN`, `RTRNN`, and `TRO`, are used to manipulate flags on objects and rooms. Flags are binary indicators stored in a word, representing various states like visibility, accessibility, or whether an object is flammable. In the late 1970s, memory was scarce, and efficient state management was critical. The authors of Zork, working on the DEC PDP-10, used these macros to toggle, set, and clear flags with minimal overhead. This approach reflects the influence of assembly language programming, where bitwise operations were common for performance reasons. The macros encapsulate these operations, making the code more readable and maintainable. This technique of flag manipulation became a staple in game development, influencing how states are managed in modern software."
-  - id: "room-data-structure"
-    line_start: 39
-    line_end: 52
-    title: "Room data structure: A world in vectors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Standard_deviation_diagram_micro.svg/330px-Standard_deviation_diagram_micro.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Standard deviation (CC BY-SA 3.0)"
-    content: "The `ROOM` structure is the backbone of Zork's world-building. It defines each room as a vector with properties like descriptions, exits, objects, and flags. In the late 1970s, this was a novel approach to organizing game data, leveraging MDL's ability to define complex data types. The PDP-10's architecture, with its support for large address spaces, allowed the authors to create a richly detailed world. Each room's properties, such as `RLIGHT?` for endogenous light sources or `RVAL` for scoring, reflect the game's emphasis on exploration and puzzle-solving. This structured approach influenced later adventure games, which adopted similar methods for world representation."
-  - id: "flagword-for-room-properties"
-    line_start: 57
-    line_end: 64
-    title: "Flagword for room properties"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Flag_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The `FLAGWORD` construct defines binary flags for room properties, such as `RWATERBIT` for water rooms or `RSACREDBIT` for thief restrictions. This compact representation of state information was essential for the PDP-10's limited memory. The authors, drawing on their experience with systems programming, used flagwords to encode game logic efficiently. This technique allowed Zork to handle complex interactions, like determining whether a room could fill a bottle or exclude certain characters. Flagwords became a standard practice in game development, influencing how state is managed in modern games and software."
-  - id: "adventurer-data-structure"
-    line_start: 167
-    line_end: 177
-    title: "Adventurer data structure: The player encapsulated"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The `ADV` structure represents the player character, encapsulating their location, inventory, score, and other attributes. This design reflects the authors' focus on creating a rich and immersive experience, where the player's actions and state are central to the game. Fields like `ASTRENGTH` for fighting strength and `AVEHICLE` for the current ride highlight the game's emphasis on exploration and interaction. The use of structured data for the player character influenced later games, which adopted similar methods to manage player state and interactions."
-  - id: "object-data-structure"
-    line_start: 186
-    line_end: 207
-    title: "Object data structure: Items come to life"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "The `OBJECT` structure defines the properties of items in Zork's world, such as descriptions, actions, and flags. Each object is represented as a vector, a data type well-suited to the PDP-10's architecture. This structure includes fields like `OFLAGS` for state flags and `OCONTENTS` for nested objects, enabling complex interactions like opening containers or lighting torches. The authors, inspired by their work on early interactive systems, created a flexible framework for item management. This approach laid the groundwork for inventory systems in later games, influencing titles like Ultima and The Legend of Zelda."
-  - id: "utility-functions-for-object-management"
-    line_start: 317
-    line_end: 358
-    title: "Utility functions for object management"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "Functions like `REMOVE-OBJECT`, `INSERT-OBJECT`, and `KILL-OBJ` handle the movement and state of objects in Zork's world. These routines encapsulate complex operations, such as removing an object from a room or transferring it to a player's inventory. In the late 1970s, managing dynamic game state was a significant challenge, especially on hardware like the PDP-10. The authors leveraged MDL's capabilities to create reusable and efficient functions, simplifying the game's logic. This modular approach to programming influenced later game development, encouraging the use of libraries and frameworks for common tasks."
-  - id: "probabilistic-item-theft"
-    line_start: 383
-    line_end: 397
-    title: "Probabilistic item theft mechanics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The `ROB-ROOM` function implements probabilistic item theft, a mechanic that adds unpredictability to gameplay. It checks each object's value and visibility, then uses a probability parameter to decide whether to remove it from the room. This design reflects the authors' focus on creating a dynamic and immersive experience, where players must adapt to changing circumstances. The use of randomness, combined with logical checks, showcases the team's ingenuity in crafting engaging gameplay within the constraints of the PDP-10. This mechanic influenced later games, which adopted similar approaches to randomness and player interaction."
-  - id: "macros-for-random-selection"
-    line_start: 429
-    line_end: 430
-    title: "Macros for random selection"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Randomness"
-    image_url: ""
-    image_caption: ""
-    content: "The `PICK-ONE` macro selects a random element from a vector, adding an element of chance to gameplay. This simple yet effective mechanism reflects the authors' focus on creating dynamic and unpredictable experiences. Randomness was a key feature in Zork, enhancing replayability and immersion. The use of macros for random selection influenced later games, which adopted similar techniques to introduce variability and challenge."
-
----
-
 <AND <L? ,MUDDLE 100> <USE "LSRTNS">>
 
 ; "applicables"
@@ -109,8 +11,7 @@ enhancements:
 <NEWTYPE ADJECTIVE ATOM>
 <NEWTYPE PREP ATOM>
 
-\
-
+\
 
 ;"generalized oflags tester"
 
@@ -129,8 +30,7 @@ enhancements:
 <DEFMAC RTRO ('RM 'BIT)
   <FORM PUT .RM ,RBITS <FORM ORB <FORM RBITS .RM> .BIT>>>
 
-\
-
+\
 
 ; "room definition"
 
@@ -178,8 +78,7 @@ enhancements:
 
 <NEWTYPE NEXIT STRING>		;"unusable exit description"
 
-\
-
+\
 
 ; "PARSER related types"
 
@@ -257,8 +156,7 @@ enhancements:
   PPREP PREP
   POBJ  OBJECT>
 
-\
-
+\
 
 ; "adventurer"
 
@@ -357,8 +255,7 @@ enhancements:
     <FORM AND <FORM OVIS? .OBJ>
 	  <FORM OR <FORM TRANSPARENT? .OBJ> <FORM OOPEN? .OBJ>>>>
 
-\
-
+\
 
 ; "demons"
 
@@ -379,8 +276,7 @@ enhancements:
 	  CFLAG   <OR ATOM FALSE>
 	  CID ATOM>
 
-\
-
+\
 
 
 <SETG LOAD-MAX 100>
@@ -395,8 +291,7 @@ enhancements:
        (MOVES DEATHS) FIX (DUMMY YUKS) <VECTOR [REST STRING]>
        (SWORD-DEMON) HACK>
 
-\
-
+\
 
 "UTILITY FUNCTIONS"
 
@@ -561,8 +456,7 @@ enhancements:
 	   <SET FN ,.FN>
 	   <AGAIN>)
 	  (<ERROR UNASSIGNED-VARIABLE!-ERRORS .FN DA>)>>>
-
-
+
 "OLD MAZER"
 
 <MOBLIST FLAG 17>
@@ -619,5 +513,4 @@ enhancements:
 	(<PRINC "#FUNCTION ">
 	 <PRIN1 <GET-ATOM .FROB>>)>>
 
-
-    
+    

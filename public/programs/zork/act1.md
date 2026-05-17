@@ -5,66 +5,98 @@ program_slug: "zork"
 file_path: "zork/lcf/act1.38"
 language: "MDL (Muddle)"
 github_url: "https://github.com/MITDDC/zork/blob/master/zork/lcf/act1.38"
-year: 1978
-author: "Tim Anderson, Marc Blank, Dave Lebling"
+year: 1977
+author: "Anderson, Blank, Daniels, Lebling"
 slug: "act1"
 order: 4
-description: "The game loop, action handlers, and save system — including a real access-control guard that blocked too many simultaneous players"
+description: "This file defines key interactive elements and room descriptions for Zork, showcasing the ingenuity of early text-based adventure game design."
 
 summary:
-  - point: "The file opens with ILO/BLO — the multi-user decryption and access guard for shared ITS play"
-    link: "https://en.wikipedia.org/wiki/Incompatible_Timesharing_System"
-    link_label: "ITS (Incompatible Timesharing System)"
-  - point: "Room functions like EAST-HOUSE, KITCHEN, and LIVING-ROOM are the complete text adventure engine"
+  - point: "MDL's Lisp-like syntax enabled complex game logic"
+    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
+    link_label: "MDL Programming Language"
+  - point: "Zork's modular design allowed for rapid iteration"
+    link: "https://en.wikipedia.org/wiki/Zork"
+    link_label: "Zork"
+  - point: "Interactive storytelling through dynamic room descriptions"
     link: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    link_label: "Interactive fiction"
-  - point: "The sarcasm is embedded directly in source: YUKS is a vector of dismissive one-liners the dungeon cycles through"
-    link: "https://en.wikipedia.org/wiki/Zork#Gameplay"
-    link_label: "Zork gameplay"
+    link_label: "Interactive Fiction"
 
 enhancements:
-  - id: "blo-ilo"
-    line_start: 2
+  - id: "define-blo-read-table-setup"
+    line_start: 3
+    line_end: 10
+    title: "Setting up the read table for parsing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Zork-map.jpg/330px-Zork-map.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Zork map (CC BY 4.0)"
+    content: "The `BLO` function appears to initialize a read table for parsing input, a critical step in enabling the game's text-based interaction. This setup involves defining ASCII character types and configuring evaluation types, ensuring the game can interpret player commands effectively. In the late 1970s, text parsing was a cornerstone of interactive fiction, as graphical interfaces were not yet mainstream. The authors, working on the DEC PDP-10 under the ITS system, were pushing the boundaries of what text-based computing could achieve. This foundational work in parsing laid the groundwork for the rich, interactive storytelling that Zork pioneered. The techniques used here influenced future text-based games and even modern command-line interfaces."
+  - id: "define-ilo-body-parsing"
+    line_start: 13
     line_end: 21
-    title: "BLO and ILO: The Multi-User Access Guard"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Incompatible_Timesharing_System"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Pdp10_panel.jpg/440px-Pdp10_panel.jpg"
-    image_caption: "A DEC PDP-10 front panel. Zork ran on machines like this at MIT. Multiple users shared the same hardware simultaneously. Public domain."
-    content: "The file opens with two intertwined functions that implement the multi-user decryption and access control system for the ITS (Incompatible Timesharing System) environment. BLO manipulates the MDL read table and type system to decode encrypted sections of the game — the maze and certain puzzles were stored encoded to prevent casual spoiling by people reading the source. ILO is the interrupt handler called as each encrypted block is loaded: it checks whether the string '<FLUSH-ME>' is present in the body and whether the current user (XUNM) is in the WINNERS list. The WINNERS list was the real access control mechanism: only users on the list could load and play the full game. When the PDP-10 was under heavy load, new players were denied entry to reduce system impact. This was not a joke — it was functional access control embedded in the game loader, enforcing a cap on simultaneous players."
-
-  - id: "room-functions"
-    line_start: 25
-    line_end: 75
-    title: "Room Functions: The Action Layer"
+    title: "Parsing and evaluating game actions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "Each room with special behavior has a corresponding function that is invoked by the RACTION field in its ROOM structure. EAST-HOUSE fires when the player looks around, printing a conditional description of the window — open or 'slightly ajar' — depending on KITCHEN-WINDOW!-FLAG. KITCHEN does the same for the kitchen view. These functions follow a strict pattern: check the PRSVEC (parse vector) for the current verb, and handle only the actions that require special behavior; everything else returns false and falls through to the default room description code. The OPEN-CLOSE utility function, used by WINDOW-FUNCTION, abstracts the repeated pattern of toggling a boolean flag with an appropriate message in each direction. This is the entire text-adventure engine: a type dispatch table, a COND on the current verb, and a TELL to print text."
-
-  - id: "yuks"
-    line_start: 143
-    line_end: 148
-    title: "The YUKS Vector: Programmatic Sarcasm"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork#Gameplay"
+    content: "The `ILO` function handles parsing and evaluating specific game actions based on the player's input. It checks conditions such as membership in predefined lists and evaluates the body of the action accordingly. In the late 1970s, this kind of dynamic evaluation was groundbreaking, allowing for nuanced player interactions in text-based games. The authors, all MIT graduates, were leveraging their expertise in artificial intelligence and programming languages to create a system that felt responsive and immersive. This approach to parsing and conditional evaluation became a hallmark of interactive fiction, influencing countless games that followed."
+  - id: "define-east-house-room-description"
+    line_start: 25
+    line_end: 33
+    title: "Dynamic room descriptions behind the white house"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "YUKS is a literal vector of five dismissive responses that the game cycles through when the player attempts something impossible or pointless. 'Nice try.' 'You can't be serious.' 'Chomp, Chomp.' 'Not a prayer.' 'I don't think so.' These are selected by PICK-ONE, a macro that picks a random element from any vector using the MDL RANDOM function. The same pattern appears throughout act1 — DUMMY holds the generic 'already done that' responses, YUKS holds the mockery. The authors were deliberately giving the game a personality: not the neutral acknowledgment of most software, but an opinionated narrator who found the player's attempts amusing. This decision — to give the dungeon a voice — is what made Zork's writing memorable and influenced every text adventure that followed."
-
-  - id: "glacier-puzzle"
+    content: "The `EAST-HOUSE` function provides a dynamic description of the area behind the white house, including the state of the kitchen window. This kind of detailed environmental storytelling was a key innovation of Zork, allowing players to visualize and interact with the game world in a meaningful way. In 1977, games were typically limited to simple text prompts or static screens, but Zork's use of dynamic descriptions set a new standard for immersion. The authors drew on their backgrounds in computer science and storytelling to create a game that felt alive, paving the way for the genre of interactive fiction."
+  - id: "define-window-function-interaction"
+    line_start: 39
+    line_end: 44
+    title: "Opening and closing the kitchen window"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
+    image_url: ""
+    image_caption: ""
+    content: "The `WINDOW-FUNCTION` allows players to interact with the kitchen window, providing feedback based on their actions. The function uses auxiliary variables to determine the state of the window and outputs descriptive text for the player. This kind of interaction was a hallmark of Zork, where seemingly mundane objects could become key elements in the game's puzzles. In the late 1970s, this level of interactivity was rare, and Zork's ability to make the environment feel responsive was a major factor in its success. The game's authors were pioneering a new way of storytelling, blending narrative and gameplay in a way that would inspire future game designers."
+  - id: "define-leaf-pile-environmental-interaction"
+    line_start: 77
+    line_end: 91
+    title: "Burning or moving the leaf pile"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: ""
+    image_caption: ""
+    content: "The `LEAF-PILE` function allows players to interact with a pile of leaves, either by burning or moving them. The function includes dynamic responses based on the player's actions, such as neighbors complaining about the smoke or intervening if the player carries burning leaves. This kind of environmental interaction was revolutionary in 1977, showcasing Zork's ability to create a living, reactive world. The authors were drawing on their expertise in artificial intelligence to simulate cause-and-effect relationships, making the game feel more immersive. These techniques became foundational for interactive fiction and influenced later adventure games."
+  - id: "define-glacier-room-description"
+    line_start: 101
+    line_end: 107
+    title: "A room transformed by player actions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
+    image_url: ""
+    image_caption: ""
+    content: "The `GLACIER-ROOM` function provides a description of a room with giant icicles, dynamically changing based on the state of the `GLACIER-FLAG!-FLAG`. This showcases Zork's ability to alter the environment based on player actions, a feature that was groundbreaking in the late 1970s. The authors were experimenting with ways to make the game world feel dynamic and responsive, a stark contrast to the static environments of earlier text-based games. This approach to environmental storytelling has influenced countless games, from text adventures to modern open-world RPGs."
+  - id: "define-glacier-destruction"
     line_start: 116
-    line_end: 141
-    title: "The Glacier Puzzle: Object State in Actions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork#Gameplay"
+    line_end: 135
+    title: "Destroying the glacier with a torch"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The GLACIER function shows how Zork's action handlers modify world state directly. When the player throws the torch at the glacier, the handler removes the ice object from the room, moves the torch to the stream room downstream, updates the torch's description strings from 'ivory torch' to 'burned out ivory torch', zeros its OLIGHT? field, clears its FLAMEBIT, sets GLACIER-FLAG!-FLAG to T (which unlocks the westward passage via a CEXIT in the rooms data), and checks whether the room is now dark. If the player is in the dark after the glacier melts, it prints an additional message. Seven separate world-state mutations from a single player action, all expressed as direct slot assignments on MDL objects. The puzzle design and the implementation are the same thing."
+    content: "The `GLACIER` function allows players to destroy a glacier using a torch, triggering a series of dynamic changes in the game world. This includes altering room descriptions, removing objects, and creating new pathways. In 1977, this kind of environmental transformation was a major innovation, showcasing Zork's ability to create a reactive and immersive game world. The authors were leveraging the power of MDL to simulate complex cause-and-effect relationships, pushing the boundaries of what text-based games could achieve. This technique influenced later games, demonstrating the potential of interactive storytelling."
+  - id: "define-living-room-description"
+    line_start: 178
+    line_end: 200
+    title: "Entering the dungeon from the living room"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: ""
+    image_caption: ""
+    content: "The `LIVING-ROOM` function provides a detailed description of the living room, including dynamic elements like a trap door and gothic lettering on a wooden door. This room serves as a gateway to the game's dungeon, a pivotal moment in the player's journey. In 1977, creating such richly detailed environments was a significant challenge, requiring careful planning and programming. The authors were drawing on their backgrounds in storytelling and computer science to create a world that felt alive and immersive. This room exemplifies Zork's ability to blend narrative and gameplay, a technique that influenced the design of countless adventure games."
 
 ---
+
+; excerpt — first 200 lines of zork/lcf/act1.38
+
 "VOCABULARY, ACTION FUNCTIONS, MAZE (NORMALLY ENCODED)"
 
 <DEFINE BLO (Y)
 	<COND (<TYPE? ,REP SUBR FSUBR>
-	       <SET READ-TABLE <PUT <IVECTOR 256 0> <CHTYPE <ASCII !\<> FIX> !\>>
+	       <SET READ-TABLE <PUT <IVECTOR 256 0> <CHTYPE <ASCII !\<> FIX> !\>>
 	       <EVALTYPE FORM SEGMENT>
 	       <APPLYTYPE SUBR FIX>
 	       <PUT <ALLTYPES> 6 <7 <ALLTYPES>>>
@@ -208,3 +240,55 @@ you in the dark.">>
 	"Chomp, Chomp."
 	"Not a prayer."
 	"I don't think so."]>
+
+<DEFINE RESERVOIR-SOUTH ("AUX" (PRSACT <1 ,PRSVEC>)) 
+	#DECL ((PRSACT) VERB)
+	<COND (<==? .PRSACT ,LOOK!-WORDS>
+	       <COND (,LOW-TIDE!-FLAG
+		      <TELL 
+"You are in the south end of a large cavernous room which was formerly
+a reservoir."
+>
+		      <TELL ,RESDESC 1>)
+		     (<TELL "You are at the south end of a large reservoir.">)>
+	       <TELL 
+"There is a western exit, a passageway south, and a steep pathway
+climbing up along the edge of a cliff." 1>)>>
+
+<DEFINE RESERVOIR-NORTH ("AUX" (PRSACT <1 ,PRSVEC>)) 
+	#DECL ((PRSACT) VERB)
+	<COND (<==? .PRSACT ,LOOK!-WORDS>
+	       <COND (,LOW-TIDE!-FLAG
+		      <TELL 
+"You are in the north end of a large cavernous room which was formerly
+a reservoir."
+>
+		      <TELL ,RESDESC 1>)
+		     (<TELL "You are at the north end of a large reservoir.">)>
+	       <TELL "There is a tunnel leaving the room to the north." 1>)>>
+
+;"LIVING-ROOM -- FUNCTION TO ENTER THE DUNGEON FROM THE HOUSE"
+
+<DEFINE LIVING-ROOM ("AUX" (WIN ,WINNER) (PRSVEC ,PRSVEC) RUG?
+			   (PRSACT <1 .PRSVEC>) TC)
+	#DECL ((PRSVEC) VECTOR (WIN) ADV (RUG?) <OR ATOM FALSE>
+	       (PRSACT) VERB (TC) OBJECT)
+	<COND (<==? .PRSACT ,LOOK!-WORDS>
+	       <COND (,MAGIC-FLAG!-FLAG
+		      <TELL 
+"You are in the living room.  There is a door to the east.  To the
+west is a cyclops-shaped hole in an old wooden door, above which is
+some strange gothic lettering " 0>)
+		     (<TELL 
+"You are in the living room.  There is a door to the east, a wooden
+door with strange gothic lettering to the west, which appears to be
+nailed shut, " 0>)>
+	       <SET RUG? <ORAND <FIND-OBJ "RUG">>>
+	       <COND (<AND .RUG? ,TRAP-DOOR!-FLAG>
+		      <TELL 
+"and a rug lying beside an open trap-door." 1>)
+		     (.RUG?
+		      <TELL 
+"and a closed trap-door at your feet." 1>)
+		     (,TRAP-DOOR!-FLAG
+		      <TELL "and an open trap-door at your feet." 1>)

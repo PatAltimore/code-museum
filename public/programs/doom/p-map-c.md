@@ -9,66 +9,66 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-map-c"
 order: 3
-description: "This file is a cornerstone of DOOM's movement, collision, and interaction mechanics, showcasing the ingenuity required to create immersive gameplay on constrained 1993 hardware."
+description: "This file reveals the inner workings of DOOM's movement, collision, and interaction systems, showcasing the ingenuity required to create a fast-paced 3D game on limited hardware."
 
 summary:
-  - point: "DOOM's collision detection and movement logic are highly optimized for performance on 1993-era PCs."
+  - point: "DOOM's movement system handles player and monster navigation with precision."
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     link_label: "DOOM (1993)"
-  - point: "The teleportation mechanics reflect creative solutions for dynamic level traversal."
-    link: "https://en.wikipedia.org/wiki/Teleportation_in_fiction"
-    link_label: "Teleportation in fiction"
-  - point: "Sliding mechanics allowed players to interact with angled walls, enhancing realism."
-    link: "https://en.wikipedia.org/wiki/Physics_engine"
-    link_label: "Physics engine"
-  - point: "Sector height changes dynamically adjust gameplay elements, a precursor to modern environmental interactivity."
-    link: "https://en.wikipedia.org/wiki/Level_design"
-    link_label: "Level design"
-  - point: "Radius attacks demonstrate early implementations of area-of-effect damage in games."
-    link: "https://en.wikipedia.org/wiki/Area_of_effect"
-    link_label: "Area of effect"
+  - point: "Collision detection ensures realistic interactions with walls, objects, and enemies."
+    link: "https://en.wikipedia.org/wiki/Collision_detection"
+    link_label: "Collision Detection"
+  - point: "Sector height changes dynamically adjust gameplay elements like crushing ceilings."
+    link: "https://en.wikipedia.org/wiki/DOOM_engine"
+    link_label: "DOOM Engine"
+  - point: "Sliding mechanics allow smooth movement along angled walls, enhancing immersion."
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM (1993)"
+  - point: "Radius attacks simulate explosions with area-of-effect damage."
+    link: "https://en.wikipedia.org/wiki/Explosion"
+    link_label: "Explosion Mechanics"
 
 enhancements:
-  - id: "collision-detection-optimization"
-    line_start: 81
-    line_end: 108
-    title: "Collision detection: optimizing for speed"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Fighter_hitbox.svg/330px-Fighter_hitbox.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Fighter hitbox (CC BY 3.0)"
-    content: "The `PIT_StompThing` function handles collision detection between objects, ensuring that entities like monsters and players interact correctly within the game world. In 1993, hardware constraints meant that every calculation had to be efficient. John Carmack, known for his mathematical prowess, designed this routine to quickly determine whether two objects overlap and whether damage should be applied. At the time, PCs typically ran on processors like the Intel 486, with clock speeds around 33 MHz and limited memory. This routine exemplifies Carmack's ability to squeeze performance out of such hardware, enabling DOOM to run smoothly even on modest systems. The logic here—checking bounding boxes and applying damage—has influenced countless games since, forming the basis of modern collision systems."
-  - id: "teleportation-mechanics"
-    line_start: 115
+  - id: "teleport-move-mechanics"
+    line_start: 111
     line_end: 177
-    title: "Teleportation: dynamic level traversal"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Teleportation_in_fiction"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Transporter_Room.jpg/330px-Transporter_Room.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "The Transporter Room as part of the Star Trek Original Series Set Tour. (CC BY-SA 2.0)"
-    content: "The `P_TeleportMove` function is a fascinating example of DOOM's approach to level design and player movement. Teleportation was a novel mechanic in 1993, allowing players to traverse levels in unexpected ways. This function ensures that the destination is valid, clearing obstacles and adjusting the player's position within the game world. The idea of teleportation was inspired by science fiction and fantasy tropes, but implementing it in a real-time game required careful consideration of collision detection and environmental constraints. Carmack and Romero's design allowed for seamless transitions, adding to the game's sense of immersion and unpredictability. Teleportation mechanics have since become a staple in video games, appearing in genres ranging from RPGs to first-person shooters."
-  - id: "sliding-along-walls"
-    line_start: 581
+    title: "Teleportation: A Seamless Transition"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/A_detonation_erupts_as_U.S._Marines_with_the_1st_Explosive_Ordnance_Disposal_Company%2C_Combat_Logistics_Regiment_2_conduct_a_demolition_operation_in_Helmand_province%2C_Afghanistan%2C_March_17%2C_2013_130317-M-KS710-206.jpg/330px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "A detonation erupts as U.S. Marines with the 1st Explosive Ordnance Disposal Company, Combat Logistics Regiment 2 conduct a demolition operation in Helmand province, Afghanistan, March 17, 2013 130317"
+    content: "The `P_TeleportMove` function is responsible for moving objects, such as players or monsters, to a new location on the map while ensuring the destination is valid. This includes checking for collisions with other objects, adjusting floor and ceiling heights, and ensuring the object fits within the new space. In 1993, teleportation was a groundbreaking feature that added a layer of complexity to gameplay. The developers at id Software had to account for edge cases, such as ensuring missiles wouldn't explode against sky textures or monsters wouldn't teleport into inaccessible areas. This code reflects their meticulous attention to detail, enabling seamless transitions that felt natural to players. Teleportation mechanics became a staple in many games, influencing level design and gameplay strategies for decades."
+  - id: "slide-move-along-walls"
+    line_start: 693
     line_end: 788
-    title: "Sliding mechanics: realism meets gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/PhysicsEngine.ogv/330px--PhysicsEngine.ogv.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo"
-    image_caption: "PhysicsEngine (CC BY-SA 3.0)"
-    content: "The sliding mechanics implemented in `P_SlideMove` allowed players to interact with angled walls in a realistic manner, enhancing the game's physicality. This function calculates how the player should 'slide' along a wall when movement is obstructed, using trigonometric calculations to adjust the trajectory. In the early 1990s, physics engines were rudimentary, and Carmack's work here was groundbreaking. The sliding behavior added a layer of realism to DOOM's gameplay, making movement feel dynamic and responsive. It also showcased the team's ability to innovate within the constraints of limited hardware. Sliding mechanics have since evolved into more complex systems in modern games, but DOOM's implementation remains a landmark in game physics."
-  - id: "radius-attack-damage"
-    line_start: 1160
+    title: "Sliding Along Walls: A Kludgy Innovation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_SlideMove` function enables players and monsters to slide along angled walls when their movement is obstructed. This mechanic ensures smooth navigation in tight spaces and enhances the game's immersive feel. In the early 1990s, creating realistic movement in a 3D environment was a significant challenge due to hardware limitations. John Carmack, the lead programmer, devised this 'kludgy mess' as a practical solution to maintain gameplay fluidity without sacrificing performance. The sliding mechanic, though complex, was a testament to Carmack's ability to balance technical constraints with player experience. This feature influenced future game engines, setting a precedent for handling collisions and movement in 3D spaces."
+  - id: "line-attack-aiming"
+    line_start: 1020
+    line_end: 1086
+    title: "Precision Shooting: Line Attack Mechanics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_LineAttack` function handles shooting mechanics, including aiming and determining whether a target is hit. It calculates slopes to ensure accuracy when aiming at enemies above or below the player. This feature was essential for DOOM's fast-paced combat, allowing players to engage enemies in varied environments. In 1993, implementing precise shooting on limited hardware required innovative programming techniques. The developers at id Software optimized calculations to ensure smooth gameplay without sacrificing realism. The line attack system influenced the design of shooting mechanics in countless games, setting a benchmark for accuracy and responsiveness."
+  - id: "radius-attack-explosions"
+    line_start: 1159
     line_end: 1233
-    title: "Area-of-effect damage: radius attacks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Area_of_effect"
+    title: "Simulating Explosions: The Radius Attack"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Explosion"
     image_url: ""
     image_caption: ""
-    content: "The `P_RadiusAttack` function is an early example of area-of-effect damage in video games. When an explosion occurs, this routine calculates which objects are within range and applies damage accordingly. The concept of radius-based damage was revolutionary for its time, adding strategic depth to gameplay. Players had to consider positioning and timing to maximize the impact of their attacks. This mechanic was inspired by tabletop RPGs and wargames, where area-of-effect spells and attacks were common. Implementing it in real-time required efficient algorithms to handle multiple entities simultaneously. The influence of this design can be seen in countless modern games, from first-person shooters to strategy titles, where explosions and spells often rely on similar calculations."
-  - id: "dynamic-sector-height"
-    line_start: 1254
-    line_end: 1339
-    title: "Dynamic sector height: environmental interactivity"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
+    content: "The `P_RadiusAttack` function calculates the damage dealt by area-of-effect attacks, such as explosions. It determines which objects are within the blast radius and applies damage based on their distance from the explosion's center. This mechanic was crucial for DOOM's fast-paced gameplay, allowing players to strategically use rockets and other explosive weapons. In 1993, simulating realistic explosions on consumer-grade hardware was a technical feat. The developers had to optimize calculations to ensure the game ran smoothly, even during chaotic battles. The radius attack system influenced countless games, becoming a standard feature in action and shooter genres."
+  - id: "sector-height-adjustments"
+    line_start: 1238
+    line_end: 1338
+    title: "Dynamic Sector Heights: Crushing Gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_engine"
     image_url: ""
     image_caption: ""
-    content: "The `P_ChangeSector` function adjusts the positions of objects when a sector's floor or ceiling height changes, ensuring that gameplay remains consistent. This dynamic interaction between the environment and entities was a significant innovation in 1993, allowing for features like elevators, crushing ceilings, and rising platforms. The idea of sectors—areas with distinct properties—was central to DOOM's level design. Carmack's approach to handling these changes ensured that the game could simulate complex environments without sacrificing performance. This technique paved the way for more interactive and immersive game worlds, influencing level design in subsequent generations of games. Today, dynamic environments are a standard feature, but their roots can be traced back to innovations like this."
+    content: "The `P_ChangeSector` function handles changes in sector heights, such as raising or lowering floors and ceilings. This dynamic adjustment impacts gameplay elements like crushing ceilings, which can damage or destroy objects and monsters. The function also ensures that objects fit within the updated space, adding a layer of realism to the game world. In the early 1990s, dynamic level geometry was a novel concept, requiring innovative solutions to handle edge cases like stranded monsters or dropped items. The ability to modify sectors in real-time contributed to DOOM's reputation as a groundbreaking title, inspiring future games to explore dynamic environments."
 
 ---
 

@@ -5,61 +5,59 @@ program_slug: "zork"
 file_path: "zork/dung.56"
 language: "MDL (Muddle)"
 github_url: "https://github.com/MITDDC/zork/blob/master/zork/dung.56"
-year: 1979
-author: "Tim Anderson, Marc Blank, Bruce Daniels, Dave Lebling"
+year: 1977
+author: "Anderson, Blank, Daniels, Lebling"
 slug: "dung"
 order: 3
-description: "The world itself — every room, every object, every exit. The first 200 lines of 91KB that defined interactive fiction."
+description: "This file defines key vocabulary, global variables, and room structures for Zork, one of the earliest text-based adventure games."
 
 summary:
-  - point: "MGVALS is the game's entire persistent state — 39 boolean flags for every puzzle and mechanic"
+  - point: "MDL's Lisp-like syntax allowed complex data structures for game state management."
+    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
+    link_label: "MDL Programming Language"
+  - point: "Zork's room definitions demonstrate early procedural generation techniques."
     link: "https://en.wikipedia.org/wiki/Zork"
     link_label: "Zork"
-  - point: "CEVENT entries are the dungeon's hidden clock — timed events that fire after N player moves"
+  - point: "Global flags tracked dynamic game states, enabling intricate puzzles and interactions."
+    link: "https://en.wikipedia.org/wiki/Text-based_game"
+    link_label: "Text-Based Games"
+  - point: "Vocabulary parsing was critical for Zork's natural language interface."
     link: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    link_label: "Interactive fiction"
-  - point: "The WHOUS room definition, lines 158-165, is the exact source of 'West of House' — the game's opening screen"
-    link: "https://en.wikipedia.org/wiki/Zork#Gameplay"
-    link_label: "Zork gameplay"
+    link_label: "Interactive Fiction"
+  - point: "Room definitions showcase early attempts at spatial representation in games."
+    link: "https://en.wikipedia.org/wiki/Adventure_game"
+    link_label: "Adventure Games"
 
 enhancements:
-  - id: "mgvals"
+  - id: "global-flags-for-dynamic-game-state"
     line_start: 13
     line_end: 53
-    title: "MGVALS: The Game's Memory"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_state"
+    title: "Global Flags for Dynamic Game State"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Zork-map.jpg/330px-Zork-map.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Zork map (CC BY 4.0)"
+    content: "This section defines global flags, each representing a dynamic state in the game world. Flags like `TROLL-FLAG!-FLAG` and `CAGE-SOLVE!-FLAG` track whether specific puzzles or events have been triggered. In the late 1970s, game developers were exploring ways to create immersive, interactive worlds. The DEC PDP-10, with its limited memory and processing power, demanded efficient state management. These flags allowed Zork to simulate a living world where player actions had lasting consequences. The authors—Anderson, Blank, Daniels, and Lebling—were MIT graduates inspired by earlier text adventures like Colossal Cave Adventure. Their work on Zork pushed the boundaries of what interactive fiction could achieve, laying the groundwork for modern game design. Today, similar state-tracking mechanisms are ubiquitous in games, from RPGs to open-world adventures."
+  - id: "vocabulary-parsing-and-synonyms"
+    line_start: 69
+    line_end: 88
+    title: "Vocabulary Parsing and Synonyms"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "MGVALS is a vector of 39 atom names — the complete list of boolean game-state flags that track every puzzle, mode, and condition in Zork. Each atom is initialized to false and can be set to T (true) by game code. KITCHEN-WINDOW!-FLAG records whether the kitchen window is open. TROLL-FLAG tracks the troll's state. TRAP-DOOR!-FLAG records whether the living room trap door is open. RAINBOW!-FLAG gates the rainbow bridge puzzle. CAROUSEL-FLIP and CAROUSEL-ZOOM track the spinning room. MOVES and RAW-SCORE are integers, not booleans, embedded in the same vector. The `!` suffix on most names is MDL's way of separating package namespaces — the flag atom lives in its own oblist to avoid collisions. Together these 39 flags represent the entire mutable state of the game world. Save and restore means serializing this vector."
-
-  - id: "cevent"
-    line_start: 95
-    line_end: 137
-    title: "CEVENT: Zork's Hidden Clock"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_clock"
+    content: "This block defines the game's vocabulary, including directions, prepositions, and synonyms. Commands like 'NORTH' and 'N' are linked, enabling players to use natural language to navigate and interact with Zork's world. In 1977, natural language processing was in its infancy, and Zork's approach was groundbreaking. The game's parser allowed players to type commands in plain English, a feature that distinguished it from earlier games with rigid input formats. The authors leveraged MDL's list-processing capabilities to create a flexible and extensible system. This innovation made Zork feel more intuitive and immersive, setting a standard for text-based games and influencing the development of interactive fiction for decades."
+  - id: "room-definitions-and-spatial-representation"
+    line_start: 152
+    line_end: 194
+    title: "Room Definitions and Spatial Representation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "Zork's world is not static between player commands. The CEVENT (clock-event) system schedules functions to fire after a set number of player moves. Each CEVENT declaration names a function, a tick count (initially 0, set later), a flag (whether active), and a string ID. The lantern runs down via the LNTIN event. The candles burn via CNDIN. The troll wanders via a demon. Matches go out via MATIN. The fuse on the bomb counts down via FUSIN. The ledge collapses via LEDIN. Each of these is a timer, and the dungeon master is running all of them simultaneously. The player experiences the dungeon as a spatial puzzle, but internally it is a priority queue of scheduled events firing against a global move counter. This architecture — separate from the command loop — is what made Zork feel alive."
-
-  - id: "whous"
-    line_start: 158
-    line_end: 165
-    title: "WHOUS: West of House"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork#Gameplay"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Zork_-_video_game.jpg/440px-Zork_-_video_game.jpg"
-    image_caption: "Zork running on a PDP-10 terminal. The opening screen begins 'West of House.' This is the source. Public domain."
-    content: "The most famous room in interactive fiction history is defined in eight lines of MDL. Room ID WHOUS, long description 'You are in an open field west of a big white house, with a boarded front door.', short description 'West of House', visited flag T (you start here so you've already seen it). The exit list is compact: NORTH goes to NHOUS, SOUTH to SHOUS, WEST to FORE1 (the forest), and EAST is a #NEXIT — an unusable exit with the message 'The door is locked, and there is evidently no key.' That locked door, blocking the obvious path, is the game's first puzzle. The two objects in the room — FDOOR (the front door) and MAILB (the mailbox) — are listed inline. Every room in the dungeon follows this exact structure, defined as a #ROOM reader macro that constructs a typed ROOM vector at load time."
-
-  - id: "nexit-cexit"
-    line_start: 148
-    line_end: 200
-    title: "#NEXIT and #CEXIT: Puzzle Gates in Data"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game#Puzzle_design"
-    image_url: ""
-    image_caption: ""
-    content: "Two special exit types let the world data encode puzzles directly, without writing handler code. #NEXIT takes a string — a message to display when the player tries this direction, like 'The door is locked' or 'The windows are all barred.' It is a dead end with an explanation baked into the map. #CEXIT takes a flag atom and a destination room. The exit is passable only if the named flag is true. KITCHEN-WINDOW in EHOUS (Behind House) is a CEXIT guarded by KITCHEN-WINDOW!-FLAG — it only opens after the player has opened the window. This means the puzzle state lives in the world data, not in a separate action handler. The COND-OPEN and COND-CLOSE macros in defs.63 simply flip the CXFLAG atom that the exit checks. The entire kitchen-window puzzle is a few lines of data and two macro calls."
+    content: "This section defines several rooms in Zork, including 'West of House' and 'Kitchen,' along with their descriptions and connections to other rooms. Each room is represented as a structured object, with properties for exits, objects, and textual descriptions. In the late 1970s, representing a game world as interconnected spaces was a novel concept. The authors used MDL's list-based syntax to encode spatial relationships and environmental details, creating a sense of place and exploration. The DEC PDP-10's limited memory required careful optimization, so each room's data was compactly stored and dynamically referenced during gameplay. Zork's room system became a blueprint for countless adventure games, influencing titles like King's Quest and The Secret of Monkey Island."
 
 ---
+
+; excerpt — first 200 lines of zork/dung.56
+
 "VOCABULARY"
 
 ;"GLOBAL VARIABLES WHICH ARE ROOMS MUST BE HERE!"
@@ -154,6 +152,7 @@ enhancements:
 <SETG OBJECTS ()>
 
 
+
 "CEVENT DEFINITIONS"
 <OR <LOOKUP "COMPILE" <ROOT>>
     <CEVENT 0 ,CURE-CLOCK <> "CURIN">>
@@ -196,6 +195,7 @@ enhancements:
 
 <OR <LOOKUP "COMPILE" <ROOT>>
     <CEVENT 0 ,SPHERE-FUNCTION T "SPHIN">>
+
 
 
 ; "KLUDGE"
@@ -258,5 +258,3 @@ and all the windows are barred."
        "Kitchen"
        T
        #EXIT {"EAST" #CEXIT {"KITCHEN-WINDOW" "EHOUS"} "WEST" "LROOM"
-	      "EXIT" #CEXIT {"KITCHEN-WINDOW" "EHOUS"} "UP" "ATTIC"
-	      "DOWN" #NEXIT "Only Santa Claus climbs down chimneys."}}

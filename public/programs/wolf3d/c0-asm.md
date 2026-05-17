@@ -9,66 +9,66 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "c0-asm"
 order: 1
-description: "Critical startup code for Wolfenstein 3D, showcasing the ingenuity required to optimize performance on MS-DOS systems in 1992."
+description: "Critical startup code for Wolfenstein 3D, showcasing assembly-level ingenuity in optimizing performance and compatibility on MS-DOS systems."
 
 summary:
-  - point: "Segment declarations for memory organization"
-    link: "https://en.wikipedia.org/wiki/Memory_segmentation"
-    link_label: "Memory Segmentation"
-  - point: "Processor compatibility check for 286 or better"
-    link: "https://en.wikipedia.org/wiki/Intel_80286"
-    link_label: "Intel 80286"
-  - point: "Interrupt vector saving and restoration"
-    link: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
-    link_label: "Interrupt Vector Table"
-  - point: "Environment variable parsing and memory allocation"
+  - point: "Segment declarations ensure memory layout compatibility with MS-DOS"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Default divide-by-zero handler installation"
+  - point: "Startup code checks for hardware compatibility, requiring a 286 processor or better"
+    link: "https://en.wikipedia.org/wiki/Intel_80286"
+    link_label: "Intel 80286"
+  - point: "Interrupt vector saving and restoration for runtime stability"
+    link: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
+    link_label: "Interrupt Vector Table"
+  - point: "Efficient memory management tailored to MS-DOS constraints"
+    link: "https://en.wikipedia.org/wiki/Memory_management"
+    link_label: "Memory Management"
+  - point: "Custom divide-by-zero handler for runtime error management"
     link: "https://en.wikipedia.org/wiki/Divide_by_zero"
     link_label: "Divide by Zero"
 
 enhancements:
-  - id: "segment-declarations-memory-organization"
-    line_start: 18
+  - id: "segment-declarations-ms-dos"
+    line_start: 16
     line_end: 57
-    title: "Segment declarations for memory organization"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
-    image_url: ""
-    image_caption: ""
-    content: "These lines define the memory segments used by the program, including code, data, stack, and uninitialized data areas. Memory segmentation was a hallmark of MS-DOS programming, necessitated by the 16-bit architecture of the Intel 8086 and 80286 processors. Programmers had to carefully manage memory within the 640 KB conventional memory limit, dividing it into logical segments to ensure efficient use. This approach reflects the constraints of the era, where every byte mattered. The meticulous organization laid out here was essential for Wolfenstein 3D's performance, allowing it to push the boundaries of what was possible on consumer-grade hardware."
-  - id: "processor-compatibility-check"
-    line_start: 140
-    line_end: 154
-    title: "Checking for 286 processor compatibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80286"
-    image_url: ""
-    image_caption: ""
-    content: "This section ensures the program runs only on systems equipped with an Intel 80286 or better processor. By manipulating the flags register, the code determines whether the processor supports protected mode, a feature introduced with the 286. In 1992, id Software was targeting a broad audience, but compatibility with older 8086/8088 processors was sacrificed to leverage the enhanced capabilities of newer CPUs. This decision reflects the team's focus on delivering cutting-edge performance, even if it meant narrowing the potential user base. The check is a reminder of the rapid evolution of hardware during the early 1990s and the trade-offs developers faced."
-  - id: "interrupt-vector-saving"
-    line_start: 528
-    line_end: 561
-    title: "Saving interrupt vectors for stability"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
-    image_url: ""
-    image_caption: ""
-    content: "Interrupt vectors for critical functions (divide by zero, overflow, etc.) are saved here to ensure stability during runtime. MS-DOS relied heavily on interrupt-driven programming, where specific memory locations held pointers to routines handling hardware and software events. By saving these vectors, id Software ensured that Wolfenstein 3D could restore the system's original state upon exit, preventing conflicts with other programs or TSRs (Terminate and Stay Resident programs). This careful handling of interrupts highlights the team's attention to detail, ensuring their groundbreaking game didn't disrupt the user's system."
-  - id: "environment-variable-parsing"
-    line_start: 224
-    line_end: 249
-    title: "Parsing environment variables and allocating memory"
+    title: "Segment declarations for MS-DOS memory layout"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "This code parses the environment variables passed to the program and calculates the memory required to store them. Environment variables were a key feature of MS-DOS, providing configuration details and runtime information. The parsing logic ensures the environment does not exceed 32 KB, a constraint imposed by the operating system. Memory allocation was a critical task in the constrained world of DOS programming, where every byte had to be accounted for. This section exemplifies the meticulous resource management required to create a game as ambitious as Wolfenstein 3D."
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
+    content: "The segment declarations in this section define the memory layout for the program, ensuring compatibility with MS-DOS's segmented memory model. Each segment serves a specific purpose: '_TEXT' for code, '_DATA' for initialized data, '_BSS' for uninitialized data, and '_STACK' for the stack. This structure was essential for programs running on MS-DOS, where memory was divided into 64KB segments due to the limitations of the x86 architecture. The programmers at id Software had to carefully manage these segments to optimize performance and ensure stability. This approach reflects the meticulous attention to detail required to work within the constraints of early PC hardware."
+  - id: "hardware-check-286-processor"
+    line_start: 138
+    line_end: 154
+    title: "Checking for a 286 processor or better"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80286"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/KL_Intel_i286.jpg/330px-KL_Intel_i286.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "CPU Intel i286 PGA (CC BY-SA 3.0)"
+    content: "This section includes a hardware compatibility check to ensure the program runs on a 286 processor or better. The code uses a clever trick with the processor flags to detect whether the system supports the necessary features. In 1992, the 286 was considered the baseline for many advanced software applications, as it introduced protected mode and other enhancements over the earlier 8086 and 8088 processors. By requiring a 286, id Software ensured that Wolfenstein 3D could leverage these capabilities for better performance. This decision reflects the team's forward-thinking approach, targeting a growing base of users with modern hardware while leaving behind older systems."
+  - id: "memory-management-ms-dos"
+    line_start: 254
+    line_end: 303
+    title: "Memory management tailored to MS-DOS constraints"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/330px-Operating_system_placement.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Graph of Operating System placement on computer usage (CC BY-SA 3.0)"
+    content: "This section calculates the amount of memory required for the stack and other data segments, ensuring that the program does not exceed the 64KB limit imposed by MS-DOS's segmented memory model. The code dynamically adjusts the stack size based on available memory, with a minimum size defined to prevent stack overflows. Memory management was a critical aspect of MS-DOS programming, as developers had to work within tight constraints while optimizing performance. The techniques used here highlight id Software's expertise in squeezing every ounce of capability from the hardware, enabling the fast-paced gameplay that defined Wolfenstein 3D."
   - id: "divide-by-zero-handler"
     line_start: 515
     line_end: 519
-    title: "Installing a default divide-by-zero handler"
+    title: "Custom divide-by-zero handler"
     wikipedia_url: "https://en.wikipedia.org/wiki/Divide_by_zero"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/X86_Interrupt_Vector_Table.svg/330px-X86_Interrupt_Vector_Table.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Interrupt Vector Table of x86 processors running in real mode. Arrows indicate direction of increasing addresses. (CC0)"
+    content: "The 'ZeroDivision' procedure is a custom handler for divide-by-zero errors. When such an error occurs, the program displays a message ('Divide error') and exits gracefully. This was a critical feature in the early PC era, where runtime errors could easily crash the system or produce undefined behavior. By implementing a custom handler, id Software ensured that their game could recover from errors in a controlled manner. This approach reflects the team's deep understanding of low-level programming and their commitment to delivering a robust user experience."
+  - id: "interrupt-vector-saving"
+    line_start: 528
+    line_end: 561
+    title: "Saving and restoring interrupt vectors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
     image_url: ""
     image_caption: ""
-    content: "This routine installs a custom handler for divide-by-zero errors, redirecting execution to display an error message. Divide-by-zero errors were a common source of crashes in assembly-language programs, as they triggered undefined behavior. By proactively addressing this issue, id Software ensured Wolfenstein 3D could gracefully handle such errors, enhancing its robustness. The handler reflects the team's commitment to delivering a polished experience, even in the face of low-level programming challenges. This approach to error handling has since become a standard practice in software development."
+    content: "The 'SaveVectors' routine saves the interrupt vectors for critical interrupts (0, 4, 5, and 6) at startup. These vectors are later restored when the program terminates. Interrupt vectors are pointers to routines that handle specific system events, such as division by zero or hardware signals. By saving and restoring these vectors, id Software ensured that Wolfenstein 3D did not disrupt other programs or the operating system. This was particularly important in the MS-DOS environment, where programs often ran directly on hardware and shared system resources. The inclusion of this routine demonstrates the team's commitment to creating software that was both high-performance and respectful of the user's system."
 
 ---
 

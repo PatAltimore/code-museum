@@ -9,74 +9,74 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-play-c"
 order: 7
-description: "This file is the heartbeat of Wolfenstein 3D's gameplay, showcasing the mechanics that defined the first-person shooter genre."
+description: "The gameplay engine of Wolfenstein 3D, showcasing innovations in player input, actor management, and immersive mechanics."
 
 summary:
-  - point: "Innovative use of palette shifting for visual effects"
-    link: "https://en.wikipedia.org/wiki/Palette_swap"
-    link_label: "Palette Shifting"
-  - point: "Actor-based game loop with linked list management"
-    link: "https://en.wikipedia.org/wiki/Game_engine"
-    link_label: "Game Engine Design"
-  - point: "Support for multiple input devices: keyboard, mouse, joystick"
+  - point: "Innovative actor management via linked lists"
+    link: "https://en.wikipedia.org/wiki/Data_structure"
+    link_label: "Data structure"
+  - point: "Dynamic palette shifting for visual feedback"
+    link: "https://en.wikipedia.org/wiki/Color_palette"
+    link_label: "Color palette"
+  - point: "Support for multiple input devices"
     link: "https://en.wikipedia.org/wiki/Input_device"
-    link_label: "Input Devices"
-  - point: "Cheat codes embedded in gameplay logic"
+    link_label: "Input device"
+  - point: "Cheat codes embedded for debugging and fun"
     link: "https://en.wikipedia.org/wiki/Cheat_code"
-    link_label: "Cheat Codes"
-  - point: "Dynamic music system tied to game state"
-    link: "https://en.wikipedia.org/wiki/Video_game_music"
-    link_label: "Video Game Music"
+    link_label: "Cheat code"
+  - point: "Efficient playback and recording of demos"
+    link: "https://en.wikipedia.org/wiki/Game_replay"
+    link_label: "Game replay"
 
 enhancements:
   - id: "local-constants-and-global-variables"
-    line_start: 7
-    line_end: 73
-    title: "The scaffolding of Wolfenstein's world"
+    line_start: 15
+    line_end: 72
+    title: "Defining constants and global state"
     wikipedia_url: "https://en.wikipedia.org/wiki/Global_variable"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines the constants and global variables that underpin Wolfenstein 3D's gameplay. From the `madenoise` flag that tracks player actions to the `tilemap` array representing the game world, these variables are the backbone of the game's logic. In 1992, memory constraints were a major concern, and developers had to carefully manage global state to ensure performance on MS-DOS systems with limited RAM. John Carmack's approach to organizing these variables reflects his mastery of efficient programming, a skill honed during the development of earlier titles like Commander Keen. These global variables allowed the game to maintain a consistent state across frames, a necessity for the fast-paced action that Wolfenstein 3D pioneered."
-  - id: "poll-controls"
-    line_start: 455
-    line_end: 579
-    title: "Polling for player input across devices"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Typing_example.ogv/330px--Typing_example.ogv.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo"
+    image_caption: "Video of typing on a laptop keyboard. (CC BY-SA 3.0)"
+    content: "This section establishes constants and global variables that underpin the game's mechanics. Constants like `sc_Question` define specific key codes, while global variables such as `madenoise` and `playstate` track the game's state. In 1992, memory was a precious resource, and developers had to carefully manage global variables to ensure efficient use of the limited system memory available on MS-DOS machines. These variables are essential for tracking player actions, game states, and interactions between objects. The choice of using global variables reflects the programming practices of the era, where simplicity and direct memory access were prioritized over modularity."
+  - id: "input-device-support"
+    line_start: 74
+    line_end: 78
+    title: "Supporting multiple input devices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
     image_url: ""
     image_caption: ""
-    content: "The `PollControls` function is a testament to id Software's commitment to accessibility and player choice. It gathers input from the keyboard, mouse, and joystick, ensuring that players could use their preferred control method. In the early 1990s, hardware diversity was a challenge for game developers, as PCs varied widely in their capabilities. Supporting multiple input devices required careful coding to handle different protocols and quirks. This function also integrates demo playback and recording, showcasing id Software's foresight in creating tools for debugging and marketing. The ability to record gameplay demos was a novel feature at the time, allowing players to share their experiences and developers to analyze player behavior. Today, input polling remains a cornerstone of game development, but the groundwork laid by functions like `PollControls` helped standardize these practices."
-  - id: "actor-management"
-    line_start: 861
+    content: "Wolfenstein 3D was designed to be accessible to players using various input devices, including keyboards, mice, and joysticks. This section defines mappings for directional and button inputs across these devices, ensuring a seamless experience regardless of the hardware used. In the early 1990s, PC gaming was transitioning from keyboard-only controls to more diverse input methods, and id Software's decision to support multiple devices was forward-thinking. This flexibility helped the game appeal to a broader audience and set a precedent for future PC games to accommodate different input preferences."
+  - id: "polling-input-devices"
+    line_start: 261
+    line_end: 435
+    title: "Polling input devices for player actions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Polling_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "The input polling routines (`PollKeyboardButtons`, `PollMouseButtons`, `PollJoystickButtons`) actively check the state of various input devices to determine player actions. These routines translate raw input signals into actionable game states, such as movement or shooting. In 1992, real-time input handling was a critical challenge, especially on hardware with limited processing power. The developers at id Software optimized these routines to ensure responsiveness, a key factor in Wolfenstein 3D's immersive gameplay. This approach laid the groundwork for modern input handling in games, where real-time responsiveness remains paramount."
+  - id: "actor-management-linked-lists"
+    line_start: 862
     line_end: 980
-    title: "Managing actors in a dynamic game world"
+    title: "Managing actors with linked lists"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
+    image_url: ""
+    image_caption: ""
+    content: "The `objlist` data structure is a linked list that manages all active actors in the game, including the player and enemies. Functions like `InitActorList`, `GetNewActor`, and `RemoveObj` handle the creation, linking, and removal of actors dynamically during gameplay. This approach allowed the developers to efficiently manage memory and ensure that new actors could be added or removed without disrupting the game loop. In the early 1990s, dynamic memory management was a significant challenge, and using linked lists was a clever solution to handle the game's complexity within the constraints of MS-DOS systems."
+  - id: "dynamic-palette-shifting"
+    line_start: 1071
+    line_end: 1239
+    title: "Dynamic palette shifting for visual feedback"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
+    image_url: ""
+    image_caption: ""
+    content: "The palette shifting routines (`InitRedShifts`, `UpdatePaletteShifts`, etc.) dynamically alter the game's color palette to provide visual feedback for events like taking damage or earning bonuses. This technique was a clever way to enhance the game's visual impact without requiring additional graphical assets, which were costly in terms of memory and processing power. In 1992, such tricks were essential for creating immersive experiences on limited hardware. The use of palette shifting in Wolfenstein 3D influenced later games, where similar techniques were used to convey states like low health or environmental changes."
+  - id: "playloop-core-gameplay"
+    line_start: 1368
+    line_end: 1471
+    title: "Core gameplay loop: heartbeat of the game"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""
     image_caption: ""
-    content: "The `InitActorList`, `GetNewActor`, and `RemoveObj` functions form the core of Wolfenstein 3D's actor management system. Actors, which include enemies, items, and the player, are stored in a linked list, allowing dynamic addition and removal during gameplay. This design was crucial for handling the game's fast-paced action, where objects needed to react to player input and interact with the environment. John Carmack's use of linked lists reflects his deep understanding of efficient data structures, a skill that would later influence the design of the Quake engine. The actor management system also highlights the constraints of early 1990s hardware, where memory was limited and every byte counted. By reusing memory from removed objects, the game avoided costly allocations and ensured smooth performance. This approach became a standard in game development, influencing how modern engines handle dynamic objects."
-  - id: "music-system"
-    line_start: 991
-    line_end: 1043
-    title: "Dynamic music tied to game progression"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
-    image_url: ""
-    image_caption: ""
-    content: "The `StartMusic` and `StopMusic` functions showcase Wolfenstein 3D's dynamic music system, which adjusts the soundtrack based on the player's progress. Music in video games was evolving rapidly in the early 1990s, with the AdLib sound card enabling richer audio experiences. id Software leveraged this technology to create an immersive atmosphere, with tracks that heightened tension during boss battles and secret levels. The music system also reflects the team's resourcefulness, as they had to manage audio data within the constraints of MS-DOS memory limits. By dynamically loading and unloading music tracks, they ensured that the game could run smoothly on a wide range of hardware. This approach to adaptive music would influence later titles, cementing the role of audio as a key component of game design."
-  - id: "palette-shifting-effects"
-    line_start: 1053
-    line_end: 1239
-    title: "Visual drama through palette shifting"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Palette_swap"
-    image_url: ""
-    image_caption: ""
-    content: "The palette shifting system in Wolfenstein 3D is a brilliant example of achieving visual effects within hardware constraints. Functions like `InitRedShifts` and `UpdatePaletteShifts` manipulate the game's color palette to create flashes of red for damage and white for bonuses. In the early 1990s, graphics cards lacked the ability to render complex effects, so developers had to innovate with techniques like palette swapping. This method allowed id Software to convey dramatic moments without taxing the CPU or memory. John Carmack's implementation is both efficient and visually striking, enhancing the game's immersive quality. Palette shifting became a common technique in early PC games, influencing how developers approached visual effects in an era of limited graphical capabilities."
-  - id: "playloop-core"
-    line_start: 1368
-    line_end: 1471
-    title: "The heartbeat of Wolfenstein 3D"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_loop"
-    image_url: ""
-    image_caption: ""
-    content: "The `PlayLoop` function is the central game loop that drives Wolfenstein 3D's gameplay. It coordinates input polling, actor updates, palette shifts, and rendering, ensuring a seamless experience for the player. This function embodies the real-time nature of the game, where every frame must process player actions, enemy behavior, and environmental changes. In 1992, achieving smooth gameplay on MS-DOS systems was a monumental challenge, as developers had to optimize every aspect of their code to run within hardware constraints. John Carmack's mastery of low-level programming is evident here, as the loop balances performance and complexity. The `PlayLoop` function also includes support for virtual reality, a forward-thinking feature that highlights id Software's innovative spirit. The game loop concept pioneered by Wolfenstein 3D remains a fundamental element of game development, influencing countless titles in the decades that followed."
+    content: "The `PlayLoop` function is the central gameplay loop, orchestrating actor updates, input handling, and screen refreshes. It ensures the game runs smoothly by managing the sequence of events that occur during each frame. This loop is where the magic happens, combining player actions, enemy behaviors, and environmental updates into a cohesive experience. In the early 1990s, designing an efficient game loop was a critical task, as it directly impacted performance on limited hardware. John Carmack's expertise in optimizing code was instrumental in achieving the fluid gameplay that became a hallmark of Wolfenstein 3D."
 
 ---
 

@@ -9,82 +9,98 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-main-c"
 order: 5
-description: "The central execution file of Wolfenstein 3D, showcasing the game's initialization, configuration, and main loop logic."
+description: "The central execution file of Wolfenstein 3D, showcasing the structure, flow, and ingenuity behind one of gaming's most influential titles."
 
 summary:
   - point: "Dynamic hardware detection and configuration"
-    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    link_label: "Wolfenstein 3D"
+    link: "https://en.wikipedia.org/wiki/Hardware_detection"
+    link_label: "Hardware Detection"
   - point: "Efficient memory management for constrained systems"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Trigonometric table precomputation for fast rendering"
+  - point: "Projection calculations for pseudo-3D rendering"
+    link: "https://en.wikipedia.org/wiki/Ray_casting"
+    link_label: "Ray Casting"
+  - point: "Custom sound mapping for immersive gameplay"
+    link: "https://en.wikipedia.org/wiki/Sound_blaster"
+    link_label: "Sound Blaster"
+  - point: "Innovative use of trig tables for fast calculations"
     link: "https://en.wikipedia.org/wiki/Trigonometric_functions"
     link_label: "Trigonometric Functions"
-  - point: "Innovative sound mapping for immersive gameplay"
-    link: "https://en.wikipedia.org/wiki/AdLib"
-    link_label: "AdLib Sound Card"
-  - point: "Support for multiple hardware configurations"
-    link: "https://en.wikipedia.org/wiki/IBM_PC_compatible"
-    link_label: "IBM PC Compatible"
 
 enhancements:
-  - id: "dynamic-hardware-detection"
+  - id: "local-constants-definition"
+    line_start: 29
+    line_end: 33
+    title: "Defining constants for the view window"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Blender_4.3.2_screenshot.png/330px-Blender_4.3.2_screenshot.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Default Blender 4.3.2 user interface with split windows, the scene contains Blender's built-in monkey mesh named \\"Suzanne\\". (CC0)"
+    content: "These lines define constants that set the dimensions of the view window and the focal length used in rendering the game’s pseudo-3D environment. In 1992, hardware limitations required developers to carefully manage resources, including screen resolution and memory usage. The chosen resolution of 256x144 for the view window was a compromise between visual fidelity and performance on MS-DOS systems with limited graphical capabilities. This decision allowed Wolfenstein 3D to achieve smooth scrolling and immersive gameplay, setting a standard for first-person shooters."
+  - id: "read-config-file"
     line_start: 90
     line_end: 182
-    title: "Dynamic Hardware Detection and Configuration"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    title: "Reading configuration for hardware compatibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Configuration_file"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Gnu_grub_config_file.png/330px-Gnu_grub_config_file.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "A screenshot of an example configuration file for GNU GRUB. This configuration file is used to load Windows XP and Ubuntu Linux. (GPL)"
+    content: "This subroutine reads a configuration file to initialize game settings based on the player's hardware. In the early 1990s, PC gaming was plagued by a lack of standardization, with various sound cards, input devices, and display configurations. John Carmack and his team at id Software designed Wolfenstein 3D to detect and adapt to the player's hardware, ensuring compatibility and optimal performance. This approach was critical for the game's success, as it allowed players with diverse setups to enjoy the groundbreaking first-person shooter experience."
+  - id: "patch-386-optimization"
+    line_start: 240
+    line_end: 261
+    title: "Optimizing for 386 processors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/A80386DX-25_SX218.jpg/330px-A80386DX-25_SX218.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "A80386DX-25 SX218 (CC BY-SA 4.0)"
+    content: "The Patch386 routine checks if the system is running on an Intel 386 processor and applies optimizations accordingly. Released in 1985, the 386 was one of the first processors to support 32-bit instructions, offering significant performance improvements over its predecessors. By tailoring the code to leverage these capabilities, id Software ensured Wolfenstein 3D could run faster and more efficiently on modern hardware. This optimization reflects the team's commitment to pushing the limits of available technology, a hallmark of their development philosophy."
+  - id: "build-tables-trigonometric-precomputation"
+    line_start: 584
+    line_end: 626
+    title: "Precomputing trigonometric tables for speed"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Idealized_universal_joint_generated_by_ray_tracing.jpg/330px-Idealized_universal_joint_generated_by_ray_tracing.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "The image of the U-Joint shows a shadow generated by a point light source. (CC BY-SA 4.0)"
+    content: "This section precomputes trigonometric values like sine and tangent into lookup tables, enabling fast calculations during gameplay. In the early 1990s, real-time computation of trigonometric functions was prohibitively slow on consumer-grade hardware. By precomputing these values, Wolfenstein 3D could perform the necessary calculations for its pseudo-3D rendering efficiently, allowing for smooth gameplay. This technique was a clever workaround for hardware limitations and became a common practice in game development during this era."
+  - id: "calc-projection-pseudo-3d-rendering"
+    line_start: 641
+    line_end: 690
+    title: "Calculating projection for pseudo-3D rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Ray_casting"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
+    content: "The CalcProjection routine calculates the scale and angles needed for rendering the game’s pseudo-3D environment. Using techniques like ray casting, Wolfenstein 3D simulated depth and perspective on a 2D grid, creating the illusion of a 3D world. This method was revolutionary for its time, allowing the game to run on hardware without dedicated 3D acceleration. John Carmack’s innovative approach to rendering laid the groundwork for future advancements in 3D graphics and game engines."
+  - id: "init-digi-map-custom-sound-mapping"
+    line_start: 962
+    line_end: 967
+    title: "Mapping sounds to hardware-specific IDs"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_blaster"
     image_url: ""
     image_caption: ""
-    content: "The `ReadConfig` function dynamically detects the hardware capabilities of the system, such as sound cards, mouse presence, and joystick support. In 1992, personal computers varied widely in their configurations, and games needed to adapt to these differences to ensure compatibility. John Carmack and his team designed Wolfenstein 3D to automatically adjust its settings based on the detected hardware, ensuring the game could run smoothly on both high-end and low-end systems. This approach minimized user intervention and maximized accessibility. The function also reads saved configuration files, allowing players to retain their preferences across sessions. This dynamic detection and adaptation were critical in an era when hardware standards were still evolving."
-  - id: "memory-management-for-ms-dos"
-    line_start: 1155
-    line_end: 1183
-    title: "Memory Management for Constrained Systems"
+    content: "The InitDigiMap routine maps in-game sound effects to hardware-specific IDs, ensuring compatibility with devices like the Sound Blaster card. In the early 1990s, sound cards varied widely in capabilities and standards, making it challenging to deliver consistent audio experiences. By creating a mapping system, id Software ensured that Wolfenstein 3D could produce immersive sound effects regardless of the player’s hardware. This attention to detail contributed to the game's atmosphere and its lasting impact on the industry."
+  - id: "init-game-startup-sequence"
+    line_start: 1145
+    line_end: 1266
+    title: "Initializing the game and system resources"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The `InitGame` function includes a memory check to ensure the game can run within the limited resources of MS-DOS systems. In the early 1990s, memory constraints were a significant challenge for developers. Wolfenstein 3D was designed to run on systems with as little as 235 KB of main memory. If insufficient memory was detected, the game displayed an error screen and exited gracefully. This meticulous attention to memory management reflects the ingenuity required to optimize performance on hardware with severe limitations. The developers used techniques such as caching graphical chunks and locking memory to ensure smooth gameplay without crashes."
-  - id: "trigonometric-table-precomputation"
-    line_start: 584
-    line_end: 626
-    title: "Precomputing Trigonometric Tables for Speed"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Trigonometric_functions"
-    image_url: ""
-    image_caption: ""
-    content: "The `BuildTables` function precomputes trigonometric values such as sine and tangent for rendering purposes. In 1992, real-time computation of these values was computationally expensive, especially on the limited processors of the time, such as the Intel 386. By precomputing and storing these values in tables, Wolfenstein 3D could perform fast lookups during gameplay, enabling smooth and responsive rendering of the 3D environment. This optimization was crucial for achieving the game's groundbreaking performance on modest hardware. The use of precomputed tables became a standard technique in game development, influencing future titles and engines."
-  - id: "innovative-sound-mapping"
-    line_start: 849
-    line_end: 969
-    title: "Innovative Sound Mapping for Immersion"
-    wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
-    image_url: ""
-    image_caption: ""
-    content: "The `InitDigiMap` function maps sound effects to hardware-specific identifiers, ensuring compatibility with various sound cards such as the AdLib and Sound Blaster. In the early 1990s, sound hardware varied widely, and developers had to account for these differences to deliver immersive audio experiences. Wolfenstein 3D's sound mapping system allowed the game to utilize high-quality digital sound effects where supported, while falling back to simpler PC speaker sounds on less capable systems. This flexibility contributed to the game's widespread appeal and set a precedent for adaptive sound systems in gaming."
-  - id: "adaptive-view-size"
-    line_start: 1278
-    line_end: 1306
-    title: "Adaptive View Size for Performance"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    image_url: ""
-    image_caption: ""
-    content: "The `SetViewSize` function dynamically adjusts the size of the player's view window based on system performance and user preferences. By allowing the view size to be scaled, Wolfenstein 3D could run smoothly on a wide range of hardware configurations, from high-end systems to older machines with limited processing power. This adaptability ensured that players could enjoy the game regardless of their hardware capabilities. The function also recalculates projection constants and trace angles to maintain accurate rendering, demonstrating the developers' commitment to both performance and visual fidelity."
-  - id: "demo-loop"
+    content: "The InitGame function sets up the game environment, including memory management, hardware initialization, and loading essential resources. In the constrained world of MS-DOS, developers had to carefully allocate memory and optimize performance to ensure their programs ran smoothly. This startup sequence reflects id Software’s mastery of these techniques, allowing Wolfenstein 3D to deliver a seamless experience despite the limitations of early 1990s hardware. The function also includes checks for virtual reality compatibility, showcasing the team's forward-thinking approach."
+  - id: "demo-loop-game-cycle"
     line_start: 1412
     line_end: 1569
-    title: "Demo Loop: A Gateway to Gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    title: "Demo loop and main game cycle"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_loop"
     image_url: ""
     image_caption: ""
-    content: "The `DemoLoop` function orchestrates the game's introductory sequence, including title screens, credits, high scores, and gameplay demos. This loop was designed to captivate players and showcase the game's features before they even started playing. In the early 1990s, such sequences were essential for drawing players into the experience and demonstrating the game's capabilities. The inclusion of gameplay demos allowed potential players to see the game in action, a critical marketing tool in an era before widespread internet access. The function also integrates copy protection checks and promotional screens, reflecting the business realities of the time."
-  - id: "main-game-entry"
+    content: "The DemoLoop function handles the game's main cycle, including title screens, demos, and gameplay. This structure ensures a smooth transition between different states, maintaining player engagement. The inclusion of a demo mode reflects the marketing strategies of the time, where showcasing gameplay was crucial for attracting players. The loop also integrates features like high scores and copy protection, highlighting the multifaceted design of Wolfenstein 3D. This approach to game flow became a standard for many titles that followed."
+  - id: "main-entry-point"
     line_start: 1586
     line_end: 1615
-    title: "Main: The Heartbeat of Execution"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    title: "The main entry point of Wolfenstein 3D"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Main_function"
     image_url: ""
     image_caption: ""
-    content: "The `main` function serves as the entry point for Wolfenstein 3D, initializing critical systems and launching the game loop. It begins by checking for beta expiration dates, a safeguard used during development to prevent unauthorized distribution. The function then calls `InitGame` to set up the game's environment and `DemoLoop` to start the introductory sequence. This structure reflects the modular design philosophy of id Software, where each component of the game was carefully crafted to work seamlessly with others. The `main` function is a testament to the team's ability to balance technical complexity with user experience."
+    content: "The main function serves as the entry point for Wolfenstein 3D, orchestrating the initialization of the game, hardware checks, and the demo loop. This structure reflects the modular design philosophy of id Software, where each component of the game is initialized in sequence. The inclusion of beta-testing code and episode checks highlights the iterative development process and the team's commitment to quality. This function is the backbone of the game, tying together all its elements into a cohesive experience."
 
 ---
 

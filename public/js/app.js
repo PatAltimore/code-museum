@@ -591,9 +591,12 @@ function syntaxClass(line) {
 function renderCodeWithEnhancements(body, enhancements) {
   const lines = body.replace(/\r/g, '').split('\n');
   if (lines[lines.length - 1] === '') lines.pop();
-  // Strip leading blank lines produced by the '---\n\n' YAML/body separator so
-  // that lines[0] is source line 1 and line_start/line_end indices are exact.
-  while (lines.length && lines[0] === '') lines.shift();
+  // The formatter always writes exactly one blank separator line after the
+  // closing '---', producing '\n\n' before the code. Strip exactly those 2
+  // leading empty elements so that lines[0] is source line 1. Using splice
+  // (not a while-loop) preserves any genuine blank lines at the top of the
+  // source file, keeping line_start/line_end indices exact.
+  lines.splice(0, 2);
 
   const sorted = [...(enhancements || [])].sort((a, b) => a.line_start - b.line_start);
 

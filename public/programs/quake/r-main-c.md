@@ -9,66 +9,66 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "r-main-c"
 order: 2
-description: "This file showcases the rendering techniques that powered Quake's groundbreaking 3D graphics and multiplayer capabilities."
+description: "This file showcases Quake's groundbreaking rendering techniques, which set the standard for 3D graphics in gaming."
 
 summary:
-  - point: "Checkerboard texture initialization as a fallback mechanism"
+  - point: "Innovative use of dynamic lighting for entities"
+    link: "https://en.wikipedia.org/wiki/Dynamic_lighting"
+    link_label: "Dynamic Lighting"
+  - point: "Checkerboard texture creation for default rendering"
     link: "https://en.wikipedia.org/wiki/Texture_mapping"
     link_label: "Texture Mapping"
-  - point: "Dynamic lighting calculations for entities and models"
-    link: "https://en.wikipedia.org/wiki/Lighting_(computer_graphics)"
-    link_label: "Lighting in Computer Graphics"
-  - point: "Efficient handling of frustum clipping and bounding box checks"
-    link: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
-    link_label: "Clipping in Graphics"
-  - point: "Stack alignment checks to prevent rendering errors"
-    link: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
-    link_label: "Stack Data Structure"
-  - point: "Sinusoidal turbulence table for water effects"
-    link: "https://en.wikipedia.org/wiki/Sine_wave"
-    link_label: "Sine Wave"
+  - point: "Efficient visibility determination using leaf nodes"
+    link: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
+    link_label: "Binary Space Partitioning"
+  - point: "Optimization for x86 hardware constraints"
+    link: "https://en.wikipedia.org/wiki/X86"
+    link_label: "x86 Architecture"
+  - point: "Perspective projection calculations for 3D rendering"
+    link: "https://en.wikipedia.org/wiki/3D_projection"
+    link_label: "3D Projection"
 
 enhancements:
-  - id: "checkerboard-texture-initialization"
+  - id: "checkerboard-default-texture"
     line_start: 153
     line_end: 179
-    title: "Fallback Texture: A Checkerboard Pattern"
+    title: "Checkerboard Texture: A Fallback Solution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Texture_mapping_demonstration_animation.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
     image_caption: "Texture mapping demonstration animation (CC0)"
-    content: "This section of code initializes a default texture—a simple 16x16 checkerboard pattern—to be used when no specific texture is available. The texture is generated dynamically, with alternating black and white squares, and stored in multiple mipmap levels for efficient rendering at varying distances. In 1996, texture mapping was a relatively new concept in real-time 3D graphics, and fallback mechanisms like this ensured the game could handle missing or corrupted textures gracefully. John Carmack and the id Software team were pioneering techniques to make 3D environments visually consistent and performant, even on hardware with limited memory and processing power. This approach to texture handling influenced later games, where default textures became a standard debugging tool."
-  - id: "dynamic-lighting-for-entities"
+    content: "In the absence of a texture, Quake generates a simple checkerboard pattern to ensure that surfaces without assigned textures still render visibly. This fallback mechanism creates a 16x16 texture with alternating black and white squares, a design that is both functional and visually distinct. The code allocates memory for the texture and calculates offsets for mipmaps, ensuring the texture scales appropriately at different levels of detail. In 1996, texture mapping was still a relatively new concept in gaming, and fallback textures like this were essential for debugging and maintaining visual coherence. John Carmack and the id Software team prioritized robustness in their rendering pipeline, knowing that hardware limitations and user modifications could lead to missing assets. This approach influenced later game engines, which adopted similar strategies for handling missing or corrupted textures."
+  - id: "x86-optimization"
+    line_start: 237
+    line_end: 244
+    title: "Optimizing for x86: A Hardware Constraint"
+    wikipedia_url: "https://en.wikipedia.org/wiki/X86"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/AMD_Opteron_146_Venus%2C_2005.jpg/330px-AMD_Opteron_146_Venus%2C_2005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "CPU AMD Opteron 146 Venus Socket 939. (CC BY 3.0)"
+    content: "This section includes code specific to x86 processors, making certain parts of the rendering pipeline writeable and patching them for performance. The `Sys_MakeCodeWriteable` function ensures that critical sections of the code can be modified at runtime, allowing for optimizations tailored to the hardware. In the mid-1990s, x86 architecture dominated the PC market, but its limitations required careful programming to achieve high performance. Michael Abrash's deep understanding of assembly language and CPU architecture enabled id Software to push the boundaries of what was possible on consumer-grade hardware. These optimizations were crucial for Quake's success, as they allowed the game to run smoothly on a wide range of systems. The techniques used here influenced later engines, which continued to optimize for specific hardware platforms."
+  - id: "perspective-projection-calculations"
+    line_start: 378
+    line_end: 477
+    title: "Calculating Perspective for Immersive 3D Views"
+    wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Comparison_of_graphical_projections.svg/330px-Comparison_of_graphical_projections.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Diagram showing relationships between some types of 3D to 2D projections by CMG Lee. (CC BY-SA 4.0)"
+    content: "The `R_ViewChanged` function recalculates perspective projection parameters whenever the player's view changes. It adjusts field of view, aspect ratios, and screen edges to ensure accurate rendering of the 3D world. The calculations involve trigonometric functions and normalization of vectors, reflecting the mathematical rigor behind Quake's graphics engine. In 1996, achieving realistic 3D projection was a technical challenge, especially on hardware constrained by fixed-point arithmetic and limited floating-point precision. Carmack and Abrash's work on Quake's rendering pipeline demonstrated their mastery of both theoretical computer graphics and practical optimization. These projection techniques laid the groundwork for modern 3D rendering, influencing APIs like OpenGL and DirectX."
+  - id: "visibility-leaf-nodes"
+    line_start: 511
+    line_end: 539
+    title: "Visibility Determination Using Leaf Nodes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Binary_space_partition.png/330px-Binary_space_partition.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Binary space partition (Public domain)"
+    content: "The `R_MarkLeaves` function determines which parts of the game world are visible from the player's current position. It uses a technique called Potentially Visible Set (PVS), which leverages the binary space partitioning (BSP) tree structure of the world. By marking leaf nodes in the BSP tree, the engine efficiently identifies visible geometry, minimizing rendering overhead. This approach was revolutionary in 1996, allowing Quake to render expansive 3D environments on hardware with limited processing power and memory. John Carmack's use of BSP trees was inspired by academic research and earlier implementations in games like Doom, but Quake pushed the technique further by integrating it with dynamic lighting and complex geometry. The visibility system remains a foundational concept in modern game engines."
+  - id: "dynamic-lighting-entities"
     line_start: 547
     line_end: 616
     title: "Dynamic Lighting: Breathing Life into Entities"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(computer_graphics)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Bisexual_lighting_skeleton.png/330px-Bisexual_lighting_skeleton.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "A 3D rendering of a skeleton with bisexual lighting, made using the software tool Unity (CC BY-SA 4.0)"
-    content: "Here, the code calculates dynamic lighting for entities, such as sprites and models, based on their position relative to light sources. It iterates through visible entities and adjusts their ambient and shade lighting values, incorporating contributions from dynamic lights like explosions or muzzle flashes. In the mid-1990s, dynamic lighting was a cutting-edge feature that added realism and immersion to 3D environments. Michael Abrash's expertise in optimization ensured these calculations were efficient, even on the limited hardware of the era. This technique became a hallmark of Quake's visual fidelity and was widely adopted in subsequent games, setting a new standard for lighting in real-time graphics."
-  - id: "frustum-clipping-and-bbox-checks"
-    line_start: 693
-    line_end: 749
-    title: "Frustum Clipping: Efficient Visibility Checks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Clipping_draw2.svg/330px-Clipping_draw2.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Clipping area (rectangle) and clipped parts in blue (Public domain)"
-    content: "This routine performs frustum clipping and bounding box checks to determine whether a model is visible within the player's view. By calculating the dot product of entity positions and frustum planes, the code efficiently rejects entities outside the view, saving computational resources. In 1996, optimizing visibility checks was crucial for maintaining high frame rates on hardware like the Intel 486 and early Pentium processors. The id Software team leveraged mathematical techniques and assembly-level optimizations to ensure Quake's groundbreaking 3D graphics could run smoothly. These visibility algorithms laid the groundwork for modern culling techniques used in today's game engines."
-  - id: "stack-alignment-checks"
-    line_start: 1068
-    line_end: 1087
-    title: "Stack Alignment: Preventing Rendering Errors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Tallrik_-_Ystad-2018.jpg/330px-Tallrik_-_Ystad-2018.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "A stack of plain white plates. (At a restaurant in  Ystad, Sweden in 2018.) (CC BY 3.0)"
-    content: "This section performs rigorous checks on stack alignment to ensure the rendering pipeline operates correctly. Misaligned stacks could lead to subtle bugs or crashes, especially when interfacing with low-level assembly routines. In the mid-1990s, developers often had to account for hardware quirks and memory alignment issues, particularly on x86 processors. John Carmack's meticulous attention to detail ensured Quake's codebase was robust and reliable, even under extreme conditions. These alignment checks reflect the team's commitment to stability and performance, principles that remain vital in modern software development."
-  - id: "sinusoidal-turbulence-table"
-    line_start: 1094
-    line_end: 1103
-    title: "Sinusoidal Turbulence: Realistic Water Effects"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sine_wave"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sine_and_cosine_animation.gif/330px-Sine_and_cosine_animation.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Sine and cosine animation (CC0)"
-    content: "This code initializes a table of sinusoidal values used to create turbulence effects in water surfaces. By precomputing these values, the game achieves realistic rippling effects without incurring runtime computational costs. Water effects were a standout feature in Quake, showcasing the game's ability to simulate natural phenomena in a 3D environment. The use of sine waves for turbulence was inspired by mathematical models of wave behavior and optimized for real-time performance. This technique became a staple in graphics programming, influencing how water and other fluid surfaces are rendered in modern games."
+    wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_lighting"
+    image_url: ""
+    image_caption: ""
+    content: "This section of the code calculates dynamic lighting for entities in the game world, including sprites and 3D models. The lighting system considers ambient light and dynamic light sources, such as explosions or muzzle flashes, to create a more immersive experience. The algorithm iterates through visible entities and adjusts their lighting based on proximity to dynamic light sources, clamping values to prevent over-brightening. In the mid-1990s, dynamic lighting was a cutting-edge feature, enhancing realism in 3D environments. Michael Abrash's expertise in optimization ensured that these calculations were efficient enough to run on the limited hardware of the era, such as Pentium processors and early GPUs. Dynamic lighting became a hallmark of Quake's visual fidelity, influencing countless games and engines that followed."
 
 ---
 

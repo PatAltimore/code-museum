@@ -92,6 +92,9 @@ def format_file(
     lines.append(f"slug: {_q(file_cfg['slug'])}")
     lines.append(f"order: {file_cfg['order']}")
     lines.append(f"description: {_q(description)}")
+    if is_excerpt:
+        lines.append(f"is_excerpt: true")
+        lines.append(f"excerpt_lines: {len(code_lines)}")
     lines.append("")
 
     if summary:
@@ -117,10 +120,6 @@ def format_file(
 
     lines.append("---")
     lines.append("")
-
-    if is_excerpt:
-        lines.append(f"; excerpt — first {len(code_lines)} lines of {file_cfg['path']}")
-        lines.append("")
 
     lines.append("\n".join(code_lines))
 
