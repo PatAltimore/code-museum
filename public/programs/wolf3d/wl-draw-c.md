@@ -42,24 +42,24 @@ enhancements:
     line_end: 181
     title: "Fixed-point math for precision rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Comparison_of_graphical_projections.svg/330px-Comparison_of_graphical_projections.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Diagram showing relationships between some types of 3D to 2D projections by CMG Lee. (CC BY-SA 4.0)"
+    image_url: ""
+    image_caption: ""
     content: "This subroutine, `FixedByFrac`, performs fixed-point multiplication, a technique crucial for rendering accurate graphics on hardware without floating-point support. In 1992, most consumer-grade PCs lacked floating-point units, and developers had to rely on fixed-point arithmetic to achieve precision. John Carmack, the lead programmer, used assembly language here to optimize performance, ensuring the calculations were fast enough for real-time gameplay. This approach was inspired by earlier arcade games and the limitations of MS-DOS systems, where every cycle mattered. Fixed-point math became a staple in game development during this era, influencing techniques in later 3D engines like Doom and Quake."
   - id: "actor-transformation"
     line_start: 210
     line_end: 262
     title: "Transforming actors into screen space"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Blender_4.3.2_screenshot.png/330px-Blender_4.3.2_screenshot.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Default Blender 4.3.2 user interface with split windows, the scene contains Blender's built-in monkey mesh named \\"Suzanne\\". (CC0)"
+    image_url: ""
+    image_caption: ""Suzanne\\". (CC0)"
     content: "The `TransformActor` function calculates how game objects (actors) appear on the screen based on their position relative to the player's viewpoint. By translating global coordinates into screen coordinates, it enables dynamic scaling and positioning of objects. In the early '90s, this was a novel approach to creating immersive environments on limited hardware. Carmack's use of fixed-point arithmetic and assembly optimizations ensured these calculations were efficient, laying the groundwork for the real-time 3D graphics that would dominate gaming in the years to come."
   - id: "pushable-walls"
     line_start: 759
     line_end: 874
     title: "Handling pushable walls and interactivity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_physics"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Glasses_800_edit.png/330px-Glasses_800_edit.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "This image using POV-Ray 3.6 with Radiosity. The glasses, ashtray and pitcher were modeled with Rhino and the dice with Cinema 4D. (Public domain)"
+    image_url: ""
+    image_caption: ""
     content: "The `HitHorizPWall` and `HitVertPWall` functions handle interactions with pushable walls, a feature that added depth to Wolfenstein 3D's gameplay. Pushable walls allowed players to discover hidden areas, enhancing the game's sense of exploration. Implementing this feature required careful handling of wall positions and textures, ensuring smooth movement and rendering. This level of interactivity was rare in early first-person shooters, showcasing id Software's commitment to innovation. Pushable walls became a hallmark of the genre, influencing level design in later games."
   - id: "dynamic-object-scaling"
     line_start: 1073

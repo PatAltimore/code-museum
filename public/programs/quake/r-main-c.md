@@ -34,32 +34,32 @@ enhancements:
     line_end: 179
     title: "Checkerboard Texture: A Fallback Solution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Texture_mapping_demonstration_animation.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "Texture mapping demonstration animation (CC0)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Comparison_of_graphical_projections.svg/330px-Comparison_of_graphical_projections.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Diagram showing relationships between some types of 3D to 2D projections by CMG Lee. (CC BY-SA 4.0)"
     content: "In the absence of a texture, Quake generates a simple checkerboard pattern to ensure that surfaces without assigned textures still render visibly. This fallback mechanism creates a 16x16 texture with alternating black and white squares, a design that is both functional and visually distinct. The code allocates memory for the texture and calculates offsets for mipmaps, ensuring the texture scales appropriately at different levels of detail. In 1996, texture mapping was still a relatively new concept in gaming, and fallback textures like this were essential for debugging and maintaining visual coherence. John Carmack and the id Software team prioritized robustness in their rendering pipeline, knowing that hardware limitations and user modifications could lead to missing assets. This approach influenced later game engines, which adopted similar strategies for handling missing or corrupted textures."
   - id: "x86-optimization"
     line_start: 237
     line_end: 244
     title: "Optimizing for x86: A Hardware Constraint"
     wikipedia_url: "https://en.wikipedia.org/wiki/X86"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/AMD_Opteron_146_Venus%2C_2005.jpg/330px-AMD_Opteron_146_Venus%2C_2005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "CPU AMD Opteron 146 Venus Socket 939. (CC BY 3.0)"
+    image_url: ""
+    image_caption: ""
     content: "This section includes code specific to x86 processors, making certain parts of the rendering pipeline writeable and patching them for performance. The `Sys_MakeCodeWriteable` function ensures that critical sections of the code can be modified at runtime, allowing for optimizations tailored to the hardware. In the mid-1990s, x86 architecture dominated the PC market, but its limitations required careful programming to achieve high performance. Michael Abrash's deep understanding of assembly language and CPU architecture enabled id Software to push the boundaries of what was possible on consumer-grade hardware. These optimizations were crucial for Quake's success, as they allowed the game to run smoothly on a wide range of systems. The techniques used here influenced later engines, which continued to optimize for specific hardware platforms."
   - id: "perspective-projection-calculations"
     line_start: 378
     line_end: 477
     title: "Calculating Perspective for Immersive 3D Views"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Comparison_of_graphical_projections.svg/330px-Comparison_of_graphical_projections.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Diagram showing relationships between some types of 3D to 2D projections by CMG Lee. (CC BY-SA 4.0)"
+    image_url: ""
+    image_caption: ""
     content: "The `R_ViewChanged` function recalculates perspective projection parameters whenever the player's view changes. It adjusts field of view, aspect ratios, and screen edges to ensure accurate rendering of the 3D world. The calculations involve trigonometric functions and normalization of vectors, reflecting the mathematical rigor behind Quake's graphics engine. In 1996, achieving realistic 3D projection was a technical challenge, especially on hardware constrained by fixed-point arithmetic and limited floating-point precision. Carmack and Abrash's work on Quake's rendering pipeline demonstrated their mastery of both theoretical computer graphics and practical optimization. These projection techniques laid the groundwork for modern 3D rendering, influencing APIs like OpenGL and DirectX."
   - id: "visibility-leaf-nodes"
     line_start: 511
     line_end: 539
     title: "Visibility Determination Using Leaf Nodes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Binary_space_partition.png/330px-Binary_space_partition.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Binary space partition (Public domain)"
+    image_url: ""
+    image_caption: ""
     content: "The `R_MarkLeaves` function determines which parts of the game world are visible from the player's current position. It uses a technique called Potentially Visible Set (PVS), which leverages the binary space partitioning (BSP) tree structure of the world. By marking leaf nodes in the BSP tree, the engine efficiently identifies visible geometry, minimizing rendering overhead. This approach was revolutionary in 1996, allowing Quake to render expansive 3D environments on hardware with limited processing power and memory. John Carmack's use of BSP trees was inspired by academic research and earlier implementations in games like Doom, but Quake pushed the technique further by integrating it with dynamic lighting and complex geometry. The visibility system remains a foundational concept in modern game engines."
   - id: "dynamic-lighting-entities"
     line_start: 547

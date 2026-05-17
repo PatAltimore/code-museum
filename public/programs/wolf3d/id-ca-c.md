@@ -42,32 +42,32 @@ enhancements:
     line_end: 151
     title: "Three-Byte File Offsets for Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/330px-Operating_system_placement.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Graph of Operating System placement on computer usage (CC BY-SA 3.0)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Huffman_tree_2.svg/330px-Huffman_tree_2.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Huffman tree 2 (Public domain)"
     content: "The `GRFILEPOS` macro and function manage file offsets for graphics chunks stored in the game's asset files. Notably, the code uses three-byte offsets instead of the standard four bytes, which was an innovative way to save memory in an era when every byte counted. Early PCs often had limited RAM and storage, and developers had to find creative ways to optimize their programs. By using three-byte offsets, id Software reduced the memory footprint of the graphics header, allowing more assets to fit into the constrained memory space. This technique reflects the team's deep understanding of hardware limitations and their ability to push boundaries."
   - id: "ca-open-debug"
     line_start: 171
     line_end: 180
     title: "Debugging Through File Logging"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Huffman_tree_2.svg/330px-Huffman_tree_2.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Huffman tree 2 (Public domain)"
+    image_url: ""
+    image_caption: ""
     content: "The `CA_OpenDebug` and `CA_CloseDebug` functions create and manage a debug log file (`DEBUG.TXT`). This simple yet effective debugging tool allowed the developers to track the program's behavior during execution, which was crucial for identifying and resolving issues in the complex caching system. In the early 1990s, debugging tools were far less sophisticated than they are today, and developers often relied on custom solutions like this to diagnose problems. The use of file-based logging demonstrates the team's pragmatic approach to debugging in a resource-constrained environment."
   - id: "cal-huff-expand"
     line_start: 418
     line_end: 593
     title: "Huffman Expansion: Decompressing Graphics Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Huffman_coding"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/John_Carmack_2025.jpg/330px-John_Carmack_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Picture of John Carmack (CC0)"
+    image_url: ""
+    image_caption: ""
     content: "The `CAL_HuffExpand` function decompresses data using a Huffman tree, a critical step in loading graphics assets. This routine directly interacts with memory segments and employs assembly language for performance optimization, reflecting the team's commitment to efficiency. In the early 1990s, games like Wolfenstein 3D had to operate within tight memory and processing constraints, and Huffman coding was a popular choice for compression due to its ability to minimize storage requirements while preserving data integrity. The use of assembly language highlights the team's mastery of low-level programming, allowing them to squeeze every ounce of performance from the hardware."
   - id: "cal-carmack-expand"
     line_start: 609
     line_end: 665
     title: "Carmack's Compression Algorithm"
     wikipedia_url: "https://en.wikipedia.org/wiki/John_Carmack"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Generic_block_diagram_of_a_GPU.svg/330px-Generic_block_diagram_of_a_GPU.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Generic block diagram of a GPU (CC0)"
+    image_url: ""
+    image_caption: ""
     content: "The `CAL_CarmackExpand` function implements a custom compression algorithm developed by John Carmack, one of the lead programmers of Wolfenstein 3D. This algorithm, designed for efficient decompression of map data, uses a combination of near and far tags to reference previously stored data. By reusing data already in memory, the algorithm reduces storage requirements and speeds up decompression. Carmack's innovative approach to compression was instrumental in enabling the game to run smoothly on hardware with limited resources. This technique became a hallmark of id Software's early games and influenced the development of compression algorithms in the gaming industry."
   - id: "ca-cache-audio-chunk"
     line_start: 1134

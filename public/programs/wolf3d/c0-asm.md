@@ -34,32 +34,32 @@ enhancements:
     line_end: 57
     title: "Segment declarations for MS-DOS memory layout"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/KL_Intel_i286.jpg/330px-KL_Intel_i286.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "CPU Intel i286 PGA (CC BY-SA 3.0)"
     content: "The segment declarations in this section define the memory layout for the program, ensuring compatibility with MS-DOS's segmented memory model. Each segment serves a specific purpose: '_TEXT' for code, '_DATA' for initialized data, '_BSS' for uninitialized data, and '_STACK' for the stack. This structure was essential for programs running on MS-DOS, where memory was divided into 64KB segments due to the limitations of the x86 architecture. The programmers at id Software had to carefully manage these segments to optimize performance and ensure stability. This approach reflects the meticulous attention to detail required to work within the constraints of early PC hardware."
   - id: "hardware-check-286-processor"
     line_start: 138
     line_end: 154
     title: "Checking for a 286 processor or better"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80286"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/KL_Intel_i286.jpg/330px-KL_Intel_i286.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "CPU Intel i286 PGA (CC BY-SA 3.0)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/X86_Interrupt_Vector_Table.svg/330px-X86_Interrupt_Vector_Table.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Interrupt Vector Table of x86 processors running in real mode. Arrows indicate direction of increasing addresses. (CC0)"
     content: "This section includes a hardware compatibility check to ensure the program runs on a 286 processor or better. The code uses a clever trick with the processor flags to detect whether the system supports the necessary features. In 1992, the 286 was considered the baseline for many advanced software applications, as it introduced protected mode and other enhancements over the earlier 8086 and 8088 processors. By requiring a 286, id Software ensured that Wolfenstein 3D could leverage these capabilities for better performance. This decision reflects the team's forward-thinking approach, targeting a growing base of users with modern hardware while leaving behind older systems."
   - id: "memory-management-ms-dos"
     line_start: 254
     line_end: 303
     title: "Memory management tailored to MS-DOS constraints"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/330px-Operating_system_placement.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Graph of Operating System placement on computer usage (CC BY-SA 3.0)"
+    image_url: ""
+    image_caption: ""
     content: "This section calculates the amount of memory required for the stack and other data segments, ensuring that the program does not exceed the 64KB limit imposed by MS-DOS's segmented memory model. The code dynamically adjusts the stack size based on available memory, with a minimum size defined to prevent stack overflows. Memory management was a critical aspect of MS-DOS programming, as developers had to work within tight constraints while optimizing performance. The techniques used here highlight id Software's expertise in squeezing every ounce of capability from the hardware, enabling the fast-paced gameplay that defined Wolfenstein 3D."
   - id: "divide-by-zero-handler"
     line_start: 515
     line_end: 519
     title: "Custom divide-by-zero handler"
     wikipedia_url: "https://en.wikipedia.org/wiki/Divide_by_zero"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/X86_Interrupt_Vector_Table.svg/330px-X86_Interrupt_Vector_Table.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Interrupt Vector Table of x86 processors running in real mode. Arrows indicate direction of increasing addresses. (CC0)"
+    image_url: ""
+    image_caption: ""
     content: "The 'ZeroDivision' procedure is a custom handler for divide-by-zero errors. When such an error occurs, the program displays a message ('Divide error') and exits gracefully. This was a critical feature in the early PC era, where runtime errors could easily crash the system or produce undefined behavior. By implementing a custom handler, id Software ensured that their game could recover from errors in a controlled manner. This approach reflects the team's deep understanding of low-level programming and their commitment to delivering a robust user experience."
   - id: "interrupt-vector-saving"
     line_start: 528

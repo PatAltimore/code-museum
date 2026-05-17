@@ -42,40 +42,40 @@ enhancements:
     line_end: 335
     title: "DMA-based sound playback on SoundBlaster"
     wikipedia_url: "https://en.wikipedia.org/wiki/Direct_memory_access"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/DMA_controller_memory_address_registers.jpg/330px-DMA_controller_memory_address_registers.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Simplified schematic of memory address registers in a DMA controller (CC BY-SA 4.0)"
+    image_url: ""
+    image_caption: ""
     content: "The SDL_SBPlaySeg function demonstrates how Wolfenstein 3D utilized Direct Memory Access (DMA) for efficient sound playback on SoundBlaster cards. DMA allows data to be transferred directly between memory and the sound card without CPU intervention, freeing up processing power for other tasks. The code carefully programs the DMA controller and the SoundBlaster DSP to play a chunk of sampled sound, ensuring that the data does not cross memory boundaries. This low-level manipulation of hardware registers highlights the technical expertise required to achieve high-quality audio on early PCs. The use of DMA was a significant advancement, enabling smoother and more immersive sound effects compared to CPU-driven playback."
   - id: "pc-speaker-fallback"
     line_start: 830
     line_end: 867
     title: "Fallback sound playback on PC speaker"
     wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PC-Speaker_IMG_8161_%28cropped%29.JPG/330px-PC-Speaker_IMG_8161_%28cropped%29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "PC Speakers and Buzzers (CC BY-SA 3.0)"
+    image_url: ""
+    image_caption: ""
     content: "The SDL_PCPlaySample and SDL_PCStopSample functions provide support for playing sounds on the PC speaker, a rudimentary audio device found in early computers. Unlike dedicated sound cards, the PC speaker could only produce simple tones, making it a challenging medium for delivering immersive audio. The code uses direct port I/O to manipulate the speaker's frequency and volume, showcasing the developers' ability to work within severe hardware limitations. This fallback mechanism ensured that Wolfenstein 3D could run on systems without advanced audio hardware, broadening its accessibility and appeal. The inclusion of PC speaker support reflects the game's commitment to reaching a wide audience during a time when hardware capabilities varied significantly."
   - id: "adlib-sound-effects"
     line_start: 1271
     line_end: 1576
     title: "AdLib sound effects and FM synthesis"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Ad_Lib_font.svg/330px-Ad_Lib_font.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Ad Lib (Public domain)"
+    image_url: ""
+    image_caption: ""
     content: "This section of the code handles sound effects playback using AdLib cards, which were renowned for their FM synthesis capabilities. Functions like SDL_ALPlaySound and SDL_ALStopSound manipulate AdLib registers to produce complex tones and sound effects. The code defines instruments and their properties, such as attack, sustain, and waveforms, allowing for a rich audio experience. AdLib cards were a popular choice for PC gaming in the early 1990s, and their support in Wolfenstein 3D contributed to the game's immersive atmosphere. The developers' ability to harness FM synthesis demonstrates their understanding of audio technology and their commitment to delivering high-quality sound."
   - id: "sound-manager-initialization"
     line_start: 1863
     line_end: 2003
     title: "Initializing the sound manager"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
+    image_url: ""
+    image_caption: ""
     content: "The SD_Startup function initializes the sound manager, detecting available audio hardware and setting up the necessary configurations. This process includes checking for AdLib and SoundBlaster cards, configuring DMA channels, and setting up system interrupts for real-time sound management. The code also handles various user-defined parameters, such as disabling specific hardware checks or specifying the location of a Sound Source device. This initialization routine reflects the complexity of developing software for MS-DOS, where developers had to account for a wide range of hardware configurations and limitations. The robust design of the sound manager ensured that Wolfenstein 3D could deliver a consistent audio experience across diverse systems."
   - id: "music-sequencer"
     line_start: 2274
     line_end: 2325
     title: "Sequencer for background music"
     wikipedia_url: "https://en.wikipedia.org/wiki/MIDI"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Synth_rack_%40_Choking_Sun_Studio.jpg/330px-Synth_rack_%40_Choking_Sun_Studio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Synth rack @ Choking Sun Studio (CC BY 2.0)"
+    image_url: ""
+    image_caption: ""
     content: "The SD_StartMusic function initializes a sequencer for playing background music, using data structures to store musical notes and timing information. This feature was essential for creating the game's iconic soundtrack, which added to its immersive atmosphere. The sequencer leverages the AdLib card's capabilities to produce dynamic and engaging music, showcasing the developers' understanding of audio composition and hardware programming. By integrating music playback into the game's sound manager, id Software ensured that the audio experience was seamless and synchronized with the gameplay. This approach set a precedent for future games, where music became an integral part of the gaming experience."
 
 ---
