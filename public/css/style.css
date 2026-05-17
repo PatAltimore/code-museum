@@ -675,6 +675,7 @@ a:hover {
   border-left: 3px solid var(--accent);
   border-radius: 8px;
   margin-bottom: 1.25rem;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
   font-size: var(--prose-size); /* anchor — children use em so they scale together */
   overflow: hidden;
 }
@@ -742,7 +743,6 @@ a:hover {
 }
 
 .enhancement-text {
-  font-family: Georgia, serif;
   font-size: 0.95em;
   line-height: 1.75;
   color: var(--text);

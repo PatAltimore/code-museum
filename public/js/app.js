@@ -589,7 +589,7 @@ function syntaxClass(line) {
 }
 
 function renderCodeWithEnhancements(body, enhancements) {
-  const lines = body.split('\n');
+  const lines = body.replace(/\r/g, '').split('\n');
   if (lines[lines.length - 1] === '') lines.pop();
   // Strip leading blank lines produced by the '---\n\n' YAML/body separator so
   // that lines[0] is source line 1 and line_start/line_end indices are exact.
