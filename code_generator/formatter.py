@@ -29,6 +29,44 @@ def _parse_json(raw: str) -> dict:
         raise
 
 
+def _clean_enhancements(enhancements: list, code_lines: list[str]) -> list:
+    """Clamp ranges to file bounds, trim blank boundary lines, resolve overlaps."""
+    total = len(code_lines)
+    cleaned = []
+    cursor = 0  # 1-indexed exclusive end of the last accepted range
+
+    for enh in sorted(enhancements, key=lambda e: int(e.get("line_start", 1))):
+        s = max(1, int(enh.get("line_start", 1)))
+        e = min(total, int(enh.get("line_end", s)))
+
+        # Trim leading blank lines from the range start
+        while s <= e and not code_lines[s - 1].strip():
+            s += 1
+        # Trim trailing blank lines from the range end
+        while e >= s and not code_lines[e - 1].strip():
+            e -= 1
+
+        # Drop empty or out-of-bounds ranges
+        if s > e or s > total:
+            continue
+
+        # Resolve overlap with the previous range by pushing start forward
+        if s <= cursor:
+            s = cursor + 1
+            while s <= e and not code_lines[s - 1].strip():
+                s += 1
+            if s > e:
+                continue
+
+        enh = dict(enh)
+        enh["line_start"] = s
+        enh["line_end"] = e
+        cleaned.append(enh)
+        cursor = e
+
+    return cleaned
+
+
 def format_file(
     program: dict,
     file_cfg: dict,
@@ -40,7 +78,7 @@ def format_file(
 
     description = data.get("description", file_cfg.get("description", ""))
     summary = data.get("summary", [])
-    enhancements = data.get("enhancements", [])
+    enhancements = _clean_enhancements(data.get("enhancements", []), code_lines)
 
     lines = ["---"]
     lines.append(f"title: {_q(file_cfg['title'])}")

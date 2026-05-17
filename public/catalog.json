@@ -1,77 +1,6 @@
 {
   "programs": [
     {
-      "slug": "prince-of-persia",
-      "title": "Prince of Persia",
-      "subtitle": "Apple II, 1989",
-      "author": "Jordan Mechner",
-      "year": 1989,
-      "language": "6502 Assembly",
-      "description": "The game that invented cinematic platformers — built by one developer over four years on Apple II hardware with 128K of RAM. The source code was recovered in 2012 from 22-year-old floppy disks.",
-      "github_url": "https://github.com/jmechner/Prince-of-Persia-Apple-II",
-      "files": [
-        {
-          "order": 1,
-          "slug": "sound",
-          "title": "SOUND.S",
-          "description": "The complete sound engine — twenty sounds, one speaker, zero compromises",
-          "path": "01 POP Source/Source/SOUND.S",
-          "generated": true
-        },
-        {
-          "order": 2,
-          "slug": "boot",
-          "title": "BOOT.S",
-          "description": "The two-stage disk boot loader with 128K memory check",
-          "path": "01 POP Source/Source/BOOT.S",
-          "generated": true
-        },
-        {
-          "order": 3,
-          "slug": "seqtable",
-          "title": "SEQTABLE.S",
-          "description": "The animation state machine — every movement rotoscoped from film",
-          "path": "01 POP Source/Source/SEQTABLE.S",
-          "generated": true
-        },
-        {
-          "order": 4,
-          "slug": "master",
-          "title": "MASTER.S",
-          "description": "Game flow controller: boot, attract mode, save/load, level sequencing",
-          "path": "01 POP Source/Source/MASTER.S",
-          "generated": true
-        },
-        {
-          "order": 5,
-          "slug": "ctrl",
-          "title": "CTRL.S",
-          "description": "Player input and game control logic",
-          "path": "01 POP Source/Source/CTRL.S",
-          "generated": true
-        },
-        {
-          "order": 6,
-          "slug": "mover",
-          "title": "MOVER.S",
-          "description": "Physics engine — gravity, momentum, and movement resolution",
-          "path": "01 POP Source/Source/MOVER.S",
-          "generated": true
-        },
-        {
-          "order": 7,
-          "slug": "coll",
-          "title": "COLL.S",
-          "description": "Collision detection between the prince and the dungeon environment",
-          "path": "01 POP Source/Source/COLL.S",
-          "generated": true
-        }
-      ],
-      "introduction": "In the summer of 1985, Jordan Mechner sat down at his Apple II computer in his parents' home in Chappaqua, New York, with a vision that would redefine the boundaries of video games. Fresh off the success of his first game, 'Karateka,' Mechner was determined to create something more ambitious — a game that would feel like a movie, blending fluid animation, gripping storytelling, and precise gameplay. Over the next four years, he would work alone, crafting every line of code in 6502 assembly, pushing the Apple II hardware to its absolute limits. By the time 'Prince of Persia' was released in 1989, it had become a masterpiece of ingenuity, a game that invented the cinematic platformer genre and set new standards for animation and immersion.\n\nThe computing world of the mid-1980s was a landscape of constraints. The Apple II, introduced in 1977, was still a popular platform, but its hardware was aging. With just 128K of RAM and a 1 MHz 6502 processor, developers faced tight memory limits and slow processing speeds. Mechner had to use bank-switched memory — juggling between auxiliary and main memory, as well as the language card's two banks — to fit his game into the available space. Every decision was shaped by these constraints: the sound engine operated through a single speaker, the animation system relied on clever memory management, and the physics engine had to calculate gravity and momentum within razor-thin computational margins. Yet, Mechner saw these limitations not as obstacles but as challenges to overcome.\n\nMechner's approach to animation was groundbreaking. Inspired by the fluid movements of characters in classic films like 'Raiders of the Lost Ark,' he wanted the prince to move with lifelike grace. To achieve this, he filmed his younger brother David performing jumps, climbs, and sword fights, then traced each frame by hand — a technique known as rotoscoping. This painstaking process resulted in animation that felt revolutionary for the time, with the prince's movements flowing naturally in a way that no other game had achieved. Mechner also designed the game's collision detection and physics engine to complement this realism, ensuring that every jump, fall, and swing felt precise and believable.\n\nThe source code itself reveals the depth of Mechner's craftsmanship. Files like SOUND.S showcase the minimalist sound engine, where twenty distinct sounds were crafted for a single speaker without compromising the game's atmosphere. BOOT.S contains the two-stage disk boot loader, which checks for the required 128K of memory before initializing the game. SEQTABLE.S manages the animation state machine, meticulously programmed to handle every rotoscoped movement. CTRL.S handles player input, while MOVER.S calculates gravity and momentum, and COLL.S detects collisions between the prince and the dungeon's treacherous environment. Together, these files form the backbone of a game that feels seamless and cinematic, even on hardware that was considered outdated by 1989.\n\nWhen 'Prince of Persia' was released, it was met with critical acclaim, and its influence was immediate. The game introduced the concept of cinematic platformers, inspiring countless imitators and successors. Its fluid animation and immersive gameplay raised the bar for what video games could achieve, influencing not just platformers but the broader gaming industry. Decades later, the game remains iconic, with its source code recovered in 2012 from 22-year-old floppy disks, allowing a new generation to appreciate the brilliance of Mechner's work. Today, 'Prince of Persia' stands as a testament to the power of creativity and determination, proving that even the most constrained hardware can produce timeless artistry.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Prince_of_Persia_1_-_Sketches_by_Jordan_Mechner.jpg/330px-Prince_of_Persia_1_-_Sketches_by_Jordan_Mechner.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "image_caption": "Sketches of the storyboard of Prince of Persia by Jordan Mechner. (CC BY-SA 4.0)"
-    },
-    {
       "slug": "zork",
       "title": "Zork",
       "subtitle": "PDP-10 / ITS, 1977–1979",
@@ -128,6 +57,27 @@
           "description": "Additional action handlers — puzzles, objects, and their interactions",
           "path": "zork/lcf/act3.13",
           "generated": false
+        }
+      ]
+    },
+    {
+      "slug": "basic-m6502",
+      "introduction": "In the summer of 1977, two young programmers, Bill Gates and Paul Allen, sat down to tackle an ambitious challenge that would help define the future of computing. The personal computer revolution was just beginning, and the newly released MOS Technology 6502 microprocessor offered an affordable and powerful foundation for small-scale machines. Gates and Allen, co-founders of Microsoft, were already gaining recognition for their earlier work on BASIC for the Altair 8800, but now they faced a new frontier: adapting their programming language to the 6502, a chip that would soon power iconic machines like the Apple II. The stakes were high, and the constraints were daunting. They had to create a fully functional BASIC interpreter that could fit into just a few kilobytes of memory.\n\nThe computing world of 1977 was a landscape of innovation and limitation. Microprocessors like the 6502 were revolutionizing hardware design, offering performance at a fraction of the cost of earlier systems. Yet, memory was scarce and expensive—early personal computers often shipped with as little as 4 KB of RAM. Every byte mattered, and programming in assembly language was not just a choice but a necessity. The 6502 assembly language was both powerful and unforgiving, requiring programmers to think in terms of registers, memory addresses, and cycles. Gates and Allen, already seasoned in the art of squeezing functionality into tight spaces, approached the task with a mix of technical rigor and entrepreneurial urgency.\n\nBill Gates, a Harvard dropout with a penchant for optimization, and Paul Allen, a self-taught programmer with a deep understanding of hardware, were perfectly suited to the task. Their earlier success with Altair BASIC had proven their ability to deliver compact, efficient code, but the 6502 posed new challenges. The chip’s architecture was different from the Intel 8080 they had worked with before, requiring a complete rewrite of their interpreter. Gates reportedly spent weeks poring over the 6502’s instruction set, while Allen focused on debugging and testing the code on prototype hardware. “We had to make every instruction count,” Gates later recalled, emphasizing the painstaking effort to fit the program into the available memory.\n\nThe result of their work was Microsoft BASIC for the 6502, a triumph of engineering and ingenuity. The interpreter provided a full suite of BASIC commands, enabling users to write and execute programs on early personal computers. It was fast, efficient, and remarkably compact, fitting comfortably within the limited memory of machines like the Apple II. This achievement was not just a technical milestone; it was a commercial breakthrough. Microsoft licensed the software to multiple manufacturers, establishing itself as a key player in the burgeoning personal computer industry. The Apple II, powered in part by Microsoft BASIC, became one of the most successful early PCs, selling millions of units and cementing BASIC as the programming language of choice for hobbyists and professionals alike.\n\nMicrosoft BASIC for the 6502 left an indelible mark on computing history. It demonstrated that software could be as transformative as hardware, enabling ordinary people to harness the power of computers for education, business, and creativity. The program’s influence extended far beyond the 1970s, laying the groundwork for Microsoft’s rise as a software giant and inspiring generations of programmers to explore the possibilities of personal computing. Today, the source code for Microsoft BASIC stands as a testament to the ingenuity and determination of its creators, a snapshot of a pivotal moment when two visionaries helped shape the digital age.",
+      "title": "Microsoft BASIC for 6502 Microprocessor",
+      "author": "Bill Gates, Paul Allen",
+      "year": 1977,
+      "language": "6502 Assembly",
+      "description": "Microsoft's implementation of BASIC for the 6502 microprocessor, a pivotal moment in personal computing history.",
+      "subtitle": "6502 Microprocessor, 1977",
+      "github_url": "https://github.com/microsoft/BASIC-M6502",
+      "files": [
+        {
+          "order": 1,
+          "slug": "m6502-asm",
+          "title": "m6502.asm",
+          "description": "The complete source code for Microsoft BASIC 1.1, demonstrating early microprocessor programming techniques.",
+          "path": "m6502.asm",
+          "generated": true
         }
       ]
     },
@@ -203,25 +153,75 @@
       "image_caption": "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
     },
     {
-      "slug": "basic-m6502",
-      "introduction": "In the summer of 1977, two young programmers, Bill Gates and Paul Allen, sat down to tackle an ambitious challenge that would help define the future of computing. The personal computer revolution was just beginning, and the newly released MOS Technology 6502 microprocessor offered an affordable and powerful foundation for small-scale machines. Gates and Allen, co-founders of Microsoft, were already gaining recognition for their earlier work on BASIC for the Altair 8800, but now they faced a new frontier: adapting their programming language to the 6502, a chip that would soon power iconic machines like the Apple II. The stakes were high, and the constraints were daunting. They had to create a fully functional BASIC interpreter that could fit into just a few kilobytes of memory.\n\nThe computing world of 1977 was a landscape of innovation and limitation. Microprocessors like the 6502 were revolutionizing hardware design, offering performance at a fraction of the cost of earlier systems. Yet, memory was scarce and expensive—early personal computers often shipped with as little as 4 KB of RAM. Every byte mattered, and programming in assembly language was not just a choice but a necessity. The 6502 assembly language was both powerful and unforgiving, requiring programmers to think in terms of registers, memory addresses, and cycles. Gates and Allen, already seasoned in the art of squeezing functionality into tight spaces, approached the task with a mix of technical rigor and entrepreneurial urgency.\n\nBill Gates, a Harvard dropout with a penchant for optimization, and Paul Allen, a self-taught programmer with a deep understanding of hardware, were perfectly suited to the task. Their earlier success with Altair BASIC had proven their ability to deliver compact, efficient code, but the 6502 posed new challenges. The chip’s architecture was different from the Intel 8080 they had worked with before, requiring a complete rewrite of their interpreter. Gates reportedly spent weeks poring over the 6502’s instruction set, while Allen focused on debugging and testing the code on prototype hardware. “We had to make every instruction count,” Gates later recalled, emphasizing the painstaking effort to fit the program into the available memory.\n\nThe result of their work was Microsoft BASIC for the 6502, a triumph of engineering and ingenuity. The interpreter provided a full suite of BASIC commands, enabling users to write and execute programs on early personal computers. It was fast, efficient, and remarkably compact, fitting comfortably within the limited memory of machines like the Apple II. This achievement was not just a technical milestone; it was a commercial breakthrough. Microsoft licensed the software to multiple manufacturers, establishing itself as a key player in the burgeoning personal computer industry. The Apple II, powered in part by Microsoft BASIC, became one of the most successful early PCs, selling millions of units and cementing BASIC as the programming language of choice for hobbyists and professionals alike.\n\nMicrosoft BASIC for the 6502 left an indelible mark on computing history. It demonstrated that software could be as transformative as hardware, enabling ordinary people to harness the power of computers for education, business, and creativity. The program’s influence extended far beyond the 1970s, laying the groundwork for Microsoft’s rise as a software giant and inspiring generations of programmers to explore the possibilities of personal computing. Today, the source code for Microsoft BASIC stands as a testament to the ingenuity and determination of its creators, a snapshot of a pivotal moment when two visionaries helped shape the digital age.",
-      "title": "Microsoft BASIC for 6502 Microprocessor",
-      "author": "Bill Gates, Paul Allen",
-      "year": 1977,
+      "slug": "prince-of-persia",
+      "title": "Prince of Persia",
+      "subtitle": "Apple II, 1989",
+      "author": "Jordan Mechner",
+      "year": 1989,
       "language": "6502 Assembly",
-      "description": "Microsoft's implementation of BASIC for the 6502 microprocessor, a pivotal moment in personal computing history.",
-      "subtitle": "6502 Microprocessor, 1977",
-      "github_url": "https://github.com/microsoft/BASIC-M6502",
+      "description": "The game that invented cinematic platformers — built by one developer over four years on Apple II hardware with 128K of RAM. The source code was recovered in 2012 from 22-year-old floppy disks.",
+      "github_url": "https://github.com/jmechner/Prince-of-Persia-Apple-II",
       "files": [
         {
           "order": 1,
-          "slug": "m6502-asm",
-          "title": "m6502.asm",
-          "description": "The complete source code for Microsoft BASIC 1.1, demonstrating early microprocessor programming techniques.",
-          "path": "m6502.asm",
+          "slug": "sound",
+          "title": "SOUND.S",
+          "description": "The complete sound engine — twenty sounds, one speaker, zero compromises",
+          "path": "01 POP Source/Source/SOUND.S",
+          "generated": true
+        },
+        {
+          "order": 2,
+          "slug": "boot",
+          "title": "BOOT.S",
+          "description": "The two-stage disk boot loader with 128K memory check",
+          "path": "01 POP Source/Source/BOOT.S",
+          "generated": true
+        },
+        {
+          "order": 3,
+          "slug": "seqtable",
+          "title": "SEQTABLE.S",
+          "description": "The animation state machine — every movement rotoscoped from film",
+          "path": "01 POP Source/Source/SEQTABLE.S",
+          "generated": true
+        },
+        {
+          "order": 4,
+          "slug": "master",
+          "title": "MASTER.S",
+          "description": "Game flow controller: boot, attract mode, save/load, level sequencing",
+          "path": "01 POP Source/Source/MASTER.S",
+          "generated": true
+        },
+        {
+          "order": 5,
+          "slug": "ctrl",
+          "title": "CTRL.S",
+          "description": "Player input and game control logic",
+          "path": "01 POP Source/Source/CTRL.S",
+          "generated": true
+        },
+        {
+          "order": 6,
+          "slug": "mover",
+          "title": "MOVER.S",
+          "description": "Physics engine — gravity, momentum, and movement resolution",
+          "path": "01 POP Source/Source/MOVER.S",
+          "generated": true
+        },
+        {
+          "order": 7,
+          "slug": "coll",
+          "title": "COLL.S",
+          "description": "Collision detection between the prince and the dungeon environment",
+          "path": "01 POP Source/Source/COLL.S",
           "generated": true
         }
-      ]
+      ],
+      "introduction": "In the summer of 1985, Jordan Mechner sat down at his Apple II computer in his parents' home in Chappaqua, New York, with a vision that would redefine the boundaries of video games. Fresh off the success of his first game, 'Karateka,' Mechner was determined to create something more ambitious — a game that would feel like a movie, blending fluid animation, gripping storytelling, and precise gameplay. Over the next four years, he would work alone, crafting every line of code in 6502 assembly, pushing the Apple II hardware to its absolute limits. By the time 'Prince of Persia' was released in 1989, it had become a masterpiece of ingenuity, a game that invented the cinematic platformer genre and set new standards for animation and immersion.\n\nThe computing world of the mid-1980s was a landscape of constraints. The Apple II, introduced in 1977, was still a popular platform, but its hardware was aging. With just 128K of RAM and a 1 MHz 6502 processor, developers faced tight memory limits and slow processing speeds. Mechner had to use bank-switched memory — juggling between auxiliary and main memory, as well as the language card's two banks — to fit his game into the available space. Every decision was shaped by these constraints: the sound engine operated through a single speaker, the animation system relied on clever memory management, and the physics engine had to calculate gravity and momentum within razor-thin computational margins. Yet, Mechner saw these limitations not as obstacles but as challenges to overcome.\n\nMechner's approach to animation was groundbreaking. Inspired by the fluid movements of characters in classic films like 'Raiders of the Lost Ark,' he wanted the prince to move with lifelike grace. To achieve this, he filmed his younger brother David performing jumps, climbs, and sword fights, then traced each frame by hand — a technique known as rotoscoping. This painstaking process resulted in animation that felt revolutionary for the time, with the prince's movements flowing naturally in a way that no other game had achieved. Mechner also designed the game's collision detection and physics engine to complement this realism, ensuring that every jump, fall, and swing felt precise and believable.\n\nThe source code itself reveals the depth of Mechner's craftsmanship. Files like SOUND.S showcase the minimalist sound engine, where twenty distinct sounds were crafted for a single speaker without compromising the game's atmosphere. BOOT.S contains the two-stage disk boot loader, which checks for the required 128K of memory before initializing the game. SEQTABLE.S manages the animation state machine, meticulously programmed to handle every rotoscoped movement. CTRL.S handles player input, while MOVER.S calculates gravity and momentum, and COLL.S detects collisions between the prince and the dungeon's treacherous environment. Together, these files form the backbone of a game that feels seamless and cinematic, even on hardware that was considered outdated by 1989.\n\nWhen 'Prince of Persia' was released, it was met with critical acclaim, and its influence was immediate. The game introduced the concept of cinematic platformers, inspiring countless imitators and successors. Its fluid animation and immersive gameplay raised the bar for what video games could achieve, influencing not just platformers but the broader gaming industry. Decades later, the game remains iconic, with its source code recovered in 2012 from 22-year-old floppy disks, allowing a new generation to appreciate the brilliance of Mechner's work. Today, 'Prince of Persia' stands as a testament to the power of creativity and determination, proving that even the most constrained hardware can produce timeless artistry.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Prince_of_Persia_1_-_Sketches_by_Jordan_Mechner.jpg/330px-Prince_of_Persia_1_-_Sketches_by_Jordan_Mechner.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "image_caption": "Sketches of the storyboard of Prince of Persia by Jordan Mechner. (CC BY-SA 4.0)"
     },
     {
       "slug": "wolf3d",

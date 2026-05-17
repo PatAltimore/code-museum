@@ -714,7 +714,7 @@ async function loadFile(programSlug, fileSlug) {
 }
 
 function renderShelf(catalog) {
-  const programs = catalog.programs || [];
+  const programs = (catalog.programs || []).slice().sort((a, b) => (a.year || 0) - (b.year || 0));
   document.title = 'Code Museum';
 
   const cards = programs.map(p => `
@@ -850,9 +850,9 @@ function renderProgramPage(program) {
     <div class="byline">${escapeHtml(program.author)} · ${program.year} · ${escapeHtml(program.language)}</div>
     ${introImageHtml}
     ${introHtml}
-    ${program.github_url ? `<a class="github-badge" href="${escapeAttr(program.github_url)}" target="_blank" rel="noopener">⎋ View on GitHub</a>` : ''}
   </div>
   <div class="file-tree">${treeHtml}</div>
+  ${program.github_url ? `<a class="github-badge" href="${escapeAttr(program.github_url)}" target="_blank" rel="noopener">View source on GitHub ↗</a>` : ''}
 </div>`;
 }
 
@@ -922,9 +922,7 @@ function renderReader(meta, body, program) {
 <div class="reader-wrap">
   <div class="reader-header-meta">
     <h1>${escapeHtml(meta.title)}</h1>
-    <div class="file-byline">${escapeHtml(meta.program)} · ${escapeHtml(meta.language)} · ${meta.year}
-      ${meta.github_url ? `· <a href="${escapeAttr(meta.github_url)}" target="_blank" rel="noopener">View on GitHub ↗</a>` : ''}
-    </div>
+    <div class="file-byline">${escapeHtml(meta.program)} · ${escapeHtml(meta.language)} · ${meta.year}</div>
     <p class="file-description">${escapeHtml(meta.description)}</p>
     ${summaryHtml ? `<ul class="summary-list">${summaryHtml}</ul>` : ''}
   </div>
@@ -945,10 +943,13 @@ function getProgramFromCatalog(catalog, slug) {
 }
 
 let currentFontSize = 13;
+let currentProseSize = 16;
 
 window.adjustFontSize = function(delta) {
   currentFontSize = Math.max(10, Math.min(20, currentFontSize + delta));
+  currentProseSize = Math.max(13, Math.min(23, currentProseSize + delta));
   document.documentElement.style.setProperty('--code-size', currentFontSize + 'px');
+  document.documentElement.style.setProperty('--prose-size', currentProseSize + 'px');
 };
 
 let lookupPopup = null;
@@ -1054,7 +1055,6 @@ async function route() {
         programSlug,
         programTitle: program ? program.title : programSlug,
         fileTitle: meta.title,
-        githubUrl: meta.github_url
       }) + renderReader(meta, body, program);
       setupWordLookup(app);
       setupInstructionLookup(app, meta.language, meta.file_path);

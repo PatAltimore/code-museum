@@ -113,21 +113,30 @@ def get_source_files(owner: str, repo: str, branch: str, token: str | None) -> t
     return files, truncated
 
 
-def append_to_programs_yaml(config_path: Path, entry: dict) -> None:
-    # Serialize just the new entry as a YAML list item, then indent to match
-    # the existing file's list style (2-space indent under `programs:`)
-    raw = yaml.dump(
-        [entry],
-        allow_unicode=True,
-        default_flow_style=False,
-        sort_keys=False,
-        width=120,
-    )
-    # yaml.dump([x]) produces "- key: val\n  key2: val2\n"
-    # Indent each line by 2 spaces to match the existing `programs:` list
-    indented = "\n".join("  " + line for line in raw.rstrip().splitlines())
-    with open(config_path, "a", encoding="utf-8") as f:
-        f.write("\n" + indented + "\n")
+def insert_into_programs_yaml(config_path: Path, entry: dict, config: dict) -> None:
+    """Insert entry into the programs list sorted by year, then rewrite the file."""
+    programs = list(config.get("programs", []) or [])
+    year = entry.get("year", 9999)
+
+    # Find the first existing program whose year exceeds the new entry's year
+    idx = len(programs)
+    for i, p in enumerate(programs):
+        if p.get("year", 0) > year:
+            idx = i
+            break
+
+    programs.insert(idx, entry)
+    config["programs"] = programs
+
+    with open(config_path, "w", encoding="utf-8") as f:
+        yaml.dump(
+            config,
+            f,
+            allow_unicode=True,
+            default_flow_style=False,
+            sort_keys=False,
+            width=120,
+        )
 
 
 def main() -> None:
@@ -234,7 +243,7 @@ def main() -> None:
         console.print("[dim]Dry run — nothing written.[/dim]")
         return
 
-    append_to_programs_yaml(config_path, entry)
+    insert_into_programs_yaml(config_path, entry, config)
     console.print(f"\n[green]Added '{entry['slug']}' to {config_path.name}[/green]")
 
     # Sync catalog.json immediately so the new program and its source tree

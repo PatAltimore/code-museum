@@ -61,5 +61,5 @@ def sync(config: dict, output_dir: Path) -> None:
 
         entry["files"] = sorted(existing_files.values(), key=lambda x: x["order"])
 
-    catalog["programs"] = list(existing.values())
+    catalog["programs"] = sorted(existing.values(), key=lambda p: p.get("year", 0))
     catalog_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

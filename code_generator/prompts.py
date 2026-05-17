@@ -35,13 +35,21 @@ Output valid JSON with no markdown fences and no extra text:
 Rules for line ranges:
 - Annotate every historically or technically interesting section — routines, algorithms, \
 data structures, clever hacks, hardware workarounds, surprising design decisions
-- Ranges must not overlap; each line_start must exceed the previous line_end
-- line_start must be the exact first line of the code being discussed (the label, \
-instruction, or declaration that opens the section — not a blank line before it)
-- line_end must be the exact last line of that section (the final instruction or closing \
-delimiter — not a blank line after it)
-- Each range should span the complete logical unit: a subroutine, a data table, a loop, \
-a hardware interaction sequence — whatever makes the section coherent
+- Ranges must not overlap; each line_start must be greater than the previous line_end
+- line_start must be the exact first non-blank line of the code being discussed — the \
+label, instruction, function signature, or opening declaration. Never start on a blank line \
+or a line that belongs to a different section
+- line_end must be the exact last non-blank line of that section — the final instruction, \
+closing brace, or last data value. Never end on a blank line or a separator comment \
+that belongs to the next section
+- Ranges must be tight: include only the lines your annotation directly discusses. If your \
+annotation is about a 12-line subroutine, the range should be those 12 lines — not 30 \
+lines of surrounding context
+- Prefer smaller focused ranges over large catch-all ranges. If a section exceeds \
+60 lines, consider splitting it into two annotations covering distinct sub-parts
+- After writing each annotation, verify: count the line numbers in the source listing \
+above. Confirm line_start and line_end refer to non-blank lines within the section \
+you described, and that the range does not spill into adjacent sections
 
 Rules for content — this is the most important part:
 Each annotation must transport the reader to the time and place this code was written. \
