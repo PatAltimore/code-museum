@@ -1,337 +1,369 @@
 output_dir: ../public/programs
-
 models:
   primary: gpt-4o
   fallback:
-    - Llama-3.3-70B-Instruct
-    - Mistral-Large-3
-
+  - Llama-3.3-70B-Instruct
+  - Mistral-Large-3
 generation:
   temperature: 0.3
   max_tokens: 16384
-
 programs:
+- slug: apple-lisa
+  title: Apple Lisa Source Code
+  subtitle: Apple Lisa, 1983
+  author: Apple Computer, Inc.
+  year: 1983
+  language: Assembly (Motorola 68000)
+  description: The source code for the Apple Lisa operating system, showcasing early GUI development.
+  context: The Apple Lisa was one of the first personal computers to feature a graphical user interface (GUI), pioneering
+    concepts that would later become standard in computing. Released in 1983, it was powered by the Motorola 68000 processor
+    and aimed at business users. This repository contains the font files used in the Lisa OS, reflecting the importance of
+    typography in early GUI design.
+  files:
+  - order: 1
+    slug: applew-f
+    title: APPLEW.F
+    path: LISA_OS/FONTS/APPLEW.F
+    description: Defines the default Apple Lisa system font, central to its user interface.
+    context: This file represents the foundational font used across the Lisa OS, emphasizing clarity and usability in early
+      GUI design.
+  - order: 2
+    slug: toolkits-f
+    title: TOOLKITS.F
+    path: LISA_OS/FONTS/TOOLKITS.F
+    description: Contains font definitions for Lisa's toolkit applications, showcasing modular design.
+    context: This file highlights the Lisa's approach to application-specific font customization, a precursor to modern UI
+      frameworks.
+  - order: 3
+    slug: wmfonts-f
+    title: WMFONTS.F
+    path: LISA_OS/FONTS/WMFONTS.F
+    description: Defines fonts used in the Lisa's window manager, integral to its GUI functionality.
+    context: The window manager fonts were critical for rendering text in menus, dialogs, and other GUI elements, demonstrating
+      early GUI engineering.
+  github_url: https://github.com/azumanga/apple-lisa
+  github_repo: azumanga/apple-lisa
+  github_branch: main
+- slug: prince-of-persia
+  title: Prince of Persia
+  subtitle: Apple II, 1989
+  author: Jordan Mechner
+  year: 1989
+  language: 6502 Assembly
+  description: The game that invented cinematic platformers — built by one developer over four years on Apple II hardware
+    with 128K of RAM. The source code was recovered in 2012 from 22-year-old floppy disks.
+  github_url: https://github.com/jmechner/Prince-of-Persia-Apple-II
+  github_repo: jmechner/Prince-of-Persia-Apple-II
+  github_branch: master
+  context: '6502 assembly for the Apple IIe/IIc, written solo by Jordan Mechner 1985–1989. Uses bank-switched memory (aux/main,
+    language card banks 1/2) to fit in 128K. Animation uses rotoscoping: Mechner filmed his brother performing moves and traced
+    each frame. The game is the first cinematic platformer.
 
-  - slug: prince-of-persia
-    title: "Prince of Persia"
-    subtitle: "Apple II, 1989"
-    author: "Jordan Mechner"
-    year: 1989
-    language: "6502 Assembly"
-    description: "The game that invented cinematic platformers — built by one developer over four years on Apple II hardware with 128K of RAM. The source code was recovered in 2012 from 22-year-old floppy disks."
-    github_url: "https://github.com/jmechner/Prince-of-Persia-Apple-II"
-    github_repo: "jmechner/Prince-of-Persia-Apple-II"
-    github_branch: "master"
-    context: >
-      6502 assembly for the Apple IIe/IIc, written solo by Jordan Mechner 1985–1989.
-      Uses bank-switched memory (aux/main, language card banks 1/2) to fit in 128K.
-      Animation uses rotoscoping: Mechner filmed his brother performing moves and traced
-      each frame. The game is the first cinematic platformer.
-    files:
-      - order: 1
-        slug: sound
-        title: "SOUND.S"
-        path: "01 POP Source/Source/SOUND.S"
-        description: "The complete sound engine — twenty sounds, one speaker, zero compromises"
-      - order: 2
-        slug: boot
-        title: "BOOT.S"
-        path: "01 POP Source/Source/BOOT.S"
-        description: "The two-stage disk boot loader with 128K memory check"
-      - order: 3
-        slug: seqtable
-        title: "SEQTABLE.S"
-        path: "01 POP Source/Source/SEQTABLE.S"
-        description: "The animation state machine — every movement rotoscoped from film"
-        max_lines: 200
-      - order: 4
-        slug: master
-        title: "MASTER.S"
-        path: "01 POP Source/Source/MASTER.S"
-        description: "Game flow controller: boot, attract mode, save/load, level sequencing"
-        max_lines: 200
-      - order: 5
-        slug: ctrl
-        title: "CTRL.S"
-        path: "01 POP Source/Source/CTRL.S"
-        description: "Player input and game control logic"
-        max_lines: 200
-        context: "Handles joystick/keyboard input, translates hardware state into game actions."
-      - order: 6
-        slug: mover
-        title: "MOVER.S"
-        path: "01 POP Source/Source/MOVER.S"
-        description: "Physics engine — gravity, momentum, and movement resolution"
-        max_lines: 200
-        context: "Implements the physics model that made Prince of Persia feel weighted and real compared to other platformers."
-      - order: 7
-        slug: coll
-        title: "COLL.S"
-        path: "01 POP Source/Source/COLL.S"
-        description: "Collision detection between the prince and the dungeon environment"
-        max_lines: 200
+    '
+  files:
+  - order: 1
+    slug: sound
+    title: SOUND.S
+    path: 01 POP Source/Source/SOUND.S
+    description: The complete sound engine — twenty sounds, one speaker, zero compromises
+  - order: 2
+    slug: boot
+    title: BOOT.S
+    path: 01 POP Source/Source/BOOT.S
+    description: The two-stage disk boot loader with 128K memory check
+  - order: 3
+    slug: seqtable
+    title: SEQTABLE.S
+    path: 01 POP Source/Source/SEQTABLE.S
+    description: The animation state machine — every movement rotoscoped from film
+    max_lines: 200
+  - order: 4
+    slug: master
+    title: MASTER.S
+    path: 01 POP Source/Source/MASTER.S
+    description: 'Game flow controller: boot, attract mode, save/load, level sequencing'
+    max_lines: 200
+  - order: 5
+    slug: ctrl
+    title: CTRL.S
+    path: 01 POP Source/Source/CTRL.S
+    description: Player input and game control logic
+    max_lines: 200
+    context: Handles joystick/keyboard input, translates hardware state into game actions.
+  - order: 6
+    slug: mover
+    title: MOVER.S
+    path: 01 POP Source/Source/MOVER.S
+    description: Physics engine — gravity, momentum, and movement resolution
+    max_lines: 200
+    context: Implements the physics model that made Prince of Persia feel weighted and real compared to other platformers.
+  - order: 7
+    slug: coll
+    title: COLL.S
+    path: 01 POP Source/Source/COLL.S
+    description: Collision detection between the prince and the dungeon environment
+    max_lines: 200
+- slug: zork
+  title: Zork
+  subtitle: PDP-10 / ITS, 1977–1979
+  author: Anderson, Blank, Daniels, Lebling
+  year: 1977
+  language: MDL (Muddle)
+  description: The game that invented the text adventure — built organically at MIT on a PDP-10, recovered from a 1990 tape,
+    and released open-source in 2025. Its parser, its puzzles, and its sarcastic error messages changed computing forever.
+  github_url: https://github.com/MITDDC/zork
+  github_repo: MITDDC/zork
+  github_branch: master
+  context: 'MDL (Muddle) is a Lisp dialect developed at MIT. The game ran on a DEC PDP-10 under ITS (Incompatible Timesharing
+    System). Players accessed it over ARPANET during development. The source came from MIT''s Tapes of Tech Square collection,
+    extracted from a 1990 tape image. File suffixes are version numbers (np.93 = 93rd revision). MIT released it open-source
+    in 2025 under MIT No Attribution License.
 
-  - slug: zork
-    title: "Zork"
-    subtitle: "PDP-10 / ITS, 1977–1979"
-    author: "Anderson, Blank, Daniels, Lebling"
-    year: 1977
-    language: "MDL (Muddle)"
-    description: "The game that invented the text adventure — built organically at MIT on a PDP-10, recovered from a 1990 tape, and released open-source in 2025. Its parser, its puzzles, and its sarcastic error messages changed computing forever."
-    github_url: "https://github.com/MITDDC/zork"
-    github_repo: "MITDDC/zork"
-    github_branch: "master"
-    context: >
-      MDL (Muddle) is a Lisp dialect developed at MIT. The game ran on a DEC PDP-10
-      under ITS (Incompatible Timesharing System). Players accessed it over ARPANET
-      during development. The source came from MIT's Tapes of Tech Square collection,
-      extracted from a 1990 tape image. File suffixes are version numbers (np.93 = 93rd revision).
-      MIT released it open-source in 2025 under MIT No Attribution License.
-    files:
-      - order: 1
-        slug: defs
-        title: "defs.63"
-        path: "zork/lcf/defs.63"
-        description: "The complete type system — ROOM, OBJECT, SYNTAX, and the parser data structures"
-      - order: 2
-        slug: np
-        title: "np.93"
-        path: "zork/lcf/np.93"
-        description: "The 93rd version of the natural language parser"
-      - order: 3
-        slug: dung
-        title: "dung.56"
-        path: "zork/dung.56"
-        description: "The world itself — every room, exit, and object in the dungeon"
-        max_lines: 200
-      - order: 4
-        slug: act1
-        title: "act1.38"
-        path: "zork/lcf/act1.38"
-        description: "Game loop, action handlers, and the real access-control guard"
-        max_lines: 200
-      - order: 5
-        slug: rooms
-        title: "rooms.99"
-        path: "zork/lcf/rooms.99"
-        description: "Room definitions — every location in the dungeon described in MDL"
-        max_lines: 200
-        context: "Contains the complete set of room definitions. Version 99 of the file, showing iterative development."
-      - order: 6
-        slug: act3
-        title: "act3.13"
-        path: "zork/lcf/act3.13"
-        description: "Additional action handlers — puzzles, objects, and their interactions"
-        context: "Handles specific puzzle actions and object interactions in the game world."
+    '
+  files:
+  - order: 1
+    slug: defs
+    title: defs.63
+    path: zork/lcf/defs.63
+    description: The complete type system — ROOM, OBJECT, SYNTAX, and the parser data structures
+  - order: 2
+    slug: np
+    title: np.93
+    path: zork/lcf/np.93
+    description: The 93rd version of the natural language parser
+  - order: 3
+    slug: dung
+    title: dung.56
+    path: zork/dung.56
+    description: The world itself — every room, exit, and object in the dungeon
+    max_lines: 200
+  - order: 4
+    slug: act1
+    title: act1.38
+    path: zork/lcf/act1.38
+    description: Game loop, action handlers, and the real access-control guard
+    max_lines: 200
+  - order: 5
+    slug: rooms
+    title: rooms.99
+    path: zork/lcf/rooms.99
+    description: Room definitions — every location in the dungeon described in MDL
+    max_lines: 200
+    context: Contains the complete set of room definitions. Version 99 of the file, showing iterative development.
+  - order: 6
+    slug: act3
+    title: act3.13
+    path: zork/lcf/act3.13
+    description: Additional action handlers — puzzles, objects, and their interactions
+    context: Handles specific puzzle actions and object interactions in the game world.
+- slug: ms-dos
+  title: MS-DOS
+  subtitle: IBM PC, 1981–1983
+  author: Tim Paterson / Microsoft
+  year: 1981
+  language: 8086 Assembly
+  description: Written in six weeks by one programmer, acquired by Microsoft for $25,000, and licensed to IBM — then to every
+    IBM clone maker on earth. The source code of the PC era.
+  github_url: https://github.com/microsoft/MS-DOS
+  github_repo: microsoft/MS-DOS
+  github_branch: main
+  context: 'Tim Paterson wrote 86-DOS at Seattle Computer Products in 1980 in roughly six weeks. Microsoft bought it for $25,000
+    in July 1981 and hired Paterson. IBM PC launched August 12 1981 with PC DOS 1.0 (= MS-DOS 1.10). Microsoft kept the right
+    to license MS-DOS to any OEM — within a year they had 70+ licensees. v2.0 (1983) was a near-complete rewrite inspired
+    by Unix/XENIX, adding subdirectories, file handles, pipes, and device drivers. Source first released to the Computer History
+    Museum in March 2014; MIT licensed.
 
-  - slug: ms-dos
-    title: "MS-DOS"
-    subtitle: "IBM PC, 1981–1983"
-    author: "Tim Paterson / Microsoft"
-    year: 1981
-    language: "8086 Assembly"
-    description: "Written in six weeks by one programmer, acquired by Microsoft for $25,000, and licensed to IBM — then to every IBM clone maker on earth. The source code of the PC era."
-    github_url: "https://github.com/microsoft/MS-DOS"
-    github_repo: "microsoft/MS-DOS"
-    github_branch: "main"
-    context: >
-      Tim Paterson wrote 86-DOS at Seattle Computer Products in 1980 in roughly six weeks.
-      Microsoft bought it for $25,000 in July 1981 and hired Paterson.
-      IBM PC launched August 12 1981 with PC DOS 1.0 (= MS-DOS 1.10).
-      Microsoft kept the right to license MS-DOS to any OEM — within a year they had 70+
-      licensees. v2.0 (1983) was a near-complete rewrite inspired by Unix/XENIX, adding
-      subdirectories, file handles, pipes, and device drivers.
-      Source first released to the Computer History Museum in March 2014; MIT licensed.
-    files:
-      - order: 1
-        slug: msdos
-        title: "MSDOS.ASM"
-        path: "v1.25/source/MSDOS.ASM"
-        description: "The original 86-DOS kernel — Tim Paterson's byline and a revision history written in assembly comments"
-        max_lines: 200
-      - order: 2
-        slug: command
-        title: "COMMAND.ASM"
-        path: "v1.25/source/COMMAND.ASM"
-        description: "The command interpreter — 'Abort, Retry, Ignore?' in its original form"
-        max_lines: 200
-      - order: 3
-        slug: xenix
-        title: "XENIX.ASM"
-        path: "v2.0/source/XENIX.ASM"
-        description: "The Unix layer that gave DOS subdirectories, pipes, and file handles"
-        max_lines: 200
-      - order: 4
-        slug: mscode
-        title: "MSCODE.ASM"
-        path: "v2.0/source/MSCODE.ASM"
-        description: "The v2.0 kernel — the INT 21h dispatcher and a comment that says 'Here comes multitasking!!!'"
-        max_lines: 200
-      - order: 5
-        slug: sysinit
-        title: "SYSINIT.ASM"
-        path: "v2.0/source/SYSINIT.ASM"
-        description: "The boot sequence — memory sizing, CONFIG.SYS parsing, and the launch of COMMAND.COM"
-        max_lines: 200
-        context: "Runs at power-on. Sizes RAM by writing/reading bit patterns, relocates itself into high memory, loads DOS, parses CONFIG.SYS, and EXECs COMMAND.COM."
-      - order: 6
-        slug: fat
-        title: "FAT.ASM"
-        path: "v2.0/source/FAT.ASM"
-        description: "The FAT filesystem — the file allocation table that outlasted DOS by decades"
-        max_lines: 200
-        context: "Implements FAT12/FAT16 filesystem operations. The FAT filesystem design survived into the 21st century in USB drives and SD cards."
-      - order: 7
-        slug: exec
-        title: "EXEC.ASM"
-        path: "v2.0/source/EXEC.ASM"
-        description: "Program loader — how DOS launches and returns from .COM and .EXE files"
-        max_lines: 200
-        context: "Implements the EXEC system call (INT 21h function 4Bh) that loads and runs programs. Handles both .COM (flat) and .EXE (segmented) formats."
-
-  - slug: basic-m6502
-    title: Microsoft BASIC for 6502 Microprocessor
-    subtitle: 6502 Microprocessor, 1977
-    author: Bill Gates, Paul Allen
-    year: 1977
-    language: "6502 Assembly"
-    description: Microsoft's implementation of BASIC for the 6502 microprocessor, a pivotal moment in personal computing history.
-    context: Microsoft BASIC for the 6502 was a key enabler for early personal computers, including the Apple II. Written in
-      assembly language, it was designed to fit within the tight memory constraints of the era, often just a few kilobytes.
-      This version showcases the ingenuity required to deliver a functional programming language on limited hardware.
-    files:
-    - order: 1
-      slug: m6502-asm
-      title: m6502.asm
-      path: m6502.asm
-      description: The complete source code for Microsoft BASIC 1.1, demonstrating early microprocessor programming techniques.
-      context: This file contains the assembly language implementation of BASIC for the 6502 microprocessor, showcasing the
-        optimization required to run on hardware with minimal resources.
-    github_url: https://github.com/microsoft/BASIC-M6502
-    github_repo: microsoft/BASIC-M6502
-    github_branch: main
-
-  - slug: wolf3d
-    title: Wolfenstein 3D
-    subtitle: MS-DOS, 1992
-    author: John Carmack, John Romero, Tom Hall
-    year: 1992
-    language: C, x86 Assembly
-    description: The groundbreaking source code for Wolfenstein 3D, a seminal first-person shooter that defined the genre.
-    context: Wolfenstein 3D was developed by id Software and released in 1992 for MS-DOS. It introduced fast-paced, first-person
-      action with smooth scrolling and immersive gameplay, pushing the limits of hardware at the time. The source code, later
-      released as open source, showcases the ingenuity behind one of gaming's most influential titles.
-    files:
-    - order: 1
-      slug: c0-asm
-      title: C0.ASM
-      path: WOLFSRC/C0.ASM
-      description: Low-level assembly routines for initialization, showcasing the hardware-specific optimizations of the era.
-      context: This file contains critical startup code for the game, written in x86 Assembly to ensure compatibility and performance
-        on MS-DOS systems.
-    - order: 2
-      slug: id-ca-c
-      title: ID_CA.C
-      path: WOLFSRC/ID_CA.C
-      description: Handles caching and memory management, a key innovation for running large games on limited hardware.
-      context: Memory constraints on early PCs required efficient caching systems, and this file demonstrates id Software's
-        approach to managing assets dynamically.
-    - order: 3
-      slug: id-in-c
-      title: ID_IN.C
-      path: WOLFSRC/ID_IN.C
-      description: Input handling code, enabling responsive controls that were critical for the game's fast-paced action.
-      context: This file processes keyboard and mouse input, ensuring smooth gameplay and quick reactions in a genre-defining
-        shooter.
-    - order: 4
-      slug: id-sd-c
-      title: ID_SD.C
-      path: WOLFSRC/ID_SD.C
-      description: Sound driver code, bringing immersive audio to the Wolfenstein 3D experience.
-      context: Audio was a key component of Wolfenstein 3D's atmosphere, and this file demonstrates how sound effects and music
-        were integrated into the game.
-    - order: 5
-      slug: wl-main-c
-      title: WL_MAIN.C
-      path: WOLFSRC/WL_MAIN.C
-      description: The main game loop, orchestrating gameplay and tying together all subsystems.
-      context: This file is the heart of Wolfenstein 3D, showcasing the structure and flow of the game's execution.
-    - order: 6
-      slug: wl-draw-c
-      title: WL_DRAW.C
-      path: WOLFSRC/WL_DRAW.C
-      description: Rendering code for the game's 3D environments, a technical marvel of its time.
-      context: Wolfenstein 3D's pseudo-3D graphics were groundbreaking, and this file demonstrates the techniques used to achieve
-        them on limited hardware.
-    - order: 7
-      slug: wl-play-c
-      title: WL_PLAY.C
-      path: WOLFSRC/WL_PLAY.C
-      description: Gameplay logic, including player movement and interactions with the environment.
-      context: This file encapsulates the core mechanics that made Wolfenstein 3D engaging and replayable.
-    - order: 8
-      slug: wl-menu-c
-      title: WL_MENU.C
-      path: WOLFSRC/WL_MENU.C
-      description: Code for the game's menus, providing a user-friendly interface for starting and configuring gameplay.
-      context: The menu system was designed to be intuitive, allowing players to quickly jump into the action or adjust settings.
-    github_url: https://github.com/id-Software/wolf3d
-    github_repo: id-Software/wolf3d
-    github_branch: master
-
-  - slug: doom
-    title: DOOM
-    subtitle: PC, 1993
-    author: John Carmack, John Romero, Dave Taylor
-    year: 1993
-    language: C
-    description: The source code for DOOM, one of the most influential video games of all time, showcasing early 3D graphics
-      and multiplayer networking.
-    context: DOOM revolutionized gaming with its fast-paced action, immersive 3D environments, and multiplayer capabilities.
-      Originally released in 1993, its source code was later made available, allowing developers and enthusiasts to study its
-      groundbreaking techniques. The game ran on modest hardware of the era, pushing the limits of what was possible on consumer
-      PCs.
-    files:
-    - order: 1
-      slug: d-main-c
-      title: d_main.c
-      path: linuxdoom-1.10/d_main.c
-      description: The main entry point for the DOOM game engine, orchestrating initialization and the game loop.
-      context: This file is central to understanding how DOOM's engine starts and manages gameplay, including handling user
-        input and rendering.
-    - order: 2
-      slug: r-main-c
-      title: r_main.c
-      path: linuxdoom-1.10/r_main.c
-      description: Handles the rendering pipeline for DOOM's 3D graphics, a key innovation of the game.
-      context: This file showcases the techniques used to render DOOM's pseudo-3D environments efficiently on 1990s hardware.
-    - order: 3
-      slug: p-map-c
-      title: p_map.c
-      path: linuxdoom-1.10/p_map.c
-      description: Manages the game's map logic, including collision detection and spatial queries.
-      context: Understanding this file provides insight into how DOOM's levels were structured and navigated by both players
-        and AI.
-    - order: 4
-      slug: s-sound-c
-      title: s_sound.c
-      path: linuxdoom-1.10/s_sound.c
-      description: Implements DOOM's sound system, including effects and music playback.
-      context: This file is crucial for understanding how DOOM created its immersive audio experience, which complemented its
-        fast-paced gameplay.
-    - order: 5
-      slug: w-wad-c
-      title: w_wad.c
-      path: linuxdoom-1.10/w_wad.c
-      description: Handles loading and accessing WAD files, which store game assets like textures, sounds, and level data.
-      context: The WAD file format became iconic in modding communities, enabling users to create custom levels and content
-        for DOOM.
-    - order: 6
-      slug: z-zone-c
-      title: z_zone.c
-      path: linuxdoom-1.10/z_zone.c
-      description: Manages memory allocation within the DOOM engine, ensuring efficient use of system resources.
-      context: This file demonstrates how DOOM optimized memory usage on limited hardware, a critical aspect of its performance.
-    github_url: https://github.com/id-Software/DOOM
-    github_repo: id-Software/DOOM
-    github_branch: master
+    '
+  files:
+  - order: 1
+    slug: msdos
+    title: MSDOS.ASM
+    path: v1.25/source/MSDOS.ASM
+    description: The original 86-DOS kernel — Tim Paterson's byline and a revision history written in assembly comments
+    max_lines: 200
+  - order: 2
+    slug: command
+    title: COMMAND.ASM
+    path: v1.25/source/COMMAND.ASM
+    description: The command interpreter — 'Abort, Retry, Ignore?' in its original form
+    max_lines: 200
+  - order: 3
+    slug: xenix
+    title: XENIX.ASM
+    path: v2.0/source/XENIX.ASM
+    description: The Unix layer that gave DOS subdirectories, pipes, and file handles
+    max_lines: 200
+  - order: 4
+    slug: mscode
+    title: MSCODE.ASM
+    path: v2.0/source/MSCODE.ASM
+    description: The v2.0 kernel — the INT 21h dispatcher and a comment that says 'Here comes multitasking!!!'
+    max_lines: 200
+  - order: 5
+    slug: sysinit
+    title: SYSINIT.ASM
+    path: v2.0/source/SYSINIT.ASM
+    description: The boot sequence — memory sizing, CONFIG.SYS parsing, and the launch of COMMAND.COM
+    max_lines: 200
+    context: Runs at power-on. Sizes RAM by writing/reading bit patterns, relocates itself into high memory, loads DOS, parses
+      CONFIG.SYS, and EXECs COMMAND.COM.
+  - order: 6
+    slug: fat
+    title: FAT.ASM
+    path: v2.0/source/FAT.ASM
+    description: The FAT filesystem — the file allocation table that outlasted DOS by decades
+    max_lines: 200
+    context: Implements FAT12/FAT16 filesystem operations. The FAT filesystem design survived into the 21st century in USB
+      drives and SD cards.
+  - order: 7
+    slug: exec
+    title: EXEC.ASM
+    path: v2.0/source/EXEC.ASM
+    description: Program loader — how DOS launches and returns from .COM and .EXE files
+    max_lines: 200
+    context: Implements the EXEC system call (INT 21h function 4Bh) that loads and runs programs. Handles both .COM (flat)
+      and .EXE (segmented) formats.
+- slug: basic-m6502
+  title: Microsoft BASIC for 6502 Microprocessor
+  subtitle: 6502 Microprocessor, 1977
+  author: Bill Gates, Paul Allen
+  year: 1977
+  language: 6502 Assembly
+  description: Microsoft's implementation of BASIC for the 6502 microprocessor, a pivotal moment in personal computing history.
+  context: Microsoft BASIC for the 6502 was a key enabler for early personal computers, including the Apple II. Written in
+    assembly language, it was designed to fit within the tight memory constraints of the era, often just a few kilobytes.
+    This version showcases the ingenuity required to deliver a functional programming language on limited hardware.
+  files:
+  - order: 1
+    slug: m6502-asm
+    title: m6502.asm
+    path: m6502.asm
+    description: The complete source code for Microsoft BASIC 1.1, demonstrating early microprocessor programming techniques.
+    context: This file contains the assembly language implementation of BASIC for the 6502 microprocessor, showcasing the
+      optimization required to run on hardware with minimal resources.
+  github_url: https://github.com/microsoft/BASIC-M6502
+  github_repo: microsoft/BASIC-M6502
+  github_branch: main
+- slug: wolf3d
+  title: Wolfenstein 3D
+  subtitle: MS-DOS, 1992
+  author: John Carmack, John Romero, Tom Hall
+  year: 1992
+  language: C, x86 Assembly
+  description: The groundbreaking source code for Wolfenstein 3D, a seminal first-person shooter that defined the genre.
+  context: Wolfenstein 3D was developed by id Software and released in 1992 for MS-DOS. It introduced fast-paced, first-person
+    action with smooth scrolling and immersive gameplay, pushing the limits of hardware at the time. The source code, later
+    released as open source, showcases the ingenuity behind one of gaming's most influential titles.
+  files:
+  - order: 1
+    slug: c0-asm
+    title: C0.ASM
+    path: WOLFSRC/C0.ASM
+    description: Low-level assembly routines for initialization, showcasing the hardware-specific optimizations of the era.
+    context: This file contains critical startup code for the game, written in x86 Assembly to ensure compatibility and performance
+      on MS-DOS systems.
+  - order: 2
+    slug: id-ca-c
+    title: ID_CA.C
+    path: WOLFSRC/ID_CA.C
+    description: Handles caching and memory management, a key innovation for running large games on limited hardware.
+    context: Memory constraints on early PCs required efficient caching systems, and this file demonstrates id Software's
+      approach to managing assets dynamically.
+  - order: 3
+    slug: id-in-c
+    title: ID_IN.C
+    path: WOLFSRC/ID_IN.C
+    description: Input handling code, enabling responsive controls that were critical for the game's fast-paced action.
+    context: This file processes keyboard and mouse input, ensuring smooth gameplay and quick reactions in a genre-defining
+      shooter.
+  - order: 4
+    slug: id-sd-c
+    title: ID_SD.C
+    path: WOLFSRC/ID_SD.C
+    description: Sound driver code, bringing immersive audio to the Wolfenstein 3D experience.
+    context: Audio was a key component of Wolfenstein 3D's atmosphere, and this file demonstrates how sound effects and music
+      were integrated into the game.
+  - order: 5
+    slug: wl-main-c
+    title: WL_MAIN.C
+    path: WOLFSRC/WL_MAIN.C
+    description: The main game loop, orchestrating gameplay and tying together all subsystems.
+    context: This file is the heart of Wolfenstein 3D, showcasing the structure and flow of the game's execution.
+  - order: 6
+    slug: wl-draw-c
+    title: WL_DRAW.C
+    path: WOLFSRC/WL_DRAW.C
+    description: Rendering code for the game's 3D environments, a technical marvel of its time.
+    context: Wolfenstein 3D's pseudo-3D graphics were groundbreaking, and this file demonstrates the techniques used to achieve
+      them on limited hardware.
+  - order: 7
+    slug: wl-play-c
+    title: WL_PLAY.C
+    path: WOLFSRC/WL_PLAY.C
+    description: Gameplay logic, including player movement and interactions with the environment.
+    context: This file encapsulates the core mechanics that made Wolfenstein 3D engaging and replayable.
+  - order: 8
+    slug: wl-menu-c
+    title: WL_MENU.C
+    path: WOLFSRC/WL_MENU.C
+    description: Code for the game's menus, providing a user-friendly interface for starting and configuring gameplay.
+    context: The menu system was designed to be intuitive, allowing players to quickly jump into the action or adjust settings.
+  github_url: https://github.com/id-Software/wolf3d
+  github_repo: id-Software/wolf3d
+  github_branch: master
+- slug: doom
+  title: DOOM
+  subtitle: PC, 1993
+  author: John Carmack, John Romero, Dave Taylor
+  year: 1993
+  language: C
+  description: The source code for DOOM, one of the most influential video games of all time, showcasing early 3D graphics
+    and multiplayer networking.
+  context: DOOM revolutionized gaming with its fast-paced action, immersive 3D environments, and multiplayer capabilities.
+    Originally released in 1993, its source code was later made available, allowing developers and enthusiasts to study its
+    groundbreaking techniques. The game ran on modest hardware of the era, pushing the limits of what was possible on consumer
+    PCs.
+  files:
+  - order: 1
+    slug: d-main-c
+    title: d_main.c
+    path: linuxdoom-1.10/d_main.c
+    description: The main entry point for the DOOM game engine, orchestrating initialization and the game loop.
+    context: This file is central to understanding how DOOM's engine starts and manages gameplay, including handling user
+      input and rendering.
+  - order: 2
+    slug: r-main-c
+    title: r_main.c
+    path: linuxdoom-1.10/r_main.c
+    description: Handles the rendering pipeline for DOOM's 3D graphics, a key innovation of the game.
+    context: This file showcases the techniques used to render DOOM's pseudo-3D environments efficiently on 1990s hardware.
+  - order: 3
+    slug: p-map-c
+    title: p_map.c
+    path: linuxdoom-1.10/p_map.c
+    description: Manages the game's map logic, including collision detection and spatial queries.
+    context: Understanding this file provides insight into how DOOM's levels were structured and navigated by both players
+      and AI.
+  - order: 4
+    slug: s-sound-c
+    title: s_sound.c
+    path: linuxdoom-1.10/s_sound.c
+    description: Implements DOOM's sound system, including effects and music playback.
+    context: This file is crucial for understanding how DOOM created its immersive audio experience, which complemented its
+      fast-paced gameplay.
+  - order: 5
+    slug: w-wad-c
+    title: w_wad.c
+    path: linuxdoom-1.10/w_wad.c
+    description: Handles loading and accessing WAD files, which store game assets like textures, sounds, and level data.
+    context: The WAD file format became iconic in modding communities, enabling users to create custom levels and content
+      for DOOM.
+  - order: 6
+    slug: z-zone-c
+    title: z_zone.c
+    path: linuxdoom-1.10/z_zone.c
+    description: Manages memory allocation within the DOOM engine, ensuring efficient use of system resources.
+    context: This file demonstrates how DOOM optimized memory usage on limited hardware, a critical aspect of its performance.
+  github_url: https://github.com/id-Software/DOOM
+  github_repo: id-Software/DOOM
+  github_branch: master

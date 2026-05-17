@@ -153,6 +153,43 @@
       "image_caption": "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
     },
     {
+      "slug": "apple-lisa",
+      "title": "Apple Lisa Source Code",
+      "subtitle": "Apple Lisa, 1983",
+      "author": "Apple Computer, Inc.",
+      "year": 1983,
+      "language": "Assembly (Motorola 68000)",
+      "description": "The source code for the Apple Lisa operating system, showcasing early GUI development.",
+      "github_url": "https://github.com/azumanga/apple-lisa",
+      "files": [
+        {
+          "order": 1,
+          "slug": "applew-f",
+          "title": "APPLEW.F",
+          "description": "Defines the default Apple Lisa system font, central to its user interface.",
+          "path": "LISA_OS/FONTS/APPLEW.F",
+          "generated": false
+        },
+        {
+          "order": 2,
+          "slug": "toolkits-f",
+          "title": "TOOLKITS.F",
+          "description": "Contains font definitions for Lisa's toolkit applications, showcasing modular design.",
+          "path": "LISA_OS/FONTS/TOOLKITS.F",
+          "generated": true
+        },
+        {
+          "order": 3,
+          "slug": "wmfonts-f",
+          "title": "WMFONTS.F",
+          "description": "Defines fonts used in the Lisa's window manager, integral to its GUI functionality.",
+          "path": "LISA_OS/FONTS/WMFONTS.F",
+          "generated": true
+        }
+      ],
+      "introduction": "In the early months of 1983, inside Apple's headquarters in Cupertino, California, a team of engineers and designers worked feverishly to finalize the Apple Lisa, a machine that promised to redefine personal computing. The Lisa was not just another computer; it was a bold experiment in making technology more human, more intuitive. At the heart of this effort was the Lisa's graphical user interface (GUI), a revolutionary concept that aimed to replace cryptic command-line inputs with visual metaphors like windows, icons, and menus. The source code for the Lisa operating system, written in assembly language for the Motorola 68000 processor, was a testament to the team's ambition and ingenuity. Among the many files that shaped the Lisa experience were its font definitions, which played a critical role in making the GUI visually coherent and user-friendly.\n\nThe computing world of 1983 was still dominated by text-based interfaces. Machines like the IBM PC, introduced two years earlier, relied on DOS and monochrome displays, catering to a technically proficient audience. Apple, however, had glimpsed a different future. Inspired by the experimental work at Xerox PARC, where the Alto computer had demonstrated the potential of GUIs, Apple set out to bring this vision to the masses. The Lisa was their first attempt, and it was a costly one. Priced at $9,995, the Lisa targeted business professionals who could afford its groundbreaking features. But the high price tag came with high stakes; every decision, from memory allocation to font rendering, had to justify the machine's premium positioning.\n\nThe Lisa's development team was a mix of seasoned engineers and fresh talent, united by their passion for innovation. Bill Atkinson, one of the key figures behind the Lisa's GUI, famously said, \"We wanted to make the computer disappear, to make it feel like an extension of the user.\" Typography was central to this vision. Fonts like APPLEW.F, the default system font, were meticulously designed to be legible and aesthetically pleasing, even on the Lisa's relatively low-resolution display. TOOLKITS.F and WMFONTS.F extended this philosophy, ensuring that every application and window manager element adhered to a consistent visual language. These files were not just technical artifacts; they were expressions of Apple's belief that design mattered as much as functionality.\n\nThe Lisa was not a commercial success. Its high cost and performance issues limited its appeal, and it was soon overshadowed by the more affordable and faster Macintosh, released in 1984. Yet, the Lisa's influence was profound. It introduced concepts like overlapping windows, pull-down menus, and drag-and-drop functionality, which would become staples of modern computing. The font files in the Lisa OS were among the first to demonstrate how typography could enhance usability, setting a precedent for future GUI systems. The Lisa may not have conquered the market, but it laid the groundwork for Apple's design philosophy, which continues to shape the industry.\n\nToday, the Apple Lisa source code stands as a historical artifact, offering a glimpse into the early days of GUI development. It reminds us of a time when computing was transitioning from a tool for specialists to a medium for creativity and communication. The Lisa's fonts, though simple by today's standards, were pioneering in their ability to make technology more approachable. They are a testament to the vision and determination of the team that dared to imagine a different future for computing, one where design and functionality were inseparable."
+    },
+    {
       "slug": "prince-of-persia",
       "title": "Prince of Persia",
       "subtitle": "Apple II, 1989",
