@@ -40,33 +40,28 @@ programs:
     title: SEQTABLE.S
     path: 01 POP Source/Source/SEQTABLE.S
     description: The animation state machine — every movement rotoscoped from film
-    max_lines: 200
   - order: 4
     slug: master
     title: MASTER.S
     path: 01 POP Source/Source/MASTER.S
     description: 'Game flow controller: boot, attract mode, save/load, level sequencing'
-    max_lines: 200
   - order: 5
     slug: ctrl
     title: CTRL.S
     path: 01 POP Source/Source/CTRL.S
     description: Player input and game control logic
-    max_lines: 200
     context: Handles joystick/keyboard input, translates hardware state into game actions.
   - order: 6
     slug: mover
     title: MOVER.S
     path: 01 POP Source/Source/MOVER.S
     description: Physics engine — gravity, momentum, and movement resolution
-    max_lines: 200
     context: Implements the physics model that made Prince of Persia feel weighted and real compared to other platformers.
   - order: 7
     slug: coll
     title: COLL.S
     path: 01 POP Source/Source/COLL.S
     description: Collision detection between the prince and the dungeon environment
-    max_lines: 200
 - slug: zork
   title: Zork
   subtitle: PDP-10 / ITS, 1977–1979
@@ -100,19 +95,16 @@ programs:
     title: dung.56
     path: zork/dung.56
     description: The world itself — every room, exit, and object in the dungeon
-    max_lines: 200
   - order: 4
     slug: act1
     title: act1.38
     path: zork/lcf/act1.38
     description: Game loop, action handlers, and the real access-control guard
-    max_lines: 200
   - order: 5
     slug: rooms
     title: rooms.99
     path: zork/lcf/rooms.99
     description: Room definitions — every location in the dungeon described in MDL
-    max_lines: 200
     context: Contains the complete set of room definitions. Version 99 of the file, showing iterative development.
   - order: 6
     slug: act3
@@ -144,31 +136,26 @@ programs:
     title: MSDOS.ASM
     path: v1.25/source/MSDOS.ASM
     description: The original 86-DOS kernel — Tim Paterson's byline and a revision history written in assembly comments
-    max_lines: 200
   - order: 2
     slug: command
     title: COMMAND.ASM
     path: v1.25/source/COMMAND.ASM
     description: The command interpreter — 'Abort, Retry, Ignore?' in its original form
-    max_lines: 200
   - order: 3
     slug: xenix
     title: XENIX.ASM
     path: v2.0/source/XENIX.ASM
     description: The Unix layer that gave DOS subdirectories, pipes, and file handles
-    max_lines: 200
   - order: 4
     slug: mscode
     title: MSCODE.ASM
     path: v2.0/source/MSCODE.ASM
     description: The v2.0 kernel — the INT 21h dispatcher and a comment that says 'Here comes multitasking!!!'
-    max_lines: 200
   - order: 5
     slug: sysinit
     title: SYSINIT.ASM
     path: v2.0/source/SYSINIT.ASM
     description: The boot sequence — memory sizing, CONFIG.SYS parsing, and the launch of COMMAND.COM
-    max_lines: 200
     context: Runs at power-on. Sizes RAM by writing/reading bit patterns, relocates itself into high memory, loads DOS, parses
       CONFIG.SYS, and EXECs COMMAND.COM.
   - order: 6
@@ -176,7 +163,6 @@ programs:
     title: FAT.ASM
     path: v2.0/source/FAT.ASM
     description: The FAT filesystem — the file allocation table that outlasted DOS by decades
-    max_lines: 200
     context: Implements FAT12/FAT16 filesystem operations. The FAT filesystem design survived into the 21st century in USB
       drives and SD cards.
   - order: 7
@@ -184,7 +170,6 @@ programs:
     title: EXEC.ASM
     path: v2.0/source/EXEC.ASM
     description: Program loader — how DOS launches and returns from .COM and .EXE files
-    max_lines: 200
     context: Implements the EXEC system call (INT 21h function 4Bh) that loads and runs programs. Handles both .COM (flat)
       and .EXE (segmented) formats.
 - slug: basic-m6502
