@@ -116,50 +116,62 @@ programs:
     slug: eq
     title: EQ.S
     path: 01 POP Source/Source/EQ.S
+    description: Global equates — symbolic constants for tile types, collision flags, and object IDs
   - order: 19
     slug: gameeq
     title: GAMEEQ.S
     path: 01 POP Source/Source/GAMEEQ.S
+    description: Game-logic equates — numeric constants for game states, frame flags, and event codes
   - order: 20
     slug: gamebg
     title: GAMEBG.S
     path: 01 POP Source/Source/GAMEBG.S
+    description: Background renderer — draws the dungeon tile backdrop from room layout data
   - order: 21
     slug: bgdata
     title: BGDATA.S
     path: 01 POP Source/Source/BGDATA.S
+    description: Background tile bitmaps — the raw graphics data for every dungeon wall, floor, and gate tile
   - order: 22
     slug: framedef
     title: FRAMEDEF.S
     path: 01 POP Source/Source/FRAMEDEF.S
+    description: Animation frame definitions — maps frame numbers to sprite data for every character animation
   - order: 23
     slug: hrparams
     title: HRPARAMS.S
     path: 01 POP Source/Source/HRPARAMS.S
+    description: Hi-res display parameters — configuration constants for the Apple IIe 280×192 graphics mode
   - order: 24
     slug: hrtables
     title: HRTABLES.S
     path: 01 POP Source/Source/HRTABLES.S
+    description: Hi-res lookup tables — precomputed byte-address tables for fast Apple IIe pixel access
   - order: 25
     slug: movedata
     title: MOVEDATA.S
     path: 01 POP Source/Source/MOVEDATA.S
+    description: Movement data tables — numeric constants defining walk, run, jump, and fall physics values
   - order: 26
     slug: seqdata
     title: SEQDATA.S
     path: 01 POP Source/Source/SEQDATA.S
+    description: Animation sequence data — packed byte streams driving every character animation state
   - order: 27
     slug: soundnames
     title: SOUNDNAMES.S
     path: 01 POP Source/Source/SOUNDNAMES.S
+    description: Sound name equates — symbolic names mapping each of the twenty sound effects to its ID
   - order: 28
     slug: tables
     title: TABLES.S
     path: 01 POP Source/Source/TABLES.S
+    description: Global lookup tables — shared precomputed tables referenced throughout the engine
   - order: 29
     slug: version
     title: VERSION.S
     path: 01 POP Source/Source/VERSION.S
+    description: Version string — game version identifier and copyright notice burned into the binary
 - slug: zork
   title: Zork
   subtitle: PDP-10 / ITS, 1977–1979
@@ -224,22 +236,27 @@ programs:
     slug: act1-37
     title: act1.37
     path: zork/lcf/act1.37
+    description: act1 version 37 — the previous revision of the action handlers, one edit before the canonical act1.38
   - order: 10
     slug: np-92
     title: np.92
     path: zork/lcf/np.92
+    description: Parser version 92 — the natural language parser one revision before the final np.93
   - order: 11
     slug: rooms-98
     title: rooms.98
     path: zork/lcf/rooms.98
+    description: Room definitions v98 — all dungeon room descriptions one revision before the final rooms.99
   - order: 12
     slug: act2z
     title: act2z.27
     path: zork/lcf/act2z.27
+    description: act2 frozen variant — an alternate compiled snapshot of the act2 action module
   - order: 13
     slug: dungz
     title: dungz.56
     path: zork/lcf/dungz.56
+    description: Dungeon frozen variant — an alternate compiled snapshot of the world layout
 - slug: ms-dos
   title: MS-DOS
   subtitle: IBM PC, 1981–1983
@@ -384,94 +401,117 @@ programs:
     slug: buf
     title: BUF.ASM
     path: v2.0/source/BUF.ASM
+    description: Disk buffer manager — allocating and cycling the sector cache that speeds file I/O
   - order: 25
     slug: command-v2
     title: COMMAND.ASM (v2.0)
     path: v2.0/source/COMMAND.ASM
+    description: v2.0 command interpreter — COMMAND.COM rewritten to support pipes, redirection, and batch
   - order: 26
     slug: cparse
     title: CPARSE.ASM
     path: v2.0/source/CPARSE.ASM
+    description: Command line parser — tokenizes arguments and switches for built-in COMMAND.COM commands
   - order: 27
     slug: ctrlc
     title: CTRLC.ASM
     path: v2.0/source/CTRLC.ASM
+    description: Ctrl+C / Ctrl+Break handler — the interrupt routine that terminates running programs
   - order: 28
     slug: dev
     title: DEV.ASM
     path: v2.0/source/DEV.ASM
+    description: Device driver framework — the installable character and block device driver interface added in DOS 2.0
   - order: 29
     slug: dircall
     title: DIRCALL.ASM
     path: v2.0/source/DIRCALL.ASM
+    description: Directory call dispatcher — routes file-system calls through the new subdirectory layer
   - order: 30
     slug: diskcopy
     title: DISKCOPY.ASM
     path: v2.0/source/DISKCOPY.ASM
+    description: DISKCOPY utility — track-by-track floppy duplication with an optional verify pass
   - order: 31
     slug: exe2bin
     title: EXE2BIN.ASM
     path: v2.0/source/EXE2BIN.ASM
+    description: EXE to BIN converter — strips the .EXE relocation header to produce a flat .COM executable
   - order: 32
     slug: fcb
     title: FCB.ASM
     path: v2.0/source/FCB.ASM
+    description: File Control Block handler — the DOS 1.x legacy file API kept for backward compatibility
   - order: 33
     slug: find
     title: FIND.ASM
     path: v2.0/source/FIND.ASM
+    description: FIND utility — the text search filter that scans stdin for a given string
   - order: 34
     slug: getset
     title: GETSET.ASM
     path: v2.0/source/GETSET.ASM
+    description: Get/set system parameters — INT 21h handlers for date, time, country, and disk parameter queries
   - order: 35
     slug: hrddrv
     title: HRDDRV.ASM
     path: v2.0/source/HRDDRV.ASM
+    description: Hard disk driver — the block device driver for fixed disks, new in DOS 2.0
   - order: 36
     slug: init
     title: INIT.ASM
     path: v2.0/source/INIT.ASM
+    description: v2.0 initialization — internal DOS table setup run once at boot before SYSINIT hands off
   - order: 37
     slug: misc-v2
     title: MISC.ASM
     path: v2.0/source/MISC.ASM
+    description: Miscellaneous v2.0 utilities — assorted helper routines for the rewritten kernel
   - order: 38
     slug: more
     title: MORE.ASM
     path: v2.0/source/MORE.ASM
+    description: MORE pager — the stdin filter that pauses output one screenful at a time
   - order: 39
     slug: pclock
     title: PCLOCK.ASM
     path: v2.0/source/PCLOCK.ASM
+    description: PC clock driver — reads the hardware real-time clock and maintains the DOS system time
   - order: 40
     slug: proc
     title: PROC.ASM
     path: v2.0/source/PROC.ASM
+    description: Process management — tracking active child processes and releasing their resources on exit
   - order: 41
     slug: recover
     title: RECOVER.ASM
     path: v2.0/source/RECOVER.ASM
+    description: RECOVER utility — attempts to salvage files from disks with bad sectors
   - order: 42
     slug: rom
     title: ROM.ASM
     path: v2.0/source/ROM.ASM
+    description: ROM BIOS interface — the low-level INT calls that bridge DOS operations to the PC firmware
   - order: 43
     slug: skelio
     title: SKELIO.ASM
     path: v2.0/source/SKELIO.ASM
+    description: Skeleton I/O driver — the template device driver that OEM hardware vendors customized
   - order: 44
     slug: sys
     title: SYS.ASM
     path: v2.0/source/SYS.ASM
+    description: SYS utility — transfers the hidden DOS system files to make a floppy or hard disk bootable
   - order: 45
     slug: syscall
     title: SYSCALL.ASM
     path: v2.0/source/SYSCALL.ASM
+    description: System call interface — the INT 21h entry point and function dispatcher for DOS v2.0
   - order: 46
     slug: strin
     title: STRIN.ASM
     path: v2.0/source/STRIN.ASM
+    description: String input routine — the line editor behind INT 21h function 0Ah, buffered keyboard input
 - slug: basic-m6502
   title: Microsoft BASIC for 6502 Microprocessor
   subtitle: 6502 Microprocessor, 1977
@@ -596,42 +636,52 @@ programs:
     slug: wl-state-c
     title: WL_STATE.C
     path: WOLFSRC/WL_STATE.C
+    description: Actor state machine — the think functions that advance enemy AI states each game tick
   - order: 17
     slug: wl-inter-c
     title: WL_INTER.C
     path: WOLFSRC/WL_INTER.C
+    description: Intermission screens — episode score tally, death counts, and the screens between levels
   - order: 18
     slug: wl-text-c
     title: WL_TEXT.C
     path: WOLFSRC/WL_TEXT.C
+    description: Text screen renderer — the full-screen narrative text pages displayed between episodes
   - order: 19
     slug: wl-debug-c
     title: WL_DEBUG.C
     path: WOLFSRC/WL_DEBUG.C
+    description: Debug and cheat utilities — the in-game debug overlay toggled by the developer cheat sequence
   - order: 20
     slug: id-pm-c
     title: ID_PM.C
     path: WOLFSRC/ID_PM.C
+    description: Page manager — virtual paging of game assets to and from EMS/XMS expanded memory
   - order: 21
     slug: id-vh-c
     title: ID_VH.C
     path: WOLFSRC/ID_VH.C
+    description: Video hardware high-level — sprite scaling, font rendering, and screen fade routines
   - order: 22
     slug: id-us-1-c
     title: ID_US_1.C
     path: WOLFSRC/ID_US_1.C
+    description: User interface services — dialog boxes, high score entry, and string drawing utilities
   - order: 23
     slug: id-sd-a-asm
     title: ID_SD_A.ASM
     path: WOLFSRC/ID_SD_A.ASM
+    description: Sound driver assembly — interrupt-driven PC speaker and AdLib/SoundBlaster output routines
   - order: 24
     slug: wl-asm-asm
     title: WL_ASM.ASM
     path: WOLFSRC/WL_ASM.ASM
+    description: Raycaster assembly — hand-coded x86 inner loop for the column-rendering heart of Wolf3D
   - order: 25
     slug: h-ldiv-asm
     title: H_LDIV.ASM
     path: WOLFSRC/H_LDIV.ASM
+    description: Long division routine — a fast 32÷16 assembly divide used repeatedly by the raycaster
   github_url: https://github.com/id-Software/wolf3d
   github_repo: id-Software/wolf3d
   github_branch: master
@@ -752,90 +802,112 @@ programs:
     slug: am-map-c
     title: am_map.c
     path: linuxdoom-1.10/am_map.c
+    description: Automap — the wire-frame overhead map drawn from BSP line segments
   - order: 20
     slug: d-net-c
     title: d_net.c
     path: linuxdoom-1.10/d_net.c
+    description: Network code — the peer-to-peer IPX driver and tick-synchronization protocol
   - order: 21
     slug: f-finale-c
     title: f_finale.c
     path: linuxdoom-1.10/f_finale.c
+    description: Finale screens — the text crawl and cast-of-characters parade at episode end
   - order: 22
     slug: i-sound-c
     title: i_sound.c
     path: linuxdoom-1.10/i_sound.c
+    description: Sound interface — platform-specific audio output beneath the portable sound system
   - order: 23
     slug: i-video-c
     title: i_video.c
     path: linuxdoom-1.10/i_video.c
+    description: Video interface — the platform-specific screen blitter and VGA palette setter
   - order: 24
     slug: info-c
     title: info.c
     path: linuxdoom-1.10/info.c
+    description: Thing info tables — every monster, item, and projectile state table in one file
   - order: 25
     slug: m-menu-c
     title: m_menu.c
     path: linuxdoom-1.10/m_menu.c
+    description: Main menu system — the classic skull-cursor menus and options screens
   - order: 26
     slug: p-doors-c
     title: p_doors.c
     path: linuxdoom-1.10/p_doors.c
+    description: Door logic — the many door types, lifts, and the linedef triggers that open them
   - order: 27
     slug: p-floor-c
     title: p_floor.c
     path: linuxdoom-1.10/p_floor.c
+    description: Floor and ceiling movers — crushing ceilings, rising floors, and donut trap puzzles
   - order: 28
     slug: p-lights-c
     title: p_lights.c
     path: linuxdoom-1.10/p_lights.c
+    description: Lighting effects — strobe, glow, fireflicker, and dynamic sector light levels
   - order: 29
     slug: p-maputl-c
     title: p_maputl.c
     path: linuxdoom-1.10/p_maputl.c
+    description: Map utilities — line intercept iterators and blockmap traversal used by AI and hitscan
   - order: 30
     slug: p-pspr-c
     title: p_pspr.c
     path: linuxdoom-1.10/p_pspr.c
+    description: Player sprite state machine — weapon animation frames and the gun bob offset
   - order: 31
     slug: p-saveg-c
     title: p_saveg.c
     path: linuxdoom-1.10/p_saveg.c
+    description: Save game serializer — writing and reading the complete game state to a save file
   - order: 32
     slug: p-sight-c
     title: p_sight.c
     path: linuxdoom-1.10/p_sight.c
+    description: Line-of-sight checker — the fast 2D visibility test used before every enemy attack
   - order: 33
     slug: p-spec-c
     title: p_spec.c
     path: linuxdoom-1.10/p_spec.c
+    description: Special line triggers — the hundreds of linedef types that control doors, lifts, and exits
   - order: 34
     slug: r-data-c
     title: r_data.c
     path: linuxdoom-1.10/r_data.c
+    description: Texture data manager — compositing multi-patch textures from WAD lumps at runtime
   - order: 35
     slug: r-plane-c
     title: r_plane.c
     path: linuxdoom-1.10/r_plane.c
+    description: Visplane renderer — drawing floors and ceilings as horizontal spans
   - order: 36
     slug: r-segs-c
     title: r_segs.c
     path: linuxdoom-1.10/r_segs.c
+    description: Wall segment renderer — projecting 2D linedefs into textured vertical wall slices
   - order: 37
     slug: sounds-c
     title: sounds.c
     path: linuxdoom-1.10/sounds.c
+    description: Sound ID table — the complete list of sound names and their WAD lump associations
   - order: 38
     slug: st-stuff-c
     title: st_stuff.c
     path: linuxdoom-1.10/st_stuff.c
+    description: Status bar — the HUD with health, ammo, armor, keys, and Doomguy's iconic face
   - order: 39
     slug: v-video-c
     title: v_video.c
     path: linuxdoom-1.10/v_video.c
+    description: Video utilities — screen copy, block drawing, and the red damage palette flashes
   - order: 40
     slug: wi-stuff-c
     title: wi_stuff.c
     path: linuxdoom-1.10/wi_stuff.c
+    description: Intermission screen — level stats with kill, item, and secret completion percentages
   github_url: https://github.com/id-Software/DOOM
   github_repo: id-Software/DOOM
   github_branch: master
@@ -958,82 +1030,102 @@ programs:
     slug: cl-demo-c
     title: cl_demo.c
     path: QW/client/cl_demo.c
+    description: Demo recording and playback — capturing server messages to a file and replaying them
   - order: 21
     slug: cl-ents-c
     title: cl_ents.c
     path: QW/client/cl_ents.c
+    description: Client entity management — interpolating entity positions between server updates
   - order: 22
     slug: cl-parse-c
     title: cl_parse.c
     path: QW/client/cl_parse.c
+    description: Server message parser — decoding the stream of svc_ network messages from the server
   - order: 23
     slug: cl-pred-c
     title: cl_pred.c
     path: QW/client/cl_pred.c
+    description: Client-side prediction — running player physics locally to hide network latency
   - order: 24
     slug: console-c
     title: console.c
     path: QW/client/console.c
+    description: Developer console — the drop-down text console for commands, cvars, and debug output
   - order: 25
     slug: cvar-c
     title: cvar.c
     path: QW/client/cvar.c
+    description: Console variables — the key/value config system behind every engine setting
   - order: 26
     slug: d-edge-c
     title: d_edge.c
     path: QW/client/d_edge.c
+    description: Software edge engine — the span-based rasterizer that feeds the scanline fill loop
   - order: 27
     slug: d-scan-c
     title: d_scan.c
     path: QW/client/d_scan.c
+    description: Scanline rasterizer — the inner texture-mapping loop for software rendering
   - order: 28
     slug: draw-c
     title: draw.c
     path: QW/client/draw.c
+    description: 2D draw routines — blitting characters, rectangles, and pic images to the screen
   - order: 29
     slug: gl-draw-c
     title: gl_draw.c
     path: QW/client/gl_draw.c
+    description: OpenGL 2D drawing — hardware-accelerated HUD and console rendering for the GL path
   - order: 30
     slug: gl-rsurf-c
     title: gl_rsurf.c
     path: QW/client/gl_rsurf.c
+    description: OpenGL surface renderer — building and drawing world geometry texture chains
   - order: 31
     slug: keys-c
     title: keys.c
     path: QW/client/keys.c
+    description: Key binding system — mapping physical keys to named commands via config and console
   - order: 32
     slug: menu-c
     title: menu.c
     path: QW/client/menu.c
+    description: In-game menu system — the main, options, and multiplayer join menu screens
   - order: 33
     slug: net-udp-c
     title: net_udp.c
     path: QW/client/net_udp.c
+    description: UDP network driver — the raw socket implementation beneath the reliable channel layer
   - order: 34
     slug: r-light-c
     title: r_light.c
     path: QW/client/r_light.c
+    description: Dynamic lighting — computing and staining surface light maps for the software renderer
   - order: 35
     slug: r-sky-c
     title: r_sky.c
     path: QW/client/r_sky.c
+    description: Sky renderer — the cylindrical sky projection drawn in the software rendering path
   - order: 36
     slug: sbar-c
     title: sbar.c
     path: QW/client/sbar.c
+    description: Status bar and HUD — health, ammo, armour, and the face/key inventory display
   - order: 37
     slug: screen-c
     title: screen.c
     path: QW/client/screen.c
+    description: Screen management — console overlay, crosshair, FPS counter, and screenshot capture
   - order: 38
     slug: view-c
     title: view.c
     path: QW/client/view.c
+    description: View setup — building the render frame, applying damage and powerup colour blends
   - order: 39
     slug: wad-c
     title: wad.c
     path: QW/client/wad.c
+    description: WAD file loader — loading id-format WAD lump files for textures and skins
   github_url: https://github.com/id-Software/Quake
   github_repo: id-Software/Quake
   github_branch: master

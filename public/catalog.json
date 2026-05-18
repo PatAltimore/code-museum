@@ -78,7 +78,7 @@
           "order": 9,
           "slug": "act1-37",
           "title": "act1.37",
-          "description": "",
+          "description": "act1 version 37 — the previous revision of the action handlers, one edit before the canonical act1.38",
           "path": "zork/lcf/act1.37",
           "generated": false
         },
@@ -86,7 +86,7 @@
           "order": 10,
           "slug": "np-92",
           "title": "np.92",
-          "description": "",
+          "description": "Parser version 92 — the natural language parser one revision before the final np.93",
           "path": "zork/lcf/np.92",
           "generated": false
         },
@@ -94,7 +94,7 @@
           "order": 11,
           "slug": "rooms-98",
           "title": "rooms.98",
-          "description": "",
+          "description": "Room definitions v98 — all dungeon room descriptions one revision before the final rooms.99",
           "path": "zork/lcf/rooms.98",
           "generated": false
         },
@@ -102,7 +102,7 @@
           "order": 12,
           "slug": "act2z",
           "title": "act2z.27",
-          "description": "",
+          "description": "act2 frozen variant — an alternate compiled snapshot of the act2 action module",
           "path": "zork/lcf/act2z.27",
           "generated": false
         },
@@ -110,7 +110,7 @@
           "order": 13,
           "slug": "dungz",
           "title": "dungz.56",
-          "description": "",
+          "description": "Dungeon frozen variant — an alternate compiled snapshot of the world layout",
           "path": "zork/lcf/dungz.56",
           "generated": false
         }
@@ -338,7 +338,7 @@
           "order": 24,
           "slug": "buf",
           "title": "BUF.ASM",
-          "description": "",
+          "description": "Disk buffer manager — allocating and cycling the sector cache that speeds file I/O",
           "path": "v2.0/source/BUF.ASM",
           "generated": false
         },
@@ -346,7 +346,7 @@
           "order": 25,
           "slug": "command-v2",
           "title": "COMMAND.ASM (v2.0)",
-          "description": "",
+          "description": "v2.0 command interpreter — COMMAND.COM rewritten to support pipes, redirection, and batch",
           "path": "v2.0/source/COMMAND.ASM",
           "generated": false
         },
@@ -354,7 +354,7 @@
           "order": 26,
           "slug": "cparse",
           "title": "CPARSE.ASM",
-          "description": "",
+          "description": "Command line parser — tokenizes arguments and switches for built-in COMMAND.COM commands",
           "path": "v2.0/source/CPARSE.ASM",
           "generated": false
         },
@@ -362,7 +362,7 @@
           "order": 27,
           "slug": "ctrlc",
           "title": "CTRLC.ASM",
-          "description": "",
+          "description": "Ctrl+C / Ctrl+Break handler — the interrupt routine that terminates running programs",
           "path": "v2.0/source/CTRLC.ASM",
           "generated": false
         },
@@ -370,7 +370,7 @@
           "order": 28,
           "slug": "dev",
           "title": "DEV.ASM",
-          "description": "",
+          "description": "Device driver framework — the installable character and block device driver interface added in DOS 2.0",
           "path": "v2.0/source/DEV.ASM",
           "generated": false
         },
@@ -378,7 +378,7 @@
           "order": 29,
           "slug": "dircall",
           "title": "DIRCALL.ASM",
-          "description": "",
+          "description": "Directory call dispatcher — routes file-system calls through the new subdirectory layer",
           "path": "v2.0/source/DIRCALL.ASM",
           "generated": false
         },
@@ -386,7 +386,7 @@
           "order": 30,
           "slug": "diskcopy",
           "title": "DISKCOPY.ASM",
-          "description": "",
+          "description": "DISKCOPY utility — track-by-track floppy duplication with an optional verify pass",
           "path": "v2.0/source/DISKCOPY.ASM",
           "generated": false
         },
@@ -394,7 +394,7 @@
           "order": 31,
           "slug": "exe2bin",
           "title": "EXE2BIN.ASM",
-          "description": "",
+          "description": "EXE to BIN converter — strips the .EXE relocation header to produce a flat .COM executable",
           "path": "v2.0/source/EXE2BIN.ASM",
           "generated": false
         },
@@ -402,7 +402,7 @@
           "order": 32,
           "slug": "fcb",
           "title": "FCB.ASM",
-          "description": "",
+          "description": "File Control Block handler — the DOS 1.x legacy file API kept for backward compatibility",
           "path": "v2.0/source/FCB.ASM",
           "generated": false
         },
@@ -410,7 +410,7 @@
           "order": 33,
           "slug": "find",
           "title": "FIND.ASM",
-          "description": "",
+          "description": "FIND utility — the text search filter that scans stdin for a given string",
           "path": "v2.0/source/FIND.ASM",
           "generated": false
         },
@@ -418,7 +418,7 @@
           "order": 34,
           "slug": "getset",
           "title": "GETSET.ASM",
-          "description": "",
+          "description": "Get/set system parameters — INT 21h handlers for date, time, country, and disk parameter queries",
           "path": "v2.0/source/GETSET.ASM",
           "generated": false
         },
@@ -426,7 +426,7 @@
           "order": 35,
           "slug": "hrddrv",
           "title": "HRDDRV.ASM",
-          "description": "",
+          "description": "Hard disk driver — the block device driver for fixed disks, new in DOS 2.0",
           "path": "v2.0/source/HRDDRV.ASM",
           "generated": false
         },
@@ -434,7 +434,7 @@
           "order": 36,
           "slug": "init",
           "title": "INIT.ASM",
-          "description": "",
+          "description": "v2.0 initialization — internal DOS table setup run once at boot before SYSINIT hands off",
           "path": "v2.0/source/INIT.ASM",
           "generated": false
         },
@@ -442,7 +442,7 @@
           "order": 37,
           "slug": "misc-v2",
           "title": "MISC.ASM",
-          "description": "",
+          "description": "Miscellaneous v2.0 utilities — assorted helper routines for the rewritten kernel",
           "path": "v2.0/source/MISC.ASM",
           "generated": false
         },
@@ -450,7 +450,7 @@
           "order": 38,
           "slug": "more",
           "title": "MORE.ASM",
-          "description": "",
+          "description": "MORE pager — the stdin filter that pauses output one screenful at a time",
           "path": "v2.0/source/MORE.ASM",
           "generated": false
         },
@@ -458,7 +458,7 @@
           "order": 39,
           "slug": "pclock",
           "title": "PCLOCK.ASM",
-          "description": "",
+          "description": "PC clock driver — reads the hardware real-time clock and maintains the DOS system time",
           "path": "v2.0/source/PCLOCK.ASM",
           "generated": false
         },
@@ -466,7 +466,7 @@
           "order": 40,
           "slug": "proc",
           "title": "PROC.ASM",
-          "description": "",
+          "description": "Process management — tracking active child processes and releasing their resources on exit",
           "path": "v2.0/source/PROC.ASM",
           "generated": false
         },
@@ -474,7 +474,7 @@
           "order": 41,
           "slug": "recover",
           "title": "RECOVER.ASM",
-          "description": "",
+          "description": "RECOVER utility — attempts to salvage files from disks with bad sectors",
           "path": "v2.0/source/RECOVER.ASM",
           "generated": false
         },
@@ -482,7 +482,7 @@
           "order": 42,
           "slug": "rom",
           "title": "ROM.ASM",
-          "description": "",
+          "description": "ROM BIOS interface — the low-level INT calls that bridge DOS operations to the PC firmware",
           "path": "v2.0/source/ROM.ASM",
           "generated": false
         },
@@ -490,7 +490,7 @@
           "order": 43,
           "slug": "skelio",
           "title": "SKELIO.ASM",
-          "description": "",
+          "description": "Skeleton I/O driver — the template device driver that OEM hardware vendors customized",
           "path": "v2.0/source/SKELIO.ASM",
           "generated": false
         },
@@ -498,7 +498,7 @@
           "order": 44,
           "slug": "sys",
           "title": "SYS.ASM",
-          "description": "",
+          "description": "SYS utility — transfers the hidden DOS system files to make a floppy or hard disk bootable",
           "path": "v2.0/source/SYS.ASM",
           "generated": false
         },
@@ -506,7 +506,7 @@
           "order": 45,
           "slug": "syscall",
           "title": "SYSCALL.ASM",
-          "description": "",
+          "description": "System call interface — the INT 21h entry point and function dispatcher for DOS v2.0",
           "path": "v2.0/source/SYSCALL.ASM",
           "generated": false
         },
@@ -514,7 +514,7 @@
           "order": 46,
           "slug": "strin",
           "title": "STRIN.ASM",
-          "description": "",
+          "description": "String input routine — the line editor behind INT 21h function 0Ah, buffered keyboard input",
           "path": "v2.0/source/STRIN.ASM",
           "generated": false
         }
@@ -673,7 +673,7 @@
           "order": 18,
           "slug": "eq",
           "title": "EQ.S",
-          "description": "",
+          "description": "Global equates — symbolic constants for tile types, collision flags, and object IDs",
           "path": "01 POP Source/Source/EQ.S",
           "generated": true
         },
@@ -681,7 +681,7 @@
           "order": 19,
           "slug": "gameeq",
           "title": "GAMEEQ.S",
-          "description": "",
+          "description": "Game-logic equates — numeric constants for game states, frame flags, and event codes",
           "path": "01 POP Source/Source/GAMEEQ.S",
           "generated": true
         },
@@ -689,7 +689,7 @@
           "order": 20,
           "slug": "gamebg",
           "title": "GAMEBG.S",
-          "description": "",
+          "description": "Background renderer — draws the dungeon tile backdrop from room layout data",
           "path": "01 POP Source/Source/GAMEBG.S",
           "generated": true
         },
@@ -697,7 +697,7 @@
           "order": 21,
           "slug": "bgdata",
           "title": "BGDATA.S",
-          "description": "",
+          "description": "Background tile bitmaps — the raw graphics data for every dungeon wall, floor, and gate tile",
           "path": "01 POP Source/Source/BGDATA.S",
           "generated": true
         },
@@ -705,7 +705,7 @@
           "order": 22,
           "slug": "framedef",
           "title": "FRAMEDEF.S",
-          "description": "",
+          "description": "Animation frame definitions — maps frame numbers to sprite data for every character animation",
           "path": "01 POP Source/Source/FRAMEDEF.S",
           "generated": true
         },
@@ -713,7 +713,7 @@
           "order": 23,
           "slug": "hrparams",
           "title": "HRPARAMS.S",
-          "description": "",
+          "description": "Hi-res display parameters — configuration constants for the Apple IIe 280×192 graphics mode",
           "path": "01 POP Source/Source/HRPARAMS.S",
           "generated": true
         },
@@ -721,7 +721,7 @@
           "order": 24,
           "slug": "hrtables",
           "title": "HRTABLES.S",
-          "description": "",
+          "description": "Hi-res lookup tables — precomputed byte-address tables for fast Apple IIe pixel access",
           "path": "01 POP Source/Source/HRTABLES.S",
           "generated": true
         },
@@ -729,7 +729,7 @@
           "order": 25,
           "slug": "movedata",
           "title": "MOVEDATA.S",
-          "description": "",
+          "description": "Movement data tables — numeric constants defining walk, run, jump, and fall physics values",
           "path": "01 POP Source/Source/MOVEDATA.S",
           "generated": true
         },
@@ -737,7 +737,7 @@
           "order": 26,
           "slug": "seqdata",
           "title": "SEQDATA.S",
-          "description": "",
+          "description": "Animation sequence data — packed byte streams driving every character animation state",
           "path": "01 POP Source/Source/SEQDATA.S",
           "generated": true
         },
@@ -745,7 +745,7 @@
           "order": 27,
           "slug": "soundnames",
           "title": "SOUNDNAMES.S",
-          "description": "",
+          "description": "Sound name equates — symbolic names mapping each of the twenty sound effects to its ID",
           "path": "01 POP Source/Source/SOUNDNAMES.S",
           "generated": true
         },
@@ -753,7 +753,7 @@
           "order": 28,
           "slug": "tables",
           "title": "TABLES.S",
-          "description": "",
+          "description": "Global lookup tables — shared precomputed tables referenced throughout the engine",
           "path": "01 POP Source/Source/TABLES.S",
           "generated": true
         },
@@ -761,7 +761,7 @@
           "order": 29,
           "slug": "version",
           "title": "VERSION.S",
-          "description": "",
+          "description": "Version string — game version identifier and copyright notice burned into the binary",
           "path": "01 POP Source/Source/VERSION.S",
           "generated": true
         }
@@ -907,7 +907,7 @@
           "order": 16,
           "slug": "wl-state-c",
           "title": "WL_STATE.C",
-          "description": "",
+          "description": "Actor state machine — the think functions that advance enemy AI states each game tick",
           "path": "WOLFSRC/WL_STATE.C",
           "generated": false
         },
@@ -915,7 +915,7 @@
           "order": 17,
           "slug": "wl-inter-c",
           "title": "WL_INTER.C",
-          "description": "",
+          "description": "Intermission screens — episode score tally, death counts, and the screens between levels",
           "path": "WOLFSRC/WL_INTER.C",
           "generated": false
         },
@@ -923,7 +923,7 @@
           "order": 18,
           "slug": "wl-text-c",
           "title": "WL_TEXT.C",
-          "description": "",
+          "description": "Text screen renderer — the full-screen narrative text pages displayed between episodes",
           "path": "WOLFSRC/WL_TEXT.C",
           "generated": false
         },
@@ -931,7 +931,7 @@
           "order": 19,
           "slug": "wl-debug-c",
           "title": "WL_DEBUG.C",
-          "description": "",
+          "description": "Debug and cheat utilities — the in-game debug overlay toggled by the developer cheat sequence",
           "path": "WOLFSRC/WL_DEBUG.C",
           "generated": false
         },
@@ -939,7 +939,7 @@
           "order": 20,
           "slug": "id-pm-c",
           "title": "ID_PM.C",
-          "description": "",
+          "description": "Page manager — virtual paging of game assets to and from EMS/XMS expanded memory",
           "path": "WOLFSRC/ID_PM.C",
           "generated": false
         },
@@ -947,7 +947,7 @@
           "order": 21,
           "slug": "id-vh-c",
           "title": "ID_VH.C",
-          "description": "",
+          "description": "Video hardware high-level — sprite scaling, font rendering, and screen fade routines",
           "path": "WOLFSRC/ID_VH.C",
           "generated": false
         },
@@ -955,7 +955,7 @@
           "order": 22,
           "slug": "id-us-1-c",
           "title": "ID_US_1.C",
-          "description": "",
+          "description": "User interface services — dialog boxes, high score entry, and string drawing utilities",
           "path": "WOLFSRC/ID_US_1.C",
           "generated": false
         },
@@ -963,7 +963,7 @@
           "order": 23,
           "slug": "id-sd-a-asm",
           "title": "ID_SD_A.ASM",
-          "description": "",
+          "description": "Sound driver assembly — interrupt-driven PC speaker and AdLib/SoundBlaster output routines",
           "path": "WOLFSRC/ID_SD_A.ASM",
           "generated": false
         },
@@ -971,7 +971,7 @@
           "order": 24,
           "slug": "wl-asm-asm",
           "title": "WL_ASM.ASM",
-          "description": "",
+          "description": "Raycaster assembly — hand-coded x86 inner loop for the column-rendering heart of Wolf3D",
           "path": "WOLFSRC/WL_ASM.ASM",
           "generated": false
         },
@@ -979,7 +979,7 @@
           "order": 25,
           "slug": "h-ldiv-asm",
           "title": "H_LDIV.ASM",
-          "description": "",
+          "description": "Long division routine — a fast 32÷16 assembly divide used repeatedly by the raycaster",
           "path": "WOLFSRC/H_LDIV.ASM",
           "generated": false
         }
@@ -1146,7 +1146,7 @@
           "order": 19,
           "slug": "am-map-c",
           "title": "am_map.c",
-          "description": "",
+          "description": "Automap — the wire-frame overhead map drawn from BSP line segments",
           "path": "linuxdoom-1.10/am_map.c",
           "generated": false
         },
@@ -1154,7 +1154,7 @@
           "order": 20,
           "slug": "d-net-c",
           "title": "d_net.c",
-          "description": "",
+          "description": "Network code — the peer-to-peer IPX driver and tick-synchronization protocol",
           "path": "linuxdoom-1.10/d_net.c",
           "generated": false
         },
@@ -1162,7 +1162,7 @@
           "order": 21,
           "slug": "f-finale-c",
           "title": "f_finale.c",
-          "description": "",
+          "description": "Finale screens — the text crawl and cast-of-characters parade at episode end",
           "path": "linuxdoom-1.10/f_finale.c",
           "generated": false
         },
@@ -1170,7 +1170,7 @@
           "order": 22,
           "slug": "i-sound-c",
           "title": "i_sound.c",
-          "description": "",
+          "description": "Sound interface — platform-specific audio output beneath the portable sound system",
           "path": "linuxdoom-1.10/i_sound.c",
           "generated": false
         },
@@ -1178,7 +1178,7 @@
           "order": 23,
           "slug": "i-video-c",
           "title": "i_video.c",
-          "description": "",
+          "description": "Video interface — the platform-specific screen blitter and VGA palette setter",
           "path": "linuxdoom-1.10/i_video.c",
           "generated": false
         },
@@ -1186,7 +1186,7 @@
           "order": 24,
           "slug": "info-c",
           "title": "info.c",
-          "description": "",
+          "description": "Thing info tables — every monster, item, and projectile state table in one file",
           "path": "linuxdoom-1.10/info.c",
           "generated": false
         },
@@ -1194,7 +1194,7 @@
           "order": 25,
           "slug": "m-menu-c",
           "title": "m_menu.c",
-          "description": "",
+          "description": "Main menu system — the classic skull-cursor menus and options screens",
           "path": "linuxdoom-1.10/m_menu.c",
           "generated": false
         },
@@ -1202,7 +1202,7 @@
           "order": 26,
           "slug": "p-doors-c",
           "title": "p_doors.c",
-          "description": "",
+          "description": "Door logic — the many door types, lifts, and the linedef triggers that open them",
           "path": "linuxdoom-1.10/p_doors.c",
           "generated": false
         },
@@ -1210,7 +1210,7 @@
           "order": 27,
           "slug": "p-floor-c",
           "title": "p_floor.c",
-          "description": "",
+          "description": "Floor and ceiling movers — crushing ceilings, rising floors, and donut trap puzzles",
           "path": "linuxdoom-1.10/p_floor.c",
           "generated": false
         },
@@ -1218,7 +1218,7 @@
           "order": 28,
           "slug": "p-lights-c",
           "title": "p_lights.c",
-          "description": "",
+          "description": "Lighting effects — strobe, glow, fireflicker, and dynamic sector light levels",
           "path": "linuxdoom-1.10/p_lights.c",
           "generated": false
         },
@@ -1226,7 +1226,7 @@
           "order": 29,
           "slug": "p-maputl-c",
           "title": "p_maputl.c",
-          "description": "",
+          "description": "Map utilities — line intercept iterators and blockmap traversal used by AI and hitscan",
           "path": "linuxdoom-1.10/p_maputl.c",
           "generated": false
         },
@@ -1234,7 +1234,7 @@
           "order": 30,
           "slug": "p-pspr-c",
           "title": "p_pspr.c",
-          "description": "",
+          "description": "Player sprite state machine — weapon animation frames and the gun bob offset",
           "path": "linuxdoom-1.10/p_pspr.c",
           "generated": false
         },
@@ -1242,7 +1242,7 @@
           "order": 31,
           "slug": "p-saveg-c",
           "title": "p_saveg.c",
-          "description": "",
+          "description": "Save game serializer — writing and reading the complete game state to a save file",
           "path": "linuxdoom-1.10/p_saveg.c",
           "generated": false
         },
@@ -1250,7 +1250,7 @@
           "order": 32,
           "slug": "p-sight-c",
           "title": "p_sight.c",
-          "description": "",
+          "description": "Line-of-sight checker — the fast 2D visibility test used before every enemy attack",
           "path": "linuxdoom-1.10/p_sight.c",
           "generated": false
         },
@@ -1258,7 +1258,7 @@
           "order": 33,
           "slug": "p-spec-c",
           "title": "p_spec.c",
-          "description": "",
+          "description": "Special line triggers — the hundreds of linedef types that control doors, lifts, and exits",
           "path": "linuxdoom-1.10/p_spec.c",
           "generated": false
         },
@@ -1266,7 +1266,7 @@
           "order": 34,
           "slug": "r-data-c",
           "title": "r_data.c",
-          "description": "",
+          "description": "Texture data manager — compositing multi-patch textures from WAD lumps at runtime",
           "path": "linuxdoom-1.10/r_data.c",
           "generated": false
         },
@@ -1274,7 +1274,7 @@
           "order": 35,
           "slug": "r-plane-c",
           "title": "r_plane.c",
-          "description": "",
+          "description": "Visplane renderer — drawing floors and ceilings as horizontal spans",
           "path": "linuxdoom-1.10/r_plane.c",
           "generated": false
         },
@@ -1282,7 +1282,7 @@
           "order": 36,
           "slug": "r-segs-c",
           "title": "r_segs.c",
-          "description": "",
+          "description": "Wall segment renderer — projecting 2D linedefs into textured vertical wall slices",
           "path": "linuxdoom-1.10/r_segs.c",
           "generated": false
         },
@@ -1290,7 +1290,7 @@
           "order": 37,
           "slug": "sounds-c",
           "title": "sounds.c",
-          "description": "",
+          "description": "Sound ID table — the complete list of sound names and their WAD lump associations",
           "path": "linuxdoom-1.10/sounds.c",
           "generated": false
         },
@@ -1298,7 +1298,7 @@
           "order": 38,
           "slug": "st-stuff-c",
           "title": "st_stuff.c",
-          "description": "",
+          "description": "Status bar — the HUD with health, ammo, armor, keys, and Doomguy's iconic face",
           "path": "linuxdoom-1.10/st_stuff.c",
           "generated": false
         },
@@ -1306,7 +1306,7 @@
           "order": 39,
           "slug": "v-video-c",
           "title": "v_video.c",
-          "description": "",
+          "description": "Video utilities — screen copy, block drawing, and the red damage palette flashes",
           "path": "linuxdoom-1.10/v_video.c",
           "generated": false
         },
@@ -1314,7 +1314,7 @@
           "order": 40,
           "slug": "wi-stuff-c",
           "title": "wi_stuff.c",
-          "description": "",
+          "description": "Intermission screen — level stats with kill, item, and secret completion percentages",
           "path": "linuxdoom-1.10/wi_stuff.c",
           "generated": false
         }
@@ -1486,7 +1486,7 @@
           "order": 20,
           "slug": "cl-demo-c",
           "title": "cl_demo.c",
-          "description": "",
+          "description": "Demo recording and playback — capturing server messages to a file and replaying them",
           "path": "QW/client/cl_demo.c",
           "generated": false
         },
@@ -1494,7 +1494,7 @@
           "order": 21,
           "slug": "cl-ents-c",
           "title": "cl_ents.c",
-          "description": "",
+          "description": "Client entity management — interpolating entity positions between server updates",
           "path": "QW/client/cl_ents.c",
           "generated": false
         },
@@ -1502,7 +1502,7 @@
           "order": 22,
           "slug": "cl-parse-c",
           "title": "cl_parse.c",
-          "description": "",
+          "description": "Server message parser — decoding the stream of svc_ network messages from the server",
           "path": "QW/client/cl_parse.c",
           "generated": false
         },
@@ -1510,7 +1510,7 @@
           "order": 23,
           "slug": "cl-pred-c",
           "title": "cl_pred.c",
-          "description": "",
+          "description": "Client-side prediction — running player physics locally to hide network latency",
           "path": "QW/client/cl_pred.c",
           "generated": false
         },
@@ -1518,7 +1518,7 @@
           "order": 24,
           "slug": "console-c",
           "title": "console.c",
-          "description": "",
+          "description": "Developer console — the drop-down text console for commands, cvars, and debug output",
           "path": "QW/client/console.c",
           "generated": false
         },
@@ -1526,7 +1526,7 @@
           "order": 25,
           "slug": "cvar-c",
           "title": "cvar.c",
-          "description": "",
+          "description": "Console variables — the key/value config system behind every engine setting",
           "path": "QW/client/cvar.c",
           "generated": false
         },
@@ -1534,7 +1534,7 @@
           "order": 26,
           "slug": "d-edge-c",
           "title": "d_edge.c",
-          "description": "",
+          "description": "Software edge engine — the span-based rasterizer that feeds the scanline fill loop",
           "path": "QW/client/d_edge.c",
           "generated": false
         },
@@ -1542,7 +1542,7 @@
           "order": 27,
           "slug": "d-scan-c",
           "title": "d_scan.c",
-          "description": "",
+          "description": "Scanline rasterizer — the inner texture-mapping loop for software rendering",
           "path": "QW/client/d_scan.c",
           "generated": false
         },
@@ -1550,7 +1550,7 @@
           "order": 28,
           "slug": "draw-c",
           "title": "draw.c",
-          "description": "",
+          "description": "2D draw routines — blitting characters, rectangles, and pic images to the screen",
           "path": "QW/client/draw.c",
           "generated": false
         },
@@ -1558,7 +1558,7 @@
           "order": 29,
           "slug": "gl-draw-c",
           "title": "gl_draw.c",
-          "description": "",
+          "description": "OpenGL 2D drawing — hardware-accelerated HUD and console rendering for the GL path",
           "path": "QW/client/gl_draw.c",
           "generated": false
         },
@@ -1566,7 +1566,7 @@
           "order": 30,
           "slug": "gl-rsurf-c",
           "title": "gl_rsurf.c",
-          "description": "",
+          "description": "OpenGL surface renderer — building and drawing world geometry texture chains",
           "path": "QW/client/gl_rsurf.c",
           "generated": false
         },
@@ -1574,7 +1574,7 @@
           "order": 31,
           "slug": "keys-c",
           "title": "keys.c",
-          "description": "",
+          "description": "Key binding system — mapping physical keys to named commands via config and console",
           "path": "QW/client/keys.c",
           "generated": false
         },
@@ -1582,7 +1582,7 @@
           "order": 32,
           "slug": "menu-c",
           "title": "menu.c",
-          "description": "",
+          "description": "In-game menu system — the main, options, and multiplayer join menu screens",
           "path": "QW/client/menu.c",
           "generated": false
         },
@@ -1590,7 +1590,7 @@
           "order": 33,
           "slug": "net-udp-c",
           "title": "net_udp.c",
-          "description": "",
+          "description": "UDP network driver — the raw socket implementation beneath the reliable channel layer",
           "path": "QW/client/net_udp.c",
           "generated": false
         },
@@ -1598,7 +1598,7 @@
           "order": 34,
           "slug": "r-light-c",
           "title": "r_light.c",
-          "description": "",
+          "description": "Dynamic lighting — computing and staining surface light maps for the software renderer",
           "path": "QW/client/r_light.c",
           "generated": false
         },
@@ -1606,7 +1606,7 @@
           "order": 35,
           "slug": "r-sky-c",
           "title": "r_sky.c",
-          "description": "",
+          "description": "Sky renderer — the cylindrical sky projection drawn in the software rendering path",
           "path": "QW/client/r_sky.c",
           "generated": false
         },
@@ -1614,7 +1614,7 @@
           "order": 36,
           "slug": "sbar-c",
           "title": "sbar.c",
-          "description": "",
+          "description": "Status bar and HUD — health, ammo, armour, and the face/key inventory display",
           "path": "QW/client/sbar.c",
           "generated": false
         },
@@ -1622,7 +1622,7 @@
           "order": 37,
           "slug": "screen-c",
           "title": "screen.c",
-          "description": "",
+          "description": "Screen management — console overlay, crosshair, FPS counter, and screenshot capture",
           "path": "QW/client/screen.c",
           "generated": false
         },
@@ -1630,7 +1630,7 @@
           "order": 38,
           "slug": "view-c",
           "title": "view.c",
-          "description": "",
+          "description": "View setup — building the render frame, applying damage and powerup colour blends",
           "path": "QW/client/view.c",
           "generated": false
         },
@@ -1638,7 +1638,7 @@
           "order": 39,
           "slug": "wad-c",
           "title": "wad.c",
-          "description": "",
+          "description": "WAD file loader — loading id-format WAD lump files for textures and skins",
           "path": "QW/client/wad.c",
           "generated": false
         }
