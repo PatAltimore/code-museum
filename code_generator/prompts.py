@@ -1,3 +1,95 @@
+import re as _re
+
+
+def _asm_landmarks(code_lines: list[str]) -> list[tuple[int, str]]:
+    """Return (1-indexed line number, label name) for every assembly label/proc entry.
+
+    Accepts lines that start at column 0 (no leading whitespace) and look like
+    subroutine/function entry points rather than data definitions or equates.
+
+    Works for both 6502 (Merlin) and 8086 (MASM/TASM) style assembly.
+    """
+    # Keywords that mean the identifier is a constant/data definition, not a label
+    _DATA_KEYWORDS = {
+        'EQU', 'MACRO', 'STRUC', 'STRUCT', 'RECORD', 'TYPEDEF',
+        'SEGMENT', 'ENDS', 'GROUP', 'ASSUME', 'ORG',
+        'DS', 'DB', 'DW', 'DD', 'DQ', 'DT', 'DF',
+        '=', 'SET', 'TEXTEQU',
+    }
+
+    ident_pat = _re.compile(r'^([A-Za-z_@?$][A-Za-z0-9_@?$.]*)')
+    landmarks = []
+
+    for i, line in enumerate(code_lines):
+        # Skip blank, comment, and directive lines
+        if not line or line[0] in ' \t;*#/!':
+            continue
+        if line[0] in '.=':
+            continue
+
+        m = ident_pat.match(line)
+        if not m:
+            continue
+
+        name = m.group(1)
+        rest = line[len(name):]
+
+        # Strip trailing comment
+        code_rest = rest.split(';')[0].strip()
+
+        # First significant word after the identifier
+        first_word = code_rest.split()[0].upper() if code_rest else ''
+
+        # Skip EQU/data definitions
+        if first_word in _DATA_KEYWORDS:
+            continue
+
+        # Accept anything not filtered out above:
+        #   LABEL:          — explicit colon label (any assembler)
+        #   LABEL           — alone on the line (6502/Merlin style)
+        #   LABEL instr ... — label + instruction on same line (6502/Merlin style)
+        #   LABEL PROC ...  — MASM/TASM procedure declaration
+        # All of the above are legitimate entry points / section starts.
+        landmarks.append((i + 1, name))
+
+    return landmarks
+
+
+def _landmarks_block(landmarks: list[tuple[int, str]], total_lines: int) -> str:
+    """Format landmark table as a string to embed in the prompt.
+
+    Filters out landmarks whose implied section is fewer than MIN_SECTION_LINES
+    lines — these are typically fall-through labels or single-line data aliases
+    that don't correspond to distinct annotatable sections.
+    """
+    if not landmarks:
+        return ""
+
+    MIN_SECTION_LINES = 3
+
+    # Compute implied section sizes and filter
+    significant = []
+    for idx, (lineno, name) in enumerate(landmarks):
+        next_start = landmarks[idx + 1][0] if idx + 1 < len(landmarks) else total_lines + 1
+        section_size = next_start - lineno
+        if section_size >= MIN_SECTION_LINES:
+            significant.append((lineno, name, next_start - 1))
+
+    if not significant:
+        return ""
+
+    lines = [
+        "Assembly landmarks — exact line numbers for every label/subroutine entry point:",
+    ]
+    for lineno, name, implied_end in significant:
+        lines.append(f"  Line {lineno:4d}: {name}  (section ends ~line {implied_end})")
+    lines.append(
+        "\nIMPORTANT: Use these exact line numbers as line_start for each annotation. "
+        "Do NOT count lines yourself — copy the landmark line number directly."
+    )
+    return "\n".join(lines)
+
+
 _SYSTEM = """\
 You are a writer for Code Museum — a reader for historically significant source code. \
 Your job is to write the annotation cards that appear alongside the code. Think of them \
@@ -123,6 +215,15 @@ def build_prompt(program: dict, file_cfg: dict, code_lines: list[str]) -> list[d
         context_parts.append(f"Historical context: {program['context']}")
     if file_cfg.get("context"):
         context_parts.append(f"File context: {file_cfg['context']}")
+
+    # For assembly files, pre-parse label positions and inject a landmark table
+    # so the model copies exact line numbers instead of counting manually.
+    lang = program.get("language", "").lower()
+    if "assembly" in lang or "asm" in lang:
+        landmarks = _asm_landmarks(code_lines)
+        if landmarks:
+            context_parts.append("")
+            context_parts.append(_landmarks_block(landmarks, len(code_lines)))
 
     user_content = "\n".join(context_parts) + "\n\n" + numbered
 
