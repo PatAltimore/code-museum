@@ -204,7 +204,7 @@ def main() -> None:
         {"role": "user", "content": user_content},
     ]
     try:
-        raw = client.complete(messages, temperature=0.2, max_tokens=2048)
+        raw = client.complete(messages, temperature=0.2, max_tokens=8192)
     except (ContentFilterError, RuntimeError) as e:
         console.print(f"[red]Model error: {e}[/red]")
         sys.exit(1)
