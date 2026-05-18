@@ -544,6 +544,10 @@ a:hover {
   opacity: 0.45;
 }
 
+.tree-file-plain .tree-file-desc {
+  opacity: 0.6;
+}
+
 .reader-wrap {
   display: flex;
   flex-direction: column;

@@ -798,7 +798,12 @@ function renderFileTree(node, programSlug, depth) {
     } else {
       html += `<div class="tree-file tree-file-plain" style="padding-left:${fpad}rem">`;
       html += `<span class="tree-file-icon">·</span>`;
-      html += `<span class="tree-file-name">${escapeHtml(file.title)}</span>`;
+      html += `<div class="tree-file-body">`;
+      html += `<div class="tree-file-name">${escapeHtml(file.title)}</div>`;
+      if (file.description) {
+        html += `<div class="tree-file-desc">${escapeHtml(file.description)}</div>`;
+      }
+      html += `</div>`;
       html += `</div>`;
     }
   }
