@@ -9,68 +9,82 @@ year: 1989
 author: "Jordan Mechner"
 slug: "ctrl"
 order: 5
-description: "This file translates hardware input into game actions for Prince of Persia, a groundbreaking cinematic platformer."
-is_excerpt: true
-excerpt_lines: 200
+description: "This file is the heart of Prince of Persia's input handling, translating hardware signals into cinematic gameplay actions on the Apple II."
 
 summary:
-  - point: "Memory bank switching to fit within 128K constraints"
+  - point: "Implements cinematic platformer mechanics in 6502 assembly"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
+  - point: "Uses bank-switched memory to fit within 128K constraints"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank Switching"
-  - point: "Rotoscoping animation technique traced from live-action footage"
+    link_label: "Bank switching"
+  - point: "Rotoscoping-inspired animation influenced gameplay design"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Complex handling of player states like freefall, hanging, and impalement"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Apple II hardware constraints shaped game design decisions"
-    link: "https://en.wikipedia.org/wiki/Apple_II_series"
-    link_label: "Apple II"
+  - point: "Sophisticated collision and physics handling for platforming"
+    link: "https://en.wikipedia.org/wiki/Physics_engine"
+    link_label: "Physics engine"
   - point: "Solo development by Jordan Mechner over four years"
     link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
     link_label: "Jordan Mechner"
 
 enhancements:
-  - id: "jump-table-for-subroutine-dispatch"
+  - id: "jump-table-for-control-flow"
     line_start: 8
     line_end: 16
-    title: "Jump Table: Efficient Subroutine Dispatch"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: ""
-    image_caption: ""
-    content: "The code begins with a jump table—a compact mechanism for dispatching execution to various subroutines. Each `jmp` instruction points to a specific routine responsible for handling a distinct aspect of gameplay, such as player control (`PLAYERCTRL`), floor collision (`CHECKFLOOR`), or shadow behavior (`SHADCTRL`). This design reflects the constraints of the 6502 processor, which lacked advanced branching instructions or indirect function calls. By centralizing these jumps, Jordan Mechner streamlined the game's logic flow while conserving memory—a critical consideration for the Apple II's 128K limit. In the mid-1980s, jump tables were a common solution for managing state transitions in games and operating systems. They allowed developers to bypass the overhead of conditional branching, which could slow down performance on hardware like the Apple IIe. Mechner's use of this technique demonstrates his deep understanding of the platform's limitations and his ability to optimize for speed and clarity. This structure influenced later game development, where similar dispatch mechanisms became standard in state-driven systems. While modern languages abstract away such details, the jump table remains a testament to the ingenuity required to make complex games run on early hardware. Mechner's work here laid the groundwork for the fluid gameplay that made Prince of Persia a classic."
-  - id: "game-parameters-for-character-behavior"
-    line_start: 40
+    title: "Jump Table for Efficient Control Flow"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Branch_table"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RagDoll_demo_OGRE_Newton_1.png/330px-RagDoll_demo_OGRE_Newton_1.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "RagDoll demo OGRE Newton 1 (LGPL)"
+    content: "The file begins with a jump table—a common technique in assembly programming to efficiently route execution to different subroutines. Each entry in the table corresponds to a key function handling specific aspects of the game's control logic, such as player control, shadow control, and collision detection. In the constrained environment of the Apple II, where every byte and cycle mattered, this approach minimized overhead and allowed Mechner to create a responsive gameplay experience. Jump tables were a hallmark of 6502 assembly programming, reflecting the need for speed and compactness in an era when memory and processing power were scarce."
+  - id: "parameters-for-character-actions"
+    line_start: 42
     line_end: 65
-    title: "Game Parameters: Tuning Character Physics"
+    title: "Tuning Parameters for Character Actions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"
     image_url: ""
     image_caption: ""
-    content: "This section defines key parameters governing the player's movement and interactions, such as `DeathVelocity`, `grabreach`, and `swordthres`. These values control how the character reacts to falling, grabbing ledges, and engaging in combat, encapsulating the game's physics and mechanics in a series of constants. In the 1980s, game physics were often hardcoded into assembly, as there were no high-level physics engines or libraries. Mechner had to manually tweak these values to achieve the precise, cinematic feel he envisioned. For example, `grabspeed` and `grablead` determine the timing and conditions for ledge grabs—a critical feature in a platformer where precision is paramount. The iterative process of adjusting these parameters likely involved extensive playtesting. These constants highlight the balance between realism and playability. Mechner's background in filmmaking influenced his approach, as he sought to create animations and interactions that felt natural yet responsive. The success of Prince of Persia's fluid gameplay owes much to the careful calibration seen here. Modern games often use similar parameter-driven systems, albeit implemented with more sophisticated tools. Mechner's work reminds us that even the simplest constants can shape the player's experience profoundly."
-  - id: "falling-subroutine-handling-freefall"
+    content: "This block defines key parameters for the character's movements, such as velocities for death and landing, thresholds for grabbing ledges, and sword combat mechanics. These constants allowed Mechner to fine-tune gameplay, balancing realism with playability. In the late 1980s, such granular control over character behavior was groundbreaking, enabling the precise, cinematic movements that became a hallmark of Prince of Persia. These parameters reflect Mechner's iterative design process, where gameplay was refined frame by frame to achieve the desired effect."
+  - id: "game-physics-and-collision-handling"
     line_start: 76
     line_end: 99
-    title: "Falling: Handling Freefall and Floor Collisions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
-    image_url: ""
-    image_caption: ""
-    content: "The `falling` subroutine handles the player's descent during freefall, checking whether they have passed through the floor plane and determining the consequences. It begins by comparing the character's vertical position (`CharY`) with the floor's height (`FloorY`). If the player is above the floor, the routine jumps to `fallon`, allowing the fall to continue. If the player has reached or passed the floor, the code checks whether the floor is solid or contains special elements like spikes. In the mid-1980s, collision detection was a challenging problem for game developers. The Apple II lacked hardware support for such calculations, so Mechner had to implement them manually in assembly. His approach here is both efficient and adaptable, using subroutines like `getunderft` and `InsideBlock` to handle specific scenarios. This modularity allowed him to account for edge cases, such as falling through loose floors or landing on spikes. The falling mechanics are central to Prince of Persia's gameplay, emphasizing the perilous nature of the environment. Mechner's cinematic vision required precise control over these interactions, ensuring that every fall felt dramatic yet fair. The techniques seen here influenced later platformers, where collision detection and physics became increasingly sophisticated. Mechner's work remains a masterclass in achieving complex behavior within severe hardware constraints."
-  - id: "checkfloor-subroutine-player-state"
-    line_start: 106
-    line_end: 133
-    title: "CHECKFLOOR: Decoding Player State"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
-    image_url: ""
-    image_caption: ""
-    content: "The `CHECKFLOOR` subroutine evaluates the player's current state, determining whether they are hanging, freefalling, or on the ground. By examining the `CharAction` and `CharPosn` variables, the routine decides the appropriate course of action, such as jumping to `falling` for freefall or `onground` for stable footing. This logic is a classic example of a finite-state machine, a common design pattern in game development. In the constrained environment of the Apple II, state machines were a practical way to manage complex interactions without consuming excessive memory or processing power. Mechner's implementation is notable for its clarity and efficiency, with each state transition clearly defined. The ability to accurately track and respond to the player's state was crucial for Prince of Persia's immersive gameplay. Mechner's cinematic aspirations required seamless transitions between actions, ensuring that the character's movements felt fluid and natural. This subroutine exemplifies the meticulous attention to detail that made the game a landmark achievement. The principles seen here continue to underpin modern game design, where state machines remain a foundational tool."
-  - id: "hitflr-handling-floor-collisions"
-    line_start: 140
-    line_end: 199
-    title: "Hit Floor: Handling Collisions and Consequences"
+    title: "Game Physics and Collision Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
-    content: "The `hitflr` subroutine manages the player's interactions upon hitting the floor, aligning their position with the surface and determining the outcome based on factors like velocity and the type of floor. If the player lands on spikes, the routine checks whether they are lethal, potentially triggering the `impale` sequence. For non-lethal landings, it assesses the player's velocity to decide between soft, medium, or hard landings, each with its own consequences. This section showcases Mechner's attention to detail in simulating realistic physics and interactions. The Apple II's hardware lacked support for complex physics calculations, so Mechner had to implement them manually in assembly. The use of subroutines like `getunderft` and `getdist` demonstrates his modular approach, allowing him to handle diverse scenarios within the game's constraints. The handling of floor collisions is a defining feature of Prince of Persia, contributing to its sense of danger and realism. Mechner's cinematic vision required precise control over these interactions, ensuring that every landing felt impactful. This subroutine reflects the game's broader emphasis on fluid, lifelike animations and interactions. Its influence can be seen in later platformers, where physics engines and collision detection became increasingly sophisticated. Mechner's work here remains a benchmark for achieving complex behavior on limited hardware."
+    content: "This section handles the character's interaction with the floor, determining whether they are falling, passing through a floor plane, or landing. The code checks for solid blocks, adjusts the character's position, and triggers appropriate animations. In 1989, realistic physics in platformers was rare, and Mechner's meticulous attention to detail set Prince of Persia apart. Inspired by his rotoscoping process, he aimed to make every movement feel fluid and grounded. This code exemplifies the game's cinematic realism, where even the act of falling is imbued with drama and precision."
+  - id: "falling-and-edge-grabbing"
+    line_start: 248
+    line_end: 303
+    title: "Falling and Edge-Grabbing Mechanics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Platform_game"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements one of the game's signature mechanics: grabbing a ledge while falling. The code checks if the character is alive, falling at an acceptable speed, and within range of a ledge. If all conditions are met, the character aligns with the ledge and transitions into a hanging animation. This mechanic added tension and cinematic flair to the gameplay, making the player feel the stakes of every misstep. Mechner's decision to include this feature was inspired by his desire to create a game that felt like an action movie, where every moment was dramatic and consequential."
+  - id: "shadow-character-control"
+    line_start: 509
+    line_end: 547
+    title: "Shadow Character Control Logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)#Gameplay"
+    image_url: ""
+    image_caption: ""
+    content: "This subroutine governs the behavior of the shadow character, a mysterious and pivotal element of the game. The shadow can vanish, act autonomously, or be manually controlled depending on the situation. The inclusion of the shadow character added depth to the narrative and gameplay, creating moments of intrigue and surprise. Mechner's storytelling ambitions were evident here, as he used gameplay mechanics to reinforce the game's themes of duality and self-discovery. The shadow character remains one of the most memorable aspects of Prince of Persia."
+  - id: "combat-mechanics"
+    line_start: 759
+    line_end: 804
+    title: "Combat Mechanics: En Garde and Striking"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)#Gameplay"
+    image_url: ""
+    image_caption: ""
+    content: "This section handles the game's sword combat, including blocking, striking, and retreating. The code checks the character's position, opponent's distance, and environmental conditions to determine the next action. Combat in Prince of Persia was a deliberate and strategic affair, reflecting Mechner's desire to create a game that felt more like a cinematic duel than an arcade brawl. The mechanics were inspired by fencing and choreographed fight scenes, emphasizing timing and precision. This approach influenced later games that sought to blend action with storytelling."
+  - id: "pickup-and-object-interaction"
+    line_start: 2094
+    line_end: 2162
+    title: "Pickup and Object Interaction"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Inventory_(video_games)"
+    image_url: ""
+    image_caption: ""
+    content: "This subroutine allows the character to pick up objects like swords and potions, adding an element of exploration and resource management to the gameplay. The code checks the character's position relative to the object and adjusts their alignment to ensure a smooth interaction. In the context of 1989, this level of detail was rare, as most games treated item pickups as simple collisions. Mechner's approach added realism and immersion, making the player feel like they were truly interacting with the environment. This mechanic paved the way for more sophisticated inventory systems in later games."
 
 ---
 
@@ -274,3 +288,1971 @@ hitflr
 
  lda #hardland
  bne :doland
+
+:medland
+ lda CharID
+ cmp #1
+ beq :softland ;shad lands easy
+ cmp #2
+ bcs :hardland ;guards can't survive 2 stories
+
+ lda #1
+ jsr decstr
+ beq :hdland1
+
+ lda #Splat
+ jsr addsound
+
+ lda #medland
+ bne :doland
+
+:softland
+ lda CharID
+ cmp #2
+ bcs :gd ;guard always lands en garde
+ lda CharSword
+ cmp #2
+ bne :1
+:gd lda #2
+ sta CharSword
+ lda #landengarde
+ bne :doland
+
+:1 lda #softland
+ bne :doland
+
+:impale jmp DoImpale
+
+:doland jsr jumpseq
+ jsr animchar
+
+ lda #0
+ sta CharYVel
+]rts rts
+
+*-------------------------------
+*
+*  Hasn't hit floor yet -- can he grab edge above?
+*
+*-------------------------------
+fallon
+ lda btn ;is button down?
+ and CharLife ;& is he alive?
+ bpl ]rts
+ ;yes--can he grab edge?
+ lda CharYVel
+ cmp #grabspeed
+ bcs ]rts ;no--falling too fast
+
+ lda CharY
+ clc
+ adc #grablead
+ ldx CharBlockY
+ inx
+ cmp FloorY,x
+ bcc ]rts  ;not within grabbing range yet
+
+*  Char is within vertical range, and button is down
+*  Is there a ledge within reach?
+
+ lda CharX
+ sta savekidx
+ lda #grabreach
+ jsr addcharx
+ sta CharX
+ jsr rereadblocks
+
+ jsr :test ;can you grab ledge?
+ bne :ok ;yes--do it
+ lda savekidx
+ sta CharX
+ jmp rereadblocks
+:ok ;do it!
+
+* Align char with block
+
+ jsr getdist
+
+ jsr addcharx
+ sta CharX
+
+ ldx CharBlockY
+ inx
+ lda FloorY,x
+ sta CharY
+
+ lda #0
+ sta CharYVel
+
+ lda #fallhang
+ jsr jumpseq
+ jsr animchar
+
+ lda #stuntime
+ sta stunned
+]rts rts
+
+:test jsr getabove
+ sta blockid
+ jsr getaboveinf
+ jmp checkledge
+
+*-------------------------------
+*  Is there floor underfoot?  If not, start to fall
+
+onground
+ lda Fcheck
+ and #fcheckmark
+ beq ]rts ;0--no need to check
+
+ jsr getunderft
+ cmp #block
+ bne :1
+ jsr InsideBlock ;If "inside" block, bump him outside
+:1
+ jsr cmpspace
+ bne ]rts
+
+* Level 12: Phantom bridge
+
+ lda level
+ cmp #12
+ bne :no
+ lda mergetimer
+ bpl :no
+ lda CharBlockY
+ bne :no
+ lda CharScrn
+ cmp #2
+ beq :yes
+ cmp #13
+ bne :no
+ lda tempblockx
+ cmp #6
+ bcc :no
+;Create floorboards on the fly
+:yes lda #floor
+ sta (BlueType),y
+ jsr indexblock
+ lda #2
+ jsr :sub
+ iny
+:sub jsr markwipe
+ jmp markred
+:no
+*-------------------------------
+*  No floor underfoot--commence falling
+
+startfall
+ lda #0
+ sta rjumpflag
+ sta CharSword ;so you can grab on
+
+ inc CharBlockY ;# of floor just below your feet
+ jsr addslicers
+
+ lda CharPosn ;upcoming frame
+;(the one we're about to replace
+;with first frame of falling seq)
+ sta rjumpflag
+
+ cmp #9 ;run-12
+ beq :stepfall
+ cmp #13 ;run-16
+ beq :stepfall2
+ cmp #26 ;standjump-19
+ beq :jumpfall
+ cmp #44 ;runjump-11
+ beq :rjumpfall
+ cmp #81
+ bcc :2
+ cmp #86
+ bcc :hdropfall
+:2 cmp #150
+ bcc :1
+ cmp #180
+ bcc :fightfall ;from fighting stance
+:1
+
+:stepfall lda #stepfall
+ bne :doit
+
+:stepfall2 lda #stepfall2
+ bne :doit
+
+:jumpfall lda #jumpfall
+ bne :doit
+
+:rjumpfall lda #rjumpfall
+ bne :doit
+
+:hdropfall
+ lda #5
+ jsr addcharx
+ sta CharX
+ jsr rereadblocks
+ jmp :stepfall2
+]rts rts
+
+:fightfall lda CharID
+ cmp #2
+ bcc :player
+ lda CharXVel
+ bmi :fb ;did gd step off fwd or bkwd?
+ lda #0
+ sta droppedout
+ lda #efightfallfwd
+ bne :doit
+:fb lda #efightfall
+ bne :doit
+:player lda #1
+ sta droppedout ;for guard's benefit
+ lda #fightfall
+ bne :doit
+
+*-------------------------------
+:doit jsr jumpseq
+ jsr animchar ;advance 1 frame into fall
+
+ jsr rereadblocks
+ jsr getunderft
+ jsr cmpwall
+ beq :bump
+ jsr getinfront
+ jsr cmpwall
+ bne ]rts
+ jmp CDpatch
+
+:bump jmp InsideBlock ;If "inside" block, bump him outside
+
+CDpatch
+ lda rjumpflag
+ cmp #44 ;running jump?
+ bne :patchX
+
+ jsr getdist
+ cmp #6
+ bcs :patchX ;dist >= 6...we're OK
+
+ lda #patchfall
+ jsr jumpseq
+ jsr animchar
+ jmp rereadblocks
+
+:patchX lda #-1
+:1 jsr addcharx
+ sta CharX
+ jmp rereadblocks
+
+*-------------------------------
+*
+* Char is "inside" a block--bump him outside
+* (hopefully the same side from which he entered)
+*
+* Change Char X & return rdblock results
+*
+*-------------------------------
+InsideBlock
+ jsr getdist ;to EOB
+ cmp #8
+ bcs :bumpback
+
+:bumpfwd
+ jsr getinfront
+ cmp #block
+ beq :bumpback
+
+ jsr getdist ;to EOB
+ clc
+ adc #4
+:reland
+ jsr addcharx
+ sta CharX
+ jsr rereadblocks ;reposition char
+ jmp getunderft
+
+:bumpback
+ jsr getbehind
+ cmp #block
+ bne :1
+  ;we're screwed
+;bump 2 back (what the hell)
+ jsr getdist
+ clc
+ adc #14
+ eor #$ff
+ clc
+ adc #8
+ jmp :reland
+:1
+ jsr getdist
+ eor #$ff
+ clc
+ adc #8
+ jmp :reland
+
+*-------------------------------
+*
+*  S H A D O W   C O N T R O L
+*
+*-------------------------------
+SHADCTRL
+ lda CharID
+ cmp #24 ;mouse?
+ bne :1
+ jmp AutoCtrl
+
+:1 lda CharLife
+ bpl :dead
+;Has char's life run out?
+ lda OppStrength
+ bne :cont
+ lda #0
+ sta CharLife
+ jsr deadenemy
+
+:dead lda CharID
+ cmp #1 ;shadow man?
+ bne :cont
+ jmp VanishChar
+
+:cont lda ManCtrl
+ bne :manualctrl
+
+ jsr AutoCtrl
+
+ jmp GenCtrl
+
+* Manual ctrl: enemy controlled by deselected device
+
+:manualctrl
+ jsr LoadDesel
+
+ jsr getdesel
+
+ jsr clrjstk
+
+ jsr UserCtrl
+
+ jmp SaveDesel
+
+*-------------------------------
+*
+*  P L A Y E R   C O N T R O L
+*
+*-------------------------------
+PLAYERCTRL
+ lda CharLife
+ bpl :cont1 ;dead
+ lda KidStrength
+ bne :cont1
+ lda #0
+ sta CharLife
+:cont1
+ lda stunned
+ beq :cont
+ dec stunned
+
+:cont lda level
+ bne :game
+:demo jsr DemoCtrl
+ jmp GenCtrl
+
+* Character controlled by selected device
+
+:game jsr LoadSelect ;load jstk-push flags for selected device
+
+ jsr getselect ;get current input from selected device
+
+ jsr clrjstk ;clear appropriate jstk-push flags
+
+ lda #2
+ jsr UserCtrl
+
+ jmp SaveSelect ;save updated jstk-push flags
+
+*-------------------------------
+* Player ctrl in demo
+
+DemoCtrl
+ lda milestone
+ bne :finish
+ lda CharSword
+ beq :preprog
+
+ lda #10
+ sta guardprog
+ jsr AutoCtrl
+ lda #11
+ sta guardprog
+ rts
+
+:preprog jmp demo
+
+:finish jsr clrall
+ sta clrbtn
+ lda #-1
+ sta clrF
+ sta JSTKX ;run o.s.
+]rts rts
+
+*-------------------------------
+UserCtrl
+ lda CharFace
+ bpl :faceL
+
+ jmp GenCtrl
+
+* If char is facing right, reverse JSTK & clrF/clrB
+
+:faceL jsr facejstk
+
+ jsr GenCtrl
+
+ jmp facejstk
+
+*-------------------------------
+clrall
+ lda #0
+ sta clrB
+ sta clrF
+ sta clrU
+ sta clrD
+ lda #1
+]rts rts
+
+*-------------------------------
+*
+*  G E N E R A L   C O N T R O L
+*
+*  In: Raw input
+*        JSTKX (- fwd, + back, 0 center)
+*        JSTKY (- up, + down, 0 center)
+*        btn (- down, + up)
+*      Smart input
+*        clrF-B-U-D-btn (- = fresh press)
+*
+*  Set clr = 1 after using a press
+*
+*-------------------------------
+GENCTRL
+ lda CharLife
+ bmi :alive
+
+* Dead character (If he's standing, collapse)
+
+:dead lda CharPosn
+ cmp #15
+ beq :drop
+ cmp #166
+ beq :drop
+ cmp #158
+ beq :drop
+ cmp #171
+ bne ]rts
+:drop lda #dropdead
+ jmp jumpseq
+
+* Live character
+
+:alive lda CharAction
+ cmp #5 ;is char in mid-bump?
+ beq :clr
+ cmp #4 ;or falling?
+ beq :clr
+ bne :underctrl
+:clr
+]clr jmp clrall
+
+:underctrl
+ lda CharSword
+ cmp #2 ;in fighting mode?
+ beq FightCtrl ;yes
+
+ lda CharID
+ cmp #2 ;kid or shadowman?
+ bcc :cont
+ jmp GuardCtrl ;no
+
+* First question: what is char doing now?
+
+:cont ldx CharPosn ;previous frame #
+
+ cpx #15
+ beq :standing
+
+ cpx #48
+ beq :turning
+
+ cpx #50
+ bcc :0
+ cpx #53
+ bcc :standing ;turn7-8-9/crouch
+:0
+ cpx #4
+ bcc :starting ;run4-5-6
+
+ cpx #67
+ bcc :4
+ cpx #70
+ bcc :stjumpup ;starting to jump up
+
+:4 cpx #15
+ bcs :2
+ jmp :running ;run8-17
+
+:2 cpx #87
+ bcc :1
+ cpx #100
+ bcs :1
+ jmp :hanging ;jumphang22-34
+
+:1 cpx #109 ;crouching?
+ beq :crouching
+:3
+]rts rts
+
+:standing jmp standing
+:starting jmp starting
+:stjumpup jmp stjumpup
+:running jmp arunning
+:hanging jmp hanging
+:turning jmp turning
+:crouching jmp crouching
+
+*-------------------------------
+* Similar routine for guard
+
+GuardCtrl
+ ldx CharPosn
+ cpx #166 ;standing?
+ beq :alert
+]rts rts
+
+:alert
+ lda clrD
+ bpl ]rts
+ lda clrF
+ bmi :engarde
+ bpl :turn
+
+:engarde jmp DoEngarde
+
+:turn lda #1
+ sta clrD
+ lda #alertturn
+ jmp jumpseq
+
+*-------------------------------
+* Char is en garde (CharSword = 2)
+
+FightCtrl
+ lda CharAction
+ cmp #2
+ bcs ]rts ;Must be on level ground (Action = 1)
+
+* If Enemy Alert is over, put away your sword
+
+ jsr getunderft
+ cmp #loose
+ beq :skip ;unless you're standing on loose floor
+
+ lda EnemyAlert
+ cmp #2
+ bcc :dropgd
+
+* If opponent is behind you, turn to face him
+
+:skip jsr getopdist ;fwd distance to opponent
+ cmp #swordthres
+ bcc :onalert
+ cmp #128
+ bcc :dropgd
+ cmp #-4
+ bcs :onalert ;overlapping
+ jmp DoTurnEng
+
+* Enemy out of range--drop your guard
+* (kid & shadman only)
+
+:dropgd lda CharID
+ bne :1
+ sta heroic
+ beq :2
+:1 cmp #2
+ bcs :onalert ;guard: remain en garde
+:2
+ ldx CharPosn
+ cpx #171 ;wait for ready posn
+ bne ]rts
+
+ lda #0
+ sta CharSword
+
+ lda #resheathe
+ jmp jumpseq
+]rts rts
+
+*-------------------------------
+* Remain en garde
+
+:onalert
+ ldx CharPosn ;prev frame #
+ cpx #161 ;successful block?
+ bne :nobloc
+ lda clrbtn ;yes--restrike or retreat?
+ bmi :bts
+ lda #retreat
+ jmp jumpseq
+
+* Fresh button press to strike
+
+:nobloc lda clrbtn
+ bpl :10
+:bts
+ lda CharID
+ bne :11
+ lda #gdpatience
+ sta gdtimer
+
+:11 jsr DoStrike
+
+ lda clrbtn
+ cmp #1
+ beq ]rts ;struck
+:10 ;else didn't strike
+
+* Down to lower your sword
+
+ lda clrD
+ bpl :nodrop
+
+ ldx CharPosn
+ cpx #158 ;ready
+ beq :ready1
+ cpx #170
+ beq :ready1
+ cpx #171
+ bne ]rts
+:ready1
+ lda #1
+ sta clrD
+
+ lda #0
+ sta CharSword
+
+ lda CharID
+ beq :drop ;for kid
+ cmp #1
+ beq :sstand ;for shadman
+
+:alert lda #goalertstand
+ jmp jumpseq ;for guard
+
+:drop lda #1
+ sta offguard
+ lda #graceperiod
+ sta refract
+ lda #0
+ sta heroic
+ lda #fastsheathe
+ jmp jumpseq
+
+:sstand lda #resheathe
+ jmp jumpseq
+
+* Fwd to advance, up to block, back to retreat
+
+:nodrop
+ lda clrU
+ bmi :up
+ lda clrF
+ bmi :fwd
+ lda clrB
+ bmi :back
+
+]rts rts
+
+:fwd jmp DoAdvance
+:up jmp DoBlock
+:back jmp DoRetreat
+
+*-------------------------------
+DoTurnEng
+ lda #turnengarde
+ jmp jumpseq
+
+*-------------------------------
+DoBlock
+ ldx CharPosn
+ cpx #158 ;ready
+ beq :2
+ cpx #170
+ beq :2
+ cpx #171
+ beq :2
+ cpx #168 ;guy-2
+ beq :2
+
+ cpx #165 ;adv
+ beq :2
+ cpx #167 ;blocked strike
+ beq :3
+
+]rts rts
+
+* From ready position: Block if appropriate
+
+:2 jsr getopdist
+ cmp #blockthres
+ bcs :blockmiss ;too far
+
+ lda #readyblock
+ ldx CharID
+ beq :kid
+ ldx OpPosn ;enemy sees kid 1 frame ahead
+ cpx #152 ;guy4
+ beq :doit
+]rts rts
+
+:kid ldx OpPosn
+ cpx #168 ;1 frame too early?
+ beq ]rts  ;yes--wait 1 frame
+
+ cpx #151 ;guy3
+ beq :doit
+ cpx #152 ;guy4
+ beq :doit
+ cpx #162 ;guy22
+ beq :doit
+
+ cpx #153 ;1 frame too late?
+ bne :blockmiss
+  ;yes--skip 1 frame
+ jsr :doit
+ jmp animchar
+
+* Strike-to-block
+
+:3 lda #strikeblock
+:doit ldx #1
+ stx clrU
+ jmp jumpseq
+:blockmiss
+ lda CharID
+ bne DoRetreat ;enemy doesn't waste blocks
+ lda #readyblock
+ bne :doit
+
+*-------------------------------
+DoStrike
+ cpx #157
+ beq :1
+ cpx #158
+ beq :1
+ cpx #170
+ beq :1
+ cpx #171
+ beq :1 ;strike from ready posn
+ cpx #165
+ beq :1 ;from advance
+ cpx #150
+ beq :2 ;from missed block
+ cpx #161
+ beq :2 ;from successful block
+
+]rts rts
+
+:1 lda CharID
+ bne :slo ;kid is fast, others slow
+
+ lda #faststrike
+ bne :dostr
+
+:slo lda #strike
+:dostr ldx #1
+ stx clrbtn
+ jmp jumpseq
+
+:2 lda #blocktostrike
+ bne :dostr
+
+*-------------------------------
+DoRetreat
+ ldx CharPosn
+ cpx #158
+ beq :1 ;strike from ready posn
+ cpx #170
+ beq :1
+ cpx #171
+ beq :1
+]rts rts
+
+:1 lda #retreat
+ ldx #1
+ stx clrB
+ jmp jumpseq
+
+*-------------------------------
+DoAdvance
+ ldx CharPosn
+ cpx #158
+ beq :1
+ cpx #170
+ beq :1
+ cpx #171
+ beq :1
+]rts rts
+
+:1 lda CharID
+ bne :slo ;kid is faster
+ lda #fastadvance
+ bne :doit
+:slo lda #advance
+:doit ldx #1
+ stx clrF
+ jmp jumpseq
+
+*-------------------------------
+*
+*  S T A N D I N G
+*
+*-------------------------------
+standing
+
+* Fresh button click: pick up object?
+
+ lda clrbtn
+ bpl :noclick
+ lda btn
+ bpl :noclick
+ jsr TryPickup
+ bne ]rts ;yes
+:noclick
+
+* Shadman only: down & fwd to go en garde
+
+ lda CharID
+ beq :kid
+ lda clrD
+ bpl :1
+ lda clrF
+ bpl :1
+ jmp DoEngarde
+
+* If opponent is within range, go en garde
+* (For kid only)
+
+:kid lda gotsword
+ beq :1 ;no sword
+
+ lda offguard
+ beq :notoffg
+ lda btn ;off guard--push btn to draw sword
+ bpl :btnup
+:notoffg
+ lda EnemyAlert
+ cmp #2
+ bcc :safe
+ jsr getopdist ;fwd distance to opponent
+ cmp #swordthresN
+ bcs :danger
+ cmp #swordthres
+ bcs :safe
+
+:danger ldx #1
+ stx heroic
+ cmp #-6
+ bcs :behindyou
+
+ lda OpID
+ cmp #1
+ bne :engarde
+ lda OpAction
+ cmp #3
+ beq :safe
+ lda OpPosn
+ cmp #107
+ bcc :engarde
+ cmp #118
+ bcc :safe ;let shadow land
+:engarde jmp DoEngarde
+
+:behindyou jmp DoTurn
+
+:safe lda #0
+ sta offguard
+
+:1 lda btn
+ bpl :btnup
+
+*-------------------------------
+* Standing, button down
+
+:2 lda clrB
+ bmi :backB
+
+ lda clrU
+ bmi :up
+
+ lda clrD
+ bmi :down
+
+ lda JSTKX
+ bpl :rts
+
+ lda clrF
+ bmi :fwdB
+:rts
+]rts rts
+
+*-------------------------------
+* Standing, button up
+
+:btnup
+ lda clrF
+ bmi :fwd
+ lda clrB
+ bmi :back
+ lda clrU
+ bmi :up
+ lda clrD
+ bmi :down
+
+ lda JSTKX
+ bmi :fwd
+
+]rts rts
+
+:fwd jmp DoStartrun
+:fwdB jmp DoStepfwd
+
+:back jmp DoTurn
+:backB jmp DoTurn
+
+:fwdup jmp DoStandjump
+
+*-------------------------------
+* Standing, joystick up
+
+:up
+
+* In front of open stairs?
+
+ jsr getunderft
+ cmp #exit
+ beq :stairs
+ jsr getbehind
+ cmp #exit
+ beq :stairs
+ jsr getinfront
+ cmp #exit
+ bne :nostairs
+
+:stairs lda (BlueSpec),y
+ lsr
+ lsr
+ cmp #stairthres
+ bcc :nostairs
+
+ jmp Stairs
+
+* No -- normal control
+
+:nostairs
+ lda JSTKX
+ bmi :fwdup
+
+* Straight up...jump up & grab ledge if you can
+
+ jmp DoJumpup
+
+*-------------------------------
+* Standing, joystick down
+
+:down
+ lda #1
+ sta clrD
+
+* If you're standing w/back to edge, down
+* means "climb down & hang from ledge"
+
+* If facing edge, "down" means "step off"
+
+ jsr getinfront
+ jsr cmpspace
+ bne :notfwd ;no cliff in front of you
+
+ jsr getdist
+ cmp #StepOffFwd
+ bcs :notfwd ;not close enough to edge
+ lda #5
+ jsr addcharx
+ sta CharX
+ jmp rereadblocks ;move fwd
+
+:notfwd jsr getbehind
+ jsr cmpspace
+ bne :no ;no cliff behind you
+
+ jsr getdist
+ cmp #StepOffBack
+ bcc :no ;not close enough to edge
+
+* Climb down & hang from ledge
+
+ jsr getbehind
+ sta blockid
+ jsr getunderft
+ jsr checkledge
+ beq :no
+
+ ldx CharFace
+ bpl :succeed
+ jsr getunderft
+ cmp #gate
+ bne :succeed
+
+ lda (BlueSpec),y
+ lsr
+ lsr
+ cmp #gclimbthres
+ bcc :no
+
+:succeed jsr getdist
+ sec
+ sbc #9
+
+ jsr addcharx
+ sta CharX
+
+ lda #climbdown
+ jmp jumpseq
+
+* Otherwise "down" means "crouch"
+
+:no jmp DoCrouch
+
+*-------------------------------
+* Climb stairs
+
+Stairs
+ lda tempblockx ;stairs block
+ jsr getblockej
+ clc
+ adc #10
+ sta CharX
+ lda #-1
+ sta CharFace
+
+ lda #climbstairs
+ jmp jumpseq
+
+]rts rts
+
+*-------------------------------
+*
+*  C R O U C H I N G
+*
+*-------------------------------
+crouching
+
+* Fresh button click?
+
+ lda clrbtn
+ bpl :noclick
+
+ jsr TryPickup
+ bne ]rts
+
+* Still crouching?
+
+:noclick
+ lda JSTKY
+ cmp #1
+ beq :1
+ lda #standup
+ jmp jumpseq
+
+:1 lda clrF
+ bpl ]rts
+ lda #1
+ sta clrF
+ lda #crawl
+ jmp jumpseq
+
+*-------------------------------
+*
+*  S T A R T I N G
+*
+*  First few frames of "startrun"
+*
+*-------------------------------
+starting
+ lda JSTKY
+ bmi :jump
+]rts rts
+
+:jump
+ lda JSTKX
+ bpl ]rts
+
+ jmp DoStandjump
+
+*-------------------------------
+* First few frames of "jumpup"
+
+stjumpup
+ lda JSTKX
+ bmi :fwd
+ lda clrF
+ bmi :fwd
+]rts rts
+:fwd jmp DoStandjump
+
+*-------------------------------
+*
+* T U R N I N G
+*
+*-------------------------------
+turning
+ lda btn
+ bmi ]rts
+
+ lda JSTKX
+ bpl ]rts
+
+ lda JSTKY
+ bmi ]rts
+
+* Jstk still fwd--convert turn to turnrun
+
+ lda #turnrun
+ jmp jumpseq
+
+*-------------------------------
+*
+*  R U N N I N G
+*
+*-------------------------------
+arunning
+ lda JSTKX
+ beq :runstop ;jstk centered...stop running
+ bpl :runturn ;jstk back...turn around
+
+* Jstk is forward... keep running
+* & wait for signal to runjump or diveroll
+
+ lda JSTKY
+ bmi :runjump ;jstk up... take a running jump
+
+ lda clrD
+ bmi :diveroll ;jstk down... running dive & roll
+
+]rts rts
+
+*  Running dive & roll
+
+:diveroll lda #1
+ sta clrD
+
+ lda #rdiveroll
+ jmp jumpseq
+
+*  Running jump
+
+:runjump
+ lda clrU
+ bpl ]rts
+
+ jmp DoRunjump
+
+*  Stop running
+
+:runstop lda CharPosn
+ cmp #7 ;run-10
+ beq :rs
+ cmp #11 ;run-14
+ bne ]rts
+
+:rs jsr ]clr
+ sta clrF
+
+ lda #runstop
+ jmp jumpseq
+
+*  Turn around & run the other way
+
+:runturn
+ jsr ]clr
+ sta clrB
+
+ lda #runturn
+ jmp jumpseq
+
+*-------------------------------
+*
+*  H A N G I N G
+*
+*-------------------------------
+hanging
+ lda stunned
+ bne :9 ;can't climb up
+
+ lda JSTKY
+ bmi :climbup ;jstk up-->climb up
+:9
+ lda btn
+ bpl :drop
+
+* If hanging on right-hand side of a panel
+* or either side of block,
+* switch to "hangstraight"
+
+ lda CharAction
+ cmp #6
+ beq :cont ;already hanging straight
+
+ jsr getunderft
+ cmp #block
+ beq :hangstrt
+
+ ldx CharFace
+ cpx #-1 ;left
+ bne :cont
+
+ cmp #panelwif
+ beq :hangstrt
+ cmp #panelwof
+ beq :hangstrt
+
+* If ledge crumbles away, fall with it
+
+:cont
+ jsr getabove
+
+ jsr cmpspace ;still there?
+ beq :drop ;no
+
+* just keep swinging
+
+:rts
+]rts rts
+
+:hangstrt lda #hangstraight
+ jmp jumpseq
+
+*-------------------------------
+* climb up (if you can)
+
+:climbup
+ jsr ]clr
+ sta clrU
+ sta clrbtn
+
+ jsr getabove
+
+ cmp #mirror
+ beq :10
+ cmp #slicer
+ bne :1
+
+:10 ldx CharFace
+ beq :fail
+ bne :succeed ;can only mount mirror facing L
+
+:1 cmp #gate
+ bne :2
+
+ ldx CharFace
+ beq :succeed
+;can only mount closed gate facing R
+ lda (BlueSpec),y
+ lsr
+ lsr
+ cmp #gclimbthres
+ bcc :fail
+ bcs :succeed
+
+:2
+:succeed lda #climbup
+ jmp jumpseq
+
+:fail lda #climbfail
+ jmp jumpseq
+
+
+*-------------------------------
+:drop
+ jsr ]clr
+ sta clrD ;clrD = 1, all others = 0
+
+ jsr getbehind
+ jsr cmpspace
+ bne :hangdrop
+
+ jsr getunderft
+ jsr cmpspace
+ beq :hangfall
+
+:hangdrop
+ jsr getunderft
+ cmp #block
+ beq :sheer
+
+ ldx CharFace
+ bpl :clear
+ cmp #panelwof
+ beq :sheer
+ cmp #panelwif
+ bne :clear
+
+:sheer lda #-7
+ jsr addcharx
+ sta CharX
+
+:clear lda #hangdrop
+ jmp jumpseq
+
+:hangfall
+ lda #hangfall
+ jmp jumpseq
+]rts rts
+
+*-------------------------------
+*
+*  D o  S t a r t r u n
+*
+*-------------------------------
+DoStartrun
+
+* If very close to a barrier, do a Stepfwd instead
+* (Exceptions: slicer & open gate)
+
+ jsr getfwddist
+ cpx #1 ;barrier?
+ bne :startrun ;no
+
+ cpy #slicer
+ beq :startrun
+
+:solidbarr
+ jsr getfwddist
+ cmp #8
+ bcs :startrun
+
+ lda clrF
+ bpl ]rts
+
+ jmp DoStepfwd
+
+:startrun
+ lda #startrun
+ jmp jumpseq ;...start running
+
+DoTurn jsr ]clr
+ sta clrB
+;if enemy is behind you, draw as you turn
+ lda gotsword
+ beq :1
+ lda EnemyAlert
+ cmp #2
+ bcc :1
+ jsr getopdist
+ bpl :1
+ jsr getdist ;to EOB
+ cmp #2
+ bcc :1
+
+ lda #2
+ sta CharSword ;en garde
+ lda #0
+ sta offguard
+ lda #turndraw
+ bne :2
+:1 lda #turn
+:2 jmp jumpseq ;...turn around
+
+DoStandjump lda #1
+ sta clrU
+ sta clrF
+
+ lda #standjump
+ jmp jumpseq ;...standing jump
+
+DoSdiveroll lda #1
+ sta clrD
+
+ lda #sdiveroll
+ jmp jumpseq ;...standing dive & roll
+
+DoCrouch
+ lda #stoop
+ jsr jumpseq
+
+ jsr ]clr
+ sta clrD
+ rts
+
+DoEngarde
+ jsr ]clr
+ sta clrF
+ sta clrbtn
+
+ lda #2
+ sta CharSword ;en garde
+
+ lda CharID
+ beq :1
+ cmp #1
+ beq :3 ;shad
+ lda #guardengarde
+ bne :2
+:1 lda #0
+ sta offguard
+:3 lda #engarde
+:2 jmp jumpseq
+
+*-------------------------------
+*
+*  D o  J u m p u p
+*
+*  & grab ledge if you can
+*
+*-------------------------------
+DoJumpup
+ jsr ]clr
+ sta clrU
+
+ jsr getabove
+ sta blockid
+
+ jsr getaboveinf
+
+ jsr checkledge ;Can you jump up & grab ledge?
+ ;Returns 1 if you can, 0 if you can't
+ bne  DoJumphang ;yes--do it
+
+ jsr getabovebeh
+ sta blockid
+
+ jsr getabove
+
+ jsr checkledge ;could you do it if you were 1 space back?
+ bne :jumpback ;yes--move back & do it
+
+:jumphi jmp DoJumphigh
+
+*-------------------------------
+* Jump up & back to grab block directly overhead
+
+:jumpback
+ jsr getdist ;dist to front of block
+ cmp #JumpBackThres
+ bcc :jumphi ;too far to fudge
+
+ jsr getbehind
+ jsr cmpspace ;floor behind you?
+ beq DoJumpedge ;no
+
+* "Jump back" to block behind you & then proceed as usual
+
+ jsr getdist
+ sec
+ sbc #14
+ jsr addcharx
+ sta CharX
+
+ jsr rereadblocks
+
+ jmp DoJumphang
+
+*-------------------------------
+* Your back is to ledge -- so do a "jumpbackhang"
+
+DoJumpedge
+ jsr getabove
+
+* Get all the way back on this block
+
+ jsr getdist
+ sec
+ sbc #10
+
+ jsr addcharx
+ sta CharX
+
+* now jump
+
+ lda #jumpbackhang
+ jmp jumpseq
+
+*-------------------------------
+DoJumphang
+ jsr getaboveinf
+
+*  Choose the jumphang sequence (Long/Med) that
+*  will bring us closest to edge, then fudge the X-coord
+*  to make it come out exactly
+
+ jsr getdist ;get distance to front of block
+ sta atemp ;# pixels (0-13) returned in A
+
+ cmp #4
+ bcc :Med
+
+:Long lda atemp
+ sec ;"Long" will add 4 to CharX
+ sbc #4
+ jsr addcharx
+ sta CharX
+
+ lda #jumphangLong
+ jmp jumpseq
+:Med
+ jsr getfwddist
+ cmp #4
+ bcs :okMed
+
+ cpx #1 ;close to wall?
+ beq :Long ;yes--step back & do Long
+
+:okMed lda atemp
+ jsr addcharx
+ sta CharX
+
+ lda #jumphangMed
+ jmp jumpseq
+
+]rts rts
+
+*-------------------------------
+*
+*  D o  R u n  J u m p
+*
+*  Calibrate jump so that foot will push off at edge.
+*
+*-------------------------------
+RJChange = 4 ;projected change in CharX
+RJLookahead = 1 ;# blocks you can look ahead
+RJLeadDist = 14 ;required leading distance in pixels
+RJMaxFujBak = 8 ;# pixels we're willing to fudge back
+RJMaxFujFwd = 2 ;and forward
+
+DoRunjump
+ lda CharPosn
+ cmp #7
+ bcc ]rts ;must be in full run
+
+* Count # of blocks to edge
+* (Use actual CharX)
+
+ lda #0
+ sta bufindex ;block counter
+
+ lda #RJChange
+ jsr addcharx
+ sta ztemp ;projected CharX
+
+ jsr getblockxp
+ sta blockx
+
+:loop lda blockx
+ ldx CharFace
+ inx
+ clc
+ adc plus1,x
+ sta blockx
+
+ tax
+ ldy CharBlockY
+ lda CharScrn
+ jsr rdblock
+
+ cmp #spikes
+ beq :done
+
+ jsr cmpspace
+ beq :done
+
+ inc bufindex
+
+ lda bufindex
+ cmp #RJLookahead+1
+ bcc :loop
+ bcs :noedge ;no edge in sight--jump anyway
+:done
+
+* Calculate # of pixels to end of floor
+
+ lda ztemp
+ jsr getdist1 ;# pixels to end of block
+
+ ldx bufindex ;# of blocks to end of floor
+ clc
+ adc Mult7,x
+ clc
+ adc Mult7,x ;# of pixels to end of floor
+
+ sec
+ sbc #RJLeadDist
+;A = difference between actual dist to edge
+;and distance covered by RunJump
+ cmp #-RJMaxFujBak
+ bcs :ok ;move back a little & jump
+
+ cmp #RJMaxFujFwd
+ bcc  :ok ;move fwd a little & jump
+
+ cmp #$80
+ bcc ]rts ;still too far away--wait till next frame
+
+ lda #-3 ;He jumped too late; he'll miss edge
+;But let's make it look good anyway
+:ok clc
+ adc #RJChange
+
+ jsr addcharx
+ sta CharX
+
+* No edge in sight -- just do any old long jump
+
+:noedge
+ jsr ]clr
+ sta clrU
+
+ lda #runjump
+ jmp jumpseq
+
+]rts rts
+
+*-------------------------------
+*
+*  D o  S t e p  F o r w a r d
+*
+*-------------------------------
+
+DoStepfwd
+ lda #1
+ sta clrF
+ sta clrbtn
+
+ jsr getfwddist ;returns A = distance to step (0-13)
+
+ cmp #0
+ beq :1
+
+:2 sta CharRepeat ;non-0 value
+
+ clc
+ adc #stepfwd1-1
+ jmp jumpseq
+
+:1 cpx #1
+ beq :thru ;If barrier, step thru
+
+ cmp CharRepeat
+ bne :3 ;First time, test w/foot
+
+:thru lda #11
+ bne :2 ;Second time, step off edge
+
+:3 sta CharRepeat ;0
+
+ lda #testfoot
+ jmp jumpseq
+
+*-------------------------------
+*
+*  D o  J u m p  H i g h
+*
+*-------------------------------
+DoJumphigh
+ jsr ]clr
+ sta clrU
+
+ jsr getfwddist
+ cmp #4
+ bcs :ok
+ cpx #1 ;barrier?
+ bne :ok ;no
+
+ sec
+ sbc #3
+ jsr addcharx
+ sta CharX
+:ok
+ lda #jumpupreach
+ jsr facedx
+ sta ztemp
+
+ jsr getbasex ;assume char standing still
+ clc
+ adc #jumpupangle
+ clc
+ adc ztemp ;get X-coord at which hand touches ceiling
+
+ jsr getblockx
+ tax
+
+ ldy CharBlockY
+ dey
+
+ lda CharScrn
+ jsr rdblock ;read this block
+
+ cmp #block
+ beq :jumpup
+ jsr cmpspace
+ bne :jumpup
+
+ lda #highjump
+ jmp jumpseq ;no ceiling above
+
+:jumpup lda #jumpup
+ jsr jumpseq ;touch ceiling
+]rts rts ;& don't forget to crop top
+
+*-------------------------------
+*  reread blocks
+*-------------------------------
+REREADBLOCKS
+ jsr GetFrameInfo
+ jmp GetBaseBlock
+
+*-------------------------------
+*
+*  Is character stepping on a pressure plate?
+*  or on loose floor?
+*
+*-------------------------------
+CHECKPRESS
+ lda CharPosn
+ cmp #87
+ bcc :1
+ cmp #100
+ bcc :hanging ;87-99: jumphang22-34
+ cmp #135
+ bcc :1
+ cmp #141
+ bcc :hanging ;135-140: climb up/down
+:1
+ lda CharAction
+ cmp #7
+ beq :ground ;turning
+ cmp #5
+ beq :ground ;bumped
+ cmp #2
+ bcs ]rts
+
+* Action code 7, 0 or 1: on the ground
+
+:ground
+ lda CharPosn
+ cmp #79 ;jumpup/touch ceiling
+ beq :touchceil
+
+ lda Fcheck
+ and #fcheckmark
+ beq ]rts ;foot isn't touching floor
+
+*  Standing on a pressplate?
+
+ jsr getunderft
+:checkit
+ cmp #upressplate
+ beq :PP
+ cmp #pressplate
+ bne :notPP
+
+:PP lda CharLife
+ bmi :push
+ jmp jampp ;dead weight
+:push jmp pushpp
+
+:notPP cmp #loose
+ bne ]rts
+
+ lda #1
+ sta alertguard
+ jmp breakloose
+
+*  Hanging on a pressplate?
+
+:hanging
+ jsr getabove
+ jmp :checkit
+]rts rts
+
+* Jumping up to touch ceiling?
+
+:touchceil
+ jsr getabove
+
+ cmp #loose
+ bne ]rts
+
+ jmp breakloose
+
+*-------------------------------
+*
+*  C H E C K   I M P A L E
+*
+*  Impalement by running or jumping onto spikes
+*  (Impalement by landing on spikes is covered by
+*  CHECKFLOOR:falling)
+*
+*-------------------------------
+CHECKIMPALE
+ ldx CharBlockX
+ ldy CharBlockY
+ lda CharScrn
+ jsr rdblock
+ cmp #spikes
+ bne ]rts ;not spikes
+
+ ldx CharPosn
+
+ cpx #7
+ bcc ]rts
+
+ cpx #15
+ bcs :2
+ jmp :running
+
+:2 cpx #43 ;runjump-10
+ beq :jumpland
+
+ cpx #26 ;standjump-19
+ beq :jumpland
+
+]rts rts
+
+:running
+ jsr getspikes
+ cmp #2
+ bcc ]rts ;must be springing
+ bcs :impale
+
+:jumpland
+ jsr getspikes ;are spikes lethal?
+ beq ]rts ;no
+
+:impale jmp DoImpale
+
+*-------------------------------
+* Impale char on spikes
+*
+* In: rdblock results
+*-------------------------------
+DOIMPALE
+ jsr jamspikes
+
+ ldx CharBlockY
+ inx
+ lda FloorY,x
+ sta CharY ;align char w/floor
+
+ lda tempblockx
+ jsr getblockej ;edge of spikes
+ clc
+ adc #10
+ sta CharX
+ lda #8
+ jsr addcharx
+ sta CharX ;center char on spikes
+
+ lda #0
+ sta CharYVel
+
+ lda #Impaled
+ jsr addsound
+
+ lda #100
+ jsr decstr
+
+ lda #impale
+ jsr jumpseq
+ jmp animchar
+
+*-------------------------------
+*
+*  Pick up object
+*  Return 0 if no result
+*
+*-------------------------------
+TryPickup
+ jsr getunderft
+ cmp #flask
+ beq :2
+ cmp #sword
+ bne :1
+:2 jsr getbehind
+ jsr cmpspace
+ beq :no
+ lda CharX
+ lda #-14
+ jsr addcharx
+ sta CharX ;move char 1 block back
+ jsr rereadblocks
+:1 jsr getinfront
+ cmp #flask
+ beq :pickup
+ cmp #sword
+ beq :pickup
+:no lda #0
+ rts
+
+:pickup jsr PickItUp
+ lda #1
+ rts
+
+*-------------------------------
+*
+* Pick something up
+*
+* In: rdblock results for object block ("infront")
+*
+*-------------------------------
+PickItUp
+ ldx CharPosn
+ cpx #109 ;crouch first, then pick up obj
+ beq :ok
+ jsr getfwddist
+ cpx #2
+ beq :0 ;right at edge
+ jsr addcharx
+ sta CharX
+:0 lda CharFace
+ bmi :1
+ lda #-2
+ jsr addcharx
+ sta CharX ;put char within reach of obj
+:1 jmp DoCrouch
+
+:ok cmp #sword
+ beq :PickupSword
+
+ lda (BlueSpec),y
+ lsr
+ lsr
+ lsr
+ lsr
+ lsr ;potion # (0-7)
+ jsr RemoveObj
+
+ lda #drinkpotion ;pick up & drink potion
+ jmp jumpseq
+
+:PickupSword
+ lda #-1 ;sword
+ jsr RemoveObj
+
+ lda #pickupsword
+ jmp jumpseq ;pick up, brandish & sheathe sword
+
+*-------------------------------
+ lst
+ ds 1
+ usr $a9,16,$00,*-org
+ lst off

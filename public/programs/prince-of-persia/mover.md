@@ -9,60 +9,84 @@ year: 1989
 author: "Jordan Mechner"
 slug: "mover"
 order: 6
-description: "This file contains the physics and object management routines that gave Prince of Persia its groundbreaking realism, written in 6502 assembly for the Apple II."
-is_excerpt: true
-excerpt_lines: 200
+description: "The physics engine behind Prince of Persia's cinematic realism"
 
 summary:
-  - point: "Innovative use of rotoscoping for animation realism"
-    link: "https://en.wikipedia.org/wiki/Rotoscoping"
-    link_label: "Rotoscoping"
-  - point: "Bank-switched memory techniques to fit within 128K constraints"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank Switching"
-  - point: "Object transition list management for dynamic interactions"
+  - point: "Innovative use of transitional object animations for realism"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Physics parameters for falling floors and timed traps"
-    link: "https://en.wikipedia.org/wiki/Physics_engine"
-    link_label: "Physics Engine"
-  - point: "Efficient MOB (mobile object) handling in constrained memory"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
+    link_label: "Prince of Persia"
+  - point: "Complex handling of falling floors and environmental interactions"
+    link: "https://en.wikipedia.org/wiki/Platform_game"
+    link_label: "Platform game"
+  - point: "Optimized memory management for Apple II hardware constraints"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II series"
 
 enhancements:
-  - id: "physics-parameters-for-traps"
-    line_start: 59
-    line_end: 79
-    title: "Physics parameters for timed traps and falling floors"
+  - id: "physics-model-jump-table"
+    line_start: 9
+    line_end: 30
+    title: "Jump table for physics subroutines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/d/dd/Muybridge_race_horse_animated.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "Animated sequence of a race horse galloping. Photos taken by Eadweard Muybridge (died 1904), first published in 1887 at Philadelphia (Animal Locomotion). (Public domain)"
+    content: "This section defines a jump table that routes execution to various subroutines handling the game's physics and interactions, such as triggering spikes, animating mobs, and handling falling floors. Jump tables are a common optimization in assembly programming, allowing rapid branching without complex conditional logic. In the constrained environment of the Apple II, where every byte of memory mattered, this approach minimized code duplication and streamlined execution. Jordan Mechner, working solo on Prince of Persia, leveraged this technique to manage the game's intricate environmental interactions efficiently. The jump table reflects the modularity of the game's design, enabling the seamless integration of cinematic physics with gameplay mechanics."
+  - id: "object-transition-list"
+    line_start: 105
+    line_end: 156
+    title: "Managing object transitions dynamically"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Double_Buffering_Petri_Net.png/330px-Double_Buffering_Petri_Net.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Petri Net that shows how double buffering works. (Public domain)"
+    content: "This code handles the addition and modification of objects in the game's transition list, a dynamic data structure that tracks environmental changes like moving gates or retracting spikes. By searching for existing entries and updating their direction or adding new ones, Mechner created a system that could handle complex interactions without overwhelming the limited memory of the Apple II. This approach was critical for maintaining the game's fluid animations and realistic physics. The transition list embodies the game's emphasis on cinematic realism, allowing objects to respond dynamically to player actions and environmental triggers."
+  - id: "triggering-environmental-interactions"
+    line_start: 506
+    line_end: 555
+    title: "Triggering environmental interactions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
+    image_url: ""
+    image_caption: ""
+    content: "This code handles the triggering of environmental interactions, such as opening gates or activating traps. By linking objects to specific triggers, Mechner created a responsive world where player actions had tangible consequences. The system uses event-driven programming principles, allowing objects to react dynamically to changes in their state or environment. This approach was instrumental in creating the game's cinematic feel, where every interaction contributed to the unfolding narrative. The triggering system highlights Mechner's innovative use of programming to enhance storytelling in games."
+  - id: "animating-transitional-objects"
+    line_start: 629
+    line_end: 684
+    title: "Animating transitional objects"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    image_url: ""
+    image_caption: ""
+    content: "This section animates transitional objects, advancing them through their respective animation frames. The code ensures that objects like gates, spikes, and torches move smoothly and stop when their transitions are complete. Mechner's use of animation tables and dynamic state management reflects his commitment to creating a visually engaging and realistic game world. The animation system was a key innovation in Prince of Persia, setting a new standard for platformers and influencing the design of future games."
+  - id: "spike-animation-loop"
+    line_start: 1124
+    line_end: 1169
+    title: "Animating retractable spikes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    image_url: ""
+    image_caption: ""
+    content: "This code animates the retractable spikes, a recurring hazard in Prince of Persia. The spikes alternate between extended and retracted states, with a timer controlling their transitions. The animation loop ensures that spikes respond to player proximity and environmental triggers, adding a layer of strategy to navigating the game's levels. Mechner's meticulous attention to detail is evident here, as the spikes' behavior contributes to the game's immersive realism. The animation system for spikes exemplifies the game's blend of cinematic visuals and challenging gameplay."
+  - id: "falling-floor-physics"
+    line_start: 1176
+    line_end: 1239
+    title: "Animating falling floors with physics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
-    content: "This section defines key parameters for the game's physics engine, controlling the behavior of traps and falling floors. Values like `spiketimer` and `pptimer` determine how long spikes stay retracted or how quickly pressure plates reset, while `FFaccel` and `FFtermvel` govern the acceleration and terminal velocity of falling floors. In 1989, such detailed physics modeling was rare in platformers, most of which relied on simple, predictable mechanics. Jordan Mechner's decision to include these nuanced parameters reflects his commitment to creating a cinematic experience where the environment feels alive and reactive. The constraints of the Apple II hardware—128K of memory and a 1 MHz processor—meant every calculation had to be efficient, yet Mechner managed to imbue the game with a sense of weight and realism that set it apart. These parameters laid the groundwork for the game's immersive feel, influencing later titles that sought to replicate its sense of physicality."
-  - id: "object-transition-list-management"
-    line_start: 105
-    line_end: 119
-    title: "Managing object transitions in dynamic environments"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    content: "This section animates the falling floors, a signature feature of Prince of Persia's environmental hazards. The code simulates the detachment of loose floor tiles and their subsequent fall, incorporating acceleration, terminal velocity, and collision detection. When the timer reaches a threshold, the floor detaches, transforms into 'empty space,' and spawns a new falling object (MOB). This mechanic was inspired by Mechner's desire to create a world that felt alive and reactive, a stark contrast to the static environments of earlier platformers. The falling floor system showcases the game's commitment to realism, adding tension and unpredictability to the gameplay."
+  - id: "redraw-buffer-management"
+    line_start: 1253
+    line_end: 1329
+    title: "Managing the redraw buffer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "The `searchtrob` subroutine searches a transition list to determine if an object (e.g., a trap or a moving platform) is already listed. This routine is a cornerstone of Prince of Persia's dynamic environment, where objects interact with the player and each other in real-time. In the mid-1980s, most games had static environments with pre-defined behaviors, but Mechner's approach allowed for a more fluid and responsive world. The transition list was a clever way to manage these interactions within the limited memory of the Apple II, ensuring that only active objects consumed resources. This innovation contributed to the game's sense of unpredictability and realism, influencing future game design by demonstrating how dynamic systems could enhance immersion."
-  - id: "adding-new-transitions"
-    line_start: 129
-    line_end: 156
-    title: "Adding new transitions to the object list"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
+    content: "This code manages the redraw buffer, ensuring that objects are updated and displayed correctly on the screen. By marking visible objects for redrawing, Mechner optimized the game's performance on the Apple II, where hardware limitations required careful memory management. The redraw buffer system was essential for maintaining the game's smooth animations and responsive gameplay. Mechner's approach demonstrates his ingenuity in overcoming the technical constraints of the era, paving the way for more sophisticated graphics systems in later games."
+  - id: "mob-management-system"
+    line_start: 1588
+    line_end: 1635
+    title: "Managing MOBs: dynamic environmental objects"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_programming"
     image_url: ""
     image_caption: ""
-    content: "The `addtrob` subroutine adds new objects to the transition list or updates their direction if they already exist. This routine showcases Mechner's ingenuity in managing dynamic interactions within the constraints of 6502 assembly and bank-switched memory. By checking if an object is already listed before adding it, the code avoids redundancy and ensures efficient use of memory—a critical concern on the Apple II. The ability to update an object's direction dynamically reflects the game's emphasis on responsive environments, where traps and platforms react to the player's actions. This approach was ahead of its time, paving the way for more sophisticated object management systems in later games."
-  - id: "mob-management-and-saving"
-    line_start: 163
-    line_end: 193
-    title: "Efficient MOB management in constrained memory"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
-    image_url: ""
-    image_caption: ""
-    content: "The `addamob` and `savemob` routines handle mobile objects (MOBs) like enemies and moving platforms. These routines ensure that MOBs are efficiently added to a list and their state is saved for later use. On the Apple II, memory constraints meant that every byte had to be carefully managed, and Mechner's code reflects this necessity. By separating the addition and saving processes, the routines maintain clarity and modularity, making it easier to debug and extend the code. The MOB management system was crucial for creating the game's dynamic and unpredictable environments, where objects could move, interact, and change state based on the player's actions. This system influenced later games by demonstrating how constrained hardware could still support complex interactions."
+    content: "This section manages MOBs (dynamic objects like falling floors) in the game's environment. It updates their positions, checks for collisions, and removes inactive objects. MOBs are a cornerstone of Prince of Persia's physics engine, enabling complex interactions like crushing characters or triggering environmental changes. Mechner's implementation reflects the game's emphasis on realism, with MOBs behaving according to physical principles like gravity and collision. This system was groundbreaking for its time, showcasing the potential of dynamic programming in creating immersive game worlds."
 
 ---
 
@@ -266,3 +290,1977 @@ loadmob
  lda moby,x
  sta moby
  lda mobscrn,x
+ sta mobscrn
+ lda mobvel,x
+ sta mobvel
+ lda mobtype,x
+ sta mobtype
+ lda moblevel,x
+ sta moblevel
+]rts rts
+
+*-------------------------------
+*
+*  Trigger slicer
+*
+*  In: A = initial state
+*
+*-------------------------------
+TRIGSLICER
+ sta state ;temp
+
+ lda (BlueSpec),y
+ beq :ok
+ cmp #slicerRet
+ bcc ]rts ;in mid-slice--don't interfere
+
+* Between slices--OK to trigger
+
+:ok sty trloc
+
+ lda state
+ sta (BlueSpec),y
+
+ lda VisScrn
+ sta trscrn
+
+ lda #1
+ sta trdirec
+
+ jmp addtrob ;add slicer to trans list
+
+*-------------------------------
+*
+* Close exit
+* (Open it all the way & let it slam shut)
+*
+*-------------------------------
+CLOSEEXIT
+ sty trloc
+ sta trscrn
+
+ lda #emaxval ;all the way open
+ sta (BlueSpec),y
+
+ lda #3 ;coming down fast
+ sta trdirec
+
+ jmp addtrob ;add to trans list
+
+*-------------------------------
+SMASHMIRROR
+ lda #86
+ sta (BlueSpec),y
+]rts rts
+
+*-------------------------------
+*
+* Trigger flask
+*
+*-------------------------------
+TRIGFLASK
+ sty trloc
+ sta trscrn
+
+ lda #1
+ sta trdirec
+
+* Get rnd starting frame
+
+ jsr rnd
+ and #7
+ ora (BlueSpec),y
+ sta (BlueSpec),y
+ jmp addtrob
+
+*-------------------------------
+*
+* Trigger sword
+*
+*-------------------------------
+TRIGSWORD
+ sty trloc
+ sta trscrn
+ lda #1
+ sta trdirec
+ jsr rnd
+ and #$1f
+ sta (BlueSpec),y
+ jmp addtrob
+
+*-------------------------------
+*
+* Trigger torch
+*
+*-------------------------------
+TRIGTORCH
+ sty trloc
+ sta trscrn
+
+ lda #1
+ sta trdirec
+
+* Get rnd starting frame
+
+ jsr rnd
+ and #$f
+ sta (BlueSpec),y
+ jmp addtrob
+
+*-------------------------------
+*
+*  Trigger spikes
+*
+*-------------------------------
+TRIGSPIKES
+ lda (BlueSpec),y
+ beq :ready ;State = 0: spikes are fully retracted--
+;spring 'em
+ bpl ]rts ;Nonzero, hibit clear: spikes are in motion
+ cmp #$ff
+ beq ]rts ;jammed
+ lda #spiketimer ;Nonzero, hibit set: spikes are fully
+ sta (BlueSpec),y ;extended--reset timer to max value
+]rts rts
+;Spring spikes
+:ready ldx #1
+]cont stx trdirec
+ sty trloc
+
+ lda tempscrn ;from rdblock
+ sta trscrn
+
+ jsr addtrob ;add spikes to trans list
+ jsr redspikes
+
+ lda #GateDown ;TEMP
+ jmp addsound
+
+*-------------------------------
+*
+* Jam spikes (& remove from trans list)
+*
+* In: Same as TRIGSPIKES
+*
+*-------------------------------
+JAMSPIKES
+ lda #$ff
+ sta (BlueSpec),y
+ ldx #-1 ;stop object
+ bmi ]cont
+
+*-------------------------------
+*
+* Get spike status: 0 = safe, 1 = sprung, 2 = springing
+*
+*-------------------------------
+GETSPIKES
+ lda (BlueSpec),y
+ bmi :sprung
+ beq :safe ;fully retracted
+
+ cmp #spikeExt
+ bcc :springing
+
+:safe lda #0 ;safe: retracted or retracting
+ rts
+
+:sprung cmp #$ff ;jammed (body impaled on them)?
+ beq :safe
+ lda #1
+ rts
+
+:springing lda #2
+]rts rts
+
+*-------------------------------
+*
+*  Break off section of loose floor
+*
+*-------------------------------
+BREAKLOOSE
+ lda #1
+
+BREAKLOOSE1 ;in: A = initial state
+ sta state
+
+ lda (BlueType),y
+ and #reqmask ;required floorpiece?
+ bne ]rts ;yes--blocked below
+
+ lda (BlueSpec),y
+ bmi :ok ;wiggling
+ bne ]rts ;already triggered
+
+:ok lda state
+ sta (BlueSpec),y
+
+ sty trloc
+
+ lda tempscrn ;from rdblock
+ sta trscrn
+
+ lda #0 ;down
+ sta trdirec
+
+ jsr addtrob ;add floor to trans list
+ jmp redloose
+
+*-------------------------------
+*
+*  Depress pressplate
+*
+*  In: results of RDBLOCK
+*     (tempblockx-y, tempscrn refer to pressplate)
+*
+*-------------------------------
+PUSHPP
+ lda (BlueType),y
+ and #idmask
+ sta pptype ;pressplate/upressplate/rubble
+pushpp1
+ lda (BlueSpec),y ;LINKLOC index
+ sta linkindex
+ tax
+ jsr gettimer
+
+ cmp #31
+ beq ]rts ;plate is permanently down
+
+ cmp #2
+ bcs :starttimer ;plate is temporarily down--
+;just restart timer
+
+*  Fresh plate has been stepped on--reset timer
+
+ lda #pptimer ;put plate down for the count
+ jsr chgtimer
+
+ sty trloc
+
+ lda tempscrn ;from rdblock1
+ sta trscrn
+
+ lda #1
+ sta trdirec
+
+ jsr addtrob ;add to trans list
+
+ jsr redplate ;add plate to redraw list
+
+ lda #1
+ sta alertguard
+ lda #PlateDown
+ jsr addsound
+
+:trig jmp trigger ;trigger something?
+
+* plate is already down--just restart timer
+* (& retrigger gates)
+
+:starttimer lda #pptimer
+ jsr chgtimer
+ jmp :trig
+
+*-------------------------------
+*
+* Jam pressplate (dead weight)
+*
+* In: Same as PUSHPP
+*
+*-------------------------------
+JAMPP
+ lda (BlueType),y
+ and #idmask
+ sta pptype
+ cmp #pressplate
+ beq :1
+
+ lda #floor
+ sta (BlueType),y
+ lda #0
+ sta (BlueSpec),y
+ lda #rubble
+ sta pptype
+ bne pushpp1
+
+:1 lda #dpressplate
+ sta (BlueType),y
+ bne pushpp1
+
+*-------------------------------
+*
+*  We just pushed a pressplate -- did we trigger something?
+*
+*  In: linkindex, pptype
+*
+*-------------------------------
+trigger
+:loop ldx linkindex
+
+ lda LINKLOC,x
+ cmp #$ff
+ beq :rts ;linked to nothing
+
+ jsr getloc
+ sta trloc
+
+ jsr getscrn ;get block # and screen # of
+ sta trscrn ;gadget to trigger
+
+ jsr calcblue
+ ldy trloc
+ lda (BlueType),y
+ and #idmask ;get objid into A
+
+ jsr trigobj ;call appropriate trigger routine
+
+ lda trdirec
+ bmi :skip ;trigger fails
+
+ jsr addtrob ;add gadget to transition list
+
+:skip ldx linkindex
+ inc linkindex
+
+ jsr getlastflag
+ beq :loop
+
+:rts rts
+
+*-------------------------------
+*
+*  Trigger object
+*
+*  Out: trdirec (-1 if trigger fails)
+*
+*-------------------------------
+trigobj
+ cmp #gate
+ bne :1
+ jmp triggate
+:1
+ cmp #exit
+ bne :2
+ jmp openexit
+:2
+]rts rts
+
+*-------------------------------
+*
+* Open exit
+*
+*-------------------------------
+openexit
+ lda (BlueSpec),y
+ bne :fail ;Exit can only open, not close
+
+ lda #1
+ bpl :1
+
+:fail lda #-1
+:1 sta trdirec
+ rts
+
+*-------------------------------
+*
+*  Trigger gate
+*
+*  In: BlueSpec, Y, pptype
+*  Out: trdirec
+*
+*-------------------------------
+triggate
+ lda (BlueSpec),y ;current gate position
+
+ ldx pptype
+ cpx #upressplate
+ beq :raise
+ cpx #rubble
+ beq :jam
+
+* Lower gate
+
+:lower cmp #gminval ;at bottom?
+ bne :yeslower ;no--lower it
+;yes--trigger fails
+:fail jmp stopobj
+
+:yeslower
+ lda #3 ;down fast
+ sta trdirec
+ rts
+
+:jam ldx #2 ;open & jam
+ stx trdirec
+ cmp #gmaxval
+ bcc :1
+ lda #$ff ;"jammed open" state
+ bmi :3
+
+:raise ldx #1 ;open
+ stx trdirec
+ cmp #$ff
+ beq :fail ;jammed
+ cmp #gmaxval
+ bcc :1
+ lda #gatetimer
+:3 sta (BlueSpec),y ;reset timer
+ bne :fail
+:1
+]rts rts
+
+*-------------------------------
+*
+*  Animate transitional objects
+*  (Advance each object to next frame in animation table)
+*
+*-------------------------------
+]cleanflag ds 1
+
+ANIMTRANS
+ lda #0
+ sta trobcount
+
+ ldx numtrans ;# objs in trans (0-maxtr)
+ beq ]rts
+
+ lda #0
+ sta ]cleanflag
+
+:loop stx tempnt
+
+ jsr animobj ;animate obj #x
+
+ ldx tempnt
+
+ lda trdirec ;has object stopped?
+ bpl :1 ;no
+
+ lda #-1 ;yes--mark it for deletion
+ sta ]cleanflag ;& set cleanup flag
+
+:1 sta trdirec,x ;save direction change if any
+
+ dex
+ bne :loop
+
+ lda ]cleanflag
+ beq ]rts
+
+*  Delete all stopped objects (trdirec = ff)
+*  (i.e., copy entire list back onto
+*  itself, omitting stopped objects)
+
+ ldx #1 ;source index (assume numtrans > 0)
+ ldy #0 ;dest index
+
+:dloop lda trdirec,x
+ cmp #$ff
+ beq :next
+
+ iny
+ sta trdirec,y
+ lda trloc,x
+ sta trloc,y
+ lda trscrn,x ;source
+ sta trscrn,y ;dest
+
+:next inx
+
+ cpx numtrans
+ bcc :dloop
+ beq :dloop
+
+ sty numtrans
+ rts
+
+*-------------------------------
+*
+*  Animate TROB #x
+*
+*-------------------------------
+animobj lda trloc,x
+ sta trloc
+ lda trscrn,x
+ sta trscrn
+ lda trdirec,x
+ sta trdirec
+
+* Find out what kind of object it is
+
+ lda trscrn
+ jsr calcblue
+
+ ldy trloc
+ lda (BlueSpec),y
+ sta state ;original state
+
+ lda (BlueType),y
+ and #idmask ;objid
+
+* and branch to appropriate subroutine
+
+ cmp #torch
+ bne :1
+ jsr animtorch
+ jmp :done
+
+:1 cmp #upressplate
+ beq :plate
+ cmp #pressplate
+ bne :2
+:plate jsr animplate
+ jmp :done
+
+:2 cmp #spikes
+ bne :3
+ jsr animspikes
+ jmp :done
+
+:3 cmp #loose
+ bne :31
+ jsr animfloor
+ jmp :done
+
+:31 cmp #space ;(loose floor turns into space)
+ bne :4
+ jsr animspace
+ jmp :done
+
+:4 cmp #slicer
+ bne :5
+ jsr animslicer
+ jmp :done
+
+:5 cmp #gate
+ bne :6
+ jsr animgate
+ jmp :done
+
+:6 cmp #exit
+ bne :7
+ jsr animexit
+ jmp :done
+
+:7 cmp #flask
+ bne :8
+ jsr animflask
+ jmp :done
+
+:8 cmp #sword
+ bne :9
+ jsr animsword
+ jmp :done
+
+:9 jsr stopobj ;obj is none of these--purge it from trans list!
+
+:done lda state
+ ldy trloc
+ sta (BlueSpec),y
+
+:rts rts
+
+*-------------------------------
+*
+* Animate exit
+*
+*-------------------------------
+animexit
+ ldx trdirec
+ bmi :cont
+ cpx #3
+ bcs :downfast ;>= 3: coming down fast
+
+ lda #RaisingExit
+ jsr addsound
+
+ lda state
+ clc
+ adc #exitinc
+ sta state
+
+ cmp #emaxval
+ bcs :stop
+
+:cont jmp redexit
+
+:stop jsr stopobj
+
+ lda #GateDown
+ jsr addsound
+ lda #s_Stairs
+ ldx #15
+ jsr cuesong
+ lda #1
+ sta exitopen
+ jsr mirappear
+ jmp :cont
+
+* Exit coming down fast
+
+:downfast
+ cpx #maxgatevel
+ bcs :2
+ inx
+ stx trdirec
+:2 lda state
+ sec
+ sbc gatevel,x
+ sta state
+ beq :cont
+ bcs :cont
+
+ jsr stopobj
+
+ lda #0
+ sta state
+
+ lda #GateSlam
+ jsr addsound
+
+ jmp :cont
+
+*-------------------------------
+*
+*  Animate gate
+*
+*-------------------------------
+animgate
+ ldx trdirec
+ bmi :cont ;gate has stopped
+
+ cpx #3 ;trdirec >= 3: coming down fast
+ bcs :downfast
+
+ lda state
+ cmp #$ff
+ beq :stop ;jammed open
+ clc
+ adc gateinc,x
+ sta state
+
+ cpx #0
+ beq :goingdown
+
+ cmp #gmaxval
+ bcs :attop ;stop at top
+
+ lda #RaisingGate
+ jsr addsound
+
+ jmp :cont
+
+:goingdown
+ cmp #gminval
+ beq :stop
+ bcc :stop
+
+ cmp #gmaxval
+ bcs :cont ;at top
+ jsr addlowersound
+
+:cont jmp redgate ;mark gate for redrawing
+
+:stop jsr stopobj
+
+ lda #GateDown
+ jsr addsound
+
+ jmp :cont
+
+* Gate has reached top
+* trdirec = 1: pause, then start to close again
+* trdirec = 2: jam at top
+
+:attop
+ cpx #2
+ bcc :tr1
+ lda #$ff ;jammed-open value
+ sta state
+ jmp :stop
+
+:tr1 lda #gatetimer
+ sta state
+
+ lda #0 ;down
+ sta trdirec
+]rts rts
+
+* Down fast
+
+:downfast
+ cpx #maxgatevel
+ bcs :2
+
+ inx
+ stx trdirec ;trdirec is velocity index
+:2
+ lda state
+ sec
+ sbc gatevel,x
+ sta state
+ beq :cont
+ bcs :cont
+
+ lda #0
+ sta state
+ jsr stopobj
+
+ lda #GateSlam
+ jsr addsound
+ jmp :cont
+
+*-------------------------------
+*
+*  Animate pressplate
+*
+*-------------------------------
+animplate
+ ldx trdirec
+ bmi ]rts
+
+ lda state
+ tax
+ jsr gettimer
+ sec
+ sbc #1
+ pha
+ jsr chgtimer
+ pla
+ cmp #2
+ bcs ]rts ;timer stops at t=1
+
+ lda #PlateUp
+ jsr addsound
+
+ jsr stopobj
+
+ jmp redplate ;add obj to redraw buffer
+]rts rts
+
+*-------------------------------
+*
+*  Animate slicer
+*
+*-------------------------------
+animslicer
+ ldx trdirec
+ bmi :done
+
+ lda state
+ tax
+ and #$80
+ sta state ;preserve hibit
+ txa
+ and #$7f
+ clc
+ adc #1
+ cmp #slicetimer+1
+ bcc :1
+ lda #1 ;wrap around
+:1 ora state
+ sta state
+ and #$7f ;next frame #
+ cmp #slicerExt
+ bne :2
+
+ lda #JawsClash
+ jsr addsound
+
+:2 lda trscrn
+ cmp VisScrn ;is slicer on visible screen?
+ bne :os ;no
+
+ lda trloc
+ jsr unindex
+ cpx KidBlockY ;on same level as kid?
+ bne :os ;no
+
+ lda KidLife
+ bmi :done
+ ;If kid is dead, stop all unbloodied slicers
+ lda state
+ and #$80
+ bne :done
+
+* As soon as slicer is retracted, purge it from trans list
+
+:os lda state
+ and #$7f
+ cmp #slicerRet
+ bcc :done
+
+:purge jsr stopobj
+
+:done lda state
+ and #$7f
+ cmp #slicerRet ;retracted?
+ bcs ]rts ;yes--don't bother to redraw
+
+ jmp redslicer
+
+*-------------------------------
+*
+* Animate flask
+*
+*-------------------------------
+animflask
+ ldx trdirec
+ bmi ]rts
+
+ lda trscrn
+ cmp VisScrn
+ bne :purge
+
+ lda state
+ and #%11100000 ;potion #
+ sta temp1
+ lda state
+ and #%00011111 ;frame #
+ jsr GETFLASKFRAME
+ ora temp1
+ sta state
+
+ jmp redflask
+]purge
+:purge jmp stopobj
+
+*-------------------------------
+*
+* Animate gleaming sword
+*
+*-------------------------------
+animsword
+ lda trscrn
+ cmp VisScrn
+ bne ]purge
+
+ dec state
+ bne :1
+ jsr rnd
+ and #$3f
+ clc
+ adc #40
+ sta state
+
+:1 jmp redsword
+]rts rts
+
+*-------------------------------
+*
+* Animate torch
+*
+*-------------------------------
+animtorch
+ ldx trdirec
+ bmi ]rts
+
+ lda trscrn
+ cmp VisScrn
+ bne ]purge
+
+ lda state
+ jsr GETFLAMEFRAME
+ sta state
+
+ jmp redtorch
+
+*-------------------------------
+*
+* Get flame frame
+*
+* In/out: A = state
+*
+*-------------------------------
+GETFLAMEFRAME
+ sta state
+
+ jsr rnd
+
+ cmp state
+ beq :2
+ cmp #torchLast+1
+ bcc :1
+
+ lda state
+:2 clc
+ adc #1
+ cmp #torchLast+1
+ bcc :1
+
+ lda #0 ;wrap around
+:1
+]rts rts
+
+*-------------------------------
+*
+* Get flask frame
+*
+* In/out: A = state (low 5 bits)
+*
+*-------------------------------
+GETFLASKFRAME
+ clc
+ adc #1
+ cmp #bubbLast+1
+ bcc ]rts
+ lda #1
+]rts rts
+
+*-------------------------------
+*
+* Animate spikes
+*
+*-------------------------------
+animspikes
+ ldx trdirec
+ bmi :done
+
+ lda state
+ bmi :timerloop ;Hibit set: remaining 7 bits
+ ;represent timer value
+
+* Hibit clear: remaining 7 bits represent BGDATA frame #
+
+ inc state
+
+ cmp #spikeExt ;is extension complete?
+ beq :starttimer ;yes--start timer
+
+ cmp #spikeRet ;is retraction complete?
+ bne :done ;not yet
+
+ lda #0
+ sta state ;yes--reset to "ready" state
+
+ jsr stopobj
+
+:done jmp redspikes
+
+* Spike timer loop
+
+:starttimer
+ lda #spiketimer
+ sta state
+
+ bne :done
+
+:timerloop
+ dec state
+
+ lda state
+ and #$7f
+ bne :rts
+;Time's up
+ lda #spikeExt+1 ;First "retracting" frame
+ sta state
+
+ bne :done
+:rts
+]rts rts
+
+*-------------------------------
+*
+* Animate loose floor
+*
+*-------------------------------
+animfloor
+ ldx trdirec
+ bmi :red
+
+* When timer reaches max value & loose floor detaches:
+*  (1)  Change objid from "loose floor" to "empty space"
+*  (2)  Create a MOB to take over where TROB stopped
+
+ inc state
+
+ lda state
+ bmi :wiggle ;floor is only wiggling
+
+ cmp #loosetimer
+ bcc :red
+
+* Timer has reached max value--detach floor
+
+ jsr makespace
+ sta state
+
+ jsr stopobj
+
+* and create new MOB
+
+ lda trloc
+ jsr unindex
+
+ asl
+ asl  ;x4
+ sta mobx
+ stx moblevel
+
+ lda BlockBot+1,x
+ sta moby
+
+ lda trscrn
+ sta mobscrn
+
+ lda #0
+ sta mobvel
+ sta mobtype
+
+ jsr addamob
+
+:red jmp redloose
+
+* Floor is only wiggling
+
+:wiggle ldx level
+ cpx #13
+ beq ]rts
+
+ cmp #wiggletime+$80
+ bcc :red
+
+ lda #0
+ sta state
+ jsr stopobj ;stop wiggling
+
+ jmp :red
+
+animspace jsr stopobj
+ jmp redloose
+
+*-------------------------------
+*
+*  Stop object (set trdirec = -1)
+*
+*-------------------------------
+stopobj lda #-1
+ sta trdirec
+ rts
+
+*-------------------------------
+* General redraw-object routine
+*-------------------------------
+redtrobj
+ jsr check
+ lda #2
+ jsr markred
+ jsr markwipe
+ jsr checkright
+ lda #2
+ jsr markred
+ jmp markwipe
+
+*-------------------------------
+* redraw torch/exit
+*-------------------------------
+redexit
+redtorch
+ jsr checkright
+ lda #2
+ jmp markmove
+
+*-------------------------------
+* redraw flask/sword
+*-------------------------------
+redsword
+redflask
+ jsr check
+ lda #2
+ jmp markmove
+
+*-------------------------------
+* redraw loose floor
+*-------------------------------
+redloose
+ inc trobcount
+ lda #loosewipe
+ sta height
+ jmp redtrobj
+
+*-------------------------------
+* redraw gate
+*-------------------------------
+redgate
+ jsr checkright ;mark piece to right of gate
+ lda #2
+ jsr markmove
+ jsr markfred
+ jsr checkabover ;& piece to right of gate panel
+ lda #2
+ jmp markmove
+
+*-------------------------------
+* redraw spikes
+*-------------------------------
+redspikes
+ inc trobcount
+ lda #spikewipe
+ sta height
+ jmp redtrobj
+
+*-------------------------------
+* redraw slicer
+*-------------------------------
+redslicer
+ inc trobcount
+ lda #slicerwipe
+ sta height
+ jsr check
+ lda #2
+ jsr markred
+ jmp markwipe
+
+*-------------------------------
+* redraw pressplate
+*-------------------------------
+redplate
+ lda #platewipe
+ sta height
+ jmp redtrobj
+
+*-------------------------------
+*
+*  Before marking a piece in redraw buffer,
+*  check whether it's visible.
+*
+*  If piece is visible onscreen:
+*    return with carry clear, y = redbuf index
+*  If piece is not visible:
+*    return with carry set
+*
+*-------------------------------
+]no ldy #30
+ sec
+]rts rts
+
+]above cmp scrnAbove
+ bne ]rts
+
+ lda trloc
+ sec
+ sbc #20 ;if on top row, return 0-9 and cs
+ tay
+
+ sec
+ rts
+
+*-------------------------------
+*  Check (trscrn, trloc)
+*-------------------------------
+check
+ lda trscrn
+ cmp VisScrn
+ bne ]above
+
+ ldy trloc
+ cpy #30 ;i.e., "clc"
+ rts
+
+*-------------------------------
+*  Check piece to left of (trscrn,trloc)
+*-------------------------------
+checkleft
+ lda trscrn
+ cmp VisScrn
+ bne :notonscrn
+;piece is on this screen
+ cpy #0
+ beq ]no
+ cpy #10
+ beq ]no
+ cpy #20
+ beq ]no
+;yes--piece is visible
+ dey
+ clc
+ rts
+
+:notonscrn
+ cmp scrnRight
+ bne ]above
+;piece is on screen to right
+ ldy trloc
+ cpy #0
+ beq :yesr
+ cpy #10
+ beq :yesr
+ cpy #20
+ bne :yesr
+
+:yesr tya
+ clc
+ adc #9 ;mark corresponding right-edge piece
+ tay ;on this screen
+
+ clc
+ rts
+
+*-------------------------------
+*  Check piece to right of (trscrn,trloc)
+*-------------------------------
+checkright
+ lda trscrn
+ cmp VisScrn
+ bne :notonscrn
+;piece is on this screen
+ ldy trloc
+ cpy #9
+ beq ]no
+
+ cpy #19
+ beq ]no
+
+ cpy #29
+ beq ]no
+;yes
+ iny
+ clc
+ rts
+
+:notonscrn
+ cmp scrnLeft
+ bne ]above
+;piece is on screen to left
+ ldy trloc
+ cpy #9
+ beq :yesl
+
+ cpy #19
+ beq :yesl
+
+ cpy #29
+ bne ]no
+
+:yesl tya
+ sec
+ sbc #9 ;mark corresponding left-edge piece
+ tay ;on this screen
+
+ clc
+ rts
+
+]no ldy #30
+ sec
+]rts rts
+
+*-------------------------------
+*  Check piece above & to right of (trscrn,trloc)
+*-------------------------------
+checkabover
+ lda trscrn
+ cmp VisScrn
+ bne :notonscrn
+;piece is on this screen
+ ldy trloc
+ cpy #10
+ bcc :above ;piece is on top row
+
+ cpy #19
+ beq ]no
+
+ cpy #29
+ beq ]no
+;yes
+ tya
+ sec
+ sbc #9
+ tay
+
+ clc
+ rts
+
+:above
+ iny
+ sec
+ rts
+
+:notonscrn
+ cmp scrnLeft
+ bne :notonleft
+;piece is on screen to left
+ ldy trloc
+ cpy #9
+ beq :yes0
+
+ cpy #19
+ beq :yesl
+
+ cpy #29
+ bne ]no
+
+:yesl tya
+ sec
+ sbc #19 ;mark corresponding left-edge piece
+ tay ;on this screen
+
+ clc
+ rts
+
+:yes0 ldy #0
+ sec
+ rts
+
+:notonleft
+ cmp scrnBelow
+ bne :notbelow
+;piece is on screen below
+ ldy trloc
+ cpy #9
+ bcs ]no
+;yes--piece is on top row
+ tya
+ clc
+ adc #21
+ tay
+
+ clc
+ rts
+
+:notbelow
+ cmp scrnBelowL
+ bne ]rts
+ ;piece is on scrn below & to left
+ ldy trloc
+ cpy #9
+ bne ]no
+;yes--piece is in u.r.
+ ldy #20
+ clc
+ rts
+
+*-------------------------------
+*
+*  Extract information from LINKLOC/LINKMAP
+*
+*  In: X = linkindex
+*  Out: A = info
+*
+*-------------------------------
+gettimer
+ lda LINKMAP,x
+ and #%00011111 ;pressplate timer (0-31)
+ rts
+chgtimer ;In: A = new timer setting
+ and #%00011111
+ sta temp1
+ lda LINKMAP,x
+ and #%11100000
+ ora temp1
+ sta LINKMAP,x
+ rts
+getloc
+ lda LINKLOC,x
+ and #%00011111 ;screen posn (0-29)
+ rts
+getlastflag
+ lda LINKLOC,x
+ and #%10000000 ;last-entry flag (0-1)
+ rts
+getscrn
+ lda LINKLOC,x
+ and #%01100000 ;low 2 bits
+ lsr
+ lsr
+ sta temp1
+ lda LINKMAP,x
+ and #%11100000 ;high 3 bits
+ adc temp1
+ lsr
+ lsr
+ lsr ;Result: screen # (0-31)
+]rts rts
+
+*-------------------------------
+*
+*  Update all MOBs (falling floors)
+*
+*-------------------------------
+ANIMMOBS
+ ldx nummob ;# MOBs in motion (0-maxmob)
+ beq ]rts
+
+:loop stx tempnt
+ jsr loadmob
+
+ jsr animmob ;animate MOB #x
+
+ jsr checkcrush ;did we just crush a character?
+
+ ldx tempnt
+ jsr savemob
+
+ dex
+ bne :loop
+
+* Delete MOBs that have ceased to exist
+
+ ldx #1 ;source index (assume nummob > 0)
+ ldy #0 ;dest index
+
+:dloop lda mobvel,x
+ cmp #$ff
+ beq :next
+
+ iny
+ sta mobvel,y
+ lda mobx,x ;source
+ sta mobx,y ;dest
+ lda moby,x
+ sta moby,y
+ lda mobscrn,x
+ sta mobscrn,y
+ lda mobtype,x
+ sta mobtype,y
+ lda moblevel,x
+ sta moblevel,y
+
+:next inx
+
+ cpx nummob
+ bcc :dloop
+ beq :dloop
+
+ sty nummob
+
+]rts rts
+
+*-------------------------------
+*
+*   Animate MOB #x
+*
+*-------------------------------
+animmob
+ lda mobtype
+ bne :done
+ jsr mobfloor
+:done
+ lda mobvel
+ bpl ]rts ;is object stopping?
+ inc mobvel ;yes
+]rts rts
+
+*-------------------------------
+*
+*  Animate falling floor
+*
+*-------------------------------
+mobfloor
+ lda mobvel
+ bmi ]rts
+:ok1
+ cmp #FFtermvel
+ bcs :tv
+ clc
+ adc #FFaccel
+ sta mobvel
+
+:tv clc
+ adc moby
+ sta moby
+
+* check for collision w/floor
+
+ ldx mobscrn ;on null screen?
+ beq :null ;yes--fall on
+
+ cmp #-30 ;negative?
+ bcs :fallon ;yes--fall on
+
+ ldx moblevel
+ cmp BlockAy+1,x
+ bcc :fallon
+
+* Passing thru floor plane--what to do?
+* First see what's there
+
+ ldx moblevel
+ stx tempblocky
+
+ lda mobx
+ lsr
+ lsr
+ sta tempblockx
+
+ lda mobscrn
+ sta tempscrn
+
+ jsr rdblock1 ;A = objid
+ sta underFF ;under falling floor
+
+ cmp #space
+ beq :passthru
+
+ cmp #loose
+ bne :crash
+
+* Lands on loose floor
+* Knock out loose floor & continue
+
+ jsr knockloose
+
+ jmp :passthru
+
+* Lands on solid floor
+
+:crash
+ lda #LooseCrash
+ jsr addsound
+
+ lda mobscrn
+ sta tempscrn
+ lda moblevel
+ sta tempblocky
+ jsr SHAKEM1 ;shake loose floors
+
+ ldx moblevel
+ lda BlockAy+1,x
+ sta moby
+
+ lda #-crumbletime
+ sta mobvel
+
+ jmp makerubble
+
+* Passes thru floor plane
+
+:passthru
+ jsr passthru
+:fallon
+]rts rts
+
+* Falling on null screen
+
+:null
+ lda moby
+ cmp #192+17
+ bcc ]rts
+;MOB has fallen off null screen--delete it
+ lda #-disappeartime
+ sta mobvel
+
+]rts rts
+
+*-------------------------------
+* Knock out loose floor
+*-------------------------------
+knockloose
+ jsr makespace
+ sta (BlueSpec),y
+
+ lda mobvel
+ lsr
+ sta mobvel
+
+ ldx tempnt
+ jsr savemob ;save this MOB
+
+* Create new MOB (add'l falling floor)
+
+ lda moby
+ clc
+ adc #6
+ sta moby
+
+ jsr passthru
+
+ jsr addamob
+
+* Retrieve old MOB
+
+ ldx tempnt
+ jsr loadmob
+
+ jmp markmob
+
+*-------------------------------
+* Make space
+* Return A = BlueSpec
+*-------------------------------
+makespace lda #space ;change objid to empty space
+ sta (BlueType),y
+
+ do PalaceEditor
+ lda #1
+ rts
+ fin
+
+ lda #0
+ ldx BGset1
+ cpx #1 ;pal?
+ bne ]rts
+ lda #1 ;stripe
+]rts rts
+
+*-------------------------------
+* Pass thru floor plane
+*-------------------------------
+passthru
+ inc moblevel
+
+ lda moblevel
+ cmp #3
+ bcc ]rts
+
+* ... and onto next screen
+* (NOTE: moby may be negative)
+
+ lda moby
+ sec
+ sbc #192
+ sta moby
+
+ lda #0
+ sta moblevel
+
+ lda mobscrn
+ jsr getdown
+ sta mobscrn
+]rts rts
+
+*-------------------------------
+* Delete MOB & change objid of floorpiece it landed on
+* If pressplate, trigger before reducing it to rubble
+*-------------------------------
+makerubble
+ lda moblevel
+ sta tempblocky
+
+ lda mobx
+ lsr
+ lsr
+ sta tempblockx
+
+ lda mobscrn
+ sta tempscrn
+
+ jsr rdblock1
+
+ cmp #pressplate
+ beq :pp
+ cmp #upressplate
+ beq :jampp
+ cmp #floor
+ beq :notpp
+ cmp #spikes
+ beq :notpp
+ cmp #flask
+ beq :notpp
+ cmp #torch
+ beq :notpp
+ bne ]rts ;can't transform this piece into rubble
+
+:jampp lda #rubble
+ sta (BlueType),y
+
+:pp jsr PUSHPP ;block lands on pressplate--
+ jsr rdblock1 ;crush pp & jam open all gates
+
+:notpp lda #rubble
+ sta (BlueType),y
+ jmp markmob
+
+*-------------------------------
+* Mark MOB
+*-------------------------------
+markmob
+ lda mobscrn
+ cmp VisScrn
+ bne ]rts
+
+ lda #loosewipe
+ sta height
+
+ jsr indexblock
+ lda #2
+ jsr markred
+ jsr markwipe
+
+ inc tempblockx
+
+ jsr indexblock
+ lda #2
+ jsr markred
+ jsr markfred
+ jmp markwipe
+
+]rts rts
+
+*-------------------------------
+*
+*  Did falling floor crush anybody?
+*
+*-------------------------------
+checkcrush
+ jsr LoadKid
+ jsr chcrush1 ;return cs if crush
+ bcc ]rts
+ jsr crushchar
+ jmp SaveKid
+
+chcrush1
+ lda mobscrn
+ cmp CharScrn ;on same screen as char?
+ bne :no
+
+ lda mobx
+ lsr
+ lsr
+ cmp CharBlockX ;same blockx?
+ bne :no
+
+ lda moby
+ cmp CharY
+ bcs :no ;mob is below char altogether
+
+ lda CharY
+ sec
+ sbc #CrushDist
+ cmp moby
+ bcs :no
+ sec ;crush!
+ rts
+
+:no clc
+]rts rts
+
+*-------------------------------
+*
+*  Crush char with falling block
+*  (Ordered by ANIMMOB)
+*
+*-------------------------------
+crushchar
+ lda level
+ cmp #13
+ beq :1
+ lda CharPosn
+ cmp #5
+ bcc :1
+ cmp #15
+ bcc ]rts ;running-->escape
+
+:1 lda CharAction
+ cmp #2
+ bcc :ground
+ cmp #7
+ bne ]rts
+
+* Action code 0,1,7 -- on ground
+
+:ground
+ ldx CharBlockY
+ inx
+ lda FloorY,x
+ sta CharY ;align w/floor
+
+ lda #1
+ jsr decstr
+ beq :kill
+
+ lda CharPosn
+ cmp #109
+ beq ]rts
+ lda #crush
+ jmp jumpseq
+
+:kill lda #hardland ;temp
+ jmp jumpseq
+
+*-------------------------------
+*
+*  Add all visible MOBs to object table (to be drawn later)
+*
+*-------------------------------
+ADDMOBS
+ ldx nummob ;# objs in motion (0-maxmob)
+ beq :rts
+
+:loop stx tempnt
+ jsr loadmob
+
+ lda mobtype
+ bne :1
+ jsr ATM ;Add this MOB
+:1
+ ldx tempnt
+ dex
+ bne :loop
+:rts
+]rts rts
+
+*-------------------------------
+*
+*  Add this MOB to obj table (if visible)
+*
+*-------------------------------
+ATM
+
+* Is floorpiece visible onscreen?
+
+ lda mobscrn
+ cmp VisScrn
+ bne :ok2
+
+ lda moby
+ cmp #192+17 ;17 is generous estimate of image height
+ bcc :ok
+ rts
+:ok2
+ cmp scrnBelow
+ bne ]rts ;not on screen below
+
+ lda moby
+ cmp #-17
+ bcs :ok1
+ cmp #17
+ bcs ]rts
+:ok1
+ clc
+ adc #192
+ sta moby ;(this change won't be saved)
+:ok
+
+* Get block #; index char
+
+ lda moby
+ jsr getblocky ;return blocky (0-3)
+ sta tempblocky
+
+ lda mobx
+ lsr
+ lsr
+ sta tempblockx
+
+ jsr indexblock
+ sty FCharIndex
+
+* Mark floorbuf & fredbuf of affected blocks to R
+
+:cont1
+ inc tempblockx
+ jsr indexblock  ;block to R
+
+ lda #2
+ jsr markfloor
+ jsr markfred
+
+ lda moby
+ sec
+ sbc #FFheight
+ jsr getblocky ;highest affected blocky
+ cmp tempblocky
+ beq :same
+
+ sta tempblocky
+ jsr indexblock ;block to U.R.
+
+ lda #2
+ jsr markfloor
+ jsr markfred
+:same
+
+* Get frame #
+
+ lda #Ffalling
+ sta mobframe
+
+ jmp addmobobj ;add MOB to object table
+
+*-------------------------------
+*
+*  Add MOB to object table
+*
+*  In: mob data
+*
+*-------------------------------
+addmobobj
+ inc objX
+ ldx objX
+
+ lda mobtype ;0 = falling floor
+ ora #$80
+ sta objTYP,x
+
+ lda mobx
+ sta objX,x
+ lda #0
+ sta objOFF,x
+
+ lda moby
+ sta objY,x
+
+ lda mobframe
+ sta objIMG,x
+
+ lda #0
+ sta objCU,x
+ sta objCL,x
+ lda #40
+ sta objCR,x
+
+ jmp setobjindx
+]rts rts
+*-------------------------------
+*
+* Shake floors
+*
+* In: A = CharBlockY
+*
+*-------------------------------
+SHAKEM
+ ldx level
+ cpx #13
+ beq ]rts
+
+ sta tempblocky
+
+ lda VisScrn
+ sta tempscrn
+
+SHAKEM1
+ ldx #9
+:loop txa
+ pha
+ sta tempblockx
+
+ jsr rdblock1
+ cmp #loose
+ bne :cont
+
+ jsr shakeit
+
+:cont pla
+ tax
+ dex
+ bpl :loop
+
+]rts rts
+
+*-------------------------------
+* Shake loose floor
+*-------------------------------
+shakeit
+ lda (BlueSpec),y
+ bmi ]rts ;already wiggling
+ bne ]rts ;active
+
+ lda #$80
+ sta (BlueSpec),y
+
+ sty trloc
+
+ lda tempscrn ;from rdblock
+ sta trscrn
+
+ lda #1
+ sta trdirec
+
+ jmp addtrob ;add floor to trans list
+
+*-------------------------------
+ lst
+ ds 1
+ usr $a9,21,$00,*-org
+ lst off

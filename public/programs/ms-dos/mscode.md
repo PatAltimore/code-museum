@@ -9,60 +9,66 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "mscode"
 order: 4
-description: "This file represents the core assembly code for MS-DOS 2.0, a pivotal operating system that shaped personal computing in the 1980s."
-is_excerpt: true
-excerpt_lines: 200
+description: "The assembly code for MS-DOS v2.0, a pivotal rewrite that introduced Unix-inspired features to the dominant operating system of the 1980s."
 
 summary:
-  - point: "Conditional compilation for OEM-specific features"
+  - point: "Conditional compilation flags for hardware and language compatibility"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Header string generation for different locales"
-    link: "https://en.wikipedia.org/wiki/Code_page"
-    link_label: "Code Page"
-  - point: "System call dispatcher enabling multitasking-like behavior"
-    link: "https://en.wikipedia.org/wiki/Interrupt_handler"
-    link_label: "Interrupt Handler"
-  - point: "Stack manipulation for system calls and error handling"
-    link: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
-    link_label: "Stack"
-  - point: "OEM handler integration for non-IBM systems"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
+  - point: "System call dispatcher enabling multitasking and modularity"
+    link: "https://en.wikipedia.org/wiki/System_call"
+    link_label: "System Call"
+  - point: "Null device driver implementation as a placeholder for unused I/O"
+    link: "https://en.wikipedia.org/wiki/Device_file"
+    link_label: "Device File"
+  - point: "Disk read/write handlers with BIOS error translation"
+    link: "https://en.wikipedia.org/wiki/BIOS"
+    link_label: "BIOS"
+  - point: "Unix-inspired system calls for process and file management"
+    link: "https://en.wikipedia.org/wiki/Unix"
+    link_label: "Unix"
 
 enhancements:
-  - id: "conditional-compilation-oem-kanji-highmem"
+  - id: "conditional-compilation-flags"
     line_start: 17
     line_end: 27
-    title: "Conditional compilation for OEM-specific features"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "These lines define conditional compilation flags for OEM-specific features, including support for Kanji characters and high memory configurations. In the early 1980s, MS-DOS was licensed to over 70 OEMs, each with unique hardware requirements. These flags allowed Microsoft to tailor the operating system to specific machines without duplicating effort. For example, Kanji support was critical for Japanese systems, reflecting the global ambitions of MS-DOS. High memory configurations addressed the limitations of the 640 KB barrier imposed by the IBM PC architecture. This modular approach was inspired by Unix's portability and proved essential as MS-DOS became the foundation for countless systems worldwide."
-  - id: "oem-handler-integration"
-    line_start: 50
-    line_end: 52
-    title: "OEM handler integration for non-IBM systems"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "These lines define an OEM-specific handler for systems not manufactured by IBM. When MS-DOS was licensed to OEMs, each had unique hardware and software requirements. This handler allowed customization for non-IBM systems, ensuring compatibility while maintaining a unified codebase. Microsoft's decision to retain licensing rights for MS-DOS was revolutionary, enabling them to dominate the operating system market. By accommodating OEMs through modular design, MS-DOS became the backbone of personal computing, powering machines from Compaq to Zenith. This flexibility was inspired by Unix's portability and proved critical in establishing Microsoft's dominance during the 1980s."
-  - id: "header-string-generation"
-    line_start: 61
-    line_end: 86
-    title: "Header string generation for different locales"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Code_page"
-    image_url: ""
-    image_caption: ""
-    content: "This section generates the header string displayed during MS-DOS startup, with variations for Kanji-enabled systems. The code dynamically constructs the version number and appends locale-specific strings. For Kanji systems, it uses extended ASCII codes to represent Japanese characters. In the early 1980s, localization was a novel challenge for software developers, as ASCII was primarily designed for English text. Microsoft's decision to support Kanji reflects their strategic entry into the Japanese market, a critical step in establishing MS-DOS as a global standard. This approach also highlights the constraints of early computing, where every byte mattered, and localization required intricate assembly-level manipulation."
+    title: "Conditional flags for hardware compatibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Conditional_compilation"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Simh-pdp11-unix-sysiii.png/330px-Simh-pdp11-unix-sysiii.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "UNIX System III running on a simulated Digital Equipment Corporation PDP-11 using SIMH (CC BY-SA 4.0)"
+    content: "These lines define conditional compilation flags for hardware and language compatibility, such as support for Kanji characters or IBM-specific features. In the early 1980s, software needed to adapt to a fragmented hardware ecosystem, where each OEM had unique requirements. Tim Paterson and the Microsoft team used these flags to ensure MS-DOS could run on a wide variety of systems, from IBM PCs to custom-built machines. This approach reflects the pragmatic engineering of the time, balancing portability with performance. The use of conditional flags persisted in software development, becoming a cornerstone of cross-platform programming."
   - id: "system-call-dispatcher"
     line_start: 91
-    line_end: 193
-    title: "System call dispatcher enabling multitasking-like behavior"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    line_end: 210
+    title: "System call dispatcher enables modularity"
+    wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
     image_url: ""
     image_caption: ""
-    content: "This section implements the system call dispatcher, a cornerstone of MS-DOS's functionality. It handles interrupts (INT 20H and INT 21H) and routes them to the appropriate routines. The dispatcher saves the current state, manipulates the stack, and flags that the system is in DOS mode. Notably, it includes rudimentary multitasking-like behavior by saving and restoring user stack pointers, a nod to Unix's process management. In 1983, multitasking was rare in consumer operating systems due to hardware limitations, but MS-DOS 2.0's dispatcher laid the groundwork for future enhancements. This design was influenced by Unix's simplicity and modularity, showcasing Microsoft's ambition to evolve MS-DOS beyond its origins as a single-tasking system."
+    content: "This section implements the system call dispatcher, a critical component of MS-DOS. It handles interrupts (e.g., INT 20H and INT 21H) and routes them to the appropriate subroutine. In 1983, the concept of system calls was borrowed from Unix, enabling modularity and multitasking. The dispatcher also includes mechanisms for saving and restoring the CPU state, allowing seamless transitions between user and system code. This design was a significant step forward for MS-DOS, transforming it from a simple disk operating system into a more sophisticated environment capable of supporting complex applications. The dispatcher’s influence can be seen in modern operating systems, which still rely on similar mechanisms for process management."
+  - id: "unix-inspired-system-calls"
+    line_start: 353
+    line_end: 375
+    title: "Unix-inspired system calls for process management"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Unix"
+    image_url: ""
+    image_caption: ""
+    content: "This section introduces Unix-inspired system calls for process and file management, such as EXEC, EXIT, and WAIT. These features were part of the MS-DOS v2.0 rewrite, which drew heavily from Unix and XENIX to add advanced capabilities. In the early 1980s, Unix was seen as a model for robust, multitasking operating systems, and Microsoft sought to bring some of its strengths to the PC market. These calls enabled developers to write more sophisticated applications, paving the way for the software ecosystem that defined the IBM PC’s success. The influence of Unix on MS-DOS highlights the cross-pollination of ideas that shaped modern computing."
+  - id: "null-device-driver"
+    line_start: 466
+    line_end: 481
+    title: "Null device driver: A placeholder for I/O"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
+    image_url: ""
+    image_caption: ""
+    content: "The null device driver implemented here serves as a placeholder for unused I/O operations. It accepts data but discards it, effectively acting as a 'black hole' for output. This concept originated in Unix systems as '/dev/null' and was adopted by MS-DOS to provide compatibility with software expecting such functionality. In the early 1980s, this was a clever solution to handle edge cases in I/O operations without causing errors. The null device remains a standard feature in operating systems today, demonstrating the enduring utility of this simple yet effective design."
+  - id: "disk-read-write-handlers"
+    line_start: 508
+    line_end: 585
+    title: "Disk handlers with BIOS error translation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
+    image_url: ""
+    image_caption: ""
+    content: "These routines handle low-level disk read and write operations, interfacing directly with the BIOS. They include error translation mechanisms to convert BIOS error codes into MS-DOS-specific ones, ensuring consistent behavior across different hardware. In 1983, disk operations were a critical part of any operating system, and MS-DOS needed to support a wide range of drives and controllers. The inclusion of error translation reflects the challenges of working with diverse hardware in an era before standardization. This design laid the groundwork for future advancements in disk management, influencing both DOS and subsequent operating systems."
 
 ---
 
@@ -266,3 +272,418 @@ ASSUME  SS:NOTHING                      ; User routines may misbehave
         DEC     [INDOS]
         MOV     SP,[user_SP]
         MOV     SS,[user_SS]
+        MOV     BP,SP
+        MOV     BYTE PTR [BP.user_AX],AL
+        MOV     AX,[NSP]
+        MOV     [user_SP],AX
+        MOV     AX,[NSS]
+        MOV     [user_SS],AX
+        CALL    restore_world
+
+        IRET
+SYSTEM_CALL ENDP
+
+;
+; restore_world restores all registers ('cept SS:SP, CS:IP, flags) from
+; the stack prior to giving the user control
+;
+        ASSUME  DS:NOTHING,ES:NOTHING
+restore_tmp DW  ?
+        procedure   restore_world,NEAR
+        POP     restore_tmp     ; POP     restore_tmp
+        POP     AX              ; PUSH    ES
+        POP     BX              ; PUSH    DS
+        POP     CX              ; PUSH    BP
+        POP     DX              ; PUSH    DI
+        POP     SI              ; PUSH    SI
+        POP     DI              ; PUSH    DX
+        POP     BP              ; PUSH    CX
+        POP     DS              ; PUSH    BX
+        POP     ES              ; PUSH    AX
+world_ret:
+        PUSH    restore_tmp     ; PUSH    restore_tmp
+        return
+restore_world   ENDP
+
+;
+; save_world saves complete registers on the stack
+;
+        procedure   save_world,NEAR
+        POP     restore_tmp
+        PUSH    ES
+        PUSH    DS
+        PUSH    BP
+        PUSH    DI
+        PUSH    SI
+        PUSH    DX
+        PUSH    CX
+        PUSH    BX
+        PUSH    AX
+        JMP     SHORT world_ret
+save_world      ENDP
+
+;
+; get_user_stack returns the user's stack (and hence registers) in DS:SI
+;
+        procedure   get_user_stack,NEAR
+        LDS     SI,DWORD PTR [user_SP]
+        return
+get_user_stack  ENDP
+
+; Standard Functions
+DISPATCH    LABEL WORD
+.lall
+        short_addr  $ABORT                          ;  0      0
+.xall
+        short_addr  $STD_CON_INPUT                  ;  1      1
+        short_addr  $STD_CON_OUTPUT                 ;  2      2
+        short_addr  $STD_AUX_INPUT                  ;  3      3
+        short_addr  $STD_AUX_OUTPUT                 ;  4      4
+        short_addr  $STD_PRINTER_OUTPUT             ;  5      5
+        short_addr  $RAW_CON_IO                     ;  6      6
+        short_addr  $RAW_CON_INPUT                  ;  7      7
+        short_addr  $STD_CON_INPUT_NO_ECHO          ;  8      8
+        short_addr  $STD_CON_STRING_OUTPUT          ;  9      9
+        short_addr  $STD_CON_STRING_INPUT           ; 10      A
+        short_addr  $STD_CON_INPUT_STATUS           ; 11      B
+        short_addr  $STD_CON_INPUT_FLUSH            ; 12      C
+        short_addr  $DISK_RESET                     ; 13      D
+        short_addr  $SET_DEFAULT_DRIVE              ; 14      E
+        short_addr  $FCB_OPEN                       ; 15      F
+        short_addr  $FCB_CLOSE                      ; 16     10
+        short_addr  $DIR_SEARCH_FIRST               ; 17     11
+        short_addr  $DIR_SEARCH_NEXT                ; 18     12
+        short_addr  $FCB_DELETE                     ; 19     13
+        short_addr  $FCB_SEQ_READ                   ; 20     14
+        short_addr  $FCB_SEQ_WRITE                  ; 21     15
+        short_addr  $FCB_CREATE                     ; 22     16
+        short_addr  $FCB_RENAME                     ; 23     17
+        short_addr  CPMFUNC                         ; 24     18
+        short_addr  $GET_DEFAULT_DRIVE              ; 25     19
+        short_addr  $SET_DMA                        ; 26     1A
+
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;                                                                          ;
+        short_addr  $SLEAZEFUNC                     ; 27     1B
+        short_addr  $SLEAZEFUNCDL                   ; 28     1C
+;                                                                          ;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+
+        short_addr  CPMFUNC                         ; 29     1D
+        short_addr  CPMFUNC                         ; 30     1E
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;                                                                          ;
+        short_addr  $GET_DEFAULT_DPB                ; 31     1F
+;                                                                          ;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+        short_addr  CPMFUNC                         ; 32     20
+        short_addr  $FCB_RANDOM_READ                ; 33     21
+        short_addr  $FCB_RANDOM_WRITE               ; 34     22
+        short_addr  $GET_FCB_FILE_LENGTH            ; 35     23
+        short_addr  $GET_FCB_POSITION               ; 36     24
+MAXCALL =       ($-DISPATCH)/2 - 1
+
+; Extended Functions
+        short_addr  $SET_INTERRUPT_VECTOR           ; 37     25
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;                                                                          ;
+        short_addr  $CREATE_PROCESS_DATA_BLOCK      ; 38     26
+;                                                                          ;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+        short_addr  $FCB_RANDOM_READ_BLOCK          ; 39     27
+        short_addr  $FCB_RANDOM_WRITE_BLOCK         ; 40     28
+        short_addr  $PARSE_FILE_DESCRIPTOR          ; 41     29
+        short_addr  $GET_DATE                       ; 42     2A
+        short_addr  $SET_DATE                       ; 43     2B
+        short_addr  $GET_TIME                       ; 44     2C
+        short_addr  $SET_TIME                       ; 45     2D
+        short_addr  $SET_VERIFY_ON_WRITE            ; 46     2E
+
+; Extended functionality group
+        short_addr  $GET_DMA                        ; 47     2F
+        short_addr  $GET_VERSION                    ; 48     30
+        short_addr  $Keep_Process                   ; 49     31
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;                                                                          ;
+        short_addr  $GET_DPB                        ; 50     32
+;                                                                          ;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+        short_addr  $SET_CTRL_C_TRAPPING            ; 51     33
+        short_addr  $GET_INDOS_FLAG                 ; 52     34
+        short_addr  $GET_INTERRUPT_VECTOR           ; 53     35
+        short_addr  $GET_DRIVE_FREESPACE            ; 54     36
+        short_addr  $CHAR_OPER                      ; 55     37
+        short_addr  $INTERNATIONAL                  ; 56     38
+; XENIX CALLS
+;   Directory Group
+        short_addr  $MKDIR                          ; 57     39
+        short_addr  $RMDIR                          ; 58     3A
+        short_addr  $CHDIR                          ; 59     3B
+;   File Group
+        short_addr  $CREAT                          ; 60     3C
+        short_addr  $OPEN                           ; 61     3D
+        short_addr  $CLOSE                          ; 62     3E
+        short_addr  $READ                           ; 63     3F
+        short_addr  $WRITE                          ; 64     40
+        short_addr  $UNLINK                         ; 65     41
+        short_addr  $LSEEK                          ; 66     42
+        short_addr  $CHMOD                          ; 67     43
+        short_addr  $IOCTL                          ; 68     44
+        short_addr  $DUP                            ; 69     45
+        short_addr  $DUP2                           ; 70     46
+        short_addr  $CURRENT_DIR                    ; 71     47
+;    Memory Group
+        short_addr  $ALLOC                          ; 72     48
+        short_addr  $DEALLOC                        ; 73     49
+        short_addr  $SETBLOCK                       ; 74     4A
+;    Process Group
+        short_addr  $EXEC                           ; 75     4B
+        short_addr  $EXIT                           ; 76     4C
+        short_addr  $WAIT                           ; 77     4D
+        short_addr  $FIND_FIRST                     ; 78     4E
+;   Special Group
+        short_addr  $FIND_NEXT                      ; 79     4F
+; SPECIAL SYSTEM GROUP
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;                                                                          ;
+        short_addr  $SET_CURRENT_PDB                ; 80     50
+        short_addr  $GET_CURRENT_PDB                ; 81     51
+        short_addr  $GET_IN_VARS                    ; 82     52
+        short_addr  $SETDPB                         ; 83     53
+;                                                                          ;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+        short_addr  $GET_VERIFY_ON_WRITE            ; 84     54
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;                                                                          ;
+        short_addr  $DUP_PDB                        ; 85     55
+;                                                                          ;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+        short_addr  $RENAME                         ; 86     56
+        short_addr  $FILE_TIMES                     ; 87     57
+        short_addr  $AllocOper                      ; 88     58
+
+MAXCOM  =       ($-DISPATCH)/2 - 1
+
+CPMFUNC:
+        XOR     AL,AL
+        return
+
+        IF      NOT IBM
+BREAK <Set_OEM_Handler -- Set OEM sys call address and handle OEM Calls>
+
+$SET_OEM_HANDLER:
+ASSUME  DS:NOTHING,ES:NOTHING
+
+; Inputs:
+;       User registers, User Stack, INTS disabled
+;       If CALL F8, DS:DX is new handler address
+; Function:
+;       Process OEM INT 21 extensions
+; Outputs:
+;       Jumps to OEM_HANDLER if appropriate
+
+        JNE     DO_OEM_FUNC             ; If above F8 try to jump to handler
+        MOV     WORD PTR [OEM_HANDLER],DX       ; Set Handler
+        MOV     WORD PTR [OEM_HANDLER+2],DS
+        IRET                            ; Quick return, Have altered no registers
+
+DO_OEM_FUNC:
+        CMP     WORD PTR [OEM_HANDLER],-1
+        JNZ     OEM_JMP
+        JMP     BADCALL                 ; Handler not initialized
+
+OEM_JMP:
+        JMP     [OEM_HANDLER]
+
+        ENDIF
+
+
+ASSUME  SS:DOSGROUP
+
+;
+; $Set_current_PDB takes BX and sets it to be the current process
+;   *** THIS FUNCTION CALL IS SUBJECT TO CHANGE!!! ***
+;
+        procedure   $SET_CURRENT_PDB,NEAR
+        ASSUME  DS:NOTHING,SS:NOTHING
+        MOV     [CurrentPDB],BX
+        return
+$SET_CURRENT_PDB    ENDP
+
+;
+; $get_current_PDB returns in BX the current process
+;   *** THIS FUNCTION CALL IS SUBJECT TO CHANGE!!! ***
+;
+        procedure   $GET_CURRENT_PDB,NEAR
+        ASSUME  DS:NOTHING,SS:NOTHING
+        invoke  get_user_stack
+        PUSH    [CurrentPDB]
+        POP     [SI.user_BX]
+        return
+$GET_CURRENT_PDB    ENDP
+;                                                                          ;
+;            C  A  V  E  A  T     P  R  O  G  R  A  M  M  E  R             ;
+;----+----+----+----+----+----+----+----+----+----+----+----+----+----+----;
+
+BREAK <NullDev -- Driver for null device>
+        procedure   SNULDEV,FAR
+ASSUME DS:NOTHING,ES:NOTHING,SS:NOTHING
+        MOV     WORD PTR [NULLDEVPT],BX
+        MOV     WORD PTR [NULLDEVPT+2],ES
+        return
+SNULDEV ENDP
+
+        procedure   INULDEV,FAR
+        PUSH    ES
+        PUSH    BX
+        LES     BX,[NULLDEVPT]
+        OR      ES:[BX.REQSTAT],STDON           ; Set done bit
+        POP     BX
+        POP     ES
+        return
+
+INULDEV ENDP
+
+
+BREAK <AbsDRD, AbsDWRT -- INT int_disk_read, int_disk_write handlers>>
+
+
+        IF      IBM
+ERRIN:                                  ; Codes returned by BIOS
+        DB      2                       ; NO RESPONSE
+        DB      6                       ; SEEK FAILURE
+        DB      12                      ; GENERAL ERROR
+        DB      4                       ; BAD CRC
+        DB      8                       ; SECTOR NOT FOUND
+        DB      0                       ; WRITE ATTEMPT ON WRITE-PROTECT DISK
+ERROUT:                                 ; DISK ERRORS RETURNED FROM INT 25 and 26
+        DB      80H                     ; NO RESPONSE
+        DB      40H                     ; Seek failure
+        DB      2                       ; Address Mark not found
+        DB      8                       ; DMA OVERRUN
+        DB      4                       ; SECTOR NOT FOUND
+        DB      3                       ; WRITE ATTEMPT TO WRITE-PROTECT DISK
+
+NUMERR  EQU     $-ERROUT
+        ENDIF
+
+        procedure   ABSDRD,FAR
+ASSUME  DS:NOTHING,ES:NOTHING,SS:NOTHING
+
+        CLI
+        MOV     [user_SS],SS
+        MOV     [user_SP],SP
+        PUSH    CS
+        POP     SS
+ASSUME  SS:DOSGROUP
+        MOV     SP,OFFSET DOSGROUP:DSKSTACK
+        INC     BYTE PTR [INDOS]
+        STI
+        CLD
+        PUSH    ES
+        PUSH    DS
+        PUSH    SS
+        POP     DS
+ASSUME  DS:DOSGROUP
+        invoke  GETBP
+        POP     DS
+ASSUME  DS:NOTHING
+        JC      ILEAVE
+        invoke  DSKREAD
+TLEAVE:
+        JZ      ILEAVE
+
+        IF      IBM
+; Translate the error code to ancient 1.1 codes
+        PUSH    ES
+        PUSH    CS
+        POP     ES
+        XOR     AH,AH                   ; Nul error code
+        MOV     CX,NUMERR               ; Number of possible error conditions
+        MOV     DI,OFFSET DOSGROUP:ERRIN   ; Point to error conditions
+        REPNE   SCASB
+        JNZ     LEAVECODE               ; Not found
+        MOV     AH,ES:[DI+NUMERR-1]     ; Get translation
+LEAVECODE:
+        POP     ES
+        ENDIF
+
+        STC
+ILEAVE:
+        POP     ES
+        CLI
+        DEC     BYTE PTR [INDOS]
+        MOV     SP,[user_SP]
+        MOV     SS,[user_SS]
+ASSUME  SS:NOTHING
+        STI
+        return
+ABSDRD  ENDP
+
+        procedure   ABSDWRT,FAR
+ASSUME  DS:NOTHING,ES:NOTHING,SS:NOTHING
+
+        CLI
+        MOV     [user_SS],SS
+        MOV     [user_SP],SP
+        PUSH    CS
+        POP     SS
+ASSUME  SS:DOSGROUP
+        MOV     SP,OFFSET DOSGROUP:DSKSTACK
+        INC     BYTE PTR [INDOS]
+        STI
+        CLD
+        PUSH    ES
+        PUSH    DS
+        PUSH    SS
+        POP     DS
+ASSUME  DS:DOSGROUP
+        invoke  GETBP
+        POP     DS
+ASSUME  DS:NOTHING
+        JC      ILEAVE
+        invoke  DSKWRITE
+        JMP     TLEAVE
+ABSDWRT ENDP
+
+
+
+        procedure   SYS_RETURN,NEAR
+        ASSUME  DS:NOTHING,ES:NOTHING
+        entry   SYS_RET_OK
+        call    get_user_stack
+        PUSH    [SI.user_F]
+        POPF
+        CLC
+        JMP     SHORT DO_RET
+
+        entry   SYS_RET_ERR
+        XOR     AH,AH                   ; hack to allow for smaller error rets
+        call    get_user_stack
+        PUSH    [SI.user_F]
+        POPF
+        STC
+DO_RET:
+        MOV     [SI.user_AX],AX         ; Really only sets AH
+        PUSHF
+        POP     [SI.user_F]             ; dump on his flags
+        return
+SYS_RETURN  ENDP
+
+do_ext
+
+CODE    ENDS
+        END
+

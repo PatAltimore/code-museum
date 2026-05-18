@@ -9,60 +9,90 @@ year: 1989
 author: "Jordan Mechner"
 slug: "master"
 order: 4
-description: "The master assembly file for Prince of Persia (1989), showcasing memory management, hardware interaction, and cinematic storytelling techniques on the Apple II."
-is_excerpt: true
-excerpt_lines: 200
+description: "The foundational assembly code for Prince of Persia, a cinematic platformer that revolutionized gaming in 1989."
 
 summary:
-  - point: "Bank-switched memory management to fit the game into 128K"
+  - point: "Bank-switched memory management to fit within 128K constraints"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank switching"
-  - point: "Use of rotoscoping for animation, a groundbreaking technique for video games"
+  - point: "Routines for loading rotoscoped animation data"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Direct hardware interaction with Apple II soft switches for graphics and sound"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
+  - point: "Disk drive control and error handling for Apple II"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
     link_label: "Apple II"
-  - point: "Custom routines for loading levels and managing game states"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Single-handed development by Jordan Mechner over four years"
-    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
-    link_label: "Jordan Mechner"
+  - point: "Double hi-res graphics setup for cinematic visuals"
+    link: "https://en.wikipedia.org/wiki/Apple_II_graphics"
+    link_label: "Apple II graphics"
+  - point: "Self-running attract mode showcasing the game's cinematic style"
+    link: "https://en.wikipedia.org/wiki/Attract_mode"
+    link_label: "Attract mode"
 
 enhancements:
   - id: "jump-table-master-routines"
     line_start: 16
     line_end: 31
-    title: "Jump table for core game routines"
+    title: "Jump Table for Core Game Routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines a jump table, a common technique in assembly programming to organize and quickly access subroutines. Each `jmp` instruction points to a key routine in the game, such as `FIRSTBOOT`, `LOADLEVEL`, or `ATTRACTMODE`. The programmer, Jordan Mechner, uses this table to centralize control over the game's main operations. In 1989, memory constraints on the Apple II required careful organization of code, and jump tables provided a way to efficiently manage control flow without wasting precious bytes. This design reflects the meticulous planning needed to fit a complex game like Prince of Persia into the limited 128K memory of the Apple II. The jump table also highlights the modular nature of Mechner's code, allowing for easy navigation and debugging. This pattern would later influence game development practices, as modularity became a cornerstone of software engineering."
-  - id: "rw18-disk-commands"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/VirtualBox_Windows_98B_08_10_2023_17_41_04_-_Booting_error.png/330px-VirtualBox_Windows_98B_08_10_2023_17_41_04_-_Booting_error.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "Result of booting a non-boot medium. Here a CD driver diskette is booted. Result is an output of several Unicode characters. (Public domain)"
+    content: "This section defines a jump table, a common technique in assembly programming to organize and quickly access subroutines. The table includes entries for key game functions such as booting, loading levels, saving/loading games, and entering attract mode. In the late 1980s, memory was scarce, and efficiency was paramount. Jordan Mechner, working solo, had to ensure the Apple II's limited resources were used optimally. By centralizing these jumps, he created a modular structure that allowed for easier debugging and updates. This design choice reflects the constraints of the Apple II, which relied on bank-switched memory to fit the game within 128K. The jump table concept persists in modern programming, albeit in more abstract forms like function pointers or virtual tables."
+  - id: "rw18-disk-drive-commands"
     line_start: 43
-    line_end: 67
-    title: "Disk commands for RW18 interface"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_Disk_II"
+    line_end: 68
+    title: "Disk Drive Commands for Apple II"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_drive"
     image_url: ""
     image_caption: ""
-    content: "Here, Mechner defines commands for the RW18 disk interface, which is responsible for reading and writing data to the Apple II's floppy disk system. Each command is represented by a hexadecimal code, such as `$00` for turning the drive on (`DrvOn`) or `$02` for seeking a track (`Seek`). These commands were essential for loading game levels, saving progress, and managing data on the limited storage medium of floppy disks. In the late 1980s, floppy disks were the primary storage medium for personal computers, and developers had to work within their constraints, such as slow read/write speeds and limited capacity. Mechner's direct interaction with the disk controller showcases his deep understanding of the Apple II hardware. This low-level control allowed him to optimize disk operations, ensuring smooth gameplay despite the hardware limitations. The RW18 interface is a testament to the ingenuity required to create immersive experiences on early computers."
-  - id: "soft-switches-apple-ii"
-    line_start: 133
-    line_end: 161
-    title: "Soft switches for Apple II hardware control"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    content: "This block defines commands for interacting with the Apple II's disk drive, including turning the drive on/off, seeking tracks, and reading/writing data. The Apple II's RW18 protocol was notoriously low-level, requiring programmers to manually handle operations like error checking and track increments. Mechner's code encapsulates these operations into reusable commands, showcasing his meticulous attention to detail. Disk operations were critical for Prince of Persia, as the game relied on loading large amounts of animation and level data dynamically. The RW18 commands highlight the technical challenges of the era, where developers had to work directly with hardware interfaces. These routines are a testament to Mechner's ability to balance cinematic ambition with technical pragmatism."
+  - id: "local-vars-memory-management"
+    line_start: 71
+    line_end: 83
+    title: "Local Variables and Memory Allocation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "This section lists the memory addresses for the Apple II's soft switches, which control hardware features like graphics modes, text display, and memory bank switching. For example, `$c05e` enables double high-resolution graphics (`DHIRESon`), while `$c004` switches the RAM to main memory (`RAMWRTmain`). These soft switches were a unique feature of the Apple II, allowing software to directly manipulate hardware settings without requiring additional hardware components. In the 1980s, this level of control was both a blessing and a challenge for developers. It enabled advanced features like the cinematic visuals in Prince of Persia but demanded a deep understanding of the machine's architecture. Mechner's use of these switches demonstrates his mastery of the Apple II platform and his ability to push its capabilities to the limit. The techniques used here laid the groundwork for future generations of game developers, who continued to explore the boundaries of hardware through creative programming."
-  - id: "firstboot-initialization"
+    content: "This section allocates memory for local variables, including buffers for background and character sets. Memory management was a critical aspect of Apple II programming, as the system had only 128K of RAM, split between main and auxiliary memory. Mechner's careful allocation ensures that essential game data like graphics and animations can be loaded and manipulated efficiently. The use of 'ds' (define storage) directives reflects the low-level nature of 6502 assembly, where every byte had to be accounted for. This meticulous approach allowed Prince of Persia to achieve its groundbreaking visuals and fluid animations despite the hardware limitations."
+  - id: "firstboot-initialization-routine"
     line_start: 186
-    line_end: 199
-    title: "FirstBoot: Initializing the game environment"
+    line_end: 227
+    title: "First Boot: Game Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
     image_caption: ""
-    content: "The `FIRSTBOOT` routine is the entry point for initializing the game environment when Prince of Persia starts. It begins by disabling mixed graphics mode (`MIXEDoff`) and setting the auxiliary memory bank (`setaux`). The routine then sets the `BBundID` byte to identify the disk side being used and loads high-resolution graphics tables and routines into main memory. This sequence is critical for preparing the Apple II to display the game's cinematic visuals and manage its complex gameplay. In the late 1980s, bootstrapping a program on the Apple II involved direct manipulation of hardware registers and memory banks, as operating systems were minimal and offered little abstraction. Mechner's careful orchestration of these steps reflects the challenges of working on a machine with limited resources. The `FIRSTBOOT` routine is not just a technical necessity; it's the foundation for the game's immersive experience, ensuring that the hardware is ready to deliver the groundbreaking animation and storytelling that Prince of Persia is known for."
+    content: "The FIRSTBOOT routine initializes the game by setting up memory, loading essential data, and preparing the system for gameplay. This includes configuring the Apple II's auxiliary memory, loading high-resolution graphics tables, and checking for compatibility with the Apple IIGS. The routine also starts the attract mode, a self-running demo designed to showcase the game's features and entice players. In the late 1980s, boot routines were critical for ensuring games could run smoothly on diverse hardware configurations. Mechner's code demonstrates his deep understanding of the Apple II's architecture, as he optimizes every step to fit the game's cinematic ambition within the system's constraints."
+  - id: "savegame-loadgame-routines"
+    line_start: 394
+    line_end: 433
+    title: "Save and Load Game Data"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
+    image_url: ""
+    image_caption: ""
+    content: "These routines handle saving and loading game progress by writing and reading 256 bytes of data to a specific track and sector on the disk. The Apple II's limited storage and lack of a standardized save system required developers to implement their own solutions. Mechner's approach, which uses an entire track on side 2 of the disk, reflects the trade-offs of the era: sacrificing disk space for reliability. This feature was crucial for a game like Prince of Persia, where players needed to save their progress in a challenging, cinematic adventure. The save/load routines highlight the ingenuity required to implement modern game features on vintage hardware."
+  - id: "attract-mode-self-running-demo"
+    line_start: 686
+    line_end: 709
+    title: "Attract Mode: Cinematic Showcase"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Attract_mode"
+    image_url: ""
+    image_caption: ""
+    content: "The ATTRACTMODE routine creates a self-running demo that showcases the game's cinematic visuals and storytelling. This feature was common in arcade games but less so on home computers like the Apple II. Mechner uses attract mode to highlight Prince of Persia's unique qualities, including its rotoscoped animations and dramatic narrative. The routine cycles through splash screens, credits, and prologue scenes, giving players a taste of the game's immersive experience. In 1989, attract mode was a marketing tool as much as a technical feature, designed to draw players into the game world. Mechner's implementation reflects his dual role as a programmer and storyteller, blending technical precision with artistic vision."
+  - id: "setup-dhires-double-hires-graphics"
+    line_start: 716
+    line_end: 724
+    title: "Setting Up Double Hi-Res Graphics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
+    image_url: ""
+    image_caption: ""
+    content: "This routine configures the Apple II's double hi-res graphics mode, a feature that allowed for higher resolution visuals by combining auxiliary and main memory. Double hi-res was a relatively new capability in the late 1980s, and Mechner leverages it to create the cinematic look of Prince of Persia. The routine begins by showing a black screen, then loads the necessary data for Stage 1. This setup was essential for the game's groundbreaking visuals, which included detailed character animations and lush environments. Mechner's use of double hi-res graphics demonstrates his ability to push the Apple II hardware to its limits, creating a visual experience that was ahead of its time."
+  - id: "epilog-ending-sequence"
+    line_start: 891
+    line_end: 914
+    title: "Epilog: The Cinematic Finale"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Epilogue"
+    image_url: ""
+    image_caption: ""
+    content: "The EPILOG routine delivers the game's dramatic ending, complete with music, visuals, and a fade-to-black sequence. This cinematic approach was rare for games of the era, especially on the Apple II. Mechner's code includes checks for the Apple IIGS, enabling a super hi-res version of the epilog for players with advanced hardware. The routine showcases Mechner's storytelling prowess, as he uses technical features like double hi-res graphics and synchronized music to create an emotional conclusion. The epilog reflects the game's ambition to be more than just a platformer—it aimed to be an interactive movie, a vision that influenced countless games in the decades that followed."
 
 ---
 
@@ -266,3 +296,1250 @@ FIRSTBOOT
  lda #2
  sta track
  jsr rw18
+ db RdGrp.Inc
+ hex e0,e1,e2,e3,e4,e5,e6,e7,e8
+ hex e9,ea,eb,ec,ed,00,00,00,00
+
+* Load as much of Stage 3 as we can keep
+
+ jsr loadperm
+
+* Turn off drive
+
+ jsr driveoff
+
+* Check for IIGS
+
+ jsr checkIIGS ;returns IIGS
+
+* Start attract loop
+
+ jsr initsystem ;in topctrl
+
+ lda #0
+ sta invert ;rightside up Y tables
+
+ lda #1
+ sta soundon ;Sound on
+
+ jmp AttractLoop
+
+*-------------------------------
+*
+*   Reload code & images
+*   (Temp routine for game development)
+*
+*-------------------------------
+RELOAD
+ do 0
+ jsr driveon
+
+ jsr loadperm
+ jsr LoadStage3
+
+ jmp driveoff
+ fin
+
+*-------------------------------
+*
+* Load music (1K)
+*
+* Load at $5000 mainmem & move to aux l.c.
+*
+*-------------------------------
+* Load music set 1 (title)
+
+loadmusic1
+ jsr setmain
+ lda #34
+ sta track
+ jsr rw18
+ db RdSeq,$4e ;we only want $50-53
+]mm jsr setaux
+ jmp xmovemusic
+
+*-------------------------------
+* Load music set 2 (game)
+
+loadmusic2
+ jsr setmain
+ lda #20
+ sta track
+ jsr rw18
+ db RdGrp.Inc
+ hex 50,51,52,53,00,00,00,00,00
+ hex 00,00,00,00,00,00,00,00,00
+ jmp ]mm
+
+*-------------------------------
+* Load music set 3 (epilog)
+
+loadmusic3
+ jmp loadmusic1
+
+*-------------------------------
+setaux sta RAMRDaux
+ sta RAMWRTaux
+ rts
+
+setmain sta RAMRDmain
+ sta RAMWRTmain
+ rts
+
+*-------------------------------
+*
+*  D R I V E   O N
+*
+*  In: A = delay
+*      BBundID
+*
+*  Sets auxmem
+*
+*-------------------------------
+driveon lda #0
+driveon1 sta :delay
+
+ jsr setaux ;set auxmem
+
+* switch in bank 1 (RW18)
+
+ bit RWBANK1
+ bit RWBANK1 ;1st 4k bank
+
+* set Bbund ID
+
+ lda BBundID
+ sta :IDbyte
+
+ jsr rw18
+ db ModID
+:IDbyte hex a9 ;Bbund ID byte
+
+* turn on drive 1
+
+ jsr rw18
+ db DrvOn
+:drive hex 01
+:delay hex 00
+ rts
+
+*-------------------------------
+*
+*  D R I V E   O F F
+*
+*-------------------------------
+driveoff jsr rw18
+ db DrvOff
+
+* switch in bank 2
+
+ bit RWBANK2
+ bit RWBANK2 ;2nd 4k bank
+
+ sta $c010 ;clr kbd
+
+ jmp setaux ;& set auxmem
+
+*-------------------------------
+*
+*  Set first level/demo level
+*
+*-------------------------------
+set1stlevel
+ lda firstlevel
+ ldx firstlevel+1
+SetLevel sta params
+ stx params+1
+]rts rts
+
+setdemolevel
+ lda demolevel
+ ldx demolevel+1
+ jmp SetLevel
+
+*-------------------------------
+*
+* Check track 22 to make sure it's the right disk
+*
+* (Scratch page 2 mainmem--return w/mainmem set)
+*
+*-------------------------------
+checkdisk
+ jsr setaux
+ ldx #POPside2
+ stx BBundID
+
+ jsr driveon
+:loop jsr setmain
+ lda #22
+ sta track
+ jsr rw18
+ db RdGrpErr.Inc
+ hex 02,00,00,00,00,00,00,00,00
+ hex 00,00,00,00,00,00,00,00,00
+ bcc ]rts
+ jsr error
+ jmp :loop
+
+*-------------------------------
+*
+* Save/load game
+*
+* Write/read 256 bytes of data: sector 0, track 23, side 2
+* We scorch an entire track, but on side 2 we can afford it
+*
+*-------------------------------
+SAVEGAME
+ jsr checkdisk ;sets main
+
+ sta RAMRDaux
+ ldx #15
+:loop lda savedgame,x ;aux
+ sta $200,x ;main
+ dex
+ bpl :loop
+ sta RAMRDmain
+
+ lda #23
+ sta track
+ jsr rw18
+ db WrtGrpErr
+ hex 02,00,00,00,00,00,00,00,00
+ hex 00,00,00,00,00,00,00,00,00
+ bcc :ok
+ jsr whoop
+:ok jmp driveoff
+
+*-------------------------------
+LOADGAME
+ jsr checkdisk ;sets main
+
+ lda #23
+ sta track
+ jsr rw18
+ db RdGrp
+ hex 02,00,00,00,00,00,00,00,00
+ hex 00,00,00,00,00,00,00,00,00
+
+ sta RAMWRTaux
+ ldx #15
+:loop lda $200,x ;main
+ sta savedgame,x ;aux
+ dex
+ bpl :loop
+
+ jmp driveoff
+
+*-------------------------------
+*
+* Load alt. character set (chtable4)
+*
+* In: Y = CHset4
+*
+*-------------------------------
+LOADALTSET
+ sty newCHset
+
+ jsr driveon
+
+ jsr rdch4
+
+ jmp driveoff
+
+*-------------------------------
+*
+* L O A D   L E V E L
+*
+* In: bluepTRK, bluepREG
+*       TRK = track # (1-33)
+*       REG = region on track (0-1)
+*     A = BGset1; X = BGset2; Y = CHset4
+*
+* Load level into "working blueprint" buffer in auxmem;
+* game code will make a "backup copy" into aux l.c.
+* (which we can't reach from here).
+*
+* If bg & char sets in memory aren't right, load them in
+*
+*-------------------------------
+LOADLEVEL
+ sta newBGset1
+ stx newBGset2
+ sty newCHset
+
+ jsr driveon
+
+ jsr rdbluep ;blueprint
+ jsr rdbg1 ;bg set 1
+ jsr rdbg2 ;bg set 2
+ jsr rdch4 ;char set 4
+
+ jsr vidstuff
+
+ jmp driveoff
+
+*-------------------------------
+setbluep
+ lda bluepTRK
+ sta track
+ lda bluepREG
+]rts rts
+
+*-------------------------------
+vidstuff
+ lda BBundID
+ cmp #POPside2
+ bne ]rts
+ lda $c000
+ cmp #"^"
+ bne ]rts
+
+ jsr setmain
+ lda #12
+ sta track
+ jsr rw18
+ db RdGrp.Inc
+ hex 00,00,00,00,00,00,00,00,00
+ hex 00,00,00,0c,0d,0e,0f,10,11
+:loop jsr rw18
+ db RdSeq.Inc
+:sm hex 12
+ lda :sm
+ clc
+ adc #$12
+ sta :sm
+ cmp #$6c
+ bcc :loop
+ jsr driveoff
+ jsr setmain
+ jmp $c00
+
+*-------------------------------
+* Track data for alt bg/char sets
+*
+* Set #:        0  1  2  3  4  5  6
+
+bg1trk hex 05,00,07
+bg2trk hex 12,02,09
+ch4trk hex 0d,03,04,05,0a,0b
+ch4off hex 0c,00,06,0c,00,06
+
+*-------------------------------
+rdbg1 ldx newBGset1
+ cpx BGset1 ;already in memory?
+ beq :rts ;yes--no need to load
+ stx BGset1
+ lda bg1trk,x
+ sta track
+ jsr rw18
+ db RdSeq.Inc,$60
+ jsr rw18
+ db RdSeq.Inc,$72
+]rts
+:rts rts
+
+rdbg2 ldx newBGset2
+ cpx BGset2
+ beq ]rts
+ stx BGset2
+ lda bg2trk,x
+ sta track
+ jsr rw18
+ db RdSeq.Inc,$84
+ rts
+
+rdch4 ldx newCHset
+ cpx CHset
+ beq ]rts
+ stx CHset
+ lda ch4trk,x
+ sta track
+ lda ch4off,x
+ beq :off0
+ cmp #6
+ beq :off6
+ cmp #12
+ beq :off12
+ rts
+
+:off12 jsr rw18
+ db RdGrp.Inc
+ hex 00,00,00,00,00,00,00,00,00
+ hex 00,00,00,96,97,98,99,9a,9b
+ jsr rw18
+ db RdSeq.Inc,$9c
+ rts
+
+:off6 jsr rw18
+ db RdGrp.Inc
+ hex 00,00,00,00,00,00,96,97,98
+ hex 99,9a,9b,9c,9d,9e,9f,a0,a1
+ jsr rw18
+ db RdGrp.Inc
+ hex a2,a3,a4,a5,a6,a7,a8,a9,aa
+ hex ab,ac,ad,00,00,00,00,00,00
+ rts
+
+:off0 jsr rw18
+ db RdSeq.Inc,$96
+ jsr rw18
+ db RdGrp.Inc
+ hex a8,a9,aa,ab,ac,ad,00,00,00
+ hex 00,00,00,00,00,00,00,00,00
+]rts rts
+
+*-------------------------------
+*
+* read blueprint
+*
+*-------------------------------
+rdbluep
+ jsr setbluep
+ bne :reg1
+
+:reg0 jsr rw18
+ db RdGrpErr
+ hex b7,b8,b9,ba,bb,bc,bd,be,bf
+ hex 00,00,00,00,00,00,00,00,00
+ bcc ]rts
+ jsr error
+ jmp :reg0
+
+:reg1 jsr rw18
+ db RdGrpErr
+ hex 00,00,00,00,00,00,00,00,00
+ hex b7,b8,b9,ba,bb,bc,bd,be,bf
+ bcc ]rts
+ jsr error
+ jmp :reg1
+
+*-------------------------------
+*
+* Copy one DHires page to another
+*
+*-------------------------------
+copy1to2
+ lda #$40 ;dest
+ ldx #$20 ;org
+ bne copydhires
+
+copy2to1
+ lda #$20
+ ldx #$40
+
+copydhires
+ sta IMAGE+1 ;dest
+ stx IMAGE ;org
+
+ jsr _copy2000aux
+ jmp _copy2000 ;in hires
+
+*-------------------------------
+*
+*  Cut to princess screen
+*
+*-------------------------------
+CUTPRINCESS
+ jsr blackout
+ lda #1 ;seek track 0
+cutprincess1
+ jsr LoadStage2 ;displaces bgtab1-2, chtab4
+
+ lda #pacProom
+ jsr SngExpand
+
+ lda #$40
+ sta IMAGE+1
+ lda #$20
+ sta IMAGE ;copy page 1 to page 2
+ jmp _copy2000 ;in HIRES
+
+*-------------------------------
+*
+*  Epilog (You Win)
+*
+*-------------------------------
+EPILOG
+ lda #1
+ sta soundon
+ sta musicon
+ jsr blackout
+ jsr LoadStage1B
+
+ jsr Epilog
+
+ lda #POPside1
+ sta BBundID
+ sta $c010
+:loop lda $c000
+ bpl :loop ;fall thru
+
+*-------------------------------
+*
+*  A  T  T  R  A  C  T
+*
+*  Self-running "attract mode"
+*
+*-------------------------------
+ATTRACTMODE
+AttractLoop
+ lda #1
+ sta musicon
+
+ jsr SetupDHires
+
+ jsr PubCredit
+
+ jsr AuthorCredit
+
+ jsr TitleScreen
+
+ jsr Prolog1
+]princess
+ jsr PrincessScene
+
+ jsr SetupDHires
+
+ jsr Prolog2
+
+ jsr SilentTitle
+
+ jmp Demo
+
+*-------------------------------
+*
+* Set up double hi-res
+*
+*-------------------------------
+SetupDHires
+
+* Show black lo-res scrn
+
+ jsr blackout
+
+* Load in Stage 1 data
+
+ jmp LoadStage1A
+
+*-------------------------------
+*
+* "Broderbund Software Presents"
+*
+*-------------------------------
+PubCredit
+
+* Unpack splash screen into DHires page 1
+
+ jsr unpacksplash
+
+* Show DHires page 1
+
+ jsr setdhires
+
+* Copy to DHires page 2
+
+ jsr copy1to2
+
+ lda #44
+ jsr tpause
+
+* Unpack "Broderbund Presents" onto page 1
+
+ lda #delPresents
+ jsr DeltaExpPop
+
+ ldx #80
+ lda #s_Presents
+ jsr PlaySongI
+
+ jmp CleanScreen
+
+*-------------------------------
+*
+* Credit line disappears
+*
+*-------------------------------
+CleanScreen
+
+* Switch to DHires page 2
+* (credit line disappears)
+
+ lda PAGE2on
+
+* Copy DHires page 2 back to hidden page 1
+
+ jsr copy2to1
+
+* Display page 1
+
+ lda PAGE2off
+]rts rts
+
+*-------------------------------
+*
+* "A Game by Jordan Mechner"
+*
+*-------------------------------
+AuthorCredit
+
+ lda #42
+ jsr tpause
+
+* Unpack byline onto page 1
+
+ lda #delByline
+ jsr DeltaExpPop
+
+ ldx #80
+ lda #s_Byline
+ jsr PlaySongI
+
+* Credit line disappears
+
+ jmp CleanScreen
+
+*-------------------------------
+*
+* "Prince of Persia"
+*
+*-------------------------------
+SilentTitle
+ jsr unpacksplash
+
+ jsr copy1to2
+
+ lda #20
+ jsr tpause
+
+ lda #delTitle
+ jsr DeltaExpPop
+
+ lda #160
+ jmp tpause
+
+*-------------------------------
+TitleScreen
+ lda #38
+ jsr tpause
+
+* Unpack title onto page 1
+
+ lda #delTitle
+ jsr DeltaExpPop
+
+ ldx #140
+ lda #s_Title
+ jsr PlaySongI
+
+* Credit line disappears
+
+ jmp CleanScreen
+
+*-------------------------------
+*
+*  Prologue, part 1
+*
+*-------------------------------
+Prolog1
+ lda #pacProlog
+ sta RAMRDaux
+ jsr DblExpand
+
+ ldx #250
+ lda #s_Prolog
+ jmp PlaySongI
+
+*-------------------------------
+*
+*  Princess's room: Vizier starts hourglass
+*
+*-------------------------------
+PrincessScene
+ jsr blackout
+
+ jsr ReloadStuff ;wiped out by dhires titles
+
+ lda #0 ;don't seek track 0
+ jsr cutprincess1
+
+ lda #0 ;cut #0 (intro)
+ jmp xplaycut ;aux l.c. via grafix
+
+*-------------------------------
+*
+*  Prologue, part 2
+*
+*-------------------------------
+Prolog2
+ lda #pacSumup
+ sta RAMRDmain
+ jsr DblExpand
+
+ jsr setdhires
+
+ ldx #250
+ lda #s_Sumup
+ jmp PlaySongI
+
+*-------------------------------
+*
+* Epilog
+*
+*-------------------------------
+Epilog
+ lda IIGS
+ bne SuperEpilog ;super hi-res ending if IIGS
+
+ lda #pacEpilog
+ sta RAMRDaux
+ jsr DblExpand
+
+ jsr setdhires
+
+ lda #s_Epilog
+ jsr PlaySongNI
+ lda #15
+ jsr pauseNI
+ jsr unpacksplash
+ lda #75
+ jsr pauseNI
+
+ lda #s_Curtain
+ jsr PlaySongNI
+ lda #60
+ jsr pauseNI
+
+ jmp blackout
+
+unpacksplash
+ lda #pacSplash
+ sta RAMRDaux
+ jmp DblExpand
+
+*-------------------------------
+*
+* Super hi-res epilog (IIGS only)
+*
+*-------------------------------
+SuperEpilog
+ lda #1 ;aux
+ jsr fadein ;fade in epilog screen
+ jsr setaux
+
+ lda #s_Epilog
+ jsr PlaySongNI
+
+ jsr fadeout
+ lda #0 ;main
+ jsr fadein ;fade to palace screen
+ jsr setaux
+
+ lda #80
+ jsr pauseNI
+
+ lda #s_Curtain
+ jsr PlaySongNI
+
+ lda #255
+ jsr pauseNI
+
+ jsr fadeout ;...and fade to black
+
+ jmp * ;and hang (because it's too much
+;trouble to restart)
+
+*-------------------------------
+*
+*  Demo sequence
+*
+*-------------------------------
+Demo
+ jsr blackout
+
+ jsr LoadStage3
+
+ jsr setdemolevel
+ jsr rdbluep
+
+ jsr driveoff
+
+* Go to TOPCTRL
+
+ lda #0
+ jmp start
+
+*-------------------------------
+* non-interruptible pause
+
+pauseNI
+:loop sta pausetemp
+ ldy #20
+:loop1 ldx #0
+:loop2 dex
+ bne :loop2
+ dey
+ bne :loop1
+
+ lda pausetemp
+ sec
+ sbc #1
+ bne :loop
+]rts rts
+
+*-------------------------------
+*
+*  Start game? (if key or button pressed)
+*
+*-------------------------------
+StartGame?
+ jsr musickeys
+ cmp #$80 ;key or button press?
+ bcc ]rts ;no
+
+ do FinalDisk
+ else
+ cmp #kdemo ;temp!
+ bne :1
+ jmp Demo
+:1 cmp #kprincess ;temp!
+ bne :2
+ jmp ]princess
+ fin
+
+:2 cmp #krestart
+ bne :3
+ jmp AttractLoop
+:3 ;fall thru to DOSTARTGAME
+*-------------------------------
+*
+*  Start a game
+*
+*-------------------------------
+DOSTARTGAME
+ jsr blackout
+
+* Turn on drive & load Stage 3 routines
+
+:1 jsr LoadStage3
+
+* Load 1st level
+
+ jsr set1stlevel
+
+ jsr rdbluep
+
+* Turn off drive & set aux
+
+ jsr driveoff
+
+* Go to TOPCTRL
+
+ lda #1
+ sta musicon
+
+ do DemoDisk
+ else
+
+ lda keypress
+ cmp #kresume
+ bne :newgame
+
+* Resume old game
+
+ lda #4 ;arbitrary
+ jmp startresume
+
+ fin
+
+* Start new game
+
+:newgame
+ lda #1
+ jmp start
+
+*-------------------------------
+*
+* Load permanent code & data
+* (only once)
+*
+*-------------------------------
+loadperm
+ lda #3
+ sta track
+
+ jsr setaux
+
+ jsr rw18
+ db RdSeq.Inc,$0e
+
+ jsr rw18
+ db RdGrp.Inc
+ hex 04,05,06,07,08,09,0a,0b,0c
+ hex 0d,20,21,22,23,24,25,26,27
+
+ jsr setmain
+ lda #9
+ sta track
+ jsr rw18
+ db RdSeq.Inc,$84
+ jsr rw18
+ db RdSeq.Inc,$96
+
+ jsr rw18
+ db RdSeq.Inc,$08
+
+ jsr rw18
+ db RdGrp.Inc
+ hex 1a,1b,1c,1d,1e,1f,a8,a9,aa
+ hex ab,ac,ad,ae,af,b0,b1,b2,b3
+
+ jsr rw18
+ db RdGrp.Inc
+ hex b4,b5,b6,b7,b8,b9,ba,bb,bc
+ hex bd,be,bf,00,00,00,00,00,00
+
+*-------------------------------
+*
+* Load aux l.c. stuff (tracks 19-21 & 34)
+* (includes music set 1)
+*
+* Load into main hires area & move to aux l.c.
+*
+*-------------------------------
+ lda #19
+ sta track
+
+ jsr rw18
+ db RdGrp.Inc
+ hex 00,00,20,21,22,23,24,25,26
+ hex 27,28,29,2a,2b,2c,2d,2e,2f
+
+ jsr rw18
+ db RdGrp.Inc
+ hex 00,00,00,00,30,31,32,33,34
+ hex 35,36,37,38,39,3a,3b,3c,3d
+ jsr rw18
+ db RdSeq.Inc,$3e
+
+ lda #34
+ sta track
+ jsr rw18
+ db RdGrp.Inc
+ hex 00,00,50,51,52,53,54,55,56
+ hex 57,58,59,5a,5b,5c,5d,5e,5f
+
+ jsr setaux
+ lda #1
+ sta MSset
+
+ jsr setmain
+ jmp Tmoveauxlc
+
+*-------------------------------
+*
+*  Stage 1: static dbl hires screens -- no animation
+*  Stage 2: character animation only (bg is unpacked)
+*  Stage 3: full game animation
+*
+*-------------------------------
+*
+* Load Stage 1 data (sida A)
+*
+*-------------------------------
+]lsub sta track
+:test jsr rw18
+ db RdSeqErr.Inc,$40
+ bcc :ok
+ jsr error
+ jmp :test
+:ok
+ jsr rw18
+ db RdSeq.Inc,$52
+ jsr rw18
+ db RdSeq.Inc,$64
+ jsr rw18
+ db RdSeq.Inc,$76
+ jsr rw18
+ db RdSeq.Inc,$88
+ rts
+
+LoadStage1A
+ jsr driveon
+
+ lda #22
+ jsr ]lsub
+
+ jsr setmain
+ jsr rw18
+ db RdSeq.Inc,$60
+ jsr rw18
+ db RdSeq.Inc,$72
+
+ jsr loadmusic1
+
+ jsr setaux
+ lda #$ff
+ sta BGset1
+ sta BGset2
+ sta CHset
+
+ jmp driveoff
+
+*-------------------------------
+*
+*  Load stage 1 (side B)
+*
+*-------------------------------
+LoadStage1B
+ jsr driveon
+
+ jsr loadmusic3 ;epilog
+
+ lda IIGS
+ bne :shires ;Super hi-res ending only if IIGS
+
+ lda #18
+ jsr ]lsub
+ jmp driveoff
+
+:shires jsr loadsuper ;in unpack
+ jmp driveoff
+
+*-------------------------------
+*
+* Reload 2000-6000 auxmem
+* (wiped out by dhires titles)
+*
+*-------------------------------
+ReloadStuff
+ jsr driveon
+
+:test lda #4
+ sta track
+ jsr rw18
+ db RdGrpErr
+ hex 00,00,00,00,00,00,00,00,00
+ hex 00,20,21,22,23,24,25,26,27
+ bcc :ok
+ jsr error
+ jmp :test
+:ok
+ lda #15
+ sta track
+ jsr rw18
+ db RdSeq.Inc,$28
+ jsr rw18
+ db RdSeq.Inc,$3a
+ jsr rw18
+ db RdSeq.Inc,$4c
+
+ jmp driveoff
+
+*-------------------------------
+*
+*  Load stage 2 data (6000-a800)
+*
+*-------------------------------
+LoadStage2
+ ldx BBundID
+ cpx #POPside2
+ beq LoadStage2B
+
+LoadStage2A
+ jsr driveon
+
+ lda #0
+ jsr loadch7 ;side A only
+
+ lda #29
+]ls2 sta track
+
+:test jsr rw18
+ db RdSeqErr.Inc,$60
+ bcc :ok
+ jsr error
+ jmp :test
+:ok
+ jsr rw18
+ db RdSeq.Inc,$72
+ jsr rw18
+ db RdSeq.Inc,$84
+ jsr rw18
+ db RdGrp.Inc
+ hex 96,97,98,99,9a,9b,9c,9d,9e
+ hex 00,00,00,00,00,00,00,00,00
+
+ lda #$ff
+ sta BGset1
+ sta BGset2
+ sta CHset
+
+ jmp driveoff
+
+* Load chtable7 (side A only)
+
+loadch7
+ sta recheck0
+:test lda #28
+ sta track
+ jsr rw18
+ db RdGrpErr.Inc
+ hex 00,00,00,00,00,00,00,00,00
+ hex 00,00,00,00,9f,a0,a1,a2,a3
+ bcc :ok
+ jsr error
+ jmp :test
+:ok
+]rts rts
+
+*-------------------------------
+*
+*  Load stage 2 routines (side B)
+*
+*-------------------------------
+LoadStage2B
+ jsr driveon
+
+ lda #24
+ bne ]ls2
+
+*-------------------------------
+*
+*  Load stage 3
+*  Full version (from stage 1)
+*
+*  Reload 2000-AC00 auxmem, 6000-7200 mainmem
+*
+*-------------------------------
+LoadStage3
+ jsr driveon
+
+ lda #4
+ sta track
+
+:loop jsr rw18
+ db RdGrpErr.Inc
+ hex 00,00,00,00,00,00,00,00,00
+ hex 00,20,21,22,23,24,25,26,27
+ bcc :ok
+ jsr error
+ jmp :loop
+:ok
+ jsr rw18
+ db RdSeq.Inc,$60
+ jsr rw18
+ db RdSeq.Inc,$72 ;bgtable1
+
+ jsr setmain
+ jsr rw18
+ db RdSeq.Inc,$60
+ jsr rw18
+ db RdSeq.Inc,$72
+
+ jsr setaux
+
+ lda #13
+ sta track
+ jsr rw18
+ db RdGrp.Inc
+ hex 00,00,00,00,00,00,00,00,00
+ hex 00,00,00,96,97,98,99,9a,9b
+ jsr rw18
+ db RdSeq.Inc,$9c ;chtable4
+ jsr rw18
+ db RdSeq.Inc,$28
+ jsr rw18
+ db RdSeq.Inc,$3a
+ jsr rw18
+ db RdSeq.Inc,$4c
+ jsr rw18
+ db RdSeq.Inc,$84 ;bgtable2
+
+ lda #0
+ sta BGset1
+ sta BGset2
+ sta CHset
+
+ jsr loadmusic2
+
+ jmp setaux
+
+*-------------------------------
+*
+* Play song--interruptible & non-interruptible
+*
+* (Enter & exit w/ bank 2 switched in)
+*
+* In: A = song #
+*     X = length to pause if sound is turned off
+*
+*-------------------------------
+PlaySongNI ;non-interruptible
+;(& ignores sound/music toggles)
+ jsr setaux
+ jsr xminit
+:loop jsr xmplay
+ cmp #0
+ bne :loop
+]rts rts
+
+*-------------------------------
+PlaySongI ;interruptible
+ jsr setaux
+ beq ]rts
+
+ tay
+ lda musicon
+ and soundon
+ beq :pause
+
+ tya
+ jsr xminit
+:loop jsr StartGame?
+ jsr xmplay
+ cmp #0
+ bne :loop
+]rts rts
+
+:pause txa ;falls thru to tpause
+*-------------------------------
+*
+*  In: A = delay (max = 255)
+*
+*-------------------------------
+tpause
+:loop sta pausetemp
+
+ ldy #2
+:loop1 ldx #0
+:loop2 jsr StartGame?
+ dex
+ bne :loop2
+ dey
+ bne :loop1
+
+ lda pausetemp
+ sec
+ sbc #1
+ bne :loop
+]rts rts
+
+*-------------------------------
+*
+* Disk error
+*
+* Prompt user for correct disk side & wait for keypress
+*
+*-------------------------------
+error
+ jsr driveoff
+
+ jsr prompt
+
+ jmp driveon
+
+*-------------------------------
+ lst
+eof ds 1
+ usr $a9,1,$a80,*-org
+ lst off

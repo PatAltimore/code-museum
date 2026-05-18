@@ -9,70 +9,76 @@ year: 1989
 author: "Jordan Mechner"
 slug: "seqtable"
 order: 3
-description: "Animation sequence table for Prince of Persia's cinematic platforming"
-is_excerpt: true
-excerpt_lines: 200
+description: "Animation sequences for Prince of Persia's cinematic platforming, encoded in 6502 assembly."
 
 summary:
   - point: "Sequence table defines animation states and transitions"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     link_label: "Prince of Persia"
-  - point: "Rotoscoping inspired realistic character movement"
+  - point: "Rotoscoping technique captured realistic character movements"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Bank-switched memory used to fit animations into 128K"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
+  - point: "Bank-switched memory used to fit the game into 128K"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank switching"
 
 enhancements:
-  - id: "seqtable-instructions"
+  - id: "sequence-table-instructions"
     line_start: 10
     line_end: 24
-    title: "Command shortcuts for animation logic"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Ranger-Idle.gif/330px-Ranger-Idle.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Character animation, video game sprite made using Adobe Animate CC0 Public Domain (CC0)"
-    content: "These lines define symbolic constants for various animation commands, such as `goto`, `up`, `down`, and `die`. Each constant is assigned a negative numerical value, which will later be used to encode sequences of actions in the animation system. In 1989, Jordan Mechner was working within the constraints of the Apple II's 6502 processor, which had limited memory and processing power. By using symbolic constants, he could make the code more readable and manageable while ensuring efficient execution. This approach reflects the careful planning required to fit a cinematic platformer into the Apple II's 128K memory. These constants were used to control the transitions between animation states, enabling fluid and realistic character movement. The use of negative values was likely a deliberate choice to distinguish commands from other data types in the sequence table."
+    title: "Defining the language of animation transitions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RagDoll_demo_OGRE_Newton_1.png/330px-RagDoll_demo_OGRE_Newton_1.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "RagDoll demo OGRE Newton 1 (LGPL)"
+    content: "This section defines constants representing animation transitions, such as 'goto', 'aboutface', 'up', and 'down'. These are used throughout the code to describe how the character moves between different states. In 1989, Jordan Mechner was pioneering the cinematic platformer genre, aiming for fluid, lifelike animations. The Apple IIe's hardware constraints meant every byte of memory was precious, and encoding these transitions as compact constants was a necessity. Mechner's background in film influenced his approach, as he sought to make the game feel like a movie. These constants form the backbone of the game's animation logic, allowing for seamless transitions between states like running, jumping, and falling."
   - id: "sequence-table-data"
     line_start: 33
     line_end: 146
-    title: "Mapping animation states to routines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Mapping animations to memory addresses"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
-    content: "This section defines the sequence table, which maps animation states to their corresponding routines. Each state is represented by a label (e.g., `:1`, `:2`) and a pointer to the routine that handles it (e.g., `dw startrun`, `dw stand`). The table includes a wide range of animations, from basic movements like running and jumping to complex actions like sword fighting and drinking potions. Mechner's use of rotoscoping—tracing live-action footage of his brother performing these moves—allowed him to create realistic animations that were groundbreaking for the time. The sequence table is a testament to Mechner's meticulous attention to detail, as he had to manually encode each animation and ensure smooth transitions between states. This system laid the foundation for the game's cinematic feel, which was a major innovation in platforming games. The table also highlights the constraints of the Apple II, as Mechner had to fit all these animations into the limited memory available."
+    content: "The sequence table maps animation states to memory addresses, each pointing to specific routines or data blocks that define how the character moves. For example, 'startrun' and 'standjump' are linked to routines that handle those actions. This table is the heart of the game's animation system, enabling the character to transition fluidly between states. Mechner's use of rotoscoping—tracing over filmed footage of his brother performing the moves—allowed him to create realistic animations that were groundbreaking for the time. The Apple IIe's limited memory required careful organization, and this table ensured that animations could be efficiently accessed and executed. The cinematic feel of Prince of Persia owes much to this meticulous encoding of movement."
   - id: "running-animation"
     line_start: 151
     line_end: 154
-    title: "Defining the running animation cycle"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    title: "Breaking down the running cycle"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
-    content: "The `running` routine defines the animation cycle for the character's running motion. It uses a combination of commands (`act`, `goto`) and pointers (`dw runcyc1`) to orchestrate the sequence of frames. Running is a fundamental action in Prince of Persia, as the game's platforming challenges often require precise timing and movement. Mechner's design ensures that the running animation is smooth and responsive, enhancing the player's immersion. The use of a separate routine for running reflects the modular nature of the game's animation system, which allowed Mechner to reuse and adapt routines for different contexts. This approach was crucial for fitting the game's complex animations into the Apple II's limited memory."
-  - id: "start-run-animation"
-    line_start: 159
-    line_end: 177
-    title: "Transitioning into a running state"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_animation"
-    image_url: ""
-    image_caption: ""
-    content: "The `startrun` routine handles the transition from a standing state to a running state. It defines a sequence of frames (`runstt1` to `runstt6`) that gradually accelerate the character into full motion. This attention to detail was part of Mechner's effort to create realistic animations that mirrored human movement. The routine also includes the running cycle (`runcyc1` to `runcyc8`), which loops to sustain the running motion. In 1989, animation systems like this were rare in video games, as most platformers used simple, repetitive sprites. Mechner's approach was inspired by his background in filmmaking, where he learned the importance of timing and fluidity in motion. The `startrun` routine exemplifies how Mechner combined technical ingenuity with artistic vision to push the boundaries of what was possible on the Apple II."
+    content: "The 'running' routine defines the character's running animation, using a series of frames and transitions encoded as 'db' (define byte) and 'dw' (define word) instructions. Each frame corresponds to a specific movement, creating the illusion of fluid motion. Mechner's rotoscoping technique was critical here, as he traced over filmed footage to capture the subtleties of human movement. On the Apple IIe, achieving this level of realism was a technical marvel, given the machine's limited graphical capabilities. The running animation became iconic, setting a standard for lifelike movement in games. It also demonstrated how film techniques could be adapted to interactive media, influencing game design for decades."
   - id: "stand-animation"
     line_start: 182
     line_end: 186
-    title: "Idle animation for standing still"
+    title: "The calm before the action"
     wikipedia_url: "https://en.wikipedia.org/wiki/Idle_animation"
     image_url: ""
     image_caption: ""
-    content: "The `stand` routine defines the animation for the character standing still. It uses a simple sequence (`db act,0`, `db 15`) to maintain the idle state. While seemingly trivial, idle animations like this add a layer of realism to the game, making the character feel alive even when not in motion. In the context of the Apple II, where every byte of memory was precious, including an idle animation was a deliberate choice that reflected Mechner's commitment to creating a cinematic experience. The routine also loops back to itself (`dw stand`), ensuring that the character remains in the idle state until another action is triggered. This design decision highlights the modularity of Mechner's animation system, which allowed him to create complex behaviors with minimal code."
-  - id: "alert-stand-animation"
-    line_start: 191
-    line_end: 196
-    title: "Alert stance for heightened tension"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    content: "The 'stand' routine represents the character's idle state, where no movement occurs. This seemingly simple animation is crucial for maintaining the game's cinematic feel, as it gives the character a sense of presence even when stationary. Mechner's attention to detail ensured that every frame contributed to the game's realism. In 1989, idle animations were not a given in games, but they added depth and immersion. On the Apple IIe, encoding this state efficiently was vital, as memory constraints were tight. The 'stand' animation is a reminder of the game's film-inspired approach, where even moments of stillness were carefully crafted."
+  - id: "arise-skeleton-animation"
+    line_start: 201
+    line_end: 209
+    title: "Animating the undead: skeleton's rise"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `goalertstand` routine transitions the character into an alert stance, signaling heightened tension or readiness. This animation is triggered in situations where the character needs to be prepared for immediate action, such as encountering an enemy or navigating a dangerous environment. The routine loops back to itself (`dw :loop`), maintaining the alert state until interrupted. Mechner's inclusion of an alert stance reflects his cinematic approach to game design, where character animations convey emotion and narrative context. In 1989, this level of detail was rare in video games, as most characters had limited animations that did not change based on context. The `goalertstand` routine demonstrates how Mechner used animation to enhance the storytelling and immersion of Prince of Persia."
+    content: "The 'arise' routine animates the skeleton's dramatic rise, a moment that showcases the game's cinematic storytelling. This sequence uses precise byte definitions to control the skeleton's movements, creating an eerie and lifelike effect. Mechner's film background is evident here, as he aimed to evoke tension and drama. The Apple IIe's graphical limitations meant that every frame had to be meticulously crafted to achieve the desired impact. This animation is a testament to Mechner's ability to blend storytelling and gameplay, making the skeleton's rise a memorable moment in gaming history."
+  - id: "jumpfall-animation"
+    line_start: 688
+    line_end: 698
+    title: "Capturing the physics of falling"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    image_url: ""
+    image_caption: ""
+    content: "The 'jumpfall' routine simulates the character's fall after a jump, using a sequence of frames to depict the descent. Each frame adjusts the character's position, creating a realistic sense of gravity. In 1989, physics-based animations were rare, especially on hardware as limited as the Apple IIe. Mechner's rotoscoping technique allowed him to capture the nuances of falling, making the animation feel natural. This routine highlights the game's commitment to realism, which was revolutionary for its time. The 'jumpfall' animation set a precedent for physics-driven gameplay, influencing the development of more advanced physics engines in later games."
+  - id: "princess-embrace-animation"
+    line_start: 1604
+    line_end: 1619
+    title: "Animating emotional connection: the embrace"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The 'Pembrace' routine animates the princess's embrace, a tender moment that underscores the game's emotional depth. This sequence uses a series of byte definitions to choreograph the princess's movements, capturing the intimacy of the gesture. Mechner's film background shines through, as he sought to convey emotion through animation—a rarity in games at the time. The Apple IIe's hardware constraints made this a challenging task, but Mechner's innovative approach allowed him to create a scene that resonated with players. The embrace is a poignant example of how animation can enhance storytelling in games, paving the way for more emotionally driven narratives."
 
 ---
 
@@ -276,3 +282,1519 @@ alertstand
 *-------------------------------
 * a r i s e (skeleton)
 *-------------------------------
+arise
+ db act,5
+ db chx,10,177
+ db 177
+ db chx,-7,chy,-2,178
+ db chx,5,chy,2,166
+ db chx,-1
+ db goto
+ dw ready
+
+*-------------------------------
+* g u a r d e n g a r d e
+*-------------------------------
+guardengarde
+ db goto
+ dw ready
+
+*-------------------------------
+* e n  g a r d e
+*-------------------------------
+engarde
+ db act,1
+ db chx,2
+ db 207
+ db 208,chx,2
+ db 209,chx,2
+ db 210,chx,3
+ready
+ db act,1
+ db tap,0
+ db 158
+ db 170
+:loop db 171
+
+ db goto
+ dw :loop
+
+*-------------------------------
+* s t a b b e d
+*-------------------------------
+stabbed
+ db act,5
+ db setfall,-1,0
+ db 172,chx,-1,chy,1
+ db 173,chx,-1
+ db 174,chx,-1,chy,2
+; db 175
+ db chx,-2,chy,1
+ db chx,-5,chy,-4
+ db goto
+ dw guy8
+
+*-------------------------------
+* s t r i k e - a d v a n c e
+*-------------------------------
+;from guy6 (154)
+strikeadv
+ db act,1
+ db setfall,1,0
+ db 155
+ db chx,2,165
+ db chx,-2
+ db goto
+ dw ready
+
+*-------------------------------
+* s t r i k e - r e t r e a t
+*-------------------------------
+ ;from guy6 (154)
+strikeret
+ db act,1
+ db setfall,-1,0
+ db 155,156,157
+ db 158
+ db goto
+ dw retreat
+
+*-------------------------------
+* a d v a n c e
+*-------------------------------
+advance
+ db act,1
+ db setfall,1,0
+ db chx,2,163
+ db chx,4,164
+ db 165
+
+ db goto
+ dw ready
+
+*-------------------------------
+* f a s t   a d v a n c e
+*-------------------------------
+fastadvance
+ db act,1
+ db setfall,1,0
+ db chx,6,164
+ db 165
+
+ db goto
+ dw ready
+
+*-------------------------------
+* r e t r e a t
+*-------------------------------
+retreat
+ db act,1
+ db setfall,-1,0
+ db chx,-3,160
+ db chx,-2,157
+
+ db goto
+ dw ready
+
+*-------------------------------
+* s t r i k e
+*-------------------------------
+strike
+ db act,1
+ db setfall,-1,0
+ db 168
+
+faststrike
+ db act,1
+guy3 db 151
+guy4 db act,1
+ db 152
+;-->blockedstrike
+guy5 db 153
+guy6 db 154
+guy7 db act,5 ;clr flags to avoid repeat strike
+ db 155
+guy8 db act,1
+ db 156
+guy9 db  157
+
+ db goto
+ dw ready
+
+*-------------------------------
+* b l o c k e d   s t r i k e
+*-------------------------------
+blockedstrike
+ db act,1
+ db 167
+;--> strikeblock
+ db goto
+ dw guy7
+
+*-------------------------------
+* b l o c k   t o   s t r i k e
+*-------------------------------
+blocktostrike
+ db 162
+ db goto
+ dw guy4
+
+*-------------------------------
+* r e a d y   b l o c k
+*-------------------------------
+readyblock
+ db 169
+blocking
+ db 150
+ ;--> blocktostrike/retreat
+ db goto
+ dw ready
+
+*-------------------------------
+* s t r i k e   t o   b l o c k
+*-------------------------------
+strikeblock
+ db 159
+ db 160
+ db goto
+ dw blocking
+
+*-------------------------------
+* l a n d   e n   g a r d e
+*-------------------------------
+landengarde
+ db act,1
+ db jard
+
+ db goto
+ dw ready
+
+*-------------------------------
+* b u m p   e n   g a r d e   ( f o r w a r d )
+*-------------------------------
+bumpengfwd
+ db act,5
+ db chx,-8
+
+ db goto
+ dw ready
+
+*-------------------------------
+* b u m p   e n   g a r d e   ( b a c k )
+*-------------------------------
+bumpengback
+ db act,5
+ db 160
+ db 157
+ db goto
+ dw ready
+
+*-------------------------------
+* f l e e
+*-------------------------------
+flee
+ db act,7
+ db chx,-8
+
+ db goto
+ dw turn
+
+*-------------------------------
+* t u r n   e n   g a r d e
+*-------------------------------
+turnengarde
+ db act,5
+ db aboutface,chx,5
+
+ db goto
+ dw retreat
+
+*-------------------------------
+*  a l e r t  t u r n (for enemies)
+*-------------------------------
+alertturn
+ db act,5
+
+ db aboutface,chx,18
+
+ db goto
+ dw goalertstand
+
+*-------------------------------
+*  s t a n d j u m p
+*-------------------------------
+standjump
+ db act,1
+ db 16
+ db 17,chx,2
+ db 18,chx,2
+ db 19,chx,2
+ db 20,chx,2
+ db 21,chx,2
+ db 22,chx,7
+ db 23,chx,9
+ db 24,chx,5,chy,-6 ;chx 6?
+sjland db 25,chx,1,chy,6
+ db 26,chx,4
+ db jard
+ db tap,1,27,chx,-3
+ db 28,chx,5
+ db 29
+ db tap,1,30
+ db 31
+ db 32
+ db 33,chx,1
+ db goto
+ dw stand
+
+*-------------------------------
+*  r u n j u m p
+*-------------------------------
+runjump
+ db act,1
+ db tap,1,34,chx,5
+ db 35,chx,6
+ db 36,chx,3
+ db 37,chx,5
+ db tap,1,38,chx,7
+ db 39,chx,12,chy,-3
+ db 40,chx,8,chy,-9
+ db 41,chx,8,chy,-2
+ db 42,chx,4,chy,11
+ db 43,chx,4,chy,3
+rjlandrun
+ db 44,chx,5
+ db jard,tap,1
+ db goto
+ dw runcyc1
+
+*-------------------------------
+*  r u n  d i v e  r o l l
+*-------------------------------
+rdiveroll
+ db act,1
+
+ db chx,1
+ db 107,chx,2
+ db chx,2
+ db 108
+ db chx,2
+ db 109
+ db chx,2
+ db 109
+ db chx,2
+:crouch db 109
+ db goto
+ dw :crouch
+
+*-------------------------------
+*  s t a n d  d i v e  r o l l
+*-------------------------------
+sdiveroll
+
+*-------------------------------
+*  c r a w l
+*-------------------------------
+crawl
+ db act,1
+ db chx,1,110
+ db 111,chx,2
+ db 112
+
+ db chx,2
+ db 108
+ db chx,2
+:crouch db 109
+ db goto
+ dw :crouch
+
+*-------------------------------
+*  t u r n  d r a w
+*-------------------------------
+turndraw
+ db act,7
+ db aboutface,chx,6
+ db 45,chx,1
+ db 46
+ db goto
+ dw engarde
+
+*-------------------------------
+*  t u r n
+*-------------------------------
+turn
+ db act,7
+ db aboutface,chx,6
+ db 45,chx,1
+ db 46,chx,2
+ db 47,chx,-1
+finishturn
+ db 48,chx,1
+ db 49,chx,-2
+ db 50,51,52
+ db goto
+ dw stand
+
+*-------------------------------
+*  t u r n r u n
+*  (from frame 48)
+*-------------------------------
+turnrun
+ db act,1
+ db chx,-1
+ db goto
+ dw runstt1
+
+*-------------------------------
+*  r u n t u r n
+*-------------------------------
+runturn
+ db act,1
+ db chx,1
+ db  53,chx,1
+ db tap,1,54,chx,8
+ db 55
+ db tap,1,56,chx,7
+ db 57,chx,3
+ db 58,chx,1
+ db 59
+ db 60,chx,2
+ db 61,chx,-1
+ db 62
+ db 63
+ db 64,chx,-1
+ db 65,chx,-14
+ db aboutface,goto
+ dw runcyc7
+
+*-------------------------------
+*  f i g h t f a l l  (backward)
+*-------------------------------
+fightfall
+ db act,3
+ db chy,-1
+
+ db 102,chx,-2,chy,6
+ db 103,chx,-2,chy,9
+ db 104,chx,-1,chy,12
+ db 105,chx,-3
+
+ db setfall,0,15
+ db goto
+ dw freefall
+
+*-------------------------------
+*  e n e m y  f i g h t  f a l l
+*-------------------------------
+efightfall
+ db act,3
+ db chy,-1,chx,-2
+
+ db 102,chx,-3,chy,6
+ db 103,chx,-3,chy,9
+ db 104,chx,-2,chy,12
+ db 105,chx,-3
+;for now--ultimately we want enemy
+;shapes in here
+ db setfall,0,15
+ db goto
+ dw freefall
+
+*-------------------------------
+*  e n e m y  f i g h t  f a l l  f w d
+*-------------------------------
+efightfallfwd
+ db act,3
+ db chx,1,chy,-1
+
+ db 102,chx,2,chy,6
+ db 103,chx,-1,chy,9
+ db 104,chy,12
+ db 105,chx,-2
+;for now--ultimately we want enemy
+;shapes in here
+ db setfall,1,15
+ db goto
+ dw freefall
+
+
+*-------------------------------
+*  s t e p f a l l
+*-------------------------------
+stepfall ;from #8 (run-11)
+ db act,3
+ db chx,1,chy,3
+
+ db ifwtless
+ dw stepfloat
+fall1
+ db 102,chx,2,chy,6
+ db 103,chx,-1,chy,9
+ db 104,chy,12
+ db 105,chx,-2
+
+ db setfall,1,15
+ db goto
+ dw freefall
+
+*-------------------------------
+* p a t c h f a l l
+*-------------------------------
+patchfall
+ db chx,-1,chy,-3
+ db goto
+ dw fall1
+
+*-------------------------------
+* s t e p f a l l 2
+*-------------------------------
+stepfall2 ;from #12 (run-15)
+ db chx,1
+ db goto
+ dw stepfall
+
+*-------------------------------
+*  s t e p f l o a t
+*-------------------------------
+stepfloat
+ db 102,chx,2,chy,3
+ db 103,chx,-1,chy,4
+ db 104,chy,5
+ db 105,chx,-2
+
+ db setfall,1,6
+ db goto
+ dw freefall
+
+*-------------------------------
+*  j u m p  f a l l
+*-------------------------------
+jumpfall ;from standjump-18
+ db act,3
+ db chx,1,chy,3
+ db 102,chx,2,chy,6
+ db 103,chx,1,chy,9
+ db 104,chx,2,chy,12
+ db 105
+
+ db setfall,2,15
+ db goto
+ dw freefall
+
+*-------------------------------
+*  r u n n i n g   j u m p   f a l l
+*-------------------------------
+rjumpfall ;from runjump-43
+ db act,3
+ db chx,1,chy,3
+ db 102,chx,3,chy,6
+ db 103,chx,2,chy,9
+ db 104,chx,3,chy,12
+ db 105
+
+ db setfall,3,15
+ db goto
+ dw freefall
+
+*-------------------------------
+*  j u m p h a n g
+*-------------------------------
+;Med: DX = 0
+jumphangMed
+ db act,1
+ db 67,68,69,70,71,72,73,74,75,76,77
+ db act,2
+ db 78,79,80
+ db goto
+ dw hang
+
+;Long: DX = +4
+jumphangLong
+ db act,1
+ db 67,68,69,70,71,72,73,74,75,76,77
+ db act,2
+ db chx,1,78
+ db chx,2,79
+ db chx,1,80
+
+ db goto
+ dw hang
+
+*-------------------------------
+* j u m p b a c k h a n g
+*-------------------------------
+jumpbackhang
+ db act,1
+ db 67,68,69,70,71,72,73,74,75,76
+ db chx,-1,77
+ db act,2
+ db chx,-2,78
+ db chx,-1,79
+ db chx,-1,80
+
+ db goto
+ dw hang
+
+*-------------------------------
+*  h a n g
+*-------------------------------
+hang
+ db act,2
+; db jaru
+ db 91
+hang1
+ db 90,89,88,87,87,87,88,89,90,91,92,93,94,95
+ db 96,97,98,99,97,96,95,94,93,92
+ db 91,90,89,88,87,88,89,90,91,92,93,94,95,96
+ db 95,94,93,92
+ db goto
+ dw hangdrop
+
+*-------------------------------
+*  h a n g s t r a i g h t
+*-------------------------------
+hangstraight
+ db act,6
+ db tap,2
+ db 92,93,93,92,92
+:loop db 91
+ db goto
+ dw :loop
+
+*-------------------------------
+*  c l i m b f a i l
+*-------------------------------
+climbfail
+ db 135
+ db 136
+ db 137,137
+ db 138,138,138,138
+ db 137,136,135
+ db chx,-7
+
+ db goto
+ dw hangdrop
+
+*-------------------------------
+*  c l i m b d o w n
+*-------------------------------
+climbdown
+ db act,1
+
+ db 148
+ db 145,144,143,142,141
+
+ db chx,-5
+ db chy,63
+ db down
+ db act,3 ;to prevent a cut to scrn above
+
+ db 140,138,136
+ db 91
+ db goto
+ dw hang1
+
+*-------------------------------
+*  c l i m b u p
+*-------------------------------
+climbup
+ db act,1
+
+ db 135
+ db 136
+ db 137
+ db 138
+ db 139
+ db 140
+
+ db chx,5
+ db chy,-63
+ db up
+
+ db 141
+ db 142
+ db 143
+ db 144
+ db 145
+ db 146
+ db 147
+ db  148
+ db act,5 ;to clr flags
+ db 149
+ db act,1
+
+ db 118,119
+ db chx,1
+ db goto
+ dw stand
+
+*-------------------------------
+*  h a n g d r o p
+*-------------------------------
+hangdrop ;1/2 story
+
+ db act,0 ;NOTE -- hangdrop is an action relating
+;to the ground, not to the ledge
+ db 81,82
+ db act,5 ;to zero clrflags
+ db 83
+ db act,1
+ db jard,tap,0
+ db 84,85
+ db chx,3
+ db goto
+ dw stand
+
+*-------------------------------
+*  h a n g f a l l
+*-------------------------------
+hangfall ;1/2 story
+
+ db act,3
+ db 81,chy,6
+ db 81,chy,9
+ db 81,chy,12
+ db chx,2
+
+ db setfall,0,12
+ db goto
+ dw freefall
+
+*-------------------------------
+*  f r e e f a l l
+*-------------------------------
+freefall
+ db act,4
+:loop db 106
+ db goto
+ dw :loop
+
+*-------------------------------
+*  r u n s t o p
+*-------------------------------
+runstop
+ db act,1
+ db 53,chx,2
+ db tap,1,54,chx,7
+ db 55
+ db tap,1,56,chx,2
+ db 49,chx,-2
+ db 50,51,52
+ db goto
+ dw stand
+
+*-------------------------------
+*  j u m p  u p  (& touch ceiling)
+*-------------------------------
+jumpup
+ db act,1
+ db 67,68,69,70,71,72,73,74,75,76,77,78
+ db act,0 ;for cropchar
+ db jaru,79
+
+ db goto
+ dw hangdrop
+
+*-------------------------------
+*  h i g h j u m p  (no ceiling above)
+*-------------------------------
+highjump
+ db act,1
+ db 67,68,69,70,71,72,73,74,75,76,77,78
+ db 79,chy,-4
+ db 79,chy,-2
+ db 79
+ db 79,chy,2
+ db 79,chy,4
+ db goto
+ dw hangdrop
+
+*-------------------------------
+*  s u p e r h i j u m p  (when weightless)
+*-------------------------------
+superhijump
+ db 67,68,69,70,71,72,73,74,75,76
+ db chy,-1,77
+ db chy,-3,78
+ db chy,-4,79
+ db chy,-10,79
+ db chy,-9,79
+ db chy,-8,79
+ db chy,-7,79
+ db chy,-6,79
+ db chy,-5,79
+ db chy,-4,79
+ db chy,-3,79
+ db chy,-2,79
+ db chy,-2,79
+ db chy,-1,79
+ db chy,-1,79
+ db chy,-1,79
+ db 79,79,79
+ db chy,1,79
+ db chy,1,79
+ db chy,2,79
+ db chy,2,79
+ db chy,3,79
+ db chy,4,79
+ db chy,5,79
+ db chy,6,79
+
+ db setfall,0,6
+ db goto
+ dw freefall
+
+*-------------------------------
+*  f a l l  h a n g
+*-------------------------------
+fallhang
+ db act,3
+ db 80
+ db tap,1
+ db goto
+ dw hang
+
+*-------------------------------
+*  b u m p
+*-------------------------------
+bump
+ db act,5
+ db chx,-4
+
+ db 50,51,52
+ db goto
+ dw stand
+
+*-------------------------------
+*  b u m p f a l l
+*-------------------------------
+bumpfall
+ db act,5
+ db chx,1,chy,3
+
+ db ifwtless
+ dw bumpfloat
+
+ db 102,chx,2,chy,6
+ db 103,chx,-1,chy,9
+ db 104,chy,12
+ db 105,chx,-2
+
+ db setfall,0,15
+ db goto
+ dw freefall
+
+*-------------------------------
+*  b u m p f l o a t
+*-------------------------------
+bumpfloat
+ db 102,chx,2,chy,3
+ db 103,chx,-1,chy,4
+ db 104,chy,5
+ db 105,chx,-2
+
+ db setfall,0,6
+ db goto
+ dw freefall
+
+*-------------------------------
+* h a r d   b u m p
+*-------------------------------
+hardbump
+ db act,5
+
+ db chx,-1,chy,-4,102
+ db chx,-1,chy,3 ;,104
+ db chx,-3,chy,1
+
+ db jard
+ db chx,1
+ db tap,1
+ db 107,chx,2
+ db 108
+ db tap,1
+
+ db 109
+ db goto
+ dw standup
+
+*-------------------------------
+*  t e s t   f o o t
+*-------------------------------
+testfoot
+ db 121,chx,1
+ db 122
+ db 123,chx,2
+ db 124,chx,4
+ db 125,chx,3
+ db 126
+
+ db chx,-4,86
+ db tap,1,jard
+ db chx,-4,116
+ db chx,-2
+ db 117,118,119
+ db goto
+ dw stand
+
+*-------------------------------
+*  s t e p   b a c k
+*-------------------------------
+stepback
+ db chx,-5
+ db goto
+ dw stand
+
+*-------------------------------
+*  s t e p   f o r w a r d
+*
+*  (1 - 14 pixels)
+*-------------------------------
+fullstep
+step14
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,3
+ db 124,chx,4
+ db 125,chx,3
+ db 126,chx,-1
+
+ db chx,3
+
+ db 127,128,129,130,131,132
+ db goto
+ dw stand
+
+step13
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,3
+ db 124,chx,4
+ db 125,chx,3
+ db 126,chx,-1
+
+ db chx,2
+
+ db 127,128,129,130,131,132
+ db goto
+ dw stand
+
+step12
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,3
+ db 124,chx,4
+ db 125,chx,3
+ db 126,chx,-1
+
+ db chx,1
+
+ db 127,128,129,130,131,132
+ db goto
+ dw stand
+
+step11 ;corresponds directly to filmed sequence
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,3
+ db 124,chx,4
+ db 125,chx,3
+ db 126,chx,-1
+ db 127,128,129,130,131,132
+ db goto
+ dw stand
+
+step10
+ db act,1
+ db 121,chx,1
+step10a db 122,chx,1
+ db 123,chx,3
+ db 124,chx,4
+ db 125,chx,3
+ db 126,chx,-2
+ db 128,129,130,131,132
+ db goto
+ dw stand
+
+step9
+ db act,1
+ db 121
+ db goto
+ dw step10a
+
+step8
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,3
+ db 124,chx,4
+ db 125,chx,-1
+ db 127,128,129,130,131,132
+ db goto
+ dw stand
+
+step7
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,3
+ db 124,chx,2
+
+ db 129,130,131,132
+ db goto
+ dw stand
+
+step6
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,2
+ db 124,chx,2
+
+ db 129,130,131,132
+ db goto
+ dw stand
+
+step5
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,2
+ db 124,chx,1
+
+ db 129,130,131,132
+ db goto
+ dw stand
+
+step4
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,2
+
+ db 131,132
+ db goto
+ dw stand
+
+step3
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 123,chx,1
+
+ db 131,132
+ db goto
+ dw stand
+
+step2
+ db act,1
+ db 121,chx,1
+ db 122,chx,1
+ db 132
+ db goto
+ dw stand
+
+step1
+ db act,1
+ db 121,chx,1
+ db 132
+ db goto
+ dw stand
+
+*-------------------------------
+*  s t o o p
+*-------------------------------
+stoop
+ db act,1
+
+ db chx,1
+ db 107,chx,2
+ db 108
+
+:crouch db 109
+ db goto
+ dw :crouch
+
+*-------------------------------
+*  s t a n d u p
+*-------------------------------
+standup
+ db act,5
+ db chx,1,110
+ db 111,chx,2
+ db 112
+ db 113,chx,1
+ db 114
+ db 115
+ db 116,chx,-4
+ db 117,118,119
+
+ db goto
+ dw stand
+
+*-------------------------------
+*  p i c k  u p  s w o r d
+*-------------------------------
+pickupsword
+ db act,1
+ db effect,1
+ db 229,229,229,229,229,229
+ db 230,231,232
+
+ db goto
+ dw resheathe
+
+*-------------------------------
+*  r e s h e a t h e
+*-------------------------------
+resheathe
+ db act,1
+ db chx,-5
+ db 233,234,235
+ db 236,237,238,239,240,133,133
+ db 134,134,134
+ db 48,chx,1
+ db 49,chx,-2
+ db act,5,50,act,1
+ db 51,52
+ db goto
+ dw stand
+
+*-------------------------------
+*  f a s t   s h e a t h e
+*-------------------------------
+fastsheathe
+ db act,1
+ db chx,-5
+ db 234,236,238,240,134
+ db chx,-1
+ db goto
+ dw stand
+
+*-------------------------------
+*  d r i n k   p o t i o n
+*-------------------------------
+drinkpotion
+ db act,1
+ db chx,4
+ db 191,192,193,194,195,196,197,198,199,200
+ db 201,202,203,204
+;if pressed for memory try
+;cutting frames 202/204 or 201/203
+ db 205,205,205
+ db effect,1
+ db 205,205
+ db 201,198
+
+ db chx,-4
+ db goto
+ dw stand
+
+*-------------------------------
+*  s o f t   l a n d
+*-------------------------------
+softland ;1 story
+ db act,5
+
+ db jard
+ db chx,1
+ db tap,1,107,chx,2
+ db 108
+ db tap,1
+
+ db act,1
+:crouch db 109
+ db goto
+ dw :crouch
+
+*-------------------------------
+*  l a n d   r u n
+*-------------------------------
+landrun
+ db act,1
+ db chy,-2,chx,1
+ db 107,chx,2
+ db 108
+ db 109,chx,1
+ db 110
+ db 111,chx,2
+ db 112
+ db 113,chx,1,chy,1
+ db 114,chy,1
+ db 115,chx,-2
+
+ db goto
+ dw runstt4
+
+*-------------------------------
+*  m e d i u m   l a n d
+*-------------------------------
+medland ;1 1/2 - 2 stories
+ db act,5
+ db jard
+ db chy,-2,chx,1
+; db 107
+ db chx,2
+ db 108
+ db 109,109,109,109,109,109,109,109,109
+ db 109,109,109,109,109,109,109,109,109
+ db 109,109,109,109,109,109,109,109,109
+ db 109,109,chx,1
+ db 110,110,110
+ db 111,chx,2
+ db 112
+ db 113,chx,1,chy,1
+ db 114,chy,1
+ db 115
+ db 116,chx,-4
+ db 117
+ db 118
+ db 119
+ db goto
+ dw stand
+
+*-------------------------------
+*  h a r d   l a n d   (Splat!)
+*-------------------------------
+hardland ;> 2 stories
+ db act,5
+ db jard
+ db chy,-2,chx,3
+ db 185
+ db die
+
+:dead db 185
+ db goto
+ dw :dead
+
+*-------------------------------
+*  s t a b k i l l
+*-------------------------------
+stabkill
+ db act,5
+ db goto
+ dw dropdead
+
+*-------------------------------
+*  d r o p d e a d
+*-------------------------------
+dropdead
+ db act,1
+ db die
+
+ db 179
+ db 180
+ db 181
+ db 182,chx,1
+ db 183,chx,-4
+:dead db 185
+ db goto
+ dw :dead
+
+*-------------------------------
+*  i m p a l e
+*-------------------------------
+impale
+ db act,1
+ db jard
+
+ db chx,4
+ db 177
+ db die
+
+:dead db 177
+ db goto
+ dw :dead
+
+*-------------------------------
+*  h a l v e
+*-------------------------------
+halve
+ db act,1
+
+ db 178
+ db die
+
+:dead db 178
+ db goto
+ dw :dead
+
+*-------------------------------
+*  c r u s h
+*-------------------------------
+crush
+ db goto
+ dw medland
+
+*-------------------------------
+*  d e a d f a l l
+*-------------------------------
+deadfall
+ db setfall,0,0
+ db act,4
+:loop db 185
+ db goto
+ dw :loop
+
+*-------------------------------
+*  c l i m b   s t a i r s
+*-------------------------------
+;facing L
+climbstairs
+ db act,5
+ db chx,-5,chy,-1
+ db tap,1,217
+ db 218
+ db 219,chx,1
+ db 220,chx,-4,chy,-3
+ db tap,1,221,chx,-4,chy,-2
+ db 222,222,chx,-2,chy,-3
+ db 223,223,chx,-3,chy,-8
+ db tap,1,224,224,chx,-1,chy,-1
+ db 225,225,chx,-3,chy,-4
+ db 226,226,chx,-1,chy,-5
+ db tap,1,227,227,chx,-2,chy,-1
+ db 228,228
+ db 0,tap,1
+ db 0,0,0,0,tap,1
+ db 0,0,0,0,tap,1
+ db 0,0,0,0,tap,1
+
+ do 0
+ db chx,10,chy,28
+ db goto
+ dw stand
+ fin
+
+ db nextlevel
+:loop db 0,goto
+ dw :loop
+
+*-------------------------------
+* Vizier: stand
+*-------------------------------
+Vstand
+ db 54,goto
+ dw Vstand
+
+*-------------------------------
+* Vizier: raise arms
+*-------------------------------
+Vraise
+ db 85,67,67,67,67,67,67
+ db 68,69,70,71,72,73,74,75,83,84
+:loop db 76
+ db goto
+ dw :loop
+
+*-------------------------------
+* Vizier: walk
+*-------------------------------
+Vwalk
+ db chx,1
+Vwalk1 db 48,chx,2
+Vwalk2 db 49,chx,6
+ db 50,chx,1
+ db 51,chx,-1
+ db 52,chx,1
+ db 53,chx,1
+ db goto
+ dw Vwalk1
+
+*-------------------------------
+* Vizier: stop
+*-------------------------------
+Vstop
+ db chx,1
+ db 55,56
+ db goto
+ dw Vstand
+
+*-------------------------------
+* Vizier: lower arms, turn & exit
+*-------------------------------
+Vexit
+ db 77,78,79,80,81,82
+ db chx,1
+ db 54,54,54,54,54,54 ;standing
+ db 57
+ db 58
+ db 59
+ db 60
+ db 61,chx,2
+ db 62,chx,-1
+ db 63,chx,-3
+ db 64
+ db 65,chx,-1
+ db 66
+ db aboutface,chx,16
+ db chx,3
+ db goto
+ dw Vwalk2
+
+*-------------------------------
+* Princess: stand
+*-------------------------------
+Pstand
+ db 11,goto
+ dw Pstand
+
+*-------------------------------
+* Princess: alert
+*-------------------------------
+Palert
+ db 2,3,4,5,6,7,8,9
+ db aboutface,chx,9
+ db 11,goto
+ dw  Pstand
+
+*-------------------------------
+* Princess: step back
+*-------------------------------
+Pback
+ db aboutface,chx,11
+ db 12
+ db chx,1,13
+ db chx,1,14
+ db chx,3,15
+ db chx,1,16
+:loop db 17
+ db goto
+ dw :loop
+
+*-------------------------------
+* Princess lying on cushions
+*-------------------------------
+Plie
+ db 19
+ db goto
+ dw Plie
+
+*-------------------------------
+* Princess: waiting
+*-------------------------------
+Pwaiting
+:loop db 20
+ db goto
+ dw :loop
+
+*-------------------------------
+* Princess: embrace
+*-------------------------------
+Pembrace
+ db 21
+ db chx,1,22
+ db 23
+ db 24
+ db chx,1,25
+ db chx,-3,26
+ db chx,-2,27
+ db chx,-4,28
+ db chx,-3,29
+ db chx,-2,30
+ db chx,-3,31
+ db chx,-1,32
+:loop db 33
+ db goto
+ dw :loop
+
+*-------------------------------
+* Princess: stroke mouse
+*-------------------------------
+Pstroke
+:loop db 37
+ db goto
+ dw :loop
+
+*-------------------------------
+* Princess: rise
+*-------------------------------
+Prise
+ db 37,38,39,40,41,42,43,44,45,46,47
+ db aboutface,chx,13
+:loop db 11,goto
+ dw :loop
+
+*-------------------------------
+* Princess: crouch & stroke mouse
+*-------------------------------
+Pcrouch
+ db 11,11
+ db aboutface,chx,13
+ db 47,46,45,44,43,42,41,40,39,38,37
+ db 36,36,36,35,35,35
+ db 34,34,34,34,34,34,34
+ db 35,35,36,36,36,35,35,35
+ db 34,34,34,34,34,34,34
+ db 35,35,36,36,36,35,35,35
+ db 34,34,34,34,34,34,34,34,34
+ db 35,35,35
+:loop db 36
+ db goto
+ dw :loop
+
+*-------------------------------
+* Princess: slump shoulders
+*-------------------------------
+Pslump
+ db 1
+:loop db 18
+ db goto
+ dw :loop
+
+*-------------------------------
+* Mouse: scurry
+*-------------------------------
+Mscurry
+ db act,1
+Mscurry1
+:loop db 186,chx,5
+ db 186,chx,3
+ db 187,chx,4
+ db goto
+ dw :loop
+
+*-------------------------------
+* Mouse: stop
+*-------------------------------
+Mstop
+:loop db 186
+ db goto
+ dw :loop
+
+*-------------------------------
+* Mouse: raise head
+*-------------------------------
+Mraise
+:loop db 188
+ db goto
+ dw :loop
+
+*-------------------------------
+* Mouse: leave
+*-------------------------------
+Mleave
+ db act,0
+ db 186,186,186
+ db 188,188,188,188,188,188,188,188
+ db aboutface,chx,8
+ db goto
+ dw Mscurry1
+
+*-------------------------------
+* Mouse: climb
+*-------------------------------
+Mclimb
+ db 186
+ db goto
+ dw Mclimb
+
+*-------------------------------
+ lst
+ ds 1
+ usr $a9,15,$800,*-org
+ lst off
