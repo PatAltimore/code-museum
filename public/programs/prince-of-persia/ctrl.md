@@ -9,82 +9,82 @@ year: 1989
 author: "Jordan Mechner"
 slug: "ctrl"
 order: 5
-description: "This file is the heart of Prince of Persia's input handling, translating hardware signals into cinematic gameplay actions on the Apple II."
+description: "This file is the control system for Prince of Persia (1989), translating player input into character actions on the Apple IIe/IIc."
 
 summary:
-  - point: "Implements cinematic platformer mechanics in 6502 assembly"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
   - point: "Uses bank-switched memory to fit within 128K constraints"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank switching"
-  - point: "Rotoscoping-inspired animation influenced gameplay design"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Implements cinematic platforming with rotoscoped animations"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Sophisticated collision and physics handling for platforming"
-    link: "https://en.wikipedia.org/wiki/Physics_engine"
-    link_label: "Physics engine"
-  - point: "Solo development by Jordan Mechner over four years"
-    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
-    link_label: "Jordan Mechner"
+  - point: "Handles joystick and keyboard input for fluid character control"
+    link: "https://en.wikipedia.org/wiki/Joystick"
+    link_label: "Joystick"
+  - point: "Includes routines for edge-grabbing and spike impalement"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
+  - point: "Innovative use of assembly for real-time gameplay mechanics"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly language"
 
 enhancements:
-  - id: "jump-table-for-control-flow"
+  - id: "player-control-entry-points"
     line_start: 8
     line_end: 16
-    title: "Jump Table for Efficient Control Flow"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Branch_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RagDoll_demo_OGRE_Newton_1.png/330px-RagDoll_demo_OGRE_Newton_1.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "RagDoll demo OGRE Newton 1 (LGPL)"
-    content: "The file begins with a jump table—a common technique in assembly programming to efficiently route execution to different subroutines. Each entry in the table corresponds to a key function handling specific aspects of the game's control logic, such as player control, shadow control, and collision detection. In the constrained environment of the Apple II, where every byte and cycle mattered, this approach minimized overhead and allowed Mechner to create a responsive gameplay experience. Jump tables were a hallmark of 6502 assembly programming, reflecting the need for speed and compactness in an era when memory and processing power were scarce."
-  - id: "parameters-for-character-actions"
-    line_start: 42
-    line_end: 65
-    title: "Tuning Parameters for Character Actions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"
-    image_url: ""
-    image_caption: ""
-    content: "This block defines key parameters for the character's movements, such as velocities for death and landing, thresholds for grabbing ledges, and sword combat mechanics. These constants allowed Mechner to fine-tune gameplay, balancing realism with playability. In the late 1980s, such granular control over character behavior was groundbreaking, enabling the precise, cinematic movements that became a hallmark of Prince of Persia. These parameters reflect Mechner's iterative design process, where gameplay was refined frame by frame to achieve the desired effect."
-  - id: "game-physics-and-collision-handling"
+    title: "Entry points for player control routines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Prince_of_Persia_1_-_MS-DOS_-_Gameplay.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    image_caption: "Game play animation of the IBM PC version of Prince of Persia. (CC BY-SA 4.0)"
+    content: "These jump instructions act as entry points into the major control routines for the game. Each one corresponds to a specific aspect of player or environmental interaction, such as checking the floor, handling impalement, or controlling the shadow character. Jordan Mechner designed this system to modularize the control logic, allowing the game to handle diverse scenarios like falling, fighting, and climbing with distinct routines. In 1989, modularity was critical for fitting complex gameplay into the limited memory of the Apple IIe/IIc, which used a 6502 processor and had only 128K of RAM. These entry points reflect Mechner's meticulous planning to ensure responsive and cinematic gameplay despite hardware constraints."
+  - id: "changeable-parameters"
+    line_start: 40
+    line_end: 68
+    title: "Adjustable gameplay parameters"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Baby_Elephant_picking_up_object.jpg/330px-Baby_Elephant_picking_up_object.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    image_caption: "A baby Elephant at the Toledo Zoo picking up an object, showing interest in manipulating the environment around it. (CC BY 4.0)"
+    content: "This section defines constants that control gameplay mechanics, such as velocities for death and landing, thresholds for grabbing ledges, and sword fighting parameters. These values were likely tuned through extensive playtesting to achieve the fluid and precise character movement that Prince of Persia is famous for. In the mid-1980s, game designers often had to hard-code such parameters directly into assembly code, as there were no high-level scripting tools available. Mechner's ability to tweak these values directly in the code allowed him to refine the game's feel, ensuring that every jump, grab, and sword strike felt intuitive and cinematic. These parameters also highlight the game's innovative approach to blending action and realism, a hallmark of its legacy."
+  - id: "falling-and-floor-check"
     line_start: 76
     line_end: 99
-    title: "Game Physics and Collision Handling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    title: "Handling falling and floor interaction"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section handles the character's interaction with the floor, determining whether they are falling, passing through a floor plane, or landing. The code checks for solid blocks, adjusts the character's position, and triggers appropriate animations. In 1989, realistic physics in platformers was rare, and Mechner's meticulous attention to detail set Prince of Persia apart. Inspired by his rotoscoping process, he aimed to make every movement feel fluid and grounded. This code exemplifies the game's cinematic realism, where even the act of falling is imbued with drama and precision."
-  - id: "falling-and-edge-grabbing"
-    line_start: 248
-    line_end: 303
-    title: "Falling and Edge-Grabbing Mechanics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Platform_game"
-    image_url: ""
-    image_caption: ""
-    content: "This section implements one of the game's signature mechanics: grabbing a ledge while falling. The code checks if the character is alive, falling at an acceptable speed, and within range of a ledge. If all conditions are met, the character aligns with the ledge and transitions into a hanging animation. This mechanic added tension and cinematic flair to the gameplay, making the player feel the stakes of every misstep. Mechner's decision to include this feature was inspired by his desire to create a game that felt like an action movie, where every moment was dramatic and consequential."
+    content: "This routine checks whether the character is falling and interacts with the floor plane. If the floor is solid, the character stops; otherwise, they pass through. The code also accounts for special cases like landing on spikes or loose floorboards. In 1989, collision detection and physics were challenging to implement on the Apple IIe/IIc due to limited processing power. Mechner's approach demonstrates a clever use of assembly to simulate realistic movement and environmental interaction. The routine's ability to handle edge cases, such as falling through loose floors or impalement by spikes, adds to the game's cinematic realism. This section laid the groundwork for modern platformers, where environmental interaction is a key gameplay element."
   - id: "shadow-character-control"
     line_start: 509
     line_end: 547
-    title: "Shadow Character Control Logic"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)#Gameplay"
+    title: "Shadow character control logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This subroutine governs the behavior of the shadow character, a mysterious and pivotal element of the game. The shadow can vanish, act autonomously, or be manually controlled depending on the situation. The inclusion of the shadow character added depth to the narrative and gameplay, creating moments of intrigue and surprise. Mechner's storytelling ambitions were evident here, as he used gameplay mechanics to reinforce the game's themes of duality and self-discovery. The shadow character remains one of the most memorable aspects of Prince of Persia."
-  - id: "combat-mechanics"
-    line_start: 759
-    line_end: 804
-    title: "Combat Mechanics: En Garde and Striking"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)#Gameplay"
+    content: "This routine manages the behavior of the shadow character, a key narrative and gameplay element in Prince of Persia. The shadow can vanish, act autonomously, or be manually controlled depending on the game's state. Mechner's decision to include a shadow character added a layer of psychological tension and storytelling to the game, which was groundbreaking for its time. The shadow's behavior is tightly integrated into the game's mechanics, reflecting Mechner's cinematic ambitions. In an era when most games focused solely on gameplay, this routine exemplifies how Prince of Persia pushed boundaries by blending narrative and mechanics seamlessly."
+  - id: "player-control"
+    line_start: 554
+    line_end: 582
+    title: "Player control routine"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
     image_caption: ""
-    content: "This section handles the game's sword combat, including blocking, striking, and retreating. The code checks the character's position, opponent's distance, and environmental conditions to determine the next action. Combat in Prince of Persia was a deliberate and strategic affair, reflecting Mechner's desire to create a game that felt more like a cinematic duel than an arcade brawl. The mechanics were inspired by fencing and choreographed fight scenes, emphasizing timing and precision. This approach influenced later games that sought to blend action with storytelling."
-  - id: "pickup-and-object-interaction"
+    content: "This routine handles player input, translating joystick or keyboard actions into character movements. It includes logic for demo mode and live gameplay, ensuring the character responds fluidly to player commands. In the mid-1980s, joystick input was a relatively new feature for home computers, and Mechner's implementation showcases his ability to leverage hardware capabilities for intuitive control. The responsiveness of the controls was critical to the game's success, as it allowed players to perform precise movements like jumping, sword fighting, and climbing. This routine reflects Mechner's focus on creating a seamless connection between player input and character action, a principle that remains central to game design today."
+  - id: "impalement-routine"
+    line_start: 2016
+    line_end: 2086
+    title: "Impalement by spikes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "This routine handles the gruesome impalement of the character on spikes, a memorable and dramatic gameplay element. It aligns the character with the spikes, plays an impalement sound, and triggers the death animation. Mechner's inclusion of such a graphic consequence for failure added tension and stakes to the gameplay, making every jump and movement feel significant. The impalement mechanic also highlights the game's attention to detail and realism, which were rare in platformers of the era. This routine is a testament to Mechner's cinematic vision, as it transforms a simple gameplay mechanic into a visceral storytelling moment."
+  - id: "pickup-object"
     line_start: 2094
     line_end: 2162
-    title: "Pickup and Object Interaction"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Inventory_(video_games)"
+    title: "Picking up objects"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This subroutine allows the character to pick up objects like swords and potions, adding an element of exploration and resource management to the gameplay. The code checks the character's position relative to the object and adjusts their alignment to ensure a smooth interaction. In the context of 1989, this level of detail was rare, as most games treated item pickups as simple collisions. Mechner's approach added realism and immersion, making the player feel like they were truly interacting with the environment. This mechanic paved the way for more sophisticated inventory systems in later games."
+    content: "This routine allows the character to pick up objects like swords and potions, adding an interactive layer to the gameplay. It checks the character's position relative to the object and adjusts their movement to ensure they can reach it. In 1989, object interaction was a novel feature in platformers, and Mechner's implementation added depth to the game world. The ability to pick up and use items contributed to the game's sense of immersion and adventure. This routine reflects Mechner's focus on creating a dynamic and interactive environment, paving the way for more complex mechanics in future games."
 
 ---
 

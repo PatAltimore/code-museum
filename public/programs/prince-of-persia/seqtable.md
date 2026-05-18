@@ -9,76 +9,82 @@ year: 1989
 author: "Jordan Mechner"
 slug: "seqtable"
 order: 3
-description: "Animation sequences for Prince of Persia's cinematic platforming, encoded in 6502 assembly."
+description: "Animation sequence table for Prince of Persia (1989), defining cinematic movements in 6502 assembly."
 
 summary:
-  - point: "Sequence table defines animation states and transitions"
+  - point: "Sequence table defines animation frames and transitions"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     link_label: "Prince of Persia"
-  - point: "Rotoscoping technique captured realistic character movements"
+  - point: "Rotoscoping technique traced real-life movements"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Bank-switched memory used to fit the game into 128K"
+  - point: "Optimized for Apple II memory constraints"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II series"
+  - point: "Bank-switched memory used to fit 128K"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank switching"
+  - point: "Solo development by Jordan Mechner over 4 years"
+    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
+    link_label: "Jordan Mechner"
 
 enhancements:
   - id: "sequence-table-instructions"
     line_start: 10
     line_end: 24
-    title: "Defining the language of animation transitions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RagDoll_demo_OGRE_Newton_1.png/330px-RagDoll_demo_OGRE_Newton_1.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "RagDoll demo OGRE Newton 1 (LGPL)"
-    content: "This section defines constants representing animation transitions, such as 'goto', 'aboutface', 'up', and 'down'. These are used throughout the code to describe how the character moves between different states. In 1989, Jordan Mechner was pioneering the cinematic platformer genre, aiming for fluid, lifelike animations. The Apple IIe's hardware constraints meant every byte of memory was precious, and encoding these transitions as compact constants was a necessity. Mechner's background in film influenced his approach, as he sought to make the game feel like a movie. These constants form the backbone of the game's animation logic, allowing for seamless transitions between states like running, jumping, and falling."
-  - id: "sequence-table-data"
-    line_start: 33
-    line_end: 146
-    title: "Mapping animations to memory addresses"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    title: "A compact dictionary of movement commands"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The sequence table maps animation states to memory addresses, each pointing to specific routines or data blocks that define how the character moves. For example, 'startrun' and 'standjump' are linked to routines that handle those actions. This table is the heart of the game's animation system, enabling the character to transition fluidly between states. Mechner's use of rotoscoping—tracing over filmed footage of his brother performing the moves—allowed him to create realistic animations that were groundbreaking for the time. The Apple IIe's limited memory required careful organization, and this table ensured that animations could be efficiently accessed and executed. The cinematic feel of Prince of Persia owes much to this meticulous encoding of movement."
-  - id: "running-animation"
-    line_start: 151
-    line_end: 154
-    title: "Breaking down the running cycle"
+    content: "This section defines a series of constants representing movement commands, such as `goto`, `aboutface`, and `die`. These commands are used throughout the sequence table to control the character's animation and behavior. In the mid-1980s, programming for the Apple II required extreme efficiency due to limited memory and processing power. Jordan Mechner, working solo, had to encode complex cinematic movements into simple, reusable instructions. Each command is assigned a negative integer, a clever optimization to save space and simplify comparisons. This design reflects the constraints of the 6502 processor, which had only 256 bytes of zero-page memory and no native support for floating-point arithmetic. These constants became the building blocks for the game's fluid animations, which were groundbreaking at the time."
+  - id: "sequence-table-animations"
+    line_start: 33
+    line_end: 146
+    title: "Mapping movements to animation routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
-    content: "The 'running' routine defines the character's running animation, using a series of frames and transitions encoded as 'db' (define byte) and 'dw' (define word) instructions. Each frame corresponds to a specific movement, creating the illusion of fluid motion. Mechner's rotoscoping technique was critical here, as he traced over filmed footage to capture the subtleties of human movement. On the Apple IIe, achieving this level of realism was a technical marvel, given the machine's limited graphical capabilities. The running animation became iconic, setting a standard for lifelike movement in games. It also demonstrated how film techniques could be adapted to interactive media, influencing game design for decades."
+    content: "This section maps high-level movements like `startrun`, `standjump`, and `climbup` to specific animation routines. Each routine is defined as a sequence of frames, encoded as `dw` (define word) instructions pointing to memory addresses. Mechner's use of rotoscoping—tracing real-life movements frame by frame—allowed him to create lifelike animations despite the Apple II's graphical limitations. The animation routines are tightly packed into memory, reflecting the constraints of the Apple II's 128K RAM. Mechner's brother served as the model for many of these movements, performing jumps and climbs that were later digitized into the game. This meticulous process resulted in a level of realism that set Prince of Persia apart from other games of its era."
+  - id: "running-animation-cycle"
+    line_start: 151
+    line_end: 177
+    title: "Defining the running animation cycle"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `running` routine defines the animation cycle for the protagonist's running motion. It uses a combination of `db` (define byte) and `dw` (define word) instructions to specify the sequence of frames and transitions. The `goto` command loops the animation back to the start, creating a seamless running motion. This routine showcases Mechner's attention to detail, as the running animation had to feel natural and responsive to player input. The Apple II's limited graphical capabilities made this a challenging task, requiring careful optimization of frame data and memory usage. The running cycle became a signature element of Prince of Persia, contributing to the game's cinematic feel and immersive gameplay."
   - id: "stand-animation"
     line_start: 182
     line_end: 186
-    title: "The calm before the action"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Idle_animation"
+    title: "The simplicity of standing still"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The 'stand' routine represents the character's idle state, where no movement occurs. This seemingly simple animation is crucial for maintaining the game's cinematic feel, as it gives the character a sense of presence even when stationary. Mechner's attention to detail ensured that every frame contributed to the game's realism. In 1989, idle animations were not a given in games, but they added depth and immersion. On the Apple IIe, encoding this state efficiently was vital, as memory constraints were tight. The 'stand' animation is a reminder of the game's film-inspired approach, where even moments of stillness were carefully crafted."
+    content: "The `stand` routine represents the character's idle state, with minimal movement. It uses a single frame (`db 15`) and loops indefinitely with the `goto` command. This routine highlights the importance of even the simplest animations in creating a believable character. Mechner's rotoscoping technique ensured that the standing pose was as lifelike as the more dynamic movements. In a game where every frame had to be carefully optimized for memory and performance, the `stand` routine serves as a reminder of the balance between technical constraints and artistic vision."
   - id: "arise-skeleton-animation"
     line_start: 201
     line_end: 209
-    title: "Animating the undead: skeleton's rise"
+    title: "Animating the skeleton's resurrection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The 'arise' routine animates the skeleton's dramatic rise, a moment that showcases the game's cinematic storytelling. This sequence uses precise byte definitions to control the skeleton's movements, creating an eerie and lifelike effect. Mechner's film background is evident here, as he aimed to evoke tension and drama. The Apple IIe's graphical limitations meant that every frame had to be meticulously crafted to achieve the desired impact. This animation is a testament to Mechner's ability to blend storytelling and gameplay, making the skeleton's rise a memorable moment in gaming history."
+    content: "The `arise` routine animates the resurrection of the skeleton enemy, a memorable moment in Prince of Persia. It combines movement commands (`chx` and `chy`) with specific frames to create the illusion of the skeleton rising from the ground. This sequence demonstrates Mechner's ability to convey narrative through animation, using the limited graphical capabilities of the Apple II. The skeleton's resurrection is a cinematic moment that adds tension and drama to the gameplay, showcasing the game's blend of storytelling and action."
   - id: "jumpfall-animation"
     line_start: 688
     line_end: 698
-    title: "Capturing the physics of falling"
+    title: "Simulating the physics of a jump fall"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
-    content: "The 'jumpfall' routine simulates the character's fall after a jump, using a sequence of frames to depict the descent. Each frame adjusts the character's position, creating a realistic sense of gravity. In 1989, physics-based animations were rare, especially on hardware as limited as the Apple IIe. Mechner's rotoscoping technique allowed him to capture the nuances of falling, making the animation feel natural. This routine highlights the game's commitment to realism, which was revolutionary for its time. The 'jumpfall' animation set a precedent for physics-driven gameplay, influencing the development of more advanced physics engines in later games."
+    content: "The `jumpfall` routine simulates the character's descent after a jump, using a combination of vertical (`chy`) and horizontal (`chx`) movements. The sequence of frames creates the illusion of gravity, a critical element in the game's platforming mechanics. Mechner's approach to encoding physics in 6502 assembly was innovative, as the Apple II lacked hardware support for such calculations. By carefully scripting the fall animation, he was able to create a realistic sense of weight and momentum, enhancing the player's immersion in the game world."
   - id: "princess-embrace-animation"
     line_start: 1604
     line_end: 1619
-    title: "Animating emotional connection: the embrace"
+    title: "The emotional climax: Princess embrace"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The 'Pembrace' routine animates the princess's embrace, a tender moment that underscores the game's emotional depth. This sequence uses a series of byte definitions to choreograph the princess's movements, capturing the intimacy of the gesture. Mechner's film background shines through, as he sought to convey emotion through animation—a rarity in games at the time. The Apple IIe's hardware constraints made this a challenging task, but Mechner's innovative approach allowed him to create a scene that resonated with players. The embrace is a poignant example of how animation can enhance storytelling in games, paving the way for more emotionally driven narratives."
+    content: "The `Pembrace` routine animates the emotional climax of the game, where the Princess embraces the protagonist. This sequence uses a combination of movement commands and frames to convey tenderness and relief. Mechner's decision to include such a detailed animation reflects his commitment to storytelling and character development, rare in games of the era. The embrace is a poignant moment that underscores the game's cinematic ambitions, elevating it beyond a simple platformer to a work of art."
 
 ---
 
