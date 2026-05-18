@@ -595,7 +595,7 @@
           "title": "GRAFIX.S",
           "description": "The graphics engine — page-flipping and sprite blitting on Apple IIe hardware",
           "path": "01 POP Source/Source/GRAFIX.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 9,
@@ -603,7 +603,7 @@
           "title": "HIRES.S",
           "description": "Hi-res graphics primitives — the Apple IIe 280×192 bitmap routines",
           "path": "01 POP Source/Source/HIRES.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 10,
@@ -611,7 +611,7 @@
           "title": "SUBS.S",
           "description": "Core subroutine library — shared utilities used throughout the engine",
           "path": "01 POP Source/Source/SUBS.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 11,
@@ -619,7 +619,7 @@
           "title": "TOPCTRL.S",
           "description": "Top-level control loop — the main game state machine and level sequencing",
           "path": "01 POP Source/Source/TOPCTRL.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 12,
@@ -627,7 +627,7 @@
           "title": "FRAMEADV.S",
           "description": "Frame advance — the per-frame logic that drives the animation system",
           "path": "01 POP Source/Source/FRAMEADV.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 13,
@@ -635,7 +635,7 @@
           "title": "AUTO.S",
           "description": "Attract mode — the demo loop that plays while waiting for a player",
           "path": "01 POP Source/Source/AUTO.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 14,
@@ -643,7 +643,7 @@
           "title": "UNPACK.S",
           "description": "Data decompressor — unpacking compressed level and animation data",
           "path": "01 POP Source/Source/UNPACK.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 15,
@@ -651,7 +651,7 @@
           "title": "MISC.S",
           "description": "Miscellaneous utility routines",
           "path": "01 POP Source/Source/MISC.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 16,
@@ -659,7 +659,7 @@
           "title": "CTRLSUBS.S",
           "description": "Controller subroutine helpers for joystick and keyboard input",
           "path": "01 POP Source/Source/CTRLSUBS.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 17,
@@ -667,7 +667,7 @@
           "title": "SPECIALK.S",
           "description": "Special key handlers — cheat codes and developer debug functions",
           "path": "01 POP Source/Source/SPECIALK.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 18,
@@ -675,7 +675,7 @@
           "title": "EQ.S",
           "description": "",
           "path": "01 POP Source/Source/EQ.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 19,
@@ -683,7 +683,7 @@
           "title": "GAMEEQ.S",
           "description": "",
           "path": "01 POP Source/Source/GAMEEQ.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 20,
@@ -691,7 +691,7 @@
           "title": "GAMEBG.S",
           "description": "",
           "path": "01 POP Source/Source/GAMEBG.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 21,
@@ -699,7 +699,7 @@
           "title": "BGDATA.S",
           "description": "",
           "path": "01 POP Source/Source/BGDATA.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 22,
@@ -707,7 +707,7 @@
           "title": "FRAMEDEF.S",
           "description": "",
           "path": "01 POP Source/Source/FRAMEDEF.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 23,
@@ -715,7 +715,7 @@
           "title": "HRPARAMS.S",
           "description": "",
           "path": "01 POP Source/Source/HRPARAMS.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 24,
@@ -723,7 +723,7 @@
           "title": "HRTABLES.S",
           "description": "",
           "path": "01 POP Source/Source/HRTABLES.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 25,
@@ -731,7 +731,7 @@
           "title": "MOVEDATA.S",
           "description": "",
           "path": "01 POP Source/Source/MOVEDATA.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 26,
@@ -739,7 +739,7 @@
           "title": "SEQDATA.S",
           "description": "",
           "path": "01 POP Source/Source/SEQDATA.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 27,
@@ -747,7 +747,7 @@
           "title": "SOUNDNAMES.S",
           "description": "",
           "path": "01 POP Source/Source/SOUNDNAMES.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 28,
@@ -755,7 +755,7 @@
           "title": "TABLES.S",
           "description": "",
           "path": "01 POP Source/Source/TABLES.S",
-          "generated": false
+          "generated": true
         },
         {
           "order": 29,
@@ -763,10 +763,10 @@
           "title": "VERSION.S",
           "description": "",
           "path": "01 POP Source/Source/VERSION.S",
-          "generated": false
+          "generated": true
         }
       ],
-      "introduction": "In the mid-1980s, Jordan Mechner sat alone at his Apple II, surrounded by stacks of floppy disks and hand-drawn sketches, embarking on a journey that would redefine video games. It was 1985, and Mechner, fresh out of Yale University with a degree in psychology, had already tasted success with his first game, *Karateka*. But he was driven by a deeper ambition: to create a game that felt alive, a game that moved with the fluidity and drama of a Hollywood film. Over the next four years, Mechner would pour his creativity, technical ingenuity, and sheer determination into *Prince of Persia*, a groundbreaking cinematic platformer that would push the limits of the Apple II and set a new standard for storytelling in games.\n\nThe computing world of the late 1980s was defined by constraints. The Apple II, first released in 1977, was still a popular platform, but its hardware was aging. With just 128K of RAM and a 1 MHz 6502 processor, developers had to wring every ounce of performance from the machine. Mechner faced the daunting challenge of creating fluid, lifelike animations on hardware that was never designed for such feats. To achieve this, he turned to rotoscoping — a technique borrowed from the film industry. He filmed his younger brother, David, performing acrobatic moves like running, jumping, and sword fighting, then painstakingly traced each frame to create the prince’s animations. The result was a level of realism that had never been seen in games before.\n\nMechner’s work was a solitary endeavor, but his vision was clear. He wrote every line of code himself in 6502 assembly, a low-level language that demanded precision and deep understanding of the hardware. To fit the game into the Apple II’s limited memory, he employed bank-switched memory techniques, juggling data between auxiliary and main memory as well as the language card banks. Every decision was shaped by the constraints of the machine: the sound engine, written in *SOUND.S*, had to produce twenty distinct sounds using a single speaker; the animation state machine in *SEQTABLE.S* had to efficiently manage dozens of rotoscoped movements; and the collision detection system in *COLL.S* had to account for the prince’s interactions with the dungeon environment without slowing the game to a crawl.\n\nWhen *Prince of Persia* was released in 1989, it was an instant sensation. Players were captivated by the game’s fluid animations, intricate level design, and the sense of urgency created by its 60-minute time limit to rescue the princess. Critics praised its cinematic qualities, likening it to an interactive film. The game’s success spawned ports to nearly every major platform of the era, from the Commodore Amiga to the Sega Genesis, and it became the blueprint for an entire genre of cinematic platformers. Mechner’s innovative use of rotoscoping and his meticulous attention to detail set a new benchmark for realism and storytelling in games.\n\nThe legacy of *Prince of Persia* endures to this day. Its influence can be seen in modern franchises like *Assassin’s Creed*, which Mechner himself helped shape. In 2012, Mechner rediscovered the original Apple II source code on 22-year-old floppy disks, allowing a new generation of developers and historians to study the game’s inner workings. The files, including *MASTER.S*, *CTRL.S*, and *MOVER.S*, reveal the brilliance of Mechner’s design and the ingenuity required to create a masterpiece within the constraints of 1980s hardware. *Prince of Persia* remains a testament to what one person can achieve with vision, perseverance, and a willingness to push the boundaries of technology.",
+      "introduction": "In the spring of 1985, Jordan Mechner, a young computer science graduate from Yale University, sat down at his Apple IIe in his parents’ home in Chappaqua, New York, with a singular goal: to create a game that would push the boundaries of storytelling and animation in video games. Having already tasted success with his first game, 'Karateka,' Mechner was determined to take his craft to the next level. What followed was a grueling four-year journey, during which Mechner would single-handedly write every line of code, design every level, and animate every frame of what would become 'Prince of Persia,' the first cinematic platformer. The Apple IIe, with its 128K of RAM and 6502 processor, was his canvas, and assembly language was his paintbrush.\n\nThe computing world of the mid-1980s was defined by constraints. The Apple IIe, though revolutionary for its time, was a machine with severe limitations: a 1 MHz processor, a maximum resolution of 280×192 pixels, and a single-channel speaker for sound. Developers were forced to squeeze every ounce of performance out of the hardware, often resorting to ingenious tricks to overcome these barriers. Mechner’s ambition to create fluid, lifelike animation on such a machine was audacious, to say the least. To achieve this, he turned to rotoscoping, a technique borrowed from film animation. He filmed his younger brother David performing the movements of the titular prince—running, jumping, and climbing—and traced each frame by hand to create the game’s groundbreaking animation.\n\nMechner’s background as both a programmer and a filmmaker uniquely positioned him to bridge the gap between technology and storytelling. His decision to use rotoscoping was inspired by his love of cinema and his desire to imbue the game with a sense of realism and drama. “I wanted the player to feel like they were controlling a real person, not just a sprite on the screen,” Mechner later explained. This philosophy extended to every aspect of the game, from the fluidity of the prince’s movements to the tension-filled timer that gave players just 60 minutes to complete the game. Mechner’s meticulous attention to detail is evident in the source files, from the animation state machine in SEQTABLE.S to the physics engine in MOVER.S that governs gravity and momentum.\n\nWhen 'Prince of Persia' was finally released in 1989, it was met with critical acclaim. The game’s fluid animation, cinematic storytelling, and challenging gameplay set it apart from anything else on the market. It became a commercial success, spawning sequels, adaptations, and countless imitators. The techniques Mechner pioneered—rotoscoping, bank-switched memory management, and cinematic pacing—would influence game design for decades to come. Today, 'Prince of Persia' is regarded as a landmark achievement in the history of video games, and its DNA can be seen in modern titles that prioritize storytelling and realism.\n\nThe recovery of the original source code in 2012 was a momentous occasion for gaming historians. Stored on 22-year-old floppy disks, the code was painstakingly extracted and preserved, offering a rare glimpse into the ingenuity and craftsmanship of a single developer working under extreme constraints. Each file tells a story: the SOUND.S file reveals how Mechner created 20 distinct sound effects using a single speaker, while the BOOT.S file demonstrates his mastery of low-level disk operations. Together, these files form a tapestry of innovation, a testament to what one person can achieve with vision, determination, and an Apple IIe.\n\n'Prince of Persia' did more than redefine what was possible on 1980s hardware—it redefined the medium itself. It proved that video games could be art, blending technology and storytelling in a way that captivated players and inspired creators. Jordan Mechner’s masterpiece remains a touchstone for game developers, a reminder that constraints can fuel creativity and that the most enduring works often come from the simplest tools.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Prince_of_Persia_1_-_Sketches_by_Jordan_Mechner.jpg/330px-Prince_of_Persia_1_-_Sketches_by_Jordan_Mechner.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "image_caption": "Sketches of the storyboard of Prince of Persia by Jordan Mechner. (CC BY-SA 4.0)"
     },

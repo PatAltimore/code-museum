@@ -9,90 +9,82 @@ year: 1989
 author: "Jordan Mechner"
 slug: "master"
 order: 4
-description: "The foundational assembly code for Prince of Persia, a cinematic platformer that revolutionized gaming in 1989."
+description: "The foundational assembly code for Prince of Persia (1989), a groundbreaking cinematic platformer for the Apple II."
 
 summary:
-  - point: "Bank-switched memory management to fit within 128K constraints"
+  - point: "Memory bank-switching to fit 128K constraints"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank switching"
-  - point: "Routines for loading rotoscoped animation data"
-    link: "https://en.wikipedia.org/wiki/Rotoscoping"
-    link_label: "Rotoscoping"
-  - point: "Disk drive control and error handling for Apple II"
+  - point: "Routines for loading levels and assets dynamically"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
+  - point: "Disk operations for saving/loading game state"
     link: "https://en.wikipedia.org/wiki/Apple_II_series"
     link_label: "Apple II"
-  - point: "Double hi-res graphics setup for cinematic visuals"
-    link: "https://en.wikipedia.org/wiki/Apple_II_graphics"
-    link_label: "Apple II graphics"
-  - point: "Self-running attract mode showcasing the game's cinematic style"
-    link: "https://en.wikipedia.org/wiki/Attract_mode"
-    link_label: "Attract mode"
+  - point: "Use of rotoscoping for realistic animation"
+    link: "https://en.wikipedia.org/wiki/Rotoscoping"
+    link_label: "Rotoscoping"
+  - point: "Soft switches for hardware control on Apple II"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series#Technical_specifications"
+    link_label: "Apple II hardware"
 
 enhancements:
   - id: "jump-table-master-routines"
-    line_start: 16
+    line_start: 18
     line_end: 31
-    title: "Jump Table for Core Game Routines"
+    title: "Jump Table for Master Routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/VirtualBox_Windows_98B_08_10_2023_17_41_04_-_Booting_error.png/330px-VirtualBox_Windows_98B_08_10_2023_17_41_04_-_Booting_error.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Result of booting a non-boot medium. Here a CD driver diskette is booted. Result is an output of several Unicode characters. (Public domain)"
-    content: "This section defines a jump table, a common technique in assembly programming to organize and quickly access subroutines. The table includes entries for key game functions such as booting, loading levels, saving/loading games, and entering attract mode. In the late 1980s, memory was scarce, and efficiency was paramount. Jordan Mechner, working solo, had to ensure the Apple II's limited resources were used optimally. By centralizing these jumps, he created a modular structure that allowed for easier debugging and updates. This design choice reflects the constraints of the Apple II, which relied on bank-switched memory to fit the game within 128K. The jump table concept persists in modern programming, albeit in more abstract forms like function pointers or virtual tables."
-  - id: "rw18-disk-drive-commands"
-    line_start: 43
-    line_end: 68
-    title: "Disk Drive Commands for Apple II"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_drive"
     image_url: ""
     image_caption: ""
-    content: "This block defines commands for interacting with the Apple II's disk drive, including turning the drive on/off, seeking tracks, and reading/writing data. The Apple II's RW18 protocol was notoriously low-level, requiring programmers to manually handle operations like error checking and track increments. Mechner's code encapsulates these operations into reusable commands, showcasing his meticulous attention to detail. Disk operations were critical for Prince of Persia, as the game relied on loading large amounts of animation and level data dynamically. The RW18 commands highlight the technical challenges of the era, where developers had to work directly with hardware interfaces. These routines are a testament to Mechner's ability to balance cinematic ambition with technical pragmatism."
-  - id: "local-vars-memory-management"
-    line_start: 71
-    line_end: 83
-    title: "Local Variables and Memory Allocation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    content: "This section defines a jump table for key routines in the game, such as loading levels, saving/loading game states, and handling attract mode. Jump tables were a common technique in assembly programming to centralize routine calls, making the code more modular and easier to maintain. Jordan Mechner, working solo on Prince of Persia, leveraged this approach to organize the game's complex functionality. In the constrained environment of the Apple II, modularity was crucial for debugging and extending features. The jump table reflects Mechner's meticulous planning and understanding of assembly-level optimization. This design pattern persists in modern programming, albeit in higher-level languages."
+  - id: "rw18-disk-commands"
+    line_start: 56
+    line_end: 67
+    title: "RW18 Disk Commands for Apple II"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_Disk_II"
     image_url: ""
     image_caption: ""
-    content: "This section allocates memory for local variables, including buffers for background and character sets. Memory management was a critical aspect of Apple II programming, as the system had only 128K of RAM, split between main and auxiliary memory. Mechner's careful allocation ensures that essential game data like graphics and animations can be loaded and manipulated efficiently. The use of 'ds' (define storage) directives reflects the low-level nature of 6502 assembly, where every byte had to be accounted for. This meticulous approach allowed Prince of Persia to achieve its groundbreaking visuals and fluid animations despite the hardware limitations."
-  - id: "firstboot-initialization-routine"
+    content: "These lines define the RW18 disk commands used to interact with the Apple II's Disk II drive. Commands like 'DrvOn', 'Seek', and 'RdGrpErr' control the disk operations essential for loading game assets and saving progress. The Apple II's Disk II system was revolutionary for its time, offering affordable floppy disk storage. Mechner had to work within the limitations of slow disk access and small storage capacity, designing efficient routines to minimize load times and maximize gameplay fluidity. The RW18 commands showcase the low-level control required to make the game function seamlessly on the hardware."
+  - id: "soft-switches-hardware-control"
+    line_start: 135
+    line_end: 158
+    title: "Soft Switches for Apple II Hardware Control"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series#Technical_specifications"
+    image_url: ""
+    image_caption: ""
+    content: "This section lists soft switches used to control hardware features of the Apple II, such as enabling high-resolution graphics, switching memory pages, and toggling text modes. Soft switches were memory-mapped locations that allowed software to directly control hardware behavior without physical switches. Mechner's use of these switches demonstrates his deep understanding of the Apple II's architecture, enabling him to push the limits of the machine's graphical and memory capabilities. These switches were critical for implementing the game's cinematic visuals and fluid animations, which were groundbreaking for the time."
+  - id: "firstboot-initialization"
     line_start: 186
     line_end: 227
-    title: "First Boot: Game Initialization"
+    title: "FirstBoot: Game Initialization Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
     image_caption: ""
-    content: "The FIRSTBOOT routine initializes the game by setting up memory, loading essential data, and preparing the system for gameplay. This includes configuring the Apple II's auxiliary memory, loading high-resolution graphics tables, and checking for compatibility with the Apple IIGS. The routine also starts the attract mode, a self-running demo designed to showcase the game's features and entice players. In the late 1980s, boot routines were critical for ensuring games could run smoothly on diverse hardware configurations. Mechner's code demonstrates his deep understanding of the Apple II's architecture, as he optimizes every step to fit the game's cinematic ambition within the system's constraints."
-  - id: "savegame-loadgame-routines"
+    content: "The 'FIRSTBOOT' routine initializes the game, setting up memory, loading essential assets, and preparing the attract mode loop. This routine is the first executed when the game starts, ensuring the system is ready for gameplay. In 1989, boot routines were critical for games on systems like the Apple II, where hardware and software had to be tightly integrated. Mechner's careful design of this routine reflects the challenges of working within the Apple II's 128K memory limit, requiring precise control over memory allocation and disk operations. This initialization process laid the groundwork for the game's smooth transitions and immersive experience."
+  - id: "savegame-loadgame-disk-operations"
     line_start: 394
     line_end: 433
-    title: "Save and Load Game Data"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
+    title: "SaveGame and LoadGame Disk Operations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
     image_caption: ""
-    content: "These routines handle saving and loading game progress by writing and reading 256 bytes of data to a specific track and sector on the disk. The Apple II's limited storage and lack of a standardized save system required developers to implement their own solutions. Mechner's approach, which uses an entire track on side 2 of the disk, reflects the trade-offs of the era: sacrificing disk space for reliability. This feature was crucial for a game like Prince of Persia, where players needed to save their progress in a challenging, cinematic adventure. The save/load routines highlight the ingenuity required to implement modern game features on vintage hardware."
-  - id: "attract-mode-self-running-demo"
-    line_start: 686
-    line_end: 709
-    title: "Attract Mode: Cinematic Showcase"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Attract_mode"
+    content: "These routines handle saving and loading game progress by writing and reading 256 bytes of data to specific disk tracks. Saving game state was a relatively novel feature in 1989, allowing players to resume their progress later. Mechner's implementation demonstrates his focus on user experience, ensuring the game could be enjoyed over multiple sessions. The use of specific disk tracks and sectors reflects the low-level control required to manage data on the Apple II's Disk II system. This feature added replayability and convenience, contributing to the game's lasting appeal."
+  - id: "loadlevel-dynamic-asset-loading"
+    line_start: 467
+    line_end: 481
+    title: "LoadLevel: Dynamic Asset Loading"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Asset_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The ATTRACTMODE routine creates a self-running demo that showcases the game's cinematic visuals and storytelling. This feature was common in arcade games but less so on home computers like the Apple II. Mechner uses attract mode to highlight Prince of Persia's unique qualities, including its rotoscoped animations and dramatic narrative. The routine cycles through splash screens, credits, and prologue scenes, giving players a taste of the game's immersive experience. In 1989, attract mode was a marketing tool as much as a technical feature, designed to draw players into the game world. Mechner's implementation reflects his dual role as a programmer and storyteller, blending technical precision with artistic vision."
-  - id: "setup-dhires-double-hires-graphics"
-    line_start: 716
-    line_end: 724
-    title: "Setting Up Double Hi-Res Graphics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
-    image_url: ""
-    image_caption: ""
-    content: "This routine configures the Apple II's double hi-res graphics mode, a feature that allowed for higher resolution visuals by combining auxiliary and main memory. Double hi-res was a relatively new capability in the late 1980s, and Mechner leverages it to create the cinematic look of Prince of Persia. The routine begins by showing a black screen, then loads the necessary data for Stage 1. This setup was essential for the game's groundbreaking visuals, which included detailed character animations and lush environments. Mechner's use of double hi-res graphics demonstrates his ability to push the Apple II hardware to its limits, creating a visual experience that was ahead of its time."
+    content: "The 'LOADLEVEL' routine dynamically loads level data, background sets, and character sets into memory. This approach allowed Prince of Persia to feature detailed graphics and animations despite the Apple II's limited memory. Mechner's use of dynamic loading reflects his ingenuity in overcoming hardware constraints, ensuring the game could deliver a rich visual experience without exceeding the 128K memory limit. This technique of loading assets on demand became a standard practice in game development, influencing future titles on more advanced platforms."
   - id: "epilog-ending-sequence"
-    line_start: 891
+    line_start: 664
     line_end: 914
-    title: "Epilog: The Cinematic Finale"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Epilogue"
+    title: "Epilog: The Cinematic Ending Sequence"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Ending_(video_gaming)"
     image_url: ""
     image_caption: ""
-    content: "The EPILOG routine delivers the game's dramatic ending, complete with music, visuals, and a fade-to-black sequence. This cinematic approach was rare for games of the era, especially on the Apple II. Mechner's code includes checks for the Apple IIGS, enabling a super hi-res version of the epilog for players with advanced hardware. The routine showcases Mechner's storytelling prowess, as he uses technical features like double hi-res graphics and synchronized music to create an emotional conclusion. The epilog reflects the game's ambition to be more than just a platformer—it aimed to be an interactive movie, a vision that influenced countless games in the decades that followed."
+    content: "The 'EPILOG' routine delivers the game's ending sequence, complete with music, visuals, and a fade-out effect. This cinematic approach to storytelling was rare in 1989, especially on the Apple II. Mechner's focus on creating a memorable ending reflects his desire to elevate video games as a storytelling medium. The routine also includes a special super hi-res ending for the Apple IIGS, showcasing Mechner's adaptability to different hardware capabilities. This ending sequence left a lasting impression on players, solidifying Prince of Persia's reputation as a groundbreaking title."
 
 ---
 
