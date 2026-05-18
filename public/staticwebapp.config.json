@@ -5,7 +5,7 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/css/*", "/js/*", "/programs/*", "/catalog.json", "/manifest.json", "/sw.js", "/icon.*"]
+    "exclude": ["/css/*", "/js/*", "/programs/*", "/catalog.json", "/icon.*"]
   },
   "mimeTypes": { ".md": "text/plain" },
   "globalHeaders": {

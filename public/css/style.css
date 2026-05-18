@@ -948,19 +948,6 @@ a:hover {
   font-size: 0.95rem;
 }
 
-.offline-banner {
-  background: var(--highlight-bg);
-  border-bottom: 1px solid var(--border);
-  padding: 0.4rem 1rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-align: center;
-  display: none;
-}
-
-.offline-banner.visible {
-  display: block;
-}
 
 .font-size-controls {
   display: flex;

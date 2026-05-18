@@ -1,7 +1,5 @@
 'use strict';
 
-const CACHE_PREFIX = 'hc-img-';
-
 // --- Instruction reference tables ---
 
 const INSTRUCTIONS_6502 = {
@@ -649,7 +647,7 @@ function renderEnhancement(enh) {
 
   const imageHtml = hasImage ? `
     <div class="enhancement-image-wrap">
-      <img data-src="${escapeAttr(enh.image_url)}" alt="${escapeAttr(enh.title)}" style="-webkit-transform:translateZ(0);transform:translateZ(0)">
+      <img src="${escapeAttr(enh.image_url)}" alt="${escapeAttr(enh.title)}" loading="lazy">
       ${enh.image_caption ? `<p class="enhancement-caption">${escapeHtml(enh.image_caption)}${commonsUrl(enh.image_url) ? ` <a class="commons-link" href="${escapeAttr(commonsUrl(enh.image_url))}" target="_blank" rel="noopener">Wikimedia Commons</a>` : ''}</p>` : ''}
     </div>` : '';
 
@@ -692,16 +690,6 @@ function commonsUrl(url) {
   const m2 = url.match(/\/wikipedia\/commons\/[0-9a-f]\/[0-9a-f]{2}\/(.+)$/);
   if (m2) return 'https://commons.wikimedia.org/wiki/File:' + m2[1];
   return null;
-}
-
-function loadImagesAsBlobUrls(container) {
-  container.querySelectorAll('img[data-src]').forEach(img => {
-    const url = img.dataset.src;
-    fetch(url)
-      .then(r => r.blob())
-      .then(blob => { img.src = URL.createObjectURL(blob); })
-      .catch(() => { img.src = url; });
-  });
 }
 
 async function fetchText(url) {
@@ -845,7 +833,7 @@ function renderProgramPage(program) {
 
   const introImageHtml = program.image_url ? `
   <figure class="intro-image">
-    <img data-src="${escapeAttr(program.image_url)}" alt="${escapeAttr(program.title)}">
+    <img src="${escapeAttr(program.image_url)}" alt="${escapeAttr(program.title)}" loading="lazy">
     ${program.image_caption ? `<figcaption>${escapeHtml(program.image_caption)}${commonsUrl(program.image_url) ? ` <a class="commons-link" href="${escapeAttr(commonsUrl(program.image_url))}" target="_blank" rel="noopener">Wikimedia Commons</a>` : ''}</figcaption>` : ''}
   </figure>` : '';
 
@@ -1023,7 +1011,6 @@ document.addEventListener('click', e => {
 });
 
 const app = document.getElementById('app');
-const offlineBanner = document.getElementById('offline-banner');
 
 function setLoading() {
   app.innerHTML = '<div class="loading"></div>';
@@ -1051,7 +1038,6 @@ async function route() {
       const program = getProgramFromCatalog(catalog, slug);
       if (!program) { setError('Program not found.'); return; }
       app.innerHTML = renderHeader({ programSlug: slug, programTitle: program.title }) + renderProgramPage(program);
-      loadImagesAsBlobUrls(app);
 
     } else if (parts.length >= 2) {
       const [programSlug, fileSlug] = parts;
@@ -1065,7 +1051,6 @@ async function route() {
       }) + renderReader(meta, body, program);
       setupWordLookup(app);
       setupInstructionLookup(app, meta.language, meta.file_path);
-      loadImagesAsBlobUrls(app);
     }
   } catch (err) {
     setError('Failed to load: ' + err.message);
@@ -1074,14 +1059,3 @@ async function route() {
 
 window.addEventListener('hashchange', route);
 window.addEventListener('load', route);
-
-window.addEventListener('online', () => {
-  if (offlineBanner) offlineBanner.classList.remove('visible');
-});
-window.addEventListener('offline', () => {
-  if (offlineBanner) offlineBanner.classList.add('visible');
-});
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(() => {});
-}
