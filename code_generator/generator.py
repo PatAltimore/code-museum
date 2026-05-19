@@ -12,9 +12,9 @@ from rich.console import Console
 from client import ModelClient, ContentFilterError
 from checkpointer import Checkpointer
 from fetch_code import fetch_source
-from prompts import build_prompt
+from prompts import build_prompt, build_chunk_prompt, CHUNK_THRESHOLD, _asm_landmarks
 from intro_prompts import build_intro_prompt
-from formatter import format_file
+from formatter import format_file, format_file_from_dict, parse_response_json
 from find_images import fill_file_images, find_program_image
 import catalog_sync
 
@@ -51,6 +51,88 @@ def save_program_image(slug: str, image_url: str, image_caption: str) -> None:
 
     catalog["programs"] = list(existing.values())
     _CATALOG_PATH.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def _split_into_chunks(
+    total_lines: int,
+    landmarks: list[tuple[int, str]],
+    chunk_size: int = 800,
+) -> list[tuple[int, int]]:
+    """Split a file into chunks of ~chunk_size lines, snapping to landmark boundaries.
+
+    Returns a list of (start, end) 1-indexed inclusive tuples covering the
+    entire file with no gaps and no overlaps.
+    """
+    landmark_lines = {ln for ln, _name in landmarks}
+    chunks = []
+    start = 1
+
+    while start <= total_lines:
+        nominal_end = start + chunk_size - 1
+
+        if nominal_end >= total_lines:
+            # Last chunk — take everything remaining
+            chunks.append((start, total_lines))
+            break
+
+        # Search for a landmark boundary in the window
+        # [start + chunk_size//2, start + chunk_size*1.3]
+        window_lo = start + chunk_size // 2
+        window_hi = min(total_lines, int(start + chunk_size * 1.3))
+
+        # Find the last landmark whose line is inside the window; cut just
+        # before it so the landmark opens the next chunk cleanly.
+        best_cut = None
+        for ln in sorted(landmark_lines):
+            if window_lo <= ln <= window_hi:
+                best_cut = ln - 1  # end this chunk one line before the landmark
+
+        if best_cut is None:
+            # No landmark in window — use the nominal cut point
+            best_cut = nominal_end
+
+        chunks.append((start, best_cut))
+        start = best_cut + 1
+
+    return chunks
+
+
+def _merge_chunk_responses(parsed_chunks: list[dict]) -> dict:
+    """Merge multiple per-chunk parsed JSON dicts into one.
+
+    Uses description and summary from the first chunk only.
+    Enhancements are concatenated from all chunks, sorted by line_start,
+    and deduplicated by id (appending -2, -3, etc. for collisions).
+    """
+    if not parsed_chunks:
+        return {"description": "", "summary": [], "enhancements": []}
+
+    merged = {
+        "description": parsed_chunks[0].get("description", ""),
+        "summary": parsed_chunks[0].get("summary", []),
+        "enhancements": [],
+    }
+
+    all_enhancements = []
+    for chunk in parsed_chunks:
+        all_enhancements.extend(chunk.get("enhancements", []))
+
+    # Sort by line_start
+    all_enhancements.sort(key=lambda e: int(e.get("line_start", 0)))
+
+    # Deduplicate IDs
+    seen_ids: dict[str, int] = {}
+    for enh in all_enhancements:
+        original_id = enh.get("id", "")
+        if original_id not in seen_ids:
+            seen_ids[original_id] = 1
+        else:
+            seen_ids[original_id] += 1
+            enh = dict(enh)
+            enh["id"] = f"{original_id}-{seen_ids[original_id]}"
+        merged["enhancements"].append(enh)
+
+    return merged
 
 
 def generate_intro(program: dict, client, gen_cfg: dict, force: bool, fetch_images: bool = True) -> bool:
@@ -236,27 +318,93 @@ def main() -> None:
                 console.print(f"  [red]fetch failed: {e}[/red]")
                 continue
 
-            messages = build_prompt(program, file_cfg, code_lines)
+            if len(code_lines) > CHUNK_THRESHOLD:
+                # --- Chunked path for large files ---
+                lang = program.get("language", "").lower()
+                if "assembly" in lang or "asm" in lang:
+                    landmarks = _asm_landmarks(code_lines)
+                else:
+                    landmarks = []
 
-            if args.dry_run:
-                console.print(f"  [dim]dry-run: {len(code_lines)} lines, prompt ready[/dim]")
-                continue
+                chunks = _split_into_chunks(len(code_lines), landmarks)
+                total_chunks = len(chunks)
 
-            console.print(f"  calling model ({len(code_lines)} lines)…")
-            try:
-                raw = client.complete(
-                    messages,
-                    temperature=gen_cfg.get("temperature", 0.3),
-                    max_tokens=gen_cfg.get("max_tokens", 4096),
+                if args.dry_run:
+                    console.print(
+                        f"  [dim]dry-run: {len(code_lines)} lines, "
+                        f"{total_chunks} chunks: "
+                        + ", ".join(f"{s}-{e}" for s, e in chunks)
+                        + "[/dim]"
+                    )
+                    continue
+
+                console.print(
+                    f"  large file: {len(code_lines)} lines split into "
+                    f"{total_chunks} chunks"
                 )
-            except ContentFilterError as e:
-                console.print(f"  [red]content filter: {e}[/red]")
-                continue
-            except RuntimeError as e:
-                console.print(f"  [red]{e}[/red]")
-                continue
 
-            content = format_file(program, file_cfg, code_lines, raw, is_excerpt)
+                parsed_chunks = []
+                for chunk_num, (chunk_start, chunk_end) in enumerate(chunks, 1):
+                    console.print(
+                        f"  chunk {chunk_num}/{total_chunks} "
+                        f"(lines {chunk_start}–{chunk_end})…"
+                    )
+                    messages = build_chunk_prompt(
+                        program, file_cfg, code_lines,
+                        chunk_start, chunk_end, chunk_num, total_chunks,
+                    )
+                    try:
+                        raw = client.complete(
+                            messages,
+                            temperature=gen_cfg.get("temperature", 0.3),
+                            max_tokens=gen_cfg.get("max_tokens", 4096),
+                        )
+                    except ContentFilterError as e:
+                        console.print(f"  [yellow]chunk {chunk_num} content filter — skipping: {e}[/yellow]")
+                        continue
+                    except RuntimeError as e:
+                        console.print(f"  [yellow]chunk {chunk_num} error — skipping: {e}[/yellow]")
+                        continue
+
+                    try:
+                        parsed = parse_response_json(raw)
+                    except Exception as e:
+                        console.print(f"  [yellow]chunk {chunk_num} JSON parse failed — skipping: {e}[/yellow]")
+                        continue
+
+                    parsed_chunks.append(parsed)
+
+                if not parsed_chunks:
+                    console.print(f"  [red]all chunks failed — skipping {prog_slug}/{file_slug}[/red]")
+                    continue
+
+                merged = _merge_chunk_responses(parsed_chunks)
+                content = format_file_from_dict(program, file_cfg, code_lines, merged, is_excerpt)
+
+            else:
+                # --- Standard path for small files ---
+                messages = build_prompt(program, file_cfg, code_lines)
+
+                if args.dry_run:
+                    console.print(f"  [dim]dry-run: {len(code_lines)} lines, prompt ready[/dim]")
+                    continue
+
+                console.print(f"  calling model ({len(code_lines)} lines)…")
+                try:
+                    raw = client.complete(
+                        messages,
+                        temperature=gen_cfg.get("temperature", 0.3),
+                        max_tokens=gen_cfg.get("max_tokens", 4096),
+                    )
+                except ContentFilterError as e:
+                    console.print(f"  [red]content filter: {e}[/red]")
+                    continue
+                except RuntimeError as e:
+                    console.print(f"  [red]{e}[/red]")
+                    continue
+
+                content = format_file(program, file_cfg, code_lines, raw, is_excerpt)
+
             path = ckpt.save(prog_slug, file_slug, content)
             console.print(f"  [green]-> {path}[/green]")
             generated.append((prog_slug, file_slug))

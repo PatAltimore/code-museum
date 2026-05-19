@@ -1,45 +1,30 @@
 import re as _re
 
+CHUNK_THRESHOLD = 1000
+
 
 def _asm_landmarks(code_lines: list[str]) -> list[tuple[int, str]]:
     """Return (1-indexed line number, label name) for every assembly label/proc entry.
 
-    The returned line number is the start of any comment block that immediately
-    precedes the label (with at most one blank line between the comment and the
-    label). This lets the model use the pre-computed line number directly as
-    line_start without having to guess how far back the associated comment runs.
+    The returned line number is the label line itself — comments above the label
+    are not included so the model gets an unambiguous anchor.
 
     Works for both 6502 (Merlin) and 8086 (MASM/TASM) style assembly.
     """
-    # Keywords that mean the identifier is a constant/data definition, not a label
+    # Keywords that mean the identifier is a constant/data definition, not a label.
+    # Includes both MASM/TASM and MACRO-10 (PDP-10) assembler directives.
     _DATA_KEYWORDS = {
+        # MASM / TASM
         'EQU', 'MACRO', 'STRUC', 'STRUCT', 'RECORD', 'TYPEDEF',
         'SEGMENT', 'ENDS', 'GROUP', 'ASSUME', 'ORG',
-        'DS', 'DB', 'DW', 'DD', 'DQ', 'DT', 'DF',
-        '=', 'SET', 'TEXTEQU',
+        'DS', 'DB', 'DW', 'DD', 'DQ', 'DT', 'DF', 'SET', 'TEXTEQU',
+        # MACRO-10 / PDP-10
+        'TITLE', 'SEARCH', 'SALL', 'RADIX', 'SUBTTL', 'PAGE',
+        'LIST', 'XLIST', 'PURGE', 'DEFINE', 'IFE', 'IFN', 'IFG',
+        'IFL', 'IFB', 'IFDEF', 'IFNDEF', 'IF', 'IF1', 'IF2',
+        'ELSE', 'ENDIF', 'IRPC', 'IRP', 'REPT', 'END', 'UNIVERSAL',
+        'COMMENT',
     }
-
-    def _is_comment(line: str) -> bool:
-        s = line.strip()
-        return bool(s) and s[0] in ';*'
-
-    def _comment_block_start(label_idx: int) -> int:
-        """Walk backward from label_idx (0-based) and return the 0-based index
-        of the first line of any immediately-preceding comment block.
-
-        Tolerates at most one blank line between the comment block and the label.
-        Stops if it hits a non-comment, non-blank line.
-        """
-        i = label_idx - 1
-        # Skip at most one blank line immediately above the label
-        if i >= 0 and not code_lines[i].strip():
-            i -= 1
-        # Walk back through contiguous comment lines
-        block_start = label_idx
-        while i >= 0 and _is_comment(code_lines[i]):
-            block_start = i
-            i -= 1
-        return block_start
 
     ident_pat = _re.compile(r'^([A-Za-z_@?$][A-Za-z0-9_@?$.]*)')
     landmarks = []
@@ -64,8 +49,10 @@ def _asm_landmarks(code_lines: list[str]) -> list[tuple[int, str]]:
         # First significant word after the identifier
         first_word = code_rest.split()[0].upper() if code_rest else ''
 
-        # Skip EQU/data definitions
-        if first_word in _DATA_KEYWORDS:
+        # Skip if the identifier itself is a directive (e.g. IFE, DEFINE, TITLE)
+        # or if what follows it is a data/definition keyword (e.g. LABEL EQU 5)
+        # or if it uses = / == assignment syntax (e.g. REALIO=4, ADDPRC==1)
+        if name.upper() in _DATA_KEYWORDS or first_word in _DATA_KEYWORDS or code_rest.startswith('='):
             continue
 
         # Accept anything not filtered out above:
@@ -73,19 +60,26 @@ def _asm_landmarks(code_lines: list[str]) -> list[tuple[int, str]]:
         #   LABEL           — alone on the line (6502/Merlin style)
         #   LABEL instr ... — label + instruction on same line (6502/Merlin style)
         #   LABEL PROC ...  — MASM/TASM procedure declaration
-        # Use the start of the preceding comment block (if any) as line_start.
-        start = _comment_block_start(i)
-        landmarks.append((start + 1, name))  # convert to 1-indexed
+        landmarks.append((i + 1, name))  # convert to 1-indexed
 
     return landmarks
 
 
-def _landmarks_block(landmarks: list[tuple[int, str]], total_lines: int) -> str:
+def _landmarks_block(
+    landmarks: list[tuple[int, str]],
+    total_lines: int,
+    density_denominator: int = None,
+) -> str:
     """Format landmark table as a string to embed in the prompt.
 
     Filters out landmarks whose implied section is fewer than MIN_SECTION_LINES
     lines — these are typically fall-through labels or single-line data aliases
     that don't correspond to distinct annotatable sections.
+
+    density_denominator: if provided, use this value instead of total_lines for
+    the density guard (len(significant) > X / 12). Useful for chunks where
+    total_lines is the full-file line count but we only want to check density
+    against the chunk size.
     """
     if not landmarks:
         return ""
@@ -103,16 +97,21 @@ def _landmarks_block(landmarks: list[tuple[int, str]], total_lines: int) -> str:
     if not significant:
         return ""
 
+    # If landmarks are denser than 1 per 12 lines, the file structure is
+    # too unusual (e.g. MACRO-10 with inline conditional blocks) for the
+    # table to be reliable — omit it rather than mislead the model.
+    denom = density_denominator if density_denominator is not None else total_lines
+    if len(significant) > denom / 12:
+        return ""
+
     lines = [
         "Assembly landmarks — exact line numbers for every label/subroutine entry point:",
-        "(each line_start already includes any comment block immediately above the label)",
     ]
     for lineno, name, implied_end in significant:
         lines.append(f"  Line {lineno:4d}: {name}  (section ends ~line {implied_end})")
     lines.append(
         "\nIMPORTANT: Use these exact line numbers as line_start for each annotation. "
-        "Do NOT count lines yourself and do NOT go above the given line_start to include comments "
-        "— the comment block is already accounted for in the line number shown."
+        "Do NOT count lines yourself."
     )
     return "\n".join(lines)
 
@@ -254,6 +253,65 @@ def build_prompt(program: dict, file_cfg: dict, code_lines: list[str]) -> list[d
 
     user_content = "\n".join(context_parts) + "\n\n" + numbered
 
+    return [
+        {"role": "system", "content": _SYSTEM},
+        {"role": "user", "content": user_content},
+    ]
+
+
+def build_chunk_prompt(
+    program: dict,
+    file_cfg: dict,
+    code_lines: list[str],
+    chunk_start: int,   # 1-indexed, inclusive
+    chunk_end: int,     # 1-indexed, inclusive
+    chunk_num: int,     # 1-indexed
+    total_chunks: int,
+) -> list[dict]:
+    """Build a prompt for one chunk of a large file.
+
+    Only the lines chunk_start..chunk_end are sent, but with their original
+    (file-level) line numbers preserved so line_start/line_end in the response
+    refer to the full file, not the chunk.
+    """
+    chunk_lines = code_lines[chunk_start - 1 : chunk_end]
+    numbered = "\n".join(
+        f"{chunk_start + i:4d}  {line}"
+        for i, line in enumerate(chunk_lines)
+    )
+
+    context_parts = [
+        f"Program: {program['title']} ({program['year']})",
+        f"Author: {program['author']}",
+        f"Language: {program['language']}",
+        f"File: {file_cfg['path']}",
+        f"Chunk: {chunk_num} of {total_chunks} "
+        f"(lines {chunk_start}–{chunk_end} of {len(code_lines)} total). "
+        f"Annotate every section within lines {chunk_start}–{chunk_end} only. "
+        f"All line_start and line_end values must be within this range.",
+    ]
+    if program.get("context"):
+        context_parts.append(f"Historical context: {program['context']}")
+    if file_cfg.get("context"):
+        context_parts.append(f"File context: {file_cfg['context']}")
+
+    lang = program.get("language", "").lower()
+    if "assembly" in lang or "asm" in lang:
+        landmarks = _asm_landmarks(code_lines)
+        chunk_landmarks = [(ln, name) for ln, name in landmarks
+                           if chunk_start <= ln <= chunk_end]
+        if chunk_landmarks:
+            chunk_size = chunk_end - chunk_start + 1
+            block = _landmarks_block(
+                chunk_landmarks,
+                chunk_end,
+                density_denominator=chunk_size,
+            )
+            if block:
+                context_parts.append("")
+                context_parts.append(block)
+
+    user_content = "\n".join(context_parts) + "\n\n" + numbered
     return [
         {"role": "system", "content": _SYSTEM},
         {"role": "user", "content": user_content},

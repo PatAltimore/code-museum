@@ -121,7 +121,7 @@
     },
     {
       "slug": "basic-m6502",
-      "introduction": "In the summer of 1977, Bill Gates and Paul Allen found themselves at the forefront of a revolution that few could yet see clearly. Personal computing was still in its infancy, but the release of the Apple II earlier that year had hinted at the possibilities of affordable, accessible machines for individual users. Gates and Allen, co-founders of the fledgling Microsoft, were already seasoned veterans of microprocessor programming, having developed a version of BASIC for the Altair 8800 just two years earlier. Now, they faced a new challenge: adapting their BASIC interpreter for the 6502 microprocessor, the heart of the Apple II and other emerging systems. The stakes were high, and the constraints were daunting — but the opportunity was undeniable.\n\nThe computing world of 1977 was defined by scarcity. Memory was expensive, with RAM costing hundreds of dollars per kilobyte, and most personal computers shipped with only 4 to 48 kilobytes of memory. Storage was limited to cassette tapes or floppy disks, and processors like the MOS Technology 6502 were designed to be inexpensive and efficient, but not particularly powerful. Writing software for these machines required an almost obsessive focus on optimization. Every byte of memory mattered, and every instruction had to be scrutinized for efficiency. Gates and Allen, working out of Microsoft's small office in Albuquerque, New Mexico, were well-acquainted with these constraints. Their goal was ambitious: to create a functional, user-friendly implementation of BASIC that could fit within the tiny memory footprints of early personal computers.\n\nBill Gates, a Harvard dropout with a deep passion for programming, and Paul Allen, a self-taught technologist with a knack for hardware, were perfectly suited to the task. Gates was known for his relentless attention to detail, often personally reviewing and rewriting code to squeeze out every last ounce of performance. Allen, meanwhile, brought a broader vision to the table, understanding how software could unlock the potential of new hardware. Together, they made key decisions that shaped Microsoft BASIC for the 6502. They wrote the entire program in 6502 assembly language, a painstaking process that required intimate knowledge of the processor's instruction set. They also implemented innovative techniques to minimize memory usage, such as tokenizing BASIC commands and reusing code wherever possible. \"We were obsessed with making it fit,\" Gates later recalled. \"Every byte was a victory.\"\n\nThe result was a triumph of ingenuity. Microsoft BASIC for the 6502 was compact, efficient, and remarkably capable given the constraints of the hardware. It allowed users to write and execute programs in a high-level language, opening the door to a new era of personal computing. The Apple II, which shipped with Microsoft BASIC, became one of the most successful early personal computers, selling millions of units and establishing BASIC as the lingua franca of programming for hobbyists and professionals alike. Other manufacturers soon licensed Microsoft BASIC for their own 6502-based systems, further cementing its role as a cornerstone of the industry.\n\nThe legacy of Microsoft BASIC for the 6502 is profound. It not only helped establish Microsoft as a dominant force in software development but also demonstrated the transformative power of accessible programming tools. By enabling users to interact with their computers in a straightforward, intuitive way, BASIC helped demystify computing and inspired countless individuals to explore programming. Today, while the 6502 microprocessor and its era have long since passed, the principles of efficiency, accessibility, and innovation that shaped Microsoft BASIC remain central to software development. Gates and Allen’s work in 1977 was more than just a technical achievement — it was a pivotal moment in the history of computing.",
+      "introduction": "In the summer of 1977, inside a modest office in Albuquerque, New Mexico, Bill Gates and Paul Allen were racing against time to deliver a revolutionary piece of software. The personal computing world was on the brink of transformation, and the newly minted Microsoft was determined to be at its forefront. Their task was to adapt BASIC, a programming language originally developed for mainframes, to the 6502 microprocessor—a chip that powered some of the earliest personal computers, including the Apple II. The stakes were high: the success of their company, and perhaps the future of personal computing itself, rested on their ability to craft a language that could run efficiently on hardware with just a few kilobytes of memory.\n\nThe computing landscape of 1977 was defined by constraints. The Apple II, Commodore PET, and other early personal computers were just beginning to emerge, equipped with processors like the MOS Technology 6502. These machines were marvels of affordability, with the 6502 chip priced at just $25—a fraction of the cost of competing processors. Yet their capabilities were limited: memory was measured in kilobytes, and storage was often confined to cassette tapes. Software developers faced a daunting challenge: how to create programs that were not only functional but also compact enough to fit within these tight confines. Gates and Allen, both seasoned programmers with a knack for optimization, saw an opportunity to bring BASIC to this new class of machines, providing users with a way to write their own programs and unlock the potential of personal computing.\n\nBill Gates, a Harvard dropout with a relentless drive for perfection, and Paul Allen, his equally brilliant partner, had already proven their mettle by delivering a version of BASIC for the Altair 8800. But the 6502 posed new challenges. Unlike the Intel 8080, the 6502 had a simpler instruction set and fewer registers, requiring a different approach to programming. Working in assembly language, Gates and Allen meticulously crafted their code to squeeze every ounce of performance from the chip. They optimized routines for mathematical operations, streamlined memory management, and ensured the interpreter could fit within the limited RAM available on early machines. \"We were obsessed with efficiency,\" Gates later recalled. \"Every byte mattered.\"\n\nThe result was Microsoft BASIC for the 6502, a triumph of ingenuity and engineering. This implementation allowed users to write and execute programs in a high-level language, opening the door to creativity and experimentation. It became the foundation for software development on the Apple II, which debuted in June 1977 and quickly became one of the most iconic personal computers of all time. Microsoft's BASIC was not only fast and reliable but also portable, enabling it to be adapted for other 6502-based systems. This flexibility helped establish Microsoft as a dominant player in the software industry, laying the groundwork for its future success.\n\nMicrosoft BASIC for the 6502 changed the trajectory of personal computing. It empowered a generation of hobbyists, students, and entrepreneurs to explore programming and create their own applications. The language's influence extended far beyond the Apple II, shaping the software ecosystem for countless other machines. Today, the source code for Microsoft BASIC stands as a testament to the ingenuity and determination of Gates and Allen, who overcame the constraints of their time to deliver a product that would define an era. Their work not only propelled Microsoft to prominence but also helped ignite the personal computing revolution, a legacy that continues to resonate in the digital age.",
       "title": "Microsoft BASIC for 6502 Microprocessor",
       "author": "Bill Gates, Paul Allen",
       "year": 1977,
@@ -1392,7 +1392,7 @@
           "title": "r_bsp.c",
           "description": "BSP renderer — the Quake tree traversal that moved to true 3D from DOOM's 2.5D",
           "path": "QW/client/r_bsp.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 9,
@@ -1400,7 +1400,7 @@
           "title": "r_alias.c",
           "description": "Alias model renderer — drawing the animated polygon models for players and monsters",
           "path": "QW/client/r_alias.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 10,
@@ -1408,7 +1408,7 @@
           "title": "r_edge.c",
           "description": "Edge rasterizer — Michael Abrash’s span-based polygon engine at the heart of Quake",
           "path": "QW/client/r_edge.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 11,
@@ -1416,7 +1416,7 @@
           "title": "pmove.c",
           "description": "Player movement physics — the deterministic simulation that enabled client-side prediction",
           "path": "QW/client/pmove.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 12,
@@ -1424,7 +1424,7 @@
           "title": "zone.c",
           "description": "Memory zone allocator — Quake's two-tier heap that inspired countless game engines",
           "path": "QW/client/zone.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 13,
@@ -1432,7 +1432,7 @@
           "title": "common.c",
           "description": "Common utilities — the foundational string, file, and error-handling layer",
           "path": "QW/client/common.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 14,
@@ -1440,7 +1440,7 @@
           "title": "cmd.c",
           "description": "Console command system — the text-driven interface that modders and players both used",
           "path": "QW/client/cmd.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 15,
@@ -1448,7 +1448,7 @@
           "title": "gl_rmain.c",
           "description": "OpenGL renderer — Quake’s hardware-accelerated path, among the first in any game",
           "path": "QW/client/gl_rmain.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 16,
@@ -1456,7 +1456,7 @@
           "title": "model.c",
           "description": "Model loader — parsing BSP, MDL, and sprite formats into renderable geometry",
           "path": "QW/client/model.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 17,
@@ -1464,7 +1464,7 @@
           "title": "snd_mix.c",
           "description": "Audio mixer — mixing multiple sound channels into the output buffer",
           "path": "QW/client/snd_mix.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 18,
@@ -1472,7 +1472,7 @@
           "title": "cl_input.c",
           "description": "Client input — translating mouse and keyboard into the usercmd sent to the server",
           "path": "QW/client/cl_input.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 19,
@@ -1480,7 +1480,7 @@
           "title": "net_chan.c",
           "description": "Network channels — the reliable UDP layer that made QuakeWorld’s netcode legendary",
           "path": "QW/client/net_chan.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 20,
@@ -1488,7 +1488,7 @@
           "title": "cl_demo.c",
           "description": "Demo recording and playback — capturing server messages to a file and replaying them",
           "path": "QW/client/cl_demo.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 21,
@@ -1496,7 +1496,7 @@
           "title": "cl_ents.c",
           "description": "Client entity management — interpolating entity positions between server updates",
           "path": "QW/client/cl_ents.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 22,
@@ -1504,7 +1504,7 @@
           "title": "cl_parse.c",
           "description": "Server message parser — decoding the stream of svc_ network messages from the server",
           "path": "QW/client/cl_parse.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 23,
@@ -1512,7 +1512,7 @@
           "title": "cl_pred.c",
           "description": "Client-side prediction — running player physics locally to hide network latency",
           "path": "QW/client/cl_pred.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 24,
@@ -1520,7 +1520,7 @@
           "title": "console.c",
           "description": "Developer console — the drop-down text console for commands, cvars, and debug output",
           "path": "QW/client/console.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 25,
@@ -1528,7 +1528,7 @@
           "title": "cvar.c",
           "description": "Console variables — the key/value config system behind every engine setting",
           "path": "QW/client/cvar.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 26,
@@ -1536,7 +1536,7 @@
           "title": "d_edge.c",
           "description": "Software edge engine — the span-based rasterizer that feeds the scanline fill loop",
           "path": "QW/client/d_edge.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 27,
@@ -1544,7 +1544,7 @@
           "title": "d_scan.c",
           "description": "Scanline rasterizer — the inner texture-mapping loop for software rendering",
           "path": "QW/client/d_scan.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 28,
@@ -1552,7 +1552,7 @@
           "title": "draw.c",
           "description": "2D draw routines — blitting characters, rectangles, and pic images to the screen",
           "path": "QW/client/draw.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 29,
@@ -1560,7 +1560,7 @@
           "title": "gl_draw.c",
           "description": "OpenGL 2D drawing — hardware-accelerated HUD and console rendering for the GL path",
           "path": "QW/client/gl_draw.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 30,
@@ -1568,7 +1568,7 @@
           "title": "gl_rsurf.c",
           "description": "OpenGL surface renderer — building and drawing world geometry texture chains",
           "path": "QW/client/gl_rsurf.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 31,
@@ -1576,7 +1576,7 @@
           "title": "keys.c",
           "description": "Key binding system — mapping physical keys to named commands via config and console",
           "path": "QW/client/keys.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 32,
@@ -1584,7 +1584,7 @@
           "title": "menu.c",
           "description": "In-game menu system — the main, options, and multiplayer join menu screens",
           "path": "QW/client/menu.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 33,
@@ -1592,7 +1592,7 @@
           "title": "net_udp.c",
           "description": "UDP network driver — the raw socket implementation beneath the reliable channel layer",
           "path": "QW/client/net_udp.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 34,
@@ -1600,7 +1600,7 @@
           "title": "r_light.c",
           "description": "Dynamic lighting — computing and staining surface light maps for the software renderer",
           "path": "QW/client/r_light.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 35,
@@ -1608,7 +1608,7 @@
           "title": "r_sky.c",
           "description": "Sky renderer — the cylindrical sky projection drawn in the software rendering path",
           "path": "QW/client/r_sky.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 36,
@@ -1616,7 +1616,7 @@
           "title": "sbar.c",
           "description": "Status bar and HUD — health, ammo, armour, and the face/key inventory display",
           "path": "QW/client/sbar.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 37,
@@ -1624,7 +1624,7 @@
           "title": "screen.c",
           "description": "Screen management — console overlay, crosshair, FPS counter, and screenshot capture",
           "path": "QW/client/screen.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 38,
@@ -1632,7 +1632,7 @@
           "title": "view.c",
           "description": "View setup — building the render frame, applying damage and powerup colour blends",
           "path": "QW/client/view.c",
-          "generated": false
+          "generated": true
         },
         {
           "order": 39,

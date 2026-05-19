@@ -29,6 +29,10 @@ def _parse_json(raw: str) -> dict:
         raise
 
 
+# Public alias for use in generator.py
+parse_response_json = _parse_json
+
+
 def _clean_enhancements(enhancements: list, code_lines: list[str]) -> list:
     """Clamp ranges to file bounds, trim blank boundary lines, resolve overlaps."""
     total = len(code_lines)
@@ -67,15 +71,14 @@ def _clean_enhancements(enhancements: list, code_lines: list[str]) -> list:
     return cleaned
 
 
-def format_file(
+def _format_from_data(
     program: dict,
     file_cfg: dict,
     code_lines: list[str],
-    raw_json: str,
+    data: dict,
     is_excerpt: bool,
 ) -> str:
-    data = _parse_json(raw_json)
-
+    """Write YAML front matter + raw code from an already-parsed data dict."""
     description = data.get("description", file_cfg.get("description", ""))
     summary = data.get("summary", [])
     enhancements = _clean_enhancements(data.get("enhancements", []), code_lines)
@@ -124,3 +127,25 @@ def format_file(
     lines.append("\n".join(code_lines))
 
     return "\n".join(lines)
+
+
+def format_file(
+    program: dict,
+    file_cfg: dict,
+    code_lines: list[str],
+    raw_json: str,
+    is_excerpt: bool,
+) -> str:
+    data = _parse_json(raw_json)
+    return _format_from_data(program, file_cfg, code_lines, data, is_excerpt)
+
+
+def format_file_from_dict(
+    program: dict,
+    file_cfg: dict,
+    code_lines: list[str],
+    data: dict,
+    is_excerpt: bool,
+) -> str:
+    """Format a file from an already-parsed data dict (skips JSON parsing)."""
+    return _format_from_data(program, file_cfg, code_lines, data, is_excerpt)
