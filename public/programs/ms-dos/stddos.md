@@ -9,28 +9,28 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "stddos"
 order: 10
-description: "This file sets key configuration flags for MS-DOS 1.25, shaping its behavior and compatibility with IBM PCs and other systems."
+description: "This file defines key configuration switches for MS-DOS v1.25, setting the groundwork for its adaptability across hardware platforms and debugging environments."
 
 summary:
-  - point: "Configuration flags like MSVER and HIGHMEM controlled compatibility and memory management."
+  - point: "Defines configuration switches for MS-DOS behavior"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "The IBM flag reflects the dual-purpose nature of MS-DOS for both IBM and other OEMs."
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "The DSKTEST flag hints at early debugging practices for disk I/O in DOS."
-    link: "https://en.wikipedia.org/wiki/DOS"
-    link_label: "DOS Debugging"
+  - point: "Introduces conditional assembly for platform-specific builds"
+    link: "https://en.wikipedia.org/wiki/Conditional_assembly"
+    link_label: "Conditional Assembly"
+  - point: "Includes debugging options for disk I/O testing"
+    link: "https://en.wikipedia.org/wiki/Debugging"
+    link_label: "Debugging"
 
 enhancements:
-  - id: "configuration-flags-shape-dos-behavior"
+  - id: "configuration-switches-ms-dos"
     line_start: 3
     line_end: 19
-    title: "Configuration flags shape DOS behavior"
+    title: "Configuration switches: adaptability meets simplicity"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section defines key configuration flags that control how MS-DOS behaves during compilation. Flags like `MSVER` and `IBM` determine whether the compiled version aligns with Microsoft's standard or the IBM-specific variant of DOS. The `HIGHMEM` flag, when enabled, instructs DOS to relocate itself to the end of memory, optimizing space for user programs—a critical consideration in an era of limited RAM. The `DSKTEST` flag introduces a debugging mechanism for disk I/O, allowing developers to test re-entrant code paths, a rare feature in early DOS versions. In 1982, MS-DOS was rapidly becoming the backbone of personal computing, driven by its adoption on the IBM PC. The IBM PC's architecture, with its 16-bit Intel 8088 processor and 64 KB to 640 KB of RAM, imposed tight constraints on operating system design. Tim Paterson, initially working at Seattle Computer Products, had designed 86-DOS (later MS-DOS) with simplicity and speed in mind, borrowing heavily from CP/M's structure but adapting it for the 8086 architecture. These flags reflect the dual-purpose strategy Microsoft pursued after acquiring DOS: tailoring it for IBM while retaining flexibility for other OEMs. The consequences of these decisions were profound. MS-DOS's configurability allowed Microsoft to license it to over 70 OEMs within a year, cementing its dominance in the PC market. The `HIGHMEM` optimization became a precursor to memory management techniques in later DOS versions, while debugging flags like `DSKTEST` foreshadowed the robust development tools that would emerge in the software industry. Without this configurability, MS-DOS might have struggled to adapt to the diverse hardware landscape of the early 1980s, potentially ceding ground to competitors like CP/M or UCSD Pascal."
+    content: "This section defines several configuration switches that control the behavior and build options of MS-DOS v1.25. These switches include `MSVER` and `IBM`, which toggle between the standard Microsoft version and the IBM-specific version of the operating system, and `HIGHMEM`, which determines whether DOS relocates itself to the end of memory. Another notable switch, `DSKTEST`, enables debugging for disk I/O routines by setting up a separate stack for disk operations, effectively making DOS reentrant for testing purposes. In 1982, the computing landscape was dominated by hardware-specific software. MS-DOS's ability to adapt to different platforms through conditional assembly was groundbreaking. Tim Paterson, the original author of 86-DOS, designed the system to be lightweight and modular, allowing Microsoft to quickly tailor it for IBM's PC and other OEMs. The inclusion of debugging options like `DSKTEST` reflects the practical challenges of developing reliable software for diverse hardware configurations. This approach to configuration and adaptability influenced the design of later operating systems, including MS-DOS 2.0 and beyond, which expanded on modularity and hardware abstraction. The concept of conditional assembly became a standard practice in software development, enabling developers to create versatile software that could run on multiple platforms with minimal changes. Debugging enhancements like `DSKTEST` foreshadowed the importance of testing tools in modern software engineering. These techniques laid the foundation for Microsoft's dominance in the PC operating system market and influenced the design of subsequent systems like Windows and Linux."
 
 ---
 

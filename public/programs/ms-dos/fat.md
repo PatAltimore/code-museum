@@ -9,90 +9,66 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "fat"
 order: 6
-description: "This file implements the FAT filesystem operations for MS-DOS, a design that shaped personal computing storage for decades."
+description: "This file implements FAT filesystem operations, a foundational technology for storage systems that persisted for decades."
 
 summary:
-  - point: "Introduces FAT12/FAT16 filesystem operations, foundational for MS-DOS storage"
+  - point: "Implements FAT12/FAT16 filesystem operations, enabling efficient file storage and retrieval"
     link: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     link_label: "File Allocation Table"
-  - point: "Optimizes disk access through buffer management and cluster mapping"
-    link: "https://en.wikipedia.org/wiki/Disk_buffer"
-    link_label: "Disk Buffer"
-  - point: "Reflects constraints of early personal computers: limited memory, slow disks"
+  - point: "Introduces techniques for handling cluster mapping and buffer management"
+    link: "https://en.wikipedia.org/wiki/Cluster_(computing)"
+    link_label: "Cluster (computing)"
+  - point: "Demonstrates early assembly-level optimization for limited hardware"
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
-  - point: "Survived into the 21st century in USB drives and SD cards"
-    link: "https://en.wikipedia.org/wiki/FAT32"
-    link_label: "FAT32"
-  - point: "Tim Paterson's design influenced storage systems across multiple operating systems"
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
+  - point: "Contributed to the widespread adoption of MS-DOS across OEMs"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "FAT filesystem became a standard in removable storage devices like USB drives and SD cards"
+    link: "https://en.wikipedia.org/wiki/USB_flash_drive"
+    link_label: "USB flash drive"
 
 enhancements:
-  - id: "include-dosseg-and-dossym"
+  - id: "include-directives-and-segment-assumptions"
     line_start: 9
-    line_end: 33
-    title: "Setting up the assembly environment"
+    line_end: 21
+    title: "Setting up the environment: INCLUDE directives"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
-    content: "These lines establish the assembly environment by including key files like DOSSEG.ASM, DOSSYM.ASM, and DEVSYM.ASM. These files define macros, constants, and symbols used throughout the FAT.ASM file. In the early 1980s, assembly language was the dominant choice for system-level programming due to its direct control over hardware. Tim Paterson, working under tight constraints, relied on these includes to streamline development and ensure compatibility with the IBM PC's hardware. This setup reflects the modular approach of MS-DOS development, where reusable components were crucial for rapid iteration. The modularity here laid the groundwork for future operating systems, where abstraction layers became standard practice."
-  - id: "name-fat-data-structure"
-    line_start: 35
-    line_end: 113
-    title: "Defining FAT-related data structures"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines variables and structures central to FAT operations, such as CURBUF (current buffer), CLUSSPLIT (cluster split flag), and BUFFHEAD (buffer head pointer). These structures are the backbone of FAT's ability to track file allocation on disk. In 1981, disk storage was slow and expensive, and efficient management of clusters and buffers was critical to making the IBM PC viable for business use. Paterson's design ensured that MS-DOS could handle storage efficiently, even on hardware with limited resources. The FAT system became a cornerstone of personal computing, influencing storage systems in Windows, Linux, and embedded devices. Its simplicity and efficiency made it a lasting standard, still visible in USB drives and SD cards today."
-  - id: "unpack-fat-entries"
+    content: "This section sets up the assembly environment by including necessary files like DOSSEG.ASM and DOSSYM.ASM. These files define symbolic constants and macros used throughout the program. The ASSUME directive establishes segment registers for code and stack, ensuring proper memory addressing. In the early 1980s, assembly programming was the norm for system-level software due to its direct control over hardware. Tim Paterson and Microsoft engineers used these techniques to optimize MS-DOS for the IBM PC's limited resources, such as 64KB of RAM and a 4.77 MHz processor. These setup steps were critical for ensuring the program could interact seamlessly with the hardware and other software layers. The modularity introduced by INCLUDE directives influenced later programming paradigms, including header files in C and modules in modern languages."
+  - id: "fat-unpack-cluster-data"
     line_start: 141
     line_end: 191
-    title: "Unpacking FAT entries for cluster access"
+    title: "Unpacking FAT entries: Cluster data retrieval"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The UNPACK subroutine retrieves the contents of the FAT for a given cluster number, translating disk-level data into usable information. This operation is essential for determining whether a cluster is free or allocated. In 1981, disk drives were slow, and efficient access to cluster data was paramount. Paterson's implementation uses bitwise operations to extract cluster information, reflecting the era's focus on low-level optimization. This approach influenced generations of filesystem designs, including NTFS and ext4, which built upon the principles of efficient data retrieval established here. Without this foundational work, modern storage systems might have evolved very differently."
-  - id: "pack-fat-entries"
+    content: "The UNPACK subroutine retrieves the contents of the FAT for a given cluster number. It checks whether the cluster number is valid, maps it to the corresponding FAT sector, and extracts the data. If the cluster is free, the zero flag is set. Invalid clusters trigger a fatal error handler. This routine reflects the constraints of the FAT filesystem, which was designed for simplicity and efficiency on early hardware. The IBM PC's floppy disk drives and hard disks required a lightweight filesystem that could operate within tight memory and processing limits. The concept of mapping clusters to FAT entries became a cornerstone of storage systems, influencing later filesystems like NTFS and exFAT. The handling of free clusters and error states laid the groundwork for robust storage management practices."
+  - id: "fat-pack-cluster-data"
     line_start: 277
     line_end: 409
-    title: "Packing data into FAT entries"
+    title: "Packing FAT entries: Writing cluster data"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The PACK subroutine writes data into the FAT for a specified cluster, updating the filesystem's allocation table. This operation is the counterpart to UNPACK, enabling MS-DOS to mark clusters as allocated or free. In the early 1980s, storage efficiency was critical, as hard drives were small and expensive. This subroutine uses bitwise manipulation to ensure that data is stored compactly, a hallmark of FAT's design. The ability to efficiently update the allocation table allowed MS-DOS to support larger disks and more complex file operations, paving the way for modern filesystems. Techniques from this subroutine influenced later innovations like journaling in ext3 and ext4."
+    content: "The PACK subroutine writes data to the FAT for a specified cluster. It maps the cluster to the correct FAT sector and updates the FAT entry with the provided data. The routine ensures alignment and handles cases where the cluster data spans multiple bytes. It also marks the buffer as dirty, signaling that it needs to be written back to disk. This subroutine demonstrates the careful management of storage resources required in the early 1980s. The FAT filesystem's simplicity made it ideal for the limited hardware of the IBM PC, but it also introduced challenges like fragmentation and inefficient space usage. Techniques like buffer management and alignment optimization were crucial for maintaining performance. The principles established here influenced later storage technologies, including caching strategies in modern operating systems."
   - id: "mapcluster-buffer-fat-sector"
     line_start: 427
     line_end: 439
-    title: "Mapping clusters to FAT sectors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
+    title: "Mapping clusters: Buffering FAT sectors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cluster_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The MAPCLUSTER subroutine calculates the FAT sector corresponding to a given cluster number and retrieves its contents. This operation is crucial for translating logical cluster numbers into physical disk locations. In 1981, disk drives were slow, and minimizing access time was essential. Paterson's design uses arithmetic operations to map clusters efficiently, reflecting the constraints of early hardware. This mapping technique influenced the development of hierarchical filesystems, where logical-to-physical translation remains a core concept. The efficiency of MAPCLUSTER helped MS-DOS become the dominant operating system of the 1980s, and its principles continue to underpin modern storage systems."
-  - id: "fatread-check-drive-get-fat"
-    line_start: 441
-    line_end: 531
-    title: "Checking drive status and reading FAT"
+    content: "The MAPCLUSTER subroutine calculates the FAT sector corresponding to a given cluster and retrieves its contents. It uses arithmetic operations to determine the sector number and index within the sector. The routine also handles cases where cluster data spans multiple sectors. This approach reflects the challenges of managing storage on early hardware, where disk access was slow and memory was limited. By buffering FAT sectors, the subroutine minimizes disk I/O, improving performance. The arithmetic techniques used here influenced later storage systems, where efficient mapping of logical to physical storage remains a critical concern. The concept of buffering sectors laid the foundation for caching mechanisms in modern filesystems."
+  - id: "fat-operation-disk-check"
+    line_start: 711
+    line_end: 711
+    title: "FAT operation: Disk change detection"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The FATREAD subroutine checks whether the disk has been changed and reads the FAT into memory if necessary. This operation ensures that MS-DOS can handle removable media and detect changes reliably. In the early 1980s, removable floppy disks were common, and robust handling of media changes was a key feature for business users. Paterson's implementation uses device calls to verify disk status and flag buffers as invalid if the media has changed. This approach influenced later systems, including Windows and Linux, where media change detection became standard. The reliability of FATREAD contributed to MS-DOS's success in environments where removable media was prevalent."
-  - id: "getfreebuf-buffer-management"
-    line_start: 593
-    line_end: 607
-    title: "Buffer management for FAT operations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_buffer"
-    image_url: ""
-    image_caption: ""
-    content: "The GETFREEBUF subroutine manages buffers for FAT operations, ensuring that disk data is read and written efficiently. Buffer management was critical in 1981, as disk drives were slow and memory was limited. This subroutine allocates buffers dynamically, allowing MS-DOS to optimize disk access and minimize latency. Paterson's design reflects the constraints of early personal computers, where every byte of memory and every disk operation had to be carefully managed. Buffer management techniques from MS-DOS influenced later operating systems, where caching and prefetching became standard practices. The principles established here are still visible in modern storage systems."
-  - id: "faterr-error-handling"
-    line_start: 707
-    line_end: 707
-    title: "Error handling in FAT operations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
-    image_url: ""
-    image_caption: ""
-    content: "The FATERR subroutine handles errors encountered during FAT operations, signaling the system and attempting recovery. Error handling was a critical feature in 1981, as disk drives were prone to failures and data corruption. Paterson's implementation uses specific error codes to communicate issues, reflecting the era's focus on reliability. This approach influenced later systems, where robust error handling became a cornerstone of filesystem design. Techniques from FATERR can be seen in modern filesystems like NTFS and ext4, where error recovery mechanisms ensure data integrity. The reliability of MS-DOS's error handling contributed to its widespread adoption in business environments."
+    content: "The FAT_operation subroutine checks whether the disk has been changed and updates the FAT accordingly. It reads drive parameters, verifies media integrity, and flags buffers as invalid if necessary. This routine addresses a common issue in early computing: detecting and handling removable media changes. The IBM PC's floppy drives required mechanisms to ensure data consistency when disks were swapped. The subroutine's approach to media change detection influenced later systems, where hot-swappable storage devices became commonplace. Techniques like buffer invalidation and media integrity checks remain relevant in modern storage systems, ensuring reliable operation in dynamic environments."
 
 ---
 
