@@ -19,6 +19,12 @@ Written by Bill Gates and Paul Allen for the MOS Technology 6502 processor, fitt
 ### Wolfenstein 3D (MS-DOS, 1992)
 id Software's landmark first-person shooter, written in C and x86 assembly by John Carmack, John Romero, and Tom Hall. The raycasting engine, the sound driver, and the memory manager became the blueprint for every DOS-era game that followed.
 
+### DOOM (PC, 1993)
+id Software's follow-up redefined what a PC could do. John Carmack's BSP renderer, fixed-point math engine, and peer-to-peer network code shipped on a $5 million budget and were played by an estimated 10 million people within two years. Released open-source in 1997.
+
+### Quake (PC, 1996)
+The first id Software game with true 3D environments. Michael Abrash's span-based edge rasterizer, John Carmack's BSP/PVS system, and the first mainstream OpenGL game renderer. Released under the GPL in 1999 and the foundation of every id Tech engine since.
+
 ## How it works
 
 Each program lives in `public/programs/{slug}/` as a set of Markdown files. The YAML frontmatter carries metadata and a list of enhancements — annotations anchored to specific line ranges in the source code:
@@ -43,8 +49,6 @@ The body of each file is the raw source code. The reader splits the code into se
 - **Instruction lookup** — click any line of code to see what the instruction does (6502, 8086, MDL, and C supported). For C, covers keywords, stdlib functions, Borland DOS extensions (`far`, `near`, `interrupt`), and Wolf3D engine subsystems (`VW_`, `SD_`, `CA_`, `MM_`, `IN_`, and more via prefix matching)
 - **Word lookup** — right-click any word in an annotation panel to look it up in the dictionary
 - **Font size controls** — A− / A+ buttons in the header
-- **Offline support** — service worker caches all content for offline reading
-- **Install to home screen** — works as a PWA on iOS and Android
 
 ## Running locally
 
@@ -92,11 +96,10 @@ Add the deployment token as a repository secret:
 
 ```
 public/
-├── index.html          # Single-page app shell (PWA)
+├── index.html          # Single-page app shell
 ├── catalog.json        # Index of programs and files
 ├── js/app.js           # Hash-routed SPA, YAML parser, code renderer
 ├── css/style.css       # Dark code-editor theme
-├── sw.js               # Service worker for offline use
 └── programs/
     ├── prince-of-persia/
     │   ├── sound.md
@@ -201,8 +204,11 @@ python generator.py --find-images
 # Fill images for one program
 python generator.py --find-images --program prince-of-persia
 
-# Skip image fetching during generation
+# Skip all image fetching during generation
 python generator.py --no-images
+
+# Skip enhancement images but still fetch the program-level image
+python generator.py --no-file-images
 ```
 
 ### Generator options
@@ -214,7 +220,9 @@ python generator.py --no-images
 | `--force` | Regenerate files and introductions even if they already exist |
 | `--intro-only` | Only generate program introductions; skip file annotations |
 | `--find-images` | Backfill Wikipedia Commons images in existing files and exit |
-| `--no-images` | Skip image fetching during generation |
+| `--replace-images` | Clear and re-fetch all enhancement images (replaces bad ones) |
+| `--no-images` | Skip all image fetching during generation |
+| `--no-file-images` | Skip per-enhancement images but still fetch the program-level image |
 | `--dry-run` | Build prompts without calling the model |
 | `--sync-catalog` | Update `catalog.json` from disk and exit |
 | `--no-catalog-sync` | Skip the automatic catalog update after generation |

@@ -91,7 +91,9 @@ python generator.py [OPTIONS]
 | `--force` | Regenerate files and introductions even if they already exist on disk |
 | `--intro-only` | Only generate program introductions; skip file annotation generation |
 | `--find-images` | Backfill Wikipedia Commons images in all existing files and exit |
-| `--no-images` | Skip Wikipedia Commons image fetching during generation |
+| `--replace-images` | Clear and re-fetch all enhancement images (replaces bad ones); implies `--find-images` |
+| `--no-images` | Skip all Wikipedia Commons image fetching during generation |
+| `--no-file-images` | Skip per-enhancement image fetching but still fetch the program-level image |
 | `--dry-run` | Fetch source and build prompts, but do not call the model |
 | `--sync-catalog` | Update `public/catalog.json` from disk and exit without generating |
 | `--no-catalog-sync` | Skip the automatic catalog update after generation |
@@ -129,9 +131,14 @@ Regenerate an existing introduction:
 python generator.py --program prince-of-persia --intro-only --force
 ```
 
-Generate annotations without fetching images (faster):
+Generate annotations without fetching any images (faster):
 ```bash
 python generator.py --program ms-dos --no-images
+```
+
+Generate annotations with program image but skip per-enhancement images:
+```bash
+python generator.py --program ms-dos --no-file-images
 ```
 
 Check what prompts would be sent without calling the model:
@@ -211,7 +218,6 @@ generation:
       title: "SOUND.S"           # displayed in the reader
       path: "01 POP Source/Source/SOUND.S"   # exact path within the GitHub repo
       description: "..."
-      max_lines: 200             # optional — omit to send the full file
       context: "..."             # optional, file-specific context for the model
 ```
 
@@ -237,6 +243,8 @@ Downloads source files from GitHub raw URLs and caches them in `source_code/` to
 ### prompts.py
 
 Builds the system and user messages for file annotation. The system prompt instructs the model to cover the file comprehensively — one annotation per distinct subroutine, algorithm, data structure, or hardware interaction, working top to bottom. Annotation density scales with file size: 5–8 annotations for a 200-line file, up to 50+ for files exceeding 5,000 lines.
+
+For assembly language files, `build_prompt` pre-parses the source in Python to extract every label and procedure entry point with their exact line numbers, and injects a landmark table into the prompt. This eliminates line-counting errors — the model copies pre-computed line numbers from the table rather than counting manually across hundreds of lines.
 
 The `summary` field is explicitly required to contain only facts visible in the specific file being annotated — no program-level background that repeats across every file in the program. Each point must be something a reader learns from these particular lines.
 
