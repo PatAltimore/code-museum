@@ -9,82 +9,90 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "syscall"
 order: 45
-description: "This file defines system call entry points for MS-DOS 2.0, showcasing its evolution from CP/M roots to a more Unix-inspired architecture."
+description: "The SYSCALL.ASM file in MS-DOS v2.0 defines system call entry points, showcasing the evolution of DOS from its CP/M-inspired roots to a more Unix-like architecture."
 
 summary:
-  - point: "MS-DOS 2.0 introduced subdirectories and file handles, inspired by Unix."
+  - point: "Introduces system calls for date and time manipulation, reflecting the need for real-time operations in early personal computing."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "System calls here reflect the transition from CP/M-style FCBs to more sophisticated file management."
-    link: "https://en.wikipedia.org/wiki/Control_Program_for_Microcomputers"
-    link_label: "CP/M"
-  - point: "Tim Paterson's original 86-DOS design influenced these routines, but Microsoft rewrote much of it for v2.0."
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
-  - point: "The assembly code demonstrates low-level hardware interactions and memory management typical of early 1980s systems."
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "System calls like $FCB_DELETE and $FCB_RENAME highlight MS-DOS's file manipulation capabilities."
+  - point: "Implements File Control Blocks (FCBs), a legacy data structure inherited from CP/M, highlighting DOS's early design constraints."
     link: "https://en.wikipedia.org/wiki/File_Control_Block"
     link_label: "File Control Block"
+  - point: "Demonstrates low-level disk I/O routines, emphasizing the direct interaction with hardware typical of assembly programming."
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
+  - point: "Reflects the influence of Unix/XENIX in MS-DOS v2.0, particularly in its handling of file operations and system calls."
+    link: "https://en.wikipedia.org/wiki/Xenix"
+    link_label: "XENIX"
+  - point: "Highlights Tim Paterson's foundational work and Microsoft's adaptation of 86-DOS into MS-DOS, shaping the early PC software ecosystem."
+    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
+    link_label: "Tim Paterson"
 
 enhancements:
-  - id: "include-dosseg-asm"
+  - id: "include-dosseg-and-dossym"
     line_start: 5
     line_end: 11
-    title: "Setting the stage: INCLUDE directives"
+    title: "Setting the stage for system calls"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The file begins with INCLUDE directives, pulling in external definitions from DOSSEG.ASM and DOSSYM.ASM. These files define segment structures and symbolic constants critical for MS-DOS's operation. In the early 1980s, modular programming was essential for managing complexity in assembly language projects. By including predefined symbols and segment definitions, programmers avoided duplicating effort and ensured consistency across the codebase. This modularity reflects the influence of CP/M and other early operating systems, which also relied on symbolic constants for portability. These directives set the stage for the system calls that follow, grounding them in a shared architecture."
+    content: "These lines include DOSSEG.ASM and DOSSYM.ASM, which define segment and symbol information for the MS-DOS system. This setup reflects the modular approach of assembly programming, where reusable components are included to streamline development. In 1983, when MS-DOS v2.0 was released, modularity was crucial for managing the complexity of operating systems on limited hardware. By organizing code into segments and symbols, developers could create a more maintainable and extensible system. This approach also hints at the influence of CP/M, which used similar techniques to structure its assembly code. The modularity seen here would later influence the design of more advanced operating systems, though the reliance on assembly language would diminish as higher-level languages became dominant."
   - id: "get-date-system-call"
     line_start: 64
-    line_end: 66
-    title: "System call: Retrieving the current date"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    line_end: 90
+    title: "Retrieving the current date"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_clock"
     image_url: ""
     image_caption: ""
-    content: "The $GET_DATE system call retrieves the current date and returns it in the CX:DX registers. This routine interacts with the BIOS clock, ensuring the operating system can provide accurate date information to applications. In 1983, real-time clock chips were becoming standard in personal computers, but software still had to manage the interface. Tim Paterson's original 86-DOS lacked many of these features, relying on manual input for date and time. By MS-DOS 2.0, Microsoft had integrated more sophisticated timekeeping capabilities, reflecting the growing expectations of business users who needed reliable scheduling and file timestamping. This routine exemplifies the operating system's evolution toward a more robust and user-friendly design."
+    content: "The $GET_DATE system call retrieves the current date and formats it for the user. It interacts with the BIOS clock to ensure accuracy, a critical feature for applications requiring real-time operations. In the early 1980s, personal computers were becoming essential tools for business, and accurate date/time handling was a necessity for tasks like file timestamping and scheduling. Tim Paterson and the MS-DOS team had to ensure compatibility with the IBM PC's hardware, including its real-time clock. This routine reflects the low-level nature of assembly programming, where developers directly manipulate registers and memory to achieve functionality. The decision to bias the year by 1980 underscores the constraints of early computing, where saving bytes was paramount. This approach would later influence how other operating systems handled time, though the reliance on BIOS-level interactions would eventually be abstracted away."
   - id: "set-date-system-call"
     line_start: 92
-    line_end: 94
-    title: "System call: Setting the current date"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    line_end: 111
+    title: "Validating and setting the current date"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
     image_url: ""
     image_caption: ""
-    content: "The $SET_DATE system call allows users to update the system's current date. It validates the input date (CX:DX) against constraints like year range and month/day values before applying it. This functionality was crucial for maintaining accurate timestamps on files, a feature increasingly demanded by business applications in the early 1980s. The validation logic reflects the careful attention to error handling that characterized MS-DOS's design, ensuring users couldn't accidentally set invalid dates. As personal computers became more widespread, such features helped establish MS-DOS as a reliable platform for professional use."
+    content: "The $SET_DATE system call allows users to update the system's current date. It includes validation checks to ensure the date is within acceptable ranges, such as limiting the year to 2100 and verifying non-zero month and day values. This reflects the meticulous attention to error handling required in early operating systems, where invalid inputs could easily crash the system. The invocation of DODATE ties this routine to the underlying BIOS, showcasing the tight integration between software and hardware in the IBM PC architecture. In 1983, this level of control was necessary to ensure reliability on diverse hardware configurations. The constraints seen here, such as the 1980 bias and the year limit, highlight the trade-offs made to optimize for performance and memory usage. These decisions would resonate in later systems, influencing how date/time validation was implemented in software."
   - id: "fcb-sequential-read"
-    line_start: 167
-    line_end: 183
-    title: "Sequential file reads: Legacy of CP/M"
+    line_start: 302
+    line_end: 332
+    title: "Reading files sequentially with FCBs"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
-    content: "The $FCB_SEQ_READ system call reads the next record from a file using the File Control Block (FCB) structure. FCBs were inherited from CP/M, where they served as the primary mechanism for file management. By MS-DOS 2.0, Microsoft had begun transitioning to Unix-inspired file handles, but FCBs remained for backward compatibility with older software. This routine highlights the tension between innovation and legacy support in operating system design. While FCBs were simple and effective for small-scale systems, they lacked the flexibility and scalability required for modern applications. MS-DOS's support for both paradigms ensured it could serve a wide range of users during the transition period."
+    content: "The $FCB_SEQ_READ system call reads the next record from a file using the File Control Block (FCB) structure. FCBs were inherited from CP/M and represent a legacy approach to file management, where file metadata is stored in a fixed-size structure. This routine interacts directly with disk transfer addresses, reflecting the low-level nature of DOS's file handling. In the early 1980s, disk I/O was a critical bottleneck, and efficient management of file reads was essential for performance. The reliance on FCBs highlights the constraints of early personal computing, where memory and processing power were limited. By 1983, MS-DOS v2.0 was transitioning to a more Unix-like file system, but FCBs remained for backward compatibility. This decision ensured that older software could run on newer systems, a hallmark of Microsoft's strategy to dominate the PC market. The techniques seen here would eventually be replaced by more flexible file handle-based systems, but they remain a testament to the ingenuity of early OS design."
   - id: "fcb-delete-system-call"
-    line_start: 306
-    line_end: 370
-    title: "Deleting files: Handling wildcards and attributes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    line_start: 372
+    line_end: 375
+    title: "Deleting files with legacy FCBs"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
-    content: "The $FCB_DELETE system call deletes all matching file entries based on the File Control Block (FCB). It supports wildcard characters (e.g., *.*) and checks file attributes like read-only and hidden. This routine demonstrates MS-DOS's ability to manage files flexibly while respecting user-defined constraints. In the early 1980s, such features were essential for business users who needed to organize and maintain large directories of data. The inclusion of wildcard support reflects the influence of CP/M, while the attribute handling showcases MS-DOS's growing sophistication. This functionality laid the groundwork for more advanced file management systems in later operating systems."
+    content: "The $FCB_DELETE system call removes files matching a given FCB. It includes checks for attributes like hidden, system, and read-only, ensuring that protected files cannot be accidentally deleted. This routine reflects the challenges of file management in early operating systems, where safety and reliability were paramount. By 1983, MS-DOS v2.0 was introducing subdirectories and file handles, but FCBs remained for compatibility with older software. The decision to retain FCBs highlights Microsoft's commitment to backward compatibility, a strategy that helped establish MS-DOS as the dominant PC operating system. The attribute checks seen here would evolve into more sophisticated permission systems in later OS designs, but they remain a foundational element of file management."
   - id: "fcb-rename-system-call"
-    line_start: 378
-    line_end: 454
-    title: "Renaming files: Ensuring uniqueness and validity"
+    line_start: 455
+    line_end: 490
+    title: "Renaming files in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The $FCB_RENAME system call renames files by updating their directory entries. It validates the new name to ensure it doesn't conflict with existing files or device names. This routine reflects MS-DOS's commitment to robust file management, balancing flexibility with strict error checking. In 1983, personal computers were increasingly used for professional tasks, making reliable file operations a priority. The validation logic here prevents accidental overwrites and ensures compatibility with the system's naming conventions. By providing these safeguards, MS-DOS established itself as a dependable platform for business users."
-  - id: "fcb-create-system-call"
-    line_start: 625
-    line_end: 742
-    title: "Creating files: Balancing legacy and innovation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    content: "The $FCB_RENAME system call renames files by modifying their FCB entries. It includes checks to prevent renaming I/O devices and ensures that the new name does not conflict with existing files. This routine reflects the growing complexity of file management in MS-DOS v2.0, which was inspired by Unix's more advanced file handling capabilities. By 1983, personal computing was expanding rapidly, and users demanded more robust features from their operating systems. The ability to rename files was a small but significant step toward making DOS more user-friendly and versatile. The checks seen here highlight the constraints of early computing, where every operation had to be carefully validated to prevent system crashes. This approach would influence later OS designs, where file operations became increasingly abstracted and error-resistant."
+  - id: "fcb-open-system-call"
+    line_start: 548
+    line_end: 565
+    title: "Opening files with FCBs"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
-    content: "The $FCB_CREATE system call creates new files or opens existing ones by preparing their directory entries. It supports legacy File Control Blocks (FCBs) while integrating features like volume ID checks and cluster management. This routine exemplifies MS-DOS's dual role as both a backward-compatible successor to CP/M and a forward-looking platform inspired by Unix. By 1983, personal computers were transitioning from hobbyist tools to professional workstations, and operating systems had to accommodate both old and new software. The $FCB_CREATE call reflects this balance, ensuring MS-DOS could serve a diverse user base during this pivotal era in computing history."
+    content: "The $FCB_OPEN system call opens files by locating their FCB entries and populating them with metadata. This routine interacts directly with the disk, reflecting the low-level nature of DOS's file handling. By 1983, MS-DOS v2.0 was introducing file handles, but FCBs remained for backward compatibility. The decision to retain FCBs underscores Microsoft's strategy to support older software while gradually modernizing the OS. The techniques seen here, such as direct manipulation of disk clusters and metadata, highlight the constraints of early personal computing, where efficiency was paramount. These methods would eventually be replaced by more abstract file systems, but they remain a testament to the ingenuity of early OS design."
+  - id: "fcb-close-system-call"
+    line_start: 621
+    line_end: 648
+    title: "Closing files and ensuring data integrity"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
+    image_url: ""
+    image_caption: ""
+    content: "The $FCB_CLOSE system call closes files by updating their FCB entries and flushing any buffered data to disk. This routine includes checks to ensure that only 'dirty' files are closed, reflecting the importance of data integrity in early operating systems. By 1983, MS-DOS v2.0 was transitioning to a more Unix-like file system, but FCBs remained for compatibility with older software. The decision to retain FCBs highlights Microsoft's commitment to backward compatibility, a strategy that helped establish MS-DOS as the dominant PC operating system. The techniques seen here, such as flushing buffers and updating metadata, would evolve into more sophisticated file systems in later OS designs, but they remain a foundational element of file management."
 
 ---
 

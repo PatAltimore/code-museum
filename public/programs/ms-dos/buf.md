@@ -9,74 +9,74 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "buf"
 order: 24
-description: "Buffer management in MS-DOS v2.0, showcasing low-level techniques for handling I/O buffers in assembly language."
+description: "Buffer management routines in MS-DOS v2.0, showcasing the evolution of operating system design inspired by Unix principles."
 
 summary:
-  - point: "Efficient buffer scanning and management routines"
+  - point: "Efficient buffer management for I/O operations"
+    link: "https://en.wikipedia.org/wiki/Buffer_(computing)"
+    link_label: "Buffer"
+  - point: "Incorporates priority-based buffer handling"
+    link: "https://en.wikipedia.org/wiki/Priority_queue"
+    link_label: "Priority Queue"
+  - point: "Demonstrates early multitasking-like resource management"
+    link: "https://en.wikipedia.org/wiki/Multitasking"
+    link_label: "Multitasking"
+  - point: "Reflects constraints of 1980s hardware and memory limitations"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Integration of priority-based buffer handling"
-    link: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
-    link_label: "Buffer"
-  - point: "Direct hardware interaction for disk I/O"
-    link: "https://en.wikipedia.org/wiki/Disk_operating_system"
-    link_label: "Disk Operating System"
-  - point: "Error handling mechanisms for disk operations"
-    link: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
-    link_label: "Error Detection"
-  - point: "Influence of Unix-inspired design in MS-DOS v2.0"
+  - point: "Inspired by Unix/XENIX for hierarchical file systems"
     link: "https://en.wikipedia.org/wiki/Unix"
     link_label: "Unix"
 
 enhancements:
-  - id: "include-dosseg-and-dossym"
+  - id: "include-dosseg-setup"
     line_start: 5
-    line_end: 21
-    title: "Defining the Assembly Environment"
+    line_end: 11
+    title: "Setting up the assembly environment"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The file begins with the inclusion of DOSSEG.ASM and DOSSYM.ASM, which define essential symbols and segment structures for MS-DOS. These directives set up the environment for the buffer management routines that follow. In 1983, assembly programming was the norm for operating systems due to its direct control over hardware and efficient execution on limited resources. Tim Paterson and the Microsoft team had to ensure compatibility with the IBM PC's hardware while maintaining performance. These inclusions reflect the modular approach to assembly programming, where reusable components were critical for rapid development. The modularity seen here influenced later software engineering practices, such as the use of libraries and frameworks."
+    content: "These initial lines establish the assembly environment for MS-DOS v2.0. By including DOSSEG.ASM and DOSSYM.ASM, the code sets up segment definitions and symbolic constants essential for buffer management. In 1983, MS-DOS was evolving to support more advanced features like subdirectories and device drivers, inspired by Unix. This setup reflects the modularity and foresight required to manage increasingly complex systems on limited hardware. The inclusion of symbolic constants also highlights the importance of readability and maintainability in assembly code, a stark contrast to the cryptic nature of early programming practices."
   - id: "setvisit-buffer-scan"
     line_start: 43
-    line_end: 52
-    title: "Resetting Buffer Visit Flags"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    line_end: 70
+    title: "Resetting buffer visit flags"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The SETVISIT routine initializes a scan of I/O buffers by resetting all visit flags to zero. This ensures that no buffer is skipped due to lingering flags from previous operations, particularly in the event of a hard disk error. In the early 1980s, disk errors were a common occurrence, and robust error handling was essential for maintaining system stability. The use of a pre-scan to reset flags demonstrates foresight in dealing with unpredictable hardware behavior. This approach to buffer management laid the groundwork for more sophisticated memory and I/O handling in later operating systems, where reliability became a key focus."
-  - id: "placebuf-buffer-reordering"
-    line_start: 99
-    line_end: 256
-    title: "Reordering Buffers by Priority"
+    content: "The SETVISIT subroutine resets all buffer visit flags to zero, ensuring a clean slate for subsequent scans. This precaution addresses potential issues caused by hard disk errors interrupting scans, leaving some flags inconsistently set. In the early 1980s, disk errors were a common occurrence due to the mechanical nature of storage devices. Tim Paterson and the MS-DOS team designed this routine to ensure robustness in buffer management, a critical aspect of maintaining system stability. The use of a loop to traverse and reset flags demonstrates the necessity of efficient algorithms to handle limited memory and processing power on machines like the IBM PC."
+  - id: "placebuf-buffer-priority"
+    line_start: 258
+    line_end: 272
+    title: "Reordering buffers by priority"
     wikipedia_url: "https://en.wikipedia.org/wiki/Priority_queue"
     image_url: ""
     image_caption: ""
-    content: "The PLACEBUF routine is a complex mechanism for removing a buffer from the queue and reinserting it based on its priority. Buffers are reordered dynamically to optimize access patterns, ensuring that frequently used buffers remain readily accessible. This priority-based approach was inspired by algorithms used in data structures like priority queues, adapted here for low-level disk I/O. In the constrained environment of the IBM PC, where memory and processing power were limited, such optimizations were critical. The routine also includes error handling and ensures that buffers marked as free or dirty are appropriately managed. This technique influenced later systems, where buffer caching became a standard feature to improve performance."
+    content: "PLACEBUF is a pivotal subroutine that reorders buffers in the queue based on their priority. This mechanism ensures that frequently accessed buffers remain readily available, optimizing I/O performance. In the constrained environment of early PCs, where memory was often measured in kilobytes, such prioritization was essential to prevent bottlenecks. The routine's design reflects the influence of Unix-like systems, which emphasized efficient resource management. By decrementing priorities and reshuffling buffers, the code balances access speed with fairness, a concept that would later evolve into more sophisticated caching algorithms."
   - id: "getbuffr-sector-buffering"
-    line_start: 316
-    line_end: 408
-    title: "Fetching and Shuffling Disk Buffers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_buffer"
+    line_start: 409
+    line_end: 427
+    title: "Fetching sectors into buffers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
     image_url: ""
     image_caption: ""
-    content: "GETBUFFR retrieves a specific disk sector into an I/O buffer, prioritizing efficiency and correctness. The routine checks if the requested sector is already in memory, avoiding unnecessary disk reads. If not, it writes out a dirty buffer and reads the new sector into memory. This process highlights the challenges of managing disk I/O in real-time, where latency and hardware constraints shaped every decision. The ability to shuffle the buffer queue dynamically ensured that the most relevant data remained accessible, a feature that became increasingly important as disk sizes and workloads grew. This routine reflects the ingenuity required to balance performance and reliability in early operating systems."
-  - id: "flushbuf-dirty-buffer-cleanup"
-    line_start: 414
-    line_end: 455
-    title: "Writing Out Dirty Buffers"
+    content: "GETBUFFR retrieves a specific disk sector into one of the I/O buffers, ensuring data is available for processing. This routine incorporates checks for buffer priority and drive parameters, showcasing the complexity of managing multiple storage devices in MS-DOS. In 1983, the IBM PC's hardware constraints necessitated such meticulous handling to maximize performance. The subroutine also highlights the transition from single-tasking systems to more dynamic resource allocation, laying the groundwork for modern multitasking operating systems. Its reliance on predefined buffer structures illustrates the importance of planning and organization in low-level programming."
+  - id: "flushbuf-dirty-buffer-write"
+    line_start: 456
+    line_end: 487
+    title: "Writing out dirty buffers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
-    content: "FlushBuf writes out all dirty buffers for a specified unit, marking them as clean afterward. This routine ensures data integrity by committing changes to disk, a crucial operation in environments where power loss or system crashes could result in data corruption. The inclusion of error handling mechanisms, such as invalidating inconsistent buffers, reflects the team's focus on reliability. In the early 1980s, disk caching was a relatively new concept, and routines like FlushBuf were pioneering efforts to manage it effectively. This approach influenced later developments in caching algorithms, which became central to modern operating systems."
-  - id: "bufwrite-dirty-buffer-write"
-    line_start: 461
+    content: "FlushBuf writes out all dirty buffers, marking them clean afterward. This routine is crucial for maintaining data integrity, especially in systems prone to sudden shutdowns or power loss. In the early 1980s, the lack of battery-backed memory made such routines indispensable. By iterating through the buffer queue and checking for dirtiness, the code ensures that modified data is safely stored on disk. This approach reflects the influence of caching strategies, which were becoming increasingly important as storage devices grew larger and more complex. The subroutine's design underscores the careful balance between performance and reliability in MS-DOS."
+  - id: "bufwrite-dirty-buffer-handler"
+    line_start: 488
     line_end: 502
-    title: "Writing Individual Dirty Buffers"
+    title: "Handling dirty buffer writes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Write_(computing)"
     image_url: ""
     image_caption: ""
-    content: "BufWrite handles the writing of a single dirty buffer to disk, marking it as free afterward. This routine is a critical component of the buffer management system, ensuring that changes are committed to disk while maintaining the integrity of the buffer pool. The use of direct hardware interaction, such as invoking DWRITE, highlights the low-level nature of MS-DOS and the need for precise control over disk operations. In the constrained environment of the IBM PC, routines like BufWrite were essential for optimizing performance and reliability. This technique laid the foundation for more advanced disk I/O systems in later operating systems."
+    content: "BufWrite handles the actual writing of dirty buffers to disk, marking them free afterward. This routine is a cornerstone of MS-DOS's buffer management system, ensuring that modified data is not lost. The code includes safeguards against write errors, reflecting the fragility of early storage technologies. By freeing buffers immediately upon encountering errors, the system avoids potential deadlocks. This subroutine exemplifies the pragmatic engineering required to build reliable software for the IBM PC, a machine that would become the foundation of personal computing. Its influence can be seen in modern operating systems, which continue to prioritize data integrity in buffer management."
 
 ---
 

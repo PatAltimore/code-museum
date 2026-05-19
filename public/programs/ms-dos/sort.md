@@ -9,90 +9,82 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "sort"
 order: 19
-description: "The SORT.ASM file for MS-DOS v2.0 showcases the evolution of sorting utilities in early personal computing, blending assembly-level ingenuity with constraints of the 8086 architecture."
+description: "The MS-DOS SORT utility: a glimpse into early text processing in the PC era."
 
 summary:
-  - point: "Introduces reverse sorting and column-based sorting options"
+  - point: "Introduced column-based sorting with command-line parsing"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Demonstrates memory allocation for sorting under 64K constraints"
-    link: "https://en.wikipedia.org/wiki/Intel_8086"
-    link_label: "Intel 8086"
-  - point: "Uses macros for system calls and register manipulation"
+  - point: "Optimized memory allocation for sorting within 64K constraints"
+    link: "https://en.wikipedia.org/wiki/Conventional_memory"
+    link_label: "Conventional Memory"
+  - point: "Implemented reverse sorting using a clever patching mechanism"
     link: "https://en.wikipedia.org/wiki/Assembly_language"
     link_label: "Assembly Language"
-  - point: "Implements linked list creation by replacing CRLFs with line lengths"
+  - point: "Handled CR-LF line terminations, a common text format issue"
+    link: "https://en.wikipedia.org/wiki/Newline"
+    link_label: "Newline"
+  - point: "Converted text into linked lists for efficient sorting operations"
     link: "https://en.wikipedia.org/wiki/Linked_list"
     link_label: "Linked List"
-  - point: "Handles internationalization with Kanji-specific logic"
-    link: "https://en.wikipedia.org/wiki/Kanji"
-    link_label: "Kanji"
 
 enhancements:
-  - id: "title-and-initial-comments"
-    line_start: 1
-    line_end: 63
-    title: "Sorting Options and Historical Modifications"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+  - id: "system-call-macro"
+    line_start: 55
+    line_end: 61
+    title: "System call abstraction in assembly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_API"
     image_url: ""
     image_caption: ""
-    content: "The opening section of SORT.ASM sets the stage for the program's functionality and historical significance. The comments describe the sorting options available: reverse sorting (/R) and column-based sorting (/+n). Written by Chris Peters, this utility was part of MS-DOS v2.0, a major rewrite inspired by Unix. The modification history notes fixes to bugs like CR-LF handling and small file sorting, reflecting the iterative nature of software development at the time. The comments also include a frustrated plea to 'Comment the Damn source,' a reminder of the challenges of maintaining assembly code. This section introduces key constants and macros, such as 'sys' for system calls and 'save'/'restore' for register manipulation, showcasing the low-level control required in 8086 assembly programming."
-  - id: "segment-definitions"
-    line_start: 95
-    line_end: 125
-    title: "Segment Organization for Memory Management"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
+    content: "This macro encapsulates the process of making system calls in MS-DOS. By moving the desired function number into the AH register and invoking interrupt 21h, the programmer can access various operating system services. In the early 1980s, this abstraction was crucial for simplifying interaction with the MS-DOS API, which was designed to run on the Intel 8086 microprocessor. Tim Paterson, the original author of MS-DOS, borrowed heavily from CP/M's system call conventions, adapting them to the 16-bit architecture. This macro reflects the programmer's effort to streamline repetitive tasks in assembly, a language notorious for its verbosity and complexity. The approach survived into later DOS versions and influenced similar abstractions in other operating systems, demonstrating the enduring utility of simplifying low-level operations."
+  - id: "reverse-sort-patch"
+    line_start: 221
+    line_end: 223
+    title: "Reverse sorting via code patching"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
-    content: "This section defines the memory segments used by the program: CODE, CONST, and CSTACK. Memory segmentation was a hallmark of the Intel 8086 architecture, which could only address 1MB of memory using 16-bit registers and required careful organization of code and data. The CSTACK segment initializes a stack with 128 bytes, ensuring a clear starting state for operations. The DG group combines these segments, allowing the program to manage its limited memory efficiently. This approach reflects the constraints of early personal computing, where every byte mattered and programmers had to think deeply about memory layout and usage."
-  - id: "system-version-check"
-    line_start: 137
-    line_end: 163
-    title: "Ensuring Compatibility with MS-DOS v2.0"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "The SORT routine begins by checking the system's version number to ensure compatibility with MS-DOS v2.0. Using the 'sys' macro, it invokes a system call to retrieve the version number and compares it against the expected value (2.00). If the version is incompatible, an error message is displayed, and the program exits. This check highlights the importance of version-specific programming in the early 1980s, when operating systems were rapidly evolving and software needed to account for differences in system calls and functionality. Tim Paterson's original 86-DOS laid the groundwork for MS-DOS, but by 1983, the system had grown more sophisticated, requiring utilities like SORT to adapt."
-  - id: "command-line-parsing"
-    line_start: 201
-    line_end: 253
-    title: "Parsing Command Line for Sorting Options"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
-    image_url: ""
-    image_caption: ""
-    content: "This section parses the command line to extract sorting options, such as reverse sorting (/R) and column-based sorting (/+n). It uses a loop to scan for the switch character and processes each option accordingly. The logic includes converting characters to lowercase for case-insensitive comparison and parsing numeric values for column selection. Command-line interfaces were a primary mode of interaction in MS-DOS, and this code demonstrates the meticulous effort required to interpret user input in assembly language. The inclusion of reverse sorting reflects the program's flexibility, catering to diverse user needs in an era when software was expected to be both functional and efficient."
-  - id: "memory-allocation"
+    content: "This clever trick modifies the behavior of the sorting routine by patching a single instruction. The code changes a 'JAE' (Jump if Above or Equal) to a 'JB' (Jump if Below), effectively reversing the comparison logic for sorting. This approach highlights the flexibility of assembly language, where individual instructions can be manipulated at runtime. In 1983, such techniques were common, as developers sought to minimize code size and maximize performance. Chris Peters, who worked on this utility, likely chose this method for its simplicity and efficiency. While modern programming languages discourage self-modifying code, this example remains a fascinating glimpse into the resourceful mindset of early PC software developers."
+  - id: "memory-allocation-loop"
     line_start: 297
-    line_end: 347
-    title: "Allocating Memory for Sorting Operations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    line_end: 305
+    title: "Memory allocation under tight constraints"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Conventional_memory"
     image_url: ""
     image_caption: ""
-    content: "The GET_MEM routine allocates memory for the sorting buffer, ensuring no more than 64K is used. It repeatedly attempts to allocate paragraphs of memory until successful or an error occurs. This reflects the constraints of the Intel 8086 architecture, which limited programs to 64K segments. The routine also calculates the total bytes available by shifting the paragraph count, showcasing the programmer's deep understanding of hardware limitations. Memory allocation was a critical task in early computing, where resources were scarce and programs had to operate within strict boundaries. This code exemplifies the ingenuity required to make the most of limited hardware."
-  - id: "linked-list-creation"
-    line_start: 435
-    line_end: 491
-    title: "Transforming Text Buffer into Linked List"
+    content: "This section attempts to allocate memory for sorting operations, constrained by the 64K limit imposed by the Intel 8086 architecture's segmented memory model. The code repeatedly calls the ALLOC system function, reducing the requested size until successful. Memory management was a critical challenge in the early PC era, as MS-DOS operated in real mode with no virtual memory. Programmers had to carefully manage every byte, often resorting to trial-and-error allocation loops like this one. The 64K limit shaped software design for years, forcing developers to write efficient, compact code. This allocation strategy reflects the ingenuity required to work within these constraints, and the lessons learned influenced later memory management techniques in protected mode and beyond."
+  - id: "linked-list-conversion"
+    line_start: 443
+    line_end: 485
+    title: "Transforming text into a linked list"
     wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
     image_url: ""
     image_caption: ""
-    content: "The REPLACE_LOOP routine converts the text buffer into a linked list by replacing CRLFs with the length of the following line. This clever technique allows the program to manage sorting operations efficiently, as each line becomes a discrete unit with a pointer to the next. Linked lists were a common data structure in the early days of computing, offering flexibility in memory-constrained environments. By reusing the buffer and embedding line lengths, the program minimizes memory usage while enabling dynamic sorting. This approach reflects the resourcefulness of assembly programmers, who often had to invent novel solutions to overcome hardware limitations."
-  - id: "sorting-algorithm"
+    content: "This section converts the input text buffer into a linked list by replacing CR-LF pairs with the length of the following line. Each line becomes a node in the list, with its length stored as metadata. Linked lists were a popular choice for dynamic data structures in the early 1980s, as they allowed efficient insertion, deletion, and traversal without requiring contiguous memory. The decision to use this structure reflects the influence of Unix, which inspired many features in MS-DOS 2.0. Chris Peters likely drew on his experience with Unix-like systems when designing this utility. The linked list approach enabled the SORT program to handle variable-length records efficiently, a necessity given the limited memory and processing power of the IBM PC."
+  - id: "outer-inner-sort-loops"
     line_start: 511
-    line_end: 733
-    title: "Outer and Inner Loops for Sorting"
+    line_end: 635
+    title: "Sorting with nested loops and comparisons"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sorting_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The sorting algorithm consists of nested loops: the OUTER_SORT_LOOP iterates over unsorted lines, while the INNER_SORT_LOOP finds the best insertion point for each line. The algorithm compares lines based on their lengths and contents, adjusting for the specified column. It uses assembly instructions like REP MOVSB to move data efficiently and incorporates logic for reverse sorting by patching the comparison instruction. Sorting is a fundamental operation in computing, and this implementation showcases the challenges of performing it in assembly language. The algorithm's design balances performance and memory constraints, reflecting the priorities of early software development."
-  - id: "output-and-error-handling"
+    content: "The heart of the SORT utility lies in these nested loops, which implement the sorting algorithm. The outer loop iterates over unsorted lines, while the inner loop finds the best insertion point for each line. Comparisons are adjusted based on the specified column and sorting order, with support for reverse sorting achieved through the patched 'JAE' instruction. Sorting algorithms were a hot topic in computer science during the early 1980s, as efficient text processing was critical for many applications. This implementation balances simplicity and performance, leveraging assembly language's low-level control to optimize operations. The design reflects the constraints of the era, where every cycle and byte mattered. While modern systems use more sophisticated algorithms, this code remains a testament to the ingenuity of early PC programmers."
+  - id: "cr-lf-restoration"
+    line_start: 745
+    line_end: 763
+    title: "Restoring CR-LF pairs after sorting"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Newline"
+    image_url: ""
+    image_caption: ""
+    content: "After sorting, this section restores the original CR-LF line terminations in the text buffer. Each line's length is replaced with the CR-LF pair, ensuring compatibility with standard text formats. Handling line terminations was a common challenge in the early PC era, as different systems used different conventions (e.g., LF in Unix, CR-LF in DOS). This code demonstrates the attention to detail required to maintain interoperability. Chris Peters likely included this step to ensure the SORT utility could process and output text files seamlessly, a critical feature for users relying on MS-DOS for business and personal tasks. The restoration process underscores the importance of adhering to established conventions, even in low-level programming."
+  - id: "write-file-output"
     line_start: 771
-    line_end: 793
-    title: "Writing Sorted Data to Standard Output"
+    line_end: 799
+    title: "Writing sorted output to standard output"
     wikipedia_url: "https://en.wikipedia.org/wiki/Standard_streams"
     image_url: ""
     image_caption: ""
-    content: "The WRITE_FILE routine outputs the sorted data to standard output, ensuring the program's results are accessible to the user. It calculates the number of bytes to write and checks for errors during the write operation. If an error occurs, it jumps to the ERROR_EXIT routine to display an error message and terminate the program. This section highlights the importance of robust error handling in software, particularly in assembly language, where mistakes can lead to system crashes. By integrating error checks and clear messages, the program ensures reliability and user trust, key factors in the success of MS-DOS utilities."
+    content: "The final step of the SORT utility writes the sorted text to standard output. By calculating the number of bytes to write and invoking the WRITE system call, the program ensures the sorted data is delivered to the user or piped into another process. Standard streams were a fundamental concept in MS-DOS, enabling flexible input/output operations. This design reflects the Unix-inspired philosophy of MS-DOS 2.0, where utilities were designed to work together through piping and redirection. Chris Peters likely aimed to make SORT a versatile tool for text processing, suitable for a wide range of tasks. The focus on standard output highlights the utility's role in the broader ecosystem of MS-DOS command-line tools, paving the way for more sophisticated text processing in later systems."
 
 ---
 

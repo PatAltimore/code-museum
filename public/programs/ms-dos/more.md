@@ -9,76 +9,66 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "more"
 order: 38
-description: "MS-DOS v2.0's MORE.ASM file implements a text pagination filter, showcasing early 1980s assembly programming techniques and the adaptation of Unix-inspired features into DOS."
+description: "MS-DOS v2.0's 'MORE' utility: a text pagination filter inspired by Unix, showcasing the evolution of command-line tools in early personal computing."
 
 summary:
-  - point: "The file demonstrates MS-DOS's reliance on BIOS and DOS interrupts for I/O operations."
+  - point: "Introduces a Unix-inspired pagination filter to MS-DOS"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Pagination logic reflects the influence of Unix utilities like 'more' in DOS v2.0."
-    link: "https://en.wikipedia.org/wiki/More_(command)"
-    link_label: "More command"
-  - point: "Conditional assembly directives reveal the challenges of supporting multiple hardware configurations."
+  - point: "Demonstrates direct hardware interaction via INT 21H calls"
+    link: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
+    link_label: "BIOS Interrupt Calls"
+  - point: "Highlights adaptation for IBM PC hardware constraints"
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
+  - point: "Efficient memory usage with 4096-byte buffer for text reading"
+    link: "https://en.wikipedia.org/wiki/Memory_management"
+    link_label: "Memory Management"
+  - point: "Conditional assembly for internationalization (e.g., Kanji support)"
+    link: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
+    link_label: "Internationalization"
 
 enhancements:
   - id: "start-version-check"
     line_start: 27
     line_end: 47
-    title: "Version check: Ensuring compatibility"
+    title: "Version Check: Ensuring Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The START section begins with a version check using interrupt 21h to retrieve the DOS version number. The programmer compares the version against 2.0, ensuring the program runs only on compatible systems. This reflects the transitional nature of MS-DOS v2.0, which introduced significant features like subdirectories and file handles. In 1983, the computing world was fragmented, with hardware and software compatibility being a constant challenge. Tim Paterson, the original author of 86-DOS, had designed the system to be simple and fast, but by the time v2.0 was released, Microsoft was adapting it to meet the demands of IBM and other OEMs. This version check is a safeguard against running the program on older systems, which lacked the necessary features. The approach of embedding compatibility checks in software became a standard practice, ensuring reliability across diverse environments."
+    content: "The 'START' section begins with a critical compatibility check, ensuring the program runs only on MS-DOS version 2.0 or higher. This is achieved by invoking interrupt 21H with function GET_VERSION, swapping register values, and comparing the result to the minimum required version. If the version is insufficient, a message is displayed and the program terminates. In 1983, this was a vital safeguard: MS-DOS v2.0 introduced major architectural changes inspired by Unix, including support for subdirectories and file handles. Programs written for v2.0 often relied on these features, making backward compatibility impractical. Tim Paterson, the original author of 86-DOS (MS-DOS's precursor), had designed the system for simplicity and speed, but by v2.0, Microsoft had shifted focus to robustness and scalability, partly due to IBM's influence. This compatibility check reflects the growing complexity of software ecosystems as personal computing matured. Today, such checks are ubiquitous, but in 1983, they marked a transition from hobbyist experimentation to professional software engineering."
   - id: "okdos-initialization"
     line_start: 49
     line_end: 103
-    title: "Initializing screen dimensions and file handles"
-    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
+    title: "System Initialization: Cursor and File Handles"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
     image_caption: ""
-    content: "The OKDOS section initializes the program's environment, setting screen dimensions and preparing file handles. Conditional assembly directives like `IF IBMVER` and `IF KANJI` illustrate the need to support different hardware configurations, including IBM PCs and systems with Kanji character sets. This reflects the global ambitions of MS-DOS, as Microsoft sought to make the operating system adaptable for international markets. The use of interrupt 16h to query the keyboard buffer and interrupt 21h for file handle operations highlights the reliance on BIOS and DOS services for low-level tasks. In the early 1980s, programmers had to work closely with hardware constraints, and this section showcases the meticulous attention to detail required to ensure compatibility and functionality. The initialization of file handles, including duplicating and redirecting standard input and error streams, demonstrates the influence of Unix-like concepts in MS-DOS v2.0, paving the way for more sophisticated file handling in later versions."
+    content: "The 'OKDOS' section initializes the program environment, setting up the cursor position and duplicating file handles. Conditional assembly directives (e.g., IBMVER and KANJI) adjust behavior for specific hardware or internationalization needs. For example, the maximum row count is set to 24 or 25 based on Kanji support, reflecting early efforts to accommodate non-English character sets. The program then uses interrupt 21H to duplicate the standard input handle and redirect it to standard error, ensuring consistent input/output behavior. These steps highlight the low-level control programmers had over hardware in the MS-DOS era, where direct manipulation of file handles and cursor positions was routine. This section also underscores the influence of IBM's hardware constraints on software design, as MS-DOS was tailored to the IBM PC's specifications. The meticulous setup here paved the way for the program's core functionality: reading and displaying text in a paginated format."
   - id: "aloop-buffer-read"
     line_start: 107
     line_end: 123
-    title: "Reading input into a buffer"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    title: "Reading Text: The 4096-Byte Buffer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The ALOOP section reads data into a buffer using interrupt 21h. It sets up the buffer size (4096 bytes) and uses the file handle initialized earlier to read input. This approach reflects the constraints of early PCs, where memory was limited and efficient data handling was critical. By using a fixed-size buffer, the programmer ensures predictable behavior and avoids the complexities of dynamic memory allocation, which was not common in assembly programming at the time. The decision to use a loop for continuous reading aligns with the Unix-inspired design of MS-DOS v2.0, where utilities like 'more' were designed to process input incrementally. This section highlights the ingenuity required to implement seemingly simple functionality within the constraints of the 8086 architecture and the DOS environment."
-  - id: "setcx-adjust-buffer-size"
-    line_start: 127
-    line_end: 129
-    title: "Adjusting buffer size after read"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "The SETCX section adjusts the buffer size based on the actual number of bytes read. This ensures that subsequent operations only process valid data, avoiding errors or inefficiencies. In the early 1980s, efficient use of memory and processing power was paramount, as PCs typically had limited resources. By dynamically updating the buffer size, the programmer demonstrates a keen awareness of these constraints. This technique, while simple, is a precursor to more sophisticated memory management practices that would become standard in later operating systems. It also reflects the Unix philosophy of handling data streams flexibly, which influenced the design of MS-DOS v2.0."
+    content: "The 'ALOOP' section is the heart of the program's text reading functionality. It sets up a 4096-byte buffer and reads data from the input file handle using interrupt 21H. If no data remains (AX = 0), the program terminates. This approach reflects the constraints of early personal computers, where memory was limited and efficient use of buffers was crucial. The choice of a 4096-byte buffer aligns with the typical sector size of disk drives, optimizing read operations. In 1983, MS-DOS was competing with CP/M and Unix-derived systems, and its ability to handle text efficiently was a key selling point. This section demonstrates the pragmatic engineering required to balance performance with hardware limitations, a hallmark of early DOS utilities. The buffer-based design influenced later text-processing tools, establishing patterns still visible in modern software."
   - id: "tloop-character-processing"
     line_start: 133
     line_end: 147
-    title: "Processing characters one by one"
+    title: "Character Processing: Handling Control Codes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""
     image_caption: ""
-    content: "The TLOOP section processes characters from the buffer, checking for control characters like carriage return (CR) and line feed (LF). These checks are essential for formatting the output correctly, ensuring that the pagination logic works as intended. In the early days of computing, handling control characters was a common challenge, as different systems often interpreted them differently. The programmer's decision to handle these characters explicitly reflects the need for precise control over text formatting in a low-level environment. This section showcases the influence of Unix utilities like 'more,' which inspired the design of MS-DOS v2.0's pagination filter. By processing characters one by one, the program maintains simplicity and predictability, qualities that were highly valued in the constrained computing landscape of the 1980s."
-  - id: "notbp-backspace-handling"
-    line_start: 161
-    line_end: 171
-    title: "Handling backspace characters"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Backspace"
-    image_url: ""
-    image_caption: ""
-    content: "The NOTBP section handles backspace characters, decrementing the cursor column unless it is already at the start of the line. This logic ensures that the program correctly interprets user input and maintains proper text formatting. In the early 1980s, handling backspace was a critical feature for text-based applications, as it allowed users to correct errors interactively. The programmer's attention to this detail reflects the importance of user experience, even in a low-level utility like 'more.' This section also highlights the challenges of working with the 8086 architecture, where every operation had to be carefully planned to avoid unnecessary complexity or resource usage. The handling of backspace characters is a small but significant part of the program's overall functionality, demonstrating the programmer's commitment to creating a robust and user-friendly tool."
-  - id: "askmore-user-prompt"
+    content: "In 'TLOOP,' the program processes individual characters from the buffer, handling control codes like carriage return (CR), line feed (LF), and end-of-file (EOF). Each control code triggers specific actions: resetting the cursor column, incrementing the row, or terminating the program. This granular handling of text reflects the influence of Unix, where precise control over character streams was standard. In the early 1980s, text-based interfaces dominated computing, and efficient processing of control codes was essential for usability. Tim Paterson and Microsoft's engineers were adapting Unix concepts to the constrained environment of MS-DOS, creating tools that balanced power and simplicity. The logic here laid the groundwork for text-processing utilities in DOS and beyond, influencing generations of command-line tools."
+  - id: "askmore-prompt-user"
     line_start: 245
     line_end: 273
-    title: "Prompting the user for continuation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/More_(command)"
+    title: "User Interaction: Asking 'More?'"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "The ASKMORE section prompts the user to continue viewing the text, displaying a message and waiting for input. This interaction is central to the 'more' utility's functionality, allowing users to control the pace of text display. In the early 1980s, user interaction was often limited to simple prompts and responses, as graphical interfaces were still in their infancy. The programmer's decision to implement this feature reflects the influence of Unix utilities, which prioritized functionality and user control. By using interrupt 21h for string output and input handling, the program leverages the DOS environment to provide a seamless experience. This section demonstrates the balance between simplicity and usability, a hallmark of MS-DOS v2.0's design philosophy."
+    content: "The 'ASKMORE' section pauses the program to prompt the user with 'More?' after a page of text is displayed. It waits for a keypress without echoing input, ensuring a clean interface. This interaction embodies the Unix-inspired philosophy of user control, allowing readers to navigate text at their own pace. In 1983, MS-DOS was evolving from a simple operating system to a platform capable of supporting professional workflows. The 'MORE' utility reflects this transition, borrowing ideas from Unix while adapting them to the IBM PC's hardware and MS-DOS's architecture. This user-centric design became a staple of command-line interfaces, influencing not just DOS but also later systems like Windows and Linux. The simplicity and effectiveness of this prompt highlight the enduring appeal of minimalism in software design."
 
 ---
 

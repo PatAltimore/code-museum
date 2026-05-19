@@ -9,34 +9,28 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "msdos-v2"
 order: 18
-description: "The foundational assembly code for MS-DOS 2.0, marking a pivotal moment in personal computing history."
+description: "The foundational source code for MS-DOS v2.0, a pivotal rewrite that shaped personal computing in the 1980s."
 
 summary:
-  - point: "MS-DOS 2.0 introduced subdirectories, file handles, and pipes, inspired by Unix."
+  - point: "MS-DOS v2.0 introduced Unix-inspired features like subdirectories and file handles."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
   - point: "Tim Paterson's original 86-DOS served as the basis for MS-DOS."
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
-  - point: "Microsoft's licensing strategy turned MS-DOS into a de facto standard for PCs."
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS Licensing"
-  - point: "Source code for MS-DOS was released by the Computer History Museum in 2014."
-    link: "https://www.computerhistory.org/press/ms-dos-source-code/"
-    link_label: "Computer History Museum"
-  - point: "MS-DOS 2.0 was a near-complete rewrite, adding Unix-inspired features."
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "Unix Influence"
+    link: "https://en.wikipedia.org/wiki/86-DOS"
+    link_label: "86-DOS"
+  - point: "Microsoft's licensing strategy made MS-DOS ubiquitous across OEMs."
+    link: "https://en.wikipedia.org/wiki/MS-DOS#History"
+    link_label: "MS-DOS History"
 
 enhancements:
-  - id: "msdos-2-name-section"
+  - id: "msdos-name-section"
     line_start: 2
     line_end: 12
-    title: "A Name That Defined an Era"
+    title: "A name that defined an era: MSDOS_2"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The NAME directive at line 2 establishes the program as 'MSDOS_2,' signaling the second major version of the operating system. This small but significant declaration encapsulates the evolution of MS-DOS from its humble beginnings as 86-DOS, written by Tim Paterson in 1980. By 1983, MS-DOS had become the backbone of the IBM PC ecosystem, and version 2.0 marked a turning point. Inspired by Unix, this rewrite introduced advanced features like hierarchical directories, file handles, and pipes, which were groundbreaking for personal computers at the time. The computing landscape in 1983 was rapidly expanding. IBM's PC had set the standard for hardware, and MS-DOS was becoming the software platform of choice. Microsoft, under Bill Gates, had negotiated a licensing deal that allowed them to sell MS-DOS to other manufacturers, ensuring its dominance. The decision to rewrite MS-DOS for version 2.0 was driven by the need to support more complex applications and hardware, as well as to compete with emerging operating systems like CP/M-86 and Unix variants. This NAME directive is more than a technical label; it represents the ambitions of Microsoft and the growing importance of software ecosystems. MS-DOS 2.0's innovations laid the groundwork for decades of PC software development. The hierarchical directory structure, for instance, became a standard feature in operating systems, influencing everything from Windows to Linux. While the code itself may seem simple, its implications were profound, shaping the future of personal computing."
+    content: "The NAME directive at line 2 formally identifies this assembly file as 'MSDOS_2,' marking its role in the second major version of MS-DOS. This simple declaration belies the sweeping changes introduced in v2.0, which transformed MS-DOS from a basic single-tasking operating system into something far more versatile and Unix-inspired. By 1983, personal computing was evolving rapidly, and Microsoft needed to adapt to meet the demands of new hardware and software paradigms. Subdirectories, file handles, and device drivers were among the features added in this version, enabling more complex and organized file management. Tim Paterson, who had originally developed 86-DOS at Seattle Computer Products, was now working at Microsoft after the company acquired his creation in 1981. The rewrite for v2.0 was heavily influenced by Unix and XENIX, reflecting Microsoft's growing interest in multi-user and multitasking systems. This was a strategic move to align MS-DOS with emerging standards and to make it more appealing to IBM and other OEMs. The NAME directive also underscores the modularity of the MS-DOS source code. By including external files like STDSW.ASM, MSHEAD.ASM, and MSDATA.ASM, the codebase achieves a level of organization that was critical for maintainability and scalability. These files encapsulate standard switches, header definitions, and data structures, respectively, ensuring that the core logic of MS-DOS remains clean and focused. This section is a quiet but essential starting point for a file that would go on to influence the trajectory of personal computing. The modular design and Unix-inspired enhancements introduced in v2.0 would become foundational for countless operating systems that followed."
 
 ---
 

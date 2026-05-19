@@ -9,82 +9,106 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "hrddrv"
 order: 35
-description: "This file implements the hard disk driver for MS-DOS 2.0, showcasing early device driver architecture and the transition to more Unix-like features."
+description: "This file defines the hard disk driver for MS-DOS v2.0, showcasing the evolution of device handling in early personal computing."
 
 summary:
   - point: "Defines device driver tables for hard disk operations"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Introduces a dispatch table for handling I/O commands"
     link: "https://en.wikipedia.org/wiki/Device_driver"
     link_label: "Device Driver"
-  - point: "Introduces a simplistic strategy routine for non-multi-tasking systems"
-    link: "https://en.wikipedia.org/wiki/Multitasking"
-    link_label: "Multitasking"
-  - point: "Uses ROM calls to interact with hardware at a low level"
-    link: "https://en.wikipedia.org/wiki/Read-only_memory"
-    link_label: "ROM"
   - point: "Implements error handling routines for disk operations"
-    link: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
-    link_label: "Error Handling"
-  - point: "Constructs BIOS Parameter Blocks for diskette operations"
-    link: "https://en.wikipedia.org/wiki/BIOS_parameter_block"
-    link_label: "BIOS Parameter Block"
+    link: "https://en.wikipedia.org/wiki/Disk_operating_system"
+    link_label: "Disk Operating System"
+  - point: "Uses BIOS-level calls to interact with hardware"
+    link: "https://en.wikipedia.org/wiki/BIOS"
+    link_label: "BIOS"
+  - point: "Demonstrates early multitasking limitations in MS-DOS"
+    link: "https://en.wikipedia.org/wiki/MS-DOS#Version_2.x"
+    link_label: "MS-DOS v2.x"
 
 enhancements:
-  - id: "device-driver-tables-hard-disk"
-    line_start: 31
-    line_end: 101
-    title: "Device driver tables for hard disk"
+  - id: "hard-disk-driver-header"
+    line_start: 105
+    line_end: 121
+    title: "Hard Disk Driver Header Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "This section defines the structure and attributes of the hard disk driver, including device attributes, strategy pointers, and interrupt pointers. In the early 1980s, device drivers were essential for enabling hardware to communicate with the operating system. Tim Paterson, the original author of 86-DOS, designed these tables to be compact and efficient, reflecting the constraints of the IBM PC's limited memory and processing power. The device attributes specify whether the device is a block or character device, and the strategy and interrupt pointers allow the operating system to dispatch commands to the appropriate routines. This design laid the groundwork for the modular device driver architecture that persisted in later versions of MS-DOS and other operating systems."
-  - id: "dispatch-tables-device-commands"
+    content: "This section defines the header for the hard disk driver, including attributes such as device type, strategy pointer, and interrupt pointer. In the early 1980s, device drivers were a critical interface between software and hardware, enabling operating systems like MS-DOS to interact with peripherals. Tim Paterson, the original author of 86-DOS, laid the groundwork for this approach, which Microsoft refined for v2.0 of MS-DOS. The header reflects the block device nature of hard disks, contrasting with character devices like printers. This modular design allowed MS-DOS to support a wide range of hardware configurations, a key factor in its widespread adoption. The structure here influenced later systems, embedding the concept of device independence into personal computing."
+  - id: "dispatch-table-commands"
     line_start: 125
     line_end: 201
-    title: "Dispatch tables for device commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    title: "Dispatch Table: Command Routing for Devices"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "The dispatch table maps device commands to their corresponding routines, such as initialization, media code retrieval, and block read/write operations. This table is a critical part of the driver, allowing MS-DOS to interpret and execute commands issued by the operating system or user applications. In 1983, the concept of dispatch tables was inspired by Unix-like systems, which emphasized modularity and extensibility. By organizing commands in this way, the driver could be easily updated or extended to support new hardware without altering the core operating system. This approach influenced the design of device drivers in later operating systems, including Windows."
-  - id: "strategy-routine-io-packet"
+    content: "The dispatch table maps device-specific commands to their corresponding routines. Each entry represents a function, such as initializing the driver, reading or writing blocks, or handling errors. This design mirrors the Unix philosophy of modularity, which heavily influenced MS-DOS v2.0. In 1983, personal computing was transitioning from single-tasking systems to more sophisticated environments, and this table exemplifies the effort to create a flexible yet efficient driver model. By centralizing command handling, MS-DOS could support diverse hardware with minimal changes to the core operating system. This approach persists in modern operating systems, where device drivers remain a cornerstone of hardware abstraction."
+  - id: "strategy-routine"
     line_start: 205
     line_end: 215
-    title: "Simplistic strategy routine for I/O packets"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Multitasking"
+    title: "Strategy Routine: Simplistic I/O Packet Handling"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
     image_url: ""
     image_caption: ""
-    content: "The strategy routine saves pointers to I/O packets for later processing. In the non-multi-tasking environment of MS-DOS 2.0, this approach was sufficient to manage device operations sequentially. Tim Paterson's design reflects the simplicity required by the IBM PC's hardware constraints, which lacked advanced multitasking capabilities. By storing packet pointers in a fixed location, the driver could efficiently process commands without the overhead of complex scheduling or context switching. This routine highlights the trade-offs made in early PC software development, prioritizing performance and simplicity over flexibility."
-  - id: "bios-parameter-block-construction"
-    line_start: 647
-    line_end: 697
-    title: "Constructing BIOS Parameter Blocks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_parameter_block"
+    content: "The strategy routine saves I/O packet pointers for later processing by interrupt routines. This simplistic approach reflects the single-tasking nature of MS-DOS, where multitasking was not yet a standard feature. In the early 1980s, personal computers like the IBM PC were constrained by limited memory and processing power, necessitating straightforward designs. Tim Paterson's original 86-DOS code influenced this method, prioritizing speed and simplicity over complexity. While this routine lacks the sophistication of modern multitasking systems, it was sufficient for the needs of early PC users. The strategy routine's legacy lies in its role as a stepping stone toward more advanced I/O handling in subsequent operating systems."
+  - id: "disk-interrupt-handler"
+    line_start: 233
+    line_end: 247
+    title: "Disk Interrupt Handler: Processing I/O Packets"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
     image_caption: ""
-    content: "The GET_BPB routine constructs BIOS Parameter Blocks (BPBs) for diskette operations, providing essential information like sector size, allocation units, and media ID. BPBs were a standard way to describe the physical and logical layout of storage devices, enabling the operating system to interact with them effectively. In MS-DOS 2.0, this routine reflects the influence of Unix-like systems, which used similar abstractions to manage file systems. By standardizing the way storage devices were described, BPBs facilitated compatibility and extensibility, allowing MS-DOS to support a wide range of hardware configurations."
-  - id: "disk-error-handling"
-    line_start: 857
-    line_end: 937
-    title: "Disk error handling and recovery"
+    content: "The disk interrupt handler processes I/O packets using the dispatch table defined earlier. Interrupt-driven I/O was a common technique in the 1980s, allowing the CPU to respond to hardware events efficiently. This routine exemplifies the tight coupling between software and hardware in MS-DOS, where direct manipulation of memory and registers was necessary. The handler's reliance on predefined tables highlights the structured yet constrained nature of early operating systems. As computing evolved, interrupt handling became more abstracted, but the principles established here remain foundational. This code showcases the ingenuity required to maximize performance within the limitations of early PCs."
+  - id: "error-handling-routines"
+    line_start: 323
+    line_end: 361
+    title: "Error Handling: Mapping Codes to Disk Status"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
     image_url: ""
     image_caption: ""
-    content: "This section implements error handling routines for disk operations, mapping error codes to specific conditions like write protection, CRC errors, and sector not found. Error handling was a crucial aspect of early operating systems, as hardware failures and media inconsistencies were common. The routines here reflect the need for robust error detection and recovery mechanisms in MS-DOS 2.0. By providing detailed error codes, the driver enabled applications to respond appropriately to failures, improving reliability in a time when hardware was less dependable. This design influenced later systems, where error handling became even more sophisticated."
-  - id: "rom-call-hardware-interaction"
+    content: "This section defines routines for handling disk errors, mapping error codes to specific conditions like write protection or CRC errors. Error handling was a critical feature in MS-DOS, ensuring reliability in an era when hardware failures were common. The table-driven approach here simplifies the process, allowing the system to respond appropriately to various issues. In 1983, personal computing was still in its infancy, and robust error handling helped establish MS-DOS as a dependable operating system. These routines reflect the pragmatic design philosophy of early PC software, balancing complexity with the need for efficiency. The techniques used here influenced later systems, where error handling became even more sophisticated."
+  - id: "bios-parameter-block"
+    line_start: 647
+    line_end: 697
+    title: "Building BIOS Parameter Blocks for Diskettes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
+    image_url: ""
+    image_caption: ""
+    content: "The GET_BPB routine constructs BIOS Parameter Blocks (BPBs) for diskettes, providing essential information like sector size and media type. BPBs were a key innovation in MS-DOS v2.0, enabling the operating system to interact with diverse storage devices. This routine exemplifies the shift toward more sophisticated disk management, inspired by Unix and XENIX. In 1983, the ability to handle multiple disk formats was a significant advancement, reflecting the growing complexity of personal computing. The BPB concept persisted in later operating systems, evolving into modern file system metadata structures. This code highlights the foresight of MS-DOS's designers in anticipating future storage needs."
+  - id: "disk-io-functions"
+    line_start: 701
+    line_end: 835
+    title: "Disk I/O Functions: Read, Write, and Verify"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_operating_system"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements disk I/O functions, including read, write, and verify operations. These routines interact directly with hardware using BIOS-level calls, showcasing the low-level nature of MS-DOS. In the early 1980s, disk operations were a critical aspect of computing, as storage devices were slow and prone to errors. The code here reflects the challenges of optimizing performance while ensuring reliability. Tim Paterson's original design for 86-DOS influenced these routines, emphasizing simplicity and speed. The techniques used here laid the groundwork for more advanced disk management systems, demonstrating the incremental progress of personal computing."
+  - id: "rom-call-routine"
     line_start: 941
     line_end: 973
-    title: "ROM call for hardware interaction"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Read-only_memory"
+    title: "ROM Call Routine: Bridging Software and Hardware"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
     image_url: ""
     image_caption: ""
-    content: "The ROM_CALL routine interacts with the Altos ROM to perform hardware-level operations, such as disk I/O. ROM calls were a common way to access hardware features directly, bypassing the operating system for critical tasks. In the early 1980s, this approach was necessary due to the limited capabilities of operating systems and the need for high-performance hardware access. Tim Paterson's use of ROM calls in MS-DOS 2.0 reflects the pragmatic design choices of the era, balancing simplicity and efficiency. This technique persisted in later systems but was gradually replaced by standardized APIs as operating systems became more sophisticated."
+    content: "The ROM_CALL routine provides a standardized way to invoke BIOS-level functions, saving and restoring registers to maintain system stability. This method reflects the tight integration between software and hardware in MS-DOS, where direct interaction with the BIOS was necessary. In 1983, personal computers relied heavily on ROM routines for basic operations, as operating systems were still relatively lightweight. The ROM_CALL routine exemplifies the pragmatic approach of early PC software, leveraging hardware features to extend functionality. While modern systems abstract these interactions, the principles established here remain foundational, influencing the design of APIs and hardware interfaces."
   - id: "disk-initialization-routine"
     line_start: 977
-    line_end: 1002
-    title: "Disk initialization routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
+    line_end: 991
+    title: "Initializing Disk Driver: A Unix-Inspired Leap"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "The DSK_INI routine initializes the hard disk driver, setting up media descriptors and transfer pointers. Initialization routines were critical in early operating systems, ensuring that hardware was ready for use after booting. In MS-DOS 2.0, this routine reflects the influence of Unix-like systems, which emphasized modularity and reusability. By abstracting the initialization process, the driver could support different hardware configurations without altering the core operating system. This approach contributed to MS-DOS's success as a flexible and widely adopted platform."
+    content: "The DSK_INI routine begins with a simple but critical task: initializing the disk driver by setting up pointers and media status. The code loads a saved pointer (`PTRSAV`) into the BX register, then updates the media type to indicate readiness (`MEDIA = 1`). It proceeds to assign the address of the routine itself (`DSK_INI`) to a transfer pointer (`TRANS`) and sets up a table (`INI_TAB`) for further initialization. In 1983, MS-DOS 2.0 represented a significant departure from its predecessor. Inspired by Unix and XENIX, it introduced advanced features like hierarchical directories, pipes, and device drivers. This routine reflects the shift toward a modular and extensible design, where device drivers could be initialized dynamically. Tim Paterson, who originally wrote 86-DOS, had laid the groundwork for MS-DOS's architecture, but by version 2.0, Microsoft's engineers were pushing the system toward greater sophistication to meet IBM's and other OEMs' demands. The consequences of this design decision were profound. By enabling dynamic driver initialization, MS-DOS could support a wider range of hardware configurations, making it attractive to OEMs and ensuring its dominance in the PC market. This modularity also influenced later operating systems, including Windows, which inherited the concept of device drivers. The DSK_INI routine may seem simple, but it embodies the adaptability and foresight that made MS-DOS a cornerstone of personal computing."
+  - id: "code-segment-ends"
+    line_start: 995
+    line_end: 999
+    title: "Closing the Code Segment: Modular Design in Action"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Segment_(computing)"
+    image_url: ""
+    image_caption: ""
+    content: "The `CODE ENDS` directive marks the end of the code segment, signaling the completion of the executable portion of this file. In assembly language, segments are used to organize code, data, and stack areas within memory, ensuring efficient use of the limited resources available on early PCs. By 1983, the IBM PC's 8086 processor operated with a segmented memory model, which allowed access to up to 1 MB of memory but required careful management of 64 KB segments. MS-DOS 2.0's modular design leveraged this model, enabling developers to structure programs in a way that was both efficient and extensible. The use of segments reflects the constraints of the era, where every byte of memory was precious, and careful organization was essential. This modular approach influenced the development of later operating systems, including Windows, which continued to use segmented memory models in its early iterations. The `CODE ENDS` directive here is a small but vital part of that legacy, ensuring that the program's structure adhered to the conventions and limitations of the time."
 
 ---
 

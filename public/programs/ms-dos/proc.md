@@ -9,66 +9,50 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "proc"
 order: 40
-description: "This file defines process control system calls for MS-DOS 2.0, showcasing the evolution of operating system design in the early 1980s."
+description: "This file contains process control routines for MS-DOS 2.0, showcasing the evolution of operating system design in the early 1980s."
 
 summary:
-  - point: "Introduces process control routines for MS-DOS 2.0"
+  - point: "Introduces process control system calls, a key feature of MS-DOS 2.0."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Implements Terminate and Stay Resident (TSR) functionality"
+  - point: "Implements Terminate and Stay Resident (TSR) functionality, enabling background processes."
     link: "https://en.wikipedia.org/wiki/Terminate_and_Stay_Resident"
     link_label: "TSR"
-  - point: "Reflects Unix-inspired design in MS-DOS 2.0"
+  - point: "Reflects Unix-inspired enhancements in MS-DOS 2.0, such as process management."
     link: "https://en.wikipedia.org/wiki/Unix"
     link_label: "Unix"
-  - point: "Optimized for IBM PC hardware constraints"
+  - point: "Highlights assembly-level optimizations for IBM PC hardware constraints."
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
-  - point: "Highlights Tim Paterson's influence on early PC operating systems"
+  - point: "Demonstrates Tim Paterson and Microsoft's adaptation of 86-DOS into MS-DOS."
     link: "https://en.wikipedia.org/wiki/Tim_Paterson"
     link_label: "Tim Paterson"
 
 enhancements:
-  - id: "include-dosseg"
-    line_start: 5
-    line_end: 11
-    title: "Setting the stage: INCLUDE directives"
+  - id: "wait-error-code-retrieval"
+    line_start: 37
+    line_end: 43
+    title: "Retrieving the previous process error code"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "These lines establish the foundational components of the MS-DOS process control system by including external assembly files like DOSSEG.ASM and DOSSYM.ASM. These files define key symbols, macros, and segment structures that the rest of the code relies on. In the early 1980s, modularity in assembly programming was crucial for managing complexity. Tim Paterson, who initially wrote 86-DOS, designed the system to be extensible and adaptable to various hardware configurations. By the time MS-DOS 2.0 was released, Microsoft had refined this approach, borrowing ideas from Unix to create a more structured and versatile operating system. These directives illustrate the careful groundwork laid to ensure compatibility and maintainability in an era when memory was scarce and hardware varied widely."
-  - id: "wait-subroutine"
-    line_start: 26
-    line_end: 42
-    title: "Returning error codes: $WAIT subroutine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "The $WAIT subroutine retrieves and clears the exit code of the previous process. This routine is a simple yet essential mechanism for inter-process communication in MS-DOS. In 1983, when MS-DOS 2.0 was released, the concept of error codes was a fundamental part of operating system design, allowing developers to diagnose issues in a resource-constrained environment. The use of assembly language here reflects the need for low-level control and efficiency. Tim Paterson's original design for 86-DOS prioritized speed and simplicity, and this philosophy carried over into MS-DOS. The $WAIT subroutine exemplifies how MS-DOS balanced functionality with the limitations of the IBM PC's 8086 processor and its 1 MB addressable memory space."
-  - id: "exec-subroutine"
-    line_start: 45
-    line_end: 47
-    title: "Conditional execution: $EXEC for IBM systems"
-    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
-    image_url: ""
-    image_caption: ""
-    content: "The $EXEC subroutine is conditionally included based on whether the code is running on an IBM system. This reflects the tight coupling between MS-DOS and the IBM PC, which dominated the personal computing market in the early 1980s. IBM's hardware constraints and proprietary features required special handling in the operating system. Microsoft, under Bill Gates' leadership, ensured that MS-DOS could adapt to various OEM systems while maintaining compatibility with IBM's architecture. This conditional inclusion demonstrates the flexibility and foresight in MS-DOS's design, enabling it to become the de facto standard for PC operating systems."
-  - id: "keep-process"
-    line_start: 55
-    line_end: 87
-    title: "Terminate and Stay Resident: $Keep_process"
+    content: "The `$WAIT` routine retrieves the error code from the previous process and resets it to zero. This simple mechanism reflects the early MS-DOS design philosophy: minimalistic yet functional. In 1983, MS-DOS 2.0 was a major leap forward from its predecessor, incorporating features inspired by Unix. Error handling was crucial for debugging and process management, especially as MS-DOS expanded to support multitasking-like features. Tim Paterson, originally the author of 86-DOS, laid the groundwork for these routines, which were later refined by Microsoft's engineers. `$WAIT` embodies the pragmatic approach of the era, where every byte of memory mattered and simplicity was key to compatibility across diverse hardware. The routine's influence persists in modern operating systems, where error codes remain a fundamental concept."
+  - id: "terminate-stay-resident-handler"
+    line_start: 64
+    line_end: 99
+    title: "Terminate and Stay Resident (TSR) functionality"
     wikipedia_url: "https://en.wikipedia.org/wiki/Terminate_and_Stay_Resident"
     image_url: ""
     image_caption: ""
-    content: "The $Keep_process subroutine implements the Terminate and Stay Resident (TSR) functionality, allowing a program to remain in memory after it has terminated, ready to be reactivated later. TSR was a groundbreaking feature in MS-DOS, enabling utilities like pop-up calendars and memory-resident tools to coexist with other applications. In 1983, this was a clever workaround for the lack of multitasking in MS-DOS. The subroutine manipulates memory blocks and process control data to achieve this effect, showcasing the ingenuity required to maximize the capabilities of the IBM PC's limited hardware. TSR programs became a staple of the MS-DOS ecosystem, influencing the development of software utilities for years to come."
-  - id: "exit-subroutine"
-    line_start: 102
-    line_end: 118
-    title: "Graceful termination: $EXIT subroutine"
+    content: "The `$Keep_process` and `Stay_resident` routines implement the Terminate and Stay Resident (TSR) functionality, allowing programs to remain in memory and provide services even after termination. TSR was a groundbreaking feature for MS-DOS, enabling background processes like pop-up utilities and device drivers. In the early 1980s, personal computers like the IBM PC had limited memory and lacked multitasking capabilities. TSR was a clever workaround, letting users run small utilities alongside their main applications. This code reflects the constraints and ingenuity of the era, where programmers had to squeeze functionality into tight memory spaces. TSR programs became a hallmark of MS-DOS, influencing software design for years. However, they also introduced challenges, such as memory conflicts, which later operating systems like Windows sought to address."
+  - id: "exit-to-parent-process"
+    line_start: 111
+    line_end: 125
+    title: "Gracefully returning to the parent process"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The $EXIT subroutine handles the termination of a process and its return to the parent process. It ensures that the system cleans up properly, resetting control structures and releasing resources. In the early 1980s, operating systems like MS-DOS had to manage processes efficiently to avoid crashes or resource leaks, especially given the limited memory and processing power of the IBM PC. This subroutine reflects the Unix-inspired design principles adopted in MS-DOS 2.0, emphasizing reliability and structured process control. Tim Paterson's original work laid the foundation, but Microsoft's enhancements in version 2.0 brought MS-DOS closer to the sophistication of Unix, paving the way for its widespread adoption."
+    content: "The `$EXIT` routine handles the termination of a process and returns control to the parent process. It ensures that the system cleans up properly, resetting flags and invoking necessary subroutines. In the context of MS-DOS 2.0, this routine reflects the operating system's growing sophistication, inspired by Unix's process management. By 1983, MS-DOS was transitioning from a simple single-tasking system to one capable of handling more complex workflows, including nested processes and error handling. This routine highlights the careful balance between simplicity and functionality that defined MS-DOS. While modern operating systems have evolved far beyond these constraints, the principles of process termination and resource cleanup remain foundational."
 
 ---
 

@@ -9,58 +9,58 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "pclock"
 order: 39
-description: "This file implements clock interrupt management for MS-DOS, showcasing early PC hardware interaction and low-level programming techniques."
+description: "This file implements clock interrupt handling routines for MS-DOS v2.0, showcasing early PC hardware programming techniques."
 
 summary:
-  - point: "Direct manipulation of interrupt vectors for clock management"
+  - point: "Direct manipulation of interrupt vectors for clock functionality"
     link: "https://en.wikipedia.org/wiki/Interrupt_vector"
     link_label: "Interrupt Vector"
-  - point: "Use of assembly-level arithmetic for timing calculations"
-    link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly Language"
-  - point: "Interaction with 8253/8254 timer chips via port I/O"
-    link: "https://en.wikipedia.org/wiki/Intel_8253"
-    link_label: "Intel 8253 Timer"
-  - point: "Efficient handling of hardware interrupts in MS-DOS"
+  - point: "Efficient use of assembly to configure hardware timers"
+    link: "https://en.wikipedia.org/wiki/Programmable_interval_timer"
+    link_label: "Programmable Interval Timer"
+  - point: "Low-level control of slave and master interrupt controllers"
+    link: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
+    link_label: "Interrupt Request"
+  - point: "Optimized arithmetic operations for timer configuration"
+    link: "https://en.wikipedia.org/wiki/Intel_8086"
+    link_label: "Intel 8086"
+  - point: "Integration of hardware-specific routines into MS-DOS's modular design"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Legacy of hardware-level programming in early PC software"
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
 
 enhancements:
   - id: "interrupt-vector-setup"
     line_start: 15
     line_end: 65
-    title: "Interrupt Vector: The Heart of Timing"
+    title: "Setting up the interrupt vector table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
     image_url: ""
     image_caption: ""
-    content: "The section begins with the declaration of the interrupt vector table, a critical mechanism for handling hardware interrupts in MS-DOS. By setting up the vector table at a fixed memory location, the program ensures that the clock interrupt can be reliably triggered and serviced. In 1981, this approach was standard practice for low-level programming, especially on the Intel 8086 architecture, where hardware interrupts were a primary method for interacting with peripherals. Tim Paterson, the original author of 86-DOS, likely drew inspiration from earlier operating systems like CP/M, which also relied on direct hardware manipulation. This code reflects the constraints of the era: limited memory, no multitasking, and the need for precise timing to manage hardware. The interrupt vector setup laid the groundwork for MS-DOS's ability to handle real-time tasks, a feature that would become increasingly important as PCs moved into business and industrial applications. Today, this technique is largely obsolete, replaced by higher-level abstractions in modern operating systems, but it remains a testament to the ingenuity required to make early PCs functional."
-  - id: "clockon-enable-interrupts"
+    content: "This section begins by defining the interrupt vector table segment and setting up the base address for the clock interrupt handler. In the early 1980s, interrupt-driven programming was essential for real-time systems, and MS-DOS had to interface directly with the hardware to manage tasks like profiling and timing. Tim Paterson, the original author of 86-DOS, carried forward these techniques into MS-DOS, leveraging the Intel 8086's interrupt capabilities. At the time, programmers were working with minimal tools and documentation, often relying on hardware manuals and direct experimentation. This setup allowed MS-DOS to efficiently handle clock interrupts, a critical feature for profiling programs and managing system time. The direct manipulation of interrupt vectors was a hallmark of low-level programming in this era, and it laid the groundwork for more sophisticated interrupt handling in later operating systems."
+  - id: "clock-enable-routine"
     line_start: 67
     line_end: 143
-    title: "ClockON: Enabling Precise Timing"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8253"
+    title: "Enabling the clock interrupt"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Programmable_interval_timer"
     image_url: ""
     image_caption: ""
-    content: "The CLOCKON subroutine initializes and enables the clock interrupt by directly programming the timer chip (likely the Intel 8253 or 8254) through I/O ports. The code calculates the timer interval based on a value passed in the DX register, using assembly-level arithmetic to convert microseconds into hardware-compatible values. This reflects the hands-on nature of early PC programming, where developers had to understand the hardware intimately. In 1983, when MS-DOS 2.0 was released, the IBM PC was still a relatively new platform, and software developers were pushing its capabilities to meet user demands. Tim Paterson and Microsoft's engineers worked under tight constraints, balancing performance, compatibility, and simplicity. The CLOCKON routine exemplifies this balance: it provides a powerful feature (programmable timing) while remaining efficient and compact. This approach influenced later systems, where hardware abstraction layers began to hide such details from programmers, but the principles of efficient interrupt handling remain relevant in embedded systems today."
-  - id: "clockoff-disable-interrupts"
+    content: "The CLOCKON procedure configures the hardware timer to generate clock interrupts. It begins by setting the mode register and loading the timer with a value derived from the desired interval in microseconds. This involves bitwise operations and arithmetic to convert the interval into a format the timer can understand. The procedure then updates the interrupt vector table to point to the clock interrupt handler and enables the interrupt in the slave interrupt controller. In 1983, hardware programming like this was common, as operating systems had to directly interface with devices like the programmable interval timer (PIT). The Intel 8253/8254 PIT was a ubiquitous component in early PCs, and its configuration required precise timing calculations. This routine exemplifies the ingenuity of early PC programmers, who had to balance performance and reliability while working within the constraints of the hardware. The CLOCKON routine's design reflects the modularity of MS-DOS, allowing it to adapt to different hardware configurations and use cases."
+  - id: "clock-disable-routine"
     line_start: 153
     line_end: 161
-    title: "ClockOFF: Turning Off the Timer"
+    title: "Disabling the clock interrupt"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
     image_url: ""
     image_caption: ""
-    content: "The CLOCKOFF subroutine disables the clock interrupt by modifying the interrupt mask register. This simple yet essential routine ensures that the timer does not continue to generate interrupts when they are no longer needed, preventing unnecessary CPU overhead. In the early 1980s, efficient interrupt management was critical for performance, as the IBM PC's 4.77 MHz processor had limited capacity to handle concurrent tasks. The CLOCKOFF routine reflects the minimalist design philosophy of MS-DOS, where every byte of code had to justify its existence. This approach was shaped by the hardware constraints of the time, including limited memory and processing power. While modern operating systems handle such tasks automatically, the explicit control offered by routines like CLOCKOFF gave early PC programmers a level of precision that was both empowering and challenging."
-  - id: "leave-int-reset-interrupt"
+    content: "The CLOCKOFF procedure disables the clock interrupt by modifying the slave interrupt controller's mask register. This simple yet effective routine ensures that the timer stops generating interrupts, allowing the system to conserve resources when timing functionality is not needed. In the early days of PC development, efficient interrupt management was crucial for maintaining system stability and performance. By directly interacting with the interrupt controller, MS-DOS could provide fine-grained control over hardware resources, a feature that was highly valued by developers and users alike. This routine highlights the low-level nature of MS-DOS, which operated close to the hardware to maximize flexibility and compatibility across different PC configurations."
+  - id: "leave-interrupt-handler"
     line_start: 175
     line_end: 203
-    title: "LEAVE_INT: Resetting the Interrupt State"
+    title: "Resetting and exiting the interrupt"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""
     image_caption: ""
-    content: "The LEAVE_INT routine is responsible for resetting the interrupt state after the clock interrupt has been serviced. It clears the timer output, sends end-of-interrupt commands to both the slave and master interrupt controllers, and re-arms the timer for the next cycle. This meticulous attention to detail reflects the challenges of working with hardware interrupts on the 8086 architecture, where improper handling could lead to system instability. By 1983, MS-DOS had become the standard operating system for IBM PCs and compatibles, and routines like LEAVE_INT were crucial for maintaining reliability in a wide range of applications. Microsoft's engineers, including Tim Paterson, were building on a foundation of low-level programming techniques that had been honed in earlier systems like CP/M. The principles demonstrated in LEAVE_INT—efficient interrupt handling, careful state management, and direct hardware interaction—remain relevant in modern embedded systems, even as higher-level abstractions have made such code less visible to most programmers."
+    content: "The LEAVE_INT routine is responsible for resetting the interrupt state and preparing the system for the next clock interrupt. It clears the timer's output, sends end-of-interrupt commands to both the slave and master interrupt controllers, and reloads the timer to ensure continuous operation. This routine is called by the clock interrupt handler, ensuring that the system remains responsive and accurate in its timing. In the context of 1983, interrupt handling was a critical aspect of operating system design, as it allowed the CPU to respond to events in real-time without wasting cycles on polling. The modular design of MS-DOS, with routines like LEAVE_INT, reflects the influence of Unix and XENIX on its development. These systems emphasized clean, reusable code and efficient resource management, principles that continue to shape operating system design today. The LEAVE_INT routine is a testament to the skill and foresight of the MS-DOS developers, who created a system that could adapt to the rapidly evolving PC landscape."
 
 ---
 

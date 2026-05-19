@@ -9,90 +9,74 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "diskcopy"
 order: 30
-description: "This file contains the assembly source code for the DISKCOPY utility in MS-DOS 2.0, a program that copies entire floppy disks sector by sector."
+description: "The DISKCOPY utility from MS-DOS v2.0, a program that allowed users to duplicate floppy disks, represents a critical piece of early personal computing history, showcasing the evolution of software design under strict hardware constraints."
 
 summary:
-  - point: "DISKCOPY was written by Chris Peters in 1982 for MS-DOS 2.0, reflecting the growing need for disk management tools as personal computing expanded."
+  - point: "DISKCOPY was written by Chris Peters in 1982, reflecting Microsoft's shift to more robust utilities in MS-DOS v2.0."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "The program's design reflects the constraints of early PCs, including limited memory and reliance on BIOS interrupts for hardware interaction."
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "DISKCOPY's sector-by-sector copying approach was critical for duplicating bootable disks, which required exact replication of disk structure."
-    link: "https://en.wikipedia.org/wiki/Boot_sector"
-    link_label: "Boot sector"
-  - point: "The code demonstrates the use of memory allocation and management techniques in low-level assembly programming."
+  - point: "The program demonstrates direct hardware interaction via BIOS interrupts, a hallmark of early DOS utilities."
+    link: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
+    link_label: "BIOS Interrupts"
+  - point: "DISKCOPY's memory management reflects the challenges of working within the 640KB conventional memory limit of the IBM PC."
+    link: "https://en.wikipedia.org/wiki/Conventional_memory"
+    link_label: "Conventional Memory"
+  - point: "The utility's design prioritizes simplicity and efficiency, critical for users operating in a command-line environment."
+    link: "https://en.wikipedia.org/wiki/Command-line_interface"
+    link_label: "Command-Line Interface"
+  - point: "DISKCOPY's reliance on assembly language highlights the performance-driven programming practices of the era."
     link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly language"
-  - point: "This file is a snapshot of the transition from single-tasking operating systems to more Unix-inspired designs in MS-DOS 2.0."
-    link: "https://en.wikipedia.org/wiki/MS-DOS#Version_2.x"
-    link_label: "MS-DOS 2.x"
+    link_label: "Assembly Language"
 
 enhancements:
   - id: "diskcopy-entry-point"
     line_start: 93
     line_end: 121
-    title: "Jumping into the heart of DISKCOPY"
+    title: "A single jump defines the program's flow"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The `diskcopy` entry point is deceptively simple: it immediately jumps to `disk_entry`, bypassing any initialization at this label. This reflects the modular design philosophy of MS-DOS, where entry points often serve as mere redirections to more complex routines. Chris Peters, the author of DISKCOPY, was tasked with creating a utility that could duplicate floppy disks—a critical need for early PC users who relied on floppies for both software distribution and backups. In 1982, floppy disks were the primary storage medium, and their small capacity (typically 160 KB to 360 KB) made exact duplication essential for bootable disks. The jump instruction here is a reminder of the simplicity and efficiency demanded by assembly programming, where every byte mattered. This entry point sets the stage for the intricate routines that follow, handling memory allocation, disk reading, and writing."
+    content: "The `diskcopy` entry point, defined at line 93, immediately redirects program execution to `disk_entry`. This design reflects the modularity and simplicity of early DOS utilities, where the main entry point often served as a placeholder for initialization routines. Written in 1982 by Chris Peters, DISKCOPY was part of Microsoft's effort to enhance MS-DOS with practical utilities for the IBM PC. At the time, floppy disks were the primary medium for software distribution and data storage, and duplicating them was a common task. The jump instruction here encapsulates the program's purpose: to streamline disk copying while minimizing complexity. This approach ensured the utility could be easily invoked from the command line, adhering to the constraints of the era's hardware and user expectations. The modularity seen here influenced later DOS programs and utilities, embedding the principle of clear program flow into the DNA of personal computing."
   - id: "print-subroutine"
     line_start: 127
     line_end: 129
-    title: "Printing strings via BIOS interrupts"
+    title: "Printing messages via BIOS interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
     image_caption: ""
-    content: "The `print` subroutine uses the BIOS interrupt 21h to output strings to the console. This approach was standard in MS-DOS programming, leveraging the BIOS for hardware abstraction. By invoking function 09h of interrupt 21h, the program outputs a string terminated by a '$' character—a convention inherited from CP/M, the predecessor to MS-DOS. In the early 1980s, direct hardware manipulation was common, but using BIOS interrupts allowed developers to write code that was portable across different PC-compatible hardware. Chris Peters likely chose this method for its reliability and simplicity, ensuring that DISKCOPY could run on any IBM PC or compatible system. This subroutine is a small but critical piece of the program, enabling user interaction and error reporting."
-  - id: "getkey-wait-for-keypress"
+    content: "The `print` subroutine, beginning at line 127, uses BIOS interrupt 21h to output a string to the console. This routine is a cornerstone of user interaction in early DOS programs, where direct hardware access via interrupts was the norm. In 1982, the IBM PC's text-based interface required programmers to leverage BIOS calls for tasks like displaying messages. By invoking interrupt 21h with the `STD_CON_STRING_OUTPUT` function, the program ensures compatibility across different hardware configurations. Chris Peters, the author of DISKCOPY, likely designed this subroutine to simplify message handling in the utility, allowing users to receive clear prompts and error messages during disk copying. This method of direct interaction with the BIOS reflects the low-level programming practices of the time, where efficiency and hardware control were paramount. The reliance on BIOS interrupts persisted in DOS programming for years, shaping the development of utilities and applications in the early PC era."
+  - id: "getkey-subroutine"
     line_start: 135
     line_end: 151
-    title: "Waiting for user input: the `getkey` routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "Waiting for user input with BIOS calls"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
     image_caption: ""
-    content: "The `getkey` routine pauses execution until the user presses a key. It uses BIOS interrupt 21h, function 12h, which waits for a key press and returns the ASCII code of the key in the AL register. This method of user input was typical in MS-DOS programs, providing a simple way to interact with users without requiring advanced GUI elements. In the early 1980s, personal computers were primarily text-based, and programs like DISKCOPY relied on clear prompts and pauses to guide users through operations. Chris Peters designed this routine to ensure that users could confirm actions, such as overwriting a disk, before proceeding. This subroutine exemplifies the user-centric design of early DOS utilities, balancing simplicity with functionality."
-  - id: "getdpb-disk-parameters"
+    content: "The `getkey` subroutine, starting at line 135, waits for a key press from the user using BIOS interrupt 21h. This routine is essential for interactive utilities like DISKCOPY, where user confirmation is required at various stages. By displaying a prompt message and invoking the `WAIT_FOR_KEY_PRESS` function, the program ensures that users are actively engaged in the disk copying process. In the early 1980s, interactive programs like this were a significant step forward from batch processing systems, giving users more control over their computing tasks. Chris Peters designed this subroutine to be simple yet effective, leveraging the IBM PC's BIOS to handle input without needing complex routines. This approach highlights the efficiency-driven mindset of early DOS programmers, who worked within the constraints of limited memory and processing power. The `getkey` routine exemplifies the user-centric design philosophy that became a hallmark of DOS utilities."
+  - id: "getdpb-subroutine"
     line_start: 153
     line_end: 181
-    title: "Fetching disk parameters: the `getdpb` routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"
+    title: "Retrieving disk parameters via BIOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
     image_caption: ""
-    content: "The `getdpb` routine retrieves critical disk parameters, including the number of sectors, sector size, and media type, by invoking BIOS interrupt 21h with function 32h (GET_DPB). This information is essential for DISKCOPY's operation, as it ensures that the source and destination disks are compatible and that the program can calculate the number of sectors to copy. In 1982, floppy disks varied in format, and utilities like DISKCOPY had to account for these differences. Chris Peters implemented this routine to abstract the complexity of disk geometry, allowing the program to work seamlessly across different disk types. The use of BIOS interrupts reflects the low-level nature of MS-DOS programming, where direct interaction with hardware was often necessary. This routine highlights the technical challenges of early PC software development, where every hardware detail had to be managed explicitly."
-  - id: "disk-entry-initialization"
+    content: "The `getdpb` subroutine, beginning at line 153, retrieves disk parameters using BIOS interrupt 21h. This routine is critical for determining the number of sectors, sector size, and media type of the disk being copied. By accessing the Disk Parameter Block (DPB), the program ensures compatibility with various disk formats, a necessity in the early 1980s when floppy disk standards were still evolving. Chris Peters implemented this subroutine to handle the technical details of disk copying transparently, allowing users to focus on the task rather than the underlying mechanics. The use of BIOS interrupts reflects the low-level programming practices of the era, where direct hardware interaction was essential for performance and reliability. This routine showcases the ingenuity of early DOS programmers, who maximized the capabilities of the IBM PC's hardware to deliver practical utilities. The principles demonstrated here influenced the design of disk utilities for years to come, laying the groundwork for more advanced file systems and storage solutions."
+  - id: "disk-entry-subroutine"
     line_start: 225
     line_end: 311
-    title: "Setting up for disk copying: `disk_entry`"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    title: "Setting up memory and initializing disk copying"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Conventional_memory"
     image_url: ""
     image_caption: ""
-    content: "The `disk_entry` routine initializes the program's environment, setting up the stack, allocating memory, and preparing for disk operations. It begins by configuring the stack pointer and enabling interrupts, ensuring that the program can handle system events during execution. Memory allocation is performed using BIOS interrupt 21h, function 48h, which requests the largest available memory block. This is critical for DISKCOPY, as it needs a buffer large enough to hold multiple sectors for efficient copying. In 1982, memory management was a significant challenge, as PCs typically had only 64 KB to 640 KB of RAM. Chris Peters designed this routine to maximize the program's use of available memory, ensuring that DISKCOPY could handle disks of varying sizes. The careful setup in `disk_entry` reflects the constraints and ingenuity of early DOS programming, where every byte of memory was precious."
-  - id: "copyagn-restart-copying"
+    content: "The `disk_entry` subroutine, starting at line 225, initializes the disk copying process by setting up the stack, memory, and disk parameters. This routine reflects the challenges of working within the IBM PC's 640KB conventional memory limit, a constraint that shaped software design in the early 1980s. By adjusting the stack pointer and releasing extra memory blocks, the program optimizes memory usage for the task at hand. Chris Peters designed this subroutine to handle the technical complexities of disk copying transparently, ensuring the utility could operate efficiently on a wide range of hardware configurations. The memory management techniques seen here highlight the ingenuity of early DOS programmers, who had to balance performance, compatibility, and simplicity in their designs. This routine also demonstrates the modularity of DISKCOPY, where initialization is separated from the main copying logic, a design principle that influenced later software development practices. The memory setup here is a testament to the resourcefulness of programmers working under tight constraints, paving the way for more sophisticated utilities in the years to come."
+  - id: "copyagn-subroutine"
     line_start: 321
     line_end: 331
-    title: "Restarting the copy process: `copyagn`"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
+    title: "Reinitializing for another copy attempt"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "The `copyagn` routine resets the starting sector and prepares for another pass of disk copying. It checks whether the source and destination drives are the same, displaying appropriate messages to the user. This routine is part of DISKCOPY's iterative design, which processes disks in chunks to accommodate memory limitations. In the early 1980s, floppy disks were the standard storage medium, and their small capacity made sector-by-sector copying feasible. Chris Peters implemented this routine to ensure that DISKCOPY could handle disks of varying formats and sizes, restarting the process as needed. The iterative approach reflects the constraints of early PCs, where limited memory and processing power required careful planning and optimization."
-  - id: "loop-main-copying-routine"
-    line_start: 421
-    line_end: 435
-    title: "The heart of DISKCOPY: `loop`"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_copying"
-    image_url: ""
-    image_caption: ""
-    content: "The `loop` routine is the core of DISKCOPY, handling the actual copying of disk sectors. It reads a chunk of sectors from the source disk into memory, then writes them to the destination disk. The routine uses BIOS interrupts 21h, functions 25h (disk read) and 26h (disk write), to perform these operations. This sector-by-sector approach ensures that the entire disk, including boot sectors and hidden system files, is copied accurately. In 1982, floppy disks were the primary storage medium, and exact duplication was essential for creating bootable disks and backups. Chris Peters designed this routine to be efficient and reliable, balancing the constraints of memory and disk speed. The `loop` routine is a testament to the ingenuity of early DOS programming, where developers had to work within tight hardware limitations to deliver robust functionality."
-  - id: "quitcopy-finalization"
-    line_start: 503
-    line_end: 515
-    title: "Wrapping up: `quitcopy`"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "The `quitcopy` routine finalizes the disk copying process, resetting the disk system and displaying a success message to the user. It uses BIOS interrupt 21h, function 0Dh (DISK_RESET), to clear the buffer queue, ensuring that the system is ready for further operations. This routine reflects the user-friendly design of DISKCOPY, providing clear feedback and ensuring that the program exits cleanly. In the early 1980s, personal computers were still a novelty, and software developers like Chris Peters had to consider the needs of non-technical users. The `quitcopy` routine is a small but important part of DISKCOPY, ensuring that the program leaves the system in a stable state after completing its task."
+    content: "The `copyagn` subroutine, beginning at line 321, reinitializes variables and prepares the program for another copy attempt. This routine reflects the iterative nature of command-line utilities, where users often need to repeat tasks with slight variations. By resetting the start sector and checking if the source and destination drives are the same, the program ensures that each copy attempt begins with a clean slate. Chris Peters designed this subroutine to simplify the user experience, allowing for seamless retries without restarting the program. In the early 1980s, this level of user-centric design was a significant advancement, making utilities like DISKCOPY more accessible to non-technical users. The modularity and simplicity of this routine highlight the efficiency-driven mindset of DOS programmers, who prioritized functionality and ease of use in their designs. The iterative approach seen here influenced the development of command-line utilities for years, embedding the principle of repeatable tasks into the DNA of personal computing."
 
 ---
 

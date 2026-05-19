@@ -9,28 +9,28 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "stddos"
 order: 10
-description: "This file represents the foundational assembly code for MS-DOS 1.25, a pivotal operating system in personal computing history."
+description: "The foundational assembly code for MS-DOS v1.25, a pivotal operating system in personal computing history."
 
 summary:
-  - point: "Boolean flags control compilation for IBM or Microsoft versions."
+  - point: "Conditional assembly switches reveal customization for IBM and Microsoft versions."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "HIGHMEM flag determines memory relocation strategy."
+  - point: "HIGHMEM flag hints at early memory management strategies."
     link: "https://en.wikipedia.org/wiki/Memory_management"
     link_label: "Memory Management"
-  - point: "Disk testing mode introduces re-entrant behavior for debugging."
-    link: "https://en.wikipedia.org/wiki/Reentrant_code"
-    link_label: "Reentrant Code"
+  - point: "Re-entrant DOS testing enabled by DSKTEST switch."
+    link: "https://en.wikipedia.org/wiki/Reentrant_(computing)"
+    link_label: "Reentrant Computing"
 
 enhancements:
-  - id: "boolean-switches-for-customization"
+  - id: "conditional-assembly-switches"
     line_start: 3
     line_end: 19
-    title: "Boolean switches for customization and debugging"
+    title: "Conditional switches: tailoring DOS for IBM or Microsoft"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The opening lines of STDDOS.ASM define several boolean flags that control how the operating system is compiled. These flags include `MSVER` and `IBM`, which allow the code to be tailored for either the standard Microsoft version or the IBM-specific variant of MS-DOS. Other flags, such as `HIGHMEM`, determine whether DOS relocates itself to the end of memory—a critical decision for optimizing memory usage on early PCs with limited RAM. The `DSKTEST` flag enables a debugging mode that sets up separate stacks for disk and character I/O, effectively making the DOS re-entrant during testing. In 1982, when this code was written, personal computers like the IBM PC were just beginning to gain traction. The IBM PC launched with 16 KB to 64 KB of RAM, meaning every byte of memory was precious. Tim Paterson, originally hired by Seattle Computer Products to write 86-DOS, had to design an operating system that could function efficiently within these constraints. The boolean switches reflect the flexibility needed to adapt MS-DOS for different hardware configurations and use cases, including debugging and OEM-specific versions. These flags are an early example of modular design in software, allowing the same codebase to be reused and customized for different purposes. The HIGHMEM flag, in particular, foreshadows the memory management techniques that would become increasingly important as PCs evolved. While the debugging features enabled by `DSKTEST` were likely intended for internal use, they hint at the challenges of developing reliable software for new hardware platforms. These decisions laid the groundwork for MS-DOS's widespread adoption and adaptability, influencing operating system design for decades to come."
+    content: "These lines define key assembly-time switches that allow the MS-DOS source code to be tailored for different environments. The MSVER and IBM flags determine whether the code compiles as the standard Microsoft version or the IBM-specific variant. This flexibility was crucial in 1981, as Microsoft sought to license MS-DOS to multiple OEMs, including IBM. The HIGHMEM flag reflects early efforts to optimize memory usage by relocating DOS to the end of memory, a strategy that would become increasingly important as personal computers evolved. Meanwhile, the DSKTEST flag introduces a mechanism for testing disk code with DEBUG, setting up separate stacks for disk and character I/O. This approach effectively makes DOS re-entrant, a concept borrowed from larger, multi-user systems but adapted here for debugging purposes. These switches highlight the dual pressures faced by Tim Paterson and Microsoft: delivering a functional operating system for IBM's imminent PC launch while ensuring the codebase could be adapted for other hardware vendors. The modularity and foresight embedded in these switches laid the groundwork for MS-DOS's dominance in the early PC era, enabling rapid customization and widespread adoption."
 
 ---
 

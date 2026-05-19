@@ -9,106 +9,90 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "strin"
 order: 46
-description: "This file contains the assembly code for MS-DOS v2.0's string input handling routines, showcasing the evolution of text processing in early personal computing."
+description: "This file implements MS-DOS 2.0's string input routines, showcasing the evolution of console input handling in early PC operating systems."
 
 summary:
-  - point: "Introduces a buffer-based system for console input"
+  - point: "Introduces buffer-based console input handling for MS-DOS 2.0"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Implements control character handling for text editing"
-    link: "https://en.wikipedia.org/wiki/Control_character"
-    link_label: "Control character"
-  - point: "Demonstrates early use of templates for text manipulation"
-    link: "https://en.wikipedia.org/wiki/Template_(programming)"
-    link_label: "Template programming"
-  - point: "Optimizes for limited memory and hardware constraints"
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "Reflects Unix-inspired design principles in MS-DOS v2.0"
+  - point: "Incorporates Unix-inspired design principles for text processing"
     link: "https://en.wikipedia.org/wiki/Unix"
     link_label: "Unix"
+  - point: "Optimizes for the constraints of 8086 assembly and limited memory"
+    link: "https://en.wikipedia.org/wiki/Intel_8086"
+    link_label: "Intel 8086"
+  - point: "Demonstrates early techniques for user input validation and error handling"
+    link: "https://en.wikipedia.org/wiki/Input_validation"
+    link_label: "Input validation"
+  - point: "Highlights Tim Paterson's influence on MS-DOS's foundational design"
+    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
+    link_label: "Tim Paterson"
 
 enhancements:
-  - id: "assume-buffer-initialization"
-    line_start: 2
-    line_end: 23
-    title: "Buffer initialization: Preparing for console input"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
-    image_url: ""
-    image_caption: ""
-    content: "The code begins by setting up the necessary assumptions for the data segment (DS) and extra segment (ES), ensuring they are properly initialized for handling console input. This section defines the inputs and outputs for the procedure, including a buffer pointed to by DS:DX and the goal of filling it with user input until a carriage return (CR) is encountered. In 1983, memory constraints were a major consideration, especially on the IBM PC, which typically had 16–64 KB of RAM. Tim Paterson's design reflects these limitations by using efficient assembly instructions to manage buffer operations and ensure consistency in the input length. This initialization step was critical for enabling reliable text input in MS-DOS applications, laying the groundwork for the rest of the string handling routines."
   - id: "editon-buffer-validation"
     line_start: 26
     line_end: 28
-    title: "EDITON: Validating buffer contents"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "Buffer validation: Ensuring input integrity"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input_validation"
     image_url: ""
     image_caption: ""
-    content: "The EDITON routine checks the buffer's contents to ensure that the carriage return (CR) is correctly placed, signaling that the input is valid for editing. This validation step was crucial in early computing, where errors in input handling could lead to crashes or corrupted data. By implementing this check, Paterson ensured that MS-DOS could handle user input robustly, even in the constrained environment of the IBM PC. The use of assembly language allowed for precise control over memory and processor operations, a necessity given the limited resources of the time."
+    content: "The `EDITON` section checks if a carriage return (CR) is correctly placed in the user input buffer, ensuring the integrity of the input before proceeding. This reflects the meticulous attention to error handling required in early operating systems, where user input could easily disrupt program flow. In 1983, MS-DOS 2.0 was adapting to the growing demands of personal computing, influenced by Unix-like systems that emphasized robust text processing. Tim Paterson and Microsoft's engineers were designing for the 8086 processor, which had limited memory and no hardware-level safeguards for input validation. This routine exemplifies the careful balance between functionality and efficiency that characterized MS-DOS development. The approach to input validation here would influence later operating systems, embedding the principle of \"trust but verify\" into console input handling."
   - id: "newline-buffer-construction"
     line_start: 29
     line_end: 41
-    title: "NEWLIN: Constructing a new line in the buffer"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Carriage_return"
+    title: "Building a new line in the buffer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The NEWLIN routine begins the process of constructing a new line in the buffer, starting with the position in the raw buffer and setting up the insertion mode. It then calls a system routine to fetch the first character from the console input. This approach reflects the influence of Unix-like systems, where text processing was a core functionality. In MS-DOS v2.0, the addition of subdirectories and file handles necessitated more sophisticated text handling routines, and NEWLIN exemplifies this evolution. By carefully managing the buffer and insertion mode, Paterson ensured that MS-DOS could support more complex text editing operations, paving the way for applications like word processors and text editors."
+    content: "The `NEWLIN` routine constructs a new line in the input buffer, initializing key variables and invoking system calls to read characters from the console. This section demonstrates the low-level mechanics of text input in MS-DOS 2.0, where every byte of memory and processor cycle was precious. In the early 1980s, personal computers like the IBM PC were just beginning to standardize user interfaces, and MS-DOS had to provide reliable input handling for a wide range of hardware configurations. The use of assembly language allowed for precise control over memory and registers, enabling efficient buffer management. This routine's design reflects the Unix-inspired philosophy of modularity and simplicity, which influenced MS-DOS 2.0's rewrite. The techniques here laid the groundwork for more sophisticated text processing in later operating systems."
   - id: "gotch-character-filtering"
     line_start: 42
     line_end: 56
-    title: "GOTCH: Filtering control characters"
+    title: "Filtering user input: Handling special characters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""
     image_caption: ""
-    content: "The GOTCH routine filters out specific control characters, such as linefeed (LF), delete (DEL), and escape (ESC), ensuring that only valid characters are processed. This filtering was essential for maintaining the integrity of user input, especially in an era when keyboards often generated unexpected control sequences. By handling these characters explicitly, Paterson's code minimized errors and improved the user experience. The routine also reflects the influence of Unix-like systems, where control characters played a significant role in text processing. GOTCH's careful handling of these characters contributed to MS-DOS's reliability and usability, making it a preferred choice for early PC users."
+    content: "The `GOTCH` routine filters user input, ignoring certain control characters and handling others like escape (`ESC`) and backspace (`BS`). This was critical in ensuring that user input conformed to expected formats and behaviors. In the early days of MS-DOS, users interacted with the system primarily through the keyboard, and handling special characters was a common challenge. Tim Paterson's original design for 86-DOS, and later MS-DOS, drew inspiration from CP/M and Unix, both of which had established conventions for text input. The filtering mechanism here reflects the need to balance user flexibility with system stability. By implementing these checks at the assembly level, MS-DOS could efficiently manage input without consuming excessive resources. This approach influenced later systems, where handling special characters became a standard feature of text processing libraries."
   - id: "savch-buffer-storage"
     line_start: 57
     line_end: 69
-    title: "SAVCH: Storing characters in the buffer"
+    title: "Saving characters to the buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The SAVCH routine stores characters in the buffer, incrementing the character count and printing control characters in a readable format. This routine highlights the importance of efficient memory management in early computing, where every byte mattered. By using assembly instructions like STOSB and INC, Paterson's code achieves high performance while adhering to the constraints of the IBM PC's hardware. SAVCH also demonstrates the influence of Unix-like systems, where text processing was a core functionality. This routine was a key component of MS-DOS's string handling capabilities, enabling applications to interact with user input reliably and efficiently."
+    content: "The `SAVCH` routine stores characters in the buffer, ensuring they are correctly echoed to the console and managing insert mode. This section highlights the low-level mechanics of text input in MS-DOS 2.0, where every operation had to be carefully optimized for the 8086 processor's constraints. In 1983, personal computers were becoming more widespread, but hardware limitations still dictated software design. Tim Paterson and Microsoft's engineers were tasked with creating an operating system that could handle user input efficiently while maintaining compatibility with a variety of hardware. The use of assembly language allowed for precise control over memory and registers, enabling efficient buffer management. The techniques demonstrated here would influence later operating systems, embedding the principle of \"trust but verify\" into console input handling."
   - id: "bufful-buffer-overflow"
     line_start: 73
     line_end: 76
-    title: "BUFFUL: Handling buffer overflow"
+    title: "Buffer overflow prevention: A simple safeguard"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_overflow"
     image_url: ""
     image_caption: ""
-    content: "The BUFFUL routine addresses the issue of buffer overflow, a common problem in early computing. When the buffer is full, the routine emits a bell sound to alert the user and returns control to the input handling loop. This simple yet effective approach reflects the constraints of the IBM PC, where memory was limited and error handling needed to be efficient. By implementing this safeguard, Paterson ensured that MS-DOS could handle user input robustly, even in the face of unexpected conditions. BUFFUL's design highlights the importance of defensive programming in an era when software reliability was a critical concern."
-  - id: "esc-function-key-handling"
-    line_start: 78
-    line_end: 79
-    title: "ESC: Handling function key input"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Escape_character"
-    image_url: ""
-    image_caption: ""
-    content: "The ESC routine processes input from function keys, transferring control to an OEM-specific handler. This design reflects the modularity of MS-DOS, which was built to support a wide range of hardware configurations. By delegating function key handling to OEM-specific routines, Paterson's code ensured compatibility with various keyboards and input devices. This approach was critical for MS-DOS's success, as it allowed the operating system to be licensed to multiple OEMs and adapted to their unique hardware requirements. ESC exemplifies the flexibility and adaptability that made MS-DOS a dominant force in early personal computing."
-  - id: "endlin-finalizing-buffer"
+    content: "The `BUFFUL` routine checks for buffer overflow, ringing a bell (`AL=7`) if the buffer is full. This simple yet effective safeguard reflects the challenges of managing memory in early operating systems. In the early 1980s, personal computers had limited RAM, and programs like MS-DOS had to operate within tight constraints. Buffer overflow was a common issue that could lead to unpredictable behavior or system crashes. By implementing this check, MS-DOS 2.0 ensured that user input did not exceed the allocated buffer size, preserving system stability. This routine is an early example of defensive programming, a practice that would become increasingly important as software complexity grew. The bell sound served as a user-friendly alert, reminding users of the system's limitations and encouraging careful input."
+  - id: "endlin-finalizing-input"
     line_start: 81
     line_end: 86
-    title: "ENDLIN: Finalizing the input buffer"
+    title: "Finalizing user input: Completing the line"
     wikipedia_url: "https://en.wikipedia.org/wiki/Carriage_return"
     image_url: ""
     image_caption: ""
-    content: "The ENDLIN routine finalizes the input buffer by adding a carriage return (CR) and echoing it to the console. It then updates the buffer length and prepares the data for further processing. This routine highlights the importance of user feedback in early computing, where visual confirmation of input was essential. By echoing the CR, Paterson's code improved the user experience and ensured that input was correctly captured. ENDLIN's design reflects the influence of Unix-like systems, where text processing was a core functionality. This routine was a key component of MS-DOS's string handling capabilities, enabling reliable and efficient text input."
+    content: "The `ENDLIN` routine finalizes user input by storing a carriage return (`CR`) in the buffer and echoing it to the console. This marks the end of the input line, allowing the system to process the user's command or data. In the early days of MS-DOS, user interaction was primarily text-based, and the carriage return played a crucial role in signaling the end of input. Tim Paterson's original design for 86-DOS, and later MS-DOS, drew inspiration from CP/M and Unix, both of which had established conventions for text input. The handling of `CR` here reflects the need for clear and consistent communication between the user and the system. By implementing this functionality at the assembly level, MS-DOS could efficiently manage input without consuming excessive resources. This approach influenced later systems, where handling special characters became a standard feature of text processing libraries."
   - id: "copynew-buffer-copying"
     line_start: 87
     line_end: 104
-    title: "COPYNEW: Copying buffer contents"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    title: "Copying input buffer: Preparing user data"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The COPYNEW routine copies the contents of the input buffer to the user buffer, ensuring that the data is correctly transferred for further processing. This routine uses efficient assembly instructions like REP MOVSB to achieve high performance, reflecting the constraints of the IBM PC's hardware. By implementing this functionality, Paterson's code enabled applications to interact with user input reliably and efficiently. COPYNEW's design highlights the importance of memory management in early computing, where every byte mattered. This routine was a key component of MS-DOS's string handling capabilities, paving the way for more sophisticated text processing applications."
-  - id: "phycrlf-output-crlf"
+    content: "The `COPYNEW` routine copies the finalized input buffer to the user buffer, ensuring the data is ready for further processing. This operation highlights the importance of efficient memory management in early operating systems like MS-DOS 2.0. In 1983, personal computers were becoming more widespread, but hardware limitations still dictated software design. Tim Paterson and Microsoft's engineers were tasked with creating an operating system that could handle user input efficiently while maintaining compatibility with a variety of hardware. The use of assembly language allowed for precise control over memory and registers, enabling efficient buffer management. The techniques demonstrated here would influence later operating systems, embedding the principle of \"trust but verify\" into console input handling."
+  - id: "phycrlf-linefeed-handling"
     line_start: 105
     line_end: 113
-    title: "PHYCRLF: Outputting a CRLF sequence"
+    title: "Linefeed handling: Separating input lines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Newline"
     image_url: ""
     image_caption: ""
-    content: "The PHYCRLF routine outputs a carriage return (CR) followed by a linefeed (LF), ensuring proper formatting of text on the console. This routine reflects the influence of Unix-like systems, where CRLF sequences were commonly used to indicate the end of a line. In MS-DOS v2.0, text formatting was a critical functionality, enabling applications to display information clearly and consistently. PHYCRLF's design highlights the importance of user feedback in early computing, where visual confirmation of input and output was essential. This routine contributed to MS-DOS's reliability and usability, making it a preferred choice for early PC users."
+    content: "The `PHYCRLF` routine outputs a carriage return (`CR`) followed by a linefeed (`LF`), ensuring proper separation of input lines. This reflects the conventions established by earlier operating systems like CP/M and Unix, which used `CRLF` as a standard line-ending sequence. In the early 1980s, personal computers were just beginning to standardize user interfaces, and MS-DOS had to provide reliable input handling for a wide range of hardware configurations. The use of assembly language allowed for precise control over memory and registers, enabling efficient buffer management. This routine's design reflects the Unix-inspired philosophy of modularity and simplicity, which influenced MS-DOS 2.0's rewrite. The techniques here laid the groundwork for more sophisticated text processing in later operating systems."
 
 ---
 
