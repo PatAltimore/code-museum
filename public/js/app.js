@@ -734,6 +734,29 @@ function renderShelf(catalog) {
     <p>Annotated source code from historically significant open-source programs.</p>
     <p>Read the code that changed computing.</p>
   </div>
+  <div class="how-to">
+    <div class="how-to-item">
+      <div class="how-to-icon">▍</div>
+      <div>
+        <div class="how-to-title">Enhanced sections</div>
+        <div class="how-to-desc">Sections of source code with an annotation are highlighted. A panel below the highlighted lines shows the title — click it to expand the full story: what the code does, who wrote it, and what it led to.</div>
+      </div>
+    </div>
+    <div class="how-to-item">
+      <div class="how-to-icon">?</div>
+      <div>
+        <div class="how-to-title">Instruction lookup</div>
+        <div class="how-to-desc">Click any line of code to see what the instruction does. Covers 6502, 8086, MDL, and C — including Wolf3D and DOOM engine subsystems.</div>
+      </div>
+    </div>
+    <div class="how-to-item">
+      <div class="how-to-icon">✦</div>
+      <div>
+        <div class="how-to-title">Word lookup</div>
+        <div class="how-to-desc">Right-click any word inside an annotation panel to look it up in the dictionary.</div>
+      </div>
+    </div>
+  </div>
   <div class="program-grid">${cards}</div>
 </div>`;
 }
