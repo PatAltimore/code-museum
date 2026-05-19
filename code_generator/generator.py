@@ -127,7 +127,8 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="Build prompts without calling the API")
     parser.add_argument("--sync-catalog", action="store_true", help="Update catalog.json from disk and exit")
     parser.add_argument("--no-catalog-sync", action="store_true", help="Skip catalog.json sync after generation")
-    parser.add_argument("--no-images", action="store_true", help="Skip Wikipedia Commons image fetching")
+    parser.add_argument("--no-images", action="store_true", help="Skip all Wikipedia Commons image fetching (program and enhancement images)")
+    parser.add_argument("--no-file-images", action="store_true", help="Skip per-enhancement image fetching but still fetch the program-level image")
     parser.add_argument("--find-images", action="store_true", help="Fill missing images in all existing files and exit")
     parser.add_argument("--replace-images", action="store_true", help="Clear and re-fetch all images (replaces bad ones); implies --find-images")
     parser.add_argument("--config", default="config/programs.yaml", help="Path to programs.yaml")
@@ -260,7 +261,7 @@ def main() -> None:
             console.print(f"  [green]-> {path}[/green]")
             generated.append((prog_slug, file_slug))
 
-            if not args.no_images:
+            if not args.no_images and not args.no_file_images:
                 count = fill_file_images(path, console=console, client=client)
                 if count:
                     console.print(f"  [green]-> {count} image(s) added[/green]")
