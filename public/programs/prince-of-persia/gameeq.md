@@ -9,60 +9,60 @@ year: 1989
 author: "Jordan Mechner"
 slug: "gameeq"
 order: 19
-description: "Equates and data structures for Prince of Persia's game logic on the Apple II"
+description: "Memory equates and jump tables for Prince of Persia's Apple II assembly code"
 
 summary:
-  - point: "Memory bank-switching to fit within 128K constraints"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank switching"
-  - point: "Extensive use of jump tables for modular game logic"
+  - point: "Defines memory locations for critical game data structures"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Jump tables streamline access to subroutines"
     link: "https://en.wikipedia.org/wiki/Jump_table"
-    link_label: "Jump table"
-  - point: "Rotoscoping-inspired animation data organization"
-    link: "https://en.wikipedia.org/wiki/Rotoscoping"
-    link_label: "Rotoscoping"
+    link_label: "Jump Table"
+  - point: "Bank-switched memory used to fit within 128K constraints"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank Switching"
 
 enhancements:
-  - id: "memory-layout-and-equates"
+  - id: "memory-equates-organization"
     line_start: 9
     line_end: 39
-    title: "Mapping the memory: equates for game tables"
+    title: "Mapping the game's memory landscape"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
     image_caption: ""
-    content: "These lines define equates, which are fixed memory addresses used throughout the game's code. Each equate corresponds to a specific table or resource, such as character tables (`chtable1` through `chtable7`), background tables (`bgtable1` and `bgtable2`), and control structures (`topctrl`, `ctrl`, etc.). On the Apple II, memory was scarce, with only 128K available, requiring meticulous planning to allocate space for game logic, graphics, and sound. Jordan Mechner had to work within these constraints, carefully assigning memory addresses to ensure the game could run efficiently. The Apple II's bank-switched memory system allowed him to access different memory banks, but this added complexity to the code. These equates are the backbone of the game's modular design, enabling rapid access to critical resources."
-  - id: "jump-tables-for-game-logic"
+    content: "These lines define memory equates, assigning specific hexadecimal addresses to various game components like character tables, background tables, and sound systems. In the Apple II's constrained environment, memory management was paramount. The machine had only 128K of RAM, split between main and auxiliary banks, and programmers had to carefully allocate every byte. Jordan Mechner, working solo on Prince of Persia, meticulously mapped out memory locations to ensure the game could run smoothly while fitting within these limits. This section reflects the deliberate planning required to juggle animation, gameplay logic, and sound effects in such a restricted space. The equates serve as shorthand, making the code easier to read and maintain while ensuring critical data is stored in predictable locations. Mechner's approach to memory organization laid the groundwork for the game's cinematic fluidity, which was revolutionary for its time."
+  - id: "jump-tables-efficiency"
     line_start: 43
     line_end: 65
-    title: "Jump tables: modularizing game logic"
+    title: "Jump tables: speeding up decision-making"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
     image_url: ""
     image_caption: ""
-    content: "Jump tables are a technique used to organize and modularize game logic. Here, Mechner defines tables for tracking objects (`trloc`, `trscrn`, `trdirec`) and mobile entities (`mobx`, `moby`, `mobvel`, etc.). Each entry in these tables corresponds to a specific aspect of the game world, such as the position, velocity, or screen location of characters and objects. In 1989, jump tables were a common solution for handling complex logic on limited hardware like the Apple II. They allowed the programmer to quickly look up values or execute specific routines based on an index, saving both time and memory. This approach reflects Mechner's ingenuity in creating a cinematic platformer within the constraints of the era."
+    content: "Jump tables are a clever assembly programming technique that allows rapid branching to different subroutines based on a single index. Here, Mechner uses jump tables to manage game elements like sound effects and object positions. In the late 1980s, computational efficiency was critical, especially on the Apple II, where every clock cycle mattered. Jump tables avoided the overhead of conditional branching, enabling faster execution of repetitive tasks like updating object states or triggering sound effects. This technique reflects Mechner's deep understanding of the hardware and his ability to optimize performance without sacrificing gameplay complexity. Jump tables became a staple in assembly programming, influencing game development practices for years to come."
   - id: "saved-game-structure"
     line_start: 67
     line_end: 74
-    title: "Saving progress: the saved game structure"
+    title: "Saving progress in a cinematic adventure"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
     image_caption: ""
-    content: "The saved game structure (`SavLevel`, `SavStrength`, `SavTimer`, etc.) is a compact representation of the player's progress. It includes essential data such as the current level, strength, and timer values. Saving game progress was a relatively new feature in the late 1980s, as many games still relied on passwords or forced players to start from the beginning. Mechner's decision to include a saved game system highlights his focus on player experience and replayability. This structure is optimized for the Apple II's limited memory, ensuring that saving and loading are fast and efficient. It also reflects the growing trend in game design toward more complex and immersive experiences."
+    content: "This section defines the structure for saved game data, including variables for the player's level, strength, and timer. Saving progress was a relatively new feature in games of the era, and it was especially important for a challenging title like Prince of Persia, where players often faced perilous obstacles and tight time limits. Mechner's implementation reflects the game's cinematic aspirations—allowing players to resume their adventure without starting over. The saved game structure is compact, fitting into the Apple II's memory constraints while preserving essential gameplay state. This innovation contributed to the game's accessibility and replayability, setting a standard for future platformers."
   - id: "character-data-organization"
     line_start: 566
     line_end: 644
-    title: "Defining characters: modular data structures"
+    title: "Defining the heroes and villains"
     wikipedia_url: "https://en.wikipedia.org/wiki/Character_(video_games)"
     image_url: ""
     image_caption: ""
-    content: "These lines define the data structures for characters in the game, including the protagonist (`Kid`), the shadow (`Shad`), and other entities (`Char`, `Op`). Each structure includes fields for position, velocity, action state, and more. This modular approach allows the game to manage multiple characters and objects efficiently. Mechner's use of structured data reflects the influence of cinematic storytelling on his design. By organizing characters in this way, he could implement complex interactions and animations, such as the shadow mimicking the player's movements. These structures are a testament to Mechner's ability to translate his vision into code, creating a game that felt alive and dynamic."
+    content: "This section organizes data structures for the game's characters, including the protagonist (Kid), his shadow (Shad), and opponents (Op). Each character has attributes like position, velocity, action state, and life points, stored in memory for quick access during gameplay. Mechner's design reflects the game's focus on fluid animation and precise control—every movement and interaction is calculated based on these variables. The inclusion of a shadow character, mirroring the protagonist's actions, showcases the game's innovative storytelling and gameplay mechanics. These data structures are a testament to Mechner's ability to balance technical constraints with creative ambition, enabling the game's groundbreaking cinematic experience."
   - id: "miscellaneous-game-data"
     line_start: 653
     line_end: 671
-    title: "Miscellaneous constants: fine-tuning gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_design"
+    title: "Flags and constants: the game's hidden logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Flag_(computing)"
     image_url: ""
     image_caption: ""
-    content: "This section defines miscellaneous constants used throughout the game, such as `floorheight`, `angle`, and `TypeKid`. These values are critical for fine-tuning gameplay mechanics, ensuring that movements, collisions, and interactions feel natural and responsive. Mechner's attention to detail is evident here, as he meticulously adjusts parameters to create a seamless experience. The constants also reflect the game's cinematic roots, with values tailored to match the rotoscoped animations. This level of precision was rare in 1989, showcasing Mechner's commitment to innovation and his understanding of the Apple II's capabilities."
+    content: "Here, Mechner defines various flags and constants that control gameplay mechanics, such as floor height, character types, and animation marks. These seemingly small details are the backbone of the game's logic, determining how characters interact with the environment and how animations are displayed. The flags encode binary states, enabling efficient checks and updates during gameplay. This section highlights the intricate planning behind Prince of Persia's seamless experience, where every jump, sword swing, and collision feels natural. Mechner's attention to detail in defining these constants ensured the game could deliver its cinematic vision within the Apple II's technical limitations."
 
 ---
 

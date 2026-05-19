@@ -9,82 +9,82 @@ year: 1989
 author: "Jordan Mechner"
 slug: "frameadv"
 order: 12
-description: "The FRAMEADV.S file from Prince of Persia (1989) showcases the intricate assembly code that brought cinematic platforming to life on the Apple II."
+description: "The animation and rendering engine for Prince of Persia (1989), a groundbreaking cinematic platformer."
 
 summary:
-  - point: "Bank-switched memory management for Apple II's 128K"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank Switching"
-  - point: "Rotoscoping animation technique integrated into game logic"
+  - point: "Uses rotoscoping for fluid character animation"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Efficient screen redraw routines for dynamic gameplay"
+  - point: "Optimized for Apple II's 128K memory with bank-switching"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Innovative partial screen redraw techniques for performance"
     link: "https://en.wikipedia.org/wiki/Double_buffering"
     link_label: "Double Buffering"
-  - point: "Object sorting algorithm for back-to-front rendering"
-    link: "https://en.wikipedia.org/wiki/Bubble_sort"
-    link_label: "Bubble Sort"
-  - point: "Handling of special cases like gates and spikes in assembly"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
+  - point: "Solo development by Jordan Mechner over four years"
+    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
+    link_label: "Jordan Mechner"
+  - point: "Complex object sorting for back-to-front rendering"
+    link: "https://en.wikipedia.org/wiki/Painter%27s_algorithm"
+    link_label: "Painter's Algorithm"
 
 enhancements:
+  - id: "init-settings-memory-allocation"
+    line_start: 22
+    line_end: 48
+    title: "Memory Allocation for Game State Variables"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "This section initializes key variables that define the game state, such as object identifiers, coordinates, and screen positions. For the Apple II, memory was a precious resource, and Jordan Mechner had to carefully allocate space for these variables within the constraints of the 128K memory. The Apple II's architecture required programmers to use techniques like bank-switching to access different memory regions. Mechner's meticulous organization of these variables ensured that the game could track complex interactions between objects, gates, and the player character without exceeding the hardware's limitations. This foundational setup allowed the game to dynamically update and redraw portions of the screen, a critical feature for its cinematic style."
   - id: "screen-redraw-sure"
     line_start: 49
-    line_end: 179
-    title: "Redrawing the screen from scratch"
+    line_end: 188
+    title: "Full Screen Redraw: Building the World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Double_Buffering_Petri_Net.png/330px-Double_Buffering_Petri_Net.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Petri Net that shows how double buffering works. (Public domain)"
-    content: "This section of code, labeled 'SURE,' is responsible for redrawing the entire screen from scratch. It methodically iterates through three rows of ten blocks, calculating their positions and rendering each block's components (A, B, C, and D sections). In 1989, the Apple II's hardware constraints meant that developers had to carefully manage memory and CPU cycles to achieve smooth gameplay. Jordan Mechner, working solo on Prince of Persia, devised this approach to ensure the game could handle dynamic screen updates without noticeable lag. The meticulous handling of rows and columns, combined with calls to subroutines like 'getbelow' and 'RedBlockSure,' reflects the ingenuity required to create a visually rich experience on limited hardware. This technique laid the groundwork for efficient rendering in later games, influencing how developers approached screen management in the early days of gaming."
-  - id: "fast-redraw"
+    image_url: ""
+    image_caption: ""
+    content: "The 'SURE' subroutine is responsible for redrawing the entire game screen from scratch. It processes each block in a 10x3 grid, calculating positions and object states for every visible element. In 1989, the Apple II's graphical capabilities were limited, and full-screen redraws were computationally expensive. Mechner's approach involved breaking the screen into manageable sections, drawing rows and columns sequentially while leveraging pre-calculated data like 'blueprint base addresses' for efficiency. This method ensured smooth transitions and minimized flickering, a common issue in early games. The cinematic feel of Prince of Persia relied heavily on these redraw techniques to maintain immersion and visual fluidity."
+  - id: "fast-redraw-optimization"
     line_start: 189
-    line_end: 339
-    title: "Optimized partial screen redraw"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Prince_of_Persia_1_-_MS-DOS_-_Gameplay.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "Game play animation of the IBM PC version of Prince of Persia. (CC BY-SA 4.0)"
-    content: "The 'FAST' routine is an optimized version of 'SURE,' designed to redraw only the blocks specified by redraw buffers. This approach minimizes the computational overhead by skipping unchanged sections of the screen, a critical optimization for the Apple II's limited processing power. Mechner's decision to implement this routine reflects his deep understanding of the hardware and his commitment to delivering a seamless gaming experience. By marking specific blocks for redraw, the game could maintain high performance even during complex scenes. This technique is a precursor to modern rendering optimizations, such as dirty rectangle management, used in graphical applications today."
-  - id: "redraw-block-sure"
-    line_start: 346
-    line_end: 359
-    title: "Rendering a single block in full detail"
+    line_end: 345
+    title: "Optimized Redraw for Dynamic Scenes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "The 'RedBlockSure' subroutine focuses on redrawing an individual block, including all its sections (A, B, C, and D). This granular approach to rendering ensures that each block is visually complete and consistent with the game's overall aesthetic. In the context of 1989, this level of detail was groundbreaking, as it allowed for the intricate environments and animations that defined Prince of Persia. Mechner's use of subroutines like 'drawc' and 'drawa' highlights his methodical approach to game design, ensuring that every element was carefully crafted and optimized for the Apple II's capabilities."
-  - id: "draw-spikes"
-    line_start: 1453
-    line_end: 1488
-    title: "Animating deadly spikes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    content: "The 'FAST' subroutine is an optimized version of the 'SURE' redraw routine, designed to update only the blocks marked for changes. This was a critical innovation for maintaining performance on the Apple II, where processing power was limited. By using redraw buffers to track which parts of the screen needed updating, Mechner avoided the costly operation of redrawing the entire screen. This technique allowed dynamic elements, such as moving characters or opening gates, to be seamlessly integrated into the static environment without compromising the game's fluidity. It reflects Mechner's deep understanding of the hardware and his ability to push its limits to achieve cinematic effects."
+  - id: "partial-block-redraw"
+    line_start: 381
+    line_end: 476
+    title: "Selective Redraw for Performance Gains"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "The 'drawspikea' and 'drawspikeb' routines handle the rendering of spikes, a signature hazard in Prince of Persia. These routines include logic for animating the spikes' extension and retraction, adding tension to the gameplay. Mechner's careful handling of spike animations reflects his cinematic approach to game design, using visual cues to heighten the player's sense of danger. The spikes' dynamic behavior was a standout feature in 1989, showcasing the Apple II's ability to deliver engaging and visually compelling gameplay despite its limitations."
-  - id: "gate-drawing-special-case"
-    line_start: 1701
-    line_end: 1907
-    title: "Handling gates with intricate animation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    content: "The 'RedBlockFast' subroutine selectively redraws portions of the screen based on buffer flags. By checking buffers like 'wipebuf' and 'redbuf,' the routine determines which blocks require updates and skips over unchanged areas. This approach drastically reduces the computational load compared to a full-screen redraw, allowing the game to maintain a high frame rate even during complex animations or interactions. Mechner's use of selective redraws demonstrates his ability to optimize performance within the constraints of the Apple II's hardware, ensuring that the game's cinematic style remained smooth and engaging."
+  - id: "object-loading-and-drawing"
+    line_start: 716
+    line_end: 753
+    title: "Loading and Rendering Game Objects"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The gate-drawing routines ('drawgatec' and 'drawgateb') showcase Mechner's attention to detail in handling special cases within the game. Gates are rendered in sections, from bottom to top, with precise calculations for their position and state. The code includes logic for masking and layering, ensuring that gates interact seamlessly with other elements on the screen. This level of complexity reflects Mechner's commitment to creating a visually immersive experience, even on the constrained Apple II hardware. The gates' animation and interaction with the player character were key to the game's puzzle-solving mechanics, adding depth to the gameplay and setting a standard for environmental interactivity in platformers."
-  - id: "get-object-id"
-    line_start: 2041
-    line_end: 2129
-    title: "Retrieving object IDs and states"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    content: "The 'loadobj' subroutine loads data for game objects, including their coordinates, images, and states, into memory. This data is then used by subsequent routines to render the objects on screen. On the Apple II, where memory and processing power were limited, efficient data handling was crucial. Mechner's approach allowed the game to dynamically update objects based on player actions and environmental changes. This capability was essential for creating the game's interactive and cinematic experience, where objects like gates, spikes, and torches played a significant role in the gameplay."
+  - id: "gate-rendering-complexity"
+    line_start: 1742
+    line_end: 1813
+    title: "Rendering Gates: A Multi-Layer Challenge"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "The 'getobjid' routine is responsible for retrieving the ID and state of objects within the game's environment. This functionality is critical for determining how objects interact with the player and the world. Mechner's implementation includes special handling for unique objects like press plates and gates, reflecting the game's intricate mechanics. By encoding object properties in memory and accessing them dynamically, Mechner was able to create a rich and responsive game world. This approach influenced how future games managed object states and interactions, paving the way for more complex game environments."
-  - id: "object-sorting-algorithm"
+    content: "The 'drawgatebf' subroutine handles the complex task of rendering gates in the game. Gates consist of multiple sections, including a bottom piece, middle pieces, and a top section, each drawn sequentially from bottom to top. The routine accounts for the gate's position, state, and interaction with other objects, such as the player character. On the Apple II, where graphical layering had to be manually managed, this level of detail required meticulous programming. Mechner's implementation ensures that gates appear correctly within the game's layered environment, contributing to the game's immersive and cinematic feel."
+  - id: "object-sorting-back-to-front"
     line_start: 2135
-    line_end: 2172
-    title: "Sorting objects for back-to-front rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bubble_sort"
+    line_end: 2181
+    title: "Sorting Objects for Back-to-Front Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Painter%27s_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The 'sortlist' routine implements a bubble sort algorithm to arrange objects in back-to-front order for rendering. This ensures that objects closer to the viewer appear in front of those farther away, creating a sense of depth and realism. While bubble sort is not the most efficient sorting algorithm, its simplicity made it a practical choice for the Apple II's limited processing power. Mechner's use of this algorithm reflects the trade-offs developers faced in the 1980s, balancing performance with functionality. This sorting technique was crucial for achieving the game's cinematic feel, as it allowed for dynamic interactions between the player character and the environment."
+    content: "The 'sortlist' subroutine sorts objects into back-to-front order for rendering. This ensures that objects closer to the camera are drawn last, appearing on top of objects farther away. On the Apple II, which lacked hardware support for advanced graphical techniques, this manual sorting was essential for creating a visually coherent scene. Mechner implemented a bubble sort algorithm, repeatedly swapping objects until they were correctly ordered. While bubble sort is not the most efficient sorting method, it was sufficient given the relatively small number of objects in each scene. This technique was a precursor to modern depth-buffering methods and highlights the ingenuity required to simulate depth and layering on early hardware."
 
 ---
 

@@ -9,44 +9,44 @@ year: 1989
 author: "Jordan Mechner"
 slug: "soundnames"
 order: 27
-description: "Defines sound effects and music cues for Prince of Persia (1989), a groundbreaking cinematic platformer for the Apple II."
+description: "Defines sound effect and music identifiers for Prince of Persia's Apple II version."
 
 summary:
-  - point: "Sound effects and music cues are mapped to numeric constants for efficient reference in assembly code."
+  - point: "Sound effects and music identifiers are mapped to numeric constants for efficient reference."
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     link_label: "Prince of Persia (1989)"
-  - point: "The Apple II's limited audio capabilities required creative sound design and prioritization of key effects."
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Jordan Mechner's solo development process included meticulous attention to cinematic details, including sound."
+  - point: "The Apple II's limited memory required careful organization of assets, including sound and music."
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II series"
+  - point: "Jordan Mechner wrote this code solo, balancing technical constraints with cinematic ambitions."
     link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
     link_label: "Jordan Mechner"
 
 enhancements:
-  - id: "sound-effects-numeric-constants"
+  - id: "sound-effect-identifiers"
     line_start: 6
     line_end: 25
     title: "Mapping sound effects to numeric constants"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
     image_url: ""
     image_caption: ""
-    content: "This section of code defines numeric constants for the game's sound effects, such as 'PlateDown' (0), 'GateDown' (2), and 'Impaled' (14). These constants allow the assembly code to reference sound effects efficiently, avoiding hardcoded values and improving readability. In 1989, the Apple IIe and IIc had extremely limited audio capabilities, relying on simple square wave synthesis or external hardware like the Mockingboard for more advanced sound. Jordan Mechner had to carefully prioritize which sound effects were essential to the game's cinematic experience. Each sound effect was chosen to enhance the immersion of the player, from the ominous 'MirrorCrack' to the visceral 'Splat' when the protagonist meets an untimely end. The constraints of the Apple II hardware meant that every byte of memory and every cycle of CPU time was precious, and Mechner's decision to include these sound effects reflects his commitment to storytelling and atmosphere. These constants would later be referenced throughout the game's code to trigger sounds at key moments, such as stepping on a pressure plate or engaging in sword combat. The approach of mapping sound effects to constants is still common in modern game development, though today's systems allow for far more complex audio design."
-  - id: "game-music-cues"
+    content: "This section defines numeric constants for the game's sound effects, such as 'PlateDown' (0), 'GateDown' (2), and 'MirrorCrack' (6). By assigning each sound effect a number, the code can reference these sounds efficiently during gameplay. In the late 1980s, memory and processing power were scarce resources on the Apple II, which had only 128KB of RAM in its enhanced models. Every byte mattered, and using numeric identifiers allowed for compact and fast sound handling. Jordan Mechner, working solo on Prince of Persia, faced the challenge of creating a cinematic experience on hardware designed for text-based applications and simple games. The Apple II lacked dedicated sound hardware, relying instead on software-driven sound synthesis. Mechner's approach here reflects the ingenuity required to make the most of the machine's capabilities. These sound effects contribute to the game's immersive atmosphere, reinforcing its storytelling and gameplay. For example, the 'Impaled' sound (14) underscores the game's brutal stakes, while 'Footstep' (9) adds realism to the protagonist's movements. Mechner's focus on sound design was ahead of its time, laying the groundwork for the rich audio experiences in modern games."
+  - id: "game-music-identifiers"
     line_start: 30
     line_end: 45
-    title: "Defining music cues for gameplay moments"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Categorizing game music themes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
     image_url: ""
     image_caption: ""
-    content: "This section assigns numeric constants to music cues that correspond to specific gameplay moments, such as 's_Heroic' (2) and 's_Shadow' (6). These cues were integral to the game's cinematic feel, underscoring dramatic events and transitions. In the late 1980s, music in games was typically limited to simple melodies due to hardware constraints. The Apple II's audio capabilities were no exception, but Mechner's use of music cues demonstrates his commitment to creating an emotionally engaging experience. By associating specific music tracks with key moments, he elevated the storytelling in Prince of Persia beyond what was typical for platformers of the era. The music cues were likely composed with the Apple II's limitations in mind, ensuring they could be played back effectively without overwhelming the system's resources. This technique of linking music to gameplay events would become a hallmark of cinematic games, influencing titles across genres in the decades to come."
-  - id: "title-music-selection"
+    content: "This block assigns numeric constants to various music themes used during gameplay, such as 's_Heroic' (2), 's_Danger' (3), and 's_Shadow' (6). These identifiers allow the game to dynamically switch between music tracks based on the player's progress or the narrative's mood. Music was a critical component of Prince of Persia's cinematic ambition, enhancing the emotional resonance of key moments. In the late 1980s, video game music was evolving from simple loops to more sophisticated compositions. The Apple II's sound capabilities were limited, but Mechner leveraged them to create memorable themes that complemented the game's visuals and story. The music had to be compact enough to fit within the constraints of the system's memory while still delivering a dramatic impact. The game's music themes, such as 's_Heartbeat' (16) and 's_Tragic' (14), reflect Mechner's commitment to storytelling. These tracks help convey tension, triumph, and tragedy, making the game feel like an interactive movie. This approach influenced later cinematic platformers and demonstrated the potential of music as a storytelling tool in games."
+  - id: "title-music-identifiers"
     line_start: 47
     line_end: 54
-    title: "Selecting title music for thematic resonance"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Defining title screen music tracks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Title_screen"
     image_url: ""
     image_caption: ""
-    content: "The final section of this file defines constants for title music tracks, such as 's_Princess' (7) and 's_Vizier' (9). These tracks set the tone for the game's opening moments, introducing players to the world of Prince of Persia with a sense of drama and intrigue. Title music was a critical element in establishing the mood of a game, especially on systems like the Apple II where graphical fidelity was limited. Mechner's choice of evocative track names reflects his focus on storytelling and character development. The music had to convey the stakes of the narrative while working within the constraints of the Apple II's audio hardware. This section highlights Mechner's attention to detail, ensuring that even the game's opening moments were carefully crafted to draw players into its world. The use of title music to create atmosphere and set expectations would become a standard practice in game design, influencing countless titles in the years that followed."
+    content: "Here, numeric constants are assigned to music tracks specifically used during the game's title screen, such as 's_Princess' (7) and 's_Vizier' (9). These tracks set the tone for the game before the player even begins, establishing the narrative's stakes and atmosphere. The title screen music was an important part of the player's first impression, drawing them into the world of Prince of Persia. In the Apple II era, title screens were often static and accompanied by simple sound effects or brief musical loops. Mechner's decision to include multiple title music tracks reflects his ambition to create a cinematic experience. These tracks had to be carefully composed to fit within the Apple II's memory constraints while still delivering emotional impact. The title music helps establish the game's themes, such as the conflict between the protagonist and the villainous Vizier. By investing in this level of detail, Mechner elevated the game's presentation, setting a standard for narrative-driven games. The use of title music tracks influenced later games, which increasingly used music to enhance storytelling and immersion."
 
 ---
 

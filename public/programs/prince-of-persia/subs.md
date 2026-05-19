@@ -9,82 +9,90 @@ year: 1989
 author: "Jordan Mechner"
 slug: "subs"
 order: 10
-description: "The source file for Prince of Persia's subroutines, showcasing Jordan Mechner's ingenuity in crafting cinematic gameplay on constrained Apple II hardware."
+description: "This file contains subroutines and data structures for key gameplay mechanics in Prince of Persia (1989), a groundbreaking cinematic platformer."
 
 summary:
-  - point: "Bank-switched memory management for 128K Apple II"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Rotoscoping animation technique traced from live-action footage"
+  - point: "Implements rotoscoped animation sequences for characters"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Innovative cinematic storytelling in platformers"
+  - point: "Uses bank-switched memory to fit within Apple II's 128K limit"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank Switching"
+  - point: "Innovative gameplay mechanics like crumbling floors and hourglass timers"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
-  - point: "Efficient use of 6502 assembly for real-time gameplay"
-    link: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
-    link_label: "6502 Assembly"
-  - point: "Complex subroutines for dynamic environments and character interactions"
-    link: "https://en.wikipedia.org/wiki/Video_game_programming"
-    link_label: "Video Game Programming"
+    link_label: "Prince of Persia (1989)"
+  - point: "Direct manipulation of Apple II hardware for visual effects"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II Series"
+  - point: "Solo development by Jordan Mechner over four years"
+    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
+    link_label: "Jordan Mechner"
 
 enhancements:
-  - id: "jump-table-for-subroutine-dispatch"
-    line_start: 15
-    line_end: 45
-    title: "Jump Table for Subroutine Dispatch"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: ""
-    image_caption: ""
-    content: "The jump table at the beginning of the file is a clever way to organize and dispatch subroutines. Each `jmp` instruction points to a specific routine, allowing the program to quickly access functionality like adding torches, flipping pages, or handling animation effects. In the mid-1980s, memory was at a premium, and this approach minimized overhead while maintaining readability. Jordan Mechner likely used this structure to streamline debugging and ensure modularity in his code. This technique remains a staple in low-level programming, particularly in embedded systems and game development, where performance is critical."
-  - id: "level-13-crumbling-floor-trigger"
+  - id: "crumbling-floors-level-13"
     line_start: 108
-    line_end: 129
-    title: "Level 13: Crumbling Floor Trigger"
+    line_end: 145
+    title: "Crumbling floors: A cinematic obstacle"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This subroutine handles a dramatic moment in Level 13, where loose floors crumble as the player enters the screen above. The code checks the current level and screen, then iterates over specific blocks to trigger the 'loose' state. This adds tension and unpredictability, hallmarks of Prince of Persia's cinematic design. Mechner's attention to detail in crafting these moments reflects his background in film and storytelling. The game's ability to evoke emotion through gameplay was groundbreaking in 1989, influencing the design of modern platformers and action games."
+    content: "The 'CRUMBLE' subroutine triggers loose floors in Level 13, a memorable gameplay mechanic that adds tension and urgency. The code checks the player's current level and screen, and if conditions are met, it iterates over specific blocks to simulate crumbling floors. This mechanic was inspired by Jordan Mechner's desire to create a cinematic experience, where the environment itself reacts dynamically to the player's actions. In the late 1980s, such environmental interactivity was rare, especially on the Apple II, which had limited graphical and memory capabilities. Mechner's use of rotoscoping to animate characters extended to environmental storytelling, making the game feel alive. The crumbling floors became a hallmark of the game's design, influencing future platformers that sought to integrate dynamic environments into gameplay."
   - id: "add-torches-flasks-swords"
     line_start: 146
-    line_end: 184
-    title: "Adding Torches, Flasks, and Swords"
+    line_end: 190
+    title: "Adding torches, flasks, and swords dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This subroutine dynamically adds interactive objects like torches, flasks, and swords to the visible screen. By iterating through object types and triggering their respective routines, the code ensures that the environment feels alive and responsive. In the Apple II's constrained memory space, Mechner had to carefully manage object states and transitions, balancing gameplay complexity with hardware limitations. This approach exemplifies how early game developers maximized limited resources to create immersive worlds."
+    content: "The 'ADDTORCHES' subroutine dynamically adds torches, flasks, and swords to the visible screen. This routine scans the screen's object list and triggers animations or interactions for specific items based on their type. In the mid-1980s, dynamically populating a screen with interactive objects was a technical challenge, especially on hardware like the Apple II, which had no built-in support for such features. Mechner's approach reflects his meticulous attention to detail and his desire to make every screen feel purposeful and alive. By coding routines like this, he ensured that gameplay elements were not static but responsive, enhancing the game's immersive quality. This technique laid the groundwork for object-oriented design in later games, where objects could carry their own behaviors and states."
+  - id: "pause-subroutine"
+    line_start: 191
+    line_end: 209
+    title: "A simple yet elegant pause mechanism"
+    wikipedia_url: "https://en.wikipedia.org/wiki/6502_assembly_language"
+    image_url: ""
+    image_caption: ""
+    content: "The 'PAUSE' subroutine provides a delay mechanism by looping through decrement operations. This routine takes an input value representing the length of the pause and iterates until the counter reaches zero. While simple, this approach highlights the constraints of programming on the 6502 processor, where developers often had to create their own timing mechanisms due to the lack of built-in system timers. Mechner's use of this technique demonstrates his ability to work within the limitations of the Apple II hardware, crafting solutions that were both efficient and functional. Such routines were common in assembly programming but required careful calibration to ensure consistent timing across different hardware configurations."
+  - id: "flash-effects-lightning"
+    line_start: 210
+    line_end: 237
+    title: "Lightning flash effects: Visual drama"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: ""
+    image_caption: ""
+    content: "The 'DOFLASHON' and 'DOFLASHOFF' subroutines create lightning flash effects by manipulating the Apple II's video memory. These routines toggle between low-resolution and high-resolution modes to simulate a dramatic visual effect during gameplay. In the late 1980s, such direct hardware manipulation was a hallmark of skilled assembly programming, as developers had to understand the intricacies of the Apple II's graphics architecture. Mechner's use of these effects added cinematic flair to the game, emphasizing moments of tension or trauma. This technique showcases his ability to push the Apple II's hardware beyond its intended capabilities, creating a visually striking experience that set Prince of Persia apart from other games of its era."
   - id: "princess-room-animation"
     line_start: 319
-    line_end: 390
-    title: "Princess's Room: Torch, Sand, and Stars"
+    line_end: 343
+    title: "Burning torches in the princess's room"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    image_url: ""
+    image_caption: ""
+    content: "The 'pburn' subroutine animates torches in the princess's room by cycling through predefined states for each torch. This routine uses a combination of indexed addressing and direct memory manipulation to update the torch's position and animation frame. Mechner's attention to detail in animating environmental elements reflects his background in film and his desire to create a cinematic experience. By using rotoscoping techniques to trace real-life movements, he brought a level of realism to the game's animations that was unprecedented on the Apple II. The burning torches contribute to the game's atmospheric storytelling, immersing players in the world of Prince of Persia."
+  - id: "playback-loop"
+    line_start: 878
+    line_end: 917
+    title: "Playback loop: Synchronizing gameplay and visuals"
+    wikipedia_url: "https://en.wikipedia.org/wiki/6502_assembly_language"
+    image_url: ""
+    image_caption: ""
+    content: "The 'playloop' subroutine orchestrates the game's main playback loop, handling frame updates, keyboard input, and sound effects. This routine is the backbone of the game's real-time interaction, ensuring that gameplay remains synchronized with visual and audio elements. On the Apple II, achieving smooth gameplay required careful optimization due to the hardware's limited processing power. Mechner's implementation demonstrates his mastery of 6502 assembly, balancing performance and functionality to deliver a seamless experience. The playback loop is a testament to the ingenuity required to create complex, interactive games on early home computers."
+  - id: "demo-mode-auto-play"
+    line_start: 1194
+    line_end: 1242
+    title: "Demo mode: Self-running gameplay showcase"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The animations for the princess's room—burning torches, flowing sand, and twinkling stars—demonstrate Mechner's cinematic vision. Each element contributes to the atmosphere, creating a sense of magic and mystery. The code uses loops and randomization to simulate natural movement, such as the flicker of flames and the sparkle of stars. This attention to detail was rare in 1980s games, showcasing Mechner's ambition to push the boundaries of what the Apple II could achieve. These animations set a precedent for environmental storytelling in games."
-  - id: "demo-mode-auto-playback"
-    line_start: 1233
-    line_end: 1236
-    title: "Demo Mode: Auto Playback"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The demo mode allows the game to showcase itself by controlling the player's movements automatically. This feature was essential for attracting players in retail settings, where a running demo could entice potential buyers. The code references a predefined sequence of movements stored in `DemoProg1`, guiding the character through a scripted path. Mechner's inclusion of this feature reflects his understanding of the commercial aspects of game design, ensuring Prince of Persia stood out in a competitive market."
-  - id: "hourglass-state-management"
-    line_start: 1276
-    line_end: 1293
-    title: "Hourglass State Management"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The hourglass serves as a visual representation of time left in the game. This subroutine calculates its state based on remaining minutes, dynamically adjusting its appearance. The hourglass is a critical narrative device, emphasizing the urgency of the player's quest. Mechner's use of visual storytelling through gameplay mechanics was innovative, setting a standard for integrating narrative and gameplay seamlessly."
-  - id: "gravity-and-freefall-mechanics"
+    content: "The 'DEMO' subroutine controls the game's self-running demo mode, showcasing gameplay mechanics and level design. This routine uses a predefined sequence of movements to guide the character through the level, demonstrating the game's features to potential players. Demo modes were a common feature in 1980s games, serving as both a tutorial and a marketing tool. Mechner's implementation highlights his understanding of player psychology, using the demo to entice players with the game's cinematic visuals and engaging mechanics. This feature reflects the era's emphasis on attracting players through compelling first impressions."
+  - id: "gravity-and-falling-mechanics"
     line_start: 1618
-    line_end: 1644
-    title: "Gravity and Freefall Mechanics"
+    line_end: 1673
+    title: "Gravity and falling: Realistic physics on the Apple II"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
-    content: "The gravity subroutine calculates the character's falling velocity, accounting for normal and weightless states. By incrementing vertical velocity and capping it at terminal velocity, the code simulates realistic movement within the game's physics engine. This was a significant achievement on the Apple II, where hardware constraints made such calculations challenging. Mechner's implementation of gravity added depth to the gameplay, influencing later titles that incorporated physics-based mechanics."
+    content: "The 'GRAVITY' and 'ADDFALL' subroutines simulate realistic falling physics by incrementing vertical velocity and adjusting the character's position accordingly. These routines account for terminal velocity and weightlessness, adding depth to the game's platforming mechanics. In the 1980s, implementing physics-based interactions was a novel concept, especially on hardware like the Apple II, which lacked dedicated graphics or physics engines. Mechner's approach reflects his commitment to creating a believable and immersive world, where characters respond naturally to environmental forces. These mechanics influenced later platformers, paving the way for more sophisticated physics engines in modern games."
 
 ---
 

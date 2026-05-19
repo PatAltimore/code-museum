@@ -9,82 +9,82 @@ year: 1989
 author: "Jordan Mechner"
 slug: "mover"
 order: 6
-description: "This file implements the physics and animation systems for Prince of Persia, defining the cinematic realism that set the game apart in 1989."
+description: "Physics and animation routines for Prince of Persia's groundbreaking realism"
 
 summary:
-  - point: "Innovative use of rotoscoping for animation realism"
+  - point: "Uses bank-switched memory to fit within Apple II constraints"
+    link: "https://en.wikipedia.org/wiki/Bank-switching"
+    link_label: "Bank-switching"
+  - point: "Implements cinematic physics for objects like spikes and falling floors"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia (1989)"
+  - point: "Animation routines tied to rotoscoped visuals"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Bank-switched memory to fit complex mechanics into 128K"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank Switching"
-  - point: "Dynamic object transitions for interactive environments"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
-  - point: "Physics-driven gameplay elements like falling floors"
-    link: "https://en.wikipedia.org/wiki/Physics_engine"
-    link_label: "Physics Engine"
+  - point: "Innovative use of object tables for dynamic transitions"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
   - point: "Solo development by Jordan Mechner over four years"
     link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
     link_label: "Jordan Mechner"
 
 enhancements:
-  - id: "jump-table-for-object-handling"
-    line_start: 9
-    line_end: 30
-    title: "Jump Table: Efficient Object Handling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RagDoll_demo_OGRE_Newton_1.png/330px-RagDoll_demo_OGRE_Newton_1.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "RagDoll demo OGRE Newton 1 (LGPL)"
-    content: "This section defines a jump table, a compact mechanism for routing execution to specific routines based on object type or event. In the constrained environment of the Apple II, where memory was scarce and performance critical, jump tables were a common optimization. Jordan Mechner used this technique to handle various object interactions, such as animating torches, triggering spikes, or smashing mirrors. The jump table allowed the game to dynamically respond to player actions and environmental changes without duplicating code. This approach reflects the ingenuity required to implement complex mechanics within the limitations of 6502 assembly and 128K of memory."
-  - id: "object-transition-list"
+  - id: "search-object-transition"
     line_start: 105
-    line_end: 156
-    title: "Managing Object Transitions Dynamically"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
+    line_end: 128
+    title: "Searching for object transitions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
     image_caption: ""
-    content: "The routines `searchtrob` and `addtrob` manage a transition list for objects undergoing state changes, such as gates opening or spikes retracting. This dynamic list ensures that only active objects are processed, optimizing performance. In the mid-1980s, games rarely featured environments as interactive as Prince of Persia's. Mechner's implementation allowed objects to seamlessly transition between states, creating a world that felt alive. This system was crucial for the game's cinematic realism, as it enabled fluid animations and responsive gameplay."
-  - id: "physics-driven-object-animation"
-    line_start: 630
-    line_end: 770
-    title: "Animating Objects with Physics Rules"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    content: "This subroutine, `searchtrob`, is tasked with locating objects in the transition list based on their location and screen position. The programmer, Jordan Mechner, needed a way to efficiently manage the dynamic transitions of objects like gates, spikes, and falling floors. In 1989, memory was a precious resource, especially on the Apple II, which had only 128 KB of RAM. This routine uses a loop to compare each object's location and screen position, returning its index or zero if not found. The Apple II's 6502 processor lacked advanced features like hardware-based memory management, forcing Mechner to rely on clever software techniques like this. The transition list was a critical innovation, enabling the game's cinematic feel by allowing objects to interact dynamically with the environment. Without such routines, the game’s realism—its sense of weight and consequence—would have been impossible."
+  - id: "add-object-transition"
+    line_start: 129
+    line_end: 162
+    title: "Adding objects to the transition list"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `ANIMTRANS` routine animates transitional objects like gates, spikes, and torches by advancing their states based on predefined physics rules. This section showcases Mechner's commitment to creating a believable game world. By incorporating acceleration, velocity, and collision detection, the animation system gave objects a sense of weight and inertia. In an era dominated by simplistic platformers, this attention to detail was groundbreaking. The physics-driven animations contributed to the game's immersive quality and influenced later titles in the genre."
-  - id: "falling-floor-mechanics"
+    content: "The `addtrob` routine handles the addition of objects to the transition list, or updates an existing object’s transition direction. This was essential for managing dynamic elements like gates opening or spikes retracting. In the late 1980s, platformers typically featured static environments, but Mechner aimed to create a world that felt alive. This routine checks if an object is already listed, updates its direction if necessary, or adds it to the list if it’s new. The constraints of the Apple II meant that the number of objects in transition was capped, as indicated by the `maxtr` constant. This limitation reflects the hardware's inability to handle large amounts of dynamic data, forcing Mechner to optimize every byte. The transition list became a cornerstone of Prince of Persia’s groundbreaking realism, influencing future games that sought to create dynamic worlds."
+  - id: "animate-slicer"
+    line_start: 955
+    line_end: 1015
+    title: "Animating the deadly slicer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `animslicer` routine animates one of the game’s most iconic hazards: the slicer. This deadly trap moves back and forth, threatening to cut the protagonist in half. The slicer’s animation involves incrementing its state and determining whether it should wrap around or continue slicing. Mechner’s use of bitwise operations to manage the slicer’s state showcases his deep understanding of the 6502 assembly language. The slicer’s behavior is tied to the visible screen, ensuring it only animates when the player can see it—a clever optimization given the Apple II’s limited processing power. The slicer’s realism and timing added tension and cinematic flair to the game, setting it apart from other platformers of the era. This routine exemplifies the meticulous attention to detail that made Prince of Persia a landmark in video game history."
+  - id: "animate-loose-floor"
     line_start: 1176
-    line_end: 1239
-    title: "Falling Floors: A Cinematic Gameplay Element"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    line_end: 1236
+    title: "Animating falling floors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `animfloor` routine handles the iconic falling floor mechanic, a hallmark of Prince of Persia's gameplay. When triggered, loose floors detach and fall, potentially crushing characters below. This mechanic added tension and strategy, as players had to navigate carefully to avoid traps. Mechner's implementation included timers, collision detection, and dynamic object creation, all within the constraints of 6502 assembly. The falling floor was inspired by cinematic storytelling, where environments react dramatically to the protagonist's actions. This feature became a defining element of the cinematic platformer genre."
-  - id: "redraw-buffer-optimization"
-    line_start: 1253
-    line_end: 1329
-    title: "Optimizing Redraws for Interactive Objects"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
-    image_url: ""
-    image_caption: ""
-    content: "The redraw routines ensure that only visible and active objects are updated on screen, optimizing performance. Mechner implemented checks to determine whether objects like gates, spikes, and torches were within the player's view before marking them for redraw. This approach minimized unnecessary processing, crucial for maintaining smooth gameplay on the Apple II's limited hardware. The redraw system highlights Mechner's technical skill and his ability to balance realism with efficiency, a challenge that defined early game development."
-  - id: "mob-animation-system"
-    line_start: 1588
-    line_end: 1650
-    title: "Animating MOBs: Dynamic Environmental Objects"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
-    image_url: ""
-    image_caption: ""
-    content: "The `ANIMMOBS` routine animates MOBs (moving objects), such as falling floors. It updates their position, velocity, and state based on physics rules, ensuring realistic behavior. This system allowed the game to simulate complex interactions, like floors collapsing and crushing characters. Mechner's use of MOBs reflects his cinematic approach to game design, where environments play an active role in storytelling. The MOB animation system was a precursor to modern physics engines, demonstrating how limited hardware could still deliver dynamic gameplay."
-  - id: "crushing-mechanics"
+    content: "The `animfloor` routine animates loose floor tiles that detach and fall when stepped on. This mechanic was a key part of Prince of Persia’s physics-based gameplay, creating a sense of danger and urgency. The routine increments a timer until the floor detaches, at which point it changes the object’s ID to 'empty space' and creates a new MOB (mobile object) to simulate the falling tile. This transition from static to dynamic objects was revolutionary for its time, allowing the environment to react to the player’s actions. Mechner’s implementation reflects the constraints of the Apple II, where every object had to be meticulously tracked and updated. The falling floors added a layer of realism and unpredictability, making the game’s world feel alive and responsive."
+  - id: "check-crush"
     line_start: 1903
-    line_end: 1934
-    title: "Crushing Characters: A Brutal Detail"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    line_end: 1908
+    title: "Detecting character crushes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `checkcrush` routine determines whether a falling object has crushed a character, adding a brutal layer of realism to the game. Mechner's attention to detail extended to simulating the consequences of environmental hazards, enhancing the game's tension. This mechanic required precise collision detection and state management, showcasing the sophistication of the game's physics engine. The crushing system underscored the stakes of navigating the game's treacherous environments, reinforcing its cinematic and dramatic qualities."
+    content: "The `checkcrush` routine determines whether a falling floor has crushed the protagonist. This subroutine checks the screen, block, and vertical position of the MOB (mobile object) against the character’s position. If the MOB is within a certain distance of the character, it triggers the crushing sequence. This mechanic added a layer of consequence to the game, as players had to carefully navigate collapsing environments. Mechner’s use of precise calculations to detect collisions reflects the technical challenges of creating realistic physics on the Apple II. The crushing mechanic was part of the game’s broader emphasis on realism and cinematic storytelling, influencing the design of future platformers."
+  - id: "add-mob-to-object-table"
+    line_start: 2086
+    line_end: 2119
+    title: "Adding MOBs to the object table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    image_url: ""
+    image_caption: ""
+    content: "The `addmobobj` routine adds mobile objects (MOBs) like falling floors to the object table, ensuring they are drawn on screen. This routine assigns properties like type, position, and frame to each MOB, preparing it for rendering. On the Apple II, managing dynamic objects required careful optimization due to limited memory and processing power. Mechner’s approach allowed the game to handle multiple moving objects without sacrificing performance. The object table was a critical innovation, enabling the game’s dynamic environments and contributing to its cinematic feel. This routine highlights the technical ingenuity required to push the boundaries of 1980s hardware."
+  - id: "shake-loose-floor"
+    line_start: 2152
+    line_end: 2174
+    title: "Shaking loose floors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `shakeit` routine animates loose floor tiles that wiggle before detaching. This visual cue warned players of impending danger, adding tension to the gameplay. The routine sets the floor’s state to 'wiggling' and adds it to the transition list, ensuring it animates dynamically. Mechner’s use of state-based animations reflects his commitment to creating a realistic and immersive world. The shaking floors were part of the game’s physics-driven design, which set it apart from other platformers of the era. This mechanic added a layer of strategy, as players had to decide whether to risk stepping on unstable tiles."
 
 ---
 

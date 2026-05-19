@@ -9,82 +9,90 @@ year: 1989
 author: "Jordan Mechner"
 slug: "auto"
 order: 13
-description: "The AUTO.S file from Prince of Persia (1989) encapsulates the intricate logic of enemy AI and cinematic gameplay for the Apple II, showcasing Jordan Mechner's mastery of 6502 assembly and pioneering game design."
+description: "This file is a cornerstone of the Prince of Persia engine, showcasing Jordan Mechner's mastery of 6502 assembly to create cinematic gameplay on the Apple II."
 
 summary:
-  - point: "AI routines for guards and enemies"
-    link: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
-    link_label: "AI in games"
-  - point: "Bank-switched memory techniques for Apple II"
+  - point: "Bank-switched memory techniques to fit 128K"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank switching"
-  - point: "Rotoscoping-inspired animations integrated into gameplay"
+    link_label: "Bank Switching"
+  - point: "Rotoscoping animation for fluid character movement"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Cinematic platformer mechanics in assembly"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
-  - point: "Dynamic guard behaviors based on player actions"
-    link: "https://en.wikipedia.org/wiki/Video_game_enemy"
-    link_label: "Enemy AI"
+  - point: "Sophisticated AI routines for guards and enemies"
+    link: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    link_label: "AI in Games"
+  - point: "Precise collision detection for sword combat"
+    link: "https://en.wikipedia.org/wiki/Collision_detection"
+    link_label: "Collision Detection"
+  - point: "Dynamic screen transitions and object handling"
+    link: "https://en.wikipedia.org/wiki/Scrolling_computer_display"
+    link_label: "Screen Transitions"
 
 enhancements:
-  - id: "jump-table-enemy-ai"
-    line_start: 14
-    line_end: 22
-    title: "Jump Table: Modular Enemy AI Logic"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: ""
-    image_caption: ""
-    content: "This jump table directs execution to various subroutines handling enemy AI behaviors like guard actions, playback, and cutscene checks. In 1989, modularity was crucial for fitting complex logic into the constrained memory of the Apple II. Jordan Mechner, working solo, used this technique to streamline the game's cinematic platformer mechanics. The jump table reflects the era's programming ingenuity, where every byte mattered, and assembly language demanded precision. This modular approach allowed Mechner to isolate behaviors, making debugging and iteration feasible under tight deadlines. The jump table's influence persists in modern programming, where similar structures are used in high-performance systems."
-  - id: "dynamic-screen-thresholds"
-    line_start: 47
-    line_end: 54
-    title: "Dynamic Screen Thresholds: Seamless Transitions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Scrolling_computer_display"
-    image_url: ""
-    image_caption: ""
-    content: "These thresholds determine when the screen should 'cut' to a new area as the player moves. In 1989, seamless transitions between screens were rare, especially on hardware like the Apple II. Mechner's implementation ensured the game felt fluid and cinematic, a hallmark of Prince of Persia's design. The thresholds account for player position and movement, creating a dynamic experience that avoids abrupt changes. This approach was inspired by film editing techniques, where cuts are timed to maintain narrative flow. Mechner's innovation set a precedent for platformers, influencing how games handle spatial transitions even today."
-  - id: "guard-behavior-probabilities"
-    line_start: 109
-    line_end: 124
-    title: "Probability Tables: Guard AI Decisions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
-    image_url: ""
-    image_caption: ""
-    content: "These data tables define probabilities for guard actions like striking, blocking, and advancing, tailored to each guard's 'program number.' In the late 1980s, AI in games was rudimentary, often relying on deterministic behaviors. Mechner's use of probabilistic decision-making was groundbreaking, adding unpredictability and depth to enemy interactions. Inspired by cinematic storytelling, he sought to make guards feel more lifelike, enhancing the tension and immersion. These tables also reflect the constraints of the Apple II's 6502 processor, where computationally expensive algorithms were infeasible. By precomputing probabilities, Mechner achieved dynamic gameplay without sacrificing performance. This technique influenced later AI systems, where probability-driven behaviors became a staple."
-  - id: "level-specific-shadowman-behaviors"
-    line_start: 250
-    line_end: 267
-    title: "Level-Specific Shadowman AI: Tailored Challenges"
+  - id: "extrastrength-guard-attributes"
+    line_start: 123
+    line_end: 129
+    title: "Guard attributes: strength and color"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section defines unique behaviors for the Shadowman character in Level 6, where he reacts dynamically to the player's actions. Mechner tailored AI routines to specific levels, creating a sense of progression and narrative depth. The Shadowman stepping forward when the player jumps a chasm exemplifies the game's cinematic approach, where gameplay and story intertwine. On the Apple II, implementing such tailored AI required meticulous optimization due to memory constraints. Mechner's attention to detail ensured each level felt distinct, enhancing replayability and immersion. This design philosophy influenced later games, where level-specific AI became a standard for engaging gameplay."
-  - id: "automatic-playback-sequences"
-    line_start: 1149
-    line_end: 1221
-    title: "Automatic Playback: Pre-Recorded Sequences"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Scripted_sequence"
-    image_url: ""
-    image_caption: ""
-    content: "This routine handles pre-recorded movement sequences, enabling scripted events like the Shadowman stealing a potion in Level 5. Scripted sequences were a novel feature in 1989, allowing Mechner to choreograph cinematic moments within gameplay. The routine reads commands from a predefined program, executing actions frame by frame. On the Apple II, this required precise timing and memory management, as the hardware lacked modern scripting tools. Mechner's use of playback sequences added drama and unpredictability, setting Prince of Persia apart from other platformers. This technique paved the way for scripted events in later games, becoming a cornerstone of narrative-driven design."
-  - id: "cut-character-transition"
-    line_start: 1470
-    line_end: 1579
-    title: "Cut Character Transition: Fluid Screen Changes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Scrolling_computer_display"
-    image_url: ""
-    image_caption: ""
-    content: "This routine handles character transitions between screens, ensuring fluid movement across the game's world. Mechner's implementation checks character position and action to determine the direction of the cut, dynamically updating coordinates for the new screen. On the Apple II, achieving smooth transitions was challenging due to hardware limitations, but Mechner's attention to detail created a seamless experience. Inspired by cinematic techniques, this system enhances immersion, making the game world feel interconnected. The cut routine influenced later platformers, where dynamic transitions became a standard for creating expansive, cohesive environments."
-  - id: "add-guard-on-new-screen"
-    line_start: 1750
-    line_end: 1936
-    title: "Add Guard: Dynamic Enemy Placement"
+    content: "This section defines the 'extrastrength' attribute for guards, a subtle yet impactful mechanic that adjusts their difficulty level. By assigning specific values to guards based on their program number, Mechner created a dynamic challenge for players. In the late 1980s, game developers had to squeeze every ounce of functionality out of limited hardware like the Apple II, which had only 128K of memory. Mechner's decision to encode guard attributes in this way reflects his ability to balance technical constraints with gameplay depth. These attributes were likely inspired by his observations of player behavior during testing, ensuring that each encounter felt unique and challenging. This approach to enemy design influenced later games, where dynamic difficulty adjustments became a staple."
+  - id: "autoctrl-enemy-ai"
+    line_start: 160
+    line_end: 197
+    title: "Enemy AI: Automatic control routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "This routine activates guards on new screens, dynamically adjusting their attributes based on the player's progress. Mechner's approach ensures enemy placement feels intentional, contributing to the game's cinematic pacing. The routine considers factors like level-specific behaviors, guard strength, and player actions, creating a tailored challenge for each screen. On the Apple II, implementing dynamic enemy placement required careful optimization to fit within memory constraints. Mechner's innovation added depth to the gameplay, making each encounter unique. This technique influenced later games, where dynamic enemy placement became essential for creating engaging, adaptive experiences."
+    content: "The AUTOCTRL subroutine is a masterclass in early AI design, determining enemy behavior based on their type and state. Guards, skeletons, and even the shadow character are directed to specific routines that handle their unique actions. In 1989, AI in games was rudimentary, often relying on simple scripts or random movement. Mechner's approach was groundbreaking, using conditional checks and state-based logic to create enemies that felt responsive and intelligent. This level of sophistication was rare on the Apple II, a machine with limited processing power and memory. The AI routines here laid the groundwork for dynamic enemy behavior in later games, influencing genres like platformers and action-adventures."
+  - id: "mouseprog-character-specific-behavior"
+    line_start: 198
+    line_end: 219
+    title: "Mouse behavior: A unique character routine"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The MouseProg subroutine is a charming example of character-specific behavior in Prince of Persia. The mouse, a minor character, is programmed to interact with the environment in a way that feels alive—stopping, moving, and vanishing based on its position. This attention to detail was part of Mechner's vision for a cinematic experience, where even small elements contributed to the game's atmosphere. In the late 1980s, such flourishes were rare, as developers often prioritized gameplay mechanics over environmental storytelling. The mouse's behavior reflects Mechner's background in film and his desire to create a living, breathing world within the constraints of the Apple II."
+  - id: "shadowprog-level-specific-routines"
+    line_start: 226
+    line_end: 249
+    title: "Shadow character: Level-specific routines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The ShadowProg subroutine is a pivotal part of the game's narrative and gameplay. It directs the shadow character's actions based on the current level, ensuring that its behavior aligns with the story's progression. For example, in Level 4, the shadow mirrors the player's movements, symbolizing their inner struggle. This kind of narrative-driven programming was innovative for its time, blending gameplay mechanics with storytelling. Mechner's use of level-specific routines allowed him to create a dynamic and engaging experience, pushing the boundaries of what was possible on the Apple II. The shadow character's behavior remains one of the game's most memorable features, influencing the design of antagonists in later cinematic platformers."
+  - id: "checkstrike-sword-collision-detection"
+    line_start: 914
+    line_end: 932
+    title: "Sword collision detection: Precision combat"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
+    image_url: ""
+    image_caption: ""
+    content: "The CHECKSTRIKE subroutine exemplifies the technical ingenuity required to implement sword combat on the Apple II. It checks for sword contact between the player and enemies, using position and state variables to determine outcomes like blocks and strikes. In 1989, collision detection was a challenging problem, especially on hardware with limited processing power. Mechner's solution was both efficient and effective, creating a combat system that felt responsive and fair. This level of precision was critical to the game's success, as it made sword fights a tense and rewarding experience. The techniques developed here influenced combat mechanics in later games, setting a standard for fluid and engaging action."
+  - id: "autoplayback-pre-recorded-sequences"
+    line_start: 1149
+    line_end: 1229
+    title: "Pre-recorded sequences: Cinematic gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The AUTOPLAYBACK subroutine is a testament to Mechner's cinematic vision for Prince of Persia. It handles pre-recorded movement sequences, allowing characters to perform scripted actions that enhance the game's storytelling. This technique was inspired by Mechner's background in film, where choreography and timing are crucial. On the Apple II, implementing such sequences required careful optimization to fit within the machine's memory constraints. The result was a game that felt more like a movie, with characters moving and interacting in ways that advanced the narrative. This approach to scripted sequences influenced the design of cutscenes and scripted events in later games, bridging the gap between gameplay and storytelling."
+  - id: "cutcheck-dynamic-screen-transitions"
+    line_start: 1230
+    line_end: 1319
+    title: "Dynamic screen transitions: Seamless exploration"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Scrolling_computer_display"
+    image_url: ""
+    image_caption: ""
+    content: "The CUTCHECK subroutine is a key component of Prince of Persia's seamless screen transitions. It determines whether the player or an enemy has moved off-screen and adjusts their position accordingly. This mechanic was essential for creating the game's fluid exploration, where players could move between screens without interruption. In the late 1980s, such transitions were rare, as most games used static screens or simple scrolling. Mechner's implementation required careful management of character positions and states, ensuring that the transitions felt natural. This innovation contributed to the game's immersive experience and influenced the design of exploration mechanics in later platformers."
+  - id: "addguard-dynamic-enemy-spawning"
+    line_start: 1750
+    line_end: 1829
+    title: "Dynamic enemy spawning: Adaptive challenges"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    image_url: ""
+    image_caption: ""
+    content: "The ADDGUARD subroutine showcases Mechner's ability to create adaptive challenges for players. It handles the spawning of guards and shadow characters based on the current screen and level, ensuring that encounters feel dynamic and varied. This mechanic was a departure from the static enemy placement seen in many games of the era, adding a layer of unpredictability to the gameplay. On the Apple II, implementing such dynamic spawning required careful optimization to manage memory and processing constraints. The result was a game that kept players on their toes, with enemies appearing in ways that felt organic and challenging. This approach influenced enemy design in later games, where dynamic spawning became a standard feature."
 
 ---
 

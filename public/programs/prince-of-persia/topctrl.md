@@ -9,90 +9,90 @@ year: 1989
 author: "Jordan Mechner"
 slug: "topctrl"
 order: 11
-description: "The source code for 'Prince of Persia' (1989) reveals the intricate assembly language programming behind one of the first cinematic platformers, showcasing Jordan Mechner's solo effort in crafting a groundbreaking game for the Apple II."
+description: "Core gameplay routines for Prince of Persia (1989), a groundbreaking cinematic platformer."
 
 summary:
-  - point: "Bank-switched memory techniques to fit within 128K"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank Switching"
-  - point: "Rotoscoping animation technique traced from live-action footage"
+  - point: "Bank-switched memory management for Apple II"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II"
+  - point: "Rotoscoping animation techniques integrated into gameplay"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Complex game state management for levels, timers, and character attributes"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
-  - point: "Innovative use of soft switches for Apple II hardware control"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Dynamic collision detection and animation systems for fluid gameplay"
+  - point: "Innovative collision detection buffers"
     link: "https://en.wikipedia.org/wiki/Collision_detection"
     link_label: "Collision Detection"
+  - point: "Dynamic level transitions with cinematic cuts"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
+  - point: "Copy protection mechanisms embedded in gameplay"
+    link: "https://en.wikipedia.org/wiki/Copy_protection"
+    link_label: "Copy Protection"
 
 enhancements:
-  - id: "game-initialization-jump-table"
-    line_start: 17
-    line_end: 24
-    title: "Jump Table: Modular Game Initialization"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines a jump table for key game routines like starting, restarting, resuming, and initializing the system. The jump table allows modular entry points for different game states, reflecting the need for efficient code organization in assembly language. In the late 1980s, memory constraints on systems like the Apple II required programmers to optimize every byte. Jordan Mechner's decision to use a jump table here demonstrates his understanding of structured programming within the limitations of 6502 assembly. This modular approach influenced later game development, where state management became a cornerstone of game design."
-  - id: "soft-switches-hardware-control"
-    line_start: 49
-    line_end: 58
-    title: "Soft Switches: Direct Hardware Interaction"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II#Soft_switches"
-    image_url: ""
-    image_caption: ""
-    content: "This block lists the soft switches used to control the Apple II hardware, such as enabling auxiliary memory, switching RAM banks, and toggling text mode. These memory-mapped addresses allowed programmers to directly manipulate hardware features, a necessity for creating complex games on limited systems. Mechner's use of these switches reflects the intimate knowledge required to work with the Apple II's architecture. In 1989, developers often had to write low-level code to achieve high performance, as there were no standardized APIs for hardware abstraction. These techniques paved the way for later systems that offered more sophisticated hardware interfaces."
-  - id: "start-new-game-routine"
+  - id: "start-new-game"
     line_start: 99
-    line_end: 102
-    title: "Starting a New Game: System Setup"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    line_end: 108
+    title: "Starting a new game: simplicity meets elegance"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""
     image_caption: ""
-    content: "The `START` routine initializes a new game by enabling auxiliary memory (`ALTZPon`) and calling `StartGame`. This setup ensures the game begins with a clean slate, resetting necessary variables and preparing the system state. In the mid-1980s, game developers like Mechner had to manually manage hardware states due to the lack of high-level operating systems on platforms like the Apple II. This routine highlights the meticulous attention to detail required to ensure stability and performance. The approach influenced future game engines, which automated much of this initialization process."
-  - id: "dynamic-animation-next-frame"
-    line_start: 503
-    line_end: 530
-    title: "Dynamic Animation: Calculating the Next Frame"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    content: "This section initializes a new game by enabling auxiliary memory (ALTZPon) and calling the StartGame subroutine. The programmer, Jordan Mechner, was working within the constraints of the Apple II's 128K memory, which required careful management of auxiliary and main memory banks. The simplicity of this routine reflects the broader design philosophy of Prince of Persia: to create a seamless and cinematic experience despite hardware limitations. In 1989, the Apple II was nearing the end of its dominance, yet Mechner's ingenuity allowed him to push the platform to its limits. This routine is a testament to the era's creativity, where developers often had to innovate within strict constraints. The memory-switching technique used here would later inspire similar approaches in other games for memory-limited systems."
+  - id: "resume-saved-game"
+    line_start: 109
+    line_end: 119
+    title: "Resuming saved games: a clever workaround"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
     image_caption: ""
-    content: "The `NextFrame` routine calculates the next frame by updating mobile objects, transitional objects, and characters. This dynamic system ensures smooth animation and gameplay responsiveness, a hallmark of 'Prince of Persia.' Mechner's use of frame-by-frame updates reflects his background in filmmaking and his desire to create a cinematic experience. The rotoscoping technique, where animations were traced from live-action footage, added realism to the game. This approach influenced the development of animation systems in later games, emphasizing fluidity and realism."
+    content: "The STARTRESUME routine is designed to resume a saved game, a feature that was not universally available in games of the late 1980s. By enabling auxiliary memory and loading saved data, Mechner ensured players could continue their progress—a critical feature for a game with intricate levels and challenging gameplay. At the time, save systems were often rudimentary, relying on disk storage and manual input. Mechner's approach reflects his commitment to player experience, even on hardware with limited resources. This routine also highlights the importance of auxiliary memory in managing game state, a technique that would become standard in later generations of gaming."
+  - id: "initialize-system"
+    line_start: 120
+    line_end: 148
+    title: "Bootstrapping the game: system initialization"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: ""
+    image_caption: ""
+    content: "The INITSYSTEM routine sets up the game environment upon bootup. It centers the joystick, configures auxiliary memory for background tables, and clears memory to prepare for gameplay. This routine showcases Mechner's meticulous attention to detail, ensuring the game starts in a clean and predictable state. In the mid-1980s, system initialization was a critical task, as developers had to account for hardware quirks and varying configurations. Mechner's approach reflects the era's emphasis on reliability and performance, laying the groundwork for the game's cinematic experience. The use of auxiliary memory for background tables is particularly noteworthy, as it demonstrates how Mechner maximized the Apple II's capabilities to deliver rich visuals and fluid gameplay."
+  - id: "restart-current-level"
+    line_start: 256
+    line_end: 365
+    title: "Restarting levels: resilience in design"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
+    image_url: ""
+    image_caption: ""
+    content: "The RESTART routine resets the current level, clearing various flags and tables, reloading level data, and initializing game state. This functionality is crucial for a game as challenging as Prince of Persia, allowing players to retry levels without starting over entirely. Mechner's design ensures a seamless transition between attempts, maintaining the game's cinematic flow. In the late 1980s, level restart mechanisms were becoming more common, reflecting a shift towards player-friendly design. Mechner's implementation is particularly elegant, balancing technical constraints with gameplay needs. This routine exemplifies the game's resilience, enabling players to learn and adapt without frustration."
+  - id: "main-game-loop"
+    line_start: 366
+    line_end: 412
+    title: "The heartbeat of Prince of Persia"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
+    image_url: ""
+    image_caption: ""
+    content: "The MainLoop routine is the core of Prince of Persia's gameplay, handling player input, updating game state, and rendering frames. This loop is a masterclass in efficient programming, balancing multiple tasks within the constraints of the Apple II's hardware. Mechner's design reflects the era's emphasis on real-time responsiveness, ensuring the game feels fluid and immersive. The inclusion of features like copy protection checks and dynamic level transitions highlights the game's sophistication. This routine is a testament to Mechner's ability to create a cinematic experience on a platform not designed for such complexity."
   - id: "collision-detection-buffers"
     line_start: 1015
-    line_end: 1026
-    title: "Collision Detection: Preparing Buffers"
+    line_end: 1038
+    title: "Innovative collision detection buffers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `initCDbuf` routine initializes buffers for collision detection, setting up memory regions to track object interactions. Collision detection was critical for platformers like 'Prince of Persia,' where gameplay depended on precise movements and interactions with the environment. In the late 1980s, implementing such systems required careful memory management and algorithm design, as computational resources were extremely limited. Mechner's implementation laid the groundwork for more advanced collision systems in later games, which would use similar principles but leverage more powerful hardware."
-  - id: "game-over-and-victory"
-    line_start: 1071
-    line_end: 1086
-    title: "Game Over and Victory: Cinematic Endings"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    content: "The initCDbuf routine initializes collision detection buffers, a critical component of Prince of Persia's gameplay. By preloading data into these buffers, Mechner ensured smooth and accurate interactions between characters and the environment. Collision detection was a challenging problem in the 1980s, especially on hardware with limited processing power. Mechner's solution reflects his deep understanding of the Apple II's capabilities, allowing for complex interactions without compromising performance. This routine is a precursor to modern physics engines, showcasing the ingenuity of early game developers in solving technical challenges."
+  - id: "prepare-screen-cut"
+    line_start: 1039
+    line_end: 1070
+    title: "Preparing cinematic screen transitions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cutscene"
     image_url: ""
     image_caption: ""
-    content: "The `YouLose` and `YouWin` routines handle the game's endings, transitioning to cinematic sequences that reflect the player's success or failure. These sequences were groundbreaking in 1989, as they added narrative depth to the gameplay experience. Mechner's background in filmmaking is evident here, as he used storytelling techniques to enhance player engagement. These cinematic endings set a precedent for narrative-driven games, influencing titles like 'Final Fantasy' and 'The Legend of Zelda.'"
-  - id: "strength-meters-update"
-    line_start: 1313
-    line_end: 1354
-    title: "Strength Meters: Dynamic Updates"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
+    content: "The PrepCut routine prepares for screen transitions, a hallmark of Prince of Persia's cinematic style. By checking screen states and activating necessary elements, Mechner created a seamless experience that enhanced the game's storytelling. Screen transitions were a novel feature in the late 1980s, reflecting a shift towards more narrative-driven gameplay. Mechner's implementation demonstrates his commitment to creating a visually engaging experience, pushing the boundaries of what was possible on the Apple II. This routine is a key part of the game's legacy, influencing the design of cinematic platformers for years to come."
+  - id: "player-death-handling"
+    line_start: 1095
+    line_end: 1199
+    title: "Handling player death with grace"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
     image_caption: ""
-    content: "The `chgmeters` routine dynamically updates the strength meters for the player and opponent based on game events. This mechanic added a layer of strategy and tension to the gameplay, as players had to manage their health while navigating challenging levels. In the late 1980s, such features were innovative, as most games relied on simpler health systems. Mechner's implementation showcases his ability to balance technical constraints with gameplay innovation, influencing the design of health systems in modern games."
-  - id: "copy-protection-checks"
-    line_start: 1707
-    line_end: 1712
-    title: "Yellow Copy Protection: Preventing Piracy"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
-    image_url: ""
-    image_caption: ""
-    content: "The `yellowcheck` routine implements a copy protection mechanism, ensuring the game runs only on legitimate disks. Piracy was a significant concern in the 1980s, as floppy disks were easily duplicated. Mechner's inclusion of this check reflects the industry's efforts to protect intellectual property. While such measures were often bypassed by hackers, they marked an early attempt to combat software piracy. These techniques evolved into more sophisticated DRM systems in later decades."
+    content: "The ctrlplayer routine manages player death, ensuring a smooth transition between gameplay and retry options. By incrementing death counters and displaying messages, Mechner created a system that balanced challenge with accessibility. Player death was a critical aspect of game design in the 1980s, as developers sought to create engaging experiences without alienating players. Mechner's approach reflects his understanding of player psychology, providing clear feedback and opportunities to continue. This routine is a testament to the game's thoughtful design, ensuring players remain immersed in the experience even during setbacks."
 
 ---
 

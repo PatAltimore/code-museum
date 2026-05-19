@@ -9,74 +9,92 @@ year: 1989
 author: "Jordan Mechner"
 slug: "boot"
 order: 2
-description: "The boot sequence for Prince of Persia on the Apple II, showcasing memory management and hardware interaction in 6502 assembly."
+description: "The boot sequence for Prince of Persia on the Apple II, showcasing ingenious memory management and hardware interaction in 6502 assembly."
 
 summary:
-  - point: "Bank-switched memory management to fit within 128K"
+  - point: "Bank-switched memory techniques to fit within 128K constraints"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank Switching"
-  - point: "Hardware-specific routines for Apple II initialization"
+  - point: "Hardware-specific routines for Apple IIe/IIc compatibility"
     link: "https://en.wikipedia.org/wiki/Apple_II_series"
-    link_label: "Apple II"
-  - point: "Validation of system requirements (128K memory)"
-    link: "https://en.wikipedia.org/wiki/Apple_IIe"
-    link_label: "Apple IIe"
-  - point: "Efficient memory copying routine using 6502 indirect addressing"
-    link: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
-    link_label: "6502 Assembly"
-  - point: "Cinematic platformer innovation in constrained hardware"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
+    link_label: "Apple II Series"
+  - point: "Clever use of assembly to initialize and verify system requirements"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
 
 enhancements:
   - id: "boot-sector-initialization"
-    line_start: 1
+    line_start: 23
     line_end: 64
-    title: "Boot sector: Setting the stage for execution"
+    title: "Boot Sector: Setting the Stage"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
+    image_url: ""
+    image_caption: ""
+    content: "This section initializes the boot process, setting up the Apple II hardware for the game. It begins by disabling auxiliary features like 80-column mode and alternate character sets, ensuring the system is in a predictable state. The programmer, Jordan Mechner, carefully manipulates memory and hardware registers to prepare the environment for loading further stages of the game. In the mid-1980s, booting a program on the Apple II required intimate knowledge of the machine's architecture, including its memory-mapped I/O and bank-switching mechanisms. Mechner's solo effort on Prince of Persia meant he had to master these intricacies himself, balancing the constraints of 128K memory and the demands of cinematic animation. This initialization routine reflects the meticulous planning required to make the game run seamlessly on a wide range of Apple II models. The techniques here laid the groundwork for the game's innovative gameplay and graphics, ensuring the system could handle the complex routines that followed."
+  - id: "skew-table-lookup"
+    line_start: 66
+    line_end: 67
+    title: "Skew Table: Optimizing Disk Access"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
+    image_url: ""
+    image_caption: ""
+    content: "The skew table defines a sequence of sector offsets for optimized disk access. Disk drives of the era often had physical limitations that required careful planning of sector reads to avoid delays caused by rotational latency. By precomputing these offsets, Mechner ensured that the boot process could load data efficiently, minimizing the time spent waiting for the disk to spin into position. This optimization was crucial for a game like Prince of Persia, where smooth transitions and quick loading were vital to maintaining its cinematic feel. The skew table reflects the deep understanding of hardware constraints that programmers of the time had to possess, especially when working with the Apple II's notoriously slow floppy drives."
+  - id: "sector-address-lookup"
+    line_start: 69
+    line_end: 89
+    title: "Sector Address Table: Navigating the Disk"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
+    image_url: ""
+    image_caption: ""
+    content: "This table maps logical sector numbers to physical disk addresses, enabling the boot routine to locate and load specific data blocks. Disk organization was a critical part of game development in the 1980s, as developers had to manually manage file systems and ensure efficient data retrieval. Mechner's approach here demonstrates his attention to detail, ensuring that the game could load its assets quickly and reliably. The sector address table is a testament to the era's hands-on approach to programming, where developers had to think about every byte and cycle to make their software work within the limitations of the hardware."
+  - id: "boot-stage-2"
+    line_start: 91
+    line_end: 120
+    title: "Stage 2 Boot: Preparing for Gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
+    image_url: ""
+    image_caption: ""
+    content: "Stage 2 of the boot process begins by checking for 128K memory, a requirement for Prince of Persia's advanced graphics and gameplay. It then initializes the RW18 routine, which handles disk operations, and sets up the system for loading the next stage. This section highlights the challenges of developing for the Apple II, where memory and hardware constraints were ever-present. Mechner's careful orchestration of these routines ensured that the game could run smoothly on compatible systems, providing players with a seamless experience. The inclusion of checks for system requirements reflects the meticulous planning that went into making the game accessible to a wide audience while maintaining its technical ambitions."
+  - id: "aux-memory-check"
+    line_start: 122
+    line_end: 145
+    title: "Checker Routine: Verifying Memory Banks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""
     image_caption: ""
-    content: "This section initializes the boot sector, setting up the Apple II hardware for execution. It configures key memory locations and disables auxiliary features like 80-column mode and alternate character sets. The programmer, Jordan Mechner, meticulously prepares the system to ensure compatibility with the Apple IIe and IIc, which were popular in the late 1980s. At the time, developers had to work within tight constraints, as the Apple II series had limited memory and relied on bank switching to access additional resources. The code also includes routines to read data from the disk, using a skew table to optimize sector access—a clever technique to improve performance on the slow floppy drives of the era. This foundational setup reflects the ingenuity required to create complex software on hardware with severe limitations."
-  - id: "stage-2-boot"
-    line_start: 73
-    line_end: 117
-    title: "Stage 2 boot: Preparing for advanced operations"
+    content: "The CHECKER routine verifies the presence and functionality of auxiliary memory banks, a critical step for ensuring the game can utilize the full 128K required for its advanced features. By writing and reading specific values to memory locations, the routine confirms that the system meets the game's requirements. This technique reflects the ingenuity of 1980s programmers, who often had to devise clever ways to test hardware capabilities without dedicated diagnostic tools. Mechner's approach here is both efficient and robust, ensuring that the game can gracefully handle incompatible systems by displaying an error message instead of crashing."
+  - id: "memory-requirement-check"
+    line_start: 146
+    line_end: 168
+    title: "Checking for 128K: Ensuring Compatibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: ""
+    image_caption: ""
+    content: "This routine checks whether the system is an Apple IIe or IIc with 128K of memory, a prerequisite for running Prince of Persia. It uses the Apple II's family ID byte and auxiliary memory flags to determine compatibility. If the system fails the check, the routine redirects to NOT128K, which displays a message informing the user of the requirements. This compatibility check was essential for ensuring the game could run on the intended hardware while gracefully handling unsupported configurations. Mechner's attention to detail here reflects the challenges of developing software for a fragmented hardware ecosystem, where not all Apple II models offered the same capabilities."
+  - id: "error-message-display"
+    line_start: 170
+    line_end: 187
+    title: "NOT128K: Communicating System Requirements"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: ""
+    image_caption: ""
+    content: "When the system fails the memory check, the NOT128K routine displays a message informing the user that the game requires an Apple IIe or IIc with 128K of memory. This graceful handling of incompatibility reflects Mechner's commitment to user experience, ensuring that players are informed rather than frustrated. The routine uses the Apple II's text output functions to display the message, a straightforward yet effective way to communicate with the user. This approach highlights the importance of clear communication in software design, even in the constrained environment of 6502 assembly programming."
+  - id: "memory-move-routine"
+    line_start: 197
+    line_end: 207
+    title: "MoverW18: Shuffling Memory Banks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
     image_caption: ""
-    content: "The second stage of the boot process begins here, with routines to check for 128K memory and prepare the system for advanced operations. Mechner uses a combination of direct memory manipulation and hardware-specific instructions to ensure compatibility with the Apple IIe and IIc. The code moves critical routines into the D000 memory range, leveraging bank-switched memory to fit the game's complex logic and graphics into the limited 128K available. This stage also includes drive initialization and track seeking, setting up the disk controller to load the next stage of the game. In the late 1980s, such low-level programming was essential for game development, as developers had to squeeze every ounce of performance out of the hardware. Mechner's work here demonstrates his deep understanding of the Apple II architecture and his ability to innovate within its constraints."
-  - id: "aux-memory-check"
-    line_start: 120
-    line_end: 136
-    title: "Auxiliary memory check: Ensuring system compatibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIe"
+    content: "The moverw18 routine moves data between memory banks, a key operation for managing the Apple II's limited RAM. By carefully manipulating memory addresses and ensuring data integrity during the transfer, Mechner enables the game to utilize the full 128K of available memory. This routine reflects the ingenuity required to work within the constraints of the Apple II, where every byte of memory was precious. The warning about wiping out 64K if the routine is misused underscores the delicate nature of such operations, highlighting the precision required in 6502 assembly programming."
+  - id: "memory-copy-loop"
+    line_start: 209
+    line_end: 234
+    title: "MoveMem: Copying Data Across Banks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "This routine verifies the presence of auxiliary memory, a critical requirement for running Prince of Persia on the Apple II. By writing and reading specific values to memory locations, the code ensures that the system has the necessary 128K to execute the game. This check reflects the challenges of developing software for a fragmented hardware ecosystem, where different models of the Apple II series had varying capabilities. Mechner's careful validation routine prevents the game from attempting to run on incompatible systems, avoiding crashes and ensuring a smooth user experience. In an era where developers often had to account for multiple hardware configurations, this kind of compatibility check was both a technical necessity and a mark of professional craftsmanship."
-  - id: "system-validation-128k"
-    line_start: 146
-    line_end: 165
-    title: "System validation: Apple IIe or IIc with 128K"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
-    image_url: ""
-    image_caption: ""
-    content: "This section checks the system type and memory configuration, ensuring the game runs only on compatible Apple II models with 128K memory. The code uses specific memory locations and hardware flags to identify the machine type and validate its capabilities. Mechner's approach reflects the realities of developing for the Apple II ecosystem, where hardware variations could significantly impact software performance. By embedding this validation routine, he ensures that players experience the game as intended, without encountering technical issues. This kind of meticulous hardware validation was a hallmark of high-quality software development in the 1980s, demonstrating Mechner's commitment to delivering a polished product."
-  - id: "error-message-display"
-    line_start: 168
-    line_end: 191
-    title: "Error handling: Displaying system requirements"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
-    image_url: ""
-    image_caption: ""
-    content: "When the system fails the compatibility check, this routine displays an error message, informing the user that the game requires an Apple IIe or IIc with 128K memory. The message is carefully crafted to be clear and concise, reflecting Mechner's attention to user experience even in failure scenarios. The routine uses low-level text output functions to display the message on the screen, a common practice in 6502 assembly programming. This error handling mechanism highlights the challenges of developing software for diverse hardware platforms and the importance of communicating system requirements to users. In the context of 1980s computing, such thoughtful error handling was a sign of professional-grade software."
-  - id: "memory-copy-routine"
-    line_start: 197
-    line_end: 231
-    title: "Memory copy: Efficient data movement"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
-    image_url: ""
-    image_caption: ""
-    content: "This routine copies data from one memory location to another, using indirect addressing and looping constructs to move blocks of memory efficiently. Mechner's implementation is both elegant and practical, leveraging the 6502 processor's capabilities to perform memory operations with minimal overhead. The routine includes safeguards to prevent overwriting critical memory regions, reflecting the importance of precision in low-level programming. In the constrained environment of the Apple II, efficient memory management was essential for achieving the game's cinematic visuals and smooth gameplay. This routine exemplifies the kind of technical ingenuity required to create complex software on limited hardware, showcasing Mechner's mastery of 6502 assembly."
+    content: "The movemem routine copies data from one memory bank to another, using indexed addressing to iterate through the source and destination addresses. This operation is fundamental to the game's ability to manage its assets within the constraints of the Apple II's memory architecture. Mechner's implementation here is both efficient and reliable, ensuring that data is transferred correctly without corruption. The routine's design reflects the careful planning required to make the most of the Apple II's limited resources, a hallmark of 1980s programming."
 
 ---
 

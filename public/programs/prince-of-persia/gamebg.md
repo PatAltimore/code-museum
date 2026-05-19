@@ -9,90 +9,90 @@ year: 1989
 author: "Jordan Mechner"
 slug: "gamebg"
 order: 20
-description: "This file from Prince of Persia (1989) showcases Jordan Mechner's ingenious use of 6502 assembly to create a cinematic platformer on the Apple II, leveraging memory bank-switching and rotoscoped animations."
+description: "This file contains assembly routines for rendering animations, managing game objects, and displaying messages in Prince of Persia (1989), a pioneering cinematic platformer for the Apple II."
 
 summary:
-  - point: "Bank-switched memory techniques to fit 128K constraints"
+  - point: "Bank-switched memory techniques to fit within 128K constraints"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank Switching"
-  - point: "Routines for cinematic animations like twinkling stars and flowing sand"
+  - point: "Routines for cinematic animations like flowing sand and twinkling stars"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Custom copy-protection mechanisms embedded in the code"
+  - point: "Custom rendering routines for strength meters and character animations"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Copy-protection mechanisms embedded in gameplay routines"
     link: "https://en.wikipedia.org/wiki/Copy_protection"
     link_label: "Copy Protection"
-  - point: "Direct manipulation of Apple II hi-res graphics pages"
+  - point: "Direct manipulation of high-resolution graphics memory"
     link: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     link_label: "Apple II Graphics"
-  - point: "Efficient use of lookup tables for animation and game mechanics"
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup Table"
 
 enhancements:
-  - id: "strength-meters-visual-feedback"
-    line_start: 91
-    line_end: 97
-    title: "Strength meters: visualizing health"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Audio_CD_with_Copy_Protection_%28Back_of_Jewel_Case_%E2%80%93_Focus_on_Technical_Specifications%29.jpg/330px-Audio_CD_with_Copy_Protection_%28Back_of_Jewel_Case_%E2%80%93_Focus_on_Technical_Specifications%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Audio CD with Copy Protection (Back of Jewel Case – Focus on Technical Specifications) (CC0)"
-    content: "The strength meters for the Kid and the Opponent are defined here as lookup tables, mapping visual positions and offsets to their respective health states. In the late 1980s, visual feedback was crucial for engaging players, especially in action games like Prince of Persia. Jordan Mechner designed these meters to appear at the bottom of the screen, providing instant clarity about the player's and enemy's health. This approach reflects the era's focus on minimal yet effective UI design, constrained by the Apple II's limited screen resolution and color palette. The tables are compact, leveraging the efficiency of assembly language to minimize memory usage while maintaining visual fidelity. These meters became a staple of platformers and action games, influencing how health is represented in modern gaming."
-  - id: "hourglass-animation"
-    line_start: 118
-    line_end: 127
-    title: "Hourglass: time as a visual mechanic"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Time_management_game"
-    image_url: ""
-    image_caption: ""
-    content: "The hourglass animation is a brilliant example of tying gameplay mechanics to visual storytelling. Here, Mechner defines the coordinates and images for the hourglass, along with the sand height that changes dynamically as time progresses. The hourglass serves as a constant reminder of the player's limited time to complete the level, adding tension and urgency to the gameplay. In 1989, this was a novel way to integrate time management into a platformer, emphasizing the cinematic nature of Prince of Persia. The flowing sand animation, defined later in the file, complements this mechanic, showcasing Mechner's attention to detail and his ability to leverage the Apple II's graphical capabilities to enhance immersion."
-  - id: "torch-animation-frames"
-    line_start: 143
-    line_end: 148
-    title: "Torch animation: dynamic lighting effects"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
-    image_url: ""
-    image_caption: ""
-    content: "The torch animation frames are defined here as a sequence of hex values representing different states of the flame. This sequence creates the illusion of a flickering torch, adding atmosphere to the game's environments. In the late 1980s, dynamic lighting effects were rare in games, especially on hardware as limited as the Apple II. Mechner's use of rotoscoping and frame-by-frame animation brought a cinematic quality to Prince of Persia, setting it apart from other platformers of the era. The torch animation not only enhances the visual appeal but also contributes to the game's immersive storytelling, making the environments feel alive and reactive."
-  - id: "draw-kid-and-shadowman"
-    line_start: 391
-    line_end: 415
-    title: "Drawing the Kid and Shadowman"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
-    image_url: ""
-    image_caption: ""
-    content: "This section handles the drawing routines for the Kid and his shadow counterpart, Shadowman. The Kid's animations were rotoscoped from footage of Mechner's brother performing the moves, giving them a lifelike quality rarely seen in games of the era. Shadowman, a darker mirror of the Kid, adds a layer of psychological depth to the gameplay. These routines reflect Mechner's cinematic approach to game design, where character animations are not just functional but also expressive. The drawing logic incorporates visual effects like flashing and merging, enhancing the game's storytelling and atmosphere. This technique influenced future platformers, setting a benchmark for character animation in games."
-  - id: "setup-flame-animation"
-    line_start: 726
-    line_end: 755
-    title: "Setting up flame animations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
-    image_url: ""
-    image_caption: ""
-    content: "This section sets up the flame animations, preparing the necessary coordinates, image data, and opacity settings. Flames are a recurring visual motif in Prince of Persia, symbolizing danger and vitality. Mechner's meticulous attention to detail ensures that the flames not only look dynamic but also integrate seamlessly into the game's environments. The use of lookup tables and direct manipulation of hi-res graphics pages showcases his mastery of the Apple II's hardware. These animations contribute to the game's cinematic quality, making the environments feel alive and reactive. The flame setup routine is a testament to Mechner's ability to push the boundaries of what was possible on the Apple II."
-  - id: "twinkle-stars-princess-window"
-    line_start: 787
-    line_end: 811
-    title: "Twinkling stars outside Princess's window"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Parallax_scrolling"
-    image_url: ""
-    image_caption: ""
-    content: "This routine animates stars outside the Princess's window, creating a subtle but impactful visual effect. By updating the star images directly on both hi-res graphics pages, Mechner achieves a twinkling effect that adds depth and atmosphere to the scene. In 1989, such details were rare in platformers, especially on the Apple II, which had limited graphical capabilities. This routine reflects Mechner's cinematic vision for Prince of Persia, where even minor elements contribute to the game's immersive storytelling. The stars' twinkle is a precursor to techniques like parallax scrolling, which became common in later games to simulate depth and movement."
-  - id: "copy-protection-yellow-check"
-    line_start: 899
-    line_end: 908
-    title: "Copy protection: the 'Yellow' check"
+  - id: "yellow-copy-protection-check"
+    line_start: 66
+    line_end: 100
+    title: "Yellow: Copy Protection Embedded in Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
     image_url: ""
     image_caption: ""
-    content: "This routine is part of Prince of Persia's second-level copy protection mechanism, designed to detect unauthorized copies of the game. The 'Yellow' check involves verifying specific data on the disk, ensuring that the game is running on an original copy. In the late 1980s, piracy was a significant concern for game developers, especially for high-profile titles like Prince of Persia. Mechner implemented multiple layers of copy protection to safeguard his work, reflecting the industry's reliance on such measures during the era. While these techniques were often bypassed by skilled hackers, they represent an important chapter in the history of software development and the ongoing battle against piracy."
+    content: "The 'YELLOW' routine is a subtle nod to the era's copy-protection techniques. It sets a flag that likely interacts with other routines to verify the integrity of the game disk. In the late 1980s, piracy was rampant, and developers like Jordan Mechner had to embed clever mechanisms to ensure their games were not easily duplicated. The Apple II's limited memory and lack of sophisticated hardware meant that these checks had to be lightweight and unobtrusive, often disguised within normal gameplay routines. This approach reflects the ingenuity required to protect intellectual property in an era before widespread digital rights management. While modern games rely on online verification, this routine is a reminder of the creative solutions developers once employed."
+  - id: "hourglass-animation"
+    line_start: 122
+    line_end: 126
+    title: "Hourglass: A Cinematic Time Mechanic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Hourglass"
+    image_url: ""
+    image_caption: ""
+    content: "The 'glassimg' and 'flowimg' data tables define the frames for the hourglass animation, a central visual element in Prince of Persia. The hourglass not only serves as a timer but also reinforces the game's cinematic theme, emphasizing the urgency of the player's quest. Mechner's use of rotoscoping to create lifelike animations extended to objects like the hourglass, ensuring that even static elements felt dynamic and alive. This attention to detail set the game apart from its contemporaries, creating an immersive experience that would influence future platformers."
+  - id: "torch-animation-frames"
+    line_start: 147
+    line_end: 154
+    title: "Torch Flame Animation: Breathing Life into the Scene"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    image_url: ""
+    image_caption: ""
+    content: "The 'torchflame' data defines the frames for the torch's flickering animation, adding atmospheric detail to the game's environments. In the Apple II's limited graphical palette, animations like this were essential for creating a sense of realism and depth. Mechner's background in film likely influenced his decision to include such cinematic touches, ensuring that every scene felt alive. The torch's flicker is a small but impactful detail that enhances the game's immersive quality, demonstrating how even minor elements can contribute to a cohesive visual narrative."
+  - id: "draw-strength-meters"
+    line_start: 496
+    line_end: 673
+    title: "Strength Meters: Visualizing Combat Stakes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
+    image_url: ""
+    image_caption: ""
+    content: "The 'DRAWKIDMETER' and 'DRAWOPPMETER' routines render the strength meters for the player and opponents during combat. These meters are updated dynamically based on the characters' health, providing real-time feedback to the player. The routines use precomputed data tables to ensure efficient rendering, a necessity given the Apple II's limited processing power. Mechner's implementation of these meters reflects his focus on creating a cinematic experience, where visual elements like health indicators contribute to the tension and drama of each encounter. The design of these meters influenced the way health systems were visualized in later games."
+  - id: "setup-flame-animation"
+    line_start: 735
+    line_end: 766
+    title: "Flame Animation: Dynamic Environmental Details"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    image_url: ""
+    image_caption: ""
+    content: "The 'SETUPFLAME' routine prepares the animation for the torches scattered throughout the game's levels. Flames are drawn dynamically based on their position and frame number, adding movement and life to the static environments. This routine showcases Mechner's skill in maximizing the Apple II's limited graphical capabilities to create a sense of realism. The flickering flames contribute to the game's cinematic atmosphere, making the environments feel alive and immersive. Such details were rare in games of the era, highlighting Mechner's innovative approach to game design."
+  - id: "twinkle-stars-animation"
+    line_start: 794
+    line_end: 818
+    title: "Twinkling Stars: Direct Graphics Manipulation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
+    image_url: ""
+    image_caption: ""
+    content: "The 'TWINKLE' routine updates the stars outside the Princess's window, directly manipulating the high-resolution graphics memory. This routine bypasses the game's normal rendering pipeline, reflecting the Apple II's unique graphics architecture, where developers often had to work directly with memory addresses to achieve specific effects. Mechner's decision to include this detail highlights his commitment to creating a visually rich experience, even within the constraints of the hardware. The twinkling stars add a subtle touch of magic to the game's atmosphere, reinforcing its fairy-tale setting."
+  - id: "setup-hourglass-flow"
+    line_start: 918
+    line_end: 940
+    title: "Flowing Sand: A Cinematic Time Mechanic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Hourglass"
+    image_url: ""
+    image_caption: ""
+    content: "The 'FLOW' routine animates sand flowing through the hourglass, a visual representation of the game's time limit. This cinematic detail reinforces the urgency of the player's quest, tying the gameplay mechanics to the narrative. The routine directly manipulates graphics memory to achieve the effect, showcasing Mechner's mastery of the Apple II's hardware. The flowing sand is a small but impactful detail that enhances the game's immersive quality, demonstrating how visual storytelling can be integrated into gameplay mechanics."
   - id: "add-character-object"
     line_start: 1050
-    line_end: 1096
-    title: "Adding characters to the object table"
+    line_end: 1104
+    title: "Adding Characters to the Object Table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
     image_url: ""
     image_caption: ""
-    content: "The ADDCHAROBJ routine adds a character to the game's object table, storing its properties like position, image, and type. This modular approach to handling game objects reflects Mechner's efficient use of 6502 assembly to manage complex interactions within the game's world. By defining characters as objects with specific attributes, Mechner laid the groundwork for object-oriented principles in game design. This routine highlights the ingenuity required to implement such systems on hardware as constrained as the Apple II. The modularity and reusability of this approach influenced later games, demonstrating how thoughtful design can overcome technical limitations."
+    content: "The 'ADDCHAROBJ' routine adds characters to the game's object table, a data structure that tracks all active entities in the game world. This routine is a critical part of the game's engine, enabling dynamic interactions between characters and the environment. Mechner's implementation reflects the principles of object-oriented programming, where each character is treated as an independent entity with its own properties. This approach allowed for complex gameplay mechanics, such as combat and movement, to be handled efficiently. The object table design influenced the development of game engines in later years, showcasing Mechner's forward-thinking approach to game development."
 
 ---
 

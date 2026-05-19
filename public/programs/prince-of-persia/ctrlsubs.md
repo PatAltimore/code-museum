@@ -9,82 +9,66 @@ year: 1989
 author: "Jordan Mechner"
 slug: "ctrlsubs"
 order: 16
-description: "This file contains subroutines for character control and movement in Prince of Persia (1989), showcasing Jordan Mechner's ingenuity in crafting cinematic gameplay on constrained Apple II hardware."
+description: "Character control and movement routines for Prince of Persia (1989), showcasing Jordan Mechner's ingenuity in 6502 assembly."
 
 summary:
-  - point: "Bank-switched memory techniques to fit within 128K"
-    link: "https://en.wikipedia.org/wiki/Bank-switching"
-    link_label: "Bank-switching"
-  - point: "Rotoscoping-inspired animation control routines"
-    link: "https://en.wikipedia.org/wiki/Rotoscoping"
-    link_label: "Rotoscoping"
-  - point: "Efficient handling of offscreen block references"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Collision detection and environmental interaction algorithms"
-    link: "https://en.wikipedia.org/wiki/Collision_detection"
-    link_label: "Collision detection"
-  - point: "Dynamic character setup for cinematic action sequences"
+  - point: "Recursive handling of offscreen block references"
+    link: "https://en.wikipedia.org/wiki/Recursion_(computer_science)"
+    link_label: "Recursion"
+  - point: "Efficient screen adjacency calculations using lookup tables"
+    link: "https://en.wikipedia.org/wiki/Lookup_table"
+    link_label: "Lookup Table"
+  - point: "Precise character positioning with sub-pixel accuracy"
+    link: "https://en.wikipedia.org/wiki/Subpixel_rendering"
+    link_label: "Subpixel Rendering"
+  - point: "Dynamic object table updates for cinematic gameplay"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     link_label: "Prince of Persia"
+  - point: "Bank-switched memory optimization for Apple II hardware"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank Switching"
 
 enhancements:
-  - id: "jmp-table-character-control"
-    line_start: 17
-    line_end: 97
-    title: "Jump Table: Modular Character Control"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Double_Buffering_Petri_Net.png/330px-Double_Buffering_Petri_Net.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Petri Net that shows how double buffering works. (Public domain)"
-    content: "The jump table at the beginning of this file is a clever organizational tool, allowing the program to quickly access various subroutines related to character control and movement. Each entry in the table corresponds to a specific function, such as calculating distances, handling collisions, or setting up animations. In the mid-1980s, this approach was critical for optimizing performance on the Apple II, which had limited processing power and memory. Jordan Mechner, working solo on Prince of Persia, needed to ensure the game could handle complex character interactions without slowing down. This modular design reflects his meticulous planning and understanding of assembly language. The jump table's influence persists in modern programming, where similar techniques are used in virtual method tables and dispatch mechanisms."
-  - id: "rdblock-offscreen-handling"
-    line_start: 149
-    line_end: 234
-    title: "Recursive Handling of Offscreen Blocks"
+  - id: "recursive-offscreen-block-handling"
+    line_start: 178
+    line_end: 198
+    title: "Recursive logic for offscreen blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Recursion_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The RDBLOCK subroutine and its recursive handler demonstrate an elegant solution to a common problem in platform games: managing offscreen references. When the player character interacts with blocks that extend beyond the visible screen, the program must trace these references back to their 'home screen.' Mechner's recursive approach ensures that offscreen blocks are handled seamlessly, maintaining the illusion of a continuous world. This technique was particularly challenging on the Apple II, where memory constraints required careful management of screen data. The recursive logic also reflects Mechner's background in mathematics, where recursion is a fundamental concept. Today, similar methods are used in games to manage large, interconnected worlds, though with far greater computational resources."
-  - id: "get-screens-surrounding-map"
+    content: "This section of code handles offscreen block references recursively, ensuring that blocks outside the visible screen are traced back to their originating screen. The routine `handler` checks whether a block's coordinates fall outside the screen boundaries and adjusts them by calling subroutines like `offleft`, `offrt`, `offtop`, and `offbot`. This approach reflects the constraints of the Apple II's limited memory and screen resolution, where every byte and pixel mattered. Jordan Mechner's decision to implement recursion here is notable, as recursion was not commonly used in 6502 assembly due to its stack limitations. This clever workaround allowed the game to maintain seamless transitions between screens, contributing to the fluidity of gameplay. The recursive logic would later influence similar techniques in platformers and adventure games, demonstrating how Mechner's innovative thinking shaped the genre."
+  - id: "adjacent-screen-calculation"
     line_start: 244
-    line_end: 318
-    title: "Mapping Surrounding Screens for Fluid Gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
+    line_end: 258
+    title: "Calculating adjacent screen numbers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "The GETSCRNS subroutine retrieves the eight screens surrounding the player's current position, ensuring smooth transitions and interactions as the character moves between tiles. This mapping is vital for maintaining the game's cinematic flow, allowing the player to focus on the action without noticing the underlying technical complexity. In 1989, such seamless gameplay was groundbreaking, especially on the Apple II, which lacked hardware support for scrolling or advanced graphics. Mechner's approach reflects his commitment to creating an immersive experience, inspired by his love of film and storytelling. The concept of surrounding screen mapping remains relevant in modern games, where it is used to optimize rendering and collision detection in open-world environments."
-  - id: "setup-character-frame-advancement"
-    line_start: 794
-    line_end: 841
-    title: "Dynamic Character Setup for Frame Advancement"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    content: "The subroutines `GETLEFT` and `GETRIGHT` calculate adjacent screen numbers based on the current screen number. Using lookup tables (`MAP-4` and `MAP-3`), these routines efficiently determine the screen numbers to the left and right of the current screen. This design leverages the speed of table-based calculations, which were critical for real-time gameplay on the Apple II. In 1989, the Apple II's hardware constraints necessitated such optimizations to ensure smooth transitions between screens without noticeable delays. Mechner's use of lookup tables here is a testament to his deep understanding of the hardware, allowing him to create a cinematic experience that felt seamless despite the limitations of the platform."
+  - id: "precise-character-positioning"
+    line_start: 329
+    line_end: 373
+    title: "Precise character positioning with ADDCHARX"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Subpixel_rendering"
     image_url: ""
     image_caption: ""
-    content: "The SETUPCHAR subroutine prepares the character's data for frame advancement, translating abstract game data into precise screen coordinates. This process involves decoding image and sword data, adjusting coordinates based on the character's facing direction, and ensuring alignment with the game's cinematic animation system. Mechner's use of rotoscoping—tracing live-action footage frame by frame—required meticulous attention to detail in these routines. The Apple II's limited graphical capabilities made this task even more challenging, as Mechner had to balance visual fidelity with performance constraints. This subroutine exemplifies his ability to blend technical expertise with artistic vision, laying the groundwork for the cinematic platformer genre."
-  - id: "collision-detection-getedges"
-    line_start: 1071
-    line_end: 1159
-    title: "Precise Collision Detection with GETEDGES"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
+    content: "The `GETBASEX` and `ADDCHARX` routines calculate and adjust the character's X-coordinate with remarkable precision. `GETBASEX` determines the base X-coordinate of the character, factoring in direction and frame-specific offsets, while `ADDCHARX` adds or subtracts pixels based on the character's facing direction. This level of detail was crucial for Prince of Persia's fluid animations and realistic movement. Mechner's rotoscoping technique, where he traced his brother's movements frame by frame, demanded sub-pixel accuracy to translate real-world motion into the game. The Apple II's hardware limitations made this challenging, but Mechner's meticulous coding ensured that the character's movements felt natural and responsive. This focus on precision set a new standard for platformers and influenced future games in the genre."
+  - id: "dynamic-object-table-updates"
+    line_start: 1592
+    line_end: 1619
+    title: "Dynamic updates to the object table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The GETEDGES subroutine calculates the boundaries of the character's image, enabling precise collision detection with the environment. By determining the left, right, top, and bottom edges of the character, the program can identify interactions with blocks, floors, and other objects. This level of precision was essential for Prince of Persia's fluid animations and realistic movement, which set it apart from other platformers of the era. Mechner's approach reflects his background in film, where attention to detail is crucial for creating believable action sequences. Collision detection remains a cornerstone of game development, with modern techniques building on the foundations laid by pioneers like Mechner."
-  - id: "mark-redraw-buffers"
-    line_start: 1728
-    line_end: 1802
-    title: "Efficient Redraw Buffer Management"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
-    image_url: ""
-    image_caption: ""
-    content: "The MARK and ZERORED subroutines manage redraw buffers, ensuring that only the necessary parts of the screen are updated during gameplay. This optimization was critical on the Apple II, where limited memory and processing power required careful management of graphical updates. Mechner's implementation minimizes flickering and maintains the game's cinematic feel, even during complex action sequences. The use of buffers to track changes reflects his understanding of hardware constraints and his ability to innovate within them. Similar techniques are still used in modern games, where double buffering and other methods ensure smooth, high-performance graphics."
-  - id: "strength-meter-management"
+    content: "The routines `ADDKIDOBJ`, `ADDREFLOBJ`, `ADDSHADOBJ`, `ADDGUARDOBJ`, and `ADDSWORDOBJ` dynamically add various objects (e.g., the Kid, reflection, shadowman, guard, and sword) to the game's object table. This modular approach allowed Mechner to manage the game's cinematic elements efficiently, ensuring that objects appeared and behaved correctly in response to player actions. The object table was a critical component of Prince of Persia's gameplay, enabling complex interactions between characters and the environment. Mechner's implementation here highlights his ability to balance technical constraints with artistic vision, creating a game world that felt alive and immersive. This technique would become a staple in game development, influencing how objects and characters are managed in modern engines."
+  - id: "bank-switched-memory-optimization"
     line_start: 2020
-    line_end: 2041
-    title: "Strength Meter: Recharge and Boost"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
+    line_end: 2050
+    title: "Optimizing memory with RECHARGEMETER"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
     image_caption: ""
-    content: "The RECHARGEMETER and BOOSTMETER subroutines manage the player's strength meter, a key gameplay mechanic in Prince of Persia. These routines allow the meter to be recharged to its maximum value or boosted beyond its current limit, adding strategic depth to the game. Mechner's design reflects his focus on creating a balanced experience, where players must manage their resources carefully to succeed. The strength meter mechanic has become a staple of action-adventure games, influencing titles across genres and platforms. Mechner's implementation on the Apple II demonstrates his ability to innovate within the constraints of early hardware."
+    content: "The `RECHARGEMETER` and `BOOSTMETER` routines manage the Kid's strength meter, recharging it to its maximum value or boosting its maximum limit. These routines reflect Mechner's careful memory management on the Apple II, which used bank-switched memory to fit the game's complex mechanics into 128K. Bank switching allowed different memory banks to be accessed dynamically, enabling features like the strength meter without exceeding hardware limitations. Mechner's ability to optimize memory usage was crucial for creating a game as ambitious as Prince of Persia on such constrained hardware. This approach laid the groundwork for future games that pushed the boundaries of what was possible on limited systems."
 
 ---
 

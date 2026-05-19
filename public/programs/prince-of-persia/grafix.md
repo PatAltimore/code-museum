@@ -9,82 +9,74 @@ year: 1989
 author: "Jordan Mechner"
 slug: "grafix"
 order: 8
-description: "Graphics routines for Prince of Persia, showcasing cinematic animation techniques and Apple II memory management."
+description: "Graphics routines for Prince of Persia, showcasing cinematic animation techniques in 6502 assembly."
 
 summary:
-  - point: "Bank-switched memory management for Apple II"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Rotoscoping animation technique for character movement"
+  - point: "Bank-switched memory management for 128K Apple IIe/IIc"
+    link: "https://en.wikipedia.org/wiki/Bank-switching"
+    link_label: "Bank-switching"
+  - point: "Rotoscoping animation technique traced from live-action footage"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Efficient use of 6502 assembly for graphics rendering"
-    link: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
-    link_label: "6502 Assembly"
-  - point: "Vertical blank interrupt handling for smooth animation"
+  - point: "Efficient image layering with background, foreground, and mid-plane lists"
+    link: "https://en.wikipedia.org/wiki/Double_buffering"
+    link_label: "Double buffering"
+  - point: "Custom vertical blank interrupt handling for Apple II models"
     link: "https://en.wikipedia.org/wiki/Vertical_blank_interrupt"
-    link_label: "Vertical Blank Interrupt"
-  - point: "Custom random number generator for game logic"
-    link: "https://en.wikipedia.org/wiki/Random_number_generation"
-    link_label: "Random Number Generation"
+    link_label: "Vertical blank interrupt"
+  - point: "Joystick and keyboard input integration for cinematic gameplay"
+    link: "https://en.wikipedia.org/wiki/Joystick"
+    link_label: "Joystick"
 
 enhancements:
-  - id: "graphics-entry-point"
-    line_start: 16
-    line_end: 19
-    title: "Jump table for graphics routines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Apple_II_high-resolution_graphics_fringe_effects.png/330px-Apple_II_high-resolution_graphics_fringe_effects.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Apple II high-resolution graphics fringe effects (CC0)"
-    content: "This section serves as the entry point for key graphics-related subroutines. Each `jmp` instruction directs the program to a specific routine responsible for rendering or managing graphical elements. In the constrained environment of the Apple II, jump tables like this were a common way to organize code efficiently, allowing quick access to frequently used routines without duplicating logic. Jordan Mechner, working solo on Prince of Persia, had to carefully plan these entry points to balance performance and readability. The use of a jump table reflects the need for modularity in a game that pushed the limits of the Apple II hardware."
-  - id: "apple-soft-switches"
-    line_start: 133
-    line_end: 161
-    title: "Apple II soft switches for graphics control"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/WebGL_Shader_Pipeline.svg/330px-WebGL_Shader_Pipeline.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Diagramm: WebGL Rendering Pipeline mit Hervorhebung der Shader-Stufen (CC BY-SA 4.0)"
-    content: "This block defines memory addresses for controlling the Apple II's graphics modes and memory banks. These 'soft switches' allowed programmers to toggle between text and graphics modes, enable high-resolution graphics, and manage auxiliary memory. In 1989, the Apple II was nearing the end of its commercial life, but its unique architecture still posed challenges for developers. Mechner had to master these switches to implement the game's cinematic visuals, which included smooth animations and detailed environments. The careful mapping of these addresses highlights the technical expertise required to manipulate the hardware directly."
-  - id: "add-background-image"
-    line_start: 203
-    line_end: 224
-    title: "Adding images to the background list"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Apple_IIGS_with_peripherals.jpg/330px-Apple_IIGS_with_peripherals.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Apple IIGS with monitor, keyboard, mouse, joystick, 3.5\\" floppy disk drive and 5.25\\" floppy disk drive (CC BY-SA 4.0)"
-    content: "The `ADDBACK` routine adds images to the background list, storing their coordinates, image data, and opacity. This modular approach to rendering allowed Mechner to manage complex scenes efficiently. By separating background, foreground, and other graphical layers, the game could achieve a cinematic feel despite the Apple II's hardware limitations. The routine checks for list overflow and ensures proper memory allocation, reflecting the meticulous attention to detail required to optimize performance on the 6502 processor. This method of layering graphics would influence future game design, particularly in platformers and adventure games."
-  - id: "draw-all-routine"
-    line_start: 484
-    line_end: 505
-    title: "Rendering all graphical layers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_pipeline"
-    image_url: ""
-    image_caption: ""
-    content: "The `DRAWALL` routine orchestrates the rendering of all graphical layers, including background, middle, foreground, and messages. Each layer is drawn sequentially, with specific subroutines handling their unique requirements. This approach mirrors a modern graphics pipeline, where different stages process and render elements in order. Mechner's implementation ensures smooth transitions and visual coherence, crucial for the game's cinematic presentation. In the late 1980s, such techniques were groundbreaking on the Apple II, demonstrating how software ingenuity could overcome hardware constraints to deliver a visually compelling experience."
-  - id: "random-number-generator"
-    line_start: 1386
-    line_end: 1395
-    title: "Custom random number generator"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
-    image_url: ""
-    image_caption: ""
-    content: "The `RND` routine implements a simple linear congruential generator to produce random numbers. This algorithm multiplies the seed by 5, adds 23, and takes the result modulo 256. Random numbers were essential for gameplay elements like enemy behavior and environmental interactions. On the Apple II, generating randomness efficiently was challenging due to limited processing power and memory. Mechner's implementation balances simplicity and functionality, ensuring the game remains responsive while introducing variability. This routine exemplifies how early developers adapted mathematical techniques to fit the constraints of 8-bit systems."
-  - id: "vertical-blank-handling"
-    line_start: 1943
-    line_end: 2002
-    title: "Vertical blank interrupt for smooth animation"
+  - id: "vblvect-vertical-blank-handler"
+    line_start: 110
+    line_end: 202
+    title: "Vertical blank interrupt: timing the screen refresh"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vertical_blank_interrupt"
     image_url: ""
     image_caption: ""
-    content: "The `VBLANK` and `VBLANKIIc` routines manage vertical blank interrupts, ensuring smooth animation by synchronizing graphics updates with the screen's refresh rate. This technique minimizes flickering and tearing, critical for the game's cinematic visuals. Mechner tailored these routines for different Apple II models, showcasing his deep understanding of the hardware. Vertical blank interrupts were a staple of 1980s game development, enabling fluid motion on systems with limited graphical capabilities. Prince of Persia's reliance on this mechanism underscores its ambition to deliver a polished, immersive experience despite technical constraints."
-  - id: "check-iigs-compatibility"
+    content: "The 'VBLvect' routine is a critical piece of code that handles the vertical blank interrupt, ensuring smooth screen refreshes on the Apple II. Vertical blanking is the brief period when the electron beam of a CRT display resets to the top of the screen, allowing for graphical updates without visible tearing. In the late 1980s, programmers like Jordan Mechner had to write custom interrupt handlers to optimize timing for animation-heavy games like Prince of Persia. This routine dynamically adjusts based on whether the machine is an Apple IIe or IIc, reflecting the game's adaptability across hardware variations. The interrupt-driven approach was essential for maintaining the game's cinematic fluidity, a hallmark of its groundbreaking animation style."
+  - id: "addback-background-image-list"
+    line_start: 203
+    line_end: 234
+    title: "Managing the background image list"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
+    image_url: ""
+    image_caption: ""
+    content: "The 'ADDBACK' routine adds images to the background image list, a foundational element of Prince of Persia's layered graphics system. Each image is defined by its X and Y coordinates, coded image number, and opacity. This structure allowed Mechner to create a richly detailed environment while conserving memory—a necessity on the Apple II's limited hardware. The routine checks for list overflow, ensuring stability even under heavy graphical loads. In an era when every byte mattered, this kind of meticulous memory management was a hallmark of skilled 6502 assembly programming. The layered approach to graphics influenced later games, paving the way for more complex visual systems."
+  - id: "drawall-rendering-image-lists"
+    line_start: 484
+    line_end: 513
+    title: "Rendering all image layers: cinematic visuals"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
+    image_url: ""
+    image_caption: ""
+    content: "The 'DRAWALL' routine orchestrates the rendering of all image layers—background, mid-plane, foreground, and messages—on the Apple II screen. This routine is the culmination of Prince of Persia's graphics system, ensuring that each layer is drawn in the correct order to create a cohesive visual experience. It calls subroutines for clearing old images, drawing new ones, and handling special effects like wipes and peels. Mechner's approach reflects the cinematic ambitions of the game, which aimed to deliver fluid animation and immersive environments on hardware with severe limitations. This layering technique became a standard in game development, influencing how graphics engines were designed in the years to come."
+  - id: "controller-joystick-keyboard-input"
+    line_start: 1071
+    line_end: 1085
+    title: "Joystick and keyboard input: seamless control"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
+    image_url: ""
+    image_caption: ""
+    content: "The 'CONTROLLER' routine integrates joystick and keyboard input, allowing players to control the Prince with precision. It reads joystick positions and button states, converting raw hardware signals into actionable game data. This routine exemplifies the challenges of input handling on the Apple II, where hardware interfaces were primitive compared to modern standards. Mechner's code ensures responsiveness and adaptability, crucial for the game's demanding platforming mechanics. By supporting multiple input devices, the routine reflects the game's accessibility and versatility, catering to a wide audience of Apple II users. This approach to input handling laid the groundwork for more sophisticated control systems in later games."
+  - id: "rnd-random-number-generator"
+    line_start: 1386
+    line_end: 1408
+    title: "Random number generation: unpredictability in gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
+    image_url: ""
+    image_caption: ""
+    content: "The 'RND' routine generates random numbers using a simple linear congruential algorithm: 'RNDseed := (5 * RNDseed + 23) mod 256'. Randomness is a subtle but vital element in games, adding unpredictability to enemy behavior, item placement, or environmental effects. On the Apple II, implementing a random number generator required ingenuity due to the lack of built-in hardware support. Mechner's choice of algorithm balances simplicity with effectiveness, ensuring that the game remains dynamic without taxing the limited processing power of the 6502 CPU. This routine highlights the creative problem-solving required to bring complex gameplay mechanics to life on early computers."
+  - id: "checkiigs-hardware-detection"
     line_start: 2015
-    line_end: 2039
-    title: "Checking for Apple IIGS compatibility"
+    line_end: 2046
+    title: "Detecting Apple IIGS: adapting to advanced hardware"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIGS"
     image_url: ""
     image_caption: ""
-    content: "The `CHECKIIGS` routine determines whether the game is running on an Apple IIGS and adjusts settings accordingly. The IIGS, released in 1986, was the most advanced Apple II model, featuring enhanced graphics and sound capabilities. Mechner's code ensures compatibility while leveraging the IIGS's features when available. This adaptability reflects the challenges of developing for a fragmented hardware ecosystem, where games had to run on multiple configurations. By accommodating the IIGS, Prince of Persia could reach a broader audience and showcase its cinematic qualities on more capable hardware."
+    content: "The 'CHECKIIGS' routine determines whether the game is running on an Apple IIGS, the most advanced model in the Apple II family. If detected, the routine initializes settings to take advantage of the IIGS's enhanced capabilities, such as faster processing and improved graphics. This adaptability reflects Mechner's commitment to delivering the best possible experience across a range of hardware. The Apple IIGS, released in 1986, represented a significant leap forward, but developers had to write conditional code to ensure compatibility with older models. This routine is a testament to the game's technical sophistication and its ability to push the limits of the Apple II platform."
 
 ---
 

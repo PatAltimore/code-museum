@@ -9,90 +9,90 @@ year: 1989
 author: "Jordan Mechner"
 slug: "coll"
 order: 7
-description: "Collision detection and response routines for Prince of Persia (1989), showcasing Jordan Mechner's ingenuity in crafting cinematic gameplay on the Apple II."
+description: "Collision detection and animation logic for Prince of Persia (1989), a groundbreaking cinematic platformer."
 
 summary:
-  - point: "Collision detection optimized for Apple II hardware constraints"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Routines for handling barriers, slicers, and gates"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Use of rotoscoping-inspired animation logic"
+  - point: "Implements collision detection for barriers and enemies using 6502 assembly"
+    link: "https://en.wikipedia.org/wiki/Collision_detection"
+    link_label: "Collision Detection"
+  - point: "Uses rotoscoping-inspired animation sequences for character movement"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Bank-switched memory techniques to fit within 128K"
-    link: "https://en.wikipedia.org/wiki/Bank-switching"
-    link_label: "Bank-switching"
-  - point: "Collision detection tailored for cinematic platforming gameplay"
-    link: "https://en.wikipedia.org/wiki/Cinematic_platformer"
-    link_label: "Cinematic platformer"
+  - point: "Optimized for Apple II's 128K memory with bank-switching techniques"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Solo development by Jordan Mechner over four years"
+    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
+    link_label: "Jordan Mechner"
+  - point: "Introduced cinematic storytelling to platformer games"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
 
 enhancements:
-  - id: "collision-jump-table"
-    line_start: 13
-    line_end: 25
-    title: "Jump Table for Collision Subroutines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Fighter_hitbox.svg/330px-Fighter_hitbox.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Fighter hitbox (CC BY 3.0)"
-    content: "This section defines a jump table, a common technique in assembly programming to efficiently redirect execution to different subroutines. Each `jmp` instruction points to a specific collision-related routine, such as `CHECKBARR` for barrier checks or `ENEMYCOLL` for enemy-specific collision handling. In the constrained environment of the Apple II, where memory and processing power were limited, jump tables minimized overhead and allowed for modular design. Jordan Mechner used this structure to organize the game's collision logic, ensuring that each type of interaction—whether with barriers, gates, or enemies—was handled efficiently. This approach reflects the meticulous optimization required to fit complex gameplay mechanics into the Apple II's 128K memory."
-  - id: "barrier-data-table"
-    line_start: 55
-    line_end: 56
-    title: "Barrier Data Table: Distances and Codes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
-    image_url: ""
-    image_caption: ""
-    content: "The `BarL` and `BarR` tables define pixel distances from the edges of blocks to barriers, indexed by barrier type. This compact representation allowed the game to quickly determine collision boundaries for different objects, such as gates, flasks, and slicers. In 1989, memory efficiency was paramount, and lookup tables like this were a staple of assembly programming. Mechner's use of these tables highlights his ability to balance precision and performance, ensuring smooth gameplay while adhering to the Apple II's hardware constraints."
   - id: "check-barrier-collision"
     line_start: 72
-    line_end: 185
-    title: "Collision Detection with Vertical Barriers"
+    line_end: 193
+    title: "Detecting collisions with vertical barriers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `CHECKBARR` subroutine is a cornerstone of Prince of Persia's collision detection system. It checks for interactions between the player character and vertical barriers, such as walls or gates. The routine begins by setting a 'no-collision' flag and then evaluates whether the character is temporarily 'collision-proof' due to actions like turning. It proceeds to gather data from the current frame and compares it with the previous frame to detect changes indicating a collision. This method leverages the Apple II's limited processing power by focusing only on relevant data changes. Mechner's implementation reflects the ingenuity required to create responsive gameplay on hardware with minimal computational resources."
+    content: "This subroutine, CHECKBARR, is tasked with detecting collisions between the character and vertical barriers in the game world. It initializes collision flags, checks for temporary immunity (e.g., during turning), and processes collision data for the current frame, as well as the levels above and below. In 1989, collision detection was a critical feature for platformers, ensuring smooth gameplay and realistic interactions. Jordan Mechner, working solo, had to optimize every byte of memory on the Apple II's limited hardware, where 128K of RAM was split between main and auxiliary banks. The logic here reflects a clever use of buffers to compare frame data and detect changes, a technique that would influence future game development. This subroutine exemplifies the meticulous attention to detail required to create immersive gameplay on constrained hardware."
   - id: "get-collision-data"
     line_start: 194
-    line_end: 254
-    title: "Fetching Collision Data for Current Frame"
+    line_end: 266
+    title: "Retrieving collision data for barriers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `getCData` routine retrieves collision data for the current frame, focusing on the blocks within the character's range. It calculates the edges of barriers relative to the character's position and stores this information in buffers for further processing. This routine exemplifies Mechner's meticulous attention to detail, ensuring that the game could accurately detect collisions while maintaining real-time performance. By precomputing barrier edges and leveraging lookup tables, Mechner optimized the collision system to fit within the Apple II's constraints, enabling the cinematic platforming experience that defined Prince of Persia."
+    content: "The getCData subroutine retrieves collision data for specific blocks in the game world. It calculates the edges of barriers relative to the character's position and determines whether the character is to the left or right of a barrier. In the late 1980s, precision in collision detection was paramount for platformers like Prince of Persia, where gameplay relied on tight interactions between the character and the environment. Mechner's approach here showcases his ability to work within the constraints of the Apple II's hardware, using efficient algorithms to process spatial relationships. This method of calculating barrier edges and comparing them to character positions laid the groundwork for more advanced collision systems in later games."
+  - id: "initialize-collision-buffers"
+    line_start: 267
+    line_end: 343
+    title: "Initializing collision detection buffers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "The initCDbufs subroutine initializes buffers used for collision detection, copying data from the previous frame and setting up the current frame's data. This ensures smooth transitions between frames and accurate collision detection. In the context of the Apple II, memory management was a constant challenge, and Mechner's use of buffers demonstrates his mastery of the 6502 assembly language. By reusing data from previous frames, he minimized computational overhead, a necessity on hardware with limited processing power. This technique highlights the ingenuity required to create fluid gameplay on early computers and influenced how future developers approached memory optimization in games."
+  - id: "calculate-barrier-edges"
+    line_start: 344
+    line_end: 399
+    title: "Calculating left and right barrier edges"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
+    image_url: ""
+    image_caption: ""
+    content: "The subroutines getleftbar and getrightbar calculate the X-coordinates of the left and right edges of barriers in the game world. These calculations are essential for determining whether the character is colliding with a barrier. In the constrained environment of the Apple II, where every byte of memory and cycle of processing power mattered, Mechner's efficient use of lookup tables and arithmetic operations is a testament to his skill as a programmer. These routines ensure precise collision detection, a cornerstone of the game's fluid and responsive gameplay. The methods used here influenced how developers approached spatial calculations in later platformers."
+  - id: "handle-collisions"
+    line_start: 400
+    line_end: 439
+    title: "Handling detected collisions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
+    image_url: ""
+    image_caption: ""
+    content: "The COLLISIONS subroutine processes detected collisions and determines the appropriate response, such as allowing the character to pass through barriers under certain conditions (e.g., climbing). This logic reflects the game's emphasis on realistic and cinematic gameplay, where the character's movements and interactions with the environment are carefully choreographed. Mechner's approach here shows his dedication to creating an immersive experience, even within the limitations of the Apple II. By incorporating nuanced collision handling, he set a standard for platformers, influencing how future games approached environmental interactions."
   - id: "animate-character-frame"
     line_start: 994
-    line_end: 1156
-    title: "Animating the Prince: Frame-by-Frame Logic"
+    line_end: 1161
+    title: "Animating the character frame-by-frame"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
-    content: "The `ANIMCHAR` routine is responsible for advancing the prince's animation frame by frame, based on the sequence table. It interprets specific instructions, such as moving the character's position (`chx`, `chy`), flipping his direction (`aboutface`), or triggering special effects (`tap`, `die`). This logic is directly tied to Mechner's rotoscoping technique, where he traced his brother's movements to create lifelike animations. The routine's design reflects the game's emphasis on fluid, cinematic motion, a groundbreaking achievement on the Apple II. By combining technical precision with artistic vision, Mechner set a new standard for animation in video games."
+    content: "The ANIMCHAR subroutine is responsible for advancing the character's animation frame-by-frame, updating position and state based on the sequence table. This is where Mechner's rotoscoping technique comes into play—he filmed his brother performing the character's moves and traced each frame to create lifelike animations. In 1989, this level of realism was groundbreaking, setting Prince of Persia apart from other platformers. The subroutine's logic reflects the meticulous effort required to translate hand-drawn animations into assembly code, ensuring smooth transitions and responsive gameplay. This innovation not only defined the game's visual style but also influenced the development of cinematic animation in video games."
   - id: "check-slicer-collision"
     line_start: 1186
-    line_end: 1255
-    title: "Slicer Collision: Precision and Drama"
+    line_end: 1265
+    title: "Detecting collisions with slicers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `CHECKSLICE` routine handles one of Prince of Persia's most iconic gameplay elements: the slicer traps. It checks whether the character overlaps with a closed slicer and, if so, triggers the dramatic slicing animation. Mechner's implementation carefully aligns the character with the slicer block and floor, ensuring visual and gameplay precision. This routine showcases the game's cinematic aspirations, blending technical ingenuity with dramatic storytelling. The slicer traps became a memorable feature of the game, emphasizing the perilous nature of the prince's journey and the precision required to navigate it."
-  - id: "check-gate-collision"
-    line_start: 1319
-    line_end: 1367
-    title: "Gate Collision: Dynamic Interactions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
-    image_url: ""
-    image_caption: ""
-    content: "The `CHECKGATE` routine handles interactions with gates, including scenarios where the character is knocked aside by a closing gate. This dynamic collision logic adds a layer of realism to the gameplay, making barriers feel active and responsive rather than static obstacles. Mechner's attention to detail in handling edge cases, such as crouching or standing directly under a gate, reflects his commitment to creating a believable and immersive game world. This routine is a testament to the game's innovative design, blending technical complexity with cinematic storytelling."
+    content: "The CHECKSLICE subroutine checks whether the character is overlapping with a closed slicer, a deadly obstacle in the game. If a collision is detected, the character is aligned with the slicer and visually 'cut in half,' accompanied by sound effects and animation. This dramatic sequence exemplifies the game's cinematic approach, where even death is presented with flair. Mechner's ability to combine technical precision with artistic storytelling is evident here, as he uses collision detection not just for gameplay mechanics but also to enhance the narrative and visual impact of the game. This approach influenced how future games integrated gameplay and storytelling."
   - id: "enemy-collision-detection"
     line_start: 1389
-    line_end: 1453
-    title: "Enemy Collision: Simplified Detection Logic"
+    line_end: 1463
+    title: "Handling enemy collisions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `ENEMYCOLL` routine provides a streamlined collision detection system for enemies, focusing on interactions with walls and gates during combat. Unlike the player character, enemies have limited collision data, reflecting the constraints of the Apple II's memory and processing power. This routine ensures that enemies behave realistically, backing into barriers when appropriate and responding dynamically to the environment. Mechner's ability to balance complexity and efficiency is evident here, as he crafted a system that supports the game's cinematic combat sequences without overwhelming the hardware."
+    content: "The ENEMYCOLL subroutine provides limited collision detection for enemies, focusing on interactions like backing into walls or gates while fighting. This logic ensures that enemies behave realistically, adding depth to the game's combat mechanics. In the late 1980s, AI and collision systems for enemies were relatively simple, but Mechner's implementation here demonstrates his commitment to creating a believable game world. By incorporating nuanced enemy behaviors, he elevated the gameplay experience, setting a precedent for more sophisticated AI in platformers. This subroutine highlights the balance between technical constraints and creative ambition that defined Prince of Persia."
 
 ---
 

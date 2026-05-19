@@ -9,90 +9,106 @@ year: 1989
 author: "Jordan Mechner"
 slug: "misc"
 order: 15
-description: "Assembly code for Prince of Persia (1989), showcasing cinematic platformer innovations on the Apple II."
+description: "This file contains key routines and data structures for Prince of Persia's gameplay mechanics, written in 6502 assembly for the Apple II."
 
 summary:
-  - point: "Bank-switched memory techniques to fit within 128K constraints"
+  - point: "Bank-switched memory techniques for Apple II"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank switching"
-  - point: "Rotoscoping-inspired animation routines for fluid character movement"
+    link_label: "Bank Switching"
+  - point: "Routines for cinematic gameplay effects"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia (1989)"
+  - point: "Innovative use of rotoscoping in animation"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Complex memory manipulation routines for game data and graphics"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Innovative gameplay mechanics like reflection and shadow interaction"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
-  - point: "Solo development by Jordan Mechner, blending storytelling and technical ingenuity"
+  - point: "Solo development by Jordan Mechner"
     link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
     link_label: "Jordan Mechner"
+  - point: "Efficient memory manipulation routines"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+    link_label: "Apple II"
 
 enhancements:
   - id: "vanish-character-routine"
     line_start: 72
-    line_end: 81
-    title: "Vanish character: a cinematic death"
+    line_end: 97
+    title: "Vanish Character: A Quick Reset Mechanism"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Prince_of_Persia_1_-_MS-DOS_-_Gameplay.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    image_caption: "Game play animation of the IBM PC version of Prince of Persia. (CC BY-SA 4.0)"
-    content: "This subroutine, VANISHCHAR, handles the disappearance of a character when defeated. It sets the character's face, action, and life values to zero, effectively removing them from the game. The subtraction of opponent strength and updating of related variables reflects the game's focus on dynamic interactions between characters. In 1989, this kind of cinematic detail was groundbreaking for video games. Jordan Mechner, inspired by film techniques, sought to create a game that felt alive and dramatic. The Apple II's hardware constraints meant every byte of memory had to be carefully managed, and routines like this were crafted with precision to ensure smooth gameplay. The concept of characters vanishing upon defeat added a layer of realism and emotional weight, influencing later games in the cinematic platformer genre."
-  - id: "move-memory-block"
-    line_start: 99
-    line_end: 118
-    title: "Memory block manipulation: a risky precision"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
     image_caption: ""
-    content: "MOVEMEM is a subroutine designed to transfer blocks of memory from one location to another. It warns that improper use could wipe out 64K of memory—a catastrophic error on the Apple II, which had only 128K of RAM. This routine exemplifies the challenges of programming in 6502 assembly, where direct memory manipulation was both powerful and perilous. In the mid-1980s, developers like Mechner had to master such techniques to make their games fit within the limited hardware. MOVEMEM reflects the ingenuity required to handle data efficiently while avoiding critical errors. This approach to memory management influenced the design of subsequent systems and games, where similar routines became standard practice."
+    content: "The VANISHCHAR routine is a compact mechanism to reset a character's state in the game. It clears key attributes like life, action, and face, and adjusts the opponent's strength. In the late 1980s, memory constraints on the Apple II necessitated such efficient routines. Jordan Mechner, working solo, had to ensure every byte of memory was used effectively. This routine reflects the game's cinematic approach, where characters could disappear or reset seamlessly during gameplay. It also highlights the ingenuity required to manage game states on hardware with only 128K of memory. This pattern of resetting character attributes would later influence game development, becoming a staple in managing dynamic game states."
+  - id: "move-memory-block"
+    line_start: 99
+    line_end: 124
+    title: "Memory Block Movement: A Risky Optimization"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: ""
+    image_caption: ""
+    content: "MOVEMEM is a routine for transferring blocks of memory between locations. It warns of catastrophic consequences if misused, wiping out 64K of memory if the source and destination overlap incorrectly. This reflects the precision required in 6502 assembly programming, where errors could crash the system. Mechner's work on Prince of Persia involved juggling memory banks and ensuring smooth gameplay transitions. This routine was essential for loading graphical and gameplay data efficiently, a necessity on the Apple II's limited hardware. The technique of moving memory blocks would become a foundational concept in game programming, influencing how developers handled data in constrained environments."
   - id: "move-music-data"
     line_start: 125
-    line_end: 136
-    title: "Music data transfer: bridging memory banks"
+    line_end: 150
+    title: "Transferring Music Data Between Memory Banks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
     image_caption: ""
-    content: "MOVEMUSIC transfers 1K of music data from main memory to auxiliary language card memory, using bank-switching techniques. This process was essential for fitting the game's rich audio and visual content into the Apple II's limited memory. Bank switching allowed developers to access additional memory banks, effectively expanding the usable memory without increasing hardware costs. Mechner's use of this technique highlights his deep understanding of the Apple II's architecture. By carefully managing memory, he was able to include features like dynamic music transitions, which enhanced the game's cinematic quality. This routine exemplifies the technical creativity required to push the boundaries of early home computers."
-  - id: "first-guard-mechanics"
+    content: "MOVEMUSIC transfers 1K of music data from main memory to auxiliary memory, utilizing bank-switching techniques. This routine demonstrates how Mechner leveraged the Apple II's hardware capabilities to manage audio data efficiently. Music played a crucial role in creating the cinematic atmosphere of Prince of Persia, and this routine ensured that sound effects and background music could be loaded dynamically during gameplay. Bank-switching was a common technique on the Apple II, allowing developers to extend the system's capabilities beyond its physical memory limits. This approach influenced later systems, where memory management became increasingly sophisticated."
+  - id: "move-auxiliary-language-card"
+    line_start: 152
+    line_end: 190
+    title: "Auxiliary Language Card: Memory Management Mastery"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: ""
+    image_caption: ""
+    content: "MOVEAUXLC is a complex routine for transferring large blocks of data to the auxiliary language card and setting interrupt vectors. This routine showcases Mechner's deep understanding of the Apple II's memory architecture. The auxiliary language card was a unique feature of the Apple II, allowing developers to extend the system's functionality. By carefully managing memory banks, Mechner ensured that Prince of Persia could handle its detailed animations and gameplay mechanics within the constraints of 128K. This routine also highlights the challenges of programming on early computers, where developers had to work closely with hardware to achieve their goals."
+  - id: "first-guard-logic"
     line_start: 191
-    line_end: 218
-    title: "First guard: gameplay tension and strategy"
+    line_end: 224
+    title: "First Guard: Cinematic Gameplay Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The FIRSTGUARD subroutine establishes a key gameplay mechanic: preventing the player from bypassing an en-garde guard without engaging in combat. It checks various conditions, such as the player's sword status, the guard's actions, and their relative positions. If the player attempts to evade, the guard forces them back, adding tension and strategy to the encounter. This mechanic reflects Mechner's focus on creating a cinematic experience where every action feels meaningful. The guard's behavior mirrors the dramatic standoffs seen in films, reinforcing the game's narrative-driven design. This innovation influenced later games by emphasizing character interactions and strategic gameplay over simple obstacle navigation."
+    content: "The FIRSTGUARD routine implements the logic for the first guard encounter, preventing the player from running or jumping past the guard. This reflects the game's emphasis on cinematic gameplay, where encounters are carefully choreographed to create tension and drama. Mechner's use of rotoscoping for animations ensured that these interactions felt fluid and realistic. The guard's behavior is determined by a series of checks on the player's position, actions, and attributes, showcasing the detailed programming required to create engaging gameplay. This routine set the tone for the game's combat mechanics, influencing the design of later cinematic platformers."
+  - id: "mark-strength-meters"
+    line_start: 229
+    line_end: 255
+    title: "Marking Strength Meters: Visual Feedback"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The MARKMETERS routine updates the visual representation of strength meters for the player and opponent. This was an innovative way to provide feedback to players in real-time, enhancing the game's cinematic feel. Mechner's programming ensured that these updates were efficient and visually clear, despite the Apple II's graphical limitations. Strength meters became a staple in action games, providing players with critical information during combat. This routine reflects the game's focus on creating an immersive experience, where every detail contributes to the player's engagement."
   - id: "potion-effects"
     line_start: 257
-    line_end: 345
-    title: "Potion effects: dynamic gameplay enhancements"
+    line_end: 351
+    title: "Potion Effects: Dynamic Gameplay Enhancements"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "POTIONEFFECT handles the various outcomes of consuming potions, ranging from gaining a sword to becoming weightless or upside-down. Each effect is tied to specific gameplay mechanics, such as boosting strength or altering movement. This subroutine showcases Mechner's creativity in designing interactive elements that surprise and challenge players. Potions add depth to the game, encouraging exploration and experimentation. In the context of 1989, such dynamic mechanics were rare, especially on hardware as limited as the Apple II. Mechner's ability to implement these features within tight constraints demonstrates his mastery of both storytelling and technical programming. Potions became a staple in many games, reflecting their impact on gameplay design."
-  - id: "reflection-mechanics"
-    line_start: 486
-    line_end: 523
-    title: "Reflection: cinematic innovation in gameplay"
+    content: "POTIONEFFECT implements the effects of various potions, from boosting strength to making the player weightless. This routine adds depth to the gameplay, allowing players to interact with the environment in unique ways. Mechner's design ensured that these effects were visually and mechanically impactful, enhancing the game's cinematic quality. The use of potions as gameplay modifiers influenced the design of later games, where power-ups became a common feature. This routine demonstrates how Mechner balanced complexity and accessibility, creating a game that was both challenging and rewarding."
+  - id: "mouse-rescue-sequence"
+    line_start: 352
+    line_end: 379
+    title: "Mouse Rescue: A Cinematic Twist"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The REFLECTION subroutine creates a pseudo-character to represent the player's reflection in a mirror. It checks conditions like the player's position and mirror alignment before drawing the reflection. This mechanic adds a cinematic touch to the game, emphasizing its storytelling elements. Mechner's use of reflections was inspired by film techniques, where mirrors often symbolize introspection or duality. Implementing this feature on the Apple II required clever programming to simulate the visual effect within hardware constraints. The reflection mechanic influenced later games by demonstrating how visual storytelling could enhance gameplay, blending narrative and interactivity in innovative ways."
-  - id: "bones-rise-mechanics"
-    line_start: 595
-    line_end: 679
-    title: "Bones rise: dramatic resurrection sequence"
+    content: "MOUSERESCUE is a unique sequence where a mouse rescues the player, showcasing the game's cinematic storytelling. This routine sets up the mouse as a character, with specific attributes and actions. Mechner's use of storytelling through gameplay was groundbreaking, creating moments that felt like scenes from a movie. The mouse rescue sequence is a memorable part of Prince of Persia, highlighting the game's emphasis on narrative and character development. This approach influenced the design of later games, where storytelling became an integral part of the gameplay experience."
+  - id: "stab-character-routine"
+    line_start: 380
+    line_end: 449
+    title: "Stab Character: Combat Mechanics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "BONESRISE handles the resurrection of a skeleton, a dramatic moment in the game. It checks conditions like the player's position and screen visibility before triggering the sequence. The skeleton is brought to life with specific attributes, such as sword status and movement patterns. This subroutine reflects Mechner's focus on creating memorable gameplay moments that feel cinematic. The resurrection sequence adds tension and excitement, showcasing the game's ability to surprise players. In 1989, such dynamic interactions were rare, especially on the Apple II. BONESRISE demonstrates Mechner's ability to blend technical programming with storytelling, influencing the design of later games with similar dramatic sequences."
-  - id: "save-game-routine"
-    line_start: 743
-    line_end: 766
-    title: "Save game: persistence in storytelling"
+    content: "STABCHAR implements the logic for stabbing a character, including checks for defenselessness and life points. This routine is a key part of the game's combat mechanics, adding tension and strategy to encounters. Mechner's programming ensured that these interactions were fluid and responsive, enhancing the game's cinematic quality. The use of detailed checks and animations reflects the game's focus on realism and immersion. This routine influenced the design of combat systems in later games, where player actions and consequences became more nuanced."
+  - id: "unholy-shadow-link"
+    line_start: 450
+    line_end: 480
+    title: "Unholy Link: Shadow and Player Connection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "DOSAVEGAME allows players to save their progress, a feature that was becoming increasingly common in games by the late 1980s. It checks conditions like the player's level before writing data to disk. This routine reflects Mechner's understanding of player needs, ensuring they could return to the game without losing progress. Saving games was particularly challenging on the Apple II, where disk operations were slow and memory was limited. Mechner's implementation balances technical constraints with usability, enhancing the game's accessibility. The save-game feature became a standard in gaming, highlighting its importance in creating immersive, long-form experiences."
+    content: "UNHOLY establishes the connection between the player and their shadow, where the death of one affects the other. This routine is a critical part of the game's narrative, emphasizing the bond between the two characters. Mechner's programming ensured that this connection was seamlessly integrated into the gameplay, adding emotional weight to the story. The concept of linked characters influenced the design of later games, where relationships between characters became a central theme. This routine reflects the game's focus on storytelling and character development."
 
 ---
 

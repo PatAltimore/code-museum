@@ -9,66 +9,66 @@ year: 1989
 author: "Jordan Mechner"
 slug: "eq"
 order: 18
-description: "Equates and memory mappings for Prince of Persia's Apple II assembly code"
+description: "Equates and data tables for Prince of Persia's Apple II assembly code, defining memory layout and constants for cinematic gameplay."
 
 summary:
-  - point: "Memory bank switching to fit within 128K"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank Switching"
-  - point: "Jump tables for modular subroutine calls"
-    link: "https://en.wikipedia.org/wiki/Jump_table"
-    link_label: "Jump Table"
-  - point: "Zero-page optimization for faster access"
-    link: "https://en.wikipedia.org/wiki/Zero_page"
-    link_label: "Zero Page"
-  - point: "Blueprint data structure for level design"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
-  - point: "Constants defining screen geometry and masks"
+  - point: "Bank-switched memory layout for Apple II"
     link: "https://en.wikipedia.org/wiki/Apple_II"
     link_label: "Apple II"
+  - point: "Jump tables organize subroutine calls"
+    link: "https://en.wikipedia.org/wiki/Jump_table"
+    link_label: "Jump table"
+  - point: "Blueprint data structures for level design"
+    link: "https://en.wikipedia.org/wiki/Level_design"
+    link_label: "Level design"
+  - point: "Zero-page memory optimization for speed"
+    link: "https://en.wikipedia.org/wiki/Zero_page"
+    link_label: "Zero page"
+  - point: "Constants define screen geometry and masks"
+    link: "https://en.wikipedia.org/wiki/Bitwise_operation"
+    link_label: "Bitwise operations"
 
 enhancements:
-  - id: "memory-mapping-and-equates"
+  - id: "bank-switched-memory-layout"
     line_start: 11
     line_end: 32
-    title: "Memory mapping: squeezing into 128K"
+    title: "Bank-switched memory: fitting into 128K"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Bankswitch_memory_map.svg/330px-Bankswitch_memory_map.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Bankswitch memory map (CC BY-SA 3.0)"
-    content: "This section defines memory mappings and equates for the Apple II's bank-switched architecture. Jordan Mechner had to fit the entire game into just 128K of memory, a constraint that required careful partitioning of resources. The Apple IIe/IIc used a combination of main memory and auxiliary memory, with language card banks providing additional space. Each equate here assigns a specific memory address to a game component, such as graphics buffers, tables, or high-resolution image data. These mappings allowed the game to switch between memory banks seamlessly, a technique critical for handling the game's cinematic animations and complex level designs. In the mid-1980s, memory was expensive, and developers often worked under tight constraints. Mechner's solo effort to optimize memory usage reflects the ingenuity required to create ambitious games on limited hardware. The memory mapping approach seen here became a hallmark of programming for early home computers, influencing techniques in later systems with similar constraints."
+    image_url: ""
+    image_caption: ""
+    content: "These lines define the memory layout for the Apple II's bank-switched architecture, splitting the program's data between main memory, auxiliary memory, and the language card banks. Jordan Mechner had to carefully allocate resources to fit the entire game into the Apple II's limited 128K memory. Each memory region is assigned a specific role: graphics buffers, game tables, and high-resolution image storage. In the mid-1980s, this kind of memory juggling was common for developers working on constrained hardware. The Apple IIe and IIc relied on this technique to expand their capabilities without increasing hardware costs. Mechner's allocation reflects the meticulous planning required to deliver a cinematic experience on a machine originally designed for text-based applications. This memory layout would later influence how developers approached bank-switching on other platforms, ensuring high-performance games could run on limited hardware."
   - id: "jump-tables-for-subroutine-calls"
     line_start: 39
-    line_end: 216
-    title: "Jump tables: modular subroutine organization"
+    line_end: 69
+    title: "Jump tables: organizing cinematic sequences"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
     image_url: ""
     image_caption: ""
-    content: "The jump tables defined in this section serve as a modular way to organize subroutine calls. Each entry in the table points to a specific function, such as loading levels, handling game states, or performing graphical operations. This design allowed Mechner to create a flexible and extensible codebase, where new features could be added without disrupting existing functionality. Jump tables were a common technique in assembly programming, especially on systems like the Apple II, where direct memory addressing was crucial for performance. By using jump tables, Mechner could efficiently manage the game's diverse set of tasks, from animation playback to input handling. This approach also reflects the influence of structured programming principles, which were gaining traction in the 1980s. The modularity provided by jump tables helped ensure the game's stability and maintainability, paving the way for its success as a groundbreaking cinematic platformer."
-  - id: "blueprint-data-structure"
+    content: "The jump tables defined here provide a structured way to call subroutines for various game states and actions, such as loading levels, saving games, and handling attract mode. Each entry is a three-byte pointer to a subroutine, enabling quick access and reducing the overhead of managing complex control flow. In 1989, jump tables were a common pattern in assembly programming, offering both speed and simplicity on hardware with limited processing power. Mechner's use of jump tables reflects his focus on creating a seamless cinematic experience, where transitions between gameplay and story elements feel fluid. This approach allowed the game to handle dynamic scenarios, such as the prince's interactions with the environment, efficiently. Jump tables remain a foundational concept in programming, influencing modern techniques for dispatching function calls in compiled languages."
+  - id: "blueprint-data-structures"
     line_start: 258
     line_end: 287
-    title: "Blueprints: the foundation of level design"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Blueprints: mapping the game's levels"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
     image_url: ""
     image_caption: ""
-    content: "The blueprint data structure defined here is central to Prince of Persia's level design. It specifies the layout, connections, and properties of each level, including starting positions for characters and objects. Mechner's use of this structured approach reflects his background in filmmaking, where storyboarding and planning are essential. The blueprint system allowed for precise control over the game's cinematic feel, ensuring that each level flowed seamlessly into the next. In the late 1980s, level design was often a labor-intensive process, requiring developers to manually encode layouts and interactions. Mechner's blueprint system streamlined this process, enabling him to focus on crafting the game's narrative and visual style. This innovation influenced later games, where data-driven level design became a standard practice."
-  - id: "zero-page-optimization"
+    content: "The blueprint data structures defined here organize the layout and metadata for Prince of Persia's levels. These include type definitions, specifications, and mapping information, all crucial for rendering the game's intricate environments. Mechner's cinematic platformer was groundbreaking in its use of detailed, rotoscoped animations and carefully designed levels that felt alive. The blueprint system allowed him to encode the spatial relationships and behaviors of objects within each level, ensuring the prince's movements and interactions were realistic. In the late 1980s, level design was often a labor-intensive process, and tools for automating or simplifying it were rare. Mechner's approach reflects his dual role as programmer and designer, balancing technical constraints with artistic vision. This system laid the groundwork for more sophisticated level editors in later games, influencing how developers approached the integration of design and code."
+  - id: "zero-page-memory-optimization"
     line_start: 365
     line_end: 382
-    title: "Zero-page variables: faster access for critical data"
+    title: "Zero-page memory: squeezing out speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
     image_url: ""
     image_caption: ""
-    content: "This section defines variables stored in the Apple II's zero page, a region of memory that allows faster access due to shorter addressing modes. The zero page was a prized resource for assembly programmers, as it could significantly improve performance for frequently accessed data. Mechner uses it here to store parameters related to high-resolution graphics, such as coordinates, image dimensions, and opacity. By optimizing access to these variables, he ensured smooth rendering of the game's cinematic animations. In the 1980s, zero-page optimization was a hallmark of skilled assembly programming, reflecting the ingenuity required to maximize performance on limited hardware. Mechner's careful allocation of zero-page memory demonstrates his deep understanding of the Apple II's architecture and his commitment to delivering a visually stunning game experience."
-  - id: "screen-geometry-and-masks"
+    content: "The zero-page memory section defines variables used for high-resolution graphics operations, such as coordinates, offsets, and image buffers. The Apple II's 6502 processor allowed direct access to the first 256 bytes of memory, known as the zero page, with faster instructions than other memory regions. Mechner leveraged this feature to optimize performance for the game's demanding graphics routines. In the 1980s, zero-page optimization was a hallmark of skilled assembly programming, enabling developers to push hardware to its limits. By carefully allocating critical variables to the zero page, Mechner ensured that Prince of Persia's animations and gameplay remained smooth despite the Apple II's modest capabilities. This technique exemplifies the ingenuity required to create high-performance software on constrained systems, and it remains a valuable lesson in efficient programming."
+  - id: "screen-geometry-and-bitwise-masks"
     line_start: 476
     line_end: 491
-    title: "Screen constants: defining the game world"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    title: "Screen geometry: defining the playfield"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
     image_caption: ""
-    content: "This section defines constants for the screen's geometry and masks, establishing the boundaries and rules of the game world. The Apple II's display resolution of 140x192 pixels shaped these definitions, which include screen width, height, and edge positions. Masks are used to manipulate specific bits in memory, enabling operations like collision detection and object rendering. By encoding these constants, Mechner created a framework for consistent and efficient graphical operations. In the late 1980s, developers often had to work directly with hardware constraints, as abstraction layers were minimal. These constants reflect the meticulous planning required to optimize performance and ensure compatibility with the Apple II's display capabilities. They also highlight Mechner's ability to balance technical precision with artistic vision, a combination that defined Prince of Persia's groundbreaking gameplay."
+    content: "These constants define the screen dimensions and bitwise masks used for graphical operations. The Apple II's resolution of 140x192 pixels was a constraint that Mechner had to work within while creating the game's cinematic visuals. By explicitly defining screen boundaries and masks, he ensured consistent rendering and efficient manipulation of graphics data. Bitwise operations, such as masking, were essential for tasks like collision detection and sprite management, enabling the game to handle complex interactions without taxing the hardware. In the late 1980s, understanding and leveraging these low-level techniques was crucial for game developers, especially on systems with limited graphical capabilities. Mechner's attention to detail in defining these constants reflects his commitment to delivering a polished experience, and these principles continue to influence graphics programming today."
 
 ---
 

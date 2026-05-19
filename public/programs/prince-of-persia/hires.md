@@ -9,90 +9,74 @@ year: 1989
 author: "Jordan Mechner"
 slug: "hires"
 order: 9
-description: "The foundational graphics routines for Prince of Persia's cinematic platforming on the Apple II."
+description: "This file contains the high-resolution graphics routines for Prince of Persia (1989), showcasing Jordan Mechner's ingenuity in optimizing animation and memory usage on the Apple II."
 
 summary:
-  - point: "Bank-switched memory management for 128K Apple II systems"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Routines for high-resolution graphics manipulation"
-    link: "https://en.wikipedia.org/wiki/Graphics_processing_unit"
-    link_label: "Graphics processing"
-  - point: "Efficient handling of rotoscoped animation frames"
+  - point: "Bank-switched memory techniques for Apple II graphics"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank Switching"
+  - point: "Use of rotoscoping for animation in a video game"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Innovative use of auxiliary memory for graphics"
-    link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory management"
-  - point: "Optimized routines for screen clearing and image layering"
-    link: "https://en.wikipedia.org/wiki/Double_buffering"
-    link_label: "Double buffering"
+  - point: "Efficient handling of edge-clipping and mirroring in graphics routines"
+    link: "https://en.wikipedia.org/wiki/Graphics_pipeline"
+    link_label: "Graphics Pipeline"
+  - point: "Custom subroutines for manipulating screen memory"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Introduction of cinematic platforming in video games"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
 
 enhancements:
-  - id: "entry-point-jump-table"
-    line_start: 13
-    line_end: 32
-    title: "Jump Table: Organizing Graphics Routines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Clipping_draw2.svg/330px-Clipping_draw2.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Clipping area (rectangle) and clipped parts in blue (Public domain)"
-    content: "This section defines a jump table, a common technique in assembly programming to organize and quickly access subroutines. Each `jmp` instruction points to a specific graphics routine, such as clearing the screen (`cls`), layering images (`lay`), or handling fast image operations (`fastlay`). In the late 1980s, Apple II programmers faced severe memory constraints, and jump tables allowed efficient use of limited resources by centralizing routine entry points. Jordan Mechner, working solo on Prince of Persia, used this table to manage the game's complex animation and graphics routines. This approach reflects the ingenuity required to create cinematic experiences on hardware with only 128K of memory."
-  - id: "local-variable-allocation"
-    line_start: 45
-    line_end: 70
-    title: "Local Variables: Memory as Scratchpad"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
+  - id: "ztemp-local-variables"
+    line_start: 64
+    line_end: 87
+    title: "Local variables: the scaffolding of complexity"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "This section allocates local variables in specific memory regions (`locals` and `locals2`). These variables include coordinates (`XSAVE`, `YSAVE`), dimensions (`WIDTH`, `HEIGHT`), and masks (`AMASK`, `BMASK`). On the Apple II, memory was precious, and programmers often used zero-page memory for fast access. Mechner's careful organization of these variables ensured efficient handling of graphics operations, such as calculating screen offsets and managing image dimensions. This meticulous memory management was crucial for achieving smooth animation and responsive gameplay in Prince of Persia."
-  - id: "opacity-codes"
-    line_start: 74
-    line_end: 80
-    title: "Opacity Codes: Defining Image Operations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
-    image_url: ""
-    image_caption: ""
-    content: "The opacity codes define how images interact with the background during rendering. Operations like `AND`, `OR`, `STA`, and `XOR` determine whether pixels are combined, replaced, or manipulated. For example, `mask` applies a mask before overlaying an image. These codes reflect Mechner's approach to handling transparency and layering, essential for the game's visual style. The ability to manipulate individual pixels with precision enabled the rotoscoped animations to blend seamlessly with the environment, creating the cinematic feel that defined Prince of Persia."
-  - id: "screen-clear-routine"
+    content: "This section defines local variables used throughout the high-resolution graphics routines. Each variable, such as AMASK, BMASK, and VISWIDTH, serves a specific purpose in handling image rendering and memory manipulation. In 1989, memory was precious—128K on the Apple II was both a constraint and a canvas. Jordan Mechner had to carefully allocate and reuse memory, ensuring that every byte contributed to the cinematic experience of Prince of Persia. These variables are the backbone of the graphics routines, enabling efficient calculations for clipping, masking, and rendering. Without this meticulous organization, the game's fluid animations and detailed visuals would have been impossible on such limited hardware."
+  - id: "cls-clear-hires-screen"
     line_start: 206
-    line_end: 230
-    title: "CLS: Clearing the High-Resolution Screen"
+    line_end: 240
+    title: "Clearing the canvas: high-res screen reset"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""
     image_caption: ""
-    content: "The `CLS` routine clears the high-resolution screen to black, preparing it for new graphics. It iterates through memory locations corresponding to the screen, setting each byte to a predefined color (`black2`). On the Apple II, screen clearing was a performance-critical operation, as it directly affected the responsiveness of the game. Mechner optimized this routine to ensure minimal delay, allowing the game to maintain its fast-paced action. This routine exemplifies the low-level control required to manage graphics on early computers, where every cycle counted."
-  - id: "image-preparation-routine"
-    line_start: 311
-    line_end: 350
-    title: "PREPREP: Preparing Images for Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Raster_graphics"
-    image_url: ""
-    image_caption: ""
-    content: "The `PREPREP` routine initializes image rendering by saving key parameters (`IMAGE`, `XCO`, `YCO`) and calculating the starting address of the image data. It also reads the image's width and height from the table. This routine is a critical step in the rendering pipeline, ensuring that images are correctly positioned and sized before being drawn. Mechner's attention to detail in this routine highlights the challenges of creating dynamic visuals on the Apple II, where graphics had to be carefully managed within tight memory and processing constraints."
-  - id: "crop-routine"
+    content: "The CLS subroutine clears the high-resolution screen to black, preparing the canvas for new graphics. This operation is fundamental in graphics programming, ensuring that remnants of previous frames do not interfere with the current display. On the Apple II, this involved writing to specific memory locations corresponding to the screen buffer. Mechner's approach uses loops and indexed addressing to efficiently reset the screen, a necessity given the limited processing power of the 6502 CPU. This routine highlights the balance between simplicity and performance, a hallmark of programming for early home computers."
+  - id: "crop-image-clipping"
     line_start: 375
-    line_end: 507
-    title: "CROP: Clipping Images to Screen Boundaries"
+    line_end: 516
+    title: "CROP: Precision in edge-clipping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The `CROP` routine ensures that images are clipped to the visible screen area, adjusting their coordinates and dimensions as needed. It handles cases where parts of the image are offscreen, modifying the `XCO`, `YCO`, and other parameters accordingly. This routine reflects Mechner's commitment to creating a polished visual experience, where animations and graphics never exceed the screen boundaries. By implementing clipping at the assembly level, he ensured optimal performance, a necessity for the Apple II's limited hardware."
-  - id: "fastlay-routine"
-    line_start: 1730
-    line_end: 1885
-    title: "FASTLAY: Speeding Up Image Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
+    content: "The CROP subroutine handles the complex task of clipping images to fit within the visible screen area. It calculates parameters like TOPEDGE, VISWIDTH, and OFFLEFT to determine which parts of an image are visible and which are offscreen. This was critical for rendering characters and objects in Prince of Persia, where smooth animations and accurate positioning were key to the game's cinematic feel. In the late 1980s, such routines were often handcrafted, as there were no standardized libraries for graphics manipulation. Mechner's implementation reflects a deep understanding of both the Apple II hardware and the visual requirements of his game."
+  - id: "lay-general-image-rendering"
+    line_start: 658
+    line_end: 680
+    title: "LAY: The heart of image rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_pipeline"
     image_url: ""
     image_caption: ""
-    content: "The `FASTLAY` routine is a streamlined version of the image layering process, designed for maximum speed. It bypasses complex operations like clipping, mirroring, and masking, focusing solely on rendering images as quickly as possible. This trade-off between functionality and performance was essential for maintaining the game's fluid animation and responsiveness. Mechner's decision to include this routine reflects his understanding of the Apple II's limitations and his ability to optimize for them, ensuring that Prince of Persia delivered a cinematic experience despite the hardware constraints."
+    content: "The LAY subroutine is the central routine for rendering images on the high-resolution screen. It handles edge-clipping, bit-shifting, and mirroring, calling specialized routines like LayGen, LayMask, and LayXOR based on the image's opacity and transformation requirements. This modular design allowed Mechner to reuse and adapt code for different rendering scenarios, a necessity given the constraints of the Apple II. The ability to mirror images was particularly important for animating the Prince's movements, as it allowed the same animation frames to be used for both directions, saving memory and development time."
+  - id: "fastlay-streamlined-rendering"
+    line_start: 1740
+    line_end: 1824
+    title: "FASTLAY: Speed over flexibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Optimization_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "FASTLAY is a streamlined version of the LAY routine, designed for maximum speed at the expense of flexibility. It skips operations like clipping, mirroring, and masking, assuming that the image fits perfectly within the screen boundaries. This trade-off was acceptable for certain scenarios in Prince of Persia, where performance was critical to maintaining smooth animations. Mechner's decision to include such a specialized routine reflects the challenges of optimizing graphics on the Apple II, where every cycle counted. FASTLAY demonstrates the ingenuity required to push the limits of early home computers."
   - id: "invert-y-tables"
     line_start: 2098
-    line_end: 2124
-    title: "INVERTY: Flipping Vertical Coordinates"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
+    line_end: 2130
+    title: "INVERTY: Flipping the perspective"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Transformation_(mathematics)"
     image_url: ""
     image_caption: ""
-    content: "The `INVERTY` routine swaps the vertical coordinates in the Y-tables, effectively flipping the screen's orientation. This operation is part of the game's rendering pipeline, allowing for dynamic manipulation of graphics. On the Apple II, such transformations required careful handling of memory and processing power. Mechner's implementation demonstrates his deep understanding of the hardware and his ability to leverage its capabilities to achieve the desired visual effects. This routine contributed to the game's ability to create immersive and visually engaging environments."
+    content: "The INVERTY subroutine swaps the Y-coordinate tables, effectively flipping the screen's perspective. This operation was likely used for special effects or debugging, allowing Mechner to visualize the game world in a different orientation. Such transformations were rare in 1980s games, as they required additional processing power and memory. However, they highlight Mechner's experimental approach to game development, where even the hardware's limitations became opportunities for creative solutions. INVERTY is a small but fascinating glimpse into the technical artistry behind Prince of Persia."
 
 ---
 
