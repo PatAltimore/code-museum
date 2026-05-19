@@ -9,36 +9,36 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "sounds-c"
 order: 37
-description: "This file defines the sound and music assets that gave DOOM its iconic audio atmosphere."
+description: "This file defines the sound and music assets for DOOM, a foundational element of its immersive gameplay experience."
 
 summary:
-  - point: "Defines music tracks for all levels and events"
+  - point: "Defines music tracks for each level and special events"
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     link_label: "DOOM (1993)"
   - point: "Lists sound effects with metadata for playback"
     link: "https://en.wikipedia.org/wiki/Sound_effect"
     link_label: "Sound Effect"
-  - point: "Demonstrates early use of data-driven design in games"
-    link: "https://en.wikipedia.org/wiki/Data-driven_programming"
-    link_label: "Data-driven Programming"
+  - point: "Demonstrates early use of structured data for game audio"
+    link: "https://en.wikipedia.org/wiki/Game_audio"
+    link_label: "Game Audio"
 
 enhancements:
   - id: "music-track-definitions"
     line_start: 37
-    line_end: 106
-    title: "Mapping DOOM's haunting musical score"
+    line_end: 107
+    title: "Mapping DOOM's iconic music tracks"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `S_music` array defines the music tracks used throughout DOOM's levels and events. Each entry specifies a track name, like 'e1m1' for Episode 1, Mission 1, and a placeholder value for additional metadata. This structure reflects the game's data-driven design philosophy, where assets like music and sound effects are abstracted into tables for easy reference and modification. In 1993, this approach was cutting-edge, allowing developers to iterate quickly without hardcoding every asset. The music itself was composed by Bobby Prince, who drew inspiration from heavy metal bands like Metallica and Slayer. Prince's work gave DOOM its adrenaline-pumping atmosphere, perfectly complementing the fast-paced gameplay. The tracks were stored in MIDI format, a lightweight standard ideal for the limited storage and processing power of early '90s PCs. This table also highlights DOOM's modularity. By separating music definitions from gameplay logic, id Software made it easier to port the game to other platforms and even enabled fan modifications. The influence of this design can be seen in countless games that followed, where asset tables became a staple of game development. Today, DOOM's music is remembered as much for its technical ingenuity as for its cultural impact, with fans still remixing and reinterpreting the tracks decades later."
+    content: "This section defines the music tracks used throughout DOOM, associating each level and special event with a specific track name. The array `S_music` maps identifiers like 'e1m1' (Episode 1, Mission 1) to corresponding music assets. At the time, DOOM's music was composed by Bobby Prince, blending heavy metal and ambient influences to complement the game's intense atmosphere. The structured approach to music management reflects the growing complexity of game development in the early 1990s, where audio was becoming a critical component of immersion. By organizing music data in this way, id Software ensured that each level had a distinct auditory identity, contributing to the game's memorability. This technique of associating music tracks with game states or levels became a standard in game development, influencing titles like Quake and Unreal."
   - id: "sound-effect-metadata"
     line_start: 114
     line_end: 227
-    title: "Cataloging DOOM's visceral sound effects"
+    title: "Cataloging DOOM's sound effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
     image_url: ""
     image_caption: ""
-    content: "The `S_sfx` array catalogs all the sound effects used in DOOM, from the 'pistol' firing sound to the eerie 'cybsit' of the Cyberdemon. Each entry includes metadata such as the sound's name, priority, and playback properties. This level of detail was crucial for managing audio in a game as fast-paced and chaotic as DOOM. In the early '90s, sound design in games was constrained by hardware limitations. PCs often relied on basic sound cards like the Sound Blaster, which supported limited simultaneous channels and low-quality audio. Despite these constraints, DOOM's sound effects were meticulously crafted to enhance immersion. Many sounds were created by Bobby Prince, who used a combination of synthesized effects and real-world recordings. For example, the chainsaw sound ('sawidl') was derived from actual machinery. The inclusion of a dummy entry ('none') at index 0 is a workaround for quirks in the game's audio system. Such hacks were common in the era, as developers often had to improvise solutions to hardware and software limitations. This table also showcases DOOM's commitment to modularity, allowing sound effects to be easily referenced and modified. DOOM's sound effects became iconic, influencing the audio design of countless shooters that followed. The visceral impact of these sounds contributed to the game's legendary status, proving that audio is as critical to immersion as graphics or gameplay. Even today, the roar of a rocket launcher or the growl of a demon instantly evokes memories of DOOM's hellish corridors."
+    content: "The `S_sfx` array lists all sound effects used in DOOM, along with metadata such as priority, pitch, and looping behavior. Each entry includes a name (e.g., 'pistol' for the pistol firing sound) and parameters that control how the sound is played. This structured approach allowed DOOM to manage a large number of sound effects efficiently, ensuring that audio playback was consistent across different hardware configurations. In the early 1990s, sound cards like the Sound Blaster were becoming popular, and games had to optimize audio playback for these devices. The dummy entry at index 0 is a workaround for technical quirks, a common practice in programming at the time. This meticulous organization of sound assets laid the groundwork for modern game audio engines, influencing successors like the Source Engine and Unity's audio systems."
 
 ---
 

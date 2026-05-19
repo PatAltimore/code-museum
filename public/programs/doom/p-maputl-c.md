@@ -9,66 +9,71 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-maputl-c"
 order: 29
-description: "Utility functions for movement and collision detection in DOOM's map system."
+description: "Utility functions for collision detection and movement in DOOM's map system."
 
 summary:
-  - point: "Approximate distance calculation optimized for fixed-point arithmetic."
-    link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
-    link_label: "Fixed-point arithmetic"
-  - point: "Efficient line-side determination using precomputed slopes."
-    link: "https://en.wikipedia.org/wiki/Slope"
-    link_label: "Slope"
-  - point: "Blockmap iteration for spatial partitioning and collision detection."
+  - point: "Approximation techniques for efficient calculations"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM (1993)"
+  - point: "Blockmap-based spatial partitioning for collision detection"
     link: "https://en.wikipedia.org/wiki/Spatial_partitioning"
-    link_label: "Spatial partitioning"
-  - point: "Intercept vector calculation for precise collision handling."
-    link: "https://en.wikipedia.org/wiki/Collision_detection"
-    link_label: "Collision detection"
-  - point: "Path traversal algorithm for raycasting and object interaction."
-    link: "https://en.wikipedia.org/wiki/Ray_casting"
-    link_label: "Ray casting"
+    link_label: "Spatial Partitioning"
+  - point: "Fixed-point arithmetic for performance on early hardware"
+    link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    link_label: "Fixed-point Arithmetic"
+  - point: "Traversal algorithms for intercept detection"
+    link: "https://en.wikipedia.org/wiki/Line_algorithm"
+    link_label: "Line Algorithm"
 
 enhancements:
   - id: "approx-distance-calculation"
     line_start: 44
     line_end: 58
-    title: "Approximate distance with fixed-point math"
+    title: "Approximation of distances using fixed-point math"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
-    content: "The `P_AproxDistance` function calculates an approximate distance between two points using fixed-point arithmetic, a necessity for performance on early 1990s hardware. By avoiding floating-point calculations, which were slow or unavailable on many consumer PCs, DOOM's developers ensured the game could run smoothly on machines like the Intel 386. This function uses a clever trick: instead of computing the exact Euclidean distance, it combines the absolute differences in x and y coordinates, subtracting half of the smaller difference for a close approximation. This trade-off between precision and speed reflects the constraints of the era and the ingenuity required to overcome them."
+    content: "The `P_AproxDistance` function calculates an approximate distance between two points using fixed-point arithmetic. Instead of computing the Euclidean distance, which requires a square root operation, this method uses a simplified formula that avoids costly floating-point operations. In the early 1990s, consumer PCs often lacked hardware support for floating-point calculations, making this approach essential for performance. John Carmack, known for his focus on optimization, implemented this approximation to ensure DOOM could run smoothly on modest hardware like the Intel 386. This technique influenced later games and engines, where efficient distance calculations were critical for real-time performance."
   - id: "point-on-line-side"
     line_start: 62
     line_end: 100
     title: "Determining point position relative to a line"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Slope"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Line_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The `P_PointOnLineSide` function determines whether a point lies on the front or back side of a line. This is a fundamental operation for collision detection and spatial reasoning in DOOM's map system. The function uses precomputed slopes (`dx` and `dy`) to avoid expensive floating-point calculations. In 1993, this approach was critical for real-time performance on hardware with limited computational power. John Carmack, DOOM's lead programmer, was known for his mastery of optimization techniques, and this function exemplifies his ability to balance precision and speed. The logic here laid the groundwork for efficient raycasting and object interaction in the game."
+    content: "The `P_PointOnLineSide` function determines whether a point lies on the 'front' or 'back' side of a line. This is a fundamental operation in DOOM's collision detection system, as it helps classify spatial relationships between objects and map geometry. The function uses fixed-point arithmetic to ensure precision and performance on early hardware. This approach was pivotal in enabling DOOM's fast-paced gameplay, as it allowed for efficient spatial queries without relying on floating-point operations. The concept of determining a point's position relative to a line remains a staple in modern game development, particularly in physics engines and spatial partitioning systems."
   - id: "box-on-line-side"
     line_start: 105
     line_end: 153
-    title: "Handling bounding boxes in collision checks"
+    title: "Classifying a bounding box relative to a line"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_box"
     image_url: ""
     image_caption: ""
-    content: "The `P_BoxOnLineSide` function checks whether a bounding box crosses, lies on, or is fully on one side of a line. Bounding boxes are a simplified representation of objects used to speed up collision detection. This function considers the line as infinite, making it suitable for broad-phase collision checks. The use of bounding boxes reflects a common optimization in game development, where precise calculations are deferred until absolutely necessary. In DOOM, this approach allowed the game to handle large numbers of objects and complex environments without overwhelming the CPU. The function's design is a testament to the team's ability to adapt mathematical concepts to the constraints of real-time gameplay."
+    content: "The `P_BoxOnLineSide` function extends the logic of `P_PointOnLineSide` to handle bounding boxes, which are used to represent areas occupied by objects. This function determines whether a box is entirely on one side of a line, crosses it, or is ambiguous. Bounding boxes are a key optimization in collision detection, as they simplify calculations by reducing complex shapes to rectangular approximations. In DOOM, this method was crucial for handling interactions between moving entities and static map geometry. The use of bounding boxes for collision detection has since become standard practice in game development, influencing engines like Unreal and Unity."
   - id: "intercept-vector-calculation"
     line_start: 224
-    line_end: 284
-    title: "Precise intercept vector calculation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
+    line_end: 283
+    title: "Finding intercept points between lines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Line_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The `P_InterceptVector` function calculates the fractional intercept point between two lines, a critical operation for collision detection and raycasting. This function uses fixed-point arithmetic to ensure precision and performance on early 1990s hardware. The inclusion of a debug mode using floating-point calculations highlights the team's iterative approach to development, balancing accuracy and speed. This function was used in traversers that determined interactions between objects and the environment, a cornerstone of DOOM's gameplay mechanics. The ability to efficiently compute intercepts allowed the game to simulate complex interactions in its 3D-like world, setting a new standard for realism in gaming."
+    content: "The `P_InterceptVector` function calculates the fractional intercept point between two lines. This is used to determine where a moving object or trace intersects with map geometry. The function employs fixed-point arithmetic to ensure performance on early hardware. This calculation is central to DOOM's traversal and collision systems, enabling efficient detection of interactions between entities and the environment. The concept of intercept vectors is widely used in modern physics engines, where it facilitates raycasting and collision resolution."
+  - id: "thing-position-management"
+    line_start: 342
+    line_end: 450
+    title: "Updating object positions in spatial structures"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Spatial_partitioning"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_UnsetThingPosition` and `P_SetThingPosition` functions manage the spatial placement of objects within DOOM's blockmap and sector structures. These functions ensure that objects are correctly linked and unlinked as they move, allowing efficient queries for collision detection and rendering. The blockmap system divides the map into smaller sections, enabling localized updates and reducing computational overhead. This approach was instrumental in achieving DOOM's real-time performance on early PCs. Spatial partitioning techniques like this have influenced modern game engines, where similar systems are used for efficient scene management and physics calculations."
   - id: "path-traversal-algorithm"
     line_start: 736
     line_end: 880
-    title: "Tracing paths through the map grid"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Ray_casting"
+    title: "Tracing paths through spatial partitions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Spatial_partitioning"
     image_url: ""
     image_caption: ""
-    content: "The `P_PathTraverse` function implements a path traversal algorithm, tracing a line through the map grid and invoking a callback for each block it intersects. This algorithm is central to DOOM's raycasting system, which underpins its rendering and collision detection. By stepping through map blocks and sorting intercepts, the function ensures efficient handling of interactions between the player's view, objects, and walls. The algorithm reflects the game's reliance on spatial partitioning to manage its complex environments. In the early 1990s, this approach was revolutionary, enabling DOOM to deliver fast-paced action and immersive visuals on hardware that was considered modest even at the time."
+    content: "The `P_PathTraverse` function traces a line through DOOM's blockmap, calling user-defined functions for each block it intersects. This algorithm is used for operations like raycasting and collision detection, where efficient traversal of spatial partitions is critical. By leveraging the blockmap structure, the function minimizes unnecessary checks and focuses only on relevant areas. This technique was a key innovation in DOOM's engine, enabling fast and accurate interactions between entities and the environment. Path traversal algorithms remain a cornerstone of game development, influencing systems like raycasting in modern engines."
 
 ---
 

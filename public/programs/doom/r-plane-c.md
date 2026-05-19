@@ -9,60 +9,66 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "r-plane-c"
 order: 35
-description: "This file contains the code responsible for rendering floors and ceilings in DOOM, a groundbreaking game that defined the FPS genre and pushed the limits of 1990s hardware."
+description: "This file implements DOOM's floor and ceiling rendering system, a key innovation in creating immersive 3D environments on limited hardware."
 
 summary:
-  - point: "The visplane technique was used to efficiently render floors and ceilings."
+  - point: "DOOM's visplane system efficiently handles floor and ceiling rendering."
     link: "https://doomwiki.org/wiki/Visplane"
     link_label: "Visplane"
-  - point: "DOOM's rendering system was optimized for low-end hardware of the early 1990s."
-    link: "https://en.wikipedia.org/wiki/DOOM"
-    link_label: "DOOM"
-  - point: "The code includes clever hacks to handle sky rendering and lighting effects."
-    link: "https://doomwiki.org/wiki/Sky_rendering"
-    link_label: "Sky Rendering"
+  - point: "Plane rendering uses fixed-point arithmetic for speed on 1990s hardware."
+    link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    link_label: "Fixed-point arithmetic"
+  - point: "Sky rendering bypasses lighting calculations for simplicity and performance."
+    link: "https://doomwiki.org/wiki/Sky"
+    link_label: "Sky rendering in DOOM"
+  - point: "Span-based rendering minimizes overdraw and optimizes memory usage."
+    link: "https://doomwiki.org/wiki/Span_buffer"
+    link_label: "Span buffer"
+  - point: "DOOM's rendering system inspired later engines like Quake and Unreal."
+    link: "https://en.wikipedia.org/wiki/Quake_engine"
+    link_label: "Quake engine"
 
 enhancements:
   - id: "visplane-data-structure"
     line_start: 51
-    line_end: 56
-    title: "Visplane: A clever rendering shortcut"
+    line_end: 60
+    title: "Visplane: Efficient floor and ceiling management"
     wikipedia_url: "https://doomwiki.org/wiki/Visplane"
     image_url: ""
     image_caption: ""
-    content: "The visplane data structure is central to DOOM's floor and ceiling rendering system. It represents a collection of spans (horizontal strips) that share the same height, texture, and lighting properties. By grouping pixels this way, the game avoids the need to individually calculate every pixel in a floor or ceiling, dramatically improving performance on the limited hardware of the early 1990s. This technique was devised by John Carmack, whose innovative approaches to rendering were instrumental in making DOOM run smoothly on machines with just 4MB of RAM and processors like the Intel 486. The visplane method was a response to the constraints of the era, where memory and processing power were scarce, and every optimization mattered. It became a hallmark of DOOM's engine, influencing later games and engines."
-  - id: "r-mapplane-subroutine"
-    line_start: 120
-    line_end: 178
-    title: "Mapping planes for efficient rendering"
-    wikipedia_url: "https://doomwiki.org/wiki/Rendering"
+    content: "The visplane data structure is central to DOOM's floor and ceiling rendering system. It tracks regions of the screen where a specific floor or ceiling texture is visible, along with its height and lighting level. By limiting the number of visplanes to 128, the developers ensured that the rendering process remained efficient and manageable on the limited hardware of the early 1990s. This approach allowed DOOM to create visually complex environments without overwhelming the CPU or memory. The visplane system was a clever workaround for the lack of hardware acceleration, and it laid the groundwork for similar techniques in later engines like Quake."
+  - id: "plane-texture-mapping"
+    line_start: 80
+    line_end: 93
+    title: "Texture mapping with fixed-point precision"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
-    content: "The `R_MapPlane` function is a critical piece of DOOM's rendering pipeline. It calculates the texture mapping for a horizontal span of a floor or ceiling, using precomputed values for distance scaling and lighting. This subroutine relies heavily on fixed-point arithmetic, a necessity for performance on early 1990s hardware. At the time, floating-point operations were prohibitively slow, so developers like John Carmack used fixed-point math to perform calculations efficiently. The function also incorporates lighting adjustments based on distance, creating the illusion of depth and atmosphere. This combination of mathematical precision and clever optimization allowed DOOM to render immersive environments at high speed, setting a benchmark for future 3D games."
+    content: "DOOM uses fixed-point arithmetic to calculate texture mapping for floors and ceilings. This decision was driven by the need for speed and precision on hardware without floating-point units. The cachedheight, cacheddistance, cachedxstep, and cachedystep arrays store precomputed values to avoid redundant calculations during rendering. Fixed-point arithmetic was a common choice in the era, as it allowed developers to perform mathematical operations quickly and with predictable results. This technique became a staple in game development, influencing engines like Build (used in Duke Nukem 3D) and even modern mobile games where performance is critical."
+  - id: "r-mapplane-function"
+    line_start: 108
+    line_end: 178
+    title: "R_MapPlane: Rendering spans for floors and ceilings"
+    wikipedia_url: "https://doomwiki.org/wiki/Span_buffer"
+    image_url: ""
+    image_caption: ""
+    content: "The R_MapPlane function is the core of DOOM's floor and ceiling rendering. It calculates texture coordinates and lighting for spans (horizontal strips) of the screen, using precomputed values like yslope and distscale to optimize performance. The function also handles lighting adjustments based on distance, ensuring that floors and ceilings appear correctly lit. This span-based approach minimizes overdraw, a common problem in rendering, and makes efficient use of memory and CPU cycles. The technique was innovative for its time and influenced later engines, including Quake and Unreal, which built on the idea of span buffers and optimized rendering pipelines."
   - id: "r-clearplanes-initialization"
     line_start: 182
     line_end: 209
-    title: "Preparing planes for a new frame"
+    title: "R_ClearPlanes: Preparing for a new frame"
     wikipedia_url: "https://doomwiki.org/wiki/Rendering"
     image_url: ""
     image_caption: ""
-    content: "The `R_ClearPlanes` function initializes the rendering state at the beginning of each frame. It resets clipping arrays, clears cached heights, and calculates texture scaling factors based on the player's view angle. This setup ensures that the rendering pipeline starts with a clean slate, ready to process the next frame's geometry. In the early 1990s, games like DOOM had to manage every aspect of rendering manually, as hardware acceleration was nonexistent. The function's reliance on precomputed values and efficient memory management reflects the constraints of the era, where developers had to wring every ounce of performance from the CPU."
-  - id: "r-findplane-sky-handling"
-    line_start: 215
-    line_end: 258
-    title: "Sky rendering: A unique challenge"
-    wikipedia_url: "https://doomwiki.org/wiki/Sky_rendering"
+    content: "R_ClearPlanes initializes the rendering system at the start of each frame. It resets clipping arrays (floorclip and ceilingclip) and clears cached texture heights to prepare for new calculations. This step ensures that the rendering process starts with a clean slate, avoiding artifacts or errors from previous frames. The function also calculates base scaling factors (basexscale and baseyscale) for texture mapping, based on the player's view angle. This meticulous preparation reflects the developers' attention to detail and their commitment to optimizing performance. Similar initialization routines became standard in game engines, ensuring consistent and efficient rendering."
+  - id: "sky-rendering-hack"
+    line_start: 395
+    line_end: 419
+    title: "Sky rendering: A bright and simple hack"
+    wikipedia_url: "https://doomwiki.org/wiki/Sky"
     image_url: ""
     image_caption: ""
-    content: "The `R_FindPlane` function includes a special case for rendering skies, treating them differently from regular floors and ceilings. Skies are always drawn at full brightness and are unaffected by lighting changes, creating a consistent backdrop for the game's environments. This approach simplifies the rendering process and ensures that the sky remains visually distinct, contributing to DOOM's atmospheric design. The handling of skies reflects the game's focus on performance and visual impact, as developers prioritized techniques that would run efficiently while maintaining the game's immersive feel."
-  - id: "r-drawplanes-final-rendering"
-    line_start: 367
-    line_end: 452
-    title: "Drawing planes: The final step"
-    wikipedia_url: "https://doomwiki.org/wiki/Rendering"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_DrawPlanes` function is the culmination of DOOM's floor and ceiling rendering process. It iterates through the visplanes, calculating spans and applying textures and lighting. For sky textures, it uses a simplified rendering path that ensures consistent brightness and visual clarity. The function also includes error checks to prevent overflows in the visplane and opening arrays, a testament to the meticulous attention to detail in DOOM's codebase. This final step in the rendering pipeline demonstrates the game's ability to balance complexity and performance, delivering visually rich environments on hardware that was considered modest even in 1993."
+    content: "DOOM's sky rendering system is a clever hack that simplifies lighting calculations. Skies are always drawn at full brightness, using a fixed colormap (colormaps[0]). This decision bypasses the lighting adjustments applied to other textures, reducing computational overhead and ensuring that skies remain visually consistent. The hack also avoids complications with special effects like the invulnerability power-up, which alters lighting for other textures. By prioritizing simplicity and performance, the developers created a visually striking sky that complements the game's fast-paced action. This approach influenced later games, which often used similar hacks for sky rendering to optimize performance."
 
 ---
 

@@ -9,66 +9,164 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "m-menu-c"
 order: 25
-description: "This file implements the menu system for DOOM, a foundational element of its user interface and player experience."
+description: "This file implements DOOM's menu system, a critical interface for player interaction in one of gaming's most influential titles."
 
 summary:
-  - point: "Defines the hierarchical menu structure for DOOM"
+  - point: "Defines menu structures for episodes, options, and save/load functionality"
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM (1993)"
-  - point: "Introduces dynamic menu animations, such as the 'skull cursor'"
-    link: "https://doomwiki.org/wiki/Menu"
-    link_label: "DOOM Menu System"
-  - point: "Handles save/load game functionality and user input"
-    link: "https://doomwiki.org/wiki/Save_game"
-    link_label: "Save Game in DOOM"
-  - point: "Includes compatibility adjustments for different game modes"
-    link: "https://doomwiki.org/wiki/Game_mode"
-    link_label: "DOOM Game Modes"
-  - point: "Demonstrates early techniques for graphical UI rendering in games"
-    link: "https://en.wikipedia.org/wiki/Graphical_user_interface"
-    link_label: "Graphical User Interface"
+    link_label: "DOOM"
+  - point: "Introduces modular menu handling with reusable components"
+    link: "https://en.wikipedia.org/wiki/Menu_(computing)"
+    link_label: "Menu Systems"
+  - point: "Includes clever hacks to handle platform-specific quirks"
+    link: "https://en.wikipedia.org/wiki/Software_portability"
+    link_label: "Software Portability"
 
 enhancements:
-  - id: "menu-data-structure-definition"
-    line_start: 140
+  - id: "menu-data-structures"
+    line_start: 138
     line_end: 167
-    title: "Building DOOM's hierarchical menu system"
-    wikipedia_url: "https://doomwiki.org/wiki/Menu"
+    title: "Reusable menu structures for modular design"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Menu_(computing)"
     image_url: ""
     image_caption: ""
-    content: "This section defines the core data structures for DOOM's menu system, including `menuitem_t` and `menu_t`. These structures encapsulate menu items, their properties, and the hierarchical relationships between menus. In 1993, designing a menu system for a game like DOOM required balancing simplicity with functionality. The `menu_t` structure allows for nested menus, enabling players to navigate through options like starting a new game, adjusting settings, or saving progress. The inclusion of function pointers (`routine`) for drawing and handling menu actions reflects the flexibility of C as a language and the ingenuity of John Carmack and the id Software team. This approach influenced many subsequent games, establishing conventions for menu-driven interfaces in gaming."
-  - id: "menu-animation-skull-cursor"
-    line_start: 170
-    line_end: 175
-    title: "Animating the iconic 'skull cursor'"
-    wikipedia_url: "https://doomwiki.org/wiki/Menu"
+    content: "This section defines the `menuitem_t` and `menu_t` structures, which are the backbone of DOOM's menu system. Each menu item (`menuitem_t`) includes attributes like its status, name, associated routine, and hotkey, while the menu itself (`menu_t`) organizes these items into a cohesive interface with properties like position, drawing routine, and navigation links to previous menus. By abstracting menu functionality into reusable structures, DOOM achieves a modular design that simplifies the addition and modification of menus. In 1993, modular design principles were becoming more common in software engineering, influenced by the growing complexity of programs and the need for maintainability. John Carmack's focus on clean, efficient code is evident here, as these structures allow the same menu-handling logic to be applied across different contexts, such as episode selection, game options, and save/load screens. This approach influenced later game engines, including id Software's own Quake engine, which further refined modular UI systems. Today, similar abstractions are standard in game development frameworks like Unity and Unreal Engine."
+  - id: "main-menu-definition"
+    line_start: 250
+    line_end: 269
+    title: "Defining DOOM's iconic main menu"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "DOOM's menu system includes a memorable visual element: the animated 'skull cursor' that highlights the currently selected menu item. This section defines the `skullName` array, which stores the graphic names for the two frames of the skull animation. The animation is achieved by toggling between these frames, creating a simple yet effective visual effect. In the early 1990s, such graphical flourishes were rare in PC games, as hardware constraints often limited developers to static interfaces. The skull cursor not only added personality to the game but also demonstrated id Software's commitment to creating an immersive experience, even in the menus."
-  - id: "save-load-functionality"
+    content: "This section defines the main menu of DOOM, including its items like 'New Game', 'Options', 'Load Game', 'Save Game', 'Read This', and 'Quit DOOM'. Each menu item is linked to a specific function, such as `M_NewGame` or `M_Options`, which handle the corresponding action. The menu is positioned at coordinates (97, 64) on the screen, and the `M_DrawMainMenu` routine is responsible for rendering it. In the early 1990s, menus in games were often simple and utilitarian, but DOOM's menu system stood out for its responsiveness and integration with the game's aesthetic. The modular design allowed for easy navigation and quick access to essential functions, enhancing the player's experience. This menu system became a template for many first-person shooters that followed, influencing titles like Quake and Unreal. Its simplicity and effectiveness are still studied in game design courses today."
+  - id: "episode-selection-menu"
+    line_start: 275
+    line_end: 300
+    title: "Episode selection: branching narratives"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The episode selection menu allows players to choose between different chapters of the game, such as 'Knee-Deep in the Dead' or 'Thy Flesh Consumed'. Each episode is represented as a menu item linked to the `M_Episode` function, which initiates the selected chapter. The menu is positioned at (48, 63) and rendered using the `M_DrawEpisode` routine. This design reflects DOOM's episodic structure, which was inspired by shareware distribution models prevalent in the early 1990s. Shareware allowed players to try the first episode for free, enticing them to purchase the full game. This approach was highly successful for id Software, helping DOOM reach millions of players and establish its legacy. The episodic format influenced later games like Half-Life, which adopted a similar structure for its expansions and sequels."
+  - id: "save-load-system"
     line_start: 511
-    line_end: 604
-    title: "Implementing save and load functionality"
-    wikipedia_url: "https://doomwiki.org/wiki/Save_game"
+    line_end: 534
+    title: "Reading save game strings: persistence in play"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
     image_caption: ""
-    content: "This section handles the mechanics of saving and loading game progress, a critical feature for DOOM players. The `M_ReadSaveStrings` function reads save game descriptions from files, while `M_LoadGame` and `M_SaveGame` manage the menu interactions for loading and saving. In the early 1990s, save systems were often rudimentary, but DOOM's implementation allowed players to store multiple save states and provided a user-friendly interface for managing them. The use of file I/O functions like `open` and `read` reflects the low-level programming required to interact with the operating system directly. This functionality was particularly important for a game as challenging as DOOM, enabling players to experiment with strategies and revisit difficult sections."
-  - id: "menu-drawing-functions"
-    line_start: 1741
+    content: "The `M_ReadSaveStrings` function reads save game descriptions from disk, populating the `savegamestrings` array with the names of saved games. If a save file is missing, it assigns a default empty string and disables the corresponding menu item. This function uses platform-specific file handling, such as checking for the `-cdrom` parameter to adjust file paths for CD-ROM installations. In the early 1990s, save systems were a critical feature for games, allowing players to preserve progress in increasingly complex worlds. DOOM's save/load system was robust and user-friendly, contributing to its accessibility and replayability. The concept of save slots became a standard in gaming, influencing titles across genres, from RPGs like Final Fantasy to modern shooters like Call of Duty."
+  - id: "quick-save-and-load"
+    line_start: 679
+    line_end: 743
+    title: "Quick save/load: streamlining player experience"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
+    image_url: ""
+    image_caption: ""
+    content: "The quick save/load system in DOOM allows players to rapidly save and resume their progress with minimal interruption. The `M_QuickSave` function initiates a save operation, prompting the player to confirm the action if a slot has already been selected. Similarly, `M_QuickLoad` retrieves the last quick save, ensuring a seamless return to gameplay. This feature was a significant innovation in 1993, reducing frustration for players navigating challenging levels. Quick save/load systems became a hallmark of PC gaming, appearing in titles like Half-Life and Skyrim. They remain a critical feature in modern games, reflecting DOOM's enduring influence on usability and player-centric design."
+  - id: "sound-volume-control"
+    line_start: 811
+    line_end: 847
+    title: "Dynamic sound volume adjustment"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements the ability to adjust sound effects and music volume dynamically within the game menu. The functions `M_SfxVol` and `M_MusicVol` allow the player to increase or decrease volume levels, constrained between 0 and 15. The actual volume adjustment is handled by the `S_SetSfxVolume` and `S_SetMusicVolume` functions. In 1993, sound design in games was becoming increasingly important, and DOOM's approach to giving players control over audio settings was ahead of its time. This feature would later become standard in video games, influencing titles across genres. The ability to adjust sound dynamically reflects the developers' focus on user experience and adaptability to different hardware setups."
+  - id: "menu-navigation-icons"
+    line_start: 857
+    line_end: 870
+    title: "Rendering menu navigation icons"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_fonts"
+    image_url: ""
+    image_caption: ""
+    content: "The `M_DrawMainMenu` and `M_DrawNewGame` functions use bitmap patches to render the main menu and new game options. These patches are loaded from the game's WAD file using the `W_CacheLumpName` function. Bitmap fonts and graphics were a common choice for games in the early 1990s due to their simplicity and compatibility with limited hardware. DOOM's menu design was visually striking and easy to navigate, setting a precedent for future games that combined aesthetic appeal with functional design. The use of bitmap patches also highlights the importance of efficient memory management in an era when hardware constraints were a significant challenge."
+  - id: "episode-selection"
+    line_start: 893
+    line_end: 940
+    title: "Episode selection and verification"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "This section handles the episode selection menu, allowing players to choose which campaign episode to play. The `M_Episode` function includes checks for shareware and registered versions of the game, ensuring compatibility with different editions. The `M_VerifyNightmare` function introduces a confirmation dialog for the 'Nightmare' difficulty, emphasizing the game's challenging nature. These features reflect DOOM's modular design, which accommodated various distribution models, including shareware. The episode selection mechanism influenced later games that adopted similar modular approaches, such as expansion packs and downloadable content."
+  - id: "menu-options-rendering"
+    line_start: 951
+    line_end: 965
+    title: "Rendering options menu with sliders"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `M_DrawOptions` function renders the options menu, including sliders for mouse sensitivity and screen size. The sliders are drawn using the `M_DrawThermo` function, which creates a visual representation of the current setting. This graphical approach to menu design was innovative for its time, providing a clear and intuitive way for players to adjust settings. The use of sliders in menus became a standard practice in video games, influencing user interface design across the industry. DOOM's options menu demonstrates the developers' attention to usability and player customization."
+  - id: "quit-doom-sequence"
+    line_start: 1080
+    line_end: 1093
+    title: "Quit DOOM with randomized sounds"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `M_QuitResponse` function handles the sequence when a player chooses to quit the game. If the game is not in multiplayer mode, it plays a randomized sound effect from the `quitsounds` or `quitsounds2` arrays, depending on the game mode. This playful touch adds personality to the game, making even the act of quitting memorable. The randomized sounds reflect the developers' creativity and attention to detail, ensuring that every aspect of the game contributes to its immersive experience. This feature influenced later games that incorporated humor and personality into their user interfaces."
+  - id: "menu-input-handling"
+    line_start: 1349
+    line_end: 1600
+    title: "Handling menu input across devices"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
+    image_url: ""
+    image_caption: ""
+    content: "The `M_Responder` function processes input from various devices, including keyboards, mice, and joysticks, to navigate the game's menus. It includes logic for handling joystick movements, mouse clicks, and keyboard presses, ensuring compatibility with different input methods. This flexibility was crucial in 1993, as players used a variety of hardware to interact with games. The function also supports special keys for quick actions, such as saving and loading games or toggling gamma correction. DOOM's robust input handling influenced the development of cross-platform games and standardized input processing techniques in game engines like Unity and Unreal Engine."
+  - id: "menu-key-navigation"
+    line_start: 1608
+    line_end: 1715
+    title: "Navigating menus with keyboard input"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_(computing)"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements the logic for navigating DOOM's menus using keyboard input. Keys like the arrow keys, Enter, Escape, and Backspace are mapped to specific actions, such as moving between menu items, selecting an option, or returning to a previous menu. The code includes sound effects for feedback, enhancing the user experience. At the time, keyboard navigation was a standard for PC games, as mice were less commonly used for gaming. John Carmack and the team designed this system to be intuitive, ensuring players could easily interact with the game menus. The approach influenced later games by establishing conventions for menu navigation that persist in modern gaming interfaces."
+  - id: "menu-control-panel-initialization"
+    line_start: 1723
+    line_end: 1732
+    title: "Activating the control panel menu"
+    wikipedia_url: "https://en.wikipedia.org/wiki/User_interface"
+    image_url: ""
+    image_caption: ""
+    content: "The `M_StartControlPanel` function initializes the main menu when the player presses the Escape key. It sets the active menu to the main menu definition (`MainDef`) and ensures the previously selected item is highlighted. This design reflects the team's focus on usability, allowing players to quickly access the menu without disrupting gameplay. In the early 1990s, such seamless transitions between gameplay and menus were a hallmark of polished game design. The function's simplicity and efficiency influenced subsequent games, which adopted similar methods for menu activation."
+  - id: "menu-drawer-rendering"
+    line_start: 1740
     line_end: 1805
-    title: "Rendering DOOM's menus with precision"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Graphical_user_interface"
+    title: "Rendering menu graphics and animations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_pipeline"
     image_url: ""
     image_caption: ""
-    content: "The `M_Drawer` function is responsible for rendering DOOM's menus, including text, graphics, and animations. It uses helper functions like `M_WriteText` and `V_DrawPatchDirect` to position and draw elements on the screen. In the early 1990s, graphical rendering in games often required developers to work directly with hardware or low-level APIs, making functions like this a testament to the team's technical expertise. The ability to dynamically center text and animate elements like the skull cursor showcases id Software's attention to detail. This approach laid the groundwork for more sophisticated graphical user interfaces in later games."
+    content: "The `M_Drawer` function handles the rendering of DOOM's menus, including text, menu items, and the animated 'skull cursor.' It calculates positions for centering text and iterates through menu items to draw them using cached assets. The skull cursor animation adds a dynamic element to the menu, making it visually engaging. This approach demonstrates the team's mastery of efficient graphics rendering on limited hardware, as DOOM had to run smoothly on PCs with modest capabilities. The use of cached assets and simple animations influenced later games, which adopted similar techniques to balance visual appeal and performance."
+  - id: "menu-clear-functionality"
+    line_start: 1811
+    line_end: 1816
+    title: "Clearing menus and returning to gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
+    image_url: ""
+    image_caption: ""
+    content: "The `M_ClearMenus` function deactivates the menu and prepares the game to resume. It sets the `menuactive` flag to zero, ensuring the game logic no longer processes menu-related events. This functionality is crucial for maintaining a clean separation between gameplay and menu interactions. The design reflects the team's focus on creating a responsive and immersive experience, where players can quickly toggle between menus and gameplay. This method of clearing menus influenced later games, which adopted similar state management techniques to ensure smooth transitions."
+  - id: "menu-setup-next-menu"
+    line_start: 1824
+    line_end: 1828
+    title: "Switching to a new menu"
+    wikipedia_url: "https://en.wikipedia.org/wiki/State_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "The `M_SetupNextMenu` function transitions the user to a new menu. It updates the `currentMenu` pointer and sets the selected item (`itemOn`) to the last selected item in the new menu. This design ensures continuity, allowing players to pick up where they left off. The function highlights the team's attention to detail in crafting a user-friendly interface. Such state management techniques became standard in game development, influencing menu systems in later titles."
+  - id: "menu-skull-animation"
+    line_start: 1834
+    line_end: 1841
+    title: "Animating the skull cursor"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_animation"
+    image_url: ""
+    image_caption: ""
+    content: "The `M_Ticker` function animates the skull cursor used in DOOM's menus. It toggles between two states (`whichSkull`) every eight ticks, creating a blinking effect. This simple animation adds a dynamic and engaging element to the menu interface. In the early 1990s, such animations were a novel way to enhance user interfaces without taxing hardware. The technique influenced later games, which adopted similar methods to add visual flair to their menus."
   - id: "menu-initialization"
     line_start: 1847
     line_end: 1890
-    title: "Adapting menus for different game modes"
-    wikipedia_url: "https://doomwiki.org/wiki/Game_mode"
+    title: "Initializing menu state and adapting to game modes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Shareware"
     image_url: ""
     image_caption: ""
-    content: "The `M_Init` function initializes DOOM's menu system, tailoring it to the game's various modes: shareware, registered, retail, and commercial. This adaptability reflects the game's distribution model, which offered different features depending on the version purchased. For example, the shareware version limited access to certain episodes, while the commercial version streamlined the menu structure. These adjustments ensured a consistent user experience across all versions, while also serving as a subtle marketing tool to encourage upgrades. The modular design of the menu system allowed id Software to efficiently manage these variations, demonstrating their foresight in anticipating the needs of diverse audiences."
+    content: "The `M_Init` function initializes the menu system and adapts it based on the game's mode (e.g., shareware, retail, commercial). It sets default values for menu state variables, such as the active menu and animation counters, ensuring consistent behavior. The function also includes mode-specific adjustments, like removing unavailable episodes in shareware versions or modifying menu layouts for DOOM II. This adaptability reflects the team's effort to optimize the game for different distribution models and audiences. The approach influenced later games, which adopted similar techniques to tailor content based on licensing or version differences."
 
 ---
 

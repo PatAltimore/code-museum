@@ -9,76 +9,90 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-mobj-c"
 order: 9
-description: "This file handles the movement, spawning, and behavior of objects in DOOM's game world, showcasing the ingenuity behind its dynamic gameplay."
+description: "This file handles the movement, spawning, and state transitions of moving objects (mobjs) in DOOM, showcasing techniques that defined modern game programming."
 
 summary:
-  - point: "DOOM's object handling system allowed for dynamic interactions and fluid gameplay."
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM (1993)"
-  - point: "Efficient use of memory and processing power enabled DOOM to run on modest hardware."
-    link: "https://en.wikipedia.org/wiki/Computer_memory"
-    link_label: "Computer Memory"
-  - point: "The modular design of object states and actions influenced future game engines."
-    link: "https://en.wikipedia.org/wiki/Game_engine"
-    link_label: "Game Engine"
+  - point: "State-driven object behavior with action functions"
+    link: "https://en.wikipedia.org/wiki/Finite-state_machine"
+    link_label: "Finite-state machine"
+  - point: "Efficient handling of object movement and collision"
+    link: "https://en.wikipedia.org/wiki/Collision_detection"
+    link_label: "Collision detection"
+  - point: "Nightmare respawn mechanics for monsters"
+    link: "https://doomwiki.org/wiki/Nightmare_skill_level"
+    link_label: "Nightmare skill level"
+  - point: "Dynamic spawning of missiles and special effects"
+    link: "https://en.wikipedia.org/wiki/Particle_system"
+    link_label: "Particle system"
+  - point: "Deathmatch item respawn logic"
+    link: "https://doomwiki.org/wiki/Deathmatch"
+    link_label: "Deathmatch"
 
 enhancements:
-  - id: "object-state-management"
+  - id: "state-driven-object-behavior"
     line_start: 53
     line_end: 84
-    title: "Object State Management: A Modular Approach"
+    title: "State-driven object behavior with action functions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
     image_caption: ""
-    content: "The `P_SetMobjState` function is a cornerstone of DOOM's object handling system. It manages the transition of an object (or 'mobj') between states, such as animations or behaviors. Each state is defined by properties like sprite, frame, and action function. This modular approach allowed developers to define complex behaviors for enemies, projectiles, and other objects without hardcoding every interaction. In 1993, this was groundbreaking—most games relied on simpler, less flexible systems. John Carmack's use of finite-state machines here reflects his background in efficient algorithm design and his desire to push the limits of real-time gameplay. The concept of state-driven object management became a standard in game development, influencing engines like Unreal and Unity."
+    content: "The `P_SetMobjState` function is a cornerstone of DOOM's object management system. It transitions a moving object (mobj) between states, which are defined in a state table. Each state can have associated properties like sprite, frame, and duration (`tics`) and may trigger an action function. This design allows objects to exhibit complex behaviors, such as animations, sound effects, or gameplay mechanics, by simply changing their state. At the time, finite-state machines were a well-established concept in computer science but had rarely been applied so effectively in real-time games. John Carmack's implementation here is both efficient and flexible, enabling DOOM's dynamic gameplay. This approach influenced countless games that followed, including Quake and Unreal, and remains a standard in game development today."
   - id: "missile-explosion-handling"
     line_start: 90
     line_end: 105
-    title: "Handling Explosions: Missiles in Motion"
+    title: "Missile explosion handling and sound effects"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_ExplodeMissile` function handles the logic for when a missile object (e.g., a rocket or fireball) explodes. It stops the missile's movement, transitions its state to a 'death' state, and triggers a sound effect if one is defined. This function also adjusts the missile's lifespan (`tics`) to add randomness, ensuring explosions feel dynamic and less predictable. The inclusion of sound effects tied to object states was groundbreaking in 1993, enhancing immersion and feedback for players. This technique became a staple in action games, influencing titles like Half-Life and Call of Duty, where audio cues play a critical role in gameplay."
+  - id: "xy-movement-and-collision"
+    line_start: 114
+    line_end: 241
+    title: "XY movement and collision resolution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `P_ExplodeMissile` function demonstrates DOOM's handling of missile objects upon collision or expiration. When a missile explodes, its momentum is reset, its state transitions to a death animation, and sound effects are triggered. This function also includes a randomization element to vary the explosion duration, adding a subtle unpredictability to gameplay. In the early 1990s, collision detection and response were critical challenges, especially on hardware with limited processing power. Carmack's solution balances efficiency with realism, ensuring that explosions feel impactful without overloading the CPU. This approach influenced later games, where dynamic effects became integral to immersive experiences."
-  - id: "xy-movement-calculations"
-    line_start: 114
-    line_end: 241
-    title: "XY Movement: Physics on a Budget"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
-    image_url: ""
-    image_caption: ""
-    content: "The `P_XYMovement` function handles the horizontal movement of objects in DOOM's world. It incorporates friction, momentum, and collision detection to simulate physics-like behavior. Notably, it includes special cases for airborne objects, missiles, and corpses, ensuring realistic interactions. In 1993, real-time physics engines were rare, and DOOM's approach was a clever workaround for hardware limitations. Carmack's use of fixed-point arithmetic instead of floating-point reflects the constraints of the era, where performance was prioritized over precision. This function laid the groundwork for more advanced physics systems in later games, proving that even simple approximations can create compelling gameplay."
+    content: "The `P_XYMovement` function calculates horizontal movement for mobjs while handling collisions with walls, objects, and other entities. It uses a combination of momentum (`momx`, `momy`) and friction to simulate realistic movement. If a collision occurs, the function attempts to slide the object along the obstacle or, in the case of missiles, triggers an explosion. This implementation reflects Carmack's focus on performance and accuracy, ensuring smooth gameplay even on the limited hardware of the early 1990s. The sliding mechanics and collision handling influenced later engines like Source and Unity, which expanded on these principles to support more complex physics simulations."
   - id: "z-movement-and-gravity"
     line_start: 246
     line_end: 349
-    title: "Vertical Movement: Simulating Gravity"
+    title: "Z movement and gravity simulation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Gravity_(physics)"
     image_url: ""
     image_caption: ""
-    content: "The `P_ZMovement` function governs vertical movement, including gravity, floor collisions, and ceiling interactions. It introduces behaviors like 'floating' for certain objects and adjusts player view height upon hard landings. This function also handles missile explosions when they collide with ceilings or floors. In the early '90s, simulating gravity in real-time was a significant achievement, especially given the limited computational power of consumer PCs. Carmack's implementation strikes a balance between realism and performance, using fixed-point calculations to ensure smooth gameplay. This approach influenced the development of physics systems in later 3D games, where vertical movement became increasingly complex."
-  - id: "nightmare-respawn-mechanism"
+    content: "The `P_ZMovement` function manages vertical movement for mobjs, including gravity effects and interactions with floors and ceilings. It adjusts the object's position based on its vertical momentum (`momz`) and applies gravity when appropriate. Special cases, such as floating objects and missiles, are handled separately to maintain gameplay consistency. This function also includes logic for smooth step-up transitions, enhancing the realism of player movement. The gravity simulation here was a precursor to more advanced physics engines, such as Havok and PhysX, which expanded on these ideas to create fully dynamic environments."
+  - id: "nightmare-respawn-mechanics"
     line_start: 356
     line_end: 409
-    title: "Nightmare Respawn: Monsters Never Rest"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    title: "Nightmare respawn mechanics for monsters"
+    wikipedia_url: "https://doomwiki.org/wiki/Nightmare_skill_level"
     image_url: ""
     image_caption: ""
-    content: "The `P_NightmareRespawn` function is a unique feature tied to DOOM's 'Nightmare' difficulty mode. It allows defeated monsters to respawn after a set time, adding relentless pressure to the gameplay. The function spawns visual and auditory effects, such as teleport fog and sounds, to signal the respawn. This mechanic was part of DOOM's innovative difficulty scaling, designed to challenge even the most skilled players. By introducing respawning enemies, the developers ensured that players remained engaged and constantly adapting their strategies. This feature inspired similar mechanics in later games, where dynamic difficulty adjustments became a staple."
-  - id: "player-spawn-system"
+    content: "The `P_NightmareRespawn` function implements the respawn logic for monsters in DOOM's Nightmare difficulty mode. When a monster is killed, it may reappear at its original spawn point after a delay, accompanied by visual and audio effects like teleport fog and sound. This mechanic added a layer of challenge to the game, forcing players to adapt their strategies. Introduced in DOOM, the concept of respawning enemies became a common feature in later games, influencing titles like Diablo and Dark Souls, where enemy persistence is a core gameplay element."
+  - id: "deathmatch-item-respawn"
+    line_start: 578
+    line_end: 631
+    title: "Deathmatch item respawn logic"
+    wikipedia_url: "https://doomwiki.org/wiki/Deathmatch"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_RespawnSpecials` function handles the respawn of items in deathmatch mode. Items are queued for respawn and reappear after a set time, accompanied by visual effects like teleport fog. This mechanic ensured a steady supply of resources during multiplayer matches, maintaining the game's fast-paced action. The concept of item respawn in multiplayer games became a standard feature, influencing later titles like Quake and Halo, where resource management is critical to competitive gameplay."
+  - id: "player-spawn-logic"
     line_start: 642
     line_end: 700
-    title: "Player Spawn: Entering the Fray"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Spawn_(computing)"
+    title: "Player spawn logic and initialization"
+    wikipedia_url: "https://doomwiki.org/wiki/Player"
     image_url: ""
     image_caption: ""
-    content: "The `P_SpawnPlayer` function initializes players in the game world, setting their position, health, and attributes. It also handles visual elements like color translations for multiplayer and prepares the player's weapon sprites. This function reflects DOOM's emphasis on multiplayer gameplay, which was revolutionary in 1993. By allowing players to spawn with unique identifiers and attributes, the game supported competitive and cooperative modes seamlessly. The spawn system's modularity influenced later multiplayer games, where player initialization became a critical aspect of design. DOOM's multiplayer capabilities helped establish the genre and paved the way for online gaming."
-  - id: "missile-spawn-and-trajectory"
-    line_start: 888
-    line_end: 926
-    title: "Missile Spawn: Calculating Trajectories"
+    content: "The `P_SpawnPlayer` function initializes a player object when spawning into a level. It sets attributes like health, position, and view height, and prepares the player's HUD and status bar. In deathmatch mode, players are given all keycards to ensure balanced gameplay. This function demonstrates DOOM's focus on seamless transitions between levels and multiplayer readiness. The player initialization logic influenced later multiplayer games, including Unreal Tournament and Counter-Strike, which expanded on these ideas to support more complex player states and equipment systems."
+  - id: "missile-spawn-and-aiming"
+    line_start: 887
+    line_end: 987
+    title: "Missile spawn and aiming mechanics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Projectile_motion"
     image_url: ""
     image_caption: ""
-    content: "The `P_SpawnMissile` function creates missile objects and calculates their trajectory based on the source and target positions. It incorporates randomization for 'fuzzy' targets, adding unpredictability to gameplay. This function showcases Carmack's ability to simulate complex interactions with minimal computational overhead. By using fixed-point arithmetic and precomputed trigonometric tables, DOOM achieves smooth missile movement on hardware that lacked floating-point support. The missile spawning system became a template for projectile mechanics in later games, demonstrating how efficient algorithms can enhance realism and gameplay."
+    content: "The `P_SpawnPlayerMissile` function spawns a missile object, such as a rocket, and attempts to aim it at a nearby target. If no target is found, the missile is fired in a straight line. The function calculates the missile's trajectory using the source's angle and momentum, ensuring accurate and responsive gameplay. This mechanic was pivotal in DOOM's fast-paced combat and influenced later games like Unreal and Team Fortress, where projectile-based weapons are a core gameplay element."
 
 ---
 

@@ -9,87 +9,74 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "r-bsp-c"
 order: 12
-description: "This file implements the Binary Space Partitioning (BSP) traversal for rendering in DOOM, a cornerstone of its revolutionary graphics engine."
+description: "This file implements BSP traversal and rendering, a core technique that powered DOOM's groundbreaking 3D graphics."
 
 summary:
-  - point: "BSP traversal optimized for real-time rendering"
+  - point: "Binary Space Partitioning (BSP) traversal for efficient rendering"
     link: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     link_label: "Binary Space Partitioning"
-  - point: "Efficient clipping algorithms for visibility determination"
+  - point: "Clipping algorithms for visibility determination"
     link: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
-    link_label: "Clipping Algorithms"
-  - point: "Handling of solid walls and transparent windows in rendering"
+    link_label: "Clipping in computer graphics"
+  - point: "Efficient handling of subsectors and line segments"
+    link: "https://doomwiki.org/wiki/Subsector"
+    link_label: "Subsector in DOOM"
+  - point: "Recursive rendering of BSP nodes for dynamic environments"
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     link_label: "DOOM (1993)"
-  - point: "Recursive rendering of BSP nodes for dynamic environments"
-    link: "https://en.wikipedia.org/wiki/Recursion_(computer_science)"
-    link_label: "Recursion in Computer Science"
+  - point: "Optimization techniques for real-time rendering on 1990s hardware"
+    link: "https://en.wikipedia.org/wiki/Real-time_computing"
+    link_label: "Real-time computing"
 
 enhancements:
-  - id: "clear-draw-segments"
-    line_start: 68
-    line_end: 71
-    title: "Resetting the draw segment buffer"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This function, `R_ClearDrawSegs`, initializes the buffer used to store draw segments, a key structure in DOOM's rendering pipeline. By resetting the pointer `ds_p` to the start of the `drawsegs` array, the game ensures that each frame begins with a clean slate for wall rendering. In 1993, memory management was a critical concern for games like DOOM, which had to run efficiently on hardware with limited RAM and processing power. The simplicity of this function reflects the team's focus on performance and reliability, avoiding unnecessary overhead. This approach allowed DOOM to maintain its fast-paced gameplay and smooth visuals, even on modest machines. The draw segment buffer would later be populated with visible wall segments, forming the backbone of the game's iconic 3D environments."
-  - id: "clip-solid-wall-segment"
-    line_start: 104
-    line_end: 185
-    title: "Clipping solid walls for visibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_ClipSolidWallSegment` function handles the clipping of solid walls, ensuring that only visible portions of single-sided LineDefs (walls with middle textures) are rendered. This algorithm works by comparing the wall's coordinates to the current clip list, adjusting the list to account for the new segment. In the early 1990s, real-time visibility determination was a major challenge for 3D games, as hardware lacked dedicated graphics processors. John Carmack's implementation here demonstrates a deep understanding of both geometry and optimization. By efficiently managing the clip list, DOOM could render complex scenes with minimal computational overhead. This technique influenced later games, as developers sought to balance visual fidelity with performance constraints."
-  - id: "clip-pass-wall-segment"
-    line_start: 197
-    line_end: 238
-    title: "Handling transparent walls and windows"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_ClipPassWallSegment` function deals with walls that have transparent sections, such as windows. Unlike solid walls, these segments are clipped but not added to the clip list, allowing the renderer to account for visibility through the transparent areas. This distinction was crucial for DOOM's immersive environments, where players could see through windows and interact with dynamic spaces. The function's design reflects the game's innovative approach to rendering, combining simplicity with versatility. By treating transparent walls differently, DOOM achieved a level of realism that set it apart from earlier 3D games. This technique laid the groundwork for more advanced rendering systems in future titles."
-  - id: "clear-clip-segments"
-    line_start: 245
-    line_end: 252
-    title: "Initializing the clipping list"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_ClearClipSegs` function initializes the clipping list, setting up the `solidsegs` array with default values that define the visible area. This step is essential for managing visibility during rendering, as it establishes the boundaries within which wall segments can be drawn. In the constrained environment of 1993, where DOOM had to run on hardware like the 386 processor, such initialization routines ensured stability and predictability in the rendering pipeline. This function highlights the team's meticulous attention to detail, as even seemingly minor tasks were optimized for performance. The clipping list would be updated dynamically during gameplay, adapting to the player's perspective and maintaining the illusion of a seamless 3D world."
-  - id: "add-line-to-render"
-    line_start: 259
-    line_end: 356
-    title: "Adding visible lines to the rendering list"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Back-face_culling"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_AddLine` function determines whether a line segment is visible and, if so, adds it to the rendering list. This process involves back-face culling, clipping to the view edges, and handling special cases like single-sided lines and windows. In the early 1990s, these techniques were cutting-edge, enabling DOOM to render its environments efficiently while maintaining high frame rates. John Carmack's implementation here showcases his mastery of 3D graphics, as he balances complexity with performance. The function's ability to reject invisible lines and optimize rendering was pivotal for DOOM's success, allowing it to deliver immersive gameplay on hardware with limited capabilities. This approach influenced countless games that followed, as developers sought to replicate DOOM's groundbreaking visuals."
-  - id: "check-bounding-box"
-    line_start: 365
-    line_end: 487
-    title: "Bounding box visibility checks"
+  - id: "bsp-traversal-and-line-segment-rendering"
+    line_start: 1
+    line_end: 26
+    title: "BSP Traversal and Line Segment Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
-    content: "The `R_CheckBBox` function checks whether a bounding box might be visible from the player's current viewpoint. This is a critical step in DOOM's BSP traversal, as it allows the renderer to skip entire subtrees that are outside the player's field of view. The function uses geometric calculations and the clip list to determine visibility, optimizing the rendering process by focusing only on potentially visible areas. In the early 1990s, this kind of spatial optimization was essential for real-time 3D graphics, as hardware lacked the power to brute-force render entire scenes. John Carmack's use of BSP trees and bounding box checks revolutionized game development, setting a new standard for efficiency and realism. This technique remains a foundational concept in modern graphics engines."
-  - id: "render-subsector"
-    line_start: 493
-    line_end: 542
-    title: "Rendering individual subsectors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Subsector_(computer_graphics)"
+    content: "This section introduces the file and its purpose: handling BSP traversal and line segment rendering for DOOM's graphics engine. Binary Space Partitioning (BSP) is a technique that divides a space into convex regions, enabling efficient rendering by determining visibility and occlusion. In DOOM, BSP traversal is used to decide which parts of the game world are visible to the player at any given moment. This technique was essential for achieving real-time 3D graphics on the limited hardware of the early 1990s. John Carmack, the lead programmer, adapted BSP from academic research and earlier games like Wolfenstein 3D, refining it to handle the more complex environments of DOOM. The approach became a cornerstone of game development, influencing engines like Quake and Unreal."
+  - id: "clear-draw-segments"
+    line_start: 65
+    line_end: 71
+    title: "Clearing Draw Segments for Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `R_Subsector` function handles the rendering of individual subsectors, including floor and ceiling planes, sprites, and line segments. This granular approach allows DOOM to construct its complex environments piece by piece, ensuring that each element is rendered accurately. In 1993, this level of detail was unprecedented, as most games relied on simpler techniques for environment rendering. The function's ability to dynamically determine visibility and handle special cases like sky textures contributed to DOOM's immersive atmosphere. By breaking the world into manageable subsectors, the game achieved a balance between visual fidelity and performance, paving the way for future advancements in 3D graphics."
+    content: "The `R_ClearDrawSegs` function resets the array of draw segments (`drawsegs`) before rendering begins. This ensures that each frame starts with a clean slate, avoiding artifacts from previous frames. In the early 1990s, memory management was a critical concern, as games like DOOM had to run efficiently on systems with limited RAM. By reusing pre-allocated arrays rather than dynamically allocating memory, the developers minimized overhead and improved performance. This technique exemplifies the careful optimization required to achieve real-time rendering on hardware like the Intel 486."
+  - id: "clip-solid-wall-segment"
+    line_start: 98
+    line_end: 185
+    title: "Clipping Solid Wall Segments"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_ClipSolidWallSegment` function handles the clipping of solid wall segments, ensuring that only visible portions of walls are rendered. This involves checking the range of columns (pixels) and updating the clip list to exclude occluded areas. Clipping is a fundamental operation in computer graphics, especially in real-time rendering, where performance is critical. In DOOM, this function was part of a larger system that determined visibility based on the player's viewpoint and the geometry of the game world. The implementation reflects the constraints of the era, where every CPU cycle mattered. Techniques like this laid the groundwork for more advanced visibility determination methods in later engines, such as portal rendering in Unreal Engine."
+  - id: "clip-pass-wall-segment"
+    line_start: 190
+    line_end: 238
+    title: "Clipping Passable Wall Segments"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_ClipPassWallSegment` function clips wall segments that are passable, such as windows or openings. Unlike solid walls, these segments do not block the player's view entirely and may reveal parts of the environment behind them. This function is crucial for rendering complex scenes with varying levels of occlusion. The ability to handle passable walls added depth and realism to DOOM's environments, a significant step forward from the flat, maze-like levels of earlier games like Wolfenstein 3D. This approach influenced the design of later games, where dynamic environments and layered visibility became standard."
+  - id: "check-bounding-box"
+    line_start: 360
+    line_end: 487
+    title: "Checking Bounding Boxes for Visibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_CheckBBox` function determines whether a bounding box (a rectangular region) might be visible from the player's viewpoint. This is a key step in BSP traversal, as it allows the engine to skip rendering parts of the environment that are entirely occluded. Bounding box checks are a common optimization in computer graphics, reducing the computational load by narrowing down the set of objects that need detailed visibility checks. In DOOM, this technique was adapted to work within the constraints of the game's fixed-point arithmetic and limited hardware. It influenced later engines, where bounding volume hierarchies became a standard tool for visibility determination and collision detection."
   - id: "render-bsp-node"
-    line_start: 549
+    line_start: 548
     line_end: 578
-    title: "Recursive BSP node traversal"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Recursion_(computer_science)"
+    title: "Recursive BSP Node Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
-    content: "The `R_RenderBSPNode` function is the heart of DOOM's BSP traversal, rendering all subsectors below a given node recursively. This approach allows the game to efficiently manage visibility and draw only the parts of the environment that are relevant to the player's perspective. In 1993, recursive algorithms like this were a bold choice, as they required careful management of memory and stack usage. John Carmack's implementation demonstrates a deep understanding of both the theoretical and practical aspects of computer science, as he adapts BSP techniques to the constraints of real-time rendering. This function's recursive traversal laid the groundwork for modern graphics engines, which continue to rely on similar principles for spatial optimization."
+    content: "The `R_RenderBSPNode` function recursively traverses the BSP tree, rendering all subsectors below a given node. This approach ensures that the game world is rendered efficiently, starting with the parts closest to the player and working outward. Recursive traversal is a natural fit for BSP trees, which are hierarchical structures. In DOOM, this technique allowed the engine to handle complex environments with dynamic lighting and multiple levels of detail. The recursive rendering of BSP nodes became a foundational technique in game development, influencing engines like Quake and Unreal, which expanded on the concept to support even more sophisticated environments."
 
 ---
 

@@ -9,74 +9,178 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-enemy-c"
 order: 8
-description: "This file defines the AI and behavior routines for enemies in DOOM, showcasing the game's groundbreaking approach to dynamic and immersive gameplay."
+description: "This file defines enemy AI behaviors in DOOM, a landmark in gaming history."
 
 summary:
-  - point: "Defines enemy AI routines and state transitions"
-    link: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
-    link_label: "AI in video games"
-  - point: "Implements recursive sound propagation for alerting enemies"
+  - point: "Defines enemy movement and attack logic"
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     link_label: "DOOM (1993)"
-  - point: "Introduces directional logic for enemy movement"
-    link: "https://en.wikipedia.org/wiki/Pathfinding"
-    link_label: "Pathfinding"
-  - point: "Includes special boss behaviors and level-ending triggers"
-    link: "https://en.wikipedia.org/wiki/Boss_(video_gaming)"
-    link_label: "Boss mechanics"
-  - point: "Demonstrates procedural spawning of monsters"
-    link: "https://en.wikipedia.org/wiki/Procedural_generation"
-    link_label: "Procedural generation"
+  - point: "Introduces recursive sound propagation for AI awareness"
+    link: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    link_label: "AI in games"
+  - point: "Uses lookup tables for efficient directional calculations"
+    link: "https://en.wikipedia.org/wiki/Lookup_table"
+    link_label: "Lookup table"
+  - point: "Implements dynamic enemy targeting and state transitions"
+    link: "https://en.wikipedia.org/wiki/Finite-state_machine"
+    link_label: "Finite-state machine"
+  - point: "Optimizes AI decisions for constrained 1990s hardware"
+    link: "https://en.wikipedia.org/wiki/History_of_computing_hardware_(1960s–1990s)"
+    link_label: "1990s hardware"
 
 enhancements:
-  - id: "enemy-direction-lut"
-    line_start: 70
+  - id: "enemy-direction-lookup-tables"
+    line_start: 51
     line_end: 79
-    title: "A lookup table for enemy movement"
+    title: "Efficient enemy direction lookup tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "The `opposite` and `diags` lookup tables define directional relationships for enemy movement. These tables simplify calculations by precomputing directional opposites and diagonals, allowing enemies to quickly adjust their paths during gameplay. In 1993, optimizing for speed was critical, as DOOM ran on hardware constrained by limited memory and processing power. John Carmack's focus on efficiency led to the use of such tables, minimizing computational overhead during real-time gameplay. This approach was widely adopted in subsequent games, influencing how AI navigates environments efficiently."
-  - id: "recursive-sound-alert"
+    content: "This section defines two lookup tables (`opposite` and `diags`) that map directional relationships for enemy movement. The `opposite` table specifies the reverse direction for each of the eight cardinal and diagonal directions, while the `diags` table lists diagonal directions. These tables are used by functions like `P_NewChaseDir` to calculate movement paths efficiently. In the early 1990s, computational efficiency was paramount due to limited hardware capabilities, such as the Intel 386 processor, which DOOM targeted. Lookup tables were a common optimization technique, reducing the computational cost of complex calculations by precomputing results. This approach influenced later games, where similar techniques were employed for pathfinding and AI decision-making in real-time strategy and action games."
+  - id: "recursive-sound-propagation"
     line_start: 106
     line_end: 149
-    title: "Recursive sound propagation wakes enemies"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_propagation"
+    title: "Recursive sound propagation for AI awareness"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "The `P_RecursiveSound` function simulates sound propagation across sectors of the map, alerting enemies to the player's presence. This recursive algorithm traverses connected sectors, respecting sound-blocking lines, to determine which enemies should be activated. In the early 1990s, sound-based AI was a novel concept, adding depth to enemy behavior. Carmack and Romero's implementation here reflects their commitment to creating a dynamic and reactive world. This technique influenced later games, where sound cues became integral to stealth and action mechanics."
+    content: "The `P_RecursiveSound` function implements a recursive algorithm to propagate sound alerts through connected sectors in the game world. When a player makes noise, this function wakes up monsters in adjacent sectors, respecting sound-blocking lines. This mechanic was innovative for its time, simulating a form of spatial awareness in enemies. In 1993, AI in games was often rudimentary, relying on simple triggers and proximity checks. DOOM's sound propagation added depth to enemy behavior, making them react dynamically to the player's actions. This technique inspired similar systems in later games, such as Half-Life's AI, which used sound cues to create immersive enemy responses."
+  - id: "noise-alert-mechanism"
+    line_start: 159
+    line_end: 166
+    title: "Noise alert mechanism for enemy coordination"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_NoiseAlert` function alerts monsters to the player's presence when a sound is made. It sets a global `soundtarget` and calls `P_RecursiveSound` to propagate the alert through the game world. This mechanism simulates coordinated enemy behavior, where one monster's reaction can trigger others nearby. In the early 1990s, such coordination was rare in games, as most AI systems operated independently. DOOM's approach added a layer of realism and challenge, influencing the design of AI systems in later games like Quake and Unreal, which expanded on group behaviors and environmental awareness."
   - id: "melee-range-check"
     line_start: 173
     line_end: 192
-    title: "Checking melee range for enemy attacks"
+    title: "Checking melee attack range"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `P_CheckMeleeRange` function determines if an enemy is close enough to attack the player with a melee strike. It calculates the distance between the enemy and the player, factoring in the player's radius and ensuring line-of-sight. This routine highlights DOOM's reliance on precise collision detection and spatial awareness, which were groundbreaking for its time. By ensuring enemies could only attack when conditions were met, the game balanced challenge and fairness, setting a precedent for AI behavior in action games."
-  - id: "new-chase-direction"
-    line_start: 363
-    line_end: 489
-    title: "Dynamic pathfinding for chasing players"
+    content: "The `P_CheckMeleeRange` function determines if an enemy is close enough to attack the player with a melee strike. It calculates the distance between the enemy and its target using `P_AproxDistance` and checks line-of-sight with `P_CheckSight`. This ensures that melee attacks occur only when the player is within range and visible. Collision detection and range checks were critical for real-time gameplay on limited hardware, as they balanced performance with gameplay accuracy. This function's logic laid the groundwork for similar mechanics in modern games, where precise hit detection and range calculations are essential for immersive combat systems."
+  - id: "missile-range-check"
+    line_start: 195
+    line_end: 255
+    title: "Dynamic missile attack range evaluation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_CheckMissileRange` function evaluates whether an enemy should use a missile attack based on distance, line-of-sight, and reaction time. It adjusts attack frequency and range dynamically, factoring in the enemy's type and proximity to the player. This nuanced decision-making was advanced for its time, creating varied and unpredictable enemy behaviors. By tailoring attack logic to enemy types, DOOM introduced a level of strategic depth that influenced later games like StarCraft and Halo, where AI units exhibit diverse behaviors based on their roles and capabilities."
+  - id: "enemy-movement-logic"
+    line_start: 260
+    line_end: 335
+    title: "Core enemy movement logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pathfinding"
     image_url: ""
     image_caption: ""
-    content: "The `P_NewChaseDir` function calculates new movement directions for enemies when pursuing a player. It uses precomputed directional tables and considers obstacles, randomness, and the player's position to decide the next step. This dynamic pathfinding system was a significant innovation, allowing enemies to feel intelligent and unpredictable. In the early 1990s, such AI behavior was rare, as most games relied on static patterns. DOOM's approach inspired future games to adopt more adaptive and responsive AI systems."
-  - id: "boss-death-trigger"
-    line_start: 1605
-    line_end: 1755
-    title: "Boss death triggers level events"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Boss_(video_gaming)"
+    content: "The `P_Move` function handles enemy movement in the game world, calculating new positions based on direction and speed. It checks for obstacles and adjusts movement accordingly, including floating behavior for certain enemy types. This function exemplifies DOOM's efficient pathfinding approach, which relied on simple yet effective algorithms to navigate complex environments. Pathfinding and movement systems like this became foundational in game development, influencing titles such as Diablo and The Elder Scrolls series, which expanded on these principles to create more sophisticated navigation systems."
+  - id: "keen-die-special-event"
+    line_start: 562
+    line_end: 593
+    title: "Special event: Commander Keen's death"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Commander_Keen"
     image_url: ""
     image_caption: ""
-    content: "The `A_BossDeath` function handles special events when a boss enemy is defeated. Depending on the game mode and level, it can trigger actions like opening doors or lowering floors. This mechanic added dramatic tension and a sense of accomplishment, as defeating bosses often marked significant progress. In DOOM, these scripted events showcased the game's ability to blend narrative and gameplay seamlessly, influencing how boss encounters were designed in later titles."
-  - id: "procedural-monster-spawning"
+    content: "The `A_KeenDie` function triggers a special event in DOOM II's secret level (Map 32) when all Commander Keen enemies are defeated. It scans active game objects to check if any Keen enemies remain alive and opens a door tagged with the special number 666 if none are found. This Easter egg references id Software's earlier game series, Commander Keen, showcasing the developers' playful nods to their history. Such hidden features became a hallmark of id Software's games, inspiring other developers to include Easter eggs and secret events in their titles, enriching player experiences."
+  - id: "enemy-chase-behavior"
+    line_start: 669
+    line_end: 776
+    title: "Dynamic enemy chase behavior"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_Chase` function defines how enemies pursue players, incorporating melee and missile attacks, movement adjustments, and target switching. It uses state transitions to determine the enemy's next action, creating dynamic and responsive behaviors. This finite-state machine approach was groundbreaking, allowing enemies to adapt to player actions and maintain pressure during combat. The concept of state-driven AI became a standard in game development, influencing titles like Half-Life and Bioshock, where enemy behaviors are similarly governed by state machines to create engaging and unpredictable encounters."
+  - id: "positional-attack-randomized-angles"
+    line_start: 801
+    line_end: 819
+    title: "Positional attack with randomized angles"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_PosAttack` function defines a positional attack for certain enemies, such as the pistol-wielding zombie. It calculates a random angle offset and damage value to simulate unpredictable attacks. This randomness adds variability to enemy behavior, making encounters feel dynamic and less scripted. In 1993, DOOM's developers were pioneering techniques to create engaging gameplay on limited hardware. The use of pseudo-random number generation for attack angles and damage was a clever way to simulate complexity without taxing the CPU. This approach influenced later games by showing how simple randomness could enhance perceived intelligence in AI."
+  - id: "shotgun-enemy-multi-projectile"
+    line_start: 821
+    line_end: 842
+    title: "Shotgun enemy firing multiple projectiles"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_SPosAttack` function simulates a shotgun-style attack by firing multiple projectiles in slightly randomized directions. This routine is used by enemies like the shotgun zombie, creating a spread effect that mirrors the behavior of player weapons. The implementation of multi-projectile attacks was groundbreaking for the time, as it added a layer of realism and challenge to enemy encounters. By leveraging random offsets, the developers ensured that no two attacks were identical, enhancing replayability. This technique inspired similar mechanics in later FPS games, including Quake and Unreal Tournament."
+  - id: "vile-chase-corpse-resurrection"
+    line_start: 1163
+    line_end: 1227
+    title: "Vile chase and corpse resurrection"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_VileChase` function implements the Arch-Vile's unique ability to resurrect fallen enemies. It scans the area for corpses that meet specific criteria, such as being stationary and having a valid resurrection state. Once a suitable corpse is found, the Arch-Vile animates it back into combat, complete with restored health and behavior. This mechanic added a strategic layer to gameplay, forcing players to prioritize the Arch-Vile to prevent it from overwhelming them with revived enemies. The resurrection system was an innovative feature that showcased DOOM's ability to create dynamic, evolving challenges. It influenced later games like Diablo II, which incorporated corpse-raising mechanics for necromancer characters."
+  - id: "lost-soul-spawning-and-limit"
+    line_start: 1449
+    line_end: 1505
+    title: "Lost soul spawning with level limits"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_PainShootSkull` function governs the spawning of Lost Souls by the Pain Elemental enemy. It includes a check to ensure that no more than 20 Lost Souls exist on the level at any given time, preventing excessive resource consumption and gameplay imbalance. This careful management of in-game entities reflects the constraints of 1993 hardware, where memory and processing power were limited. The spawning mechanic also added a tactical element, as players had to deal with both the Pain Elemental and its summoned minions. This system influenced later games that featured summoning mechanics, such as Starcraft and Warcraft III."
+  - id: "radius-explosion-environmental-damage"
+    line_start: 1596
+    line_end: 1600
+    title: "Radius-based explosion for environmental damage"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_Explode` function handles explosions caused by certain enemies or objects, applying damage to all entities within a specified radius. This mechanic simulates area-of-effect damage, adding realism and tactical depth to gameplay. Players must consider positioning to avoid collateral damage, especially in confined spaces. The radius-based explosion system was a significant innovation in DOOM, influencing later games like Half-Life and Call of Duty, which expanded on environmental interactions and physics-based damage."
+  - id: "boss-death-special-effects"
+    line_start: 1609
+    line_end: 1756
+    title: "Boss death triggers level-specific events"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_BossDeath` function handles the death of boss enemies and triggers special level-specific events. For example, defeating certain bosses lowers floors or opens doors, creating dynamic progression within the game. This function checks the game mode, episode, and map to ensure the correct boss type is defeated before triggering these effects. In the commercial version, defeating the 'Fatso' or 'Baby' bosses on map 7 initiates floor movements, while in other episodes, defeating specific bosses like the 'Bruiser' or 'Spider' triggers similar actions. The design reflects DOOM's emphasis on integrating gameplay with environmental changes, a hallmark of its immersive experience. By ensuring a player is alive and all bosses are dead before triggering victory events, this code exemplifies the meticulous attention to detail that defined DOOM's gameplay. This approach influenced later games by demonstrating how environmental interactivity could enhance narrative and gameplay depth."
+  - id: "hoof-metal-baby-metal-sounds"
+    line_start: 1759
+    line_end: 1775
+    title: "Sound effects enhance enemy immersion"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
+    image_url: ""
+    image_caption: ""
+    content: "The functions `A_Hoof`, `A_Metal`, and `A_BabyMetal` play specific sound effects when certain enemies move, enhancing the player's immersion. Each function calls `S_StartSound` with a unique sound identifier, such as `sfx_hoof` for hoof-like sounds or `sfx_bspwlk` for baby metal sounds, and then invokes the `A_Chase` function to continue enemy movement logic. This integration of sound effects with gameplay mechanics was groundbreaking in 1993, creating a more engaging and atmospheric experience. The use of distinct audio cues for different enemy types helped players identify threats and added to the game's tension. This technique became standard practice in game design, influencing titles like Half-Life and Quake, which also used sound to deepen immersion and gameplay feedback."
+  - id: "brain-awake-targets"
+    line_start: 1813
+    line_end: 1840
+    title: "Brain awakens and identifies targets"
+    wikipedia_url: "https://doomwiki.org/wiki/Icon_of_Sin"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_BrainAwake` function initializes the 'brain' enemy, a key component of DOOM's endgame. It scans through all active game objects to find 'boss target' spots and stores them in the `braintargets` array. This setup allows the brain to dynamically interact with the environment by targeting specific locations. The function also plays a sound effect (`sfx_bossit`) to signal the brain's activation, adding to the dramatic tension. This mechanic exemplifies DOOM's ability to create memorable and dynamic boss encounters, where environmental elements play a significant role. The concept of scanning game objects for interaction influenced later games, such as Unreal Tournament and Halo, which used similar techniques for dynamic AI behavior."
+  - id: "brain-explode-die"
+    line_start: 1875
+    line_end: 1899
+    title: "Brain explosion and level exit logic"
+    wikipedia_url: "https://doomwiki.org/wiki/Icon_of_Sin"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_BrainExplode` and `A_BrainDie` functions handle the dramatic conclusion of the brain enemy's sequence. `A_BrainExplode` spawns rockets at randomized positions around the brain, creating a chaotic visual effect. These rockets are given randomized movement and states to enhance unpredictability. Once the brain is defeated, `A_BrainDie` triggers the level exit (`G_ExitLevel`), marking the player's victory. This sequence showcases DOOM's ability to combine visual spectacle with gameplay progression, leaving a lasting impression on players. The randomized explosions influenced later games' use of procedural effects to create dynamic and memorable endgame moments, such as the final battles in StarCraft and Diablo."
+  - id: "spawn-fly-random-monster"
     line_start: 1936
-    line_end: 1989
-    title: "Randomized monster spawning mechanics"
+    line_end: 1990
+    title: "Randomized monster spawning adds unpredictability"
     wikipedia_url: "https://en.wikipedia.org/wiki/Procedural_generation"
     image_url: ""
     image_caption: ""
-    content: "The `A_SpawnFly` function demonstrates procedural generation by spawning monsters at random locations with varying types. This randomness ensured each playthrough felt unique, enhancing replayability. Carmack and Romero's use of procedural techniques in DOOM was ahead of its time, paving the way for modern games that rely heavily on procedural generation for dynamic content. This innovation contributed to DOOM's enduring popularity and its influence on game design."
+    content: "The `A_SpawnFly` function spawns monsters at designated target locations, adding an element of unpredictability to gameplay. First, it creates a teleport fog effect (`MT_SPAWNFIRE`) at the target location, accompanied by a sound effect (`sfx_telept`). Then, it selects a monster type based on a probability distribution, with weaker monsters like 'Troop' being more likely and stronger monsters like 'Bruiser' being rarer. This randomness ensures that encounters remain varied and challenging. The spawned monster is teleported into position, potentially 'telefragging' other entities in the same spot. This procedural generation technique influenced later games, such as Left 4 Dead and Minecraft, which used similar systems to create dynamic and unpredictable gameplay experiences."
+  - id: "player-scream-death-sound"
+    line_start: 1994
+    line_end: 2008
+    title: "Player scream logic reflects commercial polish"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_audio"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_PlayerScream` function plays a death sound when the player dies, with variations based on the severity of the death. If the player's health drops below -50 without triggering a gibbing effect, a special high-pitched scream (`sfx_pdiehi`) is played instead of the default death sound (`sfx_pldeth`). This attention to detail reflects DOOM's commercial polish, ensuring that even player death contributes to the game's atmosphere. The use of conditional audio feedback influenced later games, such as Resident Evil and Dark Souls, which used sound to enhance emotional impact and gameplay feedback."
 
 ---
 

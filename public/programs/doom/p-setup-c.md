@@ -9,74 +9,90 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-setup-c"
 order: 11
-description: "DOOM's map setup code demonstrates the ingenuity required to create immersive 3D environments on early 1990s hardware."
+description: "This file handles the setup and initialization of DOOM's game levels, including loading map data, preparing lookup tables, and spawning game objects."
 
 summary:
-  - point: "Efficient spatial subdivision for collision detection"
+  - point: "Efficient spatial subdivision via blockmaps for collision detection"
     link: "https://en.wikipedia.org/wiki/Spatial_partitioning"
     link_label: "Spatial Partitioning"
-  - point: "Lookup tables for fast map data access"
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup Table"
-  - point: "Reject matrix for optimized enemy AI"
+  - point: "Use of WAD files to store game assets and level data"
+    link: "https://en.wikipedia.org/wiki/Doom_WAD"
+    link_label: "Doom WAD"
+  - point: "Level setup routines optimized for 1990s hardware constraints"
+    link: "https://en.wikipedia.org/wiki/DOOM"
+    link_label: "DOOM"
+  - point: "Reject matrix for fast enemy AI sight rejection"
     link: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
-    link_label: "Visibility Optimization"
-  - point: "Dynamic memory allocation for map data"
-    link: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
-    link_label: "Dynamic Memory Allocation"
-  - point: "Support for multiplayer spawn points"
-    link: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
-    link_label: "Multiplayer Gaming"
+    link_label: "Visibility in Computer Graphics"
+  - point: "Dynamic memory allocation for game objects using Z_Malloc"
+    link: "https://doomwiki.org/wiki/Z_zone_memory_allocator"
+    link_label: "Z Zone Memory Allocator"
 
 enhancements:
-  - id: "map-lookup-tables"
-    line_start: 52
+  - id: "map-data-lookup-tables"
+    line_start: 56
     line_end: 75
-    title: "Mapping the World: Lookup Tables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
+    title: "Map Data Lookup Tables: Vertices to Sectors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
     image_url: ""
     image_caption: ""
-    content: "These lines define the lookup tables for vertices, line definitions, sectors, subsectors, and nodes—the foundational elements of DOOM's map structure. In the early 1990s, memory constraints were a significant challenge for game developers. By organizing map data into compact, easily accessible tables, DOOM's engine could efficiently traverse and manipulate the game world. John Carmack, the technical mastermind behind DOOM, was known for his ability to optimize code for limited hardware. These tables allowed the game to run smoothly on consumer PCs with as little as 4MB of RAM. The approach became a standard in game development, influencing countless titles that followed."
+    content: "This section defines the primary data structures used to represent DOOM's game maps, including vertices, linedefs, sidedefs, sectors, subsectors, and nodes. These structures are critical for rendering the game's 3D environments and enabling gameplay mechanics like collision detection and pathfinding. In the early 1990s, storing map data in a structured format was a novel approach, allowing levels to be loaded dynamically from WAD files. This modularity made DOOM highly extensible, paving the way for user-generated content and modding communities. The design influenced later engines like Quake and Unreal, which adopted similar modular approaches for map data storage and manipulation."
   - id: "blockmap-collision-detection"
     line_start: 78
     line_end: 95
-    title: "Blockmap: Speeding Up Collision Detection"
+    title: "Blockmap: Spatial Subdivision for Collision Detection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spatial_partitioning"
     image_url: ""
     image_caption: ""
-    content: "The blockmap is a spatial subdivision technique that divides the map into a grid of blocks, each containing references to objects within its bounds. This system drastically reduces the computational overhead of collision detection by narrowing the scope of checks to nearby blocks. In the early 1990s, real-time collision detection was a computationally expensive task, especially for fast-paced games like DOOM. Carmack's implementation of the blockmap was inspired by similar techniques used in CAD software and other spatial applications. Today, spatial partitioning remains a cornerstone of game engines, demonstrating the lasting impact of DOOM's technical innovations."
-  - id: "reject-matrix-ai-optimization"
+    content: "The blockmap is a key optimization in DOOM's engine, dividing the map into a grid of blocks to speed up collision detection and object interactions. By spatially subdividing the map, the engine reduces the number of checks needed for collisions, making it feasible to run the game on hardware with limited processing power, such as the 486 PCs of the era. This technique, inspired by spatial partitioning methods in computer graphics, became a standard in game engines, influencing designs like the BSP trees in Quake and the octrees in modern engines like Unity and Unreal."
+  - id: "reject-matrix-enemy-ai"
     line_start: 98
     line_end: 105
-    title: "Reject Matrix: Optimizing Enemy AI"
+    title: "Reject Matrix: Optimizing Enemy AI Sight"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The reject matrix is a clever optimization that speeds up enemy AI by precomputing visibility data. It allows the engine to quickly determine whether an enemy can see the player without performing expensive line-of-sight calculations. This innovation was crucial for maintaining DOOM's fast-paced gameplay on limited hardware. At the time, visibility algorithms were an active area of research in computer graphics, and Carmack's implementation showcased his ability to adapt cutting-edge techniques to practical applications. The reject matrix also hints at the game's potential use of a PVS (Potentially Visible Set) system, a concept later refined in games like Quake."
-  - id: "vertex-loading"
-    line_start: 120
+    content: "The reject matrix is used to optimize enemy AI by precomputing visibility data between sectors. This allows the engine to skip detailed line-of-sight calculations for enemies, significantly improving performance. The concept is similar to Potentially Visible Sets (PVS) in computer graphics, which were later popularized in engines like Quake. This optimization was crucial for maintaining DOOM's fast-paced gameplay on limited hardware, and it influenced subsequent AI systems in games that required efficient visibility checks."
+  - id: "vertex-loading-routine"
+    line_start: 122
     line_end: 151
-    title: "Loading Vertices: Building the Framework"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Vertex_(geometry)"
+    title: "P_LoadVertexes: Converting Map Vertices"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
     image_url: ""
     image_caption: ""
-    content: "The `P_LoadVertexes` function reads vertex data from the WAD file and converts it into the engine's internal representation. Vertices are the fundamental building blocks of the game's geometry, defining the corners of walls, floors, and ceilings. In DOOM, vertex coordinates are stored as fixed-point numbers, a common technique for handling fractional values efficiently on hardware without floating-point support. This function exemplifies the meticulous attention to detail required to translate raw map data into a usable format. The process of loading and converting vertices laid the groundwork for the game's groundbreaking 3D environments."
-  - id: "sector-loading"
+    content: "The P_LoadVertexes function loads vertex data from a WAD file and converts it into the game's internal fixed-point representation. This routine exemplifies DOOM's approach to handling map data efficiently, using fixed-point arithmetic to optimize calculations on hardware without floating-point units. The modular design of loading map data from WAD files allowed for easy level creation and modification, fostering the growth of the modding community. This approach influenced later games and engines, which adopted similar modular data loading techniques."
+  - id: "sector-loading-routine"
     line_start: 229
-    line_end: 258
-    title: "Sectors: Defining Spaces and Atmosphere"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sector_(computer_graphics)"
+    line_end: 257
+    title: "P_LoadSectors: Defining Level Geometry"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
     image_url: ""
     image_caption: ""
-    content: "The `P_LoadSectors` function processes sector data, which defines the physical and visual properties of areas within the map. Sectors control attributes like floor and ceiling heights, textures, lighting levels, and special effects. This modular approach allowed level designers to create diverse environments, from dark, claustrophobic corridors to sprawling open spaces. DOOM's sector-based architecture was revolutionary, enabling the creation of complex, interconnected levels while maintaining performance on limited hardware. The concept of sectors influenced the design of subsequent game engines, including the Build engine used in Duke Nukem 3D."
-  - id: "setup-level"
+    content: "The P_LoadSectors function loads sector data, defining the geometric and visual properties of each area in a level, such as floor and ceiling heights, textures, and lighting levels. Sectors are a fundamental part of DOOM's map representation, enabling the creation of complex 3D environments within a 2D engine. The use of sectors influenced the design of subsequent engines, including Build (used in Duke Nukem 3D) and Unreal Engine, which expanded on the concept to support more advanced geometry and lighting systems."
+  - id: "group-lines-sectors"
+    line_start: 495
+    line_end: 575
+    title: "P_GroupLines: Building Sector Line Lists"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
+    image_url: ""
+    image_caption: ""
+    content: "The P_GroupLines function organizes lines into sectors and calculates bounding boxes for collision detection. This routine is part of DOOM's efficient spatial organization, enabling fast rendering and gameplay mechanics. By grouping lines and precomputing bounding boxes, the engine minimizes runtime calculations, a necessity for the limited hardware of the early 1990s. This approach laid the groundwork for more advanced spatial partitioning techniques, such as BSP trees, which became a cornerstone of 3D game engines like Quake."
+  - id: "level-setup-routine"
     line_start: 581
     line_end: 693
-    title: "P_SetupLevel: Assembling the World"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
+    title: "P_SetupLevel: Initializing Game Levels"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM"
     image_url: ""
     image_caption: ""
-    content: "The `P_SetupLevel` function orchestrates the loading and initialization of a game level. It calls various subroutines to load vertices, sectors, line definitions, and other map components, effectively assembling the world from raw WAD data. This function also handles player spawn points, special effects, and precaching of graphics. In 1993, the ability to dynamically load and configure levels was a significant technical achievement, enabling DOOM's modular design and replayability. The modularity of this setup process influenced the architecture of future game engines, paving the way for user-generated content and expansive modding communities."
+    content: "The P_SetupLevel function orchestrates the initialization of a game level, loading map data, setting up lookup tables, and spawning objects. This routine demonstrates DOOM's modular and efficient level setup, allowing the game to dynamically load levels from WAD files. The ordering of operations in this function is critical for ensuring the game's stability and performance. The modularity and efficiency of this design influenced later engines, which adopted similar approaches to level initialization and asset management."
+  - id: "game-initialization-routine"
+    line_start: 698
+    line_end: 705
+    title: "P_Init: Preparing Game Systems"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM"
+    image_url: ""
+    image_caption: ""
+    content: "The P_Init function initializes various game systems, including switches, animated textures, and sprites. This routine is part of DOOM's modular initialization process, ensuring that all necessary systems are prepared before gameplay begins. The modularity and extensibility of DOOM's initialization routines influenced the design of later engines, which adopted similar approaches to system setup and asset management. This function highlights the careful planning and organization that went into DOOM's development, enabling the game to run efficiently on limited hardware."
 
 ---
 

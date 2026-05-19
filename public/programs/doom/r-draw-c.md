@@ -9,66 +9,66 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "r-draw-c"
 order: 13
-description: "This file contains the rendering routines for DOOM, showcasing the ingenious techniques used to create its groundbreaking graphics on limited 1990s hardware."
+description: "This file contains the rendering routines for DOOM, showcasing techniques that pushed the limits of 1990s hardware and influenced game development for decades."
 
 summary:
-  - point: "Column rendering optimized for constant z-depth"
+  - point: "Column-based rendering optimized for constant z-depth"
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     link_label: "DOOM (1993)"
-  - point: "Translation tables for player sprite recoloring"
-    link: "https://en.wikipedia.org/wiki/Palette_swap"
-    link_label: "Palette Swap"
-  - point: "Fuzzy rendering for spectres and invisibility effects"
-    link: "https://doomwiki.org/wiki/Spectre"
-    link_label: "Spectre"
-  - point: "Span rendering for floors and ceilings"
-    link: "https://en.wikipedia.org/wiki/Texture_mapping"
-    link_label: "Texture Mapping"
-  - point: "Efficient framebuffer manipulation for variable screen sizes"
+  - point: "Innovative use of lookup tables for framebuffer access"
     link: "https://en.wikipedia.org/wiki/Framebuffer"
     link_label: "Framebuffer"
+  - point: "Translation tables for color remapping in multiplayer"
+    link: "https://en.wikipedia.org/wiki/Palette_(computing)"
+    link_label: "Color Palette"
+  - point: "Post-processing effects like fuzz for invisibility"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM Effects"
+  - point: "Span-based rendering for floors and ceilings"
+    link: "https://en.wikipedia.org/wiki/Texture_mapping"
+    link_label: "Texture Mapping"
 
 enhancements:
-  - id: "column-rendering-constant-z-depth"
-    line_start: 99
+  - id: "column-rendering-optimization"
+    line_start: 105
     line_end: 148
-    title: "Column rendering optimized for constant z-depth"
+    title: "Column Rendering: Constant Z-Depth Optimization"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawColumn` routine is a key part of DOOM's rendering engine, responsible for drawing vertical slices of wall textures. By leveraging the game's fixed perspective, where walls always have a constant z-depth, this function avoids complex calculations and uses a fast, special-case loop for rendering. The use of lookup tables (`ylookup` and `columnofs`) minimizes expensive multiplications, enabling efficient framebuffer address calculations. In 1993, optimizing for speed was critical, as DOOM had to run smoothly on consumer-grade PCs with limited processing power, such as the Intel 486. John Carmack, the lead programmer, was renowned for his ability to extract maximum performance from hardware. This approach to column rendering was inspired by techniques used in Wolfenstein 3D, but refined for DOOM's more advanced engine. The legacy of this optimization is evident in modern engines, where specialized rendering paths are still employed for predictable scenarios."
-  - id: "fuzzy-rendering-spectres-invisibility"
-    line_start: 284
+    content: "This section implements the `R_DrawColumn` function, responsible for rendering vertical slices of wall textures. The algorithm leverages DOOM's fixed perspective, where walls always have a constant z-depth, allowing for a simplified and highly optimized rendering loop. By using lookup tables (`ylookup` and `columnofs`), the code avoids expensive multiplications to calculate framebuffer addresses, a crucial optimization for the limited processing power of 1990s consumer PCs. John Carmack, the lead programmer, adapted this approach from techniques used in Wolfenstein 3D, further refining it for DOOM's more complex environments. This optimization enabled DOOM to achieve smooth gameplay on hardware like the Intel 486, with only 33 MHz of processing power. The technique influenced subsequent games and engines, including Quake and Unreal Engine, where efficient rendering loops became a hallmark of real-time graphics."
+  - id: "fuzz-effect-invisibility"
+    line_start: 285
     line_end: 367
-    title: "Fuzzy rendering for spectres and invisibility effects"
-    wikipedia_url: "https://doomwiki.org/wiki/Spectre"
+    title: "Fuzz Effect: Rendering Spectres and Shadows"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawFuzzColumn` function introduces a unique postprocessing effect to simulate the appearance of spectres and invisible players. By copying pixels from adjacent columns and applying a black colormap, the routine creates a distorted, shadowy visual effect. This was a clever workaround to achieve transparency-like visuals on hardware that lacked native support for such features. The fuzziness adds an eerie quality to the spectres, enhancing the game's atmosphere. In the early 1990s, graphical effects like this were groundbreaking, as most games relied on static sprites or simple animations. Carmack's ingenuity in using framebuffer manipulation to simulate advanced visuals demonstrates the resourcefulness required to push the boundaries of gaming technology. The spectre effect remains iconic and is often cited as an example of creative problem-solving in game development."
-  - id: "translation-tables-player-sprite-recoloring"
-    line_start: 453
+    content: "The `R_DrawFuzzColumn` function creates a 'fuzzy' rendering effect used for spectres and invisible players. It achieves this by copying pixels from adjacent columns, combined with a special colormap that darkens the image. This visual trick gives the impression of partial invisibility, enhancing the game's eerie atmosphere. The implementation uses a `fuzzoffset` table to determine pixel offsets, cycling through them to create the effect. This was a clever workaround to simulate transparency on hardware that lacked native support for alpha blending. The fuzz effect became iconic in DOOM, contributing to its immersive gameplay. While modern engines use more advanced techniques like shaders for transparency, the fuzz effect remains a memorable example of ingenuity in early game programming."
+  - id: "translation-tables-color-remapping"
+    line_start: 459
     line_end: 481
-    title: "Translation tables for player sprite recoloring"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Palette_swap"
+    title: "Translation Tables: Multiplayer Color Customization"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Palette_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `R_InitTranslationTables` function creates lookup tables to recolor player sprites dynamically. By mapping the green color ramp to other palettes, DOOM enables multiplayer differentiation, allowing players to identify themselves by unique colors. This technique, known as palette swapping, was widely used in the era to save memory and processing power. Instead of storing separate sprites for each color variation, the game modifies the color indices at runtime. This approach reflects the constraints of early 1990s hardware, where memory was a precious resource. The translation tables also highlight Carmack's meticulous attention to detail, ensuring that even minor features like player identification were handled efficiently. Palette swapping remains a foundational technique in game development, influencing sprite-based games for decades."
-  - id: "span-rendering-floors-ceilings"
-    line_start: 489
+    content: "The `R_InitTranslationTables` function generates tables to remap the green color ramp of player sprites to other colors, enabling visual differentiation in multiplayer mode. This was essential for DOOM's groundbreaking multiplayer gameplay, allowing players to identify each other by unique colors. The function maps the green ramp to gray, brown, and red, while preserving other colors. This approach relies on the PLAYPAL lump, a predefined palette structure in DOOM's WAD files. The use of translation tables exemplifies Carmack's focus on efficiency, as it avoids runtime calculations by precomputing mappings. This technique influenced later games, where palette-based color customization became common in sprite-based engines."
+  - id: "span-rendering-floor-ceiling"
+    line_start: 490
     line_end: 562
-    title: "Span rendering for floors and ceilings"
+    title: "Span Rendering: Efficient Floor and Ceiling Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawSpan` routine handles the rendering of floors and ceilings, which are represented as horizontal spans with constant z-depth. Unlike walls, which are stored by column, flats require traversal in texture space at an angle. This method simplifies the rendering process while maintaining visual fidelity. The function uses fixed-point arithmetic and lookup tables to achieve efficient texture mapping, a necessity for real-time performance on 1993-era hardware. DOOM's span rendering was a significant improvement over earlier games, enabling more immersive environments with detailed floors and ceilings. The technique influenced later engines, which continued to optimize span rendering for increasingly complex scenes. By balancing simplicity and speed, Carmack ensured that DOOM could deliver its groundbreaking visuals without sacrificing performance."
-  - id: "framebuffer-manipulation-variable-screen-sizes"
-    line_start: 726
-    line_end: 810
-    title: "Efficient framebuffer manipulation for variable screen sizes"
+    content: "The `R_DrawSpan` function handles rendering horizontal spans for floors and ceilings. Unlike walls, which are rendered column-by-column, floors and ceilings require traversing texture space at an angle due to DOOM's support for rotation around the z-axis. The function calculates texture indices using fixed-point arithmetic, stepping through u and v coordinates for each pixel. This method is simpler and faster than perspective-correct texture mapping, aligning with DOOM's design philosophy of balancing visual fidelity with performance. Span rendering was a key innovation that enabled DOOM's expansive environments to run smoothly on limited hardware. It influenced techniques in later engines, such as Quake's BSP-based rendering, which further optimized spatial traversal."
+  - id: "view-buffer-initialization"
+    line_start: 695
+    line_end: 720
+    title: "View Buffer Initialization: Optimizing Framebuffer Access"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""
     image_caption: ""
-    content: "The `R_FillBackScreen` function demonstrates DOOM's adaptability to different screen sizes and resolutions. By filling the background with a pattern and drawing beveled edges, the game maintains a polished appearance even when the view window is resized. This routine leverages the framebuffer to copy and manipulate pixel data efficiently, ensuring smooth transitions and consistent visuals. In the early 1990s, variable screen sizes were uncommon, as most games targeted fixed resolutions. DOOM's support for resizing reflects id Software's commitment to accessibility and user customization. The function also highlights the importance of visual polish, with details like beveled edges enhancing the game's professional feel. Modern games continue to build on these principles, ensuring that interfaces adapt seamlessly to different devices and resolutions."
+    content: "The `R_InitBuffer` function sets up lookup tables (`ylookup` and `columnofs`) to optimize framebuffer access. These tables precompute offsets for each pixel, avoiding costly multiplications during rendering. This is particularly important for handling variable screen sizes, such as smaller view windows with borders. By precomputing these values, DOOM achieves faster rendering, crucial for maintaining high frame rates on hardware like the Intel 486. This technique reflects Carmack's meticulous attention to performance, ensuring the game could run smoothly even on modest systems. Lookup tables for framebuffer access became a standard practice in game engines, influencing designs well into the era of hardware-accelerated graphics."
 
 ---
 

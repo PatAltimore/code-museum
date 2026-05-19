@@ -9,74 +9,68 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "r-things-c"
 order: 14
-description: "This file handles the rendering of sprites in DOOM, a groundbreaking game that set new standards for 3D graphics and gameplay in 1993."
+description: "This file handles sprite rendering in DOOM, a key component of its groundbreaking visual system."
 
 summary:
-  - point: "Sprite rotation logic for dynamic perspectives"
+  - point: "DOOM's sprite system supports rotation and flipping for dynamic visuals."
     link: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
-    link_label: "Sprite (computer graphics)"
-  - point: "Efficient sprite sorting for rendering order"
-    link: "https://en.wikipedia.org/wiki/Painter%27s_algorithm"
-    link_label: "Painter's algorithm"
-  - point: "Handling sprite visibility and clipping"
-    link: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
-    link_label: "Clipping (computer graphics)"
-  - point: "Dynamic lighting calculations for sprites"
-    link: "https://en.wikipedia.org/wiki/Lightmapping"
-    link_label: "Lightmapping"
-  - point: "Optimized memory allocation for sprite definitions"
-    link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory management"
+    link_label: "Sprite Graphics"
+  - point: "Efficient sorting and clipping algorithms enable DOOM's fast rendering on 1993 hardware."
+    link: "https://en.wikipedia.org/wiki/DOOM_(video_game)"
+    link_label: "DOOM"
+  - point: "The sprite rendering code demonstrates Carmack's mastery of optimization techniques."
+    link: "https://en.wikipedia.org/wiki/John_Carmack"
+    link_label: "John Carmack"
 
 enhancements:
-  - id: "sprite-rotation-logic"
-    line_start: 67
-    line_end: 77
-    title: "Sprite rotation: a viewer-centric approach"
+  - id: "sprite-lump-installation"
+    line_start: 102
+    line_end: 157
+    title: "Sprite Lump Installation: Handling Rotations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "This section introduces the logic for sprite rotation, a key feature enabling DOOM's immersive gameplay. Sprites are graphical objects that represent in-game entities, and their rotation determines how they appear from different angles relative to the player. The code defines sprite rotation as clockwise turns around the axis, distinct from the game's angle system, which increases counterclockwise. In 1993, this approach was novel, as most games relied on static, pre-rendered graphics. John Carmack and his team at id Software were pushing the boundaries of real-time rendering, ensuring that sprites dynamically adjusted based on player perspective. This innovation contributed to DOOM's reputation for realism and fluidity in its 3D environments. The rotation logic laid the groundwork for future 3D games, influencing how developers handled dynamic perspectives."
-  - id: "sprite-initialization"
-    line_start: 89
+    content: "This function, `R_InstallSpriteLump`, processes sprite data from the WAD files to set up rotation and flipping information for each sprite frame. The programmer ensures that sprites can be rendered correctly from multiple angles, a necessity for DOOM's immersive gameplay. At the time, sprite-based rendering was common in games, but DOOM's approach was notable for its ability to dynamically handle rotations and flips efficiently. This section reflects the careful attention to detail required to manage sprite assets in a memory-constrained environment. The technique influenced later sprite-based engines, such as those used in Build Engine games like Duke Nukem 3D, which expanded on DOOM's sprite rotation system."
+  - id: "sprite-definition-initialization"
+    line_start: 162
     line_end: 281
-    title: "Sprite initialization: building rotation matrices"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    title: "Initializing Sprite Definitions for Gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
     image_caption: ""
-    content: "This section handles the initialization of sprite definitions, including rotation matrices for horizontally flipped sprites. The function `R_InitSpriteDefs` scans the game's resource files (WADs) to build a complete set of sprite frames and rotations, ensuring consistency and error-checking for missing or malformed data. In the early '90s, memory management was a critical concern, as games like DOOM had to run efficiently on hardware with limited RAM (often under 8 MB). The use of dynamic memory allocation (`Z_Malloc`) allowed the game to adapt to varying sprite counts without wasting resources. This meticulous attention to detail ensured that sprites appeared correctly in all scenarios, contributing to DOOM's polished visual experience. The sprite initialization process became a template for handling graphical assets in later games, showcasing id Software's technical foresight."
-  - id: "masked-sprite-rendering"
+    content: "The `R_InitSpriteDefs` function initializes sprite definitions by scanning WAD lump names and setting up rotation matrices for sprites. This ensures that sprites are correctly aligned and displayed during gameplay. The WAD file format, pioneered by DOOM, allowed developers to store game assets like sprites, textures, and levels in a modular way. This function highlights the modularity and extensibility of DOOM's asset system, enabling custom mods and levels to flourish after the game's release. The modular sprite system laid the groundwork for community-driven content creation in gaming, influencing engines like Unity and Unreal, which emphasize asset modularity."
+  - id: "masked-column-rendering"
     line_start: 340
     line_end: 388
-    title: "Rendering masked sprites: handling transparency"
+    title: "Rendering Masked Columns for Transparency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""
     image_caption: ""
-    content: "The function `R_DrawMaskedColumn` handles the rendering of masked sprites, which include transparent or semi-transparent areas. This capability was essential for creating visually complex scenes, such as enemies partially obscured by environmental elements. Masked sprites are stored as runs of opaque pixels, allowing the game to efficiently skip transparent regions during rendering. In 1993, this technique was cutting-edge, as most games relied on simpler, fully opaque graphics. DOOM's ability to render masked sprites contributed to its immersive atmosphere, allowing for dynamic interactions between sprites and the environment. The approach influenced later games, paving the way for advanced transparency effects in modern graphics engines."
-  - id: "dynamic-lighting-sprites"
-    line_start: 447
+    content: "The `R_DrawMaskedColumn` function handles rendering of masked columns, which are partially transparent sprite elements. This technique allows DOOM to display sprites with transparency effects, such as ghostly enemies or semi-transparent textures. Transparency was a challenging feature to implement efficiently on hardware from 1993, as it required careful management of pixel data and clipping. By processing runs of opaque pixels, DOOM minimizes rendering overhead while achieving visually complex effects. This approach influenced later games, including Quake, which expanded on transparency and blending techniques for 3D models and textures."
+  - id: "sprite-projection"
+    line_start: 449
     line_end: 604
-    title: "Dynamic lighting for sprites"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lightmapping"
+    title: "Projecting Sprites into the Player's View"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Projection_(graphics)"
     image_url: ""
     image_caption: ""
-    content: "The function `R_ProjectSprite` calculates the lighting for sprites based on their position and the game's lighting model. DOOM uses a combination of fixed and dynamic lighting to create a sense of depth and realism. Sprites are assigned light levels based on their distance from the player and the surrounding environment, with adjustments for special effects like shadows and full brightness. In the early '90s, dynamic lighting was a significant technical achievement, as most games relied on static, pre-rendered lighting. Carmack's implementation allowed DOOM to simulate realistic lighting effects on modest hardware, enhancing the game's visual impact. This approach influenced the development of lightmapping and other advanced techniques in later 3D engines."
-  - id: "player-sprite-rendering"
-    line_start: 743
-    line_end: 775
-    title: "Rendering player sprites: a first-person twist"
-    wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
-    image_url: ""
-    image_caption: ""
-    content: "The function `R_DrawPlayerSprites` renders the player's weapon and other first-person elements. Unlike other sprites, these are drawn last to ensure they appear on top of the scene, reinforcing the first-person perspective. This technique was crucial for DOOM's immersive gameplay, as it placed the player directly in the action. The rendering process includes dynamic lighting adjustments based on the player's environment, adding to the realism. In 1993, first-person shooters were still a nascent genre, and DOOM's approach to player sprite rendering set new standards for visual design. The technique became a staple of FPS games, influencing titles like Quake and Half-Life."
-  - id: "sprite-rendering-order"
+    content: "The `R_ProjectSprite` function calculates the position and scale of sprites relative to the player's viewpoint. It transforms sprite coordinates into screen space and determines visibility, ensuring that only relevant sprites are rendered. This function is a cornerstone of DOOM's rendering pipeline, enabling its fast-paced gameplay and immersive visuals. The mathematical precision in this code reflects John Carmack's expertise in optimizing rendering for constrained hardware. The projection techniques here influenced 3D engines like Unreal Engine, which rely on similar transformations for rendering objects in a 3D space."
+  - id: "sprite-sorting"
     line_start: 782
     line_end: 835
-    title: "Sorting sprites for correct rendering order"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Painter%27s_algorithm"
+    title: "Sorting Sprites by Scale for Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"
     image_url: ""
     image_caption: ""
-    content: "The function `R_SortVisSprites` ensures that sprites are rendered in the correct order, from back to front, using a variation of the painter's algorithm. This approach prevents visual artifacts by ensuring that closer objects occlude those farther away. In DOOM, sprites represent enemies, items, and environmental details, all of which must integrate seamlessly into the game's 3D world. Sorting by scale (a proxy for depth) was a practical solution given the computational constraints of early '90s PCs. The algorithm iterates through visible sprites, sorting them into a linked list based on their scale values. This technique reflects id Software's ingenuity in balancing performance and visual fidelity, enabling DOOM to run smoothly on hardware like the Intel 486 while delivering a groundbreaking graphical experience. The sorting logic influenced subsequent 3D engines, demonstrating the enduring impact of Carmack's optimization strategies."
+    content: "The `R_SortVisSprites` function sorts visible sprites by their scale, ensuring proper rendering order from back to front. This manual sorting method was necessary due to the lack of hardware Z-buffering on consumer PCs in 1993. By sorting sprites explicitly, DOOM achieves correct layering of objects in its pseudo-3D environments. This technique showcases the ingenuity required to simulate depth and perspective without dedicated hardware support. Later engines, such as Quake, benefited from hardware advancements that allowed for Z-buffering, simplifying depth management and enabling more complex 3D scenes."
+  - id: "masked-rendering-and-player-sprites"
+    line_start: 956
+    line_end: 986
+    title: "Masked Rendering and Player Sprite Drawing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Alpha_compositing"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_DrawMasked` function combines rendering of masked textures and player sprites, ensuring that semi-transparent elements and player weapons are drawn correctly. This function integrates multiple rendering techniques to create a cohesive visual experience. The ability to draw player sprites on top of the scene was essential for DOOM's first-person perspective, enhancing immersion. The masked rendering approach influenced later games, which adopted alpha compositing and blending techniques to achieve similar effects in more advanced graphical environments."
 
 ---
 

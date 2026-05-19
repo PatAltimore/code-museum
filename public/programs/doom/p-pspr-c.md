@@ -9,66 +9,87 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-pspr-c"
 order: 30
-description: "This file implements weapon sprite animations and actions in DOOM, defining how weapons behave and interact with the player and environment."
+description: "This file handles weapon sprite animations and player weapon interactions in DOOM, a landmark in gaming history."
 
 summary:
-  - point: "Defines weapon sprite states and animations"
+  - point: "Defines weapon sprite animations and their states"
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM"
+    link_label: "DOOM (1993)"
   - point: "Implements weapon-specific behaviors like firing and reloading"
     link: "https://en.wikipedia.org/wiki/First-person_shooter"
     link_label: "First-person shooter"
-  - point: "Includes clever optimizations for performance on 1993 hardware"
+  - point: "Optimizes sprite handling for performance on 1990s hardware"
     link: "https://en.wikipedia.org/wiki/Intel_80486"
     link_label: "Intel 80486"
-  - point: "Introduces modular weapon handling for extensibility"
-    link: "https://en.wikipedia.org/wiki/Mod_(video_gaming)"
-    link_label: "Modding"
-  - point: "Uses pseudo-random number generation for dynamic gameplay"
-    link: "https://en.wikipedia.org/wiki/Random_number_generation"
-    link_label: "Random number generation"
+  - point: "Introduces modular weapon handling, influencing future FPS engines"
+    link: "https://en.wikipedia.org/wiki/Quake_engine"
+    link_label: "Quake engine"
 
 enhancements:
   - id: "weapon-sprite-animation"
     line_start: 58
     line_end: 102
-    title: "Animating Weapons: A Modular Approach"
+    title: "Weapon sprite animation logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The `P_SetPsprite` function is the backbone of DOOM's weapon sprite animation system. It manages the transitions between different states of a weapon, such as firing, reloading, or idle. Each state is defined by its duration (`tics`), position on the screen (`sx` and `sy`), and any associated action routines. This modular design allows for flexibility in defining weapon behaviors, making it easier to add new weapons or modify existing ones. In 1993, sprite-based graphics were the norm for games, but DOOM's implementation stood out for its efficiency and smooth transitions, even on hardware as modest as the Intel 80486. The use of a state machine for sprite management was a clever way to optimize performance while maintaining visual fidelity. This system became a template for many games that followed, influencing the design of weapon handling in first-person shooters for decades."
-  - id: "weapon-bob-swing"
+    content: "The `P_SetPsprite` function is responsible for updating the state of weapon sprites based on player actions and game events. It iterates through sprite states, updates their positions, and triggers associated actions. This modular approach allows for dynamic weapon animations, such as raising, lowering, or firing. In the early 1990s, sprite-based graphics were a staple of game design, and DOOM's efficient handling of these sprites was critical for maintaining high performance on consumer-grade PCs like the Intel 80486. This technique laid the groundwork for modular animation systems in later engines, such as the Quake engine, which expanded on these ideas with 3D models."
+  - id: "weapon-bob-simulation"
     line_start: 112
     line_end: 128
-    title: "Weapon Bobbing: Adding Realism to Movement"
+    title: "Simulating weapon bobbing motion"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `P_CalcSwing` function calculates the bobbing motion of the player's weapon based on their movement. This subtle detail adds a layer of realism, making the player feel more immersed in the game world. The bobbing is determined by the player's movement speed (`bob`) and the current game time (`leveltime`), creating a dynamic and rhythmic motion. In the early 1990s, such visual effects were groundbreaking, as they enhanced the sense of physical presence in a virtual environment. John Carmack and the team at id Software were meticulous in their pursuit of immersion, and this function exemplifies their attention to detail. The comments in the code hint at potential optimizations, such as using lookup tables for flexibility—a testament to the team's constant drive for improvement. This feature has since become a staple in first-person shooters, influencing how movement is visually represented in games."
-  - id: "weapon-switching-mechanics"
+    content: "The `P_CalcSwing` function calculates the swinging motion of weapons based on player movement. This adds a sense of realism and immersion, as the weapon appears to sway naturally while the player moves. The function uses trigonometric calculations with lookup tables (`finesine`) to simulate this effect efficiently. In 1993, computational efficiency was paramount, as DOOM had to run smoothly on hardware with limited processing power. This technique influenced the visual polish of later FPS games, where weapon bobbing became a standard feature to enhance player immersion."
+  - id: "weapon-switching-mechanism"
     line_start: 138
-    line_end: 154
-    title: "Weapon Switching: Seamless Transitions"
+    line_end: 153
+    title: "Mechanics for switching weapons"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `P_BringUpWeapon` function handles the animation and logic for switching weapons, ensuring a smooth transition from one weapon to another. When a new weapon is selected, it rises from the bottom of the screen, signaling its readiness to the player. This visual cue was essential for maintaining the fast-paced action of DOOM, as players needed immediate feedback on their weapon status. In 1993, the ability to switch weapons quickly and intuitively was a key feature that set DOOM apart from its predecessors. The function also plays sound effects, such as the chainsaw's distinctive revving noise, further enhancing the sensory experience. This approach to weapon switching has influenced countless games, establishing a standard for intuitive and visually engaging weapon mechanics."
-  - id: "ammo-checking-and-prioritization"
+    content: "The `P_BringUpWeapon` function handles the transition of a new weapon being raised into view. It ensures smooth animations and sound effects, such as the chainsaw's distinctive startup sound. This function highlights DOOM's attention to detail in creating a visceral experience for players. Weapon switching was a critical gameplay element, allowing players to adapt to different combat scenarios. The modular design of this system influenced future FPS engines, enabling developers to easily implement complex weapon behaviors and transitions."
+  - id: "ammo-checking-and-weapon-selection"
     line_start: 161
     line_end: 240
-    title: "Running Out of Ammo: Smart Weapon Choices"
+    title: "Dynamic ammo checking and weapon fallback"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `P_CheckAmmo` function is a critical piece of DOOM's gameplay logic, ensuring that players always have a weapon to use, even when ammunition runs low. It checks the player's current ammo levels and selects an appropriate weapon based on availability and priority. For example, if the player runs out of ammo for their shotgun, the function might switch them to a chainsaw or fists. This intelligent fallback system keeps the action flowing and prevents frustrating interruptions. The function also accounts for game modes, such as shareware or commercial versions, demonstrating id Software's attention to detail and adaptability. In the early 1990s, such dynamic weapon management was innovative, providing a seamless and engaging experience for players. This system has since become a standard in first-person shooters, influencing how games handle resource management and weapon selection."
+    content: "The `P_CheckAmmo` function ensures that players have sufficient ammunition to fire their current weapon. If ammo is insufficient, it automatically selects the next available weapon based on predefined preferences. This dynamic fallback mechanism ensures uninterrupted gameplay, even in resource-constrained scenarios. In the early 1990s, such systems were innovative, as they streamlined player interactions and minimized frustration. This design philosophy influenced later games, where automatic weapon switching became a standard feature, enhancing user experience and gameplay flow."
+  - id: "weapon-fire-mechanics"
+    line_start: 247
+    line_end: 257
+    title: "Core weapon firing logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_FireWeapon` function encapsulates the logic for firing weapons, including state transitions and sound effects. It interacts with other systems, such as ammo checking (`P_CheckAmmo`) and sprite updates (`P_SetPsprite`). This modular approach allowed DOOM to support a variety of weapons with unique behaviors, from pistols to the iconic BFG. The function's design reflects the game's emphasis on fast-paced action and responsiveness. This modularity influenced the development of later FPS engines, enabling developers to create diverse weapon systems efficiently."
+  - id: "chainsaw-attack-logic"
+    line_start: 499
+    line_end: 543
+    title: "Chainsaw attack mechanics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `A_Saw` function defines the behavior of the chainsaw weapon, including sound effects and target tracking. It uses trigonometric calculations to adjust the player's angle toward the target, simulating the visceral experience of wielding a chainsaw in combat. The chainsaw's inclusion in DOOM exemplifies the game's blend of horror and action, creating memorable gameplay moments. This function's design influenced the implementation of melee weapons in later FPS games, where dynamic targeting and immersive sound effects became standard."
   - id: "bfg-explosion-mechanics"
     line_start: 779
-    line_end: 811
-    title: "The BFG: A Blast for Every Monster"
+    line_end: 810
+    title: "BFG explosion logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/BFG_(weapon)"
     image_url: ""
     image_caption: ""
-    content: "The `A_BFGSpray` function is responsible for the iconic behavior of DOOM's BFG (Big Freaking Gun). When fired, the BFG creates explosions on every monster in the player's view, dealing massive damage. This function calculates the angles and positions of the explosions, ensuring that each monster within range is affected. The BFG was a revolutionary weapon in 1993, showcasing id Software's ability to create memorable and impactful gameplay moments. The sheer power and spectacle of the BFG made it a fan favorite and a symbol of DOOM's over-the-top action. The function's implementation demonstrates the team's expertise in balancing performance and gameplay, as it efficiently handles multiple calculations and effects without slowing down the game. The BFG's mechanics have inspired similar weapons in countless games, cementing its legacy as one of the most iconic video game weapons of all time."
+    content: "The `A_BFGSpray` function handles the iconic BFG weapon's explosion effect, spawning damage across multiple targets in view. It calculates angles and spawns projectiles dynamically, creating a visually and mechanically impactful attack. The BFG's design reflects DOOM's emphasis on empowering players with devastating weaponry. This function influenced the design of 'super weapons' in later games, where unique mechanics and dramatic effects became a hallmark of high-tier armaments."
+  - id: "level-start-weapon-setup"
+    line_start: 831
+    line_end: 842
+    title: "Weapon initialization at level start"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_SetupPsprites` function initializes weapon sprites at the start of each level, ensuring a clean slate for player interactions. It removes any residual states and sets up the player's current weapon. This function exemplifies DOOM's attention to detail in maintaining consistent gameplay across levels. The modular initialization approach influenced the design of level transitions in later FPS games, where maintaining state consistency became a critical aspect of game design."
 
 ---
 

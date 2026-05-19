@@ -9,44 +9,44 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "m-random-c"
 order: 16
-description: "This file implements DOOM's random number generation system, a key component for gameplay unpredictability and AI behavior."
+description: "This file implements DOOM's random number generation system, a key component in creating unpredictable gameplay elements."
 
 summary:
-  - point: "Uses a fixed lookup table for random numbers to ensure deterministic behavior in demos and multiplayer"
+  - point: "Uses a precomputed lookup table for random numbers"
     link: "https://en.wikipedia.org/wiki/Random_number_generation"
-    link_label: "Random number generation"
-  - point: "Two separate indices allow distinct streams of randomness for different game systems"
-    link: "https://doomwiki.org/wiki/Random_number_generator"
-    link_label: "DOOM random number generator"
-  - point: "Reflects constraints of 1993-era hardware, avoiding computationally expensive RNG algorithms"
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM (1993 video game)"
+    link_label: "Random Number Generation"
+  - point: "Implements deterministic randomness for gameplay consistency"
+    link: "https://en.wikipedia.org/wiki/Deterministic_algorithm"
+    link_label: "Deterministic Algorithm"
+  - point: "Optimized for performance on 1990s consumer hardware"
+    link: "https://en.wikipedia.org/wiki/Intel_80486"
+    link_label: "Intel 80486"
 
 enhancements:
   - id: "random-number-lookup-table"
     line_start: 31
     line_end: 51
-    title: "A fixed table for predictable randomness"
-    wikipedia_url: "https://doomwiki.org/wiki/Random_number_generator"
+    title: "Precomputed Random Number Lookup Table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
     image_url: ""
     image_caption: ""
-    content: "This 256-byte lookup table is the heart of DOOM's random number generation system. Instead of relying on computationally expensive algorithms to generate random numbers, the developers precomputed a sequence of values and stored them in this array. Each number in the table falls between 0 and 255, providing a simple and efficient way to retrieve pseudo-random values during gameplay. In 1993, when DOOM was developed, hardware constraints were a significant concern. Consumer PCs often lacked the processing power to handle complex random number generation algorithms without impacting performance. By using a fixed table, id Software ensured that random number generation was both fast and predictable. This predictability was crucial for features like demo playback, where the game needed to reproduce identical behavior every time. John Carmack, the technical mastermind behind DOOM, was known for his ability to optimize code to run on modest hardware. This approach to randomness reflects his philosophy of balancing innovation with practicality. While modern games often use more sophisticated methods for randomness, the simplicity of this table has left a lasting legacy in game development, particularly in deterministic systems. Had id Software opted for a more complex RNG system, DOOM might have struggled to maintain its groundbreaking performance on early 1990s PCs. This decision exemplifies the team's ingenuity in overcoming technical limitations while pioneering the first-person shooter genre."
-  - id: "dual-random-streams"
-    line_start: 53
+    content: "This section defines a static array `rndtable` containing 256 precomputed random numbers. The table is used to generate pseudo-random numbers for gameplay elements such as enemy behavior, item drops, and environmental effects. By using a fixed table, DOOM ensures deterministic randomness—critical for maintaining consistent gameplay across different runs, especially in multiplayer or demo playback scenarios. In the early 1990s, computational resources were limited, particularly on consumer-grade hardware like the Intel 80486 processors. Generating random numbers dynamically using complex algorithms would have been computationally expensive. Instead, John Carmack and the team at id Software opted for this lookup table approach, which is both fast and predictable. The table itself is small enough to fit comfortably in the CPU cache, ensuring minimal performance overhead. This technique influenced many subsequent games, especially those requiring deterministic randomness for replayability or debugging. Developers studying DOOM's source code have noted the elegance of this approach, and similar precomputed tables have appeared in engines like Quake and Unreal. Today, while modern systems can afford more sophisticated random number generation, the principle of deterministic randomness remains relevant in areas like procedural generation and competitive gaming."
+  - id: "deterministic-random-functions"
+    line_start: 57
     line_end: 67
-    title: "Two streams of randomness for gameplay logic"
-    wikipedia_url: "https://doomwiki.org/wiki/Random_number_generator"
+    title: "Two Deterministic Random Functions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Deterministic_algorithm"
     image_url: ""
     image_caption: ""
-    content: "DOOM's random number system uses two separate indices, `rndindex` and `prndindex`, to access the lookup table. These indices allow the game to maintain distinct streams of randomness for different purposes. The `M_Random` function increments `rndindex`, while `P_Random` increments `prndindex`. This separation ensures that randomness used for one part of the game, such as enemy AI, does not interfere with randomness used elsewhere, such as item drops or environmental effects. This design reflects the meticulous attention to detail that id Software brought to DOOM. By isolating random streams, the developers avoided unintended interactions between game systems, preserving the integrity of gameplay mechanics. For example, enemy behavior could remain consistent even if the player triggered other random events in the environment. The decision to use deterministic randomness was also influenced by the need for reliable demo playback and multiplayer synchronization. In these scenarios, every action had to be reproducible, requiring the random number generator to produce the same sequence of values each time. This deterministic approach was a hallmark of DOOM's design, ensuring that the game could run smoothly and predictably on the hardware of the era. Today, this technique is often studied by game developers as an example of clever engineering under constraints. It highlights how seemingly small decisions, like separating random streams, can have a profound impact on the player experience and the technical robustness of a game."
-  - id: "reset-random-indices"
+    content: "The functions `P_Random` and `M_Random` provide deterministic random number generation by cycling through the `rndtable` array using separate indices (`prndindex` and `rndindex`). Each index is incremented modulo 256 to ensure it wraps around the table. This design allows different gameplay systems to use independent streams of random numbers without interfering with each other. The deterministic nature of these functions is crucial for DOOM's gameplay. For example, in demo playback, where players can watch recorded gameplay, the exact sequence of random events must be reproduced to match the original experience. Similarly, in multiplayer games, consistent random behavior ensures fairness and synchronization between players. This approach reflects the constraints of the era, where maintaining performance and consistency was paramount. The separation of random streams for different systems influenced later game engines, including id Software's own Quake engine, which expanded on deterministic techniques for networked multiplayer. Today, deterministic random functions are still used in areas like procedural generation and simulations, where reproducibility is essential."
+  - id: "reset-random-state"
     line_start: 69
     line_end: 72
-    title: "Resetting randomness for a clean slate"
-    wikipedia_url: "https://doomwiki.org/wiki/Random_number_generator"
+    title: "Resetting the Random State"
+    wikipedia_url: "https://en.wikipedia.org/wiki/State_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The `M_ClearRandom` function resets both `rndindex` and `prndindex` to zero, effectively restarting the random number generator. This simple yet essential routine ensures that the game can return to a consistent state when needed, such as at the beginning of a new level or during a demo playback. In the early 1990s, when DOOM was developed, deterministic behavior was a critical requirement for many aspects of the game. Demo playback, for instance, relied on the ability to reproduce every action exactly as it occurred during the original recording. By resetting the random indices, id Software ensured that the same sequence of random numbers would be used, maintaining the integrity of the playback. This function also reflects the team's commitment to robust game design. By providing a way to reset randomness, they avoided potential issues with unpredictable behavior or corrupted game states. It was a safeguard against the limitations of the hardware and software of the time, ensuring that the game remained stable and reliable. While modern games often use more complex systems for managing randomness, the simplicity of `M_ClearRandom` is a reminder of the practical solutions that defined early game development. It is a testament to the ingenuity of id Software, whose work on DOOM continues to influence the industry decades later."
+    content: "The `M_ClearRandom` function resets both `rndindex` and `prndindex` to zero, effectively restarting the random number streams from the beginning of the `rndtable`. This is useful for ensuring consistent behavior when initializing or restarting gameplay scenarios. In DOOM, this function plays a role in maintaining predictable behavior during specific sequences, such as level restarts or demo playback. By resetting the random state, the game ensures that the same sequence of random numbers is used, preserving the deterministic nature of the gameplay. This design choice reflects the importance of reproducibility in gaming during the 1990s. Debugging, demo playback, and multiplayer synchronization all benefit from deterministic randomness. The concept of resetting random states has since been adopted in various fields, including testing frameworks and simulations, where reproducibility is critical. Modern game engines often include similar mechanisms to control random behavior during development and testing."
 
 ---
 

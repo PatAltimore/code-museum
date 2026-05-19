@@ -9,66 +9,114 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "i-video-c"
 order: 23
-description: "This file contains the graphics initialization and rendering routines for the Linux port of DOOM, showcasing how id Software adapted their groundbreaking game to the X11 environment."
+description: "This file handles graphical operations for DOOM on X11 systems, showcasing techniques for efficient rendering and input handling in the early 1990s."
 
 summary:
-  - point: "DOOM's Linux port leverages X11 for graphics rendering"
+  - point: "DOOM's use of MIT SHM for shared memory graphics"
+    link: "https://en.wikipedia.org/wiki/MIT-SHM"
+    link_label: "MIT SHM"
+  - point: "Keyboard input translation for X11 environments"
     link: "https://en.wikipedia.org/wiki/X_Window_System"
     link_label: "X Window System"
-  - point: "Integration of MIT-SHM for shared memory optimization"
+  - point: "Scaling techniques for low-resolution graphics"
+    link: "https://en.wikipedia.org/wiki/Graphics_scaling"
+    link_label: "Graphics scaling"
+  - point: "Shared memory management for inter-process communication"
     link: "https://en.wikipedia.org/wiki/Shared_memory"
-    link_label: "Shared Memory"
-  - point: "Key translation for X11 input events"
-    link: "https://en.wikipedia.org/wiki/Keyboard_layout"
-    link_label: "Keyboard Input"
-  - point: "Scaling algorithms for different screen resolutions"
-    link: "https://en.wikipedia.org/wiki/Image_scaling"
-    link_label: "Image Scaling"
-  - point: "Palette management for 256-color PseudoColor visuals"
-    link: "https://en.wikipedia.org/wiki/Indexed_color"
-    link_label: "Indexed Color"
+    link_label: "Shared memory"
+  - point: "Palette manipulation for 256-color displays"
+    link: "https://en.wikipedia.org/wiki/Color_depth"
+    link_label: "Color depth"
 
 enhancements:
-  - id: "x11-input-event-handling"
+  - id: "keyboard-input-translation"
     line_start: 97
     line_end: 162
-    title: "Mapping X11 Key Events to DOOM Controls"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_layout"
-    image_url: ""
-    image_caption: ""
-    content: "This section translates X11 key events into DOOM's internal key codes. The function `xlatekey` uses a switch statement to map X11 key symbols (e.g., `XK_Left`, `XK_Up`) to DOOM's predefined constants like `KEY_LEFTARROW` and `KEY_UPARROW`. This mapping ensures that user input from the keyboard is correctly interpreted by the game engine. In 1993, adapting DOOM to run on Linux was a significant step, as Linux was still emerging as a viable platform for gaming. The decision to use X11, the standard windowing system for UNIX-like operating systems, reflects id Software's commitment to making DOOM accessible to a broader audience. This approach laid the groundwork for future cross-platform game development, as developers increasingly had to account for diverse input systems. The key translation mechanism here is straightforward but effective, ensuring compatibility with the X11 environment while maintaining the game's responsiveness."
-  - id: "graphics-shutdown-procedure"
-    line_start: 164
-    line_end: 176
-    title: "Gracefully Detaching Shared Memory Graphics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Shared_memory"
-    image_url: ""
-    image_caption: ""
-    content: "The `I_ShutdownGraphics` function handles the cleanup of graphics resources, specifically detaching shared memory segments used by the MIT-SHM extension. Shared memory was a clever optimization for rendering in X11, allowing DOOM to bypass slower traditional methods of transferring image data to the screen. By detaching the shared memory and marking it for removal, the code avoids resource leaks—a critical consideration for systems with limited memory. In the early 1990s, shared memory was a cutting-edge technique for improving performance, especially on hardware constrained by low RAM and slow CPUs. This function exemplifies id Software's meticulous attention to resource management, ensuring that DOOM could run efficiently even on modest systems. The use of shared memory in DOOM's Linux port demonstrates the team's ability to adapt their engine to different platforms while maintaining high performance."
-  - id: "mouse-handling-x11"
-    line_start: 195
-    line_end: 277
-    title: "Handling Mouse Events in X11"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Mouse_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The `I_GetEvent` function processes various X11 events, including mouse movements and button presses. This section includes logic to handle mouse input, translating it into DOOM's internal event system. Notably, the code includes provisions for 'fake mouse handling,' a workaround for the lack of Direct Graphics Access (DGA) in the X11 environment. In 1993, mouse input was becoming increasingly important for PC gaming, and DOOM's support for mouse controls was a key feature that enhanced gameplay precision. However, adapting this functionality to X11 required overcoming limitations such as the lack of hardware-level mouse control. The workaround here reflects id Software's ingenuity in adapting their game to the constraints of the Linux platform. Mouse handling in DOOM's Linux port paved the way for future games to support advanced input methods on UNIX-like systems."
-  - id: "palette-management"
-    line_start: 536
-    line_end: 577
-    title: "Managing 256-Color Palettes in X11"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Indexed_color"
-    image_url: ""
-    image_caption: ""
-    content: "The `UploadNewPalette` function initializes and updates the color palette for DOOM's graphics in the X11 environment. It uses the PseudoColor visual class, which supports 256 indexed colors—a common configuration for graphics hardware in the early 1990s. The function applies gamma correction using a lookup table (`gammatable`) to ensure consistent brightness levels across different displays. In the era of 256-color displays, palette management was a critical aspect of game development. Developers had to carefully optimize color usage to achieve visually appealing graphics within the constraints of limited hardware. This function highlights id Software's technical expertise in leveraging the capabilities of the X11 system to deliver a vibrant and immersive visual experience. The palette management techniques used here influenced how later games handled color on low-end systems."
-  - id: "graphics-initialization-x11"
-    line_start: 692
-    line_end: 915
-    title: "Initializing Graphics for X11 Rendering"
+    title: "Mapping X11 keycodes to DOOM controls"
     wikipedia_url: "https://en.wikipedia.org/wiki/X_Window_System"
     image_url: ""
     image_caption: ""
-    content: "The `I_InitGraphics` function sets up the graphics environment for DOOM's Linux port, including opening the X11 display, creating the main window, and initializing shared memory for rendering. It also configures the screen dimensions based on command-line parameters and checks for the availability of the MIT-SHM extension. This function demonstrates id Software's adaptability in porting their game engine to different platforms. In 1993, Linux was not a mainstream gaming platform, and X11 presented unique challenges, such as the need for efficient rendering methods and compatibility with various hardware configurations. By leveraging shared memory and customizing the initialization process, id Software ensured that DOOM could run smoothly on Linux systems. This graphics initialization routine reflects the team's pioneering efforts in cross-platform game development, setting a precedent for future ports of popular games."
+    content: "This section defines the `xlatekey` function, which translates X11 keycodes into DOOM's internal control codes. The function uses a switch statement to map specific X11 key symbols (e.g., `XK_Left`, `XK_Up`) to DOOM's predefined constants for movement and actions, such as `KEY_LEFTARROW` and `KEY_ESCAPE`. This translation is crucial for adapting DOOM's input handling to the X11 environment, ensuring compatibility with UNIX systems. In 1993, adapting software to different platforms was a significant challenge, as hardware and operating systems varied widely. The decision to support X11 reflects id Software's ambition to make DOOM accessible to a broader audience, including UNIX users. This approach influenced later games and applications that sought cross-platform compatibility, laying groundwork for modern input abstraction layers in game engines like SDL and Unity."
+  - id: "graphics-shutdown"
+    line_start: 164
+    line_end: 176
+    title: "Gracefully shutting down shared memory graphics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Shared_memory"
+    image_url: ""
+    image_caption: ""
+    content: "The `I_ShutdownGraphics` function handles the cleanup of shared memory graphics resources. It detaches the shared memory segment from the X server using `XShmDetach`, releases the memory with `shmdt`, and removes the segment with `shmctl`. This meticulous cleanup prevents resource leaks, which were a common issue in early graphical applications. Shared memory was a key technique for efficient inter-process communication, allowing DOOM to achieve high performance on systems with limited resources. By leveraging the MIT SHM extension, id Software optimized rendering for X11 environments, a decision that influenced later UNIX-based games and applications. The emphasis on proper cleanup reflects the team's understanding of system-level programming and its importance in maintaining stability."
+  - id: "event-handling-x11"
+    line_start: 194
+    line_end: 277
+    title: "Handling user input and events in X11"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
+    image_url: ""
+    image_caption: ""
+    content: "The `I_GetEvent` function processes input and events from the X11 server, including key presses, mouse movements, and button clicks. It uses `XNextEvent` to retrieve events and a series of case statements to handle different event types. For example, `KeyPress` and `KeyRelease` events are translated into DOOM's internal event system, while `MotionNotify` tracks mouse movement. This event-driven approach was essential for real-time interaction in games, enabling responsive controls and immersive gameplay. In the early 1990s, event handling in graphical applications was still evolving, and DOOM's implementation showcased how to integrate low-level system events into a high-performance game loop. The techniques used here influenced later game engines and frameworks, such as SDL, which adopted similar methods for cross-platform input handling."
+  - id: "graphics-scaling"
+    line_start: 352
+    line_end: 519
+    title: "Scaling low-resolution graphics for modern displays"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_scaling"
+    image_url: ""
+    image_caption: ""
+    content: "The `I_FinishUpdate` function includes logic for scaling DOOM's 320x200 resolution graphics to larger display sizes. Depending on the `multiply` factor (2, 3, or 4), pixels are duplicated to create a scaled image. The function uses bitwise operations to manipulate pixel data efficiently, ensuring that the scaled image retains its visual fidelity. In 1993, most consumer monitors operated at resolutions higher than 320x200, making scaling necessary for a full-screen experience. This approach highlights id Software's ingenuity in adapting low-resolution graphics to varying hardware capabilities. The scaling techniques pioneered here influenced later games and engines, which adopted similar methods for handling resolution differences. Today, resolution scaling is a standard feature in game engines like Unity and Unreal Engine."
+  - id: "palette-management"
+    line_start: 536
+    line_end: 585
+    title: "Managing palettes for 256-color displays"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Color_depth"
+    image_url: ""
+    image_caption: ""
+    content: "The `UploadNewPalette` and `I_SetPalette` functions manage color palettes for 256-color PseudoColor displays. The palette data is processed using gamma correction tables (`gammatable`) to adjust brightness and contrast, and the colors are stored in the X11 colormap using `XStoreColors`. In the early 1990s, 256-color displays were common, and efficient palette management was critical for achieving vibrant graphics. Gamma correction allowed developers to account for differences in monitor brightness, ensuring consistent visuals across hardware. This technique was widely adopted in later games and applications, influencing how color management is handled in modern graphics APIs like OpenGL and DirectX."
+  - id: "shared-memory-allocation"
+    line_start: 595
+    line_end: 689
+    title: "Allocating shared memory for graphical data"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Shared_memory"
+    image_url: ""
+    image_caption: ""
+    content: "The `grabsharedmemory` function allocates shared memory segments for graphical data using `shmget`, `shmat`, and `shmctl`. It includes logic to handle stale shared memory segments left by previous instances of DOOM, ensuring that the system remains clean and functional. Shared memory was a key optimization for graphical applications, allowing DOOM to bypass slower data transfer methods and achieve high performance. This technique reflects id Software's deep understanding of UNIX system programming and its ability to leverage low-level features for gaming. Shared memory allocation became a standard practice in UNIX-based applications, influencing later games and graphical software."
+  - id: "graphics-initialization"
+    line_start: 692
+    line_end: 800
+    title: "Initializing graphics for X11 systems"
+    wikipedia_url: "https://en.wikipedia.org/wiki/X_Window_System"
+    image_url: ""
+    image_caption: ""
+    content: "The `I_InitGraphics` function initializes the graphical environment for DOOM on X11 systems. It opens the X display, sets up the visual and colormap, and checks for the MIT SHM extension. The function also processes command-line arguments to configure display geometry and scaling factors. In 1993, setting up graphics on UNIX systems required detailed knowledge of X11 and its extensions. The inclusion of MIT SHM reflects id Software's commitment to optimizing performance for UNIX users. This initialization process influenced later games and applications, showcasing how to adapt graphical software to diverse operating systems and hardware environments."
+  - id: "x-window-initialization"
+    line_start: 801
+    line_end: 915
+    title: "Creating and Managing the X Window"
+    wikipedia_url: "https://en.wikipedia.org/wiki/X_Window_System"
+    image_url: ""
+    image_caption: ""
+    content: "This section initializes the X Window System for DOOM's Linux port, creating a graphical window for the game to render its visuals. The code sets up attributes like colormap and border pixel, creates the main window, and defines a null cursor to avoid distractions during gameplay. It also establishes a graphics context (GC) for drawing operations and ensures the window is mapped and ready for rendering. The use of XGrabPointer restricts mouse movement to the game window, enhancing immersion. At the time, Linux was gaining traction as a viable operating system, and DOOM's port to Linux demonstrated the adaptability of its engine. The X Window System was the standard graphical interface for Unix-like systems, and integrating with it required understanding its event-driven architecture. This approach influenced later Linux game development, showcasing how popular games could be adapted to open-source platforms. Developers studying this code learned how to leverage X for efficient window management and input handling, paving the way for more sophisticated Linux gaming experiences."
+  - id: "init-expand-table"
+    line_start: 918
+    line_end: 926
+    title: "Building a Pixel Expansion Table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_scaling"
+    image_url: ""
+    image_caption: ""
+    content: "The InitExpand function constructs a lookup table (exptable) that maps 8-bit values to 32-bit expanded representations. This table is used for efficient pixel manipulation, enabling rapid scaling and rendering of graphics. By precomputing these values, the code avoids redundant calculations during gameplay, optimizing performance. In the early 1990s, hardware constraints necessitated such clever tricks to achieve smooth graphics on systems with limited processing power. Carmack's ability to innovate within these constraints contributed to DOOM's reputation for technical excellence. This technique influenced later games and engines, teaching developers the value of precomputed data structures for performance-critical tasks. The concept of lookup tables remains a staple in software development, particularly in graphics and signal processing."
+  - id: "init-expand2-table"
+    line_start: 928
+    line_end: 954
+    title: "Expanding Pixels with Double Precision"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_scaling"
+    image_url: ""
+    image_caption: ""
+    content: "The InitExpand2 function builds a more complex lookup table (exptable2) for double-precision pixel expansion. This table maps combinations of 8-bit values to their expanded representations, enabling efficient manipulation of larger pixel groups. The use of union structures to handle double and unsigned data types reflects Carmack's mastery of low-level programming. This technique was necessary to scale graphics smoothly on hardware with limited capabilities, ensuring DOOM's visuals remained impressive across different resolutions. The precomputation of these values highlights the importance of optimizing for real-time performance, a principle that influenced later graphics engines and rendering techniques. Developers studying this code learned how to balance precision and efficiency, a lesson that remains relevant in modern graphics programming."
+  - id: "expand4-pixel-scaling"
+    line_start: 958
+    line_end: 1048
+    title: "Scaling Graphics with Expand4"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_scaling"
+    image_url: ""
+    image_caption: ""
+    content: "The Expand4 function scales graphics by expanding pixel data into larger representations using the precomputed exptable2. It processes lines of pixel data, applying transformations to create scaled images suitable for rendering. This function demonstrates Carmack's ability to optimize graphics processing for real-time performance, leveraging lookup tables and efficient memory access patterns. At the time, scaling graphics was a computationally expensive task, but DOOM's engine achieved it with remarkable speed. This approach influenced later game engines, teaching developers how to handle graphics scaling efficiently. Techniques like this paved the way for modern rendering systems, where scaling and transformation are integral to creating immersive visuals. Expand4 showcases the ingenuity required to push the boundaries of gaming technology in the early 1990s."
 
 ---
 
