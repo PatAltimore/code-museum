@@ -9,82 +9,74 @@ year: 1977
 author: "Anderson, Blank, Daniels, Lebling"
 slug: "np"
 order: 2
-description: "This file contains key parsing routines for Zork, one of the earliest text-based adventure games, written in MDL on the PDP-10. It showcases the ingenuity required to process complex player commands in a constrained computing environment."
+description: "This file contains parsing and object manipulation routines for Zork, the seminal text-based adventure game."
 
 summary:
-  - point: "MDL's Lisp-like syntax enabled complex data manipulation for Zork's parser."
+  - point: "Uses MDL's list and vector manipulation capabilities to parse player input"
     link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    link_label: "MDL"
-  - point: "The parser's design reflects the limitations of PDP-10 hardware and ARPANET access."
-    link: "https://en.wikipedia.org/wiki/PDP-10"
-    link_label: "PDP-10"
-  - point: "Zork's command parsing influenced later adventure games and interactive fiction engines."
-    link: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    link_label: "Interactive Fiction"
-  - point: "The file demonstrates early use of object-oriented concepts in game design."
-    link: "https://en.wikipedia.org/wiki/Object-oriented_programming"
-    link_label: "Object-Oriented Programming"
-  - point: "The modularity of parsing routines allowed flexibility in expanding Zork's vocabulary and syntax."
+    link_label: "MDL programming language"
+  - point: "Introduces 'GWIM' (Get What I Mean), an early attempt at intelligent input parsing"
     link: "https://en.wikipedia.org/wiki/Zork"
     link_label: "Zork"
+  - point: "Leverages PDP-10 hardware and ITS system features for efficient object lookup"
+    link: "https://en.wikipedia.org/wiki/PDP-10"
+    link_label: "DEC PDP-10"
+  - point: "Innovative use of MDL's oblist data structure for managing game objects and actions"
+    link: "https://en.wikipedia.org/wiki/Oblist"
+    link_label: "Oblist"
+  - point: "Early example of natural language processing in games"
+    link: "https://en.wikipedia.org/wiki/Natural_language_processing"
+    link_label: "Natural language processing"
 
 enhancements:
-  - id: "global-data-initialization"
+  - id: "global-game-data-initialization"
     line_start: 2
     line_end: 8
-    title: "Global data structures for parsing commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
+    title: "Global game data initialization"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Oblist"
     image_url: ""
     image_caption: ""
-    content: "These lines set up global variables that serve as the backbone for Zork's command parsing. The `WORDS`, `OBJECT-OBL`, and `ACTIONS` variables define lists of words and actions the game understands, while `ORPHANS` provides a placeholder for incomplete commands. In 1977, the PDP-10's memory constraints meant that every byte had to be carefully allocated, and these structures reflect that discipline. The use of `MOBLIST` and `OBLIST` showcases MDL's ability to handle dynamic lists efficiently, a feature borrowed from its Lisp heritage. These foundational elements allowed Zork to interpret complex player inputs, laying the groundwork for interactive fiction's evolution."
-  - id: "conditional-preparation-vectors"
+    content: "These lines initialize global variables used throughout the game, including 'WORDS', 'OBJECT-OBL', 'ACTIONS', and 'ORPHANS'. These variables are set using MDL's oblist and moblist constructs, which are specialized data structures for managing lists of symbols and objects. The oblist is a key feature of MDL, inherited from Lisp, and allows efficient symbol lookup and manipulation. In the context of Zork, these lists store the vocabulary of the game, the objects in the game world, and the actions players can perform. The initialization reflects the modular design philosophy of Zork's developers, enabling the game to handle complex interactions between objects and actions. This approach influenced later adventure games and interactive fiction engines, such as Infocom's Z-machine, which also relied on efficient data structures for parsing and gameplay logic."
+  - id: "preposition-and-object-parsing"
     line_start: 10
     line_end: 17
-    title: "Conditional setup of preparation vectors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    title: "Preposition and object parsing setup"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Natural_language_processing"
     image_url: ""
     image_caption: ""
-    content: "These lines define `PREPVEC` and `PREP2VEC`, which are used to handle prepositions and objects in player commands. The conditional logic ensures that these vectors are only initialized when certain conditions are met, such as the presence of a 'compile' directive or specific glue assignments. This modular approach reflects the flexibility of MDL and the need to adapt to varying player inputs. In the late 1970s, parsing natural language was a novel challenge, and Zork's developers—Anderson, Blank, Daniels, and Lebling—had to innovate within the constraints of the PDP-10's processing power. These vectors allowed the game to interpret phrases like \"take the sword with the shield\" by breaking them into manageable components."
+    content: "This section sets up vectors for parsing prepositions and objects in player commands. The 'PREPVEC' and 'PREP2VEC' arrays store potential preposition-object pairs, enabling the game to interpret commands like 'take key with glove'. The use of MDL's vector and phrase types highlights the developers' focus on natural language processing, a cutting-edge concept in 1977. By predefining common patterns, Zork's parser could handle a wide range of inputs with minimal ambiguity. This technique laid the groundwork for more sophisticated parsing systems in later games and contributed to the development of text-based interfaces in software beyond gaming."
   - id: "sparse-parsing-routine"
     line_start: 19
     line_end: 129
-    title: "Sparse: The heart of Zork's parser"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The `SPARSE` routine is the centerpiece of Zork's command parsing system. It takes player input, represented as vectors, and attempts to match it against known actions, objects, and directions. The auxiliary variables (`WORDS`, `OBJECT-OBL`, `ACTIONS`, etc.) provide context for the parsing process, while the nested conditionals handle edge cases like ambiguous commands or missing objects. In the 1970s, parsing human language was an emerging field, and Zork's developers had to balance sophistication with the PDP-10's limited computational resources. This routine embodies their ingenuity, using MDL's Lisp-like capabilities to dynamically interpret commands. The influence of this parser can be seen in later interactive fiction engines like Inform and TADS, which expanded on these foundational ideas."
-  - id: "orphan-handling"
-    line_start: 133
-    line_end: 142
-    title: "Orphan commands: Resolving ambiguity"
+    title: "Sparse parsing routine for player input"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The `ORPHAN` routine addresses a common problem in text-based games: incomplete or ambiguous commands. By storing details like the action, object, and preposition in the `ORPHANS` structure, Zork can prompt the player for clarification or infer their intent. This feature reflects the game's commitment to user-friendly interaction, a hallmark of its design. In the late 1970s, most computer games had rigid input requirements, but Zork's developers wanted to create a more conversational experience. This routine allowed the game to handle commands like \"take\" or \"open\" gracefully, asking follow-up questions to resolve ambiguity. The concept of orphan commands has since become a standard in interactive fiction, influencing the design of modern text parsers."
-  - id: "syntax-matching"
-    line_start: 144
-    line_end: 180
-    title: "Syntax matching for complex commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
+    content: "The 'SPARSE' routine is a central component of Zork's input parsing system. It processes player commands by analyzing words, objects, actions, and prepositions to determine the intended meaning. The routine uses MDL's powerful list and vector manipulation features to map input strings to game actions. It also handles errors gracefully, providing feedback when commands are ambiguous or invalid. This routine exemplifies the developers' innovative approach to creating an immersive text-based experience. By enabling players to interact with the game world using natural language, Zork set a new standard for interactivity in games. The techniques pioneered here influenced later adventure games, such as Infocom's titles, and contributed to the evolution of user-friendly interfaces in software design."
+  - id: "gwim-get-what-i-mean"
+    line_start: 253
+    line_end: 282
+    title: "GWIM: Get What I Mean"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Natural_language_processing"
     image_url: ""
     image_caption: ""
-    content: "The `SYN-MATCH` routine attempts to match player input against predefined syntactic patterns. By analyzing the action and objects involved, it determines whether the command is valid and how it should be executed. This routine highlights Zork's ability to handle nuanced language, a significant leap forward in game design. In the 1970s, most games relied on simple verb-noun pairs, but Zork's parser could interpret more complex structures, such as \"put the book on the table.\" The developers leveraged MDL's list processing capabilities to create a flexible and extensible syntax engine. This innovation paved the way for more sophisticated text parsers in later interactive fiction titles."
-  - id: "get-object-routine"
-    line_start: 363
-    line_end: 390
-    title: "Get-Object: Searching for items in the game world"
+    content: "The 'GWIM' routine is an early attempt at intelligent input parsing, designed to interpret ambiguous player commands. It uses bit flags and object lists to identify visible and manipulable objects in the game world. The routine checks whether objects are accessible, takeable, or contained within other objects, and resolves ambiguities by selecting the most plausible interpretation. This innovative approach reflects the developers' commitment to creating a responsive and intuitive gameplay experience. The concept of 'Get What I Mean' influenced the development of more advanced natural language processing systems in games and software. It also inspired later efforts to create AI-driven interfaces capable of understanding user intent."
+  - id: "object-search-and-retrieval"
+    line_start: 358
+    line_end: 388
+    title: "Object search and retrieval routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The `GET-OBJECT` routine is responsible for locating objects in the game world based on player input. It searches through various lists, including the player's inventory, the current room, and nearby containers, to find a match. This functionality is crucial for interpreting commands like \"take the sword\" or \"examine the chest.\" In the late 1970s, Zork's developers faced the challenge of creating a believable and interactive world within the constraints of the PDP-10. This routine showcases their solution: a dynamic search algorithm that could handle nested containers and ambiguous references. The ability to interact with objects in a realistic manner was one of Zork's defining features, setting a standard for future adventure games."
-  - id: "search-list-routine"
-    line_start: 400
-    line_end: 419
-    title: "Search-List: Navigating nested containers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
+    content: "The 'GET-OBJECT' routine is responsible for locating objects in the game world based on player input. It searches through various lists, including the player's inventory, the current room, and nearby containers, to find objects matching the specified name and adjective. The routine handles edge cases, such as objects that are out of reach or obscured, and provides feedback when objects cannot be found. This functionality is crucial for enabling complex interactions in Zork's richly detailed game world. The efficient search algorithm demonstrates the developers' deep understanding of the PDP-10's capabilities and MDL's strengths. Techniques from this routine influenced object management systems in later games and interactive fiction engines, ensuring that players could interact with virtual worlds in meaningful ways."
+  - id: "fwim-find-what-i-mean"
+    line_start: 421
+    line_end: 443
+    title: "FWIM: Find What I Mean"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Natural_language_processing"
     image_url: ""
     image_caption: ""
-    content: "The `SEARCH-LIST` routine extends Zork's object search capabilities by handling nested containers. It recursively examines the contents of visible and open objects, allowing players to interact with items inside chests, drawers, or bags. This feature reflects an early use of object-oriented principles, where objects are treated as entities with properties and relationships. In the 1970s, such sophistication was rare in games, but Zork's developers wanted to create a rich and immersive experience. This routine enabled commands like \"take the key from the chest\" to work seamlessly, contributing to the game's reputation for depth and realism. The concept of nested containers has since become a staple in adventure games and RPGs."
+    content: "The 'FWIM' routine complements 'GWIM' by focusing on object manipulation. It identifies objects that are visible and either takeable or contained within accessible containers. The routine uses MDL's list processing capabilities to traverse object hierarchies and resolve ambiguities. This functionality is essential for interpreting player commands like 'take the sword from the chest', ensuring that the game responds correctly to complex inputs. The 'Find What I Mean' concept reflects the developers' pioneering efforts to create a natural and intuitive interface for interacting with the game world. The techniques developed here influenced later advancements in natural language processing and AI-driven interfaces, paving the way for more sophisticated systems in gaming and beyond."
 
 ---
 
