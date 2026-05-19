@@ -9,82 +9,82 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "msdos"
 order: 1
-description: "The source code for MS-DOS 1.25, a pivotal operating system in personal computing history, showcasing the ingenuity and constraints of early software development."
+description: "The assembly source code for MS-DOS 1.25, a foundational operating system that shaped personal computing in the 1980s."
 
 summary:
-  - point: "MS-DOS was derived from 86-DOS, written by Tim Paterson in six weeks."
+  - point: "MS-DOS was originally developed as 86-DOS by Tim Paterson in 1980."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "The file demonstrates low-level disk and file system management routines."
+  - point: "The File Allocation Table (FAT) system implemented here became a standard for file systems."
     link: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     link_label: "File Allocation Table"
-  - point: "The code includes hardware-specific optimizations for IBM PCs."
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "Interrupt-driven design reflects the constraints of early 8086 processors."
+  - point: "The source code demonstrates the constraints of early 8086 assembly programming."
     link: "https://en.wikipedia.org/wiki/Intel_8086"
     link_label: "Intel 8086"
-  - point: "The FAT structure and directory handling influenced later operating systems."
-    link: "https://en.wikipedia.org/wiki/FAT_file_system"
-    link_label: "FAT File System"
+  - point: "This version includes key updates like hidden files and date/time functionality."
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Released under MIT license in 2014, this code offers insights into early OS design."
+    link: "https://computerhistory.org/blog/ms-dos-source-code/"
+    link_label: "Computer History Museum"
 
 enhancements:
-  - id: "revision-history-commentary"
-    line_start: 5
-    line_end: 33
-    title: "Tracking six months of rapid evolution"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Dir_command_in_Windows_Command_Prompt.png/330px-Dir_command_in_Windows_Command_Prompt.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Computer directory listing in a Microsoft Windows command shell. (Public domain)"
-    content: "The revision history section provides a fascinating glimpse into the iterative development of MS-DOS. Each entry documents significant changes, from adding 32-byte directory entries to implementing hidden files and fatal error trapping. This meticulous tracking reflects the urgency and precision required to meet the demands of early PC manufacturers like IBM. Tim Paterson's work on 86-DOS, later acquired by Microsoft, laid the foundation for MS-DOS, which would dominate the personal computing landscape for years. The rapid evolution in just six months highlights the constraints and ingenuity of developing software for the nascent IBM PC."
-  - id: "interrupt-entry-points"
-    line_start: 36
-    line_end: 45
-    title: "Interrupts: The backbone of MS-DOS"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Memory_management_unit_%28MMU%29_diagram_%28in_Spanish%29.png/330px-Memory_management_unit_%28MMU%29_diagram_%28in_Spanish%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Memory management unit (MMU) schema (CC BY 2.0)"
-    content: "This section defines the interrupt entry points for MS-DOS, crucial for handling system-level operations like disk reads, writes, and error handling. In the early 1980s, interrupt-driven programming was essential for efficient use of limited hardware resources. The 8086 processor relied heavily on interrupts to manage tasks asynchronously, allowing MS-DOS to provide a responsive user experience despite the constraints of early PCs. These entry points would become a standard feature in operating systems, influencing the design of later systems like Windows and Linux."
-  - id: "file-control-block-structure"
-    line_start: 76
-    line_end: 96
-    title: "File Control Block: Managing files in MS-DOS"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
+  - id: "assume-segment-registers"
+    line_start: 214
+    line_end: 220
+    title: "Setting up segment registers for DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Segment_register"
     image_url: ""
     image_caption: ""
-    content: "The File Control Block (FCB) structure defined here is central to MS-DOS's file management system. It includes fields for file name, size, date, time, and cluster information, enabling the operating system to track files on disk. This design was inspired by CP/M, the operating system that influenced 86-DOS. The FCB approach was eventually replaced by file handles in MS-DOS 2.0, which adopted Unix-like file management. However, the FCB remains a critical historical artifact, illustrating the transition from early file systems to more modern paradigms."
-  - id: "directory-entry-description"
-    line_start: 99
-    line_end: 120
-    title: "Directory entries: Navigating the file system"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
+    content: "The `ASSUME` directive initializes the segment registers (CS, DS, ES, SS) to point to the DOSGROUP segment, ensuring proper memory addressing throughout the program. In 1981, programmers faced the challenge of managing segmented memory on the Intel 8086, which had a 20-bit address space but only 16-bit registers. This setup was critical for MS-DOS to function efficiently, as it allowed the operating system to organize code, constants, and data into separate memory segments. Tim Paterson's design reflects the constraints of the hardware and the need for precise control over memory. This approach influenced future operating systems, as segmented memory persisted in x86 architecture for years."
+  - id: "escape-character-table"
+    line_start: 221
+    line_end: 264
+    title: "Escape character table for input handling"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Escape_character"
     image_url: ""
     image_caption: ""
-    content: "This section describes the format of 32-byte directory entries, a key innovation in MS-DOS's file system. Each entry includes the file name, attributes, date, time, and size, as well as pointers to the file's location on disk. The compact design reflects the need to optimize storage and processing on early PCs with limited memory and disk space. The directory structure was integral to the File Allocation Table (FAT) system, which became a standard for personal computers and influenced file systems in later operating systems."
-  - id: "drive-parameter-block"
-    line_start: 126
-    line_end: 142
-    title: "Drive Parameter Block: Abstracting hardware details"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"
+    content: "The `ESCTAB` section defines escape sequences for input handling, mapping specific characters to actions like copying, skipping, or editing lines. This table adapts based on whether the code is compiled for IBM or non-IBM systems, showcasing MS-DOS's flexibility for different hardware environments. In the early 1980s, compatibility was a major concern as IBM PCs dominated the market but other manufacturers sought to use MS-DOS. By abstracting input handling into a table, the system could easily accommodate variations in keyboard layouts and user expectations. This modularity laid the groundwork for MS-DOS's widespread adoption across diverse hardware platforms."
+  - id: "file-allocation-table-unpack"
+    line_start: 448
+    line_end: 474
+    title: "Unpacking the File Allocation Table (FAT)"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The Drive Parameter Block (DPB) abstracts the details of physical disk drives, allowing MS-DOS to interact with storage devices in a standardized way. It includes information about sector size, cluster size, and the location of the File Allocation Table (FAT). This abstraction was crucial for supporting multiple disk formats and devices, a key feature for OEMs licensing MS-DOS. The DPB's design reflects the challenges of creating a flexible operating system in an era of rapidly evolving hardware."
-  - id: "disk-read-and-write-routines"
-    line_start: 1218
-    line_end: 1353
-    title: "Disk I/O: Bridging software and hardware"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
+    content: "The `UNPACK` subroutine retrieves the contents of the FAT for a given cluster, a key operation in MS-DOS's file system. FAT uses a 12-bit entry for each allocation unit, packed into 16-bit words. This routine handles the complexity of extracting these entries, ensuring accurate file management. In 1981, the FAT system was revolutionary for its simplicity and efficiency on limited hardware. It allowed MS-DOS to manage files on floppy disks and hard drives with minimal overhead. The FAT system became a standard for file systems, influencing designs like FAT32 and exFAT, and remains relevant in embedded systems today."
+  - id: "delete-file-subroutine"
+    line_start: 704
+    line_end: 741
+    title: "Deleting files with directory updates"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_deletion"
     image_url: ""
     image_caption: ""
-    content: "The disk read and write routines in MS-DOS illustrate the low-level programming required to interface with hardware. These routines use BIOS calls to perform disk operations, handling errors and retries to ensure data integrity. The code reflects the challenges of working with early disk drives, which were prone to errors and had limited capacity. By abstracting these operations, MS-DOS provided a consistent interface for applications, paving the way for the development of more sophisticated operating systems."
-  - id: "memory-management-initialization"
-    line_start: 3382
-    line_end: 3409
-    title: "Memory management: Maximizing limited resources"
+    content: "The `DELETE` subroutine handles file deletion, including marking directory entries as free and releasing associated clusters in the FAT. It checks for special cases, such as deleting all files (`DEL *.*`) or attempting to delete device names, which is prohibited. This routine reflects the careful balance between functionality and safety in MS-DOS's design. In the early 1980s, file systems had to be robust against user errors and hardware limitations. By ensuring proper updates to the FAT and directory, MS-DOS minimized the risk of data corruption. This approach influenced later operating systems, where file deletion remains a critical operation."
+  - id: "create-file-subroutine"
+    line_start: 1123
+    line_end: 1146
+    title: "Creating files with FAT allocation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_creation"
+    image_url: ""
+    image_caption: ""
+    content: "The `CREATE` subroutine initializes a new file in the directory and allocates clusters in the FAT. It checks for existing files with the same name and handles edge cases like null files and free directory entries. This routine demonstrates MS-DOS's ability to manage disk space efficiently, even on limited hardware. In 1981, storage devices like floppy disks had minimal capacity, making efficient file creation essential. By integrating FAT updates and directory management, MS-DOS ensured reliable file operations. This design influenced modern file systems, where creation and allocation remain tightly coupled."
+  - id: "read-time-and-date"
+    line_start: 3435
+    line_end: 3470
+    title: "Reading time and date with BIOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_clock"
+    image_url: ""
+    image_caption: ""
+    content: "The `READTIME` subroutine retrieves the current time and date from the BIOS, updating internal counters and adjusting for leap years. This functionality was critical for MS-DOS's ability to timestamp files, a feature introduced in version 1.10. In the early 1980s, real-time clocks were a luxury on personal computers, and MS-DOS's integration with BIOS ensured compatibility across systems. Accurate timekeeping became increasingly important as PCs were used for business and record-keeping. This subroutine reflects the growing sophistication of operating systems, paving the way for features like file versioning and automated backups."
+  - id: "memory-allocation-and-init"
+    line_start: 3862
+    line_end: 3975
+    title: "Initializing memory and system resources"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "This section of code initializes memory management for MS-DOS, setting up program segments and handling interrupts. Memory was a scarce resource on early PCs, and efficient management was critical for performance. The code demonstrates how MS-DOS maximized available memory, enabling it to run on a wide range of hardware configurations. This approach influenced the design of later operating systems, which continued to prioritize efficient memory use."
+    content: "The `CONTINIT` section calculates memory allocation for buffers, FATs, and free space, setting up the system for operation. It includes a memory scan to determine available space, ensuring MS-DOS could adapt to different hardware configurations. In 1981, memory management was a critical challenge, as PCs often had limited RAM. MS-DOS's ability to dynamically allocate resources made it versatile and efficient. This initialization routine highlights the ingenuity required to optimize performance on constrained hardware. The techniques developed here influenced later operating systems, where dynamic memory management became a cornerstone of design."
 
 ---
 

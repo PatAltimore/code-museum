@@ -9,66 +9,66 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "sysinit"
 order: 5
-description: "This file contains the initialization routines for MS-DOS 2.0, a pivotal operating system that shaped personal computing in the 1980s."
+description: "The SYSINIT.ASM file initializes MS-DOS at boot, setting up memory, loading the operating system, and parsing configuration files. It represents a foundational step in personal computing history."
 
 summary:
-  - point: "Memory sizing algorithm writes/reads bit patterns to detect RAM"
-    link: "https://en.wikipedia.org/wiki/Random-access_memory"
-    link_label: "RAM"
-  - point: "Relocation of SYSINIT code into high memory for efficiency"
-    link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory Management"
-  - point: "Parsing CONFIG.SYS to configure system parameters"
+  - point: "SYSINIT.ASM sizes RAM by writing and reading bit patterns"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "The file relocates itself into high memory for efficient use of limited resources"
+    link: "https://en.wikipedia.org/wiki/IBM_PC"
+    link_label: "IBM PC"
+  - point: "Parses CONFIG.SYS to configure the operating system dynamically"
     link: "https://en.wikipedia.org/wiki/CONFIG.SYS"
     link_label: "CONFIG.SYS"
-  - point: "Integration of device drivers during initialization"
-    link: "https://en.wikipedia.org/wiki/Device_driver"
-    link_label: "Device Drivers"
-  - point: "Loading COMMAND.COM as the default shell"
+  - point: "Executes COMMAND.COM, the command-line interpreter for MS-DOS"
     link: "https://en.wikipedia.org/wiki/COMMAND.COM"
     link_label: "COMMAND.COM"
+  - point: "Introduces device driver initialization, a key feature of MS-DOS 2.0"
+    link: "https://en.wikipedia.org/wiki/Device_driver"
+    link_label: "Device driver"
 
 enhancements:
-  - id: "memory-sizing-algorithm"
-    line_start: 243
-    line_end: 287
-    title: "Detecting RAM: A clever memory sizing trick"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Random-access_memory"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Command.com_Win10.png/330px-Command.com_Win10.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Screenshot of Command.com in Windows 10 Pro, 32-bit edition. (Public domain)"
-    content: "This section implements a memory sizing algorithm by writing and reading bit patterns to detect available RAM. In the early 1980s, personal computers often lacked standardized methods for determining installed memory. Programmers had to devise their own solutions, often tailored to specific hardware. Tim Paterson, adapting MS-DOS for a wide range of OEMs, needed a robust and universal method to size memory. This algorithm starts scanning at a 32K boundary and increments until a memory boundary is detected. It was a practical solution for the era, ensuring MS-DOS could adapt to varying configurations. This approach influenced later memory detection routines in other operating systems, though modern systems rely on BIOS or firmware for such tasks."
-  - id: "relocating-sysinit"
-    line_start: 321
-    line_end: 339
-    title: "Relocating SYSINIT: Optimizing memory usage"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Linux_Driver_Project_Code_Sample.png/330px-Linux_Driver_Project_Code_Sample.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Here is a chunk of GPL code from the NDAS driver, next to one of the devices it connects to. (CC BY-SA 3.0)"
-    content: "Here, SYSINIT relocates itself into high memory, freeing up lower memory for application use. Memory was a scarce resource in the early 1980s, with typical systems offering only 64KB to 640KB. Efficient memory management was critical for operating systems like MS-DOS, which needed to leave as much space as possible for user applications. By moving initialization code out of the way, MS-DOS ensured that the lower memory, which was more accessible to programs, remained available. This technique reflects the ingenuity required to work within the severe constraints of early personal computing hardware."
-  - id: "loading-command-com"
-    line_start: 775
-    line_end: 913
-    title: "COMMAND.COM: Launching the shell"
-    wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
+  - id: "title-and-equ-definitions"
+    line_start: 1
+    line_end: 19
+    title: "Defining constants for system flexibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section loads COMMAND.COM, the default shell for MS-DOS. COMMAND.COM provided the user interface for interacting with the operating system, allowing users to execute commands, run programs, and manage files. In the early 1980s, graphical user interfaces were rare, and command-line shells like COMMAND.COM were the primary way users interacted with computers. Loading the shell was the final step in system initialization, transitioning from hardware setup to user interaction. COMMAND.COM's simplicity and efficiency made it iconic, and its design influenced later shells and command-line interfaces, including the Windows Command Prompt."
+    content: "The opening lines of SYSINIT.ASM establish constants and conditional assembly directives that allow the system to adapt to different configurations. For example, 'IBMVER' and 'MSVER' toggle between IBM-specific and Microsoft-specific builds, reflecting the dual licensing strategy of MS-DOS. This flexibility was crucial in the early 1980s when hardware compatibility was a major challenge. Tim Paterson, the original author of 86-DOS, designed the system to be modular and adaptable, a principle that carried forward into MS-DOS. These constants enabled OEMs to customize the operating system for their machines, laying the groundwork for MS-DOS's widespread adoption. The modularity seen here influenced future operating systems, including Windows."
+  - id: "sysinit-structure"
+    line_start: 55
+    line_end: 79
+    title: "Structuring internal DOS data"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "The SYSINITVAR structure defines critical pointers and variables for managing system resources, such as the disk parameter block (DPB) list and buffer queue. In the constrained environment of the IBM PC, with its 16-bit 8086 processor and limited RAM, efficient memory management was paramount. This structure encapsulates the essential data for initializing and operating the system, ensuring that MS-DOS could function reliably across diverse hardware configurations. The use of structured data in assembly language reflects the influence of higher-level programming paradigms, which were becoming more prevalent in the early 1980s. This approach to memory management would later evolve into more sophisticated systems in modern operating systems."
+  - id: "memory-sizing-and-relocation"
+    line_start: 241
+    line_end: 283
+    title: "Sizing RAM and relocating the system"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "The MEMSCAN routine sizes the available RAM by writing and reading bit patterns, a technique that ensures compatibility with the diverse memory configurations of early PCs. Once the memory size is determined, the system relocates itself into high memory, freeing up lower memory for user applications. This was a clever optimization in an era when every kilobyte of RAM mattered. The relocation process reflects the ingenuity of MS-DOS's design, which prioritized efficiency and adaptability. Tim Paterson's original 86-DOS laid the groundwork for these techniques, which were refined by Microsoft engineers for MS-DOS 2.0. Memory management strategies like these influenced later operating systems, including Windows, and remain relevant in embedded systems today."
   - id: "config-sys-parsing"
-    line_start: 975
-    line_end: 1383
-    title: "CONFIG.SYS: Customizing the system at boot"
+    line_start: 929
+    line_end: 985
+    title: "Parsing CONFIG.SYS for dynamic configuration"
     wikipedia_url: "https://en.wikipedia.org/wiki/CONFIG.SYS"
     image_url: ""
     image_caption: ""
-    content: "This section parses the CONFIG.SYS file, allowing users to customize system parameters like buffer sizes, file limits, and device drivers. Introduced in MS-DOS 2.0, CONFIG.SYS was inspired by Unix's configuration files, marking a shift toward more flexible and user-configurable operating systems. In 1983, this feature was revolutionary, giving users control over how their system operated. Parsing CONFIG.SYS involved reading the file, interpreting commands, and applying settings before launching the shell. This innovation became a staple of DOS-based systems and influenced the design of configuration mechanisms in later operating systems, including Windows."
-  - id: "device-driver-integration"
-    line_start: 1871
-    line_end: 1905
-    title: "Device drivers: Linking hardware to software"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
+    content: "The DOCONF subroutine parses the CONFIG.SYS file, allowing users to customize their system's behavior at boot. CONFIG.SYS introduced a level of user control that was revolutionary for its time, enabling the loading of device drivers and setting system parameters dynamically. This feature was inspired by Unix's configuration flexibility, reflecting Microsoft's ambition to bring advanced features to the personal computing market. Parsing configuration files in assembly language required meticulous attention to detail, as errors could render the system unusable. The ability to customize the operating system contributed to MS-DOS's success and set a precedent for user-configurable systems in later operating systems."
+  - id: "command-line-initialization"
+    line_start: 1977
+    line_end: 2025
+    title: "Initializing COMMAND.COM, the user interface"
+    wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""
     image_caption: ""
-    content: "This section integrates device drivers into the system, linking hardware functionality to the operating system. Device drivers are critical for enabling software to communicate with hardware components like printers, keyboards, and disk drives. MS-DOS 2.0 introduced a more sophisticated device driver model inspired by Unix, allowing third-party developers to extend the system's capabilities. This modular approach was essential for MS-DOS's success, as it allowed hardware manufacturers to create drivers for their devices, ensuring compatibility with the growing ecosystem of IBM PCs and clones. The modularity and extensibility of this design were key factors in MS-DOS's dominance in the PC market."
+    content: "The STORESHELL routine sets up COMMAND.COM, the command-line interpreter for MS-DOS. This marks the transition from system initialization to user interaction, providing a text-based interface for executing commands and managing files. COMMAND.COM was central to the MS-DOS experience, embodying the simplicity and power of the operating system. The initialization process ensures that the command interpreter is ready to execute user commands immediately after boot. This design reflects the priorities of the early PC era, where usability and efficiency were paramount. COMMAND.COM's influence extended beyond MS-DOS, shaping the design of command-line interfaces in subsequent operating systems, including Windows and Linux."
 
 ---
 

@@ -9,74 +9,66 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "command"
 order: 2
-description: "The MS-DOS COMMAND.ASM file is the source code for the command-line interpreter of MS-DOS v1.25, a cornerstone of early personal computing."
+description: "The COMMAND.ASM file from MS-DOS v1.25 represents the core command processor, a pivotal piece of software that defined the user experience of early personal computing."
 
 summary:
-  - point: "COMMAND.ASM implements the MS-DOS command-line interface, enabling users to interact with the operating system via text commands."
+  - point: "Resident and transient portions of COMMAND handle memory constraints"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "The code demonstrates early techniques for memory management in constrained environments, including transient and resident segments."
-    link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory Management"
-  - point: "The file includes routines for handling interrupts, disk errors, and batch file execution, showcasing the challenges of early PC software development."
-    link: "https://en.wikipedia.org/wiki/Interrupt"
-    link_label: "Interrupts"
-  - point: "The transient segment design allowed MS-DOS to maximize available memory for user programs, reflecting the limitations of early PC hardware."
+  - point: "Error handling routines reflect early disk reliability issues"
+    link: "https://en.wikipedia.org/wiki/IBM_PC"
+    link_label: "IBM PC"
+  - point: "Batch file processing introduced automation in personal computing"
+    link: "https://en.wikipedia.org/wiki/Batch_file"
+    link_label: "Batch files"
+  - point: "Support for both IBM and Microsoft versions highlights OEM flexibility"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
-  - point: "COMMAND.ASM contains hardcoded error messages and prompts, illustrating the user experience of early command-line systems."
+    link_label: "OEM licensing"
+  - point: "Command parsing and execution routines laid groundwork for modern shells"
     link: "https://en.wikipedia.org/wiki/Command-line_interface"
-    link_label: "Command-Line Interface"
+    link_label: "Command-line interfaces"
 
 enhancements:
   - id: "resident-transient-memory-management"
     line_start: 3
     line_end: 15
-    title: "Resident and Transient Memory Management"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Dir_command_in_Windows_Command_Prompt.png/330px-Dir_command_in_Windows_Command_Prompt.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Computer directory listing in a Microsoft Windows command shell. (Public domain)"
-    content: "This section introduces the dual-segment design of MS-DOS's command interpreter, dividing the program into a resident portion and a transient portion. The resident portion remains in memory to handle interrupts and reload the transient portion if necessary, while the transient portion is loaded at the end of physical memory and can be overwritten by user programs. This design reflects the constraints of early PCs, which often had less than 64KB of RAM. Tim Paterson, the original author of 86-DOS, devised this approach to maximize available memory for user applications. The transient portion's checksum mechanism ensured reliability, allowing programs to use maximum memory without corrupting the command interpreter. This memory management technique was a clever solution to the limited resources of the IBM PC and similar systems, and it influenced the design of subsequent operating systems."
-  - id: "error-messages-hardcoded"
-    line_start: 98
-    line_end: 125
-    title: "Hardcoded Error Messages for User Feedback"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
+    title: "Resident and transient: Memory-saving ingenuity"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section defines a series of hardcoded error messages and prompts used by the command interpreter to communicate with the user. Messages like 'Write protect', 'Not ready', and 'Abort, Retry, Ignore?' were iconic elements of the MS-DOS user experience. These messages were stored as null-terminated strings in memory, a common practice in assembly language programming to save space. In the early 1980s, user interfaces were text-based, and the simplicity of these messages was both a necessity and a hallmark of the era. The 'Abort, Retry, Ignore?' prompt became a cultural touchstone, symbolizing the cryptic nature of early computing. These messages also highlight the importance of clear communication in software design, a principle that remains relevant today."
-  - id: "disk-error-handling"
+    content: "The opening comments of COMMAND.ASM describe the division of the command processor into resident and transient portions. This design was a clever solution to the severe memory constraints of early PCs. The resident portion, which included interrupt handlers and essential routines, remained in memory to provide continuity across program executions. The transient portion, responsible for command processing, was loaded into high memory and could be overwritten by user programs needing more space. This approach ensured that COMMAND could operate efficiently within the limited memory available on the IBM PC, which often had as little as 16KB to 64KB of RAM. Tim Paterson, the original author of 86-DOS, adapted this design to meet the needs of the IBM PC under tight deadlines. The transient-resident model influenced later operating systems, showcasing how early developers maximized hardware capabilities."
+  - id: "error-handling-disk-reliability"
     line_start: 359
-    line_end: 429
-    title: "Default Disk Error Handling Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
+    line_end: 379
+    title: "Default disk error handling: A fragile era"
+    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
     image_caption: ""
-    content: "This routine handles disk errors by displaying appropriate error messages and offering the user options to abort, retry, or ignore the operation. It uses interrupt 24H, a mechanism for error handling in MS-DOS. The code checks the type of error, determines the affected drive, and prints messages like 'Write protect' or 'Sector not found'. If the error occurs during the loading of COMMAND.COM, the routine prompts the user to insert the correct disk. Disk errors were a frequent occurrence in the early days of computing due to unreliable floppy disks and hardware limitations. This routine reflects the need for robust error handling in an era when users had to manually resolve issues. The 'Abort, Retry, Ignore?' prompt became synonymous with MS-DOS and influenced error handling in later systems."
+    content: "The DSKERR routine provides the default handling for disk errors, a critical feature in an era when floppy disks were notoriously unreliable. The code checks for various error conditions, such as 'Write Protect' and 'Sector Not Found,' and displays appropriate messages to the user. It even calculates the drive letter dynamically based on the error context. This routine reflects the challenges faced by early PC users, where hardware failures were common and software had to account for them gracefully. The inclusion of a user prompt ('Abort, Retry, Ignore?') became iconic, symbolizing the hands-on nature of computing in the early 1980s. IBM PCs relied on these mechanisms to maintain usability in the face of hardware limitations, and similar error-handling paradigms persisted in computing for decades."
   - id: "batch-file-processing"
-    line_start: 569
-    line_end: 748
-    title: "Batch File Processing and AUTOEXEC.BAT"
+    line_start: 709
+    line_end: 718
+    title: "Batch files: Automation for the masses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Batch_file"
     image_url: ""
     image_caption: ""
-    content: "This section includes code for processing batch files, such as AUTOEXEC.BAT, which was used to automate tasks during system startup. The command interpreter checks for the existence of AUTOEXEC.BAT and processes its commands line by line. Batch files were a key feature of MS-DOS, enabling users to script repetitive tasks and customize their computing environment. The code also handles parameters passed to batch files, allowing for dynamic execution based on user input. Batch processing was a precursor to modern scripting languages and demonstrated the flexibility of command-line interfaces. Tim Paterson's inclusion of batch file support in MS-DOS was influenced by similar features in CP/M, the operating system that inspired 86-DOS."
-  - id: "dir-command-implementation"
-    line_start: 1029
-    line_end: 1148
-    title: "Implementation of the DIR Command"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DIR_(command)"
+    content: "The PROMPTBAT routine highlights the introduction of batch file processing in MS-DOS, a feature that enabled automation and scripting for personal computers. Batch files allowed users to execute a series of commands sequentially, reducing repetitive tasks and paving the way for more complex workflows. This routine prompts the user to insert a disk containing the necessary batch file, demonstrating the manual nature of early computing. Batch file processing was a significant step forward in usability, empowering users to customize their computing experience. It laid the groundwork for modern scripting languages and automation tools, showcasing the foresight of MS-DOS developers in addressing user needs."
+  - id: "command-parsing-and-execution"
+    line_start: 750
+    line_end: 761
+    title: "Parsing commands: The heart of MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "This section implements the DIR command, which lists the contents of a directory. The code processes switches like /W for wide display and /P for pagination, allowing users to customize the output. It retrieves file information using system calls and formats it for display, including file names, sizes, dates, and times. The DIR command was essential for navigating the file system in a text-based environment, providing users with a way to manage files and directories. The implementation reflects the constraints of early PCs, where memory and processing power were limited. The ability to display file details in various formats made DIR one of the most frequently used commands in MS-DOS."
+    content: "The DOCOM routine is the core of MS-DOS's command processing functionality. It parses user input, checks for ambiguous commands, and determines the appropriate action to take. This routine embodies the simplicity and efficiency of early command-line interfaces, which were designed to operate within severe hardware constraints. The parsing logic ensures that commands are executed correctly, whether they are internal (like DIR or COPY) or external programs. This foundational approach to command processing influenced the design of later operating systems, including Unix shells and modern terminal emulators. By enabling users to interact directly with the computer through text-based commands, MS-DOS democratized computing and set the stage for the widespread adoption of personal computers."
   - id: "exe-file-loading"
     line_start: 2028
-    line_end: 2138
-    title: "Loading and Executing EXE Files"
+    line_end: 2071
+    title: "Loading EXE files: Expanding capabilities"
     wikipedia_url: "https://en.wikipedia.org/wiki/Executable"
     image_url: ""
     image_caption: ""
-    content: "This section handles the loading and execution of EXE files, a critical feature of MS-DOS. The code reads the file header to determine the program's size and relocation information, then loads the program into memory. It checks for sufficient memory and adjusts segment registers to prepare for execution. EXE files were introduced in MS-DOS to support larger and more complex programs, overcoming the limitations of COM files, which were restricted to a single 64KB segment. The ability to load and execute EXE files marked a significant advancement in personal computing, enabling the development of sophisticated applications. This routine showcases the technical challenges of memory management and program relocation in the segmented architecture of the Intel 8086 processor."
+    content: "The EXELOAD routine handles the loading of executable files, a key feature that expanded the capabilities of MS-DOS beyond simple command processing. This routine reads the header of an EXE file, calculates the memory requirements, and ensures that the program can be loaded into the available space. It also manages relocation, adjusting memory addresses to account for the program's load location. This functionality reflects the growing complexity of software in the early 1980s, as developers began creating larger and more sophisticated applications. The ability to load and execute EXE files marked a significant advancement in personal computing, enabling the development of software ecosystems that would drive the success of the IBM PC and MS-DOS."
 
 ---
 

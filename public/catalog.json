@@ -212,7 +212,7 @@
           "title": "IO.ASM",
           "description": "BIOS interface layer — the hardware abstraction between DOS and the IBM PC ROM",
           "path": "v1.25/source/IO.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 9,
@@ -220,7 +220,7 @@
           "title": "TRANS.ASM",
           "description": "Transient command processor — the resident-memory portion of COMMAND.COM",
           "path": "v1.25/source/TRANS.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 10,
@@ -228,7 +228,7 @@
           "title": "STDDOS.ASM",
           "description": "Standard DOS entry points — the INT 21h handler table for v1.25",
           "path": "v1.25/source/STDDOS.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 11,
@@ -236,7 +236,7 @@
           "title": "ASM.ASM",
           "description": "The MS-DOS assembler — the 8086 assembler written in 8086 assembly",
           "path": "v1.25/source/ASM.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 12,
@@ -244,7 +244,7 @@
           "title": "HEX2BIN.ASM",
           "description": "HEX to BIN converter — the tool that produced .COM executables from Intel hex records",
           "path": "v1.25/source/HEX2BIN.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 13,
@@ -252,7 +252,7 @@
           "title": "DEBUG.ASM",
           "description": "The DOS debugger — the iconic machine-code debugger every programmer learned on",
           "path": "v2.0/source/DEBUG.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 14,
@@ -260,7 +260,7 @@
           "title": "EDLIN.ASM",
           "description": "The EDLIN line editor — MS-DOS's built-in text editor from 1981 to 1991",
           "path": "v2.0/source/EDLIN.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 15,
@@ -268,7 +268,7 @@
           "title": "FORMAT.ASM",
           "description": "The FORMAT command — laying down FAT file system structure on raw floppy disks",
           "path": "v2.0/source/FORMAT.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 16,
@@ -276,7 +276,7 @@
           "title": "ALLOC.ASM",
           "description": "Memory allocation — the MCB (memory control block) chain and DOS memory manager",
           "path": "v2.0/source/ALLOC.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 17,
@@ -284,7 +284,7 @@
           "title": "DISK.ASM",
           "description": "Disk I/O driver — the low-level read/write routines bridging DOS and the BIOS",
           "path": "v2.0/source/DISK.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 18,
@@ -292,7 +292,7 @@
           "title": "MSDOS.ASM (v2.0)",
           "description": "The v2.0 DOS kernel — the rewrite that brought Unix-style subdirectories to the PC",
           "path": "v2.0/source/MSDOS.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 19,
@@ -300,7 +300,7 @@
           "title": "SORT.ASM",
           "description": "The SORT utility — a merge sort for stdin/stdout written entirely in 8086 assembly",
           "path": "v2.0/source/SORT.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 20,
@@ -308,7 +308,7 @@
           "title": "DIR.ASM",
           "description": "The DIR command — directory listing with the wildcards that became a computing staple",
           "path": "v2.0/source/DIR.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 21,
@@ -316,7 +316,7 @@
           "title": "COPY.ASM",
           "description": "The COPY command — file copying with concatenation support",
           "path": "v2.0/source/COPY.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 22,
@@ -324,7 +324,7 @@
           "title": "CHKDSK.ASM",
           "description": "CHKDSK — the disk integrity checker that found lost clusters and cross-linked files",
           "path": "v2.0/source/CHKDSK.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 23,
@@ -332,7 +332,7 @@
           "title": "PRINT.ASM",
           "description": "The PRINT spooler — background printing via interrupt-driven queuing",
           "path": "v2.0/source/PRINT.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 24,
@@ -340,7 +340,7 @@
           "title": "BUF.ASM",
           "description": "Disk buffer manager — allocating and cycling the sector cache that speeds file I/O",
           "path": "v2.0/source/BUF.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 25,
@@ -348,7 +348,7 @@
           "title": "COMMAND.ASM (v2.0)",
           "description": "v2.0 command interpreter — COMMAND.COM rewritten to support pipes, redirection, and batch",
           "path": "v2.0/source/COMMAND.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 26,
@@ -356,7 +356,7 @@
           "title": "CPARSE.ASM",
           "description": "Command line parser — tokenizes arguments and switches for built-in COMMAND.COM commands",
           "path": "v2.0/source/CPARSE.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 27,
@@ -364,7 +364,7 @@
           "title": "CTRLC.ASM",
           "description": "Ctrl+C / Ctrl+Break handler — the interrupt routine that terminates running programs",
           "path": "v2.0/source/CTRLC.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 28,
@@ -372,7 +372,7 @@
           "title": "DEV.ASM",
           "description": "Device driver framework — the installable character and block device driver interface added in DOS 2.0",
           "path": "v2.0/source/DEV.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 29,
@@ -380,7 +380,7 @@
           "title": "DIRCALL.ASM",
           "description": "Directory call dispatcher — routes file-system calls through the new subdirectory layer",
           "path": "v2.0/source/DIRCALL.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 30,
@@ -388,7 +388,7 @@
           "title": "DISKCOPY.ASM",
           "description": "DISKCOPY utility — track-by-track floppy duplication with an optional verify pass",
           "path": "v2.0/source/DISKCOPY.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 31,
@@ -396,7 +396,7 @@
           "title": "EXE2BIN.ASM",
           "description": "EXE to BIN converter — strips the .EXE relocation header to produce a flat .COM executable",
           "path": "v2.0/source/EXE2BIN.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 32,
@@ -404,7 +404,7 @@
           "title": "FCB.ASM",
           "description": "File Control Block handler — the DOS 1.x legacy file API kept for backward compatibility",
           "path": "v2.0/source/FCB.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 33,
@@ -412,7 +412,7 @@
           "title": "FIND.ASM",
           "description": "FIND utility — the text search filter that scans stdin for a given string",
           "path": "v2.0/source/FIND.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 34,
@@ -420,7 +420,7 @@
           "title": "GETSET.ASM",
           "description": "Get/set system parameters — INT 21h handlers for date, time, country, and disk parameter queries",
           "path": "v2.0/source/GETSET.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 35,
@@ -428,7 +428,7 @@
           "title": "HRDDRV.ASM",
           "description": "Hard disk driver — the block device driver for fixed disks, new in DOS 2.0",
           "path": "v2.0/source/HRDDRV.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 36,
@@ -436,7 +436,7 @@
           "title": "INIT.ASM",
           "description": "v2.0 initialization — internal DOS table setup run once at boot before SYSINIT hands off",
           "path": "v2.0/source/INIT.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 37,
@@ -444,7 +444,7 @@
           "title": "MISC.ASM",
           "description": "Miscellaneous v2.0 utilities — assorted helper routines for the rewritten kernel",
           "path": "v2.0/source/MISC.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 38,
@@ -452,7 +452,7 @@
           "title": "MORE.ASM",
           "description": "MORE pager — the stdin filter that pauses output one screenful at a time",
           "path": "v2.0/source/MORE.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 39,
@@ -460,7 +460,7 @@
           "title": "PCLOCK.ASM",
           "description": "PC clock driver — reads the hardware real-time clock and maintains the DOS system time",
           "path": "v2.0/source/PCLOCK.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 40,
@@ -468,7 +468,7 @@
           "title": "PROC.ASM",
           "description": "Process management — tracking active child processes and releasing their resources on exit",
           "path": "v2.0/source/PROC.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 41,
@@ -476,7 +476,7 @@
           "title": "RECOVER.ASM",
           "description": "RECOVER utility — attempts to salvage files from disks with bad sectors",
           "path": "v2.0/source/RECOVER.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 42,
@@ -484,7 +484,7 @@
           "title": "ROM.ASM",
           "description": "ROM BIOS interface — the low-level INT calls that bridge DOS operations to the PC firmware",
           "path": "v2.0/source/ROM.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 43,
@@ -492,7 +492,7 @@
           "title": "SKELIO.ASM",
           "description": "Skeleton I/O driver — the template device driver that OEM hardware vendors customized",
           "path": "v2.0/source/SKELIO.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 44,
@@ -500,7 +500,7 @@
           "title": "SYS.ASM",
           "description": "SYS utility — transfers the hidden DOS system files to make a floppy or hard disk bootable",
           "path": "v2.0/source/SYS.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 45,
@@ -508,7 +508,7 @@
           "title": "SYSCALL.ASM",
           "description": "System call interface — the INT 21h entry point and function dispatcher for DOS v2.0",
           "path": "v2.0/source/SYSCALL.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 46,
@@ -516,10 +516,10 @@
           "title": "STRIN.ASM",
           "description": "String input routine — the line editor behind INT 21h function 0Ah, buffered keyboard input",
           "path": "v2.0/source/STRIN.ASM",
-          "generated": false
+          "generated": true
         }
       ],
-      "introduction": "In the summer of 1981, a seismic shift was underway in the world of personal computing. IBM, the towering giant of the industry, was preparing to launch its first personal computer, the IBM PC, a machine that would define the era. But there was a problem: IBM needed an operating system, and they needed it fast. Enter Microsoft, then a scrappy software company led by Bill Gates, and Tim Paterson, a young programmer from Seattle Computer Products. Paterson had written a rudimentary operating system called 86-DOS in just six weeks the previous year, and Microsoft saw its potential. In July 1981, Microsoft acquired the rights to 86-DOS for $25,000 and hired Paterson to adapt it for IBM’s new machine. By August 12, 1981, the IBM PC launched with PC DOS 1.0, a rebranded version of Microsoft’s MS-DOS.\n\nThe computing world of 1981 was a landscape of constraints and possibilities. The IBM PC was built around Intel’s 8088 microprocessor, a 16-bit chip with an 8-bit external bus, paired with 64KB to 256KB of RAM. Storage came in the form of floppy disks, and the machine lacked the graphical interfaces that would later dominate personal computing. Every byte of code had to be meticulously optimized, as memory and processing power were precious commodities. The prevailing assumption was that personal computers were tools for hobbyists and small businesses, not the cornerstone of an interconnected digital world. Yet, the IBM PC’s open architecture and MS-DOS’s flexibility would soon prove otherwise.\n\nTim Paterson, the primary author of 86-DOS, was a self-taught programmer with a knack for efficiency. At Seattle Computer Products, he had designed 86-DOS to fill a gap in the market after Digital Research’s CP/M failed to support Intel’s 8086 processor. Paterson’s operating system was simple but functional, featuring a command-line interface and a file allocation table (FAT) for managing storage. When Microsoft acquired 86-DOS, Paterson joined the company to adapt it for IBM’s specifications. “It wasn’t glamorous,” Paterson later recalled, “but it worked.” His work laid the foundation for MS-DOS, which would evolve rapidly under Microsoft’s stewardship. By 1983, MS-DOS 2.0 introduced features inspired by Unix, including subdirectories, file handles, and device drivers, thanks to Microsoft’s experience with its XENIX operating system.\n\nThe licensing arrangement between Microsoft and IBM proved to be a masterstroke. While IBM sold PC DOS exclusively for its machines, Microsoft retained the rights to license MS-DOS to other manufacturers. Within a year, over 70 companies were producing IBM-compatible PCs, all running MS-DOS. This decision not only fueled the explosive growth of the PC market but also established Microsoft as the dominant player in operating systems. MS-DOS became the lingua franca of personal computing, its command-line interface and system calls familiar to millions of users and developers.\n\nThe legacy of MS-DOS is profound. Its FAT filesystem outlasted the operating system itself, becoming a standard for removable storage devices well into the 21st century. The source code, released by the Computer History Museum in 2014 under an MIT license, offers a glimpse into the ingenuity and pragmatism of early software development. From the terse assembly comments in MSDOS.ASM to the ambitious multitasking aspirations in MSCODE.ASM, the files tell the story of a program that shaped an industry. MS-DOS may no longer run on modern machines, but its influence endures in the DNA of computing systems worldwide.",
+      "introduction": "In the summer of 1981, the computing world was on the brink of a revolution. IBM, the venerable giant of business machines, was preparing to launch its first personal computer, the IBM PC. The stakes were high, and the timeline was unforgiving. IBM needed an operating system to power its new machine, but time was running out. Enter Microsoft, a young software company led by Bill Gates, and Tim Paterson, a programmer from Seattle Computer Products. Together, they would create MS-DOS, the software that would define the PC era.\n\nThe story began a year earlier, in 1980, when Tim Paterson wrote 86-DOS in just six weeks. At the time, Seattle Computer Products needed an operating system for its Intel 8086-based computers, and Paterson delivered a simple, functional solution inspired by Digital Research’s CP/M. When IBM approached Microsoft to provide an operating system for its upcoming PC, Microsoft saw an opportunity. They purchased 86-DOS from Seattle Computer Products for $25,000, hired Paterson, and began adapting the software for IBM’s hardware. The result was PC DOS 1.0, launched alongside the IBM PC on August 12, 1981.\n\nThe computing landscape of the early 1980s was defined by constraints. The IBM PC featured an Intel 8088 processor, 16 KB of RAM, and a 5.25-inch floppy drive. Every byte of code had to be meticulously optimized to fit within these limits. MS-DOS was written in 8086 assembly language, a painstaking process that required deep knowledge of the hardware. Tim Paterson’s original kernel, MSDOS.ASM, laid the foundation, while Microsoft’s team expanded and refined the system. Early versions of MS-DOS were simple, offering basic file management and program execution, but they were fast, efficient, and reliable.\n\nBy 1983, MS-DOS had evolved into version 2.0, a near-complete rewrite inspired by Unix and Microsoft’s XENIX project. This version introduced subdirectories, file handles, pipes, and device drivers, transforming MS-DOS into a more sophisticated operating system. The rewrite was a technical triumph, enabling the IBM PC to handle increasingly complex tasks. Microsoft’s decision to retain the right to license MS-DOS to other manufacturers proved pivotal. Within a year of the IBM PC’s launch, MS-DOS was licensed to over 70 OEMs, becoming the standard operating system for IBM-compatible machines worldwide.\n\nThe legacy of MS-DOS is profound. It shaped the personal computing industry, enabling the rise of software giants and the proliferation of affordable PCs. Its influence extended far beyond the 1980s, with components like the FAT file system persisting in modern devices. The source code, released to the Computer History Museum in 2014 under an MIT license, offers a glimpse into the ingenuity and resourcefulness of its creators. MS-DOS was more than software; it was a cornerstone of the digital age, a testament to what could be achieved under pressure, with limited resources, and a vision for the future.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "image_caption": "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)"
     },

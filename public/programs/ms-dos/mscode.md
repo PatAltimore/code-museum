@@ -9,66 +9,106 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "mscode"
 order: 4
-description: "The assembly code for MS-DOS v2.0, a pivotal rewrite that introduced Unix-inspired features to the dominant operating system of the 1980s."
+description: "The MS-DOS 2.0 source code represents a pivotal moment in personal computing history, showcasing the evolution of operating systems inspired by Unix and tailored for the IBM PC."
 
 summary:
-  - point: "Conditional compilation flags for hardware and language compatibility"
+  - point: "MS-DOS 2.0 introduced hierarchical directories and file handles, inspired by Unix."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "System call dispatcher enabling multitasking and modularity"
-    link: "https://en.wikipedia.org/wiki/System_call"
-    link_label: "System Call"
-  - point: "Null device driver implementation as a placeholder for unused I/O"
-    link: "https://en.wikipedia.org/wiki/Device_file"
-    link_label: "Device File"
-  - point: "Disk read/write handlers with BIOS error translation"
-    link: "https://en.wikipedia.org/wiki/BIOS"
-    link_label: "BIOS"
-  - point: "Unix-inspired system calls for process and file management"
-    link: "https://en.wikipedia.org/wiki/Unix"
-    link_label: "Unix"
+  - point: "Tim Paterson's original 86-DOS laid the foundation for MS-DOS, written in just six weeks."
+    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
+    link_label: "Tim Paterson"
+  - point: "Microsoft's licensing strategy for MS-DOS led to its dominance in the PC market."
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS Licensing"
+  - point: "The assembly code reflects the constraints of early 1980s hardware, such as limited memory and processing power."
+    link: "https://en.wikipedia.org/wiki/IBM_PC"
+    link_label: "IBM PC"
+  - point: "MS-DOS 2.0's design was heavily influenced by Unix/XENIX, marking a shift toward more advanced OS features."
+    link: "https://en.wikipedia.org/wiki/Xenix"
+    link_label: "XENIX"
 
 enhancements:
-  - id: "conditional-compilation-flags"
+  - id: "include-directives-and-segment-setup"
+    line_start: 6
+    line_end: 8
+    title: "Setting the Stage: Segment and Includes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "These lines define the essential setup for the MS-DOS code segment, including directives to include external assembly files like DOSSEG.ASM and STDSW.ASM. This modular approach reflects the structured nature of MS-DOS development, allowing reusable components to be integrated efficiently. In 1983, modularity was crucial for managing the complexity of operating systems on hardware with limited resources. The 'CODE SEGMENT BYTE PUBLIC' directive establishes the segment as publicly accessible, ensuring compatibility across different modules. This setup mirrors the Unix philosophy of modularity, which influenced MS-DOS 2.0's design."
+  - id: "conditional-definitions-kanji-and-ibm"
     line_start: 17
     line_end: 27
-    title: "Conditional flags for hardware compatibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Conditional_compilation"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Simh-pdp11-unix-sysiii.png/330px-Simh-pdp11-unix-sysiii.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "UNIX System III running on a simulated Digital Equipment Corporation PDP-11 using SIMH (CC BY-SA 4.0)"
-    content: "These lines define conditional compilation flags for hardware and language compatibility, such as support for Kanji characters or IBM-specific features. In the early 1980s, software needed to adapt to a fragmented hardware ecosystem, where each OEM had unique requirements. Tim Paterson and the Microsoft team used these flags to ensure MS-DOS could run on a wide variety of systems, from IBM PCs to custom-built machines. This approach reflects the pragmatic engineering of the time, balancing portability with performance. The use of conditional flags persisted in software development, becoming a cornerstone of cross-platform programming."
+    title: "Conditional Definitions: Kanji and IBM"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "These lines define conditional flags for Kanji support and IBM compatibility. Kanji support was essential for the Japanese market, reflecting Microsoft's global ambitions. IBM compatibility ensured the code could run on the IBM PC, the dominant hardware platform of the era. These flags allowed MS-DOS to adapt to different environments without duplicating code, a critical feature given the constraints of early 1980s hardware. Microsoft's decision to include these conditional definitions highlights their strategy to make MS-DOS a universal operating system, capable of serving diverse markets and hardware configurations."
+  - id: "copyright-header-generation"
+    line_start: 57
+    line_end: 87
+    title: "Dynamic Copyright Header Generation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "This section dynamically generates the copyright header displayed during MS-DOS startup. It constructs the version string using assembly calculations, such as dividing and modding the minor version number. The inclusion of Kanji-specific encoding demonstrates Microsoft's effort to cater to international markets. In 1983, this kind of dynamic header generation was both a technical achievement and a branding tool, reinforcing Microsoft's identity and the software's versioning. The modularity and adaptability seen here reflect the broader design philosophy of MS-DOS 2.0, which aimed to balance simplicity with extensibility."
   - id: "system-call-dispatcher"
-    line_start: 91
-    line_end: 210
-    title: "System call dispatcher enables modularity"
+    line_start: 92
+    line_end: 122
+    title: "System Call Dispatcher: The Heart of MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
     image_url: ""
     image_caption: ""
-    content: "This section implements the system call dispatcher, a critical component of MS-DOS. It handles interrupts (e.g., INT 20H and INT 21H) and routes them to the appropriate subroutine. In 1983, the concept of system calls was borrowed from Unix, enabling modularity and multitasking. The dispatcher also includes mechanisms for saving and restoring the CPU state, allowing seamless transitions between user and system code. This design was a significant step forward for MS-DOS, transforming it from a simple disk operating system into a more sophisticated environment capable of supporting complex applications. The dispatcher’s influence can be seen in modern operating systems, which still rely on similar mechanisms for process management."
-  - id: "unix-inspired-system-calls"
-    line_start: 353
-    line_end: 375
-    title: "Unix-inspired system calls for process management"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Unix"
+    content: "This section implements the system call dispatcher, the core mechanism for handling interrupts and system calls. It processes INT 20H and INT 21H, routing requests to the appropriate handlers. The dispatcher uses a combination of stack manipulation and conditional jumps to ensure efficient execution. In the early 1980s, system call dispatching was a critical feature for operating systems, enabling applications to interact with hardware and OS services. The design here reflects the influence of Unix, which popularized the concept of system calls as a structured interface between user programs and the kernel."
+  - id: "save-and-restore-world"
+    line_start: 232
+    line_end: 248
+    title: "Save and Restore World: Multitasking Foundations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Multitasking"
     image_url: ""
     image_caption: ""
-    content: "This section introduces Unix-inspired system calls for process and file management, such as EXEC, EXIT, and WAIT. These features were part of the MS-DOS v2.0 rewrite, which drew heavily from Unix and XENIX to add advanced capabilities. In the early 1980s, Unix was seen as a model for robust, multitasking operating systems, and Microsoft sought to bring some of its strengths to the PC market. These calls enabled developers to write more sophisticated applications, paving the way for the software ecosystem that defined the IBM PC’s success. The influence of Unix on MS-DOS highlights the cross-pollination of ideas that shaped modern computing."
+    content: "The 'save_world' and 'restore_world' routines preserve and restore CPU registers during context switches. These routines are foundational for multitasking, allowing MS-DOS to manage multiple processes efficiently. While MS-DOS 2.0 was not a fully multitasking OS, these routines hint at Microsoft's ambitions to incorporate advanced features inspired by Unix. In the constrained environment of the IBM PC, saving and restoring the 'world' was essential for maintaining system stability and ensuring smooth transitions between tasks. This design would influence future operating systems, including Windows, which built upon these principles."
+  - id: "dispatch-table"
+    line_start: 260
+    line_end: 403
+    title: "Dispatch Table: Mapping Functions to System Calls"
+    wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
+    image_url: ""
+    image_caption: ""
+    content: "The dispatch table maps system call numbers to their corresponding functions, serving as a lookup mechanism for the system call dispatcher. Each entry represents a specific function, such as file operations or device I/O. This design simplifies the dispatcher logic, enabling quick and efficient routing of system calls. In 1983, this approach was innovative, as it balanced performance with extensibility. The dispatch table reflects the influence of Unix, which used similar mechanisms for system call handling. By organizing functions in a table, MS-DOS 2.0 achieved a level of modularity and scalability that was rare in early operating systems."
+  - id: "oem-handler"
+    line_start: 412
+    line_end: 431
+    title: "OEM Handler: Customizing System Behavior"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "The OEM handler allows original equipment manufacturers (OEMs) to extend MS-DOS functionality by defining custom interrupt handlers. This feature was critical for adapting MS-DOS to diverse hardware configurations, ensuring compatibility across the rapidly expanding PC market. Microsoft's decision to include OEM extensibility reflects their strategy to dominate the market by making MS-DOS the default OS for a wide range of devices. This flexibility contributed to MS-DOS's success, as OEMs could tailor the OS to their needs without modifying the core code."
   - id: "null-device-driver"
     line_start: 466
     line_end: 481
-    title: "Null device driver: A placeholder for I/O"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
+    title: "Null Device Driver: A Quiet Workhorse"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "The null device driver implemented here serves as a placeholder for unused I/O operations. It accepts data but discards it, effectively acting as a 'black hole' for output. This concept originated in Unix systems as '/dev/null' and was adopted by MS-DOS to provide compatibility with software expecting such functionality. In the early 1980s, this was a clever solution to handle edge cases in I/O operations without causing errors. The null device remains a standard feature in operating systems today, demonstrating the enduring utility of this simple yet effective design."
-  - id: "disk-read-write-handlers"
+    content: "The null device driver ('SNULDEV' and 'INULDEV') provides a placeholder for device operations that require no actual output or input. It is a simple yet essential component, ensuring compatibility with software expecting a device interface. The null device is a concept borrowed from Unix, where '/dev/null' serves a similar purpose. In the constrained environment of the IBM PC, this driver was a clever solution for handling edge cases without consuming resources. Its inclusion in MS-DOS highlights the influence of Unix and the importance of efficient resource management in early operating systems."
+  - id: "disk-read-handler"
     line_start: 508
-    line_end: 585
-    title: "Disk handlers with BIOS error translation"
+    line_end: 558
+    title: "Disk Read Handler: Bridging BIOS and MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
     image_url: ""
     image_caption: ""
-    content: "These routines handle low-level disk read and write operations, interfacing directly with the BIOS. They include error translation mechanisms to convert BIOS error codes into MS-DOS-specific ones, ensuring consistent behavior across different hardware. In 1983, disk operations were a critical part of any operating system, and MS-DOS needed to support a wide range of drives and controllers. The inclusion of error translation reflects the challenges of working with diverse hardware in an era before standardization. This design laid the groundwork for future advancements in disk management, influencing both DOS and subsequent operating systems."
+    content: "The 'ABSDRD' routine handles disk read operations, interfacing with the BIOS to retrieve data from storage devices. It includes error handling and stack manipulation to ensure reliable operation. In the early 1980s, disk I/O was a critical function, as storage devices were slow and prone to errors. This routine reflects the challenges of working with BIOS-level interfaces and the ingenuity required to build a stable operating system on top of them. The design here influenced future OS development, as efficient disk I/O remained a cornerstone of system performance."
+  - id: "disk-write-handler"
+    line_start: 561
+    line_end: 584
+    title: "Disk Write Handler: Ensuring Data Integrity"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
+    image_url: ""
+    image_caption: ""
+    content: "The 'ABSDWRT' routine manages disk write operations, interfacing with the BIOS to store data on storage devices. It includes safeguards to prevent data corruption, such as stack manipulation and error handling. In 1983, ensuring data integrity during disk writes was a significant challenge, as hardware was less reliable and prone to failures. This routine demonstrates the meticulous attention to detail required to build a robust operating system. The principles established here would influence file system design in later operating systems, including Windows."
 
 ---
 

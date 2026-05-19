@@ -9,66 +9,106 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "fat"
 order: 6
-description: "This file implements FAT filesystem operations in MS-DOS 2.0, a foundational design that shaped storage systems for decades."
+description: "This file implements FAT filesystem operations for MS-DOS, a design that shaped decades of storage technology."
 
 summary:
-  - point: "Introduces FAT12/FAT16 operations, still relevant in modern storage devices"
+  - point: "Introduces FAT12/FAT16 filesystem operations, foundational to MS-DOS"
     link: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     link_label: "File Allocation Table"
-  - point: "Demonstrates low-level disk access and error handling in assembly"
+  - point: "Optimizes storage access in constrained hardware environments"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Reflects constraints of early 1980s hardware and memory limitations"
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "Tim Paterson's influence on early MS-DOS design persists in FAT's ubiquity"
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
-  - point: "Highlights transition from single-level directory structures to hierarchical subdirectories"
-    link: "https://en.wikipedia.org/wiki/MS-DOS#Version_2.x"
-    link_label: "MS-DOS v2.x"
+  - point: "Includes techniques for handling media changes and buffer management"
+    link: "https://en.wikipedia.org/wiki/Buffer_(computing)"
+    link_label: "Buffer"
+  - point: "Reflects the transition from single-tasking to Unix-inspired multitasking in MS-DOS v2.0"
+    link: "https://en.wikipedia.org/wiki/MS-DOS#MS-DOS_2.x"
+    link_label: "MS-DOS 2.x"
+  - point: "Demonstrates early assembly-level programming for disk operations"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly language"
 
 enhancements:
-  - id: "fat-maintenance-routines"
-    line_start: 33
-    line_end: 35
-    title: "FAT maintenance routines: A cornerstone of storage"
+  - id: "include-dosseg-symbols"
+    line_start: 9
+    line_end: 21
+    title: "Symbolic groundwork for FAT operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png/330px-FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "FAT 12 et 16 - Entrée d'un fichier (CC BY-SA 4.0)"
-    content: "The title and name directives establish this file as the implementation of FAT (File Allocation Table) maintenance routines. FAT was a revolutionary filesystem design that allowed efficient storage and retrieval of files on floppy disks and hard drives. In 1983, MS-DOS 2.0 introduced hierarchical subdirectories, making FAT adaptable to more complex storage needs. This section sets the stage for the routines that handle unpacking, packing, and mapping FAT entries, showcasing the ingenuity required to work within the constraints of early PC hardware."
+    image_url: ""
+    image_caption: ""
+    content: "This section includes external assembly definitions and symbols required for FAT operations. By referencing DOSSEG.ASM and DOSSYM.ASM, the programmer ensures compatibility with MS-DOS's broader architecture. In 1983, MS-DOS v2.0 was a leap forward, adding subdirectories and file handles inspired by Unix. Tim Paterson's original 86-DOS was a simpler, single-tasking system, but this rewrite reflects Microsoft's ambition to make MS-DOS a versatile operating system for IBM PCs and other OEMs. These symbols lay the foundation for the file allocation table (FAT) logic, a design that would persist in storage devices for decades."
+  - id: "name-fat-maintenance"
+    line_start: 35
+    line_end: 59
+    title: "Defining FAT maintenance routines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines the 'FAT' module and declares variables essential for FAT maintenance, such as CURBUF (current buffer) and CLUSSPLIT (cluster split flag). These variables enable efficient access to disk sectors and clusters, a critical task given the limited memory and processing power of early IBM PCs. In 1983, storage devices were slow and expensive, and FAT's design optimized disk access by minimizing fragmentation and simplifying file management. The programmer's focus on modularity and clarity reflects the influence of Unix on MS-DOS v2.0, as well as Microsoft's goal of creating a scalable and efficient operating system for diverse hardware."
   - id: "unpack-fat-entries"
-    line_start: 71
-    line_end: 141
-    title: "Unpacking FAT entries: Decoding storage clusters"
+    line_start: 115
+    line_end: 123
+    title: "Unpacking FAT entries for cluster management"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png/330px-FAT_12_et_16_-_Entr%C3%A9e_d%27un_fichier.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "FAT 12 et 16 - Entrée d'un fichier (CC BY-SA 4.0)"
-    content: "The UNPACK subroutine extracts the contents of a FAT entry for a given cluster number. FAT entries store metadata about which clusters are free, occupied, or linked to other clusters. In this routine, the programmer ensures that the cluster number is valid, retrieves its FAT entry, and decodes its status. Written in the early 1980s, this code reflects the need for efficient storage management on limited hardware. The error handling (e.g., signaling a bad FAT) underscores the importance of robustness in an era when disk corruption was a common risk. The logic here laid the groundwork for FAT's longevity, as its simplicity and adaptability made it suitable for devices ranging from floppy disks to modern USB drives."
+    image_url: ""
+    image_caption: ""
+    content: "The HAVCLUS subroutine extracts the contents of the FAT for a given cluster. It checks whether the cluster is free or occupied, and handles errors if the cluster number exceeds the maximum allowed. This logic is vital for managing disk space efficiently, especially on early PCs with limited storage. In 1983, the IBM PC's typical hard drive was only 10 MB, and FAT's ability to track clusters in a compact format was revolutionary. The programmer's decision to use assembly language reflects the need for speed and precision in low-level disk operations, ensuring MS-DOS could perform reliably on constrained hardware."
+  - id: "hurtfat-error-handling"
+    line_start: 127
+    line_end: 139
+    title: "Error handling for corrupted FAT entries"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
+    image_url: ""
+    image_caption: ""
+    content: "The HURTFAT subroutine signals a fatal error when the FAT is corrupted. It sets a specific error code and invokes the FATAL handler, ensuring the system can recover gracefully or halt operations to prevent further damage. In the early 1980s, disk corruption was a common issue due to unreliable hardware and power interruptions. This subroutine reflects the programmer's foresight in designing robust error handling mechanisms, a necessity for MS-DOS's widespread adoption. By prioritizing system stability, Microsoft ensured MS-DOS could meet the demands of business and personal computing, solidifying its dominance in the operating system market."
   - id: "pack-fat-entries"
-    line_start: 149
-    line_end: 275
-    title: "Packing FAT entries: Writing cluster metadata"
+    line_start: 147
+    line_end: 211
+    title: "Packing data into FAT entries"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The PACK subroutine writes data into a FAT entry for a specified cluster. This operation is crucial for updating the filesystem when files are created, modified, or deleted. The routine carefully aligns and modifies the FAT entry, ensuring that the cluster metadata is correctly stored. This code exemplifies the challenges of working with low-level disk operations in assembly language, where every byte and register must be meticulously managed. In the context of MS-DOS 2.0, this routine supported the new hierarchical directory structure, enabling more sophisticated file management. The approach taken here influenced future filesystem designs, as FAT's simplicity became a model for other systems."
-  - id: "map-fat-cluster"
-    line_start: 285
+    content: "The PACK subroutine writes data into the FAT for a specified cluster. It ensures alignment and updates buffer flags to indicate changes. This operation is central to FAT's functionality, enabling efficient file storage and retrieval. In 1983, MS-DOS v2.0 introduced subdirectories, making file organization more complex but also more powerful. The programmer's use of assembly language reflects the need for direct control over hardware, ensuring MS-DOS could perform reliably on diverse systems. This subroutine highlights the balance between simplicity and functionality that made FAT a lasting standard in storage technology."
+  - id: "mapcluster-buffering"
+    line_start: 283
     line_end: 425
-    title: "Mapping FAT clusters: Buffering disk sectors"
+    title: "Buffering FAT sectors for cluster access"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The MAPCLUSTER subroutine locates and buffers the FAT sector corresponding to a given cluster number. This operation is central to the FAT filesystem, as it bridges the gap between logical cluster numbers and physical disk sectors. The routine calculates the sector number, retrieves the buffer, and handles cases where cluster data spans multiple sectors. Written in an era of limited memory and slow disk access, this code showcases the ingenuity required to optimize performance. By minimizing disk I/O and leveraging memory buffers, the programmer ensured that MS-DOS could operate efficiently on early PCs. The techniques used here remain relevant in modern storage systems, where performance and reliability are paramount."
-  - id: "fat-read-operation"
-    line_start: 439
-    line_end: 703
-    title: "Reading FAT: Ensuring data integrity"
+    content: "The MAPCLUSTER subroutine locates and buffers the FAT sector corresponding to a given cluster. It calculates the sector number, retrieves the buffer, and handles high-bit cluster data. This operation is critical for managing disk access efficiently, especially on early PCs with limited memory and processing power. In 1983, FAT's design optimized storage by minimizing fragmentation and simplifying file management. The programmer's focus on precision and efficiency reflects the constraints of the era, ensuring MS-DOS could perform reliably on diverse hardware. This subroutine demonstrates the ingenuity required to create a scalable filesystem in assembly language."
+  - id: "fatread-media-check"
+    line_start: 441
+    line_end: 531
+    title: "Checking media changes and reading FAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The FATREAD operation checks whether the disk has been changed and retrieves the FAT if necessary. This routine reflects the challenges of working with removable media in the early 1980s, where disks could be swapped or corrupted without warning. The code includes mechanisms to flag buffers as invalid and handle errors gracefully, ensuring data integrity. By incorporating these safeguards, the programmer addressed the realities of unreliable hardware and user behavior. This routine is a testament to the foresight of MS-DOS's developers, who anticipated and mitigated common issues in personal computing. The principles of error handling and data validation demonstrated here continue to influence modern software design."
+    content: "The FATREAD subroutine checks whether the disk has been changed and reads the FAT if necessary. It flags buffers as invalid and updates drive parameters, ensuring data integrity. In 1983, removable media like floppy disks were common, and detecting media changes was essential for reliable operation. This subroutine reflects the programmer's attention to detail, addressing a critical challenge in early computing. By designing robust mechanisms for media management, Microsoft ensured MS-DOS could meet the demands of business and personal computing, solidifying its dominance in the operating system market."
+  - id: "chkbuffdirt-buffer-validation"
+    line_start: 533
+    line_end: 537
+    title: "Validating buffer states for media integrity"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
+    image_url: ""
+    image_caption: ""
+    content: "The CHKBUFFDIRT subroutine checks whether any buffers are marked as dirty, indicating changes that need validation. This operation is crucial for maintaining data integrity, especially in systems with removable media. In the early 1980s, floppy disks were prone to errors, and buffer management was a key aspect of reliable computing. The programmer's decision to include this check reflects the constraints of the era, ensuring MS-DOS could handle media changes gracefully. This subroutine highlights the balance between simplicity and functionality that made MS-DOS a lasting standard in operating systems."
+  - id: "gotgetbuf-buffer-allocation"
+    line_start: 609
+    line_end: 617
+    title: "Allocating buffers for FAT operations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
+    image_url: ""
+    image_caption: ""
+    content: "The GOTGETBUF subroutine allocates buffers for FAT operations, ensuring efficient access to disk sectors. This operation is central to FAT's functionality, enabling reliable file storage and retrieval. In 1983, storage devices were slow and expensive, and FAT's design optimized disk access by minimizing fragmentation and simplifying file management. The programmer's use of assembly language reflects the need for direct control over hardware, ensuring MS-DOS could perform reliably on diverse systems. This subroutine demonstrates the ingenuity required to create a scalable filesystem in assembly language."
+  - id: "fat-operation-disk-management"
+    line_start: 711
+    line_end: 711
+    title: "Managing disk operations with FAT"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
+    image_url: ""
+    image_caption: ""
+    content: "The FAT_operation subroutine encapsulates disk management tasks, coordinating FAT reads and writes based on drive parameters. This operation reflects the programmer's focus on modularity and efficiency, ensuring MS-DOS could handle diverse storage devices reliably. In 1983, the IBM PC's typical hard drive was only 10 MB, and FAT's ability to track clusters in a compact format was revolutionary. This subroutine highlights the balance between simplicity and functionality that made FAT a lasting standard in storage technology."
 
 ---
 
