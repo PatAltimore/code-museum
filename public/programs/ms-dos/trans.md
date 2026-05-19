@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This section defines constants for various DOS system calls, such as `OPEN`, `CLOSE`, `READ`, and `WRITE`. These equates simplify interaction with the DOS interrupt system, allowing the program to perform file operations using concise mnemonics. In the constrained environment of the Intel 8086, where memory and processing power were limited, such abstractions were vital for maintaining code readability and efficiency. These routines showcase the foundational file handling mechanisms of MS-DOS, which influenced the design of file systems in later operating systems like Windows and Linux. Tim Paterson's work here demonstrates his deep understanding of the 8086 architecture and the importance of efficient system-level programming."
   - id: "buffer-management-and-data-transfer"
-    line_start: 65
+    line_start: 17
     line_end: 103
     title: "Buffer Management and Data Transfer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
