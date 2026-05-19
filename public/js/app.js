@@ -281,7 +281,7 @@ function renderShelf(catalog) {
 <div class="page">
   <div class="shelf-header">
     <h1>Code Museum</h1>
-    <p>Annotated source code from historically significant open-source programs.</p>
+    <p>Annotated source code from historically significant open-sourced programs.</p>
     <p>Read the code that changed computing.</p>
   </div>
   <div class="program-grid">${cards}</div>

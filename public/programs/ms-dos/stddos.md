@@ -9,28 +9,28 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "stddos"
 order: 10
-description: "The foundational assembly code for MS-DOS v1.25, a pivotal operating system in personal computing history."
+description: "This file sets key configuration flags for MS-DOS 1.25, shaping its behavior and compatibility with IBM PCs and other systems."
 
 summary:
-  - point: "Conditional assembly switches reveal customization for IBM and Microsoft versions."
+  - point: "Configuration flags like MSVER and HIGHMEM controlled compatibility and memory management."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "HIGHMEM flag hints at early memory management strategies."
-    link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory Management"
-  - point: "Re-entrant DOS testing enabled by DSKTEST switch."
-    link: "https://en.wikipedia.org/wiki/Reentrant_(computing)"
-    link_label: "Reentrant Computing"
+  - point: "The IBM flag reflects the dual-purpose nature of MS-DOS for both IBM and other OEMs."
+    link: "https://en.wikipedia.org/wiki/IBM_PC"
+    link_label: "IBM PC"
+  - point: "The DSKTEST flag hints at early debugging practices for disk I/O in DOS."
+    link: "https://en.wikipedia.org/wiki/DOS"
+    link_label: "DOS Debugging"
 
 enhancements:
-  - id: "conditional-assembly-switches"
+  - id: "configuration-flags-shape-dos-behavior"
     line_start: 3
     line_end: 19
-    title: "Conditional switches: tailoring DOS for IBM or Microsoft"
+    title: "Configuration flags shape DOS behavior"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "These lines define key assembly-time switches that allow the MS-DOS source code to be tailored for different environments. The MSVER and IBM flags determine whether the code compiles as the standard Microsoft version or the IBM-specific variant. This flexibility was crucial in 1981, as Microsoft sought to license MS-DOS to multiple OEMs, including IBM. The HIGHMEM flag reflects early efforts to optimize memory usage by relocating DOS to the end of memory, a strategy that would become increasingly important as personal computers evolved. Meanwhile, the DSKTEST flag introduces a mechanism for testing disk code with DEBUG, setting up separate stacks for disk and character I/O. This approach effectively makes DOS re-entrant, a concept borrowed from larger, multi-user systems but adapted here for debugging purposes. These switches highlight the dual pressures faced by Tim Paterson and Microsoft: delivering a functional operating system for IBM's imminent PC launch while ensuring the codebase could be adapted for other hardware vendors. The modularity and foresight embedded in these switches laid the groundwork for MS-DOS's dominance in the early PC era, enabling rapid customization and widespread adoption."
+    content: "This section defines key configuration flags that control how MS-DOS behaves during compilation. Flags like `MSVER` and `IBM` determine whether the compiled version aligns with Microsoft's standard or the IBM-specific variant of DOS. The `HIGHMEM` flag, when enabled, instructs DOS to relocate itself to the end of memory, optimizing space for user programs—a critical consideration in an era of limited RAM. The `DSKTEST` flag introduces a debugging mechanism for disk I/O, allowing developers to test re-entrant code paths, a rare feature in early DOS versions. In 1982, MS-DOS was rapidly becoming the backbone of personal computing, driven by its adoption on the IBM PC. The IBM PC's architecture, with its 16-bit Intel 8088 processor and 64 KB to 640 KB of RAM, imposed tight constraints on operating system design. Tim Paterson, initially working at Seattle Computer Products, had designed 86-DOS (later MS-DOS) with simplicity and speed in mind, borrowing heavily from CP/M's structure but adapting it for the 8086 architecture. These flags reflect the dual-purpose strategy Microsoft pursued after acquiring DOS: tailoring it for IBM while retaining flexibility for other OEMs. The consequences of these decisions were profound. MS-DOS's configurability allowed Microsoft to license it to over 70 OEMs within a year, cementing its dominance in the PC market. The `HIGHMEM` optimization became a precursor to memory management techniques in later DOS versions, while debugging flags like `DSKTEST` foreshadowed the robust development tools that would emerge in the software industry. Without this configurability, MS-DOS might have struggled to adapt to the diverse hardware landscape of the early 1980s, potentially ceding ground to competitors like CP/M or UCSD Pascal."
 
 ---
 

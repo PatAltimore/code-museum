@@ -1,6 +1,6 @@
 # Code Museum
 
-A code reader for historically significant open-source programs. Each featured file is presented with inline annotations that explain what the code does, why it matters, and the story behind it — a documentary in source code form.
+A code reader for historically significant open-sourced programs. Each featured file is presented with inline annotations that explain what the code does, why it matters, and the story behind it — a documentary in source code form.
 
 ## Featured programs
 

@@ -9,194 +9,180 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "disk"
 order: 17
-description: "MS-DOS v2.0's disk routines showcase the evolution of personal computing, bridging early simplicity with Unix-inspired complexity."
+description: "This file contains the disk utility routines for MS-DOS 2.0, showcasing the evolution of operating system design in the early 1980s."
 
 summary:
-  - point: "Introduction of subdirectories and file handles in MS-DOS v2.0"
+  - point: "Introduces modular disk routines for handling file and device I/O."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Unix-inspired design choices in MS-DOS v2.0"
+  - point: "Reflects the influence of Unix/XENIX in MS-DOS 2.0's design."
     link: "https://en.wikipedia.org/wiki/Unix"
     link_label: "Unix"
-  - point: "Tim Paterson's foundational work on 86-DOS adapted for IBM PCs"
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
-  - point: "MS-DOS v2.0's device driver architecture"
-    link: "https://en.wikipedia.org/wiki/Device_driver"
-    link_label: "Device driver"
-  - point: "OEM licensing strategy that shaped the PC industry"
+  - point: "Optimized for the IBM PC's hardware constraints."
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
 
 enhancements:
-  - id: "include-dosseg-setup"
+  - id: "include-directives-dosseg-devsym"
     line_start: 9
-    line_end: 21
-    title: "Setting the stage: Segment directives"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    line_end: 33
+    title: "Modular Assembly with INCLUDE Directives"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
-    content: "These initial lines establish the segment directives and include essential files like DOSSEG.ASM. In the early 1980s, memory management was a critical concern for developers working on 8086 assembly. MS-DOS v2.0 introduced more sophisticated memory segmentation compared to its predecessor, enabling better multitasking and modularity. Tim Paterson and Microsoft's engineers were navigating the constraints of the IBM PC's hardware, which had a mere 640 KB of conventional memory. These directives ensured that the code could be loaded and executed efficiently within these limits. The modularity introduced here laid the groundwork for MS-DOS's adaptability, allowing it to be licensed to a wide range of OEMs and run on diverse hardware configurations."
-  - id: "name-disk-variables"
+    content: "The opening lines of DISK.ASM use INCLUDE directives to pull in external assembly files (`DOSSEG.ASM`, `DOSSYM.ASM`, and `DEVSYM.ASM`) that define essential constants, macros, and symbols. This modular approach reflects the growing complexity of software in the early 1980s. By separating reusable components into distinct files, Tim Paterson and the Microsoft team could streamline development and ensure consistency across MS-DOS's codebase. At the time, assembly programming was still the norm for system-level software, and modularity was a practical way to manage sprawling projects like MS-DOS 2.0. This technique influenced later operating systems, where modularity became a cornerstone of maintainable codebases. Today, the concept of modular programming persists in languages like C, Python, and JavaScript, where libraries and modules are integral to software development."
+  - id: "name-disk-global-variables"
     line_start: 35
     line_end: 193
-    title: "Defining key disk-related variables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC_DOS"
+    title: "Defining Global Variables for Disk Operations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Global_variable"
     image_url: ""
     image_caption: ""
-    content: "This section defines crucial variables and constants for disk operations, such as DMA addresses, file control blocks (FCBs), and device identifiers. In the early 1980s, the IBM PC's BIOS provided basic disk I/O functionality, but MS-DOS needed to extend this to support features like subdirectories and file handles. These variables are part of the low-level mechanisms that enable MS-DOS to interact with storage devices efficiently. The use of FCBs reflects a transitional period in computing, as later versions of MS-DOS would move towards handle-based file management inspired by Unix. This design decision underscores the challenges of balancing backward compatibility with innovation."
-  - id: "swapret-stack-management"
+    content: "This section declares global variables used throughout the disk routines, such as `COUTDSAV`, `CINSAV`, and `THISFCB`. These variables store critical information like device identifiers, file control blocks (FCBs), and memory addresses. In 1983, MS-DOS 2.0 introduced subdirectories and file handles, requiring more sophisticated data management than its predecessor. The reliance on global variables reflects the constraints of early assembly programming, where memory was scarce, and structured programming was still emerging. These variables enabled efficient communication between routines but also introduced potential risks like unintended side effects. The concept of global variables influenced programming paradigms, leading to debates about their use and eventual alternatives like encapsulation in object-oriented programming. Modern operating systems and applications often trace their lineage to these foundational practices."
+  - id: "swapback-subroutine-context-switching"
     line_start: 195
     line_end: 205
-    title: "Managing stack state with SWAPRET"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
-    image_url: ""
-    image_caption: ""
-    content: "The SWAPRET procedure restores the stack state after a series of operations. Stack management was a critical aspect of assembly programming, especially in an environment like MS-DOS where system stability depended on precise control of memory and registers. This routine ensures that the system can return to a known state, preventing corruption or crashes. The inclusion of such routines reflects the meticulous attention to detail required in low-level programming, where even minor errors could have catastrophic consequences. This approach to stack management influenced later operating systems, emphasizing the importance of reliability in system design."
-  - id: "swapcon-context-switching"
-    line_start: 207
-    line_end: 297
-    title: "Context switching for device operations"
+    title: "SWAPBACK: Context Switching for Device I/O"
     wikipedia_url: "https://en.wikipedia.org/wiki/Context_switch"
     image_url: ""
     image_caption: ""
-    content: "The SWAPCON procedure handles context switching between input and output devices. This routine saves and restores device-specific states, allowing MS-DOS to manage multiple devices seamlessly. In the early 1980s, the concept of context switching was gaining traction as multitasking became more prevalent in computing. While MS-DOS was not a multitasking operating system, routines like SWAPCON demonstrate an early attempt to manage multiple I/O streams efficiently. This capability was crucial for supporting the diverse hardware ecosystem of the IBM PC and its clones. The techniques developed here would later evolve into more sophisticated multitasking mechanisms in operating systems like Windows."
+    content: "The `SWAPBACK` subroutine handles context switching, saving and restoring registers (`ES`, `DI`, `SI`, `BX`) during device I/O operations. This routine ensures that the system state remains consistent while switching between tasks, a critical feature in MS-DOS's multitasking-inspired design. In the early 1980s, context switching was a novel concept for personal computers, influenced by larger systems like Unix. Tim Paterson's implementation reflects the constraints of the IBM PC, which lacked hardware support for multitasking but required efficient software solutions. This approach laid the groundwork for more advanced multitasking in later operating systems, such as Windows and Linux, where context switching became a cornerstone of process management."
+  - id: "swapcon-subroutine-console-buffering"
+    line_start: 207
+    line_end: 297
+    title: "SWAPCON: Managing Console Buffers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "The `SWAPCON` subroutine manages console buffers, swapping input and output contexts for device communication. It uses global variables like `CONSWAP` and `IDLEINT` to track the state of the console. In MS-DOS 2.0, console I/O was a critical feature, enabling user interaction with the operating system. This routine reflects the influence of Unix, which popularized buffered I/O to optimize performance. By swapping contexts, MS-DOS could handle console input and output efficiently, even on the limited hardware of the IBM PC. This technique influenced later systems, where buffered I/O became standard practice in programming languages like C and operating systems like Windows and Linux."
   - id: "load-main-read-routine"
     line_start: 653
     line_end: 705
-    title: "LOAD: The main read routine"
+    title: "LOAD: The Main File Read Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The LOAD procedure is the main routine for reading data from files or devices. It takes inputs like the file position and record count, and outputs the position and number of bytes read. This routine is a cornerstone of MS-DOS's file system, enabling efficient data retrieval. In the context of the IBM PC, where storage devices were relatively slow and limited, optimizing read operations was essential. The design of this routine reflects the influence of Unix, with its emphasis on modularity and simplicity. The ability to handle both files and devices through a unified interface was a significant step forward, paving the way for more advanced file systems in later operating systems."
+    content: "The `LOAD` subroutine is the main routine for reading files in MS-DOS. It takes inputs like the file position (`DX:AX`) and record count (`CX`) and outputs the position of the last record read and the number of bytes read. This routine interacts with the file control block (FCB) to update fields like `fcb_LSTCLUS` and `fcb_CLUSPOS`. In 1983, MS-DOS 2.0 introduced hierarchical file systems, inspired by Unix, which required more sophisticated file handling routines. The `LOAD` routine reflects the challenges of implementing these features on the IBM PC, which had limited memory and processing power. This approach influenced later file systems, such as FAT32 and NTFS, which built upon the concepts introduced in MS-DOS."
   - id: "store-main-write-routine"
     line_start: 939
     line_end: 971
-    title: "STORE: Writing data to disk"
+    title: "STORE: Writing Files to Disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The STORE procedure is the counterpart to LOAD, handling data writes to files or devices. It updates metadata like file date and time, reflecting MS-DOS's ability to manage file attributes. Writing data efficiently was a critical challenge in the early days of personal computing, where storage devices had limited capacity and speed. This routine demonstrates the careful balance between functionality and performance, ensuring that MS-DOS could meet the needs of both casual users and business applications. The techniques used here influenced the development of more sophisticated write operations in later file systems, highlighting the enduring legacy of MS-DOS's design."
-  - id: "get-io-fcb-conversion"
-    line_start: 981
-    line_end: 1007
-    title: "Converting JFN to FCB: get_io_fcb"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_control_block"
-    image_url: ""
-    image_caption: ""
-    content: "The get_io_fcb procedure converts a Job File Number (JFN) into a File Control Block (FCB), enabling MS-DOS to manage file operations. FCBs were a legacy structure inherited from CP/M, the operating system that inspired MS-DOS. While effective for single-tasking environments, FCBs were eventually replaced by handle-based file management in later versions of MS-DOS. This routine reflects the transitional nature of MS-DOS v2.0, bridging the gap between older and newer paradigms. The ability to convert JFNs to FCBs ensured compatibility with existing software while laying the groundwork for future innovations in file management."
-  - id: "phydrv-drive-mapping"
-    line_start: 1009
+    content: "The `STORE` subroutine handles writing files to disk, taking inputs like the file position (`DX:AX`) and record count (`CX`) and updating fields in the file control block (FCB). It checks for special cases like EOF and interacts with routines like `DISKWRITE` to perform the actual write operation. In MS-DOS 2.0, file writing was enhanced to support hierarchical file systems and device independence, reflecting the influence of Unix. This routine demonstrates the challenges of implementing these features on early personal computers, where hardware constraints required efficient and compact code. The techniques used in `STORE` influenced later operating systems, where file writing became a fundamental feature of modern computing."
+  - id: "getthisdrv-find-current-drive"
+    line_start: 995
     line_end: 1013
-    title: "Mapping logical to physical drives"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Drive_letter_assignment"
+    title: "GetThisDrv: Determining the Current Drive"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The PHYDRV procedure maps logical drive identifiers to physical drives, a fundamental feature of MS-DOS's file system. This routine ensures that users can access storage devices using familiar drive letters like A: and C:. Drive letter assignment was a novel concept at the time, simplifying storage access for users and developers alike. This approach became a defining characteristic of MS-DOS and influenced the design of later operating systems, including Windows. By abstracting physical storage devices into logical identifiers, MS-DOS made personal computing more accessible to a broader audience, contributing to its widespread adoption."
-  - id: "get-this-drive"
+    content: "The `GetThisDrv` subroutine determines the current drive based on the input drive identifier (`AL`). It outputs the physical drive number and sets the carry flag if the drive is invalid. This routine reflects the simplicity of MS-DOS's drive management, where drives were identified by letters (e.g., A, B, C). In 1983, MS-DOS 2.0 introduced features like subdirectories and file handles, requiring more sophisticated drive management than its predecessor. The `GetThisDrv` routine demonstrates the challenges of implementing these features on the IBM PC, which had limited hardware capabilities. This approach influenced later operating systems, where drive management became more advanced, supporting features like dynamic drive mapping and network drives."
+  - id: "get-this-drive-disk-selection"
     line_start: 1015
     line_end: 1077
-    title: "Mapping clusters in the FAT filesystem"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
+    title: "GetThisDrv: Selecting the active drive"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The subroutine `GetThisDrv` is tasked with mapping clusters in the FAT filesystem. In this moment, the programmer is calculating the next cluster and sector positions based on the directory structure. This involves extracting information from key variables like `CLUSFAC` (sectors per cluster) and `DIRSEC` (first sector of the directory). The logic here is tightly bound to the constraints of the FAT filesystem, which was a groundbreaking approach to disk organization at the time. In 1983, MS-DOS v2.0 was a major leap forward, incorporating features inspired by Unix, such as hierarchical directories. However, the FAT filesystem remained central to its design. Tim Paterson, the original author of 86-DOS, had laid the groundwork for this structure, which Microsoft adapted and expanded. The simplicity of FAT made it ideal for the limited hardware of early PCs, such as the IBM PC with its 4.77 MHz Intel 8088 processor and 160 KB floppy disks. The consequence of this code is far-reaching. FAT became the de facto standard for disk organization in personal computing, surviving into modern systems as FAT32 and exFAT. The logic here—mapping clusters and sectors—remains foundational to how filesystems operate. Without these efficient calculations, early PCs might have struggled to manage their limited storage effectively."
-  - id: "skip-cluster-loop"
-    line_start: 1079
-    line_end: 1089
-    title: "Efficiently skipping unused clusters"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    image_url: ""
-    image_caption: ""
-    content: "The `SKPCLLP` subroutine is a loop designed to skip over unused clusters in the FAT filesystem. It uses a combination of comparison and looping instructions to identify clusters marked as unused or reserved (`0FF8H` and above). This ensures that the system doesn't waste time processing unnecessary data, which was critical for the slow disk speeds of the early 1980s. At the time, disk I/O was one of the most significant bottlenecks in computing. The IBM PC's floppy drives were slow, and optimizing disk access was essential for acceptable performance. The FAT filesystem's design included mechanisms to mark clusters as used, free, or reserved, and this subroutine leverages those markers to streamline operations. This approach to skipping clusters is still relevant in modern filesystems. While the specifics have evolved, the principle of avoiding unnecessary reads persists. The efficiency gained here contributed to MS-DOS's reputation for speed and reliability, helping it dominate the personal computing market for over a decade."
-  - id: "directory-read"
+    content: "This routine determines the active drive for subsequent disk operations. The programmer's goal here was to ensure that the system could correctly identify and operate on the selected drive. In 1983, when MS-DOS v2.0 was released, personal computers were just beginning to support multiple drives, such as floppy disks and hard drives. This routine reflects the need to adapt to a growing complexity in storage devices. Tim Paterson and the Microsoft team had to balance simplicity and flexibility, ensuring that MS-DOS could handle these devices efficiently while maintaining backward compatibility with earlier versions. The ability to dynamically select drives became a cornerstone of MS-DOS's versatility, influencing later operating systems like Windows 3.1 and beyond, where drive management became increasingly sophisticated."
+  - id: "dirread-directory-sector-access"
     line_start: 1111
     line_end: 1157
-    title: "Reading directory sectors efficiently"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
+    title: "DirRead: Accessing directory sectors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The `DirRead` subroutine is responsible for reading directory sectors into memory. It calculates the sector position within a cluster and loads the data into a buffer (`CURBUF`). This operation is fundamental to navigating the hierarchical directory structure introduced in MS-DOS v2.0. In 1983, hierarchical directories were a significant innovation for MS-DOS, inspired by Unix. They allowed users to organize files more effectively, a necessity as storage capacities grew. However, implementing this feature on the limited hardware of the time required careful optimization. The IBM PC's 8088 processor and 160 KB floppy disks demanded efficient algorithms to minimize disk access and maximize performance. The logic here—calculating sector positions and managing buffers—became a template for future filesystem designs. The ability to read directory sectors efficiently ensured that MS-DOS could handle larger files and more complex directory structures, paving the way for its widespread adoption in business and personal computing."
-  - id: "fat-sector-read"
+    content: "The DirRead routine reads a directory block into memory, enabling the system to navigate the file structure stored on disk. This was a critical function in MS-DOS v2.0, which introduced hierarchical directories inspired by Unix. At the time, most personal computers operated with flat file systems, where all files were stored in a single directory. The introduction of subdirectories allowed users to organize files more effectively, a feature that would become standard in all modern operating systems. This routine demonstrates the technical challenges of implementing such functionality on hardware with limited memory and processing power. The approach taken here influenced the design of later file systems, including FAT32 and NTFS, and set the stage for the complex directory structures we use today."
+  - id: "fat-sector-read-fatsecrd"
     line_start: 1237
     line_end: 1393
-    title: "Reading sectors from the FAT table"
+    title: "FATSecRd: Reading sectors from the FAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The `FATSecRd` subroutine reads sectors from the FAT table, which is the heart of the FAT filesystem. It interacts directly with the BIOS to perform the read operation, ensuring that the data is correctly transferred to memory. This subroutine includes error handling and retry mechanisms to deal with BIOS-level disk errors. In the early 1980s, direct BIOS calls were a common way to interact with hardware. The IBM PC's BIOS provided a standardized interface for disk operations, but it was limited and prone to errors. MS-DOS had to implement robust error handling to ensure reliability, especially in business environments where data integrity was critical. This subroutine exemplifies the close relationship between software and hardware in early PCs. The reliance on BIOS calls reflects the constraints of the time, but the error handling mechanisms show a forward-thinking approach to reliability. These principles influenced the design of later operating systems, where hardware abstraction layers became more sophisticated."
-  - id: "setup-disk-transfer"
-    line_start: 1681
-    line_end: 1733
-    title: "Preparing for disk read/write operations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
-    image_url: ""
-    image_caption: ""
-    content: "The `SETUP` subroutine prepares the system for disk read or write operations. It calculates positions within the file and disk, sets up buffers, and initializes key variables like `RECPOS` (record position) and `CLUSNUM` (cluster number). This preparation is crucial for efficient disk I/O. Disk operations were a major performance bottleneck in early PCs. The IBM PC's floppy drives had limited capacity and slow access times, so optimizing these operations was essential. The calculations performed in this subroutine ensure that data is read or written in the most efficient manner possible, minimizing disk access and maximizing throughput. This setup logic is a precursor to modern disk caching and buffering techniques. By organizing data transfer efficiently, MS-DOS could deliver acceptable performance on hardware that was, by today's standards, extremely limited. The principles established here influenced the design of later operating systems and filesystems."
-  - id: "breakdown-disk-transfer"
+    content: "This routine reads sectors from the File Allocation Table (FAT), the core structure of MS-DOS's file system. The FAT keeps track of which clusters on the disk are allocated to files and which are free. In the early 1980s, this was a revolutionary approach to file management, enabling efficient use of disk space and simplifying file recovery. The FAT system was designed to work seamlessly with the BIOS, leveraging low-level disk access routines. This routine highlights the ingenuity required to implement a robust file system on hardware with limited resources. The FAT file system became one of the most widely used file systems in the world, influencing the design of storage systems in Windows, USB drives, and SD cards. Its legacy persists in embedded systems and portable devices even today."
+  - id: "breakdown-user-disk-transfer"
     line_start: 1765
     line_end: 1819
-    title: "Splitting disk transfers into manageable pieces"
+    title: "BreakDown: Splitting disk transfers into manageable parts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
     image_url: ""
     image_caption: ""
-    content: "The `BreakDown` subroutine divides disk transfers into smaller, manageable pieces. It calculates how many bytes to transfer in the first sector, the number of whole sectors to transfer, and the bytes remaining for the last sector. This division ensures that disk operations are performed efficiently and within the constraints of the hardware. In the early 1980s, disk I/O was one of the most challenging aspects of computing. The IBM PC's floppy drives had limited capacity and slow access times, making it essential to optimize every read and write operation. By splitting transfers into smaller pieces, this subroutine minimizes wasted time and ensures that data is handled correctly. This approach to disk transfers is still relevant today. While the specifics have evolved, the principle of breaking down large operations into smaller, more manageable tasks persists. The logic here contributed to MS-DOS's reputation for efficiency and reliability, helping it become the dominant operating system of its time."
-  - id: "disk-read-operation"
+    content: "The BreakDown routine divides large disk transfers into smaller, manageable pieces. This was necessary due to the constraints of the 8086 architecture, which could only address 64KB segments of memory. By breaking transfers into chunks, the system could handle files larger than the segment size without exceeding memory limits. In the early 1980s, disk storage was expanding rapidly, with hard drives becoming more common and file sizes increasing. This routine reflects the challenges of adapting software to evolving hardware capabilities. The technique of segmenting data transfers influenced later operating systems and file systems, ensuring compatibility with larger storage devices and paving the way for innovations like virtual memory and paging."
+  - id: "disk-read-user-level-operation"
     line_start: 1821
-    line_end: 1837
-    title: "Performing user-initiated disk reads"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
+    line_end: 2013
+    title: "DISKREAD: Performing user-level disk reads"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
     image_url: ""
     image_caption: ""
-    content: "The `DISKREAD` subroutine handles user-initiated disk read operations. It uses the outputs of the `SETUP` subroutine to perform the read, updating key variables like `CLUSNUM` (cluster number) and `BYTPOS` (byte position). This operation is fundamental to retrieving data from the disk. In 1983, disk read operations were a critical part of computing. Users expected their data to be accessible quickly and reliably, even on the limited hardware of the time. The IBM PC's floppy drives were slow, but MS-DOS's efficient disk handling routines helped mitigate this limitation. The logic here—using setup data to perform reads—became a template for future operating systems. The ability to handle disk reads efficiently ensured that MS-DOS could meet user expectations, contributing to its widespread adoption and long-lasting influence on personal computing."
-  - id: "rdlast-last-record-transfer"
+    content: "The DISKREAD routine handles user-level disk read operations, interacting with the BIOS to retrieve data from storage devices. This routine encapsulates the complexity of disk I/O, providing a simplified interface for higher-level operations. In the early 1980s, direct interaction with hardware was common, but MS-DOS v2.0 introduced abstractions that made programming more accessible. By relying on BIOS calls, this routine ensured compatibility with a wide range of hardware, a key factor in MS-DOS's success as an OEM product. The abstraction of disk operations influenced the design of later operating systems, including Windows and Linux, where device drivers and APIs further separated hardware-specific details from application-level code. This routine represents a step toward the modular, hardware-independent software architectures we use today."
+  - id: "rdlast-disk-read-final-record"
     line_start: 2017
     line_end: 2079
-    title: "Last Record Transfer: Handling Partial Reads"
+    title: "Reading the last record on disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The RDLAST routine is tasked with managing the transfer of the last record during a disk read operation. It checks if the byte count is zero, invokes the NEXTSEC routine to move to the next sector, and uses BUFRD to read data into memory. If the record is incomplete, it flags a partial transfer and fills the remaining bytes with zeros. This meticulous handling of partial records reflects the challenges of working with the FAT file system, where data is stored in fixed-size clusters and records often span multiple sectors. In 1983, disk operations were constrained by slow hardware and limited memory, making efficient handling of edge cases like partial reads critical for performance and reliability. Tim Paterson's original 86-DOS laid the groundwork for these routines, but MS-DOS v2.0's rewrite added robustness inspired by Unix. The careful handling of partial records ensured data integrity, a principle that would persist in file system designs for decades."
+    content: "The RDLAST routine is tasked with reading the final record of a file from the disk. It calculates the number of bytes transferred, checks for partial records, and handles the filling of incomplete records with zeros. This was critical in ensuring data integrity during file reads in MS-DOS 2.0. In 1983, personal computers were limited by slow disk speeds and constrained memory, making efficient disk I/O operations a necessity. Tim Paterson and Microsoft's engineers drew inspiration from Unix-like systems, adapting techniques to work within the FAT file system's constraints. This routine exemplifies the careful balancing act between performance and reliability. RDLAST's approach to handling partial records influenced later disk utilities and APIs, ensuring robust file handling in systems like Windows 95 and beyond."
+  - id: "evenfil-zero-padding-in-disk-read"
+    line_start: 2081
+    line_end: 2089
+    title: "Zero-padding for incomplete records"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
+    image_url: ""
+    image_caption: ""
+    content: "The EVENFIL routine ensures that incomplete records are padded with zeros during disk reads. This technique prevents data corruption and aligns records to the expected size, a critical requirement for the FAT file system. In the early 1980s, disk storage was expensive and prone to errors, necessitating robust handling of edge cases like partial reads. EVENFIL reflects the meticulous attention to detail that characterized MS-DOS's development. By guaranteeing consistent record sizes, this approach laid the foundation for reliable file systems in later operating systems, including Windows NT and Linux."
   - id: "setclus-cluster-management"
     line_start: 2097
     line_end: 2127
-    title: "Cluster Management: Updating File Positions"
+    title: "Managing clusters in the FAT file system"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "SETCLUS is responsible for updating cluster positions within the File Control Block (FCB). It checks if the device is a special type (e.g., a character device) before proceeding to update the cluster number and position fields. This routine highlights the FAT file system's reliance on clusters as the fundamental unit of storage. In the early 1980s, the concept of clusters allowed MS-DOS to efficiently manage disk space on small-capacity drives, a necessity given the hardware constraints of the IBM PC. The routine's design reflects the influence of Unix, which introduced hierarchical file systems and device independence. By abstracting cluster management into a dedicated routine, MS-DOS v2.0 improved modularity and maintainability, setting a precedent for future operating systems."
-  - id: "diskread-disk-read-operations"
+    content: "SETCLUS is responsible for managing clusters within the FAT file system, updating file control blocks (FCBs) with the correct cluster and position information. This routine was essential for tracking file locations on disk, a cornerstone of the FAT architecture. In 1983, the FAT file system was a revolutionary approach to organizing data on floppy disks and hard drives, balancing simplicity with functionality. SETCLUS demonstrates how MS-DOS 2.0 extended FAT's capabilities to support subdirectories and larger storage devices. This technique influenced subsequent file systems, including FAT32 and exFAT, which are still in use today for flash storage devices."
+  - id: "diskread-efficient-disk-read-operations"
     line_start: 2131
     line_end: 2191
-    title: "Disk Read Operations: Modular and Efficient"
-    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
+    title: "Optimizing disk read operations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
     image_url: ""
     image_caption: ""
-    content: "DISKREAD encapsulates the logic for reading data from the disk into memory. It begins by marking the file as 'dirty' and calculates the position of the last record accessed. The routine uses division and bit-shifting operations to determine the cluster and sector positions, reflecting the low-level nature of assembly programming. In 1983, disk reads were a bottleneck due to slow hardware, so routines like DISKREAD were optimized to minimize overhead. The modular design, with clear inputs and outputs, shows the influence of structured programming principles. Tim Paterson's original 86-DOS code provided the foundation, but MS-DOS v2.0's rewrite introduced enhancements inspired by Unix, such as better support for hierarchical file systems and device drivers. This routine's efficiency contributed to MS-DOS's dominance in the PC market."
-  - id: "norndup-rounding-up-sectors"
-    line_start: 2223
-    line_end: 2255
-    title: "Rounding Up Sectors: Ensuring Data Alignment"
+    content: "The DISKREAD routine performs efficient disk read operations, leveraging the FAT file system's structure to locate and retrieve data. It calculates the position of the last record read and updates the file control block accordingly. In the early 1980s, disk I/O was a bottleneck for personal computers, with slow transfer speeds and limited caching capabilities. DISKREAD showcases the ingenuity of MS-DOS's developers in optimizing these operations within the constraints of the hardware. This routine's principles of efficient data retrieval influenced later operating systems and disk utilities, paving the way for advancements in caching and prefetching techniques."
+  - id: "calclus-cluster-calculation"
+    line_start: 2193
+    line_end: 2221
+    title: "Calculating clusters for disk writes"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "NORNDUP handles the rounding up of sectors when writing data to disk. It calculates the number of sectors written and adjusts for any remainder, ensuring data alignment. This routine reflects the constraints of the FAT file system, where data must be stored in fixed-size sectors. In the early 1980s, disk alignment was crucial for performance, as misaligned writes could degrade speed and reliability. The routine's use of arithmetic operations to manage sector counts demonstrates the low-level control afforded by assembly language. MS-DOS v2.0's rewrite introduced improvements to disk handling inspired by Unix, including better support for large files and hierarchical directories. NORNDUP's focus on alignment ensured compatibility with a wide range of hardware, contributing to MS-DOS's success in the OEM market."
-  - id: "wrtmid-writing-mid-sectors"
-    line_start: 2367
-    line_end: 2385
-    title: "Writing Mid-Sectors: Optimizing Disk Writes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
+    content: "CALCLUS calculates the cluster to be accessed during disk writes, a critical operation for maintaining the FAT file system's integrity. By dividing the file size by the sector size and applying a cluster shift, this routine determines the correct cluster for data storage. In 1983, managing clusters efficiently was vital for maximizing disk utilization and ensuring reliable file operations. CALCLUS reflects the careful engineering that went into MS-DOS 2.0, balancing performance with the limitations of early storage devices. This technique influenced later file systems, including NTFS and ext4, which expanded on FAT's cluster management principles."
+  - id: "wrtlast-writing-final-record"
+    line_start: 2467
+    line_end: 2481
+    title: "Writing the final record to disk"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
     image_url: ""
     image_caption: ""
-    content: "WRTMID is responsible for writing data to the middle sectors of a file. It checks if there are sectors to write, updates the sector position, and invokes NEXTSEC to move to the next sector. The routine's design reflects the challenges of optimizing disk writes on early 1980s hardware, where slow disk speeds and limited memory required careful management of sector positions. By modularizing the write operation, MS-DOS v2.0 improved performance and maintainability. The routine's use of flags and counters to track progress shows the influence of structured programming principles. Tim Paterson's original 86-DOS code provided the foundation, but MS-DOS v2.0's rewrite introduced enhancements inspired by Unix, such as better support for large files and hierarchical directories. WRTMID's efficiency contributed to MS-DOS's dominance in the PC market."
-  - id: "killfil-deleting-files"
+    content: "WRTLAST handles the writing of the final record to disk, ensuring that any remaining data is correctly stored and aligned. This routine updates the file control block and prepares the system for subsequent operations. In the early 1980s, reliable disk writes were a cornerstone of personal computing, as data loss could have catastrophic consequences. WRTLAST exemplifies the robust design of MS-DOS 2.0, which prioritized data integrity and system stability. The principles demonstrated here influenced the development of journaling file systems like NTFS and ext4, which further enhanced reliability in modern computing."
+  - id: "update-size-file-size-management"
+    line_start: 2499
+    line_end: 2503
+    title: "Updating file size after writes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
+    image_url: ""
+    image_caption: ""
+    content: "The Update_size routine updates the file size in the file control block after data has been written to disk. This ensures that the file's metadata accurately reflects its contents, a critical requirement for the FAT file system. In 1983, managing file sizes efficiently was essential for maintaining the integrity of storage devices and preventing data corruption. Update_size showcases MS-DOS 2.0's meticulous attention to detail, which set the stage for more advanced file systems like NTFS and exFAT. This routine's approach to metadata management influenced the design of modern operating systems and storage solutions."
+  - id: "killfil-file-deletion"
     line_start: 2569
     line_end: 2591
-    title: "Deleting Files: Releasing Clusters"
+    title: "Deleting files from the FAT file system"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "KILLFIL handles the deletion of files by releasing clusters associated with the file. It updates the FCB to mark the file as deleted and invokes RELEASE to free the clusters. This routine reflects the constraints of the FAT file system, where clusters must be explicitly released to avoid fragmentation. In the early 1980s, disk space was a precious resource, so efficient file deletion was critical for performance. The routine's design shows the influence of Unix, which introduced hierarchical file systems and device independence. By abstracting file deletion into a dedicated routine, MS-DOS v2.0 improved modularity and maintainability, setting a precedent for future operating systems. KILLFIL's focus on efficient cluster management ensured compatibility with a wide range of hardware, contributing to MS-DOS's success in the OEM market."
+    content: "KILLFIL handles the deletion of files from the FAT file system, releasing clusters and updating the file control block to reflect the change. This routine was crucial for maintaining the integrity of the file system and preventing orphaned clusters. In the early 1980s, file deletion was a complex operation, requiring careful management of metadata and storage structures. KILLFIL demonstrates the robust design of MS-DOS 2.0, which prioritized reliability and efficiency. The techniques used here influenced the development of modern file systems, including NTFS and ext4, which expanded on FAT's principles to support advanced features like journaling and transaction-based operations."
 
 ---
 

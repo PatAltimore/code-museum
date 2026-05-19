@@ -49,7 +49,7 @@ SOURCE_EXTS = {
 }
 
 _SYSTEM = """\
-You are a curator for Code Museum — a reader for historically significant open-source programs. \
+You are a curator for Code Museum — a reader for historically significant open-sourced programs. \
 Given a GitHub repository's metadata and file listing, write a complete programs.yaml entry.
 
 Output valid JSON with no markdown fences and no extra text:
