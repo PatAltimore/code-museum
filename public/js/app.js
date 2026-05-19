@@ -442,6 +442,79 @@ function renderHeader(opts = {}) {
 </header>`;
 }
 
+function renderEnhancementIndex(enhancements) {
+  if (!enhancements || enhancements.length === 0) return { mobileHtml: '', sidebarHtml: '' };
+
+  const sorted = [...enhancements].sort((a, b) => a.line_start - b.line_start);
+
+  const items = sorted.map((enh, i) =>
+    `<li><button class="enh-index-item" onclick="goToEnhancement('${escapeAttr(enh.id)}')">`
+    + `<span class="enh-index-num">${i + 1}</span>`
+    + `<span class="enh-index-title">${escapeHtml(enh.title)}</span>`
+    + `</button></li>`
+  ).join('');
+
+  const mobileHtml = `
+<div class="enh-index-mobile">
+  <button class="enh-index-toggle" id="enh-mobile-btn" onclick="toggleEnhIndexMobile()" aria-expanded="false">
+    <span class="enh-toggle-chevron">▶</span>
+    <span>Sections (${sorted.length})</span>
+  </button>
+  <ol class="enh-index-list enh-index-mobile-list" id="enh-index-mobile-list" hidden>${items}</ol>
+</div>`;
+
+  const sidebarHtml = `
+<nav class="enh-index-sidebar" id="enh-index-sidebar">
+  <div class="enh-index-header">
+    <span class="enh-index-label">Sections</span>
+    <button class="enh-index-close" onclick="toggleEnhIndexSidebar()" title="Hide sections">✕</button>
+  </div>
+  <ol class="enh-index-list">${items}</ol>
+</nav>
+<button class="enh-index-show" id="enh-index-show" onclick="toggleEnhIndexSidebar()" title="Show sections">☰</button>`;
+
+  return { mobileHtml, sidebarHtml };
+}
+
+window.goToEnhancement = function(id) {
+  const panel = document.getElementById('enh-' + id);
+  if (!panel) return;
+  panel.open = true;
+  // Scroll to the highlighted code block that sits just above the panel
+  const target = panel.previousElementSibling || panel;
+  requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  // On mobile, collapse the index after navigating
+  const mobileList = document.getElementById('enh-index-mobile-list');
+  if (mobileList && !mobileList.hidden) toggleEnhIndexMobile();
+};
+
+window.toggleEnhIndexMobile = function() {
+  const list = document.getElementById('enh-index-mobile-list');
+  const btn  = document.getElementById('enh-mobile-btn');
+  if (!list || !btn) return;
+  const opening = list.hidden;
+  list.hidden = !opening;
+  btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+  const chevron = btn.querySelector('.enh-toggle-chevron');
+  if (chevron) chevron.style.transform = opening ? 'rotate(90deg)' : '';
+};
+
+window.toggleEnhIndexSidebar = function() {
+  const sidebar = document.getElementById('enh-index-sidebar');
+  const showBtn = document.getElementById('enh-index-show');
+  if (!sidebar) return;
+  const isVisible = sidebar.classList.contains('enh-index-sidebar--hidden') === false
+    && sidebar.style.display !== 'none';
+  if (isVisible) {
+    sidebar.style.display = 'none';
+    if (showBtn) showBtn.style.display = 'flex';
+  } else {
+    sidebar.style.display = '';
+    if (showBtn) showBtn.style.display = 'none';
+  }
+  try { localStorage.setItem('enhIndexOpen', isVisible ? '0' : '1'); } catch(e) {}
+};
+
 function renderReader(meta, body, program) {
   document.title = `${meta.title} — ${meta.program} — Code Museum`;
 
@@ -459,6 +532,7 @@ function renderReader(meta, body, program) {
   ).join('');
 
   const codeHtml = renderCodeWithEnhancements(body, meta.enhancements || []);
+  const { mobileHtml, sidebarHtml } = renderEnhancementIndex(meta.enhancements || []);
 
   const prevNav = prevFile
     ? `<a class="file-nav-link" href="#/${meta.program_slug}/${prevFile.slug}">← <span><span class="nav-label">Previous</span><span class="nav-name">${escapeHtml(prevFile.title)}</span></span></a>`
@@ -475,8 +549,10 @@ function renderReader(meta, body, program) {
     <div class="file-byline">${escapeHtml(meta.program)} · ${escapeHtml(meta.language)} · ${meta.year}</div>
     <p class="file-description">${escapeHtml(meta.description)}</p>
     ${summaryHtml ? `<ul class="summary-list">${summaryHtml}</ul>` : ''}
+    ${mobileHtml}
   </div>
   <div class="reader-content">${codeHtml}</div>
+  ${sidebarHtml}
   <nav class="file-nav">${prevNav}<div class="file-nav-spacer"></div>${nextNav}</nav>
 </div>`;
 }
@@ -542,6 +618,17 @@ async function route() {
         fileTitle: meta.title,
       }) + renderReader(meta, body, program);
 
+      // Restore sidebar state from localStorage on wide screens
+      try {
+        const saved = localStorage.getItem('enhIndexOpen');
+        // Default is open (null = never set); '0' means user closed it
+        if (saved === '0') {
+          const sidebar = document.getElementById('enh-index-sidebar');
+          const showBtn = document.getElementById('enh-index-show');
+          if (sidebar) sidebar.style.display = 'none';
+          if (showBtn) showBtn.style.display = 'flex';
+        }
+      } catch(e) {}
     }
   } catch (err) {
     setError('Failed to load: ' + err.message);

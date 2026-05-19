@@ -92,8 +92,9 @@ python generator.py [OPTIONS]
 | `--intro-only` | Only generate program introductions; skip file annotation generation |
 | `--find-images` | Backfill Wikipedia Commons images in all existing files and exit |
 | `--replace-images` | Clear and re-fetch all enhancement images (replaces bad ones); implies `--find-images` |
+| `--program-image` | Fetch or replace the program intro image only; skip file images |
 | `--no-images` | Skip all Wikipedia Commons image fetching during generation |
-| `--no-file-images` | Skip per-enhancement image fetching but still fetch the program-level image |
+| `--file-images` | Also fetch per-enhancement images during generation (off by default) |
 | `--dry-run` | Fetch source and build prompts, but do not call the model |
 | `--sync-catalog` | Update `public/catalog.json` from disk and exit without generating |
 | `--no-catalog-sync` | Skip the automatic catalog update after generation |
@@ -136,9 +137,9 @@ Generate annotations without fetching any images (faster):
 python generator.py --program ms-dos --no-images
 ```
 
-Generate annotations with program image but skip per-enhancement images:
+Generate annotations and also fetch per-enhancement images:
 ```bash
-python generator.py --program ms-dos --no-file-images
+python generator.py --program ms-dos --file-images
 ```
 
 Check what prompts would be sent without calling the model:
@@ -153,7 +154,7 @@ python generator.py --sync-catalog
 
 ## find_images.py
 
-Fetches Wikipedia Commons images for enhancement cards and program pages. Called automatically during generation; can also be run standalone to backfill images in existing files.
+Fetches Wikipedia Commons images for program pages and enhancement cards. During generation the program-level image is always fetched; per-enhancement images are only fetched when `--file-images` is passed. Can also be run standalone to backfill images in existing files.
 
 ```bash
 # Backfill images across all programs (via generator)

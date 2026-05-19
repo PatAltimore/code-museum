@@ -193,7 +193,9 @@ python generator.py --sync-catalog
 
 ### Finding images
 
-Images are fetched automatically from Wikipedia Commons during generation and filtered for relevance — images that the model judges unrelated to the enhancement topic are rejected before being saved. To backfill images for existing files:
+The program-level image (shown on the program introduction page) is fetched automatically during generation. Per-enhancement images are skipped by default and must be opted into with `--file-images`. All images are sourced from Wikipedia Commons and filtered for relevance — images the model judges unrelated to the topic are rejected before being saved.
+
+To backfill images for existing files:
 
 ```bash
 # Fill images across all files
@@ -205,8 +207,8 @@ python generator.py --find-images --program prince-of-persia
 # Skip all image fetching during generation
 python generator.py --no-images
 
-# Skip enhancement images but still fetch the program-level image
-python generator.py --no-file-images
+# Also fetch per-enhancement images during generation
+python generator.py --file-images
 ```
 
 ### Generator options
@@ -219,8 +221,9 @@ python generator.py --no-file-images
 | `--intro-only` | Only generate program introductions; skip file annotations |
 | `--find-images` | Backfill Wikipedia Commons images in existing files and exit |
 | `--replace-images` | Clear and re-fetch all enhancement images (replaces bad ones) |
+| `--program-image` | Fetch or replace the program intro image only; skip file images |
 | `--no-images` | Skip all image fetching during generation |
-| `--no-file-images` | Skip per-enhancement images but still fetch the program-level image |
+| `--file-images` | Also fetch per-enhancement images during generation |
 | `--dry-run` | Build prompts without calling the model |
 | `--sync-catalog` | Update `catalog.json` from disk and exit |
 | `--no-catalog-sync` | Skip the automatic catalog update after generation |

@@ -210,9 +210,10 @@ def main() -> None:
     parser.add_argument("--sync-catalog", action="store_true", help="Update catalog.json from disk and exit")
     parser.add_argument("--no-catalog-sync", action="store_true", help="Skip catalog.json sync after generation")
     parser.add_argument("--no-images", action="store_true", help="Skip all Wikipedia Commons image fetching (program and enhancement images)")
-    parser.add_argument("--no-file-images", action="store_true", help="Skip per-enhancement image fetching but still fetch the program-level image")
+    parser.add_argument("--file-images", action="store_true", help="Also fetch per-enhancement images (program-level image is always fetched)")
     parser.add_argument("--find-images", action="store_true", help="Fill missing images in all existing files and exit")
     parser.add_argument("--replace-images", action="store_true", help="Clear and re-fetch all images (replaces bad ones); implies --find-images")
+    parser.add_argument("--program-image", action="store_true", help="Fetch (or replace) the program intro image only; skip file images")
     parser.add_argument("--config", default="config/programs.yaml", help="Path to programs.yaml")
     args = parser.parse_args()
 
@@ -229,6 +230,24 @@ def main() -> None:
 
     gen_cfg = config.get("generation", {})
     client = ModelClient(config["models"]) if not args.dry_run else None
+
+    if args.program_image:
+        programs = config["programs"]
+        if args.program:
+            programs = [p for p in programs if p["slug"] == args.program]
+        for program in programs:
+            prog_slug = program["slug"]
+            console.print(f"[cyan]prog-image  {prog_slug}[/cyan]")
+            try:
+                img = find_program_image(program, client=client)
+                if img:
+                    save_program_image(prog_slug, img[0], img[1])
+                    console.print(f"  [green]-> program image saved[/green]")
+                else:
+                    console.print(f"  [dim]no program image found[/dim]")
+            except Exception as e:
+                console.print(f"  [yellow]program image search failed: {e}[/yellow]")
+        return
 
     if args.find_images or args.replace_images:
         replace = args.replace_images
@@ -251,7 +270,7 @@ def main() -> None:
                 catalog = json.loads(_CATALOG_PATH.read_text(encoding="utf-8"))
                 existing = {p["slug"]: p for p in catalog.get("programs", [])}
                 entry = existing.get(prog_slug, {})
-                if not entry.get("image_url"):
+                if entry.get("image_url") is None:
                     console.print(f"[cyan]prog-image  {prog_slug}[/cyan]")
                     try:
                         img = find_program_image(program, client=client)
@@ -409,7 +428,7 @@ def main() -> None:
             console.print(f"  [green]-> {path}[/green]")
             generated.append((prog_slug, file_slug))
 
-            if not args.no_images and not args.no_file_images:
+            if not args.no_images and args.file_images:
                 count = fill_file_images(path, console=console, client=client)
                 if count:
                     console.print(f"  [green]-> {count} image(s) added[/green]")
