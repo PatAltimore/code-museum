@@ -9,90 +9,106 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-mm-c"
 order: 14
-description: "This file implements the memory management system for Wolfenstein 3D, showcasing id Software's innovative handling of constrained hardware environments in 1992."
+description: "This file implements the memory management system for Wolfenstein 3D, showcasing innovative techniques for handling constrained memory environments in early PC gaming."
 
 summary:
-  - point: "Innovative use of EMS and XMS memory management"
-    link: "https://en.wikipedia.org/wiki/Expanded_memory"
-    link_label: "Expanded Memory"
-  - point: "Custom linked list for memory blocks"
+  - point: "Efficient memory block management using linked lists"
     link: "https://en.wikipedia.org/wiki/Linked_list"
     link_label: "Linked List"
-  - point: "Dynamic allocation strategies for near and far memory"
-    link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory Management"
-  - point: "Integration of sound system with memory locking"
-    link: "https://en.wikipedia.org/wiki/AdLib"
-    link_label: "AdLib Sound Card"
-  - point: "Visualization of memory blocks for debugging"
+  - point: "Integration of EMS and XMS memory standards"
+    link: "https://en.wikipedia.org/wiki/Expanded_memory"
+    link_label: "Expanded Memory"
+  - point: "Dynamic memory allocation tailored to MS-DOS constraints"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Use of assembly for direct hardware interaction"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
+  - point: "Memory visualization for debugging purposes"
     link: "https://en.wikipedia.org/wiki/Debugging"
     link_label: "Debugging"
 
 enhancements:
-  - id: "quit-function-error-handling"
+  - id: "quit-error-handling"
     line_start: 13
     line_end: 13
-    title: "Error handling in constrained environments"
+    title: "Simple error handling with Quit function"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
-    content: "The `Quit` function is a simple yet critical error-handling mechanism that halts execution and displays an error message. In the early 1990s, robust error handling was essential for software running on MS-DOS, where crashes could easily lead to system instability. John Carmack's approach here reflects the pragmatic mindset of developers working under tight constraints. This function likely saved countless hours of debugging during development and provided a clear fail-safe for unexpected conditions. While modern systems have more sophisticated error-handling paradigms, this direct approach remains a reminder of the simplicity and effectiveness of early software engineering."
-  - id: "mm-sizeptr-memory-resizing"
+    content: "The Quit function provides a straightforward mechanism to handle fatal errors by terminating the program and displaying an error message. This approach reflects the simplicity required in early PC software development, where robustness was often sacrificed for performance. John Carmack and his team prioritized fast execution and minimal overhead, aligning with the constraints of MS-DOS systems. This method influenced later game engines, where error handling evolved to include logging and recovery mechanisms."
+  - id: "mm-sizeptr-resize-memory"
     line_start: 18
     line_end: 20
-    title: "Dynamic resizing of memory blocks"
+    title: "MM_SizePtr: Resizing memory blocks dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
     image_url: ""
     image_caption: ""
-    content: "The `MM_SizePtr` function is designed to resize memory blocks dynamically, a necessity in a game like Wolfenstein 3D that pushed hardware limits. In 1992, memory management was a delicate balance due to the limited resources of MS-DOS systems. This function reflects id Software's ingenuity in ensuring efficient use of memory, allowing the game to maintain performance while handling complex tasks like rendering and AI. The ability to resize memory blocks dynamically was a precursor to modern memory management techniques, showcasing how early developers laid the groundwork for today's systems."
+    content: "The MM_SizePtr function is designed to dynamically resize memory blocks, a critical feature for managing limited resources in MS-DOS environments. This technique allowed Wolfenstein 3D to adapt memory usage to the game's needs, ensuring smooth gameplay despite hardware constraints. Dynamic memory allocation was a relatively new concept in the early 1990s, and its implementation here showcases id Software's ingenuity. This approach laid the groundwork for more sophisticated memory management systems in later engines like Quake and Unreal."
   - id: "ems-memory-management"
     line_start: 22
     line_end: 70
-    title: "EMS memory: Expanding beyond conventional limits"
+    title: "EMS: Expanded Memory Management"
     wikipedia_url: "https://en.wikipedia.org/wiki/Expanded_memory"
     image_url: ""
     image_caption: ""
-    content: "The EMS (Expanded Memory Specification) routines in this section demonstrate id Software's mastery of MS-DOS memory management. EMS allowed programs to access memory beyond the 640KB conventional limit, a critical feature for resource-intensive applications like Wolfenstein 3D. John Carmack's implementation integrates EMS seamlessly, enabling the game to utilize additional memory for graphics, sound, and gameplay mechanics. This approach reflects the era's reliance on hardware-specific optimizations, where developers had to understand and exploit every available resource. EMS eventually became obsolete with the advent of protected mode and modern operating systems, but its use here highlights the ingenuity required to overcome hardware limitations."
-  - id: "linked-list-memory-blocks"
-    line_start: 92
-    line_end: 93
-    title: "Custom linked list for memory management"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
-    image_url: ""
-    image_caption: ""
-    content: "The `mmblocks` array forms the backbone of Wolfenstein 3D's memory management system, implemented as a custom linked list. Each block represents a segment of memory, with attributes defining its usage and purgability. This design allowed id Software to efficiently allocate, lock, and purge memory blocks based on the game's needs. In the early 1990s, linked lists were a common choice for dynamic data structures due to their simplicity and flexibility. Carmack's implementation here is a testament to his ability to balance performance and maintainability, ensuring the game could run smoothly on constrained hardware."
-  - id: "mml-checkforxms-driver-detection"
+    content: "The EMS section handles expanded memory, a standard introduced to overcome the 640KB conventional memory limit of MS-DOS. By interacting directly with the EMS driver via assembly instructions, this code enables Wolfenstein 3D to utilize additional memory for game data. This was crucial for achieving the game's groundbreaking performance and graphics. The use of EMS reflects id Software's mastery of hardware-specific optimizations, a skill that became a hallmark of their development process. EMS support influenced other developers to adopt similar techniques, pushing the boundaries of PC gaming."
+  - id: "mml-checkforxms"
     line_start: 129
     line_end: 131
-    title: "Detecting XMS drivers for memory access"
+    title: "MML_CheckForXMS: Detecting Extended Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Extended_memory"
     image_url: ""
     image_caption: ""
-    content: "The `MML_CheckForXMS` function checks for the presence of an XMS (Extended Memory Specification) driver, a crucial step in accessing extended memory on MS-DOS systems. By invoking interrupt 0x2F, the function queries the system for XMS support, returning a boolean result. This low-level interaction with hardware reflects the era's reliance on direct system calls to manage resources. Extended memory was a game-changer for applications like Wolfenstein 3D, enabling developers to bypass the 640KB limit and utilize additional memory for enhanced performance. This function encapsulates the ingenuity required to harness hardware capabilities in the early 1990s."
-  - id: "mml-setupxms-upper-memory-blocks"
+    content: "This function checks for the presence of an XMS (Extended Memory Specification) driver, enabling the game to utilize memory beyond the 1MB boundary of conventional MS-DOS systems. By querying the interrupt vector table, the code determines whether XMS is available, showcasing the low-level programming expertise of John Carmack and his team. The ability to leverage XMS was a significant advancement, allowing Wolfenstein 3D to store more complex data structures and improve performance. This technique influenced other developers to integrate extended memory support into their software."
+  - id: "mml-setupxms"
     line_start: 156
     line_end: 158
-    title: "Allocating upper memory blocks dynamically"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Upper_memory_area"
+    title: "MML_SetupXMS: Allocating Upper Memory Blocks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management#Upper_memory_blocks"
     image_url: ""
     image_caption: ""
-    content: "The `MML_SetupXMS` function attempts to allocate upper memory blocks (UMBs), a critical resource for MS-DOS programs. UMBs reside in the upper memory area, providing additional space for applications to store data. This function uses XMS driver calls to request the largest available block, iterating until all UMBs are allocated. The dynamic allocation of UMBs reflects id Software's commitment to optimizing memory usage, ensuring Wolfenstein 3D could perform efficiently despite hardware constraints. This approach highlights the creative problem-solving required to develop groundbreaking software in an era of limited resources."
-  - id: "mm-sortmem-compression"
+    content: "The MML_SetupXMS function attempts to allocate upper memory blocks (UMBs), which are segments of memory located between 640KB and 1MB. By interacting directly with the XMS driver, the code maximizes the available memory for game data. This approach reflects the ingenuity required to optimize memory usage on constrained MS-DOS systems. The allocation of UMBs was a common technique in the early 1990s, and its implementation here demonstrates id Software's commitment to pushing hardware limits. This method influenced later games to adopt similar strategies for memory management."
+  - id: "mm-sortmem-compress-memory"
     line_start: 666
     line_end: 770
-    title: "Memory compression for performance optimization"
+    title: "MM_SortMem: Compressing memory blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The `MM_SortMem` function compresses memory by throwing out purgable blocks and rearranging movable ones. This process ensures that memory is utilized efficiently, reducing fragmentation and improving performance. In Wolfenstein 3D, where every byte of memory mattered, this function played a vital role in maintaining smooth gameplay. The inclusion of sound system integration, locking audio segments during compression, reflects the game's complexity and the need for careful resource management. This technique, while tailored to the constraints of MS-DOS, laid the groundwork for modern memory optimization strategies."
-  - id: "mm-showmemory-debugging-visualization"
+    content: "MM_SortMem is responsible for compressing memory blocks by removing purgable data and consolidating movable blocks. This ensures efficient utilization of memory space, a critical requirement for running Wolfenstein 3D on systems with limited resources. The function also locks memory associated with active sounds, demonstrating the game's real-time considerations. This technique reflects the team's deep understanding of memory management and their ability to optimize performance under strict constraints. The concept of memory compression influenced later game engines, where similar techniques were used to manage dynamic assets."
+  - id: "mm-showmemory-debugging-tool"
     line_start: 772
     line_end: 820
-    title: "Visualizing memory blocks for debugging"
+    title: "MM_ShowMemory: Visualizing memory usage"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""
     image_caption: ""
-    content: "The `MM_ShowMemory` function provides a graphical representation of memory blocks, aiding developers in debugging and optimization. By plotting each block's attributes on the screen, the function highlights purgable, non-purgable, and locked segments, as well as free space. This visualization tool reflects id Software's commitment to creating robust debugging utilities, ensuring Wolfenstein 3D could be fine-tuned for performance. In an era where debugging tools were limited, such custom solutions were invaluable for understanding and improving memory management. This function exemplifies the ingenuity of early game developers in overcoming technical challenges."
+    content: "MM_ShowMemory provides a graphical representation of memory usage, helping developers debug and optimize the game's memory management. By plotting memory blocks on the screen, the function highlights locked, purgable, and free segments, offering insights into the game's runtime behavior. This tool reflects id Software's focus on debugging and performance tuning, which were essential for achieving Wolfenstein 3D's groundbreaking gameplay. Memory visualization tools like this influenced the development of modern debugging utilities, which provide detailed insights into memory and resource usage."
+  - id: "mm-dumpdata-memory-diagnostics"
+    line_start: 822
+    line_end: 887
+    title: "MM_DumpData: Memory diagnostics and logging"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "MM_DumpData creates a detailed log of memory blocks, including their attributes and sizes, and writes it to a file for analysis. This function serves as a diagnostic tool, helping developers identify memory allocation issues and optimize performance. The creation of a memory dump reflects id Software's commitment to debugging and their systematic approach to problem-solving. Tools like MM_DumpData influenced the development of modern profiling and diagnostic utilities, which are now standard in software development."
+  - id: "mm-unusedmemory-free-space-calculation"
+    line_start: 889
+    line_end: 917
+    title: "MM_UnusedMemory: Calculating free space"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "MM_UnusedMemory calculates the total free space available without purging memory blocks. This function provides a snapshot of the game's memory usage, helping developers understand resource constraints during runtime. The ability to calculate free space reflects the team's focus on optimizing memory management, a critical aspect of early PC game development. This technique influenced later games and engines, where memory usage metrics became essential for performance tuning and debugging."
+  - id: "mm-totalfree-memory-optimization"
+    line_start: 919
+    line_end: 946
+    title: "MM_TotalFree: Maximizing memory availability"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "MM_TotalFree calculates the total free space available, including purgable memory blocks. By identifying and freeing purgable blocks, the function maximizes memory availability for new allocations. This approach demonstrates id Software's commitment to optimizing memory usage, ensuring smooth gameplay on constrained hardware. The concept of purgable memory influenced later engines, where dynamic memory management became a standard practice for handling large and complex game assets."
 
 ---
 

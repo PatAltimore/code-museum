@@ -9,68 +9,66 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "h-ldiv-asm"
 order: 25
-description: "This file contains assembly routines for performing long division operations, showcasing optimization techniques for 386 processors in the early 1990s."
+description: "This file contains the assembly implementation of long division routines used in Wolfenstein 3D, showcasing optimization techniques for integer arithmetic on x86 processors."
 
 summary:
-  - point: "Optimized long division for 386 processors"
-    link: "https://en.wikipedia.org/wiki/Intel_386"
-    link_label: "Intel 386"
-  - point: "Handling signed and unsigned division with bitwise control"
-    link: "https://en.wikipedia.org/wiki/Division_(mathematics)"
-    link_label: "Division"
-  - point: "Fallback routines for older hardware compatibility"
+  - point: "Implements signed and unsigned long division routines in x86 assembly"
     link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly language"
+    link_label: "Assembly Language"
+  - point: "Optimized for 386 processors using specific instructions like IDIV"
+    link: "https://en.wikipedia.org/wiki/Intel_80386"
+    link_label: "Intel 80386"
+  - point: "Includes fallback logic for older processors lacking advanced instructions"
+    link: "https://en.wikipedia.org/wiki/Instruction_set"
+    link_label: "Instruction Set"
+  - point: "Handles edge cases like negative values and remainders explicitly"
+    link: "https://en.wikipedia.org/wiki/Integer_division"
+    link_label: "Integer Division"
+  - point: "Demonstrates the importance of low-level optimization in early game engines"
+    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    link_label: "Wolfenstein 3D"
 
 enhancements:
-  - id: "long-division-entry-point"
+  - id: "long-division-entry-points"
     line_start: 28
     line_end: 35
     title: "Entry points for long division routines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Division_(mathematics)"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Function_prologue_and_epilogue"
     image_url: ""
     image_caption: ""
-    content: "These lines define entry points for various long division routines, including signed and unsigned division. The programmer sets up the stack and prepares for the division operation by initializing registers. In 1992, efficient division was critical for performance, especially in games like Wolfenstein 3D, which relied on rapid calculations for rendering and gameplay logic. The use of assembly allowed id Software to squeeze every ounce of performance from the Intel 386 processor, which was state-of-the-art at the time. These entry points reflect the careful attention to detail required to manage hardware constraints while delivering smooth gameplay."
-  - id: "386-optimization-patch"
-    line_start: 37
-    line_end: 41
-    title: "Optimizing for Intel 386 processors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_386"
-    image_url: ""
-    image_caption: ""
-    content: "Here, the programmer notes that certain instructions are patched to NOPs (no-operations) on 386 processors, enabling the use of the processor's built-in long division instruction. This optimization reflects the transition from older looping division algorithms to hardware-accelerated operations. In 1992, the Intel 386 was a powerful processor, and leveraging its capabilities was essential for achieving the fast-paced gameplay of Wolfenstein 3D. This section highlights the ingenuity of id Software's developers, who were constantly finding ways to push hardware to its limits."
-  - id: "stack-frame-setup"
+    content: "This section defines the entry points for various long division routines, including signed and unsigned division. Each entry point adjusts the stack for far returns and prepares the processor for execution. At the time, handling signed and unsigned division separately was critical due to the lack of high-level abstractions in assembly. These routines were part of Borland's runtime library, repurposed for Wolfenstein 3D. By leveraging existing libraries, id Software could focus on game-specific optimizations rather than reinventing basic arithmetic operations. This modular approach influenced later game engines, which often reused or adapted existing libraries for efficiency."
+  - id: "386-optimized-long-division"
     line_start: 54
     line_end: 64
-    title: "Setting up the stack frame for division"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
+    title: "Optimized division for 386 processors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
     image_url: ""
     image_caption: ""
-    content: "This section sets up the stack frame for the division routine, saving the base pointer and loading dividend and divisor values into registers. The stack layout is meticulously documented, reflecting the programmer's need to manage memory and register states explicitly in assembly language. In the early 1990s, games like Wolfenstein 3D had to run on machines with limited memory and processing power, making efficient stack management crucial. This setup ensures that the division routine can execute reliably, even under the constraints of MS-DOS and the Intel 386 architecture."
-  - id: "signed-division-handling"
-    line_start: 128
+    content: "This section uses the Intel 80386's `IDIV` instruction to perform signed long division directly. The code sets up the stack frame, loads the dividend and divisor into registers, and executes the division using `IDIV`. The result is stored in `EDX` and `EAX`, with the remainder shifted for further use. In 1992, optimizing for specific processors like the 386 was essential for performance, as many players were still using older hardware. John Carmack's focus on squeezing every ounce of speed from available processors helped Wolfenstein 3D achieve its groundbreaking performance. This technique of tailoring code to specific hardware became a hallmark of id Software's development philosophy, influencing later titles like Doom and Quake."
+  - id: "unsigned-division-entry-points"
+    line_start: 68
+    line_end: 75
+    title: "Entry points for unsigned division routines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Integer_division"
+    image_url: ""
+    image_caption: ""
+    content: "This section introduces the entry points for unsigned division routines, setting up the stack and marking the operation as unsigned. Unsigned division is crucial for scenarios where negative values are not expected, such as certain physics calculations or memory addressing. By explicitly separating signed and unsigned operations, the code avoids unnecessary checks and ensures correctness. This separation reflects the low-level control required in assembly programming, where every instruction matters. The approach influenced later game engines, which often included similar modular arithmetic routines for handling diverse mathematical operations efficiently."
+  - id: "handling-remainders-and-negatives"
+    line_start: 77
     line_end: 150
-    title: "Handling signed division in assembly"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Signed_number_representation"
+    title: "Handling remainders and negative values"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Integer_division"
     image_url: ""
     image_caption: ""
-    content: "This section handles signed division by converting negative values to positive before performing an unsigned division. The sign is stored in control bits, allowing the routine to adjust the result's sign after the division. Signed arithmetic was a complex problem in assembly programming, requiring careful manipulation of bits and registers. In the context of Wolfenstein 3D, such routines were vital for calculations involving player movement, collision detection, and other game mechanics. The approach reflects the programmer's deep understanding of both mathematics and hardware limitations."
-  - id: "slow-division-algorithm"
-    line_start: 155
-    line_end: 189
-    title: "Slow division algorithm for compatibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Division_algorithm"
-    image_url: ""
-    image_caption: ""
-    content: "This section implements a slow division algorithm using bitwise shifts and subtraction, ensuring compatibility with older processors that lack hardware division instructions. The algorithm builds the quotient bit by bit, a method that was common in assembly programming before hardware acceleration became widespread. In 1992, id Software had to ensure their game could run on a wide range of hardware, from cutting-edge Intel 386 machines to older systems. This fallback routine demonstrates the team's commitment to accessibility and performance, ensuring that Wolfenstein 3D could reach as many players as possible."
-  - id: "quick-division-path"
-    line_start: 214
+    content: "This section handles edge cases for division, including remainders and negative values. The code tests the sign of the dividend and divisor, converts negative values to positive, and stores flags indicating the sign of the result. It also includes logic for calculating remainders when requested. At the time, handling these edge cases explicitly was necessary due to the lack of built-in abstractions in assembly. This meticulous attention to detail ensured that the division routines worked correctly in all scenarios, a critical requirement for a game engine where precision impacts gameplay. The techniques demonstrated here influenced later systems, which often included robust error handling and edge case management in their arithmetic libraries."
+  - id: "slow-and-quick-division-paths"
+    line_start: 151
     line_end: 224
-    title: "Quick division path for modern processors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_386"
+    title: "Slow and quick division paths"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Instruction_set"
     image_url: ""
     image_caption: ""
-    content: "This section uses the Intel 386's hardware division instruction for quick division, bypassing the slower algorithm. The routine checks control bits to determine whether the remainder or quotient is needed, optimizing for the specific operation. By leveraging the capabilities of modern processors, id Software was able to achieve the fast calculations required for Wolfenstein 3D's real-time gameplay. This optimization reflects the team's forward-thinking approach, ensuring their code could take full advantage of the latest hardware advancements while maintaining compatibility with older systems."
+    content: "This section implements two paths for division: a slow path for older processors and a quick path for newer ones. The slow path uses bitwise operations to simulate division, while the quick path leverages the `DIV` instruction for faster execution. This dual-path approach reflects the constraints of the early 1990s, when game developers had to account for a wide range of hardware capabilities. By including both paths, id Software ensured that Wolfenstein 3D could run on older machines while still taking advantage of newer processors. This adaptability influenced later game engines, which often included similar fallback mechanisms to maximize compatibility across diverse hardware."
 
 ---
 

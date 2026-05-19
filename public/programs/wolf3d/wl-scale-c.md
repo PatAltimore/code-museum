@@ -9,68 +9,92 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-scale-c"
 order: 13
-description: "This file contains the scaling algorithms and routines that enabled Wolfenstein 3D's groundbreaking rendering of 3D environments on early hardware."
+description: "This file showcases the scaling algorithms and assembly optimizations used in Wolfenstein 3D to render objects efficiently on limited hardware."
 
 summary:
-  - point: "Innovative compiled scaling for real-time rendering"
+  - point: "Memory-efficient compiled scaling routines for rendering"
     link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     link_label: "Wolfenstein 3D"
-  - point: "Memory management techniques for constrained environments"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
-  - point: "Optimized assembly routines for pixel manipulation"
+  - point: "Dynamic memory management for scaling objects"
+    link: "https://en.wikipedia.org/wiki/Memory_management"
+    link_label: "Memory Management"
+  - point: "Assembly-level optimizations for pixel manipulation"
     link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly language"
+    link_label: "Assembly Language"
 
 enhancements:
-  - id: "boolean-insetupscaling"
+  - id: "boolean-variable-insetupscaling"
     line_start: 21
     line_end: 29
-    title: "A flag for scaling setup state"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Flag_(computing)"
+    title: "Tracking setup state with boolean flag"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Boolean_data_type"
     image_url: ""
     image_caption: ""
-    content: "This section introduces a boolean flag, `insetupscaling`, which tracks whether the scaling setup process is currently active. In the early 1990s, memory management was a critical concern for game developers working on MS-DOS systems, where hardware limitations demanded precise control over every operation. By using a simple flag, the developers ensured that scaling operations were coordinated and avoided conflicts during initialization. This approach reflects the meticulous attention to detail required to optimize performance on machines with limited processing power and memory. The flag's simplicity and effectiveness underscore the ingenuity of id Software's team in creating a seamless gaming experience despite the constraints of the era."
-  - id: "int-stepbytwo"
-    line_start: 34
-    line_end: 44
-    title: "Step-by-two scaling optimization"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Optimization_(computer_science)"
-    image_url: ""
-    image_caption: ""
-    content: "The variable `stepbytwo` represents a clever optimization technique used to save memory by skipping every other scaling step. In the early 1990s, developers often had to balance visual fidelity with performance due to the limited capabilities of hardware like the Intel 386 processor. By halving the number of scaling operations, id Software reduced memory usage while maintaining acceptable visual quality. This decision reflects the team's deep understanding of hardware constraints and their ability to make trade-offs that enhanced gameplay without sacrificing speed. Such optimizations were vital in enabling Wolfenstein 3D to run smoothly on a wide range of systems."
-  - id: "void-badscale"
+    content: "The variable 'insetupscaling' is used as a flag to indicate whether the scaling setup process is currently active. This simple boolean mechanism ensures that other parts of the program do not interfere with the scaling setup while it is in progress. At the time Wolfenstein 3D was developed, managing state explicitly with flags was a common practice in C programming, especially in performance-critical applications where global variables were used sparingly. This approach reflects the careful design required to avoid race conditions or unintended behavior in a single-threaded environment. The use of such flags influenced later game engines, where state management became more sophisticated but retained the principle of explicit state tracking."
+  - id: "badscale-error-handler"
     line_start: 46
     line_end: 58
-    title: "Error handling with BadScale"
+    title: "Error handling with BadScale function"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
-    content: "The `BadScale` function serves as a safeguard against invalid scaling operations. If the program encounters an unexpected scaling height, it calls this function to terminate execution with a clear error message. In the context of Wolfenstein 3D, this reflects the developers' commitment to robustness and debugging. Early PC games often lacked sophisticated error handling, leading to crashes or undefined behavior. By implementing this simple yet effective mechanism, id Software ensured that developers could quickly identify and address issues during testing. This attention to detail contributed to the game's reputation for reliability and polish."
-  - id: "void-setupscaling"
+    content: "The 'BadScale' function is a simple error handler that terminates the program with a message when an invalid scaling operation is attempted. This reflects the straightforward error handling practices of the early 1990s, where programs often opted to fail fast rather than attempt recovery. In the context of Wolfenstein 3D, this approach ensures that any scaling issues are immediately identified during development or runtime. Such practices were common in early game development, where debugging tools were limited, and clear error messages were critical for diagnosing problems. The concept of fail-fast error handling influenced later game engines and software frameworks, which adopted more robust error reporting mechanisms while retaining the principle of immediate feedback for critical issues."
+  - id: "setup-scaling-memory-management"
     line_start: 60
     line_end: 151
-    title: "Dynamic memory management for scaling"
+    title: "Dynamic memory allocation for scaling objects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
     image_url: ""
     image_caption: ""
-    content: "The `SetupScaling` function is a cornerstone of Wolfenstein 3D's rendering system, dynamically allocating and organizing memory for scaling operations. It frees old scalers, builds new ones, and locks them in memory to ensure stability during gameplay. This process highlights the challenges of working within the constraints of MS-DOS, where memory was a precious resource and fragmentation could severely impact performance. The function's meticulous design reflects id Software's mastery of memory management, a skill honed through years of developing games for limited hardware. By optimizing memory usage, the team enabled Wolfenstein 3D to deliver smooth, immersive visuals that set a new standard for first-person shooters."
-  - id: "unsigned-buildcompscale"
+    content: "The 'SetupScaling' function dynamically allocates and manages memory for scaling objects based on the maximum scale height. It first frees up old scalers, sorts memory, and then builds new compiled scalers. This process demonstrates the careful memory management required to optimize performance on limited hardware, such as the 386 processors used in early 1990s PCs. The function also employs techniques like double-stepping to save space and locks down scalers to prevent accidental modification. These memory management strategies were critical for achieving smooth gameplay and efficient rendering in Wolfenstein 3D. The approach influenced later game engines, such as id Software's Doom engine, which built upon these principles to handle more complex rendering tasks."
+  - id: "buildcompscale-compiled-scaling"
     line_start: 153
     line_end: 239
-    title: "Compiling scalers for efficient rendering"
+    title: "Generating compiled scaling routines dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
     image_caption: ""
-    content: "The `BuildCompScale` function generates compiled scaler objects that transform 64-pixel-tall objects into dynamically scaled heights. This technique was revolutionary for its time, enabling real-time scaling without sacrificing performance. By precomputing scaling data and storing it in memory, the function minimized the computational overhead during gameplay. This approach was inspired by the need to maximize the capabilities of the Intel 386 processor, which lacked modern graphics acceleration. The compiled scalers were a testament to John Carmack's programming genius, allowing Wolfenstein 3D to achieve smooth, fast rendering that captivated players and influenced countless future games."
-  - id: "byte-mask1-mask2-mask3"
-    line_start: 700
-    line_end: 716
-    title: "Bitmask tables for pixel manipulation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bitmask"
+    content: "The 'BuildCompScale' function dynamically generates compiled scaling routines to scale objects of a fixed height (64 pixels) to a specified height. It calculates the step size for scaling, iterates through source pixels, and generates assembly code to map source pixels to destination pixels. This dynamic compilation approach was innovative for its time, allowing Wolfenstein 3D to achieve efficient scaling without relying on precomputed tables. The function also includes optimizations like skipping unnecessary pixels and handling edge cases where pixels fall outside the view area. This technique laid the groundwork for more advanced scaling and rendering algorithms in later games, influencing the development of engines like Quake and Unreal Engine."
+  - id: "scaleline-assembly-optimization"
+    line_start: 246
+    line_end: 246
+    title: "Optimized pixel scaling in assembly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
-    content: "The `mapmasks1`, `mapmasks2`, and `mapmasks3` tables define bitmasks used for drawing scaled strips of pixels. These tables were crucial for handling pixel-level operations efficiently, a necessity in an era when graphics cards offered minimal support for advanced rendering techniques. By precomputing these masks, the developers reduced the computational load during gameplay, ensuring smooth visuals even on low-end hardware. This technique reflects the ingenuity required to push the boundaries of what was possible on MS-DOS systems. The use of bitmasks remains a foundational concept in computer graphics, demonstrating the lasting impact of id Software's innovations."
+    content: "The 'ScaleLine' function uses inline assembly to perform pixel scaling operations efficiently. It manipulates registers directly to set map masks and scale segments of pixels, minimizing overhead and maximizing performance. Inline assembly was a common technique in performance-critical applications during the early 1990s, especially in games like Wolfenstein 3D, where every CPU cycle mattered. By leveraging assembly, the developers were able to bypass the limitations of high-level languages and achieve fine-grained control over hardware interactions. This approach influenced later game engines, which continued to use assembly for performance-critical tasks while gradually transitioning to optimized high-level code as hardware capabilities improved."
+  - id: "scale-shape-rendering"
+    line_start: 421
+    line_end: 623
+    title: "Rendering scaled shapes dynamically"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
+    image_url: ""
+    image_caption: ""
+    content: "The 'ScaleShape' function dynamically renders scaled shapes on the screen by iterating through vertical lines and scaling them based on visibility and height. It handles clipping, obscuration by walls, and multi-pixel lines, ensuring that only visible portions of the shape are rendered. This function showcases the ingenuity required to achieve smooth rendering on limited hardware, where every pixel operation needed to be carefully optimized. The dynamic rendering approach used in Wolfenstein 3D influenced later games, which adopted similar techniques for handling visibility and clipping in 3D environments. The principles demonstrated here laid the foundation for more sophisticated rendering algorithms in engines like Doom and Quake."
+  - id: "simple-scale-shape"
+    line_start: 625
+    line_end: 697
+    title: "Simplified shape scaling without clipping"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
+    image_url: ""
+    image_caption: ""
+    content: "The 'SimpleScaleShape' function provides a streamlined approach to scaling shapes without handling clipping or obscuration. It iterates through vertical lines and scales them directly, making it suitable for scenarios where clipping is unnecessary or performance is a higher priority than accuracy. This simplified approach reflects the trade-offs often made in game development to balance performance and visual fidelity. While less sophisticated than the 'ScaleShape' function, it demonstrates the flexibility of the Wolfenstein 3D engine in adapting to different rendering requirements. The concept of simplified rendering routines influenced later game engines, which incorporated similar fallback mechanisms for low-performance hardware or specific gameplay scenarios."
+  - id: "bit-mask-tables"
+    line_start: 700
+    line_end: 716
+    title: "Precomputed bit mask tables for efficiency"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operations"
+    image_url: ""
+    image_caption: ""
+    content: "The bit mask tables define precomputed values used for drawing scaled strips up to eight pixels wide. These tables enable efficient manipulation of pixel data during rendering, reducing the computational overhead of calculating masks dynamically. Precomputing values was a common optimization technique in the early 1990s, especially in games like Wolfenstein 3D, where performance was critical. By storing these values in memory, the engine could quickly access them during rendering operations, saving valuable CPU cycles. This approach influenced later game engines, which continued to use precomputed tables for various rendering tasks, including texture mapping and lighting calculations."
+  - id: "word-mask-tables"
+    line_start: 719
+    line_end: 727
+    title: "Word mask tables for pixel manipulation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operations"
+    image_url: ""
+    image_caption: ""
+    content: "The word mask tables define precomputed values for manipulating pixel data at the word level. These masks are used in conjunction with the bit mask tables to handle more complex rendering operations, such as scaling and clipping. By precomputing these values, the engine minimizes the computational overhead of generating masks dynamically, ensuring smooth performance even on limited hardware. This optimization reflects the careful attention to detail required in early game development, where every CPU cycle mattered. The use of word mask tables influenced later game engines, which adopted similar techniques for handling pixel data efficiently in 3D environments."
 
 ---
 

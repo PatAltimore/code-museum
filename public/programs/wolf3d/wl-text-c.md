@@ -9,90 +9,90 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-text-c"
 order: 18
-description: "This file demonstrates the text and layout rendering system for Wolfenstein 3D, showcasing the ingenuity required to create immersive experiences on constrained hardware."
+description: "This file implements text formatting and layout commands for Wolfenstein 3D, showcasing early techniques for rendering text and graphics in a constrained environment."
 
 summary:
-  - point: "Text formatting commands for dynamic layout"
+  - point: "Text formatting commands include color changes and graphics placement"
     link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     link_label: "Wolfenstein 3D"
   - point: "Efficient word wrapping and page layout algorithms"
     link: "https://en.wikipedia.org/wiki/Word_wrap"
-    link_label: "Word wrap"
+    link_label: "Word Wrap"
   - point: "Graphics caching for optimized rendering"
-    link: "https://en.wikipedia.org/wiki/Graphics_processing_unit"
-    link_label: "Graphics processing"
-  - point: "Custom handling of control characters in text streams"
-    link: "https://en.wikipedia.org/wiki/Control_character"
-    link_label: "Control character"
-  - point: "Support for internationalization (Japanese version)"
+    link: "https://en.wikipedia.org/wiki/Double_buffering"
+    link_label: "Double Buffering"
+  - point: "Support for internationalization with Japanese-specific code"
     link: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
     link_label: "Internationalization"
+  - point: "Integration of text and graphics for immersive storytelling"
+    link: "https://en.wikipedia.org/wiki/Video_game_storytelling"
+    link_label: "Video Game Storytelling"
 
 enhancements:
   - id: "text-formatting-commands"
     line_start: 9
     line_end: 49
-    title: "Text Formatting Commands: A Compact Syntax"
+    title: "Text formatting: Color, graphics, and layout"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "This section defines the syntax for text formatting commands used in Wolfenstein 3D's layout system. Commands like ^C for changing text color and ^G for drawing graphics were designed to be compact and efficient, reflecting the constraints of 1992 hardware. At the time, memory and processing power were limited, especially on MS-DOS systems with 320x200 resolution displays. John Carmack and Tom Hall, key developers of Wolfenstein 3D, had to balance functionality with performance. These commands allowed designers to create dynamic and visually engaging layouts without hardcoding every detail. The syntax resembles early markup languages, hinting at the future evolution of text formatting systems. This approach was a precursor to more sophisticated systems like HTML and CSS, showing how game developers often pioneered techniques later adopted in broader computing."
+    content: "This section defines the text formatting commands used in Wolfenstein 3D, such as changing text color, drawing graphics, and managing page layouts. These commands are parsed and executed to render text and graphics dynamically during gameplay. In 1992, text rendering in games was a challenge due to hardware constraints like limited memory and processing power. The developers at id Software, led by John Carmack, created efficient routines to handle these tasks, ensuring smooth gameplay and immersive storytelling. These techniques influenced later games, particularly in how text and graphics were integrated into user interfaces and cutscenes. The modularity of these commands allowed for easy localization, as evidenced by the Japanese-specific code in this file."
   - id: "rip-to-eol"
-    line_start: 58
-    line_end: 69
-    title: "RipToEOL: Parsing with Precision"
+    line_start: 71
+    line_end: 84
+    title: "RipToEOL: Scanning to end of line"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
     image_url: ""
     image_caption: ""
-    content: "The RipToEOL function scans through a text stream until it finds the end of a line. This simple yet essential operation underpins the text layout system, ensuring commands and data are read correctly. In the early 1990s, parsing text efficiently was critical for performance, especially in real-time applications like games. The function reflects the minimalist coding style of John Carmack, who often favored direct, low-level solutions to maximize speed. RipToEOL's simplicity also highlights the constraints of the era—every cycle counted when running on hardware like the Intel 386 processor. This function exemplifies the foundational building blocks of text processing, a technique still relevant in modern software development."
+    content: "The RipToEOL function scans through the text buffer until it reaches the end of a line. This simple yet essential routine is used throughout the file to process text commands efficiently. In the early 1990s, parsing text in real-time was a critical task for games like Wolfenstein 3D, which relied on dynamic text rendering for menus and in-game messages. The function exemplifies Carmack's focus on performance and simplicity, ensuring minimal overhead during text processing. Techniques like this laid the groundwork for more complex text parsing systems in modern game engines, such as Unity and Unreal Engine."
   - id: "parse-number"
     line_start: 86
     line_end: 123
-    title: "ParseNumber: Extracting Numeric Values"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Integer_(computer_science)"
+    title: "ParseNumber: Extracting numeric values"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
     image_url: ""
     image_caption: ""
-    content: "ParseNumber is a utility function that extracts numeric values from a text stream. It scans for digits, assembles them into a string, and converts the result into an integer using the atoi function. This operation is crucial for interpreting commands like ^G and ^T, which include parameters for positioning and graphics. In the early 1990s, parsing numbers efficiently was vital for games like Wolfenstein 3D, where real-time performance was paramount. The function's design reflects the era's emphasis on simplicity and speed, avoiding the overhead of more complex parsing libraries. ParseNumber is a reminder of the ingenuity required to build robust systems under tight constraints, a hallmark of id Software's development philosophy."
+    content: "ParseNumber extracts numeric values from the text buffer, converting them into integers for use in commands like positioning graphics or setting delays. This routine is a cornerstone of the text command system, enabling dynamic adjustments based on user input or predefined layouts. In the constrained environment of MS-DOS, efficient parsing was crucial to maintain performance. The function's design reflects Carmack's ability to balance simplicity with functionality, a hallmark of id Software's early work. Parsing techniques like this influenced scripting languages in later games, enabling more complex interactions and dynamic content generation."
   - id: "timed-pic-command"
     line_start: 155
     line_end: 184
-    title: "TimedPicCommand: Synchronizing Graphics and Gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
+    title: "TimedPicCommand: Graphics with delays"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "TimedPicCommand processes a command to display a graphic after a specified delay. It uses ParseTimedCommand to extract parameters and VW_UpdateScreen to refresh the display. The function then waits for the delay period before drawing the graphic. This synchronization of graphics and timing was essential for creating immersive experiences in Wolfenstein 3D. The delay mechanism reflects the game's reliance on precise timing to maintain smooth gameplay on limited hardware. In 1992, developers had to account for the quirks of MS-DOS and varying CPU speeds, making functions like TimedPicCommand both practical and innovative. This technique laid the groundwork for more advanced timing systems in later games."
+    content: "TimedPicCommand handles the rendering of graphics with a specified delay, allowing for timed visual effects. This function updates the screen, waits for a delay, and then draws the graphic at the specified position. In the early 1990s, creating smooth and visually appealing effects was challenging due to hardware limitations. This routine demonstrates id Software's ingenuity in optimizing rendering techniques for immersive gameplay. The use of timed graphics influenced later games, particularly in creating cinematic effects and transitions. Techniques like this are now standard in modern game engines, where timing and synchronization are critical for storytelling and user experience."
   - id: "handle-command"
     line_start: 186
     line_end: 287
-    title: "HandleCommand: Decoding Text Stream Instructions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Command_pattern"
+    title: "HandleCommand: Parsing and executing text commands"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
     image_url: ""
     image_caption: ""
-    content: "HandleCommand interprets control characters in the text stream, executing actions like changing text color (^C), starting a new page (^P), or drawing graphics (^G). This function is the heart of Wolfenstein 3D's text layout system, enabling dynamic and interactive content. The design reflects the game's modular architecture, where commands are processed sequentially to build each page. In the early 1990s, this approach was groundbreaking, allowing designers to create rich experiences without hardcoding every detail. HandleCommand showcases id Software's ability to innovate within the constraints of MS-DOS, setting a standard for text and graphics integration in games."
+    content: "HandleCommand is the central routine for parsing and executing text commands, such as changing text color, starting a new page, or drawing graphics. It interprets the commands embedded in the text buffer and performs the corresponding actions. This modular approach to command processing was innovative for its time, enabling dynamic text and graphics rendering in a constrained environment. The routine reflects Carmack's emphasis on performance and modularity, allowing for easy expansion and localization. The command system influenced later games, particularly in how text and graphics were integrated into user interfaces and cutscenes. It also laid the groundwork for scripting systems in modern game engines."
   - id: "page-layout"
     line_start: 412
     line_end: 516
-    title: "PageLayout: Rendering Text and Graphics Together"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Page_layout"
+    title: "PageLayout: Word wrapping and text rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Word_wrap"
     image_url: ""
     image_caption: ""
-    content: "PageLayout is responsible for rendering a complete page, combining text and graphics while handling word wrapping and margins. It begins by clearing the screen, drawing background graphics, and initializing layout parameters. The function then processes the text stream, interpreting commands and placing words dynamically. In 1992, this level of sophistication was rare in games, especially on MS-DOS. PageLayout reflects id Software's commitment to creating polished and immersive experiences, even within the constraints of 320x200 resolution and limited memory. The function's modular design influenced later systems, demonstrating how careful planning and efficient algorithms can overcome hardware limitations."
+    content: "PageLayout handles the rendering of text and graphics on a page, including word wrapping and margin adjustments. It clears the screen, sets up margins, and processes the text buffer to render content dynamically. This routine showcases id Software's ability to create efficient algorithms for constrained hardware, ensuring smooth and visually appealing text rendering. The word wrapping algorithm was particularly innovative, allowing for dynamic adjustments based on the content and layout. Techniques like this influenced later games and applications, particularly in how text was rendered in user interfaces and cutscenes. The modularity of the routine also made it easier to localize the game for different languages."
   - id: "cache-layout-graphics"
     line_start: 543
     line_end: 598
-    title: "CacheLayoutGraphics: Optimizing Graphic Resources"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
+    title: "CacheLayoutGraphics: Optimizing graphic rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "CacheLayoutGraphics scans the text stream for graphic commands, marking all graphics used and counting pages. It then caches the required graphics to optimize rendering. This function highlights id Software's focus on performance, ensuring smooth gameplay despite hardware limitations. In the early 1990s, caching was a critical technique for managing resources on systems with limited memory and storage. CacheLayoutGraphics reflects the team's ability to balance functionality and efficiency, a skill that defined their approach to game development. The function's principles remain relevant today, influencing modern techniques for resource management in software and games."
+    content: "CacheLayoutGraphics scans the entire layout file to mark and cache all graphics used, optimizing rendering performance. This routine ensures that only the necessary graphics are loaded into memory, reducing overhead and improving gameplay smoothness. In the early 1990s, memory management was a critical challenge for game developers, especially on MS-DOS systems with limited resources. This function reflects Carmack's focus on efficiency and performance, enabling Wolfenstein 3D to push the limits of hardware at the time. Techniques like this influenced later games, particularly in how graphics were managed and cached for optimized rendering. The approach is now standard in modern game engines, where efficient asset management is critical for performance."
   - id: "show-article"
     line_start: 601
     line_end: 729
-    title: "ShowArticle: Internationalization in Action"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
+    title: "ShowArticle: Rendering help and story screens"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_storytelling"
     image_url: ""
     image_caption: ""
-    content: "ShowArticle displays text and graphics for help screens or end-game content, with support for internationalization. The function adapts its behavior based on the JAPAN flag, reflecting id Software's efforts to localize Wolfenstein 3D for different markets. In 1992, internationalization was not common in games, making this feature a forward-thinking addition. ShowArticle demonstrates the team's ability to anticipate global audiences, laying the groundwork for the widespread localization seen in modern gaming. The function also highlights the challenges of balancing cultural differences with technical constraints, a problem id Software tackled with ingenuity and foresight."
+    content: "ShowArticle renders help and story screens, integrating text and graphics for immersive storytelling. The routine supports multiple pages and handles user input for navigation. This feature was essential for Wolfenstein 3D, providing players with context and instructions in an engaging format. The integration of text and graphics reflects id Software's focus on creating immersive experiences, even in a constrained environment. Techniques like this influenced later games, particularly in how help screens and story elements were presented. The routine also demonstrates the team's ability to balance functionality with performance, ensuring smooth navigation and rendering."
 
 ---
 

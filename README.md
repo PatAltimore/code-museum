@@ -226,5 +226,6 @@ python generator.py --file-images
 | `--file-images` | Also fetch per-enhancement images during generation |
 | `--dry-run` | Build prompts without calling the model |
 | `--sync-catalog` | Update `catalog.json` from disk and exit |
+| `--fix-ranges` | Post-process existing .md files to correct enhancement line ranges and exit |
 | `--no-catalog-sync` | Skip the automatic catalog update after generation |
 | `--config PATH` | Use a different config file (default: `config/programs.yaml`) |

@@ -16,6 +16,7 @@ from prompts import build_prompt, build_chunk_prompt, CHUNK_THRESHOLD, _asm_land
 from intro_prompts import build_intro_prompt
 from formatter import format_file, format_file_from_dict, parse_response_json
 from find_images import fill_file_images, find_program_image
+from range_fixer import fix_ranges
 import catalog_sync
 
 load_dotenv()
@@ -214,6 +215,7 @@ def main() -> None:
     parser.add_argument("--find-images", action="store_true", help="Fill missing images in all existing files and exit")
     parser.add_argument("--replace-images", action="store_true", help="Clear and re-fetch all images (replaces bad ones); implies --find-images")
     parser.add_argument("--program-image", action="store_true", help="Fetch (or replace) the program intro image only; skip file images")
+    parser.add_argument("--fix-ranges", action="store_true", help="Post-process existing .md files to correct enhancement line ranges and exit")
     parser.add_argument("--config", default="config/programs.yaml", help="Path to programs.yaml")
     args = parser.parse_args()
 
@@ -247,6 +249,33 @@ def main() -> None:
                     console.print(f"  [dim]no program image found[/dim]")
             except Exception as e:
                 console.print(f"  [yellow]program image search failed: {e}[/yellow]")
+        return
+
+    if args.fix_ranges:
+        programs = config["programs"]
+        if args.program:
+            programs = [p for p in programs if p["slug"] == args.program]
+        total_fixed = 0
+        for program in programs:
+            prog_slug = program["slug"]
+            prog_dir = output_dir / prog_slug
+            if not prog_dir.is_dir():
+                continue
+            md_files = sorted(prog_dir.glob("*.md"))
+            if args.file:
+                md_files = [f for f in md_files if f.stem == args.file]
+            for md in md_files:
+                console.print(f"[cyan]fix-ranges  {prog_slug}/{md.stem}[/cyan]")
+                try:
+                    changed = fix_ranges(md, client, gen_cfg=gen_cfg, console=console)
+                    if changed:
+                        console.print(f"  [green]-> {changed} range(s) corrected[/green]")
+                    else:
+                        console.print(f"  [dim]no changes[/dim]")
+                    total_fixed += changed
+                except Exception as e:
+                    console.print(f"  [yellow]fix-ranges failed: {e}[/yellow]")
+        console.print(f"[green]Done — {total_fixed} range(s) corrected.[/green]")
         return
 
     if args.find_images or args.replace_images:

@@ -95,6 +95,7 @@ python generator.py [OPTIONS]
 | `--program-image` | Fetch or replace the program intro image only; skip file images |
 | `--no-images` | Skip all Wikipedia Commons image fetching during generation |
 | `--file-images` | Also fetch per-enhancement images during generation (off by default) |
+| `--fix-ranges` | Post-process existing .md files to correct enhancement line ranges and exit |
 | `--dry-run` | Fetch source and build prompts, but do not call the model |
 | `--sync-catalog` | Update `public/catalog.json` from disk and exit without generating |
 | `--no-catalog-sync` | Skip the automatic catalog update after generation |
@@ -145,6 +146,16 @@ python generator.py --program ms-dos --file-images
 Check what prompts would be sent without calling the model:
 ```bash
 python generator.py --dry-run
+```
+
+Correct line ranges in all existing files (run once after generation):
+```bash
+python generator.py --fix-ranges
+```
+
+Fix ranges for one program only:
+```bash
+python generator.py --fix-ranges --program prince-of-persia
 ```
 
 Rebuild `catalog.json` after manually editing or adding `.md` files:
