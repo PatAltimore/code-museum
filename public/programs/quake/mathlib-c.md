@@ -9,106 +9,98 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "mathlib-c"
 order: 6
-description: "Mathematical backbone of Quake's groundbreaking 3D engine"
+description: "This file lays the mathematical groundwork for Quake's revolutionary 3D graphics and physics systems."
 
 summary:
-  - point: "Efficient vector math routines for real-time 3D calculations"
+  - point: "Efficient vector operations for real-time 3D calculations"
     link: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
     link_label: "Vector mathematics"
-  - point: "Optimized algorithms for hardware constraints of 1996"
-    link: "https://en.wikipedia.org/wiki/Intel_80486"
-    link_label: "Intel 80486"
-  - point: "Use of trigonometry and matrix operations for 3D transformations"
+  - point: "Optimized rotation matrix concatenation for 3D transformations"
     link: "https://en.wikipedia.org/wiki/Rotation_matrix"
-    link_label: "Rotation matrices"
-  - point: "Introduction of modular mathematical primitives for game physics"
-    link: "https://en.wikipedia.org/wiki/Game_physics"
-    link_label: "Game physics"
-  - point: "Legacy of open-source code influencing modern game development"
-    link: "https://en.wikipedia.org/wiki/GNU_General_Public_License"
-    link_label: "GNU GPL"
+    link_label: "Rotation matrix"
+  - point: "Use of fixed-point arithmetic for precision on limited hardware"
+    link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    link_label: "Fixed-point arithmetic"
+  - point: "Mathematical tricks to handle edge cases in geometry calculations"
+    link: "https://en.wikipedia.org/wiki/Geometric_computation"
+    link_label: "Geometric computation"
+  - point: "Recursive implementation of the Greatest Common Divisor algorithm"
+    link: "https://en.wikipedia.org/wiki/Euclidean_algorithm"
+    link_label: "Euclidean algorithm"
 
 enhancements:
-  - id: "deg-to-rad-conversion"
-    line_start: 32
-    line_end: 32
-    title: "Degrees to Radians: Bridging Human and Machine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Radian"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Circle_radians.gif/330px-Circle_radians.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "The radian and its relation to the circle. (Public domain)"
-    content: "The macro `DEG2RAD` converts degrees into radians, a fundamental operation in computer graphics. Degrees are intuitive for humans, but radians are required for trigonometric functions in programming. In 1996, this conversion was critical for Quake's 3D engine, where every rotation and angle calculation relied on precise trigonometry. John Carmack and his team were working on hardware constrained by limited floating-point precision, making efficient and accurate mathematical operations essential. This simple macro encapsulates a vital transformation, enabling seamless integration of human-readable angles into the machine's mathematical world. Today, such conversions remain ubiquitous in graphics programming, a testament to the enduring relevance of this approach."
+  - id: "foundation-math-primitives"
+    line_start: 17
+    line_end: 23
+    title: "Foundation: Math primitives for 3D worlds"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "These initial lines set the stage for Quake's mathematical operations, defining constants and including essential libraries. The 'vec3_origin' establishes a zero vector, a cornerstone for calculations in 3D space. The 'nanmask' hints at handling edge cases for floating-point operations, ensuring stability in computations. In 1996, hardware constraints like limited floating-point precision on x86 processors forced developers to anticipate and mitigate numerical errors. John Carmack and Michael Abrash, known for their mastery of optimization, were deeply aware of these limitations. Their work here reflects the meticulous attention to detail required to build a robust 3D engine capable of running smoothly on consumer-grade PCs. These foundational definitions would ripple through the rest of the codebase, supporting the groundbreaking visuals and physics that defined Quake."
   - id: "project-point-on-plane"
     line_start: 34
-    line_end: 51
-    title: "Projecting Points: Flattening Dimensions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Projection_(linear_algebra)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Orthogonal_projection.svg/330px-Orthogonal_projection.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Orthogonal projection on the line m. Created by Jitse Niesen using XFig. (Public domain)"
-    content: "The `ProjectPointOnPlane` function calculates the projection of a 3D point onto a plane defined by a normal vector. This operation is essential for collision detection, physics calculations, and rendering in Quake's 3D world. In the mid-90s, real-time 3D graphics were still in their infancy, and every calculation had to be optimized for performance on processors like the Intel 486. By normalizing the plane's normal vector and using dot products, this routine ensures precision while minimizing computational overhead. The approach reflects the team's deep understanding of linear algebra and their ability to translate mathematical theory into efficient code. This function laid the groundwork for countless applications in modern 3D engines, where projections are used for everything from shadow mapping to physics simulations."
-  - id: "perpendicular-vector-calculation"
+    line_end: 55
+    title: "Projecting points onto planes: Geometry in motion"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Plane_(geometry)"
+    image_url: ""
+    image_caption: ""
+    content: "This function calculates the projection of a point onto a plane, a fundamental operation in 3D graphics. By normalizing the plane's normal vector and using the dot product, the function determines the closest point on the plane to the given point. In the mid-1990s, real-time 3D graphics were still in their infancy, and efficient geometric calculations were critical to achieving smooth gameplay. The use of normalized vectors and dot products reflects the influence of linear algebra, a mathematical discipline that became a cornerstone of computer graphics. Carmack and Abrash likely drew on their deep understanding of mathematics and their experience with earlier engines like Doom to refine these techniques. The result was a system capable of handling complex interactions between objects and surfaces in Quake's fully 3D environments."
+  - id: "perpendicular-vector"
     line_start: 56
-    line_end: 85
-    title: "Finding Perpendicular Vectors in 3D Space"
+    line_end: 90
+    title: "Finding perpendicular vectors: Building 3D spaces"
     wikipedia_url: "https://en.wikipedia.org/wiki/Orthogonality"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Orthogonal_decomposition_unit_vector_2.svg/330px-Orthogonal_decomposition_unit_vector_2.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Orthogonal decomposition unit vector 2 (CC0)"
-    content: "The `PerpendicularVector` function computes a vector perpendicular to a given normalized vector in 3D space. This operation is crucial for creating coordinate systems around arbitrary axes, enabling the rotation and positioning of objects in Quake's 3D environment. In 1996, when this code was written, such calculations were groundbreaking for real-time applications, as they allowed dynamic transformations without precomputed data. The algorithm cleverly identifies the smallest component of the input vector to construct an initial candidate perpendicular vector, which is then projected onto the plane orthogonal to the input vector. This method ensures numerical stability and efficiency, critical for the hardware of the era. The function's influence persists in modern graphics engines, where orthogonal vectors are a staple of 3D transformations."
+    image_url: ""
+    image_caption: ""
+    content: "This function computes a vector perpendicular to a given normalized vector, a crucial step in constructing coordinate systems for 3D transformations. By identifying the smallest magnitude axial vector and projecting it onto the plane defined by the input vector, the function ensures orthogonality. In the 1990s, creating stable and efficient coordinate systems was essential for rendering and physics calculations. The algorithm reflects the team's ability to balance mathematical rigor with computational efficiency, a hallmark of id Software's approach. The perpendicular vector would be used in operations like rotation and alignment, enabling Quake's dynamic environments and fluid movement. This method remains relevant in modern graphics programming, underscoring the lasting impact of the techniques pioneered here."
   - id: "rotate-point-around-vector"
     line_start: 93
-    line_end: 146
-    title: "Rotating Points: Building Dynamic Worlds"
+    line_end: 152
+    title: "Rotating points: Dynamic transformations in 3D"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotation_matrix"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Non-commutative_rotation_of_dice.png/330px-Non-commutative_rotation_of_dice.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Non-commutative rotation of dice (CC0)"
-    content: "The `RotatePointAroundVector` function performs a rotation of a point around an arbitrary axis in 3D space. This operation is foundational for creating dynamic and immersive environments, allowing objects to move and rotate fluidly in Quake's world. The function constructs a rotation matrix using trigonometric functions and matrix multiplication, then applies it to the input point. In 1996, such calculations were computationally expensive, but the team at id Software optimized them for the hardware of the time. The use of perpendicular vectors and matrix concatenation highlights their mastery of linear algebra and real-time graphics programming. This function is a precursor to modern techniques used in animation and physics engines, showcasing the lasting impact of Quake's codebase."
-  - id: "anglemod-function"
+    image_url: ""
+    image_caption: ""
+    content: "This function rotates a point around a vector by a specified angle, using rotation matrices to perform the transformation. It constructs a coordinate system based on the input vector, calculates the rotation matrix for the given angle, and applies the transformation. In the mid-1990s, real-time rotation of objects was a computationally intensive task, especially on consumer-grade hardware. Carmack and Abrash's implementation reflects their expertise in optimizing mathematical operations for speed and accuracy. The use of matrix concatenation to combine rotations highlights the team's understanding of linear algebra and its application to computer graphics. This function enabled Quake's dynamic environments, where objects could move and rotate fluidly, enhancing the game's realism and immersion."
+  - id: "anglemod-normalizing-angles"
     line_start: 154
-    line_end: 163
-    title: "Angle Wrapping: Keeping Rotations in Check"
+    line_end: 167
+    title: "Anglemod: Normalizing angles for precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Modulo_operation"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Fighter_hitbox.svg/330px-Fighter_hitbox.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Fighter hitbox (CC BY 3.0)"
-    content: "The `anglemod` function ensures that angles remain within a valid range by wrapping them into a 0-360 degree interval using a modulo operation. This is a common problem in computer graphics, where angles can accumulate beyond their intended range during calculations. The function uses a clever bitwise operation to achieve this efficiently, reflecting the team's focus on performance optimization. In the mid-90s, such techniques were vital for maintaining stability in real-time applications on limited hardware. The function's design is a testament to the team's ingenuity and understanding of low-level programming. Angle wrapping remains a standard practice in modern graphics engines, underscoring the enduring relevance of this approach."
+    image_url: ""
+    image_caption: ""
+    content: "The 'anglemod' function ensures that angles remain within a valid range, using modular arithmetic to normalize values. This operation is critical for maintaining stability in calculations involving rotations and orientations. In 1996, hardware constraints like limited floating-point precision made it essential to avoid numerical errors in angle calculations. The use of bitwise operations reflects the team's focus on efficiency, leveraging the capabilities of x86 processors to perform fast computations. By normalizing angles, this function contributed to Quake's smooth and accurate handling of rotations, a key feature of its groundbreaking 3D engine. The technique remains a staple in graphics programming, demonstrating the enduring relevance of the solutions developed by id Software."
   - id: "box-on-plane-side"
     line_start: 187
-    line_end: 285
-    title: "Collision Detection: Navigating 3D Space"
+    line_end: 279
+    title: "Box-on-plane-side: Collision detection simplified"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Eulerangles.svg/330px-Eulerangles.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Euler angles (CC BY 3.0)"
-    content: "The `BoxOnPlaneSide` function determines the relationship between a bounding box and a plane, returning whether the box is on one side, the other, or intersects the plane. This is a critical operation for collision detection and spatial partitioning in Quake's 3D world. The function uses the plane's normal vector and sign bits to optimize calculations, reducing the computational cost of determining the box's position relative to the plane. In 1996, such optimizations were necessary to achieve real-time performance on hardware like the Intel 486. The function reflects the team's deep understanding of geometry and their ability to translate it into efficient code. This approach has influenced modern game engines, where collision detection remains a cornerstone of 3D graphics and physics."
-  - id: "angle-vectors"
-    line_start: 290
-    line_end: 314
-    title: "Angle to Vector: Navigating 3D Orientations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Euler_angles"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Vector_add_scale.svg/330px-Vector_add_scale.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Vector addition and scalar multiplication illustration. (CC BY-SA 3.0)"
-    content: "The `AngleVectors` function converts Euler angles into forward, right, and up vectors, defining a 3D orientation. This operation is essential for camera movement, object positioning, and physics calculations in Quake's 3D world. The function uses trigonometric functions to compute the vectors, reflecting the team's expertise in mathematics and graphics programming. In 1996, such calculations were groundbreaking for real-time applications, enabling dynamic and immersive environments. The function's design highlights the team's focus on precision and efficiency, ensuring stability on limited hardware. Euler angles remain a standard representation of 3D orientations, and this function's approach has influenced countless graphics engines."
-  - id: "vector-operations"
-    line_start: 335
-    line_end: 414
-    title: "Basic Vector Operations: Building Blocks of 3D"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Vector_space"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Greatest_common_divisor_chart.svg/330px-Greatest_common_divisor_chart.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Greatest common divisor of numbers 0-10. Line labels = first number. X axis = second number. Y axis = GCD. (CC0)"
-    content: "This section defines fundamental vector operations, including addition, subtraction, scaling, normalization, and cross products. These operations are the building blocks of 3D graphics and physics, enabling calculations for movement, collision detection, and rendering in Quake's engine. The simplicity and efficiency of these functions reflect the team's focus on performance optimization, a necessity for real-time applications on hardware like the Intel 486. These operations are ubiquitous in modern graphics programming, highlighting the lasting impact of Quake's codebase. The team's implementation demonstrates their mastery of mathematics and their ability to translate it into practical solutions for game development."
+    image_url: ""
+    image_caption: ""
+    content: "This function determines which side of a plane a bounding box lies on, a fundamental operation in collision detection. By calculating distances from the box's corners to the plane, it identifies whether the box is entirely on one side, intersects the plane, or lies on the other side. In the mid-1990s, efficient collision detection was critical for real-time gameplay, as it affected movement, physics, and interactions between objects. The implementation reflects the team's ability to optimize geometric calculations for speed and accuracy, ensuring smooth gameplay even on limited hardware. This approach to collision detection influenced later engines, demonstrating the importance of robust and efficient algorithms in game development."
   - id: "floor-div-mod"
     line_start: 498
-    line_end: 537
-    title: "Floor-Based Division: Precision in Integer Math"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Division_(mathematics)"
+    line_end: 541
+    title: "FloorDivMod: Precision in integer division"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Integer_division"
     image_url: ""
     image_caption: ""
-    content: "The `FloorDivMod` function calculates the quotient and remainder of a division operation using floor-based arithmetic. This ensures mathematically correct results for integer inputs, a critical requirement for collision detection and physics calculations in Quake's engine. The function reflects the team's attention to precision and stability, addressing edge cases like negative numerators and denominators. In 1996, such considerations were vital for maintaining consistency in real-time applications on limited hardware. The function's design highlights the team's expertise in numerical methods and their commitment to robust programming practices. Floor-based division remains a standard approach in modern programming, underscoring the enduring relevance of this technique."
+    content: "This function performs floor-based integer division, returning both the quotient and remainder. It handles edge cases for negative values, ensuring mathematically correct results. In the 1990s, integer arithmetic was often preferred over floating-point calculations for performance reasons, especially on hardware with limited precision. The implementation reflects the team's attention to detail, addressing potential pitfalls in division operations. By ensuring accuracy and consistency, this function supported Quake's physics and geometry calculations, contributing to the game's realism and stability. The technique remains relevant in programming, highlighting the lasting impact of id Software's approach to mathematical operations."
   - id: "greatest-common-divisor"
-    line_start: 545
-    line_end: 558
-    title: "Greatest Common Divisor: Optimizing Integer Calculations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Greatest_common_divisor"
+    line_start: 542
+    line_end: 544
+    title: "Greatest Common Divisor: Recursive elegance"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Euclidean_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The `GreatestCommonDivisor` function calculates the greatest common divisor (GCD) of two integers using a recursive implementation of Euclid's algorithm. This operation is fundamental in number theory and has applications in optimizing integer calculations, such as reducing fractions or finding common denominators. In the context of Quake, efficient integer math was crucial for performance on hardware like the Intel 486. The function's design reflects the team's understanding of mathematical algorithms and their ability to implement them in a practical and efficient manner. Euclid's algorithm remains a standard approach for calculating GCDs, highlighting the timelessness of this technique."
+    content: "This function implements the Euclidean algorithm to find the greatest common divisor (GCD) of two integers. Using recursion, it repeatedly applies the modulo operation until one of the values becomes zero. The algorithm, dating back to ancient Greece, is a testament to the enduring relevance of mathematical principles in computing. In the 1990s, efficient algorithms like this were essential for optimizing performance on limited hardware. The recursive implementation reflects the team's ability to balance simplicity and efficiency, ensuring fast and reliable calculations. While the GCD function may not directly impact gameplay, it demonstrates the team's commitment to robust and elegant solutions throughout the codebase."
+  - id: "invert-24-to-16"
+    line_start: 570
+    line_end: 572
+    title: "Invert24To16: Fixed-point precision for 3D"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    image_url: ""
+    image_caption: ""
+    content: "This function converts an 8.24 fixed-point value to a 16.16 fixed-point value, ensuring precision in calculations. Fixed-point arithmetic was a common choice in the 1990s for handling fractional values on hardware with limited floating-point support. The implementation reflects the team's expertise in optimizing mathematical operations for performance and accuracy. By leveraging fixed-point arithmetic, this function contributed to Quake's ability to perform complex calculations efficiently, enabling its groundbreaking 3D graphics and physics systems. The technique remains relevant in embedded systems and other performance-critical applications, showcasing the lasting influence of id Software's work."
 
 ---
 
