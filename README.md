@@ -46,8 +46,6 @@ The body of each file is the raw source code. The reader splits the code into se
 ## Reader features
 
 - **Source tree browser** — program pages show files in the repo's actual directory structure. Generated files with annotations are stylized links; files not yet annotated appear as plain stubs in the tree
-- **Instruction lookup** — click any line of code to see what the instruction does (6502, 8086, MDL, and C supported). For C, covers keywords, stdlib functions, Borland DOS extensions (`far`, `near`, `interrupt`), and Wolf3D engine subsystems (`VW_`, `SD_`, `CA_`, `MM_`, `IN_`, and more via prefix matching)
-- **Word lookup** — right-click any word in an annotation panel to look it up in the dictionary
 - **Font size controls** — A− / A+ buttons in the header
 
 ## Running locally
