@@ -9,74 +9,66 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-play-c"
 order: 7
-description: "The gameplay engine of Wolfenstein 3D, showcasing innovations in player input, actor management, and immersive mechanics."
+description: "This file captures the essence of Wolfenstein 3D's gameplay mechanics, showcasing the innovative techniques that defined the first-person shooter genre."
 
 summary:
-  - point: "Innovative actor management via linked lists"
-    link: "https://en.wikipedia.org/wiki/Data_structure"
-    link_label: "Data structure"
-  - point: "Dynamic palette shifting for visual feedback"
+  - point: "Dynamic object management through linked lists"
+    link: "https://en.wikipedia.org/wiki/Linked_list"
+    link_label: "Linked List"
+  - point: "Palette shifting for visual effects like damage and bonuses"
     link: "https://en.wikipedia.org/wiki/Color_palette"
-    link_label: "Color palette"
-  - point: "Support for multiple input devices"
+    link_label: "Color Palette"
+  - point: "Support for multiple input devices (keyboard, mouse, joystick)"
     link: "https://en.wikipedia.org/wiki/Input_device"
-    link_label: "Input device"
-  - point: "Cheat codes embedded for debugging and fun"
+    link_label: "Input Device"
+  - point: "Integration of cheat codes and debugging tools"
     link: "https://en.wikipedia.org/wiki/Cheat_code"
-    link_label: "Cheat code"
-  - point: "Efficient playback and recording of demos"
-    link: "https://en.wikipedia.org/wiki/Game_replay"
-    link_label: "Game replay"
+    link_label: "Cheat Code"
+  - point: "Efficient handling of actor states and transitions"
+    link: "https://en.wikipedia.org/wiki/Finite-state_machine"
+    link_label: "Finite State Machine"
 
 enhancements:
-  - id: "local-constants-and-global-variables"
-    line_start: 15
-    line_end: 72
-    title: "Defining constants and global state"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Global_variable"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Typing_example.ogv/330px--Typing_example.ogv.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo"
-    image_caption: "Video of typing on a laptop keyboard. (CC BY-SA 3.0)"
-    content: "This section establishes constants and global variables that underpin the game's mechanics. Constants like `sc_Question` define specific key codes, while global variables such as `madenoise` and `playstate` track the game's state. In 1992, memory was a precious resource, and developers had to carefully manage global variables to ensure efficient use of the limited system memory available on MS-DOS machines. These variables are essential for tracking player actions, game states, and interactions between objects. The choice of using global variables reflects the programming practices of the era, where simplicity and direct memory access were prioritized over modularity."
-  - id: "input-device-support"
-    line_start: 74
-    line_end: 78
-    title: "Supporting multiple input devices"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
-    image_url: ""
-    image_caption: ""
-    content: "Wolfenstein 3D was designed to be accessible to players using various input devices, including keyboards, mice, and joysticks. This section defines mappings for directional and button inputs across these devices, ensuring a seamless experience regardless of the hardware used. In the early 1990s, PC gaming was transitioning from keyboard-only controls to more diverse input methods, and id Software's decision to support multiple devices was forward-thinking. This flexibility helped the game appeal to a broader audience and set a precedent for future PC games to accommodate different input preferences."
-  - id: "polling-input-devices"
-    line_start: 261
-    line_end: 435
-    title: "Polling input devices for player actions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Polling_(computer_science)"
-    image_url: ""
-    image_caption: ""
-    content: "The input polling routines (`PollKeyboardButtons`, `PollMouseButtons`, `PollJoystickButtons`) actively check the state of various input devices to determine player actions. These routines translate raw input signals into actionable game states, such as movement or shooting. In 1992, real-time input handling was a critical challenge, especially on hardware with limited processing power. The developers at id Software optimized these routines to ensure responsiveness, a key factor in Wolfenstein 3D's immersive gameplay. This approach laid the groundwork for modern input handling in games, where real-time responsiveness remains paramount."
-  - id: "actor-management-linked-lists"
-    line_start: 862
-    line_end: 980
-    title: "Managing actors with linked lists"
+  - id: "dynamic-object-management"
+    line_start: 31
+    line_end: 32
+    title: "Dynamic object management via linked lists"
     wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
     image_url: ""
     image_caption: ""
-    content: "The `objlist` data structure is a linked list that manages all active actors in the game, including the player and enemies. Functions like `InitActorList`, `GetNewActor`, and `RemoveObj` handle the creation, linking, and removal of actors dynamically during gameplay. This approach allowed the developers to efficiently manage memory and ensure that new actors could be added or removed without disrupting the game loop. In the early 1990s, dynamic memory management was a significant challenge, and using linked lists was a clever solution to handle the game's complexity within the constraints of MS-DOS systems."
-  - id: "dynamic-palette-shifting"
+    content: "The `objlist` array serves as the backbone for managing all active actors in the game. Each actor is represented as a node in a linked list, with pointers to the next and previous objects. This design allows for efficient insertion and removal of objects during gameplay. In 1992, memory constraints were a significant challenge, especially on MS-DOS systems with limited RAM. By using a linked list, id Software ensured that objects could be dynamically allocated and freed without wasting memory. This approach was crucial for handling the game's fast-paced action, where actors like guards, dogs, and bosses needed to appear and disappear seamlessly. The linked list design also influenced future games by demonstrating how to manage dynamic entities in real-time environments."
+  - id: "input-device-support"
+    line_start: 261
+    line_end: 277
+    title: "Polling keyboard buttons for user input"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
+    image_url: ""
+    image_caption: ""
+    content: "The `PollKeyboardButtons` function scans the keyboard for button presses, updating the `buttonstate` array to reflect the current state of each button. This function is part of a larger system that supports multiple input devices, including the mouse and joystick. In the early 1990s, PC gaming was transitioning from keyboard-only controls to more sophisticated input methods. Wolfenstein 3D embraced this shift by providing robust support for various devices, enhancing accessibility and gameplay experience. The modular design of input polling functions allowed developers to easily add or modify device support, a practice that became standard in later games."
+  - id: "cheat-code-integration"
+    line_start: 614
+    line_end: 845
+    title: "Cheat codes: A nod to the community"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
+    image_url: ""
+    image_caption: ""
+    content: "The `CheckKeys` function includes support for cheat codes, such as 'MLI' for max health and ammo, and 'TAB-G-F10' for toggling god mode. Cheat codes were a popular feature in early PC games, serving as both debugging tools for developers and hidden rewards for players. John Carmack and John Romero, the minds behind Wolfenstein 3D, often included cheat codes as a way to engage with the gaming community and add replayability. These codes became iconic, inspiring similar features in countless games. The inclusion of cheats reflects the playful and experimental spirit of early game development, where developers often blurred the lines between work and fun."
+  - id: "palette-shifting-effects"
     line_start: 1071
-    line_end: 1239
-    title: "Dynamic palette shifting for visual feedback"
+    line_end: 1076
+    title: "Palette shifting for visual effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""
     image_caption: ""
-    content: "The palette shifting routines (`InitRedShifts`, `UpdatePaletteShifts`, etc.) dynamically alter the game's color palette to provide visual feedback for events like taking damage or earning bonuses. This technique was a clever way to enhance the game's visual impact without requiring additional graphical assets, which were costly in terms of memory and processing power. In 1992, such tricks were essential for creating immersive experiences on limited hardware. The use of palette shifting in Wolfenstein 3D influenced later games, where similar techniques were used to convey states like low health or environmental changes."
-  - id: "playloop-core-gameplay"
+    content: "The `InitRedShifts` function initializes color palettes for visual effects like damage and bonuses. By manipulating the game's palette, the developers created dynamic shifts in color intensity, enhancing the immersive experience. Palette shifting was a clever workaround for hardware limitations, as it allowed dramatic visual changes without requiring additional graphical assets. In 1992, VGA graphics cards were common, but their capabilities were limited compared to modern GPUs. Techniques like palette shifting demonstrated how developers could achieve striking visual effects within these constraints. This method influenced later games, where palette manipulation became a staple for creating mood and atmosphere."
+  - id: "core-playloop"
     line_start: 1368
     line_end: 1471
-    title: "Core gameplay loop: heartbeat of the game"
+    title: "The heartbeat of Wolfenstein 3D"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""
     image_caption: ""
-    content: "The `PlayLoop` function is the central gameplay loop, orchestrating actor updates, input handling, and screen refreshes. It ensures the game runs smoothly by managing the sequence of events that occur during each frame. This loop is where the magic happens, combining player actions, enemy behaviors, and environmental updates into a cohesive experience. In the early 1990s, designing an efficient game loop was a critical task, as it directly impacted performance on limited hardware. John Carmack's expertise in optimizing code was instrumental in achieving the fluid gameplay that became a hallmark of Wolfenstein 3D."
+    content: "The `PlayLoop` function is the central loop that drives the game's mechanics. It handles input polling, actor updates, palette shifts, and rendering, ensuring smooth gameplay. In 1992, real-time game loops were a relatively new concept, especially for first-person shooters. Wolfenstein 3D's play loop was a masterclass in efficiency, balancing multiple tasks within the constraints of MS-DOS and 386 processors. John Carmack's programming expertise shines here, as he optimized the loop to minimize CPU usage while maintaining responsiveness. This design laid the groundwork for modern game engines, influencing how games handle real-time updates and rendering."
 
 ---
 

@@ -772,8 +772,8 @@
     },
     {
       "slug": "wolf3d",
-      "introduction": "It was the spring of 1992, and in a small office in Madison, Wisconsin, three young programmers were about to change the course of gaming history. John Carmack, John Romero, and Tom Hall, the core team behind id Software, were working tirelessly on a project that would redefine what video games could be. The stakes were high; the PC gaming market was still in its infancy, dominated by slow, turn-based games and rudimentary graphics. But these three developers had a vision: a fast-paced, adrenaline-pumping experience that would immerse players in a fully realized 3D world. The result of their efforts was Wolfenstein 3D, a game that would become the blueprint for the first-person shooter genre.\n\nThe computing landscape of 1992 was a world of constraints. MS-DOS ruled the personal computer market, but its limitations were stark. Memory was scarce, with most PCs equipped with just 640KB of conventional RAM. Graphics capabilities were rudimentary, relying on VGA cards that could display only 256 colors at a resolution of 320x200 pixels. Processors like the Intel 386 and 486 were powerful for their time but still required careful optimization to achieve smooth performance. Carmack, the team's technical wizard, was determined to push these limitations to their breaking point. He developed a revolutionary raycasting engine that simulated 3D environments without the computational overhead of true 3D rendering. \"It was all about making the impossible possible,\" Carmack later reflected.\n\nJohn Romero, the team's creative force, brought the game to life with his focus on fast-paced action and visceral gameplay. Drawing inspiration from the 1981 stealth game Castle Wolfenstein, Romero envisioned a high-octane experience where players could storm through Nazi strongholds, wielding an arsenal of weapons. Tom Hall, the team's designer, added his flair for storytelling and humor, crafting the game's iconic setting and characters. Together, their complementary skills created a product that was greater than the sum of its parts. The team worked around the clock, fueled by pizza, soda, and an unrelenting drive to innovate.\n\nWolfenstein 3D was released on May 5, 1992, and it was an instant sensation. Players were captivated by the game's smooth scrolling, responsive controls, and immersive sound design, all of which were unprecedented in the PC gaming world. The game's source code, written in C and x86 Assembly, reveals the ingenuity behind these achievements. Files like C0.ASM showcase the low-level assembly routines that optimized hardware performance, while ID_CA.C demonstrates the team's innovative approach to memory management, allowing large game worlds to run on limited systems. WL_DRAW.C and WL_PLAY.C highlight the technical and creative brilliance of rendering 3D environments and crafting engaging gameplay mechanics.\n\nThe impact of Wolfenstein 3D was profound. It not only established id Software as a powerhouse in the gaming industry but also laid the foundation for future first-person shooters like Doom and Quake. The game's influence extended beyond entertainment, inspiring advancements in graphics technology and interactive storytelling. In 1995, id Software released the source code as open source, allowing developers worldwide to study and build upon their work. Today, Wolfenstein 3D remains a touchstone in gaming history, a testament to the power of ingenuity and collaboration in the face of technical constraints.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Wolfenstein_3D_%2851265021481%29.jpg/330px-Wolfenstein_3D_%2851265021481%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "introduction": "It was the spring of 1992, and in a small office in Madison, Wisconsin, three young developers were about to redefine the gaming industry. John Carmack, John Romero, and Tom Hall, the core team behind id Software, were working tirelessly to complete their latest project: Wolfenstein 3D. The game was conceived as a fast-paced, first-person shooter inspired by the stealth and action elements of the 1981 classic Castle Wolfenstein. But this time, the action would unfold in fully immersive 3D environments, a feat that had never been achieved with such fluidity on consumer-grade hardware. The stakes were high, and the team knew they were on the verge of something revolutionary.\n\nThe computing world of 1992 was defined by constraints. MS-DOS was the dominant operating system, running on Intel 286 and 386 processors with clock speeds often under 33 MHz. Memory was scarce, with many machines limited to 640 KB of conventional RAM, and graphics capabilities were rudimentary, relying on VGA cards with resolutions of 320x200 pixels. Carmack, the technical mastermind of the team, had already made breakthroughs in smooth scrolling and raycasting techniques with earlier titles like Commander Keen. But Wolfenstein 3D demanded even greater ingenuity. Carmack's raycasting engine, written in C and x86 assembly, was a marvel of optimization, capable of rendering textured walls and fast-paced action at a frame rate previously unimaginable on such hardware.\n\nJohn Romero, the creative force behind the game's design, brought his passion for visceral gameplay and player empowerment to every aspect of Wolfenstein 3D. He envisioned a game that would be fast, intuitive, and exhilarating, with responsive controls and a sense of immediacy that drew players into its world. Tom Hall, the narrative architect, infused the game with personality and humor, crafting memorable characters, environments, and scenarios that elevated it beyond mere technical achievement. Together, the trio made critical decisions about gameplay mechanics, enemy AI, and level design, balancing technical constraints with their vision for a groundbreaking experience. \"We wanted to make something that felt alive,\" Romero later recalled. \"Something that made you forget you were sitting at a computer.\"\n\nThe source code for Wolfenstein 3D reveals the brilliance of their work. From the WL_DRAW.C file, which handles the rendering of the game's 3D environments, to ID_SD.C, which brought immersive sound to life, every subsystem was meticulously crafted to push the limits of MS-DOS hardware. The raycasting assembly routines in WL_ASM.ASM and the memory management innovations in ID_MM.C showcase the team's ability to extract every ounce of performance from the machines of the era. Even the game's menus, coded in WL_MENU.C, were designed with user-friendliness in mind, ensuring that players could dive into the action with minimal friction.\n\nWolfenstein 3D was released on May 5, 1992, and its impact was immediate and profound. It became a commercial success, selling hundreds of thousands of copies and earning critical acclaim for its technical achievements and addictive gameplay. More importantly, it laid the foundation for the first-person shooter genre, inspiring countless imitators and successors, including id Software's own Doom and Quake. The game's influence extends far beyond its initial release; its source code, made open in 1995, has been studied, modified, and ported to countless platforms, ensuring its legacy as a cornerstone of gaming history.\n\nToday, Wolfenstein 3D is remembered not just as a game, but as a turning point in interactive entertainment. It demonstrated that technical constraints could be overcome with ingenuity, and it proved that video games could deliver experiences as immersive and thrilling as any other medium. For Carmack, Romero, Hall, and the rest of the id Software team, it was the beginning of a journey that would change the face of gaming forever.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Wolfenstein_3D_%2851265021481%29.jpg/330px-Wolfenstein_3D_%2851265021481%29.jpg",
       "image_caption": "Wolfenstein 3D is a first-person shooter video game developed by id Software (John Carmack,  John Romero, Tom Hall) and released  May 5, 1992 (CC BY 2.0)",
       "title": "Wolfenstein 3D",
       "author": "John Carmack, John Romero, Tom Hall",
@@ -853,7 +853,7 @@
           "title": "WL_ACT1.C",
           "description": "Enemy AI part one — guard states, patrol logic, and line-of-sight detection",
           "path": "WOLFSRC/WL_ACT1.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 10,
@@ -861,7 +861,7 @@
           "title": "WL_ACT2.C",
           "description": "Enemy AI part two — attack sequences, dogs, SS guards, and the bosses",
           "path": "WOLFSRC/WL_ACT2.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 11,
@@ -869,7 +869,7 @@
           "title": "WL_AGENT.C",
           "description": "Player agent — movement, shooting, door interaction, and object pickup",
           "path": "WOLFSRC/WL_AGENT.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 12,
@@ -877,7 +877,7 @@
           "title": "WL_GAME.C",
           "description": "Game state machine — level loading, score tracking, and episode flow",
           "path": "WOLFSRC/WL_GAME.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 13,
@@ -885,7 +885,7 @@
           "title": "WL_SCALE.C",
           "description": "The texture scaler — the raycaster's column-rendering heart",
           "path": "WOLFSRC/WL_SCALE.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 14,
@@ -893,7 +893,7 @@
           "title": "ID_MM.C",
           "description": "Memory manager — far-heap allocation on segmented 286/386 DOS",
           "path": "WOLFSRC/ID_MM.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 15,
@@ -901,7 +901,7 @@
           "title": "ID_VL.C",
           "description": "Video low-level — VGA Mode Y palette, screen setup, and page management",
           "path": "WOLFSRC/ID_VL.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 16,
@@ -909,7 +909,7 @@
           "title": "WL_STATE.C",
           "description": "Actor state machine — the think functions that advance enemy AI states each game tick",
           "path": "WOLFSRC/WL_STATE.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 17,
@@ -917,7 +917,7 @@
           "title": "WL_INTER.C",
           "description": "Intermission screens — episode score tally, death counts, and the screens between levels",
           "path": "WOLFSRC/WL_INTER.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 18,
@@ -925,7 +925,7 @@
           "title": "WL_TEXT.C",
           "description": "Text screen renderer — the full-screen narrative text pages displayed between episodes",
           "path": "WOLFSRC/WL_TEXT.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 19,
@@ -933,7 +933,7 @@
           "title": "WL_DEBUG.C",
           "description": "Debug and cheat utilities — the in-game debug overlay toggled by the developer cheat sequence",
           "path": "WOLFSRC/WL_DEBUG.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 20,
@@ -941,7 +941,7 @@
           "title": "ID_PM.C",
           "description": "Page manager — virtual paging of game assets to and from EMS/XMS expanded memory",
           "path": "WOLFSRC/ID_PM.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 21,
@@ -949,7 +949,7 @@
           "title": "ID_VH.C",
           "description": "Video hardware high-level — sprite scaling, font rendering, and screen fade routines",
           "path": "WOLFSRC/ID_VH.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 22,
@@ -957,7 +957,7 @@
           "title": "ID_US_1.C",
           "description": "User interface services — dialog boxes, high score entry, and string drawing utilities",
           "path": "WOLFSRC/ID_US_1.C",
-          "generated": false
+          "generated": true
         },
         {
           "order": 23,
@@ -965,7 +965,7 @@
           "title": "ID_SD_A.ASM",
           "description": "Sound driver assembly — interrupt-driven PC speaker and AdLib/SoundBlaster output routines",
           "path": "WOLFSRC/ID_SD_A.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 24,
@@ -973,7 +973,7 @@
           "title": "WL_ASM.ASM",
           "description": "Raycaster assembly — hand-coded x86 inner loop for the column-rendering heart of Wolf3D",
           "path": "WOLFSRC/WL_ASM.ASM",
-          "generated": false
+          "generated": true
         },
         {
           "order": 25,
@@ -981,7 +981,7 @@
           "title": "H_LDIV.ASM",
           "description": "Long division routine — a fast 32÷16 assembly divide used repeatedly by the raycaster",
           "path": "WOLFSRC/H_LDIV.ASM",
-          "generated": false
+          "generated": true
         }
       ]
     },

@@ -9,66 +9,66 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-in-c"
 order: 3
-description: "This file is the input manager for Wolfenstein 3D, handling keyboard, mouse, and joystick inputs to ensure responsive gameplay in a groundbreaking first-person shooter."
+description: "This file showcases the input handling system for Wolfenstein 3D, a groundbreaking first-person shooter that defined a genre."
 
 summary:
-  - point: "Direct hardware interaction with keyboard, mouse, and joystick ports"
+  - point: "Direct hardware interaction for keyboard, mouse, and joystick input"
     link: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
-    link_label: "Interrupt Request"
-  - point: "Optimized joystick handling using assembly for precise timing"
-    link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly Language"
-  - point: "Demo recording and playback functionality embedded in input handling"
-    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    link_label: "Wolfenstein 3D"
-  - point: "Custom keyboard interrupt service routine for real-time key handling"
-    link: "https://en.wikipedia.org/wiki/Interrupt_handler"
-    link_label: "Interrupt Handler"
-  - point: "Dynamic detection and configuration of input devices at runtime"
-    link: "https://en.wikipedia.org/wiki/Device_driver"
-    link_label: "Device Driver"
+    link_label: "Interrupts"
+  - point: "Efficient handling of keyboard scan codes and ASCII mapping"
+    link: "https://en.wikipedia.org/wiki/Keyboard_layout"
+    link_label: "Keyboard Mapping"
+  - point: "Custom joystick scaling and thresholding for precise control"
+    link: "https://en.wikipedia.org/wiki/Joystick"
+    link_label: "Joystick"
+  - point: "Demo recording and playback integrated into input routines"
+    link: "https://en.wikipedia.org/wiki/Game_replay"
+    link_label: "Game Replay"
+  - point: "Mouse detection and initialization using interrupt vectors"
+    link: "https://en.wikipedia.org/wiki/Mouse_(computing)"
+    link_label: "Mouse"
 
 enhancements:
-  - id: "keyboard-interrupt-handler"
+  - id: "keyboard-interrupt-handling"
     line_start: 142
     line_end: 209
-    title: "Custom keyboard interrupt handler for real-time input"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Mouse_mechanism_diagram.svg/330px-Mouse_mechanism_diagram.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Mouse mechanism diagram (Attribution)"
-    content: "This section defines a custom interrupt service routine (ISR) for handling keyboard input. The routine directly interacts with the hardware by reading the scan code from port 0x60 and clearing the key state using port 0x61. The programmer, Jason Blochowiak, needed to bypass the BIOS's default keyboard handling to achieve the responsiveness required for Wolfenstein 3D's fast-paced gameplay. In 1992, MS-DOS systems relied heavily on direct hardware access for performance-critical applications, as the operating system provided minimal abstraction. The use of assembly language within this routine highlights the team's commitment to squeezing every ounce of performance from the hardware. This approach allowed for real-time handling of special keys, like Caps Lock and Pause, and ensured that key presses were immediately reflected in the game state. The technique of directly manipulating hardware registers was common in the era but has largely been replaced by higher-level APIs in modern systems. However, the principles of low-latency input handling established here continue to influence game development today."
+    title: "Keyboard Interrupt: Real-Time Input Handling"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements a keyboard interrupt service routine (ISR) to handle key presses and releases in real time. The programmer reads scan codes directly from the keyboard controller port (0x60) and clears the key using port 0x61. This direct interaction with hardware bypasses the BIOS, enabling faster and more precise input handling—a necessity for Wolfenstein 3D's fast-paced gameplay. In 1992, most games relied on BIOS routines for input, but id Software's approach allowed them to achieve smoother and more responsive controls. This routine also manages special keys like Caps Lock and the Pause key, and integrates ASCII mapping for shifted and unshifted states. By handling interrupts directly, the game ensures minimal latency, a critical feature for maintaining immersion in a first-person shooter. This technique influenced later game engines, setting a standard for direct hardware interaction in performance-critical applications."
   - id: "mouse-delta-calculation"
-    line_start: 217
+    line_start: 218
     line_end: 223
-    title: "Reading mouse movement via hardware interrupt"
+    title: "Mouse Movement: Delta Calculation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mouse_(computing)"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Joyopis.svg/330px-Joyopis.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Joystick elements:1. Stick; 2. Base; 3. Trigger; 4. Extra buttons; 5. Autofire switch; 6. Throttle; 7. Hat Switch (POV Hat); 8. Suction Cup (CC BY-SA 3.0)"
-    content: "This function retrieves the amount of mouse movement by invoking a software interrupt (int 0x33) and reading the delta values from CPU registers (_CX and _DX). In the early 1990s, mouse input was becoming increasingly common in PC games, but developers still had to interact directly with the mouse driver to extract movement data. The use of interrupts allowed the game to query the mouse state without polling, reducing CPU overhead and ensuring smooth gameplay. This approach reflects the ingenuity required to work within the constraints of MS-DOS, where developers often had to write custom code to interface with hardware. The mouse's contribution to Wolfenstein 3D's fluid controls helped set a standard for first-person shooters, paving the way for the genre's evolution."
+    image_url: ""
+    image_caption: ""
+    content: "This function retrieves the relative movement of the mouse by invoking the mouse driver interrupt (0x33) with the MDelta command. The movement values are stored in the CPU registers (_CX for x-axis and _DX for y-axis). In the early 1990s, mouse input was becoming increasingly common in PC games, but integrating it into fast-paced titles like Wolfenstein 3D required careful optimization. The developers ensured that mouse input was processed efficiently to avoid lag or jitter during gameplay. This function exemplifies how id Software leveraged hardware interrupts to achieve precise control, laying the groundwork for mouse-driven interfaces in future games."
   - id: "joystick-absolute-position"
-    line_start: 246
+    line_start: 247
     line_end: 316
-    title: "Precise joystick handling with assembly optimization"
+    title: "Joystick Input: Absolute Position Reading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/330px-Operating_system_placement.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Graph of Operating System placement on computer usage (CC BY-SA 3.0)"
-    content: "This function reads the absolute position of a joystick by directly interacting with port 0x201, which was the standard game port on PCs at the time. The code includes a carefully timed loop written in assembly language to measure the joystick's resistance values accurately. This level of precision was necessary because the game port relied on analog signals, and timing discrepancies could result in erratic behavior. The use of assembly reflects the team's deep understanding of hardware and their commitment to delivering a seamless gaming experience. In 1992, joystick support was a key feature for PC games, as many players preferred this input method for action-oriented titles. The techniques developed here influenced joystick handling in subsequent games and contributed to the standardization of input device support in gaming."
-  - id: "input-device-detection"
-    line_start: 584
-    line_end: 613
-    title: "Dynamic detection of input devices"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "This section initializes the input manager by detecting available devices (keyboard, mouse, and joystick) and configuring them dynamically based on command-line parameters. The ability to adapt to different hardware setups was crucial in 1992, as PC configurations varied widely. By checking interrupt vectors and hardware ports, the game ensured compatibility with a broad range of devices, enhancing its appeal to a diverse audience. This approach highlights the team's understanding of the PC ecosystem and their commitment to delivering a user-friendly experience. The modular design of the input manager allowed for easy expansion, laying the groundwork for future games to support an even wider array of devices."
+    content: "This section reads the absolute position of a joystick by interacting directly with the game port (0x201). The code uses assembly language to ensure precise timing, as joystick inputs rely on analog signals converted to digital values. The routine clears resistors, masks bits, and counts pulses to determine the joystick's position. In the early 1990s, joysticks were a popular input device for PC games, but their analog nature posed challenges for accurate reading. By implementing this routine in assembly, id Software ensured reliable and responsive joystick input, critical for Wolfenstein 3D's gameplay. This approach reflects the team's deep understanding of hardware and their commitment to delivering a seamless user experience."
+  - id: "mouse-detection-initialization"
+    line_start: 459
+    line_end: 482
+    title: "Mouse Detection: Interrupt Vector Analysis"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Mouse_(computing)"
+    image_url: ""
+    image_caption: ""
+    content: "This function detects and initializes the mouse by examining interrupt vectors and invoking the mouse driver. It checks the interrupt vector table at 0x33*4 to determine if a mouse driver is present and functional. If the driver is found, the mouse is reset using the MReset command. In the early 1990s, mouse support was not guaranteed on all systems, so games had to dynamically detect and configure input devices. This routine reflects id Software's attention to compatibility and their ability to adapt to diverse hardware configurations. The mouse's role in Wolfenstein 3D was pivotal, offering players an intuitive way to aim and navigate in the game's 3D environment."
   - id: "demo-recording-playback"
-    line_start: 705
-    line_end: 811
-    title: "Recording and replaying gameplay demos"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Demo_(computer_programming)"
+    line_start: 691
+    line_end: 813
+    title: "Demo Mode: Recording and Playback"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_replay"
     image_url: ""
     image_caption: ""
-    content: "This section implements functionality for recording and replaying gameplay demos, a feature that allowed players to share their experiences and developers to debug the game. The demo system packs control data (movement and button presses) into a compact format stored in a buffer. During playback, the game reads this buffer to simulate player actions. In the early 1990s, demo recording was a novel feature that showcased the game's technical sophistication. It also served as a valuable marketing tool, enabling players to demonstrate the game's capabilities to others. The compact encoding of input data reflects the team's resourcefulness in optimizing memory usage, a critical consideration on MS-DOS systems with limited RAM. This feature became a staple in many games, influencing the development of replay systems in modern titles."
+    content: "This section integrates demo recording and playback into the input handling system. During recording, player actions are packed into bytes and stored in a buffer, while playback retrieves these actions to simulate the original input. This feature allowed players to share gameplay sequences or developers to debug and showcase the game. In 1992, demo functionality was rare in games, but id Software recognized its potential for marketing and community engagement. By embedding this feature directly into the input manager, they ensured seamless integration with the game's core mechanics. Demo recording became a hallmark of id Software's engines, influencing later titles like Doom and Quake."
 
 ---
 
