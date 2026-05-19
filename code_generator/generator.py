@@ -457,6 +457,13 @@ def main() -> None:
             console.print(f"  [green]-> {path}[/green]")
             generated.append((prog_slug, file_slug))
 
+            try:
+                changed = fix_ranges(path, client, gen_cfg=gen_cfg, console=console)
+                if changed:
+                    console.print(f"  [green]-> {changed} range(s) corrected[/green]")
+            except Exception as e:
+                console.print(f"  [yellow]range-fix pass failed: {e}[/yellow]")
+
             if not args.no_images and args.file_images:
                 count = fill_file_images(path, console=console, client=client)
                 if count:

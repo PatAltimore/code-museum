@@ -12,28 +12,50 @@ from pathlib import Path
 
 import yaml
 
-# Lines of source shown above and below the current annotated range
-CONTEXT_LINES = 20
+# Lines of source shown above and below the current annotated range.
+CONTEXT_LINES = 30
 
 # Enhancements sent per API call
 BATCH_SIZE = 6
+
+# Comment-start tokens recognised across common languages.
+# Order matters: longer prefixes first so startswith matches correctly.
+_COMMENT_PREFIXES = (
+    "//", "/*", "(*", "--", ";;",
+    ";", "*", "#", "!", "'",
+)
 
 _SYSTEM = """\
 You are correcting line-range metadata for source code annotations.
 
 For each annotation in the batch you will see:
   - id, title, and a brief description of what the section does
+  - If comment lines were found immediately above the current range, they are
+    shown in a "Candidate leading comments" block with their exact line numbers
   - A numbered source excerpt; lines inside the current annotated range are
     prefixed with >> and context lines are prefixed with two spaces
 
 Your task: return the exact line_start and line_end for the code section
 each annotation describes.
 
-Rules:
-- line_start: the first non-blank line of the section (label, function
-  signature, or opening instruction/declaration)
-- line_end: the last non-blank line of the section (final instruction,
-  closing brace, RTS/RET, or last data value)
+Rules for line_start:
+- If a "Candidate leading comments" block is shown, READ its content carefully.
+  If those comments serve as documentation for THIS section — describing what
+  the subroutine does, explaining its algorithm, or naming its purpose — set
+  line_start to the first line of that block.
+- Do NOT include the comment block if it is a file header, a copyright notice,
+  a visual separator (rows of asterisks, dashes, or equal signs with no prose),
+  or a comment that clearly belongs to or closes the previous section.
+- When in doubt, include the comment block — err on the side of inclusion.
+- If no candidate comment block is shown, or the block does not belong here,
+  set line_start to the first non-blank code line (label, function signature,
+  or opening declaration).
+
+Rules for line_end:
+- The last non-blank line of the section (final instruction, closing brace,
+  RTS/RET, or last data value).
+
+General rules:
 - Do not include blank lines at either boundary
 - Do not place either boundary outside the lines shown in the excerpt
 - If the current range already looks correct, return the same values
@@ -63,6 +85,54 @@ def _read_md(path: Path):
     return meta, code_lines
 
 
+def _is_comment_line(line: str) -> bool:
+    """Return True if the line looks like a comment in any common language."""
+    s = line.strip()
+    return bool(s) and any(s.startswith(p) for p in _COMMENT_PREFIXES)
+
+
+def _preceding_comment_block(
+    code_lines: list[str], line_start: int, context_start: int
+) -> list[tuple[int, str]]:
+    """Return the comment block immediately above line_start.
+
+    Walks backward from line_start-1 to context_start, collecting consecutive
+    comment lines.  A single blank line is allowed within a block (common in
+    multi-paragraph doc comments); two or more consecutive blanks, or any
+    non-comment non-blank line, ends the walk.
+
+    Returns a list of (1-indexed lineno, raw_line) in ascending line order,
+    with leading and trailing blank entries stripped.  Empty list if nothing
+    found.
+    """
+    collected: list[tuple[int, str]] = []
+    blank_streak = 0
+    i = line_start - 2          # 0-indexed: line just before line_start
+    floor = max(0, context_start - 1)   # 0-indexed lower bound
+
+    while i >= floor:
+        line = code_lines[i]
+        if not line.strip():
+            blank_streak += 1
+            if blank_streak > 1:
+                break
+            collected.insert(0, (i + 1, line))
+        elif _is_comment_line(line):
+            blank_streak = 0
+            collected.insert(0, (i + 1, line))
+        else:
+            break   # hit non-comment code — stop
+        i -= 1
+
+    # Strip leading/trailing blank entries
+    while collected and not collected[0][1].strip():
+        collected.pop(0)
+    while collected and not collected[-1][1].strip():
+        collected.pop()
+
+    return collected
+
+
 def _excerpt(code_lines: list[str], line_start: int, line_end: int) -> str:
     """Numbered excerpt around the range; annotated lines prefixed with >>."""
     total     = len(code_lines)
@@ -83,12 +153,34 @@ def _build_batch_messages(batch: list[dict], code_lines: list[str],
         s = int(enh.get("line_start", 1))
         e = int(enh.get("line_end", s))
         snippet = (enh.get("content") or "")[:150].replace("\n", " ")
+
+        # Compute the context window start so _preceding_comment_block stays
+        # within the lines we actually show in the excerpt.
+        context_start = max(1, s - CONTEXT_LINES)
+
+        # Pre-extract any comment block immediately above the current range.
+        comment_block = _preceding_comment_block(code_lines, s, context_start)
+        if comment_block:
+            cb_text = "\n".join(
+                f"  {lineno:4d}  {text}" for lineno, text in comment_block
+            )
+            candidate_section = (
+                f"Candidate leading comments "
+                f"(lines {comment_block[0][0]}–{comment_block[-1][0]}):\n"
+                f"{cb_text}\n"
+                f"→ If these comments document this section, "
+                f"set line_start = {comment_block[0][0]}.\n\n"
+            )
+        else:
+            candidate_section = ""
+
         parts.append(
             f"--- Annotation {idx}/{len(batch)} ---\n"
             f'id: {enh["id"]}\n'
             f'title: "{enh.get("title", "")}"\n'
             f"Describes: {snippet}...\n\n"
             f"Current range: lines {s}–{e}\n"
+            f"{candidate_section}"
             f"Source:\n{_excerpt(code_lines, s, e)}\n"
         )
     return [
