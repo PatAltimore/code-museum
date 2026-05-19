@@ -9,74 +9,74 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "cl-input-c"
 order: 18
-description: "Input handling in Quake revolutionized player control in 3D environments."
+description: "This file implements Quake's client-side input handling, showcasing innovations in real-time multiplayer gaming and player control."
 
 summary:
-  - point: "Innovative button tracking system for simultaneous inputs"
+  - point: "Innovative edge-triggered input tracking for multiplayer gaming"
     link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     link_label: "Quake"
-  - point: "Dynamic adjustment of player movement and angles"
+  - point: "Efficient encoding of movement commands for network transmission"
+    link: "https://en.wikipedia.org/wiki/Client-server_model"
+    link_label: "Client-server model"
+  - point: "Support for multiple simultaneous input sources (keyboard, mouse)"
+    link: "https://en.wikipedia.org/wiki/Input_device"
+    link_label: "Input device"
+  - point: "Angle adjustment and movement scaling based on player speed"
     link: "https://en.wikipedia.org/wiki/First-person_shooter"
     link_label: "First-person shooter"
-  - point: "Efficient network command transmission for multiplayer"
-    link: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
-    link_label: "Multiplayer video game"
-  - point: "Optimized handling of input impulses and states"
-    link: "https://en.wikipedia.org/wiki/John_Carmack"
-    link_label: "John Carmack"
-  - point: "Legacy of GPL-licensed source code influencing modern game development"
-    link: "https://en.wikipedia.org/wiki/GNU_General_Public_License"
-    link_label: "GNU GPL"
+  - point: "Command registration system for binding player actions"
+    link: "https://en.wikipedia.org/wiki/Command_pattern"
+    link_label: "Command pattern"
 
 enhancements:
-  - id: "key-button-tracking"
-    line_start: 24
-    line_end: 27
-    title: "Tracking simultaneous button presses"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+  - id: "key-button-state-tracking"
+    line_start: 26
+    line_end: 45
+    title: "Tracking button states with edge triggers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
     image_url: ""
     image_caption: ""
-    content: "This section introduces the concept of continuous button event tracking, a critical innovation for handling simultaneous inputs from multiple sources, such as a mouse and keyboard. In 1996, when Quake was developed, input devices were less standardized, and the idea of combining multiple sources to control a single button was groundbreaking. The developers, including John Carmack and Michael Abrash, aimed to ensure seamless gameplay in a 3D environment where precise control was paramount. By appending key numbers to commands, they created a system that could differentiate between multiple inputs and ensure buttons were only released when all sources were disengaged. This approach laid the foundation for modern input handling in games, influencing how developers manage complex input scenarios today."
-  - id: "key-down-up-handling"
+    content: "This section introduces `kbutton_t` structures to track the state of input buttons, such as movement or attack commands. Each button's state is represented by three bits: current state, edge-triggered down transition, and edge-triggered up transition. This design allows Quake to handle complex input scenarios, such as multiple sources (keyboard and mouse) controlling the same button. In 1996, this was a groundbreaking approach to input handling in games, ensuring precise and responsive controls in multiplayer environments. By tracking transitions, Quake could differentiate between continuous presses and momentary impulses, which was critical for real-time gameplay. This technique influenced later games and engines, including Unreal Engine and Source Engine, which adopted similar mechanisms for input management."
+  - id: "key-down-handler"
     line_start: 57
+    line_end: 84
+    title: "Handling key presses with impulse tracking"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `KeyDown` function processes key press events, updating the `kbutton_t` structure to reflect the button's state. It ensures that repeated presses of the same key do not overwrite existing states and handles edge cases like simultaneous presses from multiple input sources. The function also sets the impulse down flag, signaling that the button was pressed during this frame. This approach was designed to handle the fast-paced input demands of Quake's multiplayer gameplay, where responsiveness and accuracy were paramount. John Carmack and Michael Abrash developed these systems to optimize player control under the constraints of 1990s hardware, such as 486 and Pentium processors. The concept of impulse tracking became a standard in game development, influencing input systems in modern engines like Unity and Unreal."
+  - id: "key-up-handler"
+    line_start: 86
     line_end: 114
-    title: "Handling key down and key up states"
+    title: "Releasing keys and clearing impulses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `KeyDown` and `KeyUp` functions manage the state transitions of keys, ensuring accurate tracking of player inputs. In Quake's era, input handling was a critical challenge, as players demanded responsiveness and precision in fast-paced gameplay. This code ensures that keys can be pressed simultaneously without conflict, and it tracks edge-triggered transitions to detect impulses. The developers, working under tight hardware constraints, implemented this system to maintain fluidity in a 3D environment. The error handling for 'three keys down' reflects their attention to edge cases, ensuring robustness. This design influenced later games, where input state management became a standard practice for ensuring smooth gameplay."
-  - id: "dynamic-angle-adjustment"
+    content: "The `KeyUp` function handles key release events, updating the `kbutton_t` structure to clear the button's state and set the impulse up flag. It accounts for scenarios where a key is released without a corresponding press, such as menu navigation or manual console input. This ensures that the game's input state remains consistent and avoids unintended behavior. The function also clears all states if the release event is manually typed, demonstrating the flexibility of Quake's input system. This level of detail in input handling was critical for the game's success in competitive multiplayer environments, where precise control could determine the outcome of matches. The techniques developed here influenced later games, such as Counter-Strike and Team Fortress, which required similarly robust input systems."
+  - id: "movement-speed-and-angle-adjustments"
     line_start: 231
-    line_end: 276
-    title: "Adjusting angles dynamically during gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    line_end: 273
+    title: "Adjusting angles and movement speed"
+    wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
     image_url: ""
     image_caption: ""
-    content: "The `CL_AdjustAngles` function dynamically modifies the player's view angles based on input states. This was essential for Quake's groundbreaking 3D gameplay, where players could look and move freely in all directions. The function incorporates speed adjustments based on the 'speed' key state and limits pitch and roll angles to prevent disorientation. In 1996, this level of control was revolutionary, enabling immersive experiences in true 3D environments. The developers drew on their expertise in graphics programming and player interaction to create a system that balanced freedom of movement with practical constraints. This approach influenced the design of camera systems and movement mechanics in countless subsequent games."
-  - id: "base-move-command"
-    line_start: 282
+    content: "The `CL_AdjustAngles` function modifies the player's view angles based on input states and speed settings. It accounts for strafe movements, pitch adjustments, and speed scaling, ensuring smooth and responsive controls. This function also clamps the pitch and roll angles to prevent unnatural camera behavior, such as excessive tilting. By incorporating speed modifiers, Quake allowed players to perform actions like sprinting or precision aiming, enhancing the gameplay experience. In the mid-1990s, these features were rare in first-person shooters, making Quake a pioneer in player control mechanics. The angle adjustment system inspired similar implementations in later games, such as Half-Life and Call of Duty, which refined the concept to suit their gameplay styles."
+  - id: "base-movement-command"
+    line_start: 281
     line_end: 316
-    title: "Building the base movement command"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    title: "Building movement commands for the server"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Client-server_model"
     image_url: ""
     image_caption: ""
-    content: "The `CL_BaseMove` function constructs the player's movement command to be sent to the server. It combines inputs from various keys and adjusts them based on modifiers like the 'speed' key. This function is a testament to the developers' focus on precision and responsiveness, ensuring that every input translates accurately into movement in the game world. In the mid-1990s, multiplayer gaming was still in its infancy, and efficient communication between client and server was crucial. The use of vector copying and state-based adjustments reflects the team's deep understanding of both gameplay mechanics and network constraints. This system became a model for handling player inputs in networked games."
-  - id: "network-command-transmission"
-    line_start: 383
-    line_end: 480
-    title: "Transmitting movement commands over the network"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
+    content: "The `CL_BaseMove` function constructs a movement command (`usercmd_t`) based on the player's input states. It adjusts angles, calculates movement vectors, and applies speed modifiers, ensuring that the command accurately represents the player's intentions. This command is then sent to the server for processing, enabling real-time multiplayer gameplay. The function's design reflects the constraints of the client-server model, where minimizing data transmission while preserving gameplay accuracy was critical. Quake's efficient encoding of movement commands set a standard for multiplayer games, influencing titles like Unreal Tournament and Battlefield, which adopted similar techniques to optimize network performance."
+  - id: "command-registration-system"
+    line_start: 483
+    line_end: 523
+    title: "Binding player actions to commands"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command_pattern"
     image_url: ""
     image_caption: ""
-    content: "The `CL_SendCmd` function handles the transmission of movement commands to the server, a critical component of Quake's multiplayer functionality. It ensures that commands are sent reliably and includes mechanisms for recovering lost packets. In 1996, multiplayer gaming was limited by dial-up connections and high latency, making efficient network communication a significant challenge. The developers implemented delta compression and checksum validation to optimize data transfer and maintain synchronization between client and server. This function reflects their ingenuity in overcoming hardware limitations to deliver a smooth multiplayer experience. The techniques pioneered here influenced the development of network protocols in later games, shaping the evolution of online gaming."
-  - id: "input-initialization"
-    line_start: 484
-    line_end: 526
-    title: "Initializing input commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `CL_InitInput` function registers all input commands, linking key presses to their respective actions in the game. This initialization step is crucial for ensuring that players can interact seamlessly with the game world. In the mid-1990s, input handling was a complex task, as developers had to account for diverse hardware setups and player preferences. By centralizing command registration, the Quake team created a system that was both flexible and robust. This approach allowed players to customize controls and ensured compatibility with various input devices. The function exemplifies the team's commitment to user experience and laid the groundwork for modern input handling systems in games."
+    content: "The `CL_InitInput` function registers commands for player actions, such as movement, attack, and jump. Each command is bound to a corresponding function, allowing players to customize their controls through the console. This system demonstrates the flexibility of Quake's input handling, accommodating diverse playstyles and hardware configurations. The command registration approach reflects the influence of the command pattern, a software design principle that promotes modularity and reusability. By enabling players to bind actions to keys or buttons, Quake set a precedent for user-configurable controls, which became a standard feature in modern games and engines."
 
 ---
 

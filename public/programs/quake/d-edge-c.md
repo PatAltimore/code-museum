@@ -9,82 +9,90 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "d-edge-c"
 order: 26
-description: "This file contains critical rendering routines for Quake's groundbreaking 3D graphics engine, showcasing optimization techniques for 1990s hardware."
+description: "This file contains critical rendering routines for Quake's groundbreaking 3D graphics engine, showcasing optimization techniques for hardware of the mid-1990s."
 
 summary:
-  - point: "Mipmapping for texture scaling optimization"
+  - point: "Mipmapping logic for texture scaling"
     link: "https://en.wikipedia.org/wiki/Mipmap"
     link_label: "Mipmap"
-  - point: "Span-based rendering for efficient polygon drawing"
-    link: "https://en.wikipedia.org/wiki/Scanline_rendering"
-    link_label: "Scanline rendering"
-  - point: "Gradient calculations for texture mapping precision"
+  - point: "Gradient calculation for texture mapping"
     link: "https://en.wikipedia.org/wiki/Texture_mapping"
-    link_label: "Texture mapping"
-  - point: "Handling submodels and frustum transformations"
-    link: "https://en.wikipedia.org/wiki/Frustum"
-    link_label: "Frustum"
-  - point: "Optimized memory access patterns for x86 processors"
-    link: "https://en.wikipedia.org/wiki/Intel_80486"
-    link_label: "Intel 80486"
+    link_label: "Texture Mapping"
+  - point: "Span-based rendering optimization"
+    link: "https://en.wikipedia.org/wiki/Scanline_rendering"
+    link_label: "Scanline Rendering"
+  - point: "Handling submodels in 3D environments"
+    link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    link_label: "Quake"
+  - point: "Dynamic surface drawing techniques"
+    link: "https://en.wikipedia.org/wiki/Surface_(computer_graphics)"
+    link_label: "Surface Rendering"
 
 enhancements:
   - id: "foundation-initial-setup"
     line_start: 17
     line_end: 23
-    title: "Foundation: Initial Setup Variables"
+    title: "Foundation: Initial Setup for Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section initializes key variables used throughout the rendering pipeline, including screen width and mip level. These variables are foundational to the rendering process, enabling efficient scaling and memory management. In 1996, developers were acutely aware of hardware limitations, such as the Intel 80486 processor and limited RAM, and structured their code to minimize computational overhead. John Carmack, known for his meticulous optimization, ensured that every variable served a purpose, avoiding unnecessary complexity. These initial setups reflect the careful planning required to achieve real-time 3D rendering on consumer hardware of the era."
+    content: "This section sets up foundational variables for rendering, including screen width and error adjustment parameters. These values are critical for ensuring that subsequent rendering routines operate correctly. In the mid-1990s, hardware constraints such as limited memory and processing power demanded careful initialization of global variables to avoid performance bottlenecks. John Carmack and his team were known for their meticulous attention to such details, often pushing hardware beyond its perceived limits. This groundwork paved the way for efficient span-based rendering, a technique that became synonymous with Quake's performance. The principles established here influenced later game engines, including Unreal Engine, which adopted similar optimization strategies."
   - id: "vec3t-transformed-modelorg"
     line_start: 36
-    line_end: 39
-    title: "vec3_t: Transforming Model Origin"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
+    line_end: 36
+    title: "vec3_t: Transforming Model Origins"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Vector_space"
     image_url: ""
     image_caption: ""
-    content: "The `vec3_t` structure represents a three-dimensional vector, a cornerstone of 3D graphics. Here, it is used to store the transformed model origin, a critical step in aligning objects within the game world. In the mid-1990s, vector mathematics was becoming increasingly important in game development as engines moved from 2D to true 3D environments. This transformation process highlights the mathematical rigor behind Quake's rendering engine, which had to account for player movement, object rotation, and perspective projection—all in real time. The use of vectors was inspired by advancements in computer graphics research, and their implementation in Quake set a standard for future engines."
-  - id: "d-drawpoly-placeholder"
-    line_start: 40
-    line_end: 43
-    title: "D_DrawPoly: A Placeholder for Polygons"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_(computer_graphics)"
-    image_url: ""
-    image_caption: ""
-    content: "The `D_DrawPoly` function is a placeholder, indicating that the rendering driver processes spans rather than polygons directly. This decision reflects a deliberate optimization strategy. Span-based rendering breaks polygons into horizontal lines, simplifying the process of filling pixels on the screen. In 1996, this approach was critical for achieving high performance on hardware with limited processing power. By focusing on spans, the Quake engine avoided the computational overhead of handling entire polygons, a technique borrowed from earlier scanline rendering methods. This placeholder hints at the modularity of the engine, allowing for future enhancements or alternative rendering methods."
-  - id: "d-miplevelforscale"
-    line_start: 52
-    line_end: 54
-    title: "D_MipLevelForScale: Choosing Texture Detail"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Mipmap"
-    image_url: ""
-    image_caption: ""
-    content: "This function determines the appropriate mipmap level based on the scale of a texture. Mipmapping was a revolutionary technique in the 1990s, reducing aliasing and improving performance by using lower-resolution textures for distant objects. The logic here ensures that textures are scaled efficiently, balancing visual fidelity with rendering speed. The concept of mipmaps originated in academic research but was popularized in gaming by titles like Quake. By dynamically selecting mip levels, the engine minimized memory bandwidth usage—a critical consideration for hardware like the Intel Pentium processors of the era. This technique became a staple in 3D graphics, influencing countless engines and applications."
-  - id: "d-drawsolidsurface"
-    line_start: 77
-    line_end: 81
-    title: "D_DrawSolidSurface: Filling Polygons with Color"
+    content: "The vec3_t structure represents a three-dimensional vector, used here to store the transformed model origin. This transformation is a key step in aligning 3D models with the player's perspective. In 1996, real-time 3D transformations were computationally expensive, requiring innovative techniques to minimize overhead. The use of vectors for spatial calculations was inspired by advancements in computer graphics research during the late 1980s and early 1990s. By leveraging vector math, Quake achieved smooth and accurate transformations, setting a standard for 3D engines. Modern engines like Unity and Unreal continue to use similar vector-based approaches for spatial computations."
+  - id: "d-drawpoly-span-rendering"
+    line_start: 38
+    line_end: 47
+    title: "D_DrawPoly: Span-Based Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scanline_rendering"
     image_url: ""
     image_caption: ""
-    content: "The `D_DrawSolidSurface` function fills polygons with a solid color, using span-based rendering to efficiently process each horizontal line. This method was essential for achieving real-time performance on mid-1990s hardware. The function includes optimizations like grouping memory writes for better cache utilization, a technique inspired by low-level programming practices common in assembly language. The emphasis on spans reflects the engine's focus on speed and simplicity, avoiding the complexity of more advanced shading techniques. This approach laid the groundwork for later innovations in rendering, including texture mapping and lighting models, which would build on the solid foundation established here."
-  - id: "d-calcgradients"
-    line_start: 120
-    line_end: 122
-    title: "D_CalcGradients: Precision in Texture Mapping"
+    content: "The D_DrawPoly function is a placeholder for span-based rendering, a technique where polygons are broken into horizontal spans for efficient drawing. This approach was crucial for Quake's performance, as it allowed the engine to process only visible portions of polygons, reducing computational load. Span rendering was a common optimization in the era of fixed-function graphics pipelines, where every CPU cycle mattered. By focusing on spans rather than entire polygons, Quake achieved real-time rendering on hardware like the Intel Pentium. This technique influenced later engines and contributed to the evolution of rasterization methods in modern GPUs."
+  - id: "d-miplevelforscale-mipmapping"
+    line_start: 50
+    line_end: 72
+    title: "D_MipLevelForScale: Mipmapping Logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Mipmap"
+    image_url: ""
+    image_caption: ""
+    content: "This function determines the appropriate mipmap level based on the scale of a texture. Mipmapping, introduced in the 1980s, involves precomputing multiple levels of texture detail to optimize rendering performance and reduce aliasing. Quake's implementation dynamically selects the mipmap level, balancing visual fidelity and computational efficiency. This was particularly important in 1996, when hardware lacked dedicated texture filtering capabilities. The technique became a standard in graphics programming, influencing APIs like OpenGL and DirectX. Today, mipmapping is a fundamental feature in game development, ensuring smooth texture transitions across varying distances."
+  - id: "d-drawsolidsurface-flat-shading"
+    line_start: 75
+    line_end: 115
+    title: "D_DrawSolidSurface: Flat Shading Optimization"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Flat_shading"
+    image_url: ""
+    image_caption: ""
+    content: "This routine draws solid-colored surfaces using flat shading, where each polygon is rendered with a single color. Flat shading was a common technique in the 1990s to simplify rendering and improve performance. The function includes optimizations for memory alignment and loop unrolling, minimizing the cost of drawing spans. These techniques reflect the team's deep understanding of x86 assembly and hardware constraints. While flat shading is less common today, the optimization strategies employed here laid the groundwork for more advanced shading techniques, such as Gouraud and Phong shading, which became standard in later 3D engines."
+  - id: "d-calcgradients-texture-mapping"
+    line_start: 118
+    line_end: 151
+    title: "D_CalcGradients: Precision Texture Mapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
-    content: "This function calculates gradients for texture mapping, ensuring that textures are applied accurately to surfaces. Gradient calculations are a mathematical process that determines how texture coordinates change across a polygon, enabling smooth transitions and reducing artifacts. In the 1990s, texture mapping was a cutting-edge technique, and Quake's implementation pushed the boundaries of what was possible on consumer hardware. The gradients calculated here are used to interpolate texture coordinates, a process inspired by research in computer graphics. This level of precision was a hallmark of Quake's engine, setting it apart from competitors and influencing future developments in 3D rendering."
-  - id: "d-drawsurfaces"
-    line_start: 171
+    content: "This function calculates gradients for texture mapping, ensuring accurate alignment of textures on 3D surfaces. Gradients are computed based on the surface's plane and texture vectors, accounting for mipmap scaling and perspective correction. In the mid-1990s, texture mapping was a computationally intensive process, requiring innovative solutions to achieve real-time performance. Quake's gradient calculations were a significant advancement, enabling detailed and realistic textures on complex geometry. These techniques influenced later engines, such as Source and CryEngine, which built on Quake's approach to texture mapping and perspective correction."
+  - id: "d-drawsurfaces-dynamic-surface-rendering"
+    line_start: 169
     line_end: 173
-    title: "D_DrawSurfaces: Rendering the World"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
+    title: "D_DrawSurfaces: Dynamic Surface Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Surface_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The `D_DrawSurfaces` function is the heart of the rendering pipeline, responsible for drawing all visible surfaces in the game world. It handles various surface types, including flat, textured, and turbulent surfaces, applying optimizations like mipmapping and caching. This function reflects the modular design of Quake's engine, allowing different rendering techniques to coexist and adapt to the game's needs. In 1996, rendering a 3D world in real time was a monumental achievement, requiring careful management of memory, processing power, and graphics hardware. The techniques used here influenced not only games but also broader applications in computer graphics, from simulations to virtual reality."
+    content: "This routine handles the rendering of dynamic surfaces, including skyboxes, backgrounds, and turbulent textures. It incorporates logic for handling submodels, such as rotating entities within the world. The function demonstrates Quake's versatility in rendering diverse surface types, a key feature of its 3D engine. By dynamically adjusting rendering parameters based on surface flags, Quake achieved a level of visual complexity that was unprecedented in 1996. This approach influenced later engines, such as Unreal Engine and Frostbite, which adopted similar techniques for dynamic surface rendering and entity management."
+  - id: "d-drawsurfaces-main-rendering-loop"
+    line_start: 173
+    line_end: 335
+    title: "D_DrawSurfaces: Main Rendering Loop"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "This section contains the main rendering loop for surfaces, iterating through visible spans and applying appropriate rendering techniques based on surface flags. It includes logic for flat shading, sky rendering, background gradients, and turbulent textures. The loop also manages submodels, restoring the drawing state after rendering entities. This comprehensive approach reflects the team's commitment to maximizing visual fidelity within hardware constraints. The main rendering loop is a cornerstone of Quake's engine, influencing the design of subsequent engines like Doom 3 and Unity. Its modular structure and optimization strategies remain relevant in modern game development."
 
 ---
 

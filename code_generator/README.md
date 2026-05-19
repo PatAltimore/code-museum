@@ -10,7 +10,8 @@ Generates annotated source code files for the Code Museum reader. Given a GitHub
 4. **Introduce** — generates a multi-paragraph historical narrative for the program page
 5. **Images** — searches Wikipedia Commons for images for each enhancement and the program introduction; a model-based relevance check rejects images that don't directly illustrate the topic
 6. **Format** — parses the model's JSON and writes `.md` files with YAML frontmatter and raw source as the body
-7. **Sync** — updates `public/catalog.json` with all files (generated and not yet generated), recording each file's repo `path` and `generated` status for the source tree browser
+7. **Range-fix** — sends each enhancement back to the model with a focused code excerpt to verify and correct `line_start`/`line_end`, including any leading comment block that belongs to the section
+8. **Sync** — updates `public/catalog.json` with all files (generated and not yet generated), recording each file's repo `path` and `generated` status for the source tree browser
 
 Files already present in `public/programs/` are skipped by default, so the generator is safe to interrupt and re-run.
 
@@ -95,7 +96,7 @@ python generator.py [OPTIONS]
 | `--program-image` | Fetch or replace the program intro image only; skip file images |
 | `--no-images` | Skip all Wikipedia Commons image fetching during generation |
 | `--file-images` | Also fetch per-enhancement images during generation (off by default) |
-| `--fix-ranges` | Post-process existing .md files to correct enhancement line ranges and exit |
+| `--fix-ranges` | Post-process existing .md files to correct enhancement line ranges and exit (also runs automatically after each generated file) |
 | `--dry-run` | Fetch source and build prompts, but do not call the model |
 | `--sync-catalog` | Update `public/catalog.json` from disk and exit without generating |
 | `--no-catalog-sync` | Skip the automatic catalog update after generation |
@@ -273,6 +274,12 @@ Parses the model's JSON response (tolerating truncation and markdown fences) and
 ### client.py
 
 Wraps the Azure OpenAI and Azure AI Foundry APIs into a single `ModelClient` with automatic fallback and retry. Tries models in the order defined in `programs.yaml`. Handles rate limits (429) with exponential backoff, server errors (5xx) with linear backoff, and content filter rejections (400) by aborting the chain immediately.
+
+### range_fixer.py
+
+Post-processing pass that corrects `line_start` and `line_end` for every enhancement in a `.md` file. For each enhancement it sends the model a focused excerpt — 30 context lines above and below the current range — along with any comment block found immediately above the range start. The model reads the comment content and decides whether it belongs to the section, then returns corrected boundaries. Only the two integer fields are rewritten; all other metadata is untouched.
+
+Runs automatically after each file is generated. Also available as a standalone pass via `--fix-ranges` to backfill existing files.
 
 ### checkpointer.py
 

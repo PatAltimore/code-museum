@@ -125,6 +125,7 @@ code_generator/
 ├── generator.py        # Main CLI
 ├── add_program.py      # Add a new GitHub repo to the catalog
 ├── find_images.py      # Fetch Wikipedia Commons images with relevance filtering
+├── range_fixer.py      # Post-processing pass to correct enhancement line ranges
 ├── client.py           # Azure AI Foundry client with fallback chain
 ├── fetch_code.py       # Downloads source files from GitHub (cached)
 ├── prompts.py          # Prompt construction for file annotations
@@ -226,6 +227,6 @@ python generator.py --file-images
 | `--file-images` | Also fetch per-enhancement images during generation |
 | `--dry-run` | Build prompts without calling the model |
 | `--sync-catalog` | Update `catalog.json` from disk and exit |
-| `--fix-ranges` | Post-process existing .md files to correct enhancement line ranges and exit |
+| `--fix-ranges` | Post-process existing .md files to correct enhancement line ranges and exit (also runs automatically after each generated file) |
 | `--no-catalog-sync` | Skip the automatic catalog update after generation |
 | `--config PATH` | Use a different config file (default: `config/programs.yaml`) |

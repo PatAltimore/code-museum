@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "extrastrength-probabilities-for-enemy-ai"
     line_start: 123
-    line_end: 129
+    line_end: 126
     title: "Probabilities for enemy AI behavior"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
@@ -70,15 +70,15 @@ enhancements:
     image_caption: ""
     content: "ShadowProg defines the behavior of the shadow character, a key narrative element in Prince of Persia. The routine branches to level-specific subroutines, such as ShadLevel4 and FinalShad, which handle unique interactions like merging with the player or engaging in combat. This modular design allowed Mechner to create a dynamic and cinematic experience, where the shadow's actions evolve with the story. In the context of 1989, integrating narrative into gameplay was a novel concept, with most games relying on static cutscenes. Mechner's approach influenced later titles, such as the narrative-driven gameplay in The Last of Us (2013), where character actions and story are seamlessly intertwined."
   - id: "finalshad-shadow-and-kid-reunion"
-    line_start: 321
-    line_end: 432
+    line_start: 318
+    line_end: 428
     title: "Shadow and Kid reunion: cinematic storytelling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_video_game"
     image_url: ""
     image_caption: ""
     content: "The FinalShad subroutine orchestrates the climactic reunion between the shadow and the kid, a pivotal moment in the game's narrative. It includes scripted actions such as merging the characters, boosting the player's health meter, and triggering a musical cue. This sequence exemplifies Mechner's cinematic approach to game design, where gameplay and story converge to create an emotional impact. In 1989, such integration of narrative and mechanics was groundbreaking, setting a precedent for modern cinematic games. The technique influenced later titles like Shadow of the Colossus (2005), which also uses gameplay to evoke emotional responses and advance the story."
   - id: "alert-enemy-awareness-and-response"
-    line_start: 467
+    line_start: 462
     line_end: 512
     title: "Enemy awareness and response logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The Alert subroutine governs enemy awareness and response to the player's actions. It includes logic for turning to face the player, reacting to sounds, and deciding whether to engage in combat. This dynamic behavior adds depth to the AI, making enemies feel more lifelike and challenging. In the late 1980s, such complexity in enemy AI was rare, as most games relied on simple patterns. Mechner's implementation influenced the development of stealth and action games, such as the AI routines in Thief: The Dark Project (1998), where enemies dynamically react to player visibility and noise."
   - id: "engarde-combat-initiation-and-strategy"
-    line_start: 513
+    line_start: 508
     line_end: 637
     title: "Combat initiation and strategy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_design"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The EnGarde subroutine handles the initiation of combat and strategic decision-making during fights. It includes checks for the player's position, enemy alertness, and distance, determining whether to advance, retreat, or strike. This sophisticated logic reflects Mechner's focus on creating engaging and dynamic combat scenarios. In the context of 1989, such depth in combat mechanics was rare, as most games relied on simple hit-and-dodge systems. Mechner's approach influenced later action games, such as the combat systems in Dark Souls (2011), where strategic positioning and timing are key to success."
   - id: "followkid-pursuit-and-environmental-awareness"
-    line_start: 638
+    line_start: 631
     line_end: 693
     title: "Pursuit and environmental awareness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The FollowKid subroutine governs enemy pursuit of the player, including checks for environmental obstacles and safe distances. It demonstrates Mechner's attention to detail, ensuring that enemies behave realistically in complex environments. This logic adds tension to the gameplay, as players must navigate both the environment and enemy AI. In the late 1980s, such environmental awareness in AI was uncommon, with most games featuring static or predictable enemy movements. Mechner's implementation influenced later titles, such as the dynamic enemy behaviors in Resident Evil (1996), where zombies react to player actions and environmental changes."
   - id: "checkstab-shadow-and-kid-lunge"
-    line_start: 1009
+    line_start: 1006
     line_end: 1046
     title: "Shadow and Kid's simultaneous lunge logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The CHECKSTAB subroutine handles the simultaneous lunging actions of the Kid and the Shadow, determining outcomes based on their current actions. If both characters are lunging simultaneously, the player wins the tie. This reflects Jordan Mechner's emphasis on fluid, cinematic gameplay where outcomes are visually dramatic and impactful. Written for the Apple II's 6502 assembly, this subroutine leverages the game's rotoscoped animations to enhance realism. The decision to prioritize the player's win in ties aligns with the game's design philosophy of rewarding player skill and engagement. This approach influenced later cinematic platformers like Another World and Flashback, which also used scripted sequences to create dramatic tension."
   - id: "chgshadposn-shadow-position-update"
-    line_start: 1047
+    line_start: 1042
     line_end: 1067
     title: "Updating Shadowman's position dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The chgshadposn subroutine updates the position of the Shadowman character, modifying its coordinates and associated data. This routine ensures that the Shadowman remains an active and dynamic presence in the game world, contributing to the tension and unpredictability of encounters. Mechner's decision to implement such detailed positional updates reflects the game's focus on creating a living, responsive environment. This technique of dynamically updating enemy positions influenced later games with AI-driven characters, such as the guards in Thief: The Dark Project, which similarly relied on positional logic to create immersive stealth gameplay."
   - id: "autoplayback-scripted-movement-sequences"
-    line_start: 1149
+    line_start: 1140
     line_end: 1229
     title: "Scripted movement playback for cinematic sequences"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "AUTOPLAYBACK is a subroutine that plays back prerecorded movement sequences, a hallmark of Prince of Persia's cinematic gameplay. It processes commands like moving forward, backward, or jumping, and executes them based on a predefined script. This innovation allowed Mechner to choreograph dramatic moments, such as the Kid's iconic leap across collapsing platforms. The use of scripted sequences was groundbreaking in 1989, as it bridged the gap between gameplay and storytelling. This technique influenced the design of later cinematic platformers and action-adventure games, including the Uncharted series, which similarly uses scripted sequences to heighten narrative impact."
   - id: "cutcheck-screen-transition-logic"
-    line_start: 1230
+    line_start: 1220
     line_end: 1319
     title: "Handling screen transitions during cuts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -134,7 +134,7 @@ enhancements:
     image_caption: ""
     content: "CUTCHECK manages transitions between screens when the Kid or Shadow moves off-screen. It determines whether to transfer or update guards based on their state and position. This subroutine showcases Mechner's attention to detail in ensuring seamless transitions, maintaining immersion in the game's cinematic world. The logic for transferring or leaving guards behind was a novel approach to handling off-screen entities in platformers, influencing later games like Castlevania: Symphony of the Night, which also featured dynamic transitions between interconnected areas."
   - id: "cutchar-character-screen-transition"
-    line_start: 1470
+    line_start: 1459
     line_end: 1583
     title: "Character transitions across screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The cutchar subroutine handles the logic for moving characters between screens, updating their coordinates and actions to reflect their new positions. This routine is crucial for maintaining the game's fluidity and cinematic feel, as characters seamlessly transition between screens during gameplay. Mechner's implementation of precise positional updates ensured that transitions felt natural and immersive. This technique influenced later platformers and adventure games, such as Limbo and Inside, which similarly prioritize seamless transitions to maintain atmospheric tension."
   - id: "addguard-dynamic-guard-appearance"
-    line_start: 1750
+    line_start: 1740
     line_end: 1829
     title: "Dynamic guard appearances based on level logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "ADGUARD dynamically introduces guards to new screens based on level-specific logic. It handles hard-coded appearances, such as the Shadowman in Level 12, ensuring that encounters are tailored to the narrative and gameplay progression. This subroutine reflects Mechner's innovative use of scripted AI to create tension and challenge. The dynamic introduction of enemies influenced later games with adaptive AI systems, such as Half-Life and its sequels, which use similar techniques to create engaging and unpredictable encounters."
   - id: "addnormalgd-guard-resurrection-logic"
-    line_start: 1830
+    line_start: 1829
     line_end: 1940
     title: "Resurrecting guards dynamically on new screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -158,7 +158,7 @@ enhancements:
     image_caption: ""
     content: "AddNormalGd resurrects guards dynamically when transitioning to new screens, updating their positions and states based on predefined logic. This subroutine ensures that guards remain a persistent threat throughout the game, adding to the tension and challenge. Mechner's implementation of guard resurrection reflects his focus on creating a dynamic, responsive game world. This approach influenced later games with persistent enemy AI, such as the Nemesis system in Middle-earth: Shadow of Mordor, which similarly tracks and updates enemy states across transitions."
   - id: "dynamic-guard-strength-calculation"
-    line_start: 1941
+    line_start: 1938
     line_end: 1949
     title: "Dynamic guard strength calculation in 8 lines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
