@@ -167,7 +167,7 @@ a:hover {
 
 .how-to {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-bottom: 2.5rem;
   padding: 1.25rem;
@@ -919,53 +919,6 @@ a:hover {
   flex: 1;
 }
 
-.lookup-popup {
-  position: fixed;
-  z-index: 1000;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1rem 1.1rem;
-  max-width: 320px;
-  min-width: 200px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: var(--text);
-}
-
-.lookup-popup .lookup-word {
-  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
-  font-weight: 700;
-  color: var(--label);
-  margin-bottom: 0.4rem;
-  font-size: 1rem;
-}
-
-.lookup-popup .lookup-def {
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
-.lookup-popup .instruction-full {
-  font-size: 0.8rem;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-  font-style: italic;
-}
-
-.lookup-popup .lookup-close {
-  position: absolute;
-  top: 0.4rem;
-  right: 0.6rem;
-  background: none;
-  border: none;
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 0;
-  line-height: 1;
-}
 
 .loading {
   display: flex;

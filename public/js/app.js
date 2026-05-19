@@ -749,13 +749,6 @@ function renderShelf(catalog) {
         <div class="how-to-desc">Click any line of code to see what the instruction does. Covers 6502, 8086, MDL, and C — including Wolf3D and DOOM engine subsystems.</div>
       </div>
     </div>
-    <div class="how-to-item">
-      <div class="how-to-icon">✦</div>
-      <div>
-        <div class="how-to-title">Word lookup</div>
-        <div class="how-to-desc">Right-click any word inside an annotation panel to look it up in the dictionary.</div>
-      </div>
-    </div>
   </div>
   <div class="program-grid">${cards}</div>
 </div>`;
@@ -983,56 +976,6 @@ function removeLookup() {
   }
 }
 
-function showLookupPopup(word, x, y) {
-  removeLookup();
-  const el = document.createElement('div');
-  el.className = 'lookup-popup';
-  el.style.left = Math.min(x, window.innerWidth - 340) + 'px';
-  el.style.top = (y + 12) + 'px';
-  el.innerHTML = `<button class="lookup-close" onclick="this.closest('.lookup-popup').remove()">×</button>
-    <div class="lookup-word">${escapeHtml(word)}</div>
-    <div class="lookup-def">Looking up…</div>`;
-  document.body.appendChild(el);
-  lookupPopup = el;
-
-  fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`)
-    .then(r => r.json())
-    .then(data => {
-      if (!el.isConnected) return;
-      const def = data?.[0]?.meanings?.[0]?.definitions?.[0]?.definition;
-      el.querySelector('.lookup-def').textContent = def || 'No definition found.';
-    })
-    .catch(() => {
-      if (el.isConnected) el.querySelector('.lookup-def').textContent = 'Could not fetch definition.';
-    });
-}
-
-function setupWordLookup(container) {
-  let pressTimer = null;
-
-  container.addEventListener('contextmenu', e => {
-    if (e.target.closest('.code-block')) return;
-    const sel = window.getSelection().toString().trim();
-    if (sel && sel.length < 40) {
-      e.preventDefault();
-      showLookupPopup(sel, e.clientX, e.clientY);
-    }
-  });
-
-  container.addEventListener('touchstart', e => {
-    if (e.target.closest('.code-block')) return;
-    const touch = e.touches[0];
-    pressTimer = setTimeout(() => {
-      const sel = window.getSelection().toString().trim();
-      if (sel && sel.length < 40) {
-        showLookupPopup(sel, touch.clientX, touch.clientY);
-      }
-    }, 600);
-  });
-
-  container.addEventListener('touchend', () => clearTimeout(pressTimer));
-  container.addEventListener('touchmove', () => clearTimeout(pressTimer));
-}
 
 document.addEventListener('click', e => {
   if (lookupPopup && !lookupPopup.contains(e.target)) removeLookup();
@@ -1077,7 +1020,6 @@ async function route() {
         programTitle: program ? program.title : programSlug,
         fileTitle: meta.title,
       }) + renderReader(meta, body, program);
-      setupWordLookup(app);
       setupInstructionLookup(app, meta.language, meta.file_path);
     }
   } catch (err) {
