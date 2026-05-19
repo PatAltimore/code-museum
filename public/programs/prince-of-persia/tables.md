@@ -9,66 +9,82 @@ year: 1989
 author: "Jordan Mechner"
 slug: "tables"
 order: 28
-description: "This file defines essential lookup tables for Prince of Persia's Apple II graphics and gameplay logic, showcasing Jordan Mechner's ingenuity in optimizing for constrained hardware."
+description: "This file defines key lookup tables and constants for Prince of Persia's Apple II graphics and gameplay logic, showcasing the ingenuity required to fit cinematic platforming into 128K of memory."
 
 summary:
-  - point: "Lookup tables for efficient graphics and gameplay calculations"
+  - point: "Defines lookup tables for screen coordinates and block positions"
     link: "https://en.wikipedia.org/wiki/Lookup_table"
     link_label: "Lookup Table"
-  - point: "Bank-switched memory techniques to fit within Apple II's 128K limit"
+  - point: "Uses memory-efficient techniques to precompute values for gameplay"
+    link: "https://en.wikipedia.org/wiki/Precomputation"
+    link_label: "Precomputation"
+  - point: "Illustrates early use of assembly for cinematic platforming"
+    link: "https://en.wikipedia.org/wiki/Cinematic_platformer"
+    link_label: "Cinematic Platformer"
+  - point: "Optimized for Apple II bank-switched memory constraints"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank Switching"
-  - point: "Rotoscoping-inspired animation data integration"
-    link: "https://en.wikipedia.org/wiki/Rotoscoping"
-    link_label: "Rotoscoping"
-  - point: "Clever use of precomputed multiplication tables for speed"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Screen coordinate mapping tailored to Apple II's graphics constraints"
-    link: "https://en.wikipedia.org/wiki/Apple_II_graphics"
-    link_label: "Apple II Graphics"
+  - point: "Jordan Mechner's solo development effort shaped modern game design"
+    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
+    link_label: "Jordan Mechner"
 
 enhancements:
   - id: "byte-table-screen-x-to-byte-number"
-    line_start: 44
+    line_start: 45
     line_end: 58
-    title: "Mapping Screen X to Byte Numbers"
+    title: "Mapping screen X-coordinates to byte numbers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "The ByteTable is a lookup table that maps screen X-coordinates (0–255) to byte numbers (0–36). This mapping is crucial for translating the Apple II's graphical memory layout into manageable chunks for rendering. In this moment, Jordan Mechner is solving the problem of efficiently accessing screen data without recalculating offsets repeatedly during gameplay. By precomputing these values, the game can quickly determine which byte corresponds to any given X-coordinate, saving precious CPU cycles. In 1989, the Apple II was nearing the end of its commercial life, but it remained a popular platform for games due to its affordability and widespread adoption. The Apple II's graphics capabilities were limited, with a resolution of 280x192 pixels and a quirky memory layout that required programmers to think creatively. Mechner, working solo, had to optimize every aspect of his code to fit within the constraints of the 6502 processor and the 128K memory limit, which included bank-switched memory. This table exemplifies the ingenuity required to work within such constraints. The precomputed values allowed the game to maintain its fluid animations and responsive controls, hallmarks of Prince of Persia's groundbreaking gameplay. The use of lookup tables like ByteTable became a common technique in game development, influencing later games on more advanced platforms. Mechner's meticulous attention to detail in crafting these tables ensured the game could perform complex graphical operations efficiently, setting a standard for cinematic platformers."
+    content: "The ByteTable maps real screen X-coordinates (0–255) to byte numbers (0–36), effectively compressing the screen's horizontal resolution into manageable chunks. This table is used to quickly calculate which byte in memory corresponds to a given screen position. At the time, memory and processing power were extremely limited on the Apple II, so precomputing these values allowed the game to perform faster calculations during gameplay. Jordan Mechner designed this table to optimize rendering and collision detection, ensuring smooth gameplay despite the constraints of 6502 assembly and the Apple II's hardware. This approach influenced later games by demonstrating how lookup tables could be used to simplify complex calculations in real-time graphics rendering."
   - id: "offset-table-screen-x-to-offset"
     line_start: 61
     line_end: 71
-    title: "Offset Calculation Simplified"
+    title: "Offset table for fine-grained screen positioning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "The OffsetTable maps screen X-coordinates to offsets within bytes, ranging from 0 to 6. This table complements the ByteTable by providing finer granularity for pixel-level operations. Mechner is addressing the challenge of efficiently accessing individual pixels within a byte, a necessity given the Apple II's peculiar graphics memory organization. The Apple II's graphics system stored pixels in groups within bytes, requiring programmers to calculate offsets manually or use precomputed tables like this one. In the late 1980s, such optimizations were vital for achieving smooth gameplay and animation. Mechner's decision to precompute offsets reflects his understanding of the hardware and his commitment to delivering a polished gaming experience. This table's impact extends beyond Prince of Persia. It demonstrates the importance of precomputed data in game development, a technique that persists in modern programming. By reducing the computational overhead during runtime, Mechner ensured the game could focus on delivering its groundbreaking animations and gameplay. This table is a small but essential piece of the puzzle that made Prince of Persia a technical marvel on the Apple II."
+    content: "The OffsetTable complements the ByteTable by providing finer-grained offsets within each byte. For each screen X-coordinate, it yields an offset (0–6) that specifies the exact position within the byte. This was critical for the game's graphics rendering, as it allowed precise placement of pixels within the limited resolution of the Apple II. Mechner's use of this table reflects the meticulous attention to detail required to achieve cinematic visuals on hardware with severe limitations. The concept of combining coarse and fine-grained lookup tables became a common technique in graphics programming, influencing later systems and engines that needed to balance precision with performance."
   - id: "block-table-screen-x-to-block-number"
     line_start: 74
     line_end: 91
-    title: "Screen X to Block Number Mapping"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
+    title: "Screen X-coordinates mapped to block numbers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
     image_caption: ""
-    content: "The BlockTable maps screen X-coordinates to block numbers, ranging from -5 to 14. Blocks represent larger units of the game's graphical layout, such as platforms or walls. Mechner is solving the problem of translating screen coordinates into gameplay elements efficiently. In 1989, the Apple II's graphical limitations required developers to think in terms of blocks rather than individual pixels. This approach simplified collision detection and rendering while adhering to the constraints of the 6502 processor. Mechner's use of negative block numbers (-5) reflects his careful handling of off-screen elements, ensuring smooth transitions and accurate gameplay mechanics. The BlockTable is a testament to Mechner's ingenuity in optimizing for the Apple II's hardware. By precomputing block numbers, the game could quickly determine the graphical and gameplay properties of any given screen region. This technique influenced later games, showcasing the value of precomputed data in resource-constrained environments. Mechner's attention to detail in crafting these tables contributed to Prince of Persia's reputation as a technical and artistic achievement."
-  - id: "pixel-table-screen-x-to-pixel-within-block"
+    content: "The BlockTable maps screen X-coordinates to block numbers, ranging from -5 to 14. Blocks represent discrete sections of the game world, such as platforms or walls. This table is used to determine which block a given screen position corresponds to, enabling efficient collision detection and level rendering. In the 1980s, tile-based game design was a common method for organizing game worlds, and Mechner's implementation here exemplifies how developers optimized these systems for constrained hardware. This table laid the groundwork for modern tile-based engines, influencing games like Super Mario Bros. and later level editors used in indie game development."
+  - id: "pixel-table-block-to-pixel-number"
     line_start: 94
     line_end: 107
-    title: "Pixel-Level Precision Within Blocks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
+    title: "Mapping blocks to pixel positions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Pixel_art"
     image_url: ""
     image_caption: ""
-    content: "The PixelTable maps screen X-coordinates to pixel numbers within blocks, ranging from 0 to 13. This table provides the fine detail necessary for rendering individual pixels within larger graphical blocks. Mechner is addressing the challenge of achieving pixel-level precision on the Apple II's limited hardware. The Apple II's graphics system required developers to manage pixels within blocks manually, a labor-intensive process that demanded careful planning. Mechner's decision to precompute pixel numbers reflects his commitment to optimizing every aspect of the game's performance. By using this table, the game could render detailed animations and environments efficiently. This table highlights the importance of precomputed data in game development, a technique that remains relevant today. Mechner's attention to detail ensured Prince of Persia could deliver its groundbreaking visuals and gameplay on the Apple II. The PixelTable is a small but vital component of the game's technical foundation, showcasing Mechner's mastery of 6502 assembly and his dedication to creating a cinematic platformer."
-  - id: "multiplication-tables-mult10-mult7-mult30"
+    content: "The PixelTable maps blocks to pixel positions within each block, ranging from 0 to 13. This table allows the game to determine the exact pixel within a block for rendering or collision detection. By precomputing these values, Mechner ensured that the game could handle pixel-perfect interactions, which were essential for the precise movements and animations of Prince of Persia. This technique highlights the importance of precomputed data in achieving high-quality visuals and gameplay on limited hardware. The focus on pixel-level accuracy influenced later games that prioritized smooth animations and detailed environments."
+  - id: "multiplication-tables-for-10-7-and-30"
     line_start: 110
     line_end: 140
-    title: "Precomputed Multiplication Tables for Speed"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    title: "Precomputed multiplication tables for speed"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Precomputation"
     image_url: ""
     image_caption: ""
-    content: "The Mult10, Mult7, and Mult30 tables provide precomputed multiplication results for 10, 7, and 30, respectively. These tables are essential for performing arithmetic operations efficiently on the Apple II's 6502 processor, which lacks dedicated multiplication instructions. Mechner is solving the problem of performing frequent multiplications without sacrificing performance. In the late 1980s, game developers often relied on precomputed tables to overcome the limitations of early microprocessors. The 6502 processor was powerful for its time but required creative solutions to handle complex calculations. Mechner's use of multiplication tables reflects his deep understanding of the hardware and his commitment to optimizing the game's performance. These tables are a reminder of the ingenuity required to develop games on early computers. By precomputing multiplication results, Mechner ensured the game could perform calculations quickly, contributing to its smooth gameplay and animations. This technique influenced later games, showcasing the value of precomputed data in resource-constrained environments. Mechner's attention to detail in crafting these tables is a testament to his technical skill and dedication to creating a cinematic platformer."
+    content: "The Mult10, Mult7, and Mult30 tables precompute multiplication results for the numbers 10, 7, and 30, respectively. These tables were used to avoid the computational expense of performing multiplications in real-time on the Apple II's 6502 processor, which lacked a dedicated multiplier. By storing these values in memory, Mechner ensured faster calculations during gameplay, particularly for physics and movement logic. This approach reflects the ingenuity required to work within the constraints of early microprocessors. Precomputed tables like these became standard practice in game development, influencing techniques used in later systems with limited processing power."
+  - id: "block-edge-screen-x-coordinates"
+    line_start: 143
+    line_end: 154
+    title: "Calculating block edges for screen rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
+    image_url: ""
+    image_caption: ""
+    content: "The BlockEdge table calculates the screen X-coordinates of the left edges of blocks, ranging from -12 to 14. This table is essential for rendering the game world, as it defines the boundaries of each block on the screen. By precomputing these values, Mechner ensured efficient rendering and collision detection, allowing the game to maintain its cinematic feel despite hardware limitations. The use of edge tables influenced later tile-based rendering systems, which relied on similar techniques to optimize performance and simplify level design."
+  - id: "block-top-bottom-floor-y-coordinates"
+    line_start: 157
+    line_end: 185
+    title: "Defining vertical positions for blocks and floors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
+    image_url: ""
+    image_caption: ""
+    content: "The BlockTop, BlockBot, and FloorY tables define vertical positions for blocks and floors, using precomputed values based on screen coordinates and block dimensions. These tables are crucial for rendering and collision detection, as they establish the game's vertical layout. Mechner's careful calculation of these values ensured that the game world felt consistent and realistic, a key aspect of Prince of Persia's cinematic platforming. The use of precomputed vertical positions influenced later games that required precise control over character movement and level design, such as Another World and Flashback."
 
 ---
 

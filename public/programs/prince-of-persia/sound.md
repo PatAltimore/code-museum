@@ -9,22 +9,22 @@ year: 1989
 author: "Jordan Mechner"
 slug: "sound"
 order: 1
-description: "Sound routines for Prince of Persia (1989), showcasing Jordan Mechner's ingenuity in crafting cinematic audio effects on the Apple II."
+description: "Sound routines for Prince of Persia (1989), showcasing early techniques for dynamic audio playback on the Apple II."
 
 summary:
-  - point: "Self-modifying code used for dynamic sound playback"
+  - point: "Self-modifying code for sound playback"
     link: "https://en.wikipedia.org/wiki/Self-modifying_code"
     link_label: "Self-modifying code"
-  - point: "Lookup table organizes sound routines efficiently"
+  - point: "Lookup table for sound routines"
     link: "https://en.wikipedia.org/wiki/Lookup_table"
     link_label: "Lookup table"
-  - point: "Direct hardware interaction with the Apple II speaker"
-    link: "https://en.wikipedia.org/wiki/Apple_II_series"
-    link_label: "Apple II hardware"
-  - point: "Optimized memory usage for sound effects in 128K constraints"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank switching"
-  - point: "Cinematic sound design tailored for a platformer"
+  - point: "Efficient memory use in 128K Apple II"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Direct hardware interaction with Apple II speaker"
+    link: "https://en.wikipedia.org/wiki/Apple_II_series#Sound"
+    link_label: "Apple II sound"
+  - point: "Cinematic sound design in a platformer"
     link: "https://en.wikipedia.org/wiki/Cinematic_platformer"
     link_label: "Cinematic platformer"
 
@@ -36,47 +36,47 @@ enhancements:
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "This section defines a lookup table that maps sound routine labels to specific sound effects. Each entry in the table corresponds to a sound routine, such as 'DoPlateDown' or 'DoGateSlam,' which are later invoked dynamically during gameplay. The table is implemented using the 'dw' directive, which stores the addresses of the routines. In the mid-1980s, memory was a precious resource, especially on the Apple II, which operated within tight constraints of 128K. Jordan Mechner, working solo, had to ensure every byte was used efficiently. Lookup tables like this allowed for quick access to routines without the overhead of complex logic or branching. This approach reflects the broader programming practices of the era, where simplicity and directness were paramount. The lookup table is a precursor to modern techniques like function pointers and dispatch tables used in higher-level programming languages. The consequence of this design is a streamlined system where sound effects can be triggered with minimal computational overhead. This efficiency was crucial for maintaining the game's fluidity and responsiveness, especially given the cinematic aspirations of Prince of Persia. The lookup table concept persists in modern programming, albeit in more abstract forms, highlighting its enduring utility."
+    content: "This section defines a lookup table mapping sound effect identifiers to their corresponding subroutine addresses. Each entry in the table uses the `dw` directive to store the memory address of a sound routine, such as `DoPlateDown` or `DoGateDown`. By indexing into this table, the program can dynamically select and execute sound routines based on gameplay events. In 1989, memory constraints on the Apple II required clever techniques for managing resources. Jordan Mechner implemented this table to streamline sound playback without hardcoding individual calls. The lookup table allows the program to reference sound routines efficiently, saving both memory and processing time. This approach reflects the influence of earlier assembly programming practices, where lookup tables were a common optimization for limited hardware. The concept of using lookup tables for dynamic behavior became widespread in game development, influencing later systems like the NES and SNES. Developers studying Mechner's work would adapt similar techniques for sprite animations, AI routines, and sound effects in their own games. Today, lookup tables remain a fundamental programming tool, appearing in modern applications ranging from graphics rendering to cryptography."
   - id: "zero-sound-table-initialization"
     line_start: 64
-    line_end: 78
+    line_end: 67
     title: "Zero sound table initialization"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(programming)"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The 'ZEROSOUND' routine initializes the sound table by setting the number of sounds to zero. This ensures a clean slate for sound playback, preventing any residual data from interfering with the game's audio. The routine uses simple instructions to load and store a zero value, followed by a return from subroutine (RTS). In the late 1980s, initialization routines were a critical part of programming, especially on systems with limited memory and no built-in garbage collection. Mechner's careful attention to initialization reflects the meticulousness required to avoid bugs in assembly language, where even a single uninitialized byte could lead to unpredictable behavior. This routine exemplifies the foundational programming practices of the era, where explicit control over memory and state was necessary. While modern systems often abstract these details, the principles remain relevant, particularly in embedded systems and performance-critical applications. By ensuring the sound table starts empty, Mechner laid the groundwork for reliable audio playback throughout the game."
+    content: "The `ZEROSOUND` subroutine initializes the sound table by setting the number of sounds to zero. It writes the value `0` to the `soundtable` memory location, ensuring that the table starts empty. This routine is called at the beginning of gameplay or after clearing sound effects. During the late 1980s, initializing memory was a critical step in programming for systems like the Apple II, which lacked modern memory management features. Mechner's careful attention to initialization reflects the meticulous programming required to avoid undefined behavior on constrained hardware. By explicitly resetting the sound table, he ensures predictable operation of subsequent routines. This method of memory initialization influenced later game development practices, where zeroing out data structures became standard for ensuring stability. The technique persists in modern programming, particularly in embedded systems and low-level software development."
   - id: "add-sound-to-table"
     line_start: 79
-    line_end: 99
-    title: "Adding sound to the table"
+    line_end: 91
+    title: "Adding sound effects dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
     image_url: ""
     image_caption: ""
-    content: "The 'ADDSOUND' routine adds a sound effect to the sound table, preserving the current state of the registers. It checks if the table is full, increments the sound count, and stores the sound number in the table. This routine is a critical part of the game's sound system, enabling dynamic audio effects based on gameplay events. In the context of 1980s programming, managing state and preserving registers were essential techniques for maintaining system stability. The Apple II's 6502 processor had limited registers, so routines like this had to carefully juggle their contents. Mechner's use of the 'savex' variable to temporarily store the X register demonstrates his skill in optimizing for these constraints. The ability to dynamically add sounds was a significant feature for a game like Prince of Persia, where audio played a key role in creating a cinematic experience. This routine reflects the broader trend of incorporating dynamic and responsive elements into games, a hallmark of Mechner's design philosophy. The technique of preserving state and managing tables remains relevant in modern programming, particularly in low-level and embedded systems."
-  - id: "playback-sound-table"
+    content: "The `ADDSOUND` subroutine adds a sound effect to the sound table. It first saves the current value of the `X` register to preserve state. Then, it checks if the sound table is full by comparing the current count (`soundtable`) against the maximum allowed (`maxsfx`). If space is available, the routine increments the count and stores the sound effect identifier in the table. In the Apple II era, dynamic memory management was rare, and developers often implemented their own systems for managing resources like sound effects. Mechner's design allows the game to queue multiple sound effects for playback, accommodating the cinematic nature of Prince of Persia. This approach highlights his focus on creating an immersive experience despite hardware limitations. Dynamic sound management became a hallmark of later games, influencing titles on the NES and Sega Genesis. Developers studying Mechner's work would adopt similar techniques for handling audio queues, enabling richer soundscapes in platformers and RPGs."
+  - id: "playback-sound-effects"
     line_start: 100
-    line_end: 126
-    title: "Playback all sounds in the table"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Audio_signal_processing"
+    line_end: 118
+    title: "Playback queued sound effects"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
     image_url: ""
     image_caption: ""
-    content: "The 'PLAYBACK' routine iterates through the sound table and plays each sound listed. It checks if sound is enabled and if the table is empty, then loops through the table, calling the 'makesound' routine for each entry. This ensures all queued sounds are played in sequence. In the late 1980s, audio processing on the Apple II was a challenge due to the hardware's limitations. The speaker was controlled directly via memory-mapped I/O, requiring precise timing and efficient code. Mechner's implementation reflects his deep understanding of the hardware, as well as his ability to create a responsive and immersive audio experience within these constraints. This routine highlights the importance of sequencing in sound design, a principle that remains central to modern audio systems. By ensuring sounds are played in order, Mechner created a cohesive auditory experience that complemented the game's visuals and gameplay. The concept of sound tables and playback loops has evolved but remains foundational in game audio programming."
+    content: "The `PLAYBACK` subroutine iterates through the sound table and plays each queued sound effect. It first checks if sound is enabled (`soundon`) and whether the table is empty. If not, it loops through the table, retrieving each sound identifier and calling the `makesound` subroutine to play it. The routine preserves register values to ensure stability during playback. In the late 1980s, real-time sound playback on systems like the Apple II was a technical challenge. Mechner's implementation demonstrates his ability to manage limited resources while delivering a cinematic experience. By queuing and playing sounds dynamically, he enhances the game's atmosphere, aligning audio with visual events. This technique influenced later games that relied on dynamic sound systems, such as LucasArts' adventure titles and early FPS games like Doom. The concept of queuing and iterating through sound effects remains relevant in modern game engines, including Unity and Unreal Engine."
   - id: "self-modifying-code-for-sound"
     line_start: 127
-    line_end: 147
-    title: "Self-modifying code for dynamic sound"
+    line_end: 140
+    title: "Self-modifying code for sound playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""
     image_caption: ""
-    content: "The 'makesound' routine uses self-modifying code to dynamically jump to the appropriate sound routine based on the sound number. It calculates the address of the routine from the lookup table, modifies the jump instruction, and executes it. This technique allows for efficient and flexible sound playback. Self-modifying code was a common practice in assembly programming during the 1980s, particularly on systems like the Apple II, where memory and processing power were limited. By altering the code at runtime, programmers could achieve functionality that would otherwise require more complex and resource-intensive solutions. Mechner's use of this technique demonstrates his ingenuity and mastery of the 6502 assembly language. While self-modifying code is rarely used in modern programming due to its complexity and potential for errors, it remains an important historical technique that showcases the creativity and resourcefulness of early programmers. In the context of Prince of Persia, this approach enabled a rich and varied soundscape that enhanced the game's cinematic quality."
+    content: "The `makesound` subroutine uses self-modifying code to dynamically jump to the appropriate sound routine. It calculates the address of the sound routine from the lookup table and writes it into the `jmp` instruction at `:sm`. When the instruction executes, it jumps to the desired routine. Self-modifying code was a common technique in assembly programming for constrained systems like the Apple II. By altering instructions at runtime, Mechner avoids the overhead of indirect jumps, optimizing performance. This approach reflects the ingenuity required to maximize the capabilities of 8-bit processors. While self-modifying code fell out of favor in modern programming due to security concerns, it remains a fascinating example of early optimization techniques. Developers studying Mechner's work would adapt similar methods for other constrained platforms, such as the Commodore 64 and Atari 2600."
   - id: "tone-generation-for-sound-effects"
     line_start: 331
-    line_end: 360
+    line_end: 352
     title: "Tone generation for sound effects"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_synthesis"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Square_wave"
     image_url: ""
     image_caption: ""
-    content: "The 'tone' routine generates sound effects by directly interacting with the Apple II speaker. It uses the Y and X registers to set the pitch and the accumulator to set the duration. The routine loops to produce the desired tone, toggling the speaker via memory-mapped I/O. Sound synthesis on the Apple II was a low-level process, requiring direct control of hardware. The speaker was accessed through a specific memory address ($C030), and programmers had to manually toggle it to produce sound waves. Mechner's implementation is a testament to his technical skill, as he crafted a variety of sound effects using this rudimentary method. The 'tone' routine is the foundation of the game's sound system, enabling the creation of diverse audio effects that enhance the gameplay experience. While modern systems use sophisticated audio libraries and hardware, the principles of sound synthesis remain rooted in techniques like this. Mechner's work on Prince of Persia showcases the ingenuity required to push the boundaries of what was possible on early computers."
+    content: "The `tone` subroutine generates sound effects by toggling the Apple II speaker at a frequency determined by the pitch and duration parameters. It uses nested loops to control the timing of the toggling, creating square wave tones. The pitch is set using the `Y` and `X` registers, while the duration is specified in the `A` register. In the Apple II era, sound generation was achieved by directly interacting with hardware. The speaker was toggled via memory-mapped I/O at address `$c030`. Mechner's implementation demonstrates his understanding of low-level hardware control, a skill essential for game development on early computers. This method of sound generation influenced later games on similar hardware, such as the Commodore 64 and ZX Spectrum. While modern systems use advanced audio libraries, the principles of tone generation remain foundational in digital audio processing."
 
 ---
 

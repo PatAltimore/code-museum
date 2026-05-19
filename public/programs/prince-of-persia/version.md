@@ -9,28 +9,28 @@ year: 1989
 author: "Jordan Mechner"
 slug: "version"
 order: 29
-description: "This file contains the version string for Prince of Persia, marking its completion in September 1989."
+description: "This file contains the version string for Prince of Persia, marking its release date and version number in the Apple II assembly code."
 
 summary:
-  - point: "Version string hardcoded in assembly"
+  - point: "The version string is hardcoded in the assembly file, a common practice in early software development."
+    link: "https://en.wikipedia.org/wiki/Versioning"
+    link_label: "Versioning"
+  - point: "The Apple II's memory constraints required careful organization, including embedding metadata directly in code."
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Jordan Mechner developed Prince of Persia solo, showcasing the ingenuity required to fit cinematic gameplay into limited hardware."
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     link_label: "Prince of Persia (1989)"
-  - point: "Bank-switched memory used for Apple II constraints"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank switching"
-  - point: "Jordan Mechner's solo development effort"
-    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
-    link_label: "Jordan Mechner"
 
 enhancements:
-  - id: "textline-version-string"
+  - id: "version-string-prince-of-persia"
     line_start: 9
     line_end: 14
-    title: "A timestamp etched into assembly code"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "A version string etched in assembly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Versioning"
     image_url: ""
     image_caption: ""
-    content: "The `TextLine` directive at line 9 embeds the version string \"Prince of Persia 1.0 9/7/89\" directly into the program's binary. This simple but significant inclusion serves as a timestamp, marking the culmination of Jordan Mechner's four-year journey to create one of the most iconic games of the 1980s. By September 7, 1989, the game was finalized, ready to ship for the Apple II platform. In the late 1980s, embedding version information directly into the code was a common practice, especially in assembly language programs. Unlike modern software development, where version control systems and metadata files track revisions, developers working on constrained systems like the Apple II often relied on hardcoded strings to document the software's identity and build date. This was particularly important for debugging and distribution, ensuring that the correct version of the program was loaded onto floppy disks. Jordan Mechner, working solo, had to balance creativity with technical limitations. The Apple IIe/IIc offered only 128K of memory, split between main and auxiliary banks, requiring careful management of every byte. This version string, while seemingly trivial, reflects the meticulous attention to detail that defined Mechner's work. It also hints at the personal nature of the project—Mechner was not just writing a game; he was crafting a cinematic experience, drawing on his background in filmmaking and his brother's physical performance for rotoscoped animations. The inclusion of this version string is a quiet but enduring artifact of Mechner's process. It reminds us of the human effort behind the code and the moment in time when Prince of Persia transitioned from a labor of love to a cultural milestone. Today, such strings are often overlooked, but in 1989, they were a developer's signature, etched into the fabric of the game itself."
+    content: "This section of the code defines the version string for Prince of Persia, embedding the text 'Prince of Persia 1.0 9/7/89' directly into the assembly file. The inclusion of the '@' character at the end serves as a terminator, a common convention in early assembly programming to mark the end of a string. In 1989, software development for the Apple II required meticulous attention to memory constraints. With only 128K of RAM available, developers often embedded metadata, such as version strings, directly into the code to save space and simplify debugging. This approach reflects the pragmatic solutions developers employed to work within the limitations of the hardware. Jordan Mechner, working solo on Prince of Persia, had to balance cinematic ambitions with the technical realities of the Apple II. The version string not only identifies the game but also serves as a timestamp for its release, marking the culmination of years of effort. Mechner's work on Prince of Persia would go on to influence the cinematic platformer genre, inspiring games like Another World and Flashback. The meticulous attention to detail, even in seemingly minor elements like version strings, underscores the craftsmanship that defined early game development."
 
 ---
 

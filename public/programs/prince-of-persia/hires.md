@@ -9,74 +9,170 @@ year: 1989
 author: "Jordan Mechner"
 slug: "hires"
 order: 9
-description: "This file contains the high-resolution graphics routines for Prince of Persia (1989), showcasing Jordan Mechner's ingenuity in optimizing animation and memory usage on the Apple II."
+description: "The foundational graphics routines for Prince of Persia's cinematic platforming on the Apple II."
 
 summary:
   - point: "Bank-switched memory techniques for Apple II graphics"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank Switching"
-  - point: "Use of rotoscoping for animation in a video game"
+  - point: "Routines for layering and masking sprites"
+    link: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    link_label: "Sprites"
+  - point: "Use of rotoscoping for animation"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Efficient handling of edge-clipping and mirroring in graphics routines"
-    link: "https://en.wikipedia.org/wiki/Graphics_pipeline"
-    link_label: "Graphics Pipeline"
-  - point: "Custom subroutines for manipulating screen memory"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Introduction of cinematic platforming in video games"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
+  - point: "Efficient handling of off-screen and clipped graphics"
+    link: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
+    link_label: "Clipping"
+  - point: "Optimization techniques for 6502 assembly"
+    link: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
+    link_label: "6502 Assembly"
 
 enhancements:
-  - id: "ztemp-local-variables"
+  - id: "ztemp-local-variable-setup"
     line_start: 64
     line_end: 87
-    title: "Local variables: the scaffolding of complexity"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"
+    title: "Local variables and memory setup"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "This section defines local variables used throughout the high-resolution graphics routines. Each variable, such as AMASK, BMASK, and VISWIDTH, serves a specific purpose in handling image rendering and memory manipulation. In 1989, memory was precious—128K on the Apple II was both a constraint and a canvas. Jordan Mechner had to carefully allocate and reuse memory, ensuring that every byte contributed to the cinematic experience of Prince of Persia. These variables are the backbone of the graphics routines, enabling efficient calculations for clipping, masking, and rendering. Without this meticulous organization, the game's fluid animations and detailed visuals would have been impossible on such limited hardware."
+    content: "This section initializes local variables and memory buffers used throughout the graphics routines. Variables like `AMASK`, `BMASK`, and `VISWIDTH` are reserved for handling sprite masking and visibility calculations. The programmer, Jordan Mechner, is setting up the groundwork for efficient memory access and manipulation, crucial for the Apple II's constrained 128K memory. At the time, memory management was a critical skill, as developers had to work within tight hardware limits. Techniques like these influenced future game development on constrained systems, including the NES and Commodore 64, where similar memory setups were used for sprite handling."
   - id: "cls-clear-hires-screen"
     line_start: 206
     line_end: 240
-    title: "Clearing the canvas: high-res screen reset"
+    title: "Clearing the hi-res screen to black"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""
     image_caption: ""
-    content: "The CLS subroutine clears the high-resolution screen to black, preparing the canvas for new graphics. This operation is fundamental in graphics programming, ensuring that remnants of previous frames do not interfere with the current display. On the Apple II, this involved writing to specific memory locations corresponding to the screen buffer. Mechner's approach uses loops and indexed addressing to efficiently reset the screen, a necessity given the limited processing power of the 6502 CPU. This routine highlights the balance between simplicity and performance, a hallmark of programming for early home computers."
+    content: "The `CLS` routine clears the high-resolution graphics screen by writing black pixels across the framebuffer. This is achieved by looping through memory addresses corresponding to the screen buffer and setting them to a specific value (`$80` for black). Mechner's choice of direct memory manipulation reflects the Apple II's lack of hardware acceleration for graphics. This approach was common in the 1980s, as developers had to manually control every pixel. The technique laid the groundwork for later framebuffer-based graphics systems, such as those used in early PC games and consoles like the Sega Genesis."
   - id: "crop-image-clipping"
     line_start: 375
     line_end: 516
-    title: "CROP: Precision in edge-clipping"
+    title: "Image clipping for off-screen sprites"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The CROP subroutine handles the complex task of clipping images to fit within the visible screen area. It calculates parameters like TOPEDGE, VISWIDTH, and OFFLEFT to determine which parts of an image are visible and which are offscreen. This was critical for rendering characters and objects in Prince of Persia, where smooth animations and accurate positioning were key to the game's cinematic feel. In the late 1980s, such routines were often handcrafted, as there were no standardized libraries for graphics manipulation. Mechner's implementation reflects a deep understanding of both the Apple II hardware and the visual requirements of his game."
+    content: "The `CROP` routine calculates the visible portion of a sprite when parts of it are off-screen. It adjusts coordinates and dimensions to ensure only the visible portion is rendered. This involves checking against screen boundaries (`LEFTCUT`, `RIGHTCUT`, `TOPCUT`, `BOTCUT`) and modifying the sprite's position and size accordingly. Mechner's implementation is a direct response to the Apple II's limited graphics capabilities, where efficient clipping was essential to maintain performance. This technique influenced later systems, such as the SNES and DOS games, where clipping routines became standard for handling complex scenes with multiple sprites."
+  - id: "layrsave-background-preservation"
+    line_start: 542
+    line_end: 634
+    title: "Preserving background behind sprites"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
+    image_url: ""
+    image_caption: ""
+    content: "The `LAYRSAVE` routine saves the background behind a sprite before it is drawn, storing it in a peel buffer. This allows the background to be restored later when the sprite is removed, ensuring smooth animation without visual artifacts. Mechner's approach mirrors early double-buffering techniques, where off-screen buffers were used to manage graphics. This method was critical for achieving the cinematic quality of Prince of Persia's animations. It influenced later games with complex sprite interactions, such as Another World (1991) and Flashback (1992), which also emphasized smooth transitions and animations."
   - id: "lay-general-image-rendering"
     line_start: 658
     line_end: 680
-    title: "LAY: The heart of image rendering"
+    title: "General routine for rendering sprites"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    image_url: ""
+    image_caption: ""
+    content: "The `LAY` routine serves as the entry point for rendering sprites on the hi-res screen. It handles edge clipping, bit-shifting, and mirroring, delegating specific tasks to subroutines like `LayGen`, `LayMask`, and `LayXOR`. Mechner's design reflects the modularity needed for complex sprite rendering on constrained hardware. By separating concerns into specialized subroutines, he ensures flexibility and reusability. This modular approach influenced later game engines, such as those used in the LucasArts SCUMM system, where sprite rendering was similarly broken into discrete, manageable tasks."
+  - id: "laygen-general-sprite-rendering"
+    line_start: 681
+    line_end: 814
+    title: "General sprite rendering with clipping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_pipeline"
     image_url: ""
     image_caption: ""
-    content: "The LAY subroutine is the central routine for rendering images on the high-resolution screen. It handles edge-clipping, bit-shifting, and mirroring, calling specialized routines like LayGen, LayMask, and LayXOR based on the image's opacity and transformation requirements. This modular design allowed Mechner to reuse and adapt code for different rendering scenarios, a necessity given the constraints of the Apple II. The ability to mirror images was particularly important for animating the Prince's movements, as it allowed the same animation frames to be used for both directions, saving memory and development time."
+    content: "The `LayGen` routine performs the actual rendering of sprites, handling tasks like clipping, bit-shifting, and combining sprite data with the background. It uses precomputed masks and opcodes to efficiently apply operations like AND, OR, and STA. Mechner's implementation is a precursor to modern graphics pipelines, where similar operations are performed at various stages to render images. The efficiency of this routine was critical for achieving smooth animations on the Apple II, influencing later graphics engines used in games like Doom (1993) and Quake (1996), which relied on optimized pipelines for rendering."
+  - id: "laymask-mask-and-or"
+    line_start: 833
+    line_end: 1006
+    title: "Masking and combining sprite data"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
+    image_url: ""
+    image_caption: ""
+    content: "The `LayMask` routine applies a mask to sprite data before combining it with the background using an OR operation. This allows for partial transparency and complex sprite interactions. Mechner's use of bitwise operations reflects the constraints of the Apple II, where such techniques were necessary to achieve visual effects. This approach influenced later games with advanced sprite handling, such as Super Mario Bros. (1985) and Mega Man (1987), where masking and transparency became standard features in platformers."
+  - id: "layxor-sprite-manipulation"
+    line_start: 1008
+    line_end: 1184
+    title: "Sprite manipulation with XOR logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/XOR"
+    image_url: ""
+    image_caption: ""
+    content: "The `LayXOR` routine is responsible for rendering sprites using XOR logic, a technique that allows efficient manipulation of overlapping graphics. By leveraging the XOR operation, Mechner ensures that sprites can be drawn and erased without leaving residual artifacts on the screen. This subroutine initializes parameters, calculates offsets, and iteratively processes each byte of the sprite image, handling edge cases like off-screen portions. In 1989, the Apple II's limited graphical capabilities demanded such clever tricks to achieve smooth animation and dynamic visuals. XOR-based rendering was particularly useful for games requiring frequent updates to overlapping graphics, as it avoided the need for complex masking operations. This approach influenced later sprite manipulation techniques in other games and systems, particularly those with similar memory constraints."
+  - id: "mlay-mirroring-logic"
+    line_start: 1186
+    line_end: 1201
+    title: "Mirroring sprites for dynamic visuals"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Mirroring_(graphics)"
+    image_url: ""
+    image_caption: ""
+    content: "The `MLAY` routine introduces mirroring logic for sprites, enabling the game to flip images horizontally or vertically as needed. This capability is essential for creating dynamic and varied visuals without requiring additional memory for storing mirrored versions of sprites. The routine determines the appropriate rendering method (e.g., XOR, masking, or general operations) based on the opacity value passed in. Mirroring was a common technique in 1980s game development, allowing developers to save memory while still providing visual variety. Mechner's implementation is notable for its efficiency and adaptability, laying the groundwork for similar techniques in other cinematic platformers and action games."
+  - id: "mlaygen-general-rendering"
+    line_start: 1202
+    line_end: 1354
+    title: "General-purpose sprite rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    image_url: ""
+    image_caption: ""
+    content: "The `MLayGen` routine handles general-purpose sprite rendering, supporting operations like AND, OR, and STORE. These operations allow sprites to interact with the background and other graphical elements in flexible ways, such as blending or masking. The routine prepares the rendering parameters, calculates offsets, and processes each byte of the sprite image. In the constrained environment of the Apple II, such versatility was critical for achieving the game's cinematic look. Mechner's ability to implement these operations efficiently contributed to the game's groundbreaking visuals, influencing subsequent games that sought to achieve similar graphical sophistication."
+  - id: "mlaymask-mask-and-or"
+    line_start: 1356
+    line_end: 1539
+    title: "Masking and OR operations for sprites"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
+    image_url: ""
+    image_caption: ""
+    content: "The `MLayMask` routine introduces masking and OR operations, allowing sprites to be rendered with specific transparency and blending effects. Masking is used to selectively display portions of a sprite, while OR operations combine sprite and background data to create composite visuals. This routine is particularly useful for rendering complex scenes where sprites interact with multiple layers of graphics. Mechner's implementation showcases his deep understanding of bitwise operations and their application in game development. Masking techniques like these became standard practice in later games, especially those with layered graphics and transparency effects."
+  - id: "mlayxor-special-xor"
+    line_start: 1541
+    line_end: 1720
+    title: "Special XOR rendering for dynamic effects"
+    wikipedia_url: "https://en.wikipedia.org/wiki/XOR"
+    image_url: ""
+    image_caption: ""
+    content: "The `MLayXOR` routine is a specialized version of the XOR rendering logic, designed for dynamic graphical effects. By using XOR operations, the routine ensures that sprites can be drawn and erased efficiently, enabling smooth animations and transitions. This technique was particularly valuable on the Apple II, where memory and processing power were limited. Mechner's use of XOR for dynamic effects influenced the development of similar techniques in other games, particularly those requiring frequent updates to overlapping graphics. The routine's efficiency and adaptability highlight Mechner's ingenuity in overcoming hardware constraints."
   - id: "fastlay-streamlined-rendering"
     line_start: 1740
     line_end: 1824
-    title: "FASTLAY: Speed over flexibility"
+    title: "Streamlined sprite rendering for speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Optimization_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "FASTLAY is a streamlined version of the LAY routine, designed for maximum speed at the expense of flexibility. It skips operations like clipping, mirroring, and masking, assuming that the image fits perfectly within the screen boundaries. This trade-off was acceptable for certain scenarios in Prince of Persia, where performance was critical to maintaining smooth animations. Mechner's decision to include such a specialized routine reflects the challenges of optimizing graphics on the Apple II, where every cycle counted. FASTLAY demonstrates the ingenuity required to push the limits of early home computers."
-  - id: "invert-y-tables"
-    line_start: 2098
-    line_end: 2130
-    title: "INVERTY: Flipping the perspective"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Transformation_(mathematics)"
+    content: "The `FASTLAY` routine represents a streamlined approach to sprite rendering, sacrificing features like clipping and masking for maximum speed. This routine is designed for scenarios where performance is critical, such as fast-paced action sequences. By eliminating unnecessary operations, Mechner achieves rapid rendering, albeit with potential risks like crashes if the routine is overtaxed. This trade-off between speed and safety reflects the challenges of optimizing graphics on the Apple II. The routine's focus on performance influenced later game developers who sought to balance visual fidelity with responsiveness in their games."
+  - id: "fastmask-optimized-masking"
+    line_start: 1892
+    line_end: 1979
+    title: "Optimized masking for high-speed rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Mask_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The INVERTY subroutine swaps the Y-coordinate tables, effectively flipping the screen's perspective. This operation was likely used for special effects or debugging, allowing Mechner to visualize the game world in a different orientation. Such transformations were rare in 1980s games, as they required additional processing power and memory. However, they highlight Mechner's experimental approach to game development, where even the hardware's limitations became opportunities for creative solutions. INVERTY is a small but fascinating glimpse into the technical artistry behind Prince of Persia."
+    content: "The `FASTMASK` routine combines masking with high-speed rendering, allowing sprites to be displayed with specific transparency effects while maintaining performance. This routine is part of Mechner's efforts to optimize graphics rendering on the Apple II, where memory and processing power were limited. By streamlining the masking process, Mechner ensures that the game can handle complex scenes without sacrificing responsiveness. Techniques like these influenced later games that sought to achieve similar graphical sophistication on constrained hardware."
+  - id: "setfastmain-aux-memory-switching"
+    line_start: 1980
+    line_end: 1988
+    title: "Switching memory banks for rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
+    image_url: ""
+    image_caption: ""
+    content: "The `SETFASTMAIN` routine modifies the FASTLAY routines to expect image tables in the main memory bank, while `SETFASTAUX` switches them to the auxiliary memory bank. This technique is essential for managing the Apple II's bank-switched memory, allowing the game to utilize its full 128K capacity. By dynamically switching memory banks, Mechner ensures that the game can handle large and complex graphics without running out of memory. Bank switching was a common technique on systems with limited RAM, influencing later hardware designs and software development practices."
+  - id: "fastblack-screen-clear"
+    line_start: 2005
+    line_end: 2059
+    title: "FastBlack: Clearing the screen efficiently"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
+    image_url: ""
+    image_caption: ""
+    content: "The FASTBLACK routine is designed to clear the screen by directly manipulating memory addresses associated with the Apple II's graphics display. It sets up key parameters like color, page, and coordinates, then uses nested loops to iterate through memory and write blank values to the screen. This approach minimizes CPU cycles by leveraging direct memory writes, a necessity given the Apple II's limited processing power. In 1989, the Apple IIe and IIc were constrained by 1 MHz 6502 processors and 128 KB of memory, requiring programmers to optimize every operation. Jordan Mechner's solo development effort for Prince of Persia demanded such techniques to maintain smooth gameplay and cinematic visuals. This routine exemplifies the ingenuity required to work within these constraints. The FASTBLACK method influenced later techniques in screen clearing and memory manipulation, particularly in games for similarly constrained platforms like the Commodore 64 and ZX Spectrum. Its emphasis on efficiency and direct memory access became a staple in early game development."
+  - id: "copyscrn-animation-transition"
+    line_start: 2060
+    line_end: 2097
+    title: "CopyScrn: Transitioning between screen states"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    image_url: ""
+    image_caption: ""
+    content: "The COPYSCRN routine copies blocks of memory from one screen buffer to another, enabling smooth transitions between animation frames or gameplay states. It uses indexed addressing to iterate through memory locations and transfer data efficiently. This routine is critical for implementing the game's rotoscoped animations, which were derived from footage of Mechner's brother performing the protagonist's movements. The Apple II's graphics system required developers to manually manage memory and screen buffers, as there was no hardware support for double buffering or advanced graphical techniques. COPYSCRN reflects Mechner's deep understanding of the Apple II's architecture and his ability to maximize its capabilities. The technique of copying screen buffers became a fundamental practice in game development, influencing later systems like the NES and Sega Genesis. It also laid groundwork for modern animation systems in game engines, where efficient memory management remains crucial."
+  - id: "inverty-coordinate-table-flip"
+    line_start: 2098
+    line_end: 2130
+    title: "InvertY: Flipping Y-coordinate tables dynamically"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The INVERTY routine dynamically swaps low and high Y-coordinate values within lookup tables, effectively flipping the vertical positioning of graphical elements. This operation is performed by iterating through the tables and exchanging values between corresponding entries, moving closer to the center with each iteration. The routine is likely used for gameplay effects such as reversing character positions or flipping screen elements. In the late 1980s, lookup tables were a common method for handling coordinate transformations due to the limited computational power of systems like the Apple II. Mechner's use of this technique demonstrates his ability to achieve complex visual effects within tight hardware constraints. The concept of dynamically modifying coordinate tables influenced later games that required real-time transformations, such as platformers and puzzle games on early consoles. It also contributed to the development of more sophisticated graphical algorithms in modern game engines."
 
 ---
 

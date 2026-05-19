@@ -9,82 +9,226 @@ year: 1989
 author: "Jordan Mechner"
 slug: "mover"
 order: 6
-description: "Physics and animation routines for Prince of Persia's groundbreaking realism"
+description: "The physics and animation logic in Prince of Persia (1989) set a new standard for realism in platformers, leveraging the Apple II's hardware constraints and Jordan Mechner's innovative design."
 
 summary:
-  - point: "Uses bank-switched memory to fit within Apple II constraints"
-    link: "https://en.wikipedia.org/wiki/Bank-switching"
-    link_label: "Bank-switching"
-  - point: "Implements cinematic physics for objects like spikes and falling floors"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Animation routines tied to rotoscoped visuals"
+  - point: "Bank-switched memory to fit complex logic in 128K"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank Switching"
+  - point: "Rotoscoping for realistic character animation"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Innovative use of object tables for dynamic transitions"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Solo development by Jordan Mechner over four years"
-    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
-    link_label: "Jordan Mechner"
+  - point: "Physics-driven interactions like falling floors and retracting spikes"
+    link: "https://en.wikipedia.org/wiki/Physics_engine"
+    link_label: "Physics Engine"
+  - point: "Object transition lists for animation and state management"
+    link: "https://en.wikipedia.org/wiki/State_machine"
+    link_label: "State Machine"
+  - point: "Innovative use of 6502 assembly for cinematic gameplay"
+    link: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
+    link_label: "6502 Assembly"
 
 enhancements:
-  - id: "search-object-transition"
+  - id: "search-object-transition-list"
     line_start: 105
     line_end: 128
-    title: "Searching for object transitions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    title: "Search object transition list efficiently"
+    wikipedia_url: "https://en.wikipedia.org/wiki/State_machine"
     image_url: ""
     image_caption: ""
-    content: "This subroutine, `searchtrob`, is tasked with locating objects in the transition list based on their location and screen position. The programmer, Jordan Mechner, needed a way to efficiently manage the dynamic transitions of objects like gates, spikes, and falling floors. In 1989, memory was a precious resource, especially on the Apple II, which had only 128 KB of RAM. This routine uses a loop to compare each object's location and screen position, returning its index or zero if not found. The Apple II's 6502 processor lacked advanced features like hardware-based memory management, forcing Mechner to rely on clever software techniques like this. The transition list was a critical innovation, enabling the game's cinematic feel by allowing objects to interact dynamically with the environment. Without such routines, the game’s realism—its sense of weight and consequence—would have been impossible."
-  - id: "add-object-transition"
+    content: "This subroutine, `searchtrob`, searches the transition list for an object based on its location and screen coordinates. It uses a loop to compare each entry in the list against the input parameters, returning the index of the object if found or zero if not. In the moment, Mechner needed a way to track and manipulate objects like gates, spikes, and slicers dynamically as they transitioned between states. The computing landscape of the late 1980s was constrained by limited memory and processing power, especially on the Apple IIe/IIc's 6502 processor. Mechner's approach reflects a careful balance between functionality and efficiency, using direct memory indexing to minimize overhead. This technique influenced later games by demonstrating how state machines could manage complex interactions in resource-constrained environments. It laid groundwork for modern game engines that rely on similar principles for object state management."
+  - id: "add-object-to-transition-list"
     line_start: 129
     line_end: 162
-    title: "Adding objects to the transition list"
+    title: "Add objects to transition list dynamically"
+    wikipedia_url: "https://en.wikipedia.org/wiki/State_machine"
+    image_url: ""
+    image_caption: ""
+    content: "The `addtrob` subroutine adds a new object to the transition list or updates its direction if it is already listed. It first calls `searchtrob` to check for the object's existence, then either modifies its direction or appends it to the list. Mechner was solving the problem of managing dynamic objects like gates and spikes that needed to transition between states during gameplay. The Apple II's memory constraints required efficient data structures and algorithms, and this approach exemplifies the use of compact, linear lists for state tracking. The concept of dynamically adding and updating objects in a transition list became a standard practice in game development, influencing later titles that used state machines for animation and interaction. This technique is echoed in modern engines like Unity and Unreal, where state-driven object management is a core feature."
+  - id: "save-and-load-mob-data"
+    line_start: 180
+    line_end: 216
+    title: "Save and load MOB data efficiently"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "The `savemob` and `loadmob` routines handle saving and loading the properties of MOBs (mobile objects) like their position, velocity, type, and level. These routines use indexed addressing to read and write data directly to memory, ensuring minimal overhead. Mechner needed a way to manage the state of dynamic objects like enemies and environmental hazards while keeping memory usage low. The Apple II's limited RAM and lack of hardware support for advanced memory management meant that every byte counted. By organizing MOB data in contiguous memory blocks and using efficient routines to access them, Mechner optimized both speed and memory usage. This approach influenced later games that required efficient handling of dynamic entities, paving the way for techniques used in modern game engines to manage large numbers of objects in real-time."
+  - id: "trigger-slicer-animation"
+    line_start: 217
+    line_end: 245
+    title: "Trigger slicer animation dynamically"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    image_url: ""
+    image_caption: ""
+    content: "The `TRIGSLICER` subroutine triggers the animation of slicers, sharp objects that move back and forth to threaten the player. It checks the slicer's current state and only allows triggering if it is between slices. Mechner was solving the problem of creating believable and interactive environmental hazards that could respond to player actions. The slicer animation added tension and required precise timing from players, contributing to the game's cinematic feel. This subroutine reflects the broader trend in late 1980s game design toward more dynamic and responsive environments. The concept of state-driven animations for environmental hazards influenced later games, including platformers like Super Mario World and action-adventure titles like Tomb Raider, where dynamic traps became a staple."
+  - id: "close-exit-animation"
+    line_start: 246
+    line_end: 258
+    title: "Close exit with dramatic animation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    image_url: ""
+    image_caption: ""
+    content: "The `CLOSEEXIT` subroutine animates the closing of an exit by setting its state to fully open and then rapidly transitioning it to closed. Mechner was creating a dramatic and visually impactful way to signal the end of a level or a failed attempt to escape. The Apple II's hardware constraints required careful timing and efficient state transitions to achieve smooth animations. This subroutine exemplifies how animation can be used to enhance storytelling and gameplay, a principle that has influenced countless games since. The dramatic closing of exits can be seen in modern titles like Dark Souls, where environmental changes signal shifts in narrative or gameplay."
+  - id: "trigger-flask-animation"
+    line_start: 269
+    line_end: 288
+    title: "Trigger flask animation with randomness"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
+    image_url: ""
+    image_caption: ""
+    content: "The `TRIGFLASK` subroutine triggers the animation of a flask, adding a random starting frame to its state for variability. Mechner was solving the problem of making environmental objects feel dynamic and unpredictable, enhancing the game's immersive atmosphere. The use of random number generation to vary animations was innovative for the time, as it added a layer of realism and replayability. This technique influenced later games by demonstrating how randomness could be used to create more engaging and lifelike environments. Randomized animations are now a common feature in modern games, from idle character movements to procedural generation in titles like Minecraft."
+  - id: "trigger-sword-animation"
+    line_start: 289
+    line_end: 303
+    title: "Trigger sword animation with precision"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    image_url: ""
+    image_caption: ""
+    content: "The `TRIGSWORD` subroutine triggers the animation of a sword, setting its direction and randomizing its starting frame. Mechner was creating a dynamic and responsive gameplay element that added tension and challenge. The sword animation required precise timing and interaction, reflecting the game's focus on cinematic realism. This subroutine highlights the importance of detailed animations in creating immersive gameplay experiences. The concept of interactive and animated weapons influenced later games like The Legend of Zelda series, where weapon animations are integral to gameplay."
+  - id: "trigger-torch-animation"
+    line_start: 304
+    line_end: 322
+    title: "Trigger torch animation with variability"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    image_url: ""
+    image_caption: ""
+    content: "The `TRIGTORCH` subroutine triggers the animation of a torch, adding a random starting frame for variability. Mechner was enhancing the game's atmosphere by making environmental objects feel alive and dynamic. The torch animation contributed to the game's cinematic feel, creating a sense of realism and immersion. This approach influenced later games by demonstrating how detailed and dynamic environmental animations could enhance storytelling and gameplay. Animated torches and similar objects are now common in modern games, from RPGs like Skyrim to action titles like Assassin's Creed."
+  - id: "trigger-spikes-animation"
+    line_start: 323
+    line_end: 353
+    title: "Trigger spikes with state-based logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    image_url: ""
+    image_caption: ""
+    content: "The `TRIGSPIKES` subroutine triggers the animation of spikes, checking their current state and transitioning them accordingly. Mechner was solving the problem of creating interactive and believable environmental hazards that added tension and challenge to gameplay. The spikes' state-based logic reflects the game's focus on realism and precision, requiring players to time their movements carefully. This subroutine influenced later games by demonstrating how state-driven animations could create dynamic and engaging gameplay elements. Spikes and similar hazards are now a staple in platformers and action-adventure games, from Super Meat Boy to Hollow Knight."
+  - id: "jam-spikes-animation"
+    line_start: 354
+    line_end: 364
+    title: "Jam spikes to create permanent hazards"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    image_url: ""
+    image_caption: ""
+    content: "The `JAMSPIKES` subroutine jams the spikes in place, turning them into permanent hazards. Mechner was creating a way to increase tension and challenge by making certain hazards unchangeable. The concept of permanent environmental changes added depth to the game's mechanics, forcing players to adapt their strategies. This approach influenced later games by demonstrating how environmental changes could be used to enhance gameplay. Permanent hazards are now common in modern games, from traps in Dark Souls to environmental puzzles in Portal."
+  - id: "animflask-potion-animation"
+    line_start: 1016
+    line_end: 1041
+    title: "Animating potions: a cinematic flourish"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    image_url: ""
+    image_caption: ""
+    content: "This routine animates the potion flask, a small but visually striking element of Prince of Persia's world. It checks whether the potion is visible on the screen, retrieves the current animation frame, and updates the state accordingly. The use of rotoscoping to trace realistic movements even extends to objects like potions, creating a cohesive visual style. In 1989, most platformers relied on static or simplistic animations, but Mechner's attention to detail elevated the genre. This approach influenced later cinematic platformers like Another World and Flashback, which also emphasized fluid animation and immersive environments."
+  - id: "animsword-gleaming-sword-animation"
+    line_start: 1042
+    line_end: 1062
+    title: "Animating the gleaming sword"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `addtrob` routine handles the addition of objects to the transition list, or updates an existing object’s transition direction. This was essential for managing dynamic elements like gates opening or spikes retracting. In the late 1980s, platformers typically featured static environments, but Mechner aimed to create a world that felt alive. This routine checks if an object is already listed, updates its direction if necessary, or adds it to the list if it’s new. The constraints of the Apple II meant that the number of objects in transition was capped, as indicated by the `maxtr` constant. This limitation reflects the hardware's inability to handle large amounts of dynamic data, forcing Mechner to optimize every byte. The transition list became a cornerstone of Prince of Persia’s groundbreaking realism, influencing future games that sought to create dynamic worlds."
-  - id: "animate-slicer"
-    line_start: 955
-    line_end: 1015
-    title: "Animating the deadly slicer"
+    content: "This routine animates the gleaming sword, a key visual element that adds to the game's cinematic atmosphere. It decrements the animation state and, if the state reaches zero, generates a random frame within a defined range to simulate the sword's gleam. The randomization adds a dynamic quality, making the sword appear alive rather than mechanically repetitive. This technique reflects Mechner's commitment to realism and detail, which set Prince of Persia apart from contemporaries like Super Mario Bros. The gleaming sword became a hallmark of the game's visual storytelling, influencing later games that sought to integrate cinematic elements into gameplay."
+  - id: "animtorch-dynamic-torch-animation"
+    line_start: 1063
+    line_end: 1083
+    title: "Dynamic torch animation: flickering realism"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    image_url: ""
+    image_caption: ""
+    content: "This routine animates the flickering torch, a subtle but impactful detail that enhances the game's immersive atmosphere. It checks the torch's visibility, retrieves the current flame frame, and updates the state to simulate flickering. The torch's animation is tied to the game's physics engine, ensuring it feels integrated into the environment rather than a static decoration. In the late 1980s, such dynamic environmental elements were rare in games, but they became a defining feature of cinematic platformers. The torch animation inspired similar techniques in games like Castlevania and Diablo, where environmental storytelling plays a crucial role."
+  - id: "animspikes-dangerous-spike-mechanics"
+    line_start: 1124
+    line_end: 1175
+    title: "Dangerous spikes: timing and tension"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `animslicer` routine animates one of the game’s most iconic hazards: the slicer. This deadly trap moves back and forth, threatening to cut the protagonist in half. The slicer’s animation involves incrementing its state and determining whether it should wrap around or continue slicing. Mechner’s use of bitwise operations to manage the slicer’s state showcases his deep understanding of the 6502 assembly language. The slicer’s behavior is tied to the visible screen, ensuring it only animates when the player can see it—a clever optimization given the Apple II’s limited processing power. The slicer’s realism and timing added tension and cinematic flair to the game, setting it apart from other platformers of the era. This routine exemplifies the meticulous attention to detail that made Prince of Persia a landmark in video game history."
-  - id: "animate-loose-floor"
+    content: "This routine animates the spikes, a key obstacle in Prince of Persia's perilous environments. It manages the extension and retraction of spikes, using a timer to control their state. The spikes' animation is tied to the player's movement, creating a sense of tension and urgency. In 1989, such dynamic hazards were uncommon, as most platformers relied on static traps or predictable patterns. Mechner's approach added a layer of realism and challenge, influencing later games like Tomb Raider and Uncharted, which also use dynamic environmental hazards to heighten player engagement."
+  - id: "animfloor-loose-floor-animation"
     line_start: 1176
     line_end: 1236
-    title: "Animating falling floors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Loose floor: a collapsing challenge"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
-    content: "The `animfloor` routine animates loose floor tiles that detach and fall when stepped on. This mechanic was a key part of Prince of Persia’s physics-based gameplay, creating a sense of danger and urgency. The routine increments a timer until the floor detaches, at which point it changes the object’s ID to 'empty space' and creates a new MOB (mobile object) to simulate the falling tile. This transition from static to dynamic objects was revolutionary for its time, allowing the environment to react to the player’s actions. Mechner’s implementation reflects the constraints of the Apple II, where every object had to be meticulously tracked and updated. The falling floors added a layer of realism and unpredictability, making the game’s world feel alive and responsive."
-  - id: "check-crush"
+    content: "This routine animates the loose floor, a unique gameplay mechanic that adds to the game's sense of danger and realism. It tracks the floor's state, transitioning from a wiggling phase to detachment based on a timer. When the floor detaches, it creates a new MOB (mobile object) to simulate the falling debris. This mechanic showcases Mechner's innovative use of physics to create dynamic environments. The loose floor mechanic influenced later games like Spelunky and Celeste, which use similar techniques to create interactive and unpredictable challenges."
+  - id: "animmobs-falling-object-update"
+    line_start: 1588
+    line_end: 1641
+    title: "Updating falling objects: MOB dynamics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    image_url: ""
+    image_caption: ""
+    content: "This routine updates all MOBs (mobile objects) in motion, such as falling floors. It iterates through each MOB, animates its movement, checks for collisions, and deletes MOBs that are no longer active. The routine uses efficient memory management to handle multiple objects within the constraints of the Apple II's hardware. In 1989, managing dynamic objects in real-time was a technical challenge, but Mechner's solution paved the way for more complex physics engines in games like Half-Life and Portal, which rely on dynamic object interactions to drive gameplay."
+  - id: "mobfloor-falling-floor-physics"
+    line_start: 1657
+    line_end: 1755
+    title: "Falling floor: realistic physics simulation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    image_url: ""
+    image_caption: ""
+    content: "This routine simulates the physics of a falling floor, including acceleration, terminal velocity, and collision detection. It checks for interactions with other objects, such as landing on a loose floor or crashing into a solid surface. The routine's detailed physics calculations create a sense of realism that was groundbreaking for 1989. Mechner's work on falling objects influenced the development of physics engines in games like Quake and Unreal, which use similar principles to simulate realistic object behavior."
+  - id: "checkcrush-crushing-mechanics"
     line_start: 1903
     line_end: 1908
-    title: "Detecting character crushes"
+    title: "Crushing mechanics: perilous precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `checkcrush` routine determines whether a falling floor has crushed the protagonist. This subroutine checks the screen, block, and vertical position of the MOB (mobile object) against the character’s position. If the MOB is within a certain distance of the character, it triggers the crushing sequence. This mechanic added a layer of consequence to the game, as players had to carefully navigate collapsing environments. Mechner’s use of precise calculations to detect collisions reflects the technical challenges of creating realistic physics on the Apple II. The crushing mechanic was part of the game’s broader emphasis on realism and cinematic storytelling, influencing the design of future platformers."
+    content: "This routine checks whether a falling floor has crushed a character, using precise collision detection based on screen position and block coordinates. The crushing mechanic adds a layer of danger and urgency to the gameplay, forcing players to navigate carefully. In 1989, such detailed collision detection was rare, but it became a standard feature in later games like Limbo and Inside, which use similar mechanics to create tension and challenge."
+  - id: "crushchar-character-crushing-animation"
+    line_start: 1942
+    line_end: 1983
+    title: "Character crushing: cinematic consequences"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    image_url: ""
+    image_caption: ""
+    content: "This routine handles the animation and consequences of a character being crushed by a falling floor. It aligns the character with the floor and triggers a death sequence, adding a cinematic quality to the game's hazards. Mechner's use of rotoscoping to animate the character's movements extends to their interactions with the environment, creating a cohesive visual style. This approach influenced later games like Shadow of the Colossus and The Last of Us, which emphasize cinematic storytelling through gameplay mechanics."
+  - id: "addmobs-object-table-update"
+    line_start: 1984
+    line_end: 2005
+    title: "Adding MOBs to the object table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    image_url: ""
+    image_caption: ""
+    content: "This routine adds all visible MOBs to the object table, ensuring they are drawn on the screen during the next frame update. It checks each MOB's visibility and type before adding it to the table. The efficient handling of dynamic objects within the constraints of the Apple II's hardware showcases Mechner's technical expertise. This technique influenced the development of rendering systems in games like Doom and Minecraft, which rely on object tables to manage dynamic environments."
+  - id: "floorpiece-visibility-check"
+    line_start: 2006
+    line_end: 2085
+    title: "Checking if floorpiece is visible onscreen"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bank-switching"
+    image_url: ""
+    image_caption: ""
+    content: "This section determines whether a floorpiece (a mobile object or MOB) is visible onscreen, ensuring that only relevant objects are processed to optimize performance. The routine checks the MOB's vertical position against screen boundaries and adjusts its position temporarily if necessary. It then calculates the affected blocks and marks them for rendering. In 1989, memory and processing power were extremely limited on the Apple IIe/IIc, with only 128K of RAM available. Bank-switched memory was used to manage this constraint, and routines like this were essential for maintaining smooth gameplay. Jordan Mechner's focus on cinematic realism required meticulous attention to detail, such as ensuring objects interacted correctly with the environment. This approach influenced later game engines, which adopted similar optimization techniques for handling off-screen objects, including Unreal Engine and Unity."
   - id: "add-mob-to-object-table"
     line_start: 2086
     line_end: 2119
     title: "Adding MOBs to the object table"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
     image_url: ""
     image_caption: ""
-    content: "The `addmobobj` routine adds mobile objects (MOBs) like falling floors to the object table, ensuring they are drawn on screen. This routine assigns properties like type, position, and frame to each MOB, preparing it for rendering. On the Apple II, managing dynamic objects required careful optimization due to limited memory and processing power. Mechner’s approach allowed the game to handle multiple moving objects without sacrificing performance. The object table was a critical innovation, enabling the game’s dynamic environments and contributing to its cinematic feel. This routine highlights the technical ingenuity required to push the boundaries of 1980s hardware."
+    content: "This subroutine adds a mobile object (MOB) to the game's object table, which tracks all interactive elements in the environment. Each MOB is assigned properties like type, position, frame, and collision boundaries. The object table is a precursor to modern object-oriented programming concepts, where entities are encapsulated with attributes and behaviors. In the late 1980s, managing dynamic objects efficiently was a significant challenge due to hardware limitations. Mechner's implementation ensured that the game could handle multiple interactive elements without overwhelming the system. This technique laid the groundwork for more sophisticated object management systems in later games, such as those seen in the Doom engine and other early 3D game engines."
+  - id: "shake-floors"
+    line_start: 2120
+    line_end: 2128
+    title: "Initiating floor-shaking mechanics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    image_url: ""
+    image_caption: ""
+    content: "The SHAKEM subroutine introduces the floor-shaking mechanic, a dynamic environmental effect that enhances the game's realism. It checks the current level and screen visibility before preparing blocks for shaking. This mechanic was part of Mechner's effort to make the game world feel alive and reactive, a significant departure from static environments in earlier platformers. By simulating physical interactions like shaking floors, Prince of Persia set a new standard for environmental realism in games. This concept influenced the development of physics engines in later games, including Half-Life and Portal, which used similar principles to create immersive worlds."
   - id: "shake-loose-floor"
+    line_start: 2130
+    line_end: 2151
+    title: "Shaking loose floors dynamically"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    image_url: ""
+    image_caption: ""
+    content: "SHAKEM1 and its related logic handle the dynamic shaking of loose floors, adding a layer of unpredictability and tension to the gameplay. The routine iterates through blocks, checking their state and triggering the shakeit subroutine for loose blocks. This mechanic was groundbreaking for its time, as it introduced environmental hazards that responded dynamically to player actions. Mechner's focus on creating a cinematic experience extended to these subtle details, which contributed to the game's immersive atmosphere. The idea of dynamic environmental interactions became a staple in later games, influencing titles like Tomb Raider and Uncharted, which built on this foundation to create richly interactive worlds."
+  - id: "add-floor-to-trans-list"
     line_start: 2152
     line_end: 2174
-    title: "Shaking loose floors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "Adding shaking floors to the transition list"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
-    content: "The `shakeit` routine animates loose floor tiles that wiggle before detaching. This visual cue warned players of impending danger, adding tension to the gameplay. The routine sets the floor’s state to 'wiggling' and adds it to the transition list, ensuring it animates dynamically. Mechner’s use of state-based animations reflects his commitment to creating a realistic and immersive world. The shaking floors were part of the game’s physics-driven design, which set it apart from other platformers of the era. This mechanic added a layer of strategy, as players had to decide whether to risk stepping on unstable tiles."
+    content: "The shakeit subroutine adds a shaking floor to the transition list, marking it as active and ready for rendering. This ensures that the visual and physical effects of the shaking are processed correctly. The use of a transition list reflects Mechner's meticulous approach to resource management, as it allowed the game to handle dynamic effects without overloading the Apple II's limited hardware. This technique of managing active objects and transitions influenced later game development practices, including the use of event-driven programming in modern engines. Games like The Legend of Zelda: Ocarina of Time and others built on these principles to create dynamic and responsive environments."
 
 ---
 
