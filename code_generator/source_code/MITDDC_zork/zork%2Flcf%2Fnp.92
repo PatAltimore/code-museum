@@ -1,93 +1,3 @@
----
-title: "np.93"
-program: "Zork"
-program_slug: "zork"
-file_path: "zork/lcf/np.93"
-language: "MDL (Muddle)"
-github_url: "https://github.com/MITDDC/zork/blob/master/zork/lcf/np.93"
-year: 1977
-author: "Anderson, Blank, Daniels, Lebling"
-slug: "np"
-order: 2
-description: "This file contains key parsing routines for Zork, one of the earliest text-based adventure games, written in MDL on the PDP-10. It showcases the ingenuity required to process complex player commands in a constrained computing environment."
-
-summary:
-  - point: "MDL's Lisp-like syntax enabled complex data manipulation for Zork's parser."
-    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    link_label: "MDL"
-  - point: "The parser's design reflects the limitations of PDP-10 hardware and ARPANET access."
-    link: "https://en.wikipedia.org/wiki/PDP-10"
-    link_label: "PDP-10"
-  - point: "Zork's command parsing influenced later adventure games and interactive fiction engines."
-    link: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    link_label: "Interactive Fiction"
-  - point: "The file demonstrates early use of object-oriented concepts in game design."
-    link: "https://en.wikipedia.org/wiki/Object-oriented_programming"
-    link_label: "Object-Oriented Programming"
-  - point: "The modularity of parsing routines allowed flexibility in expanding Zork's vocabulary and syntax."
-    link: "https://en.wikipedia.org/wiki/Zork"
-    link_label: "Zork"
-
-enhancements:
-  - id: "global-data-initialization"
-    line_start: 2
-    line_end: 8
-    title: "Global data structures for parsing commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    image_url: ""
-    image_caption: ""
-    content: "These lines set up global variables that serve as the backbone for Zork's command parsing. The `WORDS`, `OBJECT-OBL`, and `ACTIONS` variables define lists of words and actions the game understands, while `ORPHANS` provides a placeholder for incomplete commands. In 1977, the PDP-10's memory constraints meant that every byte had to be carefully allocated, and these structures reflect that discipline. The use of `MOBLIST` and `OBLIST` showcases MDL's ability to handle dynamic lists efficiently, a feature borrowed from its Lisp heritage. These foundational elements allowed Zork to interpret complex player inputs, laying the groundwork for interactive fiction's evolution."
-  - id: "conditional-preparation-vectors"
-    line_start: 10
-    line_end: 17
-    title: "Conditional setup of preparation vectors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "These lines define `PREPVEC` and `PREP2VEC`, which are used to handle prepositions and objects in player commands. The conditional logic ensures that these vectors are only initialized when certain conditions are met, such as the presence of a 'compile' directive or specific glue assignments. This modular approach reflects the flexibility of MDL and the need to adapt to varying player inputs. In the late 1970s, parsing natural language was a novel challenge, and Zork's developers—Anderson, Blank, Daniels, and Lebling—had to innovate within the constraints of the PDP-10's processing power. These vectors allowed the game to interpret phrases like \"take the sword with the shield\" by breaking them into manageable components."
-  - id: "sparse-parsing-routine"
-    line_start: 19
-    line_end: 129
-    title: "Sparse: The heart of Zork's parser"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The `SPARSE` routine is the centerpiece of Zork's command parsing system. It takes player input, represented as vectors, and attempts to match it against known actions, objects, and directions. The auxiliary variables (`WORDS`, `OBJECT-OBL`, `ACTIONS`, etc.) provide context for the parsing process, while the nested conditionals handle edge cases like ambiguous commands or missing objects. In the 1970s, parsing human language was an emerging field, and Zork's developers had to balance sophistication with the PDP-10's limited computational resources. This routine embodies their ingenuity, using MDL's Lisp-like capabilities to dynamically interpret commands. The influence of this parser can be seen in later interactive fiction engines like Inform and TADS, which expanded on these foundational ideas."
-  - id: "orphan-handling"
-    line_start: 133
-    line_end: 142
-    title: "Orphan commands: Resolving ambiguity"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "The `ORPHAN` routine addresses a common problem in text-based games: incomplete or ambiguous commands. By storing details like the action, object, and preposition in the `ORPHANS` structure, Zork can prompt the player for clarification or infer their intent. This feature reflects the game's commitment to user-friendly interaction, a hallmark of its design. In the late 1970s, most computer games had rigid input requirements, but Zork's developers wanted to create a more conversational experience. This routine allowed the game to handle commands like \"take\" or \"open\" gracefully, asking follow-up questions to resolve ambiguity. The concept of orphan commands has since become a standard in interactive fiction, influencing the design of modern text parsers."
-  - id: "syntax-matching"
-    line_start: 144
-    line_end: 180
-    title: "Syntax matching for complex commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The `SYN-MATCH` routine attempts to match player input against predefined syntactic patterns. By analyzing the action and objects involved, it determines whether the command is valid and how it should be executed. This routine highlights Zork's ability to handle nuanced language, a significant leap forward in game design. In the 1970s, most games relied on simple verb-noun pairs, but Zork's parser could interpret more complex structures, such as \"put the book on the table.\" The developers leveraged MDL's list processing capabilities to create a flexible and extensible syntax engine. This innovation paved the way for more sophisticated text parsers in later interactive fiction titles."
-  - id: "get-object-routine"
-    line_start: 363
-    line_end: 390
-    title: "Get-Object: Searching for items in the game world"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "The `GET-OBJECT` routine is responsible for locating objects in the game world based on player input. It searches through various lists, including the player's inventory, the current room, and nearby containers, to find a match. This functionality is crucial for interpreting commands like \"take the sword\" or \"examine the chest.\" In the late 1970s, Zork's developers faced the challenge of creating a believable and interactive world within the constraints of the PDP-10. This routine showcases their solution: a dynamic search algorithm that could handle nested containers and ambiguous references. The ability to interact with objects in a realistic manner was one of Zork's defining features, setting a standard for future adventure games."
-  - id: "search-list-routine"
-    line_start: 400
-    line_end: 419
-    title: "Search-List: Navigating nested containers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
-    image_url: ""
-    image_caption: ""
-    content: "The `SEARCH-LIST` routine extends Zork's object search capabilities by handling nested containers. It recursively examines the contents of visible and open objects, allowing players to interact with items inside chests, drawers, or bags. This feature reflects an early use of object-oriented principles, where objects are treated as entities with properties and relationships. In the 1970s, such sophistication was rare in games, but Zork's developers wanted to create a rich and immersive experience. This routine enabled commands like \"take the key from the chest\" to work seamlessly, contributing to the game's reputation for depth and realism. The concept of nested containers has since become a staple in adventure games and RPGs."
-
----
-
 
 <SETG WORDS <OR <GET WORDS OBLIST> <MOBLIST WORDS 23>>>
 
@@ -346,7 +256,7 @@ enhancements:
 <DEFINE GWIM (BIT FWORD ACTION
 	      "AUX" (AOBJ <VTRNN .FWORD ,VABIT>) (NTAKE <VTRNN .FWORD ,VTBIT>)
 		    (ROBJ <VTRNN .FWORD ,VRBIT>) (OBJ <>) NOBJ (PV ,PRSVEC)
-		    SAVOBJ (AV <AVEHICLE ,WINNER>) SF)
+		    SAVOBJ (AV <AVEHICLE ,WINNER>))
 	#DECL ((BIT) FIX (NTAKE ROBJ AOBJ) <OR ATOM FALSE>
 	       (OBJ NOBJ AV) <OR OBJECT FALSE> (PV) VECTOR
 	       (SAVOBJ) <OR FALSE OBJECT PHRASE> (FWORD) VARG (ACTION) ACTION)
@@ -359,12 +269,10 @@ enhancements:
 			       <TRNN .NOBJ ,FINDMEBIT>>>
 		      <COND (<AND <OR <SET SAVOBJ <2 .PV>> T>
 				  <NOT .OBJ>
-				  <OR <SET SF <1 .PV>> T>
 				  <PUT .PV 1 ,TAKE!-WORDS>
 				  <PUT .PV 2 .NOBJ>
 				  <OR <==? .ACTION <1 .PV>> .NTAKE <TAKE>>
 				  <PUT .PV 2 .SAVOBJ>
-				  <PUT .PV 1 .SF>
 				  .NOBJ>)
 			    (<PUT .PV 2 .SAVOBJ> <>)>)
 		     (<OR .NOBJ <NOT <EMPTY? .NOBJ>>> ,NEFALS)
@@ -532,4 +440,4 @@ AND TAKEABLE, OR VISIBLE AND IN SOMETHING THAT'S VISIBLE AND OPEN)"
     .OBJS>
    .NOBJ>
 
- 
+   

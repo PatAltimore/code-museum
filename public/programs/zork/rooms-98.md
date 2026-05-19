@@ -1,98 +1,82 @@
 ---
-title: "rooms.99"
+title: "rooms.98"
 program: "Zork"
 program_slug: "zork"
-file_path: "zork/lcf/rooms.99"
+file_path: "zork/lcf/rooms.98"
 language: "MDL (Muddle)"
-github_url: "https://github.com/MITDDC/zork/blob/master/zork/lcf/rooms.99"
+github_url: "https://github.com/MITDDC/zork/blob/master/zork/lcf/rooms.98"
 year: 1977
 author: "Anderson, Blank, Daniels, Lebling"
-slug: "rooms"
-order: 5
-description: "The room definitions and game mechanics for Zork, a foundational text adventure game written in MDL for the PDP-10."
+slug: "rooms-98"
+order: 11
+description: "This file defines core routines for room descriptions, object interactions, and game state management in Zork, one of the earliest text-based adventure games."
 
 summary:
-  - point: "Iterative development evident in version numbering"
+  - point: "MDL language used for Zork's development"
+    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
+    link_label: "MDL programming language"
+  - point: "Room descriptions and object interactions central to gameplay"
     link: "https://en.wikipedia.org/wiki/Zork"
     link_label: "Zork"
-  - point: "MDL's Lisp-like syntax used for game logic"
-    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    link_label: "MDL"
-  - point: "Handling of player actions and game state"
-    link: "https://en.wikipedia.org/wiki/Text-based_game"
-    link_label: "Text-based games"
-  - point: "Integration with ITS and ARPANET for multi-user access"
-    link: "https://en.wikipedia.org/wiki/Incompatible_Timesharing_System"
-    link_label: "ITS"
-  - point: "Early examples of object-oriented programming concepts"
-    link: "https://en.wikipedia.org/wiki/Object-oriented_programming"
-    link_label: "Object-oriented programming"
+  - point: "Innovative use of ARPANET for multiplayer access"
+    link: "https://en.wikipedia.org/wiki/ARPANET"
+    link_label: "ARPANET"
+  - point: "DEC PDP-10 hardware constraints shaped design"
+    link: "https://en.wikipedia.org/wiki/PDP-10"
+    link_label: "DEC PDP-10"
+  - point: "Early example of open-source release decades later"
+    link: "https://en.wikipedia.org/wiki/Open-source_software"
+    link_label: "Open-source software"
 
 enhancements:
-  - id: "alt-flag-initialization"
-    line_start: 4
-    line_end: 4
-    title: "A flag for alternative game modes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Flag_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The `<SETG ALT-FLAG T>` line initializes a global flag that likely controls alternative game modes or behaviors. In the context of Zork, flags like this were essential for toggling features or debugging during development. The PDP-10, the hardware platform for Zork, had limited memory and processing power, making efficient flag-based control mechanisms a necessity."
-  - id: "save-it-subroutine"
+  - id: "save-and-restore-game-state"
     line_start: 8
-    line_end: 26
-    title: "Saving game state on the PDP-10"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
-    image_url: ""
-    image_caption: ""
-    content: "The `SAVE-IT` subroutine demonstrates early game-saving functionality, a critical feature for text-based adventure games. Players could save their progress to resume later, which was particularly important given the complexity and length of Zork. This routine includes conditional logic to determine file paths and handles interactions with the PDP-10's file system. In the late 1970s, saving game state was a novel concept, reflecting the increasing sophistication of interactive software."
-  - id: "diverting-garbage-collection"
-    line_start: 65
-    line_end: 94
-    title: "Managing memory with garbage collection"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)"
-    image_url: ""
-    image_caption: ""
-    content: "This section introduces mechanisms for diverting garbage collection (`DIVERT-FCN`) to manage memory usage dynamically. Memory management was a critical challenge on the PDP-10, which had limited resources. The programmers implemented a system to incrementally allocate storage and trigger garbage collection when thresholds were exceeded. This approach reflects the ingenuity required to optimize performance on constrained hardware."
-  - id: "room-description-routine"
-    line_start: 488
-    line_end: 552
-    title: "Describing rooms dynamically"
+    line_end: 59
+    title: "Saving and restoring game state"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The `ROOM-DESC` and `ROOM-INFO` routines dynamically generate descriptions of the player's current location. These routines check for light sources, describe objects in the room, and signal entry into new areas. This dynamic approach allowed Zork to create an immersive experience, making players feel like they were exploring a living world. The ability to adapt descriptions based on game state was groundbreaking for its time."
+    content: "This section implements the ability to save and restore the player's progress in Zork. In the late 1970s, saving game state was an innovative feature, allowing players to pause their adventure and resume later—a necessity given the complexity of Zork's puzzles and the length of its gameplay. The developers, Anderson, Blank, Daniels, and Lebling, were working on the DEC PDP-10, a mainframe computer with limited memory and storage. The save files were stored in a format compatible with the ITS operating system, and players accessed the game over ARPANET. This feature demonstrated foresight in user experience design, anticipating the needs of players who might not complete the game in a single session. The save functionality became a standard in gaming, influencing countless games that followed."
+  - id: "garbage-collection-diversion"
+    line_start: 65
+    line_end: 105
+    title: "Handling garbage collection in real-time"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "This section addresses garbage collection, a process where unused memory is reclaimed. In Zork, garbage collection is diverted and managed incrementally to avoid disrupting gameplay. The developers implemented a clever mechanism to ensure that memory management did not interfere with the player's experience, a critical consideration given the PDP-10's limited resources. The diversion counters and handlers reflect the team's deep understanding of the hardware and operating system constraints. This approach was particularly innovative for its time, as real-time garbage collection was still a developing concept in computer science. The techniques used here influenced later systems and programming languages, including Lisp derivatives and modern garbage-collected languages like Java."
+  - id: "room-description-mechanics"
+    line_start: 459
+    line_end: 552
+    title: "Dynamic room descriptions and object visibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines how Zork generates room descriptions dynamically based on the player's location, lighting conditions, and the presence of objects. The developers created a system that checks for light sources, warns players of dangers in dark rooms, and lists visible objects. The famous warning 'It is pitch black. You are likely to be eaten by a grue.' originates here, becoming one of the most iconic lines in gaming history. The code reflects the team's efforts to create an immersive and interactive environment, leveraging the text-based format to evoke vivid imagery and tension. These mechanics set a precedent for environmental storytelling in games, influencing both text-based and graphical adventures."
   - id: "inventory-management"
     line_start: 982
     line_end: 1002
-    title: "Tracking player inventory"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Inventory_(video_gaming)"
+    title: "Player inventory management"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The `INVENT` routine manages the player's inventory, listing items they are carrying and handling interactions with objects. Inventory systems were a staple of adventure games, enabling players to collect and use items to solve puzzles. Zork's implementation reflects early object-oriented principles, treating items as discrete entities with properties and behaviors."
-  - id: "lamp-control"
-    line_start: 1506
-    line_end: 1533
-    title: "Turning the lamp on and off"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
+    content: "This section implements the inventory system, allowing players to view and interact with items they are carrying. The code checks whether the player is holding any objects and lists them with descriptions. If the inventory is empty, it informs the player accordingly. Inventory management was a critical feature in Zork, as players needed to collect and use items to solve puzzles and progress through the game. The system's design reflects the developers' focus on usability and the importance of object interactions in gameplay. This feature became a staple in adventure games, influencing titles like King's Quest and The Legend of Zelda."
+  - id: "object-interaction-logic"
+    line_start: 1404
+    line_end: 1448
+    title: "Object interaction and action delegation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The `LAMP-ON` and `LAMP-OFF` routines control the player's ability to use a lamp, a critical item in Zork. The lamp illuminates dark areas, preventing the player from being eaten by a grue—a memorable and iconic feature of the game. These routines highlight the game's attention to detail and its ability to create tension through environmental constraints."
-  - id: "parser-and-lexical-analysis"
-    line_start: 1535
-    line_end: 1595
-    title: "Parsing player commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Command_parser"
+    content: "This section defines the logic for interacting with objects in the game world. It includes routines for finding objects, determining their location, and calling specific actions based on the player's input. The developers designed a flexible system that could handle direct and indirect object interactions, enabling complex gameplay scenarios. For example, players could open containers, take items, or use objects in specific ways. This modular approach to object interaction was groundbreaking, allowing Zork to simulate a rich and responsive environment. The design principles seen here influenced the development of object-oriented programming and interactive game mechanics in later decades."
+  - id: "parser-and-command-processing"
+    line_start: 1529
+    line_end: 1589
+    title: "Command parser and lexical analysis"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The parser (`LEX`) interprets player input, breaking it into tokens and matching them against the game's vocabulary. This functionality was central to Zork's interactivity, allowing players to type commands like 'take lamp' or 'go north.' The parser's ability to handle complex inputs set a high standard for text-based games and influenced the design of later command-driven interfaces."
-  - id: "vehicle-management"
-    line_start: 1667
-    line_end: 1704
-    title: "Boarding and unboarding vehicles"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
-    image_url: ""
-    image_caption: ""
-    content: "The `BOARD` and `UNBOARD` routines manage interactions with vehicles, adding another layer of complexity to the game world. Players could use vehicles to navigate certain areas, and the game enforced rules about when and where vehicles could be boarded or disembarked. This feature showcases Zork's detailed simulation of a physical environment."
+    content: "This section implements the command parser, which interprets player input and translates it into actions within the game. The parser uses lexical analysis to break down input strings into meaningful components, such as verbs and objects. The developers faced the challenge of creating a system that could understand natural language commands, a task that required both technical ingenuity and creativity. The parser's design reflects the team's deep understanding of linguistic structures and their application in programming. This feature was essential for Zork's gameplay, enabling players to interact with the game world using text commands. The parser's success influenced the development of natural language processing and interactive systems in computing."
 
 ---
 
@@ -1354,8 +1338,7 @@ everything.">
 	     <COND (<OR <CAN-TAKE? .X>
 			<TRNN .X ,TRYTAKEBIT>>
 		    <PUT .PRSVEC 2 .X>
-		    <TELL <ODESC2 .X> 0 ":
-  ">
+		    <TELL <ODESC2 .X> 0 ":  ">
 		    <APPLY-RANDOM .RA>
 		    <COND (<N==? .HERE <AROOM .WINNER>>
 			   <MAPLEAVE>)>)>>
@@ -1365,8 +1348,7 @@ everything.">
 	 <MAPF <>
 	   <FUNCTION (X) #DECL ((X) OBJECT)
 	     <PUT .PRSVEC 2 .X>
-	     <TELL <ODESC2 .X> 0 ":
-  ">
+	     <TELL <ODESC2 .X> 0 ":  ">
 	     <APPLY-RANDOM .RA>
 	     <COND (<N==? .HERE <AROOM .WINNER>>
 		    <MAPLEAVE>)>>
@@ -1417,9 +1399,7 @@ everything.">
 	       <SET SUV <BACK .SUV>>
 	       <PUT .SUV 1 .X>>
 	     <AOBJS .WINNER>>>)>
-  <COND (<EMPTY? .SUV>
-	 <TELL "I couldn't find anything.">)
-	(<FROB-LOTS .SUV>)>>
+  <FROB-LOTS .SUV>>
 
 <DEFINE VALUABLES ("AUX" (PRSVEC ,PRSVEC)
 		    (PA <1 .PRSVEC>) (SUV ,OBJ-UV) (TUV <TOP .SUV>) PI
@@ -1469,9 +1449,7 @@ everything.">
 		      <SET SUV <BACK .SUV>>
 		      <PUT .SUV 1 .X>)>>
 	     <AOBJS .WINNER>>>)>
-  <COND (<EMPTY? .SUV>
-	 <TELL "I couldn't find any valuables.">)
-	(<FROB-LOTS .SUV>)>>
+  <FROB-LOTS .SUV>>
 
 
 
@@ -1849,5 +1827,3 @@ kingdom of winners.  In any case, \"back\" doesn't work.">>
 	   <SETG WINNER .PLAY>
 	   <SETG HERE .HS>)
 	  (<TELL "You cannot talk to that!">)>>
-
- 

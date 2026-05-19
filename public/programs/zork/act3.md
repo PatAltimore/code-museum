@@ -9,74 +9,74 @@ year: 1977
 author: "Anderson, Blank, Daniels, Lebling"
 slug: "act3"
 order: 6
-description: "This file defines specific object interactions and puzzle mechanics in Zork, showcasing the ingenuity of early text-based adventure game design."
+description: "Puzzle mechanics and object interactions in Zork, a foundational text adventure game."
 
 summary:
-  - point: "MDL language used for complex object interactions"
+  - point: "MDL language's flexibility enabled complex object interactions."
     link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
     link_label: "MDL programming language"
-  - point: "Creative use of humor and narrative in puzzles"
+  - point: "Zork's puzzles showcase early interactive storytelling techniques."
     link: "https://en.wikipedia.org/wiki/Zork"
     link_label: "Zork"
-  - point: "Early ARPANET gaming access shaped user experience"
-    link: "https://en.wikipedia.org/wiki/ARPANET"
-    link_label: "ARPANET"
-  - point: "Pioneering dynamic object manipulation in game worlds"
+  - point: "The PDP-10's capabilities shaped Zork's design."
+    link: "https://en.wikipedia.org/wiki/PDP-10"
+    link_label: "PDP-10"
+  - point: "MIT's ITS environment fostered collaborative programming."
+    link: "https://en.wikipedia.org/wiki/Incompatible_Timesharing_System"
+    link_label: "ITS"
+  - point: "Zork's humor and narrative depth influenced later adventure games."
     link: "https://en.wikipedia.org/wiki/Interactive_fiction"
     link_label: "Interactive fiction"
-  - point: "MIT's open-source release preserves computing history"
-    link: "https://en.wikipedia.org/wiki/MIT_License"
-    link_label: "MIT License"
 
 enhancements:
-  - id: "coke-bottles-magic-glass"
+  - id: "magic-glass-bottles"
     line_start: 7
     line_end: 17
-    title: "Magic glass bottles and playful destruction"
+    title: "Magic Glass Bottles: Humor Meets Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "This subroutine handles interactions with 'magic glass' bottles in the game. If the player throws or otherwise attempts to break the bottles, the game humorously informs them that the bottles disappear immediately upon breaking, sparing their feet from harm. This moment exemplifies Zork's blend of humor and player-friendly design. In the late 1970s, text-based games like Zork were pioneering interactive storytelling, often constrained by the limited memory and processing power of the DEC PDP-10. The authors—Anderson, Blank, Daniels, and Lebling—were MIT graduates who brought their technical expertise and creativity to the project. Their use of MDL allowed for complex object interactions that were ahead of their time. The playful tone of this interaction reflects the team's approach to making the game engaging and memorable. This mechanic, while simple, set a precedent for dynamic object behaviors in future games, influencing the design of interactive fiction and adventure games for decades."
-  - id: "head-function-implementers-foresight"
+    content: "This subroutine handles the interaction with 'magic glass' bottles, a whimsical touch that reflects Zork's playful tone. When the player attempts to throw or otherwise break the bottles, the game humorously informs them that the bottles vanish upon breaking, sparing their feet from harm. In the late 1970s, text-based games like Zork were pioneering ways to blend humor with gameplay mechanics. The authors—Anderson, Blank, Daniels, and Lebling—were experimenting with how narrative could respond dynamically to player actions. The PDP-10 hardware and MDL language allowed for these intricate object behaviors, but also demanded efficiency due to memory constraints. The magic glass bottles are emblematic of Zork's charm, showcasing how even minor objects could contribute to the game's immersive world. This playful interaction set a precedent for interactive fiction, influencing how games balance narrative and mechanics."
+  - id: "tampering-with-remains"
     line_start: 19
     line_end: 37
-    title: "Implementers’ foresight and player punishment"
+    title: "Tampering with the Implementers' Remains"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The 'HEAD-FUNCTION' subroutine delivers a humorous and ominous message when players attempt to tamper with the remains of the game's creators. The implementers foresaw such an action and programmed a punishment scenario, depriving the player of their valuables and life. This interaction showcases Zork's unique narrative style, blending humor with a sense of consequence. In the late 1970s, the computing landscape was dominated by mainframes like the DEC PDP-10, and games like Zork were pushing the boundaries of what interactive storytelling could achieve. The authors infused their own personalities into the game, creating a connection between the player and the creators. This subroutine reflects the team's playful yet challenging approach to game design, where curiosity could lead to unexpected (and often humorous) outcomes. The concept of punishing players for their actions would later evolve into more nuanced morality systems in modern games."
-  - id: "bucket-mechanics-and-dynamic-world"
+    content: "This section introduces a darkly humorous narrative twist: the implementers foresaw players tampering with their remains and implemented a punishment mechanism. The subroutine ensures that any attempt to read or interact with the remains results in the player's demise and loss of valuables. This reflects the game's playful yet unforgiving nature, a hallmark of early text adventures. The authors, steeped in MIT's culture of intellectual humor and problem-solving, infused Zork with such moments to challenge and entertain players. The PDP-10's ITS environment supported this creativity, allowing developers to test and refine these interactions collaboratively. This subroutine exemplifies Zork's ability to surprise players with its narrative depth, influencing the design of future adventure games to include more reactive and engaging storytelling."
+  - id: "bucket-mechanics"
     line_start: 43
     line_end: 64
-    title: "Bucket mechanics and dynamic world interactions"
+    title: "Rising and Descending Buckets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "This subroutine governs the behavior of a bucket in the game, allowing it to rise or descend based on player actions. It also introduces a flag system to track the bucket's state, ensuring consistent interactions. The bucket's movement is tied to specific rooms, adding a layer of spatial logic to the puzzle. In the late 1970s, designing dynamic object interactions was a significant challenge due to hardware limitations. The DEC PDP-10 had limited memory and processing power, requiring programmers to optimize their code meticulously. The authors of Zork leveraged MDL's capabilities to create a world where objects responded intelligently to player input. This mechanic highlights the team's focus on creating a believable and interactive game world. The use of flags to track object states became a common technique in game development, influencing the design of adventure games and RPGs for years to come."
-  - id: "eatme-function-alice-in-wonderland"
+    content: "The 'BUCKET' subroutine manages a puzzle involving a bucket that can rise or descend based on player actions. This mechanic is tied to the game's physical world, requiring players to think spatially and interact with objects in meaningful ways. In the late 1970s, such puzzles were groundbreaking, as they pushed the boundaries of what text-based games could achieve. The authors leveraged MDL's capabilities to create dynamic object behaviors, a feat that required careful programming to fit within the PDP-10's memory constraints. The bucket puzzle is a testament to Zork's innovative design, blending logical challenges with narrative elements. It laid the groundwork for more complex environmental puzzles in later adventure games, demonstrating the potential of interactive fiction to simulate physical spaces and player agency."
+  - id: "alice-in-wonderland"
     line_start: 76
     line_end: 91
-    title: "EatMe cake and Alice in Wonderland homage"
+    title: "Shrinking and Growing: Alice's Influence"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The 'EATME-FUNCTION' subroutine is a direct nod to Lewis Carroll's 'Alice in Wonderland.' When players consume the 'EatMe' cake in the 'Alice' room, the game humorously describes the room as appearing very large, simulating the shrinking effect from the story. This interaction demonstrates Zork's literary influences and the team's ability to weave cultural references into gameplay. In the late 1970s, text-based games were often inspired by literature and mythology, as these themes resonated with the highly educated audience accessing games over ARPANET. The authors of Zork, all MIT graduates, drew from their own love of storytelling and cultural touchstones to enrich the game world. This homage to 'Alice in Wonderland' adds depth and charm to the game, making it memorable for players. The use of literary references in games has since become a staple, influencing titles across genres and generations."
-  - id: "buttons-carousel-mechanics"
-    line_start: 214
-    line_end: 236
-    title: "Buttons and carousel room mechanics"
+    content: "The 'EATME-FUNCTION' subroutine is a direct nod to Lewis Carroll's 'Alice's Adventures in Wonderland.' Eating a cake in the 'ALICE' room causes the player to shrink, altering their perspective and the game's environment. This literary reference showcases the authors' creativity and their ability to weave cultural influences into gameplay. In the 1970s, text-based games were exploring how narrative could shape player experiences, and Zork's use of shrinking and growing mechanics was a novel way to simulate physical transformations. The PDP-10's hardware limitations required the authors to implement these changes efficiently, using MDL's object manipulation capabilities. This subroutine highlights Zork's narrative depth and its role in establishing interactive fiction as a medium for storytelling and exploration."
+  - id: "danger-high-voltage"
+    line_start: 196
+    line_end: 208
+    title: "EBCDIC Instructions and High Voltage Warnings"
+    wikipedia_url: "https://en.wikipedia.org/wiki/EBCDIC"
+    image_url: ""
+    image_caption: ""
+    content: "The 'CMACH-ROOM' subroutine describes a room filled with heavy machinery, buttons labeled in EBCDIC, and a prominent 'Danger -- High Voltage' sign. This setting reflects the authors' playful incorporation of technical jargon and industrial aesthetics into the game's world. EBCDIC, a character encoding used primarily on IBM mainframes, adds a layer of mystery and humor, as it would have been unfamiliar to most players. The PDP-10's ITS environment allowed the authors to experiment with such details, creating a rich and immersive experience despite the constraints of text-based gameplay. This room exemplifies Zork's ability to blend technical references with narrative elements, influencing the design of later games to include more intricate and engaging environments."
+  - id: "robot-interactions"
+    line_start: 290
+    line_end: 334
+    title: "Robots: Helpers and Obstacles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "This subroutine handles interactions with buttons in a room filled with heavy machinery. Depending on which button the player presses, the intensity of the machinery's whirring changes, or the magnetic carousel flips its orientation. The game warns players about the dangers of high voltage, adding a sense of risk to their actions. In the late 1970s, interactive environments like this were groundbreaking, as they created a sense of immersion and consequence. The authors of Zork used MDL to simulate complex mechanical systems within the constraints of the DEC PDP-10. This puzzle reflects the team's ingenuity in designing challenges that required players to experiment and think critically. The concept of interactive environments has since evolved into fully realized physics systems in modern games, but the foundation laid by Zork remains influential."
-  - id: "sphere-function-poisonous-gas"
-    line_start: 245
-    line_end: 282
-    title: "Sphere puzzle and poisonous gas trap"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "The 'SPHERE-FUNCTION' subroutine presents players with a high-stakes puzzle involving an iron cage and poisonous gas. If the player attempts to take the sphere, they are trapped, and the room fills with gas. The game uses flags and object manipulation to simulate the trap and its consequences. In the late 1970s, creating such dynamic puzzles required careful planning and optimization due to hardware constraints. The authors of Zork used MDL to implement complex scenarios that challenged players' problem-solving skills. This puzzle exemplifies the team's ability to create tension and drama within a text-based environment. The use of traps and environmental hazards in games has since become a staple, influencing genres like survival horror and adventure games."
+    content: "The 'ROBOT-ACTOR' and 'ROBOT-FUNCTION' subroutines define interactions with a robot, including its ability to take objects, perform actions, and even be destroyed. These mechanics showcase Zork's approach to creating dynamic NPCs that respond to player commands. In the late 1970s, such interactions were a technical achievement, requiring careful programming to simulate agency within the game's constraints. The authors drew on their experiences with AI research at MIT, incorporating elements of decision-making and object manipulation. The robot's behaviors add depth to the game's world, making it feel more alive and reactive. This innovation influenced the development of NPCs in later games, paving the way for more complex and interactive characters."
 
 ---
 

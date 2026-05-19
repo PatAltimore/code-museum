@@ -1,117 +1,3 @@
----
-title: "act1.38"
-program: "Zork"
-program_slug: "zork"
-file_path: "zork/lcf/act1.38"
-language: "MDL (Muddle)"
-github_url: "https://github.com/MITDDC/zork/blob/master/zork/lcf/act1.38"
-year: 1977
-author: "Anderson, Blank, Daniels, Lebling"
-slug: "act1"
-order: 4
-description: "This file from Zork (1977) showcases the intricate logic and creativity behind one of the earliest text-based adventure games, written in MDL for the PDP-10."
-
-summary:
-  - point: "MDL's Lisp-like syntax allowed for complex game logic and dynamic storytelling."
-    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    link_label: "MDL Programming Language"
-  - point: "Zork's code demonstrates early procedural generation techniques for interactive environments."
-    link: "https://en.wikipedia.org/wiki/Zork"
-    link_label: "Zork"
-  - point: "The PDP-10 hardware and ITS shaped the constraints and possibilities of this code."
-    link: "https://en.wikipedia.org/wiki/PDP-10"
-    link_label: "PDP-10"
-  - point: "Innovative use of verbs and objects created a rich player experience."
-    link: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    link_label: "Interactive Fiction"
-  - point: "Zork's open-source release in 2025 ensures its legacy as a foundational work in gaming."
-    link: "https://en.wikipedia.org/wiki/Open_source"
-    link_label: "Open Source"
-
-enhancements:
-  - id: "blo-subroutine-read-table"
-    line_start: 3
-    line_end: 10
-    title: "Dynamic Read Table for Parsing Input"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
-    image_url: ""
-    image_caption: ""
-    content: "The BLO subroutine dynamically modifies the read table, a key component for parsing player input. This clever manipulation allows the game to interpret commands flexibly, adapting to the player's actions. In the late 1970s, parsing was a significant challenge in interactive fiction, as developers sought ways to make text-based games feel intuitive and responsive. The authors of Zork, including Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling, were pioneers in this field, leveraging MDL's capabilities to create a robust parser. This innovation laid the groundwork for future text-based games, influencing how natural language processing evolved in gaming."
-  - id: "ilo-subroutine-body-parsing"
-    line_start: 13
-    line_end: 21
-    title: "Conditional Parsing for Game Logic"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Conditional_(computer_programming)"
-    image_url: ""
-    image_caption: ""
-    content: "The ILO subroutine handles conditional parsing of game elements, such as player actions and object interactions. By checking membership in lists like WINNERS and evaluating the BODY parameter, the code dynamically adjusts game state based on player input. In the context of the PDP-10 and ITS, this approach was groundbreaking, enabling a level of interactivity that felt alive and responsive. The developers were experimenting with ways to make the game world react intelligently to the player's decisions, a hallmark of Zork's design. This technique influenced the design of later adventure games and interactive fiction engines."
-  - id: "east-house-description"
-    line_start: 25
-    line_end: 33
-    title: "Descriptive Text for Immersive Gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The EAST-HOUSE subroutine generates descriptive text when the player looks around the area behind the white house. This text-based approach to storytelling was a defining feature of Zork, immersing players in a vividly imagined world through prose alone. In 1977, graphical capabilities were limited, especially on the PDP-10, so the developers relied on rich descriptions to engage players' imaginations. The attention to detail in these descriptions helped establish Zork as a masterpiece of interactive fiction, influencing countless games that followed."
-  - id: "window-function-open-close"
-    line_start: 39
-    line_end: 44
-    title: "Interactive Window Mechanics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"
-    image_url: ""
-    image_caption: ""
-    content: "The WINDOW-FUNCTION subroutine allows players to interact with the kitchen window, opening or closing it based on their actions. This mechanic exemplifies Zork's commitment to creating a dynamic and interactive environment. In the late 1970s, such detailed object interactions were rare, as most games were limited to simpler mechanics. The developers' decision to include nuanced interactions like this showcased their ambition to push the boundaries of what text-based games could achieve, paving the way for more complex gameplay systems in the future."
-  - id: "leaf-pile-burning"
-    line_start: 77
-    line_end: 91
-    title: "Burning Leaves: Environmental Consequences"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Environmental_storytelling"
-    image_url: ""
-    image_caption: ""
-    content: "The LEAF-PILE subroutine introduces environmental consequences to player actions. Burning the leaves not only affects the immediate surroundings but also triggers reactions from neighbors, adding a layer of realism to the game world. This kind of environmental storytelling was innovative for its time, reflecting the developers' desire to create a world that felt alive and responsive. By incorporating such details, Zork set a standard for immersive gameplay that influenced later titles in the adventure genre."
-  - id: "glacier-room-dynamic-description"
-    line_start: 102
-    line_end: 107
-    title: "Dynamic Room Descriptions Based on State"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Procedural_generation"
-    image_url: ""
-    image_caption: ""
-    content: "The GLACIER-ROOM subroutine dynamically adjusts its description based on the state of the GLACIER-FLAG!-FLAG. This technique allows the game to reflect changes in the environment, enhancing immersion. In the context of the PDP-10, where memory and processing power were limited, such dynamic descriptions were a technical achievement. The developers' ability to create a responsive world within these constraints highlights their ingenuity and the power of MDL as a programming language."
-  - id: "cyclops-room-interactions"
-    line_start: 1001
-    line_end: 1031
-    title: "Cyclops Room: Player Interaction and Consequences"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The CYCLOPS-ROOM subroutine showcases Zork's ability to create memorable encounters with NPCs. Depending on the player's actions and the state of the room variables, the cyclops reacts dynamically, ranging from sleeping to preparing to eat the player. This level of interactivity was groundbreaking in 1977, demonstrating the developers' commitment to creating a living, breathing world. The cyclops encounter became one of the game's iconic moments, influencing how NPC interactions were designed in later games."
-  - id: "echo-room-acoustics"
-    line_start: 1055
-    line_end: 1115
-    title: "Echo Room: Dynamic Acoustics and Player Feedback"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The ECHO-ROOM subroutine introduces dynamic acoustics based on player actions. When the player interacts with the room, the game adjusts its descriptions to reflect changes in sound, creating a unique sensory experience. This feature highlights the developers' creativity in using text to simulate physical phenomena, a hallmark of Zork's design. By experimenting with such mechanics, the team set a precedent for immersive storytelling in interactive fiction."
-  - id: "lantern-lighting-mechanics"
-    line_start: 1860
-    line_end: 1876
-    title: "Lantern: Managing Light in the Game World"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The LANTERN subroutine manages the player's ability to light and extinguish the lantern, a critical gameplay mechanic in Zork. Light sources were essential for navigating dark areas, adding a layer of strategy to exploration. The developers' attention to detail in simulating light and its effects on the environment reflects their commitment to creating a realistic and challenging game world. This mechanic became a staple in adventure games, influencing how light and darkness were used as gameplay elements."
-  - id: "sword-glow-dynamic-feedback"
-    line_start: 1878
-    line_end: 1898
-    title: "Sword Glow: Dynamic Feedback for Player Actions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    image_url: ""
-    image_caption: ""
-    content: "The SWORD-GLOW subroutine dynamically adjusts the sword's glow based on the presence of enemies and environmental factors. This feature not only aids the player in identifying threats but also adds a layer of atmospheric tension to the game. In 1977, such dynamic feedback was rare, showcasing the developers' innovation in creating a responsive and immersive experience. The glowing sword became an iconic element of Zork, influencing the design of magical items in later games."
-
----
-
 "VOCABULARY, ACTION FUNCTIONS, MAZE (NORMALLY ENCODED)"
 
 <DEFINE BLO (Y)
@@ -1710,8 +1596,7 @@ you politely.">)>)
 "Realizing just in time that you'd be stabbed in the back if you
 attempted to take the chalice, you return to the fray.">)>)>>
 
-
-
+
 
 <DEFINE BURNER ("AUX" (PV ,PRSVEC) (PRSO <2 .PV>) (PRSI <3 .PV>))
      #DECL ((PV) VECTOR (PRSO PRSI) OBJECT)
@@ -2076,7 +1961,7 @@ burn.">)
 		      <TELL "With what?">
 		      <PUT <SET ORPHANS ,ORPHANS>
 			   ,OFLAG T>
-		      <PUT .ORPHANS ,OVERB .PRSACT>
+		      <PUT .ORPHANS ,OACTION .PRSACT>
 		      <PUT .ORPHANS ,OSLOT1 .C>
 		      <PUT .ORPHANS ,OPREP <CHTYPE WITH!-WORDS PREP>>
 		      <SETG PARSE-WON <>>
@@ -2136,5 +2021,4 @@ turned into a pile of dust.">)>>
     <COND (.AV
 	   <SEARCH-LIST <OID .OBJ> <OCONTENTS .AV> <>>)
 	  (<SEARCH-LIST <OID .OBJ> <ROBJS .RM> <>>)>>
-
- 
+    

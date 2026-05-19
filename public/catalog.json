@@ -64,7 +64,7 @@
           "title": "act2.27",
           "description": "Action handlers volume two — the second half of Zork's verb and puzzle logic",
           "path": "zork/act2.27",
-          "generated": false
+          "generated": true
         },
         {
           "order": 8,
@@ -72,7 +72,7 @@
           "title": "makstr.7",
           "description": "String table builder — compiles the game's text responses into the binary format",
           "path": "zork/lcf/makstr.7",
-          "generated": false
+          "generated": true
         },
         {
           "order": 9,
@@ -80,7 +80,7 @@
           "title": "act1.37",
           "description": "act1 version 37 — the previous revision of the action handlers, one edit before the canonical act1.38",
           "path": "zork/lcf/act1.37",
-          "generated": false
+          "generated": true
         },
         {
           "order": 10,
@@ -88,7 +88,7 @@
           "title": "np.92",
           "description": "Parser version 92 — the natural language parser one revision before the final np.93",
           "path": "zork/lcf/np.92",
-          "generated": false
+          "generated": true
         },
         {
           "order": 11,
@@ -96,7 +96,7 @@
           "title": "rooms.98",
           "description": "Room definitions v98 — all dungeon room descriptions one revision before the final rooms.99",
           "path": "zork/lcf/rooms.98",
-          "generated": false
+          "generated": true
         },
         {
           "order": 12,
@@ -104,7 +104,7 @@
           "title": "act2z.27",
           "description": "act2 frozen variant — an alternate compiled snapshot of the act2 action module",
           "path": "zork/lcf/act2z.27",
-          "generated": false
+          "generated": true
         },
         {
           "order": 13,
@@ -112,11 +112,11 @@
           "title": "dungz.56",
           "description": "Dungeon frozen variant — an alternate compiled snapshot of the world layout",
           "path": "zork/lcf/dungz.56",
-          "generated": false
+          "generated": true
         }
       ],
-      "introduction": "It was 1977, and the halls of MIT's Laboratory for Computer Science buzzed with the energy of invention. In a small room filled with the hum of a DEC PDP-10, four young programmers — Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling — were about to change the face of computing forever. They were working under the ITS (Incompatible Timesharing System), a quirky and powerful operating system that epitomized the hacker ethos of the time. The PDP-10, a massive machine with a price tag in the hundreds of thousands of dollars, was the beating heart of their work, its 36-bit architecture and shared ARPANET access offering a playground for experimentation. What began as a casual project to explore the capabilities of MDL (Muddle), a Lisp dialect developed at MIT, would soon evolve into Zork — the game that invented the text adventure genre.\n\nThe computing world of the late 1970s was defined by constraints. Memory was measured in kilobytes, storage was limited to magnetic tapes, and every cycle of the PDP-10’s processor was precious. Yet these limitations were fertile ground for creativity. MDL, with its expressive syntax and support for complex data structures, provided the perfect tool for crafting a game that could simulate an intricate, interactive world. The team set out to create a program that could understand natural language input, a feat that was almost unheard of at the time. Lebling later described their ambition: \"We wanted to make a game that felt like you were talking to a real person — or maybe a very clever dungeon master.\" \n\nEach member of the team brought unique skills to the project. Anderson and Blank focused on the natural language parser, refining it through dozens of iterations to ensure it could handle the quirks of human communication. Daniels worked on the game loop and action handlers, ensuring the program could respond dynamically to player input. Lebling, a science fiction enthusiast, poured his imagination into crafting the dungeon itself — a sprawling world filled with puzzles, treasures, and dangers. The files they created, like \"defs.63\" and \"dung.56,\" were snapshots of their ingenuity, defining the game’s type system and populating its world with objects and rooms. Their sarcastic error messages, a hallmark of Zork, were a reflection of the team’s playful spirit.\n\nZork was a revelation. Players accessed it over ARPANET, typing commands like \"take lantern\" or \"open door\" into terminals connected to the PDP-10. The game’s parser, housed in files like \"np.93,\" could interpret complex sentences, making interactions feel fluid and intuitive. Its puzzles challenged players to think creatively, while its humor kept them engaged. By 1979, Zork had become a phenomenon, inspiring a wave of imitators and setting the standard for interactive fiction. The game’s success led to its commercial release by Infocom, where it reached a wider audience and solidified its place in computing history.\n\nThe legacy of Zork endures. In 2025, MIT released its source code as open-source under the MIT No Attribution License, allowing a new generation of programmers to explore its inner workings. Extracted from a 1990 tape image in the Tapes of Tech Square collection, the files reveal the meticulous craftsmanship of Anderson, Blank, Daniels, and Lebling. Zork’s influence can be seen in modern video games, virtual assistants, and even AI-driven chatbots. It was more than just a game; it was a proof of concept for what computers could achieve when paired with human imagination. Today, Zork remains a testament to the ingenuity of its creators and the transformative power of code.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Zork-map.jpg/330px-Zork-map.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "introduction": "In the fall of 1977, within the hallowed halls of MIT's Laboratory for Computer Science, a group of young programmers gathered around a DEC PDP-10 terminal running the Incompatible Timesharing System (ITS). Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling were not just colleagues; they were adventurers in the uncharted territory of interactive computing. Their goal was audacious: to create a program that could simulate an immersive, text-based world where players could explore, solve puzzles, and interact with objects using natural language commands. What emerged from their collaboration was Zork, the game that would define the text adventure genre and forever alter the trajectory of computer gaming.\n\nThe computing world of the late 1970s was both exhilarating and constrained. The PDP-10, a mainframe computer costing upwards of $100,000, was a marvel of its time, offering 36-bit words and a maximum of 512 kilowords of memory. Yet, even this powerhouse was dwarfed by the ambitions of its users. The ITS operating system, developed at MIT, provided a collaborative environment where programmers could share and refine their work, often over ARPANET, the precursor to the modern internet. MDL (Muddle), a Lisp dialect tailored for complex symbolic computation, became the language of choice for Zork's creators, enabling them to build a sophisticated parser and intricate game logic within the PDP-10's tight constraints.\n\nEach member of the team brought unique skills to the project. Tim Anderson and Marc Blank, both steeped in the culture of MIT's hacker community, were instrumental in designing the game's parser, which could interpret complex player commands like \"take the lantern and go north.\" Bruce Daniels, with his background in systems programming, focused on optimizing the game's performance, ensuring it could run smoothly despite the PDP-10's memory limitations. Dave Lebling, a linguistics enthusiast, contributed to the game's rich narrative and witty, often sarcastic, error messages. \"We wanted the game to feel alive,\" Lebling later recalled, \"like it was responding to you personally, even when you made a mistake.\"\n\nZork's world, meticulously crafted in files like \"dung.56\" and \"rooms.99,\" was a labyrinthine dungeon filled with treasures, traps, and puzzles. Players could explore locations described in vivid detail, from the \"Dark Room\" to the \"Cyclops Cave,\" encountering objects and characters that reacted dynamically to their actions. The game's parser, refined through 93 revisions, was a marvel of natural language processing, capable of understanding multi-step commands and ambiguous phrases. This level of interactivity was unprecedented, setting Zork apart from earlier text-based games like Colossal Cave Adventure.\n\nThe legacy of Zork is profound. Released commercially in 1980 by Infocom, it became a cultural phenomenon, spawning sequels, imitators, and an entire industry of interactive fiction. Its influence extended beyond gaming, inspiring advancements in natural language processing and user interface design. Decades later, in 2025, MIT released Zork's source code under an open-source license, allowing a new generation of programmers to explore its inner workings. Today, Zork is not just a game; it is a testament to the ingenuity and collaborative spirit of its creators, a reminder of what can be achieved when imagination meets technology.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Zork-map.jpg/330px-Zork-map.jpg",
       "image_caption": "Zork map (CC BY 4.0)"
     },
     {
