@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "start-transient-jump"
     line_start: 235
-    line_end: 245
+    line_end: 237
     title: "Jump to Transient: Initialization Shortcut"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The START label initializes the PRINT program by immediately jumping to the TRANSIENT section. This design reflects the modular nature of MS-DOS utilities, where transient and resident components are separated. The transient part handles user interactions and setup, while the resident part stays in memory to manage background tasks. In the early 1980s, this approach was crucial for conserving memory on systems with limited resources, such as the IBM PC with its 64KB to 640KB RAM. By offloading non-essential components, developers ensured that PRINT could coexist with other programs. This modular design influenced later multitasking systems and utilities, laying groundwork for more sophisticated background processes in operating systems like Windows and Linux."
   - id: "istack-resident-data"
     line_start: 247
-    line_end: 461
+    line_end: 405
     title: "Resident Data: Persistent State Management"
     wikipedia_url: "https://en.wikipedia.org/wiki/Resident_program"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The ISTACK section defines the stack and resident data structures for the PRINT program. These include flags, counters, and pointers that persist across interrupts, enabling PRINT to manage background printing efficiently. For example, the SLICECNT variable controls the time slice for CPU usage, while the BUSY flag prevents reentrant interrupts. This approach reflects the constraints of early PCs, where memory and processing power were scarce. By maintaining a minimal resident footprint, PRINT could perform background tasks without significantly impacting foreground applications. The concept of resident programs became a hallmark of MS-DOS, influencing the design of TSR (Terminate and Stay Resident) utilities and later operating systems' background services."
   - id: "srchmes-error-messages"
     line_start: 463
-    line_end: 489
+    line_end: 483
     title: "Error Messages: User Feedback Mechanism"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_message"
     image_url: ""
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "SETABORT increments the PABORT flag to indicate that an abort has been requested. It then restores the saved state of registers and exits. This routine is part of MS-DOS's approach to handling user-initiated interruptions, ensuring that the system can gracefully recover from unexpected events. In the constrained environment of the 8086 processor, efficient handling of aborts was essential to maintain system stability. The technique of using flags to manage state transitions influenced later operating systems, which adopted similar mechanisms for handling interrupts and aborts."
   - id: "communications-interrupt-spcomint"
-    line_start: 1163
+    line_start: 1161
     line_end: 1199
     title: "Communications Interrupt: SPCOMINT Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
@@ -190,7 +190,7 @@ enhancements:
     image_caption: ""
     content: "The FILOOP routine iterates through a list of files associated with a device, processing each file and displaying relevant information. It uses File Control Blocks (FCBs), a data structure central to MS-DOS's file management. FCBs were a direct adaptation from CP/M, reflecting the influence of earlier systems on MS-DOS's design. This section demonstrates the importance of efficient file handling in an operating system, a concept that evolved into more sophisticated file systems like FAT and NTFS in later Microsoft products."
   - id: "file-name-message"
-    line_start: 3019
+    line_start: 3017
     line_end: 3049
     title: "Creating Messages with File Names"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -199,7 +199,7 @@ enhancements:
     content: "The MVFNAM routine generates messages that include file names, using string manipulation and ASCII adjustments. This functionality highlights the importance of integrating file system operations with user communication. By ensuring file names are correctly formatted and displayed, MS-DOS provided a more intuitive experience for users. Techniques like these influenced the development of user-friendly file management tools in later operating systems, bridging the gap between technical operations and user interaction."
   - id: "stchr-token-buffer-management"
     line_start: 3051
-    line_end: 3127
+    line_end: 3081
     title: "Token buffer management with STCHR routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tokenization"
     image_url: ""

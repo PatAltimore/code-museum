@@ -47,7 +47,7 @@ enhancements:
     content: "The `Con_ToggleConsole_f` function allows players to toggle the console on or off, switching between the game view and the text-based interface. This feature was essential for debugging, entering commands, and interacting with the game engine during development and gameplay. In the context of 1996, when Quake was released, this functionality showcased id Software's commitment to empowering players and developers alike. The toggle mechanism reflects a broader trend in game development toward integrating developer tools directly into the game environment, a practice that became standard in later engines like Unreal Engine and Source."
   - id: "console-resize-adaptation"
     line_start: 151
-    line_end: 183
+    line_end: 206
     title: "Dynamic resizing of the console buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""

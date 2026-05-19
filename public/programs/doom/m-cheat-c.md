@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "cheat-code-sequence-checking"
-    line_start: 42
+    line_start: 38
     line_end: 75
     title: "Cheat Code Sequence Recognition"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"

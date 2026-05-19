@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `COM_CheckRegistered` function checks for the presence of a specific file (`pop.lmp`) to determine whether the game is running as shareware or a registered version. This was a common practice in the 1990s to enforce licensing and encourage users to purchase the full version of software. The function also verifies the integrity of the file to prevent tampering, showcasing early anti-piracy measures. Shareware distribution was a popular model during Quake's era, allowing users to try a limited version before purchasing. This approach influenced later games and software, which adopted similar mechanisms for differentiating between trial and full versions. The concept of validating game assets continues in modern DRM systems and digital distribution platforms."
   - id: "com-initargv-safe-mode"
-    line_start: 1149
+    line_start: 1145
     line_end: 1178
     title: "Initializing arguments with safe mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
@@ -134,7 +134,7 @@ enhancements:
     image_caption: ""
     content: "The `COM_InitArgv` function initializes the argument list and checks for a `-safe` parameter, which triggers safe mode. Safe mode ensures the game runs with minimal configuration, avoiding potential crashes or conflicts. This feature reflects id Software's focus on robustness and user experience, providing a fallback for troubleshooting. Safe mode was particularly valuable during an era when hardware and software compatibility issues were common. The concept of safe mode has since been adopted by operating systems and applications, highlighting its importance in ensuring stability. Quake's implementation demonstrates how thoughtful design can enhance usability and reliability."
   - id: "com-init-byte-swapping"
-    line_start: 1197
+    line_start: 1193
     line_end: 1229
     title: "Handling endianness for portability"
     wikipedia_url: "https://en.wikipedia.org/wiki/Endianness"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The `COM_Init` function includes logic for determining the system's endianness and setting up byte-swapping functions accordingly. Endianness refers to the order in which bytes are stored in memory, and handling it correctly is crucial for cross-platform compatibility. In the mid-1990s, game developers had to account for differences between architectures like x86 (little-endian) and others. This approach reflects id Software's commitment to portability, ensuring Quake could run on a variety of systems. Byte-swapping techniques influenced later game engines and software libraries, which adopted similar methods to handle data across diverse platforms. The legacy of this design is evident in modern programming practices for cross-platform development."
   - id: "com-loadpackfile-pak-file-management"
-    line_start: 1639
+    line_start: 1630
     line_end: 1699
     title: "Loading and validating PAK files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Packfile"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "The `COM_LoadPackFile` function loads and validates PAK files, which are archives containing game assets. This function reads the header and directory structure, checks for modifications, and calculates a CRC to ensure integrity. PAK files were a groundbreaking solution for organizing and compressing game data, introduced by id Software in Quake. This approach streamlined asset management and improved loading times, setting a standard for game development. The concept of asset packaging has influenced modern game engines, which use similar formats like Unity's asset bundles and Unreal's pak files. Quake's implementation demonstrates the importance of efficient data storage and retrieval in game design."
   - id: "com-addgamedirectory-dynamic-paths"
-    line_start: 1709
+    line_start: 1702
     line_end: 1747
     title: "Adding dynamic game directories"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -158,7 +158,7 @@ enhancements:
     image_caption: ""
     content: "The `COM_AddGameDirectory` function dynamically adds directories to the game's search path, allowing for modular asset management. This feature supports the addition of custom content, such as mods or expansions, by appending directories and loading associated PAK files. In the mid-1990s, modularity was a key innovation, enabling user-generated content and extending a game's lifespan. Quake's approach to dynamic paths influenced later games and engines, which adopted similar systems for managing mods and DLC. The ability to add game directories dynamically remains a cornerstone of modern game development, reflecting the lasting impact of this design."
   - id: "info-valueforkey-string-parsing"
-    line_start: 1861
+    line_start: 1855
     line_end: 1911
     title: "Parsing key-value pairs in strings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Configuration_file"

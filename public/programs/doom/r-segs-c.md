@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "masked-texture-rendering"
-    line_start: 102
+    line_start: 99
     line_end: 190
     title: "Masked textures: Rendering hidden details"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine, `R_RenderMaskedSegRange`, handles the rendering of masked textures, which are textures applied to walls that can partially obscure other elements, such as windows or grates. The routine calculates lighting and texture positioning dynamically based on the player's viewpoint and the geometry of the scene. It uses fixed-point arithmetic to ensure fast calculations, a necessity given the limited processing power of 1990s consumer hardware like the Intel 486. The masked texture rendering was a key feature in DOOM's immersive environments, allowing for realistic visual effects without sacrificing performance. This approach influenced later games, including Quake, which expanded on texture mapping techniques for more complex 3D environments."
   - id: "core-rendering-loop"
-    line_start: 206
+    line_start: 195
     line_end: 364
     title: "The core rendering loop: Drawing walls"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `R_RenderSegLoop` function is the heart of DOOM's wall rendering system. It iterates through screen columns to draw wall textures, calculate lighting, and mark floor and ceiling areas. The function uses fixed-point math for precision and performance, a hallmark of DOOM's engine design. The rendering loop is optimized to handle single-sided and double-sided walls, as well as masked textures. In the early 1990s, real-time rendering of 3D environments was a significant challenge, especially on hardware with limited floating-point capabilities. This routine exemplifies the ingenuity of John Carmack and the id Software team, who developed techniques that became foundational for modern game engines. The concepts here influenced the rendering systems of games like Unreal and Half-Life."
   - id: "wall-segment-storage"
-    line_start: 375
+    line_start: 369
     line_end: 745
     title: "Storing wall segments for efficient rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"

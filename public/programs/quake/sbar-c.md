@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `Sbar_SortFrags` function sorts players by their frag count using a bubble sort algorithm. This ensures that the scoreboard displays players in descending order of performance. While bubble sort is not the most efficient sorting algorithm, its simplicity made it suitable for real-time applications on 1996 hardware. This approach influenced the design of real-time leaderboards in later games, where sorting algorithms are used to display rankings dynamically."
   - id: "team-overlay-display"
-    line_start: 891
+    line_start: 890
     line_end: 982
     title: "Team Overlay Display"
     wikipedia_url: "https://en.wikipedia.org/wiki/Overlay_(programming)"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `Sbar_TeamOverlay` function displays team statistics, including frags, player counts, and ping times. This feature was added by Zoid, a developer known for his contributions to multiplayer gaming. The overlay provides critical information for team-based gameplay, enhancing strategy and coordination. In the mid-1990s, such features were rare, and Quake's implementation set a benchmark for multiplayer interfaces. The concept of team overlays influenced games like Battlefield and Call of Duty, which expanded on the idea with more detailed statistics and visualizations."
   - id: "deathmatch-overlay-rendering"
-    line_start: 990
+    line_start: 984
     line_end: 1147
     title: "Dynamic scoreboard for deathmatch mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This section implements the dynamic scoreboard overlay for Quake's deathmatch mode, displaying player statistics such as ping, playtime, frags, and team affiliation. The code dynamically adjusts the layout based on the number of players and screen size, ensuring legibility even in large matches. The scoreboard also highlights the current player and spectators, providing an intuitive interface for competitive gameplay. In 1996, multiplayer gaming was still emerging, and Quake's ability to handle real-time updates for dozens of players on limited hardware was groundbreaking. John Carmack and Michael Abrash optimized this system to run efficiently on x86 processors with constrained memory. The technique of sorting and rendering player stats in real-time influenced later multiplayer games, including Unreal Tournament and Counter-Strike, which adopted similar approaches to display player data during matches."
   - id: "mini-deathmatch-overlay"
-    line_start: 1157
+    line_start: 1149
     line_end: 1293
     title: "Compact scoreboard for limited screen space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The MiniDeathmatchOverlay provides a compact version of the scoreboard for scenarios where screen space is constrained, such as lower resolutions or smaller status bar configurations. This section prioritizes essential information, including player frags, team affiliation, and name, while omitting less critical data like ping. The code dynamically adjusts the display to ensure the current player remains visible, even in crowded matches. This design reflects id Software's commitment to accessibility and usability, ensuring Quake's multiplayer experience remained engaging across diverse hardware setups. The compact overlay concept influenced later games with scalable UI designs, such as StarCraft and World of Warcraft, which adapted their interfaces to accommodate varying screen resolutions and player preferences."
   - id: "intermission-overlay"
-    line_start: 1298
+    line_start: 1296
     line_end: 1311
     title: "Team or deathmatch intermission display"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The IntermissionOverlay determines the scoreboard display during intermission periods, switching between team and deathmatch overlays based on server settings. This feature enhances the multiplayer experience by providing players with a clear summary of match progress and standings during breaks. In the mid-1990s, intermission screens were a novel concept, adding a layer of polish to competitive gaming. By dynamically adapting to teamplay settings, this overlay showcases id Software's foresight in designing flexible systems for diverse gameplay modes. The intermission overlay concept later became a staple in multiplayer games, influencing titles like Halo and Call of Duty, which use similar screens to summarize match statistics and prepare players for the next round."
   - id: "finale-overlay"
-    line_start: 1316
+    line_start: 1314
     line_end: 1328
     title: "Finale screen for dramatic match endings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

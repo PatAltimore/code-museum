@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This block contains code for an Easter egg triggered by pressing specific keys ('I' and 'D') in the menu. It displays images of the development team, accompanied by a unique soundtrack. Easter eggs like this were a hallmark of id Software's playful culture, reflecting their pride in their work and their connection to fans. Such hidden features became a tradition in gaming, inspiring developers to include similar nods in their own titles, fostering a sense of community and discovery."
   - id: "quick-save-load"
-    line_start: 650
+    line_start: 645
     line_end: 812
     title: "Quick-save and quick-load functionality"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_game)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This section implements quick-save and quick-load features, allowing players to save and resume their progress with minimal interruption. In 1992, this was a significant quality-of-life improvement, as games often required manual save management. The code handles memory caching, screen fading, and user prompts, showcasing id Software's attention to detail. Quick-save systems became standard in PC gaming, appearing in titles like Doom and Half-Life, and remain a critical feature in modern games."
   - id: "end-game-confirmation"
-    line_start: 864
+    line_start: 859
     line_end: 882
     title: "End game confirmation dialog"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dialog_box"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This routine displays a confirmation dialog when the player chooses to end the current game. It uses localized strings and random humorous messages to engage the player, a design choice that adds personality to the game. Such dialogs were essential in early gaming to prevent accidental loss of progress. The playful tone influenced later games, encouraging developers to inject humor and character into otherwise utilitarian interfaces."
   - id: "view-high-scores"
-    line_start: 893
+    line_start: 888
     line_end: 918
     title: "High scores: celebrating player achievement"
     wikipedia_url: "https://en.wikipedia.org/wiki/High_score"
@@ -78,47 +78,47 @@ enhancements:
     image_caption: ""
     content: "The `CP_ViewScores` function displays the high scores screen, accompanied by a dedicated soundtrack. High scores were a staple of arcade gaming, and their inclusion in Wolfenstein 3D reflects id Software's effort to bring arcade-style engagement to the PC. This feature celebrates player achievement and encourages replayability, a concept that persisted in later games and evolved into modern leaderboards and achievement systems."
   - id: "episode-selection-menu"
-    line_start: 936
-    line_end: 1049
+    line_start: 935
+    line_end: 1042
     title: "Episode selection and shareware upsell"
     wikipedia_url: "https://en.wikipedia.org/wiki/Shareware"
     image_url: ""
     image_caption: ""
     content: "This section handles the episode selection menu, allowing players to choose which episode to play. If an episode is unavailable due to the shareware model, the game displays a message encouraging players to purchase the full version. This upsell mechanism was common in shareware games of the era, pioneered by companies like Apogee Software. The logic checks whether the player is already in a game and confirms before starting a new one, ensuring smooth transitions. This approach influenced later games that adopted similar monetization strategies, such as Doom and Duke Nukem 3D."
   - id: "draw-new-episode-menu"
-    line_start: 1050
-    line_end: 1086
+    line_start: 1045
+    line_end: 1080
     title: "Drawing the episode selection screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphical_user_interface"
     image_url: ""
     image_caption: ""
     content: "This routine renders the episode selection menu, including localized text for Spanish and Japanese audiences. It uses graphical assets like episode icons and a mouse cursor background to enhance usability. The menu design reflects the era's focus on simplicity and clarity, ensuring players could navigate options with minimal effort. Localization efforts in this section demonstrate id Software's awareness of international markets, a trend that became increasingly important in the gaming industry."
   - id: "sound-menu-handling"
-    line_start: 1135
-    line_end: 1251
+    line_start: 1130
+    line_end: 1245
     title: "Sound menu: toggling audio options"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
     image_url: ""
     image_caption: ""
     content: "This section manages the sound menu, allowing players to toggle between different audio modes such as AdLib, PC speaker, and Sound Blaster. It dynamically adjusts menu options based on hardware availability, showcasing the game's adaptability to various configurations. The inclusion of digitized sound options reflects the growing importance of immersive audio in gaming during the early 1990s. This menu influenced later games by demonstrating how to gracefully handle hardware limitations while providing customization options."
   - id: "save-load-game-management"
-    line_start: 1373
-    line_end: 1662
+    line_start: 1368
+    line_end: 1655
     title: "Save and load game functionality"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
     image_caption: ""
     content: "This section implements the save and load game mechanics, allowing players to preserve their progress and resume later. It includes routines for quick saves, overwriting existing files, and displaying a graphical loading indicator. The use of file I/O operations highlights the technical challenges of managing game state on early PCs. This functionality became a staple in gaming, influencing titles like Doom and Quake, which refined save/load systems for more complex environments."
   - id: "joystick-calibration"
-    line_start: 1663
-    line_end: 1760
+    line_start: 1658
+    line_end: 1752
     title: "Calibrating joystick input"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
     image_caption: ""
     content: "This routine calibrates joystick input, ensuring accurate control for players using analog devices. It prompts users to move the joystick to its extremes to determine minimum and maximum values, then configures the game accordingly. This calibration process reflects the era's reliance on manual setup for peripheral devices, a necessity before plug-and-play standards emerged. The technique influenced later games by setting a precedent for user-friendly hardware configuration."
   - id: "mouse-sensitivity-adjustment"
-    line_start: 1835
+    line_start: 1831
     line_end: 1955
     title: "Adjusting mouse sensitivity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_mouse"
@@ -126,47 +126,47 @@ enhancements:
     image_caption: ""
     content: "This section allows players to adjust mouse sensitivity through a graphical interface. It uses a slider to represent sensitivity levels and updates the display dynamically as the player makes changes. The routine emphasizes user-centric design, ensuring players can tailor controls to their preferences. This feature reflects the growing importance of precision in first-person shooters, influencing later games like Half-Life and Counter-Strike, which offered advanced control customization."
   - id: "draw-control-screen"
-    line_start: 1962
-    line_end: 2044
+    line_start: 1958
+    line_end: 2037
     title: "Dynamic menu based on hardware detection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This subroutine, `DrawCtlScreen`, dynamically renders the control menu based on the presence of input devices like joysticks and mice. The code checks hardware availability and adjusts the menu's active options accordingly. For example, if a joystick is detected, joystick-related menu items are activated. This approach reflects the adaptability of Wolfenstein 3D to diverse hardware setups, a necessity in the early 1990s when PC configurations varied widely. The developers, led by John Carmack, prioritized user accessibility, ensuring players could configure controls to their liking regardless of their input devices. This dynamic menu system influenced later games, which adopted similar techniques for hardware detection and menu customization."
   - id: "custom-controls-menu"
-    line_start: 2050
-    line_end: 2088
+    line_start: 2040
+    line_end: 2082
     title: "Customizable control bindings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_controls"
     image_url: ""
     image_caption: ""
     content: "The `CustomControls` function allows players to redefine control bindings for mouse, joystick, and keyboard. This feature was groundbreaking for its time, offering a level of personalization that enhanced the user experience. The menu system uses subroutines like `DefineMouseBtns` and `DefineJoyBtns` to handle specific input devices. In the early 1990s, customizable controls were not standard, but id Software recognized their importance in accommodating diverse player preferences. This innovation paved the way for modern games, where remappable controls are a standard feature, ensuring accessibility for players with different needs and setups."
   - id: "enter-control-data"
-    line_start: 2136
-    line_end: 2368
+    line_start: 2130
+    line_end: 2362
     title: "Unified input handling for control customization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
     image_url: ""
     image_caption: ""
     content: "The `EnterCtrlData` function is a versatile routine that processes input for customizing controls across various devices. It identifies the active control type (mouse, joystick, keyboard) and updates the corresponding configuration. The code includes mechanisms for flashing cursors and validating inputs, ensuring a responsive and intuitive user experience. This unified approach to input handling reflects id Software's commitment to efficiency and modular design. By abstracting input processing, the developers created a system that could easily adapt to new devices or configurations, influencing later game engines like Doom and Quake, which built on these principles of modularity and extensibility."
   - id: "change-view-size"
-    line_start: 2736
-    line_end: 2813
+    line_start: 2731
+    line_end: 2807
     title: "Adjustable screen viewing size"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "The `CP_ChangeView` function lets players adjust the in-game viewing size, balancing performance and visual fidelity. This feature was critical in a time when hardware capabilities varied significantly among users. Smaller view sizes improved frame rates on slower machines, while larger sizes offered a more immersive experience for players with powerful systems. The code dynamically updates the screen and plays sound effects to provide feedback during adjustments. This technique demonstrates id Software's understanding of hardware constraints and their ability to optimize gameplay for diverse setups. The concept of adjustable graphics settings became a staple in PC gaming, influencing countless titles and engines."
   - id: "intro-screen-memory-visualization"
-    line_start: 2882
-    line_end: 2968
+    line_start: 2877
+    line_end: 2953
     title: "Visualizing system memory in the intro screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Expanded_memory"
     image_url: ""
     image_caption: ""
     content: "The `IntroScreen` function provides a graphical representation of system memory, including main, EMS (Expanded Memory Specification), and XMS (Extended Memory Specification). This visualization helped players understand their system's capabilities, a crucial feature in the early 1990s when memory configurations varied widely. The code calculates memory availability and renders bars to indicate usage levels. This attention to detail reflects id Software's technical expertise and their commitment to user education. By demystifying hardware constraints, they empowered players to make informed decisions about their gaming experience. This approach influenced later games and software, which adopted similar techniques for system diagnostics and configuration."
   - id: "clear-menu-screen"
-    line_start: 2969
+    line_start: 2964
     line_end: 2975
     title: "Efficient screen clearing for menu transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -174,7 +174,7 @@ enhancements:
     image_caption: ""
     content: "The `ClearMScreen` function clears the menu screen, preparing it for new content. Depending on the game version, it either fills the screen with a solid color or displays a backdrop image. This routine ensures smooth transitions between menus, a critical aspect of user interface design. The developers optimized this process to minimize rendering time, enhancing the game's responsiveness. Efficient screen clearing techniques like this became standard in game development, influencing later engines and frameworks that prioritized performance and seamless user experiences."
   - id: "cache-lump-graphics"
-    line_start: 2984
+    line_start: 2979
     line_end: 2990
     title: "Caching graphical assets for performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -183,47 +183,47 @@ enhancements:
     content: "The `CacheLump` function caches a range of graphical assets, ensuring they are readily available for rendering. This technique minimizes loading times and improves performance, especially on systems with limited memory. By preloading assets, the game avoids delays during gameplay, maintaining its fast-paced action. This approach reflects id Software's mastery of resource management, a skill that became increasingly important as games grew more complex. The concept of asset caching influenced later game engines, which adopted similar strategies to optimize performance and reduce latency."
   - id: "uncache-lump-graphics-cleanup"
     line_start: 2993
-    line_end: 3007
+    line_end: 3000
     title: "Efficient asset uncaching for menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
     content: "This function, `UnCacheLump`, is responsible for freeing graphical assets that are no longer needed in memory. By iterating over a range of asset indices and calling `UNCACHEGRCHUNK` for each, it ensures that memory is efficiently managed. In the early 1990s, memory constraints were a major challenge for game developers, especially on MS-DOS systems with limited RAM. John Carmack's approach to caching and uncaching graphical assets was critical for maintaining performance while navigating menus. This technique influenced later games by demonstrating the importance of dynamic memory management in resource-intensive applications."
   - id: "draw-window-menu-outline"
-    line_start: 3008
-    line_end: 3028
+    line_start: 3003
+    line_end: 3021
     title: "Drawing windows and outlines for menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphical_user_interface"
     image_url: ""
     image_caption: ""
     content: "The `DrawWindow` and `DrawOutline` functions are used to render menu windows and their borders. These routines rely on low-level graphics calls like `VWB_Bar` and `VWB_Hlin` to draw rectangles and lines, creating visually distinct menu elements. In the early 1990s, graphical user interfaces in games were often custom-built, as standardized GUI libraries were not available for MS-DOS. The techniques used here laid the groundwork for more sophisticated UI frameworks in later games, influencing titles like Doom and Quake, which also featured intuitive menu systems."
   - id: "setup-control-panel-assets-savegames"
-    line_start: 3029
-    line_end: 3088
+    line_start: 3024
+    line_end: 3081
     title: "Control panel setup: assets and save games"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "The `SetupControlPanel` function initializes the menu system by caching necessary assets and loading save game data. It uses functions like `CA_CacheGrChunk` to preload graphical elements and checks for available save game files using file system operations. This routine reflects the constraints of early gaming systems, where loading data dynamically was essential due to limited memory. The ability to detect and display save games added a layer of user convenience that became standard in later games. The modular design of this function influenced save system implementations in subsequent id Software titles and other games of the era."
   - id: "handle-menu-navigation-cursor-animation"
-    line_start: 3106
-    line_end: 3351
+    line_start: 3101
+    line_end: 3346
     title: "Menu navigation with animated cursor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "The `HandleMenu` function manages user navigation through menus, including cursor movement and selection. It features dynamic cursor animations, alternating between two shapes (`C_CURSOR1PIC` and `C_CURSOR2PIC`) to create a blinking effect. This visual feedback was innovative for its time, enhancing user experience in an era when menus were often static. The function also integrates input from keyboard, mouse, and joystick, showcasing id Software's commitment to accessibility and responsiveness. The techniques used here influenced later games by demonstrating the importance of polished menu interactions, a hallmark of id Software's design philosophy."
   - id: "read-any-control-input-devices"
-    line_start: 3489
-    line_end: 3591
+    line_start: 3484
+    line_end: 3584
     title: "Universal input handling for menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
     image_url: ""
     image_caption: ""
     content: "The `ReadAnyControl` function processes input from various devices, including keyboard, mouse, and joystick. It uses low-level routines like `Mouse` and `IN_ReadControl` to detect directional movement and button presses. This universal input handling was a significant achievement in the early 1990s, as games often supported only one or two input methods. By accommodating multiple devices, id Software ensured that Wolfenstein 3D could be played by a broader audience. This approach influenced input handling in later games, paving the way for configurable controls and multi-device support in modern gaming."
   - id: "confirm-dialog-blinking-cursor"
-    line_start: 3592
-    line_end: 3667
+    line_start: 3587
+    line_end: 3660
     title: "Confirmation dialog with blinking cursor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dialog_box"
     image_url: ""
@@ -238,15 +238,15 @@ enhancements:
     image_caption: ""
     content: "The `StartCPMusic` function manages background music for the control panel, dynamically loading and freeing audio assets. It uses functions like `CA_CacheAudioChunk` and `SD_StartMusic` to ensure smooth transitions between tracks. This approach reflects the constraints of early sound systems, where memory limitations required careful management of audio resources. By integrating music into the menu system, id Software enhanced the immersive experience of Wolfenstein 3D. The techniques used here influenced audio handling in later games, contributing to the development of dynamic soundtracks and adaptive music systems."
   - id: "in-get-scan-name-keyboard-mapping"
-    line_start: 3803
-    line_end: 3820
+    line_start: 3798
+    line_end: 3813
     title: "Keyboard scan code mapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_layout"
     image_url: ""
     image_caption: ""
     content: "The `IN_GetScanName` function maps keyboard scan codes to human-readable names, enabling intuitive key identification in menus. It uses lookup tables like `ExtScanCodes` and `ScanNames` to retrieve the corresponding string for a given scan code. This functionality was essential for customizing controls and providing clear instructions to players. The approach influenced later games by demonstrating the importance of flexible and user-friendly input mapping, a feature that became standard in modern gaming."
   - id: "draw-stripes-screen-title-decoration"
-    line_start: 3860
+    line_start: 3855
     line_end: 3869
     title: "Decorative stripes for screen titles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphical_user_interface"
@@ -254,7 +254,7 @@ enhancements:
     image_caption: ""
     content: "The `DrawStripes` function adds decorative stripes to screen titles, enhancing the visual appeal of menus. It uses low-level graphics routines like `VWB_Bar` and `VWB_Hlin` to draw horizontal lines and bars. This attention to detail reflects id Software's commitment to creating polished and engaging user interfaces. The decorative elements influenced later games by demonstrating the importance of aesthetics in menu design, contributing to the evolution of graphical user interfaces in gaming."
   - id: "dynamic-episode-detection"
-    line_start: 3882
+    line_start: 3877
     line_end: 3986
     title: "Dynamic Episode Detection for Modular Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"

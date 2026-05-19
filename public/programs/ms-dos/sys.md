@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "buf-data-buffer-for-file-reads"
     line_start: 197
-    line_end: 213
+    line_end: 201
     title: "Data buffer for file reads"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The CHECK_FLOP routine validates whether the floppy disk is bootable. It compares the media type byte (BH) with a specific value (0FBH) to identify bootable floppy disks. This was critical for ensuring that the system could boot from the correct disk, especially in multi-drive setups. The routine's simplicity reflects the straightforward design of early PC hardware, where boot disks were manually selected. This approach influenced later BIOS and operating systems, which automated boot disk selection and expanded support for booting from diverse media, including CD-ROMs and USB drives."
   - id: "getkeystroke-keyboard-input"
     line_start: 1149
-    line_end: 1173
+    line_end: 1161
     title: "Keyboard Input Handling for Command-Line Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""

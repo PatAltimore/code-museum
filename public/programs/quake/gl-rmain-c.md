@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines foundational variables used throughout the rendering pipeline, such as `r_worldentity` and `r_cache_thrash`. These variables track the state of the world and rendering cache, ensuring compatibility and efficiency. In 1996, memory constraints and hardware limitations demanded careful management of such global variables to optimize performance. John Carmack and his team designed these structures to support Quake's groundbreaking 3D environments. The approach influenced later engines, including id Tech 2 and id Tech 3, which refined global state tracking for more complex scenes."
   - id: "frustum-culling-optimization"
-    line_start: 110
+    line_start: 105
     line_end: 119
     title: "Frustum Culling: Efficient Visibility Checks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Frustum_culling"
@@ -47,7 +47,7 @@ enhancements:
     content: "The `R_CullBox` function implements frustum culling, a technique to determine whether an object is outside the view frustum and can be skipped during rendering. This optimization was critical in the mid-1990s, as CPUs like the Intel Pentium struggled with the computational demands of real-time 3D graphics. By avoiding unnecessary draw calls, Quake maintained high frame rates even on modest hardware. Frustum culling became a standard practice in game engines, influencing successors like Unreal Engine and Unity."
   - id: "sprite-frame-selection"
     line_start: 142
-    line_end: 173
+    line_end: 189
     title: "Dynamic Sprite Frame Selection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `R_GetSpriteFrame` function dynamically selects the appropriate frame for a sprite based on the current time and animation intervals. This allowed Quake to display animated sprites, such as explosions or character movements, with smooth transitions. The technique leveraged precomputed intervals to minimize runtime calculations, a necessity given the limited processing power of 1990s hardware. This approach influenced animation systems in later engines, including id Tech 3 and Source Engine, which expanded on the concept with more complex interpolation methods."
   - id: "alias-model-rendering"
     line_start: 290
-    line_end: 322
+    line_end: 335
     title: "Alias Model Rendering Pipeline"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_modeling"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `R_DrawViewModel` function handles the rendering of the player's weapon or view model, ensuring it appears correctly within the scene. Special considerations, such as depth range adjustments, prevent the model from clipping into walls. This technique was essential for maintaining immersion in Quake's first-person perspective. The concept of view models became a staple in FPS games, influencing titles like Half-Life and Counter-Strike."
   - id: "gl-setup-perspective"
     line_start: 854
-    line_end: 888
+    line_end: 918
     title: "Setting Up the GL Perspective"
     wikipedia_url: "https://en.wikipedia.org/wiki/OpenGL"
     image_url: ""
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `R_RenderScene` function orchestrates the entire rendering pipeline, calling subroutines for frustum setup, world rendering, entity drawing, and particle effects. This modular approach allowed Quake to efficiently manage complex scenes, balancing performance and visual fidelity. The pipeline's structure became a blueprint for modern game engines, influencing systems like Unity's rendering stack and Unreal Engine's rendering architecture."
   - id: "mirror-rendering-reflective-surfaces"
-    line_start: 1028
+    line_start: 1026
     line_end: 1093
     title: "Mirror rendering for reflective surfaces"
     wikipedia_url: "https://en.wikipedia.org/wiki/Reflection_(computer_graphics)"

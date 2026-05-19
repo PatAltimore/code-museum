@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "include-directives-and-segment-assumptions"
-    line_start: 5
+    line_start: 1
     line_end: 11
     title: "Setting the stage: Include directives and segments"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "This section begins with the inclusion of assembly files (`DOSSEG.ASM`, `DOSSYM.ASM`) that define key constants, macros, and symbols used throughout the program. It establishes the segment assumptions (`ASSUME SS:DOSGROUP, CS:DOSGROUP`) to ensure proper memory addressing. In the early 1980s, memory segmentation was a critical feature of the Intel 8086 architecture, allowing programs to access more memory than the CPU's 16-bit registers could directly address. These directives reflect the modular design philosophy of MS-DOS, which allowed developers to extend functionality by including predefined libraries. This modularity became a hallmark of MS-DOS, enabling widespread adoption and customization by OEMs and developers."
   - id: "ctrl-c-check-in-console-io"
-    line_start: 47
-    line_end: 70
+    line_start: 43
+    line_end: 96
     title: "Detecting Control-C in console I/O"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control-C"
     image_url: ""
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `CNTCHAND` routine is the main handler for Control-C interrupts. It displays `^C`, restores user registers, and executes the user-defined Control-C handler. The routine manipulates the stack to ensure the user's environment is preserved and restored (`MOV SP,[user_SP]`, `MOV SS,[user_SS]`). This reflects the low-level control programmers had to exert over hardware in the 8086 era. The handler also checks whether the user wishes to continue or terminate the operation (`JNC ctrlc_repeat`, `JMP ctrlc_abort`). This design showcases the early implementation of interrupt handling, which became a foundational concept in operating systems. The stack manipulation techniques used here influenced later systems, including modern kernels, where context switching and interrupt handling are integral."
   - id: "division-overflow-interrupt"
-    line_start: 232
+    line_start: 231
     line_end: 267
     title: "Division overflow interrupt: safeguarding arithmetic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Divide_by_zero"

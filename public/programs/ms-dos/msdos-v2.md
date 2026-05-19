@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "msdos-name-declaration"
     line_start: 2
-    line_end: 12
+    line_end: 2
     title: "A NAME directive that defined an era"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

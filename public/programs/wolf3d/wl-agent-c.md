@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "player-state-variables"
-    line_start: 35
+    line_start: 32
     line_end: 41
     title: "Player State Variables: Health, Position, and Weapons"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The attackinfo table defines the timing and animation frames for different attack types, such as knife and gun. This approach uses a lookup table to optimize performance, avoiding costly runtime calculations. In the early 1990s, lookup tables were a common technique for handling repetitive tasks efficiently, especially on hardware with limited computational power. By predefining these values, id Software ensured consistent and responsive combat mechanics. This technique influenced later games by demonstrating how to balance performance with gameplay complexity, and it remains a staple in game development for managing animations and state transitions."
   - id: "control-movement"
-    line_start: 149
+    line_start: 147
     line_end: 225
     title: "Control Movement: Angle-Based Player Navigation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Trigonometry"
@@ -54,15 +54,15 @@ enhancements:
     image_caption: ""
     content: "The ControlMovement function calculates the player's movement based on input, including strafing and angle adjustments. It uses trigonometric calculations to determine the direction and magnitude of movement, a technique that was groundbreaking for real-time 3D games on MS-DOS. Carmack's implementation of angle-based navigation allowed Wolfenstein 3D to achieve smooth, responsive controls, setting a new standard for first-person shooters. This method became foundational for later games like Doom and Quake, which further refined these mechanics to handle more complex environments and interactions."
   - id: "status-window-functions"
-    line_start: 244
-    line_end: 268
+    line_start: 242
+    line_end: 259
     title: "Status Window: Dynamic HUD Updates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Heads-up_display"
     image_url: ""
     image_caption: ""
     content: "The StatusDrawPic function updates the game's heads-up display (HUD) by drawing status icons, such as health and ammo, on the screen. This dynamic updating of the HUD was a critical feature for Wolfenstein 3D, enhancing player immersion and situational awareness. The use of multiple screen buffers ensured smooth rendering, even on hardware with limited graphical capabilities. This technique influenced the design of HUDs in later games, making real-time status updates a standard feature in first-person shooters and other genres."
   - id: "take-damage-function"
-    line_start: 386
+    line_start: 384
     line_end: 423
     title: "Take Damage: Health Reduction and Visual Feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The TakeDamage function handles the player's health reduction when attacked, updating the HUD and triggering visual feedback like BJ's bugged-out eyes for significant damage. This feature added a layer of realism and urgency to the gameplay, making combat more engaging. The implementation reflects id Software's focus on player experience, using visual cues to communicate game states effectively. This approach influenced later games, where dynamic feedback became a key element in enhancing player immersion and emotional engagement."
   - id: "try-move-function"
-    line_start: 801
+    line_start: 799
     line_end: 855
     title: "TryMove: Collision Detection and Pathfinding"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The TryMove function checks whether the player can move to a new position, accounting for walls and other actors. It uses a grid-based collision detection system optimized for the tile-based maps of Wolfenstein 3D. This method ensured efficient gameplay on constrained hardware, avoiding the computational overhead of more complex algorithms. The function's design influenced the development of collision detection systems in later games, demonstrating how to balance accuracy and performance in real-time environments."
   - id: "thrust-function"
-    line_start: 928
+    line_start: 926
     line_end: 963
     title: "Thrust: Movement with Trigonometric Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Trigonometry"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The Thrust function calculates player movement based on angle and speed, using trigonometric functions to determine the x and y components. This precise calculation allowed Wolfenstein 3D to achieve smooth and realistic movement, a significant technical achievement for its time. The function also integrates collision detection and area updates, ensuring seamless transitions between tiles. This approach laid the groundwork for movement mechanics in later 3D games, influencing the design of engines like id Tech and Unreal Engine."
   - id: "cmd-use-player-interaction"
-    line_start: 1008
+    line_start: 1006
     line_end: 1078
     title: "Directional interaction and object use logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `Cmd_Use` function handles player interactions with the environment, including doors, elevators, and pushable walls. By determining the player's facing direction based on their angle, the function calculates the target tile for interaction. This logic enables dynamic gameplay where players can push walls to uncover secrets or activate elevators to progress. Written in 1992, this approach reflects the constraints of MS-DOS systems, where efficient memory and tile-based calculations were critical. The modular design of this function influenced later games, including Doom, which expanded on environmental interaction mechanics."
   - id: "spawn-player-initialization"
-    line_start: 1100
+    line_start: 1098
     line_end: 1118
     title: "Player initialization and spawn logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/John_Carmack"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `SpawnPlayer` function initializes the player's state when starting a level. It sets the player's position, angle, and active status, and calculates their area number based on the map data. This function also calls `InitAreas` to prepare the game's internal area tracking system. Developed by John Carmack and the id Software team, this routine exemplifies their focus on modular and efficient code. The method of spawning and initializing players became a standard in FPS games, influencing titles like Quake and Unreal."
   - id: "knife-attack-close-combat"
-    line_start: 1133
+    line_start: 1131
     line_end: 1164
     title: "Knife attack: close combat mechanics"
     wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `GunAttack` function handles ranged weapon attacks, including pistols, machine guns, and chainguns. It plays the appropriate sound effect based on the weapon type and uses a loop to find the closest visible and shootable enemy. The function then traces a line to the target to ensure a clear shot and calculates damage based on distance. This approach to ranged combat was revolutionary for its time, influencing the targeting systems in Doom and later FPS titles. The modular handling of weapon types and damage calculations became a staple in game development."
   - id: "victory-spin-animation"
-    line_start: 1255
+    line_start: 1253
     line_end: 1280
     title: "Victory spin: celebratory animation logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `VictorySpin` function creates a celebratory animation for the player upon completing a level. It adjusts the player's angle and position incrementally to produce a spinning effect. This function showcases id Software's attention to detail in enhancing player satisfaction through visual feedback. The concept of victory animations influenced later games, including Doom and Quake, which incorporated similar celebratory sequences to reward players."
   - id: "player-attack-handler"
-    line_start: 1293
+    line_start: 1291
     line_end: 1379
     title: "Player attack handler: weapon switching and firing"
     wikipedia_url: "https://en.wikipedia.org/wiki/John_Romero"
@@ -134,7 +134,7 @@ enhancements:
     image_caption: ""
     content: "The `T_Attack` function orchestrates the player's attack actions, including weapon switching, ammo management, and firing logic. It updates the player's frame based on the current weapon and attack state, calling `GunAttack` or `KnifeAttack` as needed. This function also handles edge cases, such as running out of ammo and switching to the knife. Designed by John Romero and the id Software team, this routine exemplifies their focus on responsive and modular gameplay mechanics. The weapon handling system influenced FPS titles like Quake and Unreal Tournament, which expanded on the concept with more complex weapon arsenals."
   - id: "player-movement-and-actions"
-    line_start: 1393
+    line_start: 1391
     line_end: 1419
     title: "Player movement and action coordination"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"

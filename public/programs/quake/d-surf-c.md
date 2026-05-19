@@ -64,15 +64,15 @@ enhancements:
     image_caption: ""
     content: "The `D_SCAlloc` function dynamically allocates memory for surface cache blocks, ensuring efficient use of the pre-allocated cache. It handles fragmentation by merging adjacent blocks and creates new fragments when necessary. This approach minimizes wasted memory and ensures that textures fit within the available cache. In 1996, dynamic allocation was a sophisticated technique, especially for real-time applications like Quake. The method influenced later systems, such as DirectX and OpenGL, which adopted similar strategies for managing GPU memory."
   - id: "logarithmic-utility-functions"
-    line_start: 236
-    line_end: 263
+    line_start: 232
+    line_end: 258
     title: "Logarithmic Utility Functions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Logarithm"
     image_url: ""
     image_caption: ""
     content: "The utility functions `MaskForNum` and `D_log2` calculate bit masks and logarithms, respectively, for use in surface caching and rendering. These functions are optimized for performance, using bitwise operations to avoid costly division or multiplication. In the mid-1990s, such optimizations were crucial for achieving real-time performance on hardware like the Intel 486 and Pentium processors. These techniques are still relevant today, particularly in graphics programming and shader development, where efficiency is paramount."
   - id: "cache-surface-rendering"
-    line_start: 262
+    line_start: 260
     line_end: 336
     title: "Caching and Rendering Surfaces"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"

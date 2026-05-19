@@ -47,7 +47,7 @@ enhancements:
     content: "The Mod_PointInLeaf function determines which leaf node a given point resides in within a BSP tree. This is essential for rendering and collision detection, as it identifies the spatial region associated with the point. BSP trees were a cutting-edge technology in the mid-1990s, enabling efficient spatial partitioning for 3D environments. Carmack adapted this technique from earlier research in computer graphics and CAD systems. By optimizing traversal through the BSP tree, Quake achieved real-time rendering of complex 3D environments. This method became a cornerstone of game development, influencing engines like GoldSrc and Unity."
   - id: "visibility-data-decompression"
     line_start: 107
-    line_end: 139
+    line_end: 152
     title: "Visibility Data Decompression"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "Mod_LoadClipnodes loads clipnodes and defines hulls for collision detection. Clipnodes represent simplified geometry used for determining collisions, while hulls define the boundaries for different player sizes and object interactions. This system was designed to optimize collision detection in Quake's 3D environments, ensuring accurate and efficient handling of player movement and interactions. The concept of clipnodes and hulls influenced later engines, such as Unreal Engine, which adopted similar methods for collision detection and physics simulation."
   - id: "mod-loadmarksurfaces-validation"
-    line_start: 1016
+    line_start: 1012
     line_end: 1039
     title: "Validating Surface References for Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the `Mod_LoadMarksurfaces` function, responsible for loading and validating surface references from a lump in the BSP file format. The function ensures that the lump size is correct and that surface indices are within bounds, preventing crashes due to malformed data. At the time of Quake's development, BSP files were a cutting-edge format for storing 3D level geometry. John Carmack and his team designed this validation step to ensure robustness in handling user-created maps and mods, a key feature of Quake's success. This approach influenced later engines, such as Unreal Engine and Source Engine, which adopted similar validation practices to support custom content creation."
   - id: "mod-loadsurfedges-parsing"
-    line_start: 1043
+    line_start: 1041
     line_end: 1062
     title: "Parsing Surfedge Data for BSP Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `Mod_LoadSurfedges` function parses surfedge data, which defines the edges of surfaces in BSP models. This data is crucial for rendering and collision detection, as it connects vertices to form polygons. By converting data to the correct endianness and validating its size, the function ensures compatibility across platforms. In 1996, hardware constraints necessitated such optimizations to maximize performance on x86 processors. This technique laid the groundwork for efficient geometry handling in later engines, influencing games like Half-Life and Counter-Strike."
   - id: "mod-loadplanes-normal-calculation"
-    line_start: 1066
+    line_start: 1064
     line_end: 1099
     title: "Plane Normal Calculation and Signbits"
     wikipedia_url: "https://en.wikipedia.org/wiki/Plane_(geometry)"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `Mod_LoadPlanes` function processes plane data from BSP files, calculating normals and signbits for efficient spatial partitioning. Normals define the orientation of planes, while signbits optimize calculations by encoding directionality. This technique was crucial for Quake's real-time rendering and collision detection, enabling complex environments on limited hardware. The use of signbits and endianness conversion reflects the team's deep understanding of hardware-level optimization. These ideas influenced later engines, such as Doom 3 and Unity, which adopted similar spatial partitioning methods."
   - id: "radius-from-bounds-calculation"
-    line_start: 1104
+    line_start: 1102
     line_end: 1118
     title: "Calculating Bounding Sphere Radius"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `RadiusFromBounds` function calculates the radius of a bounding sphere based on the minimum and maximum coordinates of a model. This radius is used for efficient collision detection and visibility testing, reducing computational overhead. Bounding volumes were a common optimization in 1990s game development, allowing engines to quickly determine whether objects were within view or intersecting. This technique remains a staple in modern game engines, including Unreal Engine and Unity, where bounding spheres are used for physics and rendering optimizations."
   - id: "mod-loadbrushmodel-bsp-loading"
-    line_start: 1122
+    line_start: 1120
     line_end: 1217
     title: "Loading and Validating BSP Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `Mod_LoadBrushModel` function is a comprehensive routine for loading BSP models, including vertices, edges, surfaces, and other geometry data. It validates the BSP version, calculates checksums for data integrity, and allocates memory for various components. This function exemplifies Quake's modular approach to handling complex 3D environments, ensuring robustness and performance. The BSP format, pioneered by id Software, became a standard in the industry, influencing games like Unreal and Source Engine titles. Its modular design and validation techniques are still studied in game development courses today."
   - id: "mod-loadaliasframe-animation"
-    line_start: 1229
+    line_start: 1227
     line_end: 1261
     title: "Loading Frames for Alias Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
@@ -143,7 +143,7 @@ enhancements:
     content: "The `Mod_LoadSpriteFrame` function loads individual frames for sprites, which are used for 2D elements like particles and effects. It calculates dimensions, origins, and pixel data, ensuring compatibility with Quake's rendering pipeline. Sprites were a versatile tool in 1990s game development, enabling visual effects without the overhead of 3D models. This technique influenced later engines, such as Unreal Engine and Unity, which expanded sprite handling to include advanced particle systems and UI elements."
   - id: "mod-loadspritemodel-sprite-loading"
     line_start: 1798
-    line_end: 1830
+    line_end: 1870
     title: "Loading Complete Sprite Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""

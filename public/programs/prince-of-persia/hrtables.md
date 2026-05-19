@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "ylo-y-coordinate-base-address"
-    line_start: 16
+    line_start: 7
     line_end: 29
     title: "Mapping screen Y-coordinates to memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The YHI table complements YLO by providing the high-byte portion of the memory address for each screen row. Together, YLO and YHI allow the program to construct complete memory addresses for pixel manipulation. This dual-table system was a clever workaround for the Apple II's segmented memory architecture, where high-resolution graphics were stored across multiple pages. By precomputing these values, Mechner avoided runtime calculations, saving precious CPU cycles. This optimization was critical for achieving the fluid animation and responsiveness that defined Prince of Persia. The technique demonstrates the ingenuity required to maximize performance on hardware with severe limitations, and it influenced other developers working on cinematic platformers and action games for the Apple II."
   - id: "shift-tables-for-pixel-alignment"
-    line_start: 58
+    line_start: 46
     line_end: 126
     title: "Pixel shifting for smooth animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The MASKTAB table defines mask bytes used for blending graphics, such as overlaying sprites on the background. Each entry corresponds to a specific byte value, allowing the program to apply masks efficiently during rendering. This technique was essential for the Apple II's high-resolution mode, where graphics blending had to be performed manually due to hardware limitations. Mechner's use of MASKTAB reflects his focus on creating a visually rich game, where sprites and backgrounds interact seamlessly. The approach influenced later games on similar hardware, where masking became a standard technique for achieving complex visual effects."
   - id: "shift-and-carry-address-tables"
-    line_start: 255
+    line_start: 246
     line_end: 277
     title: "Addressing shift and carry tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"

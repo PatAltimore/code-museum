@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The INIT subroutine sets up the stack, initializes the keyboard interrupt vector, and prepares the time-of-day clock. It also relocates MS-DOS in memory and configures disk read/write vectors. This meticulous setup reflects the need to bootstrap the system in a predictable and efficient manner. Written in 8086 assembly, this code demonstrates the low-level control programmers had over hardware. The initialization process influenced later operating systems, which adopted similar bootstrapping techniques to ensure reliable startup sequences. The relocation of MS-DOS also highlights the early use of memory segmentation, a concept that persisted in x86 architecture for decades."
   - id: "time-and-date-functions"
-    line_start: 268
+    line_start: 265
     line_end: 355
     title: "Timekeeping: precision in early PCs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_clock"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The GETTIME and SETTIME routines interact with the system's time-of-day clock, enabling precise timekeeping. These functions use binary-coded decimal (BCD) conversion to handle time data efficiently. In the early 1980s, real-time clocks were a luxury feature, often implemented using external chips like the 9513 Timer. This code showcases how MS-DOS leveraged hardware to provide basic timekeeping functionality, which was crucial for file timestamps and scheduling tasks. The techniques used here laid the groundwork for more advanced timekeeping in later operating systems, including support for time zones and network synchronization."
   - id: "console-input-handling"
-    line_start: 360
+    line_start: 356
     line_end: 559
     title: "Console input: interrupt-driven vs polled"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The DSKCHG function detects whether a floppy disk has been changed, a critical feature for ensuring data integrity. It checks the head load bit and disk density, adapting to different hardware configurations like SCP and Cromemco controllers. Disk change detection was a complex task in the early 1980s, as hardware lacked standardized mechanisms for signaling changes. This code represents an innovative solution to a common problem, influencing later operating systems that implemented more sophisticated disk management techniques. The ability to handle multiple disk formats also highlights MS-DOS's flexibility, which contributed to its widespread adoption."
   - id: "disk-read-and-write-functions"
-    line_start: 818
+    line_start: 816
     line_end: 884
     title: "Reading and writing disks: low-level mastery"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The READ and WRITE routines perform low-level disk operations, including seeking to the correct track and transferring data sector by sector. These functions directly manipulate hardware ports, showcasing the programmer's intimate knowledge of the underlying hardware. Disk I/O was a critical feature of MS-DOS, enabling file storage and retrieval on floppy disks. The techniques used here influenced later operating systems, which abstracted disk operations into higher-level APIs while retaining the efficiency of direct hardware access. The error handling in these routines also reflects the importance of robustness in early software design."
   - id: "seek-function-for-disk-operations"
-    line_start: 955
+    line_start: 942
     line_end: 1038
     title: "Seeking tracks: precision disk positioning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Track_(disk_drive)"
@@ -127,7 +127,7 @@ enhancements:
     content: "The INITTAB sections define initialization tables for various disk configurations, specifying parameters like sector size, allocation units, and directory entries. These tables allow MS-DOS to adapt to different drive types, including single-density and double-density formats, as well as 5.25-inch and 8-inch drives. This modular design reflects the need for flexibility in early operating systems, where hardware diversity was the norm. By enabling customization, Paterson's approach influenced the development of device drivers and hardware abstraction layers in later systems like Windows and Linux."
   - id: "ssdrive-small-drive-parameters"
     line_start: 1848
-    line_end: 1877
+    line_end: 1875
     title: "Defining small drive parameters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
     image_url: ""

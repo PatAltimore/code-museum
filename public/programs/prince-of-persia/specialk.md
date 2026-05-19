@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "keys-detect-keypresses"
-    line_start: 138
+    line_start: 131
     line_end: 140
     title: "Detect & respond to keypresses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_(computing)"
@@ -46,87 +46,87 @@ enhancements:
     image_caption: ""
     content: "The `freeze` routine handles the ESC key, allowing the game to pause or freeze. It uses a clever trick to ignore the keypress that breaks the ESC sequence, ensuring smooth transitions between gameplay and paused states. This routine highlights the importance of interrupt handling in real-time games, where unexpected inputs must be managed gracefully. In the late 1980s, such techniques were vital for creating immersive experiences on limited hardware. Mechner's careful attention to detail in input handling contributed to the game's reputation for polish and responsiveness, influencing later titles that sought to emulate its cinematic style."
   - id: "keys2-keypress-storage"
-    line_start: 162
-    line_end: 264
+    line_start: 161
+    line_end: 258
     title: "Store and process keypresses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
     image_caption: ""
     content: "The `KEYS2` routine stores the ASCII value of the last keypress in a buffer (`keypress`) and clears the keyboard strobe flag (`$C010`). It also calls the `KREAD` subroutine to process player control keys. This section demonstrates efficient use of memory and registers to manage input in real-time. The Apple II's limited memory and processing power required programmers to optimize every aspect of their code. Mechner's approach to input buffering and processing ensured that the game could handle complex player interactions without lag or glitches. This technique influenced later games that relied on responsive controls, particularly in the platformer genre."
   - id: "legitkeys-special-key-handling"
-    line_start: 265
-    line_end: 359
+    line_start: 260
+    line_end: 353
     title: "Handle legitimate special keys"
     wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_shortcut"
     image_url: ""
     image_caption: ""
     content: "The `LegitKeys` routine processes special keys that are available in the final version of the game, such as `kfreeze` (pause) and `ksavegame` (save progress). It includes checks for development-specific keys, ensuring that debug functionality is disabled in the final release. This separation of development and production functionality reflects Mechner's meticulous approach to game design. By implementing these features, he ensured that the game was both user-friendly and secure from unintended disruptions. The concept of special keys became a standard in gaming, influencing the design of shortcuts and hotkeys in modern software."
   - id: "develkeys-debug-key-handling"
-    line_start: 360
-    line_end: 378
+    line_start: 355
+    line_end: 373
     title: "Handle development-only debug keys"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""
     image_caption: ""
     content: "The `DevelKeys` routine processes keys reserved for debugging during development, such as `kclean` (clear development flag). These keys allowed Mechner to test and refine the game efficiently on the Apple II hardware. Debug keys were a common practice among developers in the 1980s, enabling rapid iteration and troubleshooting. Mechner's inclusion of these keys reflects the challenges of solo development, where efficiency and adaptability were crucial. Debugging tools and techniques like these have evolved significantly, but their roots can be traced back to early practices like those seen in Prince of Persia."
   - id: "temp-devel-temp-debug-keys"
-    line_start: 379
-    line_end: 546
+    line_start: 375
+    line_end: 543
     title: "Temporary debug keys for testing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Software_testing"
     image_url: ""
     image_caption: ""
     content: "The `TempDevel` routine handles temporary debug keys, such as `kantimatter` (initialize antimatter cheat timer) and `kspeedup` (increase game speed). These keys were removed in the final version but were essential for testing specific game mechanics during development. Mechner's use of temporary debug keys highlights the iterative nature of game development, where features are tested and refined before release. This practice allowed him to experiment with gameplay elements and ensure their functionality on constrained hardware. Temporary debug keys remain a valuable tool in modern software development, enabling developers to test features without permanently integrating them into the final product."
   - id: "initinput-initialize-input"
-    line_start: 843
-    line_end: 882
+    line_start: 842
+    line_end: 851
     title: "Initialize input states"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
     image_url: ""
     image_caption: ""
     content: "The `INITINPUT` routine initializes input-related variables, such as `clrSEL` and `clrDESEL`, which manage joystick and keyboard states. This routine ensures that all input flags are reset at the start of the game, preventing unintended behavior. Input initialization is a fundamental step in game development, particularly on hardware like the Apple II, where memory and processing constraints required careful management of state variables. Mechner's approach to input initialization contributed to the game's smooth and responsive controls, setting a standard for future platformers and action games."
   - id: "clrjstk-clear-joystick-input"
-    line_start: 883
-    line_end: 974
+    line_start: 853
+    line_end: 966
     title: "Clear joystick input states"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
     image_caption: ""
     content: "The `CLRJSTK` routine manages joystick input states, ensuring that button presses and releases are handled correctly. It uses flags (`clrF`, `clrB`, `clrU`, `clrD`, `clrbtn`) to track the state of each joystick button, allowing the game to respond appropriately to player actions. This routine is an example of Mechner's attention to detail in input handling, which was crucial for creating an immersive and responsive gaming experience. Joystick input management became increasingly important as gaming hardware evolved, influencing the design of controllers and input systems in modern consoles."
   - id: "zerosound-reset-sound-table"
-    line_start: 975
-    line_end: 990
+    line_start: 968
+    line_end: 978
     title: "Reset sound table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
     image_url: ""
     image_caption: ""
     content: "The `ZEROSOUND` routine resets the sound table, clearing all sound effects from memory. This routine is essential for managing audio resources on the Apple II, where memory constraints required careful allocation of sound data. Mechner's implementation demonstrates his ability to optimize resource management while maintaining the game's cinematic quality. Sound management techniques like these laid the groundwork for more sophisticated audio systems in later games, contributing to the evolution of immersive sound design in the gaming industry."
   - id: "addsound-add-sound-to-table"
-    line_start: 992
-    line_end: 1014
+    line_start: 981
+    line_end: 1004
     title: "Add sound to sound table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
     image_url: ""
     image_caption: ""
     content: "The `ADDSOUND` routine adds a new sound effect to the sound table, preserving registers to avoid disrupting other processes. It checks for available space in the table and updates the sound count accordingly. This routine highlights Mechner's resourcefulness in managing audio on the Apple II, where memory limitations required efficient use of available resources. By implementing dynamic sound management, Mechner ensured that the game's audio complemented its cinematic visuals, enhancing the overall player experience. Techniques like these influenced the development of audio systems in later games, particularly those that sought to create immersive environments."
   - id: "demo-mode-keypress-handler"
-    line_start: 1015
-    line_end: 1050
+    line_start: 1006
+    line_end: 1032
     title: "Demo Mode: Handling Keypresses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "This routine, DEMOKEYS, handles keypresses specifically during the game's demo mode. It checks whether the game is in demo mode and processes key inputs like ESC or sound triggers. If a keypress interrupts the demo, it exits the routine early. During development, Jordan Mechner needed a way to showcase gameplay without active user input, as demos were a common feature in arcade and early computer games to attract players. The Apple II's limited input handling required efficient routines to detect and respond to keypresses. This approach influenced later games with attract modes, where demos loop until player interaction. The concept of demo modes persists in modern games, often as tutorials or idle animations."
   - id: "torch-animation-listing"
-    line_start: 1052
-    line_end: 1124
+    line_start: 1034
+    line_end: 1112
     title: "Listing Visible Torches for Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_processing_unit"
     image_url: ""
     image_caption: ""
     content: "LISTTORCHES creates a list of visible torches on the screen without disturbing the game's graphics buffers. It iterates through screen elements, identifies torches, and stores their positions and states in arrays. This routine exemplifies Mechner's meticulous optimization for the Apple II's limited memory and processing power. By bypassing the standard graphics system, the game achieves smooth torch animations without impacting other visual elements. This technique of direct graphics manipulation influenced later developers working on constrained hardware, inspiring similar optimizations in games like Another World and Flashback, which also emphasized cinematic visuals."
   - id: "burn-torch-animation"
-    line_start: 1125
+    line_start: 1114
     line_end: 1172
     title: "Animating Torch Flames Directly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "GETMINLEFT calculates the remaining time in minutes or seconds based on the game's frame counter. It uses binary-coded decimal (BCD) arithmetic to ensure accurate timekeeping. This routine reflects the game's emphasis on tension and urgency, as players must complete levels within a strict time limit. The Apple II's lack of a real-time clock required developers to implement custom timekeeping solutions. Mechner's approach influenced later games with countdown mechanics, such as Tomb Raider and Resident Evil, where time pressure enhances the player's sense of challenge."
   - id: "gameplay-timetable"
-    line_start: 1233
+    line_start: 1232
     line_end: 1260
     title: "Defining Gameplay Timetable Events"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
@@ -151,7 +151,7 @@ enhancements:
     content: "The timetable defines key moments in the game's progression, such as warnings and the game-over event. Each entry corresponds to a specific frame count, ensuring timed events occur precisely. This structured approach to event timing highlights Mechner's cinematic vision for Prince of Persia, where gameplay unfolds like a movie. Timed events became a staple in games with narrative-driven designs, influencing titles like Half-Life and Uncharted, which use scripted sequences to heighten drama."
   - id: "time-management-routine"
     line_start: 1261
-    line_end: 1311
+    line_end: 1304
     title: "Managing Time Remaining in Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"
     image_url: ""
@@ -174,8 +174,8 @@ enhancements:
     image_caption: ""
     content: "CUESONG triggers background music based on gameplay events, enhancing the game's cinematic atmosphere. It sets the song number and timing for playback. Mechner's use of music cues reflects his film background and desire to create an immersive experience. This approach influenced games like Final Fantasy and The Elder Scrolls series, where dynamic music adapts to player actions."
   - id: "keyboard-strobing"
-    line_start: 1343
-    line_end: 1352
+    line_start: 1339
+    line_end: 1345
     title: "Strobing Keyboard for Responsive Controls"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_keyboard"
     image_url: ""

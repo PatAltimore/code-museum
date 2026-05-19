@@ -27,15 +27,15 @@ summary:
 
 enhancements:
   - id: "yellow-flag-initialization"
-    line_start: 66
-    line_end: 100
+    line_start: 61
+    line_end: 68
     title: "Setting the Yellow Flag for Copy Protection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
     image_url: ""
     image_caption: ""
     content: "This section initializes the 'yellowflag' variable, which is part of the game's copy protection mechanism. By setting this flag, the program ensures that certain routines related to disk verification can proceed. Copy protection was a major concern in the 1980s, as software piracy was rampant. Mechner implemented multiple layers of protection in Prince of Persia, including this check, to ensure the game could not be easily duplicated. This approach reflects the ingenuity required to safeguard intellectual property in an era before widespread internet connectivity. While modern games use DRM and online activation, these early methods laid the groundwork for protecting software assets."
   - id: "hourglass-animation-data"
-    line_start: 122
+    line_start: 118
     line_end: 126
     title: "Animating the Hourglass in Princess's Room"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
@@ -51,80 +51,80 @@ enhancements:
     image_caption: ""
     content: "This section defines the animation frames for the torch flames, a recurring visual element in the game. The 'torchflame' and 'ptorchflame' arrays specify the sequence of frames for the animation. Torches create a dynamic atmosphere in the game's dungeons, enhancing the player's immersion. Mechner's attention to environmental details, such as flickering flames, helped establish Prince of Persia as a pioneer in creating mood and ambiance in platformers. This technique inspired later developers to integrate environmental storytelling into their games."
   - id: "time-left-message"
-    line_start: 187
-    line_end: 273
+    line_start: 183
+    line_end: 268
     title: "Displaying 'Minutes Left' Countdown"
     wikipedia_url: "https://en.wikipedia.org/wiki/Countdown"
     image_url: ""
     image_caption: ""
     content: "This subroutine displays the 'Minutes Left' message, a critical gameplay mechanic that adds urgency to the player's actions. The routine calculates the remaining time in binary-coded decimal (BCD) format and updates the display dynamically. Time constraints were a novel way to increase tension and challenge in games, and Mechner's implementation here underscores the game's cinematic pacing. The countdown mechanic influenced later titles, such as Resident Evil and Dead Rising, where time pressure became a core gameplay element."
   - id: "draw-kid-strength-meter"
-    line_start: 496
-    line_end: 578
+    line_start: 491
+    line_end: 572
     title: "Rendering the Kid's Strength Meter"
     wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
     image_url: ""
     image_caption: ""
     content: "This subroutine draws the player's strength meter at the lower left of the screen. It uses the 'KidStrength' variable to determine the number of bullets to display, dynamically adjusting based on the player's health. The routine includes logic for flashing the meter when health is critically low, adding a visual cue to alert the player. Mechner's implementation of health meters was innovative for its time, providing players with immediate feedback on their status. This concept has since become a staple in gaming, appearing in everything from RPGs to first-person shooters."
   - id: "setup-flask-animation"
-    line_start: 675
-    line_end: 734
+    line_start: 663
+    line_end: 719
     title: "Preparing the Bubbling Flask Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "This subroutine sets up the bubbling flask animation, adjusting parameters based on the type of potion (e.g., mystery, boost). The routine manipulates Y-coordinates and offsets to create the illusion of bubbling liquid. The flask animations contribute to the game's immersive environment, showcasing Mechner's ability to use limited hardware to create visually compelling effects. This technique influenced later games that sought to integrate dynamic environmental animations, such as Diablo's potion effects."
   - id: "twinkle-star-animation"
-    line_start: 794
-    line_end: 818
+    line_start: 786
+    line_end: 812
     title: "Animating Twinkling Stars Outside the Window"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "This subroutine animates the twinkling stars outside the Princess's window, directly updating the graphics on both screens. The routine uses XOR operations to toggle the star's brightness, creating a simple yet effective animation. The stars add a sense of depth and realism to the game's environment, enhancing its cinematic quality. Mechner's use of direct hires calls to manipulate graphics demonstrates his mastery of the Apple II's hardware. This technique influenced later developers who sought to create atmospheric effects in their games."
   - id: "draw-hourglass-animation"
-    line_start: 838
-    line_end: 856
+    line_start: 831
+    line_end: 848
     title: "Rendering the Hourglass Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "This subroutine renders the hourglass animation in the Princess's room, using the 'glassimg' array to select the appropriate frame based on the hourglass's state. The hourglass is a visual representation of time, a central theme in Prince of Persia. Mechner's use of frame-by-frame animation adds a cinematic touch to the game, making it stand out among other platformers of the era. This approach influenced later games that sought to integrate storytelling through visual elements, such as The Legend of Zelda: Majora's Mask."
   - id: "save-restore-character-vars"
-    line_start: 942
-    line_end: 964
+    line_start: 939
+    line_end: 956
     title: "Saving and Restoring Character Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "This section contains routines for saving and restoring character variables, ensuring that the game's state can be preserved and manipulated as needed. By storing data in temporary memory locations, the program can maintain consistency across gameplay events. Mechner's implementation reflects the challenges of managing state in assembly language, where memory constraints were significant. This approach laid the groundwork for save systems in later games, influencing titles like Final Fantasy and The Elder Scrolls series."
   - id: "setup-character-comix"
-    line_start: 965
-    line_end: 1049
+    line_start: 958
+    line_end: 1038
     title: "Setting up character 'comix' properties"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "This routine, `SETUPCOMIX`, initializes a character's properties such as position, color, and image. It begins by saving and restoring key variables (`saveFChar` and `restoreFChar`) and then calculates coordinates based on the character's state (e.g., crouching, impaled). The routine also assigns default values for collision boundaries and sets the character's image and table pointers. Mechner's approach reflects the constraints of the Apple II hardware, where memory and processing power were limited. By directly manipulating variables and leveraging lookup tables, he optimized performance for real-time gameplay. This setup routine laid the groundwork for the game's fluid animations and responsive controls, which were critical to its cinematic feel. Techniques like these influenced later platformers, including Another World and Flashback, which also emphasized character-driven storytelling and animation."
   - id: "add-character-object"
-    line_start: 1050
-    line_end: 1104
+    line_start: 1040
+    line_end: 1096
     title: "Adding a character to the object table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
     image_url: ""
     image_caption: ""
     content: "The `ADDCHAROBJ` routine inserts a character into the game's object table, a data structure that tracks all active entities. It ensures the table doesn't exceed its maximum size, assigns coordinates, collision boundaries, and image data, and converts screen positions into byte offsets for efficient rendering. This method reflects Mechner's careful resource management on the Apple II, where memory constraints required compact and efficient data structures. The object table concept foreshadowed modern object-oriented programming, where entities are encapsulated with their properties and behaviors. This routine's design influenced later games that relied on similar systems for managing dynamic entities, such as Super Mario Bros. and The Legend of Zelda."
   - id: "set-object-index"
-    line_start: 1105
-    line_end: 1133
+    line_start: 1098
+    line_end: 1117
     title: "Assigning object indices for tracking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Index_(database)"
     image_url: ""
     image_caption: ""
     content: "The `SETOBJINDX` routine assigns an index to each object in the table, enabling efficient tracking and retrieval during gameplay. It ensures indices remain within a valid range and updates a buffer for quick access. This indexing mechanism was crucial for managing multiple objects in real-time, a challenge on the Apple II's limited hardware. Mechner's approach demonstrates his ingenuity in overcoming constraints to deliver a seamless gaming experience. The concept of indexing objects for fast lookup became a standard practice in game development, influencing engines like Unity and Unreal, which rely on similar principles for managing game entities."
   - id: "initialize-text-routines"
-    line_start: 1134
-    line_end: 1144
+    line_start: 1119
+    line_end: 1141
     title: "Preparing text routines for hi-res overlays"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hi-res_graphics"
     image_url: ""
@@ -139,16 +139,16 @@ enhancements:
     image_caption: ""
     content: "The `SETRECHECK0` routine is part of Prince of Persia's copy-protection system, which uses memory pointers to verify the game's integrity. By storing specific values in the `locals` variable, the routine ensures that unauthorized copies fail to execute correctly. Copy-protection was a common concern in the 1980s, as software piracy threatened developers' livelihoods. Mechner's implementation reflects the era's ingenuity in safeguarding intellectual property. While such techniques were eventually replaced by more sophisticated methods like DRM, they represent an important chapter in the history of software development."
   - id: "initialize-screen-layout"
-    line_start: 1153
-    line_end: 1174
+    line_start: 1152
+    line_end: 1164
     title: "Setting up screen boundaries and memory banks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
     image_caption: ""
     content: "The `INITLAY` routine configures screen boundaries and selects the memory bank for rendering. By setting values for `RIGHTCUT`, `BOTCUT`, `LEFTCUT`, and `TOPCUT`, it ensures the entire screen is utilized for gameplay. The routine also switches to auxiliary memory, a technique known as bank switching, to access additional resources. This method was essential for fitting the game's complex graphics and animations into the Apple II's limited memory. Mechner's use of bank switching influenced later developers working on memory-constrained systems, such as the NES and Sega Genesis, where similar techniques were used to expand capabilities."
   - id: "print-character-to-screen"
-    line_start: 1175
-    line_end: 1192
+    line_start: 1166
+    line_end: 1186
     title: "Rendering characters on the hi-res page"
     wikipedia_url: "https://en.wikipedia.org/wiki/Character_generator"
     image_url: ""

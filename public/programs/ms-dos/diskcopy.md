@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "diskcopy-entry-point"
     line_start: 93
-    line_end: 121
+    line_end: 95
     title: "Jumping to the Main Diskcopy Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -47,14 +47,14 @@ enhancements:
     content: "The `print` subroutine uses the BIOS interrupt `21h` to output strings to the console. This reflects the reliance on BIOS services for basic I/O operations in early PC software. By invoking `STD_CON_STRING_OUTPUT`, the program ensures compatibility across different hardware configurations, as the BIOS abstracts hardware-specific details. This design decision highlights the constraints of the IBM PC platform, where direct hardware access was often avoided to maintain portability. The use of BIOS interrupts became a standard practice in DOS programming, influencing utilities and applications that followed. It also underscores the importance of hardware abstraction in the development of operating systems and software tools."
   - id: "getkey-wait-for-keypress"
     line_start: 135
-    line_end: 151
+    line_end: 145
     title: "Waiting for User Input"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The `getkey` subroutine waits for a key press from the user, using BIOS interrupt `21h` with function `12h`. This routine displays a message (`keymsg`) before pausing execution, ensuring the user is prompted for interaction. In the early 1980s, user interfaces were primarily text-based, and programs relied on such routines to guide users through operations. Chris Peters included this feature to make DISKCOPY more user-friendly, a necessity given the technical nature of early PCs. The approach influenced later DOS utilities, which adopted similar methods to improve usability. It also reflects the era's emphasis on simplicity and direct interaction, laying the groundwork for more sophisticated user interfaces in subsequent decades."
   - id: "getdpb-disk-parameter-block"
-    line_start: 153
+    line_start: 147
     line_end: 181
     title: "Retrieving Disk Parameters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"

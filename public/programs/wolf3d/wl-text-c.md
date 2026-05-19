@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "text-formatting-commands"
-    line_start: 9
+    line_start: 6
     line_end: 49
     title: "Text formatting: Color, graphics, and layout"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -46,8 +46,8 @@ enhancements:
     image_caption: ""
     content: "The RipToEOL function scans through the text buffer until it reaches the end of a line. This simple yet essential routine is used throughout the file to process text commands efficiently. In the early 1990s, parsing text in real-time was a critical task for games like Wolfenstein 3D, which relied on dynamic text rendering for menus and in-game messages. The function exemplifies Carmack's focus on performance and simplicity, ensuring minimal overhead during text processing. Techniques like this laid the groundwork for more complex text parsing systems in modern game engines, such as Unity and Unreal Engine."
   - id: "parse-number"
-    line_start: 86
-    line_end: 123
+    line_start: 84
+    line_end: 114
     title: "ParseNumber: Extracting numeric values"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
     image_url: ""
@@ -62,32 +62,32 @@ enhancements:
     image_caption: ""
     content: "TimedPicCommand handles the rendering of graphics with a specified delay, allowing for timed visual effects. This function updates the screen, waits for a delay, and then draws the graphic at the specified position. In the early 1990s, creating smooth and visually appealing effects was challenging due to hardware limitations. This routine demonstrates id Software's ingenuity in optimizing rendering techniques for immersive gameplay. The use of timed graphics influenced later games, particularly in creating cinematic effects and transitions. Techniques like this are now standard in modern game engines, where timing and synchronization are critical for storytelling and user experience."
   - id: "handle-command"
-    line_start: 186
-    line_end: 287
+    line_start: 184
+    line_end: 278
     title: "HandleCommand: Parsing and executing text commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
     image_url: ""
     image_caption: ""
     content: "HandleCommand is the central routine for parsing and executing text commands, such as changing text color, starting a new page, or drawing graphics. It interprets the commands embedded in the text buffer and performs the corresponding actions. This modular approach to command processing was innovative for its time, enabling dynamic text and graphics rendering in a constrained environment. The routine reflects Carmack's emphasis on performance and modularity, allowing for easy expansion and localization. The command system influenced later games, particularly in how text and graphics were integrated into user interfaces and cutscenes. It also laid the groundwork for scripting systems in modern game engines."
   - id: "page-layout"
-    line_start: 412
-    line_end: 516
+    line_start: 410
+    line_end: 504
     title: "PageLayout: Word wrapping and text rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Word_wrap"
     image_url: ""
     image_caption: ""
     content: "PageLayout handles the rendering of text and graphics on a page, including word wrapping and margin adjustments. It clears the screen, sets up margins, and processes the text buffer to render content dynamically. This routine showcases id Software's ability to create efficient algorithms for constrained hardware, ensuring smooth and visually appealing text rendering. The word wrapping algorithm was particularly innovative, allowing for dynamic adjustments based on the content and layout. Techniques like this influenced later games and applications, particularly in how text was rendered in user interfaces and cutscenes. The modularity of the routine also made it easier to localize the game for different languages."
   - id: "cache-layout-graphics"
-    line_start: 543
-    line_end: 598
+    line_start: 542
+    line_end: 586
     title: "CacheLayoutGraphics: Optimizing graphic rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
     content: "CacheLayoutGraphics scans the entire layout file to mark and cache all graphics used, optimizing rendering performance. This routine ensures that only the necessary graphics are loaded into memory, reducing overhead and improving gameplay smoothness. In the early 1990s, memory management was a critical challenge for game developers, especially on MS-DOS systems with limited resources. This function reflects Carmack's focus on efficiency and performance, enabling Wolfenstein 3D to push the limits of hardware at the time. Techniques like this influenced later games, particularly in how graphics were managed and cached for optimized rendering. The approach is now standard in modern game engines, where efficient asset management is critical for performance."
   - id: "show-article"
-    line_start: 601
-    line_end: 729
+    line_start: 596
+    line_end: 723
     title: "ShowArticle: Rendering help and story screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_storytelling"
     image_url: ""

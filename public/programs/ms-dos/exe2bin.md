@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "runvar-memory-layout"
-    line_start: 133
-    line_end: 135
+    line_start: 129
+    line_end: 165
     title: "RUNVAR: Memory layout for EXE headers"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -41,14 +41,14 @@ enhancements:
     content: "The LOCATE procedure serves as the entry point for the EXE2BIN utility. It begins by jumping to LOCSTRT, where the header is printed and the DOS version is checked. This reflects the importance of compatibility in early MS-DOS utilities, as version mismatches could lead to errors or crashes. The inclusion of a version check highlights the evolving nature of DOS, with new features introduced in version 2.0. This practice of validating system compatibility became standard in software development, ensuring that programs could adapt to different environments or fail gracefully."
   - id: "version-checking"
     line_start: 207
-    line_end: 265
+    line_end: 261
     title: "LOCSTRT: Checking DOS version compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The LOCSTRT section checks the version of MS-DOS using interrupt 21h, function Get_Version. If the version is less than 2.0, an error message is displayed, and the program exits. This reflects the transition from 86-DOS to MS-DOS, as version 2.0 introduced significant changes inspired by Unix, such as hierarchical directories and improved file handling. The ability to check and enforce version compatibility ensured that utilities like EXE2BIN could leverage new system calls and features without risking instability on older systems. This technique influenced later software design, where version checks became a standard practice for ensuring compatibility across diverse environments."
   - id: "file-name-parsing"
-    line_start: 303
+    line_start: 289
     line_end: 375
     title: "Parsing file names: Handling extensions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Filename_extension"

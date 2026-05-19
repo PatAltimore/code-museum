@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `ExtractFileBase` function isolates the base name of a file, stripping away directory paths and extensions, and converts it to uppercase for consistency. This is crucial for naming lumps in single lump files, ensuring that lump names adhere to the 8-character limit imposed by the WAD format. In the early 1990s, file naming conventions were heavily influenced by the constraints of FAT file systems, which supported short filenames. By enforcing an 8-character limit, DOOM's developers ensured compatibility with these systems while maintaining a standardized naming convention. This approach laid the groundwork for the modularity of WAD files, enabling the creation of custom levels and assets. The function's simplicity and reliability contributed to DOOM's success in fostering a vibrant modding community."
   - id: "wad-file-loading"
-    line_start: 141
+    line_start: 124
     line_end: 225
     title: "Loading and validating WAD files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `W_AddFile` function is responsible for loading WAD files, validating their headers, and populating the lump directory. It supports both IWAD files (base game data) and PWAD files (custom content), ensuring modularity and extensibility. The function checks the file's identification string to distinguish between IWAD and PWAD formats, a critical step for maintaining compatibility with DOOM's data structure. This modular approach to game data storage was revolutionary in 1993, allowing players and developers to easily add new levels, textures, and other assets. The WAD format became a standard in the gaming industry, influencing later games like Quake and spawning a thriving modding community. The ability to dynamically reload data also facilitated rapid iteration during development, showcasing id Software's commitment to efficiency and innovation."
   - id: "dynamic-reloading"
-    line_start: 236
+    line_start: 231
     line_end: 275
     title: "Dynamic lump reloading for development"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mod_(video_games)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `W_Reload` function enables dynamic reloading of lumps, flushing cached data and reloading the directory from disk. This feature was primarily designed for development purposes, allowing developers to modify WAD files and see changes without restarting the game. While described as a 'fragile hack' in the comments, it reflects id Software's iterative development process and their focus on rapid prototyping. Dynamic reloading also benefits modders, enabling them to test custom content efficiently. This capability underscores DOOM's role in pioneering user-generated content in gaming, laying the foundation for modern modding ecosystems. The technique of dynamically reloading assets has since become a standard feature in game engines, facilitating real-time development workflows."
   - id: "lump-caching-system"
-    line_start: 473
+    line_start: 472
     line_end: 512
     title: "Efficient lump caching for performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `W_CacheLumpNum` and `W_CacheLumpName` functions implement a caching system for WAD lumps, ensuring efficient access to frequently used game data. By storing lumps in memory and tagging them for reuse, the system minimizes disk I/O operations, improving performance on the limited hardware of the early 1990s. This caching mechanism is a testament to DOOM's optimization strategies, which allowed the game to run smoothly on machines with as little as 4 MB of RAM. The concept of caching data for performance optimization has since become ubiquitous in software development, influencing modern game engines and operating systems. DOOM's approach to lump caching exemplifies the ingenuity of its developers in overcoming hardware constraints while delivering a seamless gaming experience."
   - id: "profiling-lump-usage"
-    line_start: 517
+    line_start: 516
     line_end: 575
     title: "Profiling lump usage for optimization"
     wikipedia_url: "https://doomwiki.org/wiki/W_Profile"

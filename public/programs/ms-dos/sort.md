@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This section converts the input text buffer into a linked list by replacing CR-LF line terminators with the length of the following line. This clever technique enables efficient traversal and manipulation of lines during sorting. Linked lists were a common data structure in early computing due to their flexibility and low memory overhead compared to arrays. The use of CR-LF as delimiters reflects the text file conventions of MS-DOS, which were inherited from CP/M. This approach influenced later software that relied on linked lists for dynamic data management, including text editors and database systems. It also demonstrates the adaptability of assembly programmers in leveraging simple constructs to solve complex problems."
   - id: "outer-inner-sort-loops"
-    line_start: 511
+    line_start: 505
     line_end: 733
     title: "Sorting lines with nested loops"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sorting_algorithm"
@@ -71,7 +71,7 @@ enhancements:
     content: "This section implements the core sorting algorithm using nested loops. The outer loop iterates through unsorted lines, while the inner loop finds the best insertion point for each line. The algorithm adjusts for column-based sorting and supports internationalization by using a translation table for Kanji characters. Sorting algorithms were a fundamental part of early software development, as efficient data organization was critical for performance. The use of nested loops reflects the simplicity and directness of assembly programming, where developers had to manually manage control flow and memory. This implementation influenced later sorting utilities and algorithms, including those in Unix and Windows, which expanded on these ideas to handle larger datasets and more complex sorting criteria."
   - id: "output-buffer-to-file"
     line_start: 771
-    line_end: 839
+    line_end: 799
     title: "Writing sorted data to output"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""

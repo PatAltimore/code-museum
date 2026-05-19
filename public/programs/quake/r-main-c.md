@@ -39,7 +39,7 @@ enhancements:
     content: "This section initializes a simple 16x16 checkerboard texture as a fallback for cases where a texture is missing or unavailable. The texture is stored in memory with mipmap levels to ensure compatibility with Quake's rendering pipeline. At the time, texture mapping was a relatively new technique in real-time 3D graphics, and fallback mechanisms like this ensured robustness in environments with limited resources. John Carmack and Michael Abrash, known for their focus on performance and reliability, likely implemented this to avoid rendering artifacts. This approach influenced later game engines, which adopted similar fallback textures for missing assets, ensuring visual consistency even in error states."
   - id: "dynamic-lighting-entities"
     line_start: 542
-    line_end: 576
+    line_end: 616
     title: "Dynamic lighting calculations for entities"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_lighting"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This section calculates dynamic lighting for entities in the game world, such as player models and objects. It uses ambient light values and adds contributions from dynamic light sources like explosions or weapon effects. The lighting is clamped to prevent over-brightening, ensuring visual realism. Dynamic lighting was a cutting-edge feature in 1996, made possible by Quake's advanced engine. Carmack and Abrash leveraged the computational power of x86 processors to introduce this realism, which became a hallmark of modern 3D games. Techniques from this section influenced engines like Unreal Engine and Unity, which expanded on dynamic lighting for immersive environments."
   - id: "view-model-rendering-lighting"
     line_start: 618
-    line_end: 652
+    line_end: 685
     title: "View model rendering with lighting adjustments"
     wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "This section handles rendering the player's view model, such as weapons, with dynamic lighting adjustments. It ensures the model is always visible, even in low-light conditions, by clamping ambient light values. This feature enhanced immersion in Quake's first-person perspective, a defining characteristic of the FPS genre. Carmack's attention to detail ensured that the player's weapon remained visually prominent, contributing to the game's iconic feel. This approach influenced later FPS titles like Doom 3 and Call of Duty, which prioritized immersive weapon rendering in their design."
   - id: "bounding-box-frustum-culling"
     line_start: 688
-    line_end: 722
+    line_end: 749
     title: "Bounding box checks for frustum culling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Frustum_culling"
     image_url: ""
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The function `R_InitTurb` precomputes sinusoidal values used to create turbulence effects in Quake's water and other dynamic surfaces. By storing these values in lookup tables (`sintable` and `intsintable`), the game avoids costly runtime calculations, a vital optimization for 1990s hardware. The use of precomputed tables reflects the era's emphasis on performance, where every CPU cycle mattered. This technique draws from earlier graphics programming practices, such as those seen in the demoscene, and became a staple in real-time rendering. Games like Unreal Tournament and even modern engines like Unity continue to use similar approaches for procedural effects."
   - id: "debugging-and-performance-metrics"
-    line_start: 1094
+    line_start: 1093
     line_end: 1103
     title: "Integrated debugging and performance metrics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Profiling_(computer_programming)"

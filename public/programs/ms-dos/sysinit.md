@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The NOSCAN routine relocates the SYSINIT code to high memory, freeing up lower memory for application use. This was a critical optimization in the era of limited RAM, as the IBM PC typically shipped with 64KB to 640KB of memory. By moving the initialization code out of the way, MS-DOS maximized the memory available for user programs. The technique reflects the influence of Unix, which also employed memory segmentation to optimize resource usage. This approach became a standard practice in operating systems, influencing memory management strategies in DOS-based systems and later in Windows."
   - id: "sysin-relocating-dos"
-    line_start: 367
+    line_start: 361
     line_end: 423
     title: "SYSIN: Relocating DOS to Its Final Location"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

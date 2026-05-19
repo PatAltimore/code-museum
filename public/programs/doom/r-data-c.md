@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "texture-data-structures"
-    line_start: 69
+    line_start: 61
     line_end: 125
     title: "Texture definitions: modular patch-based design"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the data structures used to represent textures in DOOM. Textures are composed of patches, which are rectangular graphic elements stored in WAD files. The `mappatch_t` structure specifies the position and attributes of each patch, while `maptexture_t` and `texture_t` describe how patches are combined to form complete textures. This modular design allows textures to be dynamically assembled from reusable components, reducing memory usage and enabling efficient storage. In 1993, this approach was innovative, as most games relied on static, pre-rendered graphics. By leveraging WAD files and this patch-based system, DOOM could support a wide variety of textures without bloating its memory footprint. This technique influenced later games and engines, including Quake and Unreal, which adopted similar modular asset systems."
   - id: "column-caching"
-    line_start: 180
+    line_start: 179
     line_end: 218
     title: "Column caching: optimizing texture rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `R_DrawColumnInCache` function is responsible for clipping and drawing individual columns from patches into cached posts. Columns are vertical runs of pixels, and caching them minimizes redundant computations during rendering. This optimization is crucial for DOOM's performance, as it allows the engine to reuse precomputed data instead of recalculating pixel positions and attributes on every frame. In the early 1990s, consumer PCs had limited processing power, and techniques like this were necessary to achieve smooth gameplay. The concept of caching graphical elements became a staple in game development, influencing engines like Source and Unity, which use similar methods to optimize rendering pipelines."
   - id: "composite-texture-generation"
-    line_start: 223
+    line_start: 222
     line_end: 289
     title: "Dynamic composite texture generation"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `R_GenerateComposite` function assembles composite textures from patches defined in the texture data structures. Each column in the texture is cached to optimize rendering. This dynamic generation process allows DOOM to support complex textures while conserving memory, as only the necessary columns are cached. The function also ensures that textures fit within memory constraints, aborting if a texture exceeds 64 KB. This technique was groundbreaking in 1993, enabling DOOM to deliver high-quality visuals on hardware with limited resources. The dynamic assembly of textures influenced later engines, such as Quake, which expanded on this approach to support more advanced graphical features."
   - id: "lookup-table-generation"
-    line_start: 294
+    line_start: 293
     line_end: 373
     title: "Precomputing texture lookup tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InitTextures` function initializes DOOM's texture system by loading texture definitions from WAD files. It parses the texture data, allocates memory for texture structures, and precomputes lookup tables for efficient rendering. This process includes handling multiple texture lumps (`TEXTURE1` and `TEXTURE2`), ensuring compatibility between shareware and commercial versions of the game. The function also prints progress indicators, a thoughtful feature for debugging and user feedback during initialization. This modular and extensible approach to texture management set a precedent for future games, enabling developers to create scalable asset systems that could adapt to different hardware and distribution formats."
   - id: "sprite-initialization"
-    line_start: 598
+    line_start: 597
     line_end: 626
     title: "Efficient sprite data preparation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InitSpriteLumps` function initializes sprite data by calculating the width, offsets, and top positions of all sprites in the WAD file. This preprocessing step allows DOOM to render sprites efficiently without caching their entire data during gameplay. Sprites are a key component of DOOM's visual style, representing enemies, items, and other interactive elements. By optimizing sprite handling, the game achieves smooth performance on limited hardware. This technique influenced later games, which adopted similar methods to manage sprite-based assets, particularly in 2D and isometric titles like Diablo and StarCraft."
   - id: "data-initialization"
-    line_start: 649
+    line_start: 648
     line_end: 664
     title: "Centralized data initialization for rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InitData` function serves as a centralized entry point for initializing all rendering-related data, including textures, flats, sprites, and colormaps. This modular initialization ensures that all necessary assets are prepared before gameplay begins, reducing runtime delays and improving performance. By organizing data initialization in a single function, DOOM's developers created a clear and maintainable structure for asset management. This approach influenced later game engines, which adopted similar modular initialization processes to streamline development and debugging."
   - id: "level-precache"
-    line_start: 736
+    line_start: 735
     line_end: 845
     title: "Preloading assets for seamless gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Asset_streaming"

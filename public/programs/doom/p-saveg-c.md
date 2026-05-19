@@ -59,7 +59,7 @@ enhancements:
     image_caption: ""
     content: "The `P_ArchiveWorld` function saves the state of the game's world, including sectors, lines, and their associated properties. By storing details like floor heights, textures, and light levels, the function ensures that the level's geometry and appearance can be restored accurately. This was crucial for DOOM's immersive gameplay, as players expected consistency when loading saved games. The use of bit-shifting (`>> FRACBITS`) to convert fixed-point numbers to integers reflects the hardware limitations of the time, where performance optimization was paramount. This approach influenced later games that required efficient serialization of complex world data, and it remains a foundational concept in game development."
   - id: "unarchive-world-restore-level-data"
-    line_start: 165
+    line_start: 164
     line_end: 211
     title: "Unarchiving world data for level restoration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Serialization"
@@ -67,7 +67,7 @@ enhancements:
     image_caption: ""
     content: "The `P_UnArchiveWorld` function reconstructs the game's world from saved data, restoring sectors, lines, and their properties. It carefully reinitializes pointers and resets dynamic elements like sound targets and special data. This function highlights the challenges of deserialization, particularly in ensuring that the restored state matches the original. In the early 1990s, such functionality was groundbreaking, as it allowed players to experience continuity in their gameplay. The techniques used here, such as pointer reconstruction and fixed-point arithmetic, influenced later game engines and serialization libraries, which adopted similar methods to handle complex game states efficiently."
   - id: "archive-thinkers-dynamic-game-elements"
-    line_start: 230
+    line_start: 229
     line_end: 258
     title: "Archiving thinkers: Managing dynamic game elements"
     wikipedia_url: "https://doomwiki.org/wiki/Thinker"
@@ -75,7 +75,7 @@ enhancements:
     image_caption: ""
     content: "The `P_ArchiveThinkers` function serializes 'thinker' objects, which represent dynamic elements in DOOM's game world, such as moving monsters and environmental effects. By saving their state, including position and behavior, the game ensures that these elements can be restored accurately. The use of a terminating marker (`tc_end`) in the save buffer is a simple yet effective way to denote the end of serialized data. Thinker objects were a key innovation in DOOM's engine, enabling complex interactions and behaviors. This concept influenced later game engines, which adopted similar systems for managing dynamic entities, such as Unity's component-based architecture."
   - id: "unarchive-thinkers-revive-dynamic-elements"
-    line_start: 264
+    line_start: 263
     line_end: 323
     title: "Unarchiving thinkers: Reviving dynamic elements"
     wikipedia_url: "https://doomwiki.org/wiki/Thinker"
@@ -91,7 +91,7 @@ enhancements:
     image_caption: ""
     content: "The `P_ArchiveSpecials` function serializes special environmental effects, such as moving platforms, glowing lights, and strobe effects. By saving their state, the game ensures that these dynamic elements can be restored accurately. This function uses a series of type codes (`tc_ceiling`, `tc_door`, etc.) to identify different types of specials, a technique that simplifies serialization. Environmental effects were a key part of DOOM's immersive gameplay, adding depth and interactivity to the levels. The serialization of these effects influenced later games, which adopted similar methods to manage dynamic level elements, such as Half-Life's scripted sequences and Unreal Engine's level blueprints."
   - id: "unarchive-specials-restore-environmental-effects"
-    line_start: 473
+    line_start: 472
     line_end: 585
     title: "Unarchiving specials: Restoring environmental effects"
     wikipedia_url: "https://doomwiki.org/wiki/Specials"

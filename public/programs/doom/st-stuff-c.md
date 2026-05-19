@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "status-bar-constants"
-    line_start: 69
+    line_start: 64
     line_end: 275
     title: "Constants for Status Bar Layout and Colors"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `ST_refreshBackground` function is responsible for updating the background of the status bar. It uses the `V_DrawPatch` and `V_CopyRect` functions to render graphical patches and copy sections of the screen buffer, ensuring that the status bar remains visually consistent during gameplay. This function is particularly important in multiplayer scenarios, where the status bar must reflect the player's state without interfering with the game's main graphics. In the early 1990s, efficient rendering techniques were crucial due to hardware constraints like limited video memory and processing power. The modular design of this function allowed the developers to isolate status bar rendering from other game logic, improving maintainability and performance. The approach taken here influenced later games by demonstrating how to separate UI rendering from gameplay mechanics, a principle that remains central to game development today."
   - id: "cheat-code-handler"
-    line_start: 517
+    line_start: 515
     line_end: 725
     title: "Handling Cheat Code Input and Effects"
     wikipedia_url: "https://doomwiki.org/wiki/Cheats"
@@ -95,7 +95,7 @@ enhancements:
     content: "The `ST_doPaletteStuff` function adjusts the game's color palette based on player actions and states, such as taking damage, picking up bonuses, or using radiation suits. By dynamically modifying the palette, DOOM creates visual effects like red flashes for damage and green tints for radiation. In the era of VGA graphics, palette manipulation was a common technique for achieving real-time visual effects without taxing the hardware. This method inspired similar techniques in games like Hexen and Heretic, which used palette shifts to convey environmental and gameplay changes."
   - id: "graphics-loading-and-caching"
     line_start: 1124
-    line_end: 1205
+    line_end: 1199
     title: "Efficient graphics loading and caching"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""

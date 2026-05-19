@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "zone-memory-allocation-overview"
-    line_start: 33
+    line_start: 32
     line_end: 41
     title: "Zone Memory Allocation: A Compact System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section introduces DOOM's zone memory allocation system, which ensures efficient use of memory by maintaining contiguous memory blocks and avoiding fragmentation. The system uses a 'rover' pointer to dynamically allocate memory as needed, scanning for free blocks and purging cacheable blocks when necessary. In the early 1990s, memory was a scarce resource, especially on consumer-grade PCs with limited RAM. John Carmack and the id Software team designed this system to maximize performance while minimizing memory overhead. The concept of zone-based allocation influenced later game engines, including Quake and Unreal Engine, and remains a foundational technique in memory management for real-time applications."
   - id: "z-clearzone-initialization"
-    line_start: 65
+    line_start: 64
     line_end: 86
     title: "Z_ClearZone: Resetting Memory Zones"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The Z_ClearZone function resets a memory zone to a single free block, effectively clearing it for reuse. This is achieved by linking the blocklist's next and previous pointers to a newly initialized block and setting its size to the entire zone's available memory. In the early 1990s, efficient memory reuse was critical for games like DOOM, which had to perform well on machines with as little as 4 MB of RAM. By consolidating memory into a single free block, Carmack ensured that allocation operations could proceed without unnecessary fragmentation. This approach influenced memory management practices in subsequent game engines, particularly those requiring high performance in constrained environments."
   - id: "z-init-memory-zone-setup"
-    line_start: 91
+    line_start: 90
     line_end: 116
     title: "Z_Init: Setting Up the Memory Zone"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The Z_Init function initializes the main memory zone by allocating a contiguous block of memory and setting up the blocklist structure. This function calls I_ZoneBase to determine the size of the memory zone, ensuring compatibility with the underlying system. The blocklist is then configured to represent a single free block spanning the entire zone. This setup was crucial for DOOM's performance, as it provided a predictable and efficient memory allocation system. The concept of initializing memory zones in this manner became a standard practice in game development, influencing engines like Quake and others that followed."
   - id: "z-free-memory-deallocation"
-    line_start: 120
+    line_start: 119
     line_end: 172
     title: "Z_Free: Memory Deallocation with Merging"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The Z_Free function deallocates memory blocks and merges adjacent free blocks to prevent fragmentation. When a block is freed, its user pointer is cleared, and its size is added to neighboring free blocks if possible. This merging process ensures that the memory zone remains contiguous, optimizing future allocations. In the constrained hardware environment of the early 1990s, this technique was essential for maintaining performance and stability. By preventing fragmentation, Carmack's approach allowed DOOM to run smoothly even on low-end PCs. This method of memory deallocation and merging influenced later game engines and remains relevant in modern memory management systems."
   - id: "z-malloc-dynamic-allocation"
-    line_start: 177
+    line_start: 176
     line_end: 288
     title: "Z_Malloc: Dynamic Memory Allocation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The Z_Malloc function dynamically allocates memory blocks within the zone, scanning for free blocks of sufficient size and purging cacheable blocks if necessary. It uses a rover pointer to traverse the blocklist, ensuring efficient allocation. If a block is larger than needed, it splits the block into allocated and free fragments. This approach was innovative for its time, as it balanced performance with memory efficiency. By dynamically managing memory in this way, DOOM could handle complex scenes and gameplay mechanics without exceeding hardware limitations. The technique influenced memory allocation strategies in later game engines, including Quake and Unreal Engine."
   - id: "z-dumpheap-debugging-tool"
-    line_start: 323
+    line_start: 322
     line_end: 359
     title: "Z_DumpHeap: Debugging Memory Zones"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The Z_DumpHeap function provides a detailed view of the memory zone, listing all blocks and their attributes. It checks for errors such as overlapping blocks, improper links, or consecutive free blocks, which could indicate memory corruption. Debugging tools like this were vital for ensuring the stability of DOOM's memory management system, especially during development. By identifying and resolving memory issues early, Carmack and the team ensured that the game could run reliably on a wide range of hardware. This function exemplifies the importance of robust debugging tools in software development, influencing practices in game engine design and beyond."
   - id: "z-checkheap-integrity-validation"
-    line_start: 397
+    line_start: 396
     line_end: 419
     title: "Z_CheckHeap: Validating Memory Integrity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"

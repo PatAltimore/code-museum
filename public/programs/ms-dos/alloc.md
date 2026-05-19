@@ -46,8 +46,8 @@ enhancements:
     image_caption: ""
     content: "This routine iterates through memory blocks and frees those owned by a specific process ID (PID). It uses the arena_signature to identify valid memory blocks and checks the arena_owner field to match the PID. If a match is found, the block is marked as free. This mechanism reflects the constrained memory environments of early PCs, where efficient memory reuse was critical. The design borrows concepts from Unix-like systems, emphasizing process isolation and resource cleanup. This approach laid the groundwork for modern memory management techniques, such as garbage collection and process-specific memory allocation, seen in contemporary operating systems like Windows and Linux."
   - id: "arena-next"
-    line_start: 155
-    line_end: 189
+    line_start: 135
+    line_end: 155
     title: "Locating the Next Memory Block"
     wikipedia_url: "https://en.wikipedia.org/wiki/Heap_(data_structure)"
     image_url: ""
@@ -78,15 +78,15 @@ enhancements:
     image_caption: ""
     content: "The setblock_grab routine attempts to resize an allocated memory block. It checks the block's signature and coalesces adjacent free blocks to accommodate the new size. If the requested size exceeds the available memory, the routine fails gracefully, updating BX with the maximum possible size. This feature reflects the growing need for dynamic memory management in software, as programs became more complex and data-intensive. The ability to resize memory blocks influenced the design of modern dynamic memory allocators, such as realloc in C and memory pools in high-performance applications."
   - id: "dealloc-freeing-memory"
-    line_start: 675
-    line_end: 713
+    line_start: 651
+    line_end: 675
     title: "Freeing Allocated Memory Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The $DEALLOC routine frees previously allocated memory blocks by resetting their owner field to the arena_signature. This ensures the block can be reused by other processes. The routine validates the block's signature to prevent errors caused by corrupted memory. In the early 1980s, memory management was a manual and error-prone process, but routines like $DEALLOC helped automate and safeguard it. This approach influenced later systems that implemented automatic memory management, such as garbage collection in Java and reference counting in Objective-C."
   - id: "allocoper-get-and-set-method"
-    line_start: 715
+    line_start: 685
     line_end: 729
     title: "Configuring Memory Allocation Strategy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"

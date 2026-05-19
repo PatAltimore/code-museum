@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "intermission-screen-constants"
-    line_start: 66
+    line_start: 60
     line_end: 109
     title: "Constants for intermission screen layouts"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"

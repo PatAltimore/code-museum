@@ -30,71 +30,71 @@ summary:
 
 enhancements:
   - id: "start-game-sequence"
-    line_start: 99
-    line_end: 108
+    line_start: 92
+    line_end: 102
     title: "Starting a new game: cinematic beginnings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "This subroutine initializes the game by setting the memory bank for auxiliary zero-page access (ALTZPon) and calling the `StartGame` routine. The programmer, Jordan Mechner, designed this entry point to handle the transition from the title screen to gameplay seamlessly. At the time, games often had abrupt transitions, but Mechner's cinematic vision required a smooth and immersive start. The auxiliary memory setup reflects the Apple II's constrained hardware environment, where bank-switching was necessary to fit the game's complex animations and logic into the limited 128K memory. This approach laid the groundwork for cinematic platformers, influencing later titles like Another World and Flashback."
   - id: "resume-game-sequence"
-    line_start: 109
-    line_end: 119
+    line_start: 104
+    line_end: 117
     title: "Resuming saved games: persistence in 1989"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
     image_caption: ""
     content: "The `STARTRESUME` routine enables players to resume saved games, a feature that was still relatively novel in 1989. It sets up the auxiliary zero-page memory and calls the `StartGame` routine with a specific flag indicating a resumed game. Mechner's inclusion of this functionality reflects his understanding of player needs and the increasing complexity of games, where longer play sessions necessitated saving progress. This feature influenced the design of save systems in later games, becoming a standard in the industry. The use of auxiliary memory highlights the technical ingenuity required to implement such features on the Apple II's limited hardware."
   - id: "initialize-system"
-    line_start: 120
-    line_end: 148
+    line_start: 115
+    line_end: 139
     title: "Booting the game: system initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
     image_caption: ""
     content: "The `INITSYSTEM` routine is called upon bootup to prepare the Apple II environment for gameplay. It centers the joystick, sets auxiliary memory for background tables, initializes game variables, and clears memory. This sequence demonstrates Mechner's meticulous attention to hardware constraints, ensuring the game could run smoothly on the Apple II's limited resources. The zeroing of memory reflects the need to avoid residual data corruption, a common issue on early computers. This routine showcases the careful planning required to optimize performance and stability, influencing best practices in game initialization routines for years to come."
   - id: "start-game-routine"
-    line_start: 149
-    line_end: 169
+    line_start: 141
+    line_end: 163
     title: "Starting gameplay: dynamic level setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "The `StartGame` routine sets up the initial conditions for gameplay, including the player's strength and the level's background music. It uses conditional logic to cue the 'Danger' theme for the first level, adding a cinematic touch to the game's opening moments. Mechner's use of music cues and dynamic initialization reflects his focus on creating an immersive experience. This approach influenced the use of adaptive audio and dynamic level initialization in later games, such as the Legend of Zelda series. The routine's efficient use of memory and conditional branching showcases the ingenuity required to create complex gameplay on the Apple II."
   - id: "resume-game-routine"
-    line_start: 170
-    line_end: 225
+    line_start: 165
+    line_end: 217
     title: "Resuming gameplay: restoring player state"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_state"
     image_url: ""
     image_caption: ""
     content: "The `ResumeGame` routine restores the player's saved state, including level, strength, and timer values. It also handles disk-swapping logic, asking players to flip the disk if necessary. This feature reflects Mechner's commitment to creating a seamless and immersive experience, even within the technical limitations of the Apple II. The routine's ability to restore gameplay state influenced the design of save systems in later games, such as Final Fantasy and other RPGs. The disk-swapping logic highlights the challenges of working with floppy disks, a constraint that shaped the design of many early games."
   - id: "initialize-game-variables"
-    line_start: 226
-    line_end: 255
+    line_start: 221
+    line_end: 249
     title: "Setting the stage: game variable initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"
     image_url: ""
     image_caption: ""
     content: "The `initgame` routine initializes key game variables, such as flags for menu states, redraw requests, and timers. It also sets default values for strength and time remaining. This routine demonstrates Mechner's attention to detail, ensuring the game starts with consistent and predictable conditions. The use of zeroing and default values reflects best practices in programming, minimizing the risk of bugs caused by uninitialized variables. This approach influenced the design of initialization routines in later games, contributing to the development of robust and reliable game engines."
   - id: "restart-level"
-    line_start: 256
-    line_end: 365
+    line_start: 251
+    line_end: 359
     title: "Restarting levels: dynamic reinitialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "The `RESTART` routine reinitializes the current level, resetting variables and loading level-specific data from disk. It includes logic for handling editor disks and ensures the game state is consistent. This routine highlights Mechner's focus on creating a seamless experience, allowing players to restart levels without encountering residual data issues. The use of disk-swapping logic and dynamic reinitialization reflects the technical challenges of working with floppy disks and limited memory. This approach influenced the design of level restart mechanics in later games, such as Super Mario Bros. and other platformers."
   - id: "main-game-loop"
-    line_start: 366
-    line_end: 412
+    line_start: 361
+    line_end: 401
     title: "The heartbeat of gameplay: main loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""
     image_caption: ""
     content: "The `MainLoop` routine is the central loop of the game, handling input, updating the game state, and rendering frames. It includes logic for detecting level changes and enforcing copy protection. This loop reflects the core structure of the game engine, showcasing Mechner's ability to balance performance and complexity. The inclusion of copy protection highlights the challenges of piracy in the 1980s, while the dynamic frame rendering demonstrates the game's cinematic ambitions. This structure influenced the design of game loops in later engines, such as Unity and Unreal Engine."
   - id: "load-next-level"
-    line_start: 413
+    line_start: 403
     line_end: 418
     title: "Transitioning levels: seamless progression"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
@@ -102,24 +102,24 @@ enhancements:
     image_caption: ""
     content: "The `LoadNextLevel` routine handles transitions between levels, ensuring the game state is updated and the next level is loaded correctly. It includes logic for handling disk-swapping and copy protection, reflecting the technical constraints of the Apple II. Mechner's focus on seamless transitions influenced the design of level progression systems in later games, such as Sonic the Hedgehog and other platformers. The routine's efficient use of memory and conditional branching showcases the ingenuity required to create complex gameplay on limited hardware."
   - id: "next-frame-calculation"
-    line_start: 503
-    line_end: 605
+    line_start: 494
+    line_end: 597
     title: "Calculating the next frame: dynamic animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "The `NextFrame` routine determines the appearance of the next frame by updating mobile objects, transitional objects, and character states. It includes logic for handling collisions, sword strikes, and offscreen transitions. This routine reflects Mechner's focus on creating fluid and dynamic animations, a hallmark of Prince of Persia's cinematic gameplay. The use of rotoscoping and frame-by-frame updates influenced the design of animation systems in later games, such as Mortal Kombat and other visually rich titles. The routine's efficient use of memory and processing power showcases the technical ingenuity required to achieve cinematic quality on the Apple II."
   - id: "prep-cut-screen-transition"
-    line_start: 1039
-    line_end: 1070
+    line_start: 1028
+    line_end: 1064
     title: "Screen transitions and cinematic logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `PrepCut` routine handles transitions between screens, a core feature of the cinematic platformer genre. It checks whether the current screen (`cutscrn`) differs from the visible screen (`VisScrn`), and if so, updates the visible screen and prepares the next scene. Notably, it includes logic to detect the princess's room (level 14, screen 5), triggering the game's victory sequence. This reflects Jordan Mechner's focus on storytelling and immersion, leveraging the Apple II's limited hardware to create a seamless experience. The cinematic transitions pioneered here influenced later games like Another World and Flashback, which adopted similar techniques to blend gameplay and narrative."
   - id: "you-lose-sequence"
-    line_start: 1071
-    line_end: 1082
+    line_start: 1066
+    line_end: 1076
     title: "Game over: cinematic defeat"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -134,8 +134,8 @@ enhancements:
     image_caption: ""
     content: "The `ctrlplayer` routine manages player control and death logic. It checks if the player is alive (`CharLife`), and if not, initiates a sequence to incrementally display the death message or restart the level. The code includes a temporary development patch (`raise`) for resurrecting the player, reflecting the iterative nature of game development. This routine highlights Mechner's meticulous attention to gameplay flow, ensuring that death sequences are dramatic and impactful. The concept of dramatic player death influenced later games like Dark Souls, where death is integral to the experience."
   - id: "death-song-selection"
-    line_start: 1200
-    line_end: 1219
+    line_start: 1195
+    line_end: 1213
     title: "Dynamic death music selection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
     image_url: ""
@@ -158,8 +158,8 @@ enhancements:
     image_caption: ""
     content: "The `yellowcheck` routine is an additional copy protection mechanism, triggered before the first princess cutscene. It checks the next level value and sets a flag (`yellowflag`) if conditions are met. This subtle integration of copy protection into gameplay reflects Mechner's ingenuity in safeguarding his work while maintaining player immersion. Such techniques were common in the era, as developers sought creative ways to combat piracy without disrupting the user experience. The legacy of these methods can be seen in modern DRM systems like Steam and Denuvo."
   - id: "temp-development-patch"
-    line_start: 1721
-    line_end: 1740
+    line_start: 1715
+    line_end: 1734
     title: "Iterative development: debugging patches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Software_development"
     image_url: ""

@@ -30,56 +30,56 @@ summary:
 
 enhancements:
   - id: "single-hi-res-screen-unpack"
-    line_start: 115
-    line_end: 245
+    line_start: 114
+    line_end: 180
     title: "Unpacking a single hi-res screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
     image_caption: ""
     content: "This subroutine, SNGEXPAND, is responsible for unpacking a single high-resolution screen from compressed data stored in memory. The routine uses auxiliary memory for reading and main memory for writing, leveraging the Apple II's bank-switching capabilities. The code iterates through compressed data, decoding it into pixel information to be displayed on the screen. At the time, memory constraints on the Apple II were severe, with only 128K available, necessitating clever compression and decompression techniques. Jordan Mechner adapted this routine from earlier work by DRAZ, demonstrating the collaborative nature of early game development. The unpacking process allowed Prince of Persia to feature detailed graphics and smooth animations despite hardware limitations. This approach influenced later games on constrained systems, where efficient data handling was critical."
   - id: "double-hi-res-screen-unpack"
-    line_start: 246
-    line_end: 258
+    line_start: 245
+    line_end: 252
     title: "Unpacking double hi-res screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
     image_caption: ""
     content: "The DBLEXPAND subroutine is designed to unpack double high-resolution screens, a feature unique to the Apple II's advanced graphics mode. This routine initializes pointers to compressed data and calls WipeRgtExp for further processing. Double hi-res mode was a significant leap in graphical fidelity for the Apple II, allowing for richer visuals in games like Prince of Persia. Robert A. Cook contributed to this section in March 1989, showcasing the collaborative effort behind the game's technical achievements. The ability to handle double hi-res screens efficiently paved the way for cinematic experiences in gaming, influencing titles that sought to blend storytelling with high-quality visuals."
   - id: "wipe-right-expand"
-    line_start: 259
-    line_end: 285
+    line_start: 254
+    line_end: 277
     title: "Expanding screen columns from right to left"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_compression"
     image_url: ""
     image_caption: ""
     content: "The WipeRgtExp subroutine processes compressed data to expand screen columns sequentially from right to left. It iterates through column positions, calling ExpandClm to decode and render each column. This method was tailored to the Apple II's graphics architecture, where memory and processing power were limited. The routine's design reflects the constraints of the era, requiring efficient algorithms to achieve smooth visual transitions. By focusing on column-based expansion, Mechner optimized the memory access patterns, reducing latency and improving performance. This technique influenced later compression algorithms in games and utilities, where column-based processing became a standard approach for handling graphical data efficiently."
   - id: "delta-expand-compression"
-    line_start: 286
-    line_end: 363
+    line_start: 279
+    line_end: 357
     title: "Delta-based compression expansion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_compression"
     image_url: ""
     image_caption: ""
     content: "DeltaExp is a sophisticated routine that expands compressed data using delta encoding, a method where differences between successive values are stored instead of absolute values. This approach minimizes the size of the data while maintaining fidelity during decompression. The routine reads compressed data from auxiliary memory, decodes it, and writes the expanded data to the screen. Delta encoding was a popular choice in the 1980s for its efficiency in handling repetitive patterns, such as those found in graphics. Mechner's implementation showcases his ingenuity in adapting compression techniques to fit the Apple II's limitations. Delta-based compression became a foundational concept in data storage and transmission, influencing formats like PNG and video codecs."
   - id: "expand-column-sequence"
-    line_start: 418
-    line_end: 441
+    line_start: 404
+    line_end: 435
     title: "Column sequence expansion for graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_compression"
     image_url: ""
     image_caption: ""
     content: "ExpClmSeq is a subroutine that expands a single column of compressed graphics data into its full representation on the screen. It takes the column position, screen position, byte pattern, and repeat count as inputs, iterating through the data to render the column. This routine is a critical part of the game's graphical engine, enabling the efficient display of detailed visuals. The column-based approach aligns with the Apple II's memory layout, optimizing access patterns and reducing processing overhead. Mechner's use of this technique reflects his deep understanding of the hardware, allowing Prince of Persia to achieve a level of graphical sophistication that was groundbreaking for its time. The method influenced later games and applications that required efficient rendering of compressed data."
   - id: "invert-y-tables"
-    line_start: 540
-    line_end: 573
+    line_start: 535
+    line_end: 566
     title: "Inverting Y-tables for screen manipulation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
     image_url: ""
     image_caption: ""
     content: "The INVERTY subroutine swaps low and high lines in the Y-coordinate tables, effectively flipping the screen vertically. This manipulation is crucial for certain graphical effects and optimizations in the game's rendering engine. By inverting the Y-tables, Mechner could achieve effects like mirroring or adjusting the perspective of the visuals. The routine demonstrates the creative use of coordinate transformations to enhance the game's cinematic quality. Techniques like this became standard in graphics programming, influencing the development of engines and tools that rely on coordinate system manipulation for rendering effects."
   - id: "fade-in-effect"
-    line_start: 681
-    line_end: 741
+    line_start: 673
+    line_end: 735
     title: "Creating a cinematic fade-in effect"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_display_resolution"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "FADEIN is a visually striking routine that transitions the screen from black to the game's graphics, creating a cinematic fade-in effect. It clears scan line control bytes and sets the palette to black before gradually revealing the image. This effect adds to the game's immersive experience, emphasizing its storytelling and cinematic ambitions. The routine leverages the Apple II's graphics capabilities, including super hires mode, to achieve smooth transitions. Fade-in effects became a hallmark of cinematic platformers, influencing games that sought to blend gameplay with narrative elements. Mechner's attention to detail in crafting such effects contributed to Prince of Persia's reputation as a groundbreaking title."
   - id: "palette-fade-routine"
     line_start: 765
-    line_end: 848
+    line_end: 839
     title: "Dynamic palette fading for visual transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""

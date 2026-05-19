@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "vertical-door-animation"
-    line_start: 63
+    line_start: 56
     line_end: 198
     title: "Vertical doors: A modular animation system"
     wikipedia_url: "https://doomwiki.org/wiki/Door"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "The `T_VerticalDoor` function handles the animation and logic for vertical doors in DOOM. It manages door states such as opening, closing, waiting, and crushing, and triggers appropriate sound effects for each action. This modular approach allows doors to interact dynamically with the environment, including player actions and collisions. In 1993, such environmental interactivity was groundbreaking, contributing to DOOM's immersive gameplay. The modular 'thinker' system used here, where game objects are managed as independent entities, influenced later game engines like Quake and Unreal Engine."
   - id: "locked-door-mechanics"
-    line_start: 206
+    line_start: 201
     line_end: 260
     title: "Locked doors: Integrating puzzles into gameplay"
     wikipedia_url: "https://doomwiki.org/wiki/Door"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `EV_DoDoor` function dynamically creates and manages doors using DOOM's 'thinker' system. This system assigns independent logic to game objects, allowing doors to respond to player actions and environmental triggers. The function calculates movement ranges and assigns sound effects based on door type. In 1993, this modular approach to object management was innovative, enabling complex interactions without hardcoding behaviors. The thinker system became a foundational concept in game development, influencing engines like Quake and Unity."
   - id: "manual-door-opening"
-    line_start: 353
+    line_start: 350
     line_end: 499
     title: "Manual door opening: Player-driven interactivity"
     wikipedia_url: "https://doomwiki.org/wiki/Door"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `P_SpawnDoorCloseIn30` and `P_SpawnDoorRaiseIn5Mins` functions introduce timed door events, where doors close or open after a set duration. These mechanics add tension and strategy to gameplay, forcing players to act quickly or plan ahead. In 1993, this was an innovative way to create dynamic environments that felt alive and reactive. Timed events became a staple in game design, appearing in titles like Resident Evil and Portal, where environmental changes drive player decision-making."
   - id: "abandoned-sliding-doors"
-    line_start: 557
+    line_start: 554
     line_end: 763
     title: "Sliding doors: A feature lost to time"
     wikipedia_url: "https://doomwiki.org/wiki/Door"

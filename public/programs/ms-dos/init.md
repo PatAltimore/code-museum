@@ -79,7 +79,7 @@ enhancements:
     content: "The `SETCDEV` subroutine manages device handling and I/O redirection, enabling MS-DOS to interact with hardware devices like printers and serial ports. It uses interrupt-driven I/O to open device handles and check their attributes, ensuring compatibility with the system's requirements. This routine also includes logic for redirecting standard input/output to devices, a feature inspired by Unix's device file abstraction. Device handling was a significant advancement in MS-DOS v2.0, allowing programs to interact seamlessly with hardware. This approach influenced later operating systems, including Windows, which expanded on MS-DOS's device handling capabilities to support a wider range of peripherals."
   - id: "command-com-validation"
     line_start: 877
-    line_end: 925
+    line_end: 955
     title: "Validating COMMAND.COM"
     wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "fixed-by-frac-multiplication"
-    line_start: 141
+    line_start: 137
     line_end: 179
     title: "Fixed-point multiplication for precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `FixedByFrac` function performs fixed-point multiplication, a technique essential for precision in graphics calculations. It multiplies a 16/16 fixed-point number by a 16-bit fraction, ensuring accurate scaling without floating-point arithmetic, which was computationally expensive on early 1990s hardware. John Carmack's use of assembly language here reflects his deep understanding of x86 architecture and the need for performance optimization. Fixed-point arithmetic was widely used in early game engines like Doom and Quake, and remains relevant in embedded systems today."
   - id: "transform-actor-perspective"
-    line_start: 210
+    line_start: 207
     line_end: 262
     title: "Transforming actors into screen space"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `TransformActor` function converts an actor's global coordinates into screen coordinates, applying perspective transformations. This is a cornerstone of Wolfenstein 3D's pseudo-3D rendering, enabling objects to appear correctly scaled and positioned relative to the player's viewpoint. The function uses fixed-point arithmetic for efficiency and avoids divide-by-zero errors by enforcing a minimum distance. This approach laid the groundwork for similar transformations in later 3D engines, influencing games like Doom and Quake."
   - id: "scale-post-vga-rendering"
-    line_start: 400
+    line_start: 388
     line_end: 458
     title: "Scaling wall posts for VGA rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
@@ -54,23 +54,23 @@ enhancements:
     image_caption: ""
     content: "The `ScalePost` function handles the rendering of vertical wall strips, scaling them to match the player's perspective. It interacts directly with VGA hardware registers to set bit masks and draw scaled pixels efficiently. This low-level manipulation of graphics hardware was necessary to achieve smooth rendering on MS-DOS systems with limited processing power. Carmack's innovative use of assembly language here maximized performance, influencing how future game engines optimized rendering for constrained environments."
   - id: "hit-vert-wall-optimization"
-    line_start: 477
-    line_end: 548
+    line_start: 466
+    line_end: 536
     title: "Optimizing vertical wall rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Raycasting"
     image_url: ""
     image_caption: ""
     content: "The `HitVertWall` function calculates texture coordinates and optimizes rendering for vertical walls. It checks if consecutive wall segments share the same texture, allowing for wider scaled posts to be drawn without redundant calculations. This optimization reduces CPU load and improves frame rates, a critical consideration for real-time graphics on early PCs. Techniques like this influenced the design of later raycasting engines and contributed to the development of more sophisticated rendering algorithms."
   - id: "hit-horiz-door-handling"
-    line_start: 620
-    line_end: 686
+    line_start: 618
+    line_end: 676
     title: "Rendering horizontal doors dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Raycasting"
     image_url: ""
     image_caption: ""
     content: "The `HitHorizDoor` function handles the rendering of horizontal doors, dynamically adjusting textures based on the door's position and state. It incorporates logic for locked doors and elevators, enhancing the game's interactivity and visual fidelity. This dynamic approach to rendering movable objects was innovative for its time, influencing how future engines handled interactive environments. The function's reliance on assembly for performance-critical sections exemplifies Carmack's mastery of low-level programming."
   - id: "vga-clear-screen"
-    line_start: 970
+    line_start: 968
     line_end: 1011
     title: "Clearing the screen efficiently"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
@@ -78,40 +78,40 @@ enhancements:
     image_caption: ""
     content: "The `VGAClearScreen` function clears the screen by writing directly to VGA memory planes, ensuring fast and efficient rendering. It divides the screen into upper and lower halves, filling each with predefined colors for the ceiling and floor. This low-level approach to screen management was necessary for achieving real-time performance on MS-DOS systems. Techniques like this were foundational for early 3D engines, influencing how games like Doom and Quake managed graphics buffers."
   - id: "calc-rotate-object-orientation"
-    line_start: 1024
-    line_end: 1068
+    line_start: 1022
+    line_end: 1048
     title: "Simplified rotation for pseudo-3D objects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Trigonometry"
     image_url: ""
     image_caption: ""
     content: "This section calculates the rotation of objects relative to the player's view. By using a simplified trigonometric approach, the code avoids computationally expensive operations like sine and cosine, instead relying on precomputed direction angles and integer arithmetic. The programmer's goal here was to determine the correct sprite frame for objects with rotational states, such as rockets or enemies, ensuring they appear correctly oriented from the player's perspective. In 1992, hardware constraints like limited CPU power and lack of floating-point units on most consumer PCs made such optimizations critical. John Carmack's mastery of low-level programming allowed Wolfenstein 3D to achieve smooth visuals despite these limitations. This technique influenced later games by demonstrating how to balance visual fidelity with performance, paving the way for more advanced 3D engines like Doom and Quake."
   - id: "draw-scaleds-object-rendering"
-    line_start: 1072
-    line_end: 1196
+    line_start: 1052
+    line_end: 1184
     title: "Dynamic object placement and rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "This subroutine handles the placement and rendering of visible objects in the game world. It first processes static objects like bonuses and decorations, followed by active objects such as enemies. Visibility checks ensure only objects within the player's field of view are considered, optimizing rendering performance. The code also calculates scaling factors to adjust object sizes based on their distance from the player, creating the illusion of depth. This approach reflects the constraints of early 1990s hardware, where memory and processing power were limited. The use of a visibility list to manage objects influenced later game engines, which adopted similar techniques for efficient scene management. The dynamic rendering of objects in Wolfenstein 3D set a precedent for immersive gameplay and was a stepping stone toward fully 3D environments."
   - id: "draw-player-weapon-hud-rendering"
-    line_start: 1201
-    line_end: 1234
+    line_start: 1189
+    line_end: 1222
     title: "Rendering the player's weapon HUD"
     wikipedia_url: "https://en.wikipedia.org/wiki/HUD_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "This section draws the player's weapon on the screen, a key element of the game's HUD (Heads-Up Display). The weapon sprite is dynamically selected based on the player's current weapon and animation frame, ensuring smooth transitions during gameplay. The code also includes special cases for demo playback and victory sequences, showcasing id Software's attention to detail. In the early 1990s, HUD design was becoming a critical aspect of game development, as it provided players with essential information while enhancing immersion. Wolfenstein 3D's weapon rendering technique influenced later FPS games, which expanded on this concept with more complex animations and interactive HUD elements. The simplicity and efficiency of this implementation allowed the game to run smoothly on a wide range of hardware."
   - id: "calc-tics-adaptive-timing"
-    line_start: 1236
-    line_end: 1279
+    line_start: 1234
+    line_end: 1267
     title: "Adaptive timing for consistent gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""
     image_caption: ""
     content: "This subroutine calculates the number of 'tics' (game time units) since the last screen refresh, ensuring consistent gameplay speed across different hardware. By adapting to variations in the system clock, the code prevents issues like overly fast or slow gameplay on machines with different performance characteristics. This was a critical innovation in the early 1990s, as PC hardware varied widely in speed and capabilities. John Carmack's adaptive timing approach became a standard feature in game engines, influencing the development of titles like Doom and Quake. It also highlighted the importance of decoupling game logic from frame rendering, a principle that remains central to modern game development."
   - id: "three-d-refresh-vga-manipulation"
-    line_start: 1336
-    line_end: 1402
+    line_start: 1334
+    line_end: 1399
     title: "Wall-following rendering with VGA manipulation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Raycasting"
     image_url: ""

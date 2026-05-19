@@ -79,7 +79,7 @@ enhancements:
     content: "The SETCURRDIR subroutine sets the current working directory for a drive, enabling relative path operations. This functionality was a direct adaptation of Unix concepts, which emphasized the importance of a working directory for efficient file management. In MS-DOS 2.0, this feature allowed users to navigate and manipulate files more easily, marking a significant improvement over the flat file system of MS-DOS 1.x. The implementation here reflects the growing influence of Unix on consumer operating systems. The concept of a working directory became a cornerstone of modern operating systems, influencing command-line interfaces, scripting languages, and graphical file explorers."
   - id: "dir-search-directory-lookup"
     line_start: 1017
-    line_end: 1107
+    line_end: 1017
     title: "Directory lookup: finding files efficiently"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `Dir_search` routine is responsible for locating files or directories within the hierarchical file system introduced in MS-DOS 2.0. This marks a significant departure from the flat file system of MS-DOS 1.x. The routine uses the File Control Block (FCB) structure to traverse directories and locate entries. At the time, the IBM PC's 8086 processor had limited computational power, so efficiency was paramount. The hierarchical directory structure, inspired by Unix, allowed users to organize files logically, improving usability for both personal and business applications. This routine laid the groundwork for subsequent file systems, influencing FAT12 and FAT16 designs and later operating systems like Windows."
   - id: "make-node-create-new-file-or-directory"
     line_start: 1309
-    line_end: 1387
+    line_end: 1309
     title: "Creating nodes: files and directories"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""

@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This short routine uses the BIOS interrupt 21h to output strings to the console. It demonstrates how MS-DOS leveraged BIOS calls for basic I/O operations, simplifying development for early PC software. The reliance on BIOS interrupts was a hallmark of early DOS programs, ensuring compatibility across different hardware configurations. This approach laid the groundwork for standardized I/O handling in operating systems, influencing later DOS versions and even early Windows."
   - id: "convert-numeric-processing"
-    line_start: 163
+    line_start: 161
     line_end: 171
     title: "Convert: Numeric Processing for FAT Entries"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The 'convlp' loop processes FAT entries iteratively, using bitwise operations and arithmetic to manipulate directory data. This section showcases the precision required in assembly programming to handle file system structures. The loop's design reflects the constraints of early PCs, where memory and processing power were limited. FAT's design, including routines like this, became a cornerstone of file systems, influencing not only MS-DOS but also modern storage solutions like SD cards and USB drives."
   - id: "getfat-read-fat-entry"
-    line_start: 287
+    line_start: 281
     line_end: 307
     title: "Getfat: Reading FAT Entries"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The 'getfat' routine reads entries from the File Allocation Table, a critical part of MS-DOS's file system. It calculates the location of the desired FAT entry using bitwise arithmetic and retrieves the data. This routine highlights the complexity of managing file systems in assembly language, where every operation must be explicitly defined. The FAT system was revolutionary for its time, enabling efficient file storage and retrieval. Techniques like those in 'getfat' influenced later file systems, including FAT32 and NTFS."
   - id: "setfat-write-fat-entry"
-    line_start: 323
+    line_start: 317
     line_end: 363
     title: "Setfat: Writing to the FAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The `recfil` routine attempts to open deleted files and recover their data. It uses the FCB (File Control Block) interface to interact with the file system, a method inherited from CP/M and early DOS versions. If the file cannot be opened, an error message is displayed, and the recovery process halts. This routine highlights the challenges of data recovery, where corrupted or deleted files may not be fully accessible. The reliance on FCBs reflects the transitional phase of MS-DOS, which later moved to handle-based file I/O inspired by Unix."
   - id: "rest_dir-restore-directory-state"
-    line_start: 1523
+    line_start: 1521
     line_end: 1553
     title: "Restoring directory and interrupt state"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
@@ -159,7 +159,7 @@ enhancements:
     content: "The `TESTKANJ` routine checks whether a byte is a valid lead byte for Kanji characters. Kanji support was introduced in MS-DOS to accommodate Japanese-language systems, reflecting Microsoft's efforts to expand into international markets. This routine highlights the challenges of adapting software for non-English languages, particularly in handling multibyte character sets. The inclusion of Kanji support in MS-DOS influenced later operating systems, which integrated more robust internationalization features to support diverse languages and scripts."
   - id: "islead-kanji-lead-byte-detection"
     line_start: 1651
-    line_end: 1751
+    line_end: 1661
     title: "Detecting Kanji lead bytes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""

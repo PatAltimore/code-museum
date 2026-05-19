@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "userpath-default-path-null"
-    line_start: 239
+    line_start: 225
     line_end: 249
     title: "Default PATH set to null: a design choice"
     wikipedia_url: "https://en.wikipedia.org/wiki/Environment_variable"
@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines the default PATH environment variable as null (\"NUL\") rather than pointing to a specific directory like \"BIN.\" This choice aligns with IBM's conventions and reflects the growing need for flexibility in MS-DOS 2.0. In earlier versions, hardcoded paths were common, but as DOS expanded to support multiple drives and subdirectories, a null path allowed the user or OEMs to define their own search paths dynamically. This design decision influenced later operating systems, where environment variables became a standard mechanism for configuration."
   - id: "envirend-environment-size-calculation"
     line_start: 253
-    line_end: 307
+    line_end: 261
     title: "Calculating environment size for memory management"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "This routine determines the path separator character ('/' or '\\') based on user input or system defaults. The programmer's goal here was to ensure compatibility with different conventions, as MS-DOS v2.0 introduced subdirectories, a feature inspired by Unix. At the time, the computing world was fragmented, with various operating systems using different conventions for file paths. By allowing flexibility in path separators, MS-DOS could cater to a broader audience, including developers transitioning from Unix-like systems. This decision influenced later systems, including Windows, which continued to support both separators for backward compatibility."
   - id: "useslash-transient-info-transfer"
     line_start: 1043
-    line_end: 1067
+    line_end: 1063
     title: "Transient information transfer to memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "This routine checks whether the media in a drive is removable, a critical feature for floppy disk support. At the time, floppy drives were the primary storage medium for personal computers, and detecting whether a disk was removable or fixed was essential for proper file handling. The routine uses BIOS interrupt calls to query the hardware, reflecting the low-level nature of MS-DOS's interaction with the IBM PC architecture. This functionality laid the groundwork for handling removable storage in later systems, including USB drives and SD cards."
   - id: "savhand-stdin-stdout-redirection"
     line_start: 1223
-    line_end: 1259
+    line_end: 1255
     title: "Redirecting standard input and output handles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Standard_streams"
     image_url: ""
@@ -159,14 +159,14 @@ enhancements:
     content: "This routine computes a checksum for the transient program area to verify its integrity. Checksums were a common method for error detection in the early days of computing, ensuring that data was not corrupted during transfer or storage. By validating the transient program's checksum, MS-DOS could detect issues before execution, improving reliability. This technique was widely adopted in software development, influencing practices like CRC validation in network protocols and file systems."
   - id: "setvect-interrupt-vector-setup"
     line_start: 1501
-    line_end: 1539
+    line_end: 1521
     title: "Setting interrupt vectors for error handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
     image_url: ""
     image_caption: ""
     content: "This routine sets interrupt vectors for handling termination, Ctrl-C events, and disk errors. Interrupt vectors are pointers to routines that handle specific events, allowing the operating system to respond dynamically to user actions or system errors. MS-DOS's use of interrupt vectors reflects its close integration with the IBM PC hardware, where such mechanisms were essential for real-time system control. This approach influenced later operating systems, including Windows, which expanded on interrupt handling with structured exception handling and event-driven programming."
   - id: "transtart-memory-alignment-for-transient"
-    line_start: 1541
+    line_start: 1537
     line_end: 1557
     title: "Memory alignment for transient program loading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -174,8 +174,8 @@ enhancements:
     image_caption: ""
     content: "This segment aligns memory for loading transient programs, ensuring proper execution. Memory alignment was crucial in the 1980s due to hardware constraints and performance considerations. By aligning memory segments, MS-DOS optimized access times and reduced errors, a practice that became standard in operating system design. This technique influenced memory management strategies in later systems, including virtual memory and paging in modern operating systems."
   - id: "execstart-memory-alignment-for-execution"
-    line_start: 1559
-    line_end: 1575
+    line_start: 1555
+    line_end: 1561
     title: "Memory alignment for executable program loading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Executable"
     image_url: ""

@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `R_AliasTransformFinalVert` function calculates lighting for individual vertices based on their normals and the direction of the light source. This approach, inspired by techniques like Phong shading, adds realism by simulating how light interacts with surfaces. In Quake, vertex lighting was a compromise between visual fidelity and computational efficiency, as per-pixel lighting was too resource-intensive for the hardware of the era. The function also clamps light values to avoid artifacts caused by extreme brightness or darkness. This method influenced later developments in real-time lighting, including Gouraud shading and eventually per-pixel lighting in engines like Unreal Engine 3 and Frostbite."
   - id: "projection-of-vertices"
-    line_start: 510
+    line_start: 509
     line_end: 525
     title: "Projecting vertices for rasterization"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"

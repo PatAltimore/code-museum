@@ -38,31 +38,31 @@ enhancements:
     image_caption: ""
     content: "This section defines global variables used throughout the user interface routines, such as flags for game state (`US_Started`) and pointers for error handling (`abortprogram`). These variables are critical for managing the state of the program and enabling communication between different parts of the code. In the early 1990s, global variables were a common practice for simplifying state management in games, especially on resource-constrained systems like MS-DOS. While this approach is less favored today due to concerns about maintainability and side effects, it was instrumental in enabling rapid development and debugging during the tight development cycles of games like Wolfenstein 3D. The modular design seen here influenced later game engines, including id Software's own Doom engine."
   - id: "usl-harderror-handler"
-    line_start: 81
-    line_end: 85
+    line_start: 72
+    line_end: 158
     title: "Handling DOS-level errors gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""
     image_caption: ""
     content: "The `USL_HardError` function is designed to handle critical errors passed from DOS, such as device errors or write protection issues. It provides a user-friendly interface for retrying or aborting operations, displaying error messages in a centered window. This approach reflects the constraints of the time, where direct interaction with hardware and operating system interrupts was necessary for robust error handling. The use of inline assembly (`asm sti`) to enable keyboard interrupts demonstrates the low-level programming techniques required to work effectively on MS-DOS. This function highlights id Software's commitment to creating a polished user experience, even in the face of technical limitations. The error handling mechanisms here influenced later game engines and contributed to the industry's understanding of integrating user feedback into error management."
   - id: "us-startup-initialization"
-    line_start: 169
-    line_end: 219
+    line_start: 163
+    line_end: 212
     title: "Initializing the user manager"
     wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(programming)"
     image_url: ""
     image_caption: ""
     content: "The `US_Startup` function initializes the user manager, setting up critical components like the error handler (`harderr`) and random number generator (`US_InitRndT`). It also parses command-line arguments to configure compatibility modes and detect special launch conditions, such as the use of TED (a level editor). This initialization routine demonstrates the modular design philosophy of id Software, where components are set up independently and only when needed. In the early 1990s, this approach was vital for optimizing performance on limited hardware. The ability to detect and adapt to different runtime environments laid the groundwork for more sophisticated game engines, including those used in Doom and Quake, which further refined initialization processes to support diverse hardware configurations."
   - id: "us-draw-window"
-    line_start: 453
-    line_end: 487
+    line_start: 449
+    line_end: 480
     title: "Drawing graphical windows in text mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_library"
     image_url: ""
     image_caption: ""
     content: "The `US_DrawWindow` function creates graphical windows by drawing frames and setting up the dimensions for text rendering. It uses tile-based drawing (`VWB_DrawTile8`) to construct the window borders, a technique optimized for the low-resolution graphics of MS-DOS. This function exemplifies the ingenuity required to simulate graphical interfaces in an environment primarily designed for text-based applications. By abstracting window creation into a reusable routine, id Software enabled consistent UI elements across the game. This approach influenced the design of later game engines, which adopted similar abstractions for managing graphical elements. The tile-based rendering seen here is a precursor to techniques used in modern 2D game engines, such as Unity and GameMaker Studio."
   - id: "us-line-input"
-    line_start: 574
+    line_start: 563
     line_end: 755
     title: "Capturing user input with real-time feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"

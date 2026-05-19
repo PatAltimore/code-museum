@@ -30,39 +30,39 @@ summary:
 
 enhancements:
   - id: "crumble-trigger-loose-floors"
-    line_start: 108
-    line_end: 145
+    line_start: 103
+    line_end: 140
     title: "Triggering loose floors dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The CRUMBLE subroutine dynamically triggers loose floor tiles when the player enters specific screens in Level 13. It checks the current level and screen number, then iterates through blocks on the screen above to identify and trigger loose tiles. This mechanic adds tension and unpredictability to gameplay. Written in 6502 assembly, it reflects Jordan Mechner's attention to detail in creating immersive environments. At the time, the Apple II's hardware constraints required creative solutions like this to simulate dynamic interactions without real-time physics engines. This approach influenced later games by demonstrating how simple checks and iterations could create engaging gameplay moments, laying groundwork for environmental interactivity in platformers."
   - id: "addtorches-flasks-swords"
-    line_start: 146
-    line_end: 190
+    line_start: 142
+    line_end: 184
     title: "Adding torches, flasks, and swords to scenes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The ADDTORCHES subroutine scans the visible screen for torches, flasks, and swords, adding them to the game's transition list. Using indexed addressing, it iterates through screen objects and triggers specific routines for each item type. This technique exemplifies efficient object management on limited hardware. Mechner's design philosophy prioritized cinematic detail, and this subroutine ensured key objects were dynamically integrated into gameplay. The method influenced object handling in later games, particularly in how items were dynamically added to scenes based on player interaction or visibility."
   - id: "pause-loop-timing"
-    line_start: 191
-    line_end: 209
+    line_start: 186
+    line_end: 200
     title: "Precise timing with nested loops"
     wikipedia_url: "https://en.wikipedia.org/wiki/6502"
     image_url: ""
     image_caption: ""
     content: "The PAUSE subroutine implements a delay mechanism using nested loops. The outer loop decrements a counter, while the inner loop provides fine-grained timing control. This approach compensates for the lack of built-in timing functions on the 6502 processor. Mechner used this technique to synchronize animations and gameplay events, ensuring smooth transitions and cinematic pacing. Precise timing was critical for creating the game's immersive atmosphere, and similar techniques were adopted in other assembly-based games to manage delays and frame rates."
   - id: "doflashon-lightning-effect"
-    line_start: 210
-    line_end: 219
+    line_start: 202
+    line_end: 217
     title: "Lightning flash effect implementation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "DOFLASHON creates a lightning flash effect by interacting directly with Apple II hardware registers. It toggles between lo-res and hi-res modes to simulate the flash, adding dramatic visual impact during traumatic gameplay moments. This subroutine exemplifies Mechner's ability to leverage hardware quirks for cinematic storytelling. The technique of manipulating video modes directly influenced later games on similar platforms, showcasing how hardware constraints could be turned into creative opportunities."
   - id: "add-slicers-to-trans-list"
-    line_start: 250
+    line_start: 245
     line_end: 288
     title: "Dynamic slicer object management"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -70,31 +70,31 @@ enhancements:
     image_caption: ""
     content: "ADDSLICERS identifies slicer objects on the current screen and adds them to the transition list. It checks object states to determine whether they should be triggered, ensuring smooth integration of these hazards into gameplay. This subroutine demonstrates Mechner's meticulous approach to object management, ensuring dynamic and responsive environments. Later games adopted similar techniques for managing interactive objects, contributing to the evolution of dynamic level design in platformers."
   - id: "pburn-princess-room-torches"
-    line_start: 319
-    line_end: 343
+    line_start: 314
+    line_end: 337
     title: "Animating torches in the princess's room"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The PBURN subroutine animates torches in the princess's room by cycling through their states and updating their positions. It uses indexed addressing to manage multiple torches efficiently, ensuring they burn dynamically during gameplay. This detail adds to the game's cinematic atmosphere, showcasing Mechner's dedication to creating a visually rich experience. The technique of animating environmental objects influenced later games, particularly in how they handled dynamic lighting and effects in static scenes."
   - id: "playcut-cinematic-scenes"
-    line_start: 434
-    line_end: 455
+    line_start: 422
+    line_end: 452
     title: "Playing pre-recorded cinematic scenes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
     image_url: ""
     image_caption: ""
     content: "The PLAYCUT subroutine plays pre-recorded cinematic scenes by jumping to specific routines based on the scene number. It uses self-modifying code to dynamically determine the address of the scene routine, a clever workaround for the Apple II's memory limitations. This approach allowed Mechner to integrate cinematic storytelling seamlessly into gameplay, setting a precedent for narrative-driven platformers. The technique influenced later games that sought to blend gameplay with pre-rendered or scripted sequences."
   - id: "playloop-frame-sequence"
-    line_start: 878
-    line_end: 917
+    line_start: 870
+    line_end: 915
     title: "Simplified playback loop for animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The PLAYLOOP subroutine processes frame sequences for animations, incorporating random delays, strobe effects, and sound playback. It checks for user input to interrupt the sequence, ensuring responsive gameplay. This loop is a simplified version of the main gameplay loop, optimized for cinematic sequences. Mechner's use of modular loops influenced game design by demonstrating how to balance scripted events with player control, a key feature of cinematic platformers."
   - id: "pjumpseq-princess-animation"
-    line_start: 1019
+    line_start: 1012
     line_end: 1024
     title: "Jump sequence for princess animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -103,14 +103,14 @@ enhancements:
     content: "PJUMPSEQ handles jump animations for the princess character, loading her data, executing the sequence, and saving the updated state. This modular approach to character animation allowed Mechner to create fluid, lifelike movements despite hardware constraints. The technique influenced animation systems in later games, particularly those that sought to replicate realistic character motion on limited platforms."
   - id: "vjumpseq-character-animation-sequence"
     line_start: 1028
-    line_end: 1042
+    line_end: 1033
     title: "Character animation sequence initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "This subroutine, `vjumpseq`, initializes a character's animation sequence by calling `LoadKid` to load the character's data, followed by `jumpseq` to set the animation state, and finally `SaveKid` to store the updated state. Jordan Mechner uses this routine to ensure smooth transitions between animation states, a critical feature for the game's cinematic feel. In 1989, animation in games was often rudimentary, but Mechner's use of rotoscoping and precise control over animation states set a new standard. This approach influenced later games like Another World (1991) and Flashback (1992), which also emphasized fluid character movements and cinematic storytelling."
   - id: "startm8-mouse-runs-to-princess"
-    line_start: 1044
+    line_start: 1042
     line_end: 1050
     title: "Mouse runs to princess: a scripted moment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scripting_language"
@@ -118,32 +118,32 @@ enhancements:
     image_caption: ""
     content: "The `startM8` routine positions the mouse character and initiates its movement toward the princess. It sets the mouse's coordinates and animation state (`Mstop`) before jumping to `animchar` for rendering. This scripted interaction is part of the game's storytelling, showcasing Mechner's focus on creating moments of emotional connection. In the mid-1980s, scripting such interactions was uncommon in platformers, which typically relied on repetitive gameplay loops. Mechner's work here prefigures the rise of scripting languages in games, enabling dynamic and narrative-driven interactions seen in later titles like Half-Life (1998)."
   - id: "demo-self-running-sequence"
-    line_start: 1233
-    line_end: 1242
+    line_start: 1224
+    line_end: 1236
     title: "Self-running demo playback system"
     wikipedia_url: "https://en.wikipedia.org/wiki/Demo_(computer_programming)"
     image_url: ""
     image_caption: ""
     content: "The `DEMO` routine initiates a self-running sequence by loading the `DemoProg1` data and jumping to `AutoPlayback`. This feature allows the game to showcase its gameplay without player input, a common practice in the era to attract players in retail environments or arcade settings. Mechner's implementation is notable for its precision, as the demo mimics actual gameplay mechanics, including jumps and combat. This technique influenced later games like Sonic the Hedgehog (1991), which used similar self-running demos to highlight gameplay features."
   - id: "gravity-and-freefall-mechanics"
-    line_start: 1618
-    line_end: 1650
+    line_start: 1610
+    line_end: 1644
     title: "Gravity and freefall mechanics in assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
     content: "The `GRAVITY` routine calculates the vertical velocity of the player character based on whether they are weightless or subject to normal gravity. It uses constants like `TermVelocity` and `AccelGravity` to simulate realistic falling behavior. This subroutine exemplifies Mechner's attention to detail, as the physics of falling were integral to the game's platforming challenges. In the late 1980s, physics engines were rudimentary, but Mechner's work laid the groundwork for more advanced implementations in games like Tomb Raider (1996) and Portal (2007), where physics became a core gameplay element."
   - id: "initialguards-level-setup"
-    line_start: 1674
-    line_end: 1698
+    line_start: 1669
+    line_end: 1690
     title: "Setting initial guard positions for levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
     image_url: ""
     image_caption: ""
     content: "The `INITIALGUARDS` routine initializes the positions of guards for a given level. It iterates through screen data, calculates positions using `unindex` and `getblockej`, and sets guard attributes like `GdStartX`. This routine reflects Mechner's meticulous level design, ensuring that enemy placement aligns with the game's pacing and difficulty curve. By automating guard initialization, Mechner could focus on crafting engaging encounters. This approach influenced later games with dynamic enemy placement systems, such as the AI director in Left 4 Dead (2008)."
   - id: "mirappear-mirror-appearance"
-    line_start: 1743
-    line_end: 1766
+    line_start: 1740
+    line_end: 1758
     title: "Mirror appears: a cinematic moment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cutscene"
     image_url: ""

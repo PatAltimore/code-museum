@@ -39,7 +39,7 @@ enhancements:
     content: "This section initializes key data structures for CHKDSK, including the directory buffer (`DIRBUF`) and volume ID file control block (`VOLID`). These structures are used to identify and interact with the disk's file system. The `VOLID` and `VOLNAM` fields store metadata about the volume, while `ALLFILE` and `ALLDRV` define extended file control blocks for broader file operations. In 1983, MS-DOS v2.0 introduced these enhancements to support the FAT file system and subdirectories, marking a significant departure from the simpler CP/M-inspired design of earlier versions. This initialization step reflects the growing complexity of personal computing needs, as users demanded better file management tools. The modular approach to defining buffers and metadata would later influence utilities like Scandisk and modern disk repair tools, which rely on similar abstractions for file system integrity checks."
   - id: "rootstr-path-handling"
     line_start: 199
-    line_end: 319
+    line_end: 265
     title: "Root Path and Directory Character Definitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `OKDOS` routine adjusts the stack to ensure sufficient memory for CHKDSK's operations. By checking the stack pointer (`SP`) and adjusting it if necessary, the code safeguards against memory overflows, which were a common issue in early computing. This technique reflects the constraints of the IBM PC's hardware, which had limited RAM and no virtual memory. Microsoft's attention to memory management in CHKDSK demonstrates their engineering rigor and foreshadows the sophisticated memory handling techniques found in later operating systems like Windows."
   - id: "drvchk-drive-validation"
-    line_start: 529
+    line_start: 527
     line_end: 553
     title: "Drive Validation and Default Settings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"

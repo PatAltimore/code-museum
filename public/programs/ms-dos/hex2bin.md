@@ -76,7 +76,7 @@ enhancements:
     content: "This section converts individual HEX digits to binary values, a crucial step in parsing Intel HEX files. The program checks each character to ensure it is a valid HEX digit, then calculates its binary equivalent using subtraction and comparison. This routine demonstrates the low-level manipulation required in assembly programming, where developers must implement basic operations manually. Converting HEX digits to binary was essential for loading programs into memory, as it translated human-readable data into machine-readable format. The techniques used here influenced the design of similar conversion routines in programming tools and embedded systems software."
   - id: "binary-file-creation"
     line_start: 169
-    line_end: 194
+    line_end: 193
     title: "Creating and writing the binary file"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""

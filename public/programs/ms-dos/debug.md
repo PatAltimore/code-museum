@@ -63,7 +63,7 @@ enhancements:
     content: "The `PARSCHK` section processes command-line parameters passed to the debugger. It copies the command line into the program's parameter area and prepares it for further parsing. This routine ensures that the debugger can interpret user input correctly, a critical feature for interactive tools. Command-line interfaces were the primary mode of interaction with computers in the early 1980s. Parsing and interpreting user input was a fundamental task for software like DEBUG, which relied on precise commands to execute debugging operations. This approach to command-line parsing influenced later tools and programming languages. The concept of processing and validating user input became a standard practice, appearing in utilities, shell environments, and scripting languages like Bash and Python. DEBUG's handling of parameters set a precedent for robust input processing in software development."
   - id: "hexadecimal-arithmetic"
     line_start: 981
-    line_end: 1017
+    line_end: 1013
     title: "HEXADD: Hexadecimal Addition and Subtraction"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hexadecimal"
     image_url: ""
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "This section contains routines like OUTSI, OUTDI, OUT16, HEX, and DIGIT, which are responsible for converting and displaying memory addresses and values in hexadecimal format. These routines are crucial for debugging, as they allow programmers to inspect memory and register states directly. Tim Paterson, the original author of 86-DOS, designed these routines to work efficiently on the Intel 8086 microprocessor, leveraging its instruction set for bit manipulation and arithmetic. At the time, debugging tools were minimal, and developers relied heavily on such utilities for low-level troubleshooting. The hexadecimal output routines influenced later debugging tools and environments, including Microsoft's own development platforms and third-party debuggers like Turbo Debugger."
   - id: "console-output-and-character-handling"
-    line_start: 1119
+    line_start: 1111
     line_end: 1181
     title: "Console output and character handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Console_application"
@@ -95,14 +95,14 @@ enhancements:
     content: "The TABDO and TABLP routines manage tab spacing and column alignment during console output. They calculate the number of spaces needed to align text to the next tab stop and output them accordingly. This functionality was essential for creating readable and organized output in debugging sessions. The implementation demonstrates clever use of assembly instructions to optimize performance on the 8086 processor. These routines influenced text formatting practices in command-line interfaces and contributed to the development of tools like text editors and terminal emulators."
   - id: "device-io-and-buffer-management"
     line_start: 1309
-    line_end: 1351
+    line_end: 1349
     title: "Device I/O and buffer management"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
     image_caption: ""
     content: "The DEVIOCALL routine facilitates communication with hardware devices, using BIOS interrupt calls to perform I/O operations. It sets up the necessary parameters and invokes the device-specific routines to read or write data. This section showcases the low-level nature of MS-DOS, where direct interaction with hardware was common. The efficient handling of buffers and registers in this routine reflects the constraints of early PCs, which had limited memory and processing power. This approach influenced later operating systems, which abstracted hardware interaction while retaining the efficiency principles seen here."
   - id: "command-table-for-debugger-functions"
-    line_start: 1577
+    line_start: 1571
     line_end: 1643
     title: "Command table for debugger functions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
@@ -111,7 +111,7 @@ enhancements:
     content: "The COMTAB section defines a lookup table for debugger commands, mapping command letters to their corresponding routines. This design enables quick interpretation of user input and execution of the appropriate debugging function. The table includes commands for assembly, comparison, memory dumping, and more, reflecting the comprehensive functionality of MS-DOS's DEBUG utility. The modular approach to command handling influenced the design of later command-line interfaces and scripting languages, where similar lookup mechanisms are used to process user input efficiently."
   - id: "quit-routine-and-system-exit"
     line_start: 1647
-    line_end: 1675
+    line_end: 1667
     title: "Quit routine and system exit handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Exit_(system_call)"
     image_url: ""

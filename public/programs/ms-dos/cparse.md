@@ -103,7 +103,7 @@ enhancements:
     content: "The testsplat section checks if the current character in the input buffer is a wildcard ('*' or '?'). If a wildcard is found, it sets a flag in BH to indicate its presence and adjusts the token buffer accordingly. This ensures that wildcards are correctly identified and processed during tokenization. Wildcards were a key feature of MS-DOS, enabling users to specify patterns for file operations. The ability to handle these characters efficiently was crucial for the operating system's usability and versatility. The logic in testsplat influenced the handling of wildcards in later operating systems and programming languages. Its approach to identifying and processing wildcards became a standard practice, shaping the development of tools like Unix shells and Windows PowerShell."
   - id: "move-char-token-buffer-storage"
     line_start: 565
-    line_end: 582
+    line_end: 573
     title: "Storing characters in the token buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""

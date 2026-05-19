@@ -25,31 +25,31 @@ summary:
 enhancements:
   - id: "boolean-variable-insetupscaling"
     line_start: 21
-    line_end: 29
+    line_end: 21
     title: "Tracking setup state with boolean flag"
     wikipedia_url: "https://en.wikipedia.org/wiki/Boolean_data_type"
     image_url: ""
     image_caption: ""
     content: "The variable 'insetupscaling' is used as a flag to indicate whether the scaling setup process is currently active. This simple boolean mechanism ensures that other parts of the program do not interfere with the scaling setup while it is in progress. At the time Wolfenstein 3D was developed, managing state explicitly with flags was a common practice in C programming, especially in performance-critical applications where global variables were used sparingly. This approach reflects the careful design required to avoid race conditions or unintended behavior in a single-threaded environment. The use of such flags influenced later game engines, where state management became more sophisticated but retained the principle of explicit state tracking."
   - id: "badscale-error-handler"
-    line_start: 46
-    line_end: 58
+    line_start: 44
+    line_end: 49
     title: "Error handling with BadScale function"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
     content: "The 'BadScale' function is a simple error handler that terminates the program with a message when an invalid scaling operation is attempted. This reflects the straightforward error handling practices of the early 1990s, where programs often opted to fail fast rather than attempt recovery. In the context of Wolfenstein 3D, this approach ensures that any scaling issues are immediately identified during development or runtime. Such practices were common in early game development, where debugging tools were limited, and clear error messages were critical for diagnosing problems. The concept of fail-fast error handling influenced later game engines and software frameworks, which adopted more robust error reporting mechanisms while retaining the principle of immediate feedback for critical issues."
   - id: "setup-scaling-memory-management"
-    line_start: 60
-    line_end: 151
+    line_start: 58
+    line_end: 129
     title: "Dynamic memory allocation for scaling objects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
     image_url: ""
     image_caption: ""
     content: "The 'SetupScaling' function dynamically allocates and manages memory for scaling objects based on the maximum scale height. It first frees up old scalers, sorts memory, and then builds new compiled scalers. This process demonstrates the careful memory management required to optimize performance on limited hardware, such as the 386 processors used in early 1990s PCs. The function also employs techniques like double-stepping to save space and locks down scalers to prevent accidental modification. These memory management strategies were critical for achieving smooth gameplay and efficient rendering in Wolfenstein 3D. The approach influenced later game engines, such as id Software's Doom engine, which built upon these principles to handle more complex rendering tasks."
   - id: "buildcompscale-compiled-scaling"
-    line_start: 153
-    line_end: 239
+    line_start: 151
+    line_end: 227
     title: "Generating compiled scaling routines dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
@@ -57,7 +57,7 @@ enhancements:
     content: "The 'BuildCompScale' function dynamically generates compiled scaling routines to scale objects of a fixed height (64 pixels) to a specified height. It calculates the step size for scaling, iterates through source pixels, and generates assembly code to map source pixels to destination pixels. This dynamic compilation approach was innovative for its time, allowing Wolfenstein 3D to achieve efficient scaling without relying on precomputed tables. The function also includes optimizations like skipping unnecessary pixels and handling edge cases where pixels fall outside the view area. This technique laid the groundwork for more advanced scaling and rendering algorithms in later games, influencing the development of engines like Quake and Unreal Engine."
   - id: "scaleline-assembly-optimization"
     line_start: 246
-    line_end: 246
+    line_end: 269
     title: "Optimized pixel scaling in assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -65,22 +65,22 @@ enhancements:
     content: "The 'ScaleLine' function uses inline assembly to perform pixel scaling operations efficiently. It manipulates registers directly to set map masks and scale segments of pixels, minimizing overhead and maximizing performance. Inline assembly was a common technique in performance-critical applications during the early 1990s, especially in games like Wolfenstein 3D, where every CPU cycle mattered. By leveraging assembly, the developers were able to bypass the limitations of high-level languages and achieve fine-grained control over hardware interactions. This approach influenced later game engines, which continued to use assembly for performance-critical tasks while gradually transitioning to optimized high-level code as hardware capabilities improved."
   - id: "scale-shape-rendering"
     line_start: 421
-    line_end: 623
+    line_end: 597
     title: "Rendering scaled shapes dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
     image_caption: ""
     content: "The 'ScaleShape' function dynamically renders scaled shapes on the screen by iterating through vertical lines and scaling them based on visibility and height. It handles clipping, obscuration by walls, and multi-pixel lines, ensuring that only visible portions of the shape are rendered. This function showcases the ingenuity required to achieve smooth rendering on limited hardware, where every pixel operation needed to be carefully optimized. The dynamic rendering approach used in Wolfenstein 3D influenced later games, which adopted similar techniques for handling visibility and clipping in 3D environments. The principles demonstrated here laid the foundation for more sophisticated rendering algorithms in engines like Doom and Quake."
   - id: "simple-scale-shape"
-    line_start: 625
-    line_end: 697
+    line_start: 623
+    line_end: 688
     title: "Simplified shape scaling without clipping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
     image_caption: ""
     content: "The 'SimpleScaleShape' function provides a streamlined approach to scaling shapes without handling clipping or obscuration. It iterates through vertical lines and scales them directly, making it suitable for scenarios where clipping is unnecessary or performance is a higher priority than accuracy. This simplified approach reflects the trade-offs often made in game development to balance performance and visual fidelity. While less sophisticated than the 'ScaleShape' function, it demonstrates the flexibility of the Wolfenstein 3D engine in adapting to different rendering requirements. The concept of simplified rendering routines influenced later game engines, which incorporated similar fallback mechanisms for low-performance hardware or specific gameplay scenarios."
   - id: "bit-mask-tables"
-    line_start: 700
+    line_start: 693
     line_end: 716
     title: "Precomputed bit mask tables for efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operations"

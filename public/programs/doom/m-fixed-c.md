@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "The `FixedMul` function performs multiplication using fixed-point arithmetic, a method that represents numbers as integers scaled by a constant factor (here defined by `FRACBITS`). This avoids the computational overhead of floating-point operations, which were slow and inconsistent across hardware in the early 1990s. By shifting the result right by `FRACBITS`, it converts the product back to the fixed-point format. At the time, DOOM targeted consumer PCs with limited processing power, such as Intel 386 and 486 CPUs, where such optimizations were crucial for real-time performance. Fixed-point arithmetic was widely used in game engines of the era, and this implementation directly influenced later engines like Quake and Unreal Engine, which continued to refine these techniques for 3D rendering and physics calculations."
   - id: "fixeddiv-division-with-safety-checks"
-    line_start: 57
+    line_start: 53
     line_end: 65
     title: "FixedDiv: Division with safety checks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Division_by_zero"

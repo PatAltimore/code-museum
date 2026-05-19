@@ -87,15 +87,15 @@ enhancements:
     content: "The ENDLIN routine finalizes the input process by storing a carriage return in the buffer, echoing it to the console, and updating the buffer length. This marks the end of user input and prepares the buffer for further processing. In the context of MS-DOS, this routine ensures that input is properly terminated and ready for use by other system components. Tim Paterson's design reflects the influence of Unix-like systems, where input termination was a critical part of text processing. This technique influenced later command-line interfaces and text editors, where proper input handling became a standard feature."
   - id: "copynew-buffer-copying"
     line_start: 87
-    line_end: 104
+    line_end: 95
     title: "Copying Final Line to User Buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_copy"
     image_url: ""
     image_caption: ""
     content: "The COPYNEW routine copies the finalized input line from the internal buffer to the user buffer, ensuring that the input is accessible to the calling program. This involves swapping segment registers and using the REP MOVSB instruction for efficient memory copying. In the constrained environment of early PCs, efficient memory operations were critical for performance. Tim Paterson's implementation reflects the low-level optimization required in assembly programming. This technique influenced later systems, where efficient memory copying became a standard practice in operating system design and application development."
   - id: "phycrlf-non-buffered-crlf"
-    line_start: 105
-    line_end: 113
+    line_start: 104
+    line_end: 107
     title: "Outputting Non-Buffered CRLF"
     wikipedia_url: "https://en.wikipedia.org/wiki/Newline"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The PHYCRLF routine outputs a carriage return and line feed without terminating the buffer, allowing for non-buffered line breaks. This is useful for formatting output without affecting the input buffer. In the early days of text-based interfaces, formatting was a key aspect of user experience. Tim Paterson's design reflects the need for flexibility in output handling, enabling developers to create more user-friendly interfaces. This technique influenced later systems, where non-buffered output became a standard feature in text processing and command-line tools."
   - id: "putnew-restarting-input"
     line_start: 114
-    line_end: 130
+    line_end: 118
     title: "Restarting Input After CRLF"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""

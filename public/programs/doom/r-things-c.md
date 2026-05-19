@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "sprite-lump-installation"
-    line_start: 102
+    line_start: 101
     line_end: 157
     title: "Sprite Lump Installation: Handling Rotations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InitSpriteDefs` function initializes sprite definitions by scanning WAD lump names and setting up rotation matrices for sprites. This ensures that sprites are correctly aligned and displayed during gameplay. The WAD file format, pioneered by DOOM, allowed developers to store game assets like sprites, textures, and levels in a modular way. This function highlights the modularity and extensibility of DOOM's asset system, enabling custom mods and levels to flourish after the game's release. The modular sprite system laid the groundwork for community-driven content creation in gaming, influencing engines like Unity and Unreal, which emphasize asset modularity."
   - id: "masked-column-rendering"
-    line_start: 340
+    line_start: 339
     line_end: 388
     title: "Rendering Masked Columns for Transparency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `R_DrawMaskedColumn` function handles rendering of masked columns, which are partially transparent sprite elements. This technique allows DOOM to display sprites with transparency effects, such as ghostly enemies or semi-transparent textures. Transparency was a challenging feature to implement efficiently on hardware from 1993, as it required careful management of pixel data and clipping. By processing runs of opaque pixels, DOOM minimizes rendering overhead while achieving visually complex effects. This approach influenced later games, including Quake, which expanded on transparency and blending techniques for 3D models and textures."
   - id: "sprite-projection"
-    line_start: 449
+    line_start: 447
     line_end: 604
     title: "Projecting Sprites into the Player's View"
     wikipedia_url: "https://en.wikipedia.org/wiki/Projection_(graphics)"
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `R_ProjectSprite` function calculates the position and scale of sprites relative to the player's viewpoint. It transforms sprite coordinates into screen space and determines visibility, ensuring that only relevant sprites are rendered. This function is a cornerstone of DOOM's rendering pipeline, enabling its fast-paced gameplay and immersive visuals. The mathematical precision in this code reflects John Carmack's expertise in optimizing rendering for constrained hardware. The projection techniques here influenced 3D engines like Unreal Engine, which rely on similar transformations for rendering objects in a 3D space."
   - id: "sprite-sorting"
-    line_start: 782
+    line_start: 781
     line_end: 835
     title: "Sorting Sprites by Scale for Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `R_SortVisSprites` function sorts visible sprites by their scale, ensuring proper rendering order from back to front. This manual sorting method was necessary due to the lack of hardware Z-buffering on consumer PCs in 1993. By sorting sprites explicitly, DOOM achieves correct layering of objects in its pseudo-3D environments. This technique showcases the ingenuity required to simulate depth and perspective without dedicated hardware support. Later engines, such as Quake, benefited from hardware advancements that allowed for Z-buffering, simplifying depth management and enabling more complex 3D scenes."
   - id: "masked-rendering-and-player-sprites"
-    line_start: 956
+    line_start: 955
     line_end: 986
     title: "Masked Rendering and Player Sprite Drawing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Alpha_compositing"

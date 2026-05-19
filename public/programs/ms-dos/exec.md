@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section sets up the ZEXEC_DATA segment, which includes variables and buffers used during the execution process. It defines critical data structures such as the environment pointer, file handle, relocation factor, and program header information. At the time, memory was a scarce resource, and MS-DOS had to manage it carefully. The ZEXEC_DATA segment ensures that the EXEC system call has access to all necessary parameters for loading and executing programs. This approach reflects the low-level nature of MS-DOS, where programmers had direct control over memory and hardware. The careful organization of data structures here influenced later operating systems, which adopted similar practices for managing program execution environments."
   - id: "validate-function-check"
-    line_start: 135
+    line_start: 131
     line_end: 185
     title: "Validating Function Codes for EXEC"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "This section allocates memory dynamically for the program being loaded. It calculates the required memory size based on the program's header and attempts to allocate it. If the allocation fails, the routine gracefully handles the error. Memory management was a critical aspect of MS-DOS, as the IBM PC's hardware constraints required efficient use of limited resources. This routine demonstrates the careful planning needed to ensure programs could run without interfering with the operating system or other software. The techniques used here influenced later systems, which adopted more sophisticated memory management strategies, such as virtual memory and paging."
   - id: "exec-do-relocation"
-    line_start: 562
+    line_start: 557
     line_end: 591
     title: "Relocating Program Addresses for Execution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_science)"

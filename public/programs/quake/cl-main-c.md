@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_ClearState` function wipes client memory, stopping sounds, clearing caches, and resetting data structures. This ensures a clean slate when reconnecting or recovering from errors. In the 1990s, memory management was a critical concern due to hardware constraints. Quake's approach, combining manual memory clearing with modular resets, set a precedent for efficient resource handling in game engines. Modern engines like Unity and Unreal have adopted similar practices, automating memory management while retaining manual control for developers."
   - id: "cl-disconnect"
-    line_start: 405
+    line_start: 398
     line_end: 446
     title: "CL_Disconnect: Handling Server Disconnection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Client%E2%80%93server_model"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This function manages client disconnection, stopping sounds, shutting down local servers, and resetting states. It includes robust error handling to prevent crashes during forced disconnections. In the mid-1990s, multiplayer games had to account for unstable network conditions, making graceful disconnection vital. Quake's implementation influenced later games, ensuring that server errors or user actions wouldn't compromise the client experience. This design philosophy persists in modern multiplayer systems, where seamless disconnection is crucial for maintaining player satisfaction."
   - id: "cl-connectionless-packet"
-    line_start: 798
+    line_start: 792
     line_end: 927
     title: "CL_ConnectionlessPacket: Handling Broadcast Responses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "This function processes connectionless packets, handling server responses, remote commands, and pings. It includes security checks to prevent unauthorized commands from remote hosts. In 1996, multiplayer security was an emerging concern, as online gaming exposed vulnerabilities in server-client communication. Quake's approach, incorporating local ID validation and error messages, laid the groundwork for secure multiplayer protocols. This influenced later systems, such as Blizzard's Battle.net, which expanded on these principles to create robust online gaming networks."
   - id: "cl-read-packets"
-    line_start: 934
+    line_start: 930
     line_end: 984
     title: "CL_ReadPackets: Processing Incoming Network Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Network_packet"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This function reads incoming network packets, distinguishing between server messages and connectionless packets. It includes timeout checks to handle server unresponsiveness. Efficient packet processing was essential for Quake's low-latency multiplayer experience, especially on dial-up connections. John Carmack's focus on optimizing network code ensured smooth gameplay even under challenging conditions. This technique influenced later engines, including id Tech 3 and Source, which prioritized efficient packet handling for competitive online games like Quake III Arena and Team Fortress."
   - id: "cl-init-client-setup"
-    line_start: 1049
+    line_start: 1045
     line_end: 1178
     title: "Client Initialization and Command Registration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes the client state and registers a wide array of commands and variables used throughout the game. The function `CL_Init` sets up default values for user information, such as player name, colors, and network rate, ensuring a consistent starting point for multiplayer sessions. It also initializes various subsystems like input handling, prediction, and camera management. The registration of commands and variables reflects the modular design of Quake, allowing players and developers to interact with the game engine via the console. In 1996, this level of configurability was cutting-edge, enabling advanced customization and debugging. The modular approach influenced later engines like Unreal Engine and Source, which adopted similar extensible architectures."
   - id: "host-endgame-error-handling"
-    line_start: 1187
+    line_start: 1181
     line_end: 1234
     title: "Error Handling: Endgame and Host Errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `Host_EndGame` and `Host_Error` functions are critical for managing unexpected situations during gameplay. `Host_EndGame` gracefully disconnects the client and drops to the console, while `Host_Error` handles fatal errors by shutting down the client and exiting the game. These routines use formatted string output to provide clear feedback to the user, a practice that enhances debugging and user experience. In the mid-90s, robust error handling was essential for multiplayer games, where network instability and hardware limitations were common. These techniques influenced later multiplayer frameworks, emphasizing the importance of stability and clear error reporting in real-time applications."
   - id: "host-write-configuration"
-    line_start: 1243
+    line_start: 1237
     line_end: 1262
     title: "Saving Player Preferences to Configuration Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Configuration_file"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The `simple_crypt` function applies a basic XOR encryption to resource names, such as model and sound lists. While rudimentary, this technique was likely used to obscure resource names from casual inspection, offering minimal protection against tampering. In the broader context of software development, encryption methods evolved significantly, but this example highlights the early attempts at safeguarding game assets. Modern games use more sophisticated encryption and obfuscation techniques to protect intellectual property and enhance security."
   - id: "host-init-game-startup"
-    line_start: 1416
+    line_start: 1412
     line_end: 1504
     title: "Game Initialization and Resource Loading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "The `Host_Init` function initializes the game environment, including memory allocation, subsystem setup, and resource loading. It ensures that essential assets like textures and palettes are available before gameplay begins. This function exemplifies the meticulous preparation required for real-time 3D rendering and multiplayer functionality in the mid-90s. By modularizing initialization tasks, Quake set a precedent for modern game engines, which rely on similar startup routines to manage complex dependencies and optimize loading times."
   - id: "host-shutdown-cleanup"
-    line_start: 1514
+    line_start: 1507
     line_end: 1534
     title: "Shutdown Routines for Resource Cleanup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"

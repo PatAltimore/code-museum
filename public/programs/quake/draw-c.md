@@ -38,15 +38,15 @@ enhancements:
     image_caption: ""
     content: "This section defines the foundational data structures used for rendering operations, such as `rectdesc_t` and global pointers like `draw_chars`. These structures encapsulate information about rectangles, textures, and graphics characters, which are essential for efficient rendering. In 1996, hardware constraints like limited memory and slow processors necessitated compact and efficient data representations. John Carmack and Michael Abrash, known for their optimization expertise, designed these structures to minimize overhead while maximizing flexibility. These data structures influenced later game engines, including the Unreal Engine and Source Engine, which adopted similar approaches to manage rendering primitives efficiently."
   - id: "draw-cachepic"
-    line_start: 63
-    line_end: 106
+    line_start: 59
+    line_end: 101
     title: "Caching Images: Draw_CachePic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `Draw_CachePic` function implements a caching mechanism for images, ensuring that frequently used graphics are stored in memory for quick access. This avoids redundant disk reads, which were particularly slow on mid-90s hardware. The function uses a fixed-size array to store cached images, and when the cache is full, it triggers an error. This approach reflects the era's emphasis on performance optimization, where every millisecond counted in achieving smooth gameplay. The caching strategy here influenced later techniques in texture management, such as mipmapping and texture atlases, which are now standard in modern engines like Unity and Unreal."
   - id: "draw-character"
-    line_start: 132
+    line_start: 125
     line_end: 220
     title: "Drawing Characters: Pixel-Level Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Character_cell"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `Draw_Character` function renders individual 8x8 pixel characters directly to the screen, with support for clipping and transparency. This low-level approach was necessary for systems with limited graphical APIs, such as DOS-based PCs. By manually iterating over pixels and handling transparency, the function achieves precise control over rendering, which was critical for Quake's dynamic console and HUD elements. This technique laid the groundwork for modern text rendering systems, which still rely on similar principles but are abstracted through libraries like FreeType and DirectWrite."
   - id: "draw-console-background"
-    line_start: 640
+    line_start: 639
     line_end: 733
     title: "Dynamic Console Background Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Console_(video_game)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `Draw_ConsoleBackground` function dynamically renders the console background, including embedding version information directly into the texture. This demonstrates a clever use of rendering to provide real-time feedback to players, a hallmark of id Software's attention to detail. The function also scales the background to fit varying resolutions, showcasing early attempts at resolution independence in graphics. This technique influenced later games that dynamically adjusted UI elements based on screen size, a feature now ubiquitous in responsive design for games and applications."
   - id: "draw-tileclear"
-    line_start: 850
+    line_start: 843
     line_end: 913
     title: "Tile-Based Rendering for Backgrounds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_rendering"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `Draw_TileClear` function fills the screen with a repeating 64x64 tile graphic, a technique used to create seamless backgrounds around the main game window. This method is efficient for systems with limited memory and processing power, as it avoids the need for large, contiguous textures. Tile-based rendering was a common practice in the 90s, seen in games like Doom and Duke Nukem 3D. Its principles are still relevant in modern graphics engines, particularly in mobile gaming, where memory and bandwidth constraints persist."
   - id: "draw-fadescreen"
-    line_start: 957
+    line_start: 954
     line_end: 988
     title: "Screen Fading: Visual Transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Alpha_compositing"

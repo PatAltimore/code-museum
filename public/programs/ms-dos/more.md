@@ -76,7 +76,7 @@ enhancements:
     content: "The ASKMORE subroutine displays a 'More?' prompt and waits for user input to continue pagination. It uses INT 21h system calls for both output (STD_CON_STRING_OUTPUT) and input (STD_CON_INPUT_FLUSH), ensuring the prompt is displayed and the program pauses until a key is pressed. This interactive behavior mimics Unix's 'more' command, providing a user-friendly way to navigate large text files one screen at a time. The design reflects the limitations of early PCs, where user interaction was often limited to keyboard input. This technique influenced the development of paging utilities in other operating systems, including Windows and Linux, where similar commands like 'less' and 'more' remain popular."
   - id: "gobig-loop-restart"
     line_start: 285
-    line_end: 309
+    line_end: 285
     title: "Restarting the pagination loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/Loop_(computing)"
     image_url: ""

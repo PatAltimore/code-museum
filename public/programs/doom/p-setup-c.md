@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "map-data-lookup-tables"
-    line_start: 56
+    line_start: 52
     line_end: 75
     title: "Map Data Lookup Tables: Vertices to Sectors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The reject matrix is used to optimize enemy AI by precomputing visibility data between sectors. This allows the engine to skip detailed line-of-sight calculations for enemies, significantly improving performance. The concept is similar to Potentially Visible Sets (PVS) in computer graphics, which were later popularized in engines like Quake. This optimization was crucial for maintaining DOOM's fast-paced gameplay on limited hardware, and it influenced subsequent AI systems in games that required efficient visibility checks."
   - id: "vertex-loading-routine"
-    line_start: 122
+    line_start: 119
     line_end: 151
     title: "P_LoadVertexes: Converting Map Vertices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The P_LoadVertexes function loads vertex data from a WAD file and converts it into the game's internal fixed-point representation. This routine exemplifies DOOM's approach to handling map data efficiently, using fixed-point arithmetic to optimize calculations on hardware without floating-point units. The modular design of loading map data from WAD files allowed for easy level creation and modification, fostering the growth of the modding community. This approach influenced later games and engines, which adopted similar modular data loading techniques."
   - id: "sector-loading-routine"
-    line_start: 229
+    line_start: 228
     line_end: 257
     title: "P_LoadSectors: Defining Level Geometry"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The P_LoadSectors function loads sector data, defining the geometric and visual properties of each area in a level, such as floor and ceiling heights, textures, and lighting levels. Sectors are a fundamental part of DOOM's map representation, enabling the creation of complex 3D environments within a 2D engine. The use of sectors influenced the design of subsequent engines, including Build (used in Duke Nukem 3D) and Unreal Engine, which expanded on the concept to support more advanced geometry and lighting systems."
   - id: "group-lines-sectors"
-    line_start: 495
+    line_start: 494
     line_end: 575
     title: "P_GroupLines: Building Sector Line Lists"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The P_GroupLines function organizes lines into sectors and calculates bounding boxes for collision detection. This routine is part of DOOM's efficient spatial organization, enabling fast rendering and gameplay mechanics. By grouping lines and precomputing bounding boxes, the engine minimizes runtime calculations, a necessity for the limited hardware of the early 1990s. This approach laid the groundwork for more advanced spatial partitioning techniques, such as BSP trees, which became a cornerstone of 3D game engines like Quake."
   - id: "level-setup-routine"
-    line_start: 581
+    line_start: 580
     line_end: 693
     title: "P_SetupLevel: Initializing Game Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The P_SetupLevel function orchestrates the initialization of a game level, loading map data, setting up lookup tables, and spawning objects. This routine demonstrates DOOM's modular and efficient level setup, allowing the game to dynamically load levels from WAD files. The ordering of operations in this function is critical for ensuring the game's stability and performance. The modularity and efficiency of this design influenced later engines, which adopted similar approaches to level initialization and asset management."
   - id: "game-initialization-routine"
-    line_start: 698
+    line_start: 697
     line_end: 705
     title: "P_Init: Preparing Game Systems"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM"

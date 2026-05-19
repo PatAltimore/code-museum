@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the animation frames for the protagonist's movements in Prince of Persia. Each frame is represented as a data block with parameters like image index, movement deltas (DX, DY), and flags for specific actions. The data is tightly packed to fit within the memory constraints of the Apple II, which had only 128K of bank-switched memory available. Jordan Mechner used rotoscoping to trace real-life movements, ensuring fluid and realistic animations. The frame definitions here reflect the game's groundbreaking cinematic approach, where character motions were designed to mimic human movement. At the time, the Apple II's hardware limitations meant developers had to be extremely efficient with memory and processing power. Mechner's innovative use of data tables to encode animations and states influenced later games, such as Another World and Flashback, which adopted similar techniques for cinematic storytelling and animation."
   - id: "alternate-character-set-1"
-    line_start: 277
+    line_start: 264
     line_end: 327
     title: "Alternate character set: enemy animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This section defines an alternate set of animation frames for enemies, specifically those wielding swords in their left hand. The data mirrors the protagonist's animations but adapts them for enemy behavior. This mirroring technique was a clever way to reuse animation logic while differentiating the characters visually. The Apple II's hardware constraints necessitated such optimizations, as memory was limited and every byte had to be carefully allocated. By defining alternate character sets, Mechner ensured that the game could feature dynamic sword fights without duplicating large amounts of data. This approach influenced later games that used mirrored or adapted animations to save memory, such as early fighting games like Karateka (also by Mechner) and Mortal Kombat."
   - id: "alternate-character-set-2"
-    line_start: 329
+    line_start: 320
     line_end: 427
     title: "Expanded animations for cinematic storytelling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The second alternate character set expands the range of animations for enemies and other characters. This includes detailed movements like turning, walking backward, and embracing. These animations contribute to the game's cinematic feel, allowing characters to express nuanced actions that enhance the storytelling. At the time, such detailed animations were rare in games, especially on hardware as limited as the Apple II. Mechner's focus on cinematic realism set Prince of Persia apart from other platformers of the era. The techniques used here paved the way for more expressive character animations in later games, influencing titles like Tomb Raider and Uncharted."
   - id: "sword-dynamics-data-table"
-    line_start: 429
+    line_start: 418
     line_end: 490
     title: "Sword dynamics: precision in combat"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"

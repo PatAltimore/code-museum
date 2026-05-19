@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "ammo-pickup-and-weapon-switching"
-    line_start: 73
+    line_start: 62
     line_end: 160
     title: "Dynamic weapon switching based on ammo"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The functions `P_GiveBody` and `P_GiveArmor` manage player health and armor pickups. Health can exceed the usual maximum (up to 200%) through bonuses, while armor provides damage reduction based on its type. This system introduced a layer of strategy, as players needed to balance their health and armor resources during gameplay. The ability to pick up health beyond the standard limit was a unique feature at the time, encouraging exploration and rewarding players for finding hidden items. The armor system, with its tiered effectiveness, influenced later games like Halo and Call of Duty, which adopted similar mechanics to enhance player survivability and tactical decision-making."
   - id: "special-item-interactions"
-    line_start: 336
+    line_start: 335
     line_end: 660
     title: "Handling special item pickups"
     wikipedia_url: "https://en.wikipedia.org/wiki/Power-up"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `P_TouchSpecialThing` function governs interactions with special items, such as power-ups, keys, and health bonuses. Each item type triggers specific effects, such as granting invulnerability, invisibility, or unlocking doors. The function also adjusts player stats based on the item's properties, like increasing health or doubling ammo capacity with the backpack. This section showcases DOOM's intricate item system, which added variety and excitement to gameplay. The concept of power-ups, introduced here, became a staple in video games, influencing titles like Super Mario and later FPS games. The inclusion of keys and locked doors also reinforced DOOM's blend of action and puzzle-solving, a combination that inspired level design in games like Duke Nukem 3D and System Shock."
   - id: "monster-death-and-item-drops"
-    line_start: 667
+    line_start: 664
     line_end: 758
     title: "Monster death and item drop mechanics"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `P_KillMobj` function handles monster death, including the spawning of items dropped by defeated enemies. For example, zombies drop clips, while shotgun-wielding enemies drop shotguns. This mechanic added a layer of resource management to combat, encouraging players to prioritize certain enemies based on their potential loot. The function also tracks player kills for intermission statistics, reflecting DOOM's emphasis on rewarding skill and performance. The concept of item drops from enemies influenced later games like Diablo and Borderlands, where loot systems became central to gameplay. DOOM's implementation of this mechanic helped establish the FPS genre's focus on resource acquisition during combat."
   - id: "damage-calculation-and-thrust"
-    line_start: 764
+    line_start: 763
     line_end: 917
     title: "Damage calculation and knockback effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hit_points"

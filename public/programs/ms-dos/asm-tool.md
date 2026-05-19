@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "revision-history-and-context"
-    line_start: 5
+    line_start: 1
     line_end: 24
     title: "Revision history: evolving the assembler"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes the assembler's runtime environment, setting up stack pointers, buffers, and file control blocks (FCBs). It also prints a header message, showcasing the assembler's version and copyright information. The initialization routine reflects the constraints of early PCs, where memory was limited and hardware interactions were direct. Paterson's use of FCBs, a file management structure inherited from CP/M, demonstrates the lineage of MS-DOS and its compatibility with existing software ecosystems. This initialization process laid the groundwork for efficient assembly and error handling, influencing the design of subsequent development tools and operating systems."
   - id: "line-parsing-loop"
-    line_start: 146
+    line_start: 144
     line_end: 172
     title: "Parsing lines: the assembler's heartbeat"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "This section implements handling for JMP and CALL instructions, including both direct and indirect addressing modes. The code checks for valid operands, processes addressing modes, and generates the appropriate machine code. Indirect jumps were particularly useful for implementing dynamic control flow, such as function pointers or jump tables. At the time, these features were essential for efficient program execution on constrained hardware. The handling of control flow instructions here influenced later operating systems and programming languages, particularly in the implementation of dynamic linking and runtime function dispatch."
   - id: "second-pass-assembler"
-    line_start: 2343
+    line_start: 2337
     line_end: 2481
     title: "Second Pass: Assembler's Code Generation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
@@ -174,7 +174,7 @@ enhancements:
     image_caption: ""
     content: "This section introduces a mnemonic table for the Intel 8087 math co-processor, which was optional hardware for the IBM PC. Unlike the 8086 table, this one does not distinguish mnemonics by opcode length, reflecting the simpler encoding of 8087 instructions. The 8087 was designed to accelerate floating-point calculations, a critical feature for scientific and engineering applications. MS-DOS's support for the 8087 demonstrates its adaptability to emerging hardware. The table's structure highlights Tim Paterson's foresight in accommodating co-processor instructions within the assembler. This design influenced subsequent operating systems and programming tools, which integrated support for specialized hardware like GPUs and SIMD processors."
   - id: "error-message-table"
-    line_start: 3898
+    line_start: 3896
     line_end: 3931
     title: "Error Message Table for Assembly Diagnostics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"

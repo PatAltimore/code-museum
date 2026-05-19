@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "sound-system-initialization"
     line_start: 167
-    line_end: 199
+    line_end: 229
     title: "Sound System Initialization Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `SND_PickChannel` function dynamically selects a sound channel for playback, prioritizing sounds based on their entity and channel numbers. It ensures that important sounds, such as player actions, are not overridden by less critical sounds like ambient noise. By iterating through available channels and evaluating their remaining life span (`life_left`), the function picks the best candidate for replacement. This approach reflects the hardware constraints of the era, where sound cards had limited channels and memory. In 1996, games often struggled with managing multiple simultaneous sounds, leading to clipping or dropped audio. Quake's solution was both efficient and effective, allowing for a rich soundscape without overwhelming the hardware. This technique influenced later game engines and audio middleware, such as FMOD and Wwise, which adopted dynamic channel allocation as a standard feature. It also contributed to the development of advanced sound prioritization algorithms used in modern games, ensuring that critical audio cues are always heard."
   - id: "spatialize-sound-channels"
     line_start: 398
-    line_end: 430
+    line_end: 447
     title: "Spatializing Sound Channels in 3D Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `SND_Spatialize` function calculates stereo separation and distance attenuation for sound channels based on the listener's position and orientation. By using vector math, it determines the relative position of a sound source and adjusts its volume for the left and right channels accordingly. This ensures that sounds are perceived as coming from specific directions, enhancing the player's spatial awareness in the game world. In the mid-1990s, this level of audio realism was rare, as most games used simple stereo or mono sound. Quake's implementation of spatialized audio was a technical achievement, leveraging the computational power of x86 processors to create a more immersive experience. The function also accounts for special cases, such as sounds originating from the player's own entity, which are played at full volume regardless of distance. This technique became a cornerstone of 3D audio in gaming, influencing engines like Unity and Unreal Engine, which now include built-in support for spatialized sound. It also laid the foundation for advancements in VR audio, where precise spatialization is critical for immersion."
   - id: "ambient-sound-management"
     line_start: 664
-    line_end: 696
+    line_end: 713
     title: "Managing Ambient Sounds Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"
     image_url: ""

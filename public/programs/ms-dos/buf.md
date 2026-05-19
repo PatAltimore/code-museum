@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "include-dosseg-and-dossym"
-    line_start: 5
+    line_start: 1
     line_end: 42
     title: "Setting up the environment: INCLUDE directives"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The file begins by including key assembly files (`DOSSEG.ASM`, `DOSSYM.ASM`, `DEVSYM.ASM`) that define essential segments, symbols, and device-related constants for MS-DOS. These directives establish the groundwork for buffer management routines by importing predefined structures and macros. In the early 1980s, modular programming in assembly was rare but crucial for maintainability, especially in a project like MS-DOS 2.0, which had to support a wide range of hardware configurations. Tim Paterson and the Microsoft team leveraged these modular files to streamline development and ensure compatibility across OEMs. This modularity influenced later operating systems, including Windows, which continued to rely on segmented architecture and modular code organization."
   - id: "setvisit-buffer-scan-initialization"
-    line_start: 43
+    line_start: 25
     line_end: 70
     title: "SETVISIT: Resetting buffer visit flags"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `SETVISIT` routine initializes a scan of I/O buffers by resetting all visit flags to zero. This ensures that any previous errors during buffer scans do not leave flags in an inconsistent state. The routine uses a loop to traverse the buffer list, resetting each flag until the end of the list is reached. In the early 1980s, disk errors were a common occurrence due to the mechanical nature of hard drives and the lack of robust error correction. This routine reflects the need for resilience in software design, ensuring that subsequent scans start with a clean slate. The technique of resetting state before operations influenced later error-handling practices in operating systems and database systems, where consistency is paramount."
   - id: "scanplace-save-scan-location"
-    line_start: 71
+    line_start: 74
     line_end: 94
     title: "ScanPlace: Preserving scan location"
     wikipedia_url: "https://en.wikipedia.org/wiki/Queue_(abstract_data_type)"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `FlushBuf` routine writes out all dirty buffers to disk, marking them as clean afterward. It ensures that any modified data in memory is safely stored on disk, preventing data loss in case of system failure. The routine uses a loop to traverse the buffer list, checking the `BUFDIRTY` flag for each buffer. If the buffer is dirty, it is written to disk using the `BUFWRITE` routine. This approach to ensuring data integrity reflects the constraints of early computing, where power outages or hardware failures could easily corrupt data. The concept of flushing dirty buffers influenced later systems like journaling file systems, which provide even stronger guarantees of data consistency."
   - id: "bufwrite-dirty-buffer-write"
-    line_start: 488
+    line_start: 459
     line_end: 502
     title: "BufWrite: Writing dirty buffers to disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/Write_(computing)"

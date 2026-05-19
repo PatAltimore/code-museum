@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `NET_CompareBaseAdr` and `NET_CompareAdr` functions check whether two network addresses match, either by IP alone or by IP and port. These comparisons are essential for identifying players and servers in a multiplayer environment. In the 1990s, multiplayer games like Quake had to handle IP-based identification manually, as higher-level abstractions like NAT traversal or matchmaking services were not yet common. These functions exemplify the low-level control developers exercised over networking, a necessity for ensuring reliable connections in an era of dial-up internet. The logic here influenced later multiplayer frameworks, including Steamworks and Xbox Live."
   - id: "string-to-address-conversion"
-    line_start: 118
+    line_start: 109
     line_end: 155
     title: "String to Address Conversion: Parsing IPs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hostname"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `NET_StringToAdr` function converts a string representation of an IP address into the `netadr_t` structure, handling both numeric IPs and hostnames. It also supports optional port numbers, making it versatile for parsing server addresses. This function relies on system calls like `gethostbyname` and `inet_addr`, bridging human-readable inputs with machine-level networking. In 1996, this feature was crucial for enabling players to connect to servers via command-line inputs or configuration files. The ability to parse and resolve hostnames influenced later game engines and networking libraries, including SDL_net and RakNet, which adopted similar approaches for user-friendly server connections."
   - id: "udp-packet-reception"
-    line_start: 191
+    line_start: 189
     line_end: 214
     title: "Receiving UDP Packets: Real-Time Communication"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_Datagram_Protocol"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `UDP_OpenSocket` function creates and configures a UDP socket for communication. It sets the socket to non-blocking mode using `ioctl` and binds it to a specified port or the default interface. This function also supports binding to specific IP addresses via command-line arguments, showcasing id Software's attention to flexibility and user control. In 1996, socket programming was a complex but essential skill for multiplayer game development, and this function reflects the team's expertise in low-level networking. The techniques here influenced later engines and libraries, including DirectPlay and ENet, which built on similar socket initialization strategies."
   - id: "network-initialization"
-    line_start: 287
+    line_start: 283
     line_end: 307
     title: "Network Initialization: Setting Up Multiplayer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `NET_Init` function initializes Quake's networking subsystem, opening a UDP socket, setting up the message buffer, and determining the local machine's IP address. This setup is crucial for enabling multiplayer functionality, allowing the game to send and receive data over the network. In 1996, this level of networking sophistication was groundbreaking, enabling Quake to support real-time multiplayer gameplay over the internet. The techniques here influenced the development of multiplayer frameworks like Steamworks and Xbox Live, which built on the foundational concepts introduced by Quake."
   - id: "network-shutdown"
-    line_start: 311
+    line_start: 309
     line_end: 317
     title: "Network Shutdown: Closing Connections Gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/Berkeley_sockets"

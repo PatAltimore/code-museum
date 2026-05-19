@@ -27,7 +27,7 @@ summary:
 
 enhancements:
   - id: "wait-error-code-retrieval"
-    line_start: 37
+    line_start: 32
     line_end: 43
     title: "Retrieving the previous process error code"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -35,7 +35,7 @@ enhancements:
     image_caption: ""
     content: "The $WAIT subroutine retrieves the error code from the last process that terminated and resets the stored error code to zero. This functionality is essential for debugging and process control in MS-DOS. At the time, error codes were a primary method for communicating the success or failure of operations between processes. Tim Paterson, adapting concepts from CP/M and Unix, implemented this mechanism to make MS-DOS more robust for developers. This approach influenced later operating systems, including Windows, which continued to use error codes extensively for process communication and debugging."
   - id: "keep-process-memory-management"
-    line_start: 64
+    line_start: 56
     line_end: 89
     title: "Memory management for resident programs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Terminate_and_stay_resident"
@@ -43,7 +43,7 @@ enhancements:
     image_caption: ""
     content: "The $Keep_process subroutine implements the 'Terminate and Stay Resident' (TSR) functionality, allowing a program to remain in memory after termination. This was a groundbreaking feature in MS-DOS, enabling utilities like keyboard enhancers and pop-up calendars to persist in the background. The subroutine adjusts the memory block size to ensure enough space for the resident program while maintaining system stability. TSR programs became a hallmark of MS-DOS, paving the way for multitasking-like behavior on single-tasking systems. Developers leveraged this feature to create innovative software, influencing the design of later multitasking operating systems."
   - id: "exit-subroutine-process-termination"
-    line_start: 111
+    line_start: 103
     line_end: 125
     title: "Graceful process termination and cleanup"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

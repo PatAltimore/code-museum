@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "memory-mapping-and-equates"
-    line_start: 11
+    line_start: 3
     line_end: 32
     title: "Memory Mapping: Main and Auxiliary Banks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines memory locations for various buffers, tables, and graphics assets, split across main and auxiliary memory banks. The Apple II's 6502 processor supports bank-switched memory, allowing programs to access more than the standard 64KB of addressable memory. Jordan Mechner uses this feature to fit Prince of Persia into the Apple II's 128KB memory by carefully organizing assets and code into different memory regions. For example, 'peelbuf1' and 'peelbuf2' are allocated in the main memory, while 'grafix' and 'tables' reside in auxiliary memory. This organization reflects the constraints of the Apple II hardware, where memory was a scarce resource. Mechner's meticulous mapping ensured smooth gameplay and efficient use of the system's capabilities. This approach influenced later developers working on memory-constrained systems, emphasizing the importance of careful memory planning in game development."
   - id: "jump-tables-for-subroutine-dispatch"
-    line_start: 39
+    line_start: 34
     line_end: 216
     title: "Jump Tables: Efficient Subroutine Dispatch"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This section defines blueprints and image lists, which organize the game's graphical assets and layout information. Blueprints ('BLUETYPE', 'BLUESPEC') describe the properties and specifications of game objects, while image lists ('bgX', 'bgY', 'bgIMG') manage the positions and images of background elements. These structures are essential for the game's cinematic platforming experience, where precise control over graphics and animations is required. Mechner's use of these data structures reflects his background in film and his desire to create a visually compelling game. By organizing assets in this way, he ensured that the Apple II could handle complex scenes and animations efficiently. This approach influenced later games that prioritized visual storytelling, such as Another World and Flashback, which also used structured asset management to achieve cinematic effects."
   - id: "zero-page-memory-optimization"
-    line_start: 365
+    line_start: 358
     line_end: 424
     title: "Zero-Page Memory: Optimizing Critical Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This section defines variables stored in the zero page, the first 256 bytes of memory in the 6502 processor. Accessing zero-page memory is faster than other memory locations, making it ideal for frequently used variables like 'PAGE', 'XCO', and 'YCO'. Mechner uses this space to store critical parameters for graphics rendering and game logic, optimizing performance on the Apple II's limited hardware. The zero page's efficiency was a key factor in the success of many 6502-based systems, including the Apple II and Commodore 64. Mechner's careful use of zero-page memory highlights his understanding of the hardware's strengths and limitations. This technique influenced other developers working on 6502 systems, reinforcing the importance of optimizing memory access for performance-critical applications."
   - id: "screen-dimensions-and-bit-masks"
-    line_start: 476
+    line_start: 471
     line_end: 491
     title: "Constants: Screen Dimensions and Bit Masks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"

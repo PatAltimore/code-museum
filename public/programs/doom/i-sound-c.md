@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `I_InitSound` function configures the Linux audio subsystem, opening the `/dev/dsp` device and setting parameters like sample rate, stereo mode, and data format. It also pre-caches sound data from WAD files to minimize runtime delays. This section highlights the portability challenges faced by DOOM's developers, who had to adapt their sound system from DOS to Linux. The use of device files like `/dev/dsp` reflects the Unix philosophy of treating hardware as files, a concept that influenced later cross-platform game engines. By demonstrating how to interface with Linux audio, this code helped pave the way for modern engines like Unity and Unreal to support Linux natively."
   - id: "experimental-timer-interrupt"
-    line_start: 894
+    line_start: 893
     line_end: 984
     title: "Timer-based sound updates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"

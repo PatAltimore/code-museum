@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "memory-address-equates"
-    line_start: 9
+    line_start: 3
     line_end: 39
     title: "Mapping memory addresses for game components"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section defines memory address equates for various game components, including character tables, background tables, and control systems. Each equate assigns a specific hexadecimal address to a named variable, effectively mapping the game's logic to the Apple II's memory layout. In the constrained environment of the Apple II, with its 128K memory split across main and auxiliary banks, memory management was critical. Jordan Mechner carefully allocated memory to ensure that essential game data could be accessed efficiently while fitting within the hardware's limitations. This approach reflects the ingenuity required to work within the constraints of early home computers, where every byte mattered. The memory mapping laid out here would later influence how developers optimized memory usage in other resource-constrained systems, such as early consoles like the NES and Sega Genesis."
   - id: "jump-tables-for-control-flow"
-    line_start: 43
+    line_start: 41
     line_end: 65
     title: "Jump tables streamline control flow"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The saved game data structure defines variables for storing the player's progress, including level, strength, and timer values. This section highlights the importance of persistence in gaming, allowing players to resume their adventure after turning off the system. In the late 1980s, save game functionality was still a novel feature, as many games relied on passwords or required players to start over each time. Mechner's implementation demonstrates forward-thinking design, enhancing the player's experience by providing continuity. This feature paved the way for more sophisticated save systems in later games, influencing titles on platforms like the SNES and PlayStation, where memory cards and battery-backed cartridges became standard."
   - id: "character-data-organization"
-    line_start: 566
+    line_start: 561
     line_end: 644
     title: "Organizing character data for animation and interaction"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "This section defines data structures for characters, including their position, velocity, actions, and sequences. These variables are essential for animating characters and handling interactions within the game world. Mechner's use of rotoscoping to create lifelike animations required precise control over character movement and state, which these data structures facilitate. By organizing character data in a systematic way, the game achieves a level of fluidity and realism that was groundbreaking for its time. The techniques pioneered here influenced the development of cinematic platformers and other genres that prioritize animation quality, such as Flashback and Another World."
   - id: "miscellaneous-data-flags"
-    line_start: 653
+    line_start: 648
     line_end: 671
     title: "Flags and constants for game mechanics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"

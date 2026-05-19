@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "include-segment-declarations"
-    line_start: 14
+    line_start: 16
     line_end: 32
     title: "Segment declarations for MS-DOS memory model"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_memory_management"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This section checks whether the system is running on an Intel 80286 or better CPU by manipulating the processor flags. The 80286 introduced protected mode, which allowed for more advanced memory management and multitasking. However, Wolfenstein 3D was designed to run in real mode for compatibility with older systems. By ensuring the presence of a 286 or better, the program could leverage specific instructions and features while maintaining backward compatibility. This check reflects id Software's commitment to delivering a seamless gaming experience across a wide range of hardware. Similar CPU compatibility checks became standard practice in software development during the early 1990s, influencing the design of other games and applications."
   - id: "environment-variable-parsing"
-    line_start: 229
+    line_start: 220
     line_end: 233
     title: "Parsing environment variables for configuration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Environment_variable"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This routine parses environment variables to determine the program's configuration and compute the size of the environment block. Environment variables are key-value pairs used by the operating system to pass configuration data to programs. In MS-DOS, these variables are stored in a contiguous memory block within the PSP. Parsing them efficiently was critical for performance and stability, especially in memory-constrained systems. The approach used here reflects the team's expertise in low-level programming and their ability to optimize resource usage. This technique influenced the handling of environment variables in later DOS-based applications and contributed to the evolution of configuration management in software development."
   - id: "savevectors-procedure"
-    line_start: 528
+    line_start: 521
     line_end: 560
     title: "SaveVectors: Preserving interrupt vectors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
@@ -70,15 +70,15 @@ enhancements:
     image_caption: ""
     content: "The SaveVectors procedure saves the interrupt vectors for critical system interrupts (0, 4, 5, and 6) and installs a default handler for divide-by-zero errors. Interrupt vectors are pointers to routines that handle specific hardware or software events. By saving these vectors, the program ensures it can restore them upon termination, preventing conflicts with other software. This technique was essential for maintaining system stability in the cooperative multitasking environment of MS-DOS. The divide-by-zero handler further demonstrates the team's attention to error handling and runtime robustness. These practices influenced the design of runtime systems in later DOS-based games and contributed to the development of more sophisticated error-handling mechanisms in modern operating systems."
   - id: "restorezero-procedure"
-    line_start: 572
-    line_end: 623
+    line_start: 563
+    line_end: 605
     title: "RestoreZero: Restoring interrupt vectors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
     image_url: ""
     image_caption: ""
     content: "The RestoreZero procedure restores the interrupt vectors saved by SaveVectors, ensuring the system returns to its original state upon program termination. This routine highlights the importance of cleaning up system resources and maintaining compatibility with other software. In the early 1990s, TSR (Terminate and Stay Resident) programs were common in MS-DOS, and conflicts between programs could lead to system instability. By restoring the interrupt vectors, Wolfenstein 3D avoids such conflicts, demonstrating id Software's commitment to robust software design. This approach influenced the development of cleanup routines in later DOS-based applications and contributed to the evolution of resource management practices in software engineering."
   - id: "startup-exit-table"
-    line_start: 625
+    line_start: 607
     line_end: 666
     title: "StartExit: Managing startup and exit routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Startup_routine"

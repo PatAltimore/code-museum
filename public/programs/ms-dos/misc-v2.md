@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "name-section-miscellaneous-routines"
-    line_start: 3
+    line_start: 1
     line_end: 41
     title: "Miscellaneous routines: A foundation for MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the NAME directive for the file and outlines the purpose of the routines contained within. It sets the stage for the various system-level operations implemented in this file. Tim Paterson, the original author of 86-DOS, laid the groundwork for MS-DOS, which was later adapted by Microsoft. These routines reflect the modular design approach adopted for MS-DOS v2.0, which introduced features inspired by Unix-like systems. The NAME directive helps organize the code and serves as a reference point for developers working on the operating system. This modularity influenced later operating systems, including Windows, which built on MS-DOS's structure."
   - id: "include-dosseg-dossym-devsym"
-    line_start: 43
+    line_start: 37
     line_end: 119
     title: "Segment and symbol definitions: Linking the system"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
@@ -63,7 +63,7 @@ enhancements:
     content: "The `$ABORT` routine handles process termination by restoring control addresses, flushing buffers, and transferring control to the terminate address. It ensures that system resources are properly released when a process ends. Process management was a critical feature in MS-DOS v2.0, which introduced multitasking capabilities inspired by Unix. This routine reflects the growing complexity of operating systems in the early 1980s, as developers sought to balance performance with usability. The techniques used here influenced later systems, including Windows, which built on MS-DOS's process management capabilities to support more sophisticated multitasking."
   - id: "dir-search-first-directory-handling"
     line_start: 299
-    line_end: 527
+    line_end: 453
     title: "Directory Search: Finding files efficiently"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `$DISK_RESET` routine flushes and invalidates all dirty buffers, ensuring data integrity on the disk. Buffer management was a critical aspect of MS-DOS, where limited memory required careful handling of temporary storage. This routine reflects the challenges of working within the constraints of the Intel 8086 architecture, which had a 1MB addressable memory limit. By implementing efficient buffer management, MS-DOS could support larger applications and more complex operations. The techniques used here influenced later operating systems, including Windows, which built on MS-DOS's buffer management capabilities to support virtual memory and advanced caching."
   - id: "raw-con-io-console-operations"
     line_start: 733
-    line_end: 931
+    line_end: 933
     title: "Raw Console I/O: Direct input and output"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
     image_url: ""
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `$PARSE_FILE_DESCRIPTOR` routine parses a command line into a file control block (FCB), enabling MS-DOS to interpret user input and manage files. It handles various parsing options, such as handling blanks in the drive, filename, and extension fields. This routine reflects the importance of command-line interfaces in early operating systems, where users relied on text-based commands to interact with the system. By providing flexible parsing capabilities, MS-DOS could support a wide range of user inputs and file operations. The techniques used here influenced later command-line interfaces, including PowerShell, which expanded on MS-DOS's capabilities to support scripting and automation."
   - id: "duplication-process-data-block"
-    line_start: 1033
+    line_start: 1039
     line_end: 1069
     title: "Duplicating Process Data Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Process_control_block"
@@ -151,7 +151,7 @@ enhancements:
     content: "The `HAVDIF` routine calculates memory differences and adjusts segment pointers accordingly. It ensures that processes have access to the correct memory regions, a critical task in an environment with limited resources. Memory management was a cornerstone of MS-DOS v2.0, which introduced features like file handles and pipes that required careful allocation of memory. This routine's efficient handling of memory differences reflects the constraints of the 8086 architecture and the ingenuity of MS-DOS's developers. The principles established here influenced later systems, including Windows, which expanded on these techniques to support more advanced memory management features."
   - id: "finalizing-process-data-blocks"
     line_start: 1285
-    line_end: 1295
+    line_end: 1285
     title: "Finalizing Process Data Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Process_control_block"
     image_url: ""

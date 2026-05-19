@@ -71,7 +71,7 @@ enhancements:
     content: "This routine draws solid-colored surfaces using flat shading, where each polygon is rendered with a single color. Flat shading was a common technique in the 1990s to simplify rendering and improve performance. The function includes optimizations for memory alignment and loop unrolling, minimizing the cost of drawing spans. These techniques reflect the team's deep understanding of x86 assembly and hardware constraints. While flat shading is less common today, the optimization strategies employed here laid the groundwork for more advanced shading techniques, such as Gouraud and Phong shading, which became standard in later 3D engines."
   - id: "d-calcgradients-texture-mapping"
     line_start: 118
-    line_end: 151
+    line_end: 166
     title: "D_CalcGradients: Precision Texture Mapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This routine handles the rendering of dynamic surfaces, including skyboxes, backgrounds, and turbulent textures. It incorporates logic for handling submodels, such as rotating entities within the world. The function demonstrates Quake's versatility in rendering diverse surface types, a key feature of its 3D engine. By dynamically adjusting rendering parameters based on surface flags, Quake achieved a level of visual complexity that was unprecedented in 1996. This approach influenced later engines, such as Unreal Engine and Frostbite, which adopted similar techniques for dynamic surface rendering and entity management."
   - id: "d-drawsurfaces-main-rendering-loop"
-    line_start: 173
+    line_start: 174
     line_end: 335
     title: "D_DrawSurfaces: Main Rendering Loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The opening section of FORMAT.ASM sets the stage for the disk formatting utility in MS-DOS v2.0. It begins with comments describing the purpose of the utility: formatting disks, clearing the File Allocation Table (FAT), initializing directories, and optionally transferring system files like COMMAND.COM. The predefined switches (e.g., SYSSW for system transfer, VOLSW for volume ID prompt) allow users to customize the formatting process. This modular approach reflects the influence of Unix-like systems on MS-DOS v2.0, which introduced subdirectories and file handles. By defining these switches early, the code establishes a clear structure for handling user input and operational modes. This design influenced later disk utilities, including those in Windows and other DOS-based systems."
   - id: "file-structure-definition"
-    line_start: 53
+    line_start: 51
     line_end: 62
     title: "Defining File Structure for System Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This section validates the specified drive and processes command-line switches provided by the user. It checks for invalid drive designators and retrieves the default drive using interrupt 21h. The switches are parsed to configure the formatting process, such as enabling system file transfer or volume ID prompts. The code demonstrates early command-line interface (CLI) design principles, where user input directly influences program behavior. Parsing switches efficiently was critical in the constrained memory environment of early PCs. This approach became a standard in CLI utilities, influencing tools like `fdisk` and `mkfs` in Unix/Linux systems."
   - id: "bad-sector-handling"
-    line_start: 306
+    line_start: 303
     line_end: 390
     title: "Marking Bad Sectors in the FAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bad_sector"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This routine identifies and marks bad sectors on the disk during formatting. It calculates the number of clusters affected by bad sectors and updates the FAT to reflect their unusability. The code includes logic for rounding sector numbers to cluster boundaries, ensuring accurate representation in the allocation map. Handling bad sectors was crucial for maintaining data integrity on unreliable storage media like floppy disks. This technique influenced later disk utilities, including scandisk and chkdsk, which expanded on the concept of detecting and repairing disk errors."
   - id: "volume-label-creation"
-    line_start: 777
+    line_start: 774
     line_end: 835
     title: "Prompting and Creating Volume Labels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Volume_label"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "This section implements the functionality for creating volume labels during disk formatting. It prompts the user for a label, validates the input, and writes the label to the disk. Volume labels provide a human-readable identifier for storage media, enhancing usability in systems with multiple disks. The code ensures compatibility with DOS conventions for volume labels, including character restrictions and length limits. This feature became a standard in disk utilities, influencing later implementations in Windows and other operating systems."
   - id: "system-file-transfer"
-    line_start: 841
+    line_start: 837
     line_end: 958
     title: "Transferring System Files to Formatted Disks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bootable_media"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This routine reads and transfers system files (IO.SYS, MSDOS.SYS, COMMAND.COM) to the newly formatted disk, enabling it to become bootable. The code handles partial file transfers if memory constraints prevent loading the entire file at once. This functionality was critical for creating bootable floppy disks, which were the primary method of distributing and installing operating systems in the early 1980s. The modular design of this routine influenced later tools like Windows Setup and Linux installation utilities, which automate system file deployment."
   - id: "writing-system-files"
-    line_start: 963
+    line_start: 960
     line_end: 1032
     title: "Writing BIOS, DOS, and COMMAND to Disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The GOTNCOM routine is part of the process for managing the COMMAND.COM file during disk formatting. It checks the status of the file and determines whether it is partially or fully loaded, using bitwise operations on the FILSTAT variable. If the file is not fully loaded, it calls other routines like PARTCOM to handle partial loading. COMMAND.COM was the command interpreter for MS-DOS, and its proper handling was critical for system functionality. This routine illustrates the low-level nature of MS-DOS programming, where even basic file operations required direct manipulation of memory and hardware registers. The techniques used here laid the groundwork for more sophisticated file handling mechanisms in later operating systems, including Windows and Linux."
   - id: "makefil-create-target-file"
-    line_start: 1102
+    line_start: 1091
     line_end: 1122
     title: "Creating Target Files with MAKEFIL"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The MAKEFIL routine creates a file on the target disk, setting its size and attributes. It uses the INT 21H interrupt to interact with DOS functions for file creation and positioning. A notable aspect of this routine is its workaround for a bug in MS-DOS 2.0 and 2.01 related to writes from the end of memory. This highlights the challenges of early software development, where programmers often had to implement fixes for system-level bugs directly in their code. MAKEFIL's functionality reflects the evolving complexity of file systems in the early 1980s, transitioning from flat structures to more sophisticated hierarchical systems. The principles demonstrated here influenced later developments in file system design, including the introduction of journaling and metadata management in modern systems."
   - id: "closetarg-close-target-file"
-    line_start: 1130
+    line_start: 1126
     line_end: 1135
     title: "Closing Files with CLOSETARG"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "CLOSETARG is a simple yet essential routine for closing files on the target disk. It uses the INT 21H interrupt to set file times and close the file handle. This routine underscores the importance of proper file management in early operating systems, where failing to close files correctly could lead to data corruption or system instability. The explicit handling of file metadata, such as time and date, reflects the growing need for systems to track file changes and support multi-user environments. This approach influenced the development of file locking and version control mechanisms in later operating systems, ensuring data integrity and consistency in complex computing environments."
   - id: "ioloop-transfer-system-files"
-    line_start: 1167
+    line_start: 1160
     line_end: 1173
     title: "Transferring System Files with IOLOOP"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_transfer"
@@ -134,15 +134,15 @@ enhancements:
     image_caption: ""
     content: "The IOLOOP routine is responsible for transferring system files during the formatting process. It interacts with the BIOS and DOS to reset the disk and retrieve the target disk parameters. This routine showcases the low-level nature of MS-DOS programming, where file transfer operations required direct manipulation of hardware and memory. At the time, disk formatting and file transfer were critical tasks for ensuring system functionality, especially in environments with limited resources and hardware constraints. IOLOOP's approach to file transfer influenced later developments in data management, including the optimization of disk I/O operations in modern operating systems and storage devices."
   - id: "getfsiz-determine-file-size"
-    line_start: 1343
-    line_end: 1379
+    line_start: 1338
+    line_end: 1367
     title: "Determining File Size with GETFSIZ"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
     content: "The GETFSIZ routine calculates the size of a file in paragraphs and bytes, returning the result in AX and DI:SI registers. It uses the INT 21H interrupt to perform a seek operation and retrieve file metadata. This routine also includes logic to round up the file size to the nearest paragraph, reflecting the alignment requirements of the 8086 architecture. GETFSIZ exemplifies the challenges of working within the constraints of early hardware, where memory and storage limitations required careful planning and optimization. The techniques demonstrated here influenced the development of file size calculations and memory management in later operating systems, paving the way for more efficient data handling in modern computing."
   - id: "normalize-adjust-memory-segment"
-    line_start: 1484
+    line_start: 1481
     line_end: 1497
     title: "Adjusting Memory Segments with NORMALIZE"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"

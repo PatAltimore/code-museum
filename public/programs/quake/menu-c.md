@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This enumeration defines the various states of the menu system, such as 'm_main' for the main menu, 'm_singleplayer' for single-player mode, and 'm_multiplayer' for multiplayer mode. By using a state-based design, id Software created a modular and extensible menu system where transitions between menus are controlled by changing the current state. In 1996, this approach was particularly effective for games like Quake, which needed to manage complex user interactions while maintaining performance on limited hardware. State-based systems have since become a standard in game development, influencing frameworks like Unity and Unreal Engine."
   - id: "menu-draw-character"
-    line_start: 111
+    line_start: 105
     line_end: 115
     title: "Rendering menu characters dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_processing_unit"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `M_BuildTranslationTable` function creates a mapping between identity colors and translated colors for use in rendering. This was necessary to implement features like team-specific colors in multiplayer modes. By manipulating color ranges, id Software enabled dynamic visual customization without requiring additional assets, a critical optimization given the memory constraints of the time. Techniques like this influenced later games that used palette-based rendering, including early 3D titles and sprite-based engines."
   - id: "main-menu-navigation"
-    line_start: 272
+    line_start: 271
     line_end: 304
     title: "Interactive main menu system"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_control"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The main menu functions, including `M_Menu_Main_f` and `M_Main_Draw`, handle the display and navigation of the game's primary menu. Players can use arrow keys to navigate options and enter to select them, with sound effects providing feedback. This design reflects id Software's focus on intuitive user interfaces, ensuring players could easily access game modes and settings. The modular structure of the menu system influenced later games, which adopted similar hierarchical menu designs to manage increasingly complex options."
   - id: "options-menu-sliders"
-    line_start: 361
+    line_start: 360
     line_end: 480
     title: "Adjustable sliders for game settings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_control"

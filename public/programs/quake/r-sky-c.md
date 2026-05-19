@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "dynamic-sky-texture-initialization"
-    line_start: 55
+    line_start: 49
     line_end: 89
     title: "Dynamic Sky Texture Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes the sky texture used in Quake's rendering pipeline. The function `R_InitSky` processes a 256x128 texture, splitting it into two parts: the main sky texture and a masked overlay. The code carefully packs these textures into memory to optimize for the hardware constraints of the era, where memory was limited and alignment was critical for performance. The use of bitwise operations to create the mask and overlay demonstrates the team's deep understanding of low-level graphics programming. In 1996, real-time 3D rendering was still in its infancy, and games like Quake pushed the boundaries of what was possible. John Carmack and Michael Abrash, both renowned for their expertise in optimization and graphics programming, designed this system to ensure smooth performance on x86 processors with limited computational power. The decision to use unaligned memory access, flagged in comments, reflects the trade-offs developers faced between speed and portability. The approach laid the groundwork for dynamic environmental effects in games, influencing later titles like Unreal and Half-Life. The modularity of the sky rendering system also made it easier for modders to create custom skies, contributing to Quake's vibrant modding community. Techniques like these became standard in game engines, evolving into more sophisticated systems for procedural sky generation seen in modern engines like Unity and Unreal Engine."
   - id: "sky-animation-with-time-sync"
-    line_start: 96
+    line_start: 92
     line_end: 153
     title: "Sky Animation with Time Synchronization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `R_MakeSky` function animates the sky texture by shifting it based on game time (`skytime`) and predefined speeds (`skyspeed` and `skyspeed2`). This creates the illusion of a moving sky, adding dynamism to the game environment. The function uses modular arithmetic to wrap texture coordinates, ensuring seamless looping without visual artifacts. In the mid-1990s, real-time animation of environmental elements was a novel feature in games. Quake's developers leveraged their expertise to implement this efficiently, ensuring it ran smoothly on the hardware of the time. The comments in the code highlight areas for potential cleanup, indicating the iterative nature of development under tight deadlines. This technique influenced future games by demonstrating how environmental elements could enhance immersion. The idea of time-synchronized animations became a staple in game design, appearing in titles like The Elder Scrolls series and open-world games where dynamic skies are integral to the experience. It also inspired advancements in procedural generation, where similar principles are used to create complex, evolving environments."
   - id: "tile-based-sky-rendering"
-    line_start: 160
+    line_start: 156
     line_end: 212
     title: "Tile-Based Sky Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_rendering"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `R_GenSkyTile16` function adapts the sky tile generation process for 16-bit color depth. It uses a lookup table (`d_8to16table`) to convert 8-bit color values into 16-bit format, ensuring compatibility with higher color fidelity. This reflects the transition from 8-bit to 16-bit graphics, a significant step in the evolution of gaming visuals. In the mid-1990s, 16-bit color depth was becoming the standard for PC gaming, offering a wider range of colors and smoother gradients. Quake's support for this format demonstrated id Software's forward-thinking approach, ensuring the game could take advantage of emerging hardware capabilities. The comments hint at potential optimizations, showing the team's focus on iterative improvement. This adaptation influenced the industry's move toward higher color depths, paving the way for 32-bit and HDR rendering in modern games. It also highlighted the importance of backward compatibility, as developers had to balance support for older hardware with advancements in technology. Techniques like these contributed to the seamless visual experiences we expect from contemporary games."
   - id: "sky-frame-calculation"
-    line_start: 258
+    line_start: 257
     line_end: 278
     title: "Sky Frame Calculation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Greatest_common_divisor"

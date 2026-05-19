@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "extrn-definitions-for-sysinit"
-    line_start: 69
-    line_end: 81
+    line_start: 53
+    line_end: 71
     title: "EXTRN Definitions for SYSINIT"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The INIT routine begins the hardware initialization process by jumping to HWINIT. This marks the start of the BIOS-level setup for MS-DOS 2.0. In the early 1980s, bootstrapping was a critical step in operating system design, as it ensured compatibility across diverse hardware platforms. The modularity of this approach allowed MS-DOS to be easily adapted for different OEMs. This design philosophy influenced the development of plug-and-play systems in later operating systems, where hardware initialization became increasingly automated and user-friendly."
   - id: "device-driver-headers"
-    line_start: 159
+    line_start: 157
     line_end: 233
     title: "Device Driver Headers: Modular Hardware Support"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
@@ -55,14 +55,14 @@ enhancements:
     content: "This section defines headers for various devices, including CON (console), AUX (auxiliary), PRN (printer), TIM (clock), and DSK (disk). Each header includes attributes, strategy pointers, interrupt pointers, and device names. In the constrained environment of early PCs, modular device drivers were a breakthrough, enabling MS-DOS to support a wide range of hardware without requiring extensive rewrites. This modularity became a cornerstone of operating system design, influencing not only MS-DOS but also later systems like Windows and Unix, which rely heavily on device drivers for hardware abstraction."
   - id: "dispatch-tables-for-devices"
     line_start: 237
-    line_end: 425
+    line_end: 373
     title: "Dispatch Tables for Device Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""
     image_caption: ""
     content: "The dispatch tables map device-specific commands to their corresponding routines. For example, commands like block read, character write, and media checks are defined for devices such as disks, consoles, and printers. This design reflects the influence of Unix, where similar abstractions were used to unify device handling. By centralizing command processing, MS-DOS 2.0 improved maintainability and extensibility. This approach influenced the development of modern APIs and device management systems, where abstraction layers simplify hardware interactions for developers."
   - id: "strategy-routine-for-io-packets"
-    line_start: 429
+    line_start: 417
     line_end: 439
     title: "Strategy Routine for I/O Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "This section defines error handling routines, including CMDERR and ERR_EXIT, which standardize responses to various hardware and software errors. Error codes such as 'Drive not ready' and 'Write fault' are mapped to specific routines. In the early 1980s, consistent error handling was crucial for debugging and user experience, especially in an environment where hardware failures were common. These routines set a precedent for standardized error reporting, influencing later systems like Windows and Unix, where clear error codes and messages are integral to system reliability."
   - id: "console-io-routines"
-    line_start: 733
-    line_end: 791
+    line_start: 709
+    line_end: 783
     title: "Console I/O Routines: Efficient Character Buffering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
     image_url: ""
@@ -102,16 +102,16 @@ enhancements:
     image_caption: ""
     content: "This section implements a state machine to process escape sequences in text output. The states (ST1, ST2, ST3) handle characters like ESC and '[' to identify and parse control sequences. These sequences allow for advanced text formatting and terminal control, such as cursor movement or screen clearing. At the time, escape sequences were critical for interacting with terminals and printers, as they provided a standardized way to control hardware behavior. Tim Paterson likely adapted this approach from existing terminal standards like ANSI escape codes. This mechanism influenced later systems, including Unix-based terminal emulators and modern console applications, which still rely on escape sequences for text formatting and control."
   - id: "cursor-positioning-routines"
-    line_start: 1233
-    line_end: 1295
+    line_start: 1227
+    line_end: 1287
     title: "Cursor positioning routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/ANSI_escape_code"
     image_url: ""
     image_caption: ""
     content: "These routines (CUU, CUD, CUF, CUB, CUP) handle cursor movement and positioning on the screen. Using escape sequences, they allow the program to move the cursor up, down, forward, back, or to a specific position. This functionality was essential for creating text-based user interfaces and interactive applications. In 1983, such features were becoming standard in operating systems, inspired by Unix's terminal capabilities. The routines demonstrate MS-DOS's growing sophistication, transitioning from simple file management to supporting more interactive applications. This approach laid the groundwork for text-based interfaces in software like WordPerfect and early IDEs."
   - id: "auxiliary-port-io"
-    line_start: 1471
-    line_end: 1635
+    line_start: 1455
+    line_end: 1629
     title: "Auxiliary port I/O routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Serial_port"
     image_url: ""
@@ -174,7 +174,7 @@ enhancements:
     image_caption: ""
     content: "The ROM_CALL routine provides a standardized way to interact with the system's ROM, encapsulating hardware-specific details. This abstraction simplifies development by isolating hardware dependencies, a principle that became foundational in operating system design. Tim Paterson's work on MS-DOS demonstrated the importance of such abstractions, which were later expanded in Windows and other systems. ROM_CALL influenced the development of BIOS interrupt calls, a key feature of PC architecture that persists in modern firmware interfaces like UEFI."
   - id: "hardware-initialization"
-    line_start: 2685
+    line_start: 2665
     line_end: 2739
     title: "Initializing hardware and memory for MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

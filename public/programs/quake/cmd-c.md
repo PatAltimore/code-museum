@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "cmd-wait-function"
-    line_start: 43
+    line_start: 41
     line_end: 55
     title: "Delaying Commands for Scripted Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `Cmd_Wait_f` function introduces a mechanism to delay the execution of commands in the buffer until the next frame. This allows for precise scripting, such as chaining actions with pauses in between. For example, the command `bind g \"impulse 5 ; +attack ; wait ; -attack ; impulse 2\"` showcases how this feature enables complex sequences of actions. In 1996, scripting capabilities like this were groundbreaking, providing players and modders with tools to customize gameplay behavior. The idea of delaying commands influenced scripting systems in later games, including Half-Life and Unreal Tournament, where similar functionality became standard practice in modding and custom game configurations."
   - id: "cbuf-init-buffer"
-    line_start: 69
+    line_start: 68
     line_end: 77
     title: "Initializing the Command Buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command_buffer"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `Cmd_Alias_f` function allows players to define custom aliases—commands that execute a predefined string of actions. This feature was a major innovation in 1996, empowering players to personalize their gameplay experience and automate complex sequences. The alias system also became a cornerstone of Quake's modding community, enabling the creation of custom scripts and gameplay tweaks. The modular design, with aliases stored in a linked list, reflects the developers' focus on extensibility. This approach influenced scripting systems in later games, such as Counter-Strike and Team Fortress, where aliases and custom commands became integral to gameplay customization."
   - id: "cmd-add-command"
-    line_start: 508
+    line_start: 507
     line_end: 541
     title: "Dynamic Command Registration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Modding"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `Cmd_AddCommand` function registers new commands dynamically, linking them to their respective functions. This design allows developers and modders to extend the game's functionality without modifying the core engine. By checking for conflicts with existing commands and variables, the function ensures stability and avoids unintended behavior. In the mid-1990s, this level of modularity was rare, marking Quake as a pioneer in extensible game design. The concept of dynamic command registration influenced subsequent engines, such as id Tech 3 and Source, which adopted similar systems to support extensive modding and scripting capabilities."
   - id: "cmd-complete-command"
-    line_start: 564
+    line_start: 563
     line_end: 595
     title: "Auto-Completion for Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_completion"

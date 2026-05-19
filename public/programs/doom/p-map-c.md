@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This section describes how special line effects are triggered during movement. When an object crosses a line with a special property, the game checks whether the line's effect should be activated. These effects include opening doors, triggering traps, or teleporting the player. The logic ensures that the effect is only applied if the movement is valid, preventing unintended interactions. Special line effects were a key innovation in DOOM's level design, enabling dynamic environments that responded to player actions. This technique influenced the design of interactive levels in later games like Half-Life and Bioshock, where environmental storytelling and player-triggered events play a central role."
   - id: "sliding-along-walls"
-    line_start: 563
+    line_start: 562
     line_end: 788
     title: "Sliding Along Walls: Navigating Angled Obstacles"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `PTR_AimTraverse` function calculates whether a line-of-sight can be established between the player and a target, factoring in obstacles like walls and height differences. This routine determines the slope angles to the top and bottom of the target and adjusts aiming parameters accordingly. Written by John Carmack, this code reflects the challenges of simulating realistic shooting mechanics on limited hardware. In 1993, consumer PCs lacked floating-point units, so fixed-point arithmetic was used to maintain performance. The approach influenced later games by demonstrating how to balance realism and computational efficiency. Techniques like these laid the groundwork for modern raycasting and collision detection systems in 3D engines."
   - id: "shoot-traverse-impact-effects"
-    line_start: 897
+    line_start: 896
     line_end: 1014
     title: "Bullet impacts: calculating effects dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `PTR_ShootTraverse` function handles the mechanics of shooting, including detecting whether a bullet hits a wall or an object. If a wall is hit, visual effects like bullet puffs are spawned; if an object is hit, blood or puff effects are generated based on its properties. This function also accounts for special cases like 'sky hack walls' to prevent shooting the sky texture. Carmack’s implementation showcases how DOOM achieved immersive gameplay by tightly integrating visual feedback with collision detection. This technique influenced later FPS games, where dynamic impact effects became a staple feature, enhancing player immersion."
   - id: "aim-line-attack"
-    line_start: 1020
+    line_start: 1019
     line_end: 1054
     title: "Aiming mechanics: tracing paths for precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Raycasting"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `P_AimLineAttack` function calculates the trajectory of a player's attack by tracing a path through the game world. It uses fixed-point arithmetic to compute coordinates and slopes, ensuring compatibility with the hardware constraints of the early 1990s. This function is pivotal in determining whether a target is within the player's line-of-sight and setting up the aiming slope. The raycasting approach used here became a cornerstone for FPS games, influencing engines like Quake and Unreal Engine. It demonstrates how DOOM's developers optimized performance while delivering complex gameplay mechanics."
   - id: "use-lines-activating-level-features"
-    line_start: 1091
+    line_start: 1090
     line_end: 1148
     title: "Activating level features: the 'use' mechanic"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `P_UseLines` function enables players to interact with special lines in the game world, such as doors or switches. By tracing a short path in front of the player, it checks for usable features and activates them if conditions are met. This mechanic added depth to DOOM's gameplay, allowing players to manipulate the environment. The concept of 'use' actions became standard in later games, evolving into more sophisticated systems for interacting with objects and environments. DOOM's implementation was simple yet effective, showcasing how small innovations can have lasting impacts on game design."
   - id: "radius-attack-explosion-damage"
-    line_start: 1152
+    line_start: 1151
     line_end: 1233
     title: "Explosion mechanics: radius-based damage"
     wikipedia_url: "https://en.wikipedia.org/wiki/Explosion"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `P_RadiusAttack` function calculates damage from explosions by iterating over objects within a specified radius. It checks whether each object is shootable and within line-of-sight, applying damage proportionally based on distance. This mechanic allowed DOOM to simulate realistic explosions and area-of-effect damage, enhancing the game's tactical depth. The approach influenced later games by demonstrating how to efficiently handle radius-based effects in real-time. Techniques like these are now integral to modern game engines, powering features like grenades and environmental destruction."
   - id: "sector-height-adjustments"
-    line_start: 1238
+    line_start: 1237
     line_end: 1338
     title: "Dynamic sector heights: crushing and clipping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"

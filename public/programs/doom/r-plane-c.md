@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The visplane data structure is central to DOOM's floor and ceiling rendering system. It tracks regions of the screen where a specific floor or ceiling texture is visible, along with its height and lighting level. By limiting the number of visplanes to 128, the developers ensured that the rendering process remained efficient and manageable on the limited hardware of the early 1990s. This approach allowed DOOM to create visually complex environments without overwhelming the CPU or memory. The visplane system was a clever workaround for the lack of hardware acceleration, and it laid the groundwork for similar techniques in later engines like Quake."
   - id: "plane-texture-mapping"
-    line_start: 80
+    line_start: 79
     line_end: 93
     title: "Texture mapping with fixed-point precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "DOOM uses fixed-point arithmetic to calculate texture mapping for floors and ceilings. This decision was driven by the need for speed and precision on hardware without floating-point units. The cachedheight, cacheddistance, cachedxstep, and cachedystep arrays store precomputed values to avoid redundant calculations during rendering. Fixed-point arithmetic was a common choice in the era, as it allowed developers to perform mathematical operations quickly and with predictable results. This technique became a staple in game development, influencing engines like Build (used in Duke Nukem 3D) and even modern mobile games where performance is critical."
   - id: "r-mapplane-function"
-    line_start: 108
+    line_start: 107
     line_end: 178
     title: "R_MapPlane: Rendering spans for floors and ceilings"
     wikipedia_url: "https://doomwiki.org/wiki/Span_buffer"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The R_MapPlane function is the core of DOOM's floor and ceiling rendering. It calculates texture coordinates and lighting for spans (horizontal strips) of the screen, using precomputed values like yslope and distscale to optimize performance. The function also handles lighting adjustments based on distance, ensuring that floors and ceilings appear correctly lit. This span-based approach minimizes overdraw, a common problem in rendering, and makes efficient use of memory and CPU cycles. The technique was innovative for its time and influenced later engines, including Quake and Unreal, which built on the idea of span buffers and optimized rendering pipelines."
   - id: "r-clearplanes-initialization"
-    line_start: 182
+    line_start: 181
     line_end: 209
     title: "R_ClearPlanes: Preparing for a new frame"
     wikipedia_url: "https://doomwiki.org/wiki/Rendering"

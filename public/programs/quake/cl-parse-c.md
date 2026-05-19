@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The 'CL_CalcNet' function calculates network latency by analyzing the timing of outgoing and incoming packets. It identifies dropped, choked, or invalid packets and computes the percentage of lost packets. This function was crucial for ensuring smooth gameplay in Quake's multiplayer mode, where even minor delays could disrupt the experience. In the mid-1990s, network conditions were often unreliable, and optimizing latency was a significant challenge. The techniques used here laid the groundwork for modern multiplayer systems, influencing games like Counter-Strike and World of Warcraft, which rely on similar metrics to manage player synchronization and server performance."
   - id: "cl-check-or-download-file"
-    line_start: 155
+    line_start: 148
     line_end: 197
     title: "Dynamic File Checking and Downloading"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The 'Sound_NextDownload' function handles the downloading of sound files required by the server. It ensures that all audio assets are available locally, enabling synchronized sound effects during gameplay. This was especially important in Quake's multiplayer mode, where audio cues often conveyed critical information, such as enemy movements or weapon fire. By dynamically managing sound resources, id Software optimized bandwidth usage and reduced the risk of missing assets. This technique influenced the development of audio systems in modern engines, such as FMOD and Wwise, which prioritize efficient resource management for immersive soundscapes."
   - id: "cl-request-next-download"
-    line_start: 303
+    line_start: 301
     line_end: 325
     title: "Coordinating Resource Downloads"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The 'CL_RequestNextDownload' function acts as a dispatcher for downloading different types of resources, such as models, sounds, and skins. It determines the next resource type to download based on the current state and invokes the appropriate function. This modular approach simplifies the management of resource downloads, ensuring that players receive all necessary assets in the correct order. In the mid-1990s, this was a pioneering solution for multiplayer gaming, where resource synchronization was vital for a consistent experience. The concept of modular resource management has since become a standard practice in game development, influencing engines like CryEngine and Source Engine."
   - id: "cl-parse-download"
-    line_start: 333
+    line_start: 327
     line_end: 436
     title: "Handling Server-Sent Downloads"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The 'CL_NextUpload' function manages the uploading of player data to the server, breaking it into chunks and sending progress updates. This ensures that large data uploads, such as custom skins or configurations, do not overwhelm the network. In 1996, efficient data transfer was crucial for maintaining smooth gameplay in multiplayer environments. The design here reflects id Software's expertise in optimizing network communication, a skill honed during the development of Doom and Quake. The concept of chunked uploads influenced modern multiplayer systems, such as Steam Workshop and Xbox Live, which allow players to share custom content seamlessly."
   - id: "cl-parse-server-data"
-    line_start: 524
+    line_start: 521
     line_end: 609
     title: "Parsing Server Data for Game Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The 'CL_ParseServerData' function processes server data packets to initialize the game state, including protocol version, player slot, and game directory. It also retrieves level-specific parameters, such as gravity and friction, and prepares the client for resource downloads. This function demonstrates id Software's meticulous approach to synchronizing client-server states in a multiplayer environment. By parsing and validating server data, QuakeWorld ensured compatibility and fairness among players. This technique influenced the development of matchmaking systems in games like Overwatch and Apex Legends, which rely on similar methods to initialize and synchronize game sessions."
   - id: "cl-setstat-dynamic-stat-management"
-    line_start: 1030
+    line_start: 1027
     line_end: 1048
     title: "Dynamic stat management for multiplayer gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "This function, `CL_SetStat`, dynamically updates player statistics during gameplay. It validates the stat index, triggers a visual update via `Sbar_Changed`, and handles special cases like item acquisition, where timestamps are recorded for newly acquired items. In 1996, multiplayer gaming was still in its infancy, and managing real-time updates efficiently was a significant challenge. The developers at id Software, led by John Carmack, designed this system to ensure smooth synchronization between server and client states. This approach influenced later multiplayer games by demonstrating how to handle dynamic updates without compromising performance. Techniques like these laid the groundwork for modern multiplayer engines, including those used in games like Counter-Strike and World of Warcraft."
   - id: "cl-muzzleflash-dynamic-light-effects"
-    line_start: 1052
+    line_start: 1051
     line_end: 1084
     title: "Dynamic light effects for muzzle flashes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmapping"

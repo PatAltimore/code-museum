@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "This routine handles the rendering of water surfaces with transparency effects, blending textures to create realistic visuals. It adjusts OpenGL settings to enable blending and modulate texture colors based on alpha values. In 1996, transparency effects were computationally intensive, but Quake's implementation optimized them for real-time rendering. The technique influenced later games and engines, including Unreal and Unity, which expanded on these ideas to create more complex environmental effects."
   - id: "draw-texture-chains"
-    line_start: 1038
+    line_start: 1034
     line_end: 1081
     title: "Sorting textures for efficient rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This function, `DrawTextureChains`, handles the rendering of textures in the world model. It iterates through all textures, sorting them into chains based on their type (sky, mirror, water, etc.) and rendering them accordingly. By grouping textures into chains, the renderer minimizes state changes, which are costly on 1990s hardware. The function also accounts for special cases like translucent water and mirrors, ensuring correct rendering order. At the time, hardware constraints such as limited memory and processing power made efficient texture handling critical. John Carmack and his team at id Software were pioneers in optimizing rendering pipelines, and techniques like these influenced later engines, including Unreal Engine and Source Engine, which adopted similar methods for texture batching and sorting."
   - id: "draw-brush-model"
-    line_start: 1085
+    line_start: 1083
     line_end: 1156
     title: "Rendering dynamic brush models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Brush_(computer_graphics)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `R_DrawBrushModel` function is responsible for rendering brush models, which are dynamic objects like doors or platforms. It calculates visibility and lighting for each model, taking into account rotation and position. The function also handles dynamic lighting, marking affected surfaces for light blending. Brush models were a key feature of Quake's true 3D environment, allowing interactive elements to seamlessly integrate into the world. This approach was groundbreaking in 1996, as most games relied on pre-rendered or pseudo-3D environments. The dynamic lighting calculations here laid the groundwork for more advanced techniques in games like Doom 3, which heavily relied on real-time lighting and shadows."
   - id: "recursive-world-node"
-    line_start: 1197
+    line_start: 1195
     line_end: 1319
     title: "Recursive visibility determination in 3D worlds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `R_RecursiveWorldNode` function traverses the world model's BSP tree to determine visibility. It decides whether a node is visible based on its bounding box and recursively processes its children. Leaf nodes are rendered directly, while decision nodes guide traversal. This recursive approach ensures efficient visibility determination, a critical optimization for rendering large 3D environments. BSP trees were a staple of 1990s game engines, enabling fast rendering by culling unseen parts of the world. Michael Abrash's expertise in graphics optimization was instrumental in implementing this technique. The use of BSP trees influenced subsequent engines like Unreal and Source, which adapted and refined the concept for their own rendering pipelines."
   - id: "alloc-block-lightmap"
-    line_start: 1411
+    line_start: 1405
     line_end: 1453
     title: "Dynamic lightmap block allocation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `AllocBlock` function dynamically allocates space for lightmaps within a fixed-size texture block. It searches for the best-fit position to minimize wasted space and updates the allocation map accordingly. Lightmaps are precomputed textures that store lighting information, enabling realistic shading without the computational cost of real-time lighting. In 1996, hardware limitations necessitated such optimizations to achieve high-quality visuals. Quake's lightmap system became a standard technique, influencing engines like Unity and Unreal, which continue to use similar methods for static lighting in modern games."
   - id: "build-surface-display-list"
-    line_start: 1463
+    line_start: 1461
     line_end: 1573
     title: "Constructing optimized polygon display lists"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_(computer_graphics)"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `BuildSurfaceDisplayList` function constructs a display list for rendering polygons associated with a surface. It calculates texture coordinates, lightmap coordinates, and eliminates co-linear vertices to optimize rendering. Display lists were a common technique for batching rendering operations, reducing overhead on the CPU. The elimination of co-linear vertices further improves performance by minimizing redundant calculations. This function exemplifies the meticulous optimization that defined Quake's rendering pipeline, allowing it to achieve groundbreaking visuals on modest hardware. Techniques like these influenced OpenGL and DirectX, which adopted similar approaches for efficient rendering."
   - id: "gl-build-lightmaps"
-    line_start: 1605
+    line_start: 1598
     line_end: 1696
     title: "Building and uploading lightmap textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"

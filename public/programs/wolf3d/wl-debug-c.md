@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "debug-memory-usage"
-    line_start: 54
+    line_start: 52
     line_end: 74
     title: "Tracking Memory Usage in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This routine, `DebugMemory`, provides a snapshot of memory usage during gameplay. It calculates total memory, free memory, and memory available after purging unused resources. The programmer's goal here was to ensure the game could run efficiently within the constraints of early 1990s hardware, particularly MS-DOS systems with limited RAM. At the time, memory management was a critical aspect of game development, as developers had to optimize every byte to fit within the hardware's limitations. John Carmack's focus on performance optimization is evident in this code, as it directly interacts with the game's memory manager (`MM_UnusedMemory` and `MM_TotalFree`) to provide real-time feedback. This approach influenced later debugging tools in game engines, such as Unreal Engine and Unity, which offer integrated memory profiling tools to developers."
   - id: "count-game-objects"
-    line_start: 86
+    line_start: 84
     line_end: 125
     title: "Counting Objects in the Game World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `CountObjects` function provides a detailed breakdown of static objects, doors, and actors in the game world. This routine was likely used to debug object allocation and ensure proper behavior during gameplay. By iterating through lists of objects (`statobjlist` and `player->next`), the code categorizes them into active, inactive, and door objects. This method reflects the early adoption of object-oriented principles in game design, where entities in the game world are treated as discrete objects with properties and behaviors. The function's output would have been invaluable for debugging levels and ensuring that all objects were correctly initialized and functioning. This technique laid the groundwork for modern game development practices, where object management systems are integral to engines like Unity and Unreal."
   - id: "picture-pause-vga-manipulation"
-    line_start: 137
+    line_start: 135
     line_end: 201
     title: "Manipulating VGA for a Pause Screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `PicturePause` routine demonstrates direct manipulation of VGA memory to create a pause screen without disrupting the game state. It uses VGA read and write operations (`VGAREADMAP` and `_fmemcpy`) to copy the current screen buffer into memory and restore it later. This technique was a clever workaround for the lack of hardware-accelerated graphics on early PCs, allowing developers to create smooth transitions and effects. John Carmack's mastery of low-level programming is evident here, as he leverages the VGA's capabilities to enhance the player's experience. This approach influenced later games and engines that relied on direct hardware interaction for performance optimization, such as Doom and Quake."
   - id: "shape-test-debugging"
-    line_start: 217
+    line_start: 214
     line_end: 399
     title: "Visualizing Game Assets with ShapeTest"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `ShapeTest` function provides a way to visualize and debug game assets, including walls, sprites, and sounds. It iterates through the game's page list (`PMPages`) and displays information about each asset, such as its memory location and type (wall, sprite, or sound). The routine also includes functionality to render walls and sprites directly on the screen, allowing developers to verify their appearance and behavior. This visualization tool reflects id Software's iterative development process, where debugging and testing were integral to creating polished gameplay experiences. The concept of asset visualization has since become standard in game development, with modern engines offering built-in tools for inspecting and debugging assets."
   - id: "debug-keys-cheat-codes"
-    line_start: 415
+    line_start: 413
     line_end: 599
     title: "Debugging Through Cheat Codes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"

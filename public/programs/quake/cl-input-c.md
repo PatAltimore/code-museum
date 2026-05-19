@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `KeyUp` function handles key release events, updating the `kbutton_t` structure to clear the button's state and set the impulse up flag. It accounts for scenarios where a key is released without a corresponding press, such as menu navigation or manual console input. This ensures that the game's input state remains consistent and avoids unintended behavior. The function also clears all states if the release event is manually typed, demonstrating the flexibility of Quake's input system. This level of detail in input handling was critical for the game's success in competitive multiplayer environments, where precise control could determine the outcome of matches. The techniques developed here influenced later games, such as Counter-Strike and Team Fortress, which required similarly robust input systems."
   - id: "movement-speed-and-angle-adjustments"
-    line_start: 231
+    line_start: 230
     line_end: 273
     title: "Adjusting angles and movement speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"

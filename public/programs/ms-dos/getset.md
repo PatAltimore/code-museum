@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section introduces the GETSET module, which encapsulates system calls for retrieving and modifying various MS-DOS parameters. The programmer, likely Tim Paterson or a Microsoft engineer, defines the scope of the module and sets up the groundwork for the subsequent routines. In 1983, MS-DOS 2.0 was a significant rewrite inspired by Unix, and this module reflects the shift toward a more structured and extensible operating system. The inclusion of system calls for internationalization, device management, and interrupt handling illustrates the growing complexity of MS-DOS as it adapted to diverse hardware and user needs. These foundational definitions influenced later operating systems, including FreeDOS and other DOS-compatible environments, which retained similar modular structures."
   - id: "include-dosseg-dossym-devsym"
-    line_start: 49
+    line_start: 43
     line_end: 133
     title: "Including segment and symbol definitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
@@ -79,7 +79,7 @@ enhancements:
     content: "The $SET_CTRL_C_TRAPPING subroutine allows applications to enable or disable the handling of the CTRL+C interrupt, which is used to terminate processes. This feature reflects MS-DOS's focus on providing developers with fine-grained control over system behavior. In the context of early personal computing, where multitasking was limited and applications often ran in isolation, such control was essential for ensuring predictable program execution. The ability to toggle CTRL+C trapping also highlights the influence of Unix-like systems, which offered similar mechanisms for signal handling. This design decision contributed to the flexibility of MS-DOS and influenced later operating systems, including Windows, which expanded on interrupt and signal management to support more complex multitasking environments."
   - id: "get-indos-flag"
     line_start: 479
-    line_end: 533
+    line_end: 509
     title: "Retrieving the DOS critical-section flag"
     wikipedia_url: "https://en.wikipedia.org/wiki/Critical_section"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The $GET_DRIVE_FREESPACE subroutine calculates the amount of free disk space available on a specified drive. It retrieves information about allocation units, sector size, and cluster masks, reflecting the low-level nature of MS-DOS's file system operations. This routine demonstrates the challenges of managing storage on early PCs, where disk space was limited and fragmentation was common. By providing detailed information about disk usage, MS-DOS enabled developers to optimize their applications for the constrained environments of the time. The approach taken here influenced later file systems, including FAT32 and NTFS, which expanded on these principles to support larger storage capacities and more efficient space management."
   - id: "break-char-oper-device-management"
     line_start: 1015
-    line_end: 1053
+    line_end: 1093
     title: "Managing device availability and switch characters"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "This routine retrieves the device availability flag, stored in memory, and places it in the DL register. The flag determines whether device names require the '/DEV/' prefix. During the development of MS-DOS v2.0, device management was evolving to accommodate more complex systems and user expectations. The ability to toggle device naming conventions reflects the influence of Unix-like systems, which used a standardized approach to device files. This routine helped bridge the gap between simpler CP/M-style systems and the more structured file and device handling seen in Unix and its derivatives."
   - id: "setdpb-convert-bpb-to-dpb"
     line_start: 1235
-    line_end: 1253
+    line_end: 1235
     title: "Converting BPB to DPB for file system compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_parameter_block"
     image_url: ""

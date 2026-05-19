@@ -71,7 +71,7 @@ enhancements:
     content: "The `S_PaintChannels` function is responsible for mixing audio channels into the paint buffer. It iterates through active channels, applying volume adjustments and looping logic to ensure continuous playback. Channels with looped sounds restart automatically when they reach the end, while non-looped sounds are stopped. This approach allows Quake to handle complex audio scenarios, such as overlapping sound effects and ambient noise, without noticeable interruptions. In the mid-1990s, real-time audio mixing was a challenging task due to limited CPU power and memory. By implementing efficient algorithms and prioritizing performance, id Software set a new standard for dynamic sound systems in games. This technique influenced later engines, such as Source and CryEngine, which adopted similar strategies for managing audio playback."
   - id: "precomputed-volume-scaling"
     line_start: 334
-    line_end: 344
+    line_end: 341
     title: "Precomputing volume scaling for efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Audio_signal_processing"
     image_url: ""

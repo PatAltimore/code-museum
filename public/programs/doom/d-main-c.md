@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "event-handling-system"
-    line_start: 136
+    line_start: 135
     line_end: 177
     title: "Event handling: asynchronous input pipeline"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines DOOM's event handling system, which processes asynchronous inputs like keyboard presses or mouse movements. Events are stored in a circular buffer (`events[MAXEVENTS]`) and dispatched via `D_ProcessEvents`. The system ensures that inputs are passed down a responder chain, allowing menus or gameplay logic to claim them. In the early 1990s, event-driven programming was becoming a standard for interactive applications, but implementing it efficiently in a real-time game was a challenge. John Carmack's approach here balances responsiveness with performance, ensuring smooth gameplay even on modest hardware. This design influenced later game engines, including Quake and Unreal, which adopted similar event-driven architectures."
   - id: "game-loop-design"
-    line_start: 350
+    line_start: 349
     line_end: 406
     title: "D_DoomLoop: the beating heart of DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This section manages DOOM's demo sequences, cycling through gameplay showcases and title screens. Functions like `D_PageTicker` and `D_AdvanceDemo` handle timing and transitions, while `D_DoAdvanceDemo` determines the next sequence based on the game mode. Demo sequences were a popular feature in 1990s games, serving as attract modes to engage players and demonstrate gameplay. DOOM's implementation is notable for its adaptability, supporting multiple game modes (shareware, registered, commercial). This approach influenced later games, which adopted similar systems for promotional and tutorial purposes."
   - id: "wad-file-loading"
-    line_start: 542
+    line_start: 540
     line_end: 555
     title: "Dynamic WAD file loading: modular content"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_WAD"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `D_AddFile` function dynamically loads WAD files, DOOM's modular content format. WAD files contain levels, textures, and other game assets, enabling easy customization and expansion. This modular approach was revolutionary in 1993, allowing players and developers to create and share custom content. The function allocates memory for new files and appends them to the `wadfiles` array. This design laid the groundwork for modern modding communities, influencing games like Quake and Skyrim, which embraced user-generated content."
   - id: "game-mode-identification"
-    line_start: 558
+    line_start: 557
     line_end: 717
     title: "IdentifyVersion: determining game mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `IdentifyVersion` function determines the game mode (shareware, registered, retail, or commercial) by checking the availability of specific WAD files. It uses system calls like `access` to verify file existence and sets global variables accordingly. This modular design allowed DOOM to support multiple distribution models, from free shareware to commercial retail. In the early 1990s, this approach was innovative, enabling flexible monetization strategies. It influenced later games, which adopted similar mechanisms for DLC and expansion packs."
   - id: "response-file-parsing"
-    line_start: 720
+    line_start: 719
     line_end: 790
     title: "FindResponseFile: extending command-line arguments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"

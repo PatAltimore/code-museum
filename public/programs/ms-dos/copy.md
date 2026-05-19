@@ -127,7 +127,7 @@ enhancements:
     content: "CHECKCL and RET81P handle file comparison logic, focusing on mismatches between characters. The routines check for specific cases, such as a '.' character indicating a file extension, and determine whether the mismatch is critical. If a mismatch involves a null character (NUL), the routines decide whether to treat it as valid or invalid based on context. This logic reflects the constraints of early file systems, where filenames and extensions had strict formats. The comparison routines ensure that file operations, such as copying, are performed accurately, even in edge cases. These mechanisms influenced later file systems, which adopted more sophisticated comparison algorithms while retaining backward compatibility with MS-DOS conventions. The routines demonstrate the complexity of handling low-level file operations in assembly language."
   - id: "ret81p-final-error-handling"
     line_start: 1141
-    line_end: 1158
+    line_end: 1147
     title: "Final error handling and return logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

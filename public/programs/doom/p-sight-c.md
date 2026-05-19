@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section defines key variables used in DOOM's line-of-sight calculations, such as `sightzstart`, `topslope`, and `bottomslope`. These variables represent the eye level of the observer and the slopes to the top and bottom of the target, respectively. The groundwork laid here is essential for determining whether an object is visible from a given point in the game world. In the early 1990s, real-time visibility checks were computationally expensive, especially on hardware like the Intel 80486. John Carmack's approach, leveraging precomputed data structures and efficient mathematical operations, allowed DOOM to perform these checks rapidly, enabling its fast-paced gameplay. This foundational work influenced later games and engines, including Quake and Unreal Engine, which built upon similar principles for visibility and rendering optimization."
   - id: "divline-side-calculation"
-    line_start: 51
+    line_start: 50
     line_end: 99
     title: "Determining sides of a dividing line"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `P_CrossSubsector` function determines whether a line crosses a given subsector successfully. Subsector traversal is a key part of DOOM's BSP-based visibility system, allowing the engine to efficiently check for obstructions between two points. This function accounts for walls, floors, and ceilings, ensuring that visibility checks respect the geometry of the game world. Carmack's implementation of BSP trees for spatial partitioning was groundbreaking, enabling DOOM to handle complex environments with high performance. This approach became a standard in game development, influencing engines like Quake, Unreal Engine, and Source, which all use spatial partitioning techniques for rendering and collision detection."
   - id: "bsp-node-crossing"
-    line_start: 253
+    line_start: 252
     line_end: 290
     title: "Traversing BSP nodes for visibility checks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `P_CrossBSPNode` function checks whether a line crosses a BSP node successfully. BSP nodes are hierarchical partitions of the game world, allowing DOOM to perform efficient visibility and collision checks. This function recursively traverses the BSP tree, ensuring that all relevant nodes are checked for obstructions. The use of BSP trees was a significant innovation in DOOM, enabling the game to render complex environments in real time on 1990s hardware. Carmack's implementation of BSP trees influenced not only subsequent id Software titles like Quake but also other engines and games, including Unreal Engine and Half-Life, which adopted similar spatial partitioning techniques."
   - id: "final-line-of-sight-check"
-    line_start: 294
+    line_start: 293
     line_end: 347
     title: "Comprehensive line-of-sight determination"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"

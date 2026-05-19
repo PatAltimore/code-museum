@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "sprite-name-array"
     line_start: 40
-    line_end: 54
+    line_end: 55
     title: "The Array of Sprite Names"
     wikipedia_url: "https://doomwiki.org/wiki/Sprite"
     image_url: ""
     image_caption: ""
     content: "This section defines an array of sprite names (`sprnames`) used to identify graphical assets for game objects. Each name corresponds to a specific sprite, such as 'TROO' for the Imp or 'SHTG' for the shotgun. These names are later referenced in the state definitions to link behaviors to visual representations. In 1993, memory constraints required efficient data structures, and this compact array ensured quick lookup without redundancy. The modularity of this design allowed developers to add or modify sprites without altering the game's core logic. This approach influenced later game engines, including the Build engine used in Duke Nukem 3D, which also relied on sprite-based rendering."
   - id: "action-function-declarations"
-    line_start: 59
+    line_start: 58
     line_end: 132
     title: "Action Function Declarations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Function_pointer"
@@ -47,7 +47,7 @@ enhancements:
     content: "This block lists function prototypes for all the action routines (`A_Light0`, `A_WeaponReady`, etc.) that define the behaviors of DOOM's objects. These functions are later referenced in the state definitions to dynamically execute behaviors like attacking, dying, or moving. The use of function pointers was a clever way to implement polymorphism in C, enabling different objects to share common logic while maintaining unique behaviors. This technique was critical for DOOM's modular design and influenced later game engines, such as Quake, which expanded on this concept with object-oriented programming."
   - id: "state-definitions"
     line_start: 135
-    line_end: 800
+    line_end: 1103
     title: "State Definitions: The Heart of Object Behavior"
     wikipedia_url: "https://doomwiki.org/wiki/State"
     image_url: ""

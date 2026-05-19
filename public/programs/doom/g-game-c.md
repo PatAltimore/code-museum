@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section calculates a checksum for player input commands (`ticcmd_t`) to ensure data integrity during gameplay. By summing up the integer values of the command structure, the game can verify that inputs are consistent and uncorrupted, a critical feature for multiplayer synchronization. In the early 1990s, multiplayer gaming was still in its infancy, and DOOM's approach to maintaining input consistency helped establish reliable methods for networked play. This technique influenced later multiplayer games, such as Quake and Unreal Tournament, which adopted similar integrity checks to handle network latency and packet loss."
   - id: "build-ticcmd-input"
-    line_start: 237
+    line_start: 231
     line_end: 437
     title: "Building player commands from inputs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `G_DoLoadLevel` function initializes a new level, including setting the appropriate sky texture based on the episode and map number. This dynamic assignment ensures visual variety and thematic consistency across levels. In DOOM, sky textures were stored in WAD files and selected conditionally, showcasing an early example of procedural content management. This approach influenced later games, such as Quake and Half-Life, which expanded on dynamic environmental rendering. The concept of skyboxes evolved from these techniques, becoming a standard feature in 3D game engines to create immersive environments."
   - id: "event-responder"
-    line_start: 503
+    line_start: 500
     line_end: 597
     title: "Centralized event handling for gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `G_Responder` function processes player events, such as key presses, mouse movements, and joystick inputs, and routes them to the appropriate subsystems like the automap or status bar. This centralized event handling model is a hallmark of event-driven programming, which became a cornerstone of game development. By abstracting input processing, DOOM enabled modularity and extensibility, allowing developers to add new features without disrupting existing systems. This design influenced modern game engines, which rely on event-driven architectures to manage complex interactions between players and the game world."
   - id: "ticker-game-state"
-    line_start: 605
+    line_start: 601
     line_end: 748
     title: "Synchronizing game state across players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `G_InitPlayer` function sets up player structures at the start of the game, initializing saved information and clearing other attributes to defaults. This ensures a consistent starting point for gameplay, whether in single-player or multiplayer modes. In DOOM, player initialization was crucial for handling diverse scenarios, such as rebirth after death or starting a new level. This modular approach to player state management influenced later game engines, which adopted similar methods to handle character attributes, inventories, and progression systems."
   - id: "player-finish-level"
-    line_start: 776
+    line_start: 775
     line_end: 792
     title: "Resetting player state after level completion"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `G_PlayerFinishLevel` function resets various player attributes, such as powers, cards, and visual effects, upon completing a level. This ensures that players start the next level with a clean slate, maintaining gameplay balance and continuity. By systematically clearing temporary effects like invisibility and damage indicators, DOOM established a clear separation between levels, a design principle that influenced later games with episodic structures, such as Half-Life and Portal."
   - id: "player-respawn-mechanics"
-    line_start: 801
+    line_start: 796
     line_end: 833
     title: "Player respawn: preserving progress and fairness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Deathmatch"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "This section handles player respawning by resetting health, weapons, and ammo while preserving statistics like frags, kill count, and secrets found. The goal is to ensure players can re-enter the game seamlessly after dying, whether in single-player or multiplayer deathmatch modes. In 1993, multiplayer gaming was still in its infancy, and DOOM's deathmatch mode was revolutionary. John Carmack and John Romero designed these mechanics to balance fairness and continuity, allowing players to respawn with basic equipment while retaining their achievements. This approach influenced later multiplayer games, particularly first-person shooters like Quake and Unreal Tournament, which adopted similar respawn mechanics to maintain competitive balance."
   - id: "deathmatch-spawn-logic"
-    line_start: 893
+    line_start: 892
     line_end: 919
     title: "Randomized deathmatch spawn points"
     wikipedia_url: "https://en.wikipedia.org/wiki/Deathmatch"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This code selects a random spawn point for players in deathmatch mode, ensuring unpredictability and fairness. It checks for valid spots using `G_CheckSpot` and defaults to a fallback if no suitable location is found. In the early '90s, multiplayer gaming relied heavily on LAN setups, and DOOM's deathmatch mode became a cultural phenomenon. By introducing randomized spawn points, the developers ensured that players couldn't memorize advantageous positions, keeping matches dynamic. This technique influenced multiplayer map design in later games, including Counter-Strike and Halo, where spawn logic plays a critical role in gameplay balance."
   - id: "level-completion-logic"
-    line_start: 997
+    line_start: 996
     line_end: 1141
     title: "Level completion: secrets, stats, and transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -127,7 +127,7 @@ enhancements:
     content: "This section selects sky textures based on the current episode or map, adding atmospheric variety to the game. The sky changes from blue to red to reflect the progression of the story and the increasing intensity of the levels. This detail demonstrates the developers' commitment to creating an immersive experience despite hardware limitations. In 1993, graphical fidelity was constrained by the capabilities of consumer PCs, but DOOM's use of dynamic textures set a standard for environmental storytelling. Games like The Elder Scrolls and Half-Life later expanded on this concept, using dynamic environments to enhance narrative depth."
   - id: "demo-recording-and-playback"
     line_start: 1485
-    line_end: 1600
+    line_end: 1620
     title: "Demo recording: debugging and community sharing"
     wikipedia_url: "https://en.wikipedia.org/wiki/John_Carmack"
     image_url: ""
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes demo playback by syncing player states and game settings. The code reads parameters such as `fastparm`, `nomonsters`, and `consoleplayer` from the demo buffer, ensuring that the playback matches the recorded conditions. It also checks for multiplayer states, enabling networked demo playback if multiple players are involved. The decision to disable precaching during level loading reflects DOOM's focus on minimizing latency and ensuring smooth playback—a critical consideration for a game designed to run on 1993-era hardware. The developers, led by John Carmack, prioritized performance and responsiveness, leveraging techniques like this to maintain the game's reputation for fast-paced action. This approach influenced later games with demo recording features, such as Quake and Unreal Tournament, which expanded on the concept by integrating advanced replay systems and spectator modes."
   - id: "timedemo-mode"
-    line_start: 1625
+    line_start: 1622
     line_end: 1634
     title: "Timedemo: benchmarking DOOM's performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Benchmark_(computing)"

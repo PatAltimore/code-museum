@@ -38,32 +38,32 @@ enhancements:
     image_caption: ""
     content: "This section defines the `objtype` array, which holds all actors in the game world, such as enemies, items, and the player. The array is initialized with a maximum size (`MAXACTORS`) to manage memory efficiently on MS-DOS systems, which had limited resources. At the time, linked lists were a common solution for dynamic object management, allowing actors to be added or removed during gameplay without reallocating large blocks of memory. This approach influenced later games by id Software, such as Doom and Quake, which also relied on efficient actor management systems for real-time gameplay."
   - id: "poll-keyboard-buttons"
-    line_start: 261
-    line_end: 277
+    line_start: 259
+    line_end: 268
     title: "Keyboard input polling for real-time control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
     image_url: ""
     image_caption: ""
     content: "The `PollKeyboardButtons` function scans the keyboard state to detect which keys are pressed, updating the `buttonstate` array for use in gameplay. This mechanism is crucial for real-time interaction, allowing players to control movement, shooting, and other actions. In the early 1990s, keyboard input handling was a challenge due to varying hardware configurations and limited APIs. Wolfenstein 3D's approach laid the groundwork for robust input systems in later games, influencing the design of input libraries like DirectInput and SDL."
   - id: "poll-mouse-buttons"
-    line_start: 279
-    line_end: 301
+    line_start: 277
+    line_end: 291
     title: "Mouse input integration for precision control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_mouse"
     image_url: ""
     image_caption: ""
     content: "The `PollMouseButtons` function reads the state of mouse buttons, mapping them to in-game actions like shooting or strafing. This was a forward-thinking addition, as mouse support in games was not yet standard in 1992. By incorporating mouse input, id Software enhanced the precision and responsiveness of gameplay, paving the way for the mouse-driven controls that became standard in first-person shooters. This innovation influenced later titles like Doom and Half-Life, which relied heavily on mouse input for immersive gameplay."
   - id: "poll-joystick-buttons"
-    line_start: 303
-    line_end: 339
+    line_start: 301
+    line_end: 330
     title: "Joystick support for accessibility and versatility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
     image_caption: ""
     content: "The `PollJoystickButtons` function handles input from joysticks, including progressive and standard modes. This feature reflects id Software's commitment to accessibility, ensuring players with different hardware setups could enjoy the game. Joystick support was particularly important for players accustomed to arcade-style controls. The versatility of Wolfenstein 3D's input system influenced the development of configurable control schemes in later games, allowing players to tailor their experience to their preferred input devices."
   - id: "poll-controls"
-    line_start: 455
-    line_end: 595
+    line_start: 453
+    line_end: 579
     title: "Unified input polling for seamless gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
     image_url: ""
@@ -78,15 +78,15 @@ enhancements:
     image_caption: ""
     content: "The `InitActorList` function initializes the actor list, setting up a linked list structure to manage game objects dynamically. This design allows new actors to be added and removed efficiently during gameplay, a critical feature for fast-paced action games like Wolfenstein 3D. The use of linked lists reflects the constraints of MS-DOS systems, where memory management was a significant challenge. This technique influenced the development of object management systems in later engines, such as Unreal Engine and Source."
   - id: "stop-music"
-    line_start: 999
-    line_end: 1021
+    line_start: 997
+    line_end: 1010
     title: "Dynamic music control for immersive experience"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
     image_url: ""
     image_caption: ""
     content: "The `StopMusic` function disables the game's music, freeing up memory and processing power. This feature was essential for optimizing performance on MS-DOS systems, which had limited resources. Dynamic music control contributed to Wolfenstein 3D's immersive atmosphere, allowing the game to adapt its audio experience to different gameplay scenarios. This approach influenced the use of dynamic audio systems in later games, such as adaptive soundtracks in The Elder Scrolls series and dynamic combat music in Halo."
   - id: "start-music-handler"
-    line_start: 1023
+    line_start: 1021
     line_end: 1059
     title: "Loading and playing music dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
@@ -94,15 +94,15 @@ enhancements:
     image_caption: ""
     content: "This section initializes and starts music playback for the game. It dynamically selects a music track based on the current map and episode, caching the audio chunk and locking it in memory for playback. The function interacts with the AdLib sound card, a popular audio hardware for MS-DOS games in the early 1990s. At the time, music in games was often limited by hardware constraints, requiring developers to carefully manage memory and audio resources. John Carmack and the team at id Software leveraged efficient caching techniques to ensure smooth transitions between music tracks without performance degradation. This approach influenced later games by demonstrating how to integrate immersive audio experiences within constrained environments."
   - id: "palette-shifting-effects"
-    line_start: 1078
-    line_end: 1127
+    line_start: 1076
+    line_end: 1118
     title: "Creating dramatic visual feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Palette_swap"
     image_url: ""
     image_caption: ""
     content: "The palette shifting routines generate visual effects for damage and bonus events by modifying the game's color palette. These shifts simulate red flashes for damage and white flashes for bonuses, enhancing the player's sense of impact and reward. The code calculates intermediate color frames to create smooth transitions, a technique that was cutting-edge for real-time graphics in 1992. This approach reflects id Software's commitment to creating immersive experiences despite hardware limitations. Palette shifting became a common technique in games of the era, influencing titles like Doom and Quake, which expanded on such visual effects to heighten player engagement."
   - id: "actor-state-management"
-    line_start: 1260
+    line_start: 1258
     line_end: 1329
     title: "Managing AI behavior with state transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"

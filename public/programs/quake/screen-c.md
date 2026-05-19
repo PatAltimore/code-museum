@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "center-printing-system"
-    line_start: 143
+    line_start: 121
     line_end: 224
     title: "Center-printing system for critical messages"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section implements a system for displaying important messages in the center of the screen, such as victory announcements or intermission text. The `SCR_CenterPrint` function calculates the number of lines in the message and stores it for rendering, while `SCR_DrawCenterString` handles the actual drawing of the text. The design ensures that messages are visually prominent and remain on-screen for a configurable duration (`scr_centertime`). In 1996, this was a crucial feature for communicating game events to players in a visually striking way. The system reflects id Software's emphasis on clarity and immersion in their game design. The center-printing system influenced later engines, such as the Source engine, which adopted similar methods for displaying critical game information."
   - id: "field-of-view-calculation"
-    line_start: 246
+    line_start: 244
     line_end: 264
     title: "Field-of-view calculation optimized for 3D environments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Field_of_view"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `CalcFov` function calculates the vertical field of view (`fov_y`) based on the horizontal field of view (`fov_x`) and the screen dimensions. This mathematical approach ensures that the player's perspective is accurately represented in Quake's 3D environments, enhancing immersion. In 1996, such calculations were critical for games transitioning from 2D to true 3D rendering. John Carmack and Michael Abrash's work on Quake's engine set a benchmark for handling perspective in 3D games. This method became a standard in game engines, influencing titles like Unreal and Half-Life, which also relied on precise field-of-view calculations for their 3D environments."
   - id: "dynamic-console-height"
-    line_start: 508
+    line_start: 506
     line_end: 553
     title: "Dynamic console height adjustment based on game state"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `SCR_SetUpToDrawConsole` function dynamically adjusts the console's height based on the game's state. If the player is in the console mode, it occupies half the screen; otherwise, it is hidden or displayed minimally. This feature ensures that the console does not obstruct gameplay while remaining accessible when needed. In the mid-1990s, such dynamic adjustments were innovative, allowing developers to optimize screen space for both gameplay and debugging. This approach influenced later engines, such as the id Tech series and Source engine, which implemented similar dynamic UI adjustments to balance functionality and user experience."
   - id: "pcx-screenshot-encoding"
-    line_start: 589
+    line_start: 586
     line_end: 650
     title: "Efficient PCX screenshot encoding for low-memory systems"
     wikipedia_url: "https://en.wikipedia.org/wiki/PCX"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `WritePCXfile` function encodes screenshots in the PCX format, a popular choice for low-memory systems in the 1990s due to its simplicity and compactness. The function packs pixel data and appends a palette for color representation. This design reflects id Software's focus on optimizing for hardware constraints, as PCs of the era often had limited memory and storage. By enabling efficient screenshot saving, Quake facilitated debugging and community sharing of in-game moments. The PCX format's use in Quake influenced other games of the era, cementing its role as a standard for game screenshots until more advanced formats like PNG became prevalent."
   - id: "remote-screenshot-capability"
-    line_start: 778
+    line_start: 776
     line_end: 900
     title: "Remote screenshot capability for multiplayer debugging"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `SCR_UpdateScreen` function is the backbone of Quake's screen rendering system. It dynamically updates the screen based on user settings, game state, and hardware constraints. The function begins by checking conditions such as whether the game is minimized or still initializing, ensuring unnecessary rendering is avoided. It then recalculates screen parameters if settings like field of view (`scr_fov`) or view size (`scr_viewsize`) have changed, triggering a reordering of the screen layout via `SCR_CalcRefdef`. This modular approach allows Quake to adapt to changes without requiring a full engine restart. The function also manages back-buffer access, a technique critical for efficient rendering on 1990s hardware. By enabling and disabling back-buffer access at strategic points, the code ensures compatibility with graphics adapters that cannot handle continuous linear writes. This reflects the constraints of the era, where hardware capabilities varied widely, and optimization was essential for performance. Finally, the function integrates multiple rendering tasks, including the 3D scene (`V_RenderView`), the console (`SCR_DrawConsole`), and the heads-up display (`Sbar_Draw`). It also handles special cases like intermission screens and dialog overlays. By centralizing these tasks, the code achieves a cohesive and efficient rendering pipeline. This approach influenced later game engines, including id Tech 2 and id Tech 3, which built on the modularity and adaptability demonstrated here. Techniques like dynamic screen updates and efficient buffer management became standard practice in game development, shaping the design of engines used in titles like Half-Life and Call of Duty."
   - id: "whole-screen-refresh-trigger"
-    line_start: 1169
+    line_start: 1167
     line_end: 1171
     title: "Triggering a Full Screen Refresh"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `SCR_UpdateWholeScreen` function is a simple yet impactful addition to Quake's rendering system. It resets the `scr_fullupdate` flag and calls `SCR_UpdateScreen`, ensuring that the entire screen is refreshed. This function is likely used in scenarios where a complete redraw is necessary, such as after significant changes to graphics settings or during transitions between game states. This design reflects the modular philosophy of Quake's engine, where specific tasks are encapsulated in dedicated functions. By separating the logic for a full screen refresh into its own function, the code becomes easier to maintain and extend. This modularity was a hallmark of id Software's development practices, enabling rapid iteration and reuse of code across projects. The concept of triggering a full screen refresh influenced later game engines, which adopted similar mechanisms for handling graphics updates. For example, Unreal Engine and Unity use flags or state checks to determine when to redraw the screen, ensuring efficient use of resources while maintaining visual fidelity. This function also highlights the importance of balancing simplicity and functionality in game engine design, a principle that continues to shape the industry today."
   - id: "minimal-wrapper-for-screen-update"
-    line_start: 1171
+    line_start: 1172
     line_end: 1176
     title: "Minimal Wrapper for Screen Update Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "byte-table-screen-x-to-byte-number"
-    line_start: 45
+    line_start: 44
     line_end: 58
     title: "Mapping screen X-coordinates to byte numbers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The ByteTable maps real screen X-coordinates (0–255) to byte numbers (0–36), effectively compressing the screen's horizontal resolution into manageable chunks. This table is used to quickly calculate which byte in memory corresponds to a given screen position. At the time, memory and processing power were extremely limited on the Apple II, so precomputing these values allowed the game to perform faster calculations during gameplay. Jordan Mechner designed this table to optimize rendering and collision detection, ensuring smooth gameplay despite the constraints of 6502 assembly and the Apple II's hardware. This approach influenced later games by demonstrating how lookup tables could be used to simplify complex calculations in real-time graphics rendering."
   - id: "offset-table-screen-x-to-offset"
-    line_start: 61
+    line_start: 60
     line_end: 71
     title: "Offset table for fine-grained screen positioning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The OffsetTable complements the ByteTable by providing finer-grained offsets within each byte. For each screen X-coordinate, it yields an offset (0–6) that specifies the exact position within the byte. This was critical for the game's graphics rendering, as it allowed precise placement of pixels within the limited resolution of the Apple II. Mechner's use of this table reflects the meticulous attention to detail required to achieve cinematic visuals on hardware with severe limitations. The concept of combining coarse and fine-grained lookup tables became a common technique in graphics programming, influencing later systems and engines that needed to balance precision with performance."
   - id: "block-table-screen-x-to-block-number"
-    line_start: 74
+    line_start: 73
     line_end: 91
     title: "Screen X-coordinates mapped to block numbers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The BlockTable maps screen X-coordinates to block numbers, ranging from -5 to 14. Blocks represent discrete sections of the game world, such as platforms or walls. This table is used to determine which block a given screen position corresponds to, enabling efficient collision detection and level rendering. In the 1980s, tile-based game design was a common method for organizing game worlds, and Mechner's implementation here exemplifies how developers optimized these systems for constrained hardware. This table laid the groundwork for modern tile-based engines, influencing games like Super Mario Bros. and later level editors used in indie game development."
   - id: "pixel-table-block-to-pixel-number"
-    line_start: 94
+    line_start: 93
     line_end: 107
     title: "Mapping blocks to pixel positions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pixel_art"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The PixelTable maps blocks to pixel positions within each block, ranging from 0 to 13. This table allows the game to determine the exact pixel within a block for rendering or collision detection. By precomputing these values, Mechner ensured that the game could handle pixel-perfect interactions, which were essential for the precise movements and animations of Prince of Persia. This technique highlights the importance of precomputed data in achieving high-quality visuals and gameplay on limited hardware. The focus on pixel-level accuracy influenced later games that prioritized smooth animations and detailed environments."
   - id: "multiplication-tables-for-10-7-and-30"
-    line_start: 110
+    line_start: 109
     line_end: 140
     title: "Precomputed multiplication tables for speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Precomputation"

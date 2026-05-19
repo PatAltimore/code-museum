@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "include-directives-and-segment-assumptions"
-    line_start: 6
+    line_start: 5
     line_end: 54
     title: "Include directives and segment assumptions"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

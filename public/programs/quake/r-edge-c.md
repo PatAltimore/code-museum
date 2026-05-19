@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "r-draw-culled-polys"
-    line_start: 81
+    line_start: 79
     line_end: 119
     title: "Back-to-front polygon rendering logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine, `R_DrawCulledPolys`, handles the rendering of polygons based on their visibility and depth order. The function iterates through surfaces either back-to-front or front-to-back, depending on the rendering mode, ensuring proper handling of transparency and occlusion. At the time of Quake's development, hardware lacked dedicated Z-buffering capabilities, making this software-based approach essential for achieving correct visual results. John Carmack and Michael Abrash, renowned for their expertise in graphics programming, developed techniques like this to maximize performance on limited hardware. This approach influenced later game engines, which adopted similar visibility sorting methods before hardware Z-buffering became standard."
   - id: "r-begin-edge-frame"
-    line_start: 124
+    line_start: 122
     line_end: 156
     title: "Initializing edge and surface data structures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `R_BeginEdgeFrame` function sets up the data structures for edge and surface processing, including initializing pointers and flags. This step is critical for organizing the rendering pipeline, as it prepares the linked lists and arrays used for edge sorting and span generation. The decision to use linked lists and arrays reflects the constraints of 1990s hardware, where memory and computational resources were limited. By carefully structuring data, the developers ensured efficient traversal and manipulation during rendering. This initialization routine exemplifies the meticulous optimization required to achieve real-time 3D graphics on systems like the Intel 486 and early Pentium processors."
   - id: "r-insert-new-edges"
-    line_start: 164
+    line_start: 163
     line_end: 202
     title: "Edge insertion into active edge table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InsertNewEdges` function adds new edges to the active edge table, maintaining their sorted order based on screen position. This linked-list-based approach allows efficient insertion and traversal, which is crucial for real-time rendering. The active edge table represents the edges currently being processed for span generation, a key step in determining visible portions of surfaces. The use of linked lists here reflects the need for dynamic data structures that can adapt to changing scene geometry during rendering. Techniques like this laid the groundwork for more advanced visibility determination methods in later game engines."
   - id: "r-step-active-u"
-    line_start: 231
+    line_start: 229
     line_end: 292
     title: "Updating edge positions during scanline processing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scanline_rendering"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `R_StepActiveU` function updates the horizontal positions of edges as the renderer processes each scanline. This step ensures that edges remain correctly sorted and aligned with the current scanline, enabling accurate span generation. The function includes logic to handle cases where edges need to be pushed back into the list to maintain order. This meticulous attention to edge sorting and positioning highlights the challenges of implementing a software renderer capable of real-time performance. Techniques like this influenced later rendering systems, which automated similar processes using hardware acceleration."
   - id: "r-cleanup-span"
-    line_start: 299
+    line_start: 297
     line_end: 328
     title: "Finalizing spans at the end of scanlines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Span_(computer_graphics)"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `R_CleanupSpan` function emits spans for unfinished surfaces and resets span states for all active surfaces. Spans represent contiguous horizontal segments of surfaces that are visible on the screen. By finalizing spans at the end of each scanline, the renderer ensures that all visible portions of surfaces are accounted for before moving to the next scanline. This approach was a key innovation in software rendering, allowing Quake to achieve high performance and visual fidelity on hardware without dedicated graphics acceleration. The concept of spans continues to influence modern rendering techniques, particularly in rasterization pipelines."
   - id: "r-generate-spans"
-    line_start: 585
+    line_start: 583
     line_end: 617
     title: "Span generation for forward rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rasterization_(computer_graphics)"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `R_GenerateSpans` function processes edges to generate spans for visible surfaces, iterating through the active edge table and handling leading and trailing edges. This forward rendering approach calculates spans in a front-to-back order, ensuring proper depth sorting and visibility determination. The function's design reflects the constraints of software rendering, where efficient algorithms were essential to achieve real-time performance. By leveraging linked lists and careful edge processing, the developers created a robust system for span generation that influenced later rasterization techniques in both software and hardware-based renderers."
   - id: "r-scan-edges"
-    line_start: 652
+    line_start: 651
     line_end: 768
     title: "Processing edges to generate visible spans"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rasterization_(computer_graphics)"

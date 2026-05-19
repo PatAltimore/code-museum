@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "device-driver-header"
     line_start: 105
-    line_end: 121
+    line_end: 115
     title: "Device driver header for hard disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
@@ -39,14 +39,14 @@ enhancements:
     content: "This section defines the header for the hard disk driver, specifying attributes and pointers for device operations. The 'DSKDEV' label marks the start of the driver definition, including fields such as device attributes, strategy pointer, interrupt pointer, and device name. The 'MEMMAX' field indicates the number of units supported. In the early 1980s, device drivers were crucial for abstracting hardware differences and enabling software portability across systems. Tim Paterson's work on MS-DOS drivers was influenced by CP/M's approach to device independence. This header structure became a foundational pattern for defining device drivers in operating systems, influencing later systems like Windows and Linux."
   - id: "dispatch-table-hard-disk"
     line_start: 125
-    line_end: 201
+    line_end: 149
     title: "Dispatch table for hard disk commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""
     image_caption: ""
     content: "The 'DSK_TBL' section defines a dispatch table mapping command codes to specific routines for hard disk operations. Each entry corresponds to a function, such as initialization, media checks, block reads, and writes. This design allows for modular handling of commands, simplifying the integration of new functionality. In the context of MS-DOS v2.0, dispatch tables were an efficient way to manage device-specific operations while maintaining compatibility with the broader system. This approach influenced the design of interrupt handlers and device management in subsequent operating systems, including Unix derivatives and Windows."
   - id: "strategy-routine"
-    line_start: 205
+    line_start: 193
     line_end: 215
     title: "Strategy routine for I/O packet handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The 'STRATEGY' routine saves pointers to I/O packets for later processing by interrupt routines. This simplistic approach reflects the single-tasking nature of MS-DOS, where operations are processed sequentially. By storing packet pointers, the system can defer handling until the appropriate interrupt is triggered. In the early 1980s, this method was a practical solution for limited hardware resources and single-threaded environments. It laid the groundwork for more sophisticated I/O management techniques in multitasking systems, influencing later developments in operating systems like Windows NT."
   - id: "disk-interrupt-handler"
-    line_start: 233
+    line_start: 227
     line_end: 247
     title: "Disk interrupt routine for I/O processing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The 'DSK_INT' routine handles I/O packets for the hard disk driver, using the dispatch table to process commands. It begins by saving the caller's state and setting up the dispatch table pointer. This routine exemplifies the early design of interrupt-driven I/O, where hardware signals trigger software routines to manage operations. In MS-DOS v2.0, this approach was essential for supporting diverse hardware configurations while maintaining system stability. The use of interrupt-driven I/O became a standard practice, influencing the design of device drivers in modern operating systems."
   - id: "error-handling-routines"
-    line_start: 323
+    line_start: 311
     line_end: 371
     title: "Error handling and exit routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
@@ -70,15 +70,15 @@ enhancements:
     image_caption: ""
     content: "The 'CMDERR' and 'ERR_EXIT' routines manage error conditions during disk operations. They set appropriate error codes and status bits, ensuring the system can respond to hardware failures or invalid commands. Error handling was a critical aspect of early operating systems, where hardware reliability was a significant concern. By mapping hardware error codes to software responses, MS-DOS provided a consistent interface for applications. These routines influenced the development of robust error handling mechanisms in later systems, including Unix and Windows."
   - id: "rom-call-routine"
-    line_start: 941
-    line_end: 973
+    line_start: 927
+    line_end: 965
     title: "ROM call routine for Altos hardware"
     wikipedia_url: "https://en.wikipedia.org/wiki/Read-only_memory"
     image_url: ""
     image_caption: ""
     content: "The 'ROM_CALL' routine interacts with the Altos ROM to perform disk operations. It saves the current state, calls the ROM entry point, and restores the state upon completion. This routine highlights the reliance on firmware for low-level hardware control in early PCs. By delegating operations to ROM, MS-DOS could support a wide range of hardware without embedding device-specific code. This modular approach influenced the design of BIOS and firmware interfaces in later systems, enabling greater hardware compatibility and extensibility."
   - id: "disk-initialization-routine"
-    line_start: 977
+    line_start: 973
     line_end: 991
     title: "Disk Initialization Routine: Bridging Hardware and Software"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"

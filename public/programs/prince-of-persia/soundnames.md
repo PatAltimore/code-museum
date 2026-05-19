@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "sound-effect-names"
-    line_start: 6
+    line_start: 4
     line_end: 25
     title: "Mapping sound effects to numeric constants"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section defines numeric constants for sound effects used throughout Prince of Persia. Each sound effect, such as 'PlateDown' or 'MirrorCrack,' is assigned a unique identifier, ranging from 0 to 19. These identifiers allow the game to reference sound effects efficiently during runtime, minimizing memory usage and simplifying code logic. Jordan Mechner, working solo on this project, needed to optimize every aspect of the game to fit within the Apple II's 128K memory constraints. By using numeric constants, the game could quickly trigger sounds without requiring complex lookup mechanisms. In 1989, the Apple II was nearing the end of its commercial life, but it remained a popular platform for independent developers due to its affordability and established user base. The 6502 assembly language, while powerful, imposed strict limitations on memory and processing power. Mechner's approach reflects the ingenuity required to produce cinematic experiences on such constrained hardware. The sound effects themselves were carefully chosen to enhance the game's immersive qualities, aligning with its groundbreaking rotoscoped animation and narrative-driven gameplay. This technique of mapping sound effects to constants became standard practice in game development, influencing later titles on platforms like the NES and Sega Genesis. Developers like Shigeru Miyamoto and Yu Suzuki adopted similar methods to manage audio assets efficiently. Today, this approach persists in modern game engines, where sound identifiers are often stored in resource files or databases, ensuring quick access and streamlined performance."
   - id: "game-music-identifiers"
-    line_start: 30
+    line_start: 27
     line_end: 45
     title: "Categorizing music cues for gameplay moments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Musical_cue"

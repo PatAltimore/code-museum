@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "animation-sequence-table"
-    line_start: 6
+    line_start: 4
     line_end: 112
     title: "Mapping animations to gameplay sequences"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"

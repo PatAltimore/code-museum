@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section includes the DOS segment setup files (`DOSSEG.ASM` and `DOSSYM.ASM`) and defines the code segment as public. It establishes the environment for the routines that follow, ensuring compatibility with the MS-DOS memory model. At the time, memory segmentation was a critical aspect of programming for the Intel 8086 processor, which had a 1MB address space divided into 64KB segments. This setup reflects the constraints and design decisions of early PC operating systems, where every byte of memory had to be meticulously managed. By including these files, the programmer ensures that the routines can interface correctly with the rest of the MS-DOS kernel, a foundational step for the disk utilities implemented later in the file."
   - id: "name-rom-miscellaneous-routines"
-    line_start: 35
+    line_start: 33
     line_end: 83
     title: "Defining ROM routines and variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -46,8 +46,8 @@ enhancements:
     image_caption: ""
     content: "This section defines the ROM name and declares several variables needed for disk operations, such as `CLUSNUM`, `NEXTADD`, and `FATBYT`. These variables represent key elements of the File Allocation Table (FAT) system, which MS-DOS uses to manage disk storage. The FAT system was revolutionary for its simplicity and efficiency, allowing MS-DOS to handle files and directories on floppy and hard disks. By defining these variables upfront, the programmer sets the stage for routines that manipulate disk clusters, perform file reads and writes, and allocate or release disk space. This approach reflects the modular design philosophy of MS-DOS v2.0, which was heavily influenced by Unix and aimed to provide more advanced file management capabilities than its predecessor."
   - id: "get-random-record"
-    line_start: 93
-    line_end: 149
+    line_start: 69
+    line_end: 93
     title: "Fetching a random record from a file"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -62,8 +62,8 @@ enhancements:
     image_caption: ""
     content: "The `FNDCLUS` routine skips over a specified number of clusters in the disk's allocation table. Clusters are the basic units of storage in the FAT system, and this routine is essential for navigating the disk efficiently. It calculates the position of the last cluster skipped to and updates relevant variables, such as `BX` (last cluster) and `DX` (position). This functionality is particularly useful for file operations that require skipping over unused or reserved disk space. In the early 1980s, disk storage was limited, and efficient management of clusters was critical for maximizing available space. The techniques demonstrated in this routine influenced later advancements in disk management, including the development of more sophisticated file systems like NTFS and ext4."
   - id: "bufsec-buffer-sector-transfer"
-    line_start: 261
-    line_end: 301
+    line_start: 189
+    line_end: 261
     title: "Buffering a sector for disk transfer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_buffer"
     image_url: ""
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The RELEASE routine marks the end of a file operation, ensuring proper cleanup and state restoration. In this section, the programmer focuses on finalizing file system interactions, likely releasing resources or resetting pointers. At the time, MS-DOS was designed to run on IBM PCs with limited memory (typically 16–64 KB) and constrained hardware, making efficient resource management critical. Tim Paterson's assembly code reflects the meticulous attention to detail required to operate within these constraints. RELEASE would have been part of a broader set of routines ensuring the integrity of file operations, a cornerstone of MS-DOS's reliability. This approach influenced later operating systems, where resource cleanup became a standard practice. Developers building on MS-DOS, such as those creating early Windows versions, inherited these principles, ensuring backward compatibility and robust file handling."
   - id: "get-eof-last-cluster"
-    line_start: 1047
+    line_start: 1015
     line_end: 1047
     title: "Finding the last cluster in a file"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_allocation_table"

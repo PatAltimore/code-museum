@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The 'CL_ParseProjectiles' function parses temporary entities like nails and rockets, which are treated as projectiles in the game world. These entities are optimized for rendering and do not persist beyond their immediate use. This approach minimizes memory usage and processing overhead, allowing Quake to handle fast-paced action with numerous projectiles on screen. The concept of temporary entities influenced the design of particle systems in later games and engines, enabling complex visual effects without significant performance penalties."
   - id: "player-prediction-techniques"
-    line_start: 949
+    line_start: 940
     line_end: 1009
     title: "Player prediction techniques for latency compensation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The 'CL_SetUpPlayerPrediction' function predicts player movements to compensate for network latency, ensuring smooth and responsive gameplay. It calculates the player's position based on previous states and user commands, allowing for accurate rendering even when network delays occur. This technique was groundbreaking in 1996, addressing one of the most challenging aspects of multiplayer gaming. Quake's prediction system became a foundational concept for online games, influencing titles like Half-Life and Call of Duty, which adopted similar methods to enhance multiplayer experiences."
   - id: "solid-player-entity-management"
-    line_start: 1020
+    line_start: 1011
     line_end: 1053
     title: "Solid player entity management for collisions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the `CL_SetSolidPlayers` function, which manages solid player entities for collision detection in Quake's multiplayer environment. The function iterates over predicted player states, excluding inactive, dead, or the local player itself, and updates the physics entity list with bounding box dimensions (`player_mins` and `player_maxs`) and position data. This ensures that only active players are considered solid objects in the physics simulation. In 1996, multiplayer games were transitioning from simple 2D environments to complex 3D worlds. Quake's engine had to handle player interactions in real-time while maintaining performance on hardware like Intel's Pentium processors, which were common at the time. John Carmack and Michael Abrash, renowned for their optimization expertise, designed systems that minimized computational overhead by leveraging precomputed player states and efficient data structures. This approach influenced later multiplayer games, including Unreal Tournament and Counter-Strike, which adopted similar techniques for handling player collisions and interactions. The concept of separating active and inactive entities became a standard in game physics engines, appearing in middleware like Havok and PhysX."
   - id: "visedicts-array-construction"
-    line_start: 1064
+    line_start: 1056
     line_end: 1082
     title: "Building visible entity lists for rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"

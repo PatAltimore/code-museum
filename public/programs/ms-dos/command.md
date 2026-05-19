@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes the default file specification (*.*) for directory listing operations. By setting the file spec to a wildcard, the program ensures that all files are included unless a specific filter is provided. This approach reflects the simplicity and efficiency required in early personal computing environments, where user interaction was minimal and defaults were critical for usability. The use of BIOS interrupt 33 for parsing underscores the reliance on hardware-level operations for file management. This technique influenced later operating systems by establishing the convention of wildcard-based file filters, a feature still seen in modern command-line interfaces."
   - id: "process-command-switches"
-    line_start: 1044
+    line_start: 1040
     line_end: 1059
     title: "Processing command-line switches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "This routine reads and processes batch files, enabling automation of repetitive tasks. Batch files were an early form of scripting, allowing users to execute sequences of commands without manual intervention. The program checks for end-of-file markers and gracefully exits batch mode when necessary. This feature reflects the increasing demand for productivity tools in personal computing. Batch file processing became a cornerstone of MS-DOS, influencing the development of more advanced scripting languages like Bash and PowerShell."
   - id: "date-and-time-routines"
-    line_start: 1790
+    line_start: 1787
     line_end: 1936
     title: "Date and time: User input and validation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_clock"
@@ -174,7 +174,7 @@ enhancements:
     image_caption: ""
     content: "The `RELOC` routine adjusts the relocation pointers in the executable file to match the actual memory layout. It reads relocation entries from the file, calculates the adjusted segment addresses, and updates the pointers accordingly. This process ensures that the program can execute correctly regardless of where it is loaded in memory. Relocation was a critical technique in the era of segmented memory architectures, where programs needed to adapt to varying memory configurations. Tim Paterson's implementation in MS-DOS influenced the design of loaders and linkers in later operating systems, which adopted similar methods to support dynamic loading and address translation. This routine also highlights the ingenuity required to work within the constraints of early hardware, where fixed memory layouts were impractical."
   - id: "setting-up-execution-environment"
-    line_start: 2125
+    line_start: 2124
     line_end: 2138
     title: "Setting up the execution environment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"

@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The MakeFCB routine initializes a File Control Block (FCB) structure, a legacy method for managing files in MS-DOS. FCBs were used to store metadata about files, including name, extension, and attributes. This section of code parses input to determine drive letters, file names, and extensions, filling in default values when necessary. The programmer's immediate goal was to ensure compatibility with ambiguous file specifications while maintaining efficiency in constrained memory environments. In 1983, MS-DOS 2.0 introduced hierarchical file systems inspired by Unix, but retained FCBs for backward compatibility with earlier software. At the time, personal computers like the IBM PC were powered by Intel 8086 processors with limited RAM (typically 64–256 KB). This necessitated compact and efficient code. Tim Paterson, the original author of 86-DOS (later MS-DOS), laid the groundwork for these routines, which were refined by Microsoft engineers. The MakeFCB routine influenced later file handling mechanisms. While FCBs were eventually replaced by file handles in MS-DOS 2.0 and beyond, the parsing logic here informed the development of APIs for file access in modern operating systems. Techniques for handling ambiguous file names and default values can be seen in contemporary systems like Windows and Linux. The legacy of FCBs persists in the design of metadata structures and backward compatibility layers in software development."
   - id: "nametrans-path-element-scanning"
-    line_start: 175
+    line_start: 167
     line_end: 223
     title: "NameTrans: Path Element Scanning Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"

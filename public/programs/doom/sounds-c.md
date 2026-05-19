@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "music-track-definitions"
-    line_start: 37
+    line_start: 33
     line_end: 107
     title: "Mapping DOOM's iconic music tracks"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the music tracks used throughout DOOM, associating each level and special event with a specific track name. The array `S_music` maps identifiers like 'e1m1' (Episode 1, Mission 1) to corresponding music assets. At the time, DOOM's music was composed by Bobby Prince, blending heavy metal and ambient influences to complement the game's intense atmosphere. The structured approach to music management reflects the growing complexity of game development in the early 1990s, where audio was becoming a critical component of immersion. By organizing music data in this way, id Software ensured that each level had a distinct auditory identity, contributing to the game's memorability. This technique of associating music tracks with game states or levels became a standard in game development, influencing titles like Quake and Unreal."
   - id: "sound-effect-metadata"
-    line_start: 114
+    line_start: 110
     line_end: 227
     title: "Cataloging DOOM's sound effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"

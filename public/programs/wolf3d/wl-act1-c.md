@@ -30,31 +30,31 @@ summary:
 
 enhancements:
   - id: "static-object-list-definition"
-    line_start: 15
-    line_end: 122
+    line_start: 6
+    line_end: 114
     title: "Static objects: defining the game world"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section defines the static objects in Wolfenstein 3D, such as barrels, tables, and treasure items, using the `statobj_t` structure and the `statinfo` array. Each object is assigned properties like its sprite number and type (e.g., blocking or bonus). The static objects are integral to the game's environment, providing both visual detail and interactive elements. At the time, memory constraints on MS-DOS systems required efficient management of such lists, as seen in the use of a fixed-size array (`statobjlist[MAXSTATS]`). This approach allowed developers to balance performance with the need for diverse game elements. The static object system influenced later games by demonstrating how to manage environmental objects efficiently in real-time 3D engines."
   - id: "init-static-list"
-    line_start: 124
-    line_end: 137
+    line_start: 122
+    line_end: 127
     title: "Initializing static object lists"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The `InitStaticList` function resets the static object list by pointing `laststatobj` to the start of the array. This ensures a clean slate for each level, avoiding leftover data from previous levels. In the early 1990s, memory management was a critical concern due to the limited resources of MS-DOS systems. By explicitly resetting pointers and arrays, id Software ensured stability and performance in their game engine. This technique of initializing lists became a standard practice in game development, influencing how modern engines handle dynamic object creation and destruction."
   - id: "spawn-static-object"
-    line_start: 139
-    line_end: 197
+    line_start: 137
+    line_end: 184
     title: "Spawning static objects dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "The `SpawnStatic` function places static objects in the game world at specified tile coordinates. It assigns properties like sprite number and flags based on the object's type, and updates the `actorat` array to mark blocking tiles. This dynamic spawning system allowed Wolfenstein 3D to create varied and interactive environments while maintaining efficient memory usage. The function also increments the treasure count for collectible items, tying gameplay mechanics to object placement. This approach influenced later games by showcasing how to integrate environmental objects seamlessly into gameplay, paving the way for more complex item systems in 3D engines."
   - id: "door-mechanics-and-connectivity"
-    line_start: 251
+    line_start: 245
     line_end: 684
     title: "Doors: connecting areas dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Door_(video_games)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This section implements the mechanics for doors in Wolfenstein 3D, including opening, closing, and area connectivity. Doors are represented in the `doorobjlist` array and their positions tracked in `doorposition`. The `ConnectAreas` function dynamically updates the connectivity matrix (`areaconnect`), enabling sound propagation and visibility checks between areas. This system was groundbreaking for its time, as it allowed real-time updates to the game world based on player actions. The adaptive movement of doors and their integration into gameplay influenced later games, such as Doom and Quake, which expanded on dynamic environmental interactions."
   - id: "pushable-walls-secret-areas"
-    line_start: 722
+    line_start: 712
     line_end: 899
     title: "Pushable walls: uncovering secrets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Secret_level"

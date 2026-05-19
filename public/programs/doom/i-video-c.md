@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "keyboard-input-translation"
-    line_start: 97
+    line_start: 93
     line_end: 162
     title: "Mapping X11 keycodes to DOOM controls"
     wikipedia_url: "https://en.wikipedia.org/wiki/X_Window_System"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `I_GetEvent` function processes input and events from the X11 server, including key presses, mouse movements, and button clicks. It uses `XNextEvent` to retrieve events and a series of case statements to handle different event types. For example, `KeyPress` and `KeyRelease` events are translated into DOOM's internal event system, while `MotionNotify` tracks mouse movement. This event-driven approach was essential for real-time interaction in games, enabling responsive controls and immersive gameplay. In the early 1990s, event handling in graphical applications was still evolving, and DOOM's implementation showcased how to integrate low-level system events into a high-performance game loop. The techniques used here influenced later game engines and frameworks, such as SDL, which adopted similar methods for cross-platform input handling."
   - id: "graphics-scaling"
-    line_start: 352
+    line_start: 349
     line_end: 519
     title: "Scaling low-resolution graphics for modern displays"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_scaling"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `I_FinishUpdate` function includes logic for scaling DOOM's 320x200 resolution graphics to larger display sizes. Depending on the `multiply` factor (2, 3, or 4), pixels are duplicated to create a scaled image. The function uses bitwise operations to manipulate pixel data efficiently, ensuring that the scaled image retains its visual fidelity. In 1993, most consumer monitors operated at resolutions higher than 320x200, making scaling necessary for a full-screen experience. This approach highlights id Software's ingenuity in adapting low-resolution graphics to varying hardware capabilities. The scaling techniques pioneered here influenced later games and engines, which adopted similar methods for handling resolution differences. Today, resolution scaling is a standard feature in game engines like Unity and Unreal Engine."
   - id: "palette-management"
-    line_start: 536
+    line_start: 533
     line_end: 585
     title: "Managing palettes for 256-color displays"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_depth"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `UploadNewPalette` and `I_SetPalette` functions manage color palettes for 256-color PseudoColor displays. The palette data is processed using gamma correction tables (`gammatable`) to adjust brightness and contrast, and the colors are stored in the X11 colormap using `XStoreColors`. In the early 1990s, 256-color displays were common, and efficient palette management was critical for achieving vibrant graphics. Gamma correction allowed developers to account for differences in monitor brightness, ensuring consistent visuals across hardware. This technique was widely adopted in later games and applications, influencing how color management is handled in modern graphics APIs like OpenGL and DirectX."
   - id: "shared-memory-allocation"
-    line_start: 595
+    line_start: 588
     line_end: 689
     title: "Allocating shared memory for graphical data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Shared_memory"
@@ -79,7 +79,7 @@ enhancements:
     content: "The `grabsharedmemory` function allocates shared memory segments for graphical data using `shmget`, `shmat`, and `shmctl`. It includes logic to handle stale shared memory segments left by previous instances of DOOM, ensuring that the system remains clean and functional. Shared memory was a key optimization for graphical applications, allowing DOOM to bypass slower data transfer methods and achieve high performance. This technique reflects id Software's deep understanding of UNIX system programming and its ability to leverage low-level features for gaming. Shared memory allocation became a standard practice in UNIX-based applications, influencing later games and graphical software."
   - id: "graphics-initialization"
     line_start: 692
-    line_end: 800
+    line_end: 915
     title: "Initializing graphics for X11 systems"
     wikipedia_url: "https://en.wikipedia.org/wiki/X_Window_System"
     image_url: ""

@@ -78,15 +78,15 @@ enhancements:
     image_caption: ""
     content: "This subroutine processes damage information sent by the server and applies visual feedback through color shifts. Depending on the type and amount of damage, the player's view is tinted with colors representing blood, armor, or environmental effects. This technique enhances immersion by providing immediate and intuitive feedback on the player's status. In the mid-1990s, such visual cues were innovative, as most games relied solely on numerical indicators. The use of color shifts influenced later titles like System Shock 2 and Bioshock, which expanded on the concept with more complex visual effects."
   - id: "v-calc-powerup-cshift"
-    line_start: 451
-    line_end: 480
+    line_start: 450
+    line_end: 483
     title: "V_CalcPowerupCshift: Visualizing Powerups"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This function calculates color shifts based on active powerups, such as quad damage or invisibility. Each powerup is associated with a unique color, providing immediate visual feedback to the player. This technique was part of Quake's innovative approach to player feedback, ensuring that powerups were not only functional but also visually distinctive. The concept of associating visual effects with gameplay mechanics influenced later games like World of Warcraft and Destiny, which use similar techniques to highlight buffs and abilities."
   - id: "v-calc-refdef"
-    line_start: 865
+    line_start: 864
     line_end: 968
     title: "V_CalcRefdef: Comprehensive View Calculation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine calculates the player's view definition, including position, angles, and offsets. It integrates multiple effects, such as bobbing, roll, idle swaying, and damage feedback, to create a cohesive and immersive experience. The view calculation also accounts for environmental factors, such as water planes and stair steps, ensuring smooth transitions and avoiding graphical glitches. Developed during a time when 3D rendering was still in its infancy, this code showcases id Software's mastery of optimization and realism. The techniques used here influenced later engines like Unreal Engine and Source, which adopted similar approaches to view calculation and rendering."
   - id: "view-initialization-and-cvar-registration"
-    line_start: 1030
+    line_start: 1027
     line_end: 1070
     title: "View Initialization: Modular Design in Action"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

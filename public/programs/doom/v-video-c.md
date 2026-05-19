@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines gamma correction lookup tables (LUTs) used to adjust the brightness levels of the game's visuals. Each table corresponds to a different gamma setting, allowing players to customize the display according to their preferences or hardware capabilities. Gamma correction was crucial in the early 1990s, as monitors varied widely in brightness and color reproduction. By precomputing these tables, DOOM could efficiently apply gamma adjustments without recalculating values during gameplay. This approach reflects the game's focus on performance optimization, ensuring smooth rendering even on modest hardware. Gamma correction techniques like these have become standard in graphics programming, influencing later games and engines such as Quake and Unreal Engine."
   - id: "mark-rect-for-dirty-box"
-    line_start: 140
+    line_start: 139
     line_end: 151
     title: "Tracking screen updates with dirty rectangles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dirty_rectangle"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `V_MarkRect` function updates the `dirtybox` array to track regions of the screen that need redrawing. This technique, known as dirty rectangle optimization, minimizes rendering overhead by focusing only on areas that have changed. In the early 1990s, this was a critical optimization for games running on hardware with limited processing power. By avoiding unnecessary redraws, DOOM could maintain high frame rates while rendering complex scenes. This method has influenced modern game engines, where similar techniques are used to optimize rendering pipelines, especially in 2D games and UI frameworks."
   - id: "copy-rect-between-screens"
-    line_start: 155
+    line_start: 154
     line_end: 196
     title: "Efficient block copying for screen manipulation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `V_CopyRect` function copies a rectangular block of pixels from one screen buffer to another. This routine is essential for operations like transferring portions of the screen or implementing visual effects. The function includes range checks to ensure the copied region stays within valid screen boundaries, reflecting DOOM's robust error handling practices. By directly manipulating screen buffers, DOOM achieves high performance, avoiding the overhead of higher-level abstractions. This low-level approach to graphics rendering influenced later game engines, which continued to use direct framebuffer manipulation for efficiency."
   - id: "draw-patch-to-screen"
-    line_start: 200
+    line_start: 199
     line_end: 263
     title: "Column-based patch rendering for sprites"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `V_DrawPatch` function renders a column-based masked image (patch) onto the screen. This technique is used to draw sprites and other visual elements in DOOM. By iterating through columns and posts, the function efficiently handles transparency and masking, ensuring only visible pixels are drawn. The method leverages precomputed offsets and dimensions stored in the patch structure, optimizing rendering performance. This column-based approach was a hallmark of early 2D and pseudo-3D games, influencing sprite rendering techniques in later titles like Duke Nukem 3D and Quake."
   - id: "draw-patch-flipped"
-    line_start: 266
+    line_start: 265
     line_end: 327
     title: "Flipping sprites for mirrored effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_rendering"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `V_DrawPatchFlipped` function renders a patch to the screen while flipping it horizontally. This capability is useful for creating mirrored visual effects, such as symmetrical character sprites or environmental details. The function adapts the column-based rendering logic from `V_DrawPatch`, reversing the column order to achieve the flip. This feature demonstrates DOOM's versatility in handling graphical transformations, paving the way for more advanced rendering techniques in later games and engines."
   - id: "initialize-screen-buffers"
-    line_start: 480
+    line_start: 479
     line_end: 493
     title: "Memory allocation for screen buffers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"

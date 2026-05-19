@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "entity-rotation-matrix"
-    line_start: 58
+    line_start: 56
     line_end: 71
     title: "Rotating entities in 3D space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotation_matrix"

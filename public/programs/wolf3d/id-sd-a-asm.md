@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "This interrupt service routine handles high-frequency (7000Hz) timer interrupts, enabling rapid updates for sound playback. The routine processes PC speaker sound effects, translating sound data into hardware-specific formats and sending it to the speaker. The high interrupt frequency ensures smooth audio playback, a critical feature for Wolfenstein 3D's immersive experience. At the time, achieving this level of performance required deep knowledge of hardware and assembly programming. This routine exemplifies id Software's commitment to pushing the limits of MS-DOS systems, influencing later games that sought to optimize audio and gameplay synchronization."
   - id: "sound-source-processing"
-    line_start: 444
+    line_start: 439
     line_end: 474
     title: "Sound Source: FIFO and sample playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Source"

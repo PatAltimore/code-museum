@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "firelight-flicker-effect"
-    line_start: 46
+    line_start: 36
     line_end: 61
     title: "Simulating firelight flicker dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine, `T_FireFlicker`, dynamically simulates the flickering of firelight by periodically adjusting the light level of a sector. The flicker effect is achieved by reducing the light level randomly within a specified range, creating an illusion of fluctuating brightness. This was part of DOOM's effort to create more immersive environments, where lighting played a significant role in setting mood and tension. In the early 1990s, dynamic lighting effects were rare in games due to hardware limitations. John Carmack and the id Software team developed these techniques to push the boundaries of what was possible on consumer PCs of the era, such as the Intel 386 and 486 processors. The flicker effect contributed to DOOM's atmospheric design, influencing later games like Quake and Unreal, which expanded on dynamic lighting to create even more realistic environments."
   - id: "spawn-firelight-flicker"
-    line_start: 68
+    line_start: 65
     line_end: 85
     title: "Initializing firelight flicker in sectors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The `P_SpawnFireFlicker` function initializes the firelight flicker effect for a specific sector. It allocates memory for the flicker structure, sets its parameters, and registers it as a thinker—a dynamic entity in DOOM's game loop. This approach reflects id Software's efficient use of memory and processing power, ensuring that lighting effects could be dynamically updated without overwhelming the hardware. By resetting sector attributes and dynamically calculating minimum light levels, the function ensures the flicker effect adapts to the surrounding environment. This modularity in lighting effects paved the way for more sophisticated environmental interactions in later games, influencing titles like Half-Life and Deus Ex, which used lighting to enhance narrative and gameplay."
   - id: "broken-light-flash"
-    line_start: 98
+    line_start: 94
     line_end: 114
     title: "Simulating broken light flashing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `T_LightFlash` subroutine simulates the effect of a broken or malfunctioning light by alternating the light level between maximum and minimum values at random intervals. This effect adds realism and tension to the game environment, particularly in areas designed to feel eerie or abandoned. The randomization of intervals ensures that the flashing pattern feels natural rather than predictable. In the context of 1993, such dynamic lighting effects were groundbreaking, as most games relied on static lighting. The technique demonstrated id Software's ability to innovate within the constraints of limited hardware, influencing the development of dynamic lighting systems in later engines like Unreal Engine and Source Engine."
   - id: "spawn-light-flash"
-    line_start: 121
+    line_start: 119
     line_end: 143
     title: "Initializing broken light flashing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `P_SpawnLightFlash` function sets up the broken light flashing effect for a sector. It allocates memory for the light flash structure, calculates light levels, and registers it as a thinker. This modular approach allows the game to dynamically apply lighting effects to specific sectors during gameplay, enhancing the player's experience. By scanning sectors after the map is loaded, the function ensures that lighting effects are seamlessly integrated into the environment. This technique influenced the development of dynamic environmental effects in later games, such as the atmospheric lighting in Thief and the scripted light changes in Resident Evil."
   - id: "strobe-light-flash"
-    line_start: 155
+    line_start: 152
     line_end: 171
     title: "Creating strobe light effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `T_StrobeFlash` subroutine implements strobe light effects by alternating the light level between bright and dark states at fixed intervals. This effect is often used in DOOM to create dramatic or disorienting environments, such as in areas with high enemy activity or near traps. The strobe effect is a testament to DOOM's innovative use of lighting to influence gameplay and atmosphere. In the 1990s, such effects were rare in games due to hardware limitations, but id Software's efficient algorithms allowed them to include these features without sacrificing performance. The strobe light effect became a staple in horror and action games, influencing titles like Silent Hill and Dead Space."
   - id: "spawn-strobe-light"
-    line_start: 181
+    line_start: 175
     line_end: 209
     title: "Initializing strobe light effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The `P_SpawnStrobeFlash` function initializes strobe light effects for a sector, setting parameters like bright and dark times and registering the effect as a thinker. By allowing synchronization or randomization of the strobe pattern, the function provides flexibility in how the effect is applied, enabling designers to create varied and engaging environments. This modular approach to lighting effects reflects id Software's emphasis on efficient and reusable code. The strobe light initialization technique influenced the design of dynamic lighting systems in later engines, such as the advanced lighting in Unreal Engine and CryEngine."
   - id: "turn-tag-lights-off"
-    line_start: 236
+    line_start: 233
     line_end: 263
     title: "Turning off tagged sector lights"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"

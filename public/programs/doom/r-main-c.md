@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines precomputed trigonometric tables, including `viewangletox` and `xtoviewangle`, which map angles to screen coordinates and vice versa. These tables are critical for DOOM's rendering pipeline, enabling rapid calculations of angles and projections without the overhead of real-time trigonometric computations. In the early 1990s, CPUs lacked the floating-point performance of modern processors, making such optimizations essential. John Carmack, the lead programmer, leveraged these tables to flatten the arc of the player's view onto a 2D screen, simulating a 3D perspective. This approach was inspired by earlier graphics techniques but refined for DOOM's fast-paced gameplay. The use of lookup tables became a standard in game development, influencing engines like Quake and Unreal, and remains relevant in embedded systems and real-time applications today."
   - id: "binary-space-partitioning-traversal"
-    line_start: 156
+    line_start: 155
     line_end: 211
     title: "Binary Space Partitioning for Scene Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `R_PointOnSide` function is part of DOOM's Binary Space Partitioning (BSP) system, which organizes the game world into a tree structure for efficient rendering. BSP divides the map into convex subspaces, allowing the engine to determine visibility and rendering order quickly. This function checks whether a point lies on the front or back side of a partition plane, a fundamental operation in BSP traversal. BSP was a revolutionary technique at the time, enabling DOOM to render complex environments on hardware with limited computational power. Carmack adapted BSP from academic research and earlier games like Wolfenstein 3D, pushing its capabilities further. BSP remains influential, forming the basis for level design in many subsequent engines, including Quake and Source."
   - id: "fixed-point-arithmetic"
-    line_start: 286
+    line_start: 277
     line_end: 374
     title: "Fixed-Point Arithmetic for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InitLightTables` function initializes light levels based on distance and view size, creating the `zlight` table. This table determines the brightness of objects in the game world relative to their distance from the player, simulating dynamic lighting. DOOM's lighting system was groundbreaking, enhancing immersion by making distant objects appear dimmer. The calculations use fixed-point arithmetic and precomputed tables to ensure efficiency. Dynamic lighting was a novel feature in 1993, setting DOOM apart from contemporaries like Wolfenstein 3D. This approach influenced later engines, including Quake, which expanded on dynamic lighting with real-time effects. Today, dynamic lighting is a standard feature in 3D games, but DOOM's implementation remains a landmark in its evolution."
   - id: "rendering-pipeline-setup"
-    line_start: 829
+    line_start: 827
     line_end: 898
     title: "Rendering Pipeline Optimized for Pseudo-3D"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)#Technical_features"

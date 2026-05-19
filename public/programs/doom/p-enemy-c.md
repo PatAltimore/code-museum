@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines two lookup tables (`opposite` and `diags`) that map directional relationships for enemy movement. The `opposite` table specifies the reverse direction for each of the eight cardinal and diagonal directions, while the `diags` table lists diagonal directions. These tables are used by functions like `P_NewChaseDir` to calculate movement paths efficiently. In the early 1990s, computational efficiency was paramount due to limited hardware capabilities, such as the Intel 386 processor, which DOOM targeted. Lookup tables were a common optimization technique, reducing the computational cost of complex calculations by precomputing results. This approach influenced later games, where similar techniques were employed for pathfinding and AI decision-making in real-time strategy and action games."
   - id: "recursive-sound-propagation"
-    line_start: 106
+    line_start: 98
     line_end: 149
     title: "Recursive sound propagation for AI awareness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `P_RecursiveSound` function implements a recursive algorithm to propagate sound alerts through connected sectors in the game world. When a player makes noise, this function wakes up monsters in adjacent sectors, respecting sound-blocking lines. This mechanic was innovative for its time, simulating a form of spatial awareness in enemies. In 1993, AI in games was often rudimentary, relying on simple triggers and proximity checks. DOOM's sound propagation added depth to enemy behavior, making them react dynamically to the player's actions. This technique inspired similar systems in later games, such as Half-Life's AI, which used sound cues to create immersive enemy responses."
   - id: "noise-alert-mechanism"
-    line_start: 159
+    line_start: 154
     line_end: 166
     title: "Noise alert mechanism for enemy coordination"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `P_NoiseAlert` function alerts monsters to the player's presence when a sound is made. It sets a global `soundtarget` and calls `P_RecursiveSound` to propagate the alert through the game world. This mechanism simulates coordinated enemy behavior, where one monster's reaction can trigger others nearby. In the early 1990s, such coordination was rare in games, as most AI systems operated independently. DOOM's approach added a layer of realism and challenge, influencing the design of AI systems in later games like Quake and Unreal, which expanded on group behaviors and environmental awareness."
   - id: "melee-range-check"
-    line_start: 173
+    line_start: 171
     line_end: 192
     title: "Checking melee attack range"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `P_CheckMeleeRange` function determines if an enemy is close enough to attack the player with a melee strike. It calculates the distance between the enemy and its target using `P_AproxDistance` and checks line-of-sight with `P_CheckSight`. This ensures that melee attacks occur only when the player is within range and visible. Collision detection and range checks were critical for real-time gameplay on limited hardware, as they balanced performance with gameplay accuracy. This function's logic laid the groundwork for similar mechanics in modern games, where precise hit detection and range calculations are essential for immersive combat systems."
   - id: "missile-range-check"
-    line_start: 195
+    line_start: 194
     line_end: 255
     title: "Dynamic missile attack range evaluation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `P_CheckMissileRange` function evaluates whether an enemy should use a missile attack based on distance, line-of-sight, and reaction time. It adjusts attack frequency and range dynamically, factoring in the enemy's type and proximity to the player. This nuanced decision-making was advanced for its time, creating varied and unpredictable enemy behaviors. By tailoring attack logic to enemy types, DOOM introduced a level of strategic depth that influenced later games like StarCraft and Halo, where AI units exhibit diverse behaviors based on their roles and capabilities."
   - id: "enemy-movement-logic"
-    line_start: 260
+    line_start: 259
     line_end: 335
     title: "Core enemy movement logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pathfinding"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `P_Move` function handles enemy movement in the game world, calculating new positions based on direction and speed. It checks for obstacles and adjusts movement accordingly, including floating behavior for certain enemy types. This function exemplifies DOOM's efficient pathfinding approach, which relied on simple yet effective algorithms to navigate complex environments. Pathfinding and movement systems like this became foundational in game development, influencing titles such as Diablo and The Elder Scrolls series, which expanded on these principles to create more sophisticated navigation systems."
   - id: "keen-die-special-event"
-    line_start: 562
+    line_start: 561
     line_end: 593
     title: "Special event: Commander Keen's death"
     wikipedia_url: "https://en.wikipedia.org/wiki/Commander_Keen"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `A_KeenDie` function triggers a special event in DOOM II's secret level (Map 32) when all Commander Keen enemies are defeated. It scans active game objects to check if any Keen enemies remain alive and opens a door tagged with the special number 666 if none are found. This Easter egg references id Software's earlier game series, Commander Keen, showcasing the developers' playful nods to their history. Such hidden features became a hallmark of id Software's games, inspiring other developers to include Easter eggs and secret events in their titles, enriching player experiences."
   - id: "enemy-chase-behavior"
-    line_start: 669
+    line_start: 667
     line_end: 776
     title: "Dynamic enemy chase behavior"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `A_Chase` function defines how enemies pursue players, incorporating melee and missile attacks, movement adjustments, and target switching. It uses state transitions to determine the enemy's next action, creating dynamic and responsive behaviors. This finite-state machine approach was groundbreaking, allowing enemies to adapt to player actions and maintain pressure during combat. The concept of state-driven AI became a standard in game development, influencing titles like Half-Life and Bioshock, where enemy behaviors are similarly governed by state machines to create engaging and unpredictable encounters."
   - id: "positional-attack-randomized-angles"
-    line_start: 801
+    line_start: 799
     line_end: 819
     title: "Positional attack with randomized angles"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `A_VileChase` function implements the Arch-Vile's unique ability to resurrect fallen enemies. It scans the area for corpses that meet specific criteria, such as being stationary and having a valid resurrection state. Once a suitable corpse is found, the Arch-Vile animates it back into combat, complete with restored health and behavior. This mechanic added a strategic layer to gameplay, forcing players to prioritize the Arch-Vile to prevent it from overwhelming them with revived enemies. The resurrection system was an innovative feature that showcased DOOM's ability to create dynamic, evolving challenges. It influenced later games like Diablo II, which incorporated corpse-raising mechanics for necromancer characters."
   - id: "lost-soul-spawning-and-limit"
-    line_start: 1449
+    line_start: 1445
     line_end: 1505
     title: "Lost soul spawning with level limits"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -126,15 +126,15 @@ enhancements:
     image_caption: ""
     content: "The `A_PainShootSkull` function governs the spawning of Lost Souls by the Pain Elemental enemy. It includes a check to ensure that no more than 20 Lost Souls exist on the level at any given time, preventing excessive resource consumption and gameplay imbalance. This careful management of in-game entities reflects the constraints of 1993 hardware, where memory and processing power were limited. The spawning mechanic also added a tactical element, as players had to deal with both the Pain Elemental and its summoned minions. This system influenced later games that featured summoning mechanics, such as Starcraft and Warcraft III."
   - id: "radius-explosion-environmental-damage"
-    line_start: 1596
-    line_end: 1600
+    line_start: 1595
+    line_end: 1601
     title: "Radius-based explosion for environmental damage"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `A_Explode` function handles explosions caused by certain enemies or objects, applying damage to all entities within a specified radius. This mechanic simulates area-of-effect damage, adding realism and tactical depth to gameplay. Players must consider positioning to avoid collateral damage, especially in confined spaces. The radius-based explosion system was a significant innovation in DOOM, influencing later games like Half-Life and Call of Duty, which expanded on environmental interactions and physics-based damage."
   - id: "boss-death-special-effects"
-    line_start: 1609
+    line_start: 1604
     line_end: 1756
     title: "Boss death triggers level-specific events"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"

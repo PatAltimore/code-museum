@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "include-dosseg-setup"
-    line_start: 9
+    line_start: 3
     line_end: 29
     title: "Setting up segment assumptions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This section defines key variables used for device I/O operations, such as `IOXAD`, `DEVIOBUF`, and `DMAAdd`. These variables represent memory locations for device buffers, transfer addresses, and other critical parameters. By centralizing these definitions, the code ensures modularity and reusability, allowing device drivers to interact with hardware in a standardized way. Tim Paterson's design reflects the influence of Unix's modular approach to device handling, adapted for the constraints of the 8086 architecture. This modularity became a hallmark of MS-DOS, enabling OEMs to extend functionality by adding custom device drivers. The concept of standardized device interaction persists in modern operating systems, where APIs like Windows Driver Model (WDM) and Linux's device file system build on these early principles."
   - id: "iofunc-retry-error-handling"
-    line_start: 91
+    line_start: 87
     line_end: 165
     title: "Retrying I/O operations on error"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_detection_and_correction"

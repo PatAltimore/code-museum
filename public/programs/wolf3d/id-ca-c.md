@@ -30,15 +30,15 @@ summary:
 
 enhancements:
   - id: "id-software-caching-manager"
-    line_start: 8
-    line_end: 9
+    line_start: 5
+    line_end: 15
     title: "Id Software's Caching Manager Overview"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section introduces the caching manager, a critical component of Wolfenstein 3D's asset management system. Designed to operate before the memory manager, it ensures that headers are loaded into the data segment early in the program's execution. In 1992, memory constraints on MS-DOS systems required developers to carefully manage resources, as typical PCs had only 640 KB of conventional memory. John Carmack and the id Software team developed this system to dynamically load and unload assets, enabling the game to run smoothly despite its demanding graphical and audio requirements. The caching manager's principles influenced later game engines, including id Tech 1, used in Doom."
   - id: "huffman-node-definition"
-    line_start: 105
+    line_start: 104
     line_end: 108
     title: "Huffman Node Structure for Compression"
     wikipedia_url: "https://en.wikipedia.org/wiki/Huffman_coding"
@@ -46,103 +46,103 @@ enhancements:
     image_caption: ""
     content: "This section defines the Huffman node structure, a key element in the game's compression system. Huffman coding is a lossless data compression algorithm that assigns shorter codes to more frequent data values. By using this structure, Wolfenstein 3D efficiently stores graphics and audio assets, reducing their memory footprint. In the early 1990s, compression techniques like Huffman coding were essential for fitting large amounts of data into limited storage and memory. The approach here laid the groundwork for similar systems in later games, including Doom and Quake, where efficient asset management remained crucial."
   - id: "debug-file-handling"
-    line_start: 171
-    line_end: 175
+    line_start: 169
+    line_end: 180
     title: "Opening and Closing Debug Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
     content: "These routines handle the opening and closing of a debug file, 'DEBUG.TXT', used for logging during development. By creating and writing to this file, the developers could monitor program behavior and diagnose issues. Debugging tools were less sophisticated in the early 1990s, so manual logging was a common practice. This approach reflects the hands-on debugging methods employed by id Software during Wolfenstein 3D's development. The use of debug files became a standard practice in software development, influencing debugging techniques in modern game engines and programming environments."
   - id: "graphics-chunk-length-calculation"
-    line_start: 195
-    line_end: 211
+    line_start: 193
+    line_end: 200
     title: "Calculating Graphics Chunk Lengths"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
     content: "This subroutine calculates the length of a graphics chunk by reading its explicit length and determining the compressed size. It positions the file pointer for subsequent data reads, ensuring efficient access to compressed assets. In the constrained environment of MS-DOS, precise file handling was necessary to manage limited memory and storage. This technique allowed Wolfenstein 3D to dynamically load graphical assets, contributing to its smooth gameplay and fast-paced action. Similar methods were adopted in later games, where dynamic asset loading became a hallmark of efficient game design."
   - id: "huffman-table-optimization"
-    line_start: 387
-    line_end: 416
+    line_start: 385
+    line_end: 402
     title: "Optimizing Huffman Tables for Expansion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Huffman_coding"
     image_url: ""
     image_caption: ""
     content: "This routine optimizes a Huffman table by converting node numbers into actual memory addresses. It prepares the table for efficient data expansion during runtime. Huffman coding was a popular choice for compression in the early 1990s due to its simplicity and effectiveness. By optimizing the table, id Software ensured that decompression routines could operate quickly, minimizing performance overhead. The technique demonstrated here influenced compression strategies in later games and software, where similar optimizations were used to balance memory efficiency and runtime speed."
   - id: "carmack-expand-routine"
-    line_start: 609
-    line_end: 675
+    line_start: 604
+    line_end: 665
     title: "Carmack's RLE Compression Expansion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Run-length_encoding"
     image_url: ""
     image_caption: ""
     content: "This routine implements Carmack's RLE (Run-Length Encoding) expansion algorithm, decompressing map data stored in a compact format. RLE is a simple compression technique that replaces sequences of repeated values with a single value and a count. John Carmack adapted this method to efficiently store and retrieve map data, enabling Wolfenstein 3D to handle complex levels within the constraints of MS-DOS memory. The algorithm's simplicity and effectiveness made it a staple in game development, influencing compression techniques in Doom, Quake, and beyond."
   - id: "graphics-file-setup"
-    line_start: 861
-    line_end: 940
+    line_start: 859
+    line_end: 929
     title: "Setting Up Graphics File Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
     content: "This routine initializes graphics file handling by loading Huffman dictionaries and data offsets, then opening the graphics file for continuous access during gameplay. It also decompresses and loads picture headers into memory. By keeping the graphics file open, the game minimizes file I/O overhead, ensuring smooth asset loading. This approach reflects id Software's ingenuity in managing resources on MS-DOS systems, where disk access was slow and memory was limited. The techniques demonstrated here influenced asset management in later game engines, including id Tech 1 and id Tech 2."
   - id: "map-file-setup"
-    line_start: 942
-    line_end: 1024
+    line_start: 940
+    line_end: 1012
     title: "Initializing Map File Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Run-length_encoding"
     image_url: ""
     image_caption: ""
     content: "This routine sets up map file handling by loading offsets and tile information, opening the map data file, and allocating memory for map planes. It uses Carmack's RLE compression to store and retrieve map data efficiently. The ability to handle large, complex maps within the constraints of MS-DOS memory was a key innovation in Wolfenstein 3D. This routine exemplifies id Software's mastery of compression and memory management, techniques that became standard in later games like Doom and Quake, where complex level design demanded efficient data handling."
   - id: "setup-audio-file-loading"
-    line_start: 1026
-    line_end: 1081
+    line_start: 1024
+    line_end: 1068
     title: "Loading audio files dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section initializes the audio file setup for Wolfenstein 3D, dynamically loading audio headers and data files. The code distinguishes between linked and standalone audio headers, optimizing memory usage based on the configuration. In the early 1990s, PCs were limited by small amounts of RAM and slow disk access. Developers like John Carmack had to design systems that could load and unload assets dynamically to fit within these constraints. This approach ensured that audio data could be efficiently accessed without consuming excessive memory. The dynamic loading system laid the groundwork for future games that required similar techniques to handle large amounts of data. Techniques like these influenced subsequent game engines, including id Tech, which continued to refine asset management strategies."
   - id: "startup-and-shutdown-procedures"
-    line_start: 1083
-    line_end: 1132
+    line_start: 1081
+    line_end: 1122
     title: "Startup and shutdown: managing resources"
     wikipedia_url: "https://en.wikipedia.org/wiki/Resource_management_(computing)"
     image_url: ""
     image_caption: ""
     content: "The CA_Startup and CA_Shutdown routines handle the initialization and cleanup of resources, including opening and closing files for maps, graphics, and audio. These routines reflect the meticulous attention to resource management required in the era of MS-DOS, where improper handling of file descriptors or memory could crash the system. The startup routine ensures all necessary files are loaded, while the shutdown routine closes them to prevent resource leaks. This pattern of resource management became a standard practice in software development, influencing how modern applications handle initialization and cleanup."
   - id: "audio-chunk-caching"
-    line_start: 1134
-    line_end: 1226
+    line_start: 1132
+    line_end: 1246
     title: "Caching audio chunks for real-time playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Audio_data"
     image_url: ""
     image_caption: ""
     content: "The CA_CacheAudioChunk and CA_LoadAllSounds routines manage the caching of audio data, ensuring that sound effects are available for real-time playback. By dynamically loading and decompressing audio chunks, the system avoids keeping all audio data in memory, which would be infeasible on early PCs. The use of Huffman compression reduces the size of audio files, and the code includes logic to handle both small and large buffers efficiently. This approach to audio management influenced later game engines, which adopted similar techniques to handle increasingly complex soundscapes."
   - id: "graphics-chunk-expansion"
-    line_start: 1261
-    line_end: 1379
+    line_start: 1259
+    line_end: 1365
     title: "Expanding and caching graphics chunks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics"
     image_url: ""
     image_caption: ""
     content: "The CAL_ExpandGrChunk and CA_CacheGrChunk routines handle the decompression and caching of graphics data. The system uses Huffman compression to store graphics efficiently and decompresses them on demand. The code includes logic to handle sparse tiles, ensuring that only necessary data is loaded into memory. This technique allowed Wolfenstein 3D to display detailed graphics while operating within the constraints of early PC hardware. The use of real-time decompression and caching influenced the design of later game engines, which continued to refine these techniques to handle increasingly complex visual assets."
   - id: "screen-caching-and-map-handling"
-    line_start: 1381
-    line_end: 1504
+    line_start: 1379
+    line_end: 1491
     title: "Caching screens and specialized map handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
     image_caption: ""
     content: "The CA_CacheScreen and CA_CacheMap routines manage the caching of screen and map data. The map caching system is specialized for Wolfenstein 3D's 64x64 map size, using techniques like RLEW (Run-Length Encoded Word) compression to store map data efficiently. The screen caching routine decompresses graphics directly onto the screen, enabling fast updates during gameplay. These routines highlight the innovative approaches id Software used to handle large amounts of data on constrained hardware. The map handling system influenced the design of later games with tile-based maps, including Doom and other id Software titles."
   - id: "level-management-and-purging"
-    line_start: 1506
-    line_end: 1619
+    line_start: 1504
+    line_end: 1637
     title: "Managing levels and purging memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The CA_UpLevel, CA_DownLevel, CA_ClearMarks, and CA_ClearAllMarks routines manage memory purging and level transitions. By marking assets as purgable or non-purgable, the system ensures that only necessary data remains in memory. This approach was critical for maintaining performance on early PCs, where memory constraints were a constant challenge. The level management system allowed Wolfenstein 3D to handle transitions smoothly, influencing the design of memory management systems in later games and engines."
   - id: "cache-marks-and-error-handling"
-    line_start: 1621
+    line_start: 1619
     line_end: 1768
     title: "Caching marks and handling errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"

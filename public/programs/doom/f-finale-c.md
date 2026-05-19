@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the stages of the finale sequence in DOOM, which include text display, art screens, and the character cast. These stages are central to the game's conclusion, providing players with a sense of accomplishment and closure. In the early 1990s, such sequences were rare in games, as most titles ended abruptly or with simple text screens. By dividing the finale into distinct stages, id Software created a cinematic experience that left a lasting impression on players. This approach influenced later games, encouraging developers to invest in more elaborate ending sequences."
   - id: "finale-text-setup"
-    line_start: 59
+    line_start: 56
     line_end: 83
     title: "Text strings for episode finales"
     wikipedia_url: "https://doomwiki.org/wiki/Finale"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "This block defines the text strings displayed during the finale sequences for each episode of DOOM. These strings are stored as pointers to predefined constants, such as E1TEXT for Episode 1. The text provides narrative context and rewards players for completing the game. In the era of DOOM's development, memory constraints often required creative solutions for storing and displaying text. By using pointers to predefined constants, id Software optimized memory usage while maintaining flexibility in localization or modification. This technique became a standard practice in game development, influencing how text assets were managed in subsequent titles."
   - id: "start-finale-sequence"
-    line_start: 96
+    line_start: 93
     line_end: 191
     title: "Starting the finale sequence"
     wikipedia_url: "https://doomwiki.org/wiki/Finale"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `F_StartFinale` function initializes the finale sequence based on the game's mode and episode. It sets the game state to GS_FINALE, disables active gameplay elements like the automap, and selects the appropriate text and background assets. This function demonstrates id Software's attention to detail in tailoring the finale experience to different versions of DOOM, such as shareware, retail, and commercial editions. By dynamically adjusting the finale content, the developers ensured that players across all versions received a polished and engaging conclusion. This modular approach influenced later games, where dynamic content adjustment based on game state became a common practice."
   - id: "text-rendering-animation"
-    line_start: 257
+    line_start: 253
     line_end: 327
     title: "Rendering finale text dynamically"
     wikipedia_url: "https://doomwiki.org/wiki/Text_rendering"
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `F_TextWrite` function handles the dynamic rendering of text during the finale sequence. It erases the screen to a tiled background and draws text character by character, simulating a typewriter effect. This technique enhances the storytelling experience by creating a sense of anticipation and engagement. In 1993, such dynamic text rendering was innovative, as most games relied on static text displays. The method used here influenced later games, particularly in RPGs and adventure titles, where text animations became a staple for delivering narrative content. The typewriter effect remains a popular choice for text presentation in modern games."
   - id: "character-casting-sequence"
-    line_start: 334
+    line_start: 329
     line_end: 360
     title: "Casting DOOM's iconic monsters"
     wikipedia_url: "https://doomwiki.org/wiki/Monster"
@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The `F_StartCast` function begins the casting sequence, transitioning the game state and setting up the initial monster animation. It forces a screen wipe and plays background music to create a dramatic effect. This function exemplifies id Software's ability to blend technical precision with artistic flair, crafting memorable moments that resonate with players. The casting sequence became a hallmark of DOOM's legacy, inspiring other games to include similar celebratory animations. It also demonstrated the potential of combining gameplay elements with cinematic techniques, paving the way for more integrated storytelling in video games."
   - id: "bunny-scroll-animation"
-    line_start: 644
+    line_start: 641
     line_end: 694
     title: "Scrolling animation with the bunny"
     wikipedia_url: "https://doomwiki.org/wiki/Bunny_scroll"

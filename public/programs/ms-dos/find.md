@@ -30,15 +30,15 @@ summary:
 
 enhancements:
   - id: "option-flags-initialization"
-    line_start: 265
-    line_end: 293
+    line_start: 251
+    line_end: 283
     title: "Option Flags Initialization for FIND"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section defines the option flags used by the FIND utility, initializing them to 0 (unset). The flags correspond to command-line options such as 'v', 'c', and 'n', which control the behavior of the program (e.g., printing all lines except matches, counting matches, or numbering lines). This design reflects the influence of Unix utilities, which commonly use flags to modify program behavior. At the time, MS-DOS was evolving to support more sophisticated command-line utilities, inspired by Unix and XENIX. The modular approach seen here, where options are stored in a table and accessed dynamically, would become a standard practice in software development. This technique influenced later DOS utilities and even modern command-line tools in Linux and Windows."
   - id: "version-checking-routine"
-    line_start: 295
+    line_start: 293
     line_end: 325
     title: "Version Checking Routine for Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This routine checks the DOS version number to ensure compatibility with FIND's requirements. If the version is below 2.0, it displays an error message and exits gracefully. This reflects the challenges developers faced in the early 1980s, where software had to account for varying capabilities across DOS versions. Tim Paterson and the Microsoft team were building utilities for a rapidly evolving operating system, where backward compatibility was critical for adoption. The practice of version checking became a staple in software development, ensuring that programs could adapt to different environments. This routine also highlights the importance of error handling in assembly, a skill that was essential in the constrained memory and processing environments of early PCs."
   - id: "command-line-options-parsing"
-    line_start: 383
+    line_start: 381
     line_end: 459
     title: "Parsing Command-Line Options in FIND"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This section implements a string matching routine using the REPZ and SCASB instructions, which are optimized for searching and comparing strings in memory. The code scans through a buffer to find a match for a given string argument. If a match is found, it checks the lengths of the strings to ensure a full match. This approach leverages the efficiency of assembly language instructions to handle repetitive tasks directly on hardware registers, minimizing overhead. In 1983, MS-DOS was evolving to support more complex file operations, and efficient string processing was critical for commands like FIND. Tim Paterson's work reflects the constraints of early PCs, such as limited memory and processing power, which required careful optimization. Techniques like these influenced later text-processing utilities and search algorithms in operating systems and programming languages."
   - id: "buffer-management-during-file-scanning"
-    line_start: 1163
+    line_start: 1137
     line_end: 1187
     title: "Buffer management during file scanning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This section handles errors during file operations, such as read and open failures. It checks if the file being accessed is standard input and, if not, closes the file and prints an error message. The error messages are constructed using predefined strings and lengths, which are passed to a routine for output. In the early 1980s, robust error handling was essential for user-friendly command-line tools, as users relied on clear feedback to diagnose issues. This approach to error reporting influenced the design of subsequent command-line utilities and APIs, where standardized error codes and messages became a norm. Developers studying MS-DOS often adapted these techniques for their own software, ensuring consistent and informative error handling."
   - id: "binary-to-ascii-conversion"
-    line_start: 1491
+    line_start: 1461
     line_end: 1523
     title: "Binary-to-ASCII conversion routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "This routine converts binary numbers into ASCII characters for display. It repeatedly divides the binary number by 10, extracts the remainder, and converts it to its ASCII equivalent. The digits are stored in reverse order and then deposited into a buffer for output. Binary-to-ASCII conversion was a common requirement for displaying numeric data in human-readable form, especially in command-line environments. In MS-DOS, this routine enabled commands like FIND to report counts and other statistics. The technique influenced the design of similar routines in other operating systems and programming languages, where efficient numeric-to-string conversion remains a fundamental operation."
   - id: "kanji-character-processing"
-    line_start: 1691
+    line_start: 1667
     line_end: 1771
     title: "Kanji character processing for Japanese text"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"

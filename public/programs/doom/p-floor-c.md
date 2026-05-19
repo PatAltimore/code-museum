@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "move-plane-floor-ceiling"
-    line_start: 48
+    line_start: 41
     line_end: 203
     title: "Handling floor and ceiling movement dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_engine"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "The `T_MovePlane` function is responsible for moving floors and ceilings within a sector, either up or down, while checking for potential collisions or crushing effects. This routine is central to DOOM's dynamic environment, allowing for interactive elements like elevators, crushing ceilings, and rising platforms. At the time, DOOM's developers were pushing the limits of what was possible on consumer-grade hardware, relying on clever algorithms to simulate 3D environments efficiently. The function's design reflects the constraints of the era, such as limited memory and processing power, which necessitated careful optimization. By abstracting floor and ceiling movement into a single function, the developers ensured consistency and reusability across the game's levels. This approach influenced later game engines, such as the Build engine used in Duke Nukem 3D, which also featured dynamic level elements. The concept of interactive environments has since become a staple in modern gaming, appearing in engines like Unreal Engine and Unity."
   - id: "move-floor-destination"
-    line_start: 209
+    line_start: 206
     line_end: 254
     title: "Moving floors to target heights"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The `T_MoveFloor` function orchestrates the movement of floors to their destination heights, either raising or lowering them. It interacts with `T_MovePlane` to execute the movement and plays sound effects to enhance the player's experience. This function also handles special cases, such as changing textures or sector properties when the floor reaches its destination. In the early 1990s, such dynamic level interactions were groundbreaking, contributing to DOOM's immersive gameplay. The ability to alter the environment in real-time added depth to level design, allowing for puzzles, traps, and other gameplay elements. This technique inspired similar mechanics in later games, such as Half-Life's scripted sequences and Portal's dynamic environments. The use of sound effects to signal floor movement also set a precedent for audio feedback in games, a feature now ubiquitous in modern titles."
   - id: "handle-floor-types"
-    line_start: 259
+    line_start: 256
     line_end: 443
     title: "Implementing diverse floor movement types"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_engine"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `EV_DoFloor` function handles various types of floor movements, such as lowering to the lowest surrounding floor, raising to the nearest ceiling, or turbo-lowering for faster movement. It dynamically allocates memory for floor movement objects and assigns them to sectors, ensuring smooth transitions and interactions. This function exemplifies DOOM's modular approach to level mechanics, where different movement types could be combined to create unique gameplay scenarios. In 1993, this level of flexibility was rare in games, as most titles relied on static environments. The modular design allowed DOOM's levels to feel alive and responsive, setting a new standard for interactivity in gaming. Later engines, such as Quake's, expanded on this concept, introducing even more dynamic elements like rotating platforms and destructible environments. The ability to script diverse floor behaviors also influenced level editors, enabling creators to design intricate and engaging levels."
   - id: "build-staircase-mechanics"
-    line_start: 452
+    line_start: 449
     line_end: 554
     title: "Building staircases dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"

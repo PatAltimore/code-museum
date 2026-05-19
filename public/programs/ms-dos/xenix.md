@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `chmod` subroutine allows users to modify file attributes, such as read-only or hidden status. This functionality mirrors the Unix `chmod` command, showcasing the influence of XENIX on MS-DOS v2.0. By introducing attribute manipulation, MS-DOS expanded its file system capabilities, enabling more granular control over files. This was a significant step forward for personal computing, as it allowed software developers to implement security and organizational features previously reserved for larger systems. The concept of file attributes persists in modern operating systems, with Windows inheriting and expanding these capabilities through NTFS and attribute flags."
   - id: "current-dir-dump"
-    line_start: 1243
+    line_start: 1223
     line_end: 1341
     title: "Dumping the current directory into user space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Working_directory"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `$CURRENT_DIR` procedure retrieves the current working directory and transfers it to a user-defined memory area. This feature was crucial for enabling applications to interact with the file system dynamically, a capability inspired by Unix's working directory concept. At the time, MS-DOS v2.0 was evolving to support hierarchical file systems, making directory management more complex and powerful. This routine reflects the growing importance of user-space interaction with system-level data. Modern operating systems have refined this approach, integrating APIs for seamless directory management across diverse programming environments."
   - id: "rename-directory-entries"
-    line_start: 1373
+    line_start: 1351
     line_end: 1491
     title: "Renaming files: moving directory entries"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rename_(computing)"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `$RENAME` procedure enables the renaming of files by manipulating directory entries directly. This routine checks access permissions, validates paths, and ensures that source and destination drives match before performing the operation. The ability to rename files was a key feature in MS-DOS v2.0's enhanced file system, reflecting its Unix-inspired design. By introducing such functionality, MS-DOS allowed users to organize and manage files more effectively, paving the way for more sophisticated file management systems. Modern file systems, such as NTFS and ext4, have built on this concept, offering atomic rename operations and journaling for reliability."
   - id: "find-first-file-search"
-    line_start: 1525
+    line_start: 1501
     line_end: 1713
     title: "Finding the first matching file"
     wikipedia_url: "https://en.wikipedia.org/wiki/Glob_(programming)"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `$FIND_FIRST` procedure searches for the first file matching a given pattern, such as a filename or extension. It validates the path, checks attributes, and retrieves file metadata, storing it in a buffer for further processing. This routine was essential for enabling wildcard searches and directory traversal in MS-DOS v2.0, reflecting the influence of Unix's globbing mechanisms. By introducing such capabilities, MS-DOS enhanced its usability for developers and end-users alike. The concept of file searching has evolved significantly, with modern systems offering advanced indexing and search algorithms, such as Windows Search and Linux's `find` command."
   - id: "find-next-file-search"
-    line_start: 1741
+    line_start: 1721
     line_end: 1801
     title: "Scanning for the next matching file"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "include-directives-and-segment-assumptions"
-    line_start: 9
+    line_start: 3
     line_end: 21
     title: "Setting the stage: INCLUDE directives"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The get_io_fcb subroutine converts a Job File Number (JFN) into a File Control Block (FCB), linking file identifiers to their metadata. This operation is crucial for managing file I/O in MS-DOS, where FCBs store information such as file size, position, and device ID. The routine uses stack manipulation and segment register assumptions to ensure the correct memory layout, reflecting the low-level control required in 8086 assembly programming. By abstracting file identifiers into FCBs, MS-DOS simplifies file management for applications, a concept that influenced the design of file handles and descriptors in later operating systems."
   - id: "getthisdrv-and-phydrv-subroutines"
-    line_start: 995
+    line_start: 989
     line_end: 1013
     title: "GetThisDrv: Finding the current drive"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The GetThisDrv subroutine determines the physical drive corresponding to a logical drive identifier, such as 'A' or 'B'. It validates the input and updates the THISDRV variable with the physical drive number. This routine reflects the simplicity of MS-DOS's drive management system, which relied on single-letter identifiers for drives. The concept of logical-to-physical drive mapping was essential for supporting removable media like floppy disks. This approach influenced later operating systems, which expanded on drive abstraction to include network drives and virtual drives, paving the way for modern storage solutions."
   - id: "get-this-drive-cluster-calculation"
-    line_start: 1015
+    line_start: 1019
     line_end: 1077
     title: "Cluster calculations for FAT directory reading"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"

@@ -27,7 +27,7 @@ summary:
 
 enhancements:
   - id: "sound-initialization-and-channel-allocation"
-    line_start: 161
+    line_start: 156
     line_end: 192
     title: "Sound Initialization and Channel Allocation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
@@ -51,7 +51,7 @@ enhancements:
     image_caption: ""
     content: "This section handles the playback and caching of music tracks, ensuring that the appropriate track is loaded and played when needed. The caching mechanism minimizes disk I/O during gameplay, improving performance on systems with slow storage devices. By registering and playing music tracks dynamically, DOOM creates a seamless auditory experience that adapts to gameplay. The use of lump-based caching reflects the game's broader data management strategy, which was designed to optimize performance on hardware with limited resources. This approach influenced the design of subsequent game engines, including id Software's Quake engine, which expanded on these principles to handle more complex audio systems."
   - id: "dynamic-sound-parameters"
-    line_start: 753
+    line_start: 747
     line_end: 818
     title: "Dynamic Sound Parameters: Distance and Orientation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Audio_signal_processing"
@@ -59,7 +59,7 @@ enhancements:
     image_caption: ""
     content: "This function adjusts sound parameters like volume, stereo separation, and pitch based on the listener's position relative to the sound source. It calculates an approximate Euclidean distance using a fast algorithm and determines stereo separation using trigonometric functions. The use of fixed-point arithmetic reflects the constraints of early 1990s hardware, where floating-point operations were often too slow for real-time applications. By dynamically attenuating sound based on distance and orientation, DOOM creates a spatial audio experience that enhances immersion. This technique laid the groundwork for more advanced spatial audio systems in later games, such as those found in the Unreal Engine and modern VR applications."
   - id: "sound-channel-management"
-    line_start: 827
+    line_start: 823
     line_end: 875
     title: "Sound Channel Management: Prioritization and Allocation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"

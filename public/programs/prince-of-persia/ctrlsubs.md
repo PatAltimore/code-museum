@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "read-block-recursive-handling"
-    line_start: 149
+    line_start: 132
     line_end: 198
     title: "Recursive handling of offscreen blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Recursion_(computer_science)"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section implements the `RDBLOCK` and `handler` routines, which manage block references both onscreen and offscreen. The `RDBLOCK` routine reads block data based on screen coordinates, while the `handler` routine recursively adjusts coordinates when blocks fall outside the visible screen. This ensures seamless transitions between screens, a critical feature for a game with interconnected environments. In 1989, memory constraints on the Apple II required such efficient handling of spatial data. Jordan Mechner's use of recursion here is notable for its elegance and compactness, allowing the game to handle complex spatial relationships within the limited 6502 assembly language. This approach influenced later games with interconnected worlds, including platformers like Super Mario Bros. and Metroid, which also relied on efficient spatial calculations."
   - id: "screen-adjacency-lookup"
-    line_start: 244
+    line_start: 236
     line_end: 283
     title: "Screen adjacency via lookup tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
@@ -46,47 +46,47 @@ enhancements:
     image_caption: ""
     content: "The `GETSCRNS` routine calculates the adjacent screens surrounding the current visible screen (`VisScrn`). Using lookup tables (`MAP`), it determines the screens to the left, right, above, below, and diagonally. This method minimizes computation time by predefining adjacency relationships, a necessity given the Apple II's limited processing power. Mechner's use of lookup tables reflects a broader trend in 1980s game development, where precomputed data structures were favored to optimize performance. This technique became a staple in game design, influencing titles like The Legend of Zelda and later 3D games where spatial relationships between areas are critical."
   - id: "character-base-x-coordinate"
-    line_start: 329
-    line_end: 352
+    line_start: 320
+    line_end: 340
     title: "Calculating character base X-coordinates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
     content: "The `GETBASEX` routine calculates the base X-coordinate of the character based on frame data and facing direction. This is essential for aligning animation frames with the character's physical position in the game world. Mechner's rotoscoping technique, where he traced filmed movements, required precise synchronization between animation and gameplay. The routine also incorporates adjustments for the character's facing direction (`CharFace`), ensuring accurate positioning during mirrored animations. This level of detail in animation and movement set Prince of Persia apart as the first cinematic platformer, influencing later titles like Another World and Flashback."
   - id: "add-character-x-coordinate"
-    line_start: 353
-    line_end: 413
+    line_start: 342
+    line_end: 405
     title: "Adding to character X-coordinates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
     content: "The `ADDCHARX` and `ADDFCHARX` routines adjust the character's X-coordinate based on movement direction and pixel offsets. These routines handle both absolute and fractional adjustments, ensuring smooth transitions and precise collision detection. By factoring in the character's facing direction (`CharFace`), they maintain consistency in movement mechanics. This precision was vital for Prince of Persia's fluid animations and realistic physics, which were groundbreaking in 1989. The techniques developed here influenced collision detection systems in later platformers and action games, including Tomb Raider and Uncharted."
   - id: "setup-character-frame-advance"
-    line_start: 794
-    line_end: 851
+    line_start: 781
+    line_end: 841
     title: "Setting up character for frame advancement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
     content: "The `SETUPCHAR` routine prepares character data for frame advancement, translating game-world coordinates into screen coordinates and decoding animation frames. This routine integrates multiple data sources, including character position (`CharX`, `CharY`), facing direction (`CharFace`), and frame-specific offsets (`Fdx`, `Fdy`). Mechner's meticulous attention to detail ensures that animations align perfectly with gameplay, a hallmark of Prince of Persia's cinematic style. This approach to animation setup influenced later games that prioritized realism and fluidity, such as Shadow of the Colossus and The Last of Us."
   - id: "setup-sword-visibility"
-    line_start: 852
-    line_end: 904
+    line_start: 843
+    line_end: 895
     title: "Handling sword visibility and animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
     content: "The `SETUPSWORD` routine determines whether the character's sword is visible and prepares its animation data. It checks multiple conditions, including character life (`CharLife`), position (`CharPosn`), and frame-specific sword visibility (`Fsword`). If the sword is visible, the routine calculates its position relative to the character and adds it to the object table. This level of detail in handling weapon animations contributed to Prince of Persia's immersive gameplay and visual fidelity. The technique of dynamically adjusting weapon visibility and position influenced action games like Assassin's Creed and Ghost of Tsushima."
   - id: "get-frame-pointer"
-    line_start: 905
-    line_end: 1016
+    line_start: 897
+    line_end: 964
     title: "Frame pointer calculation for animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
     content: "The `GETFRAME`, `getaltframe1`, and `getaltframe2` routines calculate pointers to animation frame definitions based on the current frame number. These routines support multiple character sets, including the main character, enemies, and secondary characters like the Princess and Vizier. By dynamically adjusting frame pointers, the game achieves seamless transitions between animations, a key feature of its cinematic style. Mechner's innovative use of frame pointers and encoded animation data laid the groundwork for modern animation systems in games, influencing titles like Mortal Kombat and Street Fighter."
   - id: "decode-sword-image"
-    line_start: 1017
+    line_start: 1007
     line_end: 1049
     title: "Decoding sword and character images"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
@@ -94,32 +94,32 @@ enhancements:
     image_caption: ""
     content: "This subroutine decodes the sword and character image data based on the current state of the game. It uses bitwise operations to extract specific bits from the image and sword flags, combining them to determine the appropriate character table and image. At the time, Jordan Mechner was working within the constraints of the Apple II's 128K memory, necessitating efficient use of data structures and bit manipulation. The rotoscoping technique, where Mechner traced his brother's movements frame by frame, added a cinematic realism to the game. This decoding logic ensured smooth transitions between animations, a hallmark of Prince of Persia's groundbreaking visual style. Later games in the cinematic platformer genre, such as Another World and Flashback, adopted similar techniques for animation and image handling."
   - id: "get-character-edges"
-    line_start: 1071
-    line_end: 1170
+    line_start: 1057
+    line_end: 1159
     title: "Calculating character edges for collision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
     content: "The GETEDGES subroutine calculates the boundaries of the character's image, including left, right, top, and bottom edges. These values are crucial for collision detection and determining interactions with the environment. The routine also converts screen coordinates to the Apple II's 140-pixel resolution and adjusts for character facing direction. In 1989, collision detection was a significant challenge for platformers, especially on hardware with limited processing power. Mechner's approach here is methodical, leveraging precomputed tables and efficient arithmetic to minimize runtime calculations. This foundational work influenced later games that required precise collision mechanics, such as Tomb Raider and the early 3D platformers."
   - id: "mark-floor-redraw"
-    line_start: 1171
-    line_end: 1229
+    line_start: 1161
+    line_end: 1227
     title: "Marking floorpieces for redraw"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
     content: "QUICKFLOOR marks floorpieces for redraw based on the character's position and action. This ensures that only the affected areas of the screen are updated, optimizing performance on the Apple II's limited graphics capabilities. The subroutine uses a combination of block calculations and loops to determine the range of floorpieces to update. Mechner's attention to detail in managing redraws was essential for maintaining smooth gameplay without overloading the system. This technique of selective screen updates is a precursor to modern double buffering and partial redraw methods used in graphics programming."
   - id: "crop-character-boundaries"
-    line_start: 1313
-    line_end: 1484
+    line_start: 1303
+    line_end: 1478
     title: "Cropping character boundaries dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_box"
     image_url: ""
     image_caption: ""
     content: "CROPCHAR dynamically adjusts the character's boundaries based on their position and interactions with the environment. It accounts for scenarios like climbing stairs, standing under solid floors, and interacting with panels. This subroutine is a sophisticated implementation of bounding box logic, tailored to the specific gameplay mechanics of Prince of Persia. In the late 1980s, such dynamic adjustments were rare, as most games relied on static collision boxes. Mechner's work here laid the groundwork for more adaptive collision systems seen in later platformers and action games, enabling richer environmental interactions."
   - id: "compare-space-and-barriers"
-    line_start: 1506
-    line_end: 1570
+    line_start: 1495
+    line_end: 1563
     title: "Determining passable spaces and barriers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
@@ -142,16 +142,16 @@ enhancements:
     image_caption: ""
     content: "The RECHARGEMETER and BOOSTMETER subroutines manage the player's strength meter, a key gameplay mechanic in Prince of Persia. RECHARGEMETER restores the meter to its maximum value, while BOOSTMETER increases the maximum value by one before recharging. This dynamic system added tension and strategy to the game, as players had to manage their health carefully. Mechner's implementation here is an early example of health systems in gaming, which have since become ubiquitous in genres ranging from RPGs to action-adventure games."
   - id: "calculate-distance-between-characters"
-    line_start: 2052
-    line_end: 2108
+    line_start: 2044
+    line_end: 2102
     title: "Calculate distance between characters dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section computes the distance between the player character and an opponent, factoring in their positions and orientations. The routine begins by comparing the screen positions of the two characters. If they occupy the same screen, it calculates the absolute horizontal distance between their X-coordinates, ensuring the value does not exceed 127 (the maximum representable signed byte). If the player character is facing left, the distance is negated. Additionally, if the characters face opposite directions, the routine adjusts the distance by an estimated width of the figure, ensuring gameplay mechanics like attack range and collision detection are accurate. In 1989, memory and processing power were scarce resources on the Apple IIe/IIc. Mechner's approach reflects the necessity of optimizing every calculation to fit within the constraints of the 6502 processor. The use of signed arithmetic and bitwise operations demonstrates a deep understanding of assembly language and hardware limitations. Mechner likely developed this routine to support the game's fluid combat and interaction mechanics, ensuring realistic and responsive gameplay. This technique influenced later cinematic platformers, including Flashback and Another World, which adopted similar approaches to character interaction and environmental realism. The precision of these calculations also laid groundwork for modern game engines, where spatial relationships between entities are fundamental to gameplay logic. Developers studying Mechner's work have cited it as a masterclass in achieving complexity within severe technical limitations."
   - id: "adjust-character-y-for-uneven-floor"
-    line_start: 2109
-    line_end: 2120
+    line_start: 2104
+    line_end: 2114
     title: "Adjust character Y-coordinate for uneven floor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
