@@ -9,74 +9,58 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "d-main-c"
 order: 1
-description: "This file orchestrates DOOM's initialization and main gameplay loop, showcasing the technical ingenuity that defined a generation of gaming."
+description: "This file orchestrates DOOM's initialization and main game loop, showcasing the technical ingenuity that defined the game's groundbreaking engine."
 
 summary:
-  - point: "DOOM's main game loop is implemented here, ensuring seamless gameplay and rendering."
+  - point: "DOOM's main loop uses adaptive timing for smooth gameplay."
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM"
-  - point: "Command-line parameters allow customization of gameplay modes and features."
+    link_label: "DOOM (1993)"
+  - point: "Command-line parameters enable extensive customization."
     link: "https://en.wikipedia.org/wiki/Command-line_interface"
     link_label: "Command-line interface"
-  - point: "The file handles WAD file management, crucial for loading game assets."
+  - point: "Support for multiple game modes and WAD files is embedded."
     link: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     link_label: "WAD file format"
-  - point: "Network game checks and multiplayer setup are integrated here."
-    link: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
-    link_label: "Multiplayer gaming"
-  - point: "Event handling and asynchronous input processing ensure responsive gameplay."
+  - point: "Event handling allows asynchronous user input processing."
     link: "https://en.wikipedia.org/wiki/Event-driven_programming"
     link_label: "Event-driven programming"
+  - point: "DOOM's modular initialization reflects Carmack's coding philosophy."
+    link: "https://en.wikipedia.org/wiki/John_Carmack"
+    link_label: "John Carmack"
 
 enhancements:
-  - id: "game-loop-design"
-    line_start: 81
-    line_end: 88
-    title: "The heartbeat of DOOM: D_DoomLoop"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_loop"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Event_driven_programming_Simply_Explained_canto.jpg/330px-Event_driven_programming_Simply_Explained_canto.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Event-driven programming explained in a graphic. (CC0)"
-    content: "The `D_DoomLoop` function is the core of DOOM's gameplay, ensuring the game never exits while managing timing, input/output, and rendering. It calls responder functions for user input, updates game state, and draws frames to the screen. In 1993, this approach was groundbreaking for its efficiency and adaptability, allowing DOOM to run smoothly on hardware as modest as a 386 PC. John Carmack, the technical wizard behind DOOM, designed this loop to prioritize performance, leveraging his deep understanding of assembly and low-level optimization. The game loop concept introduced here became a standard in game development, influencing countless titles that followed. Without this innovation, the fast-paced, immersive experience of DOOM would not have been possible."
-  - id: "event-handling-chain"
-    line_start: 150
-    line_end: 177
-    title: "Handling player input: Event processing"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Linux_command-line._Bash._GNOME_Terminal._screenshot.png/330px-Linux_command-line._Bash._GNOME_Terminal._screenshot.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    image_caption: "Sample of Bash in GNOME Terminal. Screenshot taken in Fedora. Outputs of ping, pwd, cd, yum and ls command. (GPL)"
-    content: "The `D_ProcessEvents` function processes asynchronous player inputs, such as keyboard and mouse actions, and sends them down a responder chain. This ensures that menus, gameplay, and other systems react appropriately to user actions. In the early 1990s, event-driven programming was still evolving, and DOOM's implementation exemplified its potential in interactive applications. The developers at id Software, led by John Carmack, were keenly aware of the importance of responsive controls in creating an immersive gaming experience. This system allowed for real-time interaction, a critical feature for a fast-paced shooter like DOOM. The approach laid the groundwork for modern event-driven systems in games, proving that responsiveness could coexist with complex rendering and simulation."
-  - id: "wad-file-management"
-    line_start: 542
-    line_end: 555
-    title: "Managing game assets: WAD files"
+  - id: "adaptive-game-loop"
+    line_start: 89
+    line_end: 407
+    title: "Adaptive timing in DOOM's main loop"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `D_DoomLoop` function is the heartbeat of DOOM's engine, ensuring smooth gameplay by managing timing, input/output, and rendering. This loop never exits, continuously cycling through operations like processing events, updating game state, and rendering frames. In 1993, real-time rendering on consumer PCs was a monumental challenge due to limited hardware capabilities. John Carmack's approach here was groundbreaking: the loop adapts dynamically to the system's performance, ensuring the game remains playable even on slower machines. This adaptive timing mechanism was a direct response to the variability in hardware performance among players, ranging from high-end 486 PCs to more modest setups. Carmack's coding philosophy—modular, efficient, and hardware-aware—is evident throughout this section. The techniques pioneered here influenced countless future games, setting a standard for real-time game engines."
+  - id: "demo-sequence-management"
+    line_start: 419
+    line_end: 518
+    title: "Managing DOOM's demo sequences"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The demo sequence system in DOOM, managed by functions like `D_AdvanceDemo` and `D_DoAdvanceDemo`, cycles through pre-recorded gameplay demonstrations and intro screens. These sequences serve dual purposes: showcasing the game's features to new players and providing a fallback for idle screens. In 1993, demos were a common way to attract players, especially in shareware distributions. DOOM's demo system is version-dependent, adapting to the specific WAD files available. This modularity reflects id Software's foresight in designing a flexible engine that could accommodate expansions and custom content. The demo system also highlights the game's polish, ensuring a seamless experience even before the player starts interacting with the game."
+  - id: "game-mode-detection"
+    line_start: 563
+    line_end: 717
+    title: "Detecting game versions and WAD files"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
     image_caption: ""
-    content: "The `D_AddFile` function adds WAD files to the game's asset list, enabling the modular loading of maps, textures, and other resources. WAD files were a revolutionary format introduced by id Software, allowing developers and players to easily modify and expand the game. This modularity was a key factor in DOOM's enduring popularity, as it fostered a vibrant modding community. In the early 1990s, the idea of user-generated content was still novel, and DOOM's WAD system set a precedent for games like Quake and Half-Life. The inclusion of this functionality in the source code reflects id Software's commitment to empowering players and developers alike, ensuring the game's legacy would extend far beyond its initial release."
-  - id: "identify-version"
-    line_start: 563
-    line_end: 717
-    title: "Determining the game version: IdentifyVersion"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `IdentifyVersion` function checks for the presence of specific WAD files to determine the game's mode (shareware, registered, retail, or commercial). This was crucial in the early 1990s, as DOOM's distribution model relied on shareware to attract players who could then upgrade to the full version. The function also includes humorous comments, such as 'Bug, dear Shawn,' showcasing the developers' personality and the collaborative nature of the project. This approach reflects id Software's innovative business strategy, which leveraged technology to maximize accessibility while protecting intellectual property. The modular version-checking system also ensured compatibility with various game expansions, paving the way for future episodic content in gaming."
-  - id: "response-file-parsing"
-    line_start: 722
-    line_end: 790
-    title: "Parsing response files: FindResponseFile"
+    content: "The `IdentifyVersion` function determines the game mode (shareware, registered, commercial) by checking the availability of specific WAD files. WADs are DOOM's data containers, holding levels, textures, and other assets. This function reflects id Software's business model, which relied on distributing a shareware version to entice players to purchase the full game. The code also includes support for retail expansions like 'Plutonia' and 'TNT: Evilution,' showcasing DOOM's modular design. The meticulous checks for WAD files highlight Carmack's attention to detail, ensuring compatibility across different versions and configurations. This approach laid the groundwork for modding communities, as players could create and load custom WADs to extend the game's lifespan."
+  - id: "command-line-customization"
+    line_start: 796
+    line_end: 1171
+    title: "Command-line parameters: DOOM's hidden power"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "The `FindResponseFile` function reads external response files to parse additional command-line arguments. This feature was a clever solution to the limitations of command-line interfaces in the early 1990s, allowing players to customize their gameplay experience without manually entering lengthy commands. Response files were particularly useful for batch operations or complex setups, reflecting id Software's commitment to user convenience and flexibility. The function's implementation demonstrates the team's attention to detail, ensuring compatibility with various operating systems and file formats. This approach influenced later games, which adopted similar mechanisms for configuration and modding, further solidifying DOOM's role as a trailblazer in gaming technology."
-  - id: "game-initialization"
-    line_start: 796
-    line_end: 1171
-    title: "Starting DOOM: D_DoomMain"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `D_DoomMain` function is the entry point for DOOM's engine, initializing subsystems, loading assets, and parsing command-line arguments to configure the game. It sets up critical components like memory management, sound, graphics, and network play. In 1993, this level of integration was a technical marvel, enabling DOOM to run efficiently on a wide range of hardware. John Carmack's expertise in optimization and modular design is evident throughout this function, which balances complexity with performance. The initialization process also includes checks for modified game files, reflecting id Software's efforts to protect their intellectual property while encouraging user creativity. This function embodies the spirit of DOOM: a blend of technical mastery, user empowerment, and relentless innovation."
+    content: "The `D_DoomMain` function processes command-line parameters, enabling extensive customization of DOOM's gameplay. Players can adjust settings like difficulty, starting level, and even enable debugging modes. This feature reflects id Software's commitment to empowering users, a philosophy that resonated with the burgeoning PC gaming community of the early 1990s. Command-line interfaces were a staple of software at the time, but DOOM elevated their use by integrating them into gameplay customization. This approach not only catered to advanced users but also laid the foundation for modding and speedrunning communities. The ability to tweak gameplay parameters directly contributed to DOOM's enduring legacy and its status as a cultural phenomenon."
 
 ---
 
