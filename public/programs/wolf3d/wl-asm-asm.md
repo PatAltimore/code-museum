@@ -9,68 +9,36 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-asm-asm"
 order: 24
-description: "This file showcases assembly-level optimizations and hardware compatibility checks in Wolfenstein 3D, a groundbreaking first-person shooter from 1992."
+description: "This file contains assembly routines that demonstrate hardware detection and runtime patching techniques in Wolfenstein 3D, showcasing the ingenuity required to optimize performance on early x86 systems."
 
 summary:
-  - point: "Hardware detection for 386 processors"
-    link: "https://en.wikipedia.org/wiki/Intel_80386"
-    link_label: "Intel 80386"
-  - point: "Direct manipulation of flag registers for processor identification"
-    link: "https://en.wikipedia.org/wiki/FLAGS_register"
-    link_label: "FLAGS register"
-  - point: "Dynamic patching of runtime code in memory"
+  - point: "Hardware detection routine identifies CPU type for optimized execution."
+    link: "https://en.wikipedia.org/wiki/X86"
+    link_label: "x86 Architecture"
+  - point: "Runtime patching modifies code in memory for dynamic adjustments."
     link: "https://en.wikipedia.org/wiki/Self-modifying_code"
-    link_label: "Self-modifying code"
+    link_label: "Self-Modifying Code"
+  - point: "Code reflects the constraints of early 1990s PC hardware."
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
 
 enhancements:
-  - id: "external-library-linkage"
-    line_start: 7
-    line_end: 9
-    title: "Linking external libraries for division"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Library_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The file begins with an `EXTRN` directive, linking to an external far procedure `LDIV@`. This indicates that the assembly code relies on external libraries or routines for performing long division operations. In the early 1990s, modular programming practices were becoming increasingly common, especially in performance-critical applications like games. By delegating complex arithmetic operations to external libraries, developers could focus on optimizing other parts of the code. This decision reflects the constraints of the era: limited memory and processing power meant every byte and cycle mattered. The reliance on external libraries also highlights the collaborative nature of software development at the time, where teams often shared or licensed code to accelerate development. This modular approach would later influence modern programming paradigms, where external dependencies are commonplace."
-  - id: "data-segment-declaration"
-    line_start: 11
-    line_end: 13
-    title: "Setting up the data segment"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Segment_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The `DATASEG` directive establishes the data segment for the program. In x86 assembly, memory segmentation was a fundamental concept, allowing programs to organize data, code, and stack into separate areas. This segmentation was critical for managing the limited memory available on MS-DOS systems, which often operated within a 640KB conventional memory limit. By explicitly defining segments, developers could optimize memory usage and ensure compatibility across different hardware configurations. The decision to segment memory reflects the careful planning required to create high-performance software in an era where hardware constraints were a constant challenge."
-  - id: "code-segment-declaration"
-    line_start: 15
-    line_end: 17
-    title: "Defining the code segment"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Code_segment"
-    image_url: ""
-    image_caption: ""
-    content: "The `CODESEG` directive marks the beginning of the code segment, where executable instructions are stored. This separation of code and data was a hallmark of assembly programming on x86 architectures, ensuring that instructions and data were accessed efficiently. The comment suggests that the code was adapted from Juan Jimenez's original work, showcasing the iterative and collaborative nature of software development. By repurposing existing code, the developers of Wolfenstein 3D could focus their efforts on innovating in other areas, such as graphics rendering and gameplay mechanics. This reuse of code underscores the pragmatic approach taken by id Software during the game's development."
-  - id: "processor-detection-routine"
-    line_start: 19
-    line_end: 41
-    title: "Detecting 386 processors with flag manipulation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
-    image_url: ""
-    image_caption: ""
-    content: "The `_CheckIs386` procedure is a clever routine for detecting whether the CPU is an Intel 386 or better. It manipulates the FLAGS register to test specific bits that behave differently on older processors. This was critical for optimizing performance, as Wolfenstein 3D relied on features available only on newer CPUs, such as faster arithmetic and enhanced memory addressing. In 1992, the gaming industry was transitioning from 286 to 386 processors, and developers often included fallback mechanisms for older hardware. The comment reveals that this code was adapted from Juan Jimenez's work, reflecting the collaborative and iterative nature of programming at the time. The routine's reliance on low-level hardware behavior exemplifies the ingenuity required to push the limits of MS-DOS systems. This approach would later influence compatibility checks in modern software, ensuring programs could adapt to diverse hardware environments."
-  - id: "fallback-for-older-processors"
-    line_start: 43
+  - id: "check-is-386-cpu-detection"
+    line_start: 17
     line_end: 48
-    title: "Handling non-386 processors gracefully"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80286"
+    title: "Detecting CPU Type: 386 or Earlier"
+    wikipedia_url: "https://en.wikipedia.org/wiki/X86"
     image_url: ""
     image_caption: ""
-    content: "The `not386` label provides a fallback for systems running on older processors, such as the 286 or 8086. If the `_CheckIs386` routine determines that the CPU lacks the necessary features, execution jumps here, setting `AX` to zero and returning control. This ensures that the program can gracefully handle incompatible hardware without crashing. In the early 1990s, developers had to account for a wide range of systems, as many users still operated older machines. By including compatibility checks, id Software could reach a broader audience while maintaining performance on newer hardware. This dual approach reflects the careful balance between innovation and accessibility that defined the era."
-  - id: "runtime-code-patching"
-    line_start: 52
-    line_end: 67
-    title: "Self-modifying code for runtime optimization"
+    content: "This subroutine, `_CheckIs386`, is a clever piece of assembly code designed to determine whether the CPU running the program is an Intel 80386 or an earlier model. It uses a series of flag manipulations to test the behavior of specific bits in the processor's status flags, which differ between CPU generations. The routine first clears the flag bits and checks whether bits 12-15 can be set to zero, which would indicate an older processor like the 8086 or 80286. If those bits can be manipulated further to set bits 12-14 to ones, the code concludes that the CPU is a 386 or better. In 1992, the PC gaming world was rapidly transitioning from the 80286 to the 386, which introduced 32-bit processing and virtual memory capabilities. Developers like John Carmack were keenly aware of the performance differences and wrote code to adapt dynamically based on the hardware detected. This routine reflects the constraints of the era: games had to run on a wide range of hardware, from older systems to cutting-edge machines, and every cycle of CPU time mattered. The consequence of this detection routine was significant. By tailoring the game's behavior to the CPU, id Software ensured smoother gameplay and broader compatibility. This approach was common in the early 1990s but has largely disappeared in modern software, where hardware abstraction layers handle such concerns. However, the ingenuity of routines like `_CheckIs386` laid the groundwork for adaptive optimization techniques that persist in other forms today."
+  - id: "runtime-code-patching-jabhack2"
+    line_start: 51
+    line_end: 65
+    title: "Runtime Code Patching: A Bold Optimization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""
     image_caption: ""
-    content: "The `_jabhack2` procedure demonstrates a bold technique: self-modifying code. It dynamically patches the `LDIV@` routine in memory, replacing instructions with NOPs (no-operations). This approach was used to optimize runtime performance by bypassing unnecessary operations. While self-modifying code was a powerful tool for squeezing every ounce of performance from limited hardware, it came with risks, such as increased debugging complexity and potential compatibility issues. In the context of Wolfenstein 3D, this technique reflects the developers' willingness to experiment and push boundaries to achieve smooth gameplay. Self-modifying code has largely fallen out of favor in modern programming due to security concerns, but its use here highlights the ingenuity and resourcefulness of early game developers."
+    content: "The `_jabhack2` subroutine is an example of runtime code patching, a technique where the program modifies its own instructions in memory during execution. This routine specifically patches over parts of the `LDIV@` function, replacing certain instructions with NOPs (no-operations) to alter its behavior dynamically. By writing directly to memory, the routine bypasses the need for recompilation or static configuration, enabling adjustments based on runtime conditions. In the early 1990s, self-modifying code was a daring but effective strategy for squeezing performance out of limited hardware. Wolfenstein 3D was developed for MS-DOS systems, where memory and CPU cycles were precious commodities. Techniques like this allowed developers to optimize critical paths in the code, ensuring smoother gameplay even on less powerful machines. However, self-modifying code came with risks: it could lead to instability or make debugging significantly harder. Only highly skilled programmers, like John Carmack, dared to employ such techniques. The legacy of runtime patching is mixed. While it is rarely used in modern software due to security concerns and the advent of more sophisticated optimization tools, it remains a fascinating example of the lengths developers went to in order to push the boundaries of what was possible. `_jabhack2` is a testament to the creativity and technical prowess of id Software during the development of Wolfenstein 3D, a game that would go on to define the first-person shooter genre."
 
 ---
 

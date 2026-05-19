@@ -9,66 +9,130 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-draw-c"
 order: 6
-description: "This file showcases the techniques id Software used to render Wolfenstein 3D's groundbreaking pseudo-3D graphics on limited hardware in 1992."
+description: "This file showcases the ingenious rendering techniques used in Wolfenstein 3D to achieve pseudo-3D graphics on limited hardware."
 
 summary:
-  - point: "Efficient raycasting for pseudo-3D rendering"
-    link: "https://en.wikipedia.org/wiki/Ray_casting"
-    link_label: "Ray casting"
-  - point: "Optimized wall scaling using assembly language"
+  - point: "Innovative use of fixed-point arithmetic for performance"
+    link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    link_label: "Fixed-point arithmetic"
+  - point: "Optimized wall rendering with assembly routines"
     link: "https://en.wikipedia.org/wiki/Assembly_language"
     link_label: "Assembly language"
-  - point: "Dynamic object transformation and perspective calculations"
-    link: "https://en.wikipedia.org/wiki/3D_projection"
-    link_label: "3D projection"
-  - point: "Adaptive timing for smooth gameplay on varying hardware"
-    link: "https://en.wikipedia.org/wiki/Real-time_computing"
-    link_label: "Real-time computing"
-  - point: "Innovative use of VGA hardware for screen clearing and rendering"
-    link: "https://en.wikipedia.org/wiki/VGA"
-    link_label: "VGA"
+  - point: "Efficient raycasting for 3D perspective"
+    link: "https://en.wikipedia.org/wiki/Ray_casting"
+    link_label: "Ray casting"
+  - point: "Handling of doors and pushable walls in the rendering pipeline"
+    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    link_label: "Wolfenstein 3D"
+  - point: "Use of lookup tables for trigonometric calculations"
+    link: "https://en.wikipedia.org/wiki/Lookup_table"
+    link_label: "Lookup table"
 
 enhancements:
   - id: "fixed-point-multiplication"
-    line_start: 141
-    line_end: 179
-    title: "Fixed-point math: squeezing precision from hardware"
+    line_start: 45
+    line_end: 50
+    title: "Fixed-point multiplication for fast math"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
-    content: "This subroutine, `FixedByFrac`, performs fixed-point multiplication—a technique critical for rendering graphics on early hardware. Fixed-point arithmetic uses integers to represent fractional values, avoiding the computational overhead of floating-point math. In this routine, Carmack leverages assembly language to manipulate registers directly, ensuring maximum speed. At the time, CPUs like the Intel 386 lacked the power to handle floating-point calculations efficiently during real-time rendering. Fixed-point math was a necessity for games like Wolfenstein 3D, where every cycle mattered. Carmack's mastery of assembly allowed him to optimize operations down to the bit level, a skill honed through years of programming on constrained systems like the Apple II and IBM PC. This approach laid the groundwork for efficient graphics rendering in subsequent games, influencing techniques used in Doom and Quake."
-  - id: "actor-transformation"
+    content: "This section defines constants and variables used for fixed-point arithmetic, a technique critical for performance in Wolfenstein 3D. Fixed-point numbers represent fractional values without the overhead of floating-point operations, which were computationally expensive on the hardware of the time. By leveraging fixed-point arithmetic, the developers could perform fast calculations for rendering and game logic. In 1992, the Intel 386 processor lacked the floating-point performance seen in later CPUs, making this approach essential. John Carmack, the technical mastermind behind Wolfenstein 3D, often spoke about his obsession with optimization, and this code reflects that ethos. Fixed-point arithmetic remains relevant in embedded systems and real-time applications, a testament to its efficiency."
+  - id: "transform-actor-perspective"
     line_start: 210
-    line_end: 262
+    line_end: 285
     title: "Transforming actors into screen space"
-    wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
-    image_url: ""
-    image_caption: ""
-    content: "The `TransformActor` function projects game objects (actors) from world coordinates into screen space. This involves translating the actor's position relative to the player's viewpoint and applying perspective calculations to determine its size and position on the screen. In 1992, real-time 3D graphics were in their infancy, and Wolfenstein 3D's pseudo-3D approach was revolutionary. The developers used a combination of fixed-point math and assembly language to ensure these calculations were fast enough to run on the limited hardware of the era, such as 386 processors with VGA graphics. The function also includes a 'fudge factor' to prevent objects from clipping into walls—a clever workaround for the limitations of the raycasting engine. This technique influenced the development of more advanced 3D engines, paving the way for the modern era of real-time graphics."
-  - id: "raycasting-optimization"
-    line_start: 477
-    line_end: 606
-    title: "Optimizing wall rendering with raycasting"
     wikipedia_url: "https://en.wikipedia.org/wiki/Ray_casting"
     image_url: ""
     image_caption: ""
-    content: "The `HitVertWall` and `HitHorizWall` routines are key components of Wolfenstein 3D's raycasting engine. These functions calculate the texture and height of walls hit by rays cast from the player's viewpoint, optimizing rendering by grouping adjacent wall sections with identical textures. This reduces the number of draw calls, a critical optimization for the limited hardware of the time. Raycasting was a novel approach to creating a pseudo-3D environment, as it avoided the complexity of full 3D polygon rendering. John Carmack's implementation was inspired by earlier games like Ultima Underworld but pushed the technique further, achieving smooth scrolling and immersive gameplay. The optimizations here allowed Wolfenstein 3D to run at high frame rates on hardware as modest as a 386 processor, setting a new standard for first-person games."
-  - id: "adaptive-timing"
+    content: "The `TransformActor` function projects game objects (actors) from the 3D world into 2D screen space, a fundamental step in rendering Wolfenstein 3D's pseudo-3D environment. It calculates the actor's position relative to the player's viewpoint using trigonometric transformations and fixed-point arithmetic. This method was inspired by raycasting techniques, which were popularized by earlier games like Ultima Underworld. The function ensures objects are scaled correctly based on their distance from the player, creating the illusion of depth. In the early 1990s, achieving this level of graphical fidelity on MS-DOS systems was groundbreaking. Carmack's innovations here laid the groundwork for future advancements in 3D graphics, influencing games like Doom and Quake."
+  - id: "raycasting-height-calculation"
+    line_start: 359
+    line_end: 394
+    title: "Calculating wall heights via raycasting"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Ray_casting"
+    image_url: ""
+    image_caption: ""
+    content: "The `CalcHeight` function calculates the height of a wall segment based on its distance from the player's viewpoint. This is a key part of the raycasting process, where rays are cast from the player's position to determine what parts of the environment are visible. By using fixed-point arithmetic and assembly optimizations, the function ensures that the calculations are both fast and accurate. In 1992, raycasting was a cutting-edge technique for rendering 3D environments on hardware with limited graphical capabilities. Carmack's implementation pushed the boundaries of what was possible, enabling Wolfenstein 3D to run smoothly on systems with as little as 640KB of RAM. The principles behind this function influenced the development of more advanced rendering techniques in later games."
+  - id: "optimized-wall-rendering"
+    line_start: 477
+    line_end: 548
+    title: "Optimizing wall rendering with assembly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    image_url: ""
+    image_caption: ""
+    content: "The `ScalePost` function is a highly optimized assembly routine for rendering vertical strips of walls. It uses the VGA hardware's capabilities to scale textures and draw them efficiently. This approach minimizes CPU usage by leveraging direct memory access and hardware registers. In the early 1990s, VGA graphics cards were the standard for PC gaming, but their performance was limited compared to modern GPUs. Carmack's deep understanding of hardware allowed him to extract every ounce of performance from these systems. This function exemplifies the low-level programming techniques that defined id Software's early games, setting a benchmark for efficiency in game development."
+  - id: "handling-doors-in-rendering"
+    line_start: 620
+    line_end: 686
+    title: "Rendering doors with dynamic textures"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    image_url: ""
+    image_caption: ""
+    content: "The `HitHorizDoor` function handles the rendering of horizontal doors in the game. It dynamically adjusts textures based on the door's position and state, ensuring that doors appear correctly as they open or close. This level of detail was rare in games of the era, where static environments were more common. The function also includes optimizations to avoid redundant calculations when rendering the same door multiple times. Doors were a key gameplay element in Wolfenstein 3D, adding interactivity and complexity to the levels. The techniques used here influenced how dynamic objects were handled in later 3D games, paving the way for more immersive environments."
+  - id: "pushable-walls-rendering"
+    line_start: 759
+    line_end: 821
+    title: "Rendering pushable walls in action"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    image_url: ""
+    image_caption: ""
+    content: "The `HitHorizPWall` function manages the rendering of pushable walls, a unique feature in Wolfenstein 3D's gameplay. Pushable walls allowed players to discover secret areas, adding an element of exploration and surprise. The function calculates the wall's position and texture dynamically as it moves, ensuring smooth transitions. This was a clever use of the game's raycasting engine, which was not originally designed for movable objects. The inclusion of pushable walls showcased id Software's creativity and willingness to innovate within the constraints of their technology. This feature became a hallmark of the game's design, influencing secret mechanics in later titles."
+  - id: "vga-clear-screen"
+    line_start: 970
+    line_end: 976
+    title: "Clearing the screen for VGA rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
+    image_url: ""
+    image_caption: ""
+    content: "The `VGAClearScreen` function prepares the screen for rendering by clearing it and setting up the VGA hardware. It uses assembly instructions to manipulate VGA registers directly, ensuring maximum performance. The function also adjusts the screen's layout based on the game's resolution, a necessary step for creating the immersive experience of Wolfenstein 3D. In 1992, VGA graphics were the pinnacle of PC gaming technology, but they required low-level programming to achieve optimal results. Carmack's expertise in assembly language allowed him to harness the full potential of VGA hardware, contributing to the game's smooth visuals and fast gameplay."
+  - id: "calc-rotate-object-angle"
+    line_start: 1024
+    line_end: 1068
+    title: "Calculating object rotation with clever shortcuts"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    image_url: ""
+    image_caption: ""
+    content: "This section calculates the rotation angle for objects relative to the player's view. The code uses a simplified approach, leveraging pre-defined directional angles and avoiding complex trigonometric calculations. In 1992, id Software faced the challenge of rendering pseudo-3D graphics on hardware with limited computational power. John Carmack's ingenuity shines here: by using only eight sprite rotations and approximating angles, the game achieves a convincing illusion of depth without taxing the CPU. This technique reflects the constraints of early 90s hardware, where every cycle mattered. The decision to simplify rotation calculations allowed Wolfenstein 3D to maintain its fast-paced gameplay, setting a precedent for efficient graphics programming in the era of MS-DOS gaming."
+  - id: "draw-scaleds-visible-objects"
+    line_start: 1072
+    line_end: 1196
+    title: "Sorting and scaling visible objects dynamically"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
+    image_url: ""
+    image_caption: ""
+    content: "This routine handles the placement and rendering of visible objects in the game world. It begins by identifying static and active objects within the player's field of view, calculating their positions and scaling them based on distance. The sorting algorithm ensures objects are drawn from back to front, preserving the illusion of depth. In 1992, this approach was revolutionary for real-time graphics. The constraints of VGA hardware, with its limited resolution and color palette, demanded careful optimization. Carmack's implementation demonstrates a deep understanding of both hardware and gameplay needs. By dynamically scaling objects and managing visibility, Wolfenstein 3D created an immersive experience that felt far more advanced than its contemporaries. This technique influenced countless games that followed, laying the groundwork for modern rendering pipelines."
+  - id: "draw-player-weapon"
+    line_start: 1201
+    line_end: 1234
+    title: "Rendering the player's weapon for immersion"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    image_url: ""
+    image_caption: ""
+    content: "This section draws the player's weapon on the screen, a crucial element for first-person immersion. The weapon's sprite is dynamically selected based on the player's current weapon and animation frame. If the game is in demo mode or the victory sequence, special sprites are displayed instead. In the early 90s, first-person shooters were in their infancy, and the concept of showing the player's hands or weapon was novel. This visual feedback added to the realism and engagement of the game. The code reflects id Software's attention to detail, ensuring the weapon's appearance aligns with gameplay states. This feature became a staple of the genre, influencing titles from Doom to modern FPS games."
+  - id: "adaptive-timing-calc-tics"
     line_start: 1236
-    line_end: 1267
-    title: "Adaptive timing: smooth gameplay on any machine"
+    line_end: 1279
+    title: "Adaptive timing for smooth gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
     image_url: ""
     image_caption: ""
-    content: "The `CalcTics` function calculates the time elapsed since the last frame, ensuring the game runs smoothly regardless of hardware speed. This adaptive timing mechanism was crucial in the early 1990s when PCs varied widely in performance. Wolfenstein 3D needed to accommodate everything from high-end 486 machines to slower 386 systems. By dynamically adjusting the number of 'tics' (time units) processed per frame, the game maintained consistent gameplay speed. This approach reflects Carmack's deep understanding of real-time computing and his ability to optimize for diverse hardware environments. Adaptive timing became a staple in game development, influencing how modern engines handle frame rates and performance scaling."
-  - id: "three-dimensional-refresh"
-    line_start: 1336
-    line_end: 1399
-    title: "ThreeDRefresh: the heart of the rendering loop"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
+    content: "The CalcTics routine calculates the time elapsed since the last frame, ensuring the game runs smoothly regardless of hardware speed. By adjusting the game's timing dynamically, id Software overcame the challenge of varying CPU speeds in early PCs. In 1992, hardware diversity was a significant obstacle for game developers. PCs ranged from slow 286 processors to faster 386 and 486 models, and games had to perform well across this spectrum. Carmack's adaptive timing approach allowed Wolfenstein 3D to deliver consistent gameplay, a critical factor in its success. This technique became standard practice in game development, ensuring compatibility and performance across diverse systems."
+  - id: "wall-refresh-view-setup"
+    line_start: 1298
+    line_end: 1334
+    title: "Setting up the view for wall rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Ray_casting"
     image_url: ""
     image_caption: ""
-    content: "The `ThreeDRefresh` function orchestrates the rendering process, combining wall drawing, object scaling, and weapon rendering into a single cohesive loop. This routine clears the screen, traces walls using raycasting, and draws all visible objects and the player's weapon. It represents the culmination of id Software's efforts to create a fast, immersive pseudo-3D experience. The function's reliance on assembly language highlights the team's commitment to squeezing every ounce of performance from the hardware. In 1992, this level of optimization was necessary to achieve smooth gameplay on machines with limited processing power and memory. The rendering loop in Wolfenstein 3D laid the foundation for the game engines that followed, influencing the design of Doom, Quake, and countless other titles in the decades to come."
+    content: "The WallRefresh function prepares the variables needed to render the walls of the game world. It calculates the player's position, angle, and perspective, setting the stage for the ray-casting algorithm that follows. In 1992, ray casting was a cutting-edge technique for creating pseudo-3D environments. Carmack's implementation optimized this process for speed, enabling Wolfenstein 3D's smooth scrolling and immersive gameplay. By precomputing trigonometric values and leveraging fixed-point arithmetic, the code minimizes computational overhead. This approach was pivotal in making real-time 3D graphics feasible on early PCs, influencing the development of Doom and other landmark titles."
+  - id: "three-d-refresh-final-render"
+    line_start: 1336
+    line_end: 1402
+    title: "Final rendering pass for the game world"
+    wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
+    image_url: ""
+    image_caption: ""
+    content: "The ThreeDRefresh function orchestrates the final rendering pass, combining wall rendering, object scaling, and weapon drawing into a cohesive frame. It also handles VGA-specific operations, such as clearing the screen and updating the display buffer. In 1992, VGA graphics represented the cutting edge of PC display technology, but programming it required intimate knowledge of hardware registers and memory layouts. Carmack's mastery of these details is evident here, as he balances performance and visual fidelity. This function encapsulates the essence of Wolfenstein 3D's graphics engine, showcasing the ingenuity that defined id Software's early work. The techniques pioneered here laid the foundation for future advancements in real-time rendering."
 
 ---
 

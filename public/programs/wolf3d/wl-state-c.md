@@ -9,82 +9,106 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-state-c"
 order: 16
-description: "This file encapsulates the AI logic and state management for enemies in Wolfenstein 3D, a groundbreaking first-person shooter from 1992."
+description: "This file contains the state management and movement logic for enemies in Wolfenstein 3D, showcasing the ingenuity behind AI behaviors in early first-person shooters."
 
 summary:
-  - point: "Innovative enemy movement logic based on tile-based navigation"
+  - point: "Directional lookup tables for AI movement"
     link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     link_label: "Wolfenstein 3D"
-  - point: "Dynamic state transitions for AI behavior"
+  - point: "AI routines for chasing, dodging, and fleeing"
     link: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     link_label: "AI in video games"
-  - point: "Optimized algorithms for sight and pathfinding under hardware constraints"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
-  - point: "Use of lookup tables for efficient direction calculations"
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup table"
-  - point: "Randomized elements for unpredictable enemy behavior"
-    link: "https://en.wikipedia.org/wiki/Procedural_generation"
-    link_label: "Procedural generation"
+  - point: "Efficient tile-based movement system"
+    link: "https://en.wikipedia.org/wiki/Tile-based_video_game"
+    link_label: "Tile-based games"
+  - point: "Dynamic enemy state transitions"
+    link: "https://en.wikipedia.org/wiki/Finite-state_machine"
+    link_label: "Finite-state machines"
+  - point: "Damage and death handling for enemies"
+    link: "https://en.wikipedia.org/wiki/Hit_points"
+    link_label: "Hit points"
 
 enhancements:
   - id: "opposite-direction-table"
     line_start: 24
     line_end: 25
-    title: "Lookup table for opposite directions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
+    title: "Opposite direction lookup table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Array_data_structure"
     image_url: ""
     image_caption: ""
-    content: "This small lookup table defines the opposite direction for each of the eight cardinal and diagonal directions, plus a 'nodir' state. In the early 1990s, lookup tables were a common way to optimize calculations, avoiding expensive conditional logic or arithmetic. John Carmack, known for his obsession with performance, likely implemented this to ensure enemy AI could quickly reverse direction when needed. This decision reflects the constraints of the era: Wolfenstein 3D ran on MS-DOS systems with limited CPU power, often using 386 processors. The table-driven approach ensured that direction calculations were instantaneous, a necessity for maintaining the game's fast-paced action."
+    content: "This small table defines the opposite direction for each of the nine possible movement directions (north, south, east, west, diagonals, and 'nodir'). By precomputing these values, the game avoids recalculating opposites during runtime, saving precious CPU cycles on early hardware like the Intel 386. In 1992, optimization was critical for maintaining smooth gameplay, especially in a fast-paced shooter like Wolfenstein 3D. This table reflects the team's focus on efficiency and their deep understanding of hardware constraints."
   - id: "diagonal-direction-table"
     line_start: 27
     line_end: 38
     title: "Diagonal movement lookup table"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
     image_caption: ""
-    content: "This two-dimensional array maps pairs of cardinal directions to their diagonal equivalents, enabling enemies to move diagonally when appropriate. The table is sparsely populated, reflecting the limited scenarios where diagonal movement is valid. This design choice highlights the developers' focus on efficiency, as unused entries are marked 'nodir' to avoid unnecessary calculations. In the early 1990s, memory and processing power were precious resources, and Carmack's use of precomputed tables minimized runtime overhead. The diagonal movement logic added a layer of realism to enemy behavior, making their navigation feel more dynamic and less predictable, a key factor in the game's immersive experience."
+    content: "This two-dimensional array maps combinations of cardinal directions to their diagonal equivalents, enabling enemies to move diagonally toward the player when appropriate. The table is sparsely populated, with many entries set to 'nodir' to indicate invalid combinations. This design highlights the tile-based nature of Wolfenstein 3D's world, where movement is constrained to discrete steps. In the early 1990s, such tables were a common technique for simplifying AI logic while ensuring responsiveness on limited hardware."
   - id: "spawn-new-actor"
     line_start: 81
     line_end: 111
     title: "Spawning new actors in the game world"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Spawn_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `SpawnNewObj` function initializes a new actor in the game world, setting its position, state, and initial direction. This routine is a cornerstone of Wolfenstein 3D's dynamic gameplay, enabling enemies to appear at specific locations and interact with the player. The function calculates the actor's global coordinates based on tile positions, a method well-suited to the game's grid-based level design. At the time, id Software was pioneering techniques to simulate real-time action on hardware designed for static, turn-based games. This function exemplifies their ingenuity, translating high-level game design into efficient, low-level code. The ability to spawn actors dynamically allowed for varied and unpredictable gameplay, a hallmark of Wolfenstein 3D's success."
-  - id: "try-walk-movement"
+    content: "The `SpawnNewObj` function initializes a new enemy or object at a given tile coordinate, setting its state and position within the game world. This routine is central to Wolfenstein 3D's dynamic gameplay, allowing new challenges to appear as the player progresses. The function uses bitwise shifts to calculate global coordinates from tile positions, a technique that minimizes computation overhead. In 1992, such optimizations were vital for achieving real-time performance on MS-DOS systems, where every CPU cycle mattered."
+  - id: "enemy-movement-trywalk"
     line_start: 181
     line_end: 357
-    title: "Enemy movement logic: TryWalk"
+    title: "AI movement: Attempting to walk"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "The `TryWalk` function determines whether an enemy can move in its current direction, checking for obstacles like walls, actors, or doors. If the path is clear, the function updates the enemy's position and area number. This logic is critical for creating believable AI behavior, as enemies navigate the game's tile-based world. The function includes checks for diagonal movement and door interactions, showcasing the developers' attention to detail. In 1992, real-time pathfinding was a significant challenge due to hardware limitations. Carmack's implementation balances complexity and performance, ensuring smooth gameplay even on low-end systems. The ability to handle dynamic obstacles like doors added depth to the AI, making enemies feel more intelligent and responsive."
+    content: "The `TryWalk` function determines whether an enemy can move in its current direction. It checks for obstacles like walls, other actors, or doors, and updates the enemy's position if the path is clear. The function includes specific logic for handling doors, allowing enemies to open them if necessary. This routine exemplifies the tile-based movement system of Wolfenstein 3D, where each decision is constrained by the grid-like structure of the game world. The use of macros (`CHECKDIAG` and `CHECKSIDE`) further streamlines collision detection, reflecting the team's focus on efficiency and maintainability."
   - id: "select-dodge-direction"
     line_start: 359
     line_end: 473
-    title: "Dodging behavior in enemy AI"
+    title: "Dodging while pursuing the player"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "The `SelectDodgeDir` function enables enemies to choose a movement direction that avoids obstacles while heading toward the player. This routine prioritizes cardinal directions and uses randomness to make enemy behavior less predictable. The function reflects id Software's innovative approach to AI, blending deterministic logic with procedural elements. In the early 1990s, game AI was often simplistic, relying on fixed patterns. Wolfenstein 3D's enemies, however, exhibited dynamic behavior, reacting to the player's actions and environment. This function contributed to the game's tension and replayability, as players faced enemies that felt alive and adaptive. The dodge logic also showcases Carmack's mastery of optimization, ensuring the AI remained performant on limited hardware."
-  - id: "check-line-of-sight"
+    content: "The `SelectDodgeDir` function adds complexity to enemy AI by enabling them to dodge while moving toward the player. It calculates the player's relative position and prioritizes movement directions that avoid direct confrontation while maintaining pursuit. The function uses randomness to make enemy behavior less predictable, enhancing the player's sense of immersion. In the early 1990s, such AI routines were groundbreaking, contributing to the dynamic and engaging gameplay that made Wolfenstein 3D a landmark title."
+  - id: "damage-actor"
+    line_start: 964
+    line_end: 1035
+    title: "Handling damage and enemy death"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Hit_points"
+    image_url: ""
+    image_caption: ""
+    content: "The `DamageActor` function processes damage dealt to enemies, reducing their hit points and transitioning them to a new state if necessary. If an enemy's hit points drop to zero, the function calls `KillActor` to handle their death, including dropping items and updating the kill count. This routine encapsulates the finite-state machine approach to enemy behavior, where each state represents a distinct phase of activity. The inclusion of special cases, such as double damage for non-attacking enemies, adds depth to combat mechanics, making encounters more strategic and rewarding."
+  - id: "check-line-tile-precision"
     line_start: 1037
     line_end: 1185
-    title: "Line-of-sight calculation for AI"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Line_of_sight_(gaming)"
+    title: "Tile-based precision for line-of-sight checks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "The `CheckLine` function determines whether a straight line between the player and an enemy is unobstructed, accounting for walls and doors. This routine is a key component of Wolfenstein 3D's AI, enabling enemies to detect the player and engage in combat. The function uses integer math and precomputed values to optimize performance, a necessity given the game's real-time requirements. In 1992, line-of-sight calculations were a novel feature in first-person shooters, adding realism and strategy to gameplay. Carmack's implementation balances accuracy and efficiency, ensuring the AI could react quickly without slowing down the game. This logic laid the groundwork for more advanced visibility algorithms in later titles, influencing the development of modern game engines."
-  - id: "first-sighting-reaction"
-    line_start: 1253
-    line_end: 1402
-    title: "Enemy reaction upon spotting the player"
+    content: "The `CheckLine` function calculates whether a straight line between two points is unobstructed, using tile-based precision. This routine is central to determining whether an enemy can see the player. It uses bitwise operations to achieve 1/256 tile precision, an efficient method given the hardware constraints of 1992. The function iterates through the tiles along the line, checking for walls or doors and ensuring doors are sufficiently open to allow sight. At the time, MS-DOS systems lacked advanced graphics hardware, so developers relied on clever algorithms like this to simulate realistic interactions within a grid-based world. John Carmack's focus on optimization ensured these calculations were fast and reliable, contributing to the game's smooth gameplay. This approach influenced future games, where tile-based systems were used for pathfinding and visibility checks."
+  - id: "check-sight-ai-awareness"
+    line_start: 1187
+    line_end: 1251
+    title: "AI awareness through sight and proximity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "The `FirstSighting` function transitions an enemy into attack mode upon detecting the player, adjusting its speed and state. This routine exemplifies id Software's focus on creating dynamic and engaging AI. Enemies react differently based on their type, with unique sounds and behaviors that enhance the game's atmosphere. In the early 1990s, such detailed AI interactions were rare, as most games relied on static, predictable patterns. Wolfenstein 3D's enemies felt alive, responding to the player's actions and environment. This function also highlights Tom Hall's influence on the game's design, as he pushed for immersive and varied gameplay experiences. The sighting logic added tension and excitement, making each encounter memorable."
+    content: "The `CheckSight` function determines whether an enemy can detect the player based on line-of-sight and proximity. If the player is close enough, detection is automatic, but otherwise, the routine checks whether the enemy is facing the player and whether any obstacles block the view. This represents a significant step in AI design for games, where enemies react dynamically to the player's position and actions. In 1992, such mechanics were groundbreaking, as most games relied on simpler, scripted behaviors. The sight-check logic also incorporates area connectivity, ensuring enemies only react if their designated area is accessible to the player. This added realism to the gameplay and influenced AI systems in later first-person shooters, where spatial awareness became a key feature."
+  - id: "first-sighting-enemy-reaction"
+    line_start: 1253
+    line_end: 1402
+    title: "Dynamic enemy reactions to player detection"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_enemy_behavior"
+    image_url: ""
+    image_caption: ""
+    content: "The `FirstSighting` function transitions an enemy into attack mode upon detecting the player. Depending on the enemy type, it adjusts their speed and behavior, with some enemies emitting sound effects to alert the player. This routine showcases id Software's attention to detail, making each enemy feel unique and adding tension to encounters. The function also accounts for the player's position relative to the enemy, potentially reversing the enemy's direction if the player is behind them. This dynamic behavior was rare in 1992, as most games featured static or predictable enemy patterns. By introducing varied reactions and speeds, Wolfenstein 3D created a more immersive and challenging experience, setting a standard for enemy AI in future games."
+  - id: "sight-player-random-reaction-delays"
+    line_start: 1404
+    line_end: 1478
+    title: "Randomized reaction delays for realism"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Randomness_in_video_games"
+    image_url: ""
+    image_caption: ""
+    content: "The `SightPlayer` function determines whether an enemy detects the player based on sight, noise, or proximity. If detected, the enemy transitions into combat mode. This routine incorporates a random reaction delay, adding unpredictability to enemy behavior. The delay varies by enemy type, with faster reactions for more aggressive enemies. This randomness enhances gameplay by preventing overly predictable encounters, making each interaction feel unique. In 1992, such mechanics were innovative, as most games relied on fixed timers or scripted sequences. By simulating realistic delays, Wolfenstein 3D created a sense of urgency and suspense, influencing the design of AI systems in later games. The function also checks for ambush flags, ensuring enemies react appropriately based on their state and surroundings."
 
 ---
 

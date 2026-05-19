@@ -9,82 +9,82 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-us-1-c"
 order: 22
-description: "This file implements user interface routines for Wolfenstein 3D, showcasing id Software's ingenuity in handling text rendering, input, and error management on early 1990s hardware."
+description: "This file contains user interface routines for Wolfenstein 3D, showcasing innovative techniques in handling user input and feedback in early 1990s game development."
 
 summary:
-  - point: "Custom error handling routines for DOS-level errors"
+  - point: "The file demonstrates efficient handling of user input and feedback in a constrained MS-DOS environment."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Dynamic text rendering using pixel-based measurements"
-    link: "https://en.wikipedia.org/wiki/Bitmap_fonts"
-    link_label: "Bitmap Fonts"
-  - point: "Efficient handling of user input with real-time cursor feedback"
-    link: "https://en.wikipedia.org/wiki/Keyboard_(computing)"
-    link_label: "Keyboard Input"
-  - point: "Window management for text display and user interaction"
+  - point: "It includes routines for drawing and managing windows, a precursor to modern UI frameworks."
     link: "https://en.wikipedia.org/wiki/Graphical_user_interface"
     link_label: "Graphical User Interface"
-  - point: "Integration of game-specific parameters like TEDLEVEL"
-    link: "https://en.wikipedia.org/wiki/Level_editor"
-    link_label: "Level Editor"
+  - point: "The code reflects the ingenuity required to create immersive experiences on limited hardware."
+    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    link_label: "Wolfenstein 3D"
+  - point: "The file includes error handling routines tailored for the MS-DOS environment."
+    link: "https://en.wikipedia.org/wiki/Interrupt"
+    link_label: "Interrupts"
+  - point: "The use of assembly language for critical routines highlights performance optimization strategies."
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
 
 enhancements:
   - id: "static-initialization"
     line_start: 47
     line_end: 79
-    title: "Static variables: A foundation for user management"
+    title: "Static Initialization: Setting the Stage"
     wikipedia_url: "https://en.wikipedia.org/wiki/Static_variable"
     image_url: ""
     image_caption: ""
-    content: "This section defines static variables and arrays that serve as the backbone for user management routines. The `US_Started` flag ensures that the user manager is initialized only once, avoiding redundant operations. The `ParmStrings` and `ParmStrings2` arrays allow for parsing command-line arguments, a technique that was crucial for configuring game behavior without graphical menus. In the early 1990s, games often relied on such mechanisms due to the limited resources of MS-DOS systems. The inclusion of high scores, featuring names of id Software's team members, adds a personal touch and reflects the collaborative spirit of the game's development. These static variables encapsulate the state and configuration necessary for the user interface, showcasing how developers balanced simplicity with functionality in an era of constrained memory and processing power."
+    content: "This section initializes static variables and defines key data structures used throughout the file. The inclusion of high scores, featuring names of id Software's developers, serves as a playful nod to the team behind the game. In 1992, static variables were a common way to manage persistent state in C programs, especially in environments like MS-DOS where memory management was manual and constrained. These variables allowed developers to maintain state across function calls without the overhead of dynamic allocation. The high scores array, with its hardcoded values, reflects the era's simplicity and the developers' personal touch in embedding themselves into their creation. This initialization laid the groundwork for the user manager's functionality, ensuring consistent behavior across the game's runtime."
   - id: "usl-harderror"
     line_start: 81
     line_end: 85
-    title: "Handling DOS errors: Abort, Retry, Fail"
+    title: "USL_HardError: Handling DOS Errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The `USL_HardError` routine is a custom error handler for DOS-level errors, such as device failures or write protection issues. It intercepts errors and provides the user with options to retry or abort, displaying messages on the screen. This was a critical feature in the early 1990s, as MS-DOS lacked robust error recovery mechanisms. The routine's use of direct memory access (`peekb`) to check the screen mode demonstrates the low-level programming required to interact with hardware. The inclusion of humorous messages, such as advising a reboot if launched from TED (a level editor), reflects the developers' personality and the informal culture of id Software. This routine exemplifies the ingenuity required to create user-friendly experiences on a platform with minimal built-in support for error handling."
+    content: "This routine is designed to handle critical errors passed from DOS, such as device errors or write protection issues. In the early 1990s, robust error handling was crucial for software running on MS-DOS, as hardware failures and user errors could easily crash a program. The function's design reflects the need for graceful recovery or termination, offering options to retry or abort operations. The use of assembly language for certain operations, such as enabling keyboard interrupts, highlights the performance optimization strategies employed by the developers. This routine showcases the meticulous attention to detail required to create reliable software in an era of unpredictable hardware behavior."
   - id: "us-startup"
     line_start: 169
     line_end: 219
-    title: "Initializing the user manager: Startup logic"
+    title: "US_Startup: Initializing the User Manager"
     wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(programming)"
     image_url: ""
     image_caption: ""
-    content: "The `US_Startup` function initializes the user management system, ensuring that essential components like the random number generator and error handler are set up. This routine also parses command-line arguments to configure game-specific parameters, such as compatibility mode and TEDLEVEL, which determines the level editor's behavior. In the early 1990s, games often relied on command-line arguments for configuration due to the absence of graphical interfaces. The careful initialization of global variables and subsystems reflects the developers' attention to detail and their understanding of MS-DOS's limitations. By centralizing startup logic, id Software ensured that the game's user interface was consistently initialized, reducing the risk of errors and improving the overall user experience."
+    content: "US_Startup initializes the user manager, setting up critical routines like error handling and random number generation. This function checks for command-line parameters, allowing for customization of game behavior, such as compatibility modes or level selection. In the early 1990s, command-line arguments were a common way to configure software, as graphical interfaces were still in their infancy. The routine's design reflects the developers' focus on flexibility and adaptability, enabling the game to cater to different user needs and hardware configurations. By centralizing initialization, this function ensured a consistent starting state, reducing the risk of errors and improving the game's reliability."
   - id: "us-checkparm"
     line_start: 237
     line_end: 273
-    title: "Command-line parsing: Case-insensitive matching"
+    title: "US_CheckParm: Parsing Command-Line Arguments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "The `US_CheckParm` function provides a case-insensitive mechanism for matching command-line arguments against predefined strings. This routine was essential for configuring game behavior, allowing players or developers to pass parameters like `NOWAIT` or `TEDLEVEL` to modify gameplay or debugging settings. The use of ASCII character manipulation (`tolower`) reflects the challenges of working with text input in a low-level environment. In the early 1990s, command-line interfaces were the primary method for interacting with software, and robust parsing routines like this were crucial for usability. The function's design balances simplicity with flexibility, enabling the game to adapt to different configurations without requiring extensive user input."
+    content: "US_CheckParm is a utility function that checks if a given string matches any of a predefined set of command-line arguments. It performs a case-insensitive comparison, returning the index of the matching string or -1 if no match is found. This routine exemplifies the importance of user configurability in early software, where command-line interfaces were the primary means of interaction. By enabling flexible configuration, the developers ensured that Wolfenstein 3D could adapt to various user preferences and system constraints. This approach reflects the era's emphasis on efficiency and user empowerment, laying the groundwork for more sophisticated configuration systems in later software."
   - id: "us-print"
     line_start: 288
     line_end: 323
-    title: "Dynamic text rendering: Printing strings in windows"
+    title: "US_Print: Rendering Text in Windows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Text_rendering"
     image_url: ""
     image_caption: ""
-    content: "The `US_Print` function handles the rendering of strings within the game's user interface windows. It supports newline characters, dynamically measuring and positioning text based on pixel dimensions. This approach ensures that text fits within the designated window boundaries, a critical feature for creating visually appealing interfaces on MS-DOS systems. The use of pixel-based measurements (`USL_MeasureString`) reflects the challenges of rendering text in a bitmap environment, where fonts and graphics were tightly coupled. By abstracting text rendering into a dedicated function, id Software created a flexible system that could adapt to different window sizes and configurations, enhancing the game's usability and aesthetic appeal."
-  - id: "us-drawwindow"
+    content: "US_Print is responsible for rendering text within the current window, supporting features like newlines and dynamic positioning. This routine leverages the user manager's print and measure functions to ensure accurate text placement. In the constrained environment of MS-DOS, efficient text rendering was essential for creating immersive user interfaces. The developers' decision to separate measurement and drawing routines reflects a modular design philosophy, enabling flexibility and reuse. This function highlights the ingenuity required to implement graphical interfaces on limited hardware, paving the way for more advanced UI frameworks in modern software."
+  - id: "us-draw-window"
     line_start: 453
     line_end: 487
-    title: "Drawing windows: Framing the user interface"
+    title: "US_DrawWindow: Framing the Interface"
     wikipedia_url: "https://en.wikipedia.org/wiki/Window_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `US_DrawWindow` function creates framed windows within the game's user interface, setting parameters like position, width, and height. It uses tile-based rendering (`VWB_DrawTile8`) to draw the window's borders, a technique that leverages the game's graphics engine to create visually distinct UI elements. This function also initializes global variables for text rendering, ensuring that subsequent operations like printing are aligned with the window's dimensions. In the early 1990s, games often relied on custom routines for UI rendering due to the lack of standardized graphical libraries. The modular design of `US_DrawWindow` reflects id Software's commitment to creating reusable components, a philosophy that contributed to their rapid development cycles and innovative game designs."
-  - id: "us-lineinput"
+    content: "US_DrawWindow creates a framed window on the screen, setting its dimensions and initializing the print cursor. This routine demonstrates the developers' focus on user interface design, providing a structured way to display information. The use of tiled graphics for the frame reflects the limitations of MS-DOS graphics, where developers often relied on creative solutions to achieve visual effects. By encapsulating window creation in a single function, the developers ensured consistency and ease of use, contributing to the game's polished appearance. This approach influenced later UI frameworks, emphasizing the importance of modular design in software development."
+  - id: "us-line-input"
     line_start: 574
     line_end: 755
-    title: "Real-time user input: Interactive line editing"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Text_editor"
+    title: "US_LineInput: Capturing User Input"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `US_LineInput` function implements a real-time text input system, allowing users to edit strings interactively. It supports features like cursor movement, character deletion, and input validation, providing feedback through a blinking cursor. This routine was crucial for creating responsive interfaces on MS-DOS systems, where direct interaction with the keyboard and screen was required. The use of assembly instructions (`asm cli`, `asm popf`) highlights the low-level programming needed to manage interrupts and ensure smooth input handling. In the early 1990s, such routines were a testament to the developers' skill in optimizing performance and usability on constrained hardware. The interactive nature of `US_LineInput` reflects id Software's focus on creating immersive experiences, even in the game's menus and configuration screens."
+    content: "US_LineInput handles user input, allowing the player to enter text within predefined constraints. It supports features like cursor movement, character deletion, and escape handling, providing a responsive and intuitive interface. In the early 1990s, text input routines were a critical component of software, enabling interaction in a predominantly command-line-driven environment. The developers' decision to implement features like cursor visibility and redraw optimization reflects their commitment to usability and performance. This routine showcases the challenges of creating interactive systems on limited hardware, highlighting the developers' ingenuity in overcoming constraints. Its design principles continue to influence modern input handling, emphasizing the importance of user-centric development."
 
 ---
 

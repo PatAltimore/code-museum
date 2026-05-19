@@ -9,90 +9,146 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-inter-c"
 order: 17
-description: "This file handles intermission screens and victory sequences in Wolfenstein 3D, showcasing the game's innovative use of graphics and player engagement."
+description: "This file implements intermission screens, victory sequences, and preload graphics for Wolfenstein 3D, showcasing id Software's mastery of immersive storytelling and efficient hardware utilization."
 
 summary:
-  - point: "Dynamic intermission sequences with player stats"
+  - point: "Innovative use of split-screen rendering for intermissions"
     link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     link_label: "Wolfenstein 3D"
-  - point: "Custom graphics caching for smooth transitions"
-    link: "https://en.wikipedia.org/wiki/Graphics_pipeline"
-    link_label: "Graphics pipeline"
-  - point: "Use of time-based animations for immersive storytelling"
-    link: "https://en.wikipedia.org/wiki/Animation"
-    link_label: "Animation"
-  - point: "Integration of copy protection mechanisms"
-    link: "https://en.wikipedia.org/wiki/Copy_protection"
-    link_label: "Copy protection"
-  - point: "High score management and player recognition"
-    link: "https://en.wikipedia.org/wiki/Leaderboard"
-    link_label: "Leaderboard"
+  - point: "Dynamic animations and fading effects for victory sequences"
+    link: "https://en.wikipedia.org/wiki/Graphics_display_resolution"
+    link_label: "Graphics display resolution"
+  - point: "Preloading graphics to optimize gameplay performance"
+    link: "https://en.wikipedia.org/wiki/Cache_(computing)"
+    link_label: "Cache (computing)"
+  - point: "Custom routines for displaying text and ratios on screen"
+    link: "https://en.wikipedia.org/wiki/Bitmap"
+    link_label: "Bitmap"
+  - point: "Integration of sound effects with visual updates"
+    link: "https://en.wikipedia.org/wiki/Sound_card"
+    link_label: "Sound card"
 
 enhancements:
-  - id: "clear-split-vwb"
+  - id: "clear-split-vwb-initialization"
     line_start: 17
-    line_end: 24
-    title: "Setting the stage for split-screen graphics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_pipeline"
+    line_end: 35
+    title: "Resetting the visual buffer window"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""
     image_caption: ""
-    content: "This function initializes the graphics window for split-screen rendering by clearing the update buffer and setting the dimensions of the window. At the time, Wolfenstein 3D was pushing the limits of MS-DOS graphics capabilities, and split-screen rendering was a clever way to manage resources while maintaining visual fidelity. John Carmack's expertise in optimizing graphics pipelines allowed the game to run smoothly on hardware that was considered modest even in 1992. This approach laid the groundwork for efficient graphics rendering in later games, influencing the development of engines like id Tech."
-  - id: "end-screen"
+    content: "The `ClearSplitVWB` function resets the visual buffer window, a crucial step for ensuring clean rendering during intermission screens. By zeroing out the `update` array and setting the window dimensions to 320x160 pixels, the developers prepare the screen for subsequent graphical operations. In 1992, hardware constraints like limited video memory and fixed resolutions (often 320x200 on MS-DOS systems) necessitated careful management of screen buffers. John Carmack's expertise in optimizing rendering pipelines allowed Wolfenstein 3D to achieve smooth transitions and immersive visuals despite these limitations. This function exemplifies the meticulous attention to detail required to push the boundaries of early PC gaming."
+  - id: "end-screen-fade-effects"
     line_start: 37
     line_end: 47
-    title: "Crafting dramatic end screens"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    title: "Creating dramatic end screens with fades"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Color_gradient"
     image_url: ""
     image_caption: ""
-    content: "The `EndScreen` function handles the display of dramatic end screens, including fading effects and palette changes. These screens were designed to leave a lasting impression on players, celebrating their achievements while transitioning to the next stage. In 1992, such graphical flourishes were rare due to hardware limitations, but id Software's innovative use of fading and caching techniques made them possible. The function reflects the team's commitment to creating an immersive experience, a hallmark of their work that would continue in later titles like Doom and Quake."
-  - id: "victory-sequence"
+    content: "The `EndScreen` function implements a sequence of fading effects to display end screens, enhancing the dramatic impact of the game's conclusion. By caching graphics chunks, updating the screen, and gradually fading in and out using `VL_FadeIn` and `VW_FadeOut`, the developers create a visually engaging experience. This approach reflects the importance of storytelling in gaming, where even technical elements like fades contribute to the narrative. In the early 1990s, such effects were cutting-edge, showcasing id Software's ability to blend technical innovation with artistic flair. These techniques influenced later games, setting a standard for immersive transitions."
+  - id: "end-spear-sequence"
+    line_start: 50
+    line_end: 106
+    title: "A cinematic finale for Spear of Destiny"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Spear_of_Destiny_(video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `EndSpear` function orchestrates the finale for Spear of Destiny, a standalone prequel to Wolfenstein 3D. This sequence combines cached graphics, text rendering, and timed acknowledgments to deliver a cinematic experience. The developers use functions like `US_CPrint` to display congratulatory messages and `VW_UpdateScreen` to refresh visuals dynamically. The inclusion of timed waits (`TimeCount`) and user input checks (`IN_CheckAck`) ensures player engagement during the sequence. Spear of Destiny was released in 1992, leveraging the same engine as Wolfenstein 3D but with additional storytelling elements. This function highlights id Software's commitment to crafting memorable game endings that resonate with players."
+  - id: "victory-screen-ratios"
     line_start: 108
     line_end: 308
-    title: "Celebrating player success with stats and music"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    title: "Celebrating victory with performance metrics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Score_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `Victory` function is a centerpiece of Wolfenstein 3D's intermission design, showcasing player statistics and achievements in a visually engaging way. It combines music, animations, and text to create a rewarding experience for players who complete a level. This sequence reflects id Software's understanding of player psychology and their desire to make every victory feel significant. By caching graphics and using time-based animations, the function ensures smooth transitions and keeps players immersed in the game's narrative. The design principles here influenced the development of similar victory screens in future games."
-  - id: "bj-breathe"
+    content: "The `Victory` function calculates and displays performance metrics, such as kill, secret, and treasure ratios, alongside total playtime. These metrics are presented in a visually appealing format, with graphical representations of numbers and ratios. The function also incorporates music (`StartCPMusic`) and animations to celebrate the player's success. In the early 1990s, such detailed post-level analysis was rare, making Wolfenstein 3D stand out for its emphasis on rewarding player achievements. This feature reflects Tom Hall's influence on the game's design, as he often prioritized player feedback and engagement. The victory screen became a hallmark of id Software's games, inspiring similar features in later titles."
+  - id: "pg13-warning-screen"
+    line_start: 310
+    line_end: 329
+    title: "Displaying a PG-13 content warning"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Content_rating"
+    image_url: ""
+    image_caption: ""
+    content: "The `PG13` function displays a content warning screen, emphasizing the game's mature themes. By caching the `PG13PIC` graphic and fading in and out, the developers ensure the warning is both prominent and visually integrated. This reflects the growing awareness of content ratings in the early 1990s, as gaming began to attract a broader audience. Wolfenstein 3D's depiction of violence and historical themes necessitated such warnings, aligning with industry efforts to establish age-appropriate guidelines. The function showcases id Software's adaptability in addressing cultural and regulatory shifts while maintaining their creative vision."
+  - id: "write-text-rendering"
+    line_start: 331
+    line_end: 391
+    title: "Custom text rendering for on-screen messages"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Font"
+    image_url: ""
+    image_caption: ""
+    content: "The `Write` function renders text on the screen using a custom bitmap font. By mapping characters to pre-defined graphic chunks (`alpha` array), the function enables dynamic text display, including support for special characters like colons and apostrophes. This approach was essential in an era when hardware lacked built-in text rendering capabilities. John Carmack's low-level programming skills shine here, as he optimizes text rendering for performance and flexibility. The function's design influenced later games, where custom fonts and dynamic text became standard features for enhancing user interfaces and storytelling."
+  - id: "bj-breathe-animation"
     line_start: 392
-    line_end: 406
-    title: "Animating BJ Blazkowicz for realism"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    line_end: 423
+    title: "Animating BJ Blazkowicz's breathing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The `BJ_Breathe` function adds a subtle touch of realism by animating the protagonist's breathing during intermissions. This small detail demonstrates id Software's commitment to creating a living, breathing world, even within the constraints of early 1990s hardware. Such animations were rare in games of the era, but they helped establish a connection between the player and the character. This attention to detail would become a hallmark of id Software's design philosophy, influencing character animations in later titles like Doom and Quake."
-  - id: "level-completed"
+    content: "The `BJ_Breathe` function animates the protagonist's breathing, adding a subtle touch of realism to intermission screens. By alternating between two sprite images (`L_GUYPIC` and `L_GUY2PIC`) based on a timer (`TimeCount`), the developers create a lifelike effect. This attention to detail reflects id Software's commitment to immersion, even in minor aspects of the game. In 1992, sprite-based animations were a common technique for simulating movement, but Wolfenstein 3D's implementation stands out for its polish and integration. The breathing animation contributes to the game's atmosphere, reinforcing the player's connection to the character."
+  - id: "level-completed-intermission"
     line_start: 429
     line_end: 970
-    title: "Intermission screens with player stats and bonuses"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Leaderboard"
+    title: "Detailed intermission for level completion"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intermission_(video_games)"
     image_url: ""
     image_caption: ""
-    content: "The `LevelCompleted` function is a masterclass in intermission design, displaying detailed player statistics and awarding bonuses based on performance. By calculating ratios for kills, secrets, and treasures, the function creates a sense of accomplishment and encourages players to strive for perfection. The use of animations and sound effects enhances the experience, making each intermission a memorable part of the game. This design reflects id Software's understanding of player motivation and their ability to create engaging content within the technical limitations of the time."
-  - id: "preload-graphics"
+    content: "The `LevelCompleted` function orchestrates the intermission sequence after completing a level. It calculates bonuses, displays ratios, and plays sound effects to reward the player. The function uses pre-defined par times (`parTimes`) to compare player performance, adding a competitive element. By integrating sound (`SD_PlaySound`) and animations (`BJ_Breathe`), the sequence becomes a dynamic and engaging experience. In the early 1990s, such detailed intermissions were rare, showcasing id Software's innovation in enhancing gameplay. The function's design reflects the team's focus on player satisfaction, setting a precedent for post-level analysis in later games."
+  - id: "preload-graphics-optimization"
     line_start: 995
-    line_end: 1017
-    title: "Optimizing graphics for smooth gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_pipeline"
+    line_end: 1028
+    title: "Optimizing gameplay with graphic preloading"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Preloading"
     image_url: ""
     image_caption: ""
-    content: "The `PreloadGraphics` function ensures that all necessary graphics are loaded into memory before gameplay begins, reducing lag and improving performance. This technique was crucial for Wolfenstein 3D, which aimed to deliver fast-paced action on hardware with limited resources. By preloading assets, id Software minimized the impact of disk access times, allowing the game to run smoothly even on slower machines. This approach to resource management influenced the development of graphics engines and remains a standard practice in game development today."
+    content: "The `PreloadGraphics` function preloads graphical assets to optimize gameplay performance. By caching images and displaying a 'Get Psyched!' screen, the developers prepare the player for the upcoming level while reducing in-game loading times. This technique was crucial in 1992, as MS-DOS systems often struggled with slow disk access and limited memory. John Carmack's expertise in memory management allowed Wolfenstein 3D to deliver seamless transitions between levels. The function reflects id Software's commitment to technical excellence, influencing later games that adopted similar preloading strategies to enhance player experience."
   - id: "draw-high-scores"
     line_start: 1030
     line_end: 1193
-    title: "Celebrating player achievements with leaderboards"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Leaderboard"
+    title: "High scores: A window into competition"
+    wikipedia_url: "https://en.wikipedia.org/wiki/High_score"
     image_url: ""
     image_caption: ""
-    content: "The `DrawHighScores` function displays a leaderboard of player achievements, complete with names, scores, and levels completed. This feature reflects id Software's understanding of the importance of recognition in gaming, providing players with a sense of accomplishment and encouraging competition. The function uses fixed-width fonts and graphical elements to create a visually appealing display, showcasing the team's attention to detail. Leaderboards like this became a staple of gaming, influencing the design of online multiplayer games and social gaming platforms."
-  - id: "copy-protection"
+    content: "The `DrawHighScores` function is responsible for displaying the high scores in Wolfenstein 3D. It caches necessary graphics chunks, clears the screen, and draws the high score table, including player names, levels completed, and scores. In the early 1990s, high scores were a hallmark of competitive gaming, fostering a sense of achievement and rivalry among players. The function uses fixed-width fonts to ensure alignment, a clever design decision for the era when graphical precision was constrained by hardware limitations. John Carmack and his team at id Software were pioneers in optimizing performance for MS-DOS systems, leveraging techniques like memory caching to make the most of limited resources. This high score display system reflects their meticulous attention to detail in creating immersive and rewarding gameplay experiences. The concept of high scores has persisted in gaming culture, evolving into global leaderboards and achievements in modern games."
+  - id: "check-high-score"
+    line_start: 1195
+    line_end: 1271
+    title: "Breaking into the leaderboard"
+    wikipedia_url: "https://en.wikipedia.org/wiki/High_score"
+    image_url: ""
+    image_caption: ""
+    content: "The `CheckHighScore` function determines whether a player's score qualifies for the leaderboard. If it does, the scores are shifted to make room for the new entry, and the player is prompted to enter their name. This routine showcases early user interaction design, where players could leave their mark in the game. In 1992, this was a significant feature, as it personalized the gaming experience and encouraged replayability. The function also plays celebratory music upon achieving a high score, adding an emotional reward to the accomplishment. The logic for sorting scores and handling ties is straightforward yet effective, reflecting the constraints of the era. This design laid the groundwork for more sophisticated leaderboard systems seen in later games, where scores are often shared across global networks."
+  - id: "non-shareware-notice"
+    line_start: 1272
+    line_end: 1320
+    title: "A stern reminder: Not shareware"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Shareware"
+    image_url: ""
+    image_caption: ""
+    content: "The `NonShareware` function displays a message informing players that Wolfenstein 3D is not shareware and should not be distributed freely. This reflects the software distribution practices of the early 1990s, when shareware was a popular model for promoting games. Id Software used shareware to distribute the first episode of Wolfenstein 3D, enticing players to purchase the full version. However, this function is a reminder that the full game was a commercial product. The message is presented in multiple languages, showcasing the game's international reach. The inclusion of this notice highlights the challenges developers faced in protecting their intellectual property in an era before digital rights management (DRM). While shareware has largely faded, the principles of free-to-play and demo versions persist in modern gaming."
+  - id: "copy-protection-data"
     line_start: 1321
-    line_end: 1714
-    title: "Innovative copy protection mechanisms"
+    line_end: 1458
+    title: "Humor and security: Copy protection data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
     image_url: ""
     image_caption: ""
-    content: "The `CopyProtection` function implements a series of quizzes and checks to verify the authenticity of the game. These mechanisms reflect the challenges faced by developers in the early 1990s, when software piracy was rampant and digital distribution was still in its infancy. By integrating copy protection directly into the game, id Software ensured that players who obtained the game legitimately could enjoy it without interruption. The function also includes humorous and creative elements, showcasing the team's personality and their ability to turn a technical necessity into an engaging experience."
+    content: "This section defines data structures and strings used for copy protection in Wolfenstein 3D. It includes humorous phrases, references to pop culture, and even inside jokes among the development team. Copy protection was a critical concern in the early 1990s, as piracy threatened the profitability of games. Id Software's approach combined practical security measures with their characteristic sense of humor, making the process less intrusive for players. The inclusion of developer names and playful messages reflects the team's personality and the informal culture of early game development. While copy protection has evolved into more sophisticated systems like DRM, this section is a snapshot of how developers balanced security and user experience in the early days of gaming."
+  - id: "backdoor-function"
+    line_start: 1461
+    line_end: 1482
+    title: "The secret backdoor: Easter eggs in code"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Easter_egg_(media)"
+    image_url: ""
+    image_caption: ""
+    content: "The `BackDoor` function checks for specific input strings that bypass copy protection, serving as a hidden Easter egg for players or developers. These strings include humorous phrases and references, such as \"a spoon?\" and \"joshua,\" the latter being a nod to the movie WarGames. Easter eggs like this were common in early games, reflecting the playful nature of developers and their desire to connect with players. This function exemplifies id Software's creative approach to game design, embedding surprises for those who explore the code or experiment with inputs. Easter eggs continue to be a beloved tradition in gaming, offering hidden rewards and insights into the developers' personalities."
+  - id: "copy-protection-quiz"
+    line_start: 1485
+    line_end: 1718
+    title: "Copy protection: A quiz of loyalty"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
+    image_url: ""
+    image_caption: ""
+    content: "The `CopyProtection` function implements a quiz-based system to verify the legitimacy of the game copy. Players are presented with questions about game content, staff members, or miscellaneous trivia, requiring them to consult the manual or provide correct answers. This method reflects the era's reliance on physical documentation as a form of copy protection. Id Software's implementation is notable for its creativity, incorporating humor and references to the development team. The quiz also includes a \"backdoor\" mechanism, allowing certain inputs to bypass the protection, likely intended for testing or as an Easter egg. Copy protection methods like this were common in the early 1990s but have since been replaced by digital systems. This function is a testament to the ingenuity and personality of early game developers, blending security with entertainment."
 
 ---
 
