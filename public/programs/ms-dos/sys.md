@@ -9,146 +9,146 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "sys"
 order: 44
-description: "The SYS program in MS-DOS v2.0, written in 8086 assembly, was a critical utility for transferring system files to make a disk bootable, showcasing the evolution of DOS from its origins to a more Unix-inspired architecture."
+description: "This file implements the SYS command in MS-DOS, responsible for transferring system files to make a disk bootable."
 
 summary:
-  - point: "Introduced FAT validation for bootable disks"
+  - point: "Introduces FAT validation to ensure bootable disks"
     link: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     link_label: "File Allocation Table"
-  - point: "Incorporated Unix-like system calls in MS-DOS v2.0"
-    link: "https://en.wikipedia.org/wiki/Unix"
-    link_label: "Unix"
-  - point: "Optimized for small machines with limited memory"
+  - point: "Uses direct BIOS and DOS system calls for file manipulation"
+    link: "https://en.wikipedia.org/wiki/BIOS"
+    link_label: "BIOS"
+  - point: "Incorporates error handling for invalid DOS versions and disk configurations"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Allowed non-contiguous DOS files on disks"
-    link: "https://en.wikipedia.org/wiki/Disk_partitioning"
-    link_label: "Disk Partitioning"
-  - point: "Included error handling for unformatted or invalid disks"
+  - point: "Reflects early MS-DOS compatibility with IBM PC and other OEMs"
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
+  - point: "Demonstrates low-level assembly techniques for disk operations"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
 
 enhancements:
-  - id: "buffer-memory-allocation"
+  - id: "buf-data-buffer-for-file-reads"
     line_start: 197
     line_end: 213
-    title: "Buffer setup for file reads"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines the buffer memory area used for file reads, labeled as 'BUF'. The programmer allocates space to temporarily hold data being read from disk files, such as IBMBIO.COM and IBMDOS.COM. In the early 1980s, memory was a precious resource, and every byte had to be carefully managed. Tim Paterson and later contributors to MS-DOS v2.0 were working within the constraints of machines like the IBM PC, which often had only 64KB or 128KB of RAM. This buffer would ensure efficient data transfer while minimizing the risk of overwriting critical memory areas. The design reflects the meticulous attention to low-level memory management that defined programming during this era. The concept of buffers remains central to computing today, though modern systems abstract much of this complexity away from developers."
-  - id: "program-entry-point"
-    line_start: 217
-    line_end: 229
-    title: "Program entry point and version header"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "The 'Start' label marks the entry point of the SYS program, with an immediate jump to the 'CheckVersion' routine. This section also includes a version header ('Vers 1.81'), a simple string indicating the program's revision. In the early 1980s, versioning was a manual process, often embedded directly in the source code as a static string. This header would help users and developers identify the specific build of the utility, which was crucial in an era when software updates were distributed via floppy disks and compatibility issues were common. The inclusion of versioning reflects the growing complexity of software maintenance as MS-DOS matured from a simple operating system into a foundational platform for personal computing."
-  - id: "version-checking-routine"
-    line_start: 231
-    line_end: 247
-    title: "Checking DOS version compatibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_version_history"
-    image_url: ""
-    image_caption: ""
-    content: "The 'CheckVersion' routine ensures the SYS program is running on a compatible version of DOS. It retrieves the current DOS version using interrupt 21h and compares it against predefined minimum and maximum acceptable versions. If the version is outside the acceptable range, the program jumps to the 'GOTBADDOS' error handler. This kind of version checking was critical in the early days of MS-DOS, as the operating system evolved rapidly and older utilities could break on newer versions. Tim Paterson's original 86-DOS had no such mechanism, but as MS-DOS grew, backward compatibility became a major concern, especially for OEMs and end-users relying on consistent behavior across updates."
-  - id: "error-handling-bad-dos-version"
-    line_start: 249
-    line_end: 257
-    title: "Handling incompatible DOS versions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
-    image_url: ""
-    image_caption: ""
-    content: "The 'GOTBADDOS' routine handles the case where the DOS version is incompatible with the SYS program. It displays an error message ('BADVER') and exits the program using interrupt 20h, an older DOS termination call. This reflects the transitional nature of MS-DOS v2.0, which was moving toward more Unix-like system calls but still retained compatibility with earlier conventions. The error handling here is minimal but functional, providing users with a clear indication of the problem. In the context of 1983, this approach was sufficient, as most users were technically proficient and accustomed to troubleshooting issues themselves."
-  - id: "fat-validation-for-ibm-disks"
-    line_start: 303
-    line_end: 363
-    title: "Validating FAT for IBM-formatted disks"
+    title: "Data buffer for file reads"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "This section includes a conditional block ('IF IBMVER') that validates the FAT (File Allocation Table) of the destination disk. The program reads the first sector of the FAT using interrupt 25h and checks its media descriptor byte to ensure the disk is properly formatted. If the FAT is invalid, the program jumps to an error handler ('ERR3'). This validation was added to address issues specific to IBM-formatted disks, which could sometimes appear unformatted due to quirks in IBM's implementation. The FAT system itself was a revolutionary file system introduced by Microsoft and widely adopted in the PC era. This code highlights the close collaboration between Microsoft and IBM during the development of the IBM PC, as well as the challenges of ensuring compatibility across different hardware and software environments."
-  - id: "copying-system-files"
-    line_start: 429
-    line_end: 503
-    title: "Copying IBMBIO.COM and IBMDOS.COM"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
+    content: "This section defines a buffer labeled 'BUF' for reading data from files during the SYS operation. The buffer is used to temporarily store file contents, including the system files IO.SYS and MSDOS.SYS (or their IBM equivalents). The programmer's goal here is to ensure efficient handling of file data during the copying process. In the early 1980s, memory constraints were severe, and buffer management was critical to avoid wasting precious RAM. The use of a fixed-size buffer reflects the limitations of the 8086 architecture, which had a 16-bit address space and no built-in memory management. This approach influenced later disk utilities and operating systems, where buffer management became a standard practice for file I/O operations. Techniques like this laid the groundwork for modern file systems and utilities that optimize disk access."
+  - id: "start-program-entry-point"
+    line_start: 217
+    line_end: 229
+    title: "Program entry point"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The 'DOSWRT' routine handles the copying of system files (IBMBIO.COM and IBMDOS.COM) to the destination disk, making it bootable. The program adjusts file attributes, creates new files using interrupt 21h, and writes the contents of the source files to the destination. This process was essential for preparing a bootable disk, allowing users to install MS-DOS on new or formatted disks. The SYS program was a critical utility for OEMs and end-users alike, simplifying the process of setting up a new system. In the broader context of computing history, this routine represents the transition from manual disk preparation to automated tools, paving the way for modern operating system installers."
-  - id: "memory-management-for-file-copy"
-    line_start: 657
-    line_end: 675
-    title: "Managing memory during file copy"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    content: "The 'Start' label marks the entry point of the SYS program. It begins by jumping to the 'CheckVersion' subroutine, ensuring that the DOS version is compatible before proceeding. This reflects the importance of version control in software distribution during the early 1980s, as MS-DOS evolved rapidly to support new hardware and features. Tim Paterson and Microsoft's team designed SYS to work across multiple DOS versions, a necessity given their OEM licensing strategy. The inclusion of version checks ensured that SYS wouldn't corrupt disks or fail on unsupported systems, a critical factor in maintaining MS-DOS's reputation for reliability. This practice of validating software compatibility became standard in operating systems and applications, influencing tools like Windows Setup and Linux package managers."
+  - id: "checkversion-dos-version-validation"
+    line_start: 231
+    line_end: 247
+    title: "DOS version validation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The 'FillMem' routine manages memory allocation during the file copy process. It calculates the available buffer size, reads data from the source files into memory, and updates pointers for subsequent reads. This routine reflects the constraints of early PCs, which had limited RAM and required careful management to avoid overwriting critical data. The use of 32-bit arithmetic for handling file lengths demonstrates the forward-thinking design of MS-DOS v2.0, which anticipated larger files and more complex storage needs. Memory management remains a foundational aspect of system programming, and routines like 'FillMem' illustrate the ingenuity required to optimize performance on constrained hardware."
-  - id: "boot-sector-writing"
-    line_start: 893
-    line_end: 919
-    title: "Writing the boot sector"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Boot_sector"
+    content: "The 'CheckVersion' subroutine ensures that the running DOS version falls within an acceptable range. It uses interrupt 21h to retrieve the version number and compares it against predefined constants. If the version is too low or too high, the program exits with an error message. This reflects the challenges of maintaining compatibility across multiple versions of DOS, especially as Microsoft licensed MS-DOS to numerous OEMs. The version validation mechanism ensured that SYS could safely operate on disks formatted for the correct DOS version, preventing errors and data loss. This approach influenced later software development practices, including the use of version checks in installers and compatibility layers in modern operating systems."
+  - id: "gotbaddos-invalid-dos-version-handler"
+    line_start: 249
+    line_end: 257
+    title: "Invalid DOS version handler"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The 'PUTBOOT' routine writes a new boot sector to the destination disk, ensuring it is bootable. It uses interrupt 26h to write the sector directly to the disk and updates key parameters such as the media descriptor byte and directory entries. This routine highlights the low-level nature of MS-DOS programming, where direct disk access was common. The boot sector is a critical component of any operating system, containing the code needed to load the OS into memory during startup. By automating the creation of a boot sector, the SYS program simplified the process of preparing bootable disks, making MS-DOS more accessible to non-technical users."
-  - id: "write-llist-relocation-logic"
+    content: "The 'GOTBADDOS' subroutine handles cases where the DOS version is outside the acceptable range. It displays an error message using interrupt 21h and exits the program. This reflects the importance of robust error handling in early software, where user feedback was critical to diagnosing issues. The error message provides a clear indication of the problem, helping users understand why the operation failed. This approach influenced the development of user-friendly error reporting in later software, including detailed error codes and troubleshooting guides in modern operating systems."
+  - id: "okdos-drive-validation"
+    line_start: 261
+    line_end: 263
+    title: "Drive validation after version check"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "The 'OKDOS' subroutine resumes execution after a successful version check, validating the drive letter specified by the user. It prepares to process the SYS operation by jumping to the 'SYS' subroutine. This reflects the layered approach to input validation in early software, where each step builds on the previous one to ensure correctness. By separating version and drive validation, the program maintains clarity and modularity, principles that influenced later software design practices, including structured programming and object-oriented design."
+  - id: "err0-err1-err2-error-handling-subroutines"
+    line_start: 267
+    line_end: 301
+    title: "Error handling subroutines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
+    image_url: ""
+    image_caption: ""
+    content: "The 'ERR0', 'ERR1', and 'ERR2' subroutines handle specific error conditions, such as missing or invalid drive letters. Each subroutine sets up an appropriate error message and jumps to the 'DisplayError' routine. This modular approach to error handling reflects the influence of structured programming principles, which emphasize clarity and separation of concerns. By isolating error handling logic, the program makes it easier to understand and maintain. These techniques influenced later software development practices, including the use of exception handling in high-level languages like C++ and Java."
+  - id: "sys-main-processing-routine"
+    line_start: 303
+    line_end: 363
+    title: "Main processing routine"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "The 'SYS' subroutine performs the main processing for the SYS command, including validating input and preparing for file copying. It checks whether a file was specified, validates the drive letter, and retrieves the default drive. This reflects the complexity of early disk utilities, where multiple checks were necessary to ensure safe operation. The modular design of the SYS routine demonstrates the influence of structured programming principles, which were gaining popularity in the early 1980s. This approach influenced the development of later disk utilities and file system tools, including the FORMAT and CHKDSK commands in MS-DOS."
+  - id: "okfat-fat-validation"
+    line_start: 365
+    line_end: 427
+    title: "FAT validation for bootable disks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
+    image_url: ""
+    image_caption: ""
+    content: "The 'OKFAT' subroutine checks the FAT (File Allocation Table) of the destination disk to ensure it is valid for booting. It reads the first sector of the FAT and verifies its contents. If the FAT is invalid, the program jumps to an error handler. This reflects the importance of FAT validation in early operating systems, where the FAT was central to file management and disk bootability. The use of direct disk reads and checks highlights the low-level nature of SYS and the constraints of the 8086 architecture. FAT validation became a standard practice in disk utilities, influencing tools like FORMAT and CHKDSK in MS-DOS and later operating systems."
+  - id: "write-llist-relocation-handler"
     line_start: 1029
     line_end: 1043
-    title: "Relocation logic for linked list entries"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_programming)"
+    title: "Relocation Handling for Executable Files"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The WRITE_LLIST subroutine adjusts linked list entries by applying a relocation factor. It begins by calculating the true relocation offset and iterates through the linked list buffer, updating each entry's address. This functionality was crucial for managing memory in a segmented architecture like the Intel 8086, where programs often had to relocate themselves dynamically during execution. In 1983, MS-DOS v2.0 was being reimagined to support more complex file systems and multitasking features inspired by Unix. Memory management became a critical concern as the operating system evolved to handle subdirectories and file handles. Tim Paterson's original 86-DOS design had been simple and direct, but the rewrite led by Microsoft engineers required more sophisticated techniques like this relocation logic. The concept of relocation persists in modern computing, though it has evolved significantly with virtual memory systems and advanced compilers."
-  - id: "relloops-iteration-update"
+    content: "The WRITE_LLIST routine processes relocation entries for executable files. Relocation is necessary because programs often cannot assume fixed memory addresses when loaded. This routine adjusts memory addresses based on a relocation factor stored in the RELOC variable. By iterating through a buffer of relocation entries (LLISTBUF), it modifies each entry to reflect the correct memory offset. In the early 1980s, relocation was critical for enabling software portability across different hardware configurations. Tim Paterson likely adapted this technique from prior operating systems like CP/M, which influenced MS-DOS's design. This approach became foundational for executable file formats like EXE and later PE (Portable Executable) files used in Windows."
+  - id: "relloops-buffer-adjustment"
     line_start: 1045
     line_end: 1051
-    title: "Iterative update of linked list entries"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Loop_(computing)"
+    title: "Iterative Buffer Adjustment for Relocation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The RELLOOP section iterates through the linked list buffer and updates each entry's address by adding the relocation factor. This loop uses the LOOP instruction, a hallmark of 8086 assembly programming, which automatically decrements the CX register and checks if it has reached zero. In the early 1980s, assembly programmers relied heavily on such efficient constructs to minimize code size and execution time. The 8086 processor, with its limited instruction set and registers, forced developers to be resourceful and precise. RELLOOP exemplifies the era's programming ethos: compact, efficient, and tailored to the hardware. This approach influenced generations of programmers, even as higher-level languages and more abstract paradigms became dominant."
-  - id: "no-relocs-default-handling"
+    content: "The RELLOOP section iterates through a buffer of relocation entries, adjusting each entry by adding the relocation factor stored in AX. This loop uses the LOOP instruction, a compact way to decrement CX and repeat until CX reaches zero. The design reflects the constraints of early assembly programming, where minimizing instruction count and execution time was paramount. RELLOOP's efficient handling of relocation entries contributed to MS-DOS's ability to load programs quickly, even on slower hardware like the IBM PC's 4.77 MHz Intel 8088 processor. This technique influenced later operating systems, which adopted similar strategies for managing executable file relocation."
+  - id: "no-relocs-int-26h"
     line_start: 1053
     line_end: 1067
-    title: "Default handling for no relocation entries"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_26h"
+    title: "Handling No Relocation Scenarios"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
     image_caption: ""
-    content: "The NO_RELOCS section handles cases where no relocation is needed. It uses INT 26h, the DOS interrupt for absolute disk writes, to write the linked list buffer directly to disk. This interrupt was a low-level mechanism for interacting with storage devices, bypassing the file system entirely. In the context of MS-DOS v2.0, this routine reflects the operating system's dual nature: it was evolving toward a more structured, Unix-like model but still retained direct, low-level disk access for performance-critical tasks. Such routines were essential for bootstrapping and system-level operations, ensuring reliability in environments where hardware and software compatibility varied widely."
+    content: "The NO_RELOCS section handles cases where no relocation entries exist. It uses INT 26H, a BIOS interrupt for disk write operations, to update the disk with relocation data. This reflects MS-DOS's reliance on BIOS services for low-level hardware interaction. By preserving registers and using efficient memory access patterns, this routine ensures compatibility with diverse hardware configurations. The use of INT 26H highlights the tight coupling between MS-DOS and the IBM PC's BIOS, a design choice that enabled rapid adoption by OEMs. This reliance on BIOS interrupts influenced the development of later DOS-compatible systems and software."
   - id: "check-tran-drive-validation"
     line_start: 1071
     line_end: 1117
-    title: "Drive validation and parameter block manipulation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOS_API"
-    image_url: ""
-    image_caption: ""
-    content: "CHECK_TRAN validates a drive and retrieves its drive parameter block (DPB) using INT 21h, the primary DOS API interrupt. The DPB contains critical information about the drive's structure, such as the first sector of data and media type. This subroutine also updates the boot sector with the new start of data, ensuring consistency across system operations. In 1983, MS-DOS v2.0 was expanding its capabilities to support multiple drives and more complex storage configurations. The use of DPBs reflects this shift, as it allowed the operating system to abstract drive details and manage them systematically. This abstraction was inspired by Unix's device-independent approach, marking a significant departure from the simpler, single-drive assumptions of MS-DOS 1.x."
-  - id: "not-single-floppy-check"
-    line_start: 1119
-    line_end: 1133
-    title: "Floppy disk validation logic"
+    title: "Drive Validation and Media Type Detection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
     image_url: ""
     image_caption: ""
-    content: "NOT_SINGLE determines whether the drive is a floppy disk or a hard drive, based on the equipment call (INT 11h) and media type. This distinction was crucial in the early 1980s, as floppy disks were the primary storage medium for personal computers, while hard drives were just beginning to emerge. MS-DOS v2.0 had to accommodate both, ensuring compatibility with legacy systems while supporting newer hardware. The logic in this section highlights the transitional nature of computing at the time, as developers grappled with the rapid evolution of storage technologies. The ability to differentiate between floppy and hard drives laid the groundwork for more sophisticated storage management in later operating systems."
-  - id: "check-flop-boot-validation"
+    content: "The CHECK_TRAN routine validates the drive and determines the media type. It uses BIOS interrupts (INT 21H and INT 11H) to retrieve drive parameters and check equipment status. The routine adjusts the STARTSECTOR variable based on the drive's first sector and updates the BOOT structure. This was crucial for supporting both floppy disks and hard drives, which were becoming more common in the early 1980s. The routine's ability to differentiate between media types ensured MS-DOS's flexibility across various storage devices. This technique influenced later operating systems, which expanded support for diverse storage media, including optical drives and USB devices."
+  - id: "not-single-drive-check"
+    line_start: 1119
+    line_end: 1133
+    title: "Single Drive Check and Floppy Validation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
+    image_url: ""
+    image_caption: ""
+    content: "The NOT_SINGLE section checks whether the drive is a single floppy drive or a hard disk. It uses bitwise operations to determine the maximum floppy drive number and compares it with the current drive number. This reflects the limitations of early PC hardware, where single floppy systems were common. By distinguishing between floppy and hard drives, the routine ensures proper handling of storage devices. This design influenced later systems, which expanded device detection capabilities to include network drives and removable media. The routine's efficient use of bitwise operations and register preservation highlights the ingenuity required to optimize assembly code for constrained environments."
+  - id: "check-flop-boot-disk-validation"
     line_start: 1137
     line_end: 1145
-    title: "Boot validation for floppy disks"
+    title: "Boot Disk Validation for Floppy Drives"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
     image_caption: ""
-    content: "CHECK_FLOP ensures that the floppy disk is bootable by checking its media type. This validation step was critical for systems relying on floppy disks as their primary boot medium. In the early 1980s, boot reliability was a major concern, as corrupted or incompatible disks could render a system unusable. MS-DOS v2.0 introduced more robust handling of boot processes, reflecting the increasing complexity of personal computing. By validating the boot media, this routine contributed to the operating system's stability and usability, reinforcing its reputation as a reliable platform for business and personal use."
+    content: "The CHECK_FLOP routine validates whether the floppy disk is bootable. It compares the media type byte (BH) with a specific value (0FBH) to identify bootable floppy disks. This was critical for ensuring that the system could boot from the correct disk, especially in multi-drive setups. The routine's simplicity reflects the straightforward design of early PC hardware, where boot disks were manually selected. This approach influenced later BIOS and operating systems, which automated boot disk selection and expanded support for booting from diverse media, including CD-ROMs and USB drives."
   - id: "getkeystroke-keyboard-input"
     line_start: 1149
     line_end: 1173
-    title: "Keyboard input handling via INT 21h"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_21h"
+    title: "Keyboard Input Handling for Command-Line Operations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "GetKeystroke retrieves keyboard input using INT 21h, the DOS interrupt for console operations. It supports both flushed and non-echoed input modes, allowing programs to handle user input flexibly. In the context of MS-DOS v2.0, this routine reflects the operating system's focus on interactive command-line interfaces, which were the norm in the early 1980s. Keyboard input was a fundamental aspect of user interaction, and efficient handling of it was essential for performance and usability. The use of INT 21h demonstrates the modularity of DOS, as it provided a consistent interface for hardware interaction across different devices. This design philosophy influenced later operating systems, which built on DOS's interrupt-driven approach to system calls."
+    content: "The GetKeystroke routine handles keyboard input for command-line operations. It uses INT 21H with specific function codes to read input from the standard console. The routine flushes the input buffer and ensures no echo, providing a clean input experience for the user. This reflects the importance of efficient keyboard handling in MS-DOS, which relied heavily on command-line interactions. The design influenced later operating systems, which expanded input handling capabilities to support graphical interfaces and international keyboards. The routine's reliance on BIOS interrupts highlights the close integration between MS-DOS and the underlying hardware."
 
 ---
 

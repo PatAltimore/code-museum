@@ -19,6 +19,79 @@
   --prose-size: 16px;
 }
 
+/* ── Light theme (IDE-inspired) ─────────────────────────────────────────── */
+
+html[data-theme="light"] {
+  --bg: #f6f8fa;
+  --surface: #ffffff;
+  --border: #d0d7de;
+  --text: #1f2328;
+  --muted: #57606a;
+  --accent: #0969da;        /* GitHub blue */
+  --gold: #9a6700;
+  --link: #0969da;
+  --code-bg: #ffffff;
+  --comment: #6e7781;       /* muted gray for comments */
+  --label: #0550ae;         /* dark blue for labels */
+  --directive: #116329;     /* dark green for directives */
+  --highlight-bg: #ddf4ff;  /* light blue selection */
+  --highlight-border: #0969da;
+}
+
+/* Disable CRT scanlines and sweep in light mode */
+html[data-theme="light"] .page::before,
+html[data-theme="light"] .page::after {
+  display: none;
+}
+
+/* Remove phosphor text-shadow in light mode */
+html[data-theme="light"] .shelf-header h1,
+html[data-theme="light"] .shelf-header p,
+html[data-theme="light"] .program-card .program-title,
+html[data-theme="light"] .program-card .program-desc,
+html[data-theme="light"] .program-card .program-meta,
+html[data-theme="light"] .program-card .lang-badge {
+  text-shadow: none;
+}
+
+/* ── Theme toggle control ────────────────────────────────────────────────── */
+
+.theme-controls {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.theme-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+
+.theme-btn + .theme-btn {
+  border-left: 1px solid var(--border);
+}
+
+.theme-btn:hover {
+  color: var(--text);
+  background: var(--highlight-bg);
+}
+
+/* Active state driven by the html[data-theme] attribute — no JS required */
+html[data-theme="dark"]  [data-theme-btn="dark"],
+html[data-theme="light"] [data-theme-btn="light"] {
+  color: var(--text);
+  background: var(--highlight-bg);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

@@ -1,5 +1,16 @@
 'use strict';
 
+// Apply saved theme immediately to avoid a flash of the wrong theme
+(function () {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+}());
+
+window.setTheme = function (theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  try { localStorage.setItem('theme', theme); } catch (e) {}
+};
+
 function parseYamlFrontmatter(raw) {
   const delimiter = '---';
   const start = raw.indexOf(delimiter);
@@ -424,7 +435,10 @@ function renderHeader(opts = {}) {
     }
   }
 
-  let right = '';
+  let right = `<div class="theme-controls">
+    <button class="theme-btn" data-theme-btn="dark"  onclick="setTheme('dark')"  title="Dark theme">Dark</button>
+    <button class="theme-btn" data-theme-btn="light" onclick="setTheme('light')" title="Light theme">Light</button>
+  </div>`;
   if (fileTitle) {
     right += `<div class="font-size-controls">
       <button onclick="adjustFontSize(-1)" title="Smaller">A−</button>

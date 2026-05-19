@@ -9,90 +9,66 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "dircall"
 order: 29
-description: "This file contains the internal directory manipulation routines for MS-DOS 2.0, showcasing the evolution of file system operations in early personal computing."
+description: "This file contains internal directory manipulation routines for MS-DOS 2.0, showcasing the evolution of file system management in early personal computing."
 
 summary:
-  - point: "Introduces subdirectory support inspired by Unix/XENIX."
+  - point: "Introduces subdirectory support in MS-DOS 2.0, inspired by Unix"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Implements low-level directory creation, deletion, and navigation routines."
+  - point: "Implements directory creation, deletion, and navigation routines"
     link: "https://en.wikipedia.org/wiki/File_system"
-    link_label: "File system"
-  - point: "Optimized for 8086 assembly, reflecting constraints of early IBM PCs."
+    link_label: "File System"
+  - point: "Reflects constraints of 8086 assembly and early PC hardware"
     link: "https://en.wikipedia.org/wiki/Intel_8086"
     link_label: "Intel 8086"
-  - point: "Includes workarounds for hardware limitations, such as buffer management."
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "Demonstrates early attempts to standardize directory operations across systems."
+  - point: "Demonstrates adaptation of Unix-like concepts for consumer PCs"
     link: "https://en.wikipedia.org/wiki/Unix"
     link_label: "Unix"
+  - point: "Highlights Microsoft's licensing strategy that shaped the PC industry"
+    link: "https://en.wikipedia.org/wiki/Microsoft"
+    link_label: "Microsoft"
 
 enhancements:
-  - id: "name-dircall-initialization"
+  - id: "name-section-initialization"
     line_start: 3
     line_end: 15
-    title: "Defining the module: DIRCALL"
+    title: "Defining the DIRCALL module"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The file begins by defining the module name 'DIRCALL,' signaling its purpose as a hub for directory manipulation routines. In 1983, MS-DOS 2.0 introduced major enhancements to the file system, including support for hierarchical directories inspired by Unix. This section sets the stage for implementing these features, reflecting Microsoft's push to make MS-DOS competitive with Unix-like systems. The inclusion of comments referencing $MKDIR, $CHDIR, and $RMDIR hints at the modular design, allowing developers to extend or modify directory operations. This foundational setup underscores the shift from flat file systems in MS-DOS 1.x to a more sophisticated structure, paving the way for modern file system hierarchies."
-  - id: "include-dosseg-dossym-devsym"
+    content: "This section establishes the 'DIRCALL' module, which encapsulates directory manipulation routines in MS-DOS 2.0. The programmer sets up the environment by defining the module name and listing key directory operations such as $MKDIR, $CHDIR, and $RMDIR. These operations reflect the Unix-inspired enhancements introduced in MS-DOS 2.0, which added hierarchical file systems to the previously flat structure of MS-DOS 1.x. At the time, personal computers were transitioning from single-tasking systems to more complex environments that required better file organization. This foundational setup paved the way for the routines that follow, enabling the creation, navigation, and deletion of directories. The modular approach influenced later operating systems, including Windows and Linux, which adopted similar abstractions for file system operations."
+  - id: "include-directives-and-symbols"
     line_start: 17
     line_end: 83
-    title: "Including essential assembly definitions"
+    title: "Including external definitions and symbols"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
-    content: "This section includes critical assembly definitions from DOSSEG.ASM, DOSSYM.ASM, and DEVSYM.ASM. These files provide symbolic constants, segment definitions, and device-related macros, enabling the code to interact seamlessly with the MS-DOS kernel and hardware. In the early 1980s, assembly language was the lingua franca for system programming, especially on resource-constrained platforms like the IBM PC. By modularizing these definitions, Microsoft ensured consistency across the operating system's components while simplifying updates and debugging. The references to Kanji support reflect the global ambitions of MS-DOS, aiming to accommodate non-Latin character sets for international markets."
-  - id: "nodeexistsj-directory-check"
-    line_start: 89
-    line_end: 207
-    title: "Checking for existing directory nodes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
-    image_url: ""
-    image_caption: ""
-    content: "The NODEEXISTSJ routine checks whether a directory node already exists, a critical step in directory creation. This logic prevents overwriting existing directories and ensures the integrity of the file system. In 1983, MS-DOS 2.0's support for subdirectories marked a significant leap forward, allowing users to organize files hierarchically. The routine's reliance on buffer management and direct memory access reflects the constraints of the IBM PC's hardware, where every byte of memory was precious. The implementation borrows concepts from Unix, such as the idea of nodes, showcasing Microsoft's efforts to blend simplicity with power in their operating system design."
-  - id: "zapent-clear-directory-entry"
-    line_start: 209
-    line_end: 221
-    title: "Clearing directory entries: ZAPENT"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
-    image_url: ""
-    image_caption: ""
-    content: "The ZAPENT routine clears a directory entry by zeroing out its contents. This operation is essential for deleting directories or files, ensuring that the space can be reused. In the early 1980s, storage was limited, and efficient management of disk space was paramount. The routine's direct manipulation of memory and disk sectors reflects the low-level nature of MS-DOS, where programmers had to manage hardware interactions manually. This approach, while powerful, required meticulous attention to detail to avoid corruption. The routine exemplifies the trade-offs of early system programming: achieving performance and functionality within tight constraints."
-  - id: "mkdir-create-directory"
-    line_start: 277
-    line_end: 277
-    title: "Creating directories with $MKDIR"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The $MKDIR routine implements directory creation, a cornerstone feature of MS-DOS 2.0. This functionality allowed users to organize files hierarchically, a departure from the flat file system of earlier versions. Inspired by Unix, the routine validates the path, allocates space, and sets up directory entries for '.' and '..'. These entries enable navigation within the hierarchy, mirroring Unix conventions. The implementation reflects the challenges of adapting Unix-like features to the IBM PC's limited hardware, requiring careful optimization. This routine laid the groundwork for modern file system operations, influencing subsequent operating systems and shaping user expectations."
-  - id: "chdir-change-directory"
-    line_start: 283
+    content: "This section includes external assembly files (DOSSEG.ASM, DOSSYM.ASM, DEVSYM.ASM) that define segments, symbols, and macros used throughout DIRCALL.ASM. The 'ASSUME' directive establishes segment associations, while 'i_need' declarations specify required variables such as CURBUF and DIRSTART. These inclusions reflect the modular design philosophy of MS-DOS, where common functionality was centralized for reuse across multiple modules. By leveraging predefined symbols and macros, the programmer reduced redundancy and ensured consistency across the codebase. This approach was crucial in the constrained environment of the 8086 processor, where memory and processing power were limited. The modularity seen here influenced software development practices, encouraging the use of libraries and reusable code in later programming paradigms."
+  - id: "chdir-subroutine-change-directory"
+    line_start: 281
     line_end: 791
-    title: "Navigating the hierarchy: $CHDIR"
+    title: "Navigating directories: $CHDIR subroutine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Working_directory"
     image_url: ""
     image_caption: ""
-    content: "The $CHDIR routine changes the current working directory, enabling users to navigate the hierarchical file system introduced in MS-DOS 2.0. This functionality was inspired by Unix, where the concept of a working directory simplifies file operations by providing a relative context. The routine validates the path, updates the directory pointer, and handles edge cases like root directories and drive specifications. Implementing this feature on the IBM PC required overcoming hardware limitations, such as the lack of native support for hierarchical storage. The routine's design reflects Microsoft's commitment to bringing Unix-like capabilities to a broader audience, making personal computing more accessible and powerful."
-  - id: "rmdir-remove-directory"
+    content: "The $CHDIR subroutine changes the current working directory in MS-DOS 2.0. It validates the input path, updates the directory pointer, and ensures proper handling of edge cases like root directories and drive specifications. The routine includes checks for path length and formatting, reflecting the constraints of the 8086 processor and early PC file systems. The use of 'invoke' directives for operations like GETPATH and PATHCHRCMP highlights the modular design of the code. This subroutine demonstrates the Unix-inspired enhancements in MS-DOS 2.0, where the concept of a working directory was introduced to simplify file access. The ability to change directories dynamically influenced the development of command-line interfaces and scripting languages, where directory navigation became a fundamental operation."
+  - id: "rmdir-subroutine-remove-directory"
     line_start: 797
     line_end: 991
-    title: "Deleting directories with $RMDIR"
+    title: "Deleting directories: $RMDIR subroutine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The $RMDIR routine deletes directories, ensuring they are empty and properly formatted before removal. This operation is more complex than file deletion, as it involves checking for subdirectories, validating entries like '.' and '..', and handling edge cases such as root directories. In MS-DOS 2.0, this functionality was a significant enhancement, enabling users to manage their file systems more effectively. The routine's reliance on direct memory access and buffer manipulation highlights the low-level nature of early operating systems. By implementing this feature, Microsoft brought Unix-inspired capabilities to the IBM PC, advancing the state of personal computing and setting the stage for future innovations."
-  - id: "directory-removal-routine"
+    content: "The $RMDIR subroutine removes empty directories in MS-DOS 2.0. It validates the input path, checks for errors (e.g., directory not empty, access denied), and ensures proper handling of special cases like root directories and current directories. The routine includes logic to verify that '.' and '..' entries are present and correctly positioned, reflecting the hierarchical file system structure. The use of 'invoke' directives for operations like STARTSRCH and GETENTRY demonstrates the modularity of the code. This subroutine highlights the challenges of implementing directory deletion in early operating systems, where file system integrity had to be maintained despite hardware limitations. The techniques developed here influenced later file systems, which adopted more sophisticated methods for managing directory metadata and ensuring consistency during deletion."
+  - id: "rmdir-directory-removal-subroutine"
     line_start: 1001
     line_end: 1014
-    title: "Removing Directories in MS-DOS 2.0"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Hierarchical_file_system"
+    title: "Unix-inspired directory removal in MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The $RMDIR routine marks the conclusion of MS-DOS 2.0's directory management code. Its purpose is straightforward: handle the removal of directories from the hierarchical file system introduced in this version. This was a significant leap from the flat file system of MS-DOS 1.x, enabling users to organize files in nested directories—a concept borrowed from Unix. In 1983, when MS-DOS 2.0 was released, personal computing was transitioning from hobbyist systems to mainstream business tools. IBM's PC had set the standard, and MS-DOS was its operating system. The addition of subdirectories mirrored Unix's design, reflecting Microsoft's ambition to make MS-DOS a more robust and versatile system. Tim Paterson's original 86-DOS lacked such features, as it was designed for simplicity and speed. The rewrite for MS-DOS 2.0, influenced by Unix and XENIX, required careful thought to balance functionality with the constraints of early PC hardware—machines with limited memory and storage. The $RMDIR routine encapsulates this balance. It ensures directories can be removed cleanly, a necessity for maintaining the integrity of the file system. The code here is terse, reflecting the assembly language's efficiency and the need to conserve every byte of memory. While this routine is a small piece of the puzzle, it represents the broader shift in MS-DOS 2.0 toward a more structured and capable operating system. This approach to directory management became foundational for later versions of MS-DOS and influenced other operating systems. The hierarchical file system is now ubiquitous, a testament to the enduring impact of decisions made in these early days of personal computing."
+    content: "The $RMDIR subroutine in MS-DOS v2.0 is responsible for removing directories from the hierarchical file system introduced in this version. This section of code marks the end of the subroutine, signaling its completion. While the specific implementation details of directory removal are not visible in this chunk, the presence of $RMDIR reflects a significant shift in MS-DOS's design philosophy. Earlier versions of MS-DOS (and its predecessor, 86-DOS) used a flat file system, but v2.0 embraced hierarchical directories, a concept borrowed from Unix. In 1983, when MS-DOS v2.0 was released, personal computing was rapidly evolving. IBM's PC had become a dominant platform, and Microsoft was positioning MS-DOS as the standard operating system for a growing number of OEMs. Inspired by Unix and XENIX (Microsoft's Unix variant), MS-DOS v2.0 incorporated features like subdirectories, file handles, and device drivers, making it far more versatile than its predecessor. Tim Paterson's original 86-DOS code laid the groundwork, but the rewrite for v2.0 reflected Microsoft's ambition to create an operating system that could support more complex applications and workflows. The hierarchical file system introduced in v2.0 had a profound impact on software development. It enabled better organization of files and directories, a necessity as programs grew larger and more sophisticated. The $RMDIR subroutine itself became a standard feature in operating systems, influencing later DOS versions, Windows, and even non-Microsoft systems. Developers who studied MS-DOS often borrowed its directory manipulation techniques, embedding similar functionality in their own systems. Today, hierarchical file systems are ubiquitous, and their roots can be traced back to innovations like $RMDIR in MS-DOS v2.0."
 
 ---
 
