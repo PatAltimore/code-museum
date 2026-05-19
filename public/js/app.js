@@ -541,7 +541,7 @@ async function route() {
         programTitle: program ? program.title : programSlug,
         fileTitle: meta.title,
       }) + renderReader(meta, body, program);
-      setupInstructionLookup(app, meta.language, meta.file_path);
+
     }
   } catch (err) {
     setError('Failed to load: ' + err.message);
