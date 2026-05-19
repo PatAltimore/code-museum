@@ -284,15 +284,6 @@ function renderShelf(catalog) {
     <p>Annotated source code from historically significant open-source programs.</p>
     <p>Read the code that changed computing.</p>
   </div>
-  <div class="how-to">
-    <div class="how-to-item">
-      <div class="how-to-icon">▍</div>
-      <div>
-        <div class="how-to-title">Enhanced sections</div>
-        <div class="how-to-desc">Sections of source code with an annotation are highlighted. A panel below the highlighted lines shows the title — click it to expand the full story: what the code does, who wrote it, and what it led to.</div>
-      </div>
-    </div>
-  </div>
   <div class="program-grid">${cards}</div>
 </div>`;
 }
@@ -409,6 +400,7 @@ function renderProgramPage(program) {
     ${introImageHtml}
     ${introHtml}
   </div>
+  ${treeHtml ? `<p class="source-tree-hint">Highlighted files have annotations — click one to read the story behind the code.</p>` : ''}
   <div class="file-tree">${treeHtml}</div>
   ${program.github_url ? `<a class="github-badge" href="${escapeAttr(program.github_url)}" target="_blank" rel="noopener">View source on GitHub ↗</a>` : ''}
 </div>`;
