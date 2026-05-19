@@ -4,8 +4,10 @@ import re as _re
 def _asm_landmarks(code_lines: list[str]) -> list[tuple[int, str]]:
     """Return (1-indexed line number, label name) for every assembly label/proc entry.
 
-    Accepts lines that start at column 0 (no leading whitespace) and look like
-    subroutine/function entry points rather than data definitions or equates.
+    The returned line number is the start of any comment block that immediately
+    precedes the label (with at most one blank line between the comment and the
+    label). This lets the model use the pre-computed line number directly as
+    line_start without having to guess how far back the associated comment runs.
 
     Works for both 6502 (Merlin) and 8086 (MASM/TASM) style assembly.
     """
@@ -16,6 +18,28 @@ def _asm_landmarks(code_lines: list[str]) -> list[tuple[int, str]]:
         'DS', 'DB', 'DW', 'DD', 'DQ', 'DT', 'DF',
         '=', 'SET', 'TEXTEQU',
     }
+
+    def _is_comment(line: str) -> bool:
+        s = line.strip()
+        return bool(s) and s[0] in ';*'
+
+    def _comment_block_start(label_idx: int) -> int:
+        """Walk backward from label_idx (0-based) and return the 0-based index
+        of the first line of any immediately-preceding comment block.
+
+        Tolerates at most one blank line between the comment block and the label.
+        Stops if it hits a non-comment, non-blank line.
+        """
+        i = label_idx - 1
+        # Skip at most one blank line immediately above the label
+        if i >= 0 and not code_lines[i].strip():
+            i -= 1
+        # Walk back through contiguous comment lines
+        block_start = label_idx
+        while i >= 0 and _is_comment(code_lines[i]):
+            block_start = i
+            i -= 1
+        return block_start
 
     ident_pat = _re.compile(r'^([A-Za-z_@?$][A-Za-z0-9_@?$.]*)')
     landmarks = []
@@ -49,8 +73,9 @@ def _asm_landmarks(code_lines: list[str]) -> list[tuple[int, str]]:
         #   LABEL           — alone on the line (6502/Merlin style)
         #   LABEL instr ... — label + instruction on same line (6502/Merlin style)
         #   LABEL PROC ...  — MASM/TASM procedure declaration
-        # All of the above are legitimate entry points / section starts.
-        landmarks.append((i + 1, name))
+        # Use the start of the preceding comment block (if any) as line_start.
+        start = _comment_block_start(i)
+        landmarks.append((start + 1, name))  # convert to 1-indexed
 
     return landmarks
 
@@ -80,12 +105,14 @@ def _landmarks_block(landmarks: list[tuple[int, str]], total_lines: int) -> str:
 
     lines = [
         "Assembly landmarks — exact line numbers for every label/subroutine entry point:",
+        "(each line_start already includes any comment block immediately above the label)",
     ]
     for lineno, name, implied_end in significant:
         lines.append(f"  Line {lineno:4d}: {name}  (section ends ~line {implied_end})")
     lines.append(
         "\nIMPORTANT: Use these exact line numbers as line_start for each annotation. "
-        "Do NOT count lines yourself — copy the landmark line number directly."
+        "Do NOT count lines yourself and do NOT go above the given line_start to include comments "
+        "— the comment block is already accounted for in the line number shown."
     )
     return "\n".join(lines)
 
