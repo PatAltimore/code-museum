@@ -9,130 +9,138 @@ year: 1989
 author: "Jordan Mechner"
 slug: "misc"
 order: 15
-description: "This file contains key subroutines from Prince of Persia's Apple II assembly code, showcasing clever memory management, cinematic gameplay mechanics, and hardware-specific optimizations."
+description: "This file contains key routines for memory management, character interactions, and cinematic effects in Prince of Persia, showcasing Jordan Mechner's ingenuity in 6502 assembly for the Apple II."
 
 summary:
-  - point: "Bank-switched memory techniques to fit within 128K constraints"
-    link: "https://en.wikipedia.org/wiki/Bank-switching"
-    link_label: "Bank-switching"
-  - point: "Rotoscoping animation implemented in assembly for fluid character motion"
+  - point: "Memory bank-switching techniques to fit within 128K constraints"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank Switching"
+  - point: "Routines for cinematic character animations using rotoscoping"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Innovative gameplay mechanics like reflection and shadow interaction"
+  - point: "Dynamic character interactions, including reflection and potion effects"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     link_label: "Prince of Persia"
-  - point: "Hardware-specific routines for Apple IIe/IIc memory and interrupts"
+  - point: "Efficient memory manipulation routines critical for performance"
+    link: "https://en.wikipedia.org/wiki/6502"
+    link_label: "6502 Assembly"
+  - point: "Innovative use of hardware-specific features of the Apple II"
     link: "https://en.wikipedia.org/wiki/Apple_II_series"
-    link_label: "Apple II series"
-  - point: "Cinematic platformer genre foundations in assembly code"
-    link: "https://en.wikipedia.org/wiki/Cinematic_platformer"
-    link_label: "Cinematic platformer"
+    link_label: "Apple II"
 
 enhancements:
-  - id: "vanish-character-subroutine"
+  - id: "vanish-character-routine"
     line_start: 67
     line_end: 81
-    title: "Vanish character: cinematic death mechanic"
+    title: "The Routine That Erases a Character"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The VANISHCHAR subroutine is responsible for removing a character from the game world. It sets the character's face, action, and life attributes to predefined values, effectively marking them as 'vanished.' This routine also adjusts the opponent's strength, ensuring gameplay balance. In the moment, Mechner was solving the problem of how to visually and mechanically remove a defeated character while maintaining fluid gameplay. The computing world of 1989 was constrained by limited memory and processing power, especially on the Apple II series. Mechner's solo development effort required him to optimize every aspect of the game, including character interactions. This subroutine reflects his attention to detail and his ability to create cinematic effects within tight constraints. The concept of removing characters dynamically influenced later games, particularly in the cinematic platformer genre. Developers of games like Another World and Flashback studied Prince of Persia's mechanics, incorporating similar ideas into their own titles."
+    content: "The VANISHCHAR routine is responsible for removing a character from the game world. It sets the character's face, action, and life attributes to zero, effectively 'vanishing' them. This routine also adjusts the opponent's strength, ensuring the game state reflects the character's disappearance. In the context of Prince of Persia, this was likely used for scenarios where characters are defeated or removed from the screen. In 1989, memory and processing constraints on the Apple II required such operations to be efficient and minimal. Mechner's approach here reflects the broader challenge of managing dynamic game states within tight hardware limits. The concept of dynamically removing entities from a game world became foundational in later game engines, influencing titles like Another World and Flashback, which also emphasized cinematic storytelling."
   - id: "move-memory-block"
     line_start: 83
     line_end: 118
-    title: "Move memory block: hardware-level optimization"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: ""
-    image_caption: ""
-    content: "The MOVEMEM subroutine transfers a block of memory from one location to another. It uses indexed addressing to copy data byte-by-byte, looping until the entire block is moved. This routine includes a warning about overwriting 64K if the source and destination overlap incorrectly, showcasing the risks of low-level programming. At the time, memory management was a critical skill for developers working on hardware like the Apple II, which had limited RAM and relied on bank-switching. Mechner's approach demonstrates his mastery of the 6502 assembly language and his ability to work within these constraints. This technique influenced memory management practices in other games and systems, as developers sought efficient ways to handle data movement. It also highlights the importance of error-checking in assembly programming, a lesson that resonates in modern software development."
-  - id: "move-music-data"
-    line_start: 120
-    line_end: 136
-    title: "Move music data: syncing sound and gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
-    image_url: ""
-    image_caption: ""
-    content: "MOVEMUSIC transfers 1K of music data from main memory to auxiliary memory. It uses the MOVEMEM subroutine to perform the transfer, ensuring that music data is correctly positioned for playback. This routine interacts with hardware-specific registers to switch between memory banks, a common technique on the Apple II. Mechner's goal was to synchronize music with gameplay, creating a cohesive experience for players. In 1989, sound design was an emerging field in game development, and Mechner's work helped establish its importance. By integrating music data management directly into the game's assembly code, he ensured that sound effects and background music enhanced the cinematic feel of Prince of Persia. This approach influenced later games, encouraging developers to prioritize audio as a key component of the gaming experience."
-  - id: "move-auxiliary-language-card"
-    line_start: 138
-    line_end: 184
-    title: "Auxiliary language card: memory bank switching"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bank-switching"
-    image_url: ""
-    image_caption: ""
-    content: "MOVEAUXLC transfers memory blocks to the auxiliary language card and sets interrupt vectors in both language card banks. This routine is loaded into main memory by the MASTER program and becomes useless once transferred to auxiliary memory. It demonstrates Mechner's deep understanding of the Apple II's hardware, particularly its bank-switching capabilities. In the moment, Mechner was solving the problem of fitting a complex game into the Apple II's limited memory. By leveraging auxiliary memory, he expanded the game's capabilities without requiring additional hardware. This technique was common in the era but rarely executed with such precision. The use of auxiliary memory influenced other developers working on the Apple II, encouraging them to push the limits of the hardware. It also laid the groundwork for memory management techniques in later systems, such as the Super Nintendo and Sega Genesis."
-  - id: "first-guard-mechanic"
-    line_start: 186
-    line_end: 218
-    title: "First guard: blocking player progression"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The FIRSTGUARD subroutine prevents the player from running or jumping past an en-garde guard. It checks various conditions, such as the guard's alertness, sword status, and proximity to the player, before deciding whether to block the player's movement. If the guard is defeated, the routine triggers a cinematic sequence where the guard is bumped off. Mechner was addressing the challenge of creating dynamic interactions between characters, a hallmark of the cinematic platformer genre. In 1989, such mechanics were groundbreaking, as most games relied on static enemy behaviors. Mechner's approach added depth to the gameplay, making each encounter feel unique. This mechanic influenced later games, such as the Tomb Raider series, which incorporated dynamic enemy interactions and cinematic sequences. It also showcased the potential of assembly language to create complex gameplay systems."
-  - id: "mark-strength-meters"
-    line_start: 220
-    line_end: 247
-    title: "Mark strength meters: visualizing health"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
-    image_url: ""
-    image_caption: ""
-    content: "The MARKMETERS subroutine updates the visual representation of the player's and opponent's strength meters. It uses nested calls to mark individual blocks on the screen, ensuring that the meters accurately reflect the characters' health. Mechner was solving the problem of how to convey health information to players in a visually intuitive way. In 1989, health meters were becoming a standard feature in games, but their implementation varied widely. Mechner's approach was both efficient and visually appealing, aligning with the cinematic style of Prince of Persia. This technique influenced the design of health meters in later games, such as Street Fighter II and Mortal Kombat, which used similar visual cues to represent player health. It also highlighted the importance of user interface design in gaming, a lesson that remains relevant today."
-  - id: "potion-effects"
-    line_start: 249
-    line_end: 345
-    title: "Potion effects: gameplay modifiers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Power-up"
-    image_url: ""
-    image_caption: ""
-    content: "The POTIONEFFECT subroutine handles the effects of different potions, such as granting a sword, boosting health, or making the player weightless. Each potion type triggers specific actions, including visual effects and sound cues. Mechner was enhancing the gameplay by adding variety and strategic elements through potion mechanics. In 1989, power-ups were a popular feature in games, but their implementation often lacked depth. Mechner's approach added narrative and gameplay significance to each potion, making them integral to the player's experience. This mechanic influenced the design of power-ups in later games, such as The Legend of Zelda and Final Fantasy, which used similar systems to enhance gameplay. It also demonstrated the potential of assembly language to create complex, interactive features within tight constraints."
-  - id: "mouse-rescue"
-    line_start: 347
-    line_end: 373
-    title: "Mouse rescue: cinematic storytelling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The MOUSERESCUE subroutine introduces a unique gameplay moment where a mouse saves the player. It sets the mouse's attributes, triggers animations, and updates game variables to reflect the rescue. Mechner was creating a memorable, story-driven moment that added depth to the game. In 1989, such cinematic storytelling was rare in video games, which often focused on gameplay mechanics over narrative. Mechner's approach helped establish the cinematic platformer genre, influencing games like Another World and Limbo. This subroutine showcases the potential of assembly language to create emotionally engaging gameplay moments, a lesson that continues to inspire game developers today."
-  - id: "stab-character"
-    line_start: 375
-    line_end: 443
-    title: "Stab character: dynamic combat mechanics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The STABCHAR subroutine handles the mechanics of stabbing a character, including checking their life status, sword attributes, and position. It triggers animations and sound effects based on the outcome, such as killing or wounding the character. Mechner was solving the problem of how to create dynamic combat interactions that felt fluid and responsive. In 1989, combat mechanics in games were often simplistic, relying on basic collision detection. Mechner's approach added depth and realism, making each encounter feel unique. This mechanic influenced the design of combat systems in later games, such as Assassin's Creed and Dark Souls, which emphasized dynamic interactions and cinematic effects. It also demonstrated the potential of assembly language to create complex gameplay systems within tight constraints."
-  - id: "unholy-shadow-link"
-    line_start: 445
-    line_end: 473
-    title: "Unholy link: shadow and player connection"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The UNHOLY subroutine establishes a connection between the player and their shadow, ensuring that if one dies, the other dies as well. It checks various conditions, such as life status and level number, before triggering the effect. Mechner was exploring the theme of duality and creating a unique gameplay mechanic that tied the player's fate to their shadow. In 1989, such mechanics were groundbreaking, adding narrative depth to the gameplay. This concept influenced later games, such as Ico and Shadow of the Colossus, which explored similar themes of interconnectedness. It also showcased the potential of assembly language to create innovative gameplay features that resonate with players emotionally."
-  - id: "display-version-text-rendering"
-    line_start: 980
-    line_end: 997
-    title: "Rendering text directly to screen memory"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
-    image_url: ""
-    image_caption: ""
-    content: "This section begins with the `DISPVERSION` label and handles rendering a text string to the top line of the Apple II screen. The routine uses a loop to copy characters from the `textline` array into the screen memory at address `$400`, which corresponds to the top line in Apple II text mode. The loop terminates when it encounters the '@' character, which acts as a sentinel value. This approach is typical for text rendering on systems like the Apple II, where direct memory manipulation is required to display content. In 1989, the Apple IIe/IIc were still widely used in schools and homes, but their graphical capabilities were limited compared to emerging platforms like the Commodore Amiga or IBM PC. Developers like Jordan Mechner had to work within the constraints of 40-column text mode and limited screen memory. The choice to write directly to memory, rather than relying on higher-level abstractions, reflects the need for speed and efficiency in a game environment. This technique of direct memory manipulation influenced later games on the Apple II and other 8-bit platforms. It demonstrates how developers optimized for hardware constraints, laying the groundwork for techniques used in early PC games and even embedded systems programming. The use of sentinel values for loop termination is a pattern that persists in modern programming, particularly in low-level languages like C."
-  - id: "keypress-detection-memory-mapped-io"
-    line_start: 1003
-    line_end: 1007
-    title: "Detecting keypresses via memory-mapped I/O"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory-mapped_I/O"
-    image_url: ""
-    image_caption: ""
-    content: "This section waits for a keypress by polling the Apple II's memory-mapped I/O address `$c000`, which corresponds to the keyboard input register. The loop (`:wloop`) repeatedly checks the register until a key is pressed, indicated by the high bit being set. Once detected, the routine clears the keyboard strobe by writing to `$c010`, resetting the input state. Polling for input was a common technique in the 1980s, especially on systems like the Apple II that lacked interrupt-driven input handling for peripherals. This approach is simple but can be inefficient, as the CPU remains occupied with the polling loop rather than performing other tasks. However, in the context of a game like Prince of Persia, where the input is critical to gameplay, this trade-off is acceptable. Jordan Mechner's use of memory-mapped I/O showcases his deep understanding of the Apple II hardware. This technique influenced other developers working on similar systems, as it provided a straightforward method for handling user input. While polling has largely been replaced by event-driven programming in modern systems, it remains relevant in certain real-time applications, such as embedded systems and retro-style game development."
-  - id: "bank-switching-hires-mode"
-    line_start: 1009
-    line_end: 1016
-    title: "Switching memory banks and enabling HIRES mode"
+    title: "How to Move Memory Without Breaking Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
     image_caption: ""
-    content: "This section transitions the Apple II from text mode to high-resolution (HIRES) graphics mode. It begins by enabling HIRES mode via the memory-mapped address `$c057` and disabling text mode via `$c050`. The routine then checks the `PAGE` variable to determine which memory bank to activate, toggling between `$c055` (PAGE2 on) and the default bank. Finally, it clears the screen by jumping to the `lrcls` subroutine. Bank-switching was a critical technique for managing the Apple II's limited memory. With only 128KB available, developers had to carefully partition memory between text, graphics, and program code. The Apple II's HIRES mode allowed for detailed visuals but required precise control over memory banks to avoid conflicts. Mechner's use of these techniques reflects his mastery of the Apple II hardware, enabling the cinematic visuals that define Prince of Persia. The transition between text and graphics modes is emblematic of the era's programming challenges, where developers had to balance functionality and performance within tight constraints. This approach influenced later games on the Apple II and similar platforms, inspiring techniques for efficient memory management and graphical rendering. The cinematic platformer genre, pioneered by Prince of Persia, owes much to these innovations, which laid the groundwork for visually rich games on limited hardware."
+    content: "The MOVEMEM routine transfers blocks of memory from one location to another. It uses indexed addressing to copy data byte-by-byte, looping until the entire block is moved. A warning in the comments highlights the risk of overwriting 64K if the source and destination overlap incorrectly—a reminder of the low-level precision required in assembly programming. This routine was essential for managing the game's data, including animations and level information, within the Apple II's constrained memory architecture. Memory manipulation techniques like this were common in the era but required careful attention to avoid catastrophic bugs. Mechner's implementation here laid groundwork for efficient memory handling in games, influencing later systems like the SNES and Sega Genesis, which relied on similar techniques for sprite and level management."
+  - id: "move-music-data"
+    line_start: 120
+    line_end: 136
+    title: "Transferring Music Between Memory Banks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
+    image_url: ""
+    image_caption: ""
+    content: "MOVEMUSIC transfers 1K of music data from the main memory bank to the auxiliary language card. This routine uses the MOVEMEM subroutine to perform the transfer, ensuring the game's music data is accessible in the correct memory bank. The use of bank-switching here reflects the Apple II's hardware limitations, where only a fraction of memory could be accessed at a time. Mechner's careful orchestration of memory banks allowed him to fit the game's cinematic elements, including music and animations, into the Apple II's 128K memory. This approach influenced later games that had to manage large assets within constrained environments, such as LucasArts' SCUMM engine for adventure games."
+  - id: "move-to-auxiliary-language-card"
+    line_start: 138
+    line_end: 184
+    title: "Switching Memory Banks for Interrupts"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
+    image_url: ""
+    image_caption: ""
+    content: "MOVEAUXLC transfers a large block of memory to the auxiliary language card and sets interrupt vectors in both language cards. This routine is loaded into main memory by a master routine and becomes useless once transferred to the auxiliary card—a clever workaround for the Apple II's memory constraints. By setting up vertical blank interrupts, Mechner ensured smooth animations and gameplay responsiveness. This technique highlights the ingenuity required to work within the Apple II's hardware limitations. The use of interrupt vectors for timing and synchronization became standard practice in game development, influencing systems like the NES and early PC games."
+  - id: "first-guard-interaction"
+    line_start: 186
+    line_end: 218
+    title: "Why Guards Block Your Path"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The FIRSTGUARD routine prevents the player from running or jumping past an en-garde guard. It checks various conditions, including the guard's alertness, sword status, and proximity to the player. If the player is close enough, the routine triggers a 'bump' animation to push the player back. This mechanic added tension and realism to the game's sword-fighting sequences, emphasizing the cinematic nature of Prince of Persia. Mechner's focus on character interactions and spatial dynamics influenced later games with complex AI behaviors, such as Thief and Assassin's Creed."
+  - id: "mark-strength-meters"
+    line_start: 220
+    line_end: 247
+    title: "Visualizing Strength with Meters"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The MARKMETERS routine updates the strength meters for the player and opponent. It calls subroutines to mark individual blocks representing health, ensuring the visual representation matches the underlying game state. This visual feedback was crucial for the game's cinematic experience, allowing players to gauge their progress and strategy at a glance. Mechner's use of visual meters influenced later games with health bars and status indicators, such as Mortal Kombat and Street Fighter."
+  - id: "potion-effects"
+    line_start: 249
+    line_end: 345
+    title: "Potions That Change Everything"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The POTIONEFFECT routine handles the effects of various potions, including boosting strength, making the player weightless, inverting controls, and more. Each potion triggers unique animations, sounds, and gameplay changes, enhancing the game's cinematic and interactive qualities. Mechner's implementation of diverse potion effects added depth to the gameplay and influenced later games with power-up mechanics, such as The Legend of Zelda and Diablo."
+  - id: "mouse-rescue"
+    line_start: 347
+    line_end: 373
+    title: "When a Mouse Saves the Day"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The MOUSERESCUE routine introduces a memorable cinematic moment where a mouse rescues the player. It sets the mouse's attributes and triggers animations to depict the rescue. This sequence exemplifies Mechner's focus on storytelling and character-driven gameplay, a hallmark of Prince of Persia. The idea of using non-human characters for pivotal moments influenced later games like Ico and Shadow of the Colossus."
+  - id: "stab-character"
+    line_start: 380
+    line_end: 449
+    title: "The Brutality of Sword Combat"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The STABCHAR routine handles the mechanics of stabbing a character, checking their life points, sword status, and position. It includes special cases for skeletons and edge-of-platform scenarios, ensuring the game's combat feels dynamic and responsive. Mechner's attention to detail in combat interactions influenced later games with complex fighting mechanics, such as Dark Souls and Sekiro."
+  - id: "reflection-and-shadow"
+    line_start: 475
+    line_end: 523
+    title: "Creating Reflections and Shadows"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The REFLECTION routine draws the player's reflection in a mirror, using pseudo-character data to simulate the effect. If a special flag is set, the reflection comes to life as the shadowman, a pivotal moment in the game's story. This technique showcases Mechner's cinematic approach to gameplay, blending visual effects with narrative. The use of reflections and shadows influenced later games with similar mechanics, such as Silent Hill and Max Payne."
+  - id: "display-version-on-screen"
+    line_start: 980
+    line_end: 1016
+    title: "How Text Was Written to Apple II Screens"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    image_url: ""
+    image_caption: ""
+    content: "This section begins with the label `DISPVERSION`, which is responsible for displaying the version text of the game on the Apple II screen. The routine starts by clearing the screen using a subroutine (`lrcls`) and then prepares the memory bank for writing (`RAMWRTmain`). The text is stored in a predefined memory location (`textline`), and the loop iterates through each character, checking for the end marker (`@`). Each character is directly written to the top line of the screen at memory address `$400,x`. This approach leverages the Apple II's memory-mapped video display, where specific memory addresses correspond to screen positions. In the mid-1980s, the Apple II was a popular platform for games, but its hardware was constrained by limited memory and rudimentary graphics capabilities. Developers like Jordan Mechner had to work directly with hardware registers and memory banks to achieve the desired visual effects. This technique of manually writing text to screen memory was common among Apple II developers, as it avoided the overhead of higher-level abstractions. This routine demonstrates the low-level control programmers had over hardware during the era, a skill that has largely been abstracted away in modern programming environments. The direct manipulation of screen memory influenced later techniques in retro-style game development and remains a point of fascination for enthusiasts recreating the feel of early computing."
+  - id: "keypress-wait-loop"
+    line_start: 1003
+    line_end: 1007
+    title: "The Loop That Waited for You"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements a simple keypress wait loop, a common technique in 1980s assembly programming. The loop (`:wloop`) continuously reads the Apple II keyboard register at `$c000`, checking if a key has been pressed. If no key is detected, the loop repeats. Once a keypress is registered (indicated by the sign bit of the accumulator), the routine writes to `$c010`, which clears the keyboard strobe. In the Apple II ecosystem, hardware interaction was performed through memory-mapped I/O. The keyboard register `$c000` was a direct interface to the hardware, and polling it was the simplest way to detect user input. While this approach is straightforward, it ties up the CPU, preventing other tasks from running—a limitation that would later be addressed by interrupt-driven programming. This technique reflects the constraints of the era, where hardware simplicity demanded direct control. It also highlights the trade-offs developers faced: simplicity versus efficiency. While modern systems use event-driven input handling, this polling method remains a foundational concept in understanding early computing. The approach influenced subsequent game development, where input synchronization was critical for gameplay responsiveness."
+  - id: "switching-between-text-and-hires-modes"
+    line_start: 1009
+    line_end: 1016
+    title: "Flipping Between Text and Graphics Modes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
+    image_url: ""
+    image_caption: ""
+    content: "This section demonstrates the transition between text and high-resolution (HIRES) graphics modes on the Apple II. The routine manipulates several hardware registers: `$c057` turns HIRES mode on, `$c050` disables text mode, and `$c055` enables the second graphics page (`PAGE2`). These registers are part of the Apple II's memory-mapped I/O system, allowing direct control over the display hardware. The Apple II's graphics capabilities were limited by its 128KB memory and reliance on bank-switched memory. Developers had to carefully manage these modes to optimize performance and fit their programs into the available space. Jordan Mechner's use of these techniques reflects his deep understanding of the Apple II hardware, gained through years of experimentation and development. Switching between text and graphics modes was a common requirement for games and applications that needed to display both information and visuals. Mechner's implementation here is notable for its efficiency and clarity, setting a standard for other developers working on the platform. The technique influenced later games that sought to balance cinematic storytelling with gameplay, as seen in titles like Another World and Flashback."
+  - id: "final-memory-directives"
+    line_start: 1018
+    line_end: 1022
+    title: "The Closing Lines: Memory and Assembly Directives"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    image_url: ""
+    image_caption: ""
+    content: "The final lines of the file contain assembly directives (`lst`, `ds`, and `usr`) that manage memory and program organization. These directives allocate memory (`ds 1`), define user routines (`usr $a9,21,$b00,*-org`), and turn off the listing (`lst off`). While these lines do not directly contribute to gameplay, they are essential for structuring the program and ensuring it fits within the Apple II's constraints. Assembly directives were a critical part of programming during the 1980s, as they allowed developers to control memory layout and optimize performance. On the Apple II, every byte of memory was precious, and directives like these helped developers manage the limited resources effectively. Jordan Mechner's meticulous use of assembly directives reflects his attention to detail and understanding of the Apple II's architecture. These closing lines mark the end of a highly optimized and carefully crafted program that pushed the limits of the hardware. The techniques used here influenced later assembly programmers and remain a point of study for those interested in retro computing and game development."
 
 ---
 

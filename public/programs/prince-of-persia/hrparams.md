@@ -9,42 +9,36 @@ year: 1989
 author: "Jordan Mechner"
 slug: "hrparams"
 order: 23
-description: "This file defines key tables and parameters for handling sprite rendering and animation in Prince of Persia's Apple II version."
+description: "This file defines hardware parameters and lookup tables for sprite manipulation in Prince of Persia, enabling cinematic animations on constrained Apple II hardware."
 
 summary:
-  - point: "Defines memory tables for sprite manipulation"
+  - point: "Defines memory tables for sprite transformations"
     link: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     link_label: "Sprite Graphics"
-  - point: "Uses bank-switched memory to fit within 128K constraints"
+  - point: "Uses bank-switched memory to fit within 128K"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank Switching"
-  - point: "Supports cinematic animation via rotoscoping techniques"
-    link: "https://en.wikipedia.org/wiki/Rotoscoping"
-    link_label: "Rotoscoping"
-  - point: "Optimized for Apple II hardware limitations"
+  - point: "Optimized for Apple IIe/IIc hardware constraints"
     link: "https://en.wikipedia.org/wiki/Apple_II_series"
     link_label: "Apple II Series"
-  - point: "Introduces modular design for sprite rendering parameters"
-    link: "https://en.wikipedia.org/wiki/Modular_programming"
-    link_label: "Modular Programming"
 
 enhancements:
-  - id: "sprite-rendering-tables"
+  - id: "sprite-transformation-tables"
     line_start: 6
     line_end: 40
-    title: "Sprite rendering tables: modular memory layout"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    title: "How Lookup Tables Made Animation Fast"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "This section defines memory tables used for sprite rendering in Prince of Persia. The tables include arrays for vertical and horizontal positions (`YLO`, `YHI`), shift values (`SHIFT0` to `SHIFT6`), carry values (`CARRY0` to `CARRY6`), and masks (`MIRROR`, `MASKTAB`). These tables are essential for calculating sprite positions, handling animation frames, and applying transformations like mirroring. The modular design allows efficient access to sprite-related data, which is critical given the Apple II's limited memory and processing power. In the mid-1980s, the Apple IIe and IIc were popular home computers, but their hardware imposed strict constraints: a 1 MHz 6502 processor and 128K of memory (with bank-switching to access auxiliary memory). Jordan Mechner, working solo, had to design systems that maximized performance within these limitations. The tables here are laid out in contiguous blocks to simplify addressing and reduce the overhead of calculations during gameplay. This modular approach to sprite rendering influenced later games on constrained hardware, where similar table-driven designs were used to optimize performance. The techniques seen here can be traced forward to games like Another World (1991), which also emphasized cinematic animation and relied on efficient memory layouts to achieve its visual style. Mechner's work on Prince of Persia demonstrated how careful planning of data structures could enable complex animations on hardware that seemed incapable of such feats."
-  - id: "sprite-parameters-definition"
+    content: "This section defines a series of memory tables used for sprite transformations, including shifts, carries, mirrors, and masks. These tables are essential for manipulating sprite graphics efficiently on the Apple II, which lacked dedicated graphics hardware. By precomputing values for operations like shifting and masking, the game could perform complex transformations in real-time without taxing the 6502 CPU. In the mid-1980s, the Apple IIe/IIc was a popular home computer, but its graphics capabilities were limited to a 280x192 resolution with a restricted color palette. Developers had to rely on clever software techniques to achieve smooth animations. Jordan Mechner, working solo on Prince of Persia, designed these tables to support the game's cinematic platforming style, where fluid character movement was paramount. The use of lookup tables for sprite manipulation was not unique to Prince of Persia but was a hallmark of efficient programming on constrained systems. Mechner's implementation, however, was tailored to the game's rotoscoped animations, which required precise pixel-level transformations. This approach influenced later games on similar hardware, such as Karateka (also by Mechner) and other early platformers. It also demonstrated the power of precomputed data in real-time graphics, a technique still used in modern game engines for tasks like lighting and physics calculations."
+  - id: "hardware-parameters-for-sprites"
     line_start: 42
     line_end: 64
-    title: "Sprite parameters: defining animation attributes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    title: "The Parameters Behind Cinematic Sprites"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""
     image_caption: ""
-    content: "This section defines parameters for individual sprites, such as their position (`XCO`, `YCO`), image data (`IMAGE`), opacity (`OPACITY`), and memory bank (`BANK`). These parameters are the building blocks for rendering and animating sprites in Prince of Persia. For example, `IMAGE` points to the sprite's graphical data, while `OFFSET` adjusts its position on the screen. The `PEELBUF` and `PEELIMG` parameters appear to support double-buffering or temporary storage for sprite manipulation. Jordan Mechner developed Prince of Persia using rotoscoping techniques, where he filmed his brother performing movements and traced the frames to create realistic animations. These parameters are designed to support the smooth transitions and dynamic movements that define the game's cinematic platforming style. On the Apple II, achieving such fluidity required precise control over sprite attributes and efficient memory management. The modular definition of sprite parameters here influenced later game engines, particularly those designed for 2D animation. Games like Flashback (1992) and early versions of the GameMaker engine adopted similar practices for handling sprite attributes. Mechner's approach also prefigured modern animation systems, where attributes like opacity and position are manipulated programmatically to create dynamic effects. His work demonstrates how careful parameterization can unlock creative possibilities even on limited hardware."
+    content: "This section defines hardware parameters for sprite manipulation, including coordinates (XCO, YCO), offsets, image references, opacity, and memory banks. These parameters act as the interface between the game's logic and the Apple II hardware, enabling dynamic sprite rendering and animation. In the late 1980s, programming for the Apple II required intimate knowledge of its memory architecture, including bank switching and the use of auxiliary memory. Mechner's design reflects this expertise, with parameters like BANK and OFFSET facilitating access to different memory regions. The inclusion of cut parameters (TOPCUT, LEFTCUT, etc.) suggests optimization for partial sprite rendering, a technique to save processing time by only drawing visible portions of a sprite. These hardware parameters were critical for achieving the smooth, lifelike animations that defined Prince of Persia. They allowed the game to manage sprite data efficiently, even within the constraints of a 128K memory limit. This approach influenced subsequent games on the Apple II and other systems with similar limitations, showcasing how careful parameter design could unlock new levels of graphical fidelity. Modern game engines continue to use similar abstractions for sprite and texture management, albeit on vastly more powerful hardware."
 
 ---
 

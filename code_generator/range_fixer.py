@@ -57,16 +57,21 @@ Rules for line_start:
 Rules for line_end:
 - The last non-blank line of the section, which MUST include the closing
   directive if one is present:
+    C/C++:     the closing } of the function body. For C/C++ files, closing-brace
+               lines are annotated with [brace depth after: N] in the excerpt.
+               The function body opens at depth 1 and its closing } brings the
+               depth back to 0 — that line marked [brace depth after: 0] is
+               line_end. Never stop at an inner } (depth > 0).
     Assembly:  ENDP, ENDS, ENDM, END, .end, end_proc — always include these.
                ENDP frequently appears as "ProcName  ENDP" (the procedure name
                followed by ENDP on the same line) — this is still a closing
                directive and must be included.
-    C/C++:     the closing } of the function body
     Other:     the final instruction, RTS, RET, JMP, or last data value
 - Look ahead past the last instruction for a closing directive on the lines
-  immediately following — ENDP in particular often sits one or two lines after
-  the final RET or JMP and must be included in the range.
-- Do not stop at a RET or RTS if an ENDP or equivalent follows within a few lines.
+  immediately following — ENDP and } in particular often sit one or two lines
+  after the last substantive instruction.
+- Do not stop at a RET, RTS, or inner } if a closing directive follows within
+  a few lines.
 - Do not include blank lines or the opening line of the next section.
 
 General rules:
@@ -151,23 +156,91 @@ def _preceding_comment_block(
     return collected
 
 
-def _excerpt(code_lines: list[str], line_start: int, line_end: int) -> str:
+def _is_c_like(language: str) -> bool:
+    """Return True for C, C++, and similar brace-delimited languages."""
+    lang = (language or "").lower()
+    return any(t in lang for t in ("c++", "c/c++", " c ", "c,", "objective-c"))  \
+        or lang in ("c", "c++")
+
+
+def _brace_depth_map(code_lines: list[str], win_start: int, win_end: int) -> dict[int, int]:
+    """Return a {0-indexed line: cumulative brace depth after that line} map.
+
+    Scans from the beginning of the window, counting { and } while ignoring
+    those inside string literals and single-line // comments.
+    """
+    depth = 0
+    depths = {}
+    in_block_comment = False
+    for i in range(win_start, win_end):
+        line = code_lines[i]
+        j = 0
+        while j < len(line):
+            if in_block_comment:
+                if line[j:j+2] == "*/":
+                    in_block_comment = False
+                    j += 2
+                else:
+                    j += 1
+            elif line[j:j+2] == "//":
+                break   # rest of line is a comment
+            elif line[j:j+2] == "/*":
+                in_block_comment = True
+                j += 2
+            elif line[j] in ('"', "'"):
+                q = line[j]
+                j += 1
+                while j < len(line):
+                    if line[j] == '\\':
+                        j += 2
+                    elif line[j] == q:
+                        j += 1
+                        break
+                    else:
+                        j += 1
+            elif line[j] == '{':
+                depth += 1
+                j += 1
+            elif line[j] == '}':
+                depth -= 1
+                j += 1
+            else:
+                j += 1
+        depths[i] = depth
+    return depths
+
+
+def _excerpt(code_lines: list[str], line_start: int, line_end: int,
+             language: str = "") -> str:
     """Numbered excerpt around the range; annotated lines prefixed with >>."""
     total     = len(code_lines)
     win_start = max(0, line_start - 1 - CONTEXT_LINES)
     win_end   = min(total, line_end + CONTEXT_LINES)
+
+    # For C/C++ files annotate closing-brace lines with their resulting depth
+    # so the model can easily spot the function-level closing brace.
+    depth_map: dict[int, int] = {}
+    if _is_c_like(language):
+        depth_map = _brace_depth_map(code_lines, win_start, win_end)
+
     out = []
     for i in range(win_start, win_end):
         lineno = i + 1
         marker = ">>" if line_start <= lineno <= line_end else "  "
-        out.append(f"{marker}{lineno:4d}  {code_lines[i]}")
+        text   = code_lines[i]
+        suffix = ""
+        if depth_map and text.strip() in ("}", "};", "} ;") :
+            d = depth_map.get(i, "?")
+            suffix = f"  [brace depth after: {d}]"
+        out.append(f"{marker}{lineno:4d}  {text}{suffix}")
     return "\n".join(out)
 
 
 def _build_batch_messages(batch: list[dict], code_lines: list[str],
                           file_info: str,
                           prev_end: int = 0,
-                          next_start: int = 0) -> list[dict]:
+                          next_start: int = 0,
+                          language: str = "") -> list[dict]:
     """Build messages for one batch.
 
     prev_end:   line_end of the annotation immediately before this batch (0 = none)
@@ -212,7 +285,7 @@ def _build_batch_messages(batch: list[dict], code_lines: list[str],
             f"Annotation text:\n{content}\n\n"
             f"Current range: lines {s}–{e}\n"
             f"{candidate_section}"
-            f"Source:\n{_excerpt(code_lines, s, e)}\n"
+            f"Source:\n{_excerpt(code_lines, s, e, language=language)}\n"
         )
     return [
         {"role": "system", "content": _SYSTEM},
@@ -301,9 +374,10 @@ def fix_ranges(path, client, gen_cfg: dict = None, console=None) -> int:
     if not enhancements:
         return 0
 
+    language = meta.get("language", "")
     file_info = (
         f"{meta.get('title', path.stem)} "
-        f"({meta.get('language', '')}, {meta.get('year', '')})"
+        f"({language}, {meta.get('year', '')})"
     )
     temperature = (gen_cfg or {}).get("temperature", 0)
 
@@ -320,6 +394,7 @@ def fix_ranges(path, client, gen_cfg: dict = None, console=None) -> int:
         messages  = _build_batch_messages(
             batch, code_lines, file_info,
             prev_end=prev_end, next_start=next_start,
+            language=language,
         )
 
         try:

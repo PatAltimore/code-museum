@@ -212,9 +212,27 @@ today.
 Additional rules:
 - Cover the entire file — do not stop after a handful of annotations. Every named \
 subroutine, every data structure, every hardware workaround deserves a card.
-- Titles must be evocative and specific, not generic labels:
-    Good: "Six Weeks, One Programmer, the Foundation of an Industry"
-    Bad:  "File System Initialization"
+- Titles must read like the best kind of clickbait — specific, curious, and impossible to \
+ignore. They should make the reader lean forward and ask "wait, how?" or "why would \
+anyone do that?". Use tension, surprise, constraint, or consequence:
+    Good: "The Trick That Made 4KB Feel Like 64KB"
+          "How One Programmer Beat the Hardware with Eight Lines"
+          "The Bug That Shipped to Ten Million PCs"
+          "What Happens When You Run Out of Stack at 3AM"
+          "The Lookup Table That Replaced a Math Coprocessor"
+    Bad:  "Memory Management Routine"
+          "File System Initialization"
+          "Sound Driver"
+- Make each annotation feel like a discovery. Ask: what would surprise a working \
+programmer today about how this was done? What constraint forced an unexpected solution? \
+What did the author know that nobody else did? What decision here looks obvious now but \
+was completely non-obvious at the time?
+- Connect the code to the texture of the era: what did the hardware actually feel like to \
+program? What were the other developers doing at the same time? What was the state of \
+the art this code surpassed, ignored, or contradicted?
+- When you know of a specific anecdote, quote, or war story tied to this code or \
+technique, include it. A story about a bug, a deadline, a bet, or a complaint from a \
+user is worth more than two sentences of context.
 - summary: 3–5 points that are specific to THIS file and what is visible in its lines — \
 a technique used here, a data structure defined here, a design decision made here, a \
 constraint that shaped this specific code. Do NOT recite program-level background facts \

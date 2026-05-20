@@ -17,6 +17,7 @@ from intro_prompts import build_intro_prompt
 from formatter import format_file, format_file_from_dict, parse_response_json
 from find_images import fill_file_images, find_program_image
 from range_fixer import fix_ranges
+from highlights_prompts import build_highlights_prompt
 import catalog_sync
 
 load_dotenv()
@@ -52,6 +53,94 @@ def save_program_image(slug: str, image_url: str, image_caption: str) -> None:
 
     catalog["programs"] = list(existing.values())
     _CATALOG_PATH.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def save_highlights(slug: str, highlights: list) -> None:
+    if _CATALOG_PATH.exists():
+        catalog = json.loads(_CATALOG_PATH.read_text(encoding="utf-8"))
+    else:
+        catalog = {"programs": []}
+
+    existing = {p["slug"]: p for p in catalog.get("programs", [])}
+    entry = existing.setdefault(slug, {"slug": slug})
+    entry["highlights"] = highlights
+
+    catalog["programs"] = list(existing.values())
+    _CATALOG_PATH.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def generate_highlights(program: dict, client, gen_cfg: dict, force: bool,
+                        output_dir: Path) -> bool:
+    """Generate highlight cards for a program from its existing annotated files."""
+    slug = program["slug"]
+
+    if not force and _CATALOG_PATH.exists():
+        catalog = json.loads(_CATALOG_PATH.read_text(encoding="utf-8"))
+        entry = {p["slug"]: p for p in catalog.get("programs", [])}.get(slug, {})
+        if entry.get("highlights"):
+            console.print(f"[dim]skip  {slug}/highlights[/dim]")
+            return False
+
+    # Collect enhancements from all generated .md files for this program
+    prog_dir = output_dir / slug
+    files_with_enhancements = []
+    for file_cfg in program.get("files", []):
+        md_path = prog_dir / f"{file_cfg['slug']}.md"
+        if not md_path.exists():
+            continue
+        try:
+            text = md_path.read_text(encoding="utf-8")
+            s = text.index("---")
+            e = text.index("---", s + 3)
+            meta = yaml.safe_load(text[s + 3 : e])
+            enhs = meta.get("enhancements") or []
+            files_with_enhancements.append({
+                "slug": file_cfg["slug"],
+                "title": file_cfg["title"],
+                "enhancements": [{"title": en.get("title", "")} for en in enhs],
+            })
+        except Exception:
+            continue
+
+    if not files_with_enhancements:
+        console.print(f"  [yellow]{slug}: no annotated files found — skipping highlights[/yellow]")
+        return False
+
+    console.print(f"[cyan]gen   {slug}/highlights[/cyan]")
+    messages = build_highlights_prompt(program, files_with_enhancements)
+
+    try:
+        raw = client.complete(
+            messages,
+            temperature=gen_cfg.get("temperature", 0.3),
+            max_tokens=4096,
+        )
+    except ContentFilterError as e:
+        console.print(f"  [red]content filter: {e}[/red]")
+        return False
+    except RuntimeError as e:
+        console.print(f"  [red]{e}[/red]")
+        return False
+
+    text = raw.strip()
+    text = re.sub(r'^```(?:json)?\s*', '', text)
+    text = re.sub(r'\s*```$', '', text)
+    text = text.strip()
+
+    try:
+        highlights = json.loads(text).get("highlights", [])
+    except json.JSONDecodeError as e:
+        console.print(f"  [red]could not parse highlights response: {e}[/red]")
+        return False
+
+    # Drop links that reference unknown file slugs
+    valid_slugs = {f["slug"] for f in files_with_enhancements}
+    for h in highlights:
+        h["links"] = [lk for lk in h.get("links", []) if lk.get("file") in valid_slugs]
+
+    save_highlights(slug, highlights)
+    console.print(f"  [green]-> {len(highlights)} highlight(s) saved[/green]")
+    return True
 
 
 def _split_into_chunks(
@@ -207,6 +296,7 @@ def main() -> None:
     parser.add_argument("--file", help="Only process this file slug (requires --program)")
     parser.add_argument("--force", action="store_true", help="Regenerate existing files and introductions")
     parser.add_argument("--intro-only", action="store_true", help="Only generate missing introductions; skip file annotations")
+    parser.add_argument("--highlights-only", action="store_true", help="Only generate program highlights from existing annotated files; skip everything else")
     parser.add_argument("--dry-run", action="store_true", help="Build prompts without calling the API")
     parser.add_argument("--sync-catalog", action="store_true", help="Update catalog.json from disk and exit")
     parser.add_argument("--no-catalog-sync", action="store_true", help="Skip catalog.json sync after generation")
@@ -330,6 +420,14 @@ def main() -> None:
         sys.exit(1)
 
     for program in programs:
+        # --highlights-only: skip intro and file generation, just generate highlights
+        if args.highlights_only:
+            if not args.dry_run:
+                generate_highlights(program, client, gen_cfg, args.force, output_dir)
+            else:
+                console.print(f"[dim]dry-run: highlights prompt ready for {program['slug']}[/dim]")
+            continue
+
         # Generate introduction unless targeting a specific file
         if not args.file:
             if args.dry_run:
@@ -472,6 +570,18 @@ def main() -> None:
                 count = fill_file_images(path, console=console, client=client)
                 if count:
                     console.print(f"  [green]-> {count} image(s) added[/green]")
+
+    # Generate highlights for every program in this run that either had files
+    # written OR was explicitly targeted (--program).  generate_highlights()
+    # skips programs that already have highlights unless --force is set.
+    if not args.dry_run and not args.file:
+        affected_slugs = {slug for slug, _ in generated}
+        if args.program:
+            affected_slugs.add(args.program)
+        for program in programs:
+            if program["slug"] in affected_slugs:
+                generate_highlights(program, client, gen_cfg,
+                                    force=args.force, output_dir=output_dir)
 
     if generated and not args.no_catalog_sync:
         catalog_sync.sync(config, output_dir)

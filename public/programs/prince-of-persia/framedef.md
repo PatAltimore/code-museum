@@ -9,58 +9,58 @@ year: 1989
 author: "Jordan Mechner"
 slug: "framedef"
 order: 22
-description: "Defining animation frames and character states for Prince of Persia's cinematic platforming on the Apple II."
+description: "Animation and frame definitions for Prince of Persia's cinematic platforming, written in 6502 assembly for the Apple II."
 
 summary:
-  - point: "Frame definitions optimize memory use for animation"
-    link: "https://en.wikipedia.org/wiki/6502"
-    link_label: "6502 Assembly"
-  - point: "Bank-switched memory enables complex animations in 128K"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank Switching"
-  - point: "Rotoscoping technique traced real-life movements"
+  - point: "Rotoscoped animation data encoded directly in assembly"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Data tables encode movement and sword dynamics"
+  - point: "Memory bank-switching techniques to fit animation in 128KB"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank Switching"
+  - point: "Frame definitions for character movement and swordplay"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
-  - point: "Alternate character sets support enemy animations"
+    link_label: "Prince of Persia (1989)"
+  - point: "Alternate character sets for enemy animations"
+    link: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    link_label: "Sprites"
+  - point: "Compact sword image table for combat mechanics"
     link: "https://en.wikipedia.org/wiki/Apple_II"
     link_label: "Apple II"
 
 enhancements:
-  - id: "frame-definitions-animation-data"
+  - id: "frame-definitions-for-rotoscoped-animation"
     line_start: 19
     line_end: 275
-    title: "Frame definitions for cinematic animation"
+    title: "Frame Definitions for Rotoscoped Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
-    content: "This section defines the animation frames for the protagonist's movements in Prince of Persia. Each frame is represented as a data block with parameters like image index, movement deltas (DX, DY), and flags for specific actions. The data is tightly packed to fit within the memory constraints of the Apple II, which had only 128K of bank-switched memory available. Jordan Mechner used rotoscoping to trace real-life movements, ensuring fluid and realistic animations. The frame definitions here reflect the game's groundbreaking cinematic approach, where character motions were designed to mimic human movement. At the time, the Apple II's hardware limitations meant developers had to be extremely efficient with memory and processing power. Mechner's innovative use of data tables to encode animations and states influenced later games, such as Another World and Flashback, which adopted similar techniques for cinematic storytelling and animation."
-  - id: "alternate-character-set-1"
-    line_start: 264
+    content: "This section defines the animation frames for Prince of Persia's protagonist, including running, jumping, swordplay, and other movements. Each frame is represented as a compact data structure with parameters such as image index, offsets (DX, DY), and flags for movement or interaction. Jordan Mechner used rotoscoping to create these animations, filming his brother performing the movements and tracing them frame by frame. By encoding these animations directly into assembly, Mechner achieved fluid and lifelike motion on the limited hardware of the Apple II. In 1989, the Apple II was nearing the end of its commercial life, but its 6502 processor and 128KB memory posed significant constraints. Mechner had to use bank-switching techniques to fit the game's animation data, swapping between auxiliary and main memory banks. This approach allowed him to include detailed animations without exceeding hardware limits. The decision to encode animations in assembly reflects the era's need for extreme optimization. The cinematic realism of Prince of Persia's animations influenced countless games, particularly in the platforming genre. Titles like Another World (1991) and Flashback (1992) adopted similar techniques, emphasizing fluid motion and storytelling through gameplay. The game's animation system also inspired modern developers to prioritize character movement as a storytelling tool, seen in games like Uncharted and The Last of Us."
+  - id: "alternate-character-set-1-enemy-animations"
+    line_start: 277
     line_end: 327
-    title: "Alternate character set: enemy animations"
+    title: "Alternate Character Set 1: Enemy Animations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines an alternate character set for enemy animations, including movements like blocking, attacking, and collapsing. The data structure mirrors the protagonist's frames but adapts them for enemies, such as reversing sword hand orientation. This mirroring technique saved memory and simplified animation logic, as the same sprite tables could be reused with minor adjustments. In the late 1980s, sprite-based animation was the standard for games, but memory constraints often forced developers to find creative solutions. Mechner's approach of encoding mirrored animations directly into assembly allowed him to maximize the Apple II's limited resources while maintaining visual fidelity. The alternate character set demonstrates his attention to detail, ensuring enemies felt as dynamic and lifelike as the protagonist. This technique of reusing and mirroring sprite data influenced later games with similar constraints. Developers of games like Mortal Kombat (1992) and Street Fighter II (1991) used mirrored sprites for characters facing opposite directions, optimizing memory usage while delivering high-quality animations. The concept of alternate character sets also laid groundwork for modern animation systems that dynamically adjust sprites based on context, such as Unity's sprite flipping."
+  - id: "alternate-character-set-2-expanded-animation-frames"
+    line_start: 320
+    line_end: 427
+    title: "Alternate Character Set 2: Expanded Animation Frames"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    image_url: ""
+    image_caption: ""
+    content: "This section expands the animation frame definitions, adding more nuanced movements such as turning, embracing, and casting spells. These frames likely correspond to specific gameplay moments or cinematic sequences, emphasizing the game's storytelling ambitions. Each frame is encoded with parameters for image index, offsets, and flags, maintaining the compact format used throughout the file. In 1989, cinematic storytelling in games was still a novelty, with most titles focusing on arcade-style gameplay. Mechner's decision to include detailed animations for subtle movements reflects his ambition to create a game that felt more like an interactive movie. The expanded frames demonstrate his commitment to realism and immersion, pushing the boundaries of what was possible on the Apple II. The idea of using expanded animation sets for storytelling influenced later games like The Legend of Zelda: Ocarina of Time (1998) and Shadow of the Colossus (2005), where character movements conveyed emotional depth and narrative progression. It also inspired modern animation systems that prioritize seamless transitions and context-sensitive actions, seen in engines like Unreal and Unity."
+  - id: "sword-table-combat-mechanics"
+    line_start: 429
+    line_end: 490
+    title: "Sword Table: Compact Combat Mechanics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
     image_caption: ""
-    content: "This section defines an alternate set of animation frames for enemies, specifically those wielding swords in their left hand. The data mirrors the protagonist's animations but adapts them for enemy behavior. This mirroring technique was a clever way to reuse animation logic while differentiating the characters visually. The Apple II's hardware constraints necessitated such optimizations, as memory was limited and every byte had to be carefully allocated. By defining alternate character sets, Mechner ensured that the game could feature dynamic sword fights without duplicating large amounts of data. This approach influenced later games that used mirrored or adapted animations to save memory, such as early fighting games like Karateka (also by Mechner) and Mortal Kombat."
-  - id: "alternate-character-set-2"
-    line_start: 320
-    line_end: 427
-    title: "Expanded animations for cinematic storytelling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The second alternate character set expands the range of animations for enemies and other characters. This includes detailed movements like turning, walking backward, and embracing. These animations contribute to the game's cinematic feel, allowing characters to express nuanced actions that enhance the storytelling. At the time, such detailed animations were rare in games, especially on hardware as limited as the Apple II. Mechner's focus on cinematic realism set Prince of Persia apart from other platformers of the era. The techniques used here paved the way for more expressive character animations in later games, influencing titles like Tomb Raider and Uncharted."
-  - id: "sword-dynamics-data-table"
-    line_start: 418
-    line_end: 490
-    title: "Sword dynamics: precision in combat"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines the sword dynamics for both the protagonist and enemies. Each entry specifies the sword's image index and its positional offsets (DX, DY) relative to the character. These offsets are crucial for ensuring that sword movements align correctly with the animations, creating the illusion of fluid and precise combat. The Apple II's limited graphical capabilities made such attention to detail essential for immersive gameplay. Mechner's approach to encoding sword dynamics influenced later games that featured melee combat, such as The Legend of Zelda and Dark Souls. The focus on precision and alignment in this data table reflects the game's commitment to realism and cinematic quality."
+    content: "This section defines the sword table, a compact data structure for handling sword images and their offsets during combat. Each entry specifies the image index, DX (horizontal offset), and DY (vertical offset), allowing the game to dynamically position swords relative to characters. The table includes entries for both the protagonist and enemies, as well as special cases like sheathing and stabbing. Combat in Prince of Persia was designed to feel fluid and responsive, a significant challenge on the Apple II's limited hardware. By encoding sword positions directly into assembly, Mechner ensured precise control over combat animations, enhancing the game's cinematic feel. The compact format reflects the era's emphasis on optimization, where every byte mattered. The sword table's approach to dynamic positioning influenced later games with sprite-based combat systems, such as Castlevania and Ninja Gaiden. It also laid groundwork for modern techniques in skeletal animation, where weapons and accessories are dynamically attached to character models. The emphasis on fluid combat animations can be seen in contemporary titles like Dark Souls and Sekiro: Shadows Die Twice."
 
 ---
 
