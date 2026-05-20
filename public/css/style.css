@@ -1196,6 +1196,15 @@ a:hover {
   color: var(--accent);
 }
 
+.enh-index-item--active {
+  color: var(--accent);
+  background: var(--highlight-bg);
+}
+
+.enh-index-item--active .enh-index-num {
+  color: var(--accent);
+}
+
 .enh-index-num {
   color: var(--muted);
   font-size: 0.7rem;

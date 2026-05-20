@@ -493,7 +493,7 @@ function renderEnhancementIndex(enhancements) {
   const sorted = [...enhancements].sort((a, b) => a.line_start - b.line_start);
 
   const items = sorted.map((enh, i) =>
-    `<li><button class="enh-index-item" onclick="goToEnhancement('${escapeAttr(enh.id)}')">`
+    `<li><button class="enh-index-item" data-enh-id="${escapeAttr(enh.id)}" onclick="goToEnhancement('${escapeAttr(enh.id)}')">`
     + `<span class="enh-index-num">${i + 1}</span>`
     + `<span class="enh-index-title">${escapeHtml(enh.title)}</span>`
     + `</button></li>`
@@ -532,6 +532,73 @@ window.goToEnhancement = function(id) {
   const mobileList = document.getElementById('enh-index-mobile-list');
   if (mobileList && !mobileList.hidden) toggleEnhIndexMobile();
 };
+
+// Scroll spy — highlights the active section in the index as the user scrolls.
+// Returns a cleanup function that removes the scroll listener.
+let _scrollSpyCleanup = null;
+
+function setupScrollSpy(enhancements) {
+  // Tear down any previous spy (e.g. when navigating between files)
+  if (_scrollSpyCleanup) { _scrollSpyCleanup(); _scrollSpyCleanup = null; }
+  if (!enhancements || enhancements.length === 0) return;
+
+  const sorted = [...enhancements].sort((a, b) => a.line_start - b.line_start);
+
+  // Build ordered list of {id, codeSection} pairs.
+  // Each enhancement panel is preceded by its highlighted .code-section.
+  const entries = sorted.map(enh => {
+    const panel = document.getElementById('enh-' + enh.id);
+    if (!panel) return null;
+    const codeSection = panel.previousElementSibling;
+    return { id: enh.id, codeSection };
+  }).filter(Boolean);
+
+  if (entries.length === 0) return;
+
+  let lastActiveId = null;
+
+  function updateActive() {
+    // The active section is the last one whose top edge has scrolled above
+    // 40% of the viewport height — i.e. the section most recently "entered"
+    // from the top.
+    const threshold = window.innerHeight * 0.4;
+    let activeId = null;
+    for (const { id, codeSection } of entries) {
+      if (codeSection.getBoundingClientRect().top <= threshold) {
+        activeId = id;
+      } else {
+        break;
+      }
+    }
+
+    if (activeId === lastActiveId) return;
+    lastActiveId = activeId;
+
+    document.querySelectorAll('.enh-index-item').forEach(btn => {
+      btn.classList.toggle('enh-index-item--active', btn.dataset.enhId === activeId);
+    });
+
+    // Scroll the active item into view within the sidebar (does nothing if
+    // it is already visible).
+    if (activeId) {
+      const activeBtn = document.querySelector(`.enh-index-item[data-enh-id="${activeId}"]`);
+      if (activeBtn) activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => { updateActive(); ticking = false; });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  updateActive();  // run once immediately after render
+
+  _scrollSpyCleanup = () => window.removeEventListener('scroll', onScroll);
+}
 
 window.toggleEnhIndexMobile = function() {
   const list = document.getElementById('enh-index-mobile-list');
@@ -654,6 +721,8 @@ async function route() {
   setLoading();
 
   try {
+    if (_scrollSpyCleanup) { _scrollSpyCleanup(); _scrollSpyCleanup = null; }
+
     if (parts.length === 0 || (parts.length === 1 && parts[0] === '')) {
       const catalog = await getCatalog();
       app.innerHTML = renderHeader({ githubUrl: 'https://github.com/PatAltimore/code-museum' }) + renderShelf(catalog);
@@ -687,6 +756,9 @@ async function route() {
           if (showBtn) showBtn.style.display = 'flex';
         }
       } catch(e) {}
+
+      // Start scroll spy for the section index.
+      setupScrollSpy(meta.enhancements || []);
 
       // If an enhancement ID was included in the URL, scroll to it.
       if (enhId) {
