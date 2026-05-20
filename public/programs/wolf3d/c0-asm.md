@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-segment-declarations"
     line_start: 16
-    line_end: 32
+    line_end: 59
     title: "Segment declarations for MS-DOS memory model"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_memory_management"
     image_url: ""
@@ -39,15 +39,15 @@ enhancements:
     content: "This section defines various memory segments used by the program, such as '_TEXT', '_DATA', and '_STACK'. These segments are crucial for organizing the program's code, data, and stack within the constraints of MS-DOS's memory model. MS-DOS operates in real mode, where memory is divided into segments of up to 64KB. The programmers at id Software had to carefully allocate and manage these segments to ensure the game could run efficiently on a wide range of hardware. The use of Borland's Turbo C++ runtime library influenced the structure of these declarations, as it provided a standardized way to handle segment definitions. This approach laid the groundwork for efficient memory management in early PC gaming and influenced later DOS-based games."
   - id: "startx-procedure"
     line_start: 106
-    line_end: 152
+    line_end: 135
     title: "STARTX: Initializing the runtime environment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Program_Segment_Prefix"
     image_url: ""
     image_caption: ""
     content: "The STARTX procedure initializes critical runtime data, including the Program Segment Prefix (PSP), DOS version, and environment segment. It also saves interrupt vectors and installs a default handler for divide-by-zero errors. This initialization ensures the program can interact correctly with the operating system and handle runtime errors gracefully. In 1992, compatibility across various DOS versions and hardware configurations was a major challenge. John Carmack and the team at id Software leveraged their deep understanding of assembly language and MS-DOS internals to create robust startup routines. This procedure exemplifies the meticulous attention to detail required to develop high-performance software for early PCs. The techniques used here influenced the design of startup code in later DOS-based applications and game engines."
   - id: "cpu-compatibility-check"
-    line_start: 154
-    line_end: 185
+    line_start: 136
+    line_end: 218
     title: "Checking for 286 or better CPU"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80286"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "This section checks whether the system is running on an Intel 80286 or better CPU by manipulating the processor flags. The 80286 introduced protected mode, which allowed for more advanced memory management and multitasking. However, Wolfenstein 3D was designed to run in real mode for compatibility with older systems. By ensuring the presence of a 286 or better, the program could leverage specific instructions and features while maintaining backward compatibility. This check reflects id Software's commitment to delivering a seamless gaming experience across a wide range of hardware. Similar CPU compatibility checks became standard practice in software development during the early 1990s, influencing the design of other games and applications."
   - id: "environment-variable-parsing"
     line_start: 220
-    line_end: 233
+    line_end: 250
     title: "Parsing environment variables for configuration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Environment_variable"
     image_url: ""

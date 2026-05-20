@@ -389,7 +389,7 @@ function renderProgramPage(program) {
         let s = escapeHtml(p.trim());
         s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
         s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
-        s = s.replace(/_(.+?)_/g, '<em>$1</em>');
+        s = s.replace(/(?<!\w)_(.+?)_(?!\w)/g, '<em>$1</em>');
         return `<p class="intro-paragraph">${s}</p>`;
       })
       .join('');
