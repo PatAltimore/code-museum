@@ -691,4 +691,5 @@ async function route() {
   }
 }
 
+window.addEventListener('hashchange', route);
 window.addEventListener('load', route);
