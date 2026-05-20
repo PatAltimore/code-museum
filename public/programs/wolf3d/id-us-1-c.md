@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "static-global-variables"
-    line_start: 47
+    line_start: 36
     line_end: 79
     title: "Global variables for user interface state"
     wikipedia_url: "https://en.wikipedia.org/wiki/Global_variable"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `US_Startup` function initializes the user manager, setting up critical components like the error handler (`harderr`) and random number generator (`US_InitRndT`). It also parses command-line arguments to configure compatibility modes and detect special launch conditions, such as the use of TED (a level editor). This initialization routine demonstrates the modular design philosophy of id Software, where components are set up independently and only when needed. In the early 1990s, this approach was vital for optimizing performance on limited hardware. The ability to detect and adapt to different runtime environments laid the groundwork for more sophisticated game engines, including those used in Doom and Quake, which further refined initialization processes to support diverse hardware configurations."
   - id: "us-draw-window"
-    line_start: 449
+    line_start: 447
     line_end: 480
     title: "Drawing graphical windows in text mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_library"

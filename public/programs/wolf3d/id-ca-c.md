@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "id-software-caching-manager"
-    line_start: 5
+    line_start: 1
     line_end: 15
     title: "Id Software's Caching Manager Overview"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The CAL_ExpandGrChunk and CA_CacheGrChunk routines handle the decompression and caching of graphics data. The system uses Huffman compression to store graphics efficiently and decompresses them on demand. The code includes logic to handle sparse tiles, ensuring that only necessary data is loaded into memory. This technique allowed Wolfenstein 3D to display detailed graphics while operating within the constraints of early PC hardware. The use of real-time decompression and caching influenced the design of later game engines, which continued to refine these techniques to handle increasingly complex visual assets."
   - id: "screen-caching-and-map-handling"
-    line_start: 1379
+    line_start: 1369
     line_end: 1491
     title: "Caching screens and specialized map handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"

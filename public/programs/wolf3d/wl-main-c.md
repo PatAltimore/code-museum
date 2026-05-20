@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "dynamic-hardware-detection"
-    line_start: 88
+    line_start: 82
     line_end: 182
     title: "Dynamic hardware detection and configuration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `ReadConfig` function dynamically detects available hardware and adjusts the game's configuration accordingly. It reads a configuration file if present, or defaults to hardware-based settings if the file is missing. This approach ensures compatibility across a wide range of MS-DOS systems, from basic PCs to advanced setups with AdLib or Sound Blaster cards. In 1992, hardware diversity was a significant challenge for developers, as PC gaming was transitioning from proprietary systems to more standardized platforms. John Carmack's focus on optimizing for available hardware allowed Wolfenstein 3D to deliver immersive experiences on machines with varying capabilities. This technique influenced later games, as dynamic configuration became a standard practice for ensuring broad compatibility and performance optimization."
   - id: "save-load-system-with-checksum"
-    line_start: 321
+    line_start: 315
     line_end: 542
     title: "Efficient save/load system with checksum validation"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_verification"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `SaveTheGame` and `LoadTheGame` functions implement a robust system for saving and loading game states. They use checksums to verify data integrity, ensuring that corrupted or tampered save files are detected. This was crucial in an era when storage media like floppy disks were prone to errors. The functions also include animations (`DiskFlopAnim`) to visually indicate progress during save/load operations, enhancing user experience. The checksum validation technique was ahead of its time, reflecting Carmack's meticulous approach to reliability. This method influenced later games and systems, where file integrity checks became standard for save systems, especially in critical applications like cloud gaming and multiplayer synchronization."
   - id: "mathematical-optimizations-for-rendering"
-    line_start: 571
+    line_start: 569
     line_end: 690
     title: "Mathematical optimizations for 3D rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `BuildTables` and `CalcProjection` functions calculate essential mathematical values for rendering the game's 3D environment. These include tangent tables, sine/cosine overlays, and pixel angles for perspective projection. The calculations optimize the game's ability to simulate depth and scale on limited hardware, leveraging fixed-point arithmetic and precomputed tables to reduce runtime complexity. In the early 1990s, real-time 3D rendering was a novel challenge, constrained by the lack of dedicated graphics hardware. Carmack's innovations in mathematical efficiency laid the groundwork for techniques used in later engines like id Tech and Unreal Engine, enabling increasingly complex and realistic 3D worlds."
   - id: "memory-management-ms-dos"
-    line_start: 725
+    line_start: 717
     line_end: 754
     title: "Memory management techniques for MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `SignonScreen` function demonstrates advanced memory management by reclaiming memory used for the game's introductory screen. It adjusts segment pointers and frees up space for subsequent operations, optimizing the game's use of limited MS-DOS memory. Memory constraints were a significant challenge in the early 1990s, as PCs often had less than 640KB of usable RAM. Carmack's expertise in memory optimization allowed Wolfenstein 3D to run smoothly on low-end systems while delivering high-quality visuals and gameplay. This technique influenced later developers, who adopted similar strategies to maximize performance on constrained hardware, particularly in the era of DOS and early Windows gaming."
   - id: "sound-mapping-for-immersive-audio"
-    line_start: 847
+    line_start: 839
     line_end: 959
     title: "Sound mapping for immersive audio"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_blaster"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `InitDigiMap` function maps sound effects to hardware-specific identifiers, ensuring compatibility with devices like the Sound Blaster. The `wolfdigimap` array defines sound mappings for various game events, from enemy actions to environmental effects. This system allows Wolfenstein 3D to deliver immersive audio experiences, adapting to the capabilities of the user's hardware. In 1992, sound cards were becoming a popular upgrade for PC gamers, and Carmack's attention to audio detail helped establish sound as a critical component of game design. The approach influenced later games, where dynamic sound mapping became integral to creating immersive environments, particularly in genres like first-person shooters and RPGs."
   - id: "dynamic-jukebox-for-game-music"
-    line_start: 1012
+    line_start: 998
     line_end: 1131
     title: "Dynamic jukebox for game music"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "This section implements a dynamic jukebox system allowing players to select music tracks during gameplay. The code defines an array of music tracks, conditionally including different sets depending on whether the game is the original Wolfenstein 3D or its Spear of Destiny expansion. It initializes sound hardware, caches graphical chunks, and displays a menu for track selection. This feature enhances immersion by letting players customize their auditory experience. In the early 1990s, sound cards like AdLib and Sound Blaster were becoming standard, and developers were exploring ways to leverage them creatively. John Carmack and id Software's use of dynamic music selection reflects their focus on player-centric design. This approach influenced later games, where customizable soundtracks became a common feature, seen in titles like Grand Theft Auto and The Sims."
   - id: "game-initialization-and-memory-checks"
-    line_start: 1143
+    line_start: 1135
     line_end: 1266
     title: "Game initialization and memory checks"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The InitGame function sets up the game's environment, including memory checks, hardware initialization, and configuration loading. It verifies the system's available memory and exits gracefully if insufficient resources are detected. This was critical in the MS-DOS era, where hardware constraints were severe, and games had to run on a wide range of systems. The function also builds lookup tables and caches essential graphical chunks, ensuring efficient access during gameplay. Carmack's meticulous attention to performance optimization is evident here, as he tailored the game to run smoothly on systems with limited resources. This memory management approach influenced the design of later games and engines, including id Software's own Doom engine, which continued to push hardware limits while maintaining compatibility with lower-end systems."
   - id: "custom-view-scaling-for-performance"
-    line_start: 1276
+    line_start: 1268
     line_end: 1332
     title: "Custom view scaling for performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The SetViewSize and related functions allow dynamic adjustment of the game's viewport size, optimizing performance for different hardware configurations. By ensuring dimensions are divisible by specific values, the code avoids graphical artifacts and maintains smooth rendering. This technique reflects Carmack's deep understanding of computer graphics and hardware constraints. In the early 1990s, variable screen sizes were rare in games, but this feature allowed Wolfenstein 3D to run on a broader range of systems. The concept of adaptive rendering influenced later engines, including Quake and Unreal Engine, which introduced scalable graphics settings to accommodate diverse hardware."
   - id: "graceful-game-exit-routines"
-    line_start: 1344
+    line_start: 1336
     line_end: 1395
     title: "Graceful game exit routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Software_testing"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The Quit function handles the game's termination, displaying appropriate screens based on the exit condition (error or normal shutdown). It clears memory, writes configuration files, and displays either an error or order screen. This attention to detail ensures a polished user experience, even during unexpected exits. In the MS-DOS era, abrupt program termination often led to system instability, so routines like this were crucial for maintaining reliability. The practice of handling errors gracefully became a standard in software development, influencing modern programming paradigms and operating systems."
   - id: "demo-loop-showcasing-gameplay"
-    line_start: 1411
+    line_start: 1401
     line_end: 1570
     title: "Demo loop showcasing gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The DemoLoop function orchestrates the game's main cycle, including title screens, credits, high scores, and gameplay demos. It provides a seamless introduction to the game, engaging players before they start playing. This was a common feature in early 1990s games, designed to attract players and showcase the game's features. The loop includes conditional checks for debug modes and special parameters, reflecting id Software's focus on flexibility and testing. Demo loops became a staple in game design, influencing titles like Doom and Quake, which used similar techniques to captivate players and demonstrate gameplay mechanics."
   - id: "beta-testing-safeguards"
-    line_start: 1586
+    line_start: 1576
     line_end: 1615
     title: "Beta testing safeguards"
     wikipedia_url: "https://en.wikipedia.org/wiki/Software_testing"

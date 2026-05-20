@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "clear-split-vwb"
-    line_start: 15
+    line_start: 9
     line_end: 24
     title: "Setting up split-screen double buffering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This function initializes the graphical window parameters and clears the update buffer using memset. The programmer's goal here is to prepare the screen for smooth graphical transitions during gameplay or intermission sequences. At the time, double buffering was a critical technique for avoiding screen tearing and ensuring seamless visual updates. In 1992, MS-DOS systems operated without dedicated graphical APIs like DirectX, requiring developers to manually manage screen rendering. John Carmack's use of double buffering in Wolfenstein 3D became a foundational technique for real-time graphics, influencing future engines like Doom and Quake."
   - id: "end-screen-sequence"
-    line_start: 37
+    line_start: 27
     line_end: 47
     title: "End screen sequence with fading effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(visual_effect)"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The Victory function orchestrates a detailed end-of-level sequence, displaying player statistics, animations, and music. It calculates averages for kills, secrets, and treasures, and formats the total time played. This sequence reflects id Software's commitment to rewarding players with interactive feedback. In 1992, such dynamic intermission screens were rare, as most games opted for static displays. The real-time calculations and graphical overlays showcased the capabilities of the Wolfenstein 3D engine, setting a precedent for interactive score screens in later titles like Doom and Quake."
   - id: "pg13-warning-screen"
-    line_start: 308
+    line_start: 299
     line_end: 325
     title: "Displaying PG-13 warning screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parental_Guidance"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The LevelCompleted function handles the intermission sequence after completing a level, displaying stats, bonuses, and animations. It calculates ratios for kills, secrets, and treasures, and awards points based on performance. This sequence exemplifies id Software's dedication to rewarding players with detailed feedback and interactive elements. The real-time calculations and animations were groundbreaking for 1992, demonstrating how intermission screens could enhance player satisfaction. The approach influenced later games like Doom, which expanded on these concepts with more elaborate sequences."
   - id: "preload-graphics"
-    line_start: 995
+    line_start: 962
     line_end: 1017
     title: "Preloading graphics for seamless gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The PreloadGraphics function caches graphical assets and prepares the screen for gameplay. It uses a progress bar to indicate loading status, ensuring players remain engaged during preloading. Efficient caching was essential for Wolfenstein 3D's smooth performance on limited hardware. By preloading assets, id Software minimized in-game loading times, creating a seamless experience. This technique became standard practice in game development, influencing asset management strategies in modern engines like Unity and Unreal."
   - id: "draw-high-scores-display"
-    line_start: 1028
+    line_start: 1022
     line_end: 1182
     title: "Displaying and Sorting High Scores"
     wikipedia_url: "https://en.wikipedia.org/wiki/High_score"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the `DrawHighScores` function, responsible for displaying the high scores screen in Wolfenstein 3D. It sorts memory, caches graphical chunks, and draws the high scores table, including player names, levels completed, and scores. The function uses fixed-width numbers for alignment and includes platform-specific adjustments for the Spear of Destiny expansion. In 1992, high scores were a hallmark of arcade and PC gaming, fostering competition among players. John Carmack and Tom Hall implemented this feature to enhance player engagement and replayability. The fixed-width number trick ensures consistent formatting, a subtle but effective design choice. This approach influenced later games, where high score tables became standard, and formatting techniques were refined for better readability. Today, leaderboards in online gaming trace their roots to such early implementations."
   - id: "check-high-score-update"
-    line_start: 1193
+    line_start: 1187
     line_end: 1261
     title: "Updating High Scores Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/High_score"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `NonShareware` function displays a notice emphasizing that Wolfenstein 3D is not shareware and should not be distributed freely. It uses cached graphical chunks and color settings to create a visually striking message. This reflects id Software's business model, which relied on direct sales and licensing agreements. In 1992, shareware was a popular distribution model, but id Software opted for a commercial approach to maximize revenue. This decision influenced their future titles, including Doom, which adopted a similar model with a shareware demo leading to full commercial sales. The emphasis on licensing and distribution rights laid the groundwork for modern digital storefronts like Steam."
   - id: "copy-protection-strings"
-    line_start: 1316
+    line_start: 1310
     line_end: 1458
     title: "Copy Protection Strings and Messages"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"

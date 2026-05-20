@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "data-segment-definitions"
-    line_start: 19
+    line_start: 17
     line_end: 81
     title: "Data segment: sound and timing variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This section includes macros for managing timers, ensuring sound effects are synchronized with gameplay. The 'TIME' macro updates local and global time counters, providing a mechanism for tracking elapsed time. This is crucial for coordinating sound playback with other game events. In the early 1990s, real-time synchronization was a significant challenge due to the limited processing power of MS-DOS systems. By implementing efficient timer management, id Software ensured that audio playback remained consistent, even during intense gameplay. This approach influenced later real-time systems, where precise timing is critical for maintaining performance and user experience."
   - id: "interrupt-service-routine-extreme"
-    line_start: 278
+    line_start: 276
     line_end: 337
     title: "Extreme interrupt service routine: 7000Hz"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"

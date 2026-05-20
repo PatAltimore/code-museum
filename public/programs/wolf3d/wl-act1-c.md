@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `SpawnStatic` function places static objects in the game world at specified tile coordinates. It assigns properties like sprite number and flags based on the object's type, and updates the `actorat` array to mark blocking tiles. This dynamic spawning system allowed Wolfenstein 3D to create varied and interactive environments while maintaining efficient memory usage. The function also increments the treasure count for collectible items, tying gameplay mechanics to object placement. This approach influenced later games by showcasing how to integrate environmental objects seamlessly into gameplay, paving the way for more complex item systems in 3D engines."
   - id: "door-mechanics-and-connectivity"
-    line_start: 245
+    line_start: 244
     line_end: 684
     title: "Doors: connecting areas dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Door_(video_games)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This section implements the mechanics for doors in Wolfenstein 3D, including opening, closing, and area connectivity. Doors are represented in the `doorobjlist` array and their positions tracked in `doorposition`. The `ConnectAreas` function dynamically updates the connectivity matrix (`areaconnect`), enabling sound propagation and visibility checks between areas. This system was groundbreaking for its time, as it allowed real-time updates to the game world based on player actions. The adaptive movement of doors and their integration into gameplay influenced later games, such as Doom and Quake, which expanded on dynamic environmental interactions."
   - id: "pushable-walls-secret-areas"
-    line_start: 712
+    line_start: 717
     line_end: 899
     title: "Pushable walls: uncovering secrets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Secret_level"

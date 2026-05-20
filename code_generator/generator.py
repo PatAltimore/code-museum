@@ -232,6 +232,10 @@ def main() -> None:
 
     gen_cfg = config.get("generation", {})
     client = ModelClient(config["models"]) if not args.dry_run else None
+    range_fix_client = (
+        ModelClient(config["range_fix_model"]) if not args.dry_run and config.get("range_fix_model")
+        else client
+    )
 
     if args.program_image:
         programs = config["programs"]
@@ -267,7 +271,7 @@ def main() -> None:
             for md in md_files:
                 console.print(f"[cyan]fix-ranges  {prog_slug}/{md.stem}[/cyan]")
                 try:
-                    changed = fix_ranges(md, client, gen_cfg=gen_cfg, console=console)
+                    changed = fix_ranges(md, range_fix_client, gen_cfg=gen_cfg, console=console)
                     if changed:
                         console.print(f"  [green]-> {changed} range(s) corrected[/green]")
                     else:

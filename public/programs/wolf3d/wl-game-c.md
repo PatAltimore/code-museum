@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "boolean-variable-declaration"
-    line_start: 34
+    line_start: 20
     line_end: 38
     title: "Boolean Variables for Gameplay State"
     wikipedia_url: "https://en.wikipedia.org/wiki/Boolean_data_type"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section declares boolean variables such as `spearflag`, which are used to manage gameplay state. Boolean variables are a fundamental programming construct, allowing developers to represent binary states efficiently. In Wolfenstein 3D, these variables help track conditions like whether the player is in-game or interacting with specific objects. In the early 1990s, memory constraints on systems like the IBM PC meant that such efficient data types were crucial. This approach influenced later games by demonstrating how to manage state transitions effectively in resource-limited environments."
   - id: "sound-localization-tables"
-    line_start: 76
+    line_start: 71
     line_end: 110
     title: "Stereo Sound Localization Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_localization"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `SetSoundLoc` function calculates stereo channel volumes based on the player's position and orientation relative to a sound source. It uses trigonometric transformations to convert global coordinates into relative distances, ensuring accurate sound placement. This algorithm reflects the ingenuity required to simulate 3D audio on hardware without dedicated sound processors. Developed by id Software, this technique influenced how sound was handled in subsequent 3D games, setting a standard for immersive audio experiences in the industry."
   - id: "scan-info-plane"
-    line_start: 219
+    line_start: 218
     line_end: 613
     title: "Map Scanning and Actor Spawning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `DrawPlayBorder` function renders borders around the gameplay area, ensuring visual consistency and preventing graphical glitches. It uses basic drawing primitives like horizontal and vertical lines to create a clean separation between the game world and the UI. This attention to detail highlights the importance of presentation in game design, even on limited hardware. Techniques like this influenced later games by emphasizing the need for polished visuals, contributing to the evolution of user interface design in gaming."
   - id: "start-demo-record"
-    line_start: 910
+    line_start: 902
     line_end: 924
     title: "Dynamic Memory Allocation for Demo Recording"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"

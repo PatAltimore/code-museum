@@ -4,6 +4,10 @@ models:
   fallback:
   - Llama-3.3-70B-Instruct
   - Mistral-Large-3
+range_fix_model:
+  primary: Codestral-2501
+  fallback:
+  - gpt-4o
 generation:
   temperature: 0.3
   max_tokens: 16384

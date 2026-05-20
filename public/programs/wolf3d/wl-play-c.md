@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `InitActorList` function initializes the actor list, setting up a linked list structure to manage game objects dynamically. This design allows new actors to be added and removed efficiently during gameplay, a critical feature for fast-paced action games like Wolfenstein 3D. The use of linked lists reflects the constraints of MS-DOS systems, where memory management was a significant challenge. This technique influenced the development of object management systems in later engines, such as Unreal Engine and Source."
   - id: "stop-music"
-    line_start: 997
+    line_start: 991
     line_end: 1010
     title: "Dynamic music control for immersive experience"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `StopMusic` function disables the game's music, freeing up memory and processing power. This feature was essential for optimizing performance on MS-DOS systems, which had limited resources. Dynamic music control contributed to Wolfenstein 3D's immersive atmosphere, allowing the game to adapt its audio experience to different gameplay scenarios. This approach influenced the use of dynamic audio systems in later games, such as adaptive soundtracks in The Elder Scrolls series and dynamic combat music in Halo."
   - id: "start-music-handler"
-    line_start: 1021
+    line_start: 1015
     line_end: 1059
     title: "Loading and playing music dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The palette shifting routines generate visual effects for damage and bonus events by modifying the game's color palette. These shifts simulate red flashes for damage and white flashes for bonuses, enhancing the player's sense of impact and reward. The code calculates intermediate color frames to create smooth transitions, a technique that was cutting-edge for real-time graphics in 1992. This approach reflects id Software's commitment to creating immersive experiences despite hardware limitations. Palette shifting became a common technique in games of the era, influencing titles like Doom and Quake, which expanded on such visual effects to heighten player engagement."
   - id: "actor-state-management"
-    line_start: 1258
+    line_start: 1243
     line_end: 1329
     title: "Managing AI behavior with state transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The DoActor function handles the logic for game objects, including enemies and interactive elements. It uses a finite-state machine to determine the behavior of each actor, transitioning between states based on timers and actions. This modular design allows for complex AI behavior while maintaining performance on limited hardware. The function also ensures proper cleanup of objects when their states are exhausted. Developed by John Carmack, this system laid the groundwork for AI in later id Software titles, influencing the design of enemy behavior in Doom and Quake. The use of state machines for AI remains a standard practice in game development today."
   - id: "play-loop-core"
-    line_start: 1368
+    line_start: 1358
     line_end: 1471
     title: "The heartbeat of Wolfenstein 3D gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"

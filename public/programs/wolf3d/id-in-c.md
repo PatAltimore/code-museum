@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "keyboard-interrupt-handler"
     line_start: 135
-    line_end: 208
+    line_end: 209
     title: "Keyboard interrupt handler: real-time responsiveness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
     image_url: ""
     image_caption: ""
     content: "This section defines `INL_KeyService`, a keyboard interrupt handler that processes keypresses in real-time. It reads the scan code from the keyboard hardware port (0x60), clears the key state in the XT keyboard controller, and updates global variables like `LastScan` and `LastASCII`. It also handles special keys like Caps Lock and Pause, and calls a user-defined hook function if set. Written by Jason Blochowiak, this routine ensures instantaneous response to player input, crucial for the fast-paced gameplay of Wolfenstein 3D. At the time, direct hardware interaction was common due to the lack of standardized APIs for input. This approach influenced later games that required low-latency input handling, laying the groundwork for modern real-time input systems in engines like Unity and Unreal."
   - id: "mouse-delta-retrieval"
-    line_start: 213
+    line_start: 211
     line_end: 223
     title: "Mouse movement: tracking player aim"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mouse_(computing)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `INL_GetMouseDelta` function retrieves the relative movement of the mouse by invoking the mouse interrupt (0x33) with the `MDelta` command. It reads the movement data from the CPU registers `_CX` and `_DX`, representing the x and y deltas, respectively. This function is integral to aiming mechanics, allowing players to smoothly adjust their view in the game. In the early 1990s, mouse input was becoming a standard feature in PC gaming, but its integration required direct communication with hardware due to limited OS support. This technique influenced later FPS games, which relied heavily on precise mouse input for aiming and navigation."
   - id: "joystick-absolute-position"
-    line_start: 243
+    line_start: 241
     line_end: 316
     title: "Joystick absolute position: analog precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "`IN_GetJoyAbs` reads the absolute position of a joystick by interacting directly with hardware ports (0x201). The function uses assembly code to measure the timing of resistor discharges, a technique common for analog joysticks of the era. It calculates x and y positions based on bit masks and scaling factors, ensuring accurate input for directional controls. This low-level approach was necessary due to the lack of standardized joystick APIs in MS-DOS. The method influenced joystick handling in later games and systems, paving the way for more sophisticated input libraries like DirectInput and XInput."
   - id: "keyboard-initialization"
-    line_start: 426
+    line_start: 424
     line_end: 438
     title: "Keyboard initialization: setting up interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "`INL_StartKbd` initializes the keyboard by setting up the interrupt vector for the keyboard ISR (Interrupt Service Routine). It replaces the default BIOS handler with the custom `INL_KeyService` routine, ensuring the game can process keypresses directly. This setup allows Wolfenstein 3D to bypass the slower BIOS input handling, providing a more responsive experience. Such direct manipulation of interrupt vectors was a hallmark of MS-DOS programming, enabling developers to optimize performance for real-time applications like games. This technique influenced later game engines that required precise input control."
   - id: "mouse-detection"
-    line_start: 455
+    line_start: 453
     line_end: 482
     title: "Mouse detection: ensuring compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mouse_(computing)"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "`INL_StartMouse` detects the presence of a mouse by checking the interrupt vector table and querying the mouse driver. It uses the `Mouse(MReset)` command to reset the mouse and verifies its functionality based on the returned values. This routine ensures the game can adapt to systems with or without a mouse, a critical feature for compatibility in the diverse hardware landscape of early 1990s PCs. The method reflects the ingenuity required to support varied input devices, influencing future game development practices that prioritized hardware detection and adaptability."
   - id: "input-manager-startup"
-    line_start: 580
+    line_start: 578
     line_end: 614
     title: "Input manager startup: initializing devices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "`IN_Startup` initializes the input manager by detecting and configuring available input devices—keyboard, mouse, and joystick. It checks command-line parameters to determine whether to enable each device, ensuring flexibility for different player setups. The function calls specific routines like `INL_StartKbd`, `INL_StartMouse`, and `INL_StartJoy` to set up each device. This modular approach to input initialization was ahead of its time, influencing later game engines that adopted similar strategies for device detection and configuration."
   - id: "demo-recording-playback"
-    line_start: 685
+    line_start: 684
     line_end: 813
     title: "Demo recording: capturing gameplay moments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_replay"

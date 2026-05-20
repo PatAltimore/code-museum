@@ -29,14 +29,17 @@ _SYSTEM = """\
 You are correcting line-range metadata for source code annotations.
 
 For each annotation in the batch you will see:
-  - id, title, and a brief description of what the section does
+  - id and title
+  - The full annotation text — read this carefully, it describes exactly what
+    subroutine, algorithm, data structure, or technique the range should cover
   - If comment lines were found immediately above the current range, they are
     shown in a "Candidate leading comments" block with their exact line numbers
   - A numbered source excerpt; lines inside the current annotated range are
     prefixed with >> and context lines are prefixed with two spaces
 
-Your task: return the exact line_start and line_end for the code section
-each annotation describes.
+Your task: use the annotation text to identify the correct code section in the
+source excerpt, then return the exact line_start and line_end that tightly
+enclose it.
 
 Rules for line_start:
 - If a "Candidate leading comments" block is shown, READ its content carefully.
@@ -52,10 +55,25 @@ Rules for line_start:
   or opening declaration).
 
 Rules for line_end:
-- The last non-blank line of the section (final instruction, closing brace,
-  RTS/RET, or last data value).
+- The last non-blank line of the section, which MUST include the closing
+  directive if one is present:
+    Assembly:  ENDP, ENDS, ENDM, END, .end, end_proc — always include these.
+               ENDP frequently appears as "ProcName  ENDP" (the procedure name
+               followed by ENDP on the same line) — this is still a closing
+               directive and must be included.
+    C/C++:     the closing } of the function body
+    Other:     the final instruction, RTS, RET, JMP, or last data value
+- Look ahead past the last instruction for a closing directive on the lines
+  immediately following — ENDP in particular often sits one or two lines after
+  the final RET or JMP and must be included in the range.
+- Do not stop at a RET or RTS if an ENDP or equivalent follows within a few lines.
+- Do not include blank lines or the opening line of the next section.
 
 General rules:
+- Ranges must not overlap — each annotation's line_start must be greater than
+  the previous annotation's line_end. If correcting one range would cause it
+  to overlap an adjacent one, stop the boundary at the line before the
+  neighbouring range starts or ends.
 - Do not include blank lines at either boundary
 - Do not place either boundary outside the lines shown in the excerpt
 - If the current range already looks correct, return the same values
@@ -147,12 +165,25 @@ def _excerpt(code_lines: list[str], line_start: int, line_end: int) -> str:
 
 
 def _build_batch_messages(batch: list[dict], code_lines: list[str],
-                          file_info: str) -> list[dict]:
+                          file_info: str,
+                          prev_end: int = 0,
+                          next_start: int = 0) -> list[dict]:
+    """Build messages for one batch.
+
+    prev_end:   line_end of the annotation immediately before this batch (0 = none)
+    next_start: line_start of the annotation immediately after this batch (0 = none)
+    These are shown to the model so it can honour the no-overlap constraint.
+    """
     parts = [f"File: {file_info}\n"]
+    if prev_end:
+        parts.append(f"Note: the annotation before this batch ends at line {prev_end}.\n")
+    if next_start:
+        parts.append(f"Note: the annotation after this batch starts at line {next_start}.\n")
+
     for idx, enh in enumerate(batch, 1):
         s = int(enh.get("line_start", 1))
         e = int(enh.get("line_end", s))
-        snippet = (enh.get("content") or "")[:150].replace("\n", " ")
+        content = (enh.get("content") or "").strip()
 
         # Compute the context window start so _preceding_comment_block stays
         # within the lines we actually show in the excerpt.
@@ -178,7 +209,7 @@ def _build_batch_messages(batch: list[dict], code_lines: list[str],
             f"--- Annotation {idx}/{len(batch)} ---\n"
             f'id: {enh["id"]}\n'
             f'title: "{enh.get("title", "")}"\n'
-            f"Describes: {snippet}...\n\n"
+            f"Annotation text:\n{content}\n\n"
             f"Current range: lines {s}–{e}\n"
             f"{candidate_section}"
             f"Source:\n{_excerpt(code_lines, s, e)}\n"
@@ -212,6 +243,9 @@ def _apply_corrections(path: Path, corrections: list[dict],
     text  = path.read_text(encoding="utf-8")
     changed = 0
 
+    # Track accepted new ranges to catch any overlaps the model introduced
+    accepted: list[tuple[int, int]] = []
+
     for c in corrections:
         eid   = c.get("id", "")
         new_s = int(c.get("line_start", 0))
@@ -226,6 +260,11 @@ def _apply_corrections(path: Path, corrections: list[dict],
             continue
         if not code_lines[new_e - 1].strip():   # line_end must not be blank
             continue
+
+        # Reject if this range overlaps any already-accepted correction
+        if any(new_s <= ae and new_e >= as_ for as_, ae in accepted):
+            continue
+        accepted.append((new_s, new_e))
 
         before = text
         text = re.sub(
@@ -273,10 +312,18 @@ def fix_ranges(path, client, gen_cfg: dict = None, console=None) -> int:
     for batch_num, i in enumerate(range(0, len(enhancements), BATCH_SIZE), 1):
         batch     = enhancements[i : i + BATCH_SIZE]
         valid_ids = {e["id"] for e in batch}
-        messages  = _build_batch_messages(batch, code_lines, file_info)
+
+        prev_end   = int(enhancements[i - 1].get("line_end",   0)) if i > 0 else 0
+        next_start = int(enhancements[i + BATCH_SIZE].get("line_start", 0)) \
+                     if i + BATCH_SIZE < len(enhancements) else 0
+
+        messages  = _build_batch_messages(
+            batch, code_lines, file_info,
+            prev_end=prev_end, next_start=next_start,
+        )
 
         try:
-            raw = client.complete(messages, temperature=temperature, max_tokens=512)
+            raw = client.complete(messages, temperature=temperature, max_tokens=8192)
             corrections = _parse_response(raw, valid_ids)
             all_corrections.extend(corrections)
         except Exception as exc:

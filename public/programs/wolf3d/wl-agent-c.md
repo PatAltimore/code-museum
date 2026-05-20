@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The TryMove function checks whether the player can move to a new position, accounting for walls and other actors. It uses a grid-based collision detection system optimized for the tile-based maps of Wolfenstein 3D. This method ensured efficient gameplay on constrained hardware, avoiding the computational overhead of more complex algorithms. The function's design influenced the development of collision detection systems in later games, demonstrating how to balance accuracy and performance in real-time environments."
   - id: "thrust-function"
-    line_start: 926
+    line_start: 920
     line_end: 963
     title: "Thrust: Movement with Trigonometric Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Trigonometry"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `VictorySpin` function creates a celebratory animation for the player upon completing a level. It adjusts the player's angle and position incrementally to produce a spinning effect. This function showcases id Software's attention to detail in enhancing player satisfaction through visual feedback. The concept of victory animations influenced later games, including Doom and Quake, which incorporated similar celebratory sequences to reward players."
   - id: "player-attack-handler"
-    line_start: 1291
+    line_start: 1283
     line_end: 1379
     title: "Player attack handler: weapon switching and firing"
     wikipedia_url: "https://en.wikipedia.org/wiki/John_Romero"
@@ -134,7 +134,7 @@ enhancements:
     image_caption: ""
     content: "The `T_Attack` function orchestrates the player's attack actions, including weapon switching, ammo management, and firing logic. It updates the player's frame based on the current weapon and attack state, calling `GunAttack` or `KnifeAttack` as needed. This function also handles edge cases, such as running out of ammo and switching to the knife. Designed by John Romero and the id Software team, this routine exemplifies their focus on responsive and modular gameplay mechanics. The weapon handling system influenced FPS titles like Quake and Unreal Tournament, which expanded on the concept with more complex weapon arsenals."
   - id: "player-movement-and-actions"
-    line_start: 1391
+    line_start: 1383
     line_end: 1419
     title: "Player movement and action coordination"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"

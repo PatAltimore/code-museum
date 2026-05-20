@@ -9,11 +9,17 @@ from rich.console import Console
 console = Console()
 
 _MODEL_CONFIGS = {
-    "gpt-4o":                    ("aoai",    "AZURE_OPENAI_ENDPOINT",   "AZURE_OPENAI_KEY"),
-    "Llama-3.3-70B-Instruct":    ("foundry", "AZURE_LLAMA_ENDPOINT",    "AZURE_LLAMA_KEY"),
-    "Mistral-Large-3":           ("foundry", "AZURE_MISTRAL_ENDPOINT",  "AZURE_MISTRAL_KEY"),
-    "Phi-4":                     ("foundry", "AZURE_PHI4_ENDPOINT",     "AZURE_PHI4_KEY"),
+    "gpt-4o":                    ("aoai",    "AZURE_OPENAI_ENDPOINT",    "AZURE_OPENAI_KEY"),
+    "o4-mini":                   ("aoai",    "AZURE_OPENAI_ENDPOINT",    "AZURE_OPENAI_KEY"),
+    "o3-mini":                   ("aoai",    "AZURE_OPENAI_ENDPOINT",    "AZURE_OPENAI_KEY"),
+    "Llama-3.3-70B-Instruct":    ("foundry", "AZURE_LLAMA_ENDPOINT",     "AZURE_LLAMA_KEY"),
+    "Mistral-Large-3":           ("foundry", "AZURE_MISTRAL_ENDPOINT",   "AZURE_MISTRAL_KEY"),
+    "Codestral-2501":            ("foundry", "AZURE_CODESTRAL_ENDPOINT", "AZURE_CODESTRAL_KEY"),
+    "Phi-4":                     ("foundry", "AZURE_PHI4_ENDPOINT",      "AZURE_PHI4_KEY"),
 }
+
+# Reasoning models that do not accept a temperature parameter.
+_REASONING_MODELS = {"o1", "o1-mini", "o3-mini", "o4-mini"}
 
 MAX_RETRIES = 3
 BASE_DELAY_S = 4
@@ -102,13 +108,22 @@ class ModelClient:
         return OpenAI(base_url=base_url, api_key=key, default_query=extra)
 
     def _try_model(self, name, kind, endpoint, key, messages, **kwargs) -> str | None:
+        # Reasoning models don't accept temperature or other sampling params,
+        # and use max_completion_tokens instead of max_tokens.
+        if name in _REASONING_MODELS:
+            kwargs = {k: v for k, v in kwargs.items()
+                      if k not in ("temperature", "top_p", "presence_penalty", "frequency_penalty")}
+            if "max_tokens" in kwargs:
+                kwargs["max_completion_tokens"] = kwargs.pop("max_tokens")
         client = self._make_client(kind, endpoint, key)
         for attempt in range(1, MAX_RETRIES + 1):
             try:
                 resp = client.chat.completions.create(model=name, messages=messages, **kwargs)
-                content = resp.choices[0].message.content
+                choice  = resp.choices[0]
+                content = choice.message.content
                 if not content:
-                    console.print(f"  [yellow]{name} returned empty content[/yellow]")
+                    reason = getattr(choice, "finish_reason", "unknown")
+                    console.print(f"  [yellow]{name} returned empty content (finish_reason={reason})[/yellow]")
                     return None
                 if _is_refusal(content):
                     console.print(f"  [yellow]{name} refused — trying next model[/yellow]")

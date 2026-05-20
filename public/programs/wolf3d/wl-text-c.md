@@ -39,15 +39,15 @@ enhancements:
     content: "This section defines the text formatting commands used in Wolfenstein 3D, such as changing text color, drawing graphics, and managing page layouts. These commands are parsed and executed to render text and graphics dynamically during gameplay. In 1992, text rendering in games was a challenge due to hardware constraints like limited memory and processing power. The developers at id Software, led by John Carmack, created efficient routines to handle these tasks, ensuring smooth gameplay and immersive storytelling. These techniques influenced later games, particularly in how text and graphics were integrated into user interfaces and cutscenes. The modularity of these commands allowed for easy localization, as evidenced by the Japanese-specific code in this file."
   - id: "rip-to-eol"
     line_start: 71
-    line_end: 84
+    line_end: 75
     title: "RipToEOL: Scanning to end of line"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
     image_url: ""
     image_caption: ""
     content: "The RipToEOL function scans through the text buffer until it reaches the end of a line. This simple yet essential routine is used throughout the file to process text commands efficiently. In the early 1990s, parsing text in real-time was a critical task for games like Wolfenstein 3D, which relied on dynamic text rendering for menus and in-game messages. The function exemplifies Carmack's focus on performance and simplicity, ensuring minimal overhead during text processing. Techniques like this laid the groundwork for more complex text parsing systems in modern game engines, such as Unity and Unreal Engine."
   - id: "parse-number"
-    line_start: 84
-    line_end: 114
+    line_start: 86
+    line_end: 110
     title: "ParseNumber: Extracting numeric values"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
     image_url: ""
@@ -55,14 +55,14 @@ enhancements:
     content: "ParseNumber extracts numeric values from the text buffer, converting them into integers for use in commands like positioning graphics or setting delays. This routine is a cornerstone of the text command system, enabling dynamic adjustments based on user input or predefined layouts. In the constrained environment of MS-DOS, efficient parsing was crucial to maintain performance. The function's design reflects Carmack's ability to balance simplicity with functionality, a hallmark of id Software's early work. Parsing techniques like this influenced scripting languages in later games, enabling more complex interactions and dynamic content generation."
   - id: "timed-pic-command"
     line_start: 155
-    line_end: 184
+    line_end: 175
     title: "TimedPicCommand: Graphics with delays"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
     content: "TimedPicCommand handles the rendering of graphics with a specified delay, allowing for timed visual effects. This function updates the screen, waits for a delay, and then draws the graphic at the specified position. In the early 1990s, creating smooth and visually appealing effects was challenging due to hardware limitations. This routine demonstrates id Software's ingenuity in optimizing rendering techniques for immersive gameplay. The use of timed graphics influenced later games, particularly in creating cinematic effects and transitions. Techniques like this are now standard in modern game engines, where timing and synchronization are critical for storytelling and user experience."
   - id: "handle-command"
-    line_start: 184
+    line_start: 186
     line_end: 278
     title: "HandleCommand: Parsing and executing text commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "HandleCommand is the central routine for parsing and executing text commands, such as changing text color, starting a new page, or drawing graphics. It interprets the commands embedded in the text buffer and performs the corresponding actions. This modular approach to command processing was innovative for its time, enabling dynamic text and graphics rendering in a constrained environment. The routine reflects Carmack's emphasis on performance and modularity, allowing for easy expansion and localization. The command system influenced later games, particularly in how text and graphics were integrated into user interfaces and cutscenes. It also laid the groundwork for scripting systems in modern game engines."
   - id: "page-layout"
-    line_start: 410
+    line_start: 412
     line_end: 504
     title: "PageLayout: Word wrapping and text rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Word_wrap"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "PageLayout handles the rendering of text and graphics on a page, including word wrapping and margin adjustments. It clears the screen, sets up margins, and processes the text buffer to render content dynamically. This routine showcases id Software's ability to create efficient algorithms for constrained hardware, ensuring smooth and visually appealing text rendering. The word wrapping algorithm was particularly innovative, allowing for dynamic adjustments based on the content and layout. Techniques like this influenced later games and applications, particularly in how text was rendered in user interfaces and cutscenes. The modularity of the routine also made it easier to localize the game for different languages."
   - id: "cache-layout-graphics"
-    line_start: 542
+    line_start: 533
     line_end: 586
     title: "CacheLayoutGraphics: Optimizing graphic rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "CacheLayoutGraphics scans the entire layout file to mark and cache all graphics used, optimizing rendering performance. This routine ensures that only the necessary graphics are loaded into memory, reducing overhead and improving gameplay smoothness. In the early 1990s, memory management was a critical challenge for game developers, especially on MS-DOS systems with limited resources. This function reflects Carmack's focus on efficiency and performance, enabling Wolfenstein 3D to push the limits of hardware at the time. Techniques like this influenced later games, particularly in how graphics were managed and cached for optimized rendering. The approach is now standard in modern game engines, where efficient asset management is critical for performance."
   - id: "show-article"
-    line_start: 596
+    line_start: 590
     line_end: 723
     title: "ShowArticle: Rendering help and story screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_storytelling"

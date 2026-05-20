@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This block contains code for an Easter egg triggered by pressing specific keys ('I' and 'D') in the menu. It displays images of the development team, accompanied by a unique soundtrack. Easter eggs like this were a hallmark of id Software's playful culture, reflecting their pride in their work and their connection to fans. Such hidden features became a tradition in gaming, inspiring developers to include similar nods in their own titles, fostering a sense of community and discovery."
   - id: "quick-save-load"
-    line_start: 645
+    line_start: 642
     line_end: 812
     title: "Quick-save and quick-load functionality"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_game)"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `CP_ViewScores` function displays the high scores screen, accompanied by a dedicated soundtrack. High scores were a staple of arcade gaming, and their inclusion in Wolfenstein 3D reflects id Software's effort to bring arcade-style engagement to the PC. This feature celebrates player achievement and encourages replayability, a concept that persisted in later games and evolved into modern leaderboards and achievement systems."
   - id: "episode-selection-menu"
-    line_start: 935
+    line_start: 921
     line_end: 1042
     title: "Episode selection and shareware upsell"
     wikipedia_url: "https://en.wikipedia.org/wiki/Shareware"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The `CustomControls` function allows players to redefine control bindings for mouse, joystick, and keyboard. This feature was groundbreaking for its time, offering a level of personalization that enhanced the user experience. The menu system uses subroutines like `DefineMouseBtns` and `DefineJoyBtns` to handle specific input devices. In the early 1990s, customizable controls were not standard, but id Software recognized their importance in accommodating diverse player preferences. This innovation paved the way for modern games, where remappable controls are a standard feature, ensuring accessibility for players with different needs and setups."
   - id: "enter-control-data"
-    line_start: 2130
+    line_start: 2129
     line_end: 2362
     title: "Unified input handling for control customization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
@@ -166,7 +166,7 @@ enhancements:
     image_caption: ""
     content: "The `IntroScreen` function provides a graphical representation of system memory, including main, EMS (Expanded Memory Specification), and XMS (Extended Memory Specification). This visualization helped players understand their system's capabilities, a crucial feature in the early 1990s when memory configurations varied widely. The code calculates memory availability and renders bars to indicate usage levels. This attention to detail reflects id Software's technical expertise and their commitment to user education. By demystifying hardware constraints, they empowered players to make informed decisions about their gaming experience. This approach influenced later games and software, which adopted similar techniques for system diagnostics and configuration."
   - id: "clear-menu-screen"
-    line_start: 2964
+    line_start: 2956
     line_end: 2975
     title: "Efficient screen clearing for menu transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -238,7 +238,7 @@ enhancements:
     image_caption: ""
     content: "The `StartCPMusic` function manages background music for the control panel, dynamically loading and freeing audio assets. It uses functions like `CA_CacheAudioChunk` and `SD_StartMusic` to ensure smooth transitions between tracks. This approach reflects the constraints of early sound systems, where memory limitations required careful management of audio resources. By integrating music into the menu system, id Software enhanced the immersive experience of Wolfenstein 3D. The techniques used here influenced audio handling in later games, contributing to the development of dynamic soundtracks and adaptive music systems."
   - id: "in-get-scan-name-keyboard-mapping"
-    line_start: 3798
+    line_start: 3796
     line_end: 3813
     title: "Keyboard scan code mapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_layout"

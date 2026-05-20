@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "adlib-fm-synthesis"
-    line_start: 154
+    line_start: 133
     line_end: 159
     title: "AdLib FM synthesis channel mapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
@@ -78,15 +78,15 @@ enhancements:
     image_caption: ""
     content: "This subroutine sets up and enables the Covox Sound Source, an external audio device connected via the printer port. The Sound Source was an affordable alternative to sound cards, popular among budget-conscious gamers. By supporting this hardware, id Software expanded Wolfenstein 3D's compatibility, demonstrating their attention to diverse user needs. This approach influenced later games that supported niche hardware, fostering a culture of inclusivity in PC gaming."
   - id: "pc-speaker-audio-fallback"
-    line_start: 830
-    line_end: 838
+    line_start: 816
+    line_end: 841
     title: "PC speaker audio fallback"
     wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
     image_url: ""
     image_caption: ""
     content: "This subroutine plays audio samples on the PC speaker, a low-fidelity fallback for systems without dedicated sound cards. The PC speaker was a ubiquitous feature of early PCs, capable of simple square wave tones. By supporting this hardware, id Software ensured Wolfenstein 3D could run on a wide range of systems, maximizing its audience. This approach exemplifies the team's commitment to accessibility and compatibility, influencing later games that offered scalable audio options for diverse hardware configurations."
   - id: "play-digitized-sound"
-    line_start: 1028
+    line_start: 1027
     line_end: 1042
     title: "Dynamic sound playback across devices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "This function, `SDL_PlayDigiSegment`, dynamically selects the appropriate sound playback routine based on the active sound device mode. In 1992, hardware diversity was a significant challenge for developers. Devices like the Sound Blaster, Sound Source, and PC speaker had varying capabilities, and games needed to cater to all of them to reach a broad audience. John Carmack and the id Software team implemented this abstraction to ensure compatibility across devices without rewriting playback logic for each. This approach influenced later game engines, which adopted similar device-agnostic sound APIs, such as DirectSound and OpenAL."
   - id: "stop-digitized-sound"
-    line_start: 1045
+    line_start: 1044
     line_end: 1081
     title: "Graceful sound termination and memory cleanup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `SD_StopDigitized` function ensures that ongoing digitized sound playback is stopped gracefully, resetting playback state variables and unlocking memory pages used for sound data. This meticulous cleanup reflects the constraints of early 1990s PCs, where memory was scarce and fragmentation could severely impact performance. By locking and unlocking memory pages, the developers ensured that sound data did not interfere with other game processes. This technique laid the groundwork for modern memory management practices in multimedia applications, ensuring efficient resource utilization."
   - id: "poll-digitized-sound"
-    line_start: 1084
+    line_start: 1083
     line_end: 1106
     title: "Real-time sound segment polling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "`SD_Poll` handles the real-time polling of sound segments, ensuring seamless playback of digitized audio. By checking for remaining sound data and loading new segments as needed, the function maintains continuity in sound playback. This approach was critical for creating immersive experiences in Wolfenstein 3D, where interruptions in sound could break the player's immersion. The polling mechanism, combined with hardware interrupts, inspired similar real-time audio handling in later game engines, including the Quake engine developed by id Software."
   - id: "adlib-card-integration"
-    line_start: 1272
+    line_start: 1264
     line_end: 1331
     title: "Programming the AdLib sound card"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `alOut` function directly programs the AdLib sound card by writing values to its registers. This low-level interaction was necessary to produce music and sound effects on early PCs, as standardized APIs like DirectSound did not yet exist. The AdLib card, based on FM synthesis, was a popular choice for game audio in the early 1990s. By mastering its programming, id Software created rich audio experiences that complemented Wolfenstein 3D's fast-paced gameplay. Techniques like these influenced the development of sound libraries and APIs, such as Miles Sound System and OpenAL, which abstracted hardware-specific programming for developers."
   - id: "sound-device-detection-2"
-    line_start: 1585
+    line_start: 1578
     line_end: 1621
     title: "Detecting sound hardware dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hardware_detection"
@@ -174,7 +174,7 @@ enhancements:
     image_caption: ""
     content: "The `SD_PlaySound` function is a versatile routine that plays sounds using the appropriate hardware mode, such as PC speaker, AdLib, or digitized sound. It checks sound priority, handles stereo positioning, and ensures compatibility with various devices. The inclusion of assembly instructions (`pushf`, `cli`) underscores the need for precise control over hardware interrupts during playback. This function exemplifies id Software's commitment to supporting a wide range of audio hardware, ensuring Wolfenstein 3D could run on as many systems as possible. The modular design influenced later game engines, which adopted similar abstractions to support diverse hardware configurations."
   - id: "stop-sound-routine"
-    line_start: 2233
+    line_start: 2231
     line_end: 2255
     title: "Stopping sounds safely and efficiently"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
@@ -182,7 +182,7 @@ enhancements:
     image_caption: ""
     content: "The `SD_StopSound` function ensures any playing sound is stopped safely, regardless of the hardware mode. It calls specific routines for PC speaker and AdLib devices, reflecting the need to handle hardware-specific quirks. This function also resets sound-related flags and invokes `SDL_SoundFinished` to finalize the stop process. In the early 1990s, managing audio hardware required careful attention to timing and state management to avoid glitches. This approach influenced later game engines, which adopted robust sound management techniques to ensure smooth audio transitions during gameplay."
   - id: "music-on-off"
-    line_start: 2271
+    line_start: 2269
     line_end: 2301
     title: "Turning music on and off with precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
@@ -190,7 +190,7 @@ enhancements:
     image_caption: ""
     content: "The `SD_MusicOn` and `SD_MusicOff` functions control the game's music sequencer, enabling and disabling playback. For AdLib devices, `SD_MusicOff` sends specific commands to silence all tracks and reset registers. This reflects the low-level programming required to interact with early sound cards, which lacked standardized APIs. The ability to toggle music dynamically added to Wolfenstein 3D's immersive experience, allowing for dramatic shifts in atmosphere during gameplay. These techniques influenced later games, which expanded on dynamic music systems to create adaptive soundtracks, as seen in titles like The Elder Scrolls series and Halo."
   - id: "fade-out-music"
-    line_start: 2329
+    line_start: 2327
     line_end: 2343
     title: "Fading out music for smooth transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(audio_engineering)"
@@ -198,7 +198,7 @@ enhancements:
     image_caption: ""
     content: "The `SD_FadeOutMusic` function initiates a fade-out process for the game's music, providing a smooth transition when stopping playback. While the implementation here is described as a 'quick hack,' it highlights the team's focus on creating a polished audio experience. Fading out music became a standard practice in game audio design, enhancing immersion by avoiding abrupt stops. This technique influenced later games and engines, which incorporated more sophisticated fade-out algorithms and dynamic audio transitions, such as those seen in cinematic games like Mass Effect and The Last of Us."
   - id: "music-playing-check"
-    line_start: 2347
+    line_start: 2345
     line_end: 2367
     title: "Checking if music is currently playing"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"

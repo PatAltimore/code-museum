@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "byte-update-array"
-    line_start: 21
+    line_start: 1
     line_end: 21
     title: "Update Array: Tracking Screen Changes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `update` array is a two-dimensional byte array used to track which portions of the screen need to be updated during rendering. This approach minimizes unnecessary redraws, saving CPU cycles and improving performance. In the early 1990s, efficient screen updates were crucial due to the limited processing power of machines like the IBM PC running MS-DOS. By marking only the tiles that require changes, id Software ensured smoother gameplay even on lower-end hardware. This technique influenced later games that adopted similar strategies for optimizing graphical updates."
   - id: "proportional-font-rendering"
-    line_start: 40
+    line_start: 38
     line_end: 59
     title: "Proportional Font Rendering for Immersive UI"
     wikipedia_url: "https://en.wikipedia.org/wiki/Font"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `VW_DrawPropString` function renders text using proportional fonts, where each character has a width defined in the font data. This contrasts with fixed-width fonts and allows for more visually appealing user interfaces. The function uses VGA hardware-specific operations, such as `VGAMAPMASK`, to manipulate individual pixels efficiently. Proportional fonts were uncommon in games at the time, as they required additional complexity in rendering logic. John Carmack's implementation demonstrated how to leverage hardware capabilities for better aesthetics, influencing UI design in subsequent titles like Doom and Quake."
   - id: "efficient-pic-munging"
-    line_start: 162
+    line_start: 168
     line_end: 204
     title: "MungePic: Rearranging Graphics Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `VL_MungePic` function reorganizes graphical data for efficient rendering. It divides image data into planes and rearranges it to match VGA memory layout requirements. This preprocessing step ensures that graphics can be drawn quickly during gameplay. In the constrained environment of MS-DOS, optimizing memory access patterns was essential for achieving high performance. By carefully managing graphical data, id Software set a precedent for efficient asset handling, influencing techniques used in later 2D and 3D engines."
   - id: "double-buffer-management"
-    line_start: 229
+    line_start: 235
     line_end: 244
     title: "Double Buffering: Eliminating Screen Flicker"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The double buffering routines, such as `VW_MarkUpdateBlock`, manage graphical updates by marking tiles that need to be redrawn. This prevents screen flicker by ensuring that updates occur off-screen before being displayed. In the early 1990s, double buffering was a relatively advanced technique, requiring careful memory management and synchronization. By implementing this system, id Software achieved smooth graphical transitions even on hardware with limited capabilities. Double buffering became a standard practice in game development, influencing engines like Unreal and Unity."
   - id: "fizzle-fade-effect"
-    line_start: 462
+    line_start: 457
     line_end: 547
     title: "Fizzle Fade: Randomized Pixel Transition"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(graphics)"

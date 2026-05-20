@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "This routine renders a string of text using 8x8 tile graphics, iterating through each character and copying its bitmap representation to the screen. The programmer aimed to provide a flexible method for displaying text in the game's graphical interface. Bitmap fonts were a common choice in 1992 due to their simplicity and compatibility with VGA hardware. This technique influenced text rendering in later games, where bitmap fonts were used for menus, HUDs, and in-game dialogue."
   - id: "inline-assembly-vga-memory"
-    line_start: 1052
-    line_end: 1060
+    line_start: 1023
+    line_end: 1052
     title: "Inline assembly for VGA memory manipulation"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
     image_url: ""

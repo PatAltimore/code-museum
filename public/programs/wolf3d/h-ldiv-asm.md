@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "long-division-entry-points"
-    line_start: 28
+    line_start: 15
     line_end: 35
     title: "Entry points for long division routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Function_prologue_and_epilogue"

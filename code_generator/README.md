@@ -38,6 +38,8 @@ Edit `.env` and fill in at least one model endpoint. Set `GITHUB_TOKEN` to avoid
 | `AZURE_LLAMA_KEY` | API key for Llama |
 | `AZURE_MISTRAL_ENDPOINT` | Azure AI Foundry endpoint for Mistral Large 3 |
 | `AZURE_MISTRAL_KEY` | API key for Mistral |
+| `AZURE_CODESTRAL_ENDPOINT` | Azure AI Foundry endpoint for Codestral (used for range fixing) |
+| `AZURE_CODESTRAL_KEY` | API key for Codestral |
 | `AZURE_PHI4_ENDPOINT` | Azure AI Foundry endpoint for Phi-4 (optional) |
 | `AZURE_PHI4_KEY` | API key for Phi-4 (optional) |
 | `GITHUB_TOKEN` | GitHub personal access token (optional, raises rate limit from 60 to 5000 req/hr) |

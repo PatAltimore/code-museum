@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The `SelectChaseDir` function determines the optimal direction for an AI entity to move directly toward the player. Unlike `SelectDodgeDir`, it does not attempt to avoid obstacles, focusing purely on pursuit. This routine highlights the game's emphasis on fast-paced action and relentless enemy behavior. The simplicity of this approach allowed for efficient execution on limited hardware while still delivering engaging gameplay. This direct pursuit logic influenced later games with aggressive AI, such as Doom and Quake."
   - id: "kill-actor-function"
-    line_start: 813
+    line_start: 807
     line_end: 947
     title: "Handling enemy death and item drops"
     wikipedia_url: "https://en.wikipedia.org/wiki/Loot_(video_gaming)"
@@ -80,7 +80,7 @@ enhancements:
     image_caption: ""
     content: "The `KillActor` function manages the death of an enemy, updating game state and dropping items based on the enemy type. It also increments the kill count and removes the enemy from the active game world. This routine reflects Wolfenstein 3D's focus on rewarding players for defeating enemies, a concept that became a staple in action games. The item drop system influenced later games with loot mechanics, such as Diablo and Borderlands, where enemy deaths are tied to player rewards."
   - id: "damage-actor-function"
-    line_start: 962
+    line_start: 951
     line_end: 1016
     title: "Applying damage and triggering combat states"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hit_points"
@@ -88,7 +88,7 @@ enhancements:
     image_caption: ""
     content: "The `DamageActor` function applies damage to an enemy, potentially killing it or putting it into a stun state. If the enemy is not already in combat mode, it transitions to an attack state. This routine encapsulates the game's combat mechanics, where enemies react dynamically to player actions. The concept of transitioning states based on damage influenced later games with reactive AI systems, such as Halo and Far Cry, where enemies adapt their behavior during combat."
   - id: "check-line-sight-algorithm"
-    line_start: 1035
+    line_start: 1027
     line_end: 1167
     title: "Tracing a Line: Enemy Sight Mechanics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Line_of_sight_(gaming)"
@@ -96,7 +96,7 @@ enhancements:
     image_caption: ""
     content: "The `CheckLine` function implements a line-of-sight algorithm to determine if an enemy can see the player. It traces a straight line between the enemy's position and the player's position, checking for obstacles such as walls or closed doors. The function uses tile-based precision, dividing coordinates into smaller units for accurate calculations. This approach was essential in the grid-based world of Wolfenstein 3D, where the environment was represented as a 2D array. The algorithm accounts for open doors by verifying their position and whether they obstruct the line of sight. Written in 1992, this routine reflects the constraints of the era, where computational power was limited, and algorithms had to be efficient. The technique influenced later games by demonstrating how simple geometry could create immersive AI behavior. Developers of titles like Doom and Quake expanded on these ideas, incorporating more complex visibility checks and dynamic environments."
   - id: "check-sight-ai-alertness"
-    line_start: 1183
+    line_start: 1171
     line_end: 1238
     title: "Alertness and Direction: AI Decision Making"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -104,7 +104,7 @@ enhancements:
     image_caption: ""
     content: "The `CheckSight` function builds on `CheckLine` by adding layers of decision-making for enemy AI. It first checks if the enemy's area is connected to the player's, ensuring that the enemy is aware of the player's presence. It then evaluates proximity, granting automatic sight detection if the player is close enough. Finally, it considers the enemy's facing direction, rejecting detection if the player is behind them. This multi-step process mimics real-world behavior, making the AI seem more intelligent and reactive. The function exemplifies id Software's focus on creating believable enemies within the constraints of early 1990s hardware. By combining geometric calculations with logical checks, it paved the way for more sophisticated AI systems in later games. Titles like Half-Life and Far Cry adopted similar principles, enhancing immersion with realistic enemy reactions."
   - id: "first-sighting-enemy-reactions"
-    line_start: 1251
+    line_start: 1242
     line_end: 1386
     title: "First Contact: Enemy Reaction Dynamics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_artificial_intelligence"
@@ -112,7 +112,7 @@ enhancements:
     image_caption: ""
     content: "The `FirstSighting` function defines how enemies react upon detecting the player for the first time. It assigns specific behaviors based on the enemy type, such as playing a sound, switching to a chase state, and increasing movement speed. This differentiation adds personality to the game's enemies, making encounters more varied and engaging. The function also adjusts enemy speed dynamically, ensuring that more dangerous foes pose a greater challenge. This design choice reflects id Software's commitment to balancing gameplay while maintaining technical efficiency. By categorizing enemies and tailoring their reactions, the developers created a template for AI behavior that influenced countless games. Modern titles like The Last of Us and Horizon Zero Dawn continue to use similar techniques, enhancing player immersion through diverse enemy responses."
   - id: "sight-player-detection-mechanics"
-    line_start: 1402
+    line_start: 1390
     line_end: 1478
     title: "Detecting the Player: Noise, Sight, and Ambush"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stealth_game"

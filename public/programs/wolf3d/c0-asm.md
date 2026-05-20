@@ -87,7 +87,7 @@ enhancements:
     content: "The StartExit procedure loops through a table of startup and exit routines, calling functions in order of priority. This table-driven approach allows the program to manage initialization and cleanup tasks systematically. Each entry in the table specifies the call type (near or far), priority, and function address. By organizing these routines in a structured way, the program ensures critical tasks are executed in the correct order. This technique reflects the team's expertise in low-level programming and their ability to optimize complex processes. The use of startup and exit tables influenced the design of similar mechanisms in later game engines and runtime systems, contributing to the evolution of modular software design."
   - id: "error-display"
     line_start: 670
-    line_end: 674
+    line_end: 675
     title: "ErrorDisplay: Handling runtime errors gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
