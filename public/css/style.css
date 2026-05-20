@@ -346,7 +346,7 @@ a:hover {
   color: var(--text);
   font-size: 0.975rem;
   line-height: 1.75;
-  max-width: 680px;
+  max-width: 65ch;
   margin-bottom: 1.2rem;
 }
 
