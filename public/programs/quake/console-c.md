@@ -74,6 +74,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -766,3 +767,4 @@ void Con_SafePrintf (char *fmt, ...)
 	Con_Printf ("%s", msg);
 	scr_disabled_for_loading = temp;
 }
+```

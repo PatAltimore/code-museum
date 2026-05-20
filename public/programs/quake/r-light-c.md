@@ -72,6 +72,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -331,3 +332,4 @@ int R_LightPoint (vec3_t p)
 
 	return r;
 }
+```

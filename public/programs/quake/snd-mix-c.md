@@ -88,6 +88,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -485,3 +486,4 @@ void SND_PaintChannelFrom16 (channel_t *ch, sfxcache_t *sc, int count)
 
 	ch->pos += count;
 }
+```

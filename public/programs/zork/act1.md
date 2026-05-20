@@ -221,7 +221,7 @@ enhancements:
 
 <DEFINE BLO (Y)
 	<COND (<TYPE? ,REP SUBR FSUBR>
-	       <SET READ-TABLE <PUT <IVECTOR 256 0> <CHTYPE <ASCII !\<> FIX> !\>>
+	       <SET READ-TABLE <PUT <IVECTOR 256 0> <CHTYPE <ASCII !\<> FIX> !\>>
 	       <EVALTYPE FORM SEGMENT>
 	       <APPLYTYPE SUBR FIX>
 	       <PUT <ALLTYPES> 6 <7 <ALLTYPES>>>
@@ -2242,5 +2242,5 @@ turned into a pile of dust.">)>>
 	   <SEARCH-LIST <OID .OBJ> <OCONTENTS .AV> <>>)
 	  (<SEARCH-LIST <OID .OBJ> <ROBJS .RM> <>>)>>
 
- 
+
 ```

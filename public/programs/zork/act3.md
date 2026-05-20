@@ -434,5 +434,5 @@ floor in a pile of garbage, which disintegrates before your eyes.">
 
 <DEFINE YELL ()
     <TELL "Aaaarrrrrrrrgggggggggggggghhhhhhhhhhhhhh!">>
-  
+
 ```

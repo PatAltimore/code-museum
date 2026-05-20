@@ -104,6 +104,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -1174,4 +1175,4 @@ void V_Init (void)
 	BuildGammaTable (1.0);	// no gamma yet
 	Cvar_RegisterVariable (&v_gamma);
 }
-
+```

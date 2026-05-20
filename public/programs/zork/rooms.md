@@ -249,7 +249,7 @@ As he grabs you by the neck all grows dim about you.">
 		      <SETG SNM <SUBSTRUC ,SCRATCH-STR
 					  0
 					  <- <LENGTH ,SCRATCH-STR>
-					     <LENGTH <MEMQ !\  .STV>>>>>)>
+					     <LENGTH <MEMQ !\ .STV>>>>>)>
 	       <COND (<G? ,MUDDLE 100> <SETG TENEX? <GETSYS>>)
 		     (<APPLY ,IPC-OFF>
 		      <APPLY ,IPC-ON <UNAME> "ZORK">)>
@@ -1949,5 +1949,5 @@ kingdom of winners.  In any case, \"back\" doesn't work.">>
 	   <SETG HERE .HS>)
 	  (<TELL "You cannot talk to that!">)>>
 
- 
+
 ```

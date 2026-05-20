@@ -31,6 +31,18 @@ _LANG_FENCE: list[tuple[str, str]] = [
 
 _LANG_RE = re.compile(r'^language:\s*"([^"]*)"', re.MULTILINE)
 
+# Control characters to strip from source code: everything below 0x20 except
+# tab (0x09), and DEL (0x7f).  These appear as null-byte sector padding in
+# DOS-era source files and cause GitHub to treat the file as binary.
+_CTRL_CHARS = "".join(
+    chr(b) for b in range(32) if b not in (9, 10, 13)
+) + chr(127)
+_CTRL_TABLE = str.maketrans("", "", _CTRL_CHARS)
+
+
+def _strip_control_chars(text: str) -> str:
+    return text.translate(_CTRL_TABLE)
+
 
 def _fence_id(language: str) -> str:
     """Return the fenced-code-block language identifier for a language string."""
@@ -41,9 +53,13 @@ def _fence_id(language: str) -> str:
     return ""   # unknown — bare ``` still beats nothing
 
 
-def _convert(path: Path, dry_run: bool = False) -> bool:
-    """Add code fences to a single .md file.  Returns True if a change was made."""
-    text = path.read_text(encoding="utf-8")
+def _convert(path: Path, dry_run: bool = False, strip_control: bool = False) -> bool:
+    """Add code fences to a single .md file.  Returns True if a change was made.
+
+    If strip_control is True, also remove embedded control characters from the
+    code body (null bytes, Ctrl-Z, etc. from DOS-era source files).
+    """
+    text = path.read_text(encoding="utf-8", errors="surrogateescape")
 
     # Locate the closing --- of the frontmatter
     try:
@@ -56,32 +72,43 @@ def _convert(path: Path, dry_run: bool = False) -> bool:
     frontmatter = text[fm_start : fm_end + 3]
     body        = text[fm_end + 3:]   # everything after closing ---
 
-    # Idempotency: skip if the body already contains a code fence
-    if "```" in body:
-        return False
+    # Optionally strip embedded control characters.
+    original_body = body
+    if strip_control:
+        body = _strip_control_chars(body)
+    body_was_cleaned = body != original_body
 
-    # Extract language for the fence identifier
+    # Determine what work needs to be done.
+    already_has_fence = "```" in body
+
+    if already_has_fence and not body_was_cleaned:
+        return False   # nothing to do
+
+    if already_has_fence:
+        # Only the control-char strip changed things — write back as-is.
+        if not dry_run:
+            path.write_text(frontmatter + body, encoding="utf-8",
+                            errors="surrogateescape")
+        return True
+
+    # Need to add the fence wrapper (body may or may not have been cleaned).
     m = _LANG_RE.search(frontmatter)
     language = m.group(1) if m else ""
     fence_id = _fence_id(language)
 
-    # body currently starts with "\n\n<code>" — keep the blank separator line,
-    # then insert the opening fence before the first code line.
+    # body starts with "\n\n<code>" — keep the blank separator line,
+    # insert the opening fence before the first code line.
     #
     # Structure before:  "---\n\n<code lines>\n"
     # Structure after:   "---\n\n```lang\n<code lines>\n```\n"
-    #
-    # Strip a single trailing newline from the body so we control the ending.
     body_stripped = body.rstrip("\n")
-
-    # The body begins with exactly "\n\n" — preserve that blank separator
-    after_separator = body_stripped[2:]   # the actual code text
+    after_separator = body_stripped[2:]   # skip the leading "\n\n"
 
     new_body = f"\n\n```{fence_id}\n{after_separator}\n```\n"
     new_text = frontmatter + new_body
 
     if not dry_run:
-        path.write_text(new_text, encoding="utf-8")
+        path.write_text(new_text, encoding="utf-8", errors="surrogateescape")
     return True
 
 
@@ -89,6 +116,9 @@ def main() -> None:
     import argparse
     parser = argparse.ArgumentParser(description="Add code fences to .md program files")
     parser.add_argument("--dry-run", action="store_true", help="Report changes without writing")
+    parser.add_argument("--strip-control", action="store_true",
+                        help="Also strip embedded control characters (null bytes, Ctrl-Z, etc.) "
+                             "from the code body.  Fixes GitHub binary-file detection on DOS-era sources.")
     parser.add_argument(
         "root",
         nargs="?",
@@ -106,7 +136,7 @@ def main() -> None:
     changed = skipped = 0
 
     for path in md_files:
-        result = _convert(path, dry_run=args.dry_run)
+        result = _convert(path, dry_run=args.dry_run, strip_control=args.strip_control)
         if result:
             verb = "would update" if args.dry_run else "updated"
             print(f"  {verb}  {path.relative_to(root)}")
@@ -114,7 +144,9 @@ def main() -> None:
         else:
             skipped += 1
 
-    print(f"\n{'[dry-run] ' if args.dry_run else ''}{changed} file(s) updated, {skipped} already had fences or were skipped.")
+    label = "[dry-run] " if args.dry_run else ""
+    action = "cleaned" if args.strip_control else "updated"
+    print(f"\n{label}{changed} file(s) {action}, {skipped} skipped.")
 
 
 if __name__ == "__main__":

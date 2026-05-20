@@ -120,6 +120,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -1444,4 +1445,4 @@ void M_Keydown (int key)
 		return;
 	}
 }
-
+```

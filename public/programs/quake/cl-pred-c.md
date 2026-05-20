@@ -72,6 +72,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -296,3 +297,4 @@ void CL_InitPrediction (void)
 	Cvar_RegisterVariable (&cl_pushlatency);
 	Cvar_RegisterVariable (&cl_nopred);
 }
+```

@@ -104,6 +104,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -1432,4 +1433,4 @@ void Sbar_FinaleOverlay (void)
 	pic = Draw_CachePic ("gfx/finale.lmp");
 	Draw_TransPic ( (vid.width-pic->width)/2, 16, pic);
 }
-
+```

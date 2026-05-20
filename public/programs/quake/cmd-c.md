@@ -96,6 +96,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -843,3 +844,4 @@ void Cmd_Init (void)
 	Cmd_AddCommand ("cmd", Cmd_ForwardToServer_f);
 #endif
 }
+```

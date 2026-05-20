@@ -144,6 +144,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -1840,3 +1841,4 @@ void GL_BuildLightmaps (void)
  		GL_SelectTexture(TEXTURE0_SGIS);
 
 }
+```

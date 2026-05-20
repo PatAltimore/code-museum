@@ -112,6 +112,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -695,3 +696,4 @@ fixed16_t Invert24To16(fixed16_t val)
 }
 
 #endif
+```

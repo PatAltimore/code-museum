@@ -20,7 +20,12 @@ def fetch_source(repo: str, branch: str, path: str, max_lines: int | None = None
         cache_path.write_text(resp.text, encoding="utf-8")
 
     text = cache_path.read_text(encoding="utf-8")
-    lines = text.splitlines()
+    # Strip null bytes and other control characters that come from DOS-era
+    # source files with sector padding.  We keep tab (0x09) and the standard
+    # line endings; everything else below 0x20 and the DEL (0x7f) is removed.
+    _CTRL = bytes(b for b in range(32) if b not in (9, 10, 13)) + bytes([127])
+    _CTRL_TABLE = str.maketrans("", "", _CTRL.decode("latin-1"))
+    lines = [l.translate(_CTRL_TABLE) for l in text.splitlines()]
 
     if max_lines and len(lines) > max_lines:
         return lines[:max_lines], True

@@ -3344,5 +3344,5 @@ Warranty:
       <ADD-ACTOR <CHTYPE [,WHOUS!-ROOMS
 			  () 0 <> <FIND-OBJ "#####"> <> 0 T 0]
 			 ADV>>>
-  
+
 ```

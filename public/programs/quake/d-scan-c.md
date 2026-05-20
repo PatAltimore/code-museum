@@ -80,6 +80,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -526,3 +527,4 @@ void D_DrawZSpans (espan_t *pspan)
 }
 
 #endif
+```

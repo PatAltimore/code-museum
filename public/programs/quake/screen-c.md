@@ -96,6 +96,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -1272,3 +1273,4 @@ void SCR_UpdateWholeScreen (void)
 	scr_fullupdate = 0;
 	SCR_UpdateScreen ();
 }
+```

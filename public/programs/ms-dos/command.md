@@ -2342,5 +2342,5 @@ TRANCODE        ENDS
 COMLEN  EQU     TRANDATASIZE+TRANCODESIZE-102H          ;End of COMMAND load. ZERO Needed to make COMLEN absolute
 TRNLEN  EQU     (PRETRLEN+TRANCODESIZE+TRANDATASIZE+15)/16              ;Length of transient in paragraphs
         END     PROGSTART
-
+
 ```

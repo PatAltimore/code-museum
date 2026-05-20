@@ -72,6 +72,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -408,4 +409,4 @@ surfcache_t *D_CacheSurface (msurface_t *surface, int miplevel)
 
 	return surface->cachespots[miplevel];
 }
-
+```

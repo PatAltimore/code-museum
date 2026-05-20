@@ -176,6 +176,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -2065,4 +2066,4 @@ void Mod_Print (void)
 		Con_Printf ("%8p : %s\n",mod->cache.data, mod->name);
 	}
 }
-
+```

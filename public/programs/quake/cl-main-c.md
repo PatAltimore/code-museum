@@ -154,6 +154,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -1688,3 +1689,4 @@ void Host_Shutdown(void)
 	if (host_basepal)
 		VID_Shutdown();
 }
+```

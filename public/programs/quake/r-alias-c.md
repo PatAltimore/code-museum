@@ -88,6 +88,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -855,3 +856,4 @@ void R_AliasDrawModel (alight_t *plighting)
 	else
 		R_AliasPreparePoints ();
 }
+```

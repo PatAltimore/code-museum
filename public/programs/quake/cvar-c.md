@@ -90,6 +90,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -338,3 +339,4 @@ void Cvar_WriteVariables (FILE *f)
 		if (var->archive)
 			fprintf (f, "%s \"%s\"\n", var->name, var->string);
 }
+```

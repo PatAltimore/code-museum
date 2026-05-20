@@ -104,6 +104,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -942,3 +943,4 @@ void Key_ClearStates (void)
 		key_repeats[i] = false;
 	}
 }
+```

@@ -106,6 +106,7 @@ enhancements:
 
 ---
 
+```asm
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 
@@ -1009,3 +1010,4 @@ void PlayerMove (void)
 	// set onground, watertype, and waterlevel for final spot
 	PM_CatagorizePosition ();
 }
+```
