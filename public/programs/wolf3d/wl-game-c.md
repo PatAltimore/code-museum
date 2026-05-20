@@ -9,125 +9,126 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-game-c"
 order: 12
-description: "This file contains core gameplay logic for Wolfenstein 3D, showcasing foundational techniques in game development during the early 1990s."
+description: "This file showcases the core gameplay mechanics and sound handling routines of Wolfenstein 3D, a groundbreaking first-person shooter from 1992."
 
 summary:
-  - point: "Innovative sound positioning using stereo channels"
-    link: "https://en.wikipedia.org/wiki/Sound_localization"
-    link_label: "Sound Localization"
-  - point: "Efficient map scanning and actor spawning"
-    link: "https://en.wikipedia.org/wiki/Tile-based_video_game"
-    link_label: "Tile-based Video Games"
-  - point: "Dynamic memory management for demo recording"
-    link: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
-    link_label: "Dynamic Memory Allocation"
-  - point: "Custom rendering for play borders and UI elements"
-    link: "https://en.wikipedia.org/wiki/Graphics_rendering"
-    link_label: "Graphics Rendering"
-  - point: "Optimized level setup for 64x64 maps"
-    link: "https://en.wikipedia.org/wiki/Level_design"
-    link_label: "Level Design"
+  - point: "Innovative sound positioning using lookup tables"
+    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    link_label: "Wolfenstein 3D"
+  - point: "Dynamic actor spawning based on map data"
+    link: "https://en.wikipedia.org/wiki/Procedural_generation"
+    link_label: "Procedural generation"
+  - point: "Efficient memory management for constrained hardware"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Custom routines for drawing gameplay borders"
+    link: "https://en.wikipedia.org/wiki/Framebuffer"
+    link_label: "Framebuffer graphics"
+  - point: "Demo recording and playback system for marketing and debugging"
+    link: "https://en.wikipedia.org/wiki/Game_demo"
+    link_label: "Game demo"
 
 enhancements:
-  - id: "boolean-variable-declaration"
-    line_start: 20
-    line_end: 37
-    title: "Boolean Variables for Gameplay State"
+  - id: "boolean-variable-initialization"
+    line_start: 34
+    line_end: 34
+    title: "Why Boolean Variables Were Crucial"
     wikipedia_url: "https://en.wikipedia.org/wiki/Boolean_data_type"
     image_url: ""
     image_caption: ""
-    content: "This section declares boolean variables such as `spearflag`, which are used to manage gameplay state. Boolean variables are a fundamental programming construct, allowing developers to represent binary states efficiently. In Wolfenstein 3D, these variables help track conditions like whether the player is in-game or interacting with specific objects. In the early 1990s, memory constraints on systems like the IBM PC meant that such efficient data types were crucial. This approach influenced later games by demonstrating how to manage state transitions effectively in resource-limited environments."
-  - id: "sound-localization-tables"
-    line_start: 71
+    content: "This section initializes a boolean variable `spearflag`, which is used to track the presence of a special in-game object, the spear. At the time, boolean variables were a simple yet effective way to manage state in a game running on constrained hardware like MS-DOS. The developers needed to minimize memory usage while maintaining clarity in their code. This approach influenced later games, where boolean flags became a standard practice for managing game states and events. By using such variables, id Software ensured their code was both efficient and readable, setting a precedent for game development in the early 1990s."
+  - id: "sound-positioning-tables"
+    line_start: 76
     line_end: 110
-    title: "Stereo Sound Localization Tables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_localization"
+    title: "The Lookup Tables That Positioned Sound"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "The `righttable` and `lefttable` arrays define precomputed values for stereo sound localization, simulating directional audio based on the player's position relative to sound sources. This technique, implemented by John Carmack, was groundbreaking for immersive audio in games. By using lookup tables, the game avoided computationally expensive calculations during runtime, crucial for maintaining performance on early PCs. This innovation paved the way for advanced sound systems in later games, influencing titles like Doom and Quake, which further refined spatial audio techniques."
+    content: "This section defines two lookup tables, `righttable` and `lefttable`, which are used to calculate sound positioning based on the player's location relative to sound sources. These tables precompute values to avoid expensive runtime calculations, a necessity given the limited processing power of early 1990s hardware. John Carmack and his team leveraged this technique to create immersive 3D audio effects, enhancing the player's experience. Lookup tables like these became a common optimization in game development, influencing later titles such as Doom and Quake, where similar techniques were used for lighting and texture mapping."
   - id: "set-sound-location"
     line_start: 113
     line_end: 156
-    title: "Dynamic Sound Positioning Algorithm"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Audio_signal_processing"
+    title: "How Sound Was Positioned in 3D Space"
+    wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effects"
     image_url: ""
     image_caption: ""
-    content: "The `SetSoundLoc` function calculates stereo channel volumes based on the player's position and orientation relative to a sound source. It uses trigonometric transformations to convert global coordinates into relative distances, ensuring accurate sound placement. This algorithm reflects the ingenuity required to simulate 3D audio on hardware without dedicated sound processors. Developed by id Software, this technique influenced how sound was handled in subsequent 3D games, setting a standard for immersive audio experiences in the industry."
+    content: "The `SetSoundLoc` function calculates the relative position of a sound source to the player's ears, using trigonometric transformations and the precomputed lookup tables. This method allowed Wolfenstein 3D to simulate directional sound, a groundbreaking feature for its time. The function's design reflects the team's focus on maximizing immersion within the constraints of MS-DOS and Sound Blaster hardware. This approach laid the groundwork for advanced sound systems in later games, influencing audio engines like FMOD and OpenAL."
   - id: "scan-info-plane"
-    line_start: 218
+    line_start: 219
     line_end: 613
-    title: "Map Scanning and Actor Spawning"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
+    title: "Dynamic Actor Spawning from Map Data"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Procedural_generation"
     image_url: ""
     image_caption: ""
-    content: "The `ScanInfoPlane` function iterates through the game's tile-based map to spawn actors and set up special locations. Each tile corresponds to a specific object or enemy, with conditional logic determining what gets spawned based on difficulty settings. This method exemplifies the efficiency of tile-based game design, a common practice in the era of limited computational resources. By organizing game elements into discrete tiles, developers could streamline level creation and optimize memory usage. This approach influenced countless games, including later id Software titles like Doom, which expanded on the concept with more complex level designs."
+    content: "The `ScanInfoPlane` function reads map data to spawn actors and place objects dynamically. This technique allowed the developers to create varied and complex levels without manually placing every entity. By interpreting tile values from the map, the game could adjust difficulty and populate levels with enemies, items, and special objects. This approach was influenced by earlier games like Rogue and Ultima, which used similar methods for procedural generation. The technique became a staple in game development, appearing in titles like Diablo and Minecraft, where dynamic content generation is central to gameplay."
   - id: "setup-game-level"
     line_start: 623
     line_end: 761
-    title: "Level Initialization for 64x64 Maps"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
+    title: "Building Levels on the Fly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Level_generation"
     image_url: ""
     image_caption: ""
-    content: "The `SetupGameLevel` function initializes the game state and loads the current level's data. It ensures the map adheres to the fixed 64x64 tile size, a design choice that simplified rendering and collision detection. This function also handles spawning doors and actors, setting the stage for gameplay. The fixed map size reflects the constraints of early PC hardware, where predictable dimensions allowed for optimized memory and processing. This technique influenced later games by demonstrating how to balance technical limitations with creative level design."
-  - id: "draw-play-border"
-    line_start: 839
-    line_end: 856
-    title: "Custom Rendering for Play Borders"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_rendering"
+    content: "The `SetupGameLevel` function initializes a new game level by loading map data, spawning doors and actors, and preparing memory for gameplay. This routine exemplifies id Software's efficient use of resources, ensuring smooth transitions between levels on hardware with limited memory and processing power. The function's modular design allowed for easy customization and expansion, a feature that contributed to Wolfenstein 3D's success and its influence on later games like Doom and Quake, which expanded on this level-loading paradigm."
+  - id: "draw-play-border-sides"
+    line_start: 775
+    line_end: 789
+    title: "Fixing Overwrites with Border Graphics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""
     image_caption: ""
-    content: "The `DrawPlayBorder` function renders borders around the gameplay area, ensuring visual consistency and preventing graphical glitches. It uses basic drawing primitives like horizontal and vertical lines to create a clean separation between the game world and the UI. This attention to detail highlights the importance of presentation in game design, even on limited hardware. Techniques like this influenced later games by emphasizing the need for polished visuals, contributing to the evolution of user interface design in gaming."
+    content: "The `DrawPlayBorderSides` function addresses graphical glitches by redrawing the sides of the gameplay window. This was necessary to prevent overwrites caused by the game's dynamic rendering system. The function highlights id Software's attention to detail and commitment to delivering a polished experience despite hardware limitations. Techniques like these influenced later games, where managing screen buffers and preventing graphical artifacts became standard practice."
   - id: "start-demo-record"
-    line_start: 902
+    line_start: 910
     line_end: 924
-    title: "Dynamic Memory Allocation for Demo Recording"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
+    title: "Recording Gameplay for Debugging and Marketing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_demo"
     image_url: ""
     image_caption: ""
-    content: "The `StartDemoRecord` function allocates memory dynamically to store gameplay data for demo recording. By locking the memory, it ensures the data remains intact during recording. This feature allowed players to share their gameplay experiences, a novel concept in 1992. Dynamic memory allocation was a critical skill for developers working within the constraints of early PC systems. The demo recording system in Wolfenstein 3D inspired similar features in later games, including Doom and Quake, which popularized the idea of sharing gameplay footage."
-  - id: "record-demo-functionality"
+    content: "The `StartDemoRecord` function initializes a demo recording system, capturing gameplay data for later playback. This feature served multiple purposes: debugging, marketing, and showcasing the game's capabilities. Demo recording was a novel concept at the time, allowing developers to share gameplay sequences without requiring users to play the game themselves. This technique influenced later games like Quake and Counter-Strike, where demo recording became a standard feature for esports and community content creation."
+  - id: "finish-demo-record"
+    line_start: 933
+    line_end: 965
+    title: "Saving Demos for Posterity"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_demo"
+    image_url: ""
+    image_caption: ""
+    content: "The `FinishDemoRecord` function finalizes a demo recording by saving it to a file. This allowed players and developers to preserve gameplay sequences for analysis or sharing. The function's design reflects id Software's innovative approach to game development, where features served both technical and creative purposes. Demo recording became a key feature in later games, influencing the development of replay systems in titles like StarCraft and Dota 2."
+  - id: "demo-recording-mechanics"
     line_start: 977
     line_end: 1030
-    title: "Recording gameplay demos for analysis and promotion"
+    title: "How Wolfenstein Recorded Gameplay Demos"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "The `RecordDemo` function allows the player to record their gameplay for a specific level. This feature was used for debugging, marketing, and sharing gameplay experiences. The function initializes a new game, sets the difficulty level, and begins recording the player's actions. At the time, demo recording was a novel feature, enabling developers to showcase gameplay without requiring live interaction. The function also handles memory clearing and screen updates to ensure smooth transitions. In 1992, the ability to record and playback gameplay was cutting-edge, reflecting id Software's focus on innovation. This approach influenced later games like Doom and Quake, which expanded demo recording for competitive play and modding communities."
-  - id: "play-demo-functionality"
+    content: "This section implements the demo recording functionality, allowing players to record their gameplay for later playback. The routine prompts the user to select a level, initializes the game state, and begins recording the demo. Demo recording was a novel feature in the early 1990s, enabling developers to showcase gameplay or debug issues without direct interaction. At the time, MS-DOS systems had limited memory and processing power, so recording gameplay required efficient use of resources. John Carmack and the id Software team leveraged their expertise in optimizing for constrained hardware to make this feature possible. Demo recording became a staple in game development, influencing titles like Doom and Quake, which expanded on this concept with multiplayer demo playback and machinima."
+  - id: "demo-playback-routine"
     line_start: 1042
     line_end: 1100
-    title: "Playback of pre-recorded gameplay demos"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    title: "The Code Behind Demo Playback"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Demo_(computer_programming)"
     image_url: ""
     image_caption: ""
-    content: "The `PlayDemo` function enables playback of pre-recorded demos, allowing players to watch gameplay sequences. This feature was crucial for debugging and promotional purposes, as it showcased the game's mechanics and level design without requiring live input. The function loads demo data, initializes a new game, and sets up the level and difficulty. It also ensures proper memory management and screen updates. In the early 1990s, demo playback was a valuable tool for developers and marketers, helping to demonstrate the game's capabilities. This technique became standard in later games, influencing titles like Unreal Tournament and Counter-Strike, which used demo playback for competitive analysis and community engagement."
-  - id: "player-death-sequence"
+    content: "This routine handles demo playback, loading pre-recorded gameplay data and simulating it within the game engine. It uses cached graphics chunks or external files to retrieve the demo data, initializes the game state, and plays the demo while locking memory to prevent corruption. Demo playback was crucial for showcasing the game's capabilities during marketing and for debugging. The approach reflects id Software's focus on modularity and efficiency, as the same codebase supported both recording and playback. This technique influenced later games, including Doom and Quake, which used demos for competitive play and community-driven content creation, such as speedruns and machinima."
+  - id: "player-death-animation"
     line_start: 1110
     line_end: 1226
-    title: "Dynamic death sequence with attacker-facing rotation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_development"
+    title: "Rotating to Face Your Killer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Atan2"
     image_url: ""
     image_caption: ""
-    content: "The `Died` function handles the player's death sequence, including a dynamic rotation to face the attacker. This sequence uses trigonometric calculations to determine the angle between the player and the attacker, ensuring a realistic and immersive experience. The function also includes visual effects like fading to red and memory clearing. In 1992, such attention to detail was rare, showcasing id Software's commitment to creating an engaging experience. The death sequence influenced later games by emphasizing cinematic moments and player immersion. Titles like Half-Life and Call of Duty adopted similar techniques to enhance storytelling and gameplay intensity."
-  - id: "game-loop-structure"
+    content: "The 'Died' routine animates the player's death, including a dramatic rotation to face the attacker and a fade-to-red effect. It calculates the angle between the player and the killer using the atan2 function, then rotates the player's view smoothly to match. This visual feedback added immersion and emphasized the consequences of failure. In 1992, such animations were rare in first-person games, as most focused on static transitions or simple effects. The use of trigonometry and smooth interpolation demonstrated id Software's commitment to creating a visceral experience. This technique influenced later games, including Doom, which expanded on death animations with more elaborate effects and sound design."
+  - id: "game-loop-management"
     line_start: 1236
-    line_end: 1245
-    title: "Restarting the game loop after player death or level completion"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_programming"
-    image_url: ""
-    image_caption: ""
-    content: "The `GameLoop` function manages the core gameplay loop, including restarting the game after death or level completion. It handles memory clearing, screen updates, and level transitions. This structure ensures seamless gameplay and supports features like secret levels and episodic progression. In the early 1990s, designing efficient game loops was critical for performance on limited hardware. Wolfenstein 3D's approach influenced later games by demonstrating how to handle complex gameplay scenarios within a single loop. This technique became a staple in game programming, shaping the development of titles like Doom and Quake."
-  - id: "play-loop-functionality"
-    line_start: 1284
     line_end: 1483
-    title: "Core gameplay loop with level transitions and secret levels"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
+    title: "The Loop That Runs Wolfenstein"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""
     image_caption: ""
-    content: "The `PlayLoop` function is the heart of Wolfenstein 3D's gameplay, managing player actions, level transitions, and secret levels. It handles events like player death, victory, and progression to the next level. The function also supports memory management and graphic preloading, ensuring smooth gameplay. In 1992, this level of complexity was groundbreaking, demonstrating id Software's ability to push hardware limits. The function's design influenced later games by showcasing how to handle diverse gameplay scenarios within a single loop. Titles like Doom and Quake expanded on this approach, incorporating more advanced features like multiplayer and modding support."
+    content: "The 'GameLoop' routine is the heart of Wolfenstein 3D's gameplay, managing level transitions, secret levels, player states, and victory sequences. It includes logic for restarting the game, handling player deaths, and progressing through levels. The loop also accounts for special cases like secret levels and victory screens, showcasing id Software's attention to detail. In the early 1990s, game loops were often tightly coupled to hardware constraints, requiring careful optimization to ensure smooth gameplay. This loop laid the groundwork for modern game engines, influencing titles like Doom and Quake, which refined and expanded on these principles to support more complex mechanics and higher performance."
 
 ---
 
+```asm
 // WL_GAME.C
 
 #include "WL_DEF.H"
@@ -1611,3 +1612,4 @@ startplayloop:
 	} while (1);
 
 }
+```

@@ -9,269 +9,238 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-act2-c"
 order: 10
-description: "This file defines enemy behaviors and spawning logic in Wolfenstein 3D, showcasing the modular design of AI states and interactions."
+description: "This file defines enemy behaviors and spawning logic in Wolfenstein 3D, showcasing the game's innovative use of state-based AI and level design."
 
 summary:
-  - point: "Defines AI states for enemies like guards, mutants, and bosses"
-    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    link_label: "Wolfenstein 3D"
-  - point: "Introduces state-driven AI using `statetype` structures"
-    link: "https://en.wikipedia.org/wiki/Finite-state_machine"
-    link_label: "Finite State Machine"
-  - point: "Implements difficulty scaling through hitpoints and behaviors"
+  - point: "Defines state-based AI for enemies"
+    link: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    link_label: "AI in Games"
+  - point: "Introduces difficulty-based hitpoints for enemies"
     link: "https://en.wikipedia.org/wiki/Game_difficulty"
     link_label: "Game Difficulty"
+  - point: "Implements projectile movement and collision detection"
+    link: "https://en.wikipedia.org/wiki/Collision_detection"
+    link_label: "Collision Detection"
+  - point: "Handles spawning logic for guards, bosses, and special enemies"
+    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    link_label: "Wolfenstein 3D"
   - point: "Optimized for MS-DOS hardware constraints"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Modular spawning routines for enemies and bosses"
-    link: "https://en.wikipedia.org/wiki/Video_game_AI"
-    link_label: "Video Game AI"
 
 enhancements:
-  - id: "dirtable-direction-lookup"
-    line_start: 30
+  - id: "dirtype-enemy-directions-table"
+    line_start: 39
     line_end: 40
-    title: "Compact direction lookup table"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
+    title: "The Nine Directions That Define Movement"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cartesian_coordinate_system"
     image_url: ""
     image_caption: ""
-    content: "The `dirtable` array defines directional constants for enemy movement, including cardinal and diagonal directions. This compact lookup table allows the game to quickly reference movement directions without complex calculations. At the time, efficient memory usage was paramount due to the limited resources of MS-DOS systems. The table reflects id Software's focus on performance optimization, ensuring smooth gameplay even on lower-end hardware. Lookup tables like this became a staple in game development, influencing later titles that needed similar efficient direction handling."
-  - id: "starthitpoints-difficulty-scaling"
+    content: "The `dirtype` table defines the nine cardinal and diagonal directions used by enemies and projectiles in Wolfenstein 3D. This simple array allows the game to efficiently determine movement and orientation without complex calculations. In 1992, hardware constraints meant that every byte mattered, so this approach minimized computational overhead while enabling fluid gameplay. The concept of cardinal directions in game design became a staple in many subsequent titles, influencing pathfinding algorithms and AI movement systems in games like Doom and Quake."
+  - id: "enemy-hitpoints-difficulty-scaling"
     line_start: 42
     line_end: 156
-    title: "Difficulty scaling through hitpoints"
+    title: "How Enemy Health Scales with Difficulty"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_difficulty"
     image_url: ""
     image_caption: ""
-    content: "The `starthitpoints` array provides initial health values for enemies across four difficulty levels. This design ensures that gameplay remains challenging for players of varying skill levels. By scaling enemy hitpoints, id Software created a dynamic experience that catered to both casual and hardcore audiences. The concept of difficulty scaling was not new but was implemented here with precision, balancing the game for different player preferences. This approach influenced later games, where difficulty settings became a standard feature, allowing developers to expand their audience without compromising game design."
-  - id: "a-smoke-effect-handler"
-    line_start: 231
-    line_end: 252
-    title: "Smoke effects for projectiles"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Particle_system"
-    image_url: ""
-    image_caption: ""
-    content: "The `A_Smoke` function handles the creation of smoke effects for projectiles, adding visual feedback to the player's actions. By spawning new actors with specific states, the game simulates smoke trails, enhancing immersion. This technique demonstrates id Software's attention to detail, creating a more engaging experience despite hardware limitations. Particle effects like these became a hallmark of graphical fidelity in games, influencing the development of more advanced particle systems in later titles such as Quake and Unreal."
-  - id: "projectiletrymove-collision-check"
+    content: "The `starthitpoints` array defines enemy health across four difficulty levels, ranging from 'Baby Mode' to 'Death Incarnate.' This design ensures that players of varying skill levels can enjoy the game while maintaining a sense of challenge. In the early 1990s, dynamic difficulty scaling was rare, and Wolfenstein 3D's implementation influenced later games like Doom and Half-Life, which adopted similar systems to balance gameplay. The decision to include difficulty-based health adjustments reflects id Software's commitment to accessibility and replayability."
+  - id: "projectile-movement-and-collision"
     line_start: 262
     line_end: 290
-    title: "Collision detection for projectiles"
+    title: "The Algorithm Behind Projectile Movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `ProjectileTryMove` function checks whether a projectile's movement is valid, ensuring it does not pass through walls or other solid objects. This routine iterates over tiles in the projectile's path, verifying their solidity. Efficient collision detection was critical in Wolfenstein 3D, where fast-paced gameplay demanded real-time responsiveness. The method used here laid the groundwork for more sophisticated collision systems in later games, influencing engines like id Tech and others that prioritized performance in dynamic environments."
-  - id: "t-projectile-movement-and-damage"
+    content: "The `ProjectileTryMove` function checks whether a projectile's movement is valid by testing for collisions with walls and other objects. It uses bitwise shifts to convert coordinates into tile indices, optimizing performance on MS-DOS systems with limited processing power. This method of collision detection was groundbreaking for its time, enabling fast-paced gameplay without sacrificing accuracy. The technique influenced later games, including Doom, which expanded on these principles to handle more complex environments and interactions."
+  - id: "state-based-ai-projectile-behavior"
     line_start: 300
     line_end: 369
-    title: "Projectile movement and player interaction"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Projectile"
+    title: "State-Based AI for Projectiles"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
     image_caption: ""
-    content: "The `T_Projectile` function manages the movement and interaction of projectiles, including collision detection and damage calculation. Projectiles move based on their speed and angle, using trigonometric functions for precise trajectories. If a projectile collides with the player, damage is calculated based on its type, adding variety to gameplay. This routine exemplifies id Software's mastery of integrating physics and game mechanics within hardware constraints. The approach influenced subsequent FPS games, where projectile dynamics became increasingly complex and realistic."
-  - id: "spawnstand-enemy-initialization"
+    content: "The `T_Projectile` function governs the behavior of projectiles, including movement, collision detection, and interactions with the player. It uses a state-based approach, where each projectile has a defined state that determines its actions and transitions. This design was inspired by finite-state machines, a concept widely used in computer science. By encapsulating behavior in states, id Software created a modular and extensible system that influenced AI design in games like Quake and Unreal Tournament."
+  - id: "spawn-stand-enemy-placement"
     line_start: 845
     line_end: 907
-    title: "Modular enemy spawning routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_AI"
+    title: "Spawning Enemies with Ambush Logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Enemy_(video_games)"
     image_url: ""
     image_caption: ""
-    content: "The `SpawnStand` function initializes enemies based on their type, position, and direction. It assigns attributes like speed, hitpoints, and flags, ensuring each enemy behaves appropriately. This modular design simplifies the addition of new enemy types, showcasing id Software's foresight in creating extensible systems. The routine also handles ambush scenarios, adding depth to enemy behavior. Modular spawning routines like this became a standard in game development, influencing engines such as Unity and Unreal, where reusable components streamline AI creation."
-  - id: "spawnboss-boss-initialization"
-    line_start: 927
+    content: "The `SpawnStand` function places enemies in the game world, initializing their attributes based on difficulty and position. It includes logic to handle ambush tiles, where enemies remain hidden until the player enters their area. This mechanic added tension and unpredictability to the gameplay, a hallmark of Wolfenstein 3D's design. The ambush system influenced stealth and survival horror games, such as Thief and Resident Evil, which adopted similar mechanics to create immersive experiences."
+  - id: "spawn-boss-special-enemy"
+    line_start: 934
     line_end: 949
-    title: "Boss initialization with ambush mechanics"
+    title: "The Birth of Boss Battles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Boss_(video_gaming)"
     image_url: ""
     image_caption: ""
-    content: "The `SpawnBoss` function sets up boss enemies with attributes like hitpoints, direction, and ambush flags. Bosses are a central element of Wolfenstein 3D, providing climactic challenges that test the player's skills. By integrating ambush mechanics, id Software added unpredictability to encounters, heightening tension. This approach influenced later games, where boss fights became more dynamic and cinematic, evolving into set-piece battles seen in titles like Doom and Dark Souls."
-  - id: "spawngretel-character-specific-spawning"
-    line_start: 951
-    line_end: 972
-    title: "Character-specific spawning for Gretel"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    image_url: ""
-    image_caption: ""
-    content: "The `SpawnGretel` function initializes Gretel, a unique boss character, with attributes tailored to her role in the game. By assigning specific hitpoints and ambush flags, the routine ensures Gretel provides a distinct challenge. This character-specific spawning highlights id Software's attention to detail, creating memorable encounters that resonate with players. The technique influenced later games, where unique enemy behaviors and attributes became standard, enriching the diversity of gameplay experiences."
-  - id: "spawn-patrol-enemy-movement"
-    line_start: 973
+    content: "The `SpawnBoss` function introduces special enemies like Hans and Gretel, with unique attributes and behaviors that distinguish them from regular foes. These boss battles were pivotal in defining Wolfenstein 3D's narrative and pacing, creating memorable moments for players. The concept of boss battles became a staple in video game design, influencing titles across genres, from platformers like Super Mario Bros. to RPGs like Final Fantasy."
+  - id: "spawn-patrol-routine"
+    line_start: 981
     line_end: 1049
-    title: "Dynamic patrol spawning for enemy AI"
+    title: "How Enemies Patrol the Maze"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "This routine dynamically spawns patrolling enemies based on their type, position, and direction. It assigns attributes such as speed, hit points, and shootable flags, ensuring each enemy behaves according to its predefined characteristics. Written in 1992, this code reflects the need for efficient AI management in constrained environments like MS-DOS, where memory and processing power were limited. John Carmack's focus on speed and simplicity is evident here, as the routine avoids unnecessary complexity while delivering varied gameplay. This approach to spawning and managing AI influenced later FPS titles, including Doom and Quake, which expanded on these principles with more sophisticated enemy behaviors and pathfinding systems."
-  - id: "death-scream-sound-effects"
-    line_start: 1053
+    content: "This routine dynamically spawns patrolling enemies based on their type, position, and direction. Each enemy type is assigned specific attributes such as speed, hitpoints, and flags that determine their behavior. The routine also updates the game state to track the total number of enemies. This approach allowed Wolfenstein 3D to create a sense of a living, reactive world within the constraints of 1992 hardware. The idea of dynamically spawning and managing enemies influenced later games like Doom and Quake, which expanded on this concept with more complex AI."
+  - id: "death-scream-audio"
+    line_start: 1059
     line_end: 1163
-    title: "Custom death screams for immersive gameplay"
+    title: "The Death Screams That Defined Immersion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
     image_url: ""
     image_caption: ""
-    content: "The A_DeathScream function plays unique sound effects for enemies upon their death, adding a layer of personality to the game. Depending on the enemy type and map conditions, different screams are triggered, ranging from generic sounds to specific phrases like 'Mein Gott!' for bosses. This use of audio was groundbreaking in 1992, leveraging the Sound Blaster card to enhance immersion. The technique set a precedent for integrating sound into gameplay, influencing titles like Doom and Half-Life, where audio cues became integral to player experience and storytelling."
-  - id: "spawn-trans-boss-characteristics"
-    line_start: 1244
-    line_end: 1259
-    title: "Spawning Trans: A formidable boss"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    image_url: ""
-    image_caption: ""
-    content: "SpawnTrans initializes the 'Trans' boss character, setting attributes like hit points and flags for ambush and shootability. The routine adjusts timing based on audio hardware availability, showcasing id Software's attention to hardware compatibility. The inclusion of bosses like Trans added depth to Wolfenstein 3D's gameplay, creating memorable encounters that challenged players and set the stage for epic boss battles in later FPS games such as Doom and Quake."
-  - id: "uber-boss-spawning"
-    line_start: 1319
-    line_end: 1340
-    title: "SpawnUber: Introducing the ultimate challenge"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    image_url: ""
-    image_caption: ""
-    content: "SpawnUber sets up the 'Uber' boss character, a high-difficulty enemy designed to test players' skills. Attributes like hit points and ambush flags are tailored to the game's difficulty setting, ensuring a challenging experience. This routine exemplifies id Software's ability to balance gameplay difficulty dynamically, a concept that became a cornerstone in later titles like Doom, where difficulty scaling and boss encounters were refined further."
-  - id: "launch-projectile-dynamic-angles"
-    line_start: 1616
-    line_end: 1683
-    title: "T_Launch: Dynamic projectile targeting"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Projectile_motion"
-    image_url: ""
-    image_caption: ""
-    content: "The T_Launch function calculates projectile trajectories based on the player's position, using trigonometric functions to determine angles. This dynamic targeting system allowed enemies to fire accurately at the player, adding realism and challenge to the gameplay. The use of mathematical calculations for in-game mechanics was innovative for its time, influencing later games that employed physics-based systems for projectiles and interactions, such as Half-Life and Portal."
-  - id: "spectre-spawning-and-behavior"
-    line_start: 1905
-    line_end: 1923
-    title: "SpawnSpectre: Ghostly ambush mechanics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    image_url: ""
-    image_caption: ""
-    content: "SpawnSpectre initializes the 'Spectre' enemy, a ghost-like character with ambush capabilities. The routine sets attributes like hit points and flags, ensuring the Spectre's behavior aligns with its eerie, unpredictable nature. This type of enemy introduced psychological tension into Wolfenstein 3D, paving the way for horror elements in FPS games like Doom 3 and Dead Space, where enemy unpredictability became a key gameplay feature."
-  - id: "dormant-state-activation"
-    line_start: 1926
-    line_end: 1972
-    title: "A_Dormant: Awakening the Spectre"
+    content: "This section plays unique audio cues when enemies die, enhancing the game's immersive experience. Each enemy type has a distinct sound, ranging from human screams to dog whimpers. The implementation leverages randomization to vary the audio, ensuring players don't hear repetitive sounds. This was particularly impactful given the widespread adoption of Sound Blaster cards at the time, which allowed for high-quality digital audio. The use of audio to reinforce gameplay events became a hallmark of id Software's titles and influenced the broader industry, including games like Half-Life and Call of Duty."
+  - id: "trans-state-machine"
+    line_start: 1181
+    line_end: 1235
+    title: "State Machines for Enemy AI"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
     image_caption: ""
-    content: "The A_Dormant function transitions the Spectre enemy from a dormant state to active ambush mode based on proximity to the player. This state-based behavior exemplifies the use of finite-state machines in game AI, a technique that allowed for complex and responsive enemy interactions. The concept of state-driven AI influenced countless games, including Doom and Quake, where enemies exhibited varied behaviors depending on player actions and environmental triggers."
-  - id: "spawn-ghosts-enemy-logic"
-    line_start: 1983
+    content: "This section defines state machines for the 'Trans' enemy, detailing its behaviors such as standing, chasing, dying, and shooting. Each state is associated with specific animations and actions, creating a fluid and believable enemy AI. The use of state machines was a practical solution to manage complex behaviors within the limited computational power of MS-DOS systems. This technique became a foundational element in game development, influencing AI design in titles like System Shock and Deus Ex."
+  - id: "boss-spawn-routines"
+    line_start: 1244
+    line_end: 1340
+    title: "Spawning Bosses with Unique Attributes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_boss"
+    image_url: ""
+    image_caption: ""
+    content: "This section handles the spawning of boss characters like 'Trans' and 'Uber,' assigning them unique attributes such as higher hitpoints and special flags. These routines ensure bosses stand out as significant challenges, requiring players to adapt their strategies. The concept of boss enemies with distinct behaviors and attributes became a staple in video games, influencing titles like Dark Souls and Borderlands."
+  - id: "t-launch-projectile"
+    line_start: 1622
+    line_end: 1683
+    title: "Launching Projectiles with Precision"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Projectile_motion"
+    image_url: ""
+    image_caption: ""
+    content: "This routine calculates the trajectory of projectiles launched by enemies, factoring in the player's position and angle. It uses trigonometric functions to determine the direction and speed, ensuring accurate targeting. The implementation reflects the ingenuity required to simulate physics-like behavior on limited hardware. Projectile-based attacks became a defining feature of first-person shooters, influencing games like Unreal Tournament and Halo."
+  - id: "spectre-dormant-state"
+    line_start: 1932
+    line_end: 1972
+    title: "Enemies That Wait and Watch"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines the 'Dormant' state for the Spectre enemy, where it remains inactive until certain conditions are met, such as proximity to the player. The routine checks distances and surrounding tiles to determine whether the enemy should become active. This behavior added an element of suspense and unpredictability to the game, influencing stealth mechanics in later titles like Thief and Metal Gear Solid."
+  - id: "spawn-ghosts-pac-man-reference"
+    line_start: 1992
     line_end: 2021
-    title: "SpawnGhosts: Pac-Man homage in enemy design"
+    title: "Why Ghosts from Pac-Man Haunt Wolfenstein"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pac-Man"
     image_url: ""
     image_caption: ""
-    content: "This routine spawns ghost enemies named Blinky, Pinky, Clyde, and Inky—an homage to the iconic characters from Pac-Man. Each ghost is initialized with specific attributes, including speed, direction, and ambush flags. The programmer, John Carmack, was leveraging a playful nod to gaming history while creating distinct enemy types for Wolfenstein 3D. At the time, enemy variety was crucial for maintaining player engagement in first-person shooters. The ghosts' attributes, such as ambush behavior, reflect the game's emphasis on dynamic AI. This approach influenced later games by encouraging developers to incorporate diverse enemy behaviors and thematic references into their designs."
+    content: "The `SpawnGhosts` function introduces a playful nod to Pac-Man, spawning ghost enemies named Blinky, Clyde, Pinky, and Inky. These ghosts are assigned specific behaviors and states, such as ambush flags and movement directions. In the early 1990s, id Software often infused humor and references into their games, reflecting their youthful and experimental culture. This function highlights their ability to blend technical precision with creative whimsy. While these ghosts are not central to Wolfenstein 3D's narrative, their inclusion demonstrates the developers' willingness to experiment with cross-genre ideas. This playful approach influenced later games, such as Doom, which incorporated Easter eggs and humorous elements amidst its dark themes."
   - id: "schabbs-state-machine"
     line_start: 2061
     line_end: 2085
-    title: "Schabbs AI: State machine-driven animations"
+    title: "Schabbs: The Doctor with a State Machine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
     image_caption: ""
-    content: "This section defines the state machine for Dr. Schabbs, one of Wolfenstein 3D's memorable bosses. Each state corresponds to a specific animation frame and behavior, such as chasing, shooting, or dying. The use of state machines allowed id Software to efficiently manage complex enemy behaviors within the constraints of 1992 hardware. State machines were a common technique in early game development, enabling smooth transitions between actions without excessive computational overhead. This design influenced later games by demonstrating how to implement sophisticated enemy AI using simple, modular structures. Developers of titles like Doom and Quake expanded on this concept to create even more dynamic and responsive enemies."
-  - id: "t-schabb-throw-projectile"
-    line_start: 2291
+    content: "Dr. Schabbs, one of Wolfenstein 3D's iconic bosses, is controlled by a finite-state machine defined in this section. Each state specifies his sprite, duration, and behavior, such as chasing the player or throwing needles. This design allowed id Software to create dynamic and challenging enemy AI within the constraints of early 1990s hardware. Finite-state machines were a common technique for game AI at the time, offering a balance between complexity and performance. Schabbs' behavior influenced how bosses were designed in later id Software titles, including Doom's cyberdemon and spider mastermind, which also relied on state-based logic for their attacks and movement."
+  - id: "projectile-throwing-trigonometry"
+    line_start: 2297
     line_end: 2329
-    title: "T_SchabbThrow: Precision projectile mechanics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Projectile_motion"
+    title: "The Trigonometry Behind Enemy Projectiles"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Trigonometry"
     image_url: ""
     image_caption: ""
-    content: "This routine handles Dr. Schabbs' ability to throw needles at the player. Using trigonometric calculations, it determines the angle and trajectory of the projectile based on the player's position relative to the enemy. The use of atan2 for angle computation showcases Carmack's mathematical prowess and attention to detail in gameplay mechanics. Projectile-based attacks added depth to enemy interactions, forcing players to adapt their strategies. This technique became a staple in first-person shooters, influencing games like Half-Life and Unreal, where projectile physics played a critical role in combat dynamics."
-  - id: "t-gift-throw-rocket"
-    line_start: 2331
+    content: "The `T_SchabbThrow` function calculates the angle between Dr. Schabbs and the player using trigonometry, enabling him to throw needles accurately. This approach, leveraging `atan2` for angle calculation, was a clever solution to the challenge of aiming projectiles in a grid-based world. At the time, such calculations were computationally expensive, but id Software optimized them for real-time gameplay. This technique became a foundational element in first-person shooters, influencing how projectiles and aiming systems were implemented in later games like Doom and Quake. The use of trigonometry in game development remains a critical skill for modern developers."
+  - id: "gift-throwing-rocket"
+    line_start: 2337
     line_end: 2368
-    title: "T_GiftThrow: Rocket-based enemy attacks"
+    title: "From Gift to Rocket: A Deadly Surprise"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rocket_launcher"
     image_url: ""
     image_caption: ""
-    content: "This function enables the Gift enemy to launch rockets at the player, using similar trigonometric calculations as T_SchabbThrow. Rockets are initialized with specific attributes, including speed and sound effects, enhancing the game's immersive experience. The inclusion of sound effects tied to enemy actions was a forward-thinking design choice, emphasizing the importance of audio in gameplay. This mechanic influenced later games by highlighting the value of combining visual and auditory cues to create impactful enemy interactions. Titles like Call of Duty and Battlefield adopted similar approaches to enhance realism and player engagement."
-  - id: "t-schabb-ai-movement"
-    line_start: 2372
-    line_end: 2459
-    title: "T_Schabb: AI-driven movement and dodging"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
-    image_url: ""
-    image_caption: ""
-    content: "This routine governs Dr. Schabbs' movement and decision-making during gameplay. It includes logic for dodging player attacks, selecting chase directions, and navigating around obstacles. The AI calculates distances and evaluates whether the enemy has a clear line of sight to the player, dynamically adjusting its behavior. This level of sophistication was rare in 1992, showcasing id Software's commitment to creating challenging and engaging enemies. The techniques used here influenced the development of smarter AI in later games, such as Doom and Quake, where enemies exhibited more complex behaviors and adaptive strategies."
-  - id: "spawn-hitler-and-morph"
-    line_start: 2848
+    content: "The `T_GiftThrow` function defines how the enemy Gift throws rockets at the player. Similar to Schabbs' needle-throwing routine, it uses trigonometry to calculate the angle and trajectory. Rockets, a staple of first-person shooters, were introduced here as a high-damage projectile, adding tension and strategy to encounters. This mechanic foreshadowed the prominence of rocket launchers in Doom, where they became a signature weapon. The inclusion of rockets in Wolfenstein 3D marked a shift towards more varied and explosive gameplay, influencing the design of enemy attacks in countless future titles."
+  - id: "hitler-morphing-mechanic"
+    line_start: 2884
     line_end: 2903
-    title: "SpawnHitler and A_HitlerMorph: Transformative boss mechanics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Boss_(video_gaming)"
+    title: "Hitler's Transformation: A Morphing Mechanic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "These routines define the spawning and transformation mechanics for Adolf Hitler, the game's final boss. Initially appearing in a mech suit, Hitler morphs into a faster, more dangerous form upon defeat. This multi-phase boss design added dramatic tension and challenge, a hallmark of id Software's approach to boss encounters. The transformation mechanic, where attributes like speed and hitpoints are dynamically adjusted, influenced later games by introducing the concept of evolving bosses. Titles like Dark Souls and Sekiro built on this idea, creating multi-phase boss fights that kept players on edge."
-  - id: "t-fake-fire-flamethrower"
-    line_start: 2925
+    content: "The `A_HitlerMorph` function transitions Mecha-Hitler into his final form, Real Hitler, during the boss fight. This mechanic adds dramatic flair to the encounter, making it feel climactic and memorable. Morphing mechanics like this were rare in early games due to technical constraints, but id Software implemented it effectively by reusing existing sprites and states. This transformation set a precedent for multi-phase boss fights, which became a staple in later games, including Doom and Quake. The dramatic reveal of Real Hitler exemplifies id Software's ability to create cinematic moments within the limitations of MS-DOS."
+  - id: "fake-fire-projectile"
+    line_start: 2931
     line_end: 2962
-    title: "T_FakeFire: Flamethrower mechanics and sound integration"
+    title: "Fake Hitler's Flamethrower: A Fiery Threat"
     wikipedia_url: "https://en.wikipedia.org/wiki/Flamethrower"
     image_url: ""
     image_caption: ""
-    content: "This routine enables the Fake Hitler enemy to use a flamethrower attack, calculating the trajectory and initializing the fire projectile. The integration of sound effects, such as the flamethrower sound, enhances the player's sensory experience. Flamethrower mechanics were a novel addition to first-person shooters, providing a visually striking and strategically challenging weapon. This approach influenced games like Team Fortress 2, where flamethrowers became iconic weapons tied to specific character classes, showcasing the lasting impact of Wolfenstein 3D's innovative enemy design."
-  - id: "fake-actor-dodge-and-attack"
-    line_start: 2966
+    content: "The `T_FakeFire` function defines Fake Hitler's flamethrower attack, spawning fire projectiles aimed at the player. This routine uses trigonometry to calculate the angle and trajectory, ensuring the flames follow the player dynamically. Flamethrowers were a rare weapon type in games at the time, and their inclusion here added variety to enemy attacks. The visual and auditory impact of the flamethrower made it a memorable part of the Fake Hitler encounter. This mechanic influenced later games, where flamethrowers became a popular weapon type, appearing in titles like Doom and Team Fortress 2."
+  - id: "fake-ai-dodge-and-attack"
+    line_start: 2972
     line_end: 3027
-    title: "Fake Actor: Dodge and Attack Logic"
+    title: "The AI That Dodges and Shoots Back"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "The `T_Fake` function defines the behavior of a 'fake' enemy actor in the game. It checks whether the player is in line of sight (`CheckLine`) and decides whether to attack or dodge based on random chance (`US_RndT`). The function also handles movement logic, ensuring the actor adjusts its position and selects a new direction when reaching a goal tile. This routine exemplifies the use of simple AI decision-making to create dynamic and unpredictable enemy behavior. At the time, such techniques were groundbreaking, as they allowed for more immersive gameplay compared to static or predictable enemies. The logic here reflects the constraints of early 1990s hardware, where computational resources were limited, and AI routines had to be efficient. This approach influenced subsequent AI systems in games like Doom and Quake, where dynamic enemy behavior became a hallmark of id Software's design."
-  - id: "stand-behavior-simple-sight-check"
-    line_start: 3039
+    content: "This routine, `T_Fake`, controls the behavior of a 'fake' enemy in the game, allowing it to dodge obstacles and attack the player. The code checks whether the player is in line of sight (`CheckLine`) and decides whether to attack or move. If the enemy is blocked, it selects a new direction (`SelectDodgeDir`) and adjusts its position. Written in 1992, this approach reflects the constraints of early AI systems, where decisions had to be made quickly and efficiently within the limited processing power of MS-DOS and x86 hardware. The technique of dynamically adjusting movement and attack based on player proximity and line of sight influenced later games, such as Doom and Quake, which expanded on these principles to create even more immersive AI behaviors."
+  - id: "stand-and-sight-check"
+    line_start: 3045
     line_end: 3050
-    title: "Stand Behavior: Simple Sight Check"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
+    title: "A Simple AI Routine That Watches"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "The `T_Stand` function represents a minimal AI state where an enemy actor stands still and checks if the player is visible (`SightPlayer`). This state is part of the finite-state machine design that governs enemy behaviors in Wolfenstein 3D. By isolating this behavior into a simple function, the developers ensured modularity and ease of debugging. At the time, finite-state machines were a common pattern for game AI, balancing complexity and performance. This modular approach laid the groundwork for more sophisticated AI systems in later games, where states could transition dynamically based on player actions and environmental factors."
-  - id: "chase-behavior-dynamic-pathfinding"
-    line_start: 3053
+    content: "The `T_Stand` routine is a minimalistic AI behavior where the enemy simply checks if the player is visible (`SightPlayer`). This routine highlights id Software's use of state-based AI, where each enemy could transition between different states depending on player actions. While simplistic, this approach was revolutionary for its time, enabling enemies to react dynamically to the player’s presence. This design philosophy laid the groundwork for more complex AI systems in later first-person shooters, where enemies could patrol, chase, and attack based on player proximity and visibility."
+  - id: "chase-ai-with-attack-logic"
+    line_start: 3067
     line_end: 3196
-    title: "Chase Behavior: Dynamic Pathfinding and Attack"
+    title: "How Enemies Chase and Attack You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pathfinding"
     image_url: ""
     image_caption: ""
-    content: "The `T_Chase` function handles the behavior of enemies actively pursuing the player. It includes logic for checking line of sight (`CheckLine`), calculating distance, and determining attack chances based on proximity and random factors (`US_RndT`). The function also incorporates pathfinding and obstacle avoidance, selecting new directions when blocked (`SelectChaseDir`). This routine demonstrates how Wolfenstein 3D's AI system created tension and unpredictability, as enemies could dynamically adapt to the player's movements. The pathfinding logic here is an early example of grid-based navigation, a technique that became standard in many subsequent games. By balancing computational efficiency with engaging gameplay, id Software set a precedent for AI design in first-person shooters, influencing titles like Doom and Half-Life."
-  - id: "ghosts-behavior-simple-chase"
-    line_start: 3199
+    content: "The `T_Chase` routine is one of the most intricate AI behaviors in Wolfenstein 3D. It governs how enemies pursue the player, calculating movement based on speed and distance while deciding whether to attack. The decision-making process includes checking line of sight (`CheckLine`) and determining attack probability based on distance and randomness (`US_RndT`). The code also handles obstacles by selecting a new direction (`SelectChaseDir` or `SelectDodgeDir`). This routine showcases id Software's ingenuity in creating dynamic and challenging enemy behaviors despite hardware limitations. The chase-and-attack logic influenced countless games, including Doom and Half-Life, where AI enemies became more strategic and reactive."
+  - id: "ghost-ai-chase"
+    line_start: 3205
     line_end: 3247
-    title: "Ghosts Behavior: Simplified Chase Logic"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    image_url: ""
-    image_caption: ""
-    content: "The `T_Ghosts` function defines the movement behavior for ghost enemies. Unlike other actors, ghosts rely on a simplified chase logic, focusing solely on pursuing the player without additional attack or dodge mechanics. This streamlined behavior reflects the game's design philosophy of tailoring AI routines to fit the thematic and gameplay needs of specific enemy types. Ghosts add variety to the game's challenges, forcing players to adapt their strategies. This approach to differentiated enemy behavior influenced later games, where unique AI profiles became a staple for creating diverse gameplay experiences."
-  - id: "dog-chase-and-jump-attack"
-    line_start: 3249
-    line_end: 3319
-    title: "Dog Chase: Jump Attack Mechanic"
+    title: "The Ghosts That Never Stop Chasing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "The `T_DogChase` function governs the behavior of dog enemies, incorporating a unique jump attack mechanic. Dogs chase the player using a dodge-based pathfinding routine (`SelectDodgeDir`) and check proximity to determine if a jump attack should be initiated (`NewState`). This behavior adds a layer of unpredictability, as dogs can bypass obstacles and close distances rapidly. The jump attack mechanic showcases id Software's creativity in designing enemies that challenge players in distinct ways. This type of specialized enemy behavior influenced later games, where developers sought to create memorable and varied adversaries, such as the imps in Doom or the headcrabs in Half-Life."
+    content: "The `T_Ghosts` routine manages the movement of ghost enemies, emphasizing relentless pursuit. Unlike other AI routines, it focuses solely on chasing the player, with no attack logic. This design creates a unique gameplay dynamic where the player must constantly evade these enemies. The routine uses simple pathfinding (`SelectChaseDir`) and adjusts positions to ensure smooth movement. This relentless chase behavior added tension to the game and inspired similar mechanics in later horror-themed games, such as Resident Evil and Silent Hill, where enemies relentlessly pursue players to create a sense of dread."
+  - id: "dog-ai-chase-and-jump"
+    line_start: 3255
+    line_end: 3319
+    title: "The Dogs That Leap at You"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    image_url: ""
+    image_caption: ""
+    content: "The `T_DogChase` routine controls the behavior of dog enemies, adding a unique twist to the chase mechanics. Dogs not only pursue the player but also leap to attack when within a certain range (`MINACTORDIST`). This behavior is calculated based on the player’s position and the dog’s movement. The routine includes logic for adjusting positions and selecting new directions (`SelectDodgeDir`). The addition of leaping attacks created a sense of urgency and unpredictability, making these enemies particularly memorable. This mechanic influenced later games with animal-based enemies, such as Far Cry and Tomb Raider, where creatures exhibit dynamic and aggressive behaviors."
   - id: "bj-victory-sequence"
-    line_start: 3562
-    line_end: 3716
-    title: "BJ Victory Sequence: Cinematic Finale"
+    line_start: 3619
+    line_end: 3670
+    title: "The Victory Run of BJ Blazkowicz"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "The BJ Victory sequence, implemented through functions like `SpawnBJVictory`, `T_BJRun`, and `T_BJJump`, provides a cinematic conclusion to the game. This scripted sequence transitions BJ Blazkowicz into a celebratory state, running and jumping to signify triumph. The use of predefined states (`statetype`) and animations reflects the game's reliance on finite-state machines for both gameplay and narrative moments. At the time, such sequences were rare in games, as most titles focused solely on gameplay mechanics. By incorporating a victory sequence, id Software elevated the player's sense of accomplishment and set a precedent for cinematic storytelling in games. This approach influenced later titles like Doom and Quake, where scripted events became integral to the experience."
-  - id: "check-position-collision-detection"
+    content: "The `SpawnBJVictory` and `T_BJRun` routines implement the victory sequence for BJ Blazkowicz, the protagonist. After defeating the final enemy, BJ runs forward, jumps, and celebrates. The sequence is controlled by state transitions (`s_bjrun1`, `s_bjjump1`) and movement logic. This scripted event rewards players for completing the game, providing a satisfying conclusion. The victory sequence reflects id Software's attention to player experience, ensuring a memorable ending. Such scripted sequences became a staple in game design, appearing in titles like Doom and Quake, where dramatic finales enhance the narrative impact."
+  - id: "check-position-for-collisions"
     line_start: 3723
     line_end: 3754
-    title: "Check Position: Collision Detection Logic"
+    title: "How Enemies Avoid Walls and Each Other"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `CheckPosition` function implements collision detection for actors within the game's grid-based map. It checks the surrounding tiles for solid walls or other actors, ensuring that movement and placement are valid. This routine is crucial for maintaining the game's spatial integrity, preventing actors from overlapping or entering invalid positions. Collision detection was a fundamental challenge in early game development, particularly for grid-based systems like Wolfenstein 3D. The efficiency of this routine reflects the constraints of MS-DOS hardware, where performance was a critical concern. The techniques used here influenced later games, where collision detection became more complex and integrated with physics engines, as seen in titles like Half-Life and Unreal."
-  - id: "death-cam-sequence-for-boss-fights"
-    line_start: 3757
+    content: "The `CheckPosition` routine ensures that enemies do not collide with walls or other objects. It calculates the boundaries of an enemy and checks for solid walls or other actors within the defined area. This collision detection mechanism was crucial for creating smooth and believable movement in Wolfenstein 3D. By preventing overlapping or unrealistic interactions, the routine contributed to the game's immersive experience. Collision detection techniques like this became foundational in game development, influencing engines such as Unreal Engine and Unity, where precise object interactions are critical."
+  - id: "death-camera-cinematic-flair"
+    line_start: 3763
     line_end: 3870
-    title: "Death cam sequence for boss fights"
+    title: "How Wolfenstein's Boss Deaths Became Cinematic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "This section implements the 'death cam' feature, a cinematic sequence triggered during boss fights in Wolfenstein 3D. The function `A_StartDeathCam` aligns the player's camera to focus on the defeated boss, creating a dramatic moment of victory. It begins by finalizing palette shifts and waiting for vertical blanking to ensure smooth transitions. If the player has already achieved victory, the game exits; otherwise, it sets the victory flag and displays a fade effect using the `FizzleFade` function. The function then manages memory by unlocking and caching necessary resources, ensuring efficient use of limited MS-DOS memory. It calculates the angle between the player and the boss using the `atan2` function, converting the result into the game's internal angle representation. This precise alignment ensures that the camera focuses directly on the boss. To avoid placing the player in a wall, the function iteratively adjusts the player's position using trigonometric calculations and checks for valid positions with `CheckPosition`. Once the camera is correctly positioned, the game updates the screen and restores the play border. The final part of the function transitions to specific death animations for different boss types, such as Schabbs, Hitler, and others, emphasizing the unique personalities of each boss. This attention to detail reflects id Software's commitment to creating immersive experiences. The 'death cam' technique influenced later games by demonstrating the importance of cinematic sequences in enhancing gameplay. Titles like Doom and Quake expanded on this concept, integrating dramatic camera movements and transitions into their storytelling. Today, cinematic sequences are a staple in modern games, showcasing the lasting impact of id Software's innovations in Wolfenstein 3D."
+    content: "The 'A_StartDeathCam' function is responsible for initiating the dramatic 'death camera' sequence in Wolfenstein 3D. This feature activates when the player defeats a boss, transitioning the camera to focus on the defeated enemy in a cinematic manner. The function begins by handling palette shifts and screen fades to visually signal the transition. If the player has already achieved victory, the game exits early, but otherwise, it sets the victory flag and prepares the screen for the sequence. The core of the routine calculates the camera's position and angle relative to the defeated boss. Using trigonometric functions like 'atan2', it determines the angle between the player and the boss, ensuring the camera aligns perfectly. Fixed-point arithmetic is employed for performance, a necessity given the hardware constraints of early 1990s PCs. The function iteratively adjusts the camera's position to avoid walls, leveraging a collision-checking routine ('CheckPosition') to ensure the camera doesn't clip through the environment. Once the camera is positioned, the function updates the player's coordinates and tile values, scales them appropriately, and restores the game screen. It then transitions to specific animations based on the boss type, such as 's_schabbdeathcam' for Dr. Schabbs or 's_hitlerdeathcam' for Hitler. These animations added personality and closure to boss fights, making them memorable moments for players. This cinematic approach was groundbreaking for its time, enhancing immersion in a genre that often lacked narrative flair. The technique influenced later games, such as Doom and Quake, which expanded on the idea of scripted sequences and dynamic camera movements. Today, cinematic elements in games are ubiquitous, but Wolfenstein 3D's 'death camera' stands as one of the earliest examples of using them to heighten drama and player satisfaction."
 
 ---
 
+```asm
 // WL_ACT2.C
 
 #include "WL_DEF.H"
@@ -4144,3 +4113,4 @@ void	A_StartDeathCam (objtype *ob)
 }
 
 #endif
+```

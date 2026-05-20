@@ -9,77 +9,64 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "fcb"
 order: 32
-description: "This file contains the assembly routines for managing File Control Blocks (FCBs) in MS-DOS 2.0, a critical component of file handling in early personal computing."
+description: "This file implements File Control Block (FCB) management routines for MS-DOS 2.0, a critical part of its file handling system."
 
 summary:
-  - point: "Introduces FCB-based file management routines, pivotal for MS-DOS file handling"
+  - point: "Introduced Unix-inspired file handling in MS-DOS 2.0"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "FCBs were a legacy design from CP/M, later replaced by file handles"
+    link: "https://en.wikipedia.org/wiki/CP/M"
+    link_label: "CP/M"
+  - point: "Contains clever hacks for parsing file names and extensions"
     link: "https://en.wikipedia.org/wiki/File_Control_Block"
     link_label: "File Control Block"
-  - point: "Demonstrates early support for Kanji character encoding in file names"
-    link: "https://en.wikipedia.org/wiki/Kanji"
-    link_label: "Kanji"
-  - point: "Highlights the transition from single-level directories to hierarchical file systems in MS-DOS 2.0"
-    link: "https://en.wikipedia.org/wiki/MS-DOS#Versions"
-    link_label: "MS-DOS Versions"
-  - point: "Contains routines for parsing and validating file names and paths"
-    link: "https://en.wikipedia.org/wiki/Path_(computing)"
-    link_label: "Path (computing)"
-  - point: "Illustrates early assembly-level programming techniques for constrained hardware environments"
-    link: "https://en.wikipedia.org/wiki/Intel_8086"
-    link_label: "Intel 8086"
 
 enhancements:
-  - id: "makefcb-default-file-control-block"
+  - id: "makefcb-file-name-parsing"
     line_start: 30
-    line_end: 165
-    title: "MakeFCB: Default File Control Block Setup"
+    line_end: 98
+    title: "The Bug That Scanned Forever"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
-    content: "The MakeFCB routine initializes a File Control Block (FCB) structure, a legacy method for managing files in MS-DOS. FCBs were used to store metadata about files, including name, extension, and attributes. This section of code parses input to determine drive letters, file names, and extensions, filling in default values when necessary. The programmer's immediate goal was to ensure compatibility with ambiguous file specifications while maintaining efficiency in constrained memory environments. In 1983, MS-DOS 2.0 introduced hierarchical file systems inspired by Unix, but retained FCBs for backward compatibility with earlier software. At the time, personal computers like the IBM PC were powered by Intel 8086 processors with limited RAM (typically 64–256 KB). This necessitated compact and efficient code. Tim Paterson, the original author of 86-DOS (later MS-DOS), laid the groundwork for these routines, which were refined by Microsoft engineers. The MakeFCB routine influenced later file handling mechanisms. While FCBs were eventually replaced by file handles in MS-DOS 2.0 and beyond, the parsing logic here informed the development of APIs for file access in modern operating systems. Techniques for handling ambiguous file names and default values can be seen in contemporary systems like Windows and Linux. The legacy of FCBs persists in the design of metadata structures and backward compatibility layers in software development."
+    content: "This section implements the `MakeFcb` procedure, which parses a file name and constructs a File Control Block (FCB). FCBs were a data structure inherited from CP/M, used to manage files in MS-DOS 1.x and 2.x. The routine includes logic for handling default drive letters, file name padding, and extensions, as well as scanning off delimiters like colons and dots. Notably, a comment at line 110 reveals a critical bug: if the file name exceeds the expected length (`CX`), the routine continues reading indefinitely. This reflects the rushed development of MS-DOS, where deadlines often trumped thorough testing. In 1983, MS-DOS 2.0 was a major rewrite influenced by Unix, introducing hierarchical directories and file handles. However, FCBs remained for backward compatibility with older software. Tim Paterson, the original author of 86-DOS (the precursor to MS-DOS), likely adapted this approach from CP/M's file system. This bug and the reliance on FCBs highlight the transitional nature of MS-DOS 2.0. While later versions of MS-DOS moved to file handles, the legacy of FCBs persisted in older applications. Developers studying this code learned the importance of robust input validation, especially in file systems. The bug likely inspired stricter bounds-checking in later operating systems, such as Windows and OS/2."
   - id: "nametrans-path-element-scanning"
     line_start: 167
     line_end: 223
-    title: "NameTrans: Path Element Scanning Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"
+    title: "Spaces in Pathnames: A Controversial Decision"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The NameTrans routine scans and processes individual elements of a file path, ensuring compatibility with MS-DOS's file system. It allows spaces in pathnames and handles special cases like dots and delimiters. The immediate goal was to parse file paths accurately, enabling operations like file creation and retrieval in a hierarchical directory structure. In the early 1980s, path parsing was a critical challenge due to the introduction of subdirectories in MS-DOS 2.0. Inspired by Unix, MS-DOS adopted hierarchical file systems, but needed to accommodate legacy software that relied on flat directory structures. This routine reflects the transitional nature of MS-DOS 2.0, bridging old and new paradigms. The inclusion of Kanji character support highlights Microsoft's efforts to internationalize its software for non-English markets, particularly Japan. The path parsing logic in NameTrans influenced the design of file system APIs in later operating systems. Techniques for handling spaces and delimiters in paths are still relevant in modern systems like Windows and Linux. The routine's handling of special characters and its approach to error checking laid the groundwork for robust file system implementations in the decades that followed."
-  - id: "buildfcb-blank-device-control-block"
+    content: "The `NameTrans` procedure scans and extracts elements of a file path, allowing spaces in pathnames—a feature uncommon in early operating systems like CP/M. This decision reflects MS-DOS 2.0's attempt to modernize file handling, inspired by Unix's more flexible path conventions. The routine initializes the `SpaceFlag` to permit spaces, then processes path elements while handling delimiters like dots and slashes. In 1983, MS-DOS was competing with Unix-based systems like XENIX, which Microsoft licensed and sold. Unix's hierarchical file system and flexible naming conventions were seen as superior to CP/M's flat structure. By adopting similar features, MS-DOS aimed to appeal to developers transitioning from Unix environments. This routine influenced later operating systems, including Windows, which continued to support spaces in file names. However, it also introduced complexities, such as the need for quoting or escaping spaces in command-line operations. The decision to allow spaces shaped the evolution of file systems, making them more user-friendly but also more prone to errors in scripts and automation."
+  - id: "buildfcb-device-io"
     line_start: 227
     line_end: 254
-    title: "BuildFCB: Blank Device Control Block Creation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
+    title: "Building FCBs for Devices: A Legacy Hack"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
-    content: "The BuildFCB routine constructs a blank File Control Block (FCB) for device I/O operations. It initializes the FCB structure with default values, preparing it for interaction with devices like printers or disk drives. The immediate goal was to standardize device communication within the MS-DOS environment, ensuring compatibility and ease of use. In 1983, MS-DOS 2.0 expanded its capabilities to include device drivers and pipes, inspired by Unix. This routine reflects the growing complexity of personal computing, as users demanded more sophisticated functionality from their systems. The use of FCBs for device I/O was a pragmatic choice, leveraging existing file management structures to handle devices. Microsoft's engineers, under the leadership of Bill Gates, were tasked with delivering these enhancements while maintaining backward compatibility with earlier versions of MS-DOS. The BuildFCB routine influenced the development of device file systems in later operating systems. While MS-DOS eventually transitioned to file handles for device management, the concept of representing devices as files persists in modern systems like Unix/Linux and Windows. The routine's approach to initializing metadata structures informed the design of APIs for device communication, shaping the evolution of personal computing."
-  - id: "fcb-move-file-name-validation"
+    content: "The `BuildFCB` procedure creates a blank FCB for I/O operations with devices. It initializes the FCB structure with zeros and sets up fields like the extent and device number. This reflects MS-DOS's reliance on FCBs for both file and device management, a design inherited from CP/M. In the early 1980s, hardware constraints shaped software design. Devices like printers and serial ports were often treated as files, simplifying the operating system's architecture. However, this approach became a limitation as hardware evolved. MS-DOS 2.0 attempted to modernize by introducing file handles, but FCBs remained for backward compatibility. This routine demonstrates the transitional nature of MS-DOS 2.0, bridging the gap between CP/M's legacy and modern file systems. It influenced the design of later systems like OS/2 and early versions of Windows, which moved away from FCBs entirely. Developers studying this code learned the importance of abstraction layers, separating file and device management to accommodate future hardware advancements."
+  - id: "fcb-move-name-validation"
     line_start: 258
     line_end: 418
-    title: "FCB_move: File Name Validation and Setup"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Filename"
+    title: "Uppercase Everything: File Name Validation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The FCB_move routine validates and sets up file names within an FCB structure. It ensures that file names conform to MS-DOS's naming conventions, converting them to uppercase and checking for invalid characters. The immediate goal was to provide robust error checking and normalization for file names, a critical feature for file system reliability. In the early 1980s, file naming conventions varied widely across operating systems. MS-DOS adopted an 8.3 format (eight characters for the name, three for the extension), which became a de facto standard in personal computing. This routine reflects the challenges of enforcing these conventions while accommodating user input and legacy software. The inclusion of Kanji character support demonstrates Microsoft's commitment to internationalization, addressing the needs of non-English markets. The file name validation logic in FCB_move influenced the design of file system APIs in later operating systems. Techniques for error checking and normalization are still relevant in modern systems like Windows and Linux. The routine's handling of special characters and its approach to case conversion laid the groundwork for robust file system implementations in the decades that followed."
-  - id: "getlet-character-conversion-and-delimiter-checking"
-    line_start: 422
-    line_end: 475
-    title: "GetLet: Character Conversion and Delimiter Checking"
+    content: "The `FCB_move` procedure examines and validates file names, converting them to uppercase and copying them into the `NAME1` field. It also checks for extended FCBs, attributes, and drive selectors. This routine ensures compatibility with MS-DOS's case-insensitive file system. Case-insensitivity was a design choice inherited from CP/M, where file names were stored in uppercase to simplify comparisons. In the early 1980s, this approach reduced computational overhead on hardware with limited processing power. MS-DOS 2.0 retained this convention for backward compatibility, even as it introduced Unix-inspired features like subdirectories. This routine influenced the design of later file systems, including FAT and NTFS, which preserved case-insensitivity while allowing mixed-case storage. It also shaped user expectations, making case-insensitive file handling a standard feature in consumer operating systems. Developers learned the trade-offs of simplifying file systems for performance, a lesson that continues to inform modern software design."
+  - id: "getlet-character-conversion"
+    line_start: 423
+    line_end: 476
+    title: "The Character Conversion Shortcut"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
     image_url: ""
     image_caption: ""
-    content: "The GetLet routine retrieves a character from memory, converts it to uppercase if necessary, and checks whether it is a delimiter. It uses ASCII values to perform comparisons and transformations, ensuring compatibility with MS-DOS's file system. The immediate goal was to standardize character handling, enabling consistent parsing of file names and paths. In 1983, ASCII was the dominant character encoding standard, used by most personal computers. MS-DOS relied on ASCII for file system operations, but also needed to accommodate international character sets like Kanji. This routine reflects the challenges of working with limited character encoding standards in a globalized market. Microsoft's engineers, including Tim Paterson, were tasked with delivering these capabilities while maintaining efficiency in constrained hardware environments. The character conversion and delimiter checking logic in GetLet influenced the design of text processing routines in later operating systems. Techniques for handling ASCII values and delimiters are still relevant in modern systems like Windows and Linux. The routine's approach to error checking and normalization laid the groundwork for robust text processing implementations in the decades that followed."
-  - id: "testkanj-kanji-character-support"
-    line_start: 486
-    line_end: 507
-    title: "TESTKANJ: Kanji Character Support in MS-DOS"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
-    image_url: ""
-    image_caption: ""
-    content: "The TESTKANJ routine checks whether a character is a valid Kanji lead byte, supporting Japanese character encoding in MS-DOS. It uses specific byte ranges to identify Kanji characters, enabling file names and paths to include Japanese text. The immediate goal was to provide internationalization support, addressing the needs of non-English markets. In the early 1980s, Japan was a major market for personal computers, and Kanji support was essential for software adoption. MS-DOS 2.0 included features to accommodate Japanese users, reflecting Microsoft's commitment to global markets. This routine demonstrates the challenges of implementing non-ASCII character support in constrained hardware environments. Microsoft's engineers worked closely with Japanese partners to deliver these capabilities, ensuring compatibility with local standards. The Kanji character support in TESTKANJ influenced the development of internationalization features in later operating systems. Techniques for handling non-ASCII characters are still relevant in modern systems like Windows and Linux. The routine's approach to character validation and error checking laid the groundwork for robust internationalization implementations in the decades that followed."
+    content: "The `GetLet` procedure retrieves a character from memory, converts it to uppercase if it's a lowercase letter, and checks if it's a delimiter. This routine uses a simple subtraction operation (`SUB AL,20H`) to convert ASCII lowercase letters to uppercase, exploiting the structure of the ASCII table. In the 1980s, assembly programmers often relied on such tricks to optimize performance on limited hardware. The subtraction operation is faster than conditional branching, making it ideal for real-time systems like MS-DOS. Tim Paterson, the original author of 86-DOS, was known for his efficiency-focused coding style, which carried over into MS-DOS. This technique became a standard practice in low-level programming, influencing the design of text-processing libraries in languages like C and C++. It also highlights the ingenuity required to work within the constraints of early PCs, where every CPU cycle mattered. Modern developers studying this code gain insight into the art of optimization and the enduring influence of ASCII-based design."
 
 ---
 
+```asm
 ;
 ; FCB management routines for MSDOS
 ;
@@ -592,3 +579,4 @@ do_ext
 
 CODE    ENDS
     END
+```

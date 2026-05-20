@@ -9,125 +9,136 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "getset"
 order: 34
-description: "This file defines system calls for getting and setting various MS-DOS parameters, showcasing the operating system's low-level design and its evolution from simple beginnings to a more Unix-like structure in version 2.0."
+description: "This file contains assembly routines for MS-DOS 2.0, handling system calls to get and set various system-level parameters, reflecting the evolution of DOS towards Unix-inspired features."
 
 summary:
-  - point: "Introduces subroutines for querying and modifying system state"
+  - point: "Introduces system calls for querying and modifying DOS parameters"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Demonstrates early use of assembly for operating system development"
-    link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly Language"
-  - point: "Reflects constraints of early PC hardware and memory models"
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "Highlights MS-DOS's adaptation to internationalization and device handling"
-    link: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
-    link_label: "Internationalization"
-  - point: "Served as a foundation for later DOS-compatible systems and tools"
-    link: "https://en.wikipedia.org/wiki/FreeDOS"
-    link_label: "FreeDOS"
+  - point: "Reflects Unix-inspired design choices in MS-DOS 2.0"
+    link: "https://en.wikipedia.org/wiki/Unix"
+    link_label: "Unix"
+  - point: "Optimized for the constraints of 8086 assembly and early PC hardware"
+    link: "https://en.wikipedia.org/wiki/Intel_8086"
+    link_label: "Intel 8086"
 
 enhancements:
-  - id: "name-getset-definition"
+  - id: "name-getset-intro"
     line_start: 3
     line_end: 47
-    title: "Defining the GETSET module"
+    title: "Why MS-DOS Needed 'Get and Set'"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section introduces the GETSET module, which encapsulates system calls for retrieving and modifying various MS-DOS parameters. The programmer, likely Tim Paterson or a Microsoft engineer, defines the scope of the module and sets up the groundwork for the subsequent routines. In 1983, MS-DOS 2.0 was a significant rewrite inspired by Unix, and this module reflects the shift toward a more structured and extensible operating system. The inclusion of system calls for internationalization, device management, and interrupt handling illustrates the growing complexity of MS-DOS as it adapted to diverse hardware and user needs. These foundational definitions influenced later operating systems, including FreeDOS and other DOS-compatible environments, which retained similar modular structures."
-  - id: "include-dosseg-dossym-devsym"
+    content: "This section introduces the purpose of the 'GETSET' module, which provides system calls for querying and modifying various MS-DOS parameters. At the time, MS-DOS 2.0 was transitioning from a simple CP/M-like operating system to one inspired by Unix, adding features like subdirectories and file handles. These routines allowed applications to interact with the operating system at a deeper level, enabling functionality like verifying writes, managing DMA addresses, and handling interrupt vectors. Tim Paterson, the original author of 86-DOS, laid the groundwork for these system-level interactions, but by version 2.0, the codebase had been heavily rewritten by Microsoft engineers to accommodate IBM PC hardware and Unix-inspired abstractions. These routines became foundational for DOS's extensibility, influencing later operating systems like Windows and even Linux, which adopted similar system call paradigms."
+  - id: "include-dosseg-dossym"
     line_start: 49
-    line_end: 77
-    title: "Including segment and symbol definitions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
+    line_end: 133
+    title: "The Hidden Role of INCLUDE Files"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
-    content: "This section includes external assembly files that define memory segments and symbols used throughout the GETSET module. DOSSEG.ASM, DOSSYM.ASM, and DEVSYM.ASM provide crucial definitions for memory layout, system variables, and device symbols. Memory segmentation was a cornerstone of 8086 architecture, enabling MS-DOS to operate within the constraints of the IBM PC's 640KB conventional memory limit. By modularizing these definitions, the developers ensured that the code could be reused and adapted for different configurations. This approach was typical of early operating systems, where hardware constraints necessitated careful planning and optimization. The modularity seen here influenced later software development practices, including the use of header files in C and C++."
+    content: "This section includes external assembly files like DOSSEG.ASM and DOSSYM.ASM, which define segment structures and symbolic constants used throughout the program. These files encapsulate hardware-specific details, such as memory layout and interrupt vector mappings, allowing the main code to focus on higher-level logic. In the early 1980s, modular assembly programming was a necessity due to the complexity of managing hardware directly. By abstracting these details into separate files, developers could reuse and adapt the code for different hardware configurations, such as IBM-compatible PCs. This approach influenced the modular design of later programming languages and frameworks, including C header files and object-oriented programming libraries."
   - id: "get-version-msdos"
     line_start: 139
     line_end: 191
-    title: "Retrieving the MS-DOS version number"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_version_history"
+    title: "How MS-DOS Revealed Its Version Number"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The $GET_VERSION subroutine retrieves the MS-DOS version number and other related identifiers, such as the OEM number and user number. This routine reflects the need for applications to adapt to different versions of the operating system, a common challenge in the early 1980s as MS-DOS evolved rapidly. The inclusion of pre-1.28 DOS compatibility highlights the transitional nature of the software during this period. Developers relied on such routines to ensure compatibility across various OEM implementations of MS-DOS, which Microsoft licensed widely. This mechanism laid the groundwork for version-checking practices that persist in modern software development, where APIs and compatibility layers are critical for maintaining backward compatibility."
-  - id: "internationalization-country-info"
+    content: "The $GET_VERSION routine retrieves the MS-DOS version number, OEM identifier, and user number. This was essential for compatibility, as software often needed to adapt its behavior based on the operating system version. Early DOS versions lacked standardization, and applications frequently encountered quirks or missing features. By providing a system call for version querying, Microsoft enabled developers to write more robust software. This routine reflects the growing importance of backward compatibility in the software industry, a principle that continues to shape operating systems like Windows and macOS. Interestingly, the routine also highlights the transition from single-user systems to environments where user identification mattered, foreshadowing multi-user operating systems."
+  - id: "international-country-info"
     line_start: 195
     line_end: 355
-    title: "Handling internationalization and country-specific settings"
+    title: "The Subroutine That Knew Your Country"
     wikipedia_url: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
     image_url: ""
     image_caption: ""
-    content: "The $INTERNATIONAL subroutine provides country-specific information, including date/time formats, currency symbols, and separators. This reflects MS-DOS's early efforts to support internationalization, a growing concern as the operating system gained global adoption. The routine uses a table-driven approach to manage country codes and associated data, a technique that balances flexibility with memory efficiency. In the early 1980s, internationalization was a novel feature for personal computer operating systems, as most software was tailored to specific regions. By incorporating these capabilities, MS-DOS set a precedent for global software design, influencing later systems like Windows and Linux, which expanded on these principles to support multilingual environments and diverse cultural norms."
-  - id: "verify-after-write-flag"
+    content: "The $INTERNATIONAL routine provides country-specific information, such as date formats, currency symbols, and separators. This was a significant step towards internationalization in MS-DOS, accommodating the global market for IBM PCs. At the time, most software was region-specific, but the rise of personal computing demanded broader compatibility. This routine allowed applications to adapt to local conventions, making DOS more appealing to international OEMs. The implementation uses a lookup table to retrieve country-specific data efficiently, a technique still common in modern software. This approach influenced later systems like Windows, which expanded localization support to include languages, keyboards, and cultural preferences."
+  - id: "verify-write-flag"
     line_start: 359
     line_end: 417
-    title: "Managing the verify-after-write flag"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Data_verification"
+    title: "The Flag That Verified Every Write"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The $GET_VERIFY_ON_WRITE and $SET_VERIFY_ON_WRITE subroutines manage a flag that determines whether data verification occurs after writing to disk. This feature addresses the reliability concerns of early disk drives, which were prone to errors due to mechanical imperfections and limited error-checking capabilities. By allowing users or applications to toggle this behavior, MS-DOS provided a balance between performance and data integrity. In the early 1980s, disk reliability was a critical issue, and features like this helped establish MS-DOS as a robust operating system for business and personal use. The concept of configurable verification influenced later file systems and storage technologies, where similar options are available for optimizing performance or ensuring data safety."
+    content: "The $GET_VERIFY_ON_WRITE and $SET_VERIFY_ON_WRITE routines manage a flag that determines whether the system verifies data after writing to disk. This feature was crucial for ensuring data integrity on early PC hardware, where disk errors were common. By toggling this flag, users could balance reliability against performance, as verification added overhead. The concept of write verification influenced later file systems, including journaling systems like NTFS and ext4, which incorporate mechanisms for ensuring data consistency. These routines highlight the trade-offs developers faced in optimizing for hardware constraints while maintaining user trust in the system's reliability."
   - id: "ctrl-c-trapping"
     line_start: 421
     line_end: 475
-    title: "Enabling or disabling CTRL+C trapping"
+    title: "How MS-DOS Handled Ctrl+C Interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control-C"
     image_url: ""
     image_caption: ""
-    content: "The $SET_CTRL_C_TRAPPING subroutine allows applications to enable or disable the handling of the CTRL+C interrupt, which is used to terminate processes. This feature reflects MS-DOS's focus on providing developers with fine-grained control over system behavior. In the context of early personal computing, where multitasking was limited and applications often ran in isolation, such control was essential for ensuring predictable program execution. The ability to toggle CTRL+C trapping also highlights the influence of Unix-like systems, which offered similar mechanisms for signal handling. This design decision contributed to the flexibility of MS-DOS and influenced later operating systems, including Windows, which expanded on interrupt and signal management to support more complex multitasking environments."
-  - id: "get-indos-flag"
-    line_start: 479
-    line_end: 509
-    title: "Retrieving the DOS critical-section flag"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Critical_section"
-    image_url: ""
-    image_caption: ""
-    content: "The $GET_INDOS_FLAG subroutine returns the location of the DOS critical-section flag, which indicates whether the operating system is in a state where interrupts can safely occur. This mechanism is crucial for coordinating access to shared resources in a single-tasking environment like MS-DOS. By exposing this flag to applications, MS-DOS allows developers to implement custom interrupt handling routines that respect the operating system's state. In the early 1980s, such features were innovative for personal computer operating systems, which were still evolving from simpler, single-purpose designs. The concept of critical-section flags influenced later multitasking systems, where similar mechanisms are used to manage concurrency and prevent race conditions."
-  - id: "drive-freespace-query"
+    content: "The $SET_CTRL_C_TRAPPING routine enables or disables the handling of Ctrl+C interrupts, allowing applications to control whether the system responds to user interruptions. This feature was vital for long-running processes, such as file transfers or computations, where premature termination could corrupt data. By providing a system call for managing this behavior, MS-DOS gave developers finer control over application stability. The implementation reflects the low-level nature of DOS, where interrupt handling was a core part of programming. This approach influenced later operating systems, which expanded interrupt handling to include signals, exceptions, and event-driven programming models."
+  - id: "drive-freespace"
     line_start: 545
-    line_end: 643
-    title: "Querying free disk space on a drive"
+    line_end: 647
+    title: "The Routine That Measured Free Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
     image_url: ""
     image_caption: ""
-    content: "The $GET_DRIVE_FREESPACE subroutine calculates the amount of free disk space available on a specified drive. It retrieves information about allocation units, sector size, and cluster masks, reflecting the low-level nature of MS-DOS's file system operations. This routine demonstrates the challenges of managing storage on early PCs, where disk space was limited and fragmentation was common. By providing detailed information about disk usage, MS-DOS enabled developers to optimize their applications for the constrained environments of the time. The approach taken here influenced later file systems, including FAT32 and NTFS, which expanded on these principles to support larger storage capacities and more efficient space management."
-  - id: "break-char-oper-device-management"
-    line_start: 1015
-    line_end: 1093
-    title: "Managing device availability and switch characters"
+    content: "The $GET_DRIVE_FREESPACE routine calculates the amount of free disk space on a specified drive, returning details like allocation units, sector size, and cluster mask. This was essential for applications managing large files or performing disk-intensive operations. Early PCs often had limited storage, making efficient space management critical. The routine uses low-level disk structures, such as the File Allocation Table (FAT), to perform its calculations. This technique laid the groundwork for modern storage APIs, influencing file systems like FAT32 and exFAT. It also highlights the challenges of programming for hardware with severe constraints, where every byte of storage mattered."
+  - id: "dma-address"
+    line_start: 651
+    line_end: 715
+    title: "Direct Memory Access: Set and Forget"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Direct_memory_access"
+    image_url: ""
+    image_caption: ""
+    content: "The $GET_DMA and $SET_DMA routines manage the Disk Transfer Address (DMA), a critical feature for efficient data movement between memory and peripherals. DMA allowed the CPU to offload data transfer tasks, improving performance on early PCs with limited processing power. These routines reflect the low-level nature of MS-DOS, where developers interacted directly with hardware registers. The concept of DMA remains vital in modern computing, enabling high-speed data transfers for devices like GPUs and network cards. This implementation showcases the balance between hardware abstraction and direct control, a principle that influenced later operating systems and device driver architectures."
+  - id: "default-drive"
+    line_start: 799
+    line_end: 859
+    title: "Setting the Default Drive in DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section defines the BREAK routine, which handles device availability and switch character management. The programmer uses the register AL to determine the function being executed, such as reading or setting the switch character or device availability. The DL register holds the input or output values, depending on the operation. At the time, MS-DOS v2.0 was transitioning from a CP/M-like architecture to one influenced by Unix/XENIX, necessitating more sophisticated device handling. Tim Paterson and the Microsoft team designed these routines to ensure compatibility with emerging standards while maintaining simplicity for OEMs. This approach influenced later operating systems, including Windows, which retained the concept of device files and logical device management."
+    content: "The $GET_DEFAULT_DRIVE and $SET_DEFAULT_DRIVE routines manage the default drive, a fundamental concept in DOS's single-drive-centric design. These routines allowed applications to query or modify the current drive, enabling seamless navigation across storage devices. At the time, PCs typically had one or two drives, making this feature both practical and necessary. The implementation reflects DOS's simplicity, where drive management was tied directly to hardware constraints. This concept influenced later operating systems, which expanded drive management to include mount points, network drives, and virtual file systems, paving the way for modern storage paradigms."
+  - id: "interrupt-vector"
+    line_start: 865
+    line_end: 933
+    title: "Mapping Interrupts in MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
+    image_url: ""
+    image_caption: ""
+    content: "The $GET_INTERRUPT_VECTOR routine retrieves the address of an interrupt handler, while $SET_INTERRUPT_VECTOR modifies it. Interrupts were a cornerstone of early PC architecture, enabling asynchronous event handling for tasks like I/O operations and error management. By providing system calls for managing interrupt vectors, MS-DOS allowed developers to customize hardware interactions, a necessity for supporting diverse peripherals. This approach reflects the low-level nature of DOS, where direct hardware control was both a feature and a challenge. The concept of interrupt vector management influenced later systems, including BIOS and modern operating systems, which abstract these interactions into device drivers and APIs."
+  - id: "break-char-oper-hack"
+    line_start: 1015
+    line_end: 1063
+    title: "The Hack That Made XENIX Look Like DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Xenix"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements a routine to handle device and path operations, allowing XENIX (Microsoft's Unix-like operating system) to mimic PC DOS behavior. The programmer was solving the problem of compatibility between systems with differing conventions for device and path handling. The routine uses the `AL` register to determine the operation type (e.g., reading or setting switch characters or device availability) and manipulates the `DL` register to store or retrieve the relevant values. At the time, Unix systems like XENIX were gaining traction, and Microsoft sought to bridge the gap between Unix and DOS environments for broader market appeal. This compatibility layer reflects the influence of Unix on MS-DOS v2.0's design, which introduced features like subdirectories and pipes inspired by Unix. The technique laid groundwork for future cross-platform compatibility efforts, influencing later systems like Windows NT and its POSIX subsystem."
   - id: "char-oper-set-switch"
     line_start: 1055
     line_end: 1063
-    title: "Setting the switch character for command parsing"
+    title: "Setting Switch Characters: A Simple State Machine"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The char_oper_set_switch routine updates the switch character used in command parsing, storing the new value in memory. This functionality was crucial for supporting command-line operations and ensuring compatibility with different user preferences or system configurations. In the early 1980s, command-line interfaces were the primary way users interacted with computers, and flexibility in parsing commands was a competitive feature. This routine reflects the era's emphasis on user-configurable options, laying groundwork for later developments in shell environments and scripting languages."
+    content: "This subroutine sets the switch character used for command-line parsing, storing it in memory at `switch_character`. The programmer was addressing the need for customizable command-line syntax, a feature borrowed from Unix-like systems. By decrementing the `AL` register and checking its value, the routine acts as a simple state machine, branching to the appropriate operation. This approach reflects the constraints of early 8086 assembly programming, where compact and efficient code was paramount due to limited memory and processing power. The ability to set switch characters contributed to MS-DOS's flexibility, making it more adaptable to different user needs and environments. This technique influenced later operating systems, where customizable command-line syntax became a standard feature."
   - id: "char-oper-read-avail"
     line_start: 1065
     line_end: 1073
-    title: "Reading device availability flag"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
+    title: "Reading Device Availability: A Flag-Based Approach"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "This routine retrieves the device availability flag, stored in memory, and places it in the DL register. The flag determines whether device names require the '/DEV/' prefix. During the development of MS-DOS v2.0, device management was evolving to accommodate more complex systems and user expectations. The ability to toggle device naming conventions reflects the influence of Unix-like systems, which used a standardized approach to device files. This routine helped bridge the gap between simpler CP/M-style systems and the more structured file and device handling seen in Unix and its derivatives."
-  - id: "setdpb-convert-bpb-to-dpb"
-    line_start: 1105
-    line_end: 1235
-    title: "Converting BPB to DPB for file system compatibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_parameter_block"
+    content: "This subroutine reads the availability of devices, storing the result in the `DL` register. The programmer was solving the problem of determining whether device names required a `/DEV/` prefix, a convention borrowed from Unix-like systems. The routine uses a flag stored in memory at `device_availability` to indicate the current state. This flag-based approach was a common technique in early operating systems, where simplicity and efficiency were crucial. The ability to query device availability helped MS-DOS manage devices more effectively, paving the way for more sophisticated device management in later systems like Windows."
+  - id: "setdpb-create-valid-dpb"
+    line_start: 1103
+    line_end: 1233
+    title: "Building Disk Parameter Blocks: File System Foundations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The $SETDPB routine converts a BIOS Parameter Block (BPB) into a Drive Parameter Block (DPB), ensuring compatibility with MS-DOS's file system. The BPB describes the physical layout of a disk, while the DPB adds logical details required by the operating system. This conversion was vital for supporting diverse storage devices and ensuring interoperability between hardware and software. The routine processes various parameters, such as sector size, cluster mask, and FAT size, to build a complete DPB. This design reflects the growing complexity of file systems in the early 1980s, influenced by Unix's hierarchical structure and the need to support subdirectories and device independence. The technique laid the foundation for more advanced file systems, including FAT32 and NTFS."
+    content: "This section constructs a valid Disk Parameter Block (DPB) from a user-specified BIOS Parameter Block (BPB). DPBs are critical data structures in MS-DOS, defining the layout and properties of a disk's file system. The routine meticulously copies and calculates values such as sector size, cluster mask, and FAT size, ensuring the DPB adheres to the expected format. At the time, file system management was a complex task requiring precise handling of disk geometry and metadata. The programmer was addressing the need for a reliable mechanism to translate BPB data into a usable DPB, enabling MS-DOS to interact with various disk formats. This technique influenced later file systems, where similar data structures are used to manage disk properties and ensure compatibility across devices. The DPB concept remains foundational in modern operating systems, underscoring its lasting impact."
 
 ---
 
+```asm
 TITLE  GETSET - GETting and SETting MS-DOS system calls
 
 NAME   GETSET
@@ -1381,3 +1392,4 @@ CODE    ENDS
         END
 
       
+```

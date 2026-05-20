@@ -9,77 +9,78 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "ctrlc"
 order: 27
-description: "This file contains routines for handling Control-C interrupts and error management in MS-DOS v2.0, showcasing early multitasking and error-handling techniques in operating systems."
+description: "This file implements MS-DOS's handling of Ctrl-C interrupts and related error routines, showcasing early multitasking and error recovery techniques."
 
 summary:
-  - point: "Control-C handling routines for interrupt-driven user input"
+  - point: "Ctrl-C handling routines for interrupt-driven user input"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Error handling mechanisms for disk and device operations"
-    link: "https://en.wikipedia.org/wiki/Interrupt"
-    link_label: "Interrupt"
-  - point: "Division overflow interrupt handling, a critical safeguard"
-    link: "https://en.wikipedia.org/wiki/Divide_by_zero"
-    link_label: "Divide by zero"
-  - point: "Process environment reset and multitasking support"
-    link: "https://en.wikipedia.org/wiki/Multitasking"
-    link_label: "Multitasking"
-  - point: "Early use of stack manipulation for error recovery"
+  - point: "Division overflow and disk error handling mechanisms"
+    link: "https://en.wikipedia.org/wiki/Division_by_zero"
+    link_label: "Division Overflow"
+  - point: "Stack manipulation for error recovery and process management"
     link: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
     link_label: "Stack"
+  - point: "Integration of device I/O routines for error handling"
+    link: "https://en.wikipedia.org/wiki/Input/output"
+    link_label: "Device I/O"
+  - point: "Multitasking techniques in early operating systems"
+    link: "https://en.wikipedia.org/wiki/Multitasking_(computing)"
+    link_label: "Multitasking"
 
 enhancements:
-  - id: "include-directives-and-segment-assumptions"
+  - id: "include-dosseg-symbols"
     line_start: 1
     line_end: 11
-    title: "Setting the stage: Include directives and segments"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "Why Include Files Were Crucial in Assembly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
-    content: "This section begins with the inclusion of assembly files (`DOSSEG.ASM`, `DOSSYM.ASM`) that define key constants, macros, and symbols used throughout the program. It establishes the segment assumptions (`ASSUME SS:DOSGROUP, CS:DOSGROUP`) to ensure proper memory addressing. In the early 1980s, memory segmentation was a critical feature of the Intel 8086 architecture, allowing programs to access more memory than the CPU's 16-bit registers could directly address. These directives reflect the modular design philosophy of MS-DOS, which allowed developers to extend functionality by including predefined libraries. This modularity became a hallmark of MS-DOS, enabling widespread adoption and customization by OEMs and developers."
-  - id: "ctrl-c-check-in-console-io"
+    content: "This section includes the DOSSEG.ASM file, setting up segment definitions and symbol references for the rest of the program. In the early 1980s, modularity in assembly language was achieved through include files, which allowed developers to reuse common definitions and macros across multiple source files. Tim Paterson's use of these files reflects the growing complexity of MS-DOS 2.0 compared to its predecessor, which had fewer features and simpler code. This modular approach influenced later operating systems and programming practices, as it demonstrated the importance of separating concerns and reusing code in resource-constrained environments."
+  - id: "ctrl-c-check-con-io"
     line_start: 43
-    line_end: 96
-    title: "Detecting Control-C in console I/O"
+    line_end: 110
+    title: "The Routine That Detected Ctrl-C"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control-C"
     image_url: ""
     image_caption: ""
-    content: "The `DSKSTATCHK` routine checks for a Control-C (`^C`) interrupt during console I/O operations. It uses a combination of memory checks (`CMP BYTE PTR [INDOS],1`) and device calls (`invoke DEVIOCALL2`) to determine whether a `^C` has been pressed. This mechanism was crucial for interrupt-driven user input, allowing users to terminate or pause operations. In the early 1980s, user interaction with computers was predominantly command-line based, and `^C` was a standard way to interrupt processes. This routine reflects the necessity of efficient input handling in an era when multitasking was limited and responsiveness was critical. The approach influenced later systems, including Unix-like operating systems, where signal handling became a standard feature."
-  - id: "ctrl-c-handler-and-stack-manipulation"
+    content: "This routine checks for a Ctrl-C interrupt during console I/O operations. It uses the INDOS flag to determine whether the system is in a critical section and avoids interrupting essential operations. By invoking the DEVIOCALL2 routine, it interacts with the device I/O subsystem to process the input. The design reflects the constraints of early PCs, where interrupt-driven input was essential for responsiveness but had to be carefully managed to avoid corrupting the system state. This technique influenced later interrupt handling in operating systems, where similar mechanisms were used to balance responsiveness and stability."
+  - id: "ctrl-c-handler"
     line_start: 170
     line_end: 227
-    title: "Control-C handler: stack manipulation and user recovery"
+    title: "How MS-DOS Restored State After Ctrl-C"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""
     image_caption: ""
-    content: "The `CNTCHAND` routine is the main handler for Control-C interrupts. It displays `^C`, restores user registers, and executes the user-defined Control-C handler. The routine manipulates the stack to ensure the user's environment is preserved and restored (`MOV SP,[user_SP]`, `MOV SS,[user_SS]`). This reflects the low-level control programmers had to exert over hardware in the 8086 era. The handler also checks whether the user wishes to continue or terminate the operation (`JNC ctrlc_repeat`, `JMP ctrlc_abort`). This design showcases the early implementation of interrupt handling, which became a foundational concept in operating systems. The stack manipulation techniques used here influenced later systems, including modern kernels, where context switching and interrupt handling are integral."
-  - id: "division-overflow-interrupt"
+    content: "The CNTCHAND routine is the Ctrl-C handler, responsible for restoring the user's stack and executing the user-defined Ctrl-C handler. It carefully manipulates the stack to ensure that the system can either continue processing or terminate gracefully, depending on the user's input. This routine highlights the challenges of implementing multitasking and error recovery in an environment with limited hardware support. The stack manipulation techniques used here became foundational for later operating systems, influencing how interrupts and exceptions are handled in modern kernels."
+  - id: "division-overflow-handler"
     line_start: 231
-    line_end: 267
-    title: "Division overflow interrupt: safeguarding arithmetic"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Divide_by_zero"
+    line_end: 237
+    title: "What Happens When Division Overflows"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Division_by_zero"
     image_url: ""
     image_caption: ""
-    content: "The `DIVOV` and `RealDivOv` routines handle division overflow interrupts, a critical safeguard against arithmetic errors. When a division operation exceeds the capacity of the CPU registers, these routines display an error message (`MOV SI,OFFSET DOSGROUP:DIVMES`) and invoke the `ctrlc_abort` routine to terminate the operation gracefully. Division overflow was a common issue in early computing due to the limited size of registers and the absence of floating-point units in most CPUs. By implementing this safeguard, MS-DOS ensured system stability and predictable behavior, which were essential for its adoption in business and industrial applications. This approach influenced later systems, where exception handling became a standard feature in programming languages and operating systems."
-  - id: "hard-disk-error-handling"
+    content: "The DIVOV routine handles division overflow errors, a common issue in low-level programming. When a division operation exceeds the maximum representable value, this routine displays an error message and invokes the Ctrl-C abort handler to terminate the program. This approach reflects the simplicity of error handling in early operating systems, where graceful recovery was often sacrificed for simplicity and performance. The concept of trapping arithmetic errors influenced later programming languages and systems, which introduced more sophisticated exception handling mechanisms."
+  - id: "hard-disk-error-handler"
     line_start: 287
     line_end: 356
-    title: "Hard disk error handling: resilience in storage operations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
+    title: "Recovering From Disk Errors in MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_error"
     image_url: ""
     image_caption: ""
-    content: "The `HardErr` routine addresses hard disk errors, including write protection and sector transfer issues. It calculates the number of successfully transferred sectors (`SUB AX,CX`) and determines the location of the error (`CMP DX,ES:[BP.dpb_first_FAT]`). The routine uses flags and stack manipulation to manage the error state and restore the system (`MOV SS,[user_SS]`, `MOV SP,ES:[user_SP]`). Disk errors were a frequent challenge in the early 1980s due to the mechanical nature of storage devices and the lack of robust error correction. This routine reflects the resilience required in operating systems to handle such errors gracefully. The techniques used here, including error flagging and stack restoration, influenced later systems, where error handling became more sophisticated with features like journaling file systems and RAID."
-  - id: "reset-environment-and-multitasking"
+    content: "The HardErr routine handles errors encountered during disk operations, such as write protection or sector failures. It uses a combination of stack manipulation and device-specific logic to determine the cause of the error and attempt recovery. If recovery is not possible, it invokes the fatal error interrupt vector to terminate the operation. This routine showcases the challenges of implementing reliable disk I/O in early PCs, where hardware limitations often led to errors that required careful handling to avoid data loss. The techniques used here influenced later file systems and error recovery mechanisms, such as journaling and RAID."
+  - id: "reset-environment-process-management"
     line_start: 376
     line_end: 460
-    title: "Resetting environment: early multitasking support"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Multitasking"
+    title: "The Routine That Reset the World"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Process_management_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `reset_environment` routine resets the process environment, releasing resources and restoring the parent process (`MOV BX,[CurrentPDB]`, `MOV AX,DS:[PDB_Parent_PID]`). It closes file handles (`invoke $CLOSE`) and ensures the system returns to a known state (`MOV BYTE PTR [INDOS],0`). This routine reflects the early support for multitasking in MS-DOS, where processes could terminate and release resources efficiently. While MS-DOS was not a multitasking operating system, these techniques laid the groundwork for later systems like Windows, which introduced cooperative and preemptive multitasking. The concept of resetting the environment influenced modern operating systems, where process isolation and resource management are critical for stability and security."
+    content: "The reset_environment routine is responsible for cleaning up after a process terminates, releasing resources and restoring the parent process's environment. It checks the process control block (PDB) to determine whether the current process is the parent or a child and performs different actions accordingly. This routine reflects the influence of Unix-like process management on MS-DOS 2.0, which introduced hierarchical process structures. The techniques used here laid the groundwork for more advanced process management features in later operating systems, such as Windows and Linux."
 
 ---
 
+```asm
 ;
 ; ^C status routines for MSDOS
 ;
@@ -548,3 +549,4 @@ do_ext
 
 CODE    ENDS
     END
+```

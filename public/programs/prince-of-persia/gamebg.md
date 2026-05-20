@@ -9,141 +9,142 @@ year: 1989
 author: "Jordan Mechner"
 slug: "gamebg"
 order: 20
-description: "This file defines graphical routines and animations for Prince of Persia's iconic cinematic platformer gameplay, including the game's visual elements like strength meters, hourglass animations, and character rendering."
+description: "This file defines graphical routines for Prince of Persia, focusing on animations, UI elements, and environmental objects on the Apple II."
 
 summary:
-  - point: "Bank-switched memory techniques to fit into 128K"
+  - point: "Bank-switched memory techniques optimize the Apple II's limited 128K RAM."
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank switching"
-  - point: "Rotoscoping-inspired animations for fluid character movement"
-    link: "https://en.wikipedia.org/wiki/Rotoscoping"
-    link_label: "Rotoscoping"
-  - point: "Direct manipulation of Apple II's high-resolution graphics mode"
+  - point: "Routines use direct hires graphics manipulation for cinematic animations."
     link: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     link_label: "Apple II graphics"
-  - point: "Innovative use of lookup tables for animation frames"
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup table"
-  - point: "Custom routines for handling copy protection mechanisms"
-    link: "https://en.wikipedia.org/wiki/Copy_protection"
-    link_label: "Copy protection"
+  - point: "Rotoscoping-inspired animations bring fluidity to the game's visuals."
+    link: "https://en.wikipedia.org/wiki/Rotoscoping"
+    link_label: "Rotoscoping"
+  - point: "Strength meters and environmental objects are drawn dynamically based on gameplay state."
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia (1989)"
+  - point: "Innovative use of assembly language for cinematic platforming on constrained hardware."
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly language"
 
 enhancements:
-  - id: "yellow-flag-copy-protection"
+  - id: "yellow-flag-initialization"
     line_start: 61
     line_end: 68
-    title: "The Flag That Protected the Game"
+    title: "Why a Yellow Flag Matters in 1989"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
     image_url: ""
     image_caption: ""
-    content: "This section begins with the 'YELLOW' routine, which sets a flag used for copy protection. The flag, stored in 'yellowflag', is initialized to $80, a value that likely signals the presence of legitimate game data. Copy protection was a major concern in the 1980s, as floppy disks were easily duplicated. Developers often employed creative methods to ensure their software wasn't pirated, ranging from disk sector checks to hidden routines like this one. Jordan Mechner's approach here reflects the era's constraints: limited memory and processing power meant protection mechanisms had to be lightweight and unobtrusive. This routine ties into a broader system that checks disk integrity and prevents unauthorized access. Such techniques influenced later games, which adopted similar methods to safeguard intellectual property. By the mid-1990s, these methods evolved into more sophisticated encryption and digital rights management systems."
-  - id: "hourglass-animation-frames"
-    line_start: 118
-    line_end: 126
-    title: "Animating Time with an Hourglass"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    content: "This section initializes a 'yellow flag' used for copy protection checks. The routine sets a memory location to a specific value, ensuring the game can verify the presence of a valid disk. In the late 1980s, piracy was rampant, and developers like Jordan Mechner had to implement creative solutions to protect their work. The Apple II’s limited hardware meant that such checks had to be lightweight and unobtrusive, often relying on clever tricks like this flag system. While modern games use complex DRM systems, this approach reflects the ingenuity required to enforce copy protection in an era of floppy disks and manual distribution. Mechner’s work here ensured that players experienced the game as intended, and similar techniques were adopted by other developers fighting piracy on early personal computers."
+  - id: "hourglass-animation"
+    line_start: 122
+    line_end: 130
+    title: "Animating Time: The Hourglass Frames"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Hourglass_(symbol)"
     image_url: ""
     image_caption: ""
-    content: "The 'glassimg' table defines animation frames for the hourglass in Princess's room. Each hexadecimal value corresponds to a graphical asset representing a different state of the hourglass. This visual metaphor for time was central to Prince of Persia's gameplay, where the player races against the clock to rescue the Princess. Mechner's background in film influenced his approach to animation, as evidenced by his use of rotoscoping for character movement. The hourglass animation adds a cinematic touch, reinforcing the game's narrative urgency. Techniques like this inspired later developers to integrate storytelling elements directly into gameplay mechanics, as seen in games like The Legend of Zelda: Majora's Mask, which also uses time as a core gameplay element."
-  - id: "torch-flame-animation"
+    content: "The hourglass animation frames defined here are used to visually represent the passage of time in the Princess's room. Each frame corresponds to a different state of sand height, creating a dynamic visual cue for players. Mechner’s use of animation to convey gameplay mechanics was groundbreaking for the era, as most games relied on static imagery or text. The hourglass serves both as a narrative device and a gameplay element, reinforcing the urgency of the Kid’s mission. This technique of tying animations to game mechanics became a hallmark of cinematic platformers and influenced later titles like Another World and Flashback."
+  - id: "torch-animation-frames"
     line_start: 147
     line_end: 154
-    title: "The Flicker That Lit the Way"
+    title: "How Torches Flickered on the Apple II"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
-    content: "The 'torchflame' table defines animation frames for the torches seen throughout the game. Each hexadecimal value represents a specific frame, creating the illusion of a flickering flame. This simple yet effective technique adds atmosphere to the game's environments, making the dungeon feel alive and dynamic. In the 1980s, animating objects on screen was a labor-intensive process, especially on hardware like the Apple II, which lacked dedicated graphics processors. Mechner's use of pre-defined frames demonstrates his ability to maximize the visual impact within technical constraints. The torch animations contributed to the game's immersive quality, influencing later developers to prioritize environmental storytelling and dynamic lighting effects, as seen in games like Diablo and Dark Souls."
-  - id: "time-left-message-routine"
+    content: "This section defines the animation frames for torches, creating a flickering effect that adds atmosphere to the game. Each frame corresponds to a different visual state of the flame, simulating movement and light. On the Apple II, achieving such effects required careful manipulation of hires graphics and memory. Mechner’s attention to detail in environmental design helped immerse players in the game’s world, making the Princess’s room feel alive. This use of animation for ambiance influenced later games that sought to create immersive environments, such as the richly detailed levels of Castlevania and the atmospheric lighting of early 3D games like Tomb Raider."
+  - id: "time-left-message"
     line_start: 187
     line_end: 273
-    title: "How the Game Told You Time Was Running Out"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Heads-up_display_(video_gaming)"
+    title: "Printing Time Left: A Cinematic Countdown"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Countdown"
     image_url: ""
     image_caption: ""
-    content: "The 'TIMELEFTMSG' routine displays the 'XX Minutes Left' message on the screen, dynamically updating based on the player's remaining time. This routine calculates the position of the message to avoid overlapping with the Kid's sprite, ensuring readability during gameplay. It also converts the remaining time from binary-coded decimal (BCD) to individual digits for rendering. This feature highlights Mechner's attention to detail, as even minor elements like message placement were carefully considered. The dynamic time display added tension to the gameplay, reminding players of their limited time to complete the quest. This technique became a staple in game design, influencing the creation of HUDs and time-based mechanics in later games like Resident Evil and Dead Rising."
-  - id: "draw-kid-routine"
-    line_start: 388
-    line_end: 405
-    title: "The Routine That Brought the Kid to Life"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    content: "This subroutine dynamically prints the 'Minutes Left' message on the screen, updating it based on gameplay state. It calculates the remaining time, converts it to a readable format, and positions the message to avoid overlapping with the Kid’s sprite. The routine also switches to 'Seconds Left' when time is critically low, heightening tension for players. Mechner’s cinematic approach to game design is evident here, as the countdown reinforces the narrative urgency. This technique of dynamically updating UI elements based on game state became standard in later action and adventure games, influencing titles like Resident Evil and its iconic 'You Are Dead' screen."
+  - id: "draw-kid-strength-meter"
+    line_start: 491
+    line_end: 572
+    title: "The Algorithm Behind Health Bullets"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
     image_url: ""
     image_caption: ""
-    content: "The 'DRAWKID' routine handles the rendering of the Kid's sprite, including transitions between his normal state and shadowman state. The routine checks flags like 'backtolife' and 'mergetimer' to determine the appropriate rendering mode. Mechner's use of rotoscoping for the Kid's animations ensured fluid and realistic movement, a groundbreaking achievement for the time. The rendering logic here reflects the game's cinematic aspirations, as the Kid's visual transitions contribute to the narrative of his struggle against the shadowman. This approach influenced later games that sought to blend storytelling with gameplay, such as Another World and Flashback, which also emphasized fluid character animations and cinematic presentation."
-  - id: "setup-flame-routine"
-    line_start: 724
-    line_end: 757
-    title: "Lighting the Princess's Room"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    content: "This subroutine draws the Kid’s strength meter at the lower left of the screen, using a combination of precomputed data tables and dynamic calculations. It iterates through the Kid’s current health value, drawing bullets to represent remaining strength and blanks for lost health. The routine includes a flashing effect when the Kid is down to one health point, adding a visual cue for danger. Mechner’s implementation here is a masterclass in efficient graphics rendering on constrained hardware. The visual representation of health became a staple of gaming, influencing everything from RPGs to modern shooters like Halo, where health bars are now ubiquitous."
+  - id: "draw-opponent-strength-meter"
+    line_start: 574
+    line_end: 673
+    title: "Mirrored Health Bars for the Opponent"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
     image_url: ""
     image_caption: ""
-    content: "The 'SETUPFLAME' routine prepares the animation for the flame in Princess's room. It adjusts the Y-coordinate to simulate the flickering effect and sets up the necessary image and table data for rendering. This routine showcases Mechner's ability to create atmospheric effects within the limitations of the Apple II hardware. The flickering flame adds a sense of warmth and life to the otherwise cold dungeon environment, enhancing the game's visual storytelling. Techniques like this inspired developers to use environmental details to convey mood and narrative, influencing games like Myst and Limbo, where lighting plays a critical role in setting the tone."
-  - id: "twinkle-star-routine"
-    line_start: 786
-    line_end: 812
-    title: "The Stars That Twinkled Outside the Window"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    content: "This subroutine mirrors the Kid’s strength meter logic to draw the opponent’s health bar on the lower right of the screen. It includes special conditions for certain characters, such as the Shadowman, whose health is only displayed on level 12. The mirrored rendering technique minimizes code duplication while maintaining visual symmetry. Mechner’s decision to display health bars for both the Kid and the opponent added a layer of strategy to combat, as players could gauge their enemy’s remaining strength. This dual health bar system influenced later fighting games like Street Fighter, where visible health bars became a core mechanic."
+  - id: "setup-flask-animation"
+    line_start: 675
+    line_end: 734
+    title: "Potion Effects: Bubbling Flask Frames"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Potion_(gaming)"
     image_url: ""
     image_caption: ""
-    content: "The 'TWINKLE' routine animates the stars outside Princess's window, creating a twinkling effect. It directly manipulates the Apple II's high-resolution graphics mode, updating the stars on both screens to maintain consistency. This routine exemplifies Mechner's attention to detail, as even minor background elements were given dynamic animations to enhance immersion. The twinkling stars contribute to the game's cinematic atmosphere, making the environment feel alive and magical. This technique influenced later developers to incorporate subtle environmental animations into their games, as seen in titles like The Elder Scrolls series, where dynamic skies and weather effects play a significant role in world-building."
-  - id: "setupcomix-character-positioning"
+    content: "This subroutine sets up the animation for bubbling flasks, dynamically adjusting the graphics based on the potion type. It includes special handling for mystery potions, which are drawn taller, and uses precomputed animation frames to simulate bubbling. The visual representation of potion effects added depth to the game’s mechanics, making each potion feel distinct. Mechner’s attention to detail in environmental design helped make Prince of Persia’s world feel alive and interactive. Potion animations like these influenced later RPGs and adventure games, where consumables often have distinct visual effects, such as the glowing potions in Diablo."
+  - id: "setup-character-comix"
     line_start: 958
     line_end: 1038
-    title: "How Prince of Persia Calculates Character Positions"
+    title: "How Dead Characters Still Shape Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The SETUPCOMIX routine is responsible for calculating the position, color, and image of a character in the game. It uses conditional logic to determine the character's y-coordinate based on their state (e.g., crouching, impaled, halved) and adjusts the x-coordinate and color accordingly. This section also initializes the character's collision boundaries and image data. Mechner's approach reflects the constraints of the Apple II, where every byte of memory mattered. By directly manipulating variables like FCharX and FCharY, he avoided the overhead of more complex data structures. This routine exemplifies the cinematic precision Mechner sought, ensuring characters interacted seamlessly with the environment. The technique influenced later games that required precise character positioning, such as Another World (1991) and Flashback (1992)."
-  - id: "addcharobj-object-table-management"
-    line_start: 1040
-    line_end: 1096
-    title: "The Object Table That Runs the Game"
+    content: "The `SETUPCOMIX` routine initializes a character's position, appearance, and collision boundaries based on their state (alive, dead, impaled, etc.). It uses conditional branching to assign specific coordinates and attributes depending on the character's status. For example, dead characters are positioned differently than crouching or halved ones. This section also calculates the character's color and sets up their visual representation using predefined tables (`starimage` and `startable`). In 1989, the Apple II's hardware was limited to 128K of memory, requiring developers to optimize every byte. Jordan Mechner's approach here reflects his deep understanding of the Apple II's graphical capabilities and memory constraints. By directly manipulating the character's attributes and using lookup tables, he avoided costly runtime calculations, ensuring smooth gameplay. This routine laid the groundwork for cinematic platformers, where characters' animations and states dynamically influenced gameplay. The technique of using conditional logic to adjust visual and collision properties became a standard in later games, influencing titles like Another World (1991) and Flashback (1992). Mechner's attention to detail in character behavior helped establish Prince of Persia as a groundbreaking title in the genre."
+  - id: "add-character-object"
+    line_start: 1050
+    line_end: 1104
+    title: "The Object Table That Never Overflows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "ADDCHAROBJ adds a new character to the game's object table, which tracks all active entities. It assigns coordinates, collision boundaries, and image data to the object, ensuring it integrates with the game's logic. Mechner uses efficient indexing and memory management techniques, such as converting screen coordinates to byte offsets, to fit within the Apple II's memory constraints. This routine highlights the ingenuity required to manage dynamic objects in a resource-limited environment. The object table concept became a staple in game development, influencing engines like id Tech and Unity, which rely on similar structures to manage entities."
-  - id: "setobjindx-object-indexing"
+    content: "The `ADDCHAROBJ` routine adds a character to the game's object table, which tracks all active objects in the scene. It first checks if the table is full (`cpx #maxobj`) and gracefully exits if it is. Otherwise, it updates the table with the character's type, position, collision boundaries, image, and other attributes. The routine also converts screen coordinates into byte/offset values using the `cvtx` subroutine, ensuring compatibility with the Apple II's graphics system. In the late 1980s, object management was a critical challenge for game developers working on limited hardware. The Apple II's 6502 processor had no built-in memory management, so developers had to manually track and update objects in real time. Mechner's design here ensures that the object table remains consistent and efficient, even under the constraints of 128K memory. This approach to object management influenced later games that relied on real-time updates for dynamic environments. The concept of an object table became a staple in game engines, appearing in titles like Doom (1993) and Quake (1996). Mechner's careful handling of object limits and attributes demonstrated how to balance complexity with performance on constrained systems."
+  - id: "set-object-index"
     line_start: 1098
     line_end: 1117
-    title: "Indexing Objects for Fast Access"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    title: "Why Every Object Needs an Index"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "SETOBJINDX assigns an index to the newly added object, enabling quick lookup and manipulation. The routine ensures the index stays within bounds and updates a buffer for efficient access. This approach reflects the need for speed and efficiency in real-time games, where delays in object handling could disrupt gameplay. Mechner's indexing strategy influenced later game engines, which adopted similar techniques to optimize entity management. The routine also showcases the balance between simplicity and functionality in assembly programming, a skill that defined early game development."
-  - id: "pretext-hi-res-text-rendering"
+    content: "The `SETOBJINDX` routine assigns an index to the current object in the table, ensuring that it can be referenced and updated efficiently during gameplay. It also checks if the index exceeds a certain threshold (`cmp #30`) and adjusts the object buffer accordingly. This routine is a critical part of the game's object management system, allowing characters and items to interact seamlessly. In the era of the Apple II, efficient indexing was essential for real-time games. The 6502 processor's limited instruction set and lack of advanced memory management meant that developers had to design their own systems for tracking objects. Mechner's use of indexing here reflects the ingenuity required to create complex interactions on such constrained hardware. This indexing technique influenced the design of later game engines, where object IDs became a standard feature for managing dynamic entities. It also demonstrated the importance of efficient data structures in real-time applications, a lesson that continues to shape modern game development."
+  - id: "pretext-hires-text"
     line_start: 1119
     line_end: 1141
-    title: "Direct Text Rendering on Hi-Res Graphics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Hi-res_graphics"
+    title: "How Text Routines Bypass Everything"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
     image_caption: ""
-    content: "The pretext routine sets up the hi-res graphics page for text rendering, bypassing normal data structures to write directly to memory. This ensures text appears on top of all other graphics, maintaining the cinematic presentation of the game. Mechner's decision to manipulate the graphics page directly reflects the limitations of the Apple II, where layering and transparency were not natively supported. This technique influenced later games and applications that required precise control over graphical output, such as early desktop publishing software."
-  - id: "setrecheck0-copy-protection"
+    content: "The `pretext` routine sets up the game's text rendering system by initializing the background table (`bgtable2`) and bypassing normal data structures to write directly to the Apple II's hi-res graphics page. This ensures that text appears on top of all other graphical elements, maintaining its visibility during gameplay. Direct manipulation of hi-res graphics was a common technique on the Apple II, where developers often had to work around hardware limitations to achieve desired effects. Mechner's decision to bypass standard structures reflects his focus on performance and visual clarity, ensuring that critical text elements like dialogue and instructions are never obscured. This technique influenced later games that prioritized text readability in complex visual environments. It also showcased the flexibility of the Apple II's graphics system, inspiring other developers to experiment with direct memory manipulation for unique effects."
+  - id: "copy-protection-yellow"
     line_start: 1146
     line_end: 1152
-    title: "The Copy-Protection Code Hidden in Gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Software_copy_protection"
+    title: "The Copy-Protection Routine Hidden in Gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
     image_url: ""
     image_caption: ""
-    content: "SETRECHECK0 is part of the game's copy-protection mechanism, embedding logic to verify the game's authenticity. It stores pointers to a recheck routine, ensuring the game cannot run properly if tampered with. Copy protection was a critical concern in the 1980s, as software piracy threatened developers' livelihoods. Mechner's implementation reflects the era's reliance on creative solutions to safeguard intellectual property. While modern DRM systems have evolved significantly, early techniques like this laid the groundwork for protecting software in a digital age."
-  - id: "initlay-memory-bank-setup"
+    content: "The `SETRECHECK0` routine is part of the game's copy-protection system, which checks for specific memory values (`recheck0`) to verify the game's authenticity. If the check fails, certain gameplay elements may be altered or disabled, subtly discouraging piracy without overtly disrupting the experience. Copy protection was a major concern for developers in the 1980s, as software piracy was rampant and could significantly impact sales. Mechner's approach here integrates the protection mechanism into the game's code, making it harder for pirates to identify and bypass. This technique influenced later games that used similar methods to embed copy-protection checks into gameplay. It also highlighted the creative ways developers could combat piracy while maintaining the integrity of their work."
+  - id: "initialize-layout-screen"
     line_start: 1152
     line_end: 1164
-    title: "Switching Memory Banks for Full-Screen Graphics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    title: "Setting the Stage for Full-Screen Action"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
     image_caption: ""
-    content: "INITLAY configures the Apple II's memory banks to enable full-screen graphics rendering. By setting boundaries like RIGHTCUT and BOTCUT, the routine ensures the game utilizes the entire screen. Bank switching was a common technique on the Apple II, allowing developers to overcome the hardware's memory limitations. Mechner's use of this feature highlights his deep understanding of the platform's capabilities. This approach influenced later developers working on constrained systems, such as the NES and Commodore 64, where similar techniques were essential for advanced graphics."
-  - id: "prchar-character-printing"
+    content: "The `INITLAY` routine initializes the screen layout by setting memory bank (`BANK`) and defining the screen boundaries (`RIGHTCUT`, `BOTCUT`, `LEFTCUT`, `TOPCUT`). This ensures that the game uses the full screen for rendering, maximizing the visual impact of the Apple II's hi-res graphics. In the 1980s, full-screen rendering was a technical challenge on systems like the Apple II, which had limited graphics capabilities and memory. Mechner's routine here demonstrates his mastery of the hardware, allowing Prince of Persia to deliver a visually immersive experience despite its constraints. This approach to screen layout influenced later games that sought to maximize graphical fidelity on limited hardware. It also showcased the importance of optimizing screen boundaries for gameplay, a principle that continues to shape modern game design."
+  - id: "print-character-hires"
     line_start: 1166
     line_end: 1186
-    title: "Printing Characters with Assembly Precision"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    title: "Printing Characters in Hi-Res Graphics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
     image_caption: ""
-    content: "The prchar routine prints a single character to the screen, modifying its coordinates and opacity. It uses subtraction to map ASCII values to image indices and calls the lay routine to render the character. This low-level approach reflects the constraints of assembly programming, where every operation must be explicitly defined. Mechner's precision in handling character rendering contributed to the game's polished presentation, a hallmark of Prince of Persia. The routine's techniques influenced later developers working on text-heavy applications and games, where efficient rendering was crucial."
+    content: "The `prchar` routine prints a single character to the screen, using the Apple II's hi-res graphics mode. It calculates the character's image (`IMAGE`) and opacity (`OPACITY`), then calls the `lay` subroutine to render it. The routine also updates the X-coordinate (`XCO`) for the next character, ensuring proper alignment. Text rendering in hi-res graphics was a complex task on the Apple II, requiring precise manipulation of memory and screen coordinates. Mechner's routine here reflects his attention to detail, ensuring that text elements are both visually clear and efficiently rendered. This technique influenced later games that used hi-res graphics for text and UI elements, demonstrating the potential of direct memory manipulation for creating polished visual effects. It also highlighted the importance of efficient text rendering in real-time applications, a principle that remains relevant in modern game development."
 
 ---
 
+```asm
 * gamebg
 ThreeFive = 1
 EditorDisk = 0
@@ -1336,3 +1337,4 @@ prchar
  ds 1
  usr $a9,17,$00,*-org
  lst off
+```

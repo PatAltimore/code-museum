@@ -9,31 +9,32 @@ year: 1989
 author: "Jordan Mechner"
 slug: "version"
 order: 29
-description: "The version string for Prince of Persia, a landmark in cinematic platformers, encoded in 6502 assembly."
+description: "This file contains version information for Prince of Persia, a landmark in cinematic platformers, written in 6502 assembly for the Apple II."
 
 summary:
-  - point: "Version string hardcoded in assembly for the Apple IIe/IIc"
+  - point: "Version string embedded directly in assembly code"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia (1989)"
+  - point: "Uses Apple II memory addressing conventions"
     link: "https://en.wikipedia.org/wiki/Apple_II_series"
     link_label: "Apple II series"
-  - point: "Jordan Mechner's solo development effort included meticulous attention to detail"
-    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
-    link_label: "Jordan Mechner"
-  - point: "Rotoscoping animation technique set the game apart visually"
-    link: "https://en.wikipedia.org/wiki/Rotoscoping"
-    link_label: "Rotoscoping"
+  - point: "Demonstrates the minimalism required in 128K memory constraints"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank switching"
 
 enhancements:
-  - id: "prince-of-persia-version-string"
+  - id: "version-string-embedded-in-code"
     line_start: 9
     line_end: 11
-    title: "Why Hardcode the Version in Assembly?"
+    title: "Why Embed Version Strings in Assembly?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section encodes the version string for Prince of Persia directly in assembly, specifying 'Prince of Persia 1.0 9/7/89'. The 'asc' directive writes ASCII characters into memory, ensuring the string is embedded in the program's binary. The '@' character acts as a terminator or delimiter, likely signaling the end of the string for routines that may read or display it. In 1989, embedding version strings in software was common practice, especially in systems with limited resources like the Apple IIe/IIc. Developers often included this information for debugging, distribution tracking, or simply as a marker of pride in their work. Jordan Mechner, working solo on Prince of Persia, would have been acutely aware of the need to optimize every byte of memory while still leaving his mark on the code. The Apple II series used 6502 assembly, a language that required precise control over memory and hardware. With only 128K of memory available, Mechner had to fit the entire game—including its groundbreaking rotoscoped animations—into a tight space. This version string, while seemingly small, reflects the meticulous attention to detail required in such constrained environments. The inclusion of the version string also speaks to Mechner's awareness of the game's significance. Prince of Persia became a genre-defining title, inspiring later cinematic platformers like Another World and Flashback. The game's techniques, including the use of rotoscoping and memory bank-switching, influenced developers for decades. This version string is a timestamp of a pivotal moment in gaming history, marking the release of a title that would shape the industry."
+    content: "This section defines the version string for Prince of Persia, embedding it directly into the assembly code as ASCII text. The string, 'Prince of Persia 1.0 9/7/89', is followed by a special character '@' to mark the end of the text. This approach was common in the era, as it allowed developers to include metadata directly in the binary without requiring additional file structures or headers. In 1989, the Apple IIe and IIc were popular platforms, but their memory constraints were severe—just 128K of RAM, split across bank-switched memory. Every byte counted, and embedding metadata like version strings directly in the executable was an efficient way to ensure it was accessible without wasting resources. Jordan Mechner, working solo on Prince of Persia, had to balance cinematic ambitions with the technical limitations of the Apple II hardware. This string likely served both as a debugging aid and as a way to identify the build during testing or distribution. The inclusion of version strings in binaries became a standard practice, influencing later development workflows. It allowed developers to trace builds and ensure compatibility across versions. Today, versioning is handled more robustly through metadata in executable headers or separate manifest files, but the principle remains the same. Mechner's meticulous attention to detail, even in something as simple as a version string, reflects the care that went into crafting Prince of Persia—a game that would go on to inspire countless cinematic platformers and storytelling techniques in games like Another World and Flashback."
 
 ---
 
+```asm
 * version
 org = $dfd8
  lst off
@@ -48,3 +49,4 @@ TextLine asc "Prince of Persia 1.0  9/7/89"
 *-------------------------------
  usr $a9,19,$11d8,*-org
  lst off
+```

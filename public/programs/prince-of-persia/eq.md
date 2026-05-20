@@ -9,71 +9,70 @@ year: 1989
 author: "Jordan Mechner"
 slug: "eq"
 order: 18
-description: "Equates and constants for Prince of Persia's Apple II assembly code, defining memory regions, jump tables, and game-specific parameters."
+description: "Equates and jump tables for Prince of Persia's Apple II assembly code, defining constants, memory locations, and function pointers crucial for the game's cinematic platformer mechanics."
 
 summary:
-  - point: "Defines memory regions for bank-switched Apple II hardware"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
-  - point: "Jump tables organize subroutine entry points for game logic"
+  - point: "Memory addresses are bank-switched to fit within 128KB constraints"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank switching"
+  - point: "Jump tables streamline function calls in low-memory environments"
     link: "https://en.wikipedia.org/wiki/Jump_table"
-    link_label: "Jump Table"
-  - point: "Game constants establish screen dimensions and masks"
-    link: "https://en.wikipedia.org/wiki/Bit_mask"
-    link_label: "Bit Mask"
+    link_label: "Jump table"
+  - point: "Blueprints and image lists organize sprite and level data"
+    link: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    link_label: "Sprite graphics"
+  - point: "Zero-page variables optimize performance on the 6502 processor"
+    link: "https://en.wikipedia.org/wiki/Zero_page"
+    link_label: "Zero page"
+  - point: "Constants define screen dimensions and bitmask operations"
+    link: "https://en.wikipedia.org/wiki/Bitwise_operation"
+    link_label: "Bitwise operations"
 
 enhancements:
-  - id: "memory-map-and-equates"
+  - id: "bank-switched-memory-layout"
     line_start: 3
     line_end: 32
-    title: "How Memory Banks Made 128KB Work"
+    title: "How 128KB Became Enough for Cinematic Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
     image_caption: ""
-    content: "This section defines memory regions for the Apple II's bank-switched architecture, splitting the available 128KB into various functional areas. Labels like `rw18`, `grafix`, and `hrtables` correspond to specific memory addresses used for graphics, game tables, and high-resolution buffers. The Apple IIe/IIc hardware relied on bank switching to access more memory than the 64KB limit imposed by the 6502 processor. Jordan Mechner carefully allocated memory to fit the game's cinematic animations, level data, and logic within these constraints. Bank switching was a common technique in the 1980s, allowing developers to create more complex programs despite hardware limitations. This memory map reflects the meticulous planning required to optimize performance and storage. Later games and systems, such as the NES and SNES, adopted similar memory management techniques, influencing the design of cartridge-based games and early consoles."
-  - id: "jump-table-organization"
+    content: "This section defines memory locations across the Apple II's bank-switched architecture, splitting data between main memory, auxiliary memory, and language card banks. The addresses like `$d000` and `$400` represent specific regions used for graphics buffers, tables, and game logic. Jordan Mechner had to work within the constraints of the Apple IIe/IIc, which had only 128KB of RAM. Bank switching allowed him to dynamically swap memory banks, effectively increasing usable memory without requiring additional hardware. This technique was common in the 1980s for systems with limited RAM, and it required careful planning to ensure that critical data was accessible when needed. By defining these equates upfront, Mechner laid the groundwork for efficient memory management, enabling complex animations and gameplay mechanics. This approach influenced later developers working on constrained systems, including those creating games for early consoles like the NES and Sega Master System."
+  - id: "jump-table-function-pointers"
     line_start: 34
     line_end: 216
-    title: "The Jump Table That Ran the Game"
+    title: "The Jump Table That Simplified Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
     image_url: ""
     image_caption: ""
-    content: "This section organizes jump tables, which are arrays of memory addresses pointing to subroutine entry points. Labels like `_loadlevel`, `_savegame`, and `_attractmode` correspond to specific game states or actions. Jump tables were a popular way to manage control flow in assembly programs, offering a compact and efficient mechanism for branching logic. In Prince of Persia, these tables enabled quick transitions between gameplay modes, animations, and system functions. The use of jump tables reflects the constraints of the 6502 processor, which lacked advanced branching instructions. By centralizing subroutine addresses, Mechner streamlined the game's logic and reduced code duplication. This technique influenced later game engines and programming practices, particularly in systems with limited resources, such as early arcade machines and home consoles."
-  - id: "tables-and-lookup-values"
-    line_start: 243
-    line_end: 256
-    title: "The Lookup Tables Behind Every Move"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines various lookup tables, including `ByteTable`, `OffsetTable`, and `PixelTable`. These tables store precomputed values for operations like pixel manipulation, block alignment, and animation offsets. Lookup tables were essential in assembly programming, allowing developers to trade memory usage for speed by avoiding costly calculations during runtime. In Prince of Persia, these tables facilitated smooth animations and precise character movements, key elements of the game's cinematic style. Mechner's use of lookup tables reflects the influence of earlier techniques in computer graphics and game design, such as sprite handling on the Atari 2600. This approach became standard practice in the industry, appearing in later games and graphics engines to optimize performance on resource-constrained systems."
-  - id: "blueprint-data-structures"
+    content: "This extensive block defines jump tables, which are arrays of function pointers used to streamline calls to various subroutines. Each entry, such as `_firstboot` or `_loadlevel`, corresponds to a specific game function. On the 6502 processor, jump tables were a practical solution to avoid hardcoding addresses, making the code more modular and easier to update. Mechner used these tables to handle everything from loading levels to managing animations and user inputs. In the 1980s, jump tables were a common technique for optimizing performance on systems with limited memory and processing power. They allowed developers to implement dynamic behavior without the overhead of conditional branching. This design influenced later programming practices, including the use of virtual function tables in object-oriented programming languages like C++."
+  - id: "blueprint-and-image-lists"
     line_start: 258
-    line_end: 287
-    title: "Blueprints: Mapping the Game World"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
+    line_end: 356
+    title: "How Prince of Persia Organized Its World"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "This section defines blueprint-related data structures, such as `BLUETYPE`, `LINKMAP`, and `MAP`. These structures organize the game's levels and objects, specifying their types, locations, and connections. The blueprint system reflects the tile-based approach to level design, where the game world is divided into manageable blocks. Mechner used these structures to create the intricate layouts and puzzles that define Prince of Persia's gameplay. Tile-based systems were common in the 1980s, appearing in games like Super Mario Bros. and The Legend of Zelda. Mechner's implementation influenced later cinematic platformers, demonstrating how detailed environments could be achieved within the constraints of early hardware."
-  - id: "zero-page-variables"
+    content: "The blueprint and image list sections define structures for organizing sprite and level data. Constants like `BLUETYPE` and `LINKMAP` describe the layout of game objects, while lists such as `bgX` and `fgIMG` track positions and images for background and foreground elements. Mechner's cinematic platformer required precise control over animations and level transitions, and these data structures provided a way to manage the complexity. The use of blueprints to define object relationships and behaviors was innovative for the time, enabling dynamic interactions like collapsing floors and moving platforms. This approach prefigured modern game engines, which use similar systems to manage assets and physics. Developers of later cinematic games, such as Another World and Flashback, drew inspiration from Mechner's techniques."
+  - id: "zero-page-optimization"
     line_start: 358
     line_end: 424
-    title: "Zero Page: The Fastest Memory in Town"
+    title: "The 6502's Secret Weapon: Zero Page"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
     image_url: ""
     image_caption: ""
-    content: "This section defines zero-page variables, such as `PAGE`, `XCO`, and `YCO`. The zero page is the first 256 bytes of memory on the 6502 processor, offering faster access due to shorter instruction lengths. Mechner used this region for frequently accessed variables, optimizing performance for critical operations like graphics rendering and input handling. The careful allocation of zero-page memory reflects the constraints of the Apple II hardware, where every cycle mattered. This technique was widely used in assembly programming, influencing the design of later systems and compilers that prioritized efficient memory access."
-  - id: "miscellaneous-constants"
+    content: "This section defines variables stored in the zero page, the first 256 bytes of memory on the 6502 processor. Accessing zero-page memory is faster and requires fewer cycles than accessing other memory regions, making it ideal for frequently used variables like `PAGE` and `XCO`. Mechner leveraged this optimization to improve performance, ensuring smooth gameplay even on the Apple II's limited hardware. Zero-page optimization was a hallmark of 6502 programming, and it shaped the design of countless games and applications. By carefully allocating zero-page variables, Mechner maximized the efficiency of his code, a technique that influenced other developers working on 8-bit systems like the Commodore 64 and NES."
+  - id: "screen-dimensions-and-bitmasks"
     line_start: 471
     line_end: 492
-    title: "Screen Dimensions and Bit Masks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bit_mask"
+    title: "Defining the World in Pixels and Bits"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
     image_caption: ""
-    content: "This section defines constants for screen dimensions (`ScrnWidth`, `ScrnHeight`) and bit masks (`secmask`, `reqmask`, `idmask`). These values establish the boundaries of the game world and facilitate operations like collision detection and object identification. Bit masks were a common technique in assembly programming, allowing developers to manipulate specific bits within a byte efficiently. Mechner's use of these constants reflects the precision required to create a seamless gaming experience on the Apple II. The approach influenced later games and systems, where bitwise operations became standard practice for performance-critical tasks."
+    content: "This section defines constants for screen dimensions and bitmask operations. Values like `ScrnWidth` and `ScrnHeight` establish the playable area, while masks like `secmask` and `idmask` enable efficient manipulation of binary data. Mechner used these constants to standardize rendering and collision detection, ensuring consistent behavior across the game's levels. Bitmasking was a common technique in assembly programming, allowing developers to perform complex operations with minimal code. These definitions reflect Mechner's meticulous approach to optimizing performance and managing resources. The use of bitmasks for data manipulation became a staple in game development, influencing later systems like the SNES and Genesis, where similar techniques were used to handle sprite attributes and hardware registers."
 
 ---
 
+```asm
  tr on
  lst off
 * eq
@@ -568,3 +567,4 @@ eor = 3
 mask = 4
 
  lst off
+```

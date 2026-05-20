@@ -9,133 +9,120 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-pm-c"
 order: 20
-description: "This file implements the Page Manager for Wolfenstein 3D, a critical system for handling memory across EMS, XMS, and main memory in a constrained MS-DOS environment."
+description: "Wolfenstein 3D's memory management system pushed the limits of early 1990s hardware, enabling fast-paced gameplay on constrained MS-DOS machines."
 
 summary:
-  - point: "Implements EMS and XMS memory management for efficient page handling"
+  - point: "Innovative use of EMS and XMS for memory paging"
     link: "https://en.wikipedia.org/wiki/Expanded_memory"
     link_label: "Expanded Memory Specification"
-  - point: "Uses Least Recently Used (LRU) algorithms for memory page replacement"
-    link: "https://en.wikipedia.org/wiki/Cache_replacement_policies"
-    link_label: "Cache Replacement Policies"
-  - point: "Integrates file-based paging for large data sets like textures and sounds"
-    link: "https://en.wikipedia.org/wiki/Virtual_memory"
-    link_label: "Virtual Memory"
-  - point: "Optimized for MS-DOS, leveraging hardware interrupts and low-level memory access"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
-  - point: "Designed by Jason Blochowiak, showcasing id Software's early technical ingenuity"
-    link: "https://en.wikipedia.org/wiki/Id_Software"
-    link_label: "id Software"
+  - point: "Page locking and LRU algorithms for performance"
+    link: "https://en.wikipedia.org/wiki/Least_recently_used"
+    link_label: "Least Recently Used"
+  - point: "Dynamic memory allocation tailored to game assets"
+    link: "https://en.wikipedia.org/wiki/DOS_memory_management"
+    link_label: "DOS Memory Management"
 
 enhancements:
   - id: "ems-page-mapping"
-    line_start: 48
+    line_start: 54
     line_end: 68
-    title: "Mapping EMS Pages with Hardware Interrupts"
+    title: "Mapping Pages with EMS Interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Expanded_memory"
     image_url: ""
     image_caption: ""
-    content: "This section defines the `PML_MapEMS` function, which maps logical pages to physical pages in Expanded Memory (EMS). EMS was a popular solution for overcoming the 640 KB memory limit of MS-DOS by providing access to additional memory through a paging mechanism. The function uses hardware interrupts (`int EMS_INT`) to communicate with the EMS driver, ensuring that logical pages are correctly mapped to physical memory locations. At the time, EMS was a critical technology for games like Wolfenstein 3D, enabling them to load large textures and sounds efficiently. This technique influenced later memory management systems in DOS-based games and applications, laying groundwork for more sophisticated virtual memory systems."
-  - id: "ems-initialization"
-    line_start: 70
-    line_end: 162
-    title: "EMS Initialization and Compatibility Checks"
+    content: "This function, `PML_MapEMS`, maps a logical page to a physical page in Expanded Memory Specification (EMS). EMS was a popular solution in the early 1990s for overcoming the 640KB memory limit of MS-DOS. By using the EMS interrupt (INT 67h), the program communicates with the EMS driver to perform the mapping. The programmer, Jason Blochowiak, ensures error handling by checking the status register (_AH) after the interrupt call. This mapping allowed Wolfenstein 3D to dynamically allocate and manage memory for game assets like textures and sprites, enabling smoother gameplay. The technique was critical for games of the era and influenced later memory management systems in DOS-based applications."
+  - id: "ems-startup-check"
+    line_start: 71
+    line_end: 166
+    title: "Detecting and Allocating EMS Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Expanded_memory"
     image_url: ""
     image_caption: ""
-    content: "The `PML_StartupEMS` function initializes EMS for use by the Page Manager. It checks for the presence of an EMS driver, verifies hardware compatibility, and ensures the EMS version is at least 3.2. These checks were essential in 1992, as hardware and software environments varied widely. The function allocates EMS pages based on the game's requirements, avoiding excessive memory usage to ensure compatibility with other system processes. This initialization process highlights id Software's meticulous approach to optimizing memory usage, a necessity given the limited resources of MS-DOS systems. The techniques here influenced memory management in subsequent DOS games and demonstrated how to maximize hardware capabilities effectively."
-  - id: "xms-initialization"
-    line_start: 197
-    line_end: 234
-    title: "Starting Up Extended Memory (XMS)"
+    content: "The `PML_StartupEMS` function initializes EMS for use by the game's Page Manager. It performs several checks: verifying the presence of an EMS driver, ensuring hardware compatibility, and confirming the EMS version is 3.2 or later. If sufficient EMS pages are available, it allocates them for game use. This sequence of checks highlights the challenges of programming for diverse hardware configurations in the early 1990s. By dynamically allocating EMS pages, Wolfenstein 3D could store large amounts of game data, such as textures and sounds, without exceeding the limited conventional memory. This approach was a precursor to modern memory management techniques in gaming engines."
+  - id: "xms-startup-check"
+    line_start: 191
+    line_end: 230
+    title: "Starting Up XMS for Extended Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Extended_memory"
     image_url: ""
     image_caption: ""
-    content: "The `PML_StartupXMS` function sets up Extended Memory (XMS) for the Page Manager. XMS provided access to memory beyond the 1 MB boundary, a critical feature for games like Wolfenstein 3D that required large data sets. This function checks for the presence of an XMS driver, queries available memory, and allocates pages for use. It also rounds memory allocations to page sizes to ensure efficient usage. XMS was a newer standard compared to EMS and offered more flexibility, but it required careful handling to avoid conflicts with other applications. The code here reflects id Software's ability to harness emerging technologies to push the boundaries of gaming performance."
-  - id: "main-memory-purge"
-    line_start: 327
-    line_end: 348
-    title: "Managing Main Memory Purge Levels"
+    content: "The `PML_StartupXMS` function initializes Extended Memory Specification (XMS) for the Page Manager. XMS was another solution for addressing the memory limitations of MS-DOS, providing access to memory beyond the 1MB boundary. This function checks for the presence of an XMS driver and ensures there is sufficient memory available. It then allocates the memory for game use. This careful initialization process reflects the complexity of managing memory on early PCs, where hardware and software compatibility varied widely. By leveraging XMS, Wolfenstein 3D could handle larger game worlds and assets, paving the way for more ambitious game designs in the years to come."
+  - id: "lru-page-selection"
+    line_start: 642
+    line_end: 670
+    title: "Finding the Least Recently Used Page"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Least_recently_used"
+    image_url: ""
+    image_caption: ""
+    content: "The `PML_GiveLRUPage` function implements a Least Recently Used (LRU) algorithm to identify the least recently accessed page in memory. This page can then be replaced or purged to make room for new data. The LRU algorithm was a common choice for cache management in the 1990s, balancing simplicity and effectiveness. By tracking the last access time for each page, the function ensures that memory is used efficiently, minimizing the impact of thrashing. This technique was crucial for Wolfenstein 3D's performance, allowing the game to maintain smooth gameplay even as memory demands fluctuated. The LRU approach influenced later cache management strategies in operating systems and game engines."
+  - id: "page-buffer-allocation"
+    line_start: 772
+    line_end: 820
+    title: "Dynamic Allocation of Page Buffers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The `PM_SetMainMemPurge` function adjusts the purge levels of allocated main memory blocks. This ensures that memory blocks can be locked or unlocked based on their importance, preventing critical data from being purged during memory allocation. In the constrained environment of MS-DOS, managing main memory effectively was crucial for maintaining performance and stability. This function is part of a broader strategy to optimize memory usage across EMS, XMS, and main memory, showcasing id Software's expertise in low-level memory management. Techniques like this influenced later memory management systems in games and operating systems, emphasizing the importance of resource prioritization."
-  - id: "file-management"
-    line_start: 485
-    line_end: 529
-    title: "Opening and Parsing the Page File"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Virtual_memory"
-    image_url: ""
-    image_caption: ""
-    content: "The `PML_OpenPageFile` function opens the game's page file (`VSWAP.`) and reads metadata such as chunk offsets and lengths. This file-based paging system allowed Wolfenstein 3D to handle large data sets like textures and sounds without requiring all data to reside in memory simultaneously. By allocating memory dynamically and reading data on demand, the game achieved smooth performance despite the limitations of MS-DOS. File-based paging became a standard technique in game development, influencing engines like Doom and Quake. It also contributed to the evolution of virtual memory systems in modern operating systems."
-  - id: "lru-algorithm"
-    line_start: 646
-    line_end: 670
-    title: "Least Recently Used (LRU) Page Replacement"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Cache_replacement_policies"
-    image_url: ""
-    image_caption: ""
-    content: "The `PML_GiveLRUPage` function implements a Least Recently Used (LRU) algorithm to identify the least recently accessed memory page for replacement. This approach ensures that frequently used pages remain in memory while less critical pages are purged or replaced. LRU was a common strategy in memory management at the time, balancing performance with resource constraints. In Wolfenstein 3D, this algorithm was crucial for maintaining smooth gameplay as it dynamically managed memory across EMS, XMS, and main memory. The use of LRU influenced later cache and memory management systems, becoming a staple in computer science education and practice."
-  - id: "page-loading"
-    line_start: 853
+    content: "The `PML_GetAPageBuffer` function dynamically allocates memory for a page buffer, either from EMS, main memory, or by reusing an existing page. This flexibility was essential for managing the game's diverse assets, such as textures, sprites, and sounds. The function prioritizes free memory pools but falls back on the LRU algorithm to reclaim memory if necessary. This approach reflects the ingenuity required to optimize memory usage on constrained hardware. By dynamically allocating and managing memory, Wolfenstein 3D could deliver a rich gaming experience on systems with limited resources. The technique influenced memory management practices in later games and software."
+  - id: "page-loading-from-file"
+    line_start: 854
     line_end: 867
-    title: "Loading Pages into Memory"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Virtual_memory"
+    title: "Loading Pages Directly from Disk"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
     image_url: ""
     image_caption: ""
-    content: "The `PML_LoadPage` function handles loading pages into memory from the game's page file. It uses the `PML_GetAPageBuffer` function to allocate memory for the page and reads the data using `PML_ReadFromFile`. This mechanism allowed Wolfenstein 3D to manage large data sets efficiently, loading only the necessary pages into memory at any given time. This approach was a precursor to modern virtual memory systems, where data is loaded on demand to optimize resource usage. The techniques here influenced subsequent game engines and operating systems, demonstrating the importance of dynamic memory management in software design."
-  - id: "page-locking"
-    line_start: 924
+    content: "The `PML_LoadPage` function loads a page directly from the game's page file into memory. This process involves reading data from disk and storing it in either main memory or EMS. By offloading less frequently used data to disk, Wolfenstein 3D could manage larger game worlds and assets without exceeding the memory limitations of MS-DOS. This technique was an early form of virtual memory management, allowing the game to simulate having more memory than was physically available. Disk-based paging became a standard feature in operating systems and influenced the design of modern game engines."
+  - id: "page-locking-mechanism"
+    line_start: 926
     line_end: 940
-    title: "Locking Pages for Critical Usage"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Virtual_memory"
+    title: "Locking Pages to Prevent Purging"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The `PM_SetPageLock` function sets the lock type for a given page, preventing it from being purged during memory management operations. Locked pages are typically used for critical data, such as sound buffers, ensuring they remain accessible during gameplay. This feature highlights id Software's attention to detail in managing memory resources effectively. By prioritizing certain types of data, the game maintained performance and stability, even under constrained memory conditions. Page locking became a standard feature in memory management systems, influencing both game engines and operating systems in the years that followed."
-  - id: "pm-preload-memory-allocation"
+    content: "The `PM_SetPageLock` function allows the programmer to lock a page in memory, preventing it from being purged. This feature was particularly useful for ensuring critical game assets, such as sound effects, remained accessible during gameplay. The ability to lock pages reflects the careful memory management required to optimize performance on early PCs. By selectively locking pages, Wolfenstein 3D could balance the need for dynamic memory allocation with the stability required for a seamless gaming experience. This technique influenced memory management practices in later games and software, where locking mechanisms are used to prioritize critical data."
+  - id: "preloading-game-assets-ems-xms"
     line_start: 942
     line_end: 1055
-    title: "Dynamic memory allocation across EMS and XMS"
+    title: "Preloading Game Assets: EMS and XMS Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Expanded_memory"
     image_url: ""
     image_caption: ""
-    content: "The `PM_Preload` function is responsible for preloading game data into memory, ensuring efficient access during gameplay. It dynamically allocates memory across different types: main memory, EMS (Expanded Memory Specification), and XMS (Extended Memory Specification). The function iterates through chunks of game data, determining whether they can be loaded into main memory or XMS based on availability. If memory is insufficient, the program gracefully handles the situation by quitting with an error message. This approach reflects the constraints of early 1990s PCs, which often had limited memory and relied on EMS and XMS to extend capabilities. At the time, EMS and XMS were competing standards for overcoming the 640 KB conventional memory limit imposed by MS-DOS. By leveraging these standards, id Software ensured Wolfenstein 3D could run smoothly on a wide range of hardware. This memory management strategy influenced later game engines, including Doom's, which further optimized resource allocation for high-performance gameplay."
-  - id: "pm-nextframe-thrashing-avoidance"
-    line_start: 1057
+    content: "The PM_Preload function is responsible for preloading game assets into memory, prioritizing EMS (Expanded Memory Specification) and XMS (Extended Memory Specification) to optimize performance. It calculates available memory blocks, determines which assets can fit into main memory, EMS, or XMS, and loads them accordingly. This routine ensures that critical game data is cached efficiently, reducing disk access during gameplay. In 1992, memory management was a significant challenge due to the limited RAM available on consumer PCs. Wolfenstein 3D's developers leveraged EMS and XMS, which were extensions to the conventional memory model, to expand usable memory beyond the 640KB limit imposed by MS-DOS. John Carmack's approach to memory management in this routine influenced subsequent game engines, including the id Tech series, by demonstrating how to maximize hardware capabilities without compromising performance."
+  - id: "frame-counter-thrash-avoidance"
+    line_start: 1063
     line_end: 1108
-    title: "Avoiding memory thrashing during gameplay"
+    title: "Frame Counter and Thrash Avoidance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Thrashing_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The `PM_NextFrame` function manages the frame counter and mitigates memory thrashing, a condition where excessive swapping between memory and storage degrades performance. It resets the frame count when it approaches an overflow and adjusts variables to minimize thrashing. If the system detects thrashing, it enters 'panic mode' to temporarily halt operations that might exacerbate the issue. This technique reflects the challenges of optimizing performance on hardware with limited resources. In the early 1990s, games like Wolfenstein 3D had to balance smooth gameplay with the constraints of MS-DOS memory management. The thrashing avoidance mechanism helped maintain consistent performance, a critical factor in the game's success. Similar techniques were later adopted in other game engines, contributing to the evolution of real-time resource management in gaming."
-  - id: "pm-reset-initialize-memory-structures"
-    line_start: 1110
+    content: "PM_NextFrame increments the frame counter and adjusts variables to prevent memory thrashing. Thrashing occurs when excessive swapping between memory and storage slows down a system. This function monitors the frame count and checks if the system is in 'panic mode,' a state designed to mitigate thrashing. If conditions improve, it exits panic mode. In the early 1990s, game developers had to contend with limited memory bandwidth and slow disk access speeds. Carmack's implementation here is a clever safeguard against performance degradation during high-intensity gameplay. This technique of dynamically adjusting memory usage based on runtime conditions influenced later real-time systems and game engines, where adaptive resource management became standard practice."
+  - id: "resetting-caching-structures"
+    line_start: 1111
     line_end: 1136
-    title: "Initializing memory structures for caching"
+    title: "Resetting Caching Structures for Fresh Start"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `PM_Reset` function initializes the memory structures used for caching game data. It calculates the available pages in EMS and XMS, resets counters for used pages, and sets up the page list with default values. This ensures the memory manager starts in a clean state, ready to allocate resources efficiently. In the early 1990s, caching was a crucial technique for optimizing performance on systems with slow disk access and limited RAM. By preloading frequently accessed data into memory, Wolfenstein 3D minimized delays during gameplay. This approach laid the groundwork for more sophisticated caching mechanisms in later game engines, such as those used in Doom and Quake."
-  - id: "pm-startup-memory-manager-initialization"
+    content: "PM_Reset initializes the memory caching structures, preparing the system for efficient asset management. It calculates the number of available EMS and XMS pages based on hardware specifications and resets all tracking variables. The page list is cleared, ensuring no residual data from previous operations interferes with new gameplay sessions. This routine reflects the meticulous attention to detail required to manage memory in an era when hardware resources were scarce. The concept of resetting and initializing memory structures became a foundational practice in software engineering, influencing how modern systems handle memory allocation and garbage collection."
+  - id: "memory-manager-startup"
     line_start: 1138
     line_end: 1182
-    title: "Memory manager startup routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    image_url: ""
-    image_caption: ""
-    content: "The `PM_Startup` function initializes the memory manager, setting up EMS, XMS, and main memory based on system capabilities and user parameters. It opens the page file, configures memory types, and calls `PM_Reset` to prepare caching structures. This routine ensures the game can adapt to different hardware configurations, a critical feature given the diversity of MS-DOS systems in the early 1990s. By supporting multiple memory standards, id Software maximized compatibility and performance, enabling Wolfenstein 3D to reach a broad audience. This modular initialization approach influenced the design of later game engines, which continued to prioritize flexibility and scalability."
-  - id: "pm-shutdown-cleanup-memory-resources"
-    line_start: 1184
-    line_end: 1199
-    title: "Graceful shutdown of memory resources"
+    title: "Memory Manager Startup: Configuring EMS, XMS, and Main Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The `PM_Shutdown` function cleans up memory resources when the game exits. It shuts down EMS and XMS systems, closes the page file, and releases main memory. This ensures all allocated resources are properly freed, preventing memory leaks and maintaining system stability. In the early 1990s, proper resource cleanup was essential for software running on MS-DOS, as the operating system lacked robust memory management features. By implementing a thorough shutdown routine, id Software demonstrated a commitment to reliability and professionalism. This practice became standard in game development, influencing the design of resource management systems in modern engines like Unity and Unreal."
+    content: "PM_Startup initializes the memory management system by configuring EMS, XMS, and main memory based on user parameters and hardware capabilities. It opens the page file, starts up EMS and XMS systems, and calls PM_Reset to prepare the caching structures. This routine demonstrates the flexibility of Wolfenstein 3D's memory manager, allowing it to adapt to various hardware configurations. In the early 1990s, PC hardware varied widely, and developers had to account for systems with different memory setups. Carmack's design ensured that the game could run efficiently on both high-end and low-end machines, a principle that remains relevant in modern game development, where scalability is key."
+  - id: "memory-manager-shutdown"
+    line_start: 1185
+    line_end: 1199
+    title: "Graceful Shutdown of Memory Management Systems"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "PM_Shutdown gracefully shuts down the memory management systems by releasing resources allocated to EMS, XMS, and main memory. It closes the page file and ensures that no residual data remains in memory. This routine highlights the importance of clean resource deallocation, a practice that prevents memory leaks and ensures system stability. In an era when operating systems provided limited support for resource management, developers had to implement their own cleanup routines. Carmack's approach here influenced later game engines and software systems, where robust shutdown procedures became standard to ensure reliability and prevent crashes."
 
 ---
 
+```asm
 //
 //	ID_PM.C
 //	Id Engine's Page Manager v1.0
@@ -1335,3 +1322,4 @@ PM_Shutdown(void)
 
 	PML_ShutdownMainMem();
 }
+```

@@ -9,109 +9,78 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "syscall"
 order: 45
-description: "SYSCALL.ASM defines system call entry points for MS-DOS 2.0, a pivotal rewrite inspired by Unix, marking a leap in personal computing capabilities."
+description: "SYSCALL.ASM defines MS-DOS system call entry points for file manipulation, date/time handling, and device interactions, showcasing early 1980s assembly programming techniques."
 
 summary:
-  - point: "Introduces system calls for date and time manipulation"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
-  - point: "Implements File Control Block (FCB) operations for file management"
+  - point: "Introduces file control block (FCB) operations for file handling"
     link: "https://en.wikipedia.org/wiki/File_Control_Block"
     link_label: "File Control Block"
-  - point: "Reflects Unix-inspired design in MS-DOS 2.0's system architecture"
-    link: "https://en.wikipedia.org/wiki/Unix"
-    link_label: "Unix"
-  - point: "Optimized for IBM PC hardware constraints"
+  - point: "Demonstrates MS-DOS's reliance on assembly-level system calls"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Reflects constraints of early PC hardware and software"
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
-  - point: "Demonstrates early modular assembly programming techniques"
-    link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly Language"
+  - point: "Adopts techniques inspired by CP/M and Unix systems"
+    link: "https://en.wikipedia.org/wiki/CP/M"
+    link_label: "CP/M"
+  - point: "Highlights the transition from single-level to hierarchical file systems"
+    link: "https://en.wikipedia.org/wiki/Filesystem"
+    link_label: "Filesystem"
 
 enhancements:
-  - id: "include-directives-for-modular-code"
+  - id: "include-directives-and-symbols"
     line_start: 1
-    line_end: 11
-    title: "Modular Code via INCLUDE Directives"
+    line_end: 15
+    title: "Why INCLUDE Directives Were Essential"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
-    content: "The file begins with INCLUDE directives, pulling in external assembly files like DOSSEG.ASM and DOSSYM.ASM. These modular inclusions define constants, macros, and segment assumptions, enabling reuse and organization in the MS-DOS codebase. Tim Paterson and Microsoft engineers adopted this modular approach to streamline development and ensure consistency across the operating system. In the early 1980s, modular assembly programming was a necessity due to limited memory and storage constraints. This technique influenced later operating systems and software development practices, encouraging modularity and code reuse in languages like C and beyond."
+    content: "The INCLUDE directives at the start of SYSCALL.ASM pull in external assembly files, such as DOSSEG.ASM and DOSSYM.ASM, which define segment structures and symbolic constants used throughout the program. This modular approach allowed MS-DOS developers to maintain consistency across multiple source files while reducing redundancy. In the early 1980s, assembly programming was highly manual, and symbolic constants were critical for readability and maintainability. By centralizing definitions, programmers could update shared constants or segment structures without combing through thousands of lines of code. This technique was borrowed from earlier operating systems like CP/M, which also relied on modular assembly files. The modularity here influenced later programming environments, including the use of header files in C and other high-level languages."
   - id: "get-date-system-call"
     line_start: 41
     line_end: 64
-    title: "System Call to Retrieve Current Date"
-    wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
+    title: "The System Call That Returned 1980"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "$GET_DATE implements system call 42 to retrieve the current date. It reads the date from memory locations, adjusts for the bias (subtracting 1980), and returns the year, month, and day in CX:DX registers. This routine reflects the need for basic timekeeping in early personal computers, which lacked real-time clocks. MS-DOS 2.0's date handling was inspired by Unix's system calls, marking a shift toward more structured OS design. Later systems, including Windows, expanded on this functionality, integrating robust timekeeping APIs and synchronization with internet time servers."
+    content: "$GET_DATE retrieves the current date and returns it in the CX:DX registers, with the year biased to start at 1980. This bias reflects the IBM PC's reliance on a real-time clock chip that tracked dates starting from its launch era. The routine also checks for day rollovers and adjusts the year accordingly. In 1983, MS-DOS 2.0 introduced hierarchical file systems and expanded system calls, but this routine retained its simplicity to ensure backward compatibility with earlier software. The decision to hardcode a bias starting at 1980 highlights the constraints of early PC hardware and the need to optimize for minimal memory usage. This approach influenced later operating systems, which adopted similar techniques for handling system dates, including Unix's epoch-based timekeeping."
   - id: "set-date-system-call"
     line_start: 66
     line_end: 92
-    title: "Validating and Setting the System Date"
-    wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
+    title: "How MS-DOS Validated Dates in 1983"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "$SET_DATE, system call 43, validates and sets the system date. It checks the year, month, and day for validity, ensuring the date falls within a reasonable range (1980–2099). Errors are flagged in the AL register. This subroutine highlights the importance of error handling in early OS design, where user input could easily corrupt system state. The validation logic was crucial for MS-DOS's reliability, especially in business environments. Modern operating systems continue to enforce strict input validation, a practice rooted in these early routines."
-  - id: "get-time-system-call"
-    line_start: 94
-    line_end: 113
-    title: "Fetching Current Time via System Call"
-    wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
-    image_url: ""
-    image_caption: ""
-    content: "$GET_TIME, system call 44, retrieves the current time and returns it in CX:DX registers. The routine interacts with the BIOS to read the time and ensures the data is correctly formatted for user applications. Timekeeping was a critical feature for MS-DOS, enabling timestamping for files and logs. This functionality was foundational for later advancements, such as multitasking and scheduling in Windows. It also influenced the design of APIs in modern programming languages, where time manipulation is a standard feature."
-  - id: "set-time-system-call"
-    line_start: 115
-    line_end: 162
-    title: "Ensuring Validity When Setting System Time"
-    wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
-    image_url: ""
-    image_caption: ""
-    content: "$SET_TIME, system call 45, validates and sets the system time. It checks hours, minutes, seconds, and hundredths of a second for validity, flagging errors in the AL register. The routine interacts with the BIOS to update the time. This subroutine reflects the growing complexity of timekeeping in personal computers, as MS-DOS evolved to support business applications requiring accurate scheduling. The validation logic here influenced later OS designs, where time synchronization and error handling became more sophisticated, eventually leading to network-based time protocols like NTP."
+    content: "$SET_DATE validates and sets the system date, ensuring the year falls between 1980 and 2099 and that month and day values are non-zero and within valid ranges. This routine reflects the limited date handling capabilities of early PCs, which lacked robust error-checking or support for broader date ranges. The constraints here stem from the IBM PC's hardware clock and the need to minimize code size in MS-DOS's compact design. The error-checking logic, while rudimentary by modern standards, was sufficient for most applications of the era. This routine influenced later systems by establishing conventions for date validation and error handling, which became standard in operating system APIs."
   - id: "fcb-sequential-read"
     line_start: 302
-    line_end: 332
-    title: "Sequential File Reads Using FCB"
+    line_end: 302
+    title: "Reading Files Sequentially with FCBs"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
-    content: "$FCB_SEQ_READ, system call 20, reads the next record from a file using the File Control Block (FCB) structure. It interacts with the disk transfer address and handles end-of-file conditions, returning status codes in the AL register. The FCB approach, inherited from CP/M, was central to MS-DOS's file management in its early versions. While later versions of MS-DOS transitioned to handle-based file I/O, the FCB routines laid the groundwork for structured file access, influencing APIs in modern operating systems and programming languages."
-  - id: "fcb-delete-system-call"
-    line_start: 342
-    line_end: 372
-    title: "Deleting Files via FCB"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
-    image_url: ""
-    image_caption: ""
-    content: "$FCB_DELETE, system call 19, deletes files matching a given FCB. It checks attributes and ensures system files or devices are not deleted. This routine reflects the importance of file management in MS-DOS, where user errors could have catastrophic consequences. The attribute checks here influenced later file systems, which implemented more robust permissions and safeguards. Modern systems like NTFS and ext4 continue to build on these principles, ensuring secure and reliable file operations."
+    content: "$FCB_SEQ_READ reads the next record from a file using the File Control Block (FCB) structure, a legacy from CP/M that MS-DOS inherited. The routine handles errors such as end-of-file (EOF) or insufficient space at the disk transfer address, returning status codes in the AL register. Sequential reading was critical for early applications, which often processed files record by record due to memory constraints. The reliance on FCBs reflects MS-DOS's roots in CP/M and the simplicity of its file system design. As MS-DOS evolved, FCBs were gradually replaced by file handles, which offered more flexibility and better support for multitasking. This transition influenced modern operating systems, where file handles remain the standard for file I/O operations."
   - id: "fcb-rename-system-call"
-    line_start: 378
+    line_start: 455
     line_end: 455
-    title: "Renaming Files Using FCB"
+    title: "Renaming Files in MS-DOS: A Legacy Technique"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
-    content: "$FCB_RENAME, system call 23, renames files by modifying their FCB entries. It validates the new name, checks for conflicts, and updates the directory structure. This routine highlights the challenges of file management in early operating systems, where directory updates were manual and error-prone. The rename functionality was critical for business applications, enabling users to organize files efficiently. Modern file systems automate and optimize these operations, building on the principles established by routines like $FCB_RENAME."
-  - id: "fcb-open-system-call"
-    line_start: 459
-    line_end: 548
-    title: "Opening Files with FCB"
+    content: "$FCB_RENAME renames files by modifying their FCB entries. The routine checks for matching entries and ensures the new name is valid and not a reserved device name. If successful, it updates the directory entry with the new name and attributes. This approach reflects the limitations of FCB-based file systems, which lacked robust error handling or support for complex operations. The reliance on FCBs made file renaming cumbersome, as it required direct manipulation of directory entries. As MS-DOS transitioned to file handles in later versions, these limitations were addressed, paving the way for more advanced file systems like FAT32 and NTFS. The legacy of this routine can still be seen in modern APIs that support file renaming as a basic operation."
+  - id: "fcb-create-system-call"
+    line_start: 623
+    line_end: 742
+    title: "Creating Files in MS-DOS: The FCB Way"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
-    content: "$FCB_OPEN, system call 15, opens files by locating their FCB entries and initializing file metadata. It handles device files and sets default attributes. This routine reflects MS-DOS's reliance on FCBs for file management, a design inherited from CP/M. The open operation was foundational for MS-DOS's application ecosystem, enabling programs to interact with files seamlessly. Later operating systems transitioned to handle-based file access, but the principles of initialization and metadata management remain integral to modern file systems."
-  - id: "fcb-close-system-call"
-    line_start: 552
-    line_end: 621
-    title: "Closing Files and Flushing Buffers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
-    image_url: ""
-    image_caption: ""
-    content: "$FCB_CLOSE, system call 16, closes files by updating their FCB entries and flushing disk buffers. It checks for dirty files and ensures data integrity. This routine underscores the importance of reliable file operations in MS-DOS, where sudden power loss or user errors could corrupt data. The buffer flushing mechanism here influenced later file systems, which implemented journaling and transactional updates to ensure consistency. Modern systems like NTFS and ext4 continue to build on these principles, offering robust data protection."
+    content: "$FCB_CREATE creates and opens new files, initializing their FCB entries and allocating space in the directory. If the file already exists, its contents are freed before opening. The routine includes checks for volume IDs and device names, ensuring compatibility with the MS-DOS file system. This approach highlights the simplicity and constraints of FCB-based file systems, which required direct manipulation of directory entries and cluster allocations. The reliance on FCBs limited the scalability of MS-DOS, prompting the transition to file handles in later versions. Despite its limitations, this routine influenced early software development, where direct file system manipulation was common. Modern file systems, with their abstraction layers and robust APIs, owe much to the lessons learned from routines like $FCB_CREATE."
 
 ---
 
+```asm
 ;
 ; system call entry points MSDOS
 ;
@@ -861,3 +830,4 @@ CODE    ENDS
     END
 
 
+```

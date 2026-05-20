@@ -2,6 +2,30 @@ import json
 import re
 
 
+_LANG_FENCE: list[tuple[str, str]] = [
+    ("6502 assembly",    "asm"),
+    ("8086 assembly",    "asm"),
+    ("x86 assembly",     "asm"),
+    ("assembly",         "asm"),
+    ("c, x86 assembly",  "c"),
+    ("c and x86",        "c"),
+    ("c/c++",            "c"),
+    ("c++",              "cpp"),
+    ("mdl",              "lisp"),
+    ("basic",            "basic"),
+    ("pascal",           "pascal"),
+    ("c",                "c"),
+]
+
+
+def _fence_id(language: str) -> str:
+    lang_lower = (language or "").lower()
+    for key, fence in _LANG_FENCE:
+        if key in lang_lower:
+            return fence
+    return ""
+
+
 def _q(s: str) -> str:
     """Quote a string value for YAML: double-quoted, single-line."""
     s = str(s).replace("\\", "\\\\").replace('"', '\\"')
@@ -78,7 +102,7 @@ def _format_from_data(
     data: dict,
     is_excerpt: bool,
 ) -> str:
-    """Write YAML front matter + raw code from an already-parsed data dict."""
+    """Write YAML front matter + fenced code block from an already-parsed data dict."""
     description = data.get("description", file_cfg.get("description", ""))
     summary = data.get("summary", [])
     enhancements = _clean_enhancements(data.get("enhancements", []), code_lines)
@@ -124,7 +148,10 @@ def _format_from_data(
     lines.append("---")
     lines.append("")
 
+    fence = _fence_id(program.get("language", ""))
+    lines.append(f"```{fence}")
     lines.append("\n".join(code_lines))
+    lines.append("```")
 
     return "\n".join(lines)
 

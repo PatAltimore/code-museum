@@ -9,93 +9,94 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-in-c"
 order: 3
-description: "This file processes keyboard, mouse, and joystick input for Wolfenstein 3D, enabling its fast-paced, responsive gameplay."
+description: "This file handles input management for Wolfenstein 3D, showcasing innovative techniques for interfacing with hardware in the early 1990s."
 
 summary:
-  - point: "Direct hardware interaction for input devices"
+  - point: "Direct hardware interaction for keyboard, mouse, and joystick input"
     link: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
     link_label: "Interrupts"
-  - point: "Efficient handling of keyboard scan codes"
+  - point: "Efficient handling of keyboard scan codes and ASCII mapping"
     link: "https://en.wikipedia.org/wiki/Keyboard_scan_code"
-    link_label: "Keyboard scan codes"
-  - point: "Joystick calibration and scaling techniques"
+    link_label: "Keyboard Scan Codes"
+  - point: "Joystick calibration and scaling for precise control"
     link: "https://en.wikipedia.org/wiki/Joystick"
     link_label: "Joystick"
-  - point: "Mouse movement and button state retrieval"
-    link: "https://en.wikipedia.org/wiki/Mouse_(computing)"
-    link_label: "Mouse input"
-  - point: "Demo recording and playback integration"
+  - point: "Mouse movement and button state retrieval via BIOS interrupts"
+    link: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
+    link_label: "BIOS Interrupts"
+  - point: "Input recording and playback for demo functionality"
     link: "https://en.wikipedia.org/wiki/Game_replay"
-    link_label: "Game replay"
+    link_label: "Game Replay"
 
 enhancements:
-  - id: "keyboard-interrupt-handler"
+  - id: "keyboard-interrupt-handling"
     line_start: 135
     line_end: 209
-    title: "Keyboard interrupt handler: real-time responsiveness"
+    title: "How Wolfenstein 3D Captured Every Keystroke"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
     image_url: ""
     image_caption: ""
-    content: "This section defines `INL_KeyService`, a keyboard interrupt handler that processes keypresses in real-time. It reads the scan code from the keyboard hardware port (0x60), clears the key state in the XT keyboard controller, and updates global variables like `LastScan` and `LastASCII`. It also handles special keys like Caps Lock and Pause, and calls a user-defined hook function if set. Written by Jason Blochowiak, this routine ensures instantaneous response to player input, crucial for the fast-paced gameplay of Wolfenstein 3D. At the time, direct hardware interaction was common due to the lack of standardized APIs for input. This approach influenced later games that required low-latency input handling, laying the groundwork for modern real-time input systems in engines like Unity and Unreal."
-  - id: "mouse-delta-retrieval"
+    content: "This section defines `INL_KeyService`, a routine that handles keyboard interrupts. It reads scan codes directly from the keyboard controller (port 0x60) and processes them to determine key states, ASCII values, and special key events like Caps Lock. The programmer, Jason Blochowiak, uses direct hardware interaction to bypass the BIOS, enabling faster and more flexible input handling. In 1992, this approach was critical for real-time games like Wolfenstein 3D, where responsiveness was paramount. The routine also includes logic for handling shifted and unshifted ASCII mappings and toggling Caps Lock behavior. This technique influenced how later games handled low-level input, particularly in the DOS era, where direct hardware access was often necessary for performance."
+  - id: "mouse-movement-retrieval"
     line_start: 211
     line_end: 223
-    title: "Mouse movement: tracking player aim"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Mouse_(computing)"
+    title: "The Interrupt That Tracked Your Mouse"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
     image_caption: ""
-    content: "The `INL_GetMouseDelta` function retrieves the relative movement of the mouse by invoking the mouse interrupt (0x33) with the `MDelta` command. It reads the movement data from the CPU registers `_CX` and `_DX`, representing the x and y deltas, respectively. This function is integral to aiming mechanics, allowing players to smoothly adjust their view in the game. In the early 1990s, mouse input was becoming a standard feature in PC gaming, but its integration required direct communication with hardware due to limited OS support. This technique influenced later FPS games, which relied heavily on precise mouse input for aiming and navigation."
+    content: "The `INL_GetMouseDelta` function retrieves mouse movement data using BIOS interrupt 0x33. By calling the interrupt with the `MDelta` command, it accesses the mouse driver and retrieves the movement deltas in the `_CX` and `_DX` registers. This direct interaction with the BIOS was a common technique in the early 1990s, as it provided a standardized way to access mouse input across different hardware configurations. The simplicity and efficiency of this approach allowed Wolfenstein 3D to maintain its fast-paced gameplay. Later game engines, including id Software's Doom engine, built on these techniques to handle mouse input in increasingly sophisticated ways."
   - id: "joystick-absolute-position"
     line_start: 241
     line_end: 316
-    title: "Joystick absolute position: analog precision"
+    title: "Reading Joystick Positions with Assembly Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
     image_caption: ""
-    content: "`IN_GetJoyAbs` reads the absolute position of a joystick by interacting directly with hardware ports (0x201). The function uses assembly code to measure the timing of resistor discharges, a technique common for analog joysticks of the era. It calculates x and y positions based on bit masks and scaling factors, ensuring accurate input for directional controls. This low-level approach was necessary due to the lack of standardized joystick APIs in MS-DOS. The method influenced joystick handling in later games and systems, paving the way for more sophisticated input libraries like DirectInput and XInput."
-  - id: "keyboard-initialization"
-    line_start: 424
+    content: "The `IN_GetJoyAbs` function reads the absolute position of a joystick using direct port access and assembly language. It interacts with port 0x201, which is tied to the joystick hardware, and uses precise timing loops to measure the resistance values of the joystick axes. This technique was necessary because joysticks of the era relied on analog signals that required careful calibration and timing to interpret correctly. The assembly code ensures that the process is uninterrupted by disabling interrupts (`CLI`) during the measurement. This approach highlights the ingenuity required to interface with hardware in the early 1990s, when standardized APIs for game controllers were not yet common. The method influenced joystick handling in later games and contributed to the development of more sophisticated input libraries."
+  - id: "keyboard-hook-setup"
+    line_start: 426
     line_end: 438
-    title: "Keyboard initialization: setting up interrupts"
+    title: "Setting Up Custom Keyboard Hooks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
     image_url: ""
     image_caption: ""
-    content: "`INL_StartKbd` initializes the keyboard by setting up the interrupt vector for the keyboard ISR (Interrupt Service Routine). It replaces the default BIOS handler with the custom `INL_KeyService` routine, ensuring the game can process keypresses directly. This setup allows Wolfenstein 3D to bypass the slower BIOS input handling, providing a more responsive experience. Such direct manipulation of interrupt vectors was a hallmark of MS-DOS programming, enabling developers to optimize performance for real-time applications like games. This technique influenced later game engines that required precise input control."
-  - id: "mouse-detection"
-    line_start: 453
-    line_end: 482
-    title: "Mouse detection: ensuring compatibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Mouse_(computing)"
+    content: "The `INL_StartKbd` function sets up a custom keyboard interrupt handler by replacing the BIOS interrupt vector for IRQ 1 (keyboard) with the game's own `INL_KeyService` routine. This allows Wolfenstein 3D to process keyboard input directly, bypassing the slower BIOS routines. By storing the original interrupt vector and restoring it later, the function ensures compatibility with other software. This technique was widely used in DOS games to achieve faster and more responsive input handling. It reflects the low-level programming skills required to optimize performance on early PC hardware. The approach influenced later game engines, which continued to use custom interrupt handlers for specialized input processing."
+  - id: "joystick-calibration"
+    line_start: 510
+    line_end: 538
+    title: "Calibrating Joysticks for Precise Control"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
     image_caption: ""
-    content: "`INL_StartMouse` detects the presence of a mouse by checking the interrupt vector table and querying the mouse driver. It uses the `Mouse(MReset)` command to reset the mouse and verifies its functionality based on the returned values. This routine ensures the game can adapt to systems with or without a mouse, a critical feature for compatibility in the diverse hardware landscape of early 1990s PCs. The method reflects the ingenuity required to support varied input devices, influencing future game development practices that prioritized hardware detection and adaptability."
-  - id: "input-manager-startup"
-    line_start: 578
-    line_end: 614
-    title: "Input manager startup: initializing devices"
+    content: "The `IN_SetupJoy` function calibrates joystick input by defining threshold values for the axes and calculating scaling factors. It divides the joystick's range into segments for precise motion detection and uses these thresholds to interpret input accurately. This calibration process was essential for ensuring consistent gameplay across different joystick models, which often had varying ranges and sensitivities. The function's design reflects id Software's commitment to providing a seamless user experience, even on hardware with limited standardization. The technique influenced joystick handling in later games and contributed to the development of input libraries that automated calibration processes."
+  - id: "input-manager-initialization"
+    line_start: 580
+    line_end: 613
+    title: "Starting Up Wolfenstein 3D's Input Manager"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
     image_url: ""
     image_caption: ""
-    content: "`IN_Startup` initializes the input manager by detecting and configuring available input devices—keyboard, mouse, and joystick. It checks command-line parameters to determine whether to enable each device, ensuring flexibility for different player setups. The function calls specific routines like `INL_StartKbd`, `INL_StartMouse`, and `INL_StartJoy` to set up each device. This modular approach to input initialization was ahead of its time, influencing later game engines that adopted similar strategies for device detection and configuration."
-  - id: "demo-recording-playback"
+    content: "The `IN_Startup` function initializes the input manager by detecting and configuring available input devices (keyboard, mouse, joystick). It checks command-line parameters to determine whether to enable specific devices and sets up interrupt handlers and device-specific routines. This modular approach allowed Wolfenstein 3D to support a wide range of hardware configurations, ensuring compatibility with the diverse PC market of the early 1990s. The function's design reflects the challenges of developing software for an ecosystem without standardized input APIs. It influenced later game engines, which adopted similar modular initialization processes to support multiple input devices seamlessly."
+  - id: "input-demo-recording"
     line_start: 684
     line_end: 813
-    title: "Demo recording: capturing gameplay moments"
+    title: "How Wolfenstein 3D Recorded Your Moves"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_replay"
     image_url: ""
     image_caption: ""
-    content: "`IN_ReadControl` integrates demo recording and playback functionality into the input manager. During recording, it packs control data (motion, buttons) into a compact format and stores it in a buffer. During playback, it retrieves this data to simulate player input, enabling the game to replay sequences exactly as they were recorded. This feature was innovative for its time, allowing players to share and analyze gameplay. Demo systems like this influenced later games and engines, including Quake and Source Engine, which expanded on the concept with more sophisticated replay and spectator modes."
-  - id: "user-input-wait"
-    line_start: 927
-    line_end: 946
-    title: "Waiting for user input: timed responsiveness"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
+    content: "The `IN_ReadControl` function includes logic for recording and playing back input data for demo purposes. During demo recording, it packs control information (motion, button states) into a compact byte format and stores it in a buffer. During playback, it retrieves and interprets this data to simulate player actions. This feature allowed players to share their gameplay and developers to debug and showcase the game. The demo functionality was a precursor to modern replay systems, which have become a standard feature in competitive gaming and video sharing platforms. It also demonstrates id Software's forward-thinking approach to game design, prioritizing features that enhanced both player experience and developer productivity."
+  - id: "waiting-for-key-or-ascii"
+    line_start: 828
+    line_end: 860
+    title: "How Wolfenstein 3D Waited for Your Input"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_scan_code"
     image_url: ""
     image_caption: ""
-    content: "`IN_UserInput` waits for a specified delay or user interaction (key or mouse press). It uses a loop to check for input while monitoring the system timer (`TimeCount`). If the user presses a key or mouse button, the function returns immediately; otherwise, it exits after the delay. This routine ensures responsiveness during timed events, such as menus or cutscenes, while accommodating user input. The method reflects the careful balance between real-time interaction and timed sequences, influencing similar systems in later games and engines."
+    content: "The `IN_WaitForKey` and `IN_WaitForASCII` functions implement blocking waits for keyboard input, returning the scan code or ASCII value of the next key press. These routines are used in scenarios where the game needs to pause and wait for user interaction, such as menu navigation or acknowledgments. By directly accessing global variables updated by the keyboard interrupt handler, the functions achieve low-latency input detection. This approach highlights the importance of efficient input handling in real-time applications. The technique influenced later games, which continued to use similar blocking input routines for specific gameplay scenarios."
 
 ---
 
+```asm
 //
 //	ID Engine
 //	ID_IN.c - Input Manager
@@ -1084,4 +1085,4 @@ byte	IN_JoyButtons (void)
 
 	return joybits;
 }
-
+```

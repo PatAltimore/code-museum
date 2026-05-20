@@ -9,109 +9,86 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "strin"
 order: 46
-description: "This file contains the assembly routines for handling console string input in MS-DOS 2.0, showcasing early techniques for user input processing and buffer management."
+description: "This file implements console input handling routines for MS-DOS 2.0, showcasing low-level assembly techniques used in early operating systems."
 
 summary:
-  - point: "Introduces buffer-based console input handling routines"
+  - point: "Introduces buffer management for console input"
+    link: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    link_label: "Buffer"
+  - point: "Demonstrates handling of control characters like CR, LF, and ESC"
+    link: "https://en.wikipedia.org/wiki/Control_character"
+    link_label: "Control Character"
+  - point: "Highlights MS-DOS's adaptation of Unix-inspired features"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Demonstrates early text editing mechanisms in assembly"
-    link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly Language"
-  - point: "Highlights influence of Unix-like design principles in MS-DOS 2.0"
-    link: "https://en.wikipedia.org/wiki/Unix"
-    link_label: "Unix"
-  - point: "Showcases efficient handling of control characters and user input validation"
-    link: "https://en.wikipedia.org/wiki/Control_character"
-    link_label: "Control Characters"
-  - point: "Reflects Tim Paterson's foundational work on MS-DOS input routines"
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
+  - point: "Uses clever tricks for template-based editing"
+    link: "https://en.wikipedia.org/wiki/Template_(programming)"
+    link_label: "Template"
+  - point: "Exemplifies the constraints of 1980s hardware and software design"
+    link: "https://en.wikipedia.org/wiki/IBM_PC"
+    link_label: "IBM PC"
 
 enhancements:
-  - id: "editon-buffer-validation"
-    line_start: 20
-    line_end: 23
-    title: "Buffer Validation and Edit Mode Activation"
+  - id: "editon-buffer-reset"
+    line_start: 26
+    line_end: 28
+    title: "Why Resetting Buffers Was Crucial in 1983"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "This section verifies the integrity of the input buffer and activates edit mode if conditions are met. The programmer checks whether the buffer length matches its contents and whether a carriage return (CR) is correctly placed. This ensures that user input adheres to expected constraints before further processing. In the early 1980s, memory was a scarce resource, and buffer management was critical for performance and stability. Tim Paterson, influenced by his work on 86-DOS, implemented this validation to prevent errors in console input handling. The approach reflects the meticulous attention to detail required in low-level programming environments. This technique influenced later systems where buffer validation became a standard practice, especially in embedded systems and operating systems reliant on efficient memory management."
-  - id: "newline-buffer-construction"
+    content: "The EDITON routine resets the buffer length and prepares the system to accept new input. This was critical in MS-DOS 2.0, where memory constraints meant every byte had to be carefully managed. At the time, the IBM PC shipped with as little as 16 KB of RAM, so efficient buffer handling was essential. Tim Paterson, the original author of MS-DOS, designed these routines to ensure stability and prevent buffer overflows, which could crash the system or corrupt data. This approach influenced later operating systems, where buffer management became a cornerstone of input handling, appearing in Unix shells and even modern text editors."
+  - id: "newline-buffer-build"
     line_start: 29
     line_end: 41
-    title: "Building a New Line in the Buffer"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Line_feed"
-    image_url: ""
-    image_caption: ""
-    content: "This section initializes the construction of a new line in the input buffer. It sets up variables to track the cursor position, toggles insert mode, and begins reading characters from the console. The routine filters out unwanted characters like line feeds (LF) and prepares the buffer for further processing. In 1983, when MS-DOS 2.0 was released, text-based interfaces were the norm, and handling user input efficiently was paramount. The design borrows concepts from Unix, such as the separation of input modes and the use of control characters for navigation. This routine laid the groundwork for text editing capabilities in MS-DOS, influencing later text editors and command-line interfaces that relied on similar mechanisms for user input handling."
-  - id: "gotch-character-filtering"
-    line_start: 42
-    line_end: 56
-    title: "Filtering and Handling Special Characters"
+    title: "Building a New Line, One Byte at a Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""
     image_caption: ""
-    content: "The GOTCH routine filters out control characters and special inputs, redirecting the flow to appropriate handlers based on the character received. This ensures that only valid input is processed and provides functionality for handling escape sequences, backspaces, and carriage returns. In the early days of personal computing, user input was often unpredictable, and robust handling of special characters was essential for creating reliable software. Tim Paterson's implementation reflects the influence of Unix-like systems, which used control characters extensively for terminal operations. This approach became a cornerstone of input handling in MS-DOS and inspired similar mechanisms in later operating systems and programming environments, including the development of text editors and shell interfaces."
+    content: "The NEWLIN routine constructs a new line in the input buffer, filtering out unwanted characters like linefeeds (LF) and handling control characters. This was a direct response to the limitations of early keyboards and console interfaces, which often sent extraneous or unexpected characters. By carefully managing these inputs, MS-DOS ensured that user commands were interpreted correctly. This technique, rooted in the constraints of 1980s hardware, laid the groundwork for robust input parsing in later systems, influencing command-line interfaces in Unix, Linux, and beyond."
+  - id: "gotch-character-filtering"
+    line_start: 42
+    line_end: 56
+    title: "Filtering Characters: The Early Days of Input Validation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input_validation"
+    image_url: ""
+    image_caption: ""
+    content: "The GOTCH routine filters out specific characters, such as control sequences and invalid inputs, ensuring that only meaningful data is processed. This was a vital feature in MS-DOS 2.0, where user input was often unpredictable due to the variety of keyboards and terminal setups. By implementing these checks, MS-DOS reduced errors and improved reliability. This approach to input validation became standard practice in software development, influencing everything from web forms to database systems."
   - id: "savch-buffer-storage"
     line_start: 57
     line_end: 69
-    title: "Storing Characters in the Buffer"
+    title: "Saving Characters: A Buffering Breakthrough"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The SAVCH routine stores characters in the buffer and updates counters to track the number of characters stored. It also handles insert mode, allowing characters to be added at specific positions. This routine exemplifies the low-level memory manipulation required in assembly programming. In the constrained environment of early PCs, efficient buffer management was crucial for performance. Tim Paterson's design ensures that the buffer is used optimally, with mechanisms to handle overflow and insertion. This technique influenced later systems where dynamic buffer management became standard, particularly in text processing applications and command-line tools."
-  - id: "bufful-buffer-overflow"
-    line_start: 73
-    line_end: 76
-    title: "Handling Buffer Overflow"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_overflow"
-    image_url: ""
-    image_caption: ""
-    content: "The BUFFUL routine handles cases where the buffer is full, signaling an overflow condition with a bell sound and returning control to the input handler. Buffer overflow was a common challenge in early computing, often leading to crashes or unpredictable behavior. Tim Paterson's implementation prevents such issues by gracefully handling overflow and ensuring the system remains stable. This approach influenced the development of secure programming practices, where buffer overflow checks became integral to software design. Modern systems continue to use similar techniques to prevent vulnerabilities and ensure reliability."
-  - id: "esc-function-key-handling"
-    line_start: 78
-    line_end: 79
-    title: "Function Key Handling with ESC"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Escape_character"
-    image_url: ""
-    image_caption: ""
-    content: "The ESC routine processes function key inputs, transferring control to an OEM-specific handler. This design allows for extensibility, enabling hardware manufacturers to define custom behaviors for function keys. In the early 1980s, PCs were highly customizable, and supporting OEM-specific features was a key selling point. Tim Paterson's implementation reflects the flexibility required to accommodate diverse hardware configurations. This approach influenced later operating systems, where extensible input handling became a standard feature, allowing developers to tailor software to specific hardware environments."
-  - id: "endlin-finalizing-input"
-    line_start: 81
-    line_end: 86
-    title: "Finalizing Input and Buffer Length"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Carriage_return"
-    image_url: ""
-    image_caption: ""
-    content: "The ENDLIN routine finalizes the input process by storing a carriage return in the buffer, echoing it to the console, and updating the buffer length. This marks the end of user input and prepares the buffer for further processing. In the context of MS-DOS, this routine ensures that input is properly terminated and ready for use by other system components. Tim Paterson's design reflects the influence of Unix-like systems, where input termination was a critical part of text processing. This technique influenced later command-line interfaces and text editors, where proper input handling became a standard feature."
-  - id: "copynew-buffer-copying"
+    content: "The SAVCH routine stores characters in the buffer while ensuring there is enough space. If the buffer is full, it signals an error by invoking a bell sound. This was a clever workaround for the lack of dynamic memory allocation in early PCs. By predefining buffer sizes and managing them explicitly, MS-DOS avoided crashes and ensured predictable behavior. This technique influenced later systems, where dynamic memory allocation and error handling became more sophisticated but still relied on the principles established here."
+  - id: "copynew-template-copy"
     line_start: 87
     line_end: 95
-    title: "Copying Final Line to User Buffer"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_copy"
+    title: "Copying Templates: A Step Toward Modern Text Editing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Template_(programming)"
     image_url: ""
     image_caption: ""
-    content: "The COPYNEW routine copies the finalized input line from the internal buffer to the user buffer, ensuring that the input is accessible to the calling program. This involves swapping segment registers and using the REP MOVSB instruction for efficient memory copying. In the constrained environment of early PCs, efficient memory operations were critical for performance. Tim Paterson's implementation reflects the low-level optimization required in assembly programming. This technique influenced later systems, where efficient memory copying became a standard practice in operating system design and application development."
-  - id: "phycrlf-non-buffered-crlf"
-    line_start: 105
-    line_end: 107
-    title: "Outputting Non-Buffered CRLF"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Newline"
+    content: "COPYNEW copies the final line from the internal buffer to the user buffer, completing the input process. This routine also swaps the segment registers to facilitate the copy operation, a common technique in 8086 assembly programming. The use of templates for editing and copying was inspired by Unix text editors, which influenced MS-DOS 2.0's design. This approach paved the way for more advanced text editing features in later software, including word processors and integrated development environments (IDEs)."
+  - id: "findold-template-scan"
+    line_start: 232
+    line_end: 243
+    title: "Scanning Templates: Finding Matches in Assembly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/String_searching_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The PHYCRLF routine outputs a carriage return and line feed without terminating the buffer, allowing for non-buffered line breaks. This is useful for formatting output without affecting the input buffer. In the early days of text-based interfaces, formatting was a key aspect of user experience. Tim Paterson's design reflects the need for flexibility in output handling, enabling developers to create more user-friendly interfaces. This technique influenced later systems, where non-buffered output became a standard feature in text processing and command-line tools."
-  - id: "putnew-restarting-input"
-    line_start: 114
-    line_end: 118
-    title: "Restarting Input After CRLF"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
+    content: "The FINDOLD routine scans the template for a match to the user's input, using REPNE SCASB to search efficiently. This was a low-level implementation of string searching, tailored to the constraints of assembly language and early hardware. By optimizing this process, MS-DOS ensured quick responses to user input, even on slow CPUs like the Intel 8088. This technique influenced later developments in string searching algorithms, which became a key area of study in computer science."
+  - id: "notfnd-error-handling"
+    line_start: 265
+    line_end: 292
+    title: "Handling Errors: When Matches Fail"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
-    content: "The PUTNEW routine restarts the input process after outputting a carriage return and line feed. It sets the cursor position and begins building a new line in the buffer. This design reflects the iterative nature of command-line input, where users often enter multiple lines of text in succession. Tim Paterson's implementation ensures that the system can handle continuous input efficiently, laying the groundwork for interactive command-line interfaces. This technique influenced later systems, where iterative input handling became a standard feature in text editors and shell environments."
+    content: "NOTFND handles cases where the user's input does not match any part of the template, discarding the return address and jumping to the GETCH routine. This was an early example of error handling in assembly language, where the lack of high-level constructs made such tasks challenging. By carefully managing the stack and program flow, MS-DOS ensured stability and reliability. This approach influenced later error handling techniques, including structured exception handling in modern programming languages."
 
 ---
 
+```asm
         procedure   $STD_CON_STRING_INPUT,NEAR   ;System call 10
 ASSUME  DS:NOTHING,ES:NOTHING
 
@@ -404,3 +381,4 @@ NOTFND:
         MOV     AL,"Z"-"@"
         JMP     SAVCH
 $STD_CON_STRING_INPUT   ENDP
+```

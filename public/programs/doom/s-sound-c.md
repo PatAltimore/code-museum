@@ -9,66 +9,70 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "s-sound-c"
 order: 4
-description: "This file defines DOOM's sound system, a critical component of its immersive gameplay experience."
+description: "This file demonstrates how DOOM implemented its immersive sound system, balancing hardware constraints and gameplay needs."
 
 summary:
-  - point: "Dynamic sound attenuation based on distance and listener orientation"
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM (1993)"
-  - point: "Stereo sound separation calculated using trigonometric functions"
-    link: "https://en.wikipedia.org/wiki/Stereo_sound"
-    link_label: "Stereo sound"
-  - point: "Efficient sound channel management to handle limited hardware resources"
+  - point: "Dynamic sound attenuation based on distance and stereo separation"
+    link: "https://en.wikipedia.org/wiki/Sound_localization"
+    link_label: "Sound Localization"
+  - point: "Efficient sound channel management for limited hardware"
     link: "https://en.wikipedia.org/wiki/Sound_card"
-    link_label: "Sound card"
-  - point: "Integration of sound effects and music with level transitions"
-    link: "https://en.wikipedia.org/wiki/Video_game_music"
-    link_label: "Video game music"
+    link_label: "Sound Card"
+  - point: "Integration of music and sound effects in a unified system"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM"
+  - point: "Caching and priority-based sound playback optimization"
+    link: "https://en.wikipedia.org/wiki/Cache_(computing)"
+    link_label: "Cache"
+  - point: "Use of pseudo-Euclidean distance for sound attenuation"
+    link: "https://en.wikipedia.org/wiki/Euclidean_distance"
+    link_label: "Euclidean Distance"
 
 enhancements:
   - id: "sound-initialization-and-channel-allocation"
     line_start: 156
     line_end: 192
-    title: "Sound Initialization and Channel Allocation"
+    title: "How DOOM Allocated Sound Channels Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
     image_caption: ""
-    content: "This section initializes the sound system, setting default volumes for sound effects and music, and allocating memory for sound channels. The channels represent the maximum number of simultaneous sounds that can be played, a limitation imposed by the hardware of the era. The use of zone memory for channel allocation reflects DOOM's broader memory management strategy, which was designed to optimize performance on machines with limited RAM. By ensuring that no sounds are cached initially, the system minimizes memory usage until sounds are actually needed. This approach was crucial for running DOOM smoothly on consumer PCs of the early 1990s, which often had less than 4 MB of RAM. The sound system's modularity and efficiency influenced later game engines, including id Software's own Quake engine, which expanded on these principles."
-  - id: "level-startup-sound-reset"
+    content: "This section initializes the sound system, setting up sound effect (SFX) and music volumes, allocating memory for sound channels, and preparing the sound lookup table. The function `S_Init` is responsible for configuring the game's audio environment, ensuring that the limited number of sound channels can be efficiently utilized during gameplay. In 1993, consumer PCs had limited audio capabilities, often restricted to basic sound cards like the Sound Blaster. DOOM's developers had to work within these constraints, dynamically allocating channels to ensure that the most critical sounds were played. This approach influenced later games, which adopted similar dynamic sound management techniques to handle audio playback on constrained hardware."
+  - id: "level-specific-sound-reset-and-music-selection"
     line_start: 197
     line_end: 248
-    title: "Level Startup: Sound Reset and Music Transition"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
+    title: "Resetting Sounds and Picking Music Per Level"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This routine resets all playing sounds at the start of a new level and selects the appropriate music track based on the game mode and level number. The decision to kill all sounds at level transitions ensures a clean auditory slate, preventing lingering effects from the previous level. The music selection logic adapts to different game modes, including the commercial release and special episodes, highlighting DOOM's flexibility in handling content variations. The inclusion of a music transition mechanism reflects the importance of audio in setting the mood and pacing of gameplay. This approach to dynamic music selection became a standard feature in many subsequent games, influencing titles like Unreal and Half-Life, which used similar techniques to enhance immersion."
-  - id: "music-playback-and-caching"
-    line_start: 650
-    line_end: 686
-    title: "Music Playback and Caching"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
+    content: "The `S_Start` function resets all playing sounds at the start of a new level and selects the appropriate music track based on the game mode and level. This ensures a clean audio slate, preventing overlapping or lingering sounds from the previous level. The music selection logic also highlights DOOM's modular design, allowing different tracks to be assigned to levels dynamically. In the early '90s, this was a novel approach, as many games used static soundtracks. By dynamically associating music with levels, DOOM enhanced its immersive experience, a technique that became standard in later games like Quake and Unreal."
+  - id: "dynamic-sound-parameters-and-pitch-variation"
+    line_start: 254
+    line_end: 395
+    title: "Dynamic Sound Adjustments and Randomized Pitch"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_localization"
     image_url: ""
     image_caption: ""
-    content: "This section handles the playback and caching of music tracks, ensuring that the appropriate track is loaded and played when needed. The caching mechanism minimizes disk I/O during gameplay, improving performance on systems with slow storage devices. By registering and playing music tracks dynamically, DOOM creates a seamless auditory experience that adapts to gameplay. The use of lump-based caching reflects the game's broader data management strategy, which was designed to optimize performance on hardware with limited resources. This approach influenced the design of subsequent game engines, including id Software's Quake engine, which expanded on these principles to handle more complex audio systems."
-  - id: "dynamic-sound-parameters"
+    content: "The `S_StartSoundAtVolume` function dynamically adjusts sound parameters like volume, stereo separation, and pitch based on the listener's position relative to the sound source. It also introduces randomized pitch variations for certain sound effects, adding a layer of realism and variety to the audio experience. This technique was critical for creating DOOM's immersive soundscape, as it simulated spatial audio effects on hardware that lacked advanced 3D sound capabilities. The use of pseudo-random pitch adjustments influenced later game engines, which adopted similar techniques to enhance realism in sound effects."
+  - id: "sound-attenuation-and-stereo-separation"
     line_start: 746
     line_end: 818
-    title: "Dynamic Sound Parameters: Distance and Orientation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Audio_signal_processing"
+    title: "The Formula Behind DOOM's Sound Attenuation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_localization"
     image_url: ""
     image_caption: ""
-    content: "This function adjusts sound parameters like volume, stereo separation, and pitch based on the listener's position relative to the sound source. It calculates an approximate Euclidean distance using a fast algorithm and determines stereo separation using trigonometric functions. The use of fixed-point arithmetic reflects the constraints of early 1990s hardware, where floating-point operations were often too slow for real-time applications. By dynamically attenuating sound based on distance and orientation, DOOM creates a spatial audio experience that enhances immersion. This technique laid the groundwork for more advanced spatial audio systems in later games, such as those found in the Unreal Engine and modern VR applications."
-  - id: "sound-channel-management"
+    content: "The `S_AdjustSoundParams` function calculates sound attenuation based on the distance between the listener and the sound source, using a pseudo-Euclidean distance formula for efficiency. It also determines stereo separation based on the relative angle of the sound source. These calculations allowed DOOM to simulate spatial audio effects on hardware with limited capabilities, creating a sense of directionality and immersion. The use of efficient distance calculations and stereo separation techniques influenced later game engines, which refined these methods to support more advanced audio systems."
+  - id: "sound-channel-priority-management"
     line_start: 823
     line_end: 875
-    title: "Sound Channel Management: Prioritization and Allocation"
+    title: "How DOOM Decided Which Sound to Play"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
     image_caption: ""
-    content: "This routine manages sound channels, ensuring that higher-priority sounds can replace lower-priority ones if all channels are occupied. The algorithm first searches for an open channel and, if none are available, identifies the channel with the lowest priority to free up space. This prioritization system was essential for handling the limited number of sound channels available on consumer sound cards of the era. By dynamically managing channels, DOOM could maintain a rich auditory experience despite hardware constraints. This approach influenced later game engines, which adopted similar strategies to optimize sound playback on resource-limited systems."
+    content: "The `S_getChannel` function manages sound channels by finding an available channel or replacing a lower-priority sound if all channels are occupied. This priority-based approach ensured that important sounds, like enemy attacks or player actions, were never missed. In the early '90s, sound cards had limited channels, often just 2-4 simultaneous sounds. DOOM's dynamic channel management was a clever solution to this constraint, influencing later games that adopted similar techniques for handling audio playback on limited hardware."
 
 ---
 
+```c
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -944,6 +948,4 @@ S_getChannel
 
     return cnum;
 }
-
-
-
+```

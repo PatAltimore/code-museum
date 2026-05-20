@@ -9,74 +9,74 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "d-scan-c"
 order: 27
-description: "This file demonstrates advanced rasterization techniques used in Quake's rendering engine, showcasing optimizations for hardware constraints of the mid-1990s."
+description: "This file contains scan-level rasterization routines for Quake's rendering engine, showcasing optimization techniques and clever hacks for 3D graphics on 1990s hardware."
 
 summary:
-  - point: "Sine wave distortion for screen warping"
-    link: "https://en.wikipedia.org/wiki/Sine_wave"
-    link_label: "Sine wave"
-  - point: "Span-based rendering for efficient texture mapping"
+  - point: "Introduces sine-wave screen warping for visual effects"
+    link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    link_label: "Quake"
+  - point: "Optimized span drawing for turbulent textures"
     link: "https://en.wikipedia.org/wiki/Texture_mapping"
-    link_label: "Texture mapping"
-  - point: "Fixed-point arithmetic optimizations for real-time performance"
+    link_label: "Texture Mapping"
+  - point: "Uses fixed-point arithmetic for performance"
     link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
-    link_label: "Fixed-point arithmetic"
-  - point: "Precomputed sine tables for turbulence effects"
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup table"
-  - point: "Z-buffer manipulation for depth calculations"
+    link_label: "Fixed-Point Arithmetic"
+  - point: "Demonstrates early Z-buffer manipulation techniques"
     link: "https://en.wikipedia.org/wiki/Z-buffering"
-    link_label: "Z-buffering"
+    link_label: "Z-Buffering"
+  - point: "Highlights Carmack's focus on hardware-specific optimizations"
+    link: "https://en.wikipedia.org/wiki/John_Carmack"
+    link_label: "John Carmack"
 
 enhancements:
-  - id: "foundation-initialization-variables"
-    line_start: 19
+  - id: "foundation-setup-for-turbulence"
+    line_start: 1
     line_end: 33
-    title: "Foundation: Initialization of Variables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"
+    title: "Foundation: Setting Up for Turbulence"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section initializes key variables used throughout the file, including pointers and fixed-point arithmetic values. The variables `r_turb_pbase`, `r_turb_pdest`, `r_turb_s`, `r_turb_t`, and others are foundational to the rasterization routines. At the time Quake was developed, memory and processing power were limited, so careful initialization and efficient use of variables were critical. These variables enable the manipulation of screen pixels and textures in the rendering process. The reliance on fixed-point arithmetic reflects the constraints of the x86 architecture, where floating-point operations were slower. This approach influenced subsequent game engines, including the Unreal Engine and Source Engine, which adopted similar optimization strategies for real-time rendering."
-  - id: "warp-screen-sine-distortion"
+    content: "This section initializes key variables for turbulent texture rendering, such as pointers to texture data and span counts. The setup reflects the constraints of 1990s hardware, where memory access and arithmetic operations were expensive. By precomputing values and using fixed-point arithmetic, the code minimizes runtime calculations, a hallmark of John Carmack's optimization philosophy. These foundational techniques laid the groundwork for efficient texture manipulation in Quake and influenced later engines like Unreal and Source."
+  - id: "screen-warping-effect"
     line_start: 36
-    line_end: 43
-    title: "D_WarpScreen: Sine Wave Screen Distortion"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sine_wave"
+    line_end: 89
+    title: "The Screen-Warping Effect"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `D_WarpScreen` function applies a sine wave distortion to the screen, creating a warping effect. This technique compresses the screen edges to prevent wrapping artifacts. By precomputing sine values and leveraging lookup tables, the function achieves real-time performance on mid-1990s hardware. John Carmack and Michael Abrash were pioneers in optimizing rendering techniques for constrained environments, and this function exemplifies their ingenuity. The warping effect became iconic in Quake, influencing visual effects in later games like Half-Life and Doom 3. Today, similar techniques are used in shaders for modern graphics APIs like OpenGL and Vulkan."
-  - id: "draw-turbulent-span"
-    line_start: 92
+    content: "The `D_WarpScreen` function creates a sine-wave distortion effect on the screen, a signature visual feature of Quake. This effect compresses the edges to prevent wrapping artifacts, demonstrating attention to detail in visual fidelity. The algorithm uses precomputed sine tables for efficiency, a common technique in the era to avoid costly trigonometric calculations. This effect became iconic, influencing later games and graphics engines to incorporate similar distortion techniques for atmosphere or special effects."
+  - id: "turbulent-span-drawing"
+    line_start: 96
     line_end: 111
-    title: "D_DrawTurbulent8Span: Turbulent Texture Mapping"
+    title: "Span Drawing for Turbulent Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
-    content: "This subroutine maps textures with a turbulent effect, using precomputed sine tables to distort texture coordinates. The algorithm iterates over spans of pixels, calculating distorted texture indices for each pixel. The use of fixed-point arithmetic ensures efficient computation on x86 processors, which were prevalent at the time. The turbulent effect added visual complexity to Quake's environments, enhancing immersion. Techniques like this laid the groundwork for procedural texture generation in later engines, such as Unity and Unreal Engine."
-  - id: "turbulent-span-rendering"
-    line_start: 113
-    line_end: 138
-    title: "Turbulent8: Span-Based Turbulence Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Span_(computer_graphics)"
-    image_url: ""
-    image_caption: ""
-    content: "The `Turbulent8` function processes spans of pixels to apply turbulence effects. It calculates texture coordinates using fixed-point arithmetic and clamps values to prevent artifacts. The function iterates over spans, ensuring efficient rendering by minimizing redundant calculations. Span-based rendering was a common optimization in the 1990s, allowing developers to achieve smooth visual effects on hardware with limited capabilities. This approach influenced later graphics techniques, including tile-based rendering in mobile GPUs and procedural effects in modern game engines."
-  - id: "draw-spans-texture-mapping"
-    line_start: 248
-    line_end: 284
-    title: "D_DrawSpans8: Efficient Texture Mapping"
+    content: "The `D_DrawTurbulent8Span` function handles drawing spans of turbulent textures, using fixed-point arithmetic to calculate texture coordinates. This approach balances precision and performance, critical for real-time rendering on 1990s CPUs. The turbulence effect adds visual complexity to textures, enhancing immersion in Quake's 3D environments. Techniques like this paved the way for advanced texture manipulation in later engines, including dynamic texture effects in games like Half-Life and Doom 3."
+  - id: "turbulent-texture-rendering"
+    line_start: 117
+    line_end: 245
+    title: "Rendering Turbulent Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
-    content: "The `D_DrawSpans8` function maps textures to spans of pixels, using fixed-point arithmetic for efficiency. It calculates texture coordinates and steps across spans, ensuring smooth rendering. The function clamps values to prevent artifacts, a crucial consideration for real-time graphics. This method was part of Quake's innovative rendering pipeline, enabling detailed textures on constrained hardware. Techniques like this influenced the development of texture mapping algorithms in later engines, including Unreal Engine and CryEngine."
-  - id: "z-buffer-depth-calculations"
-    line_start: 386
-    line_end: 422
-    title: "D_DrawZSpans: Z-Buffer Depth Calculations"
+    content: "The `Turbulent8` function orchestrates the rendering of turbulent textures by calculating texture coordinates and invoking span-drawing routines. It uses sine tables to create the turbulence effect, a clever optimization that avoids runtime trigonometric calculations. This function exemplifies the blend of mathematical precision and performance tuning that defined Quake's rendering engine. The turbulent texture effect became a staple in graphics programming, influencing techniques in games like Unreal Tournament and modern shaders."
+  - id: "optimized-span-drawing"
+    line_start: 252
+    line_end: 381
+    title: "Optimized Span Drawing for 8-bit Textures"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
+    image_url: ""
+    image_caption: ""
+    content: "The `D_DrawSpans8` function draws spans of 8-bit textures, optimizing for memory and CPU constraints. By dividing spans into smaller chunks and precomputing texture coordinates, the code minimizes runtime overhead. This function showcases Carmack's mastery of low-level optimization, a skill that set Quake apart from its contemporaries. The techniques here influenced texture rendering in later engines, including the Quake II and Unreal engines, which built upon these principles for more complex environments."
+  - id: "z-buffer-span-drawing"
+    line_start: 390
+    line_end: 444
+    title: "Z-Buffer Span Drawing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"
     image_url: ""
     image_caption: ""
-    content: "The `D_DrawZSpans` function updates the Z-buffer, which stores depth information for each pixel. It calculates depth values using fixed-point arithmetic and writes them to the buffer. This ensures proper occlusion of objects, a key feature of 3D rendering. Z-buffering was a relatively new technique in the mid-1990s, and its implementation in Quake helped popularize it in the gaming industry. Today, Z-buffering is a standard feature in graphics APIs like DirectX and OpenGL, enabling realistic depth perception in modern games."
+    content: "The `D_DrawZSpans` function manipulates the Z-buffer, a critical component for depth management in 3D rendering. By calculating depth values for each span, the function ensures proper occlusion, allowing closer objects to obscure farther ones. This implementation relies on fixed-point arithmetic and assumes floating-point exceptions are disabled, reflecting the hardware constraints of the time. Z-buffering became a standard technique in 3D graphics, influencing engines like Unity and Unreal, which continue to rely on similar principles for depth management."
 
 ---
 

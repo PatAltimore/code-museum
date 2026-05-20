@@ -9,85 +9,70 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-sd-a-asm"
 order: 23
-description: "This file implements the sound manager for Wolfenstein 3D, showcasing id Software's innovative use of assembly language to control PC speaker, AdLib, and Sound Source hardware."
+description: "This file implements the sound manager for Wolfenstein 3D, showcasing ingenious techniques to handle sound effects on limited hardware."
 
 summary:
-  - point: "Defines data structures for sound effects and hardware interaction"
+  - point: "Introduces efficient sound handling for PC speaker and AdLib hardware"
     link: "https://en.wikipedia.org/wiki/PC_speaker"
     link_label: "PC Speaker"
-  - point: "Implements macros for sound effect control and timing"
-    link: "https://en.wikipedia.org/wiki/AdLib"
-    link_label: "AdLib"
-  - point: "Includes interrupt service routines for handling sound playback"
-    link: "https://en.wikipedia.org/wiki/Interrupt_handler"
-    link_label: "Interrupt Handler"
-  - point: "Optimizes sound playback for limited hardware capabilities"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
-  - point: "Demonstrates early techniques for real-time audio in games"
-    link: "https://en.wikipedia.org/wiki/Real-time_computing"
-    link_label: "Real-Time Computing"
+  - point: "Uses assembly macros to streamline sound effect processing"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
+  - point: "Demonstrates interrupt-driven sound playback for real-time effects"
+    link: "https://en.wikipedia.org/wiki/Interrupt"
+    link_label: "Interrupts"
+  - point: "Optimizes sound playback by leveraging lookup tables and hardware registers"
+    link: "https://en.wikipedia.org/wiki/Lookup_table"
+    link_label: "Lookup Table"
+  - point: "Pushes the limits of 1992-era hardware for immersive audio experiences"
+    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    link_label: "Wolfenstein 3D"
 
 enhancements:
-  - id: "data-segment-definitions"
+  - id: "data-segment-setup"
     line_start: 17
     line_end: 81
-    title: "Data segment: sound and timing variables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
+    title: "Why Sound Data Needs Its Own Segment"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
     image_url: ""
     image_caption: ""
-    content: "This section defines the data segment for the sound manager, including variables for PC speaker, AdLib, and Sound Source sound effects. The variables track sound playback state, such as active sound pointers, lengths, and control flags. At the time, managing audio hardware directly required intimate knowledge of the hardware registers and memory layout. The inclusion of lookup tables, such as 'pcdtab', demonstrates a technique for mapping sound data to hardware-specific formats. This approach reflects the constraints of early 1990s hardware, where developers had to work within the limited memory and processing power of MS-DOS systems. These definitions laid the groundwork for real-time sound playback in Wolfenstein 3D, influencing later games that adopted similar techniques for managing audio."
-  - id: "code-segment-initialization"
-    line_start: 83
-    line_end: 156
-    title: "Code segment: initialization routines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    content: "This section defines the DATASEG, which houses external variables and constants required for sound management. The programmer sets aside a dedicated memory segment for sound-related data, ensuring efficient access and organization. At the time, memory segmentation was a fundamental part of x86 programming, as the Intel 286 processor required programmers to manage memory in discrete segments. By isolating sound-related variables, id Software could optimize performance and simplify debugging. This approach reflects the constraints of early DOS systems, where memory was scarce and every byte counted. The variables defined here, such as `pcSound` and `alSound`, represent pointers and counters for sound effects, while lookup tables like `pcdtab` translate raw sound data into frequencies. This segmentation strategy influenced later game engines, which adopted similar practices for organizing memory-intensive operations like audio and graphics."
+  - id: "commonstart-macro"
+    line_start: 99
+    line_end: 121
+    title: "The Macro That Simplified Everything"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Macro_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The code segment begins with initialization routines, including 'SDL_SetDS', which sets the data segment register to ensure proper memory access. This routine is crucial for maintaining consistency across different parts of the program, especially when dealing with hardware interrupts. The use of macros like 'COMMONSTART' and 'DOFX' encapsulates repetitive tasks, such as setting up sound effects or handling hardware registers. These macros highlight the efficiency-focused mindset of assembly programming, where minimizing code duplication was essential due to memory constraints. The initialization routines ensure that the sound manager is ready to handle real-time audio playback, a key feature of Wolfenstein 3D's immersive gameplay."
-  - id: "pc-speaker-control"
-    line_start: 158
+    content: "The `COMMONSTART` macro encapsulates boilerplate setup code for sound routines. It pushes registers onto the stack, sets the data segment, and increments a debug counter. Macros like this were essential in assembly programming, reducing repetitive code and minimizing errors. Debugging tools were rudimentary in 1992, so macros provided a way to standardize operations across multiple routines. The inclusion of debug-specific instructions, such as changing the overscan color, highlights the team's focus on testing under constrained conditions. This macro reflects the meticulous attention to detail required to develop complex software on early PCs. The practice of using macros for common setup tasks influenced later programming paradigms, including inline functions in C and preprocessor directives in modern languages."
+  - id: "pc-speaker-sound-effect"
+    line_start: 123
     line_end: 175
-    title: "PC speaker: turning sound on and off"
+    title: "How Wolfenstein Made the PC Speaker Sing"
     wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
     image_url: ""
     image_caption: ""
-    content: "This section handles PC speaker sound effects, including turning the speaker on and off based on the current sound sample. The code uses hardware-specific instructions, such as 'out' to send data to the speaker's control register. The logic ensures that sounds are played efficiently, avoiding redundant operations when the same sample is repeated. At the time, the PC speaker was a common audio output device, but its capabilities were limited compared to modern sound cards. By directly manipulating the hardware, id Software achieved real-time sound playback that contributed to the game's fast-paced action. This approach influenced subsequent games that sought to optimize audio performance on similar hardware."
-  - id: "adlib-sound-effects"
+    content: "This section handles sound effects for the PC speaker, a primitive audio device capable of producing simple tones. The code uses a lookup table (`pcSoundLookup`) to map sound data to frequencies, then manipulates hardware registers to play the sound. The speaker is toggled on and off using precise timing, creating the illusion of more complex audio. In the early 1990s, the PC speaker was the most common sound output device, but its limitations forced developers to innovate. John Carmack and the team at id Software used clever techniques like frequency modulation and rapid toggling to enhance the speaker's capabilities. These methods were groundbreaking at the time, inspiring other developers to push the boundaries of low-cost audio hardware. The PC speaker routines in Wolfenstein 3D laid the groundwork for more sophisticated sound engines in later games."
+  - id: "adlib-sound-effect"
     line_start: 176
     line_end: 202
-    title: "AdLib sound effects: frequency control"
+    title: "AdLib: The Sound Card That Changed Gaming"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
     image_url: ""
     image_caption: ""
-    content: "This section manages AdLib sound effects, including setting frequency values for playback. The code interacts with the AdLib hardware using the 'alOut' macro, which sends data to specific registers. The logic ensures that sound effects are played smoothly and stops playback when the sound length reaches zero. The AdLib card was a popular sound device in the early 1990s, offering improved audio capabilities compared to the PC speaker. By leveraging the AdLib's features, id Software enhanced the auditory experience of Wolfenstein 3D, setting a standard for immersive sound in games. This technique influenced later titles that utilized AdLib or similar sound cards for richer audio."
-  - id: "timer-management"
-    line_start: 203
-    line_end: 217
-    title: "Timer management for sound synchronization"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
-    image_url: ""
-    image_caption: ""
-    content: "This section includes macros for managing timers, ensuring sound effects are synchronized with gameplay. The 'TIME' macro updates local and global time counters, providing a mechanism for tracking elapsed time. This is crucial for coordinating sound playback with other game events. In the early 1990s, real-time synchronization was a significant challenge due to the limited processing power of MS-DOS systems. By implementing efficient timer management, id Software ensured that audio playback remained consistent, even during intense gameplay. This approach influenced later real-time systems, where precise timing is critical for maintaining performance and user experience."
-  - id: "interrupt-service-routine-extreme"
+    content: "This section manages sound effects for the AdLib sound card, a popular audio device in the early 1990s. The code interacts with the AdLib's FM synthesis capabilities, sending frequency and block data to its registers via the `alOut` routine. The AdLib card was revolutionary, offering richer audio compared to the PC speaker. Its FM synthesis allowed developers to create dynamic soundscapes, enhancing immersion in games like Wolfenstein 3D. The routines here demonstrate id Software's mastery of hardware-level programming, using direct register manipulation to achieve precise control over audio playback. The AdLib's influence extended far beyond Wolfenstein, shaping the soundtracks of countless DOS games and establishing FM synthesis as a staple of early PC gaming."
+  - id: "timer-driven-sound-service"
     line_start: 276
     line_end: 337
-    title: "Extreme interrupt service routine: 7000Hz"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    title: "Interrupts: The Secret to Real-Time Sound"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
     image_caption: ""
-    content: "This interrupt service routine handles high-frequency (7000Hz) timer interrupts, enabling rapid updates for sound playback. The routine processes PC speaker sound effects, translating sound data into hardware-specific formats and sending it to the speaker. The high interrupt frequency ensures smooth audio playback, a critical feature for Wolfenstein 3D's immersive experience. At the time, achieving this level of performance required deep knowledge of hardware and assembly programming. This routine exemplifies id Software's commitment to pushing the limits of MS-DOS systems, influencing later games that sought to optimize audio and gameplay synchronization."
-  - id: "sound-source-processing"
-    line_start: 439
-    line_end: 474
-    title: "Sound Source: FIFO and sample playback"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Source"
-    image_url: ""
-    image_caption: ""
-    content: "This section processes Sound Source samples, checking FIFO status and sending data to the hardware. The logic ensures that samples are played sequentially and stops playback when the sample length reaches zero. The Sound Source was an early audio device that provided improved sound quality compared to the PC speaker. By directly interacting with the hardware, id Software achieved real-time audio playback that enhanced Wolfenstein 3D's gameplay. This technique influenced later games that utilized similar hardware for richer audio experiences."
+    content: "The `SDL_t0ExtremeAsmService` routine handles sound playback using a high-frequency timer interrupt. By executing sound routines during 7000Hz interrupts, the code achieves real-time audio effects. Interrupt-driven programming was a hallmark of performance-critical applications in the early 1990s. It allowed developers to synchronize audio with gameplay without sacrificing responsiveness. This routine showcases id Software's ability to exploit hardware features for maximum efficiency. The use of interrupts for sound playback became a standard technique in game development, influencing audio engines in later titles like Doom and Quake. The legacy of this approach is evident in modern real-time systems, where interrupt handling remains a cornerstone of performance optimization."
 
 ---
 
+```asm
 ;
 ;	ID_SD_A.ASM
 ;	Id Sound Manager assembly stuff
@@ -614,3 +599,4 @@ extreme		dw	?
 	ENDP
 
 	END
+```

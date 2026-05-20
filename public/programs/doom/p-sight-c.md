@@ -9,71 +9,64 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-sight-c"
 order: 32
-description: "This file implements line-of-sight and visibility checks, a critical component of DOOM's AI and rendering systems."
+description: "Line-of-sight and visibility checks in DOOM's engine, enabling efficient enemy AI and player interaction."
 
 summary:
-  - point: "Uses a REJECT table for efficient visibility checks"
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM (1993)"
-  - point: "Employs BSP trees for spatial partitioning"
+  - point: "Uses a REJECT table to optimize visibility checks"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)#Technology"
+    link_label: "DOOM Technology"
+  - point: "Implements BSP traversal for spatial calculations"
     link: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     link_label: "Binary Space Partitioning"
-  - point: "Optimized for real-time performance on 1990s hardware"
-    link: "https://en.wikipedia.org/wiki/Intel_80486"
-    link_label: "Intel 80486"
+  - point: "Introduces efficient slope-based occlusion testing"
+    link: "https://en.wikipedia.org/wiki/Visibility_(geometry)"
+    link_label: "Visibility in Geometry"
 
 enhancements:
-  - id: "line-of-sight-checks"
-    line_start: 37
-    line_end: 47
-    title: "Line-of-sight calculations: the groundwork"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines key variables used in DOOM's line-of-sight calculations, such as `sightzstart`, `topslope`, and `bottomslope`. These variables represent the eye level of the observer and the slopes to the top and bottom of the target, respectively. The groundwork laid here is essential for determining whether an object is visible from a given point in the game world. In the early 1990s, real-time visibility checks were computationally expensive, especially on hardware like the Intel 80486. John Carmack's approach, leveraging precomputed data structures and efficient mathematical operations, allowed DOOM to perform these checks rapidly, enabling its fast-paced gameplay. This foundational work influenced later games and engines, including Quake and Unreal Engine, which built upon similar principles for visibility and rendering optimization."
-  - id: "divline-side-calculation"
+  - id: "divline-side-classification"
     line_start: 50
     line_end: 99
-    title: "Determining sides of a dividing line"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
+    title: "Classifying Points: Front, Back, or On?"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Line_(geometry)"
     image_url: ""
     image_caption: ""
-    content: "The `P_DivlineSide` function determines whether a point lies on the front, back, or directly on a dividing line. This is a fundamental operation in DOOM's spatial partitioning system, which uses Binary Space Partitioning (BSP) trees to organize the game world into manageable segments. BSP trees were a revolutionary technique for real-time rendering and collision detection, enabling efficient traversal and visibility checks. Carmack adapted BSP trees from academic research into computational geometry, applying them to the constraints of consumer-grade PCs. This method became a cornerstone of game engine design, influencing titles like Half-Life and engines like Source and Unity."
-  - id: "intercept-vector-calculation"
+    content: "The `P_DivlineSide` function classifies a point relative to a dividing line, returning whether the point is on the front side, back side, or directly on the line. This geometric classification is foundational for DOOM's spatial calculations, including visibility checks and BSP traversal. The function uses fixed-point arithmetic to perform comparisons efficiently, a necessity given the hardware constraints of the era. By determining the relative position of points, the engine can decide which subsectors to process, avoiding unnecessary calculations. This technique was inspired by computational geometry methods used in CAD software and adapted for real-time applications in gaming. The concept of dividing space into regions influenced later engines, including Quake's 3D BSP system, which extended these principles into true 3D environments."
+  - id: "intercept-point-calculation"
     line_start: 102
     line_end: 128
-    title: "Finding intersection points between vectors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    title: "Finding Intercept Points in Fixed-Point Math"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
-    content: "The `P_InterceptVector2` function calculates the fractional intercept point between two vectors. This is used to determine where lines intersect, a critical operation for visibility checks and collision detection. The function employs fixed-point arithmetic, a technique that was essential for performance on hardware lacking floating-point units. By avoiding floating-point calculations, Carmack ensured that DOOM could run smoothly on a wide range of systems, including those with limited computational power. This optimization was part of a broader trend in 1990s game development, where developers often used fixed-point math to achieve real-time performance. The technique influenced later games and engines, particularly those targeting embedded systems or mobile platforms."
-  - id: "subsector-crossing-check"
+    content: "The `P_InterceptVector2` function calculates the fractional intercept point between two lines, a critical operation for determining whether a line crosses a subsector. This function uses fixed-point arithmetic, a method that avoids the performance penalties of floating-point calculations on early CPUs like the Intel 486. Fixed-point math was a hallmark of DOOM's engine, enabling precise calculations with minimal computational overhead. The intercept calculation is used in visibility checks and collision detection, ensuring that DOOM's fast-paced gameplay remains smooth even in complex environments. This reliance on fixed-point arithmetic influenced later engines, such as Build (used in Duke Nukem 3D), which also prioritized performance on limited hardware. Modern engines have largely transitioned to floating-point math, but DOOM's efficient techniques remain a benchmark in game optimization history."
+  - id: "slope-based-occlusion-testing"
     line_start: 130
-    line_end: 247
-    title: "Traversing subsectors for visibility checks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
+    line_end: 248
+    title: "Slope Calculations: DOOM's Clever Occlusion Test"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(geometry)"
     image_url: ""
     image_caption: ""
-    content: "The `P_CrossSubsector` function determines whether a line crosses a given subsector successfully. Subsector traversal is a key part of DOOM's BSP-based visibility system, allowing the engine to efficiently check for obstructions between two points. This function accounts for walls, floors, and ceilings, ensuring that visibility checks respect the geometry of the game world. Carmack's implementation of BSP trees for spatial partitioning was groundbreaking, enabling DOOM to handle complex environments with high performance. This approach became a standard in game development, influencing engines like Quake, Unreal Engine, and Source, which all use spatial partitioning techniques for rendering and collision detection."
-  - id: "bsp-node-crossing"
+    content: "The `P_CrossSubsector` function performs detailed visibility checks by calculating slopes to determine whether an object is occluded. It examines the geometry of subsectors, comparing floor and ceiling heights to detect potential blockers. If the slopes of the top and bottom edges of a target overlap, the line of sight is considered obstructed. This slope-based approach was a clever solution to the problem of occlusion in a 2.5D engine, where true 3D calculations were infeasible on consumer hardware. By using fixed-point arithmetic and precomputed geometry data, DOOM achieved fast and accurate visibility checks, enabling realistic enemy AI and player interactions. This technique was a precursor to more advanced occlusion culling methods used in modern engines, such as Umbra's visibility solutions in Unity and Unreal."
+  - id: "bsp-traversal-for-visibility"
     line_start: 252
     line_end: 290
-    title: "Traversing BSP nodes for visibility checks"
+    title: "BSP Traversal: The Backbone of DOOM's World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
-    content: "The `P_CrossBSPNode` function checks whether a line crosses a BSP node successfully. BSP nodes are hierarchical partitions of the game world, allowing DOOM to perform efficient visibility and collision checks. This function recursively traverses the BSP tree, ensuring that all relevant nodes are checked for obstructions. The use of BSP trees was a significant innovation in DOOM, enabling the game to render complex environments in real time on 1990s hardware. Carmack's implementation of BSP trees influenced not only subsequent id Software titles like Quake but also other engines and games, including Unreal Engine and Half-Life, which adopted similar spatial partitioning techniques."
-  - id: "final-line-of-sight-check"
+    content: "The `P_CrossBSPNode` function traverses DOOM's binary space partitioning (BSP) tree to determine whether a line crosses a given node. BSP trees were a groundbreaking spatial representation technique in the early 1990s, allowing efficient partitioning of 2D and 3D spaces. In DOOM, the BSP tree organizes the game world into convex subsectors, enabling rapid visibility checks and collision detection. The traversal algorithm recursively checks which side of a partition plane the line starts and ends on, ensuring that only relevant subsectors are processed. This approach minimized the computational overhead of rendering and AI calculations, crucial for achieving DOOM's smooth performance on 486-class CPUs. BSP trees became a standard in game development, influencing titles like Quake and Half-Life. Even modern engines like Source and Unreal incorporate similar spatial partitioning techniques for efficient scene management."
+  - id: "reject-table-optimization"
     line_start: 293
     line_end: 347
-    title: "Comprehensive line-of-sight determination"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    title: "How DOOM's REJECT Table Saved CPU Cycles"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)#Technology"
     image_url: ""
     image_caption: ""
-    content: "The `P_CheckSight` function performs the final line-of-sight check between two objects, using the REJECT table and BSP traversal. The REJECT table is a precomputed data structure that quickly eliminates impossible visibility scenarios, while BSP traversal handles more detailed checks. This combination of techniques allowed DOOM to perform visibility calculations efficiently, supporting its fast-paced gameplay and dynamic AI behavior. The REJECT table and BSP-based visibility system were part of Carmack's broader effort to optimize DOOM for real-time performance on consumer PCs. These techniques influenced later games and engines, particularly those requiring efficient visibility and collision detection, such as Quake, Unreal Engine, and Source."
+    content: "The `P_CheckSight` function is the centerpiece of DOOM's visibility system, determining whether one object can 'see' another. It begins by consulting the REJECT table, a precomputed matrix that flags pairs of sectors as potentially unconnected. This avoids expensive geometric calculations for objects that are trivially blocked by walls or other structures. The REJECT table was generated during map compilation, leveraging the binary space partitioning (BSP) structure to precompute relationships between sectors. In the early 1990s, CPUs like the Intel 486 were limited in processing power, making such optimizations essential for maintaining DOOM's fast-paced gameplay. By skipping unnecessary checks, the REJECT table allowed DOOM to handle complex environments with dozens of enemies without overwhelming the hardware. This technique influenced later games, including Quake, which further refined spatial optimization methods. Today, similar precomputed visibility techniques are used in engines like Unreal and Unity to optimize rendering and AI."
 
 ---
 
+```c
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -421,4 +414,4 @@ P_CheckSight
     // the head node is the last node output
     return P_CrossBSPNode (numnodes-1);	
 }
-
+```

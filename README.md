@@ -1,5 +1,7 @@
 # Code Museum
 
+**Live site:** https://blue-rock-0e6a0831e-3.westus2.7.azurestaticapps.net/
+
 A code reader for historically significant open-sourced programs. Each featured file is presented with inline annotations that explain what the code does, why it matters, and the story behind it — a documentary in source code form.
 
 ## Featured programs

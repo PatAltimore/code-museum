@@ -9,77 +9,78 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "dev"
 order: 28
-description: "This file defines device call routines for MS-DOS 2.0, enabling interaction with hardware and files in a modular, Unix-inspired manner."
+description: "Device call routines in MS-DOS v2.0, showcasing the evolution of driver and I/O handling in early operating systems."
 
 summary:
-  - point: "Introduces modular device call routines for MS-DOS 2.0"
+  - point: "Introduced modular device call routines for MS-DOS, enabling flexible I/O operations"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Demonstrates early use of structured device I/O handling"
+  - point: "Demonstrates early use of function codes for device and file I/O"
     link: "https://en.wikipedia.org/wiki/Device_driver"
     link_label: "Device driver"
-  - point: "Reflects influence of Unix on MS-DOS 2.0 design"
-    link: "https://en.wikipedia.org/wiki/Unix"
-    link_label: "Unix"
-  - point: "Highlights assembly-level optimization for 8086 hardware"
+  - point: "Highlights constraints of 8086 assembly programming for operating system development"
     link: "https://en.wikipedia.org/wiki/Intel_8086"
     link_label: "Intel 8086"
-  - point: "Key step in Microsoft's OEM licensing strategy"
-    link: "https://en.wikipedia.org/wiki/MS-DOS#OEM_licensing"
-    link_label: "OEM licensing"
+  - point: "Showcases Unix-inspired modularity in MS-DOS v2.0's rewrite"
+    link: "https://en.wikipedia.org/wiki/Unix"
+    link_label: "Unix"
+  - point: "Formed the basis for MS-DOS's widespread OEM adoption and influence"
+    link: "https://en.wikipedia.org/wiki/IBM_PC"
+    link_label: "IBM PC"
 
 enhancements:
-  - id: "include-dosseg-setup"
-    line_start: 1
-    line_end: 29
-    title: "Setting up segment assumptions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
+  - id: "include-kanji-flag"
+    line_start: 13
+    line_end: 17
+    title: "Why MS-DOS Checked for Kanji Support"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""
     image_caption: ""
-    content: "This section sets up the memory segmentation assumptions for the MS-DOS device call routines. The `INCLUDE DOSSEG.ASM` directive ensures that the code adheres to the DOS memory model, where segments are divided into code, data, and stack. This segmentation was crucial for running MS-DOS on the Intel 8086 processor, which had a 20-bit address space and relied heavily on segmented memory. By defining these assumptions early, the code establishes a foundation for consistent memory access throughout the file. This approach reflects the constraints of the 1980s hardware environment, where efficient use of memory was paramount. Segmentation influenced later operating systems, including Windows 3.x, which retained compatibility with MS-DOS memory models."
-  - id: "name-dev-variable-definitions"
+    content: "This section defines a conditional flag for Kanji support, setting it to false by default. Kanji, the logographic characters used in Japanese writing, posed unique challenges for early computing systems due to their complexity and encoding requirements. By 1983, Japan was emerging as a major player in the personal computer market, and software compatibility with Kanji was becoming a competitive necessity. MS-DOS v2.0 included hooks for Kanji support, reflecting Microsoft's awareness of international markets. This decision foreshadowed the eventual localization of software for global audiences, a practice now standard in the industry. While Kanji support in MS-DOS was rudimentary, it paved the way for more sophisticated internationalization efforts in later operating systems like Windows."
+  - id: "name-device-variables"
     line_start: 43
-    line_end: 89
-    title: "Defining device-related variables"
+    line_end: 83
+    title: "The Variables That Defined Device I/O"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "This section defines key variables used for device I/O operations, such as `IOXAD`, `DEVIOBUF`, and `DMAAdd`. These variables represent memory locations for device buffers, transfer addresses, and other critical parameters. By centralizing these definitions, the code ensures modularity and reusability, allowing device drivers to interact with hardware in a standardized way. Tim Paterson's design reflects the influence of Unix's modular approach to device handling, adapted for the constraints of the 8086 architecture. This modularity became a hallmark of MS-DOS, enabling OEMs to extend functionality by adding custom device drivers. The concept of standardized device interaction persists in modern operating systems, where APIs like Windows Driver Model (WDM) and Linux's device file system build on these early principles."
+    content: "This section defines key variables used throughout MS-DOS's device call routines, such as IOXAD, IOSCNT, DEVIOBUF, and others. These variables represent the state and parameters of device I/O operations, including buffer addresses, function codes, and device attributes. In the constrained environment of 8086 assembly, every byte mattered, and these variables were meticulously chosen to balance functionality and memory usage. Tim Paterson and Microsoft's engineers designed these abstractions to make device handling modular and extensible, inspired by Unix's device driver model. This modularity allowed MS-DOS to support a wide range of hardware, contributing to its success as an OEM-friendly operating system. Later systems like Windows and Linux built on these principles, creating more sophisticated driver architectures."
   - id: "iofunc-retry-error-handling"
-    line_start: 87
+    line_start: 91
     line_end: 165
-    title: "Retrying I/O operations on error"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
+    title: "Retrying I/O: A Clever Error Handling Mechanism"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
-    content: "The `IOFUNC_RETRY` routine implements error handling for device I/O operations. If an error occurs during a device call, the routine retries the operation, ensuring robustness in the face of transient hardware issues. This approach reflects the need for reliability in early personal computers, where hardware failures were common. By preserving the state of registers and memory, the routine minimizes disruption to the system while attempting recovery. Tim Paterson's design prioritizes user experience, ensuring that MS-DOS remains functional even under adverse conditions. Error handling routines like this influenced later operating systems, where techniques such as retries and fallback mechanisms became standard practice in device drivers and system APIs."
-  - id: "iotodev-device-specific-handling"
+    content: "The IOFUNC_RETRY subroutine implements error handling for device I/O operations by retrying failed calls. It checks the status of the device and determines whether to retry or ignore the error, ensuring the system doesn't enter an infinite loop. This approach reflects the constraints of early hardware, where devices were often slow or unreliable, and software had to compensate. Tim Paterson's design prioritized robustness, allowing MS-DOS to handle errors gracefully without crashing. This technique influenced later operating systems, where retry mechanisms became standard for handling transient hardware failures. It also highlights the ingenuity required to build reliable systems on early PCs, where hardware limitations were a constant challenge."
+  - id: "iotodev-device-vs-file"
     line_start: 179
     line_end: 229
-    title: "Routing I/O to devices"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
+    title: "How MS-DOS Distinguished Devices from Files"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The `IOTODEV` routine routes I/O operations to specific devices based on the function code in the `AH` register. It uses bitwise operations and conditional jumps to determine the appropriate action, such as reading, writing, or flushing a device. This logic reflects the modularity of MS-DOS 2.0, where device-specific operations are abstracted into a unified interface. The routine's design is influenced by Unix's device file model, adapted for the constraints of the 8086 processor. By standardizing device interaction, MS-DOS enabled OEMs to develop custom hardware drivers without modifying the core operating system. This abstraction became a foundational principle for later systems, including Windows NT and Linux, which use similar models for device interaction."
+    content: "The IOTODEV subroutine checks whether an I/O request is directed at a device or a file, branching accordingly. This distinction is fundamental to MS-DOS's design, as devices and files are treated differently in terms of I/O operations. Devices often require direct interaction with hardware, while files involve disk-based operations. This separation was inspired by Unix's philosophy of treating devices as files but adapted to the constraints of the 8086 architecture. The modularity of this approach allowed MS-DOS to support a wide range of devices and storage media, contributing to its flexibility and widespread adoption. Modern operating systems continue to build on this concept, integrating device and file handling into unified frameworks."
   - id: "devname-device-name-lookup"
     line_start: 651
-    line_end: 689
-    title: "Searching for device names"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
-    image_url: ""
-    image_caption: ""
-    content: "The `DevName` routine searches for a device name in the list of I/O drivers. It compares the provided name against the names stored in the device headers, using string comparison instructions like `CMPSW`. If a match is found, the routine sets pointers to the device header and updates the status register. This mechanism reflects the influence of Unix's device file model, where devices are represented as files with names. By implementing name-based lookup, MS-DOS simplifies device management for users and developers, allowing hardware to be accessed using familiar file-like interfaces. This concept persists in modern operating systems, where devices are often represented as files or objects with unique identifiers."
-  - id: "setcallhead-device-call-header"
-    line_start: 755
-    line_end: 863
-    title: "Preparing device call headers"
+    line_end: 651
+    title: "Finding Devices by Name in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "The `SETCALLHEAD` routine prepares the device call header, a structured block of data used to communicate with hardware devices. It populates fields such as the transfer address, record count, and media byte, ensuring that the device receives all necessary information for the requested operation. This structured approach reflects the influence of Unix's modular device handling, adapted for the constraints of MS-DOS and the 8086 processor. By standardizing the format of device calls, MS-DOS enables consistent interaction with a wide range of hardware. This design principle influenced later operating systems, where APIs like Windows Driver Model (WDM) and Linux's device file system use similar structured communication methods."
+    content: "The DevName subroutine searches for a device by name in the list of I/O drivers, setting flags and pointers based on the result. This functionality was crucial for MS-DOS's modular device handling, allowing programs to interact with devices dynamically. By abstracting device names, MS-DOS enabled developers to write software that could run on a variety of hardware configurations without modification. This approach was inspired by Unix's device naming conventions but adapted to the simpler architecture of the IBM PC. The ability to dynamically locate and interact with devices became a cornerstone of modern operating systems, influencing driver models in Windows, Linux, and beyond."
+  - id: "setcallhead-device-call-header"
+    line_start: 755
+    line_end: 819
+    title: "Setting Up Device Calls: A Modular Header"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
+    image_url: ""
+    image_caption: ""
+    content: "The SETCALLHEAD subroutine prepares the device call header, a structure containing all necessary parameters for a device operation. This modular design allowed MS-DOS to standardize interactions with devices, simplifying development and debugging. The header includes fields for transfer addresses, record counts, and media bytes, encapsulating the state of the operation. This design reflects the influence of Unix's device driver model, adapted to the constraints of 8086 assembly. By standardizing device calls, MS-DOS enabled compatibility across a wide range of hardware, making it attractive to OEMs. This concept of modular headers persists in modern operating systems, where device calls are abstracted through APIs and frameworks."
 
 ---
 
+```asm
 ;
 
 ; Device call routines for MSDOS
@@ -958,3 +959,4 @@ CODE    ENDS
 
                                                                                                     
    
+```

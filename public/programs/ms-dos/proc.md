@@ -9,50 +9,54 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "proc"
 order: 40
-description: "This file contains process control system calls for MS-DOS 2.0, showcasing foundational techniques for multitasking and memory management in early personal computing."
+description: "This file contains process control routines for MS-DOS v2.0, showcasing the evolution of operating system design in the early 1980s."
 
 summary:
-  - point: "Introduces process control system calls like $WAIT, $Keep_process, and $EXIT for MS-DOS"
+  - point: "Introduced process management inspired by Unix-like systems"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Demonstrates memory management techniques for resident programs"
-    link: "https://en.wikipedia.org/wiki/Terminate_and_stay_resident"
-    link_label: "Terminate and Stay Resident"
-  - point: "Highlights the influence of Unix-like design principles in MS-DOS 2.0"
-    link: "https://en.wikipedia.org/wiki/Unix"
-    link_label: "Unix"
-  - point: "Reflects Tim Paterson's adaptation of 86-DOS into a more sophisticated OS"
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
+  - point: "Implemented Terminate and Stay Resident (TSR) functionality"
+    link: "https://en.wikipedia.org/wiki/Terminate_and_Stay_Resident"
+    link_label: "TSR"
+  - point: "Optimized for IBM PC hardware constraints"
+    link: "https://en.wikipedia.org/wiki/IBM_PC"
+    link_label: "IBM PC"
+  - point: "Used modular assembly structure for extensibility"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
+  - point: "Highlighted early multitasking and memory management techniques"
+    link: "https://en.wikipedia.org/wiki/Memory_management"
+    link_label: "Memory Management"
 
 enhancements:
-  - id: "wait-error-code-retrieval"
+  - id: "return-previous-process-error-code"
     line_start: 32
     line_end: 43
-    title: "Retrieving the previous process error code"
+    title: "The Routine That Passed Errors Forward"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The $WAIT subroutine retrieves the error code from the last process that terminated and resets the stored error code to zero. This functionality is essential for debugging and process control in MS-DOS. At the time, error codes were a primary method for communicating the success or failure of operations between processes. Tim Paterson, adapting concepts from CP/M and Unix, implemented this mechanism to make MS-DOS more robust for developers. This approach influenced later operating systems, including Windows, which continued to use error codes extensively for process communication and debugging."
-  - id: "keep-process-memory-management"
+    content: "The `$WAIT` procedure retrieves the exit code of the previous process and resets it to zero. This routine is a simple yet critical piece of inter-process communication, ensuring that error codes are propagated correctly to parent processes. At the time, MS-DOS was evolving from a single-tasking environment to one that could mimic multitasking behaviors, inspired by Unix-like systems. Tim Paterson and Microsoft's team were working under constraints imposed by the 8086 processor and IBM PC hardware, which lacked advanced memory management or multitasking support. This routine reflects the pragmatic approach taken to implement basic process control in a constrained environment. Later operating systems, including Windows, built on these foundational ideas, introducing more sophisticated error handling and inter-process communication mechanisms."
+  - id: "terminate-stay-resident-handler"
     line_start: 56
-    line_end: 89
-    title: "Memory management for resident programs"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Terminate_and_stay_resident"
+    line_end: 99
+    title: "How MS-DOS Made Programs Stay Forever"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Terminate_and_Stay_Resident"
     image_url: ""
     image_caption: ""
-    content: "The $Keep_process subroutine implements the 'Terminate and Stay Resident' (TSR) functionality, allowing a program to remain in memory after termination. This was a groundbreaking feature in MS-DOS, enabling utilities like keyboard enhancers and pop-up calendars to persist in the background. The subroutine adjusts the memory block size to ensure enough space for the resident program while maintaining system stability. TSR programs became a hallmark of MS-DOS, paving the way for multitasking-like behavior on single-tasking systems. Developers leveraged this feature to create innovative software, influencing the design of later multitasking operating systems."
-  - id: "exit-subroutine-process-termination"
+    content: "The `$Keep_process` and `Stay_resident` procedures implement Terminate and Stay Resident (TSR) functionality, allowing programs to remain in memory after termination. TSR was a groundbreaking feature in MS-DOS, enabling rudimentary multitasking by allowing background programs like keyboard enhancers or memory-resident utilities to persist. This was a clever workaround for the lack of hardware or OS-level multitasking support in the IBM PC. TSRs were inspired by similar techniques in earlier operating systems but adapted to fit the constraints of MS-DOS's single-tasking model. Developers quickly embraced TSRs to extend the capabilities of MS-DOS, leading to a proliferation of utilities that defined the PC experience in the 1980s. TSR functionality influenced later operating systems, including Windows, which incorporated background services and multitasking natively."
+  - id: "return-to-parent-process"
     line_start: 103
     line_end: 125
-    title: "Graceful process termination and cleanup"
+    title: "The Exit Routine That Closed the Loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The $EXIT subroutine handles process termination, ensuring proper cleanup and returning control to the parent process. It also checks for a Ctrl+C interrupt, allowing the user to terminate a process manually. This design reflects the influence of Unix-like systems, where process management and user control were prioritized. By implementing structured termination routines, MS-DOS improved reliability and user experience, laying the groundwork for similar mechanisms in Windows and other operating systems. The concept of structured process termination remains a cornerstone of modern computing."
+    content: "The `$EXIT` procedure handles the termination of a process and returns control to the parent process. It ensures proper cleanup by resetting the process environment and handling special cases like Ctrl+C interrupts. This routine reflects the influence of Unix-like systems on MS-DOS v2.0, which introduced structured process management and error handling. At the time, MS-DOS was transitioning from a simple disk operating system to one capable of supporting more complex applications and workflows. The `$EXIT` procedure exemplifies the careful balance between simplicity and functionality that defined MS-DOS's design. Its approach to process termination laid the groundwork for more advanced operating systems, influencing the design of Windows and other successors that built on MS-DOS's process management."
 
 ---
 
+```asm
 ;
 ; process control system calls for MSDOS
 ;
@@ -183,3 +187,4 @@ do_ext
 
 CODE    ENDS
     END
+```

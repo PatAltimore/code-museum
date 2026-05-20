@@ -9,133 +9,142 @@ year: 1989
 author: "Jordan Mechner"
 slug: "subs"
 order: 10
-description: "The assembly routines behind Prince of Persia's cinematic platforming and animation on the Apple II."
+description: "This file contains subroutines for gameplay mechanics and cinematic sequences in Prince of Persia, showcasing innovative techniques for animation and memory management on the Apple II."
 
 summary:
-  - point: "Bank-switched memory techniques to fit 128K constraints"
-    link: "https://en.wikipedia.org/wiki/Bank-switching"
-    link_label: "Bank-switching"
-  - point: "Rotoscoping animation implemented in assembly"
+  - point: "Uses rotoscoping for realistic animation"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Custom subroutines for cinematic effects like crumbling floors and lightning flashes"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Efficient frame-by-frame animation control in 6502 assembly"
+  - point: "Bank-switched memory management to fit 128K"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank Switching"
+  - point: "Cinematic storytelling in platformer format"
+    link: "https://en.wikipedia.org/wiki/Cinematic_platformer"
+    link_label: "Cinematic Platformer"
+  - point: "Innovative use of 6502 assembly for complex game logic"
     link: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
-    link_label: "6502 microprocessor"
-  - point: "Innovative use of lookup tables for animation and object handling"
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup table"
+    link_label: "6502 Assembly"
+  - point: "First game to blend gameplay with cinematic animation seamlessly"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
 
 enhancements:
-  - id: "crumbling-floors-triggered-above"
+  - id: "crumble-triggering-loose-floors"
     line_start: 108
     line_end: 145
-    title: "Crumbling floors triggered from above"
+    title: "Triggering Loose Floors Above Level 13"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The CRUMBLE subroutine detects when the player enters Level 13 and triggers loose floors on the screen above. This is achieved by iterating over specific blocks and calling a routine to make them 'loose,' simulating the crumbling effect. This mechanic adds tension and cinematic flair to the gameplay, emphasizing the precariousness of the environment. In 1989, such dynamic environmental interactions were rare in games, especially on hardware as limited as the Apple II. Jordan Mechner's implementation reflects his focus on creating a cinematic experience, inspired by his background in filmmaking. The technique influenced later platformers, such as Another World (1991), which also emphasized environmental storytelling and dynamic interactions."
-  - id: "add-torches-flasks-swords"
+    content: "The CRUMBLE subroutine detects when the player enters Level 13 and triggers loose floors on the screen above. It iterates through blocks on the bottom row of the screen above, checking if they are 'loose' and then randomly breaks them using a clever combination of bitwise operations and random number generation. At the time, this was an innovative way to add dynamic environmental interaction to a platformer. In 1989, environmental effects like collapsing floors were rare in games, especially on hardware as limited as the Apple II. Jordan Mechner's approach here demonstrates his ability to maximize the capabilities of the 6502 processor. This technique influenced later games, such as Another World (1991), which also featured dynamic environments."
+  - id: "addtorches-flasks-and-swords"
     line_start: 142
     line_end: 184
-    title: "Adding torches, flasks, and swords dynamically"
+    title: "Adding Torches, Flasks, and Swords to the Scene"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The ADDTORCHES routine scans the visible screen for torches, flasks, and swords, adding them to a list for interaction. By checking object types against predefined masks, it dynamically triggers routines for each object type. This approach minimizes memory usage by avoiding hardcoding object positions and behaviors, crucial for fitting the game into the Apple II's limited memory. Mechner's use of dynamic object handling was ahead of its time, laying groundwork for more sophisticated object-oriented designs in later games. This method influenced games like Flashback (1992), which also relied on dynamic object interactions to create immersive worlds."
-  - id: "pause-loop-for-timing"
+    content: "The ADDTORCHES subroutine scans the visible screen for torches, flasks, and swords, adding them to a transition list for rendering. It uses a mask to identify object types and triggers specific routines for each object. This modular approach to object handling was critical for managing the game's cinematic visuals. In the late 1980s, object-oriented programming concepts were not yet mainstream, but Mechner's method of isolating object-specific logic foreshadowed these ideas. This technique allowed for efficient rendering on the Apple II's limited hardware and influenced object management in later games, including platformers like Flashback (1992)."
+  - id: "pause-loop-for-timed-delays"
     line_start: 186
     line_end: 200
-    title: "The pause loop that controls timing"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
+    title: "The Loop That Pauses the Game"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Busy_waiting"
     image_url: ""
     image_caption: ""
-    content: "The PAUSE routine implements a simple timing mechanism by decrementing a register in a nested loop. This ensures consistent pauses across different sequences, crucial for synchronizing animations and gameplay events. On the Apple II, where hardware timers were limited, such manual timing loops were common. Mechner's approach reflects the ingenuity required to create smooth animations and gameplay on constrained hardware. This technique influenced timing mechanisms in other 6502-based games, such as Super Mario Bros. (1985), which also relied on precise control over frame timing."
-  - id: "lightning-flash-effect"
+    content: "The PAUSE subroutine implements a busy-wait loop to create a timed delay. It uses nested loops to decrement counters until the desired pause duration is achieved. While this approach was common in the era of 6502 assembly, it highlights the constraints developers faced when precise timing was required without dedicated hardware timers. This technique was a simple yet effective solution for creating pauses in gameplay and is an early example of time management in games. Later systems with more advanced hardware would replace such loops with interrupt-driven timers, but the principle remains foundational in game development."
+  - id: "doflashon-lightning-effect"
     line_start: 202
     line_end: 217
-    title: "How lightning flashes were simulated"
+    title: "Lightning Flash Effect for Dramatic Impact"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "DOFLASHON simulates a lightning flash by manipulating screen modes and colors. It checks for traumatic events in the current frame and switches the display to lo-res mode to create a dramatic visual effect. This cinematic technique enhances the game's atmosphere, making the player feel the impact of significant events. Mechner's focus on visual storytelling was groundbreaking for the era, influencing later games like Ico (2001), which used lighting and visual effects to convey mood and narrative."
-  - id: "princess-room-animation"
-    line_start: 314
-    line_end: 337
-    title: "Animating torches in the princess's room"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    content: "The DOFLASHON subroutine creates a lightning flash effect by interacting with the Apple II's video memory and screen modes. It temporarily switches to low-resolution mode to simulate the flash. This was a clever use of hardware capabilities to enhance the game's cinematic feel. In 1989, such visual effects were groundbreaking on the Apple II, a machine not designed for advanced graphics. Mechner's ability to manipulate the hardware directly inspired other developers to push the limits of early computers, leading to more sophisticated visual effects in games like Ultima VI (1990)."
+  - id: "playcut-cinematic-sequence-handler"
+    line_start: 420
+    line_end: 452
+    title: "Handling Cinematic Sequences with Self-Modifying Code"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""
     image_caption: ""
-    content: "The PBURN routine animates torches in the princess's room by cycling through predefined states and coordinates. Each torch's position and state are updated, and the flame animation is drawn directly to the screen. This routine showcases Mechner's attention to detail, ensuring the environment feels alive and dynamic. The use of predefined animation states reflects the influence of rotoscoping, where movements are traced frame-by-frame for realism. This technique inspired animation systems in later games, such as the sprite-based animations in Mortal Kombat (1992)."
-  - id: "hourglass-animation-and-state"
-    line_start: 759
-    line_end: 770
-    title: "Animating the hourglass dynamically"
+    content: "The PLAYCUT subroutine manages cinematic sequences by using self-modifying code to dynamically jump to the correct scene handler based on the input scene number. This technique allowed Mechner to efficiently handle multiple pre-recorded sequences without duplicating code. Self-modifying code was a controversial but effective method for optimizing memory usage on systems with limited resources like the Apple II. This approach influenced later games that required dynamic scene management, such as Final Fantasy VI (1994), which used similar techniques for event handling in its expansive world."
+  - id: "playcut0-opening-title-scene"
+    line_start: 655
+    line_end: 757
+    title: "Creating the Cinematic Opening Title Scene"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The ADDGLASS and ADDGLASS1 routines manage the hourglass's state and animation, dynamically updating its appearance based on gameplay events. This visual cue reinforces the game's narrative tension, as the hourglass symbolizes the player's dwindling time. Mechner's use of visual storytelling through gameplay mechanics influenced later titles like The Legend of Zelda: Majora's Mask (2000), which also used time-based mechanics to drive narrative and gameplay."
-  - id: "playback-loop-for-scenes"
+    content: "The PlayCut0 subroutine orchestrates the opening title scene, blending animation, music, and gameplay seamlessly. It initializes character positions, plays sound effects, and animates the Vizier's entrance and interaction with the Princess. This sequence set a new standard for storytelling in games, combining gameplay with cinematic elements. In 1989, such integration was rare, as most games separated cutscenes from gameplay. Mechner's work here influenced the development of cinematic platformers like Heart of Darkness (1998) and demonstrated the potential of games as a storytelling medium."
+  - id: "play-song-interruptible-music-handler"
+    line_start: 785
+    line_end: 821
+    title: "Interruptible Music Playback in Princess's Room"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The PlaySong subroutine handles music playback in the Princess's room, allowing players to interrupt the song with a button press to start a new game. This feature highlights Mechner's attention to player agency, ensuring that cinematic elements did not hinder gameplay. In the late 1980s, interactive music systems were uncommon, and this approach influenced later games with dynamic soundtracks, such as The Legend of Zelda: Ocarina of Time (1998), where music and gameplay were tightly integrated."
+  - id: "play-loop-main-animation-handler"
     line_start: 870
-    line_end: 915
-    title: "The playback loop driving cinematic scenes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The PLAYLOOP routine orchestrates cinematic sequences by iterating through frames, checking for user input, and updating the screen. It integrates animation, sound playback, and environmental effects, creating seamless transitions between gameplay and cutscenes. Mechner's design reflects his cinematic aspirations, blending storytelling with interactivity. This loop influenced later games with integrated cutscenes, such as Final Fantasy VII (1997), which used similar techniques to merge gameplay and narrative."
-  - id: "dynamic-frame-advancement"
-    line_start: 925
-    line_end: 933
-    title: "Dynamic frame advancement for animations"
+    line_end: 917
+    title: "The Loop That Drives Animation Playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
-    content: "The FRAMEADV routine updates the hidden page to reflect the next frame's state, ensuring smooth transitions between animations. It leverages the Apple II's page-flipping capabilities to minimize flicker and maintain visual continuity. Mechner's use of double-buffering was innovative for the time, enabling fluid animations on hardware with limited graphical capabilities. This technique became standard in game development, influencing engines like Unity and Unreal, which rely on similar methods for rendering animations."
-  - id: "vjumpseq-character-jump-sequence"
-    line_start: 1028
-    line_end: 1033
-    title: "How Jumping Characters Were Saved"
+    content: "The playloop subroutine is the heart of the game's animation system, iterating through frames and updating the screen based on the current state. It integrates randomization, flash effects, and sound playback to create dynamic scenes. This loop exemplifies the challenges of real-time animation on limited hardware, where every cycle had to be carefully optimized. Mechner's work here laid the groundwork for real-time animation systems in later games, influencing titles like Another World (1991) and the development of game engines capable of handling complex animations."
+  - id: "pjumpseq-princess-animation-sequences"
+    line_start: 1012
+    line_end: 1024
+    title: "Jump Sequences for Princess Animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `vjumpseq` routine handles the sequence of saving and loading the character's state during a jump. It calls `LoadKid` to retrieve the character's current state, executes the jump sequence via `jumpseq`, and then saves the updated state with `SaveKid`. This routine is critical for maintaining continuity in the animation and gameplay mechanics. In 1989, games rarely featured such seamless transitions between actions, especially on hardware as limited as the Apple II. Mechner's approach allowed for cinematic fluidity, a hallmark of Prince of Persia. This technique influenced later games that prioritized smooth animations and state management, including platformers like Another World and Flashback."
-  - id: "startm8-character-initialization"
-    line_start: 1042
-    line_end: 1050
-    title: "Mouse Runs to Princess: A Cinematic Touch"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    content: "The pjumpseq subroutine handles animation sequences for the Princess, loading her character data and executing the specified sequence. This modular approach to animation allowed Mechner to create detailed and varied character movements without duplicating code. In 1989, such techniques were innovative, as most games relied on simpler sprite-based animations. This approach influenced the development of animation systems in later cinematic platformers, such as Limbo (2010), which emphasized fluid character movement and interaction."
+  - id: "vjumpseq-character-jump-sequence"
+    line_start: 1028
+    line_end: 1042
+    title: "How Jumping Became Cinematic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `startM8` routine positions the mouse character in the scene, setting its coordinates and animation state. It uses `jumpseq` to initiate the mouse's movement and `animchar` for rendering. This level of detail reflects Mechner's focus on cinematic storytelling, where even minor characters like the mouse contribute to the narrative. The rotoscoping technique used for animations ensures lifelike motion, enhancing immersion. This routine exemplifies how Mechner pushed the boundaries of the Apple II's capabilities, inspiring future developers to prioritize storytelling and character detail in their games."
-  - id: "demoprog1-self-running-demo"
-    line_start: 1193
-    line_end: 1232
-    title: "The Self-Running Demo: A Marketing Innovation"
+    content: "The `vjumpseq` subroutine handles the jumping sequence for the game's protagonist, the Prince. It saves the current state of the character (`SaveKid`), loads the character's variables (`LoadKid`), and executes the jump animation (`jumpseq`). This routine is a cornerstone of the game's fluid movement system, which was inspired by rotoscoping—a technique where Jordan Mechner filmed his brother performing jumps and traced the frames to create realistic animations. In 1989, this level of realism was groundbreaking for platformers, setting a new standard for character motion in games. The smooth transitions between states, achieved through meticulous coding in 6502 assembly, influenced later cinematic platformers like Another World and Flashback."
+  - id: "startm8-mouse-animation"
+    line_start: 1042
+    line_end: 1050
+    title: "Animating a Mouse with Personality"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `startM8` routine positions the mouse character and initiates its animation sequence. It sets the mouse's coordinates (`CharX`) and animation state (`jumpseq`) before calling `animchar` to display the movement. The mouse plays a small but memorable role in the game, adding a touch of life to the environment. Mechner's attention to detail in animating even minor characters reflects his cinematic approach to game design. This routine exemplifies the game's commitment to creating a believable world, influencing future developers to include similar environmental storytelling elements in their games."
+  - id: "demo-auto-playback"
+    line_start: 1224
+    line_end: 1236
+    title: "The Self-Running Demo That Sold the Game"
     wikipedia_url: "https://en.wikipedia.org/wiki/Demo_(computer_programming)"
     image_url: ""
     image_caption: ""
-    content: "The `DemoProg1` routine defines a sequence of movements for the game's self-running demo, a feature often used to showcase gameplay to potential buyers. It includes commands for jumping pits, grabbing ledges, and stopping to look back, all programmed as timed events. This feature was a clever marketing tool in the era of physical retail, where demos played on store displays to attract customers. Mechner's implementation of a cinematic demo was ahead of its time, influencing how games like Sonic the Hedgehog and Super Mario Bros. used attract modes to captivate audiences."
-  - id: "gravity-simulating-physics"
-    line_start: 1618
-    line_end: 1650
-    title: "Gravity: Simulating Physics on a 6502"
+    content: "The `DEMO` subroutine triggers the self-running demo sequence, loading the `DemoProg1` data and calling `AutoPlayback`. This feature was crucial for showcasing the game at trade shows and in stores, where potential buyers could see the gameplay without needing to interact. In the late 1980s, self-running demos were a popular marketing tool, especially for games with complex mechanics like Prince of Persia. Mechner's implementation ensured the demo highlighted the game's fluid animations and cinematic style, helping it stand out in a crowded market. The concept of self-running demos persists today, often seen in attract modes for arcade games and trailers for modern titles."
+  - id: "gravity-simulation"
+    line_start: 1610
+    line_end: 1644
+    title: "Simulating Gravity on a 6502 Processor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
-    content: "The `GRAVITY` routine simulates the effects of gravity on the character's vertical velocity. It checks whether the character is weightless, adjusts the velocity accordingly, and caps it at a terminal velocity. This routine is a precursor to modern physics engines, demonstrating how Mechner achieved realistic motion within the constraints of the Apple II's hardware. The concept of terminal velocity and weightlessness adds depth to the gameplay, influencing later games that incorporated physics-based mechanics, such as Half-Life and Portal."
-  - id: "mirappear-dynamic-scene-transition"
+    content: "The `GRAVITY` subroutine calculates the vertical velocity of the Prince based on whether he is weightless or in normal gravity. It adjusts the velocity (`CharYVel`) by adding acceleration (`AccelGravity` or `WtlessGravity`) and caps it at terminal velocity (`TermVelocity` or `WtlessTermVel`). This routine is an early example of physics simulation in games, enabling realistic falling mechanics that added tension and immersion to the gameplay. Mechner's implementation on the limited 6502 processor required careful optimization, as every byte of memory and cycle of CPU time was precious. The technique influenced later games with more advanced physics engines, such as the Tomb Raider series."
+  - id: "mirappear-mirror-appearance"
     line_start: 1740
     line_end: 1758
-    title: "Mirror Appears: Dynamic Scene Transitions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_programming"
+    title: "The Mirror That Reflected a Shadow"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `MIRAPPEAR` routine dynamically places a mirror object in the scene when certain conditions are met, such as the exit being opened. It uses `rdblock` to determine the mirror's location and updates the scene accordingly. This routine showcases Mechner's ability to create interactive and evolving environments, a feature that was rare in 1989. Dynamic scene transitions like this became standard in adventure games and RPGs, influencing titles such as The Legend of Zelda and Final Fantasy."
+    content: "The `MIRAPPEAR` subroutine places the mirror object in the game world when the exit is opened. It checks the level and screen coordinates before setting the mirror's type (`BlueType`) and position. The mirror is a pivotal plot device, introducing the Prince's shadow—a dark reflection that becomes a recurring antagonist. This clever use of an environmental object to advance the story demonstrates Mechner's narrative-driven approach to game design. The shadow's introduction through the mirror inspired similar storytelling techniques in later games, such as Silent Hill's use of mirrors to reveal alternate realities."
 
 ---
 
+```asm
 * subs
 DemoDisk = 0
 EditorDisk = 0
@@ -1902,3 +1911,4 @@ MIRAPPEAR
  ds 1
  usr $a9,20,$400,*-org
  lst off
+```

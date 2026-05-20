@@ -9,157 +9,214 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "sysinit"
 order: 5
-description: "MS-DOS v2.0 SYSINIT.ASM: The bootstrap code that initializes the operating system, sizes memory, relocates itself, and loads essential components."
+description: "This file initializes MS-DOS at system startup, setting up memory, loading the operating system, and preparing the environment for COMMAND.COM."
 
 summary:
-  - point: "Memory sizing algorithm using bit patterns"
+  - point: "Memory sizing algorithm writes/reads bit patterns to detect usable RAM."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Relocation of SYSINIT code to high memory"
+  - point: "Relocation routines move the kernel into high memory for efficiency."
     link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory Management"
-  - point: "Parsing CONFIG.SYS for system configuration"
+    link_label: "Memory management"
+  - point: "CONFIG.SYS parsing sets up device drivers and system parameters."
     link: "https://en.wikipedia.org/wiki/CONFIG.SYS"
     link_label: "CONFIG.SYS"
-  - point: "Integration of device drivers and file handles"
-    link: "https://en.wikipedia.org/wiki/Device_driver"
-    link_label: "Device Drivers"
-  - point: "Execution of COMMAND.COM as the command processor"
+  - point: "COMMAND.COM execution launches the shell, enabling user interaction."
     link: "https://en.wikipedia.org/wiki/COMMAND.COM"
     link_label: "COMMAND.COM"
+  - point: "Introduced Unix-inspired features like file handles and pipes in v2.0."
+    link: "https://en.wikipedia.org/wiki/Unix"
+    link_label: "Unix"
 
 enhancements:
   - id: "sysinit-jump-to-goinit"
-    line_start: 133
+    line_start: 145
     line_end: 147
-    title: "SYSINIT: Jump to Initialization Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "Why SYSINIT jumps directly to GOINIT"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
     image_caption: ""
-    content: "The SYSINIT label marks the entry point of the system initialization code. It immediately jumps to the GOINIT routine, which begins the process of setting up the operating system. This design reflects the modular approach of MS-DOS, where specific tasks are delegated to distinct routines. In the early 1980s, modularity was a key principle in software design, allowing developers to isolate functionality for easier debugging and maintenance. This jump simplifies the flow of execution, ensuring that initialization tasks are handled in a dedicated section of the code. The modularity seen here influenced later operating systems, including Windows, which inherited MS-DOS's layered architecture."
-  - id: "memory-sizing-memscan"
+    content: "The SYSINIT label serves as the entry point for system initialization but immediately jumps to GOINIT. This design reflects the modular approach of MS-DOS v2.0, where initialization tasks are compartmentalized for clarity and maintainability. At the time, bootstrapping an operating system required careful sequencing to ensure memory was sized, the kernel was relocated, and the environment was prepared for user interaction. By jumping to GOINIT, the code avoids cluttering the entry point with detailed initialization logic, instead delegating these tasks to a dedicated routine. This modularity became a hallmark of MS-DOS v2.0, influenced by Unix's philosophy of small, focused components. The approach allowed developers to expand and modify the initialization process without disrupting the entry point, a practice that persists in modern bootloaders and operating systems."
+  - id: "memory-sizing-memscan-setend"
     line_start: 265
-    line_end: 283
-    title: "MEMSCAN: Sizing RAM Using Bit Patterns"
+    line_end: 289
+    title: "The clever trick behind MEMSCAN"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The MEMSCAN routine sizes the available RAM by writing and reading bit patterns to memory locations. This technique was common in early operating systems to determine the amount of usable memory, as hardware did not provide this information directly. By incrementing the memory pointer and testing each location, the routine identifies the upper limit of accessible memory. In 1983, hardware constraints required such low-level memory management techniques. Tim Paterson's experience with hardware-level programming at Seattle Computer Products likely influenced this approach. The method laid the groundwork for more sophisticated memory management systems in later operating systems, such as Windows and Linux, which use BIOS or UEFI calls to query memory."
-  - id: "noscan-relocation-to-high-memory"
-    line_start: 301
-    line_end: 351
-    title: "NOSCAN: Relocating SYSINIT to High Memory"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: ""
-    image_caption: ""
-    content: "The NOSCAN routine relocates the SYSINIT code to high memory, freeing up lower memory for application use. This was a critical optimization in the era of limited RAM, as the IBM PC typically shipped with 64KB to 640KB of memory. By moving the initialization code out of the way, MS-DOS maximized the memory available for user programs. The technique reflects the influence of Unix, which also employed memory segmentation to optimize resource usage. This approach became a standard practice in operating systems, influencing memory management strategies in DOS-based systems and later in Windows."
-  - id: "sysin-relocating-dos"
+    content: "MEMSCAN is a routine designed to detect available RAM by writing and reading bit patterns across memory boundaries. Starting at a 32KB boundary, it increments through memory, testing each segment by flipping bits and verifying their persistence. This method was a practical solution for the hardware constraints of early PCs, where BIOS often lacked robust memory detection capabilities. Tim Paterson, the original author of 86-DOS, likely adapted this technique from similar approaches used in early microcomputers. By determining the upper limit of usable memory, MEMSCAN ensures the operating system can allocate resources efficiently. This technique influenced later memory management practices, including BIOS extensions and utilities like HIMEM.SYS, which managed extended memory in the MS-DOS ecosystem."
+  - id: "sysin-relocates-dos"
     line_start: 361
     line_end: 423
-    title: "SYSIN: Relocating DOS to Its Final Location"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "How SYSIN relocates DOS into high memory"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The SYSIN routine moves the DOS kernel to its final memory location, ensuring it is properly positioned for execution. This involves copying the kernel from its temporary location to the designated area in high memory. The routine also sets up the stack and initializes device drivers. In the early 1980s, memory relocation was a common technique to optimize limited resources. Tim Paterson's design reflects the influence of Unix, which inspired MS-DOS v2.0's more sophisticated memory management. This approach influenced later operating systems, including Windows, which continued to use memory relocation techniques for kernel and driver management."
-  - id: "doconf-parsing-config-sys"
+    content: "The SYSIN routine moves the DOS kernel from its initial load location to its final position in high memory. This relocation is achieved using the REP MOVSW instruction, which efficiently copies words of data. High memory relocation was critical for freeing up conventional memory for applications, a key selling point of MS-DOS v2.0. The decision to relocate DOS reflects a growing awareness of memory constraints in the IBM PC architecture, where the 640KB conventional memory limit often forced developers to optimize every byte. This technique directly influenced the design of memory managers like EMM386 and QEMM, which extended the concept of relocating code and data to maximize usable memory."
+  - id: "doconf-parses-config-sys"
     line_start: 929
     line_end: 985
-    title: "DOCONF: Parsing CONFIG.SYS for System Configuration"
+    title: "Parsing CONFIG.SYS: A Unix-inspired feature"
     wikipedia_url: "https://en.wikipedia.org/wiki/CONFIG.SYS"
     image_url: ""
     image_caption: ""
-    content: "The DOCONF routine reads and parses the CONFIG.SYS file to configure the system according to user specifications. CONFIG.SYS allowed users to define device drivers, memory management settings, and other system parameters. This feature, introduced in MS-DOS v2.0, reflects the growing complexity of personal computing in the early 1980s. By enabling user customization, Microsoft positioned MS-DOS as a flexible operating system suitable for a wide range of hardware configurations. The concept of system configuration files influenced later operating systems, including Windows (with its WIN.INI and registry settings) and Linux (with its /etc configuration files)."
-  - id: "endfile-memory-allocation-and-sft-linking"
+    content: "The DOCONF routine opens and parses CONFIG.SYS, a configuration file introduced in MS-DOS v2.0 to set up device drivers and system parameters. This feature was inspired by Unix's use of configuration files to manage system behavior. By reading CONFIG.SYS, MS-DOS could dynamically load drivers and adjust settings based on user preferences, a significant departure from the static configurations of earlier versions. The introduction of CONFIG.SYS marked a shift toward greater flexibility and user control, laying the groundwork for similar configuration systems in Windows and other operating systems. The routine's reliance on INT 21H for file operations highlights the integration of DOS's system calls into its initialization process, a design choice that influenced later APIs like Win32."
+  - id: "endfile-memory-allocation"
     line_start: 989
     line_end: 1079
-    title: "Memory allocation and SFT linking"
+    title: "How MS-DOS Allocated Memory at Startup"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section initializes the system's memory allocation and links the System File Table (SFT). It begins by setting up the data segment register (DS) and calls a routine to round memory sizes. The code then adjusts the high memory pointer based on the size of the SFT entries, allocating memory for file handles. The SFT is linked to the DOS data structure, and memory is cleared for new entries. In 1983, memory management was a critical concern due to the limited RAM available on IBM PCs, typically 64KB to 640KB. Tim Paterson's design reflects the constraints of early PCs, where every byte of memory had to be carefully managed. This approach influenced later operating systems, including Windows, which inherited MS-DOS's memory management techniques. The SFT concept became foundational for handling file operations in DOS and inspired similar structures in other systems."
+    content: "The ENDFILE subroutine is responsible for allocating memory during system initialization. It calculates the memory required for file tables (SFTs) and adjusts pointers to high and low memory regions accordingly. This routine ensures that the system can dynamically adapt to varying configurations, such as the number of files allowed open simultaneously. At the time, memory management was a critical concern, as the IBM PC shipped with as little as 16 KB of RAM. Tim Paterson's approach here reflects the constraints of early PCs, where every byte mattered. This memory allocation technique influenced later operating systems by demonstrating how to efficiently manage limited resources. The modular design of ENDFILE, which calculates and adjusts memory dynamically, became a template for similar routines in DOS derivatives and other operating systems."
   - id: "dobuff-buffer-management"
     line_start: 1083
     line_end: 1153
-    title: "Buffer management for file operations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
+    title: "Buffer Management: Preparing for File I/O"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "This section manages buffers for file operations. Buffers are allocated dynamically based on the number specified in CONFIG.SYS. The code adjusts memory pointers and links buffers into a chain for efficient access. Buffer management was essential for optimizing disk I/O on slow floppy drives and hard disks of the era. By dynamically adjusting buffer allocation, MS-DOS could balance memory usage and performance. This technique influenced later systems, where dynamic buffer allocation became standard practice in operating systems and database software."
+    content: "The DOBUFF subroutine handles the initialization of buffers for file I/O operations. Buffers are critical for managing data flow between the CPU and storage devices, and this routine dynamically allocates memory for them based on the system's configuration. It adjusts the memory pointers and links the buffers into a chain for efficient access. In the early 1980s, disk access was slow, and buffering was essential to improve performance. Tim Paterson's implementation here reflects his deep understanding of hardware limitations and the need for software optimization. This approach to buffer management laid the groundwork for similar techniques in later operating systems, including Windows and Linux. The dynamic linking of buffers into a chain also influenced the design of data structures in subsequent software systems."
   - id: "buf1-memory-cleanup"
     line_start: 1157
     line_end: 1273
-    title: "Memory cleanup and final adjustments"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_memory_management"
+    title: "Cleaning Up Memory for Command Execution"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "This section cleans up memory and adjusts pointers after buffer allocation. It uses interrupt 21h to set memory blocks and deallocate unused areas. The code also ensures compatibility with high memory configurations. Memory cleanup was vital for maintaining system stability, especially in environments with limited resources. The use of interrupts for memory management reflects the low-level control required in early operating systems. This approach influenced memory management in later DOS versions and other systems, where efficient cleanup routines became standard."
+    content: "BUF1 is a cleanup routine that ensures memory is properly allocated and cleared before executing commands. It interacts with the DOS memory management system to release unused memory and prepare the system for the next operation. This subroutine highlights the importance of memory hygiene in early operating systems, where fragmentation could severely impact performance. The use of interrupts (INT 21H) to interact with the DOS kernel demonstrates the modular design philosophy of MS-DOS, where high-level routines rely on lower-level system calls. BUF1's emphasis on memory cleanup influenced later operating systems by underscoring the need for efficient memory management routines. Its design principles are echoed in modern garbage collection algorithms and memory allocators."
   - id: "badop-error-handling"
     line_start: 1277
     line_end: 1281
-    title: "Error handling for invalid operations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
+    title: "The Error Message That Saved Time"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Error_message"
     image_url: ""
     image_caption: ""
-    content: "This short section handles errors for invalid operations. It prints an error message and redirects execution to a cleanup routine. Error handling was a critical feature in MS-DOS, providing users with feedback and preventing system crashes. The simplicity of this routine reflects the limited resources and straightforward design philosophy of early operating systems. Error handling techniques like this influenced later systems, where robust error reporting became a key feature."
+    content: "BADOP is a simple but crucial subroutine that handles errors in command parsing. When an invalid operation is detected, it prints an error message and redirects execution to a safe state. Error handling routines like BADOP were vital in the early days of computing, where user input errors could crash the system. Tim Paterson's decision to include robust error handling reflects his understanding of user needs and the importance of system stability. This approach influenced the design of error handling in later operating systems, where clear messages and safe recovery paths became standard practice. BADOP's simplicity and effectiveness are a testament to the power of thoughtful design in software development."
   - id: "noprob-file-size-calculation"
     line_start: 1285
     line_end: 1375
-    title: "File size calculation and memory adjustment"
+    title: "Calculating File Size Without Crashing"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "This section calculates the size of a file and adjusts memory pointers accordingly. It uses interrupt 21h to seek the end of the file and determine its size. The code then adjusts memory allocation based on the file size. File size calculation was essential for managing disk space and memory in MS-DOS. This routine reflects the low-level control required to interact with the file system and allocate resources efficiently. Techniques like this influenced file system design in later operating systems, where dynamic allocation and size calculation became standard."
-  - id: "conferr-configuration-error-handling"
+    content: "NOPROB calculates the size of a file and resets the file pointer to the beginning. This routine is a critical part of MS-DOS's file handling capabilities, ensuring that the system can accurately determine file sizes for subsequent operations. In the early 1980s, file systems were relatively primitive, and routines like NOPROB were essential for managing files efficiently. The use of interrupts (INT 21H) to interact with the DOS kernel demonstrates the modular design philosophy of MS-DOS. NOPROB's approach to file size calculation influenced later file systems by highlighting the importance of accurate metadata management. Its design principles are echoed in modern file system APIs and libraries."
+  - id: "conferr-config-error-handling"
     line_start: 1377
     line_end: 1381
-    title: "Handling configuration errors"
+    title: "Handling CONFIG.SYS Errors Gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/CONFIG.SYS"
     image_url: ""
     image_caption: ""
-    content: "This section handles errors in the CONFIG.SYS file. It prints an error message and redirects execution to a cleanup routine. CONFIG.SYS was a vital part of MS-DOS, allowing users to configure system settings and device drivers. Error handling for CONFIG.SYS ensured that misconfigurations did not crash the system. This approach influenced later systems, where configuration files became more robust and error handling more sophisticated."
+    content: "CONFERR is a short routine that handles errors in the CONFIG.SYS file. When an error is detected, it prints a message and redirects execution to a safe state. CONFIG.SYS was a critical configuration file in MS-DOS, allowing users to customize their system's behavior. Tim Paterson's decision to include robust error handling for CONFIG.SYS reflects his understanding of user needs and the importance of system stability. This approach influenced the design of configuration file handling in later operating systems, where clear messages and safe recovery paths became standard practice. CONFERR's simplicity and effectiveness are a testament to the power of thoughtful design in software development."
   - id: "getcom-command-parsing"
     line_start: 1387
     line_end: 1391
-    title: "Parsing commands from CONFIG.SYS"
-    wikipedia_url: "https://en.wikipedia.org/wiki/CONFIG.SYS"
+    title: "Parsing Commands at System Startup"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "This section parses commands from the CONFIG.SYS file. It organizes the file and retrieves individual commands for processing. Command parsing was essential for configuring the system at boot. The simplicity of this routine reflects the straightforward design philosophy of MS-DOS. Parsing techniques like this influenced later systems, where configuration files became more complex and required advanced parsing algorithms."
-  - id: "conflp-buffer-command-processing"
+    content: "GETCOM is a command parsing routine that organizes and processes commands during system initialization. It interacts with the CONFIG.SYS file to determine system settings and prepare the environment for the user shell. Command parsing was a critical feature of MS-DOS, allowing users to customize their system's behavior and automate tasks. Tim Paterson's implementation here reflects his deep understanding of user needs and the importance of flexibility in operating systems. GETCOM's approach to command parsing influenced later operating systems by highlighting the importance of modular design and user customization. Its design principles are echoed in modern shell environments and scripting languages."
+  - id: "conflp-looping-command-parsing"
     line_start: 1395
     line_end: 1417
-    title: "Processing buffer commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
+    title: "Looping Through Commands for Flexibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "This section processes buffer commands from CONFIG.SYS. It checks for the 'BUFFER' keyword and adjusts the buffer count accordingly. Buffer commands allowed users to optimize disk I/O performance by specifying the number of buffers. This feature reflects the flexibility of MS-DOS, where users could customize system settings to suit their needs. Buffer management techniques like this influenced later systems, where user-configurable settings became standard."
-  - id: "tryc-control-c-handling"
-    line_start: 1421
-    line_end: 1425
-    title: "Enabling Control-C trapping"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Control-C"
+    content: "CONFLP is a looping routine that processes multiple commands during system initialization. It interacts with the CONFIG.SYS file to parse and execute commands sequentially. This approach ensures that the system can handle complex configurations and adapt to user needs. Tim Paterson's decision to include a looping mechanism reflects his understanding of the importance of flexibility in operating systems. CONFLP's modular design influenced later operating systems by demonstrating how to handle complex configurations efficiently. Its design principles are echoed in modern shell environments and scripting languages, where loops are a fundamental construct."
+  - id: "endsh-section-handling-command-line"
+    line_start: 2029
+    line_end: 2039
+    title: "How MS-DOS Handles Command Line Input"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section enables Control-C trapping, allowing users to interrupt processes. It checks for the 'CONTROL-C' command and sets the appropriate flag. Control-C trapping was a key feature in MS-DOS, providing users with a way to stop runaway processes. This routine reflects the user-centric design of MS-DOS, where usability was a priority. Techniques like this influenced later systems, where interrupt handling became more sophisticated."
-  - id: "config-keyword-table"
+    content: "The ENDSH section processes command-line input by reading characters and checking for specific delimiters (e.g., line feed). This routine ensures that the command-line arguments are correctly terminated and prepares them for further parsing. At the time, command-line interfaces were the primary mode of interaction with operating systems, and handling input efficiently was critical for usability. Tim Paterson's design reflects the constraints of early PCs, where memory and processing power were limited. This approach influenced how subsequent DOS versions and other command-line systems handled input parsing, ensuring compatibility with a wide range of software."
+  - id: "parmloop-parsing-command-line-parameters"
+    line_start: 2057
+    line_end: 2069
+    title: "Parsing Command-Line Parameters in a Loop"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
+    image_url: ""
+    image_caption: ""
+    content: "PARMLOOP iteratively reads characters from the command line, storing them in a buffer until a space is encountered. This loop is foundational for parsing arguments passed to MS-DOS programs. In 1983, this was a critical feature for enabling batch processing and scripting, as programs needed to interpret multiple arguments efficiently. The design mirrors Unix-like systems, which inspired MS-DOS 2.0's rewrite. This technique became a standard in operating systems, influencing command-line parsing in modern shells like Bash and PowerShell."
+  - id: "getchr-character-fetching-routine"
+    line_start: 2073
+    line_end: 2087
+    title: "Fetching Characters with GETCHR"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
+    image_url: ""
+    image_caption: ""
+    content: "GETCHR retrieves a single character from the input buffer, decrementing the count and advancing the pointer. If no characters remain, it sets the carry flag to indicate an empty buffer. This low-level routine exemplifies the direct manipulation of hardware registers and memory that defined early PC programming. Tim Paterson's approach ensured minimal overhead, crucial for systems with limited resources. This method influenced how input/output operations were handled in subsequent DOS versions and other operating systems, emphasizing efficiency and simplicity."
+  - id: "findcom-command-table-search"
+    line_start: 2131
+    line_end: 2159
+    title: "Searching the Command Table for Matches"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
+    image_url: ""
+    image_caption: ""
+    content: "FINDCOM searches a predefined command table for a match to the user's input. It uses string comparison and flag manipulation to iterate through potential matches. This routine highlights the influence of Unix-like systems on MS-DOS 2.0, where command tables were a common feature. The ability to dynamically match user input to commands was essential for extensibility and usability. This approach influenced later shell designs, including those in Windows and Linux, where command lookup remains a core feature."
+  - id: "mapcase-case-normalization-routine"
+    line_start: 2305
+    line_end: 2317
+    title: "Normalizing Case for Command Parsing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Case_sensitivity"
+    image_url: ""
+    image_caption: ""
+    content: "MAPCASE converts lowercase characters to uppercase to ensure case-insensitive command parsing. This routine reflects the design philosophy of MS-DOS, where simplicity and user-friendliness were prioritized. Case normalization was crucial for compatibility with early keyboards and user expectations. The technique, inspired by Unix systems, became standard in many operating systems, influencing how commands and filenames are handled today."
+  - id: "testkanj-kanji-character-detection"
+    line_start: 2375
+    line_end: 2391
+    title: "Detecting Kanji Characters in Input"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
+    image_url: ""
+    image_caption: ""
+    content: "TESTKANJ identifies whether a character is a Kanji lead byte, enabling support for Japanese text. This routine demonstrates MS-DOS's early efforts to accommodate internationalization, a growing need in the 1980s as PCs expanded globally. Supporting multi-byte character sets was a technical challenge, requiring careful handling of input and memory. This work laid the groundwork for later systems that fully embraced Unicode, such as Windows NT."
+  - id: "round-memory-sizing-routine"
+    line_start: 2425
+    line_end: 2451
+    title: "Rounding Memory Sizes for Allocation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "ROUND adjusts memory sizes to align with allocation boundaries, ensuring efficient use of RAM. This routine reflects the constraints of early PCs, where memory was scarce and fragmentation could severely impact performance. By rounding to the nearest boundary, MS-DOS optimized memory usage, a technique that influenced memory management in later operating systems. This approach remains relevant in modern systems, where alignment is critical for performance."
+  - id: "ldfil-loading-files-into-memory"
+    line_start: 2597
+    line_end: 2655
+    title: "Loading Files into Memory Efficiently"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
+    image_url: ""
+    image_caption: ""
+    content: "LDFIL opens a file, reads its contents into memory, and checks for executable headers. This routine is central to MS-DOS's ability to load and execute programs. It highlights the direct interaction with the file system and hardware interrupts that defined early PC operating systems. The design influenced how file loading was handled in later systems, including Windows, where similar checks and memory operations occur during program execution."
+  - id: "open-dev-device-opening-routine"
+    line_start: 2685
+    line_end: 2725
+    title: "Opening Devices with Fallback Logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
+    image_url: ""
+    image_caption: ""
+    content: "OPEN_DEV attempts to open a device and falls back to the null device if unsuccessful. This routine showcases MS-DOS's robust error handling and support for device abstraction. By providing fallback mechanisms, the system ensured stability and usability, even in the face of hardware issues. This approach influenced the design of device drivers in later operating systems, emphasizing resilience and compatibility."
+  - id: "bootmes-version-display-message"
+    line_start: 2775
+    line_end: 2793
+    title: "Displaying MS-DOS Version at Startup"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
+    image_url: ""
+    image_caption: ""
+    content: "BOOTMES constructs and displays the MS-DOS version message during startup. This routine reflects the importance of branding and user communication in early operating systems. By prominently displaying the version and copyright information, Microsoft reinforced its identity and ownership of the software. This practice became standard in operating systems, with startup messages evolving into splash screens and graphical boot sequences in modern systems."
+  - id: "config-sys-command-lookup-table"
     line_start: 2815
     line_end: 2833
-    title: "Keyword table for CONFIG.SYS parsing"
+    title: "The Lookup Table That Parsed CONFIG.SYS"
     wikipedia_url: "https://en.wikipedia.org/wiki/CONFIG.SYS"
     image_url: ""
     image_caption: ""
-    content: "This section defines a table of keywords used to parse the CONFIG.SYS file, a critical system configuration file introduced in MS-DOS v2.0. Each entry consists of a length byte, the keyword string, and a single-character identifier. For example, 'BUFFERS' is associated with 'B', and 'FILES' with 'F'. These identifiers streamline the parsing process, allowing the operating system to quickly match configuration directives to their corresponding handlers. In 1983, MS-DOS v2.0 represented a major leap forward, incorporating features inspired by Unix, such as hierarchical directories and device drivers. CONFIG.SYS was part of this evolution, enabling users to customize system behavior at boot time. The keyword table reflects the constraints of the era: memory was scarce, and processing power limited, so compact and efficient data structures were essential. Tim Paterson and the Microsoft team designed this table to support flexibility while maintaining performance. The choice of single-character identifiers and fixed-length entries minimized memory usage and simplified lookup routines. This approach was influenced by similar techniques in Unix configuration files, adapted to fit the limitations of the IBM PC's 8086 processor and early hardware. The keyword table concept became a standard in operating system design, influencing later systems like Windows and OS/2. CONFIG.SYS itself persisted through the DOS era, shaping how users and administrators interacted with PCs. The idea of keyword-driven configuration files can still be seen in modern systems, such as Linux's /etc configuration files and JSON-based settings in contemporary applications. This table is a snapshot of a turning point in computing history, where operating systems began to balance user control with technical constraints."
-  - id: "sysinitseg-ends"
-    line_start: 2839
-    line_end: 2841
-    title: "End of SYSINITSEG segment declaration"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Segment_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The 'SYSINITSEG ENDS' directive marks the conclusion of the SYSINITSEG segment, which encapsulates the initialization routines for MS-DOS. Segmentation was a fundamental feature of the 8086 processor, allowing programs to divide memory into logical sections for code, data, and stack. This structure helped manage the limited 1 MB address space of the IBM PC. In MS-DOS v2.0, segmentation played a crucial role in organizing the operating system's components. By clearly delineating initialization routines, the developers ensured that these critical operations were isolated from other parts of the system. This separation improved maintainability and reduced the risk of errors during execution. The use of segments reflects the constraints and opportunities of early PC hardware. The 8086 processor's segmented memory model was both a limitation and a creative challenge, shaping the design of software for years to come. Tim Paterson and the Microsoft team leveraged this model to create a modular and efficient operating system, laying the groundwork for future versions of MS-DOS and its successors. Segmentation influenced many aspects of software development, from compilers to operating systems. It persisted in various forms, such as the protected mode of the 80286 and the flat memory model of modern processors. The 'ENDS' directive here is a small but significant part of this legacy, representing the careful planning and engineering that defined MS-DOS v2.0."
+    content: "This section defines `COMTAB`, a lookup table mapping CONFIG.SYS directives to single-character identifiers. Each entry consists of a length byte, the directive name as a string, and its corresponding identifier. For example, 'BUFFERS' is mapped to 'B', and 'FILES' to 'F'. This design allows MS-DOS to efficiently parse CONFIG.SYS during initialization by quickly matching directives to their identifiers. In 1983, MS-DOS 2.0 introduced CONFIG.SYS as part of its Unix-inspired overhaul. The ability to configure system parameters like buffer sizes, file limits, and device drivers reflected the growing complexity of personal computing. IBM's PC XT, launched the same year, came with a hard drive, making these configuration options essential for managing resources. The lookup table approach was a clever optimization. Parsing strings directly would have been slower on the 4.77 MHz Intel 8088 processor, so mapping directives to single-character codes reduced the computational overhead. This technique likely drew inspiration from Unix's use of compact identifiers for system calls and configuration. CONFIG.SYS became a cornerstone of MS-DOS, influencing how users and administrators interacted with the operating system. Later versions of DOS expanded the directive set, and the concept of system configuration files persisted into Windows (e.g., AUTOEXEC.BAT). The efficient parsing mechanism here set a precedent for lightweight, extensible system initialization routines, influencing not just DOS derivatives but also embedded systems and early Linux distributions."
 
 ---
 
+```asm
 TITLE   BIOS SYSTEM INITIALIZATION
 
 
@@ -3007,3 +3064,4 @@ SYSINITSEG      ENDS
 
 
 
+```

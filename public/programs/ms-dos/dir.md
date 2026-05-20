@@ -9,173 +9,174 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "dir"
 order: 20
-description: "This file contains directory management routines for MS-DOS 2.0, showcasing innovations in file system handling inspired by Unix."
+description: "Directory management routines in MS-DOS 2.0, showcasing the evolution of file system handling inspired by Unix."
 
 summary:
-  - point: "Introduces subdirectory support, a major leap from MS-DOS 1.x"
+  - point: "Introduced hierarchical directory structure to MS-DOS"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Optimized directory allocation and search routines for FAT file system"
-    link: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    link_label: "File Allocation Table"
-  - point: "Reflects Microsoft's adaptation of Unix concepts for consumer PCs"
+  - point: "Optimized directory allocation and searching for constrained hardware"
+    link: "https://en.wikipedia.org/wiki/FAT_file_system"
+    link_label: "FAT file system"
+  - point: "Inspired by Unix file system concepts, adapted for PCs"
     link: "https://en.wikipedia.org/wiki/Unix"
     link_label: "Unix"
-  - point: "Tim Paterson's influence on MS-DOS architecture remains visible"
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
-  - point: "Key techniques here influenced later operating systems and file systems"
-    link: "https://en.wikipedia.org/wiki/Operating_system"
-    link_label: "Operating System"
+  - point: "Set groundwork for modern file systems in personal computers"
+    link: "https://en.wikipedia.org/wiki/File_system"
+    link_label: "File system"
+  - point: "Demonstrates low-level assembly techniques for file management"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly language"
 
 enhancements:
-  - id: "include-directives-for-modular-code"
+  - id: "include-dosseg-setup"
     line_start: 9
     line_end: 21
-    title: "Include directives for modular code"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Modular_programming"
+    title: "Why Include Files Were Crucial in MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section sets up the inclusion of external assembly files, such as DOSSEG.ASM and DOSSYM.ASM, which define segment and symbolic constants used throughout the file. Modular programming was a key design choice in MS-DOS 2.0, allowing developers to maintain and extend the codebase more easily. In the early 1980s, modularity was becoming a standard practice, influenced by structured programming principles and the need to manage increasingly complex software. By breaking the code into reusable components, Microsoft enabled faster development cycles and easier adaptation for OEMs. This approach influenced later operating systems, including Windows, which relied heavily on modular architecture."
-  - id: "name-directive-for-directory-management"
+    content: "This section includes external assembly files, such as DOSSEG.ASM and DOSSYM.ASM, which define segment structures and symbolic constants for MS-DOS. These files were essential for modular programming in assembly, allowing developers to reuse code and maintain consistency across the operating system. In the early 1980s, modularity was critical due to the limited memory and storage of personal computers like the IBM PC, which often had only 64KB to 256KB of RAM. By separating reusable definitions into include files, MS-DOS developers could streamline development and reduce errors. This approach influenced later operating systems and programming practices, where header files and libraries became standard. Modern software development still relies on similar modular principles, as seen in languages like C and Python."
+  - id: "name-dir-segment"
     line_start: 35
     line_end: 151
-    title: "NAME directive for directory management"
+    title: "The Segment That Named Directories"
+    wikipedia_url: "https://en.wikipedia.org/wiki/FAT_file_system"
+    image_url: ""
+    image_caption: ""
+    content: "This segment initializes variables and structures related to directory management, such as directory start points, cluster numbers, and attributes. The use of 'i_need' directives highlights the assembly language's ability to define and allocate memory for critical file system components. In MS-DOS 2.0, the introduction of hierarchical directories marked a significant departure from the flat file structure of earlier versions. Inspired by Unix, this innovation allowed users to organize files more effectively, paving the way for complex file systems like NTFS and ext4. The techniques shown here, such as managing clusters and sectors, were foundational for the FAT file system, which became ubiquitous in personal computing and embedded systems."
+  - id: "builddir-grow-directory"
+    line_start: 253
+    line_end: 253
+    title: "How MS-DOS Expanded Directories on the Fly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/FAT_file_system"
+    image_url: ""
+    image_caption: ""
+    content: "The BUILDDIR subroutine dynamically grows directories when no free entries are available, provided the directory is not the root. This functionality was critical for supporting hierarchical file systems introduced in MS-DOS 2.0. The subroutine checks for free entries and allocates additional space if necessary, ensuring efficient use of disk clusters. In the constrained environment of early PCs, where storage was limited and expensive, dynamic allocation minimized wasted space and optimized performance. This approach influenced later file systems, such as FAT32, which improved scalability and efficiency. The ability to grow directories dynamically became a standard feature in modern operating systems, enabling seamless file management even as storage capacities expanded."
+  - id: "setdotent-dot-dot-entry"
+    line_start: 303
+    line_end: 303
+    title: "The Origins of '.' and '..' in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The NAME directive initializes variables and constants related to directory management, such as cluster numbers, buffer pointers, and file attributes. These variables are crucial for handling the hierarchical file system introduced in MS-DOS 2.0. At the time, hierarchical file systems were a significant improvement over flat file systems, allowing users to organize files into subdirectories. This innovation was inspired by Unix, which had popularized the concept. The variables defined here enable efficient directory allocation, search, and manipulation, laying the groundwork for modern file systems. Techniques from this section influenced later developments in FAT32 and NTFS, as well as file systems in other operating systems like Linux."
-  - id: "builddir-subroutine-for-directory-growth"
-    line_start: 253
-    line_end: 301
-    title: "BUILDDIR: Subroutine for directory growth"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    image_url: ""
-    image_caption: ""
-    content: "The BUILDDIR subroutine handles the allocation of new directory entries when no free entries are available. It checks whether the directory is the root (which cannot grow) and allocates space for new entries if possible. This routine reflects the constraints of the FAT file system, which was optimized for small storage devices but required careful management of clusters and sectors. In 1983, storage was expensive, and efficient use of disk space was paramount. The logic here demonstrates Microsoft's ability to adapt Unix-like directory management to the FAT system. This approach influenced later file systems, such as FAT32, which expanded on these principles to support larger storage devices and more complex directory structures."
-  - id: "setdotent-subroutine-for-dot-and-dotdot"
-    line_start: 303
-    line_end: 485
-    title: "SETDOTENT: Subroutine for '.' and '..' entries"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Hierarchical_file_system"
-    image_url: ""
-    image_caption: ""
-    content: "The SETDOTENT subroutine creates the '.' and '..' entries for a directory, representing the current and parent directories, respectively. These entries are a hallmark of hierarchical file systems, enabling navigation and relative path resolution. Inspired by Unix, MS-DOS 2.0 adopted this structure to provide users with a more intuitive way to manage files. At the time, this was a significant advancement for consumer operating systems, as it brought Unix-like capabilities to personal computers. The implementation here laid the groundwork for directory navigation in later operating systems, including Windows and Linux, and became a standard feature in file systems worldwide."
-  - id: "search-subroutine-for-file-locations"
+    content: "SETDOTENT creates the special directory entries '.' and '..', representing the current directory and its parent, respectively. These entries were borrowed from Unix, where they were integral to navigating hierarchical file systems. By adopting this convention, MS-DOS 2.0 made directory traversal intuitive for users and developers. At the time, personal computers were transitioning from single-tasking systems to more complex environments, and hierarchical directories were a key innovation. The '.' and '..' entries became standard across operating systems, including Windows and Linux, and are still used today in command-line interfaces and programming. This design decision reflects the influence of Unix on MS-DOS and underscores the importance of interoperability and user familiarity in software design."
+  - id: "search-find-file"
     line_start: 487
     line_end: 625
-    title: "SEARCH: Subroutine for file locations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
+    title: "How MS-DOS Found Files with Wildcards"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wildcard_character"
     image_url: ""
     image_caption: ""
-    content: "The SEARCH subroutine locates files within a directory, using attributes and wildcards to match file names. This routine is crucial for implementing commands like DIR and FIND, which allow users to list and locate files. In the early 1980s, efficient file search algorithms were essential due to the limited processing power of PCs. The logic here demonstrates Microsoft's ability to optimize directory traversal within the constraints of the FAT file system. Techniques from this subroutine influenced later file systems, as well as search utilities in modern operating systems. The use of wildcards, in particular, became a standard feature in command-line interfaces and scripting languages."
-  - id: "setcurrdir-subroutine-for-current-directory"
-    line_start: 943
-    line_end: 1015
-    title: "SETCURRDIR: Subroutine for current directory"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Working_directory"
+    content: "The SEARCH subroutine locates files in a directory, supporting wildcard characters like '?' for flexible matching. This functionality was essential for command-line operations, such as listing files or copying groups of files. In the early 1980s, wildcard matching was a novel feature that simplified file management for users. The implementation here demonstrates efficient use of assembly language to iterate through directory entries and compare names. Wildcard support became a staple of file systems and command-line interfaces, influencing tools like grep and globbing in Unix-like systems. The ability to search and manipulate files programmatically laid the groundwork for automation and scripting, which are now integral to software development and system administration."
+  - id: "setrootsrch-root-directory"
+    line_start: 909
+    line_end: 939
+    title: "Resetting to Root: A Safety Net for Paths"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Root_directory"
     image_url: ""
     image_caption: ""
-    content: "The SETCURRDIR subroutine sets the current working directory for a drive, enabling relative path operations. This functionality was a direct adaptation of Unix concepts, which emphasized the importance of a working directory for efficient file management. In MS-DOS 2.0, this feature allowed users to navigate and manipulate files more easily, marking a significant improvement over the flat file system of MS-DOS 1.x. The implementation here reflects the growing influence of Unix on consumer operating systems. The concept of a working directory became a cornerstone of modern operating systems, influencing command-line interfaces, scripting languages, and graphical file explorers."
+    content: "SETROOTSRCH resets the search parameters to the root directory when a path is invalid or unspecified. This ensures that file operations always have a fallback, preventing errors and maintaining system stability. In MS-DOS 2.0, the root directory was the anchor point for all file system operations, mirroring the design of Unix. This subroutine reflects the challenges of managing paths in early operating systems, where user input could easily lead to invalid states. By resetting to the root, MS-DOS provided a robust mechanism for recovering from errors. This concept influenced later operating systems, where root directories serve as the foundation for file hierarchies and system organization."
   - id: "dir-search-directory-lookup"
-    line_start: 1017
+    line_start: 987
     line_end: 1017
-    title: "Directory lookup: finding files efficiently"
+    title: "How MS-DOS Found Files in Directories"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The `Dir_search` routine is responsible for locating files or directories within the hierarchical file system introduced in MS-DOS 2.0. This marks a significant departure from the flat file system of MS-DOS 1.x. The routine uses the File Control Block (FCB) structure to traverse directories and locate entries. At the time, the IBM PC's 8086 processor had limited computational power, so efficiency was paramount. The hierarchical directory structure, inspired by Unix, allowed users to organize files logically, improving usability for both personal and business applications. This routine laid the groundwork for subsequent file systems, influencing FAT12 and FAT16 designs and later operating systems like Windows."
-  - id: "make-node-create-new-file-or-directory"
+    content: "The `Dir_search` routine is responsible for locating files within directories in MS-DOS. It uses a combination of path parsing and file attribute checks to determine whether a file exists, whether it matches the requested attributes, and whether it resides in the correct directory. At the time, MS-DOS 2.0 was introducing hierarchical file systems, a significant leap from the flat file structure of MS-DOS 1.x. This routine reflects the growing complexity of consumer operating systems as they began to mimic features of Unix, such as subdirectories. Written in 8086 assembly, it had to be highly optimized to run efficiently on the IBM PC's limited hardware. This approach influenced later DOS versions and other operating systems, which continued to refine directory lookup algorithms for performance and scalability."
+  - id: "make-node-create-new-directory-entry"
     line_start: 1025
     line_end: 1309
-    title: "Creating nodes: files and directories"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
+    title: "Creating Directory Entries on 1983 Hardware"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_control_block"
     image_url: ""
     image_caption: ""
-    content: "The `MakeNode` procedure is a key part of MS-DOS's directory handling. It creates new nodes in the file system, which can represent files or directories. The routine checks for existing nodes, validates attributes, and handles errors such as bad paths or attribute mismatches. This functionality reflects the influence of Unix, which also uses hierarchical directories and attributes for file system entries. The introduction of this feature in MS-DOS 2.0 allowed users to create nested directories, a major usability improvement over MS-DOS 1.x. The technique of error handling and attribute validation became standard in later file systems, influencing FAT and NTFS designs."
-  - id: "getpath-parse-asciz-paths"
+    content: "The `MakeNode` procedure creates new directory entries, handling both files and subdirectories. It checks for existing entries, validates attributes, and sets up the necessary file control block (FCB). This routine showcases the challenges of implementing hierarchical file systems on early PCs, where memory and processing power were scarce. Tim Paterson and the Microsoft team adapted concepts from Unix to fit within the constraints of the IBM PC architecture. The ability to create nodes dynamically was critical for supporting the new subdirectory structure introduced in MS-DOS 2.0. This innovation laid the groundwork for modern file systems and influenced software like Windows, which inherited many of these design principles."
+  - id: "getpath-parse-paths"
     line_start: 1319
     line_end: 1649
-    title: "Path parsing: understanding user input"
+    title: "Parsing Paths: From Root to Device"
     wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `GETPATH` routine parses ASCIZ (null-terminated) paths provided by the user, determining the drive, root, and attributes of the path. This routine integrates device handling, allowing paths to reference devices like printers or disk drives. Parsing paths efficiently was critical on the IBM PC's 8086 processor, which had limited resources. The implementation reflects Unix-like influences, where paths are central to file system operations. This routine's design influenced later path parsing mechanisms in operating systems like Windows, which retained compatibility with MS-DOS-style paths while expanding functionality."
+    content: "The `GETPATH` routine parses an ASCIZ path string, determining its components such as drive specifications, root indicators, and attributes. This was a pivotal feature in MS-DOS 2.0, enabling support for hierarchical file systems and device paths. Parsing paths efficiently was critical on the IBM PC, where memory was limited to 640KB and CPUs operated at 4.77MHz. The routine's design reflects the influence of Unix, which had long supported complex path structures. By introducing this capability, MS-DOS expanded its usability for both consumer and business applications, influencing later operating systems like Windows and Linux, which built upon these foundational ideas."
   - id: "findfile-search-for-file-in-directory"
     line_start: 1863
     line_end: 1923
-    title: "Finding files: directory traversal"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
+    title: "Finding Files in a Hierarchical System"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Hierarchical_file_system"
     image_url: ""
     image_caption: ""
-    content: "The `FindFile` routine searches directories for specific files, using the hierarchical structure introduced in MS-DOS 2.0. It checks attributes and handles errors like malformed paths or files in the middle of a directory path. This routine demonstrates the transition from flat file systems to hierarchical ones, influenced by Unix. Efficient directory traversal was crucial for performance on the 8086 processor. The techniques developed here influenced later file systems, including FAT variants and NTFS, and were studied by developers of other operating systems for their simplicity and efficiency."
+    content: "The `FindFile` routine searches for a specific file within a directory, checking attributes and validating the path. It was a key component of MS-DOS 2.0's hierarchical file system, which represented a major evolution from the flat file structure of earlier versions. This routine had to balance functionality with performance, as it ran on hardware with limited resources. The ability to locate files efficiently was essential for applications and users navigating complex directory trees. This approach influenced later file system designs, including FAT32 and NTFS, which built upon the principles established here to improve scalability and reliability."
   - id: "setdir-change-current-directory"
     line_start: 1927
     line_end: 1991
-    title: "Changing directories: navigating the hierarchy"
+    title: "Changing Directories: A Unix-inspired Feature"
     wikipedia_url: "https://en.wikipedia.org/wiki/Working_directory"
     image_url: ""
     image_caption: ""
-    content: "The `SetDir` procedure changes the current working directory, a concept borrowed from Unix. It updates internal pointers and structures to reflect the new directory context. This feature was a major usability improvement over MS-DOS 1.x, enabling users to navigate the hierarchical file system efficiently. The routine's design reflects the constraints of the 8086 processor, balancing functionality with performance. The concept of a working directory became standard in operating systems, influencing command-line interfaces and graphical file explorers in systems like Windows and Linux."
-  - id: "badpath-error-handling-for-invalid-paths"
+    content: "The `SetDir` routine changes the current working directory, a feature borrowed from Unix and introduced in MS-DOS 2.0. This capability was essential for supporting hierarchical file systems, allowing users and applications to navigate complex directory structures. Implementing this feature on the IBM PC required careful optimization, as the hardware was constrained in terms of memory and processing power. The routine's design reflects the influence of Unix, which had long supported directory navigation. By adding this feature, MS-DOS became more versatile and user-friendly, paving the way for later operating systems like Windows and Linux to adopt and refine similar functionality."
+  - id: "badpath-handle-invalid-paths"
     line_start: 1999
     line_end: 2005
-    title: "Error handling: invalid paths"
+    title: "Handling Invalid Paths in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
-    content: "The `BADPATH` routine handles errors related to invalid or malformed paths. It sets error codes and clears registers to ensure the system remains stable. Error handling was a critical feature for MS-DOS 2.0, as the hierarchical file system introduced new complexities. This routine reflects the influence of Unix, which also emphasizes robust error handling in file system operations. The techniques developed here influenced later operating systems, which expanded error handling to include detailed logging and user-friendly error messages."
-  - id: "fileinpath-check-file-in-path"
+    content: "The `BADPATH` routine handles cases where a path is invalid, setting error codes and returning control to the caller. Error handling was a critical aspect of MS-DOS 2.0, which introduced more complex file system operations compared to earlier versions. This routine ensured that invalid paths did not crash the system or lead to undefined behavior, a significant improvement in robustness. The approach taken here influenced error handling in later operating systems, which continued to refine the process of detecting and responding to invalid inputs."
+  - id: "fileinpath-detect-file-in-path"
     line_start: 2009
     line_end: 2025
-    title: "File in path: validating structure"
+    title: "Detecting Files in Directory Paths"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The `FILEINPATH` routine checks whether a file exists in the specified path, validating the structure of the path. It handles errors like paths that are too long or improperly formatted. This routine reflects the influence of Unix, which also emphasizes path validation in file system operations. The techniques developed here influenced later file systems, which expanded path validation to include symbolic links and network paths."
-  - id: "setret-finalize-path-parsing"
+    content: "The `FILEINPATH` routine detects whether a file exists within a specified path, returning appropriate error codes if the path is malformed or the file is missing. This functionality was crucial for MS-DOS 2.0's hierarchical file system, enabling applications to validate paths and locate resources efficiently. The routine's design reflects the constraints of early PC hardware, where memory and processing power were limited. By introducing this capability, MS-DOS improved its usability and reliability, influencing later file system designs that built upon these foundational ideas."
+  - id: "setret-finalize-path-processing"
     line_start: 2033
     line_end: 2039
-    title: "Finalizing: path parsing results"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"
+    title: "Finalizing Path Processing in MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Error_code"
     image_url: ""
     image_caption: ""
-    content: "The `SETRET` routine finalizes path parsing, setting return values and clearing registers. This marks the end of a complex process that integrates hierarchical directories, device handling, and error management. The routine reflects the influence of Unix, which also emphasizes robust path handling. The techniques developed here influenced later operating systems, which expanded path parsing to include features like symbolic links and network paths."
-  - id: "badpathpop-path-error-handling"
+    content: "The `SETRET` routine finalizes path processing, ensuring that error codes and return values are set correctly. This was an essential part of MS-DOS 2.0's directory handling, which introduced more sophisticated file system operations compared to earlier versions. The routine's design reflects the influence of Unix, which had long supported hierarchical file systems and robust error handling. By implementing this feature, MS-DOS improved its reliability and paved the way for later operating systems to adopt similar practices."
+  - id: "badpathpop-path-too-long-check"
     line_start: 2043
     line_end: 2057
-    title: "Handling path errors in constrained memory"
+    title: "What Happens When a Path Is Too Long?"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The BADPATHPOP routine is responsible for handling errors related to invalid or overly long directory paths. It pops values off the stack, restores key registers, and sets a status flag to indicate the nature of the error. At the time, MS-DOS was operating in a memory-constrained environment, typically limited to 64KB segments on the IBM PC's 8086 processor. Efficient error handling was critical to ensure stability without consuming excessive resources. Tim Paterson and the Microsoft team designed routines like this to prioritize performance and reliability, reflecting the practical constraints of early personal computing. This approach influenced later operating systems, where robust error handling became a cornerstone of file system design."
+    content: "This subroutine, BADPATHPOP, handles errors related to excessively long file paths or invalid directory elements. It pops values off the stack, checks the current directory element, and sets a status flag (STC) to indicate an error condition. The programmer's immediate goal was to clean up and signal a failure when a path exceeded the allowed length or contained invalid elements. In 1983, file systems were evolving rapidly. MS-DOS v2.0 introduced hierarchical directories, a major leap from the flat file system of earlier versions. This change was inspired by Unix, which had already demonstrated the power of subdirectories for organizing files. However, implementing these features on the limited hardware of the IBM PC, with its 8086 processor and constrained memory, required careful error handling and optimization. The consequences of this work were significant. BADPATHPOP ensured that the system could gracefully handle user errors, preventing crashes or undefined behavior. This kind of robust error handling became a hallmark of MS-DOS and influenced later operating systems. Developers building file systems for Windows, Linux, and other platforms studied these early routines to understand how to manage errors efficiently in constrained environments. The concept of signaling path-related errors through flags and stack manipulation persists in modern file system APIs."
   - id: "rootpath-directory-search-initialization"
     line_start: 2059
     line_end: 2105
-    title: "Initializing directory searches for subdirectories"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The ROOTPATH routine sets up the necessary parameters for directory searches, including initializing variables like LASTENT and VOLID. This functionality was part of MS-DOS v2.0's support for subdirectories, a feature inspired by Unix and XENIX. Subdirectories allowed users to organize files hierarchically, a significant improvement over the flat file structure of MS-DOS 1.x. This innovation was driven by the increasing complexity of software and user needs in the early 1980s. The technique used here laid the groundwork for hierarchical file systems in later operating systems, including Windows and Linux."
-  - id: "matchattributes-attribute-checking"
-    line_start: 2111
-    line_end: 2153
-    title: "Efficient attribute matching for directory entries"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_attribute"
-    image_url: ""
-    image_caption: ""
-    content: "The MatchAttributes routine performs a comparison between the desired file attributes and those of a directory entry. By using logical operations like NOT and AND, it determines whether the entry matches the search criteria. This approach was optimized for the limited processing power of the 8086 CPU, ensuring fast execution even in resource-constrained environments. File attributes, such as 'read-only' or 'hidden,' were a key feature of MS-DOS's file system, allowing users and programs to manage files more effectively. The efficient implementation here influenced later file systems, where attribute-based searches became standard practice."
-  - id: "do-ext-final-code-section"
-    line_start: 2159
-    line_end: 2165
-    title: "Finalizing the directory handling code"
+    title: "The Routine That Finds Your Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The do_ext section marks the end of the directory handling code in DIR.ASM. It serves as a placeholder for any additional functionality or extensions that might be added later. This modular design reflects the forward-thinking approach of MS-DOS v2.0, which was built to accommodate future enhancements. By structuring the code in this way, the developers ensured that MS-DOS could evolve to meet the needs of new hardware and software. This extensibility became a hallmark of Microsoft's operating systems, influencing the design of Windows and other platforms."
+    content: "ROOTPATH initializes the directory search process, setting up key parameters for locating files. It loads drive parameters into ES:BP, resets search-related variables like LASTENT and ENTFREE, and prepares the system to iterate through directory entries. The immediate goal was to establish a clean slate for file searches, ensuring consistency and reliability. In the early 1980s, file systems were a critical feature of operating systems, but they were constrained by hardware limitations. MS-DOS v2.0's directory handling routines drew heavily from Unix's hierarchical file system but had to be adapted for the IBM PC's 8086 processor and limited memory. ROOTPATH reflects this adaptation, balancing functionality with efficiency. This routine laid the groundwork for modern file search algorithms. By organizing directory entries and initializing search parameters, it influenced the design of file systems in Windows and other operating systems. The idea of setting up a structured search environment became standard practice, appearing in APIs like FindFirstFile and FindNextFile in Windows. ROOTPATH's approach to directory search initialization remains a foundational concept in computing."
+  - id: "matchattributes-attribute-checking"
+    line_start: 2111
+    line_end: 2153
+    title: "How MS-DOS Checked File Attributes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_attribute"
+    image_url: ""
+    image_caption: ""
+    content: "The MatchAttributes subroutine checks whether a file's attributes match the desired search criteria. It uses bitwise operations to compare the search set, found set, and important attributes, determining whether a match exists. The immediate goal was to filter files based on attributes like read-only, hidden, or system. File attributes were a novel concept in early personal computing, allowing users and programs to categorize files beyond their names. MS-DOS v2.0 expanded on this idea, inspired by Unix's file permissions and attributes. However, implementing attribute checks efficiently on the IBM PC's hardware required clever use of bitwise operations, minimizing CPU cycles and memory usage. MatchAttributes influenced the design of file systems in later operating systems. The concept of filtering files by attributes became standard, appearing in APIs like Windows' FindFirstFileEx and Linux's stat command. The use of bitwise operations for attribute checks remains a common technique in modern programming, a testament to the efficiency of this early implementation."
+  - id: "do-ext-final-cleanup"
+    line_start: 2159
+    line_end: 2163
+    title: "The Cleanup Routine That Ends It All"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "The do_ext routine marks the end of the DIR.ASM file, signaling the completion of directory handling operations. While its functionality is minimal, it serves as a final cleanup point, ensuring that all processes related to directory management are properly terminated. In the context of MS-DOS v2.0, routines like do_ext were essential for maintaining system stability. The IBM PC's hardware constraints required meticulous attention to resource management, and every routine had to leave the system in a consistent state. This focus on stability and reliability was a hallmark of MS-DOS, contributing to its widespread adoption. The principles behind routines like do_ext influenced the design of later operating systems. The idea of a final cleanup routine became standard practice, appearing in file system APIs and kernel designs. Developers building modern operating systems continue to study these early implementations to understand how to balance functionality with efficiency and reliability."
 
 ---
 
+```asm
 ;
 
 ; Directory routines for MSDOS
@@ -2343,3 +2344,4 @@ CODE    ENDS
     END
 
                                                                                             
+```

@@ -9,31 +9,32 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "stddos"
 order: 10
-description: "This file defines key configuration switches for MS-DOS v1.25, setting the groundwork for its adaptability across hardware platforms and debugging environments."
+description: "Configuration switches and assembly directives for MS-DOS 1.25, showcasing early design decisions in operating system development."
 
 summary:
-  - point: "Defines configuration switches for MS-DOS behavior"
+  - point: "Boolean switches control build variants for IBM and Microsoft versions."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Introduces conditional assembly for platform-specific builds"
-    link: "https://en.wikipedia.org/wiki/Conditional_assembly"
-    link_label: "Conditional Assembly"
-  - point: "Includes debugging options for disk I/O testing"
-    link: "https://en.wikipedia.org/wiki/Debugging"
-    link_label: "Debugging"
+  - point: "HIGHMEM switch reflects memory management constraints of early PCs."
+    link: "https://en.wikipedia.org/wiki/Conventional_memory"
+    link_label: "Conventional memory"
+  - point: "Re-entrant DOS testing enabled by DSKTEST switch."
+    link: "https://en.wikipedia.org/wiki/Reentrancy_(computing)"
+    link_label: "Reentrancy"
 
 enhancements:
-  - id: "configuration-switches-ms-dos"
+  - id: "early-build-switches-ms-dos"
     line_start: 3
     line_end: 19
-    title: "Configuration switches: adaptability meets simplicity"
+    title: "Why MS-DOS Had Multiple Build Variants"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section defines several configuration switches that control the behavior and build options of MS-DOS v1.25. These switches include `MSVER` and `IBM`, which toggle between the standard Microsoft version and the IBM-specific version of the operating system, and `HIGHMEM`, which determines whether DOS relocates itself to the end of memory. Another notable switch, `DSKTEST`, enables debugging for disk I/O routines by setting up a separate stack for disk operations, effectively making DOS reentrant for testing purposes. In 1982, the computing landscape was dominated by hardware-specific software. MS-DOS's ability to adapt to different platforms through conditional assembly was groundbreaking. Tim Paterson, the original author of 86-DOS, designed the system to be lightweight and modular, allowing Microsoft to quickly tailor it for IBM's PC and other OEMs. The inclusion of debugging options like `DSKTEST` reflects the practical challenges of developing reliable software for diverse hardware configurations. This approach to configuration and adaptability influenced the design of later operating systems, including MS-DOS 2.0 and beyond, which expanded on modularity and hardware abstraction. The concept of conditional assembly became a standard practice in software development, enabling developers to create versatile software that could run on multiple platforms with minimal changes. Debugging enhancements like `DSKTEST` foreshadowed the importance of testing tools in modern software engineering. These techniques laid the foundation for Microsoft's dominance in the PC operating system market and influenced the design of subsequent systems like Windows and Linux."
+    content: "This section defines several boolean switches that control how MS-DOS is assembled. These include MSVER and IBM, which toggle between the Microsoft and IBM-specific builds of the operating system, HIGHMEM, which determines whether DOS relocates itself to the end of memory, and DSKTEST, a debugging mode that makes DOS re-entrant for disk I/O testing. At the time, the IBM PC had just launched, and MS-DOS needed to support both IBM's requirements and Microsoft's broader licensing strategy. The HIGHMEM option reflects the constraints of early PC memory management, where conventional memory was limited to 640KB and operating systems had to carefully manage their footprint. DSKTEST, meanwhile, hints at the challenges of debugging disk operations in an era when re-entrant code was rare and difficult to achieve. These switches reveal the flexibility baked into MS-DOS's design, allowing it to adapt to different hardware and licensing conditions. Tim Paterson, who originally wrote 86-DOS, carried forward this modular philosophy when adapting the code for Microsoft. The inclusion of debugging options like DSKTEST highlights the practical challenges of developing low-level software for new hardware. This modular approach influenced later operating systems, including MS-DOS 2.0, which introduced more sophisticated features like subdirectories and file handles. The HIGHMEM concept also foreshadowed memory management techniques that became critical as PCs evolved, such as extended and expanded memory. Debugging tools like DSKTEST paved the way for more robust testing environments in future software development. These switches represent an early example of how software could be tailored to meet diverse needs in a rapidly changing industry."
 
 ---
 
+```asm
 	TITLE	MS-DOS version 1.25 by Tim Paterson     March 3, 1982
 	PAGE	60,132
 ; Use the following booleans to set the switches 
@@ -57,3 +58,4 @@ DSKTEST	EQU	FALSE
 	INCLUDE	MSDOS.ASM
 
 
+```

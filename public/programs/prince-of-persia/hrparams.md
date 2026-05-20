@@ -9,39 +9,46 @@ year: 1989
 author: "Jordan Mechner"
 slug: "hrparams"
 order: 23
-description: "This file defines hardware parameters and lookup tables for sprite manipulation in Prince of Persia, enabling cinematic animations on constrained Apple II hardware."
+description: "This file defines key data tables and parameters for handling high-resolution graphics in Prince of Persia on the Apple II."
 
 summary:
-  - point: "Defines memory tables for sprite transformations"
-    link: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
-    link_label: "Sprite Graphics"
-  - point: "Uses bank-switched memory to fit within 128K"
+  - point: "Defines memory layout for high-resolution graphics tables"
+    link: "https://en.wikipedia.org/wiki/Apple_II_graphics"
+    link_label: "Apple II Graphics"
+  - point: "Includes lookup tables for shifting and masking pixel data"
+    link: "https://en.wikipedia.org/wiki/Bitwise_operation"
+    link_label: "Bitwise Operations"
+  - point: "Optimized for 128K bank-switched memory constraints"
     link: "https://en.wikipedia.org/wiki/Bank_switching"
     link_label: "Bank Switching"
-  - point: "Optimized for Apple IIe/IIc hardware constraints"
-    link: "https://en.wikipedia.org/wiki/Apple_II_series"
-    link_label: "Apple II Series"
+  - point: "Supports cinematic animation techniques like rotoscoping"
+    link: "https://en.wikipedia.org/wiki/Rotoscoping"
+    link_label: "Rotoscoping"
+  - point: "Sets up parameters for sprite manipulation and rendering"
+    link: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    link_label: "Sprites"
 
 enhancements:
-  - id: "sprite-transformation-tables"
-    line_start: 6
+  - id: "high-resolution-graphics-tables"
+    line_start: 7
     line_end: 40
-    title: "How Lookup Tables Made Animation Fast"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
+    title: "How Lookup Tables Made Graphics Fast"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
     image_caption: ""
-    content: "This section defines a series of memory tables used for sprite transformations, including shifts, carries, mirrors, and masks. These tables are essential for manipulating sprite graphics efficiently on the Apple II, which lacked dedicated graphics hardware. By precomputing values for operations like shifting and masking, the game could perform complex transformations in real-time without taxing the 6502 CPU. In the mid-1980s, the Apple IIe/IIc was a popular home computer, but its graphics capabilities were limited to a 280x192 resolution with a restricted color palette. Developers had to rely on clever software techniques to achieve smooth animations. Jordan Mechner, working solo on Prince of Persia, designed these tables to support the game's cinematic platforming style, where fluid character movement was paramount. The use of lookup tables for sprite manipulation was not unique to Prince of Persia but was a hallmark of efficient programming on constrained systems. Mechner's implementation, however, was tailored to the game's rotoscoped animations, which required precise pixel-level transformations. This approach influenced later games on similar hardware, such as Karateka (also by Mechner) and other early platformers. It also demonstrated the power of precomputed data in real-time graphics, a technique still used in modern game engines for tasks like lighting and physics calculations."
-  - id: "hardware-parameters-for-sprites"
-    line_start: 42
+    content: "This section defines a series of lookup tables used for high-resolution graphics manipulation on the Apple II. The tables include pixel shift values (`SHIFT0` through `SHIFT6`), carry values (`CARRY0` through `CARRY6`), and masks (`MIRROR`, `MASKTAB`). These tables were essential for efficiently rendering sprites and animations within the constraints of the Apple II's limited graphics hardware. The Apple II's high-resolution mode allowed for 280x192 pixels, but manipulating individual pixels required precise bit-level operations due to the machine's 6-color palette and memory layout. By precomputing values for common operations like shifting and masking, Jordan Mechner reduced the computational overhead during runtime, enabling smoother animations and faster rendering. At the time, this approach was a clever workaround for the lack of dedicated graphics hardware. Mechner's use of lookup tables reflects the ingenuity required to push the Apple II's capabilities to their limits. This technique influenced later games on similar hardware, as developers increasingly relied on precomputed data to optimize performance. The tables also supported Mechner's rotoscoping-based animation, where smooth transitions between frames were critical. The lookup table approach became a staple in game development, appearing in titles like Karateka (Mechner's earlier work) and inspiring techniques in modern game engines for efficient rendering."
+  - id: "sprite-manipulation-parameters"
+    line_start: 43
     line_end: 64
-    title: "The Parameters Behind Cinematic Sprites"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    title: "The Parameters Behind Cinematic Animation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "This section defines hardware parameters for sprite manipulation, including coordinates (XCO, YCO), offsets, image references, opacity, and memory banks. These parameters act as the interface between the game's logic and the Apple II hardware, enabling dynamic sprite rendering and animation. In the late 1980s, programming for the Apple II required intimate knowledge of its memory architecture, including bank switching and the use of auxiliary memory. Mechner's design reflects this expertise, with parameters like BANK and OFFSET facilitating access to different memory regions. The inclusion of cut parameters (TOPCUT, LEFTCUT, etc.) suggests optimization for partial sprite rendering, a technique to save processing time by only drawing visible portions of a sprite. These hardware parameters were critical for achieving the smooth, lifelike animations that defined Prince of Persia. They allowed the game to manage sprite data efficiently, even within the constraints of a 128K memory limit. This approach influenced subsequent games on the Apple II and other systems with similar limitations, showcasing how careful parameter design could unlock new levels of graphical fidelity. Modern game engines continue to use similar abstractions for sprite and texture management, albeit on vastly more powerful hardware."
+    content: "This section defines parameters for sprite manipulation and rendering, including coordinates (`XCO`, `YCO`), offsets (`OFFSET`), image data (`IMAGE`), opacity (`OPACITY`), and cutting boundaries (`TOPCUT`, `LEFTCUT`, `RIGHTCUT`, `BOTCUT`). These parameters were used to control how sprites were drawn on the screen, allowing for precise placement, layering, and clipping. The Apple II's memory constraints meant that sprites had to be carefully managed to avoid exceeding the available 128K of RAM. Mechner's design ensured that animations could be displayed seamlessly, even as the player character interacted with complex environments. The inclusion of cutting boundaries allowed for partial rendering of sprites, a technique often used to handle collisions or edge cases where sprites overlapped the screen boundaries. These parameters also supported the game's cinematic style, where fluid character movement and dynamic environments were central to the experience. Mechner's attention to detail in defining these parameters helped establish Prince of Persia as a groundbreaking title in the cinematic platformer genre. The techniques developed here influenced later games, including Another World and Flashback, which similarly emphasized smooth animation and immersive environments. Mechner's work demonstrated how careful parameterization could overcome hardware limitations and deliver a visually compelling experience."
 
 ---
 
+```asm
  tr on
 * hrparams
 
@@ -112,3 +119,4 @@ width = IMAGE+1
 color = OPACITY
 
  lst off
+```

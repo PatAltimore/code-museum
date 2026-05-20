@@ -9,149 +9,142 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "io"
 order: 8
-description: "This file defines the I/O system for MS-DOS v1.25, showcasing early 1980s hardware-specific programming techniques and device compatibility."
+description: "This file defines the I/O subsystem for MS-DOS v1.25, showcasing early personal computing hardware and software integration."
 
 summary:
-  - point: "Configurable hardware support for multiple controllers"
+  - point: "Configurable hardware support for multiple controllers and devices"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Interrupt-driven vs polled input selection"
+  - point: "Interrupt-driven and polled input mechanisms for console I/O"
     link: "https://en.wikipedia.org/wiki/Interrupt"
     link_label: "Interrupts"
-  - point: "Disk density and format compatibility"
-    link: "https://en.wikipedia.org/wiki/Floppy_disk"
-    link_label: "Floppy Disk"
-  - point: "Direct manipulation of hardware ports"
-    link: "https://en.wikipedia.org/wiki/Port_(computer_networking)"
-    link_label: "Hardware Ports"
-  - point: "Early multitasking with queues for I/O operations"
-    link: "https://en.wikipedia.org/wiki/Queue_(data_structure)"
-    link_label: "Queue Data Structure"
+  - point: "Disk density and format handling for diverse hardware"
+    link: "https://en.wikipedia.org/wiki/Floppy_disk_formats"
+    link_label: "Floppy Disk Formats"
+  - point: "Integration of time-of-day clock initialization"
+    link: "https://en.wikipedia.org/wiki/Real-time_clock"
+    link_label: "Real-Time Clock"
+  - point: "Direct disk read/write routines with error handling"
+    link: "https://en.wikipedia.org/wiki/Disk_operating_system"
+    link_label: "Disk Operating Systems"
 
 enhancements:
   - id: "hardware-configuration-options"
     line_start: 1
     line_end: 72
-    title: "Hardware configuration: flexible, yet specific"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "Hardware Configurations: Tailoring MS-DOS to Devices"
+    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
     image_caption: ""
-    content: "This section provides configuration options for hardware compatibility, including disk controllers, serial ports, and parallel ports. Tim Paterson designed this code to accommodate a variety of hardware setups, such as SCP, Tarbell, and Cromemco controllers. At the time, hardware diversity was a significant challenge, as manufacturers produced devices with unique specifications. The ability to select interrupt-driven or polled input, baud rates, and disk configurations reflects the flexibility required for MS-DOS to be licensed to multiple OEMs. This modular approach influenced future operating systems, which adopted similar configuration methods to ensure broad compatibility across hardware platforms."
-  - id: "bios-and-dos-memory-management"
-    line_start: 74
-    line_end: 87
-    title: "Memory management for BIOS and MS-DOS"
-    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines memory segment sizes for the BIOS and MS-DOS, ensuring both fit within the limited memory of early PCs. The BIOS segment is allocated 2048 bytes, while MS-DOS is given 8192 bytes. Memory constraints were a defining characteristic of the IBM PC, which typically shipped with 16–64 KB of RAM. These definitions reflect the careful planning required to optimize memory usage in a time when every byte mattered. Later operating systems expanded on this foundation, introducing more sophisticated memory management techniques, but the principles laid here remained influential."
-  - id: "initialization-subroutine"
-    line_start: 130
-    line_end: 240
-    title: "System initialization: setting the stage"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "The INIT subroutine sets up the stack, initializes the keyboard interrupt vector, and prepares the time-of-day clock. It also relocates MS-DOS in memory and configures disk read/write vectors. This meticulous setup reflects the need to bootstrap the system in a predictable and efficient manner. Written in 8086 assembly, this code demonstrates the low-level control programmers had over hardware. The initialization process influenced later operating systems, which adopted similar bootstrapping techniques to ensure reliable startup sequences. The relocation of MS-DOS also highlights the early use of memory segmentation, a concept that persisted in x86 architecture for decades."
-  - id: "time-and-date-functions"
-    line_start: 265
-    line_end: 355
-    title: "Timekeeping: precision in early PCs"
+    content: "The opening section of IO.ASM defines hardware configuration options for MS-DOS, allowing it to support a variety of controllers and devices. These include CPU support cards, disk controllers from SCP, Tarbell, and Cromemco, and auxiliary ports for serial or parallel communication. In 1981, hardware diversity was a major challenge for operating systems, as the IBM PC had just launched, and OEMs were rapidly adopting MS-DOS for their own hardware. Tim Paterson's design ensured flexibility by enabling users to select interrupt-driven or polled input, baud rates, and disk configurations. This approach allowed MS-DOS to become the dominant OS for PCs, as it could be easily adapted to new hardware. The configurable nature of this section foreshadowed the modularity seen in later systems like Linux and Windows."
+  - id: "time-of-day-clock-initialization"
+    line_start: 151
+    line_end: 256
+    title: "Setting the Clock: Time-of-Day Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_clock"
     image_url: ""
     image_caption: ""
-    content: "The GETTIME and SETTIME routines interact with the system's time-of-day clock, enabling precise timekeeping. These functions use binary-coded decimal (BCD) conversion to handle time data efficiently. In the early 1980s, real-time clocks were a luxury feature, often implemented using external chips like the 9513 Timer. This code showcases how MS-DOS leveraged hardware to provide basic timekeeping functionality, which was crucial for file timestamps and scheduling tasks. The techniques used here laid the groundwork for more advanced timekeeping in later operating systems, including support for time zones and network synchronization."
+    content: "This section initializes the time-of-day clock using the 9513 Timer chip. The clock setup involves configuring registers to enable timekeeping and setting counters for seconds, minutes, hours, and days. In the early 1980s, real-time clocks were a luxury feature in PCs, often requiring separate hardware. By integrating clock initialization directly into the I/O system, MS-DOS provided a standardized way to manage time-dependent operations. This feature was critical for applications like scheduling and file timestamping. The design influenced later operating systems, which integrated more sophisticated timekeeping mechanisms, eventually leading to the ubiquitous real-time clocks found in modern PCs and embedded systems."
   - id: "console-input-handling"
-    line_start: 356
-    line_end: 559
-    title: "Console input: interrupt-driven vs polled"
+    line_start: 265
+    line_end: 535
+    title: "Interrupts vs Polling: Console Input Strategies"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
     image_caption: ""
-    content: "This section implements two methods for handling console input: interrupt-driven and polled. Interrupt-driven input uses a keyboard interrupt handler to process keystrokes, while polled input continuously checks the status port for new characters. The choice between these methods reflects the trade-offs in system design: interrupts are more efficient but require careful management, while polling is simpler but consumes more CPU cycles. These techniques influenced later systems, which refined interrupt handling to support multitasking and real-time applications. The use of queues for input buffering also demonstrates an early approach to managing asynchronous I/O operations."
+    content: "The console input routines in IO.ASM demonstrate two approaches to handling keyboard input: interrupt-driven and polled. Interrupt-driven input uses a keyboard interrupt handler to process keystrokes as they occur, storing them in a queue for later retrieval. Polled input, on the other hand, continuously checks the keyboard status, a simpler but less efficient method. This dual approach reflects the constraints of early PCs, where hardware capabilities varied widely. Tim Paterson's design ensured MS-DOS could operate on systems with or without advanced interrupt support. The interrupt-driven model became the standard for modern systems, as it minimizes CPU usage and improves responsiveness. This section highlights the transition from basic polling methods to more sophisticated event-driven programming."
   - id: "disk-change-detection"
     line_start: 673
-    line_end: 774
-    title: "Detecting disk changes: a hardware challenge"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
-    image_url: ""
-    image_caption: ""
-    content: "The DSKCHG function detects whether a floppy disk has been changed, a critical feature for ensuring data integrity. It checks the head load bit and disk density, adapting to different hardware configurations like SCP and Cromemco controllers. Disk change detection was a complex task in the early 1980s, as hardware lacked standardized mechanisms for signaling changes. This code represents an innovative solution to a common problem, influencing later operating systems that implemented more sophisticated disk management techniques. The ability to handle multiple disk formats also highlights MS-DOS's flexibility, which contributed to its widespread adoption."
-  - id: "disk-read-and-write-functions"
-    line_start: 816
-    line_end: 884
-    title: "Reading and writing disks: low-level mastery"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
-    image_url: ""
-    image_caption: ""
-    content: "The READ and WRITE routines perform low-level disk operations, including seeking to the correct track and transferring data sector by sector. These functions directly manipulate hardware ports, showcasing the programmer's intimate knowledge of the underlying hardware. Disk I/O was a critical feature of MS-DOS, enabling file storage and retrieval on floppy disks. The techniques used here influenced later operating systems, which abstracted disk operations into higher-level APIs while retaining the efficiency of direct hardware access. The error handling in these routines also reflects the importance of robustness in early software design."
-  - id: "seek-function-for-disk-operations"
-    line_start: 942
-    line_end: 1038
-    title: "Seeking tracks: precision disk positioning"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Track_(disk_drive)"
-    image_url: ""
-    image_caption: ""
-    content: "The SEEK function positions the disk head to the correct track for read/write operations. It calculates the track and sector number based on the logical record number and adjusts for disk density and format. This level of precision was necessary for early floppy disk drives, which had limited capacity and relied on mechanical positioning. The SEEK function demonstrates the low-level control required to interact with hardware directly, a hallmark of early operating systems. Later systems built on these principles, introducing more sophisticated disk management techniques while maintaining compatibility with legacy hardware."
-  - id: "trysk-seek-error-handling"
-    line_start: 1039
-    line_end: 1051
-    title: "Retry mechanism for disk seeks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
-    image_url: ""
-    image_caption: ""
-    content: "This section implements a retry mechanism for disk seek operations. The TRYSK routine attempts to position the read/write head on the desired track, calling the HOME routine to reset the head if necessary. If the operation fails due to a 'Not Ready' error, the SEEKERR routine handles the error gracefully, allowing retries. In the early 1980s, floppy disk drives were prone to mechanical errors, and robust error handling was critical for ensuring reliable operation. Tim Paterson's design reflects the constraints of hardware at the time, where retries were often the best solution to transient issues. This approach laid the groundwork for error handling in storage systems, influencing later operating systems like Unix and Windows."
-  - id: "setup-disk-density-check"
-    line_start: 1060
-    line_end: 1133
-    title: "Disk density and side selection logic"
+    line_end: 777
+    title: "Detecting Disk Changes: A Hardware Challenge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_formats"
     image_url: ""
     image_caption: ""
-    content: "The SETUP routine determines the disk density (single or double) and selects the appropriate side of the disk for I/O operations. This logic includes conditional checks for various disk controllers, such as SCP, Cromemco, and Tarbell, ensuring compatibility with diverse hardware. In the early days of personal computing, hardware diversity was a significant challenge. Paterson's code uses assembly macros to adapt to different configurations, showcasing the flexibility required in operating system design. This modular approach influenced later systems, emphasizing the importance of hardware abstraction layers."
-  - id: "readsect-read-sector-data"
+    content: "The DSKCHG routine addresses the problem of detecting whether a floppy disk has been changed. It checks the drive's status and head load bit to determine if the disk has been swapped or if its density has changed. This was a critical feature in the era of floppy disks, as users frequently swapped disks during operation. The routine also handles different disk controllers, reflecting the diversity of hardware supported by MS-DOS. Disk change detection was a challenging problem due to the lack of standardized hardware signals. Paterson's solution laid the groundwork for more robust disk management systems in later operating systems, which automated disk detection and format handling."
+  - id: "direct-disk-read-write"
+    line_start: 816
+    line_end: 929
+    title: "Direct Disk Access: Speed Meets Flexibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_operating_system"
+    image_url: ""
+    image_caption: ""
+    content: "The DIRECTREAD and DIRECTWRITE routines provide low-level disk access, bypassing higher-level abstractions for maximum performance. These routines handle tasks like seeking to the correct track, reading or writing sectors, and managing errors. Direct disk access was essential for early PCs, where performance was constrained by slow hardware. By allowing programs to interact directly with the disk controller, MS-DOS enabled applications like FORMAT and disk utilities to operate efficiently. This approach influenced the design of later operating systems, which continued to offer direct disk access for specialized applications. The routines also highlight the complexity of error handling in early systems, where hardware limitations required careful management of edge cases."
+  - id: "seek-routine"
+    line_start: 942
+    line_end: 1038
+    title: "Seeking Tracks: Precision Disk Positioning"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
+    image_url: ""
+    image_caption: ""
+    content: "The SEEK routine positions the disk head on the correct track for reading or writing. It calculates the track and sector based on the logical record number and adjusts for disk density and format. The routine also handles drive selection and motor speed, ensuring the disk is ready for operation. Seeking was a critical operation for floppy disks, as precise positioning was required to avoid data corruption. Tim Paterson's implementation reflects the challenges of working with diverse hardware, including SCP, Tarbell, and Cromemco controllers. The SEEK routine influenced later disk management systems, which automated track positioning and improved reliability. Its design showcases the ingenuity required to overcome hardware limitations in early PCs."
+  - id: "trysk-retry-disk-seek"
+    line_start: 1039
+    line_end: 1051
+    title: "Retrying Disk Seeks with TRYSK"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
+    image_url: ""
+    image_caption: ""
+    content: "The TRYSK routine attempts to move the disk read/write head to the desired track, retrying the operation if errors occur. It uses a loop to retry the seek command until success or a fatal error is encountered. This approach reflects the unreliable nature of early floppy disk drives, where mechanical issues and alignment problems were common. In 1981, disk controllers were still primitive, and routines like this were essential to ensure data integrity. Tim Paterson likely wrote this code to handle the quirks of hardware like the Shugart SA400 drives, which were widely used at the time. This retry mechanism became a staple in disk I/O programming, influencing later operating systems and hardware abstraction layers."
+  - id: "seekerr-error-handling"
+    line_start: 1052
+    line_end: 1058
+    title: "Handling Seek Errors Gracefully"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
+    image_url: ""
+    image_caption: ""
+    content: "The SEEKERR routine processes errors encountered during disk seeks, distinguishing between 'Not Ready' errors and other seek failures. It sets appropriate status codes in the processor's registers, allowing higher-level routines to respond intelligently. In the early 1980s, robust error handling was critical for consumer-grade hardware, where failures were frequent. Paterson's approach reflects the need for resilience in MS-DOS, which had to operate reliably across a wide range of OEM hardware. This error-handling strategy influenced later systems, laying the groundwork for standardized error codes and recovery mechanisms in modern operating systems."
+  - id: "setup-disk-controller"
+    line_start: 1060
+    line_end: 1133
+    title: "Configuring Disk Controllers for Multiple Formats"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_controller"
+    image_url: ""
+    image_caption: ""
+    content: "The SETUP routine configures the disk controller for different disk formats and densities, including single-density and double-density disks. It includes conditional assembly directives to support various hardware configurations, such as SCP, Cromemco, and Tarbell controllers. This flexibility was crucial for MS-DOS, which had to work with a diverse range of hardware from different manufacturers. The code reflects the modular design philosophy of MS-DOS, enabling OEMs to customize the operating system for their specific hardware. This modularity influenced the development of device drivers in later operating systems, allowing for greater hardware compatibility and extensibility."
+  - id: "readsect-read-disk-sector"
     line_start: 1180
     line_end: 1231
-    title: "Reading sector data with retries"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
-    image_url: ""
-    image_caption: ""
-    content: "The READSECT routine reads data from a specified disk sector, incorporating retry logic to handle errors. It begins by calling SETUP to configure the disk controller, then attempts to read the sector using the RDAGN loop. If an error occurs, the routine retries up to a predefined limit, ensuring data integrity. This method reflects the reliability concerns of early storage systems, where transient errors were common. The retry mechanism became a standard feature in disk I/O routines, influencing the design of later operating systems and file systems."
-  - id: "inittab-drive-initialization-tables"
-    line_start: 1491
-    line_end: 1847
-    title: "Customizable drive initialization tables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
-    image_url: ""
-    image_caption: ""
-    content: "The INITTAB sections define initialization tables for various disk configurations, specifying parameters like sector size, allocation units, and directory entries. These tables allow MS-DOS to adapt to different drive types, including single-density and double-density formats, as well as 5.25-inch and 8-inch drives. This modular design reflects the need for flexibility in early operating systems, where hardware diversity was the norm. By enabling customization, Paterson's approach influenced the development of device drivers and hardware abstraction layers in later systems like Windows and Linux."
-  - id: "ssdrive-small-drive-parameters"
-    line_start: 1848
-    line_end: 1875
-    title: "Defining small drive parameters"
+    title: "Reading Disk Sectors with Retry Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
     image_url: ""
     image_caption: ""
-    content: "The SSDRIVE and SDDRIVE sections define parameters for small drives, including sector size, allocation units, and reserved sectors. These configurations are tailored to the IBM PC's floppy disk format, highlighting MS-DOS's role in standardizing hardware interfaces. By providing detailed specifications, Paterson's code ensured compatibility and reliability across different systems. This approach influenced later standards for storage devices, such as the FAT file system and USB mass storage protocols."
-  - id: "lddrive-large-drive-parameters"
-    line_start: 1898
-    line_end: 1927
-    title: "Defining large drive parameters"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Hard_disk_drive"
+    content: "The READSECT routine reads a sector from the disk, incorporating retry logic to handle transient errors. It uses the SETUP routine to configure the disk controller and retries the read operation multiple times if errors occur. This resilience was necessary for early floppy disks, which were prone to read errors due to dust, magnetic degradation, and mechanical issues. Paterson's implementation reflects the practical challenges of working with unreliable storage media in the early 1980s. The retry mechanism became a standard feature in disk I/O programming, influencing later systems like Windows and Linux."
+  - id: "writeloop-disk-write"
+    line_start: 1263
+    line_end: 1298
+    title: "Writing Data to Disk in WRLOOP"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The LDDRIVE and OLDLDDRIVE sections define parameters for large drives, including double-density formats and increased directory entries. These configurations reflect the transition from floppy disks to larger storage media, addressing the growing demand for capacity in personal computing. Paterson's foresight in accommodating future hardware advancements influenced the evolution of storage systems, paving the way for hard disks and solid-state drives. The modularity of MS-DOS's drive handling remains a foundational concept in modern operating systems."
-  - id: "dma-address-offset-definition"
+    content: "The WRLOOP routine writes data to a disk sector, ensuring that each byte is transferred correctly. It includes conditional code to handle different disk controllers, reflecting the diverse hardware landscape of the early PC era. The routine also incorporates error checking and retry logic, ensuring data integrity even on unreliable hardware. This meticulous attention to detail was necessary to meet the expectations of business users, who relied on MS-DOS for critical tasks. WRLOOP's design influenced the development of file systems and disk I/O subsystems in later operating systems, emphasizing reliability and compatibility."
+  - id: "inittab-customization-table"
+    line_start: 1491
+    line_end: 1847
+    title: "Customizing Disk I/O with INITTAB"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
+    image_url: ""
+    image_caption: ""
+    content: "The INITTAB section defines initialization tables for configuring disk I/O drivers, specifying parameters like sector size, allocation units, and directory entries. These tables allow MS-DOS to adapt to different disk formats and hardware configurations, providing a level of customization that was rare in early operating systems. This flexibility was a key selling point for MS-DOS, enabling OEMs to tailor the system to their specific needs. The concept of initialization tables influenced the design of BIOS and firmware settings in later systems, allowing for greater hardware abstraction and user configurability."
+  - id: "drive-parameters"
+    line_start: 1848
+    line_end: 1927
+    title: "Defining Drive Parameters for Compatibility"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"
+    image_url: ""
+    image_caption: ""
+    content: "The SSDRIVE, LSDRIVE, and LDDRIVE sections define parameters for different types of disk drives, including sector size, allocation units, and directory entries. These definitions ensure compatibility with a wide range of hardware, reflecting MS-DOS's role as a universal operating system for the IBM PC and its clones. The drive parameter tables highlight the challenges of standardizing disk I/O in an era of competing formats and technologies. This approach influenced the development of partitioning schemes and file systems in later operating systems, emphasizing interoperability and scalability."
+  - id: "dma-address-definition"
     line_start: 1932
     line_end: 1933
-    title: "Defining DMA Address Offset for MS-DOS"
+    title: "Why Define DMA Address at the End?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Direct_memory_access"
     image_url: ""
     image_caption: ""
-    content: "These final lines of IO.ASM define `DMAADD`, a memory offset used for Direct Memory Access (DMA) operations. The equation `15B4H+DOSDIF` calculates the offset based on a base address (`15B4H`) and a difference factor (`DOSDIF`) that adjusts for variations in memory layouts between 86-DOS and MS-DOS. This kind of equate was a common technique in assembly programming to ensure portability and adaptability across different hardware configurations. In 1981, the IBM PC was designed with an Intel 8088 processor, which had limited addressing capabilities and relied heavily on techniques like DMA to efficiently transfer data between memory and peripherals. Tim Paterson, adapting 86-DOS for Microsoft's MS-DOS, had to account for these hardware constraints while maintaining compatibility with the original design. The `DOSDIF` adjustment reflects the need to reconcile differences between the original SCP hardware and the IBM PC architecture. This small but critical definition exemplifies the meticulous attention to hardware details required in early operating systems. DMA itself became a cornerstone of efficient system design, influencing everything from disk controllers to modern GPUs. The approach here, defining offsets through equates, persisted in assembly programming for decades and influenced later systems like the BIOS and embedded firmware. By abstracting hardware-specific details into constants, Paterson's work helped MS-DOS achieve the portability that made it ubiquitous across OEMs. This technique directly contributed to Microsoft's dominance in the PC market, as MS-DOS became the foundation for countless applications and systems throughout the 1980s and beyond."
+    content: "These final lines define a constant, `DMAADD`, which represents the address used for Direct Memory Access (DMA) operations. The value is calculated as `15B4H` plus `DOSDIF`, a previously defined offset. DMA allows peripherals to access system memory directly, bypassing the CPU to improve performance. In this moment, the programmer is ensuring that the operating system can interact efficiently with hardware for tasks like disk I/O. In 1981, the IBM PC's hardware was built around the Intel 8088 processor, which supported DMA via the 8237 DMA controller. MS-DOS had to accommodate this hardware directly, as abstraction layers like modern device drivers were not yet standard. Tim Paterson's design philosophy for MS-DOS emphasized simplicity and direct hardware control, which was crucial for the constrained environment of early PCs. Constants like `DMAADD` were part of this approach, allowing the OS to adapt to hardware differences with minimal overhead. This technique influenced later operating systems by demonstrating the importance of hardware abstraction. While MS-DOS relied heavily on fixed constants and direct hardware access, successors like Windows and Unix introduced more flexible methods, such as device drivers and virtual memory. The DMA concept itself remains vital in modern computing, enabling high-speed data transfers for graphics cards, network cards, and storage devices. This small definition encapsulates the era's balance between hardware specificity and software portability, a challenge that shaped the trajectory of personal computing."
 
 ---
 
+```asm
 ; I/O System for 86-DOS version 1.20 and later. Revised 8-02-82.
 ;
 ; Assumes a CPU Support card at F0 hex for character I/O,
@@ -2086,3 +2079,4 @@ STKSAV:	EQU	1701H+DOSDIF
 DMAADD:	EQU	15B4H+DOSDIF
 	END
 
+```

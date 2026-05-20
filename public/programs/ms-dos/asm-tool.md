@@ -9,197 +9,206 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "asm-tool"
 order: 11
-description: "This file is the assembly source code for the Seattle Computer Products 8086 assembler, a critical component in the development of MS-DOS and early PC software."
+description: "This file contains the assembly source code for the Seattle Computer Products 8086 Assembler, a key component in the development of MS-DOS, which shaped the personal computing industry."
 
 summary:
-  - point: "Defines constants for system calls and token values used in assembly parsing"
+  - point: "Defines constants and system call codes for assembler operation"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Implements a lexical scanner for parsing assembly language tokens"
+  - point: "Implements lexical scanning and parsing for assembly language"
     link: "https://en.wikipedia.org/wiki/Lexical_analysis"
     link_label: "Lexical Analysis"
-  - point: "Includes routines for handling 8087 floating-point operations"
-    link: "https://en.wikipedia.org/wiki/Intel_8087"
-    link_label: "Intel 8087"
-  - point: "Demonstrates early techniques for memory management and buffer handling"
-    link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory Management"
-  - point: "Contains routines for operand parsing and expression evaluation"
+  - point: "Handles memory references and operand parsing for 8086 instructions"
+    link: "https://en.wikipedia.org/wiki/Intel_8086"
+    link_label: "Intel 8086"
+  - point: "Introduces techniques for handling nested expressions and flags"
     link: "https://en.wikipedia.org/wiki/Expression_(computer_science)"
     link_label: "Expression Parsing"
+  - point: "Supports floating-point operations with 8087 mnemonics"
+    link: "https://en.wikipedia.org/wiki/Intel_8087"
+    link_label: "Intel 8087"
 
 enhancements:
-  - id: "revision-history-and-context"
+  - id: "revision-history-tim-paterson"
     line_start: 1
     line_end: 26
-    title: "Revision history: evolving the assembler"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "Why Tim Paterson Kept Revising This Assembler"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Tim_Paterson"
     image_url: ""
     image_caption: ""
-    content: "These comments document the revision history of the assembler, highlighting incremental improvements made between 1980 and 1983. Tim Paterson meticulously tracked changes, such as increasing buffer sizes, adding support for Intel 8087 mnemonics, and fixing bugs. This reflects the iterative nature of software development during the early 1980s, where tools were rapidly adapted to meet new hardware capabilities and user needs. The assembler's evolution mirrors the growth of the PC industry, with each update addressing practical challenges faced by developers. By 1983, the assembler was robust enough to handle nested IFs and provide detailed memory usage reports, showcasing the increasing complexity of software tools in this era."
+    content: "The revision history in this section documents the iterative improvements Tim Paterson made to the assembler between 1980 and 1983. These updates reflect the rapid evolution of personal computing during this period, including support for the Intel 8087 coprocessor and fixes for bugs like stack overflows. Paterson's assembler was crucial for developing 86-DOS, later sold to Microsoft and renamed MS-DOS. The iterative nature of these updates highlights the challenges of programming for early hardware, where constraints like memory size and processor quirks demanded constant adaptation. This assembler became a foundational tool for compiling code on the IBM PC, influencing software development practices for years to come."
   - id: "constants-and-equates"
     line_start: 28
     line_end: 61
-    title: "Constants: the assembler's vocabulary"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines constants and equates that serve as the building blocks for the assembler's functionality. From system call function codes to token values for parsing assembly language, these definitions encapsulate the assembler's interaction with the operating system and hardware. For example, 'PRINTMES' corresponds to the MS-DOS function for printing messages, while 'ONEREG' and 'NEEDOP' define operand requirements for 8087 instructions. These constants simplify code readability and maintenance, a practice that remains foundational in software engineering today. By abstracting hardware-specific details, Paterson enabled developers to focus on higher-level logic, a principle that influenced later programming paradigms."
-  - id: "program-initialization"
-    line_start: 63
-    line_end: 142
-    title: "Initialization: setting the stage"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bootstrapping_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "This section initializes the assembler's runtime environment, setting up stack pointers, buffers, and file control blocks (FCBs). It also prints a header message, showcasing the assembler's version and copyright information. The initialization routine reflects the constraints of early PCs, where memory was limited and hardware interactions were direct. Paterson's use of FCBs, a file management structure inherited from CP/M, demonstrates the lineage of MS-DOS and its compatibility with existing software ecosystems. This initialization process laid the groundwork for efficient assembly and error handling, influencing the design of subsequent development tools and operating systems."
-  - id: "line-parsing-loop"
-    line_start: 144
-    line_end: 172
-    title: "Parsing lines: the assembler's heartbeat"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
-    image_url: ""
-    image_caption: ""
-    content: "The 'LOOP' routine is the core of the assembler, processing each line of source code. It reads characters, identifies tokens, and assembles instructions. The routine's design reflects the simplicity and efficiency required for early PCs, where processing power was limited. By handling errors and comments inline, Paterson ensured that the assembler could gracefully manage malformed input. This approach influenced the design of later compilers and interpreters, which adopted similar techniques for tokenization and syntax checking. The 'LOOP' routine exemplifies the iterative nature of assembly language processing, a foundational concept in software development."
-  - id: "operand-parsing"
-    line_start: 259
-    line_end: 374
-    title: "Operand parsing: decoding instructions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Operand"
-    image_url: ""
-    image_caption: ""
-    content: "The 'MROPS' routine parses operands for assembly instructions, ensuring compatibility with the 8086 architecture. It validates operand types, checks for memory references, and handles register-to-register operations. This routine reflects the challenges of programming for early microprocessors, where instruction sets were limited and hardware constraints dictated software design. Paterson's implementation demonstrates a deep understanding of the 8086 architecture, enabling efficient code generation. The techniques used here influenced the development of later assemblers and compilers, which adopted similar methods for operand validation and instruction encoding."
-  - id: "expression-evaluation"
-    line_start: 473
-    line_end: 566
-    title: "Expression evaluation: calculating values"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Expression_(computer_science)"
-    image_url: ""
-    image_caption: ""
-    content: "The 'EXPRESSION' routine analyzes and evaluates expressions in assembly code, handling constants, registers, and labels. It supports arithmetic operations like addition and subtraction, reflecting the need for flexibility in assembly language programming. This routine showcases early techniques for parsing and evaluating expressions, which influenced the design of later programming languages and compilers. By enabling complex calculations within assembly code, Paterson expanded the assembler's capabilities, making it a powerful tool for developers. The principles demonstrated here remain relevant in modern software development, where expression parsing is a critical component of many systems."
-  - id: "lexical-scanning"
-    line_start: 735
-    line_end: 759
-    title: "Lexical scanning: identifying tokens"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lexical_analysis"
-    image_url: ""
-    image_caption: ""
-    content: "The 'GETSYM' routine performs lexical scanning, identifying tokens in the operand field of assembly instructions. It categorizes tokens as constants, registers, or flags, providing essential information for subsequent parsing. This routine reflects the importance of lexical analysis in software development, where accurate token identification is critical for syntax checking and code generation. Paterson's implementation demonstrates a practical approach to tokenization, balancing simplicity and efficiency. The techniques used here influenced the design of later assemblers and compilers, which adopted similar methods for lexical analysis and token management."
-  - id: "identifier-tree-creation"
-    line_start: 1128
-    line_end: 1181
-    title: "Efficient identifier tree creation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Symbol_table"
-    image_url: ""
-    image_caption: ""
-    content: "This section implements the creation of a new node in the identifier tree, a critical structure for managing symbols in the assembly process. The node format includes fields for the identifier's length, the identifier itself, left and right links for smaller and larger identifiers, and a data field with a defined flag and value. The heap grows downward to allocate memory for new nodes, a common technique in early systems to maximize memory usage efficiency. At the time, memory constraints were severe, with the IBM PC offering only 16–64 KB of RAM. This approach influenced later symbol table implementations in compilers and assemblers, forming the basis for efficient symbol resolution in modern programming environments."
-  - id: "opcode-parsing-and-generation"
-    line_start: 1288
-    line_end: 1446
-    title: "Opcode parsing and generation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Opcode"
-    image_url: ""
-    image_caption: ""
-    content: "This section handles opcode parsing and generation, including special cases for the Intel 8087 coprocessor. The code determines whether an opcode is valid, checks for operand compatibility, and generates the appropriate machine code. The Intel 8087 introduced floating-point arithmetic, which required specialized handling in assembly. This implementation reflects the growing complexity of processors in the early 1980s and the need for assemblers to adapt to new hardware capabilities. The techniques developed here influenced later assemblers and compilers, particularly in handling extended instruction sets and coprocessor instructions."
-  - id: "memory-format-handling"
-    line_start: 1489
-    line_end: 1503
-    title: "Memory format handling in opcodes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_address"
-    image_url: ""
-    image_caption: ""
-    content: "The FORMATTAB data table defines memory format handling for opcodes, specifying combinations of integer and real formats, normal and extended operands, and flag-based variations. This design reflects the need to efficiently encode addressing modes and operand types in machine code. The table-driven approach simplifies opcode generation and ensures compatibility with the Intel 8086 architecture. This technique of using lookup tables for encoding and decoding operations became a standard practice in assembler design, influencing later systems like the GNU assembler and modern compiler backends."
-  - id: "direct-indirect-jump-handling"
-    line_start: 2001
-    line_end: 2065
-    title: "Direct and indirect jump handling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Control_flow"
-    image_url: ""
-    image_caption: ""
-    content: "This section implements handling for JMP and CALL instructions, including both direct and indirect addressing modes. The code checks for valid operands, processes addressing modes, and generates the appropriate machine code. Indirect jumps were particularly useful for implementing dynamic control flow, such as function pointers or jump tables. At the time, these features were essential for efficient program execution on constrained hardware. The handling of control flow instructions here influenced later operating systems and programming languages, particularly in the implementation of dynamic linking and runtime function dispatch."
-  - id: "second-pass-assembler"
-    line_start: 2337
-    line_end: 2481
-    title: "Second Pass: Assembler's Code Generation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
-    image_url: ""
-    image_caption: ""
-    content: "The second pass of the assembler processes intermediate code, resolves forward references, and generates the final machine code. It handles special directives (e.g., ORG, PUT, DS) and ensures proper alignment and formatting of output. This phase is crucial for producing executable binaries. Assemblers in the early 1980s operated in two passes: the first pass collected symbol definitions, and the second pass resolved references and generated output. Tim Paterson's design reflects the constraints of the Intel 8086 architecture, emphasizing efficiency and accuracy. The second pass demonstrates the assembler's role in bridging human-readable code and machine-executable instructions. The two-pass assembly process influenced the development of modern compilers and linkers, which perform similar tasks on higher-level languages. The techniques used in MS-DOS laid the groundwork for the evolution of programming tools, enabling the creation of complex software systems. The second pass represents a pivotal moment in the assembly process, ensuring the reliability and functionality of the final output."
-  - id: "symbol-table-traversal"
-    line_start: 2717
-    line_end: 2778
-    title: "Symbol Table Traversal for Debugging"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Symbol_table"
-    image_url: ""
-    image_caption: ""
-    content: "The NODE routine traverses the symbol table, a hierarchical structure used to store identifiers and their associated memory addresses. It recursively processes nodes, printing symbols and their values while ensuring proper formatting and alignment. This routine is essential for debugging and listing symbols during the assembly process. In the early 1980s, symbol tables were a critical component of assemblers and compilers, enabling efficient management of variable names, labels, and other identifiers. Tim Paterson's implementation reflects the priorities of the time: simplicity, speed, and minimal memory usage. The recursive traversal method demonstrates an early use of structured programming techniques in assembly language. Symbol tables remain a cornerstone of modern programming, used in compilers, interpreters, and debugging tools. The techniques pioneered in MS-DOS influenced the design of later systems, including Unix-based assemblers and modern integrated development environments (IDEs). By enabling efficient symbol management, this routine contributed to the usability and reliability of MS-DOS as a platform for software development."
-  - id: "error-reporting-routine"
-    line_start: 2810
-    line_end: 2839
-    title: "Error Reporting with Embedded Messages"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_message"
-    image_url: ""
-    image_caption: ""
-    content: "The REPERR routine handles error reporting during the assembly process. It increments the error count and retrieves error messages from a predefined table (ERRTAB). If a message exists for the error code, it prints the message; otherwise, it displays the error number. This mechanism ensures clear communication of issues to the user. Error handling was a significant challenge in early software development due to limited debugging tools and hardware constraints. Tim Paterson's design prioritizes user feedback, enabling developers to identify and resolve issues efficiently. The use of an error message table reflects a structured approach to error management, which was innovative for its time. Modern software systems continue to rely on error reporting mechanisms inspired by these early designs. The concept of embedding error messages in the program code influenced the development of debugging tools, logging frameworks, and user-friendly interfaces. REPERR exemplifies the foundational practices that shaped the evolution of software engineering."
-  - id: "hex-file-generation"
-    line_start: 2858
-    line_end: 2937
-    title: "HEX File Generation for Compiled Output"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_HEX"
-    image_url: ""
-    image_caption: ""
-    content: "The CODBYT routine generates HEX files, a format used to store compiled machine code. It calculates checksums, formats data into HEX records, and writes them to the output buffer. This process ensures the integrity and portability of the assembled code. HEX files were widely used in the early 1980s for programming microcontrollers and EPROMs. Tim Paterson's implementation reflects the need for a reliable and standardized method to distribute software. The routine's attention to detail, such as checksum calculation, highlights the importance of data integrity in software distribution. HEX file generation remains relevant in embedded systems programming and firmware development. The techniques pioneered in MS-DOS influenced the design of modern file formats and data serialization methods. CODBYT represents a critical step in the evolution of software packaging and distribution."
-  - id: "mnemonic-table-definition"
-    line_start: 2975
-    line_end: 3104
-    title: "Mnemonic Table: Mapping Instructions to Opcodes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Opcode"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines the mnemonic table, a crucial data structure mapping assembly language instructions to their corresponding machine opcodes. Each subtable begins with a label indicating the mnemonic group, followed by entries specifying the mnemonic string and its associated opcode or routine. For example, 'A3' maps mnemonics like 'dd' to GRP7 and 'aa' to PUT. This design enables the assembler to efficiently translate human-readable instructions into executable machine code. In 1981, when MS-DOS was developed, assembly language was the primary method for programming operating systems due to its direct control over hardware. Tim Paterson, the original author of 86-DOS (later MS-DOS), designed this structure to accommodate the limited memory and processing power of the Intel 8086 CPU. The mnemonic table reflects the constraints and priorities of the era, emphasizing compactness and speed. This approach influenced later assemblers and compilers, which adopted similar lookup table designs for instruction translation. The mnemonic table concept persists in modern compilers, albeit in more sophisticated forms, such as abstract syntax trees. It also laid the groundwork for the development of higher-level programming languages, which abstracted away the need for direct opcode manipulation. The mnemonic table in MS-DOS represents a pivotal step in the evolution of software development tools."
-  - id: "mnemonic-table-8086"
-    line_start: 3721
-    line_end: 3864
-    title: "Mnemonic Table for 8086 Instructions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/X86_instruction_listings"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines a mnemonic table for 8086 instructions, mapping assembly language mnemonics to their corresponding opcodes. It organizes these mnemonics by their starting letter and length, enabling efficient lookup during assembly. The table is designed to be extensible, allowing new mnemonics to be added by modifying entries marked 'NONE' and appending subsections to the table. In 1981, the IBM PC's Intel 8086 processor was a cutting-edge 16-bit CPU, and MS-DOS needed to support its instruction set effectively. Tim Paterson's design reflects the constraints of the era, including limited memory and the need for speed in assembly processing. This approach influenced later assemblers and compilers, which adopted similar mnemonic-to-opcode mapping techniques. The mnemonic table is a precursor to modern instruction set architectures, which still rely on efficient encoding and lookup mechanisms."
-  - id: "mnemonic-table-8087"
-    line_start: 3866
-    line_end: 3896
-    title: "Mnemonic Table for 8087 Co-Processor"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8087"
-    image_url: ""
-    image_caption: ""
-    content: "This section introduces a mnemonic table for the Intel 8087 math co-processor, which was optional hardware for the IBM PC. Unlike the 8086 table, this one does not distinguish mnemonics by opcode length, reflecting the simpler encoding of 8087 instructions. The 8087 was designed to accelerate floating-point calculations, a critical feature for scientific and engineering applications. MS-DOS's support for the 8087 demonstrates its adaptability to emerging hardware. The table's structure highlights Tim Paterson's foresight in accommodating co-processor instructions within the assembler. This design influenced subsequent operating systems and programming tools, which integrated support for specialized hardware like GPUs and SIMD processors."
-  - id: "error-message-table"
-    line_start: 3896
-    line_end: 3931
-    title: "Error Message Table for Assembly Diagnostics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
-    image_url: ""
-    image_caption: ""
-    content: "The error message table provides diagnostic messages for common assembly errors, such as illegal operands, undefined labels, and register mismatches. Each message is associated with a unique code, enabling the assembler to quickly identify and report issues during compilation. In the early 1980s, debugging assembly code was a challenging task, as tools were rudimentary and errors often required manual inspection. This table represents an early attempt to streamline error handling, making assembly programming more accessible. The inclusion of detailed error messages reflects Tim Paterson's practical approach to software development, prioritizing usability for programmers. This concept evolved into modern IDEs and compilers, which provide comprehensive error diagnostics and suggestions."
-  - id: "data-structures-symbol-table"
-    line_start: 3933
-    line_end: 4003
-    title: "Data Structures for Symbol Table and Memory Management"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Symbol_table"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines various data structures used by the assembler, including the symbol table, memory buffers, and flags for tracking program state. The symbol table stores identifiers and their associated addresses, enabling efficient resolution of labels during assembly. Memory buffers like HEXBUF and SRCBUF facilitate input/output operations, while flags such as ERR and IFFLG track error states and conditional assembly directives. These structures reflect the constraints of the IBM PC, which had limited RAM and relied on efficient data management. Tim Paterson's design showcases his ability to maximize functionality within tight hardware limits. These concepts influenced later operating systems and programming environments, which adopted similar approaches to symbol resolution and memory handling."
-  - id: "entry-point-and-eof-marker"
-    line_start: 4005
-    line_end: 4006
-    title: "Entry point and EOF: Two lines of history"
+    title: "The Constants That Defined MS-DOS Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "These final two lines of the MS-DOS v1.25 source code are deceptively simple but historically significant. Line 4005, `START: EQU $`, defines the program's entry point, a convention that tells the assembler where execution begins. Line 4006, containing ASCII character 26 (CTRL+Z), serves as an end-of-file marker—a practice inherited from CP/M, the operating system MS-DOS was designed to replace. In CP/M, CTRL+Z was used to signify the end of text files, a convention carried forward into MS-DOS for compatibility and simplicity. In 1981, computing was transitioning from hobbyist kits to mass-market personal computers. The IBM PC, launched the same year, was powered by the Intel 8088 processor, a variant of the 8086. MS-DOS was designed to run efficiently on this hardware, with minimal memory and storage requirements. Tim Paterson's original 86-DOS, written in just six weeks, was adapted by Microsoft into MS-DOS, retaining many of its structural elements, including the use of CTRL+Z for EOF. The entry point and EOF marker reflect the pragmatic design choices of the era. These conventions ensured compatibility with existing software while keeping the operating system lean and functional. The simplicity of MS-DOS allowed it to dominate the PC market, becoming the foundation for software ecosystems that shaped personal computing. Later systems, including Windows, carried forward elements of MS-DOS, and its influence persists in modern command-line interfaces and file handling conventions. These two lines encapsulate the transition from early microcomputers to the era of ubiquitous personal computing."
+    content: "This section defines constants and equates used throughout the assembler, such as buffer sizes, ASCII values, and system call codes. These constants reflect the hardware constraints of the time, including the limited memory and I/O capabilities of the Intel 8086 processor. For example, the buffer size equates (BUFSIZ and HEXBUFSIZ) were carefully chosen to optimize performance while staying within memory limits. The system call codes (PRINTMES, OPEN, CLOSE, etc.) provide a glimpse into the early MS-DOS API, which became the standard interface for software running on IBM PCs. These definitions laid the groundwork for the assembler's functionality and influenced the design of subsequent operating systems."
+  - id: "program-initialization-header"
+    line_start: 63
+    line_end: 75
+    title: "How the Assembler Welcomes You"
+    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
+    image_url: ""
+    image_caption: ""
+    content: "The initialization section sets up the program's stack pointer and displays a header message identifying the assembler's version and copyright information. This was a common practice in early software to provide users with immediate feedback about the tool they were using. The header message also serves as a branding mechanism for Seattle Computer Products, emphasizing their role in the development of the assembler. By setting the stack pointer and loading the header, this section ensures the assembler is ready to process input files and interact with the user. This approach influenced later software design, where initialization routines became standard for setting up program environments."
+  - id: "file-handling-defaults"
+    line_start: 76
+    line_end: 142
+    title: "The Clever Defaults for File Handling"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
+    image_url: ""
+    image_caption: ""
+    content: "This section handles file operations, including setting default drive letters and opening source, HEX, and PRN files. The code includes checks for valid drive letters and suppresses file creation based on user input (e.g., 'Z' to suppress HEX files). These routines demonstrate the challenges of working with the MS-DOS file system, which relied on fixed-length file control blocks (FCBs) and limited error reporting. The assembler's ability to adapt to different file configurations made it versatile for developers working on various projects. This approach influenced the design of file handling routines in later programming tools and operating systems, emphasizing flexibility and error handling."
+  - id: "line-assembly-loop"
+    line_start: 144
+    line_end: 172
+    title: "The Loop That Assembles Your Code"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    image_url: ""
+    image_caption: ""
+    content: "This loop processes each line of assembly code, checking for errors and assembling tokens into machine instructions. The code includes routines for handling end-of-line markers and comments, ensuring the assembler can parse input files correctly. This loop is the heart of the assembler, translating human-readable assembly language into binary code for the 8086 processor. The design of this loop reflects the constraints of early computing, where efficiency and accuracy were paramount. The techniques used here influenced the development of later assemblers and compilers, which adopted similar approaches for parsing and code generation."
+  - id: "operand-parsing-mrops"
+    line_start: 259
+    line_end: 374
+    title: "How Operands Get Their Meaning"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Operand"
+    image_url: ""
+    image_caption: ""
+    content: "The MROPS routine parses operands and checks their validity based on type flags. It handles memory references, registers, and immediate values, ensuring operands are compatible with the instruction being assembled. The code includes checks for segment registers and supports operations like register-to-register moves and memory-to-memory transfers. This routine showcases the complexity of assembling 8086 instructions, which required careful handling of operand types and addressing modes. The techniques used here influenced later assemblers and compilers, which adopted similar methods for operand parsing and validation."
+  - id: "expression-analysis-getval"
+    line_start: 473
+    line_end: 515
+    title: "The Expression Analyzer That Solves It All"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Expression_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "The GETVAL routine analyzes expressions, allowing for base and index registers in memory references. It computes addressing modes and handles constants, ensuring the assembler can generate correct machine code. The routine includes checks for undefined labels and optimizes displacement sizes based on the value's range. This approach reflects the constraints of the 8086 architecture, where addressing modes were limited and required careful calculation. The techniques used here influenced the design of expression analyzers in later programming tools, emphasizing efficiency and accuracy in code generation."
+  - id: "floating-point-registers"
+    line_start: 932
+    line_end: 957
+    title: "Floating-Point Registers: A Stack of Precision"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8087"
+    image_url: ""
+    image_caption: ""
+    content: "This section handles floating-point registers for the Intel 8087 coprocessor, allowing the assembler to process instructions like 'ST(n)' or 'ST'. It includes checks for valid register numbers and ensures constants are defined before use. The inclusion of 8087 mnemonics reflects the growing importance of floating-point operations in personal computing, as developers began using these instructions for scientific and engineering applications. The techniques used here influenced the design of assemblers and compilers for later processors, which continued to support floating-point operations as a standard feature."
+  - id: "identifier-tree-management"
+    line_start: 1128
+    line_end: 1181
+    title: "How MS-DOS Managed Identifier Trees"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements the CREATE routine, which builds and manages a binary tree of identifiers. The identifier tree is used for efficient lookup and storage of variables, labels, and other symbols during assembly. Each node in the tree contains the identifier length, the identifier itself, pointers to smaller and larger identifiers, and a data field indicating whether the identifier is defined and its associated value. The heap grows downward in memory, a common technique in constrained environments to maximize space utilization. In 1981, memory was scarce, and MS-DOS had to fit within the limitations of the IBM PC's 16-bit architecture and 64KB segment size. Tim Paterson's design reflects the era's focus on efficiency and compactness. This approach influenced later assemblers and compilers, which adopted similar tree structures for symbol tables, including tools used in Unix and modern programming environments."
+  - id: "memory-format-handling"
+    line_start: 1489
+    line_end: 1503
+    title: "The Table That Encoded Memory Formats"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Heap_(data_structure)"
+    image_url: ""
+    image_caption: ""
+    content: "The FORMATTAB section defines a lookup table for memory formats, used to encode addressing modes and operand types. The table uses a 4-bit index to determine valid combinations of integer/real types and extended/normal memory operations. This compact encoding reflects the constraints of early PCs, where every byte of memory mattered. By precomputing these combinations, MS-DOS could quickly validate and generate instructions, avoiding runtime overhead. This technique influenced later assemblers and compilers, which adopted similar tables for opcode and operand validation. The design also highlights the ingenuity required to work within the IBM PC's limited resources, a hallmark of early software engineering."
+  - id: "opcode-generation"
+    line_start: 1563
+    line_end: 1597
+    title: "The Routine That Generated Opcodes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Opcode"
+    image_url: ""
+    image_caption: ""
+    content: "The PUT and GEN routines handle the generation of opcodes and intermediate code. PUT saves a byte in AL as pure code, while GEN adds relocation bits for relocatable binaries. Relocation was critical for MS-DOS, as programs needed to run in different memory locations depending on system configuration. These routines demonstrate how MS-DOS efficiently encoded instructions while maintaining flexibility for relocation. In the early 1980s, this was a novel approach, as most systems relied on fixed memory locations. The techniques used here laid the groundwork for modern executable formats like ELF and PE, which also support relocation. Microsoft's focus on portability and adaptability helped establish MS-DOS as the dominant operating system for PCs."
+  - id: "direct-indirect-addressing"
+    line_start: 1674
+    line_end: 1698
+    title: "Handling Direct and Indirect Addressing Modes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Addressing_mode"
+    image_url: ""
+    image_caption: ""
+    content: "The PUTADD routine handles addressing modes, distinguishing between direct and indirect addressing. It saves the addressing mode as pure code and processes optional displacement bytes for indirect modes. Addressing modes were a critical feature of the 8086 architecture, enabling flexible memory access. MS-DOS's implementation reflects the need to optimize for both performance and code size, ensuring compatibility with the IBM PC's segmented memory model. This routine showcases the low-level control programmers had over hardware in the early 1980s, a stark contrast to today's high-level abstractions. The handling of addressing modes influenced later systems, including x86 assembly tools and compilers, which continue to rely on similar mechanisms for instruction encoding."
+  - id: "jmp-call-mnemonics"
+    line_start: 2001
+    line_end: 2065
+    title: "How MS-DOS Encoded JMP and CALL"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computing)"
+    image_url: ""
+    image_caption: ""
+    content: "The GRP14 routine processes JMP and CALL mnemonics, handling both direct and indirect jumps. It uses relocation bits for inter-segment jumps, ensuring compatibility with MS-DOS's segmented memory model. Direct jumps are encoded with relative offsets, while indirect jumps use addressing modes. This flexibility was essential for MS-DOS, as programs needed to run in different memory locations. The routine reflects the challenges of early PC programming, where memory management was a constant concern. Microsoft's approach influenced later executable formats, including PE and ELF, which also support relocation and flexible addressing. The encoding of JMP and CALL mnemonics remains a fundamental aspect of assembly language programming."
+  - id: "pass-two-processing-finalization"
+    line_start: 2337
+    line_end: 2665
+    title: "Pass Two: Completing the Assembly Process"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    image_url: ""
+    image_caption: ""
+    content: "This section marks the final stages of pass-two processing in the MS-DOS assembler. Pass two is responsible for resolving forward references, generating machine code, and producing output files. The routines handle tasks such as fixing up unresolved symbols, managing special pseudo-operations (e.g., ORG, PUT, DS), and outputting source lines with corresponding machine code. The assembler's two-pass design reflects the constraints of early computing, where memory limitations required careful planning and efficient algorithms. By splitting the assembly process into two passes, the software could handle complex source code without exceeding the IBM PC's capabilities. This approach influenced the design of later assemblers and compilers, which adopted multi-pass architectures to balance functionality and performance. The routines in this section demonstrate the ingenuity of Tim Paterson and the MS-DOS team, who created a robust and flexible assembler under significant constraints."
+  - id: "symbol-table-dump-and-tree-walk"
+    line_start: 2666
+    line_end: 2778
+    title: "Symbol Table Dump: Recursive Tree Walk"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Symbol_table"
+    image_url: ""
+    image_caption: ""
+    content: "This routine performs a recursive tree walk to dump the symbol table, a key data structure in the assembly process. The symbol table stores information about labels, variables, and other identifiers used in the source code. The recursive approach reflects the hierarchical nature of the symbol table, where each node may have child nodes representing nested scopes or related symbols. By traversing the tree, the routine outputs the symbols in a structured format, ensuring that developers can review and debug their code effectively. In the early 1980s, this feature was essential for understanding the behavior of the assembler and optimizing source code. The recursive tree walk technique influenced later compilers and interpreters, which adopted similar methods for managing symbol tables and other hierarchical data structures. This routine highlights the sophistication of MS-DOS's design, which balanced functionality with the constraints of the IBM PC's hardware."
+  - id: "error-reporting-with-custom-messages"
+    line_start: 2810
+    line_end: 2847
+    title: "Error Reporting: Custom Messages in Assembly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
+    image_url: ""
+    image_caption: ""
+    content: "The error reporting mechanism in this section is a fascinating example of early software debugging practices. The routine uses an error table (ERRTAB) to map error codes to human-readable messages. When an error occurs, the code searches the table for the corresponding message and prints it. If no message is found, the error code itself is displayed. This method was crucial in the era of MS-DOS, where debugging tools were rudimentary, and developers relied heavily on meaningful error messages to diagnose issues. Tim Paterson's design reflects the practical needs of developers working with limited resources and tight deadlines. This approach to error handling influenced later operating systems and programming languages, where robust error reporting became a standard feature. The concept of mapping error codes to messages persists in modern software development, from kernel logs to high-level application frameworks."
+  - id: "hexadecimal-output-for-machine-code"
+    line_start: 2873
+    line_end: 2937
+    title: "Hexadecimal Output: Generating Machine Code"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_HEX"
+    image_url: ""
+    image_caption: ""
+    content: "This section handles the generation of hexadecimal output for machine code, a critical step in the assembly process. The routine converts binary data into the Intel HEX format, which was widely used for storing and transferring machine code in the early 1980s. Each line of HEX output includes a checksum to ensure data integrity, reflecting the importance of reliability in software distribution. The routine also manages buffer flushing and error handling, ensuring that the generated HEX file is complete and accurate. At the time, this functionality was vital for developers who needed to load machine code onto hardware devices or share it with other systems. The Intel HEX format became a standard for firmware updates and embedded systems programming, and its influence can still be seen in modern development tools. This section demonstrates the meticulous attention to detail required to produce reliable software in the constrained environment of the IBM PC."
+  - id: "mnemonic-table-for-8086-instructions"
+    line_start: 2975
+    line_end: 3104
+    title: "Mnemonic Table: Decoding Assembly Language"
+    wikipedia_url: "https://en.wikipedia.org/wiki/X86_instruction_listings"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines a mnemonic table for 8086 assembly instructions, mapping human-readable mnemonics to their corresponding machine code. Each subtable begins with a label (e.g., A3, C3, D2) representing a group of mnemonics. For example, 'dd' corresponds to a specific opcode group, while 'am' maps to another. This table is essential for the assembler's ability to translate symbolic assembly language into executable machine code. In 1981, when MS-DOS was developed, memory and processing power were extremely limited, necessitating compact and efficient data structures like this. The mnemonic table reflects the need to streamline assembly language processing while adhering to the constraints of the IBM PC's 8086 processor. This approach influenced later assemblers and compilers, which adopted similar mapping techniques for instruction sets. The mnemonic table also underscores the modularity of MS-DOS's design, allowing for easy extension to support additional instructions or architectures."
+  - id: "mnemonic-table-8086"
+    line_start: 3721
+    line_end: 3864
+    title: "How Mnemonics Simplified Assembly Programming"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8086"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines the OPTAB, a table mapping mnemonics to their corresponding machine instructions for the Intel 8086 processor. Mnemonics are human-readable representations of opcodes, such as 'MOV' for moving data or 'ADD' for addition. The table organizes mnemonics by their starting letter and length, allowing the assembler to efficiently look up instructions during compilation. In the early 1980s, programming directly in assembly was common due to hardware constraints. Mnemonic tables like this were essential for translating human-readable code into binary instructions. Tim Paterson, the author of MS-DOS, designed this table to support the assembler's functionality, ensuring compatibility with the 8086 instruction set. This approach influenced later assemblers and compilers by demonstrating the importance of structured lookup mechanisms. Today, similar mnemonic systems are used in modern assembly languages and even higher-level languages that compile down to machine code."
+  - id: "mnemonic-table-8087"
+    line_start: 3866
+    line_end: 3896
+    title: "The Floating-Point Revolution: 8087 Mnemonics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8087"
+    image_url: ""
+    image_caption: ""
+    content: "This section introduces NDPTAB, a mnemonic table for the Intel 8087 coprocessor, which handled floating-point arithmetic. The 8087 was groundbreaking for its time, enabling efficient mathematical computations that were previously slow or impossible on the 8086 alone. The table maps mnemonics like 'FADD' (floating-point addition) to their corresponding opcodes, streamlining the assembler's handling of these instructions. In 1981, floating-point operations were critical for scientific and engineering applications, and the 8087 coprocessor made the IBM PC a viable option for such tasks. Paterson's inclusion of this table reflects the growing importance of numerical computation in personal computing. The design influenced subsequent assemblers and programming environments, paving the way for integrated floating-point support in modern CPUs."
+  - id: "error-message-table"
+    line_start: 3896
+    line_end: 3931
+    title: "The Errors That Taught Programmers Assembly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    image_url: ""
+    image_caption: ""
+    content: "The ERRTAB section defines error messages for the MS-DOS assembler. Each entry pairs a numeric code with a descriptive message, such as 'Opcode not recognized' or 'Undefined label not allowed.' These messages were displayed when the assembler encountered syntax or semantic errors in the source code. In the early 1980s, debugging assembly programs was a painstaking process, and clear error messages were invaluable for developers. Tim Paterson's decision to include detailed diagnostics reflects his practical approach to software development, aiming to reduce frustration and improve productivity. This table set a precedent for user-friendly error handling in development tools, influencing later assemblers, compilers, and integrated development environments (IDEs). Modern IDEs continue to prioritize clear, actionable error messages, a legacy traceable to efforts like this."
+  - id: "symbol-table-data-structures"
+    line_start: 3933
+    line_end: 4003
+    title: "The Data Structures That Powered MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Symbol_table"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines various data structures used by the assembler, including symbol tables, memory buffers, and flags. These structures manage labels, addresses, and program state during assembly. For example, 'SYMSIZE' tracks the size of the symbol table, while 'HEXBUF' and 'SRCBUF' handle hexadecimal and source code buffers, respectively. In 1981, efficient memory management was crucial due to the limited RAM available on early PCs. Paterson's design reflects careful optimization to fit within these constraints while maintaining functionality. These data structures were foundational for the assembler's operation, enabling it to parse and compile source code into executable binaries. The techniques demonstrated here influenced later assemblers and compilers, showcasing the importance of well-organized data management in software development. Modern compilers continue to rely on similar principles, albeit with far greater computational resources."
 
 ---
 
+```asm
 ; Seattle Computer Products 8086 Assembler  version 2.44
 ;   by Tim Paterson
 ; Runs on the 8086 under MS-DOS
@@ -4206,3 +4215,4 @@ SRCBUF:	DS	BUFSIZ
 STACK:	EQU	$
 START:	EQU	$
 
+```

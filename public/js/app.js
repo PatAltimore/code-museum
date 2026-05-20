@@ -156,6 +156,9 @@ function renderCodeWithEnhancements(body, enhancements) {
   // (not a while-loop) preserves any genuine blank lines at the top of the
   // source file, keeping line_start/line_end indices exact.
   lines.splice(0, 2);
+  // Strip code fence wrapper if present (```lang opener and ``` closer).
+  if (lines.length && lines[0].startsWith('```')) lines.splice(0, 1);
+  if (lines.length && lines[lines.length - 1] === '```') lines.pop();
 
   const sorted = [...(enhancements || [])].sort((a, b) => a.line_start - b.line_start);
 

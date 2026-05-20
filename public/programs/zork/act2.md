@@ -9,85 +9,70 @@ year: 1977
 author: "Anderson, Blank, Daniels, Lebling"
 slug: "act2"
 order: 7
-description: "This file contains MDL source code for Zork's Act II, showcasing intricate room interactions, object manipulations, and narrative-driven mechanics that defined early text-based adventure games."
+description: "This file from Zork (1977) contains room-specific logic, object interactions, and environmental effects, showcasing the intricate design and humor of early text-based adventure games."
 
 summary:
-  - point: "Innovative use of MDL for dynamic room and object interactions"
+  - point: "Coal gas explosion logic in BOOM-ROOM"
     link: "https://en.wikipedia.org/wiki/Zork"
     link_label: "Zork"
-  - point: "Introduction of the Grue, a legendary creature in gaming lore"
+  - point: "Dynamic vampire bat interactions in BATS-ROOM"
+    link: "https://en.wikipedia.org/wiki/Zork"
+    link_label: "Zork"
+  - point: "Balloon mechanics and volcanic interactions"
+    link: "https://en.wikipedia.org/wiki/Zork"
+    link_label: "Zork"
+  - point: "Grue lore and fear of light"
     link: "https://en.wikipedia.org/wiki/Grue_(monster)"
-    link_label: "Grue (monster)"
-  - point: "Complex event handling using MDL's clock and conditional structures"
-    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    link_label: "MDL programming language"
-  - point: "Creative use of humor and player consequences in game design"
-    link: "https://en.wikipedia.org/wiki/Text-based_game"
-    link_label: "Text-based games"
-  - point: "Early implementation of modular room and object definitions"
-    link: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    link_label: "Interactive Fiction"
+    link_label: "Grue"
+  - point: "Gnome NPC logic for ledge navigation"
+    link: "https://en.wikipedia.org/wiki/Zork"
+    link_label: "Zork"
 
 enhancements:
-  - id: "boom-room-coal-gas-explosion"
+  - id: "coal-gas-explosion"
     line_start: 5
     line_end: 26
-    title: "Coal gas explosion: humor meets player consequence"
+    title: "The Room That Punishes Adventurers' Ignorance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "This section defines the 'Boom Room,' a space where lighting certain objects, like a candle or torch, triggers an explosion due to coal gas. The code checks if the player is carrying a light source and delivers humorous messages before ending the game with a 'BOOOOOOOOOOOM.' The authors, Anderson, Blank, Daniels, and Lebling, were known for blending humor with gameplay consequences. In 1977, Zork was pioneering interactive fiction, running on the PDP-10 under ITS. The use of MDL allowed for complex conditional logic and player interactions. The 'Boom Room' exemplifies how Zork's design encouraged players to think critically about their actions. This approach influenced later adventure games, such as Infocom's other titles, which often included similar humor-laden consequences for player choices."
-  - id: "bats-room-vampire-bat-interaction"
+    content: "The BOOM-ROOM subroutine handles the logic for a room filled with coal gas. If the player carries a lit object like a torch or candle into the room, the game triggers a humorous yet fatal explosion. The code checks for the presence of specific objects and their light status, delivering witty messages before ending the game with a 'BOOOOOOOOOOOM.' This mechanic exemplifies Zork's blend of humor and player accountability, encouraging careful exploration. In 1977, text-based games were still novel, and Zork's environmental hazards added depth to its interactive storytelling. This approach influenced later adventure games, such as Infocom's other titles, which often included similar environmental puzzles and consequences."
+  - id: "vampire-bat-room"
     line_start: 28
     line_end: 39
-    title: "Deranged vampire bat: garlic as a solution"
+    title: "A Bat That Reacts to Garlic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The 'Bats Room' introduces a deranged vampire bat that reacts to the player's possession of garlic. If garlic is present, the bat holds its nose and remains harmless; otherwise, it swoops down and carries the player away. This interaction highlights Zork's use of environmental storytelling and object-based puzzles. In the late 1970s, games like Zork were exploring ways to make text-based worlds feel alive. The bat's behavior is a precursor to modern NPC interactions in games, where objects in the player's inventory affect outcomes. This mechanic inspired similar puzzles in later games, such as King's Quest and Monkey Island, where item usage played a central role in gameplay."
-  - id: "fly-me-bat-abduction-mechanic"
-    line_start: 41
-    line_end: 53
-    title: "Bat abduction: randomized room relocation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "The 'Fly-Me' routine handles the vampire bat's abduction of the player, randomly relocating them to one of several predefined rooms. The code uses a vector of room names ('BAT-DROPS') and selects one at random. This mechanic adds unpredictability to the game, enhancing replayability. At the time, Zork's developers were experimenting with ways to make text adventures less linear. Randomized events like this kept players engaged and encouraged exploration. This technique influenced later games, such as Rogue and NetHack, which used randomness to create dynamic gameplay experiences."
-  - id: "fwweep-delay-and-animation"
-    line_start: 55
-    line_end: 60
-    title: "FWEEP: Simulating delay and animation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    image_url: ""
-    image_caption: ""
-    content: "The 'FWEEP' subroutine simulates a delay or animation effect by repeating a sequence of actions. It uses a loop to decrement a counter and optionally pauses execution with 'SLEEP.' This technique was used to create a sense of time passing in text-based games, where visual effects were impossible. In the late 1970s, developers relied on clever programming tricks to simulate real-time events. The use of FWEEP in Zork demonstrates how MDL's capabilities were leveraged to enhance immersion. Similar techniques were later adapted in other text-based games and even graphical adventures to control pacing and create suspense."
-  - id: "grue-function-darkness-and-danger"
+    content: "The BATS-ROOM subroutine introduces a vampire bat that reacts dynamically to the player's inventory. If the player lacks garlic, the bat swoops down and carries them away to a random location. This interaction demonstrates Zork's use of inventory-based puzzles and randomized outcomes, adding unpredictability to the gameplay. The bat's behavior references earlier games like Hunt the Wumpus, showcasing the developers' playful nods to gaming history. This mechanic inspired similar inventory-based puzzles in later adventure games, emphasizing the importance of item management in interactive storytelling."
+  - id: "grue-lore"
     line_start: 402
     line_end: 415
-    title: "The Grue: Darkness as a lurking threat"
+    title: "The Monster That Lurks in Darkness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Grue_(monster)"
     image_url: ""
     image_caption: ""
-    content: "The 'Grue-Function' introduces the Grue, a sinister creature that lurks in dark places and preys on adventurers. The function provides descriptions when players examine or search for the Grue, warning them of the danger of losing their light source. The Grue became one of Zork's most iconic elements, symbolizing the perils of darkness in adventure games. In 1977, this was a novel way to create tension and enforce the importance of light sources. The Grue's legacy persists in gaming culture, influencing countless titles that use darkness as a gameplay mechanic, such as Amnesia: The Dark Descent and Minecraft."
-  - id: "brick-function-explosive-consequences"
-    line_start: 647
-    line_end: 649
-    title: "Exploding brick: player-triggered demise"
+    content: "The GRUE-FUNCTION subroutine provides lore and warnings about the infamous Grue, a creature that preys on adventurers in dark places. The code delivers descriptive text when players examine or search for the Grue, emphasizing its fear of light and its deadly nature. The Grue became a cultural icon in gaming, symbolizing the dangers of unprepared exploration. Its origins in Zork influenced countless games that incorporated environmental hazards and unseen threats, cementing its legacy as a hallmark of early interactive fiction."
+  - id: "balloon-mechanics"
+    line_start: 422
+    line_end: 555
+    title: "How a Balloon Navigates a Volcano"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The 'Brick-Function' handles the explosive properties of a brick object. If the player attempts to burn the brick, the game ends with a humorous message about being blown to smithereens. This reflects Zork's design philosophy of blending humor with player consequences. In the late 1970s, text-based games were exploring ways to make player actions feel meaningful, even when they led to failure. The exploding brick is an example of how Zork's developers used unexpected outcomes to entertain players. This approach influenced later games, such as Portal, which used humor to soften the impact of player mistakes."
-  - id: "gnome-function-volcano-gnome-interaction"
-    line_start: 770
+    content: "The BALLOON subroutine governs the logic for inflating, navigating, and interacting with a hot-air balloon. Players must use specific items, such as a burning object, to inflate the balloon, which then ascends or descends based on environmental conditions. The code includes checks for tied ropes, volcanic ledges, and the player's position, creating a complex system of cause-and-effect interactions. This mechanic reflects the developers' ingenuity in simulating realistic constraints within a text-based environment. It influenced later games with intricate vehicle mechanics, such as Sierra's King's Quest series, and demonstrated how environmental storytelling could enhance immersion."
+  - id: "gnome-ledges"
+    line_start: 759
     line_end: 794
-    title: "Volcano gnome: bartering for escape"
+    title: "A Gnome That Opens Secret Doors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The 'Gnome-Function' defines interactions with a volcano gnome, who offers to show the player a way out in exchange for a valuable item. If the player provides an acceptable object, a new exit appears; otherwise, the gnome reacts humorously or disappears. This mechanic showcases Zork's emphasis on narrative-driven puzzles and character interactions. In 1977, text-based games were experimenting with ways to make NPCs feel dynamic and responsive. The gnome's behavior influenced later games, such as Ultima and Baldur's Gate, where NPCs played central roles in advancing the story and providing quests."
+    content: "The VOLGNOME and GNOME-FUNCTION subroutines introduce a volcano gnome who offers to reveal a secret exit in exchange for valuable items. The gnome's behavior includes humorous dialogue, item evaluation, and timed disappearance, adding personality to the NPC interactions. This mechanic showcases Zork's blend of humor, narrative, and puzzle-solving, influencing later games with memorable NPCs and trade-based puzzles. The gnome's quirky demeanor and functional role highlight the developers' ability to create engaging characters within the constraints of text-based gameplay."
 
 ---
 
+```lisp
 
 
 
@@ -882,4 +867,4 @@ appointment!' He disappears, leaving you alone on the ledge.">
 "The gnome appears increasingly nervous.">
 	   <OR ,GNOME-FLAG!-FLAG <CLOCK-INT ,GNOIN 5>>
 	   <SETG GNOME-FLAG!-FLAG T>)>>
-
+```

@@ -9,69 +9,78 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-us-1-c"
 order: 22
-description: "This file contains user interface routines for Wolfenstein 3D, showcasing foundational techniques in game UI design and interaction."
+description: "This file contains user interface routines for Wolfenstein 3D, showcasing techniques for handling input, printing, and window management in a constrained MS-DOS environment."
 
 summary:
-  - point: "Implements text-based user input routines for MS-DOS"
+  - point: "Introduces a fatal error handler for MS-DOS device errors"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Introduces error handling for hardware-level issues"
-    link: "https://en.wikipedia.org/wiki/Interrupt_handler"
-    link_label: "Interrupt handler"
-  - point: "Contains routines for window management and text rendering"
-    link: "https://en.wikipedia.org/wiki/Graphics_library"
-    link_label: "Graphics library"
-  - point: "Demonstrates early use of XOR-based cursor rendering"
-    link: "https://en.wikipedia.org/wiki/XOR_gate"
-    link_label: "XOR gate"
-  - point: "Highlights modular design for UI components"
-    link: "https://en.wikipedia.org/wiki/Modular_programming"
-    link_label: "Modular programming"
+  - point: "Implements custom string printing routines for centered and windowed text"
+    link: "https://en.wikipedia.org/wiki/Bitmap_fonts"
+    link_label: "Bitmap fonts"
+  - point: "Handles interactive user input with cursor management"
+    link: "https://en.wikipedia.org/wiki/Computer_keyboard"
+    link_label: "Keyboard input"
+  - point: "Demonstrates clever use of XOR for cursor rendering"
+    link: "https://en.wikipedia.org/wiki/Exclusive_or"
+    link_label: "XOR operation"
+  - point: "Provides modular routines for saving and restoring window states"
+    link: "https://en.wikipedia.org/wiki/Window_(computing)"
+    link_label: "Window management"
 
 enhancements:
-  - id: "static-global-variables"
-    line_start: 36
-    line_end: 79
-    title: "Global variables for user interface state"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Global_variable"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines global variables used throughout the user interface routines, such as flags for game state (`US_Started`) and pointers for error handling (`abortprogram`). These variables are critical for managing the state of the program and enabling communication between different parts of the code. In the early 1990s, global variables were a common practice for simplifying state management in games, especially on resource-constrained systems like MS-DOS. While this approach is less favored today due to concerns about maintainability and side effects, it was instrumental in enabling rapid development and debugging during the tight development cycles of games like Wolfenstein 3D. The modular design seen here influenced later game engines, including id Software's own Doom engine."
-  - id: "usl-harderror-handler"
+  - id: "fatal-error-handler-ms-dos"
     line_start: 72
     line_end: 158
-    title: "Handling DOS-level errors gracefully"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    title: "The Fatal Error Handler That Saved DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The `USL_HardError` function is designed to handle critical errors passed from DOS, such as device errors or write protection issues. It provides a user-friendly interface for retrying or aborting operations, displaying error messages in a centered window. This approach reflects the constraints of the time, where direct interaction with hardware and operating system interrupts was necessary for robust error handling. The use of inline assembly (`asm sti`) to enable keyboard interrupts demonstrates the low-level programming techniques required to work effectively on MS-DOS. This function highlights id Software's commitment to creating a polished user experience, even in the face of technical limitations. The error handling mechanisms here influenced later game engines and contributed to the industry's understanding of integrating user feedback into error management."
-  - id: "us-startup-initialization"
+    content: "This routine, `USL_HardError`, handles critical device errors in MS-DOS, such as write protection or drive failures. It provides a user-friendly interface for retrying or aborting operations, displaying error messages in a centered window. The programmer uses direct memory access (`peekb`) to retrieve the screen mode and custom routines to save and restore window states. At the time, MS-DOS lacked robust error handling, leaving developers to implement their own solutions. John Carmack and his team built this handler to ensure the game could gracefully recover from hardware issues. This approach influenced later games and software, where error handling became a critical component of user experience. It also highlights the ingenuity required to work within the constraints of MS-DOS, where even basic error messages required manual implementation."
+  - id: "user-manager-startup"
     line_start: 163
     line_end: 212
-    title: "Initializing the user manager"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(programming)"
+    title: "Starting Up the User Manager"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "The `US_Startup` function initializes the user manager, setting up critical components like the error handler (`harderr`) and random number generator (`US_InitRndT`). It also parses command-line arguments to configure compatibility modes and detect special launch conditions, such as the use of TED (a level editor). This initialization routine demonstrates the modular design philosophy of id Software, where components are set up independently and only when needed. In the early 1990s, this approach was vital for optimizing performance on limited hardware. The ability to detect and adapt to different runtime environments laid the groundwork for more sophisticated game engines, including those used in Doom and Quake, which further refined initialization processes to support diverse hardware configurations."
-  - id: "us-draw-window"
-    line_start: 447
-    line_end: 480
-    title: "Drawing graphical windows in text mode"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_library"
+    content: "The `US_Startup` function initializes the User Manager, a critical subsystem for handling user input and feedback in Wolfenstein 3D. It sets up error handling, random number generation, and parses command-line parameters for compatibility and debugging options. The inclusion of TED-level detection reflects id Software's workflow, where levels were often designed using internal tools. In the early 1990s, game developers had to build their own frameworks for managing user interaction, as no standardized libraries existed for MS-DOS. This startup routine ensured the game could adapt to various configurations and debugging scenarios, laying the groundwork for robust user management systems in future id Software titles like Doom and Quake."
+  - id: "parameter-checking-case-insensitivity"
+    line_start: 231
+    line_end: 262
+    title: "Case-Insensitive Parameter Matching"
+    wikipedia_url: "https://en.wikipedia.org/wiki/String_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The `US_DrawWindow` function creates graphical windows by drawing frames and setting up the dimensions for text rendering. It uses tile-based drawing (`VWB_DrawTile8`) to construct the window borders, a technique optimized for the low-resolution graphics of MS-DOS. This function exemplifies the ingenuity required to simulate graphical interfaces in an environment primarily designed for text-based applications. By abstracting window creation into a reusable routine, id Software enabled consistent UI elements across the game. This approach influenced the design of later game engines, which adopted similar abstractions for managing graphical elements. The tile-based rendering seen here is a precursor to techniques used in modern 2D game engines, such as Unity and GameMaker Studio."
-  - id: "us-line-input"
+    content: "The `US_CheckParm` function implements case-insensitive string matching for command-line arguments. It skips non-alphabetic characters and compares strings by converting uppercase letters to lowercase. This was a practical solution for handling user input in an era when command-line interfaces were the norm. By ensuring flexibility in parameter matching, id Software made their game more accessible to players and developers alike. This technique, while simple, became a standard practice in software development, influencing how modern applications parse user input. It also reflects the meticulous attention to detail required to create a seamless user experience in the constrained environment of MS-DOS."
+  - id: "centered-text-printing"
+    line_start: 367
+    line_end: 381
+    title: "How to Center Text Without a GUI"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_fonts"
+    image_url: ""
+    image_caption: ""
+    content: "The `US_PrintCentered` function calculates and prints text centered within the current window. It uses the `USL_MeasureString` routine to determine the dimensions of the text and adjusts the position accordingly. In the early 1990s, graphical user interfaces were rare in games, and developers had to manually handle text alignment. This routine showcases id Software's ability to create visually appealing interfaces despite hardware limitations. Centered text became a hallmark of polished user interfaces, influencing design choices in later games and applications. The technique demonstrated here is still relevant in modern game development, where text alignment plays a crucial role in user experience."
+  - id: "xor-cursor-rendering"
+    line_start: 534
+    line_end: 561
+    title: "The XOR Trick for Cursor Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Exclusive_or"
+    image_url: ""
+    image_caption: ""
+    content: "The `USL_XORICursor` function uses the XOR operation to render and toggle the visibility of a text cursor. This clever trick allowed developers to efficiently manage cursor rendering without requiring additional memory or complex routines. XOR-based rendering was a common technique in the MS-DOS era, where hardware constraints forced programmers to find innovative solutions. By alternating the cursor's visibility with XOR, id Software ensured smooth and responsive user interaction. This approach influenced cursor management in later software, demonstrating how low-level operations could be leveraged to enhance user experience. The XOR trick remains a fascinating example of ingenuity in early game development."
+  - id: "interactive-line-input"
     line_start: 563
     line_end: 755
-    title: "Capturing user input with real-time feedback"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
+    title: "Interactive Line Input in MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_keyboard"
     image_url: ""
     image_caption: ""
-    content: "The `US_LineInput` function captures a line of user input, providing real-time feedback through a blinking cursor rendered with XOR operations (`USL_XORICursor`). It supports features like default values, input length restrictions, and escape key handling. This routine demonstrates the challenges of implementing text input on MS-DOS, where developers had to manually manage cursor visibility and screen updates. The use of XOR-based rendering for the cursor is a clever workaround for the lack of hardware support for text cursors in VGA mode. This function showcases id Software's attention to detail in creating responsive and intuitive user interfaces, a hallmark of their design philosophy. The techniques developed here influenced later games and engines, which adopted similar approaches for handling user input in constrained environments."
+    content: "The `US_LineInput` function provides a robust mechanism for capturing user input, including support for default values, cursor movement, and character deletion. It uses keyboard scan codes to interpret arrow keys and other special inputs, allowing users to edit text interactively. At the time, MS-DOS lacked built-in support for such features, leaving developers to implement their own solutions. This routine reflects id Software's commitment to creating a polished user experience, even in a constrained environment. The techniques demonstrated here influenced later games and applications, where interactive text input became a standard feature. It also highlights the challenges of working with low-level keyboard input, showcasing the ingenuity required to build responsive interfaces in the early 1990s."
 
 ---
 
+```asm
 //
 //	ID Engine
 //	ID_US_1.c - User Manager - General routines
@@ -827,3 +836,4 @@ US_LineInput(int x,int y,char *buf,char *def,boolean escok,
 	IN_ClearKeysDown();
 	return(result);
 }
+```

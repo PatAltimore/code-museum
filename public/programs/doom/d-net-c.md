@@ -9,93 +9,88 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "d-net-c"
 order: 20
-description: "This file implements DOOM's networking protocol, enabling multiplayer functionality and synchronization across nodes."
+description: "This file implements DOOM's networking protocol, enabling multiplayer gameplay on early PCs."
 
 summary:
   - point: "DOOM's networking protocol was designed to work across multiple operating systems."
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     link_label: "DOOM (1993)"
-  - point: "The file includes checksum-based packet validation to ensure data integrity."
-    link: "https://en.wikipedia.org/wiki/Checksum"
-    link_label: "Checksum"
-  - point: "The networking code uses tic-based synchronization to maintain consistent gameplay across nodes."
-    link: "https://doomwiki.org/wiki/Tic"
-    link_label: "Tic in DOOM"
-  - point: "DOOM's multiplayer design influenced future online gaming protocols."
+  - point: "The code includes mechanisms for packet retransmission and synchronization."
+    link: "https://en.wikipedia.org/wiki/Computer_networking"
+    link_label: "Computer Networking"
+  - point: "DOOM's multiplayer innovations influenced future online gaming protocols."
     link: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
-    link_label: "Multiplayer video games"
-  - point: "The code includes mechanisms for handling packet retransmission and missed tics."
-    link: "https://en.wikipedia.org/wiki/Packet_loss"
-    link_label: "Packet loss"
+    link_label: "Multiplayer Video Game"
 
 enhancements:
-  - id: "networking-constants-and-structures"
-    line_start: 29
+  - id: "networking-data-structures"
+    line_start: 44
     line_end: 75
-    title: "Constants and structures for networking"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Network_protocol"
+    title: "The Data Structures That Made Multiplayer Possible"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
     image_caption: ""
-    content: "This section defines constants and data structures used throughout DOOM's networking code. The constants represent various commands and flags, such as `NCMD_EXIT` for exiting the game and `NCMD_RETRANSMIT` for requesting retransmission of missed packets. The `doomcom_t` and `doomdata_t` structures are central to the networking protocol, encapsulating shared data between nodes. At the time, multiplayer gaming was still in its infancy, and DOOM's approach to defining clear, reusable structures for network communication was groundbreaking. These constants and structures laid the groundwork for efficient data exchange in multiplayer games, influencing later titles like Quake and Unreal Tournament."
-  - id: "netbuffer-checksum-validation"
+    content: "This section defines key data structures used for DOOM's networking functionality, including `doomcom_t` and `doomdata_t`. These structures store information about the state of the network, such as player commands (`ticcmd_t`), game ticks, and node statuses. The `nettics` array tracks the progress of each player, ensuring synchronization across nodes. Multiplayer gaming in 1993 was still in its infancy, and DOOM's approach to managing state and communication was groundbreaking. John Carmack's focus on efficiency and simplicity allowed the game to run smoothly even on modest hardware. These data structures laid the groundwork for future multiplayer protocols, influencing games like Quake and Unreal Tournament."
+  - id: "netbuffer-checksum"
     line_start: 95
     line_end: 115
-    title: "Checksum validation for network packets"
+    title: "How DOOM Verified Multiplayer Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Checksum"
     image_url: ""
     image_caption: ""
-    content: "The `NetbufferChecksum` function calculates a checksum for network packets to ensure data integrity during transmission. It uses a simple algorithm that multiplies packet data by its index and adds it to a running total. This method was chosen for its speed and simplicity, which were crucial given the limited processing power of 1993-era PCs. The function includes a conditional compilation directive to handle potential endian issues on UNIX systems, highlighting the challenges of cross-platform development. By incorporating checksum validation, DOOM minimized the risk of corrupted data disrupting gameplay, a technique that became standard in network protocols for games and other applications."
-  - id: "expand-tics-for-synchronization"
-    line_start: 117
+    content: "The `NetbufferChecksum` function calculates a checksum to verify the integrity of network packets. This ensures that data transmitted between players is accurate and uncorrupted. The checksum algorithm uses a combination of multiplication and addition, incorporating the packet's contents and position. At the time, network reliability was a significant concern, especially on consumer-grade hardware. By implementing checksums, DOOM reduced the risk of errors disrupting gameplay. This technique became a standard practice in networking, influencing protocols used in later games and even broader applications like TCP/IP."
+  - id: "expand-tics"
+    line_start: 120
     line_end: 135
-    title: "Expanding tics for synchronization"
-    wikipedia_url: "https://doomwiki.org/wiki/Tic"
+    title: "Solving the Tic Synchronization Problem"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Clock_synchronization"
     image_url: ""
     image_caption: ""
-    content: "The `ExpandTics` function reconstructs full tic numbers from their truncated low-byte representation, ensuring proper synchronization across nodes. This approach saves bandwidth by transmitting only the least significant byte of tic numbers, which is sufficient for most scenarios. The function accounts for wraparound and out-of-range values, using the current tic (`maketic`) as a reference. In the early 1990s, bandwidth was a significant constraint, especially for dial-up connections. DOOM's efficient use of bandwidth through techniques like tic expansion allowed it to deliver smooth multiplayer experiences, influencing later games that adopted similar optimizations for network synchronization."
-  - id: "sending-network-packets"
+    content: "The `ExpandTics` function resolves synchronization issues by reconstructing full tic numbers from their lower byte. In DOOM's multiplayer protocol, only the lower byte of tic numbers is transmitted to save bandwidth. This function uses the game's current tic to infer the missing higher bytes, ensuring consistency across nodes. Synchronization was critical for maintaining the fast-paced gameplay DOOM was known for. This clever optimization reflects Carmack's ability to balance performance with functionality, and similar techniques are still used in modern game engines to handle synchronization efficiently."
+  - id: "hsendpacket-function"
     line_start: 139
     line_end: 186
-    title: "Sending network packets to nodes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Packet_switching"
+    title: "How DOOM Sent Multiplayer Packets"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Packet-switched_network"
     image_url: ""
     image_caption: ""
-    content: "The `HSendPacket` function handles the transmission of network packets to other nodes. It calculates a checksum for the packet and sets various flags based on the packet's purpose, such as retransmission or setup. If the packet is intended for the local node, it stores the data in a rebound buffer instead of sending it over the network. The function also logs packet details to a debug file, aiding in troubleshooting. This modular approach to packet handling reflects the meticulous design philosophy of John Carmack and his team, who prioritized reliability and performance. The function's design influenced networking in later games, where packet management became increasingly sophisticated."
-  - id: "receiving-network-packets"
-    line_start: 188
-    line_end: 253
-    title: "Receiving and validating network packets"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Packet_loss"
+    content: "The `HSendPacket` function handles the transmission of network packets to other nodes. It calculates the packet's checksum, sets flags, and sends the data through the network interface. If the packet is intended for the local node, it stores it in a rebound buffer for immediate processing. This function highlights DOOM's approach to multiplayer networking, where reliability and efficiency were paramount. By incorporating debugging capabilities, the developers could monitor and troubleshoot network issues during development. This method of packet handling influenced future multiplayer games, setting a precedent for robust network communication."
+  - id: "getpackets-function"
+    line_start: 262
+    line_end: 358
+    title: "Receiving and Processing Multiplayer Packets"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Network_packet"
     image_url: ""
     image_caption: ""
-    content: "The `HGetPacket` function receives packets from the network and validates them for integrity and correctness. It checks the packet's checksum, length, and flags, rejecting packets that fail validation. The function also handles special cases, such as setup packets and packets indicating game exit or kill commands. Debugging information is logged for invalid packets, providing insights into potential issues. This robust error-handling mechanism was essential for maintaining a stable multiplayer experience, especially in the face of unreliable network conditions. The principles demonstrated here—validation, error logging, and handling special cases—became foundational in the development of reliable multiplayer systems."
-  - id: "processing-incoming-packets"
-    line_start: 261
-    line_end: 357
-    title: "Processing incoming network packets"
+    content: "The `GetPackets` function processes incoming network packets, updating the game's state based on their contents. It handles setup packets, retransmission requests, and game exit notifications. The function also checks for packet integrity using checksums and ensures packets are processed in the correct order. This robust packet handling mechanism was essential for DOOM's multiplayer experience, allowing players to interact seamlessly despite the limitations of 1990s networking hardware. The techniques used here influenced the design of network protocols in later games, contributing to the evolution of online multiplayer gaming."
+  - id: "netupdate-function"
+    line_start: 362
+    line_end: 446
+    title: "Keeping Multiplayer Games in Sync"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""
     image_caption: ""
-    content: "The `GetPackets` function processes incoming network packets, updating game state based on their contents. It handles various scenarios, such as players leaving the game, retransmission requests, and missed packets. The function uses the `ExpandTics` method to reconstruct tic numbers and updates the command store for each player. This comprehensive packet processing logic ensured that DOOM's multiplayer mode remained synchronized and responsive, even under challenging network conditions. The function's design reflects the team's deep understanding of multiplayer dynamics, paving the way for more complex systems in future games like Quake and Counter-Strike."
-  - id: "network-game-initialization"
-    line_start: 549
-    line_end: 594
-    title: "Initializing network game settings"
+    content: "The `NetUpdate` function is responsible for maintaining synchronization between players in a multiplayer game. It builds new commands for the local player, sends packets to other nodes, and listens for incoming packets. This function ensures that all players are operating on the same game state, a critical requirement for fast-paced action games like DOOM. The synchronization mechanisms developed here were innovative for their time, enabling smooth multiplayer gameplay on hardware with limited processing power. This approach influenced the design of networking systems in later games, including Quake and Half-Life."
+  - id: "d-arbitrate-net-start"
+    line_start: 473
+    line_end: 547
+    title: "Negotiating Multiplayer Game Start"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""
     image_caption: ""
-    content: "The `D_CheckNetGame` function initializes settings for a network game, determining player numbers and configuring game parameters. It calls `I_InitNetwork` to set up the network environment and validates the `doomcom` buffer. The function also handles the arbitration of game settings among nodes, ensuring consistent gameplay across all participants. This initialization process was critical for DOOM's multiplayer mode, which allowed players to connect and compete seamlessly. The function's modular design and attention to detail influenced the development of network initialization routines in later multiplayer games, contributing to the evolution of online gaming."
-  - id: "running-network-synchronized-tics"
+    content: "The `D_ArbitrateNetStart` function establishes the initial conditions for a multiplayer game. It negotiates settings like skill level, map, and game mode between nodes. The function ensures that all players are using the same version of the game, preventing compatibility issues. This negotiation process reflects the challenges of multiplayer gaming in the early 1990s, where hardware and software differences could easily disrupt gameplay. By automating the setup process, DOOM made multiplayer gaming more accessible, paving the way for the widespread adoption of online gaming."
+  - id: "try-run-tics"
     line_start: 626
-    line_end: 766
-    title: "Running synchronized tics across nodes"
-    wikipedia_url: "https://doomwiki.org/wiki/Tic"
+    line_end: 767
+    title: "Balancing Real-Time Gameplay Across Nodes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
     image_url: ""
     image_caption: ""
-    content: "The `TryRunTics` function ensures that all nodes in a multiplayer game run synchronized tics, maintaining consistent gameplay. It calculates the number of tics to run based on real-time and available tics, adapting to network conditions. The function also handles tic duplication for smoother gameplay and updates game state accordingly. This synchronization mechanism was a cornerstone of DOOM's multiplayer design, enabling fast-paced, lag-free action. The principles demonstrated here—adaptive synchronization, tic duplication, and state updates—became standard practices in multiplayer game development, influencing titles like Quake, Unreal Tournament, and modern online shooters."
+    content: "The `TryRunTics` function ensures that all nodes in a multiplayer game remain synchronized while running game logic. It calculates the number of tics to process based on real-time and available tics, adapting dynamically to network conditions. This function also handles duplicated tics, ensuring that commands are consistent across all players. The ability to balance real-time gameplay across nodes was a significant achievement, allowing DOOM to deliver a seamless multiplayer experience. Techniques like these influenced the development of real-time networking in later games, contributing to the rise of competitive online gaming."
 
 ---
 
+```c
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -863,3 +858,4 @@ void TryRunTics (void)
 	NetUpdate ();	// check for new console commands
     }
 }
+```

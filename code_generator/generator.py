@@ -99,7 +99,8 @@ def generate_highlights(program: dict, client, gen_cfg: dict, force: bool,
                 "title": file_cfg["title"],
                 "enhancements": [{"title": en.get("title", "")} for en in enhs],
             })
-        except Exception:
+        except Exception as exc:
+            console.print(f"  [yellow]highlights: could not read {md_path.name}: {exc}[/yellow]")
             continue
 
     if not files_with_enhancements:
@@ -147,11 +148,15 @@ def _split_into_chunks(
     total_lines: int,
     landmarks: list[tuple[int, str]],
     chunk_size: int = 800,
+    min_trailing_lines: int = 50,
 ) -> list[tuple[int, int]]:
     """Split a file into chunks of ~chunk_size lines, snapping to landmark boundaries.
 
     Returns a list of (start, end) 1-indexed inclusive tuples covering the
     entire file with no gaps and no overlaps.
+
+    If the final chunk would be smaller than min_trailing_lines it is merged
+    into the preceding chunk to avoid sending a near-empty sliver to the model.
     """
     landmark_lines = {ln for ln, _name in landmarks}
     chunks = []
@@ -183,6 +188,16 @@ def _split_into_chunks(
 
         chunks.append((start, best_cut))
         start = best_cut + 1
+
+    # Merge a tiny trailing chunk into the preceding one so the model never
+    # receives a near-empty sliver (which tends to produce garbled JSON).
+    if len(chunks) >= 2:
+        last_size = chunks[-1][1] - chunks[-1][0] + 1
+        if last_size < min_trailing_lines:
+            prev_start = chunks[-2][0]
+            last_end   = chunks[-1][1]
+            chunks[-2] = (prev_start, last_end)
+            chunks.pop()
 
     return chunks
 

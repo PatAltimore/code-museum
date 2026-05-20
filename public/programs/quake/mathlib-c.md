@@ -9,98 +9,106 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "mathlib-c"
 order: 6
-description: "This file provides the mathematical foundation for Quake's groundbreaking 3D graphics and physics systems."
+description: "This file defines the mathematical foundation for Quake's groundbreaking 3D graphics and physics systems."
 
 summary:
-  - point: "Efficient vector math routines optimized for real-time 3D calculations"
+  - point: "Efficient vector math routines optimized for 1990s hardware"
     link: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
     link_label: "Vector Math"
-  - point: "Use of trigonometric functions for angle-based transformations"
-    link: "https://en.wikipedia.org/wiki/Trigonometric_functions"
-    link_label: "Trigonometric Functions"
-  - point: "Implementation of matrix concatenation for rotation and transformation"
-    link: "https://en.wikipedia.org/wiki/Matrix_multiplication"
-    link_label: "Matrix Multiplication"
-  - point: "Recursive algorithm for calculating the greatest common divisor"
-    link: "https://en.wikipedia.org/wiki/Euclidean_algorithm"
-    link_label: "Euclidean Algorithm"
-  - point: "Floor-based division and modulus for precise mathematical operations"
-    link: "https://en.wikipedia.org/wiki/Floor_and_ceiling_functions"
-    link_label: "Floor Function"
+  - point: "Introduced modular geometric transformations for 3D rendering"
+    link: "https://en.wikipedia.org/wiki/Transformation_matrix"
+    link_label: "Transformation Matrix"
+  - point: "Innovative use of floating-point arithmetic in real-time applications"
+    link: "https://en.wikipedia.org/wiki/Floating-point_arithmetic"
+    link_label: "Floating-point Arithmetic"
+  - point: "Optimized algorithms for collision detection and plane-side calculations"
+    link: "https://en.wikipedia.org/wiki/Collision_detection"
+    link_label: "Collision Detection"
+  - point: "Mathematical groundwork for modern game engines like Unity and Unreal"
+    link: "https://en.wikipedia.org/wiki/Game_engine"
+    link_label: "Game Engines"
 
 enhancements:
   - id: "foundation-vector-origin"
-    line_start: 19
-    line_end: 28
-    title: "Foundation: Vector Origin and Constants"
+    line_start: 27
+    line_end: 27
+    title: "Why Quake Needed a Vector Origin Constant"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
     image_url: ""
     image_caption: ""
-    content: "This section defines fundamental constants and variables used throughout the file, including `vec3_origin`, which represents the origin point in 3D space, and `nanmask`, a bitmask used for handling floating-point operations. These definitions are essential for initializing and managing mathematical operations in the game engine. At the time, handling floating-point numbers efficiently was critical due to the limited computational power of x86 processors. By predefining these constants, the developers ensured consistency and optimized performance across the codebase. This foundational approach influenced later game engines, which adopted similar practices for managing mathematical primitives in real-time applications."
+    content: "The declaration of `vec3_origin` as `{0,0,0}` establishes a universal reference point for 3D calculations. In Quake's 3D world, vectors represent positions, directions, and velocities. By defining a constant origin vector, the developers simplified operations like resetting positions or calculating relative distances. In 1996, hardware constraints meant every optimization mattered, and predefining common constants avoided unnecessary computation. This approach influenced later game engines, where such constants became standard practice for efficiency and clarity in vector math."
   - id: "project-point-plane"
-    line_start: 30
-    line_end: 55
-    title: "Projecting Points onto Planes"
+    line_start: 34
+    line_end: 51
+    title: "The Math Behind Projecting Points onto Planes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Plane_(geometry)"
     image_url: ""
     image_caption: ""
-    content: "The `ProjectPointOnPlane` function calculates the projection of a point onto a plane defined by its normal vector. This operation is fundamental in 3D graphics, enabling calculations like collision detection and object placement. The function uses the dot product to determine the distance from the point to the plane and adjusts the point's position accordingly. In the mid-1990s, such operations were computationally expensive, but Quake's developers optimized them for real-time performance. This technique laid the groundwork for modern physics engines, where projecting objects onto surfaces is a common operation."
+    content: "The `ProjectPointOnPlane` function calculates the projection of a point onto a plane defined by a normal vector. This is crucial for collision detection and rendering, where objects interact with surfaces. The function uses the dot product to determine the distance and adjusts the point's position accordingly. In the mid-90s, real-time 3D calculations were computationally expensive, and this efficient implementation reflects the team's deep understanding of linear algebra. The technique became a staple in graphics programming, influencing APIs like OpenGL and DirectX."
   - id: "perpendicular-vector"
     line_start: 53
-    line_end: 90
-    title: "Generating Perpendicular Vectors"
+    line_end: 86
+    title: "Finding Perpendicular Vectors for 3D Rotations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Perpendicular"
     image_url: ""
     image_caption: ""
-    content: "The `PerpendicularVector` function generates a vector perpendicular to a given normalized vector. This is achieved by finding the smallest magnitude axially aligned vector and projecting it onto the plane defined by the input vector. Normalizing the result ensures its correctness. Perpendicular vectors are crucial for defining coordinate systems and performing rotations in 3D space. This function reflects the meticulous attention to mathematical detail required to create Quake's immersive environments. The concept of generating perpendicular vectors is now a standard in 3D graphics programming, influencing tools like OpenGL and DirectX."
+    content: "The `PerpendicularVector` function computes a vector orthogonal to a given normalized vector. This is essential for constructing rotation matrices and defining coordinate systems in 3D space. By identifying the smallest axial component, the function avoids degeneracies and ensures stability. This method was particularly innovative for its time, balancing precision with performance on limited hardware. The concept of perpendicular vectors is now ubiquitous in 3D graphics, underpinning techniques like camera orientation and skeletal animation."
   - id: "rotate-point-around-vector"
     line_start: 93
-    line_end: 152
+    line_end: 146
     title: "Rotating Points Around Arbitrary Axes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotation_matrix"
     image_url: ""
     image_caption: ""
-    content: "The `RotatePointAroundVector` function rotates a point around an arbitrary axis defined by a direction vector. It constructs rotation matrices, including a z-axis rotation matrix, and concatenates them to achieve the desired transformation. This approach leverages matrix multiplication to handle complex rotations efficiently. In 1996, such calculations were groundbreaking for real-time applications, enabling Quake's dynamic 3D environments and fluid gameplay. The use of rotation matrices has since become a cornerstone of 3D graphics, influencing engines like Unity and Unreal."
+    content: "The `RotatePointAroundVector` function performs a complex transformation: rotating a point around an arbitrary axis by a specified angle. This involves constructing rotation matrices and concatenating them to achieve the desired effect. Such operations were groundbreaking in 1996, enabling dynamic object manipulation and realistic physics in Quake's 3D world. The function's efficiency and modularity set a precedent for game engine design, influencing systems like Unity's Transform component and Unreal's rotation utilities."
   - id: "anglemod-precision"
-    line_start: 154
-    line_end: 167
-    title: "Angle Modulo for Precision"
+    line_start: 148
+    line_end: 164
+    title: "Optimizing Angle Modulo Operations for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Modulo_operation"
     image_url: ""
     image_caption: ""
-    content: "The `anglemod` function ensures angles remain within a valid range by applying a modulo operation. This prevents overflow and maintains precision during calculations involving rotations and orientations. The function uses a bitwise approach to optimize performance, a necessity given the hardware constraints of the era. This technique is widely adopted in modern game engines to manage angle calculations efficiently, ensuring smooth transitions and accurate physics simulations."
+    content: "The `anglemod` function ensures angles remain within a valid range (0 to 360 degrees) using bitwise operations. This avoids floating-point inaccuracies and improves performance, critical for real-time applications like Quake. By leveraging fixed-point arithmetic, the developers sidestepped hardware limitations of the era. This technique influenced later games and engines, where efficient angle normalization is vital for camera control, AI pathfinding, and physics simulations."
   - id: "box-on-plane-side"
-    line_start: 180
-    line_end: 287
-    title: "Determining Box Position Relative to Planes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Plane_(geometry)"
+    line_start: 187
+    line_end: 285
+    title: "Efficient Collision Detection with Plane-Side Tests"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "The `BoxOnPlaneSide` function determines whether a bounding box is on one side of a plane, the other, or intersects it. This is achieved by calculating distances from the box's corners to the plane using its normal vector and sign bits. Such calculations are vital for collision detection and spatial partitioning, enabling efficient rendering and physics simulations. By optimizing this function for real-time performance, Quake's developers set a precedent for handling complex geometric relationships in 3D space. This approach influenced later engines, including Source and CryEngine."
+    content: "The `BoxOnPlaneSide` function determines which side of a plane a bounding box lies on, a key operation for collision detection and spatial partitioning. By optimizing for axial cases and using precomputed sign bits, the function minimizes calculations. This was crucial for Quake's BSP (Binary Space Partitioning) system, which allowed efficient rendering and physics in complex environments. The technique influenced later engines, including Source and Unreal, which refined spatial partitioning for modern hardware."
+  - id: "angle-vectors"
+    line_start: 290
+    line_end: 314
+    title: "Converting Angles to Directional Vectors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Euler_angles"
+    image_url: ""
+    image_caption: ""
+    content: "The `AngleVectors` function converts Euler angles (yaw, pitch, roll) into forward, right, and up vectors. This is fundamental for camera orientation, object movement, and physics calculations. By precomputing sine and cosine values, the function balances precision and speed, essential for real-time gameplay. This approach became standard in game development, enabling intuitive control schemes and realistic movement in 3D environments."
   - id: "floor-div-mod"
     line_start: 488
     line_end: 537
-    title: "Floor-Based Division and Modulus"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Floor_and_ceiling_functions"
+    title: "Handling Division with Floor-Based Quotients"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Floor_function"
     image_url: ""
     image_caption: ""
-    content: "The `FloorDivMod` function calculates the quotient and remainder of a division operation using floor-based arithmetic. This ensures mathematical correctness, particularly for negative numbers, which can produce unexpected results with standard division. The function includes safeguards against invalid inputs, reflecting the developers' commitment to robust code. Floor-based division is essential for algorithms that rely on precise integer arithmetic, such as texture mapping and grid-based calculations. This technique remains relevant in modern programming, particularly in graphics and simulation contexts."
+    content: "The `FloorDivMod` function calculates the quotient and remainder of a division operation using floor-based arithmetic. This ensures mathematical correctness, especially for negative numbers, which can cause issues in standard division. Such precision was vital for Quake's physics and geometry calculations, where even small errors could disrupt gameplay. The function's robustness influenced later programming practices, emphasizing the importance of handling edge cases in mathematical operations."
   - id: "greatest-common-divisor"
     line_start: 540
     line_end: 559
-    title: "Recursive Greatest Common Divisor"
+    title: "Recursive GCD: A Classic Algorithm in Action"
     wikipedia_url: "https://en.wikipedia.org/wiki/Euclidean_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The `GreatestCommonDivisor` function implements the Euclidean algorithm to find the greatest common divisor of two integers. This recursive approach is efficient and elegant, leveraging mathematical properties to minimize computational steps. While not directly related to 3D graphics, such utility functions are crucial for broader numerical operations within the engine. The use of recursion reflects the developers' deep understanding of algorithm design, influencing future implementations in game development and beyond."
+    content: "The `GreatestCommonDivisor` function implements the Euclidean algorithm to find the GCD of two integers. This recursive approach is efficient and elegant, showcasing the developers' mathematical expertise. While not directly tied to graphics or physics, such utility functions reflect the comprehensive nature of Quake's codebase. The algorithm remains a staple in programming, taught in computer science courses and used in diverse applications."
   - id: "invert-24-to-16"
     line_start: 562
     line_end: 581
-    title: "Inverting Fixed-Point Values"
+    title: "Converting Fixed-Point Values for Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
-    content: "The `Invert24To16` function converts an 8.24 fixed-point value to a 16.16 format by performing a precise inversion operation. Fixed-point arithmetic was commonly used in the 1990s to handle numerical calculations on hardware without floating-point support. This function reflects the developers' ingenuity in adapting to hardware limitations while maintaining accuracy. Fixed-point techniques have since been largely replaced by floating-point operations but remain relevant in embedded systems and retro game development."
+    content: "The `Invert24To16` function converts 8.24 fixed-point values to 16.16 format, ensuring compatibility and precision in calculations. Fixed-point arithmetic was common in the 90s due to limited floating-point support on hardware. This function reflects the team's ingenuity in overcoming constraints, paving the way for precise physics and rendering. While fixed-point math has largely been replaced by floating-point operations, its legacy persists in embedded systems and retro-style game development."
 
 ---
 

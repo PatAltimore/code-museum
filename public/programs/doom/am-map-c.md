@@ -9,149 +9,134 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "am-map-c"
 order: 19
-description: "The automap system in DOOM, enabling players to navigate complex levels, was a technical achievement that balanced usability with performance constraints of early 1990s hardware."
+description: "This file implements the automap functionality in DOOM, allowing players to visualize the game world and navigate more effectively. The automap was a key feature in enhancing gameplay and spatial awareness."
 
 summary:
-  - point: "Automap code defines player-centric navigation and visualization"
+  - point: "Defines automap colors and constants for rendering"
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     link_label: "DOOM (1993)"
-  - point: "Color definitions and scaling algorithms optimized for low-resolution displays"
-    link: "https://en.wikipedia.org/wiki/VGA"
-    link_label: "VGA"
-  - point: "Automap's player-following logic introduced dynamic map interactions"
-    link: "https://en.wikipedia.org/wiki/Real-time_strategy"
-    link_label: "Real-time strategy"
-  - point: "Cheat sequences embedded in automap code reflect early gaming culture"
-    link: "https://en.wikipedia.org/wiki/Cheating_in_video_games"
-    link_label: "Cheating in video games"
-  - point: "DOOM's automap inspired similar systems in later FPS and RPG games"
-    link: "https://en.wikipedia.org/wiki/First-person_shooter"
-    link_label: "First-person shooter"
+  - point: "Implements player-following and zooming mechanics"
+    link: "https://en.wikipedia.org/wiki/Automap"
+    link_label: "Automap"
+  - point: "Introduces cheat codes for revealing the entire map"
+    link: "https://doomwiki.org/wiki/Cheats"
+    link_label: "DOOM Cheats"
+  - point: "Handles user input for panning, zooming, and marking locations"
+    link: "https://doomwiki.org/wiki/Automap"
+    link_label: "Automap Controls"
+  - point: "Optimized for performance on 1990s hardware"
+    link: "https://en.wikipedia.org/wiki/Intel_80486"
+    link_label: "Intel 80486"
 
 enhancements:
-  - id: "color-definitions-for-automap"
+  - id: "automap-color-definitions"
     line_start: 51
     line_end: 85
-    title: "Color definitions for automap visualization"
-    wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
+    title: "Why DOOM's Automap Colors Were Perfect"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""
     image_caption: ""
-    content: "This section defines the colors used in the automap, including walls, objects, and player indicators. These color constants were carefully chosen to ensure visibility on the low-resolution VGA displays common in 1993. By assigning specific ranges for each color, the automap could visually differentiate between elements like walls, secrets, and player positions. This design reflects the constraints of early PC graphics hardware, where palettes were limited and clarity was paramount. The automap's color scheme influenced later games, establishing conventions for map readability in first-person shooters and RPGs."
-  - id: "player-arrow-vector-graphics"
+    content: "This section defines the color palette used in DOOM's automap, assigning specific colors to walls, objects, and other map elements. The palette was carefully chosen to ensure visibility and contrast on CRT monitors of the early 1990s, which often had limited color fidelity. The automap colors not only served functional purposes but also contributed to the game's aesthetic consistency. John Carmack and the team at id Software prioritized usability, ensuring players could quickly distinguish map features during gameplay. The approach influenced later games, where color coding became standard in automap designs, such as in Quake and Unreal."
+  - id: "player-arrow-definition"
     line_start: 155
-    line_end: 193
-    title: "Player arrow vector graphics for automap"
+    line_end: 191
+    title: "The Arrow That Always Points Right"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vector_graphics"
     image_url: ""
     image_caption: ""
-    content: "The player arrow is represented as a series of vector lines, dynamically scaled to fit the automap's resolution. This minimalist approach ensured performance efficiency on hardware with limited processing power. The arrow's design also reflects the game's focus on clarity and usability, allowing players to quickly identify their position and orientation. The inclusion of a 'cheat' version of the arrow highlights DOOM's playful approach to game design, embedding secrets and cheats directly into the code. This technique influenced later games that used vector graphics for overlays and HUD elements."
-  - id: "automap-initialization-variables"
-    line_start: 216
-    line_end: 290
-    title: "Automap initialization variables and state"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section initializes variables for the automap, including player-following logic, zoom levels, and window dimensions. By dynamically adjusting these parameters, the automap could adapt to different levels and player actions. The use of fixed-point arithmetic reflects the constraints of early CPUs, where floating-point operations were costly. The automap's ability to follow the player and dynamically scale the map was a groundbreaking feature, influencing navigation systems in later games like Quake and Unreal."
-  - id: "am-getislope-calculating-line-slopes"
-    line_start: 304
-    line_end: 322
-    title: "Calculating line slopes for automap rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Line_drawing_algorithm"
-    image_url: ""
-    image_caption: ""
-    content: "The `AM_getIslope` function calculates the slope of map lines for rendering in the automap. By determining the inverse slope and handling edge cases like vertical or horizontal lines, this function ensures accurate rendering of map geometry. This approach reflects the limitations of early graphics systems, where efficient line drawing algorithms were crucial for performance. The technique laid the groundwork for more advanced rendering systems in later games, influencing algorithms used in real-time strategy and simulation games."
-  - id: "am-findminmaxboundaries-level-bounding-box"
-    line_start: 385
-    line_end: 421
-    title: "Calculating level boundaries for zoom range"
+    content: "Here, the player arrow is defined as a series of vector lines, representing the player's position and orientation on the automap. This design was a clever use of minimal graphics to convey critical information. The arrow's simplicity ensured it could be rendered quickly, even on slower hardware like the Intel 80486. The cheat version of the arrow adds humorous details, reflecting the playful culture at id Software. This vector-based approach influenced later games, where minimalistic representations of players became common in tactical overlays and HUDs."
+  - id: "automap-initialization"
+    line_start: 533
+    line_end: 552
+    title: "How DOOM's Automap Finds Its Bounds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_box"
     image_url: ""
     image_caption: ""
-    content: "The `AM_findMinMaxBoundaries` function calculates the bounding box of all vertices in a level, setting zoom range constraints for the automap. This ensures the map remains readable while allowing players to zoom in and out effectively. The bounding box calculation reflects DOOM's focus on usability, adapting the automap to the diverse level designs created by id Software. This technique influenced later games with dynamic map systems, such as Diablo and StarCraft, where bounding boxes are used for camera and map scaling."
-  - id: "am-responder-user-input-handling"
+    content: "This routine calculates the bounding box of all vertices in the map, setting the zoom range for the automap. By determining the minimum and maximum coordinates, the code ensures the automap can scale appropriately to fit the entire level. This was critical for DOOM's large, complex maps, which often spanned multiple screens. The bounding box approach was efficient and became a standard technique in game development, influencing map rendering in later titles like Quake and Half-Life."
+  - id: "automap-user-input"
     line_start: 610
-    line_end: 733
-    title: "Handling user input in automap mode"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
+    line_end: 735
+    title: "The Keypresses That Control DOOM's Map"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_layout"
     image_url: ""
     image_caption: ""
-    content: "The `AM_Responder` function processes user inputs for the automap, including panning, zooming, and toggling features like player-following and grid display. By mapping keys to specific actions, the automap provides intuitive navigation controls. The inclusion of cheat detection highlights DOOM's integration of secrets and player customization. This input handling system influenced later games, establishing conventions for map navigation in FPS and RPG genres. The function's design reflects id Software's commitment to creating a responsive and user-friendly interface."
-  - id: "am-changewindowscale-zooming-logic"
+    content: "This section handles user input for the automap, allowing players to pan, zoom, mark locations, and toggle features like gridlines. The key bindings were designed for intuitive use, leveraging common keys like arrow keys and 'TAB'. The responsiveness of these controls was a testament to id Software's focus on player experience. The ability to mark and clear points on the map was particularly innovative, giving players a way to track objectives visually. This feature influenced later games, where interactive maps became a staple of open-world and RPG genres."
+  - id: "zooming-mechanics"
     line_start: 738
     line_end: 754
-    title: "Dynamic zooming logic for automap"
+    title: "Zooming Into the World of DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zoom_lens"
     image_url: ""
     image_caption: ""
-    content: "The `AM_changeWindowScale` function adjusts the automap's zoom level based on user input or predefined constraints. By recalculating scaling multipliers, the function ensures the map remains readable at different zoom levels. This dynamic zooming logic reflects DOOM's innovative approach to navigation, allowing players to explore complex levels with ease. The technique influenced later games with scalable map systems, such as Civilization and SimCity, where zooming is integral to gameplay."
+    content: "The zooming functionality adjusts the scaling multipliers to change the automap's view size. This dynamic scaling was essential for navigating DOOM's sprawling levels, allowing players to zoom out for a broader overview or zoom in for detailed exploration. The implementation balances performance and usability, ensuring smooth transitions even on limited hardware. This technique inspired similar zooming features in later games, particularly strategy titles like StarCraft and Civilization, where map navigation is critical."
   - id: "game-tick-automap-updates"
-    line_start: 805
+    line_start: 802
     line_end: 827
-    title: "Real-time updates for automap responsiveness"
+    title: "How DOOM's automap updates every tick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Automap"
     image_url: ""
     image_caption: ""
-    content: "The `AM_Ticker` function updates the automap system on each game tick. It handles player-following, zoom adjustments, panning, and light level updates. This ensures that the automap remains synchronized with the player's movements and actions in real-time. In 1993, real-time updates were a technical challenge due to limited processing power, but DOOM's efficient design allowed it to run smoothly on consumer-grade hardware. This approach laid the groundwork for dynamic map systems in later games, influencing titles like Quake and Half-Life that expanded on real-time navigation aids."
-  - id: "clear-frame-buffer"
-    line_start: 833
+    content: "This section defines the `AM_Ticker` function, responsible for updating the automap state every game tick. It handles player-following logic, zoom adjustments, and panning changes based on user input. The function also increments the `amclock` variable, which tracks the automap's active time. In 1993, real-time updates like these were constrained by hardware limitations, requiring efficient code to avoid performance degradation. The automap feature became a hallmark of DOOM, influencing later games like Quake and Unreal, which adopted similar navigational aids."
+  - id: "clear-automap-frame-buffer"
+    line_start: 830
     line_end: 836
-    title: "Clearing the automap frame buffer"
+    title: "Clearing the automap's canvas with one call"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""
     image_caption: ""
-    content: "The `AM_clearFB` function clears the automap's frame buffer by filling it with a specified color. This ensures that the automap starts with a clean slate before rendering new elements. Frame buffers were a critical part of graphics programming in the early 1990s, as they allowed developers to manage pixel data directly. This technique is foundational to modern graphics systems, and its efficient implementation in DOOM contributed to the game's smooth visual performance."
-  - id: "cohen-sutherland-clipping"
-    line_start: 847
+    content: "The `AM_clearFB` function uses `memset` to clear the automap's frame buffer, filling it with a uniform color. This simple yet effective approach ensures the automap starts with a clean slate before rendering new elements. In the early '90s, framebuffer manipulation was a critical technique for graphics programming, as direct pixel access allowed developers to optimize rendering for limited hardware. This method influenced the design of graphical engines in subsequent games, where efficient framebuffer handling became standard practice."
+  - id: "cohen-sutherland-line-clipping"
+    line_start: 839
     line_end: 970
-    title: "Optimized Cohen-Sutherland line clipping"
+    title: "The line-clipping algorithm that saved CPU cycles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cohen%E2%80%93Sutherland_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The `AM_clipMline` function adapts the Cohen-Sutherland line clipping algorithm to handle automap line rendering. It uses precalculated slopes and a faster rejection mechanism to determine whether lines are visible within the automap's viewport. This optimization was crucial for ensuring smooth performance on 1993 hardware, where computational efficiency was paramount. The algorithm's influence extends beyond DOOM, as it became a standard technique in computer graphics for handling visibility and rendering in constrained environments."
+    content: "The `AM_clipMline` function implements a modified Cohen-Sutherland line-clipping algorithm to determine whether a line segment is visible within the automap's viewport. By precalculating slopes and using bitwise operations for trivial rejection, the function achieves faster performance compared to the original algorithm. This optimization was crucial for DOOM, which had to render complex levels on hardware with limited processing power. The approach influenced later graphics engines, including those in Quake and Half-Life, where efficient clipping algorithms were essential for real-time rendering."
   - id: "bresenham-line-drawing"
-    line_start: 978
+    line_start: 974
     line_end: 1049
-    title: "Bresenham's line-drawing algorithm for rendering"
+    title: "Drawing lines pixel by pixel with Bresenham"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The `AM_drawFline` function implements Bresenham's line-drawing algorithm to render lines on the automap. This algorithm calculates pixel positions efficiently by avoiding floating-point arithmetic, making it ideal for the limited hardware of the early 1990s. Bresenham's algorithm is a cornerstone of computer graphics, and its use in DOOM demonstrates the game's reliance on tried-and-true techniques to achieve high performance. Later games and engines continued to use this algorithm for 2D rendering tasks."
-  - id: "grid-lines-rendering"
-    line_start: 1071
-    line_end: 1109
-    title: "Rendering grid lines for spatial orientation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Grid_(spatial_index)"
+    content: "The `AM_drawFline` function uses Bresenham's line-drawing algorithm to render lines on the automap's frame buffer. This algorithm calculates the optimal path for a line between two points, minimizing computational overhead by avoiding floating-point arithmetic. DOOM's implementation includes optimizations for speed, such as precomputing increments and using inline macros for pixel placement. Bresenham's algorithm was widely adopted in computer graphics, and its use in DOOM demonstrated how classic techniques could be adapted for real-time applications, influencing later game engines like Unreal Engine."
+  - id: "automap-grid-rendering"
+    line_start: 1068
+    line_end: 1111
+    title: "Rendering a grid aligned to game geometry"
+    wikipedia_url: "https://doomwiki.org/wiki/Automap"
     image_url: ""
     image_caption: ""
-    content: "The `AM_drawGrid` function draws vertical and horizontal grid lines on the automap, helping players orient themselves within the game's levels. By aligning the grid with the game's spatial coordinates, the automap provides a clear visual reference for navigation. This feature was particularly useful in DOOM's labyrinthine levels, where players could easily lose their bearings. The concept of grid-based navigation has persisted in games like Minecraft and Civilization, where spatial organization is key to gameplay."
-  - id: "player-arrow-rendering"
+    content: "The `AM_drawGrid` function draws a grid on the automap, aligning it with the game's floor and ceiling tiles. By calculating start and end points based on map block units, the function ensures the grid matches the underlying level geometry. This feature helped players navigate DOOM's complex levels, especially in larger maps. The automap's grid system influenced later games, such as Diablo and StarCraft, where grid-based overlays became essential for tactical gameplay and level design visualization."
+  - id: "player-arrow-rotation"
     line_start: 1168
-    line_end: 1238
-    title: "Rendering player arrows with rotation and scaling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotation_(mathematics)"
+    line_end: 1189
+    title: "Rotating the player arrow with lookup tables"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "The `AM_drawLineCharacter` function renders player arrows on the automap, applying rotation and scaling to represent their orientation and position. This involves mathematical transformations using sine and cosine tables, which were precomputed to save processing time. The ability to visually track player orientation was a novel feature in 1993, enhancing situational awareness. This technique influenced later games with dynamic HUD elements, such as the minimaps in Grand Theft Auto and Far Cry."
-  - id: "multiplayer-player-rendering"
+    content: "The `AM_rotate` function rotates the player arrow on the automap using trigonometric lookup tables. By leveraging precomputed sine and cosine values, the function avoids costly runtime calculations, ensuring smooth rotation even on limited hardware. This technique was common in early 3D games, where performance constraints demanded innovative solutions. The use of lookup tables for rotation influenced later games and engines, including Quake and Unreal, where similar methods were employed for efficient transformations."
+  - id: "multiplayer-player-visibility"
     line_start: 1240
     line_end: 1282
-    title: "Rendering multiple players on the automap"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
+    title: "Color-coded players in multiplayer automap"
+    wikipedia_url: "https://doomwiki.org/wiki/Multiplayer"
     image_url: ""
     image_caption: ""
-    content: "The `AM_drawPlayers` function renders all players on the automap in multiplayer mode, assigning unique colors to each. It accounts for player invisibility and adjusts rendering accordingly. Multiplayer gaming was still in its infancy in 1993, and DOOM's implementation of player tracking on the automap was a significant innovation. This feature laid the groundwork for more sophisticated multiplayer interfaces in games like Counter-Strike and Overwatch."
+    content: "The `AM_drawPlayers` function renders player arrows on the automap, assigning colors based on player identity and visibility status. In multiplayer mode, players are color-coded for easy identification, with special handling for invisibility power-ups. This feature enhanced DOOM's multiplayer experience, making it easier for players to track allies and opponents. The concept of color-coded player indicators became a standard in multiplayer games, influencing titles like Team Fortress and Overwatch."
   - id: "automap-drawer"
     line_start: 1332
     line_end: 1349
-    title: "Comprehensive automap rendering system"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Automap"
+    title: "The master function behind DOOM's automap"
+    wikipedia_url: "https://doomwiki.org/wiki/Automap"
     image_url: ""
     image_caption: ""
-    content: "The `AM_Drawer` function serves as the main entry point for rendering the automap. It clears the frame buffer, draws grid lines, walls, players, objects, and marks, and finally updates the screen. This modular approach ensures that all elements of the automap are rendered efficiently and cohesively. The automap system in DOOM was a pioneering feature that influenced the design of navigation aids in countless games, from RPGs like Diablo to open-world titles like Skyrim."
+    content: "The `AM_Drawer` function orchestrates the rendering of the automap, calling subroutines to clear the frame buffer, draw the grid, walls, players, and other elements. It also handles special cases, such as cheating modes and crosshair rendering. This modular approach allowed DOOM's developers to maintain and extend the automap system efficiently. The automap's design inspired similar features in later games, such as the minimaps in Grand Theft Auto and The Legend of Zelda: Breath of the Wild."
 
 ---
 
+```c
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -1501,3 +1486,4 @@ void AM_Drawer (void)
     V_MarkRect(f_x, f_y, f_w, f_h);
 
 }
+```

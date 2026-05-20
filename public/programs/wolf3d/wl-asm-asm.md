@@ -9,39 +9,40 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-asm-asm"
 order: 24
-description: "This file contains assembly routines used in Wolfenstein 3D, showcasing clever hardware detection and runtime patching techniques."
+description: "Assembly routines from Wolfenstein 3D showcasing hardware detection and patching techniques."
 
 summary:
-  - point: "Detects CPU type to optimize for 386 processors"
+  - point: "Detects CPU type to optimize for 386 or higher"
     link: "https://en.wikipedia.org/wiki/Intel_80386"
     link_label: "Intel 80386"
-  - point: "Runtime patching of code for performance improvements"
+  - point: "Directly patches executable code in memory"
     link: "https://en.wikipedia.org/wiki/Self-modifying_code"
     link_label: "Self-modifying code"
-  - point: "Demonstrates low-level optimization techniques common in early 1990s programming"
+  - point: "Reflects constraints of early 1990s PC hardware"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
 
 enhancements:
-  - id: "cpu-detection-checkis386"
+  - id: "cpu-detection-386-check"
     line_start: 17
     line_end: 48
-    title: "Detecting the CPU: Is it a 386?"
+    title: "How Wolfenstein 3D Identified Your CPU"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
     image_url: ""
     image_caption: ""
-    content: "This subroutine, `_CheckIs386`, determines whether the CPU is an Intel 80386 or a lower-tier processor like the 8086 or 80286. It uses the processor's flag register to test specific bits that behave differently across CPU generations. By pushing and popping values onto the stack and manipulating the flag register, the routine identifies whether the CPU supports certain advanced features introduced with the 386. In 1992, hardware detection was critical for software like Wolfenstein 3D, which aimed to push the limits of available technology. The Intel 80386, released in 1985, introduced 32-bit computing and virtual memory capabilities, making it vastly more powerful than its predecessors. Detecting the CPU allowed programmers to tailor their code for optimal performance, avoiding costly operations on less capable hardware. John Carmack's team adapted this technique from earlier assembly programming practices, likely borrowing ideas from hardware manuals and existing code libraries. The comment credits Juan Jimenez, suggesting this routine was modified from his original implementation. This approach to hardware detection influenced later game engines and software development practices, where runtime optimization became standard. The ability to detect and adapt to hardware capabilities laid the groundwork for dynamic configuration systems in modern software. Techniques like this were precursors to the hardware abstraction layers seen in operating systems like Windows and macOS. Today, CPU detection is often handled by high-level APIs, but the ingenuity of these early routines remains a testament to the challenges developers faced in the era of direct hardware programming."
-  - id: "runtime-patching-jabhack2"
+    content: "This routine, `_CheckIs386`, determines whether the system's CPU is an Intel 80386 or higher. It achieves this by manipulating the processor's flag register—a low-level technique that exploits differences in how CPUs handle specific flag bits. The code first attempts to clear and then set certain bits in the flags register. If the CPU responds predictably, it is identified as a 386 or better; otherwise, it is classified as an earlier model like the 80286. In 1992, CPU detection was critical for optimizing software performance. The 386 introduced protected mode and other features that earlier processors lacked, allowing developers to write faster and more advanced programs. However, games like Wolfenstein 3D had to remain compatible with older hardware, as many players were still using 286-based systems. This routine reflects the careful balancing act id Software faced: pushing the limits of modern hardware while ensuring the game could run on less capable machines. John Carmack, the technical lead, was known for his deep understanding of hardware and his ability to write highly efficient code. This CPU detection method showcases his ingenuity in squeezing performance out of constrained systems. Techniques like this were common in the era but have since become obsolete as modern operating systems abstract hardware details away from applications. The approach influenced later games and engines, as developers continued to optimize for specific hardware capabilities. Today, CPU detection is largely handled by operating systems or middleware, but the spirit of tailoring software to hardware remains alive in fields like embedded systems and game console development."
+  - id: "self-modifying-code-jabhack2"
     line_start: 51
     line_end: 65
-    title: "Runtime Code Patching: A Bold Optimization"
+    title: "The Patch That Changed Code Mid-Execution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""
     image_caption: ""
-    content: "The `_jabhack2` subroutine demonstrates a daring technique: runtime code patching. It modifies the machine code of the `LDIV@` routine in memory, replacing instructions with NOPs (no-operations). Specifically, it overwrites an XOR and a JMP instruction with two NOPs, effectively neutralizing them. Self-modifying code was a controversial yet ingenious approach to optimization in the early 1990s. By altering the program's behavior at runtime, developers could bypass unnecessary instructions or adapt the code for specific conditions. This technique was particularly useful in performance-critical applications like games, where every CPU cycle mattered. The use of runtime patching in Wolfenstein 3D reflects the team's commitment to squeezing every ounce of performance from the hardware. MS-DOS, the operating system for which the game was developed, offered limited tools for managing memory and CPU resources. Techniques like this were born out of necessity, as developers sought to overcome these constraints. While self-modifying code is rare in modern programming due to security concerns and the complexity of debugging, it influenced the development of dynamic code generation techniques used in just-in-time (JIT) compilers. JIT compilation, seen in languages like Java and Python, dynamically generates optimized machine code at runtime, echoing the principles of self-modifying code. The boldness of `_jabhack2` showcases the ingenuity of early game developers and their willingness to push boundaries to achieve groundbreaking results."
+    content: "The `_jabhack2` routine directly modifies executable code in memory—a striking example of self-modifying code. It patches over instructions in the `LDIV@` routine, replacing them with NOP (no operation) instructions. This technique was likely used to bypass or alter specific behavior in the division routine, possibly for debugging or performance reasons. Self-modifying code was more common in the early 1990s, especially in assembly-heavy programs like Wolfenstein 3D. At the time, developers often worked close to the hardware, and modifying code dynamically allowed them to adapt to runtime conditions or optimize performance. However, this approach came with risks: it could lead to hard-to-debug errors and was incompatible with modern security practices like code signing and memory protection. Juan Jimenez, whose code is referenced in the comments, was likely a contributor or source of inspiration for this routine. The decision to modify code in memory reflects the experimental and pragmatic mindset of id Software's developers, who were willing to use unconventional methods to achieve their goals. While self-modifying code has largely fallen out of favor, its legacy persists in areas like just-in-time (JIT) compilation, where code is generated or modified at runtime for optimization. The technique also influenced the development of dynamic patching systems and debugging tools. Wolfenstein 3D's use of self-modifying code underscores the lengths developers went to in pushing the limits of early PC hardware."
 
 ---
 
+```asm
 ; JABHACK.ASM
 
 .386C
@@ -109,3 +110,4 @@ PUBLIC	_jabhack2
 	ENDP
 
 	END
+```

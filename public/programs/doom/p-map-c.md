@@ -9,117 +9,118 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-map-c"
 order: 3
-description: "This file reveals the mechanics behind DOOM's movement, collision handling, and environmental interactions, showcasing techniques that pushed the limits of 1993 hardware."
+description: "This file reveals the inner workings of DOOM's movement, collision, and aiming mechanics, showcasing the ingenuity required to create a fast-paced 3D game on 1993 hardware."
 
 summary:
   - point: "DOOM's movement system uses bounding boxes for collision detection."
     link: "https://en.wikipedia.org/wiki/Bounding_volume"
     link_label: "Bounding Volume"
-  - point: "Sliding mechanics allow smooth navigation along angled walls."
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM (1993)"
-  - point: "Teleportation logic includes collision checks and entity repositioning."
-    link: "https://en.wikipedia.org/wiki/Teleportation_in_video_games"
-    link_label: "Teleportation in Video Games"
-  - point: "Damage calculations for projectiles are randomized for dynamic gameplay."
-    link: "https://en.wikipedia.org/wiki/Randomness_in_game_design"
-    link_label: "Randomness in Game Design"
-  - point: "Special line effects trigger environmental changes during movement."
-    link: "https://en.wikipedia.org/wiki/Level_design"
-    link_label: "Level Design"
+  - point: "Sliding mechanics allow players to navigate angled walls smoothly."
+    link: "https://doomwiki.org/wiki/Movement"
+    link_label: "DOOM Movement"
+  - point: "Teleportation logic includes collision handling and object removal."
+    link: "https://doomwiki.org/wiki/Teleport"
+    link_label: "DOOM Teleportation"
+  - point: "Special lines trigger effects when crossed during movement."
+    link: "https://doomwiki.org/wiki/Linedef"
+    link_label: "Linedef in DOOM"
+  - point: "Height clipping ensures monsters adapt to changing sector heights."
+    link: "https://doomwiki.org/wiki/Sector"
+    link_label: "DOOM Sector"
 
 enhancements:
   - id: "bounding-box-collision-detection"
-    line_start: 16
+    line_start: 46
     line_end: 70
-    title: "Bounding Boxes: Collision Detection Simplified"
+    title: "How DOOM's bounding boxes avoid chaos"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"
     image_url: ""
     image_caption: ""
-    content: "This section defines the bounding box variables used for collision detection in DOOM. Bounding boxes are rectangular areas around objects that simplify the process of determining whether two objects intersect. The variables `tmbbox`, `tmthing`, and others are initialized to track the position and dimensions of objects during movement calculations. In the early 1990s, collision detection was a computationally expensive task, especially for real-time games like DOOM. By using bounding boxes, id Software reduced the complexity of these calculations, enabling smoother gameplay on limited hardware. This approach became a staple in game development, influencing later titles like Quake and Unreal, which refined collision detection further."
+    content: "This section defines key variables for DOOM's collision detection system, including bounding boxes (`tmbbox`) and flags (`tmflags`). Bounding boxes are used to approximate the area occupied by objects, simplifying collision checks. In 1993, this approach was crucial for performance, as CPUs like the Intel 486 lacked the power to handle complex geometric calculations in real-time. John Carmack's use of bounding boxes was inspired by earlier 2D games, but he extended the concept to handle DOOM's pseudo-3D world. This technique influenced later games, including Quake and Unreal, which refined collision detection for fully 3D environments."
   - id: "teleportation-mechanics"
     line_start: 111
     line_end: 177
-    title: "Teleportation Mechanics: Repositioning with Precision"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Teleportation_in_video_games"
+    title: "Teleportation: Killing and moving in one step"
+    wikipedia_url: "https://doomwiki.org/wiki/Teleport"
     image_url: ""
     image_caption: ""
-    content: "The `P_TeleportMove` function handles the logic for teleporting objects within the game world. It checks for collisions at the target location, adjusts the object's position, and ensures environmental constraints like floor and ceiling heights are respected. Teleportation was a novel feature in DOOM, allowing players and enemies to instantly move between locations, adding strategic depth to gameplay. This mechanic required careful handling to avoid placing objects in invalid positions, such as inside walls or other entities. The concept of teleportation has since become a common feature in games, appearing in titles like Portal and Half-Life 2, where it is used for puzzles and narrative elements."
-  - id: "randomized-damage-calculations"
-    line_start: 290
-    line_end: 328
-    title: "Randomized Damage: Dynamic Combat Encounters"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Randomness_in_game_design"
+    content: "The `P_TeleportMove` function handles teleportation by first removing any objects occupying the destination, then updating the teleported object's position. Teleportation was a novel mechanic in 1993, adding a layer of strategy to DOOM's gameplay. The function ensures the teleported object doesn't clip through walls or other objects, maintaining the game's fast-paced flow. Carmack's implementation was a response to the game's need for dynamic level interactions, and it laid the groundwork for similar mechanics in later titles like Quake and Half-Life, which expanded on the concept with portals and scripted events."
+  - id: "special-line-crossing-effects"
+    line_start: 445
+    line_end: 517
+    title: "Triggering effects by crossing lines"
+    wikipedia_url: "https://doomwiki.org/wiki/Linedef"
     image_url: ""
     image_caption: ""
-    content: "Projectile damage in DOOM is calculated using a randomized formula, as seen in the `P_DamageMobj` function. This adds unpredictability to combat, ensuring that encounters remain dynamic and engaging. The randomness is implemented using the `P_Random` function, which generates a value to determine the damage dealt. This design choice reflects id Software's focus on creating an immersive and challenging experience, where players cannot rely on fixed outcomes. Randomized damage has become a standard feature in many games, influencing titles like Diablo and Borderlands, which use similar mechanics to enhance gameplay variability and replayability."
-  - id: "special-line-effects"
-    line_start: 499
-    line_end: 514
-    title: "Special Line Effects: Environmental Interactions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
+    content: "The `P_TryMove` function handles movement while checking for special lines that trigger effects. In DOOM, linedefs define walls and boundaries, some of which have special properties like opening doors or activating traps. This system allowed designers to create dynamic and interactive levels, a major innovation in 1993. The concept of triggering effects based on player movement became a staple in level design, influencing games like Half-Life and Portal, which used similar systems to create immersive and reactive environments."
+  - id: "height-clipping-for-monsters"
+    line_start: 520
+    line_end: 558
+    title: "How monsters adapt to changing floors"
+    wikipedia_url: "https://doomwiki.org/wiki/Sector"
     image_url: ""
     image_caption: ""
-    content: "This section describes how special line effects are triggered during movement. When an object crosses a line with a special property, the game checks whether the line's effect should be activated. These effects include opening doors, triggering traps, or teleporting the player. The logic ensures that the effect is only applied if the movement is valid, preventing unintended interactions. Special line effects were a key innovation in DOOM's level design, enabling dynamic environments that responded to player actions. This technique influenced the design of interactive levels in later games like Half-Life and Bioshock, where environmental storytelling and player-triggered events play a central role."
-  - id: "sliding-along-walls"
+    content: "The `P_ThingHeightClip` function ensures monsters adjust their position when the floor or ceiling height changes. This prevents them from becoming stranded or clipping through geometry. In DOOM, sectors define areas with unique floor and ceiling heights, creating the illusion of a 3D world. Height clipping was a clever workaround for the limitations of DOOM's engine, which relied on 2D maps with height data layered on top. This technique influenced later games with dynamic environments, such as Duke Nukem 3D and Half-Life, which expanded on the concept with fully destructible and interactive worlds."
+  - id: "slide-movement-mechanics"
     line_start: 562
     line_end: 788
-    title: "Sliding Along Walls: Navigating Angled Obstacles"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    title: "Sliding along walls: A kludgy masterpiece"
+    wikipedia_url: "https://doomwiki.org/wiki/Movement"
     image_url: ""
     image_caption: ""
-    content: "The sliding mechanics implemented in the `P_SlideMove` function allow players and objects to smoothly navigate along angled walls. When an object encounters a wall, its movement vector is adjusted to 'slide' along the surface rather than stopping abruptly. This feature was crucial for maintaining the fast-paced action of DOOM, ensuring that movement felt fluid even in complex environments. The algorithm calculates the angle of the wall and adjusts the object's trajectory accordingly, using trigonometric functions to determine the new movement vector. Sliding mechanics have since been refined in modern engines like Unity and Unreal, where they are used to enhance player mobility and interaction with the environment."
-  - id: "aim-traverse-line-of-sight"
+    content: "The sliding movement system allows players to navigate angled walls smoothly, a feature critical to DOOM's fluid gameplay. The `P_SlideMove` function calculates how a player or object should adjust its trajectory when colliding with a wall. Carmack described this code as a 'kludgy mess,' but it was a pragmatic solution to a complex problem. Sliding mechanics were essential for maintaining the game's speed and responsiveness, and they influenced movement systems in later games like Quake and Unreal Tournament, which refined the concept for more advanced physics engines."
+  - id: "aiming-slopes-for-targeting"
     line_start: 811
     line_end: 893
-    title: "Line-of-sight aiming: precision under constraints"
+    title: "Aiming Slopes: Precision in a 3D World"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `PTR_AimTraverse` function calculates whether a line-of-sight can be established between the player and a target, factoring in obstacles like walls and height differences. This routine determines the slope angles to the top and bottom of the target and adjusts aiming parameters accordingly. Written by John Carmack, this code reflects the challenges of simulating realistic shooting mechanics on limited hardware. In 1993, consumer PCs lacked floating-point units, so fixed-point arithmetic was used to maintain performance. The approach influenced later games by demonstrating how to balance realism and computational efficiency. Techniques like these laid the groundwork for modern raycasting and collision detection systems in 3D engines."
-  - id: "shoot-traverse-impact-effects"
+    content: "The `PTR_AimTraverse` function dynamically calculates slopes to determine if a target can be aimed at. It checks whether the player's line of sight crosses a two-sided line or intersects a shootable object, adjusting the slope for aiming precision. In 1993, this approach was groundbreaking for simulating realistic aiming in a pseudo-3D environment. John Carmack's innovative use of fixed-point arithmetic ensured fast calculations on hardware with limited floating-point capabilities. This technique influenced later FPS games like Quake, which refined aiming mechanics further."
+  - id: "shooting-traverse-and-impact"
     line_start: 896
-    line_end: 1014
-    title: "Bullet impacts: calculating effects dynamically"
+    line_end: 1016
+    title: "Shooting Traverse: Impact and Feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `PTR_ShootTraverse` function handles the mechanics of shooting, including detecting whether a bullet hits a wall or an object. If a wall is hit, visual effects like bullet puffs are spawned; if an object is hit, blood or puff effects are generated based on its properties. This function also accounts for special cases like 'sky hack walls' to prevent shooting the sky texture. Carmack’s implementation showcases how DOOM achieved immersive gameplay by tightly integrating visual feedback with collision detection. This technique influenced later FPS games, where dynamic impact effects became a staple feature, enhancing player immersion."
+    content: "The `PTR_ShootTraverse` function simulates a projectile's path, checking for collisions with lines or objects. It handles special interactions like shooting sky textures and spawning visual effects (bullet puffs or blood). This gave DOOM its visceral feedback, making gunplay feel impactful. The function's efficient traversal algorithm allowed for real-time calculations on 1993 PCs, paving the way for modern hit detection systems in FPS games like Half-Life and Counter-Strike."
   - id: "aim-line-attack"
     line_start: 1019
     line_end: 1054
-    title: "Aiming mechanics: tracing paths for precision"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Raycasting"
-    image_url: ""
-    image_caption: ""
-    content: "The `P_AimLineAttack` function calculates the trajectory of a player's attack by tracing a path through the game world. It uses fixed-point arithmetic to compute coordinates and slopes, ensuring compatibility with the hardware constraints of the early 1990s. This function is pivotal in determining whether a target is within the player's line-of-sight and setting up the aiming slope. The raycasting approach used here became a cornerstone for FPS games, influencing engines like Quake and Unreal Engine. It demonstrates how DOOM's developers optimized performance while delivering complex gameplay mechanics."
-  - id: "use-lines-activating-level-features"
-    line_start: 1090
-    line_end: 1148
-    title: "Activating level features: the 'use' mechanic"
+    title: "Line Attack: Calculating Aim in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `P_UseLines` function enables players to interact with special lines in the game world, such as doors or switches. By tracing a short path in front of the player, it checks for usable features and activates them if conditions are met. This mechanic added depth to DOOM's gameplay, allowing players to manipulate the environment. The concept of 'use' actions became standard in later games, evolving into more sophisticated systems for interacting with objects and environments. DOOM's implementation was simple yet effective, showcasing how small innovations can have lasting impacts on game design."
-  - id: "radius-attack-explosion-damage"
-    line_start: 1151
-    line_end: 1233
-    title: "Explosion mechanics: radius-based damage"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Explosion"
+    content: "The `P_AimLineAttack` function calculates the aiming slope for a projectile attack. It uses trigonometric lookups (finecosine and finesine arrays) to determine the endpoint of the attack based on the player's angle and distance. This function exemplifies Carmack's mastery of efficient algorithms, enabling smooth gameplay even on low-spec machines. The concept of line attacks influenced later games, including Unreal Tournament, which expanded aiming mechanics with advanced physics."
+  - id: "use-lines-for-interaction"
+    line_start: 1090
+    line_end: 1148
+    title: "Using Lines: Activating the World"
+    wikipedia_url: "https://doomwiki.org/wiki/Line"
     image_url: ""
     image_caption: ""
-    content: "The `P_RadiusAttack` function calculates damage from explosions by iterating over objects within a specified radius. It checks whether each object is shootable and within line-of-sight, applying damage proportionally based on distance. This mechanic allowed DOOM to simulate realistic explosions and area-of-effect damage, enhancing the game's tactical depth. The approach influenced later games by demonstrating how to efficiently handle radius-based effects in real-time. Techniques like these are now integral to modern game engines, powering features like grenades and environmental destruction."
+    content: "The `P_UseLines` function allows players to interact with special lines in the environment, such as opening doors or triggering switches. It calculates the player's position and angle to identify nearby lines within a defined range. This system was crucial for DOOM's interactive level design, enabling puzzles and dynamic environments. The concept of 'use lines' became a staple in level design, influencing games like Duke Nukem 3D and later RPGs with interactive worlds."
+  - id: "radius-attack-damage"
+    line_start: 1159
+    line_end: 1233
+    title: "Radius Attack: Explosions with Spatial Awareness"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Explosion_(video_games)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_RadiusAttack` function calculates damage from explosions based on distance and line of sight. It iterates over all objects within a defined radius, checking whether they are shootable and visible. This spatial awareness added realism to DOOM's gameplay, making explosions feel impactful and strategic. The radius-based damage mechanic influenced later games like Call of Duty, which refined area-of-effect calculations for grenades and other explosive weapons."
   - id: "sector-height-adjustments"
     line_start: 1237
     line_end: 1338
-    title: "Dynamic sector heights: crushing and clipping"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
+    title: "Sector Height: Dynamic Environmental Changes"
+    wikipedia_url: "https://doomwiki.org/wiki/Sector"
     image_url: ""
     image_caption: ""
-    content: "The `P_ChangeSector` function adjusts the floor or ceiling height of a sector, recalculating the positions of objects within it. If objects no longer fit, they can be damaged or removed, simulating crushing effects. This feature allowed DOOM to create dynamic environments, such as elevators or traps, adding variety to level design. The concept of dynamic geometry influenced later engines, enabling features like destructible environments and real-time terrain deformation. DOOM's implementation showcases how early developers pushed the boundaries of interactivity within static level structures."
+    content: "The `P_ChangeSector` function adjusts the floor or ceiling height of a sector, ensuring objects within the sector adapt to the new geometry. It handles edge cases like crushing objects or gibbing corpses, adding a layer of interactivity to DOOM's levels. This dynamic environment manipulation was ahead of its time, influencing games like Minecraft, which expanded on the idea of interactive terrain."
 
 ---
 
+```c
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -1458,3 +1459,4 @@ P_ChangeSector
 	
     return nofit;
 }
+```

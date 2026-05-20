@@ -9,76 +9,66 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "d-surf-c"
 order: 3
-description: "This file showcases Quake's surface caching system, a key optimization for rendering complex 3D environments on limited hardware."
+description: "This file demonstrates id Software's innovative surface caching and rendering optimizations in Quake, enabling complex 3D environments on limited hardware."
 
 summary:
-  - point: "Surface caching minimizes memory thrashing during rendering"
+  - point: "Introduces surface caching to optimize memory usage"
+    link: "https://en.wikipedia.org/wiki/Surface_cache"
+    link_label: "Surface Cache"
+  - point: "Implements guard bytes to detect memory corruption"
+    link: "https://en.wikipedia.org/wiki/Memory_corruption"
+    link_label: "Memory Corruption"
+  - point: "Dynamic allocation for animated and flashing surfaces"
     link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     link_label: "Quake"
-  - point: "Dynamic memory allocation tailored for 3D textures"
-    link: "https://en.wikipedia.org/wiki/Texture_mapping"
-    link_label: "Texture Mapping"
-  - point: "Guard bytes ensure memory integrity in constrained environments"
-    link: "https://en.wikipedia.org/wiki/Memory_safety"
-    link_label: "Memory Safety"
+  - point: "Optimized for x86 processors and constrained memory"
+    link: "https://en.wikipedia.org/wiki/X86"
+    link_label: "x86 Architecture"
+  - point: "Pioneered techniques influencing later 3D engines"
+    link: "https://en.wikipedia.org/wiki/Unreal_Engine"
+    link_label: "Unreal Engine"
 
 enhancements:
-  - id: "foundation-surface-cache-vars"
-    line_start: 20
-    line_end: 24
-    title: "Foundation: Surface Cache Variables"
+  - id: "surface-cache-size-calculation"
+    line_start: 35
+    line_end: 53
+    title: "How Quake Calculated Surface Cache Sizes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Surface_cache"
+    image_url: ""
+    image_caption: ""
+    content: "This function calculates the size of the surface cache based on the resolution of the game and optional command-line parameters. The cache size starts with a default value for 320x200 resolution and scales up for higher resolutions, adding memory for larger pixel counts. In 1996, hardware constraints meant developers had to carefully manage memory usage, especially for graphics-intensive applications like Quake. John Carmack and Michael Abrash were known for their meticulous optimization techniques, which allowed Quake to run smoothly on hardware with limited RAM and processing power. This approach influenced later engines, such as Unreal Engine, which adopted similar dynamic resource allocation strategies for textures and surfaces."
+  - id: "cache-guard-detection"
+    line_start: 55
+    line_end: 64
+    title: "The Debugging Trick That Prevented Crashes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_corruption"
+    image_url: ""
+    image_caption: ""
+    content: "The `D_CheckCacheGuard` function checks for memory corruption by verifying guard bytes placed at the end of the surface cache. If the guard bytes are altered, the program halts with an error. This technique was critical in an era when debugging tools were rudimentary, and memory corruption bugs could lead to unpredictable crashes. By implementing this safeguard, id Software ensured greater stability in Quake's rendering pipeline. This method became a standard debugging practice, influencing tools like Valgrind and modern memory debugging frameworks."
+  - id: "cache-initialization"
+    line_start: 77
+    line_end: 97
+    title: "Initializing Surface Caches for 3D Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section defines key variables for managing the surface cache, such as `surfscale` and `r_cache_thrash`. These variables are central to Quake's rendering system, which dynamically allocates memory for textures and surfaces during gameplay. At the time, hardware constraints like limited RAM and slow processors meant that efficient memory management was critical. John Carmack and Michael Abrash, known for their expertise in optimization, designed this system to reduce memory thrashing and ensure smooth gameplay. The concept of caching surfaces influenced later game engines, including Unreal Engine and Source Engine, which adopted similar strategies for texture management."
-  - id: "surface-cache-resolution"
-    line_start: 35
-    line_end: 53
-    title: "Calculating Surface Cache for Resolution"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Resolution_(computer_graphics)"
-    image_url: ""
-    image_caption: ""
-    content: "This function, `D_SurfaceCacheForRes`, calculates the size of the surface cache based on screen resolution. It uses a base size for 320x200 resolution and scales it for larger resolutions, adding extra memory for higher pixel counts. In 1996, resolutions above 640x480 were rare, but Quake's scalable approach ensured compatibility with future hardware. The use of command-line parameters (`-surfcachesize`) allowed advanced users to tweak memory allocation, showcasing id Software's commitment to flexibility. This technique laid the groundwork for modern game engines that dynamically adjust resource allocation based on hardware capabilities."
-  - id: "cache-guard-integrity-check"
-    line_start: 55
-    line_end: 64
-    title: "Cache Guard: Ensuring Memory Integrity"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_safety"
-    image_url: ""
-    image_caption: ""
-    content: "The `D_CheckCacheGuard` function verifies the integrity of the surface cache by checking guard bytes. These bytes act as a boundary marker, ensuring that memory writes do not overflow into adjacent areas. This was a critical safeguard in the mid-1990s, when memory corruption could easily crash a program. The technique reflects Michael Abrash's influence, as he often emphasized robust debugging and error prevention in his writings. Guard bytes remain a standard practice in modern programming, particularly in embedded systems and high-performance applications."
-  - id: "initialize-surface-cache"
-    line_start: 77
-    line_end: 97
-    title: "Initializing the Surface Cache"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: ""
-    image_caption: ""
-    content: "The `D_InitCaches` function initializes the surface cache, setting up the base memory block and establishing guard bytes. This function ensures that the cache is properly aligned and ready for dynamic allocation during rendering. In the mid-1990s, efficient initialization routines were essential for games like Quake, which pushed hardware to its limits. The method of pre-allocating a large memory block and subdividing it dynamically influenced later game engines, which adopted similar approaches to manage textures and geometry efficiently."
+    content: "The `D_InitCaches` function sets up the surface cache, allocating memory and preparing it for use in rendering. It also clears the guard bytes to prevent false positives during corruption checks. This initialization step was essential for ensuring efficient memory usage and stability in Quake's rendering system. The technique of preallocating and managing memory for graphical elements became a foundational concept in game engine design, influencing engines like Source and Unity."
   - id: "dynamic-cache-allocation"
-    line_start: 124
+    line_start: 128
     line_end: 212
-    title: "Dynamic Allocation: Surface Cache Blocks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
+    title: "Dynamic Allocation for Surface Caching"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Surface_cache"
     image_url: ""
     image_caption: ""
-    content: "The `D_SCAlloc` function dynamically allocates memory for surface cache blocks, ensuring efficient use of the pre-allocated cache. It handles fragmentation by merging adjacent blocks and creates new fragments when necessary. This approach minimizes wasted memory and ensures that textures fit within the available cache. In 1996, dynamic allocation was a sophisticated technique, especially for real-time applications like Quake. The method influenced later systems, such as DirectX and OpenGL, which adopted similar strategies for managing GPU memory."
-  - id: "logarithmic-utility-functions"
-    line_start: 232
-    line_end: 258
-    title: "Logarithmic Utility Functions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Logarithm"
-    image_url: ""
-    image_caption: ""
-    content: "The utility functions `MaskForNum` and `D_log2` calculate bit masks and logarithms, respectively, for use in surface caching and rendering. These functions are optimized for performance, using bitwise operations to avoid costly division or multiplication. In the mid-1990s, such optimizations were crucial for achieving real-time performance on hardware like the Intel 486 and Pentium processors. These techniques are still relevant today, particularly in graphics programming and shader development, where efficiency is paramount."
-  - id: "cache-surface-rendering"
-    line_start: 260
+    content: "The `D_SCAlloc` function dynamically allocates memory for surface caches, ensuring that each surface has enough space for its texture data. It handles fragmentation by combining smaller blocks into larger ones and creates new fragments when necessary. This approach was a direct response to the limited memory available on consumer-grade PCs in 1996. By carefully managing memory allocation, id Software enabled Quake to render detailed 3D environments without exceeding hardware limits. This technique influenced later engines, which adopted similar strategies for handling dynamic resource allocation in real-time applications."
+  - id: "surface-cache-reuse"
+    line_start: 266
     line_end: 336
-    title: "Caching and Rendering Surfaces"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
+    title: "Reusing Cached Surfaces for Performance Gains"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `D_CacheSurface` function manages the caching and rendering of surfaces, ensuring that textures are properly allocated and lit. It checks for animation or flashing effects, allocates memory dynamically, and applies lighting adjustments. This function exemplifies Quake's advanced rendering system, which combined dynamic memory management with real-time lighting and texture animation. The techniques used here influenced later engines, such as Unreal Engine and Unity, which adopted similar methods for handling complex 3D scenes."
+    content: "The `D_CacheSurface` function checks if a surface's cached data can be reused or if new memory needs to be allocated. It ensures that animated and flashing surfaces are updated while static surfaces remain cached for efficiency. This technique reduced redundant calculations and memory allocations, significantly improving rendering performance. In the mid-1990s, such optimizations were crucial for achieving smooth gameplay on hardware with limited processing power. The concept of caching and reusing graphical data became a cornerstone of modern game engine design, influencing systems like texture atlases and GPU memory management in engines such as Unreal and CryEngine."
 
 ---
 

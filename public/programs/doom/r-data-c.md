@@ -9,93 +9,78 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "r-data-c"
 order: 34
-description: "This file handles texture, flat, sprite, and colormap data preparation for DOOM's rendering engine, showcasing techniques that pushed the limits of 1990s PC hardware."
+description: "This file handles texture, sprite, and flat data preparation for rendering in DOOM, showcasing groundbreaking techniques for efficient graphics handling on 1990s hardware."
 
 summary:
-  - point: "DOOM's texture system uses patches stored in WAD files to build composite textures dynamically."
+  - point: "DOOM's texture system combines patches into composite textures for efficient rendering."
+    link: "https://en.wikipedia.org/wiki/Texture_mapping"
+    link_label: "Texture Mapping"
+  - point: "The caching system minimizes memory usage by dynamically generating composite textures."
+    link: "https://en.wikipedia.org/wiki/Cache_(computing)"
+    link_label: "Caching"
+  - point: "Preloading graphics data ensures smooth gameplay performance on limited hardware."
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM"
+  - point: "The file demonstrates modular design, separating texture, sprite, and flat initialization."
+    link: "https://en.wikipedia.org/wiki/Software_design"
+    link_label: "Software Design"
+  - point: "The use of WAD files for data storage became a standard in game development."
     link: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     link_label: "WAD File Format"
-  - point: "Efficient caching and memory management techniques are employed to optimize rendering performance."
-    link: "https://en.wikipedia.org/wiki/Cache_(computing)"
-    link_label: "Cache"
-  - point: "DOOM's rendering engine relies on vertical runs of pixels for walls and sprites, a unique approach at the time."
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM Rendering"
-  - point: "The file demonstrates the use of precomputed lookup tables to speed up texture access."
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup Table"
-  - point: "Preloading graphics data for levels minimizes runtime delays, a precursor to modern asset streaming."
-    link: "https://en.wikipedia.org/wiki/Asset_streaming"
-    link_label: "Asset Streaming"
 
 enhancements:
-  - id: "texture-data-structures"
+  - id: "texture-definition-structure"
     line_start: 61
     line_end: 125
-    title: "Texture definitions: modular patch-based design"
-    wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
+    title: "How DOOM Built Textures from Patches"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
-    content: "This section defines the data structures used to represent textures in DOOM. Textures are composed of patches, which are rectangular graphic elements stored in WAD files. The `mappatch_t` structure specifies the position and attributes of each patch, while `maptexture_t` and `texture_t` describe how patches are combined to form complete textures. This modular design allows textures to be dynamically assembled from reusable components, reducing memory usage and enabling efficient storage. In 1993, this approach was innovative, as most games relied on static, pre-rendered graphics. By leveraging WAD files and this patch-based system, DOOM could support a wide variety of textures without bloating its memory footprint. This technique influenced later games and engines, including Quake and Unreal, which adopted similar modular asset systems."
-  - id: "column-caching"
+    content: "This section defines the structures used for textures in DOOM, including `mappatch_t`, `maptexture_t`, and `texture_t`. Each texture is composed of patches, which are smaller graphical elements stored in WAD files. These patches are positioned within a texture using origin coordinates and other attributes. The modular design allowed DOOM to efficiently reuse graphical assets, reducing memory consumption—a critical consideration for 1993 hardware like the Intel 486, which often had only 4–8 MB of RAM. The concept of combining smaller graphical elements into larger composite textures influenced later games and engines, including Quake and Unreal Engine, which adopted similar modular approaches to texture management."
+  - id: "r-draw-column-in-cache"
     line_start: 179
     line_end: 218
-    title: "Column caching: optimizing texture rendering"
+    title: "The Routine That Cached Columns"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawColumnInCache` function is responsible for clipping and drawing individual columns from patches into cached posts. Columns are vertical runs of pixels, and caching them minimizes redundant computations during rendering. This optimization is crucial for DOOM's performance, as it allows the engine to reuse precomputed data instead of recalculating pixel positions and attributes on every frame. In the early 1990s, consumer PCs had limited processing power, and techniques like this were necessary to achieve smooth gameplay. The concept of caching graphical elements became a staple in game development, influencing engines like Source and Unity, which use similar methods to optimize rendering pipelines."
-  - id: "composite-texture-generation"
+    content: "The `R_DrawColumnInCache` function clips and draws a column from a patch into a cached post. This caching mechanism was crucial for DOOM's performance, as it avoided recalculating texture data during gameplay. By storing columns in memory, the renderer could quickly access precomputed graphics data, enabling smooth frame rates even on modest hardware. John Carmack's focus on optimizing memory usage and rendering speed was a hallmark of DOOM's development, and this routine exemplifies his approach. Techniques like this laid the groundwork for efficient graphics handling in later engines, including the id Tech series."
+  - id: "r-generate-composite"
     line_start: 222
     line_end: 289
-    title: "Dynamic composite texture generation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    title: "Generating Composite Textures Dynamically"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
-    content: "The `R_GenerateComposite` function assembles composite textures from patches defined in the texture data structures. Each column in the texture is cached to optimize rendering. This dynamic generation process allows DOOM to support complex textures while conserving memory, as only the necessary columns are cached. The function also ensures that textures fit within memory constraints, aborting if a texture exceeds 64 KB. This technique was groundbreaking in 1993, enabling DOOM to deliver high-quality visuals on hardware with limited resources. The dynamic assembly of textures influenced later engines, such as Quake, which expanded on this approach to support more advanced graphical features."
-  - id: "lookup-table-generation"
-    line_start: 293
-    line_end: 373
-    title: "Precomputing texture lookup tables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_GenerateLookup` function precomputes lookup tables for textures, mapping columns to their corresponding patches and offsets. This preprocessing step reduces runtime overhead, as the rendering engine can quickly access texture data without recalculating positions. Lookup tables were a common optimization technique in the 1990s, used to speed up operations in graphics, audio, and other domains. By incorporating this method, DOOM achieved faster rendering speeds, contributing to its reputation for smooth gameplay. Lookup tables remain a fundamental concept in computer graphics, influencing modern techniques like GPU texture sampling and shader programming."
-  - id: "texture-initialization"
+    content: "The `R_GenerateComposite` function dynamically creates composite textures by combining patches based on the texture definition. Each column is cached, and overlapping patches are handled by generating new column data. This approach allowed DOOM to use highly detailed textures without requiring excessive memory. The function also ensured that textures were purged from zone memory once cached, maintaining efficient memory usage. This dynamic texture generation technique was innovative for its time and influenced how later engines handled texture composition and caching, including Quake and Unreal Engine."
+  - id: "r-init-textures"
     line_start: 406
     line_end: 574
-    title: "Loading and initializing texture data"
+    title: "Initializing DOOM's Texture System"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
     image_caption: ""
-    content: "The `R_InitTextures` function initializes DOOM's texture system by loading texture definitions from WAD files. It parses the texture data, allocates memory for texture structures, and precomputes lookup tables for efficient rendering. This process includes handling multiple texture lumps (`TEXTURE1` and `TEXTURE2`), ensuring compatibility between shareware and commercial versions of the game. The function also prints progress indicators, a thoughtful feature for debugging and user feedback during initialization. This modular and extensible approach to texture management set a precedent for future games, enabling developers to create scalable asset systems that could adapt to different hardware and distribution formats."
-  - id: "sprite-initialization"
+    content: "The `R_InitTextures` function initializes the texture list by loading texture definitions from WAD files. It handles both shareware and commercial texture lumps (`TEXTURE1` and `TEXTURE2`), ensuring compatibility across different versions of the game. The function also precomputes lookup tables for texture rendering, optimizing performance. This modular initialization process reflects DOOM's well-structured design, which separated data preparation from rendering logic. The use of WAD files for storing texture data became a standard in game development, influencing titles like Duke Nukem 3D and Half-Life."
+  - id: "r-init-sprite-lumps"
     line_start: 597
     line_end: 626
-    title: "Efficient sprite data preparation"
+    title: "Preloading Sprite Metadata for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The `R_InitSpriteLumps` function initializes sprite data by calculating the width, offsets, and top positions of all sprites in the WAD file. This preprocessing step allows DOOM to render sprites efficiently without caching their entire data during gameplay. Sprites are a key component of DOOM's visual style, representing enemies, items, and other interactive elements. By optimizing sprite handling, the game achieves smooth performance on limited hardware. This technique influenced later games, which adopted similar methods to manage sprite-based assets, particularly in 2D and isometric titles like Diablo and StarCraft."
-  - id: "data-initialization"
-    line_start: 648
-    line_end: 664
-    title: "Centralized data initialization for rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_InitData` function serves as a centralized entry point for initializing all rendering-related data, including textures, flats, sprites, and colormaps. This modular initialization ensures that all necessary assets are prepared before gameplay begins, reducing runtime delays and improving performance. By organizing data initialization in a single function, DOOM's developers created a clear and maintainable structure for asset management. This approach influenced later game engines, which adopted similar modular initialization processes to streamline development and debugging."
-  - id: "level-precache"
+    content: "The `R_InitSpriteLumps` function preloads metadata for all sprites in the WAD file, including width, offsets, and top offsets. By caching this information, DOOM avoided the need to repeatedly load sprite headers during rendering, significantly improving performance. This optimization was essential for maintaining smooth gameplay on hardware with limited processing power. The technique of preloading sprite metadata influenced later games, which adopted similar strategies to optimize rendering pipelines."
+  - id: "r-precache-level"
     line_start: 735
     line_end: 845
-    title: "Preloading assets for seamless gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Asset_streaming"
+    title: "Preloading Graphics for Seamless Gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `R_PrecacheLevel` function preloads all graphics data required for the current level, including flats, textures, and sprites. By caching these assets before gameplay begins, DOOM minimizes runtime delays caused by loading data from disk. This technique was essential for achieving smooth performance on 1990s hardware, which had limited memory and slow storage devices. Preloading assets became a standard practice in game development, evolving into modern asset streaming techniques used in open-world games like Grand Theft Auto and The Witcher series."
+    content: "The `R_PrecacheLevel` function preloads all graphics relevant to the current level, including flats, textures, and sprites. By caching this data before gameplay begins, DOOM ensured smooth performance and minimized loading times during play. This approach was particularly important for 1993 hardware, where disk access was slow and memory was limited. The precaching technique became a standard practice in game development, influencing engines like Source and Unity, which use similar methods to optimize asset loading."
 
 ---
 
+```c
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -941,6 +926,4 @@ void R_PrecacheLevel (void)
 	}
     }
 }
-
-
-
+```

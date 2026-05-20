@@ -9,90 +9,64 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "hex2bin"
 order: 12
-description: "HEX2BIN.ASM is a utility for converting Intel HEX files to binary format, showcasing early MS-DOS file handling and assembly programming techniques."
+description: "HEX2BIN.ASM is a utility for converting Intel HEX files to binary, showcasing early MS-DOS file handling and memory management techniques."
 
 summary:
-  - point: "Demonstrates MS-DOS file handling via interrupts"
+  - point: "Demonstrates MS-DOS's file control block (FCB) API for file operations"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Converts Intel HEX format to binary, a crucial format for embedded systems"
+  - point: "Efficiently handles Intel HEX format, a common format for microcontroller programming"
     link: "https://en.wikipedia.org/wiki/Intel_HEX"
     link_label: "Intel HEX"
-  - point: "Efficiently handles memory and buffer management in constrained environments"
+  - point: "Highlights early assembly programming practices for constrained environments"
     link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly language"
-  - point: "Highlights Tim Paterson's contributions to early PC software"
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
+    link_label: "Assembly Language"
 
 enhancements:
-  - id: "file-handling-interrupts"
-    line_start: 1
-    line_end: 13
-    title: "File handling via MS-DOS interrupts"
+  - id: "hex2bin-entry-point"
+    line_start: 15
+    line_end: 75
+    title: "Why HEX2BIN Starts at 100H"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section defines constants for MS-DOS interrupt calls related to file handling, such as opening, reading, writing, and closing files. These constants simplify interaction with the operating system by providing symbolic names for interrupt functions. In 1981, MS-DOS relied heavily on software interrupts for system calls, a design inherited from CP/M. Tim Paterson adapted this approach for MS-DOS, ensuring compatibility with existing software while optimizing for the Intel 8086 architecture. These constants reflect the constrained environment of early PCs, where developers had to manage hardware directly and work within the limitations of 16-bit registers and segmented memory. The interrupt-driven file handling model influenced later operating systems, including Windows, which retained backward compatibility with MS-DOS APIs for years."
-  - id: "hex-to-binary-conversion"
-    line_start: 18
-    line_end: 55
-    title: "Parsing and offset handling for HEX files"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_HEX"
-    image_url: ""
-    image_caption: ""
-    content: "This section begins the HEX-to-binary conversion process by parsing the input file and handling offsets. The program reads the file control block (FCB) to determine the file extension and load offset, defaulting to -100H if none is specified. It supports signed offsets, allowing flexibility in memory addressing, which was crucial for embedded systems and early PC software. The use of shifts and bitwise operations to calculate offsets demonstrates the efficiency required in assembly programming. Intel HEX files were a standard format for storing binary data in ASCII, widely used in microcontroller programming. By converting HEX files to binary, this utility enabled developers to load programs directly into memory, bypassing the need for manual conversion. This approach laid the groundwork for similar utilities in embedded systems development, influencing tools like objcopy in GNU Binutils."
-  - id: "memory-zeroing-segment-handling"
-    line_start: 57
-    line_end: 71
-    title: "Zeroing memory and segment initialization"
+    content: "The HEX2BIN subroutine begins at memory address 100H, which is a convention for .COM programs in MS-DOS. This address is reserved for program execution, ensuring the program doesn't overwrite the Program Segment Prefix (PSP) located at 0–100H. The subroutine initializes file control blocks (FCBs) and prepares the environment for file operations. At the time, MS-DOS relied heavily on FCBs for file access, a design inherited from CP/M. Tim Paterson, the author of MS-DOS, adapted this approach to maintain compatibility with existing software. This section also demonstrates the use of interrupts (INT 21H) for system calls, a hallmark of MS-DOS programming. The reliance on FCBs was eventually replaced by file handles in MS-DOS 2.0, inspired by Unix. This initialization routine laid the groundwork for countless utilities and applications that followed, influencing early PC software development."
+  - id: "segment-zeroing-and-buffer-setup"
+    line_start: 76
+    line_end: 84
+    title: "Zeroing Memory: A Programmer's Ritual"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "This section initializes the memory segment where the binary data will be loaded, zeroing it out to ensure clean data storage. The program calculates the load segment by adding the data segment (DS) to a predefined offset and then uses the REP STOSW instruction to fill the segment with zeros. Memory management was a critical concern in early PCs, as developers had to work within the constraints of segmented memory and limited RAM. Zeroing memory ensured that leftover data from previous operations would not interfere with the current program. This technique became standard practice in system programming, influencing memory management routines in operating systems and embedded systems alike."
-  - id: "hex-file-parsing"
+    content: "Before loading data, HEX2BIN zeroes out the target memory segment to ensure a clean slate. This was a common practice in early programming to prevent residual data from causing errors. The routine uses REP STOW, an efficient assembly instruction for block operations, to fill the segment with zeros. It then sets up the buffer for sequential reads using the SETDMA interrupt (INT 33H). This meticulous preparation reflects the programmer's awareness of hardware limitations and the need for reliability in file conversion. Memory zeroing became standard practice in software development, influencing modern memory management techniques in operating systems and programming languages. The buffer setup also highlights the importance of direct memory access (DMA) in optimizing I/O operations, a concept still relevant in today's hardware design."
+  - id: "hex-file-parsing-loop"
     line_start: 85
     line_end: 110
-    title: "Parsing Intel HEX file records"
+    title: "Parsing HEX Files: A Line-by-Line Dance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_HEX"
     image_url: ""
     image_caption: ""
-    content: "This section parses individual records from the Intel HEX file, extracting byte counts, addresses, and data. The program uses a loop to process each line, handling offsets and checking for valid addresses. It ensures that data is written to the correct memory location and tracks the largest address encountered. Intel HEX files were designed for easy transmission and storage of binary data, with each line representing a segment of memory. Parsing these files required careful attention to format and error handling, as a single mistake could corrupt the loaded program. This routine reflects the meticulous programming style of the era, where developers had to account for every byte. The techniques used here influenced later file parsing utilities and contributed to the robustness of tools for embedded systems development."
-  - id: "error-handling"
-    line_start: 113
-    line_end: 121
-    title: "Error handling and user feedback"
+    content: "This loop reads and parses Intel HEX file lines, extracting byte counts, load addresses, and data bytes. It uses GETCH and GETBYT subroutines to process each character and convert hexadecimal digits into binary. The loop ensures that data is loaded into memory at the correct address, accounting for offsets. Intel HEX was a popular format for microcontroller programming, and this routine reflects the precision required to handle it. The parsing logic, with its careful checks and conversions, showcases the programmer's attention to detail and understanding of the format's structure. This approach influenced later tools for firmware and embedded systems programming, where parsing efficiency and accuracy are critical."
+  - id: "error-handling-and-exit"
+    line_start: 112
+    line_end: 195
+    title: "When Things Go Wrong: Error Messages in HEX2BIN"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
-    content: "This section handles errors such as file not found or address out of range, displaying messages to the user. Error handling was a critical aspect of early software development, as users often lacked technical expertise and needed clear feedback when something went wrong. The program uses MS-DOS interrupt 21H to display error messages, ensuring compatibility with the operating system's text output functions. By providing descriptive error messages, the program improves usability and reduces frustration for developers working with HEX files. This approach to error handling influenced later software design, emphasizing the importance of clear communication between programs and users."
-  - id: "hex-digit-conversion"
-    line_start: 147
-    line_end: 157
-    title: "Converting HEX digits to binary"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_HEX"
-    image_url: ""
-    image_caption: ""
-    content: "This section converts individual HEX digits to binary values, a crucial step in parsing Intel HEX files. The program checks each character to ensure it is a valid HEX digit, then calculates its binary equivalent using subtraction and comparison. This routine demonstrates the low-level manipulation required in assembly programming, where developers must implement basic operations manually. Converting HEX digits to binary was essential for loading programs into memory, as it translated human-readable data into machine-readable format. The techniques used here influenced the design of similar conversion routines in programming tools and embedded systems software."
-  - id: "binary-file-creation"
-    line_start: 169
-    line_end: 193
-    title: "Creating and writing the binary file"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
-    image_url: ""
-    image_caption: ""
-    content: "This section creates the output binary file and writes the converted data to it. The program uses MS-DOS interrupt calls to create the file, set its record size, and write data in blocks. It ensures that the file is properly closed after writing, preventing data corruption. File creation and management were central to MS-DOS, which provided a simple but effective API for developers. This routine reflects the efficiency required in early software, where every operation had to be carefully optimized for performance and reliability. The techniques used here influenced later file handling libraries and contributed to the robustness of tools for data conversion and storage."
-  - id: "data-structures"
+    content: "HEX2BIN includes robust error handling routines to manage file not found errors, address out-of-range issues, and disk directory full conditions. These routines display descriptive messages using INT 21H, ensuring the user understands the problem. Error handling was a critical aspect of early software development, as users often lacked technical expertise. The inclusion of clear error messages reflects the programmer's empathy and foresight. This approach influenced the design of error handling in later software, emphasizing user-friendly communication. The exit routine, which gracefully terminates the program, showcases the importance of clean program termination in assembly language, a practice that remains relevant in modern software development."
+  - id: "data-definitions-and-memory-allocation"
     line_start: 201
-    line_end: 210
-    title: "Data structures for HEX2BIN"
+    line_end: 214
+    title: "Defining Data: The Backbone of HEX2BIN"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
     image_caption: ""
-    content: "This section defines the data structures used by HEX2BIN, including buffers, offsets, and segment sizes. These structures provide the foundation for the program's operations, storing intermediate values and managing memory. Assembly programming required developers to define data structures manually, as there were no high-level abstractions available. The careful design of these structures reflects the constraints of early PCs, where memory was limited and every byte mattered. The techniques used here influenced the design of data structures in later programming languages, emphasizing efficiency and clarity."
+    content: "This section defines constants, error messages, and memory buffers used throughout HEX2BIN. It allocates space for the buffer and other variables, ensuring the program has the resources it needs to operate. In 1981, memory was a precious commodity, and careful allocation was essential. The use of descriptive labels for constants and messages reflects the programmer's commitment to readability and maintainability. These data definitions influenced the design of assembly programs, emphasizing the importance of clear organization and efficient memory usage. Modern programming languages continue to build on these principles, providing abstractions for data definition and memory management."
 
 ---
 
+```asm
 ; HEX2BIN  version 1.02
 ; Converts Intel hex format files to straight binary
 
@@ -307,3 +281,4 @@ BUFFER:	DS	BUFSIZ
 START:
 STARTSEG EQU	(START+15)/16
 
+```

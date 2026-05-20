@@ -9,37 +9,32 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "msdos-v2"
 order: 18
-description: "The foundational source code for MS-DOS 2.0, a pivotal operating system that shaped the PC era."
+description: "The foundational file for MS-DOS 2.0, marking a pivotal moment in personal computing history."
 
 summary:
-  - point: "MS-DOS 2.0 introduced subdirectories and file handles, inspired by Unix."
+  - point: "MS-DOS 2.0 introduced Unix-inspired features like subdirectories and file handles."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Tim Paterson's original 86-DOS evolved into MS-DOS, licensed to IBM for the PC."
+  - point: "Tim Paterson's original 86-DOS formed the basis for Microsoft's operating system."
     link: "https://en.wikipedia.org/wiki/Tim_Paterson"
     link_label: "Tim Paterson"
-  - point: "The source code was released by the Computer History Museum in 2014."
-    link: "https://www.computerhistory.org/press/ms-dos-source-code/"
+  - point: "The source code was publicly released by the Computer History Museum in 2014."
+    link: "https://computerhistory.org/blog/ms-dos-source-code/"
     link_label: "Computer History Museum"
-  - point: "MS-DOS 2.0 added Unix-inspired features like pipes and device drivers."
-    link: "https://en.wikipedia.org/wiki/MS-DOS#Version_2.x"
-    link_label: "MS-DOS 2.x"
-  - point: "Microsoft's licensing strategy made MS-DOS the dominant OS of the 1980s."
-    link: "https://en.wikipedia.org/wiki/MS-DOS#History"
-    link_label: "MS-DOS History"
 
 enhancements:
-  - id: "msdos-name-declaration"
+  - id: "msdos-2-name-section"
     line_start: 2
     line_end: 2
-    title: "A NAME directive that defined an era"
+    title: "Why 'NAME MSDOS_2' Changed Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The NAME directive at line 2 declares the program identifier as 'MSDOS_2,' marking this file as part of MS-DOS version 2.0. This simple declaration is the entry point for the assembler, linking the source code to its historical identity. At this moment, the programmer is establishing the foundational metadata for the operating system, ensuring that all subsequent modules and routines are correctly associated with the MS-DOS 2.0 build. In 1983, MS-DOS 2.0 represented a major leap forward from version 1.x, incorporating features inspired by Unix, such as hierarchical file systems (subdirectories), file handles, and pipes. These additions were critical to supporting more complex applications and workflows on the IBM PC and compatible systems. The computing landscape at the time was rapidly evolving, with IBM's PC architecture becoming the de facto standard for personal computing. Microsoft, under Bill Gates' leadership, was positioning itself as the software provider for this burgeoning ecosystem, leveraging its licensing rights to distribute MS-DOS to a wide array of OEMs. The NAME directive is a small but symbolic part of this transformation. It reflects the modular design philosophy of MS-DOS 2.0, where individual source files were organized into distinct components like STDSW.ASM, MSHEAD.ASM, and MSDATA.ASM (included in lines 6–8). This modularity facilitated easier updates and adaptations for different hardware configurations, a necessity given the diversity of PC clones entering the market. The modular approach and Unix-inspired features of MS-DOS 2.0 influenced later operating systems, including Windows and OS/2. The hierarchical file system and file handle concepts became standard practices in software development, shaping the way modern operating systems manage data and processes. Microsoft's decision to license MS-DOS widely ensured its dominance throughout the 1980s, setting the stage for the company's future success in the software industry."
+    content: "The 'NAME MSDOS_2' directive at line 2 sets the symbolic name for this module, marking it as part of MS-DOS 2.0. This simple declaration ties the file to a historic rewrite of the operating system that transformed personal computing. MS-DOS 2.0 was a major departure from its predecessor, incorporating features inspired by Unix, such as hierarchical directories, file handles, and device drivers. These additions made the system far more versatile and capable, paving the way for widespread adoption by businesses and OEMs. In 1983, the computing landscape was rapidly evolving. IBM's PC had established itself as a dominant force, and Microsoft was positioning MS-DOS as the standard operating system for the burgeoning personal computer market. The rewrite was driven by the need to support more complex applications and hardware configurations. Paterson's original 86-DOS had been a quick solution for Seattle Computer Products, but MS-DOS 2.0 was a deliberate effort to create a robust, scalable system. The inclusion of Unix-like features reflected Microsoft's growing ambition to compete in the enterprise space, where Unix was already a respected standard. The consequences of this rewrite were profound. MS-DOS 2.0 became the foundation for countless software applications and hardware systems, influencing the design of later operating systems like Windows. Its hierarchical file system and device driver model became industry standards, shaping the expectations of developers and users alike. The decision to license MS-DOS to multiple OEMs ensured its dominance, making it the most widely used operating system of its time. Today, the legacy of MS-DOS 2.0 lives on in the structure and conventions of modern computing systems."
 
 ---
 
+```asm
 TITLE   Standard MSDOS
 NAME    MSDOS_2
 
@@ -52,3 +47,4 @@ NAME    MSDOS_2
         END
 
 
+```

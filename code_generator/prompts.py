@@ -251,6 +251,101 @@ became standard practice
 """
 
 
+def _is_c_like(language: str) -> bool:
+    lang = language.lower()
+    return any(t in lang for t in ("c++", "c/c++", "objective-c")) or lang in ("c", "c++")
+
+
+def _c_landmarks(code_lines: list[str]) -> list[tuple[int, int, str]]:
+    """Return (1-indexed start_line, 1-indexed end_line, name) for every
+    top-level block in a C/C++ file (functions, struct/class definitions).
+
+    start_line: first non-blank, non-preprocessor line of the declaration
+    end_line:   line containing the closing } that returns brace depth to 0
+    """
+    _ident_re = _re.compile(r'\b([A-Za-z_]\w*)\s*\(')
+
+    depth = 0
+    in_block_comment = False
+    transitions: list[tuple[int, str]] = []   # (0-indexed line, 'open'|'close')
+
+    for i, raw in enumerate(code_lines):
+        j = 0
+        while j < len(raw):
+            if in_block_comment:
+                if raw[j:j+2] == '*/':
+                    in_block_comment = False
+                    j += 2
+                else:
+                    j += 1
+            elif raw[j:j+2] == '//':
+                break
+            elif raw[j:j+2] == '/*':
+                in_block_comment = True
+                j += 2
+            elif raw[j] in ('"', "'"):
+                q = raw[j]; j += 1
+                while j < len(raw):
+                    if raw[j] == '\\': j += 2
+                    elif raw[j] == q:  j += 1; break
+                    else:              j += 1
+            elif raw[j] == '{':
+                if depth == 0:
+                    transitions.append((i, 'open'))
+                depth += 1
+                j += 1
+            elif raw[j] == '}':
+                depth -= 1
+                if depth == 0:
+                    transitions.append((i, 'close'))
+                j += 1
+            else:
+                j += 1
+
+    # Pair open/close transitions into blocks
+    result = []
+    opens = [t for t in transitions if t[1] == 'open']
+    closes = [t for t in transitions if t[1] == 'close']
+    for (open_i, _), (close_i, _) in zip(opens, closes):
+        # Walk back from the { to find the start of the declaration
+        sig_start = open_i
+        for k in range(open_i - 1, max(-1, open_i - 8), -1):
+            s = code_lines[k].strip()
+            if not s or s.startswith('#') or s == '{':
+                break
+            sig_start = k
+
+        # Extract the most plausible name: last identifier-before-( on sig lines
+        name = "?"
+        for k in range(sig_start, open_i + 1):
+            for m in _ident_re.finditer(code_lines[k]):
+                name = m.group(1)   # keep the last match on the last matching line
+
+        result.append((sig_start + 1, close_i + 1, name))
+
+    return result
+
+
+def _c_landmarks_block(landmarks: list[tuple[int, int, str]], total_lines: int,
+                       density_denominator: int = None) -> str:
+    """Format C/C++ function boundary table for injection into the prompt."""
+    if not landmarks:
+        return ""
+
+    denom = density_denominator if density_denominator is not None else total_lines
+    if len(landmarks) > denom / 8:
+        return ""   # too dense (e.g. heavily macro-expanded header)
+
+    lines = ["C/C++ function and block boundaries — exact line numbers:"]
+    for start, end, name in landmarks:
+        lines.append(f"  Lines {start:4d}–{end:4d}: {name}")
+    lines.append(
+        "\nIMPORTANT: Use these exact line numbers as line_start and line_end. "
+        "Do NOT count lines yourself."
+    )
+    return "\n".join(lines)
+
+
 def build_prompt(program: dict, file_cfg: dict, code_lines: list[str]) -> list[dict]:
     numbered = "\n".join(f"{i + 1:4d}  {line}" for i, line in enumerate(code_lines))
 
@@ -265,14 +360,21 @@ def build_prompt(program: dict, file_cfg: dict, code_lines: list[str]) -> list[d
     if file_cfg.get("context"):
         context_parts.append(f"File context: {file_cfg['context']}")
 
-    # For assembly files, pre-parse label positions and inject a landmark table
-    # so the model copies exact line numbers instead of counting manually.
+    # Pre-parse structural boundaries and inject a landmark table so the model
+    # copies exact line numbers rather than counting manually.
     lang = program.get("language", "").lower()
     if "assembly" in lang or "asm" in lang:
         landmarks = _asm_landmarks(code_lines)
         if landmarks:
             context_parts.append("")
             context_parts.append(_landmarks_block(landmarks, len(code_lines)))
+    elif _is_c_like(program.get("language", "")):
+        c_lm = _c_landmarks(code_lines)
+        if c_lm:
+            block = _c_landmarks_block(c_lm, len(code_lines))
+            if block:
+                context_parts.append("")
+                context_parts.append(block)
 
     user_content = "\n".join(context_parts) + "\n\n" + numbered
 
@@ -319,17 +421,27 @@ def build_chunk_prompt(
         context_parts.append(f"File context: {file_cfg['context']}")
 
     lang = program.get("language", "").lower()
+    chunk_size = chunk_end - chunk_start + 1
     if "assembly" in lang or "asm" in lang:
         landmarks = _asm_landmarks(code_lines)
         chunk_landmarks = [(ln, name) for ln, name in landmarks
                            if chunk_start <= ln <= chunk_end]
         if chunk_landmarks:
-            chunk_size = chunk_end - chunk_start + 1
             block = _landmarks_block(
                 chunk_landmarks,
                 chunk_end,
                 density_denominator=chunk_size,
             )
+            if block:
+                context_parts.append("")
+                context_parts.append(block)
+    elif _is_c_like(program.get("language", "")):
+        c_lm = _c_landmarks(code_lines)
+        chunk_c_lm = [(s, e, n) for s, e, n in c_lm
+                      if s >= chunk_start and e <= chunk_end]
+        if chunk_c_lm:
+            block = _c_landmarks_block(chunk_c_lm, chunk_end,
+                                       density_denominator=chunk_size)
             if block:
                 context_parts.append("")
                 context_parts.append(block)

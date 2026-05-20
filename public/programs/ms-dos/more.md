@@ -9,82 +9,86 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "more"
 order: 38
-description: "MS-DOS's MORE.ASM implements a text pagination utility, showcasing early efforts to adapt Unix-inspired functionality to the constrained PC environment."
+description: "MS-DOS v2.0's MORE.ASM file implements a paginate filter, showcasing early text processing techniques in assembly for constrained hardware."
 
 summary:
-  - point: "Pagination logic adapted from Unix's 'more' command"
-    link: "https://en.wikipedia.org/wiki/More_(command)"
-    link_label: "More command"
-  - point: "Direct interaction with MS-DOS system calls via INT 21h"
-    link: "https://en.wikipedia.org/wiki/INT_21h"
-    link_label: "INT 21h"
-  - point: "Efficient handling of control characters for terminal output"
-    link: "https://en.wikipedia.org/wiki/Control_character"
-    link_label: "Control characters"
+  - point: "Introduces a text pagination filter for MS-DOS"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Demonstrates direct hardware interaction via INT 21H"
+    link: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
+    link_label: "BIOS interrupt call"
   - point: "Optimized for IBM PC hardware constraints"
     link: "https://en.wikipedia.org/wiki/IBM_PC"
     link_label: "IBM PC"
+  - point: "Reflects Unix-inspired design in MS-DOS v2.0"
+    link: "https://en.wikipedia.org/wiki/Unix"
+    link_label: "Unix"
+  - point: "Highlights assembly-level control of cursor and screen output"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly language"
 
 enhancements:
-  - id: "start-version-check"
+  - id: "version-check-and-exit"
     line_start: 27
     line_end: 47
-    title: "Version check for MS-DOS compatibility"
+    title: "The Version Check That Ends It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section begins by verifying the MS-DOS version using the INT 21h system call with function GET_VERSION (AH=30h). The program checks if the version is at least 2.0 (AX >= 200H) to ensure compatibility with the features introduced in MS-DOS 2.0, such as subdirectories and file handles. If the version is insufficient, it outputs an error message and terminates execution. This reflects the transition from MS-DOS 1.x to 2.x, where the operating system evolved to support more complex file systems and multitasking capabilities inspired by Unix. By enforcing a minimum version, the program avoids runtime errors caused by missing functionality. This approach influenced later software development practices, where version checks became standard for ensuring compatibility across evolving platforms."
-  - id: "okdos-initialize-cursor"
+    content: "This section checks the MS-DOS version using INT 21H, a BIOS interrupt for system services. If the version is below 2.0, the program outputs an error message and terminates via INT 20H. At the time, MS-DOS was rapidly evolving, and version 2.0 introduced significant features like subdirectories and file handles. Ensuring compatibility was crucial for programs relying on these new features. Tim Paterson and Microsoft engineers designed this mechanism to gracefully handle older systems while leveraging new capabilities. This approach influenced future software development practices, where version checks became standard for compatibility and feature detection."
+  - id: "initialize-screen-dimensions"
     line_start: 49
     line_end: 103
-    title: "Cursor initialization and standard input redirection"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Standard_streams"
+    title: "Setting Screen Dimensions for Pagination"
+    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
     image_caption: ""
-    content: "This section initializes the cursor position and redirects standard input to handle text pagination. It sets MAXROW and MAXCOL based on hardware capabilities, with special handling for Kanji support if enabled. The program uses INT 21h to duplicate file handles and redirect standard error to standard input, ensuring consistent input/output behavior. This design reflects the constraints of early IBM PCs, where hardware and software compatibility were critical. The use of INT 21h system calls demonstrates the low-level nature of MS-DOS programming, where developers directly interacted with the operating system's API. Redirecting file handles was a clever workaround for handling input/output streams in a single-threaded environment, a technique that later influenced scripting and shell utilities in Unix-like systems."
-  - id: "aloop-buffer-read"
+    content: "This section initializes screen dimensions based on hardware capabilities. MAXROW is set to 24 or 25 depending on the IBM version and Kanji support, while MAXCOL is determined by querying the keyboard buffer via INT 16H. The code then prepares the cursor position and redirects standard input/output handles for text processing. In the early 1980s, IBM PCs had fixed screen sizes, and programs had to adapt to these constraints. This routine exemplifies the tight coupling between software and hardware in the era, where developers wrote code tailored to specific machine configurations. The technique of dynamically adapting to hardware became a precursor to modern responsive design principles."
+  - id: "buffered-file-read-loop"
     line_start: 107
     line_end: 123
-    title: "Buffered reading from input stream"
+    title: "Reading Files in 4KB Chunks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The ALOOP subroutine reads data from the input stream into a buffer using INT 21h with the READ function (AH=3Fh). It processes up to 4096 bytes at a time, optimizing performance by minimizing the number of system calls. The loop continues until no more data is available (AX=0). This buffered reading approach was essential for handling large text files efficiently on early PCs with limited memory and processing power. By using a fixed-size buffer, the program balances memory usage and I/O speed, a technique that became foundational in text processing utilities. Buffered I/O remains a standard practice in modern programming, influencing languages like C and Python, where libraries like stdio and io provide similar functionality."
-  - id: "tloop-control-character-handling"
+    content: "The ALOOP subroutine reads up to 4KB of data into a buffer using INT 21H's file read service. This buffered approach minimizes disk I/O, which was slow on early PCs with floppy drives. The code checks the read result and exits if no data remains. Buffering was a critical optimization in the 1980s, as it reduced the overhead of frequent disk access. This technique influenced later file handling practices, becoming a standard in operating systems and programming languages. Developers of text editors and utilities like MORE relied on such efficient I/O handling to ensure smooth user experiences."
+  - id: "control-character-handling"
     line_start: 133
-    line_end: 147
-    title: "Control character handling for pagination"
+    line_end: 225
+    title: "How MS-DOS Handles Tabs, Backspaces, and Line Feeds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""
     image_caption: ""
-    content: "The TLOOP subroutine processes each character in the buffer, identifying control characters like carriage return (CR, 13h) and line feed (LF, 10h). It adjusts the cursor position accordingly, incrementing CURROW for new lines and resetting CURCOL for carriage returns. Handling control characters was crucial for rendering text correctly on the IBM PC's display, which relied on ASCII codes for terminal output. This logic mirrors Unix's 'more' command, adapting it to MS-DOS's environment. The ability to interpret and act on control characters influenced text editors, terminal emulators, and command-line utilities, laying the groundwork for modern text processing tools."
-  - id: "notbp-backspace-handling"
-    line_start: 161
-    line_end: 171
-    title: "Backspace handling in text output"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Backspace"
-    image_url: ""
-    image_caption: ""
-    content: "The NOTBP subroutine handles backspace characters (ASCII 8h), decrementing CURCOL unless the cursor is already at the start of the line. This ensures proper navigation within the text display, allowing users to backtrack without corrupting the output. Backspace handling was a critical feature for terminal-based applications, enabling interactive text editing and command-line input. The logic here reflects the constraints of early PCs, where screen manipulation was performed manually by adjusting cursor positions. This approach influenced the development of text editors like MS-DOS EDIT and later graphical word processors, which built on these foundational techniques for handling user input."
-  - id: "askmore-prompt-for-user-input"
+    content: "This section processes control characters like carriage returns (CR), line feeds (LF), backspaces (BP), and tabs (TB). Each character adjusts the cursor position or triggers specific actions, such as moving to the next line or column. The code uses bitwise operations to align tabs to 8-column boundaries, a clever optimization for screen formatting. Control character handling was essential for text-based interfaces, where precise cursor control dictated user experience. The approach here reflects Unix's influence, where terminal control was a core concept. This technique laid the groundwork for text editors, terminal emulators, and command-line utilities that followed."
+  - id: "ask-for-more-prompt"
     line_start: 245
     line_end: 273
-    title: "Prompting user for continuation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/More_(command)"
+    title: "The Pause That Keeps Users Reading"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Pagination"
     image_url: ""
     image_caption: ""
-    content: "The ASKMORE subroutine displays a 'More?' prompt and waits for user input to continue pagination. It uses INT 21h system calls for both output (STD_CON_STRING_OUTPUT) and input (STD_CON_INPUT_FLUSH), ensuring the prompt is displayed and the program pauses until a key is pressed. This interactive behavior mimics Unix's 'more' command, providing a user-friendly way to navigate large text files one screen at a time. The design reflects the limitations of early PCs, where user interaction was often limited to keyboard input. This technique influenced the development of paging utilities in other operating systems, including Windows and Linux, where similar commands like 'less' and 'more' remain popular."
-  - id: "gobig-loop-restart"
-    line_start: 285
-    line_end: 285
-    title: "Restarting the pagination loop"
+    content: "The ASKMORE subroutine displays a 'More?' prompt when the screen fills, waiting for user input to continue. It flushes the keyboard buffer and resets the cursor position before resuming. This interactive design ensures users can read text at their own pace, a necessity for paginated output. Inspired by Unix's 'more' command, this feature became a staple of command-line utilities, influencing tools like 'less' and modern terminal paginators. It reflects the shift towards user-centric design in software, where usability and interaction were prioritized alongside functionality."
+  - id: "looping-through-buffered-characters"
+    line_start: 277
+    line_end: 283
+    title: "The Endless Loop of Text Processing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Loop_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The GOBIG subroutine restarts the pagination loop by jumping back to ALOOP. This ensures continuous processing of the input stream until the end of the file is reached. The loop structure reflects the simplicity and efficiency of assembly programming, where control flow is managed directly through jumps and labels. This design was well-suited to the constrained environment of early PCs, where memory and processing power were limited. The use of loops for iterative processing influenced the development of higher-level programming constructs, such as 'for' and 'while' loops in languages like C and Python, which abstract these low-level operations for modern developers."
+    content: "CHARLOOP iterates through buffered characters, decrementing CX (the character count) and jumping back to TLOOP for processing. If CX reaches zero, it jumps to GOBIG to refill the buffer. This looping mechanism ensures continuous text processing until the end of the file. Efficient loops like this were vital for performance in assembly programming, where every instruction counted. The structure here influenced the design of text processing algorithms in later programming languages, emphasizing simplicity and efficiency in handling sequential data."
+  - id: "buffer-reload-and-continuation"
+    line_start: 285
+    line_end: 301
+    title: "Refilling the Buffer for Infinite Pagination"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "The GOBIG label reloads the buffer by jumping back to ALOOP, ensuring the program can handle large files seamlessly. This design allows MORE to paginate text indefinitely, limited only by the file size and system memory. In the constrained environment of early PCs, such techniques maximized utility while minimizing resource consumption. This approach influenced the development of streaming algorithms and text processing tools, where handling large datasets efficiently remains a critical challenge."
 
 ---
 
+```asm
         TITLE   MORE MS-DOS Paginate Filter
 
 FALSE   EQU     0
@@ -394,3 +398,4 @@ CODE    ENDS
 
 
 
+```

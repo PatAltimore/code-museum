@@ -10,6 +10,10 @@ import json
 import re
 from pathlib import Path
 
+# Matches assembly closing-directive lines: ENDP, ENDS, ENDM (optionally
+# preceded by a label such as "SaveVectors     ENDP").
+_ASM_CLOSING_RE = re.compile(r'\bEND[PSM]\b', re.IGNORECASE)
+
 import yaml
 
 # Lines of source shown above and below the current annotated range.
@@ -105,6 +109,11 @@ def _read_md(path: Path):
     code_lines = body.split("\n")[2:]
     if code_lines and code_lines[-1] == "":
         code_lines.pop()
+    # Strip code fence wrapper if present (```lang opener, ``` closer)
+    if code_lines and code_lines[0].startswith("```"):
+        code_lines = code_lines[1:]
+    if code_lines and code_lines[-1] == "```":
+        code_lines = code_lines[:-1]
     return meta, code_lines
 
 
@@ -112,6 +121,30 @@ def _is_comment_line(line: str) -> bool:
     """Return True if the line looks like a comment in any common language."""
     s = line.strip()
     return bool(s) and any(s.startswith(p) for p in _COMMENT_PREFIXES)
+
+
+# Characters whose presence on a line means it cannot be a bare return-type
+# declaration (it must be a statement, a declaration with params, etc.)
+_NOT_RETURN_TYPE = frozenset('(){};=[]')
+
+def _is_orphaned_return_type(line: str) -> bool:
+    """Return True if the line looks like a C/C++ return type on its own line.
+
+    Covers patterns like:
+        void
+        static void
+        static int *
+        boolean
+    These appear in Doom/id-style code where the return type is written on a
+    separate line above the function name.  Characteristics: non-empty,
+    no comment prefix, and none of ( ) { } ; = [ ] in the line.
+    """
+    s = line.strip()
+    if not s:
+        return False
+    if _is_comment_line(line):
+        return False
+    return not any(ch in s for ch in _NOT_RETURN_TYPE)
 
 
 def _preceding_comment_block(
@@ -124,21 +157,64 @@ def _preceding_comment_block(
     multi-paragraph doc comments); two or more consecutive blanks, or any
     non-comment non-blank line, ends the walk.
 
+    Multi-line /* ... */ blocks are collected in their entirety: when the walk
+    encounters a closing */ delimiter (the block end, walking backward), it
+    switches into block-comment mode and keeps collecting until it finds the
+    matching /* opener.  This handles the Quake/id-Software style:
+
+        /*
+        ================
+        R_SomeName
+        ================
+        */
+        void R_SomeName (void) { ...
+
+    where the interior lines (====) have no recognisable comment prefix.
+
     Returns a list of (1-indexed lineno, raw_line) in ascending line order,
     with leading and trailing blank entries stripped.  Empty list if nothing
     found.
     """
     collected: list[tuple[int, str]] = []
     blank_streak = 0
-    i = line_start - 2          # 0-indexed: line just before line_start
+    in_block_comment = False   # True when inside a /* ... */ block (walking backward)
     floor = max(0, context_start - 1)   # 0-indexed lower bound
+
+    # Step past any orphaned return-type lines sitting between the function
+    # name and the doc-comment above it (Doom / id-Software style):
+    #   //
+    #   // R_RenderMaskedSegRange
+    #   //
+    #   void                   ← orphaned return type
+    #   R_RenderMaskedSegRange ← line_start
+    # We collect these lines so they appear in the candidate block and are
+    # therefore included in the corrected line_start.
+    i = line_start - 2          # 0-indexed: line just before line_start
+    preamble: list[tuple[int, str]] = []
+    while i >= floor and _is_orphaned_return_type(code_lines[i]):
+        preamble.insert(0, (i + 1, code_lines[i]))
+        i -= 1
+    collected.extend(preamble)
 
     while i >= floor:
         line = code_lines[i]
-        if not line.strip():
+        stripped = line.strip()
+
+        if in_block_comment:
+            # Collect everything; exit block-comment mode when we hit the opener.
+            collected.insert(0, (i + 1, line))
+            if "/*" in line:
+                in_block_comment = False
+                blank_streak = 0
+        elif not stripped:
             blank_streak += 1
             if blank_streak > 1:
                 break
+            collected.insert(0, (i + 1, line))
+        elif stripped.endswith("*/") and "/*" not in line:
+            # Closing delimiter of a multi-line block comment — enter block mode.
+            in_block_comment = True
+            blank_streak = 0
             collected.insert(0, (i + 1, line))
         elif _is_comment_line(line):
             blank_streak = 0
@@ -161,6 +237,12 @@ def _is_c_like(language: str) -> bool:
     lang = (language or "").lower()
     return any(t in lang for t in ("c++", "c/c++", " c ", "c,", "objective-c"))  \
         or lang in ("c", "c++")
+
+
+def _is_asm_like(language: str) -> bool:
+    """Return True for assembly languages."""
+    lang = (language or "").lower()
+    return any(t in lang for t in ("assembly", "asm", "6502", "x86", "68k", "mips", "z80"))
 
 
 def _brace_depth_map(code_lines: list[str], win_start: int, win_end: int) -> dict[int, int]:
@@ -223,15 +305,19 @@ def _excerpt(code_lines: list[str], line_start: int, line_end: int,
     if _is_c_like(language):
         depth_map = _brace_depth_map(code_lines, win_start, win_end)
 
+    asm_mode = _is_asm_like(language)
+
     out = []
     for i in range(win_start, win_end):
         lineno = i + 1
         marker = ">>" if line_start <= lineno <= line_end else "  "
         text   = code_lines[i]
         suffix = ""
-        if depth_map and text.strip() in ("}", "};", "} ;") :
+        if depth_map and text.strip() in ("}", "};", "} ;"):
             d = depth_map.get(i, "?")
             suffix = f"  [brace depth after: {d}]"
+        elif asm_mode and _ASM_CLOSING_RE.search(text):
+            suffix = "  [assembly closing directive — must be line_end]"
         out.append(f"{marker}{lineno:4d}  {text}{suffix}")
     return "\n".join(out)
 

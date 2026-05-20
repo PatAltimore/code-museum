@@ -9,93 +9,70 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "c0-asm"
 order: 1
-description: "Critical startup code for Wolfenstein 3D, showcasing id Software's mastery of x86 assembly for performance and compatibility on MS-DOS."
+description: "Critical startup code for Wolfenstein 3D, showcasing low-level assembly techniques to maximize performance and compatibility on MS-DOS systems."
 
 summary:
-  - point: "Efficient memory management techniques for MS-DOS"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
-  - point: "Assembly-level hardware checks for CPU compatibility"
+  - point: "Segment declarations for memory organization"
+    link: "https://en.wikipedia.org/wiki/Memory_segmentation"
+    link_label: "Memory Segmentation"
+  - point: "Processor compatibility check for 286 or better"
     link: "https://en.wikipedia.org/wiki/Intel_80286"
     link_label: "Intel 80286"
-  - point: "Interrupt vector manipulation for runtime stability"
+  - point: "Interrupt vector saving for runtime stability"
     link: "https://en.wikipedia.org/wiki/Interrupt_vector"
     link_label: "Interrupt Vector"
-  - point: "Environment variable parsing and memory allocation"
+  - point: "Environment variable size calculation"
     link: "https://en.wikipedia.org/wiki/Environment_variable"
     link_label: "Environment Variable"
-  - point: "Borland Turbo C++ runtime integration"
-    link: "https://en.wikipedia.org/wiki/Borland"
-    link_label: "Borland"
+  - point: "Memory management techniques for heap and stack"
+    link: "https://en.wikipedia.org/wiki/Heap_(computing)"
+    link_label: "Heap Memory"
 
 enhancements:
-  - id: "include-segment-declarations"
+  - id: "segment-declarations-memory-organization"
     line_start: 16
-    line_end: 59
-    title: "Segment declarations for MS-DOS memory model"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_memory_management"
+    line_end: 32
+    title: "How MS-DOS Organized Memory Segments"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
     image_url: ""
     image_caption: ""
-    content: "This section defines various memory segments used by the program, such as '_TEXT', '_DATA', and '_STACK'. These segments are crucial for organizing the program's code, data, and stack within the constraints of MS-DOS's memory model. MS-DOS operates in real mode, where memory is divided into segments of up to 64KB. The programmers at id Software had to carefully allocate and manage these segments to ensure the game could run efficiently on a wide range of hardware. The use of Borland's Turbo C++ runtime library influenced the structure of these declarations, as it provided a standardized way to handle segment definitions. This approach laid the groundwork for efficient memory management in early PC gaming and influenced later DOS-based games."
-  - id: "startx-procedure"
-    line_start: 106
-    line_end: 135
-    title: "STARTX: Initializing the runtime environment"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Program_Segment_Prefix"
-    image_url: ""
-    image_caption: ""
-    content: "The STARTX procedure initializes critical runtime data, including the Program Segment Prefix (PSP), DOS version, and environment segment. It also saves interrupt vectors and installs a default handler for divide-by-zero errors. This initialization ensures the program can interact correctly with the operating system and handle runtime errors gracefully. In 1992, compatibility across various DOS versions and hardware configurations was a major challenge. John Carmack and the team at id Software leveraged their deep understanding of assembly language and MS-DOS internals to create robust startup routines. This procedure exemplifies the meticulous attention to detail required to develop high-performance software for early PCs. The techniques used here influenced the design of startup code in later DOS-based applications and game engines."
-  - id: "cpu-compatibility-check"
+    content: "This section defines various memory segments such as '_TEXT', '_DATA', '_BSS', and '_STACK' to organize program data, code, and stack space. MS-DOS relied heavily on memory segmentation due to the 16-bit architecture of the Intel 8086 and 80286 processors, which could only address 64KB at a time. By dividing memory into segments, developers could work around these limitations and manage larger programs. Borland's Turbo C++ runtime library provided conventions for segment naming and organization, ensuring compatibility across different compilers and systems. This technique influenced memory management practices in early PC software and laid the groundwork for more sophisticated systems in later operating systems like Windows."
+  - id: "processor-compatibility-check-286-or-better"
     line_start: 136
-    line_end: 218
-    title: "Checking for 286 or better CPU"
+    line_end: 152
+    title: "The Check That Excluded 8086 PCs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80286"
     image_url: ""
     image_caption: ""
-    content: "This section checks whether the system is running on an Intel 80286 or better CPU by manipulating the processor flags. The 80286 introduced protected mode, which allowed for more advanced memory management and multitasking. However, Wolfenstein 3D was designed to run in real mode for compatibility with older systems. By ensuring the presence of a 286 or better, the program could leverage specific instructions and features while maintaining backward compatibility. This check reflects id Software's commitment to delivering a seamless gaming experience across a wide range of hardware. Similar CPU compatibility checks became standard practice in software development during the early 1990s, influencing the design of other games and applications."
-  - id: "environment-variable-parsing"
+    content: "This code checks whether the system is running on an Intel 80286 processor or better. It uses the 'pushf' and 'popf' instructions to manipulate the flags register and determine if the processor supports the 80286's extended instruction set. If the check fails, the program displays a message and exits, ensuring the game does not attempt to run on older hardware like the 8086 or 8088. This decision reflects id Software's focus on performance and their willingness to exclude legacy systems to deliver a smoother experience. The 80286 introduced protected mode and better memory management, which were critical for running advanced games like Wolfenstein 3D. This approach influenced other developers to adopt similar checks, prioritizing hardware capabilities over backward compatibility."
+  - id: "environment-variable-size-calculation"
     line_start: 220
-    line_end: 250
-    title: "Parsing environment variables for configuration"
+    line_end: 244
+    title: "Counting Environment Variables in 32KB"
     wikipedia_url: "https://en.wikipedia.org/wiki/Environment_variable"
     image_url: ""
     image_caption: ""
-    content: "This routine parses environment variables to determine the program's configuration and compute the size of the environment block. Environment variables are key-value pairs used by the operating system to pass configuration data to programs. In MS-DOS, these variables are stored in a contiguous memory block within the PSP. Parsing them efficiently was critical for performance and stability, especially in memory-constrained systems. The approach used here reflects the team's expertise in low-level programming and their ability to optimize resource usage. This technique influenced the handling of environment variables in later DOS-based applications and contributed to the evolution of configuration management in software development."
-  - id: "savevectors-procedure"
+    content: "This code calculates the size of the environment variables passed to the program, ensuring they do not exceed 32KB. Environment variables were stored in the Program Segment Prefix (PSP) in MS-DOS, a fixed-size structure that included command-line arguments and other program metadata. The loop scans for null-terminated strings, counting the variables and their total size. This was necessary to allocate memory correctly and avoid overwriting other data. The 32KB limit reflects the constraints of the MS-DOS memory model, where every byte had to be carefully managed. This approach influenced later systems, where environment variables became more flexible but still required careful handling to avoid security and stability issues."
+  - id: "memory-management-heap-and-stack"
+    line_start: 252
+    line_end: 303
+    title: "Balancing Heap and Stack in Limited Memory"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Heap_(computing)"
+    image_url: ""
+    image_caption: ""
+    content: "This section calculates the memory required for the stack and heap, ensuring the program has enough space to run without exceeding the 64KB limit of a single segment. It adjusts the stack size to a minimum value if the requested size is too small and checks whether the heap can fit within the remaining memory. If there is excess memory, it is returned to DOS for other programs to use. This careful balancing of memory reflects the constraints of the MS-DOS environment, where programs had to coexist in limited RAM. The technique influenced memory management practices in later systems, where dynamic allocation and virtual memory reduced the need for such manual adjustments."
+  - id: "interrupt-vector-saving-runtime-stability"
     line_start: 521
     line_end: 560
-    title: "SaveVectors: Preserving interrupt vectors"
+    title: "Saving Interrupt Vectors for Stability"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
     image_url: ""
     image_caption: ""
-    content: "The SaveVectors procedure saves the interrupt vectors for critical system interrupts (0, 4, 5, and 6) and installs a default handler for divide-by-zero errors. Interrupt vectors are pointers to routines that handle specific hardware or software events. By saving these vectors, the program ensures it can restore them upon termination, preventing conflicts with other software. This technique was essential for maintaining system stability in the cooperative multitasking environment of MS-DOS. The divide-by-zero handler further demonstrates the team's attention to error handling and runtime robustness. These practices influenced the design of runtime systems in later DOS-based games and contributed to the development of more sophisticated error-handling mechanisms in modern operating systems."
-  - id: "restorezero-procedure"
-    line_start: 563
-    line_end: 605
-    title: "RestoreZero: Restoring interrupt vectors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
-    image_url: ""
-    image_caption: ""
-    content: "The RestoreZero procedure restores the interrupt vectors saved by SaveVectors, ensuring the system returns to its original state upon program termination. This routine highlights the importance of cleaning up system resources and maintaining compatibility with other software. In the early 1990s, TSR (Terminate and Stay Resident) programs were common in MS-DOS, and conflicts between programs could lead to system instability. By restoring the interrupt vectors, Wolfenstein 3D avoids such conflicts, demonstrating id Software's commitment to robust software design. This approach influenced the development of cleanup routines in later DOS-based applications and contributed to the evolution of resource management practices in software engineering."
-  - id: "startup-exit-table"
-    line_start: 607
-    line_end: 666
-    title: "StartExit: Managing startup and exit routines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Startup_routine"
-    image_url: ""
-    image_caption: ""
-    content: "The StartExit procedure loops through a table of startup and exit routines, calling functions in order of priority. This table-driven approach allows the program to manage initialization and cleanup tasks systematically. Each entry in the table specifies the call type (near or far), priority, and function address. By organizing these routines in a structured way, the program ensures critical tasks are executed in the correct order. This technique reflects the team's expertise in low-level programming and their ability to optimize complex processes. The use of startup and exit tables influenced the design of similar mechanisms in later game engines and runtime systems, contributing to the evolution of modular software design."
-  - id: "error-display"
-    line_start: 668
-    line_end: 675
-    title: "ErrorDisplay: Handling runtime errors gracefully"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
-    image_url: ""
-    image_caption: ""
-    content: "The ErrorDisplay procedure outputs error messages to the console, providing feedback to the user in case of runtime issues. Effective error handling was critical in the resource-constrained environment of MS-DOS, where debugging tools were limited. By displaying meaningful error messages, the program helps users diagnose and resolve issues. This routine reflects id Software's commitment to user experience and their ability to balance technical constraints with usability. The approach used here influenced the design of error-handling mechanisms in later DOS-based applications and contributed to the evolution of debugging practices in software development."
+    content: "The 'SaveVectors' routine saves the interrupt vectors for critical interrupts (0, 4, 5, and 6) at program startup. These vectors point to the handlers for divide-by-zero errors, arithmetic overflow, and other runtime exceptions. By saving and later restoring these vectors, the program ensures that other software or TSRs (Terminate-and-Stay-Resident programs) do not interfere with its operation. This was especially important in the MS-DOS environment, where multiple programs could modify the same interrupt vectors. The routine also installs a custom divide-by-zero handler to prevent crashes. This technique was widely used in DOS-era software to maintain stability and predictability, influencing practices in embedded systems and real-time applications."
 
 ---
 
+```asm
         NAME    c0
         PAGE    60,132
         LOCALS
@@ -937,3 +914,4 @@ ENDIF  ; __BOSS__
                 ENDS
 ENDIF  ; __TINY__
                 END     STARTX
+```

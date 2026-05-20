@@ -9,93 +9,110 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-vl-c"
 order: 15
-description: "This file contains the VGA graphics routines for Wolfenstein 3D, showcasing the low-level programming techniques used to manipulate video hardware directly for high performance."
+description: "This file contains the video and graphics routines for Wolfenstein 3D, showcasing the techniques used to manipulate VGA hardware for fast and immersive gameplay."
 
 summary:
-  - point: "Direct manipulation of VGA registers for graphics rendering"
+  - point: "Direct VGA register manipulation for performance"
     link: "https://en.wikipedia.org/wiki/VGA"
     link_label: "VGA"
-  - point: "Efficient palette management techniques for smooth transitions"
+  - point: "Palette fading and manipulation techniques"
     link: "https://en.wikipedia.org/wiki/Color_palette"
     link_label: "Color Palette"
-  - point: "Optimized memory operations for fast screen drawing"
+  - point: "Optimized memory operations for screen rendering"
     link: "https://en.wikipedia.org/wiki/Memory_management"
     link_label: "Memory Management"
-  - point: "Use of inline assembly for hardware-specific tasks"
+  - point: "Use of inline assembly for hardware-level control"
     link: "https://en.wikipedia.org/wiki/Assembly_language"
     link_label: "Assembly Language"
-  - point: "Techniques for handling split-screen and line width adjustments"
-    link: "https://en.wikipedia.org/wiki/Graphics_display_resolution"
-    link_label: "Graphics Display Resolution"
+  - point: "Efficient pixel and line drawing algorithms"
+    link: "https://en.wikipedia.org/wiki/Computer_graphics"
+    link_label: "Computer Graphics"
 
 enhancements:
-  - id: "split-screen-vl-setsplitscreen"
-    line_start: 275
-    line_end: 287
-    title: "Split-Screen Rendering: VL_SetSplitScreen Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Split-screen_(video_games)"
-    image_url: ""
-    image_caption: ""
-    content: "This routine adjusts the VGA hardware registers to enable split-screen rendering by modifying the line compare register. The programmer's goal was to allow different sections of the screen to display distinct content, a feature useful for debugging or specialized gameplay modes. Split-screen techniques were rare in 1992 due to hardware limitations, but they laid the groundwork for multiplayer and cooperative gameplay in later titles. The method used here demonstrates the ingenuity required to push VGA hardware beyond its intended capabilities, inspiring future developers to explore similar hacks for creative purposes."
-  - id: "palette-management-vl-fillpalette"
-    line_start: 307
-    line_end: 320
-    title: "Palette Management: VL_FillPalette Routine"
+  - id: "palette-data-structure"
+    line_start: 28
+    line_end: 32
+    title: "Why Palette Data Was Key to VGA"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""
     image_caption: ""
-    content: "This routine sets the entire VGA palette to a single color by iterating through all 256 palette entries and writing the same RGB values to each. The programmer's goal here was to simplify palette initialization, ensuring a uniform color across the screen. In 1992, VGA graphics cards were the standard for PC gaming, offering a 256-color palette that could be manipulated directly via hardware ports. This approach reflects the era's reliance on direct hardware access to achieve performance and flexibility. The technique of palette manipulation became a cornerstone of early 1990s game development, influencing titles like Doom and Quake, which also relied on palette tricks for visual effects."
-  - id: "fade-effects-vl-fadeout"
-    line_start: 448
-    line_end: 489
-    title: "Fade Effects: VL_FadeOut Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(graphics)"
-    image_url: ""
-    image_caption: ""
-    content: "This routine gradually fades the screen's palette to a specified color over a series of steps. It calculates intermediate colors for each palette entry and updates the VGA palette in real-time. The programmer aimed to create smooth visual transitions, enhancing the game's immersive experience. In the early 1990s, such effects were cutting-edge, as they required precise control over hardware registers and careful timing to avoid screen artifacts. This technique influenced later games, where fade effects became a standard part of graphical storytelling and transitions. Developers studying Wolfenstein 3D's code adopted similar methods for creating atmospheric effects in their own titles."
-  - id: "pixel-drawing-vl-plot"
-    line_start: 599
-    line_end: 609
-    title: "Pixel Drawing: VL_Plot Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Pixel"
-    image_url: ""
-    image_caption: ""
-    content: "This routine plots a single pixel on the screen by calculating its position in the VGA memory and writing the color value directly. The programmer's immediate goal was to provide a low-level function for drawing individual pixels, a fundamental operation in graphics programming. In the early 1990s, such routines were essential for building higher-level graphics primitives like lines and shapes. The VL_Plot routine exemplifies the direct hardware manipulation that characterized the era's game development, influencing techniques used in later engines like id Tech and Unreal Engine."
-  - id: "memory-operations-vl-memtoscreen"
-    line_start: 789
-    line_end: 811
-    title: "Memory Operations: VL_MemToScreen Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: ""
-    image_caption: ""
-    content: "This routine transfers a block of memory to the VGA screen, enabling efficient rendering of images or tiles. The programmer's goal was to optimize screen updates by minimizing the overhead of individual pixel operations. In 1992, memory bandwidth was a critical bottleneck, and routines like VL_MemToScreen were designed to maximize throughput by leveraging hardware-specific features like VGA's planar memory model. This approach influenced later game engines, which adopted similar techniques for efficient texture and sprite rendering."
-  - id: "string-drawing-vl-drawtile8string"
-    line_start: 958
-    line_end: 993
-    title: "String Drawing: VL_DrawTile8String Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_font"
-    image_url: ""
-    image_caption: ""
-    content: "This routine renders a string of text using 8x8 tile graphics, iterating through each character and copying its bitmap representation to the screen. The programmer aimed to provide a flexible method for displaying text in the game's graphical interface. Bitmap fonts were a common choice in 1992 due to their simplicity and compatibility with VGA hardware. This technique influenced text rendering in later games, where bitmap fonts were used for menus, HUDs, and in-game dialogue."
-  - id: "inline-assembly-vga-memory"
-    line_start: 1023
-    line_end: 1052
-    title: "Inline assembly for VGA memory manipulation"
+    content: "This section defines two 256x3 arrays, `palette1` and `palette2`, which store RGB color values for VGA graphics. These palettes were critical for controlling the appearance of the game, as VGA hardware allowed only 256 colors to be displayed simultaneously. By manipulating these palettes, the developers could create effects like fading, color transitions, and dynamic lighting. In 1992, VGA was the dominant graphics standard for MS-DOS games, and efficient use of its capabilities was essential for achieving smooth and visually appealing gameplay. The approach here influenced later games that relied on similar palette manipulation techniques for visual effects, including Doom and Quake."
+  - id: "vga-plane-mode-switch"
+    line_start: 115
+    line_end: 131
+    title: "Switching VGA to Plane Mode for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
     image_url: ""
     image_caption: ""
-    content: "This section of code uses inline x86 assembly to manipulate VGA memory directly. The programmer lodges data into the AX register, moves it into the destination specified by DI, and adjusts the DI pointer with DX to prepare for the next operation. The use of the segment register SS to set DS highlights the careful handling of memory segmentation, a necessity in real-mode x86 programming under MS-DOS. At the time, VGA graphics required direct access to video memory to achieve the performance necessary for smooth gameplay. John Carmack and the id Software team were working within tight constraints: MS-DOS offered no hardware abstraction for graphics, and VGA memory was limited to specific address ranges. By directly writing to these addresses, the code bypasses the overhead of higher-level APIs, achieving the fast rendering speeds that Wolfenstein 3D is known for. This technique influenced later game engines, including id Software's own Doom engine, which continued to push hardware limits with direct memory access."
-  - id: "dynamic-text-dimension-calculation"
-    line_start: 1069
-    line_end: 1075
-    title: "Dynamic calculation of text dimensions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Font_metrics"
+    content: "The `VL_SetVGAPlaneMode` function switches the VGA graphics card into a mode where the screen is divided into four memory planes. This mode allows for more efficient rendering by enabling direct access to specific planes. The function uses BIOS interrupt 0x10 to set the graphics mode and then adjusts VGA registers to optimize rendering. Plane mode was a common technique in the early 1990s for maximizing performance on hardware with limited memory bandwidth. By leveraging this mode, Wolfenstein 3D achieved its signature fast-paced gameplay. This technique influenced other developers working on VGA-based games, setting a standard for efficient graphics programming."
+  - id: "clear-video-buffer"
+    line_start: 149
+    line_end: 172
+    title: "Clearing the Video Buffer in One Sweep"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
     image_caption: ""
-    content: "The VL_SizeTile8String function calculates the width and height of a string rendered in an 8x8 tile font. By multiplying the string length by 8, it dynamically determines the width, while the height remains fixed at 8 pixels. This approach reflects the simplicity and efficiency required in early game development, where memory and CPU cycles were precious resources. The function is part of the broader text rendering system in Wolfenstein 3D, which needed to display menus, scores, and in-game messages without compromising performance. At the time, text rendering in games often relied on fixed-width bitmap fonts, a technique that persisted in many titles throughout the 1990s. The modularity of this function allowed developers to adapt it for different string lengths and screen layouts, influencing later engines that implemented more sophisticated text rendering systems. Today, dynamic text sizing is a standard feature in game development frameworks like Unity and Unreal Engine, but its roots can be traced back to these early implementations."
+    content: "The `VL_ClearVideo` function fills the entire video buffer with a single color. It uses inline assembly to manipulate VGA registers directly, ensuring that all four planes are written simultaneously. This approach bypasses the slower BIOS routines and directly accesses hardware, which was crucial for maintaining high frame rates in Wolfenstein 3D. The use of `rep stosw` in assembly highlights the emphasis on speed and efficiency. This technique was a hallmark of id Software's programming style and became a model for other developers seeking to optimize graphics performance on MS-DOS systems."
+  - id: "palette-fade-out"
+    line_start: 448
+    line_end: 489
+    title: "How Wolfenstein Faded to Black"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
+    image_url: ""
+    image_caption: ""
+    content: "The `VL_FadeOut` function gradually transitions the screen's palette to a single color over a specified number of steps. This effect was used to create dramatic transitions, such as fading to black during level changes or game over screens. The function calculates intermediate palette values for each step and updates the VGA palette accordingly. This technique relied on direct manipulation of VGA registers and careful timing to avoid visual artifacts. Palette fading became a standard feature in games of the era, and its implementation here influenced later titles like Doom and Duke Nukem 3D."
+  - id: "pixel-drawing-algorithm"
+    line_start: 599
+    line_end: 609
+    title: "The Algorithm Behind Single Pixel Plotting"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
+    image_url: ""
+    image_caption: ""
+    content: "The `VL_Plot` function draws a single pixel to the screen at the specified coordinates. It uses a combination of bit masking and direct memory access to manipulate the VGA buffer efficiently. The function ensures that only the relevant plane is updated, minimizing the impact on performance. This low-level approach to pixel manipulation was necessary for creating detailed graphics on hardware with limited capabilities. The techniques used here laid the groundwork for more advanced rendering algorithms in later games and graphics engines."
+  - id: "horizontal-line-drawing"
+    line_start: 618
+    line_end: 654
+    title: "Drawing Horizontal Lines with Precision"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
+    image_url: ""
+    image_caption: ""
+    content: "The `VL_Hlin` function draws a horizontal line on the screen. It calculates the starting and ending positions, applies bit masks for partial bytes, and uses direct memory access to fill the line efficiently. By optimizing for the VGA's memory layout, the function minimizes the number of operations required to render a line. This technique was essential for creating the game's walls and other horizontal elements quickly. The approach demonstrated here influenced the development of more advanced line-drawing algorithms in later graphics engines."
+  - id: "memory-to-screen-transfer"
+    line_start: 789
+    line_end: 811
+    title: "Transferring Memory Blocks to the Screen"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "The `VL_MemToScreen` function transfers a block of data from memory to the screen. It divides the data into planes and uses direct memory access to write each plane to the VGA buffer. This approach was crucial for rendering textures and other graphical elements efficiently. By leveraging the VGA's plane mode, the function achieves high performance while maintaining visual fidelity. The techniques used here were foundational for later games that relied on efficient memory-to-screen transfers, such as Doom and Quake."
+  - id: "tile-string-rendering"
+    line_start: 958
+    line_end: 993
+    title: "Rendering Tile-Based Strings on VGA"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
+    image_url: ""
+    image_caption: ""
+    content: "The `VL_DrawTile8String` function renders a string of characters using 8x8 tiles stored in memory. Each character is drawn by copying its corresponding tile data to the VGA buffer, plane by plane. This method was used for displaying text in the game's menus and HUD. By optimizing the rendering process for the VGA's plane mode, the function achieves high performance while maintaining visual clarity. Tile-based rendering was a common technique in early video games and influenced the design of later graphics engines that supported text and UI elements."
+  - id: "vga-memory-write-loop"
+    line_start: 1052
+    line_end: 1060
+    title: "How Assembly Made VGA Graphics Fly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
+    image_url: ""
+    image_caption: ""
+    content: "This section of assembly code directly manipulates VGA memory to render graphics efficiently. The sequence of instructions, including `lodsw`, `mov`, and `add`, is part of a loop that writes pixel data to the screen by transferring data from a source to a destination pointer (`di`). The use of `mov ds, ax` sets the data segment register to point to the stack segment, ensuring proper memory access. At the time, VGA graphics were limited to specific modes and memory layouts, requiring developers to work directly with hardware registers and memory addresses. John Carmack's mastery of assembly allowed Wolfenstein 3D to achieve smooth scrolling and fast rendering, critical for its immersive gameplay. This approach was born out of necessity, as MS-DOS lacked high-level APIs for graphics. By bypassing the operating system and interacting directly with hardware, id Software could push the limits of what VGA could achieve. This technique influenced later games and engines, including Doom and Quake, which continued to leverage low-level optimization for performance."
+  - id: "tile-string-dimensions"
+    line_start: 1069
+    line_end: 1075
+    title: "The Math Behind Tile-Based Text Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_rendering"
+    image_url: ""
+    image_caption: ""
+    content: "The `VL_SizeTile8String` function calculates the dimensions of a string rendered in an 8x8 tile-based font. It sets the height to a fixed value of 8 pixels and computes the width as 8 times the string's length. This straightforward calculation reflects the tile-based rendering approach used in Wolfenstein 3D, where text and graphics were often aligned to fixed grid sizes for simplicity and performance. At the time, tile-based rendering was a common technique in games, as it allowed developers to optimize memory usage and reduce computational overhead. By predefining tile sizes, the engine could quickly calculate positions and dimensions without complex math. This function exemplifies id Software's focus on efficiency, ensuring that even text rendering adhered to the game's fast-paced nature. The concept of tile-based rendering influenced later engines and games, particularly in the early 1990s, when hardware constraints necessitated clever optimization strategies. Today, similar principles are seen in modern game engines, albeit with far greater flexibility and power."
 
 ---
 
+```asm
 // ID_VL.C
 
 #include <dos.h>
@@ -1171,11 +1188,4 @@ void VL_SizeTile8String (char *str, int *width, int *height)
 	*height = 8;
 	*width = 8*strlen(str);
 }
-
-
-
-
-
-
-
-
+```
