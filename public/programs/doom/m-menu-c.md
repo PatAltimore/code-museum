@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The quick save/load system in DOOM allows players to rapidly save and resume their progress with minimal interruption. The `M_QuickSave` function initiates a save operation, prompting the player to confirm the action if a slot has already been selected. Similarly, `M_QuickLoad` retrieves the last quick save, ensuring a seamless return to gameplay. This feature was a significant innovation in 1993, reducing frustration for players navigating challenging levels. Quick save/load systems became a hallmark of PC gaming, appearing in titles like Half-Life and Skyrim. They remain a critical feature in modern games, reflecting DOOM's enduring influence on usability and player-centric design."
   - id: "sound-volume-control"
-    line_start: 798
+    line_start: 797
     line_end: 847
     title: "Dynamic sound volume adjustment"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -73,14 +73,14 @@ enhancements:
     content: "This section implements the ability to adjust sound effects and music volume dynamically within the game menu. The functions `M_SfxVol` and `M_MusicVol` allow the player to increase or decrease volume levels, constrained between 0 and 15. The actual volume adjustment is handled by the `S_SetSfxVolume` and `S_SetMusicVolume` functions. In 1993, sound design in games was becoming increasingly important, and DOOM's approach to giving players control over audio settings was ahead of its time. This feature would later become standard in video games, influencing titles across genres. The ability to adjust sound dynamically reflects the developers' focus on user experience and adaptability to different hardware setups."
   - id: "menu-navigation-icons"
     line_start: 853
-    line_end: 870
+    line_end: 869
     title: "Rendering menu navigation icons"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_fonts"
     image_url: ""
     image_caption: ""
     content: "The `M_DrawMainMenu` and `M_DrawNewGame` functions use bitmap patches to render the main menu and new game options. These patches are loaded from the game's WAD file using the `W_CacheLumpName` function. Bitmap fonts and graphics were a common choice for games in the early 1990s due to their simplicity and compatibility with limited hardware. DOOM's menu design was visually striking and easy to navigate, setting a precedent for future games that combined aesthetic appeal with functional design. The use of bitmap patches also highlights the importance of efficient memory management in an era when hardware constraints were a significant challenge."
   - id: "episode-selection"
-    line_start: 889
+    line_start: 888
     line_end: 940
     title: "Episode selection and verification"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -88,8 +88,8 @@ enhancements:
     image_caption: ""
     content: "This section handles the episode selection menu, allowing players to choose which campaign episode to play. The `M_Episode` function includes checks for shareware and registered versions of the game, ensuring compatibility with different editions. The `M_VerifyNightmare` function introduces a confirmation dialog for the 'Nightmare' difficulty, emphasizing the game's challenging nature. These features reflect DOOM's modular design, which accommodated various distribution models, including shareware. The episode selection mechanism influenced later games that adopted similar modular approaches, such as expansion packs and downloadable content."
   - id: "menu-options-rendering"
-    line_start: 945
-    line_end: 965
+    line_start: 944
+    line_end: 966
     title: "Rendering options menu with sliders"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

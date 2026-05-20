@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The 'testfoot' sequence encodes the animation for precise foot placement during gameplay. Each 'db' (define byte) instruction specifies the frame data, movement offsets (e.g., 'chx' for horizontal changes), and transitions to subsequent animations. This meticulous attention to detail ensures the Prince's movements feel natural and responsive. Jordan Mechner filmed his brother performing various actions, then traced the frames to achieve lifelike animation. In 1989, such realism was groundbreaking, especially on the constrained Apple II hardware. The encoding here reflects the challenges of fitting cinematic sequences into 128K of memory using bank-switched techniques. This approach influenced later games like Another World (1991) and Flashback (1992), which adopted similar animation systems for cinematic platforming."
   - id: "stepback-movement"
-    line_start: 1056
+    line_start: 1059
     line_end: 1062
     title: "Stepback: Retreating animation sequence"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The 'stepback' routine encodes the animation for the Prince stepping backward. This sequence uses 'chx' to adjust horizontal positioning and transitions to the 'stand' state. Mechner's design philosophy emphasized fluidity and responsiveness, which required encoding even minor movements like retreating. At the time, most games relied on rigid, tile-based movement, but Prince of Persia broke new ground with its pixel-perfect animations. This innovation paved the way for modern platformers and action-adventure games, where character movement is integral to gameplay immersion."
   - id: "step-forward-animation"
-    line_start: 1065
+    line_start: 1064
     line_end: 1083
     title: "Step Forward: 14-pixel movement sequence"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
@@ -127,14 +127,14 @@ enhancements:
     content: "The 'drinkpotion' routine encodes the animation for the Prince drinking a potion to heal. Each frame is carefully defined, with movement offsets ('chx') and visual effects ('effect'). Mechner's rotoscoping technique ensured that even mundane actions like drinking were rendered with cinematic flair. On the Apple II, memory constraints required optimizing animations by cutting frames if necessary, as noted in the comments. This attention to detail influenced modern RPGs and action games, where healing animations are often used to enhance immersion, such as in The Witcher series."
   - id: "climbstairs-animation"
     line_start: 1459
-    line_end: 1495
+    line_end: 1493
     title: "Climb Stairs: Vertical movement sequence"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The 'climbstairs' routine encodes the animation for climbing stairs, including vertical ('chy') and horizontal ('chx') adjustments. This sequence showcases Mechner's commitment to realism, as climbing was derived from rotoscoped footage. On the Apple II, encoding such complex movements required innovative techniques to fit within memory constraints. The fluidity of this animation influenced later platformers and action-adventure games, where climbing mechanics became a staple, such as in Uncharted (2007) and Shadow of the Colossus (2005)."
   - id: "mouse-scurry-animation"
-    line_start: 1668
+    line_start: 1665
     line_end: 1675
     title: "Mouse Scurry: Supporting character animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"

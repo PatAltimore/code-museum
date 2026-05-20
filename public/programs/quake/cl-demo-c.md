@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "cl-stop-playback"
-    line_start: 39
+    line_start: 36
     line_end: 57
     title: "Stopping demo playback gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This function, `CL_StopPlayback`, handles the termination of demo playback, ensuring that resources such as file handles are properly released and the game state is reset. It also checks if a timedemo is running and calls `CL_FinishTimeDemo` to finalize performance metrics. In the mid-1990s, demos were a novel feature in games, allowing players to record and replay their gameplay. This functionality was particularly useful for debugging, sharing strategies, and analyzing performance. John Carmack and Michael Abrash, known for their optimization expertise, implemented this feature to work efficiently within the constraints of the Intel 486 and Pentium processors. The concept of demo playback influenced later games and engines, such as the Source engine, which expanded on this idea with tools for machinima and esports."
   - id: "cl-write-demo-cmd"
-    line_start: 63
+    line_start: 59
     line_end: 103
     title: "Recording player commands in demos"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "zone-memory-allocation-overview"
     line_start: 32
-    line_end: 41
+    line_end: 86
     title: "Zone Memory Allocation: A Compact System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The Z_CheckHeap function validates the integrity of the memory zone by ensuring that blocks are correctly linked and do not overlap. It checks for errors such as consecutive free blocks or improper block sizes, which could lead to crashes or instability. This function reflects the meticulous attention to detail that characterized DOOM's development. By regularly validating memory integrity, Carmack ensured that the game could maintain high performance and stability even under heavy load. This practice influenced the development of debugging and validation tools in later game engines, emphasizing the importance of memory management in real-time applications."
   - id: "z-freememory-calculating-available-space"
-    line_start: 449
+    line_start: 448
     line_end: 466
     title: "Z_FreeMemory: Calculating Free Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"

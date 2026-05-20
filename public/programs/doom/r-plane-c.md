@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "visplane-data-structure"
-    line_start: 51
+    line_start: 47
     line_end: 60
     title: "Visplane: Efficient floor and ceiling management"
     wikipedia_url: "https://doomwiki.org/wiki/Visplane"

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "include-directives-and-segment-assumptions"
-    line_start: 5
+    line_start: 1
     line_end: 54
     title: "Include directives and segment assumptions"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The $SET_OEM_HANDLER and related routines allow OEMs to extend MS-DOS functionality by setting custom interrupt handlers. This feature was crucial for Microsoft's licensing strategy, enabling hardware vendors to tailor MS-DOS to their specific needs. By providing a mechanism for customization, Microsoft ensured that MS-DOS could adapt to a wide range of hardware configurations, from IBM PCs to non-IBM compatibles. This extensibility contributed to the widespread adoption of MS-DOS, as OEMs could differentiate their products while maintaining compatibility with the growing ecosystem of MS-DOS applications. The concept of extensible system calls influenced later operating systems, including Windows, which supports driver and API extensions."
   - id: "null-device-driver"
-    line_start: 466
+    line_start: 462
     line_end: 481
     title: "Null device driver implementation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
@@ -79,7 +79,7 @@ enhancements:
     content: "The SNULDEV and INULDEV routines implement a driver for the null device, a special device that discards all data written to it. This feature is a staple of operating systems, providing a way to test output or suppress unwanted data. The null device concept originated in Unix and was adopted by MS-DOS to provide similar functionality. By including a null device driver, MS-DOS enhanced its utility for developers and system administrators, who could use it for debugging and scripting. The null device remains a standard feature in modern operating systems, demonstrating the enduring influence of this design choice."
   - id: "disk-io-handlers"
     line_start: 486
-    line_end: 584
+    line_end: 585
     title: "Disk I/O handlers with error translation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_operating_system"
     image_url: ""

@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "This section performs relocation, adjusting the program's memory addresses based on its load location. Relocation is necessary for segmented programs (.EXE files) to ensure they function correctly regardless of where they are loaded in memory. MS-DOS 2.0's support for relocation reflects its evolution toward handling more complex software, influenced by Unix's approach to program execution. The relocation process here laid the groundwork for more advanced executable formats, such as ELF (Executable and Linkable Format) used in Unix-like systems. It also influenced the development of dynamic linking and shared libraries in modern operating systems."
   - id: "exec-build-header"
-    line_start: 792
+    line_start: 777
     line_end: 805
     title: "Building Process Headers for Execution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Process_(computing)"

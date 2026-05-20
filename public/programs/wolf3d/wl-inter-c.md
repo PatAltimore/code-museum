@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "clear-split-vwb"
-    line_start: 9
+    line_start: 7
     line_end: 24
     title: "Setting up split-screen double buffering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The PreloadGraphics function caches graphical assets and prepares the screen for gameplay. It uses a progress bar to indicate loading status, ensuring players remain engaged during preloading. Efficient caching was essential for Wolfenstein 3D's smooth performance on limited hardware. By preloading assets, id Software minimized in-game loading times, creating a seamless experience. This technique became standard practice in game development, influencing asset management strategies in modern engines like Unity and Unreal."
   - id: "draw-high-scores-display"
-    line_start: 1022
+    line_start: 1020
     line_end: 1182
     title: "Displaying and Sorting High Scores"
     wikipedia_url: "https://en.wikipedia.org/wiki/High_score"

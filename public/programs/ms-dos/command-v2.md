@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "userpath-default-path-null"
     line_start: 225
-    line_end: 249
+    line_end: 261
     title: "Default PATH set to null: a design choice"
     wikipedia_url: "https://en.wikipedia.org/wiki/Environment_variable"
     image_url: ""
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "This section transfers transient program information into a designated memory area. The transient program area was a key innovation in MS-DOS v2.0, allowing external commands (like COMMAND.COM) to be loaded and executed dynamically. This approach was inspired by Unix's ability to execute programs from disk rather than keeping everything in memory. The transient area concept became foundational for DOS-based systems, enabling modularity and extensibility. It also influenced the design of later operating systems like Windows, where dynamic loading of executables became standard."
   - id: "remcheck-removable-media-detection"
-    line_start: 1079
+    line_start: 1067
     line_end: 1097
     title: "Detecting removable media for floppy drives"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"

@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This routine initializes graphics file handling by loading Huffman dictionaries and data offsets, then opening the graphics file for continuous access during gameplay. It also decompresses and loads picture headers into memory. By keeping the graphics file open, the game minimizes file I/O overhead, ensuring smooth asset loading. This approach reflects id Software's ingenuity in managing resources on MS-DOS systems, where disk access was slow and memory was limited. The techniques demonstrated here influenced asset management in later game engines, including id Tech 1 and id Tech 2."
   - id: "map-file-setup"
-    line_start: 940
+    line_start: 942
     line_end: 1012
     title: "Initializing Map File Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Run-length_encoding"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "This routine sets up map file handling by loading offsets and tile information, opening the map data file, and allocating memory for map planes. It uses Carmack's RLE compression to store and retrieve map data efficiently. The ability to handle large, complex maps within the constraints of MS-DOS memory was a key innovation in Wolfenstein 3D. This routine exemplifies id Software's mastery of compression and memory management, techniques that became standard in later games like Doom and Quake, where complex level design demanded efficient data handling."
   - id: "setup-audio-file-loading"
-    line_start: 1024
+    line_start: 1026
     line_end: 1068
     title: "Loading audio files dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes the audio file setup for Wolfenstein 3D, dynamically loading audio headers and data files. The code distinguishes between linked and standalone audio headers, optimizing memory usage based on the configuration. In the early 1990s, PCs were limited by small amounts of RAM and slow disk access. Developers like John Carmack had to design systems that could load and unload assets dynamically to fit within these constraints. This approach ensured that audio data could be efficiently accessed without consuming excessive memory. The dynamic loading system laid the groundwork for future games that required similar techniques to handle large amounts of data. Techniques like these influenced subsequent game engines, including id Tech, which continued to refine asset management strategies."
   - id: "startup-and-shutdown-procedures"
-    line_start: 1081
+    line_start: 1083
     line_end: 1122
     title: "Startup and shutdown: managing resources"
     wikipedia_url: "https://en.wikipedia.org/wiki/Resource_management_(computing)"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The CA_Startup and CA_Shutdown routines handle the initialization and cleanup of resources, including opening and closing files for maps, graphics, and audio. These routines reflect the meticulous attention to resource management required in the era of MS-DOS, where improper handling of file descriptors or memory could crash the system. The startup routine ensures all necessary files are loaded, while the shutdown routine closes them to prevent resource leaks. This pattern of resource management became a standard practice in software development, influencing how modern applications handle initialization and cleanup."
   - id: "audio-chunk-caching"
-    line_start: 1132
+    line_start: 1134
     line_end: 1246
     title: "Caching audio chunks for real-time playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Audio_data"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The CA_CacheAudioChunk and CA_LoadAllSounds routines manage the caching of audio data, ensuring that sound effects are available for real-time playback. By dynamically loading and decompressing audio chunks, the system avoids keeping all audio data in memory, which would be infeasible on early PCs. The use of Huffman compression reduces the size of audio files, and the code includes logic to handle both small and large buffers efficiently. This approach to audio management influenced later game engines, which adopted similar techniques to handle increasingly complex soundscapes."
   - id: "graphics-chunk-expansion"
-    line_start: 1259
+    line_start: 1261
     line_end: 1365
     title: "Expanding and caching graphics chunks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics"

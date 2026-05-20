@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This section implements two methods for handling console input: interrupt-driven and polled. Interrupt-driven input uses a keyboard interrupt handler to process keystrokes, while polled input continuously checks the status port for new characters. The choice between these methods reflects the trade-offs in system design: interrupts are more efficient but require careful management, while polling is simpler but consumes more CPU cycles. These techniques influenced later systems, which refined interrupt handling to support multitasking and real-time applications. The use of queues for input buffering also demonstrates an early approach to managing asynchronous I/O operations."
   - id: "disk-change-detection"
-    line_start: 674
+    line_start: 673
     line_end: 774
     title: "Detecting disk changes: a hardware challenge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"

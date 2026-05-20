@@ -39,7 +39,7 @@ enhancements:
     content: "This subroutine initializes the game by setting the memory bank for auxiliary zero-page access (ALTZPon) and calling the `StartGame` routine. The programmer, Jordan Mechner, designed this entry point to handle the transition from the title screen to gameplay seamlessly. At the time, games often had abrupt transitions, but Mechner's cinematic vision required a smooth and immersive start. The auxiliary memory setup reflects the Apple II's constrained hardware environment, where bank-switching was necessary to fit the game's complex animations and logic into the limited 128K memory. This approach laid the groundwork for cinematic platformers, influencing later titles like Another World and Flashback."
   - id: "resume-game-sequence"
     line_start: 104
-    line_end: 117
+    line_end: 113
     title: "Resuming saved games: persistence in 1989"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The `deathsong` routine dynamically selects music based on the circumstances of the player's death. If the opponent was the shadowman (`ShadID`), a specific track (`s_Shadow`) is played; otherwise, the music varies between 'heroic death' (`s_Heroic`) and 'accidental death' (`s_Accid`). This nuanced use of sound cues enhances the emotional impact of gameplay events, a technique that became standard in cinematic games. Mechner's integration of music as a storytelling device influenced the use of dynamic soundtracks in later titles like The Legend of Zelda: Ocarina of Time."
   - id: "copy-protection-flip-disk"
-    line_start: 1546
+    line_start: 1541
     line_end: 1593
     title: "Embedded copy protection logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "The `flipdisk` routine incorporates copy protection checks into gameplay. It verifies disk integrity (`redherring` and `redherring2`) and prompts the player to flip the disk if necessary. This approach reflects the challenges of protecting software in the 1980s, where piracy was rampant. By embedding copy protection into the game's logic, Mechner ensured that unauthorized copies would fail gracefully, maintaining immersion. This technique influenced later games and systems, including the use of hardware dongles and encrypted cartridges in consoles like the NES and SNES."
   - id: "yellow-copy-protection-check"
-    line_start: 1707
+    line_start: 1702
     line_end: 1720
     title: "Yellow flag: early copy protection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"

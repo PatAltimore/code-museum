@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "sysinit-jump-to-goinit"
-    line_start: 145
+    line_start: 133
     line_end: 147
     title: "SYSINIT: Jump to Initialization Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "byte-update-array"
-    line_start: 1
+    line_start: 19
     line_end: 21
     title: "Update Array: Tracking Screen Changes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"

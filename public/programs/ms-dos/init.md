@@ -135,7 +135,7 @@ enhancements:
     content: "The COPYCOMSP section copies the COMSPEC environment variable to resident memory, ensuring it remains accessible during program execution. It includes memory allocation and deallocation routines, reflecting the constrained memory environment of early PCs. This code demonstrates the careful management of transient and resident memory, a hallmark of MS-DOS v2.0's design. These techniques influenced later systems, such as Windows 3.x, which introduced more sophisticated memory management strategies while retaining backward compatibility with MS-DOS."
   - id: "kanji-character-handling"
     line_start: 1669
-    line_end: 1683
+    line_end: 1671
     title: "Kanji character handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""

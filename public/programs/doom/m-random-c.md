@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section defines a static array `rndtable` containing 256 precomputed random numbers. The table is used to generate pseudo-random numbers for gameplay elements such as enemy behavior, item drops, and environmental effects. By using a fixed table, DOOM ensures deterministic randomness—critical for maintaining consistent gameplay across different runs, especially in multiplayer or demo playback scenarios. In the early 1990s, computational resources were limited, particularly on consumer-grade hardware like the Intel 80486 processors. Generating random numbers dynamically using complex algorithms would have been computationally expensive. Instead, John Carmack and the team at id Software opted for this lookup table approach, which is both fast and predictable. The table itself is small enough to fit comfortably in the CPU cache, ensuring minimal performance overhead. This technique influenced many subsequent games, especially those requiring deterministic randomness for replayability or debugging. Developers studying DOOM's source code have noted the elegance of this approach, and similar precomputed tables have appeared in engines like Quake and Unreal. Today, while modern systems can afford more sophisticated random number generation, the principle of deterministic randomness remains relevant in areas like procedural generation and competitive gaming."
   - id: "deterministic-random-functions"
-    line_start: 56
+    line_start: 57
     line_end: 67
     title: "Two Deterministic Random Functions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Deterministic_algorithm"

@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The CVTX routine converts X-coordinates into byte and offset values for single and double hires screens. This calculation is essential for positioning graphics accurately on the Apple II's limited resolution display. Mechner's attention to detail in handling offscreen values and ensuring accurate results reflects the challenges of programming for early home computers. Techniques like this laid the groundwork for more advanced coordinate systems in modern game engines, such as Unity and Unreal, which handle 3D space with similar precision."
   - id: "zero-image-lists"
-    line_start: 961
+    line_start: 968
     line_end: 976
     title: "Resetting image lists for new frames"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "ZEROLSTS resets all image lists except peel lists, preparing them for the next frame. This routine is a key part of the game's double buffering strategy, ensuring that old graphics do not interfere with new ones. By clearing lists efficiently, Mechner optimized the game's performance on the Apple II, a machine with limited memory and processing power. This approach influenced later games that relied on similar techniques to manage graphical updates, such as the tile-based rendering in The Legend of Zelda: A Link to the Past (1991)."
   - id: "joystick-input-processing"
-    line_start: 1017
+    line_start: 1030
     line_end: 1062
     title: "Joystick input for cinematic control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This section processes joystick input, including directional controls and button presses, translating raw hardware signals into usable game data. The routines `getjoy`, `getkbd`, and `CONTROLLER` handle input from both joystick and keyboard, allowing interchangeable use depending on the player's setup. At the time, joystick input was a critical feature for action games, providing precise control over the protagonist's movements. Jordan Mechner's implementation ensures smooth transitions between input devices, reflecting the game's emphasis on fluid, cinematic gameplay. The approach influenced later games by demonstrating how to integrate multiple input methods seamlessly, contributing to the evolution of user-friendly control schemes in platformers and action games."
   - id: "sound-routines"
-    line_start: 1303
+    line_start: 1314
     line_end: 1333
     title: "Rotational sound routines for immersive effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_synthesis"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `GTONE` and `WHOOP` routines produce sound effects, including tones and dynamic audio cues. These routines manipulate the Apple II's speaker directly, using pitch and duration parameters to create varied audio effects. Mechner's implementation enhances the game's cinematic atmosphere by integrating sound that complements the visuals and gameplay. This approach influenced later games by demonstrating how to use limited audio hardware creatively, contributing to the evolution of sound design in video games."
   - id: "random-number-generation"
-    line_start: 1379
+    line_start: 1386
     line_end: 1395
     title: "Random number generation for gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `RND` routine generates random numbers using a simple linear congruential generator formula: `(5 * RNDseed + 23) mod 256`. Random numbers are essential for gameplay elements such as enemy behavior, environmental effects, and unpredictability in challenges. Mechner's implementation is efficient and compact, fitting within the constraints of 6502 assembly while providing sufficient randomness for gameplay needs. This approach influenced later games by demonstrating how to implement randomization in resource-limited environments, paving the way for dynamic and engaging gameplay mechanics."
   - id: "bank-switched-memory"
-    line_start: 1397
+    line_start: 1409
     line_end: 1495
     title: "Bank-switched memory for graphics routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The NORMSPEED subroutine is responsible for setting the Apple II's display and gameplay speed to normal operation. It begins by checking whether the code is running on an Apple IIGS (a later model in the Apple II line). If not, the routine exits immediately. Otherwise, it manipulates specific memory-mapped hardware registers to adjust the display settings: setting a black border, black background, and white text. The subroutine also ensures normal gameplay speed by clearing a specific bit in the $C036 register. These hardware manipulations reflect the programmer's deep understanding of the Apple II's quirks and limitations. In the mid-1980s, developers often had to write directly to hardware registers to achieve desired effects, as higher-level abstractions were rare or nonexistent. Jordan Mechner, working solo on Prince of Persia, had to master these techniques to create a cinematic experience on a machine with just 128K of memory. This subroutine exemplifies the ingenuity required to make the Apple II hardware perform beyond its intended capabilities. Techniques like these influenced later developers working on constrained systems, including those creating games for early consoles like the NES and Sega Master System."
   - id: "read-control-panel-parameter"
-    line_start: 2080
+    line_start: 2078
     line_end: 2103
     title: "Reading control panel parameters on Apple IIGS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIGS"

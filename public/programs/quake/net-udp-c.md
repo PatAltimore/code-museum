@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "foundation-networking-setup"
-    line_start: 22
-    line_end: 44
+    line_start: 19
+    line_end: 57
     title: "Foundation: Networking Setup for Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The `NET_StringToAdr` function converts a string representation of an IP address into the `netadr_t` structure, handling both numeric IPs and hostnames. It also supports optional port numbers, making it versatile for parsing server addresses. This function relies on system calls like `gethostbyname` and `inet_addr`, bridging human-readable inputs with machine-level networking. In 1996, this feature was crucial for enabling players to connect to servers via command-line inputs or configuration files. The ability to parse and resolve hostnames influenced later game engines and networking libraries, including SDL_net and RakNet, which adopted similar approaches for user-friendly server connections."
   - id: "udp-packet-reception"
     line_start: 189
-    line_end: 214
+    line_end: 212
     title: "Receiving UDP Packets: Real-Time Communication"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_Datagram_Protocol"
     image_url: ""

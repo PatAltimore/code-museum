@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `R_BeginEdgeFrame` function sets up the data structures for edge and surface processing, including initializing pointers and flags. This step is critical for organizing the rendering pipeline, as it prepares the linked lists and arrays used for edge sorting and span generation. The decision to use linked lists and arrays reflects the constraints of 1990s hardware, where memory and computational resources were limited. By carefully structuring data, the developers ensured efficient traversal and manipulation during rendering. This initialization routine exemplifies the meticulous optimization required to achieve real-time 3D graphics on systems like the Intel 486 and early Pentium processors."
   - id: "r-insert-new-edges"
-    line_start: 163
+    line_start: 161
     line_end: 202
     title: "Edge insertion into active edge table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InsertNewEdges` function adds new edges to the active edge table, maintaining their sorted order based on screen position. This linked-list-based approach allows efficient insertion and traversal, which is crucial for real-time rendering. The active edge table represents the edges currently being processed for span generation, a key step in determining visible portions of surfaces. The use of linked lists here reflects the need for dynamic data structures that can adapt to changing scene geometry during rendering. Techniques like this laid the groundwork for more advanced visibility determination methods in later game engines."
   - id: "r-step-active-u"
-    line_start: 229
+    line_start: 227
     line_end: 292
     title: "Updating edge positions during scanline processing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scanline_rendering"

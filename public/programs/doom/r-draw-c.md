@@ -39,7 +39,7 @@ enhancements:
     content: "This section implements the `R_DrawColumn` function, responsible for rendering vertical slices of wall textures. The algorithm leverages DOOM's fixed perspective, where walls always have a constant z-depth, allowing for a simplified and highly optimized rendering loop. By using lookup tables (`ylookup` and `columnofs`), the code avoids expensive multiplications to calculate framebuffer addresses, a crucial optimization for the limited processing power of 1990s consumer PCs. John Carmack, the lead programmer, adapted this approach from techniques used in Wolfenstein 3D, further refining it for DOOM's more complex environments. This optimization enabled DOOM to achieve smooth gameplay on hardware like the Intel 486, with only 33 MHz of processing power. The technique influenced subsequent games and engines, including Quake and Unreal Engine, where efficient rendering loops became a hallmark of real-time graphics."
   - id: "fuzz-effect-invisibility"
     line_start: 277
-    line_end: 367
+    line_end: 368
     title: "Fuzz Effect: Rendering Spectres and Shadows"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `R_DrawFuzzColumn` function creates a 'fuzzy' rendering effect used for spectres and invisible players. It achieves this by copying pixels from adjacent columns, combined with a special colormap that darkens the image. This visual trick gives the impression of partial invisibility, enhancing the game's eerie atmosphere. The implementation uses a `fuzzoffset` table to determine pixel offsets, cycling through them to create the effect. This was a clever workaround to simulate transparency on hardware that lacked native support for alpha blending. The fuzz effect became iconic in DOOM, contributing to its immersive gameplay. While modern engines use more advanced techniques like shaders for transparency, the fuzz effect remains a memorable example of ingenuity in early game programming."
   - id: "translation-tables-color-remapping"
     line_start: 452
-    line_end: 481
+    line_end: 483
     title: "Translation Tables: Multiplayer Color Customization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Palette_(computing)"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `R_InitTranslationTables` function generates tables to remap the green color ramp of player sprites to other colors, enabling visual differentiation in multiplayer mode. This was essential for DOOM's groundbreaking multiplayer gameplay, allowing players to identify each other by unique colors. The function maps the green ramp to gray, brown, and red, while preserving other colors. This approach relies on the PLAYPAL lump, a predefined palette structure in DOOM's WAD files. The use of translation tables exemplifies Carmack's focus on efficiency, as it avoids runtime calculations by precomputing mappings. This technique influenced later games, where palette-based color customization became common in sprite-based engines."
   - id: "span-rendering-floor-ceiling"
     line_start: 488
-    line_end: 562
+    line_end: 563
     title: "Span Rendering: Efficient Floor and Ceiling Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""

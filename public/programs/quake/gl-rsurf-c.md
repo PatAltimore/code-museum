@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "This routine handles the rendering of water surfaces with transparency effects, blending textures to create realistic visuals. It adjusts OpenGL settings to enable blending and modulate texture colors based on alpha values. In 1996, transparency effects were computationally intensive, but Quake's implementation optimized them for real-time rendering. The technique influenced later games and engines, including Unreal and Unity, which expanded on these ideas to create more complex environmental effects."
   - id: "draw-texture-chains"
-    line_start: 1034
+    line_start: 1032
     line_end: 1081
     title: "Sorting textures for efficient rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `R_DrawBrushModel` function is responsible for rendering brush models, which are dynamic objects like doors or platforms. It calculates visibility and lighting for each model, taking into account rotation and position. The function also handles dynamic lighting, marking affected surfaces for light blending. Brush models were a key feature of Quake's true 3D environment, allowing interactive elements to seamlessly integrate into the world. This approach was groundbreaking in 1996, as most games relied on pre-rendered or pseudo-3D environments. The dynamic lighting calculations here laid the groundwork for more advanced techniques in games like Doom 3, which heavily relied on real-time lighting and shadows."
   - id: "recursive-world-node"
-    line_start: 1195
+    line_start: 1193
     line_end: 1319
     title: "Recursive visibility determination in 3D worlds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"

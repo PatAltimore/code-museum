@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "extrastrength-probabilities-for-enemy-ai"
-    line_start: 123
+    line_start: 109
     line_end: 126
     title: "Probabilities for enemy AI behavior"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the 'extrastrength' data table, which assigns probabilities to enemy behaviors such as striking, blocking, and advancing. These values are indexed by guard program numbers, allowing different enemies to exhibit distinct combat styles. Mechner's approach reflects the early use of probabilistic AI in games, where randomness was combined with scripted logic to create dynamic and unpredictable encounters. In the context of 1989, AI in video games was still in its infancy, with most games relying on simple patterns or fixed behaviors. By introducing probabilities, Mechner added depth to the combat system, making each fight feel unique and engaging. This technique influenced later games, including cinematic platformers like Another World (1991), which also emphasized dynamic interactions between characters."
   - id: "basicstrength-and-basiccolor-guard-attributes"
-    line_start: 131
+    line_start: 128
     line_end: 158
     title: "Guard attributes: strength and uniform color"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The AUTOCTRL subroutine is the central logic for enemy AI, determining actions based on the character's state and position. It branches to specific subroutines for different enemy types, including guards, the vizier, and the shadow. This modular approach allowed Mechner to implement diverse behaviors while maintaining a cohesive structure. In 1989, AI in games was limited by hardware constraints, requiring developers to optimize routines for speed and memory usage. Mechner's implementation demonstrates an early example of modular AI design, which has since become a standard practice in game development. The concept of branching AI routines influenced later titles, such as the stealth mechanics in Metal Gear Solid (1998), where enemy actions depend on player visibility and noise levels."
   - id: "mouseprog-character-specific-behavior"
-    line_start: 198
+    line_start: 195
     line_end: 219
     title: "Mouse-specific behavior routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "ADGUARD dynamically introduces guards to new screens based on level-specific logic. It handles hard-coded appearances, such as the Shadowman in Level 12, ensuring that encounters are tailored to the narrative and gameplay progression. This subroutine reflects Mechner's innovative use of scripted AI to create tension and challenge. The dynamic introduction of enemies influenced later games with adaptive AI systems, such as Half-Life and its sequels, which use similar techniques to create engaging and unpredictable encounters."
   - id: "addnormalgd-guard-resurrection-logic"
-    line_start: 1829
+    line_start: 1830
     line_end: 1940
     title: "Resurrecting guards dynamically on new screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"

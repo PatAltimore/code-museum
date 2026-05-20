@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section sets up the foundational variables and external references required for entity management in Quake. The 'extern' declarations link to global variables defined elsewhere in the codebase, such as player prediction and solid player settings. These variables are critical for enabling multiplayer functionality and ensuring smooth gameplay. At the time, managing shared state across multiple files was a common practice in C programming, especially in large projects like Quake. This setup reflects the modular design philosophy of id Software, where different aspects of the game were handled in separate files but interconnected through shared variables."
   - id: "dynamic-light-allocation"
-    line_start: 36
+    line_start: 34
     line_end: 41
     title: "Dynamic light allocation for entities"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(computer_graphics)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The 'CL_DecayLights' function reduces the radius of dynamic lights over time, simulating natural light decay. This ensures that temporary light effects, such as explosions, fade out smoothly rather than disappearing abruptly. The decay rate is proportional to the frame time, maintaining consistency across different hardware configurations. This technique was part of Quake's innovative approach to real-time rendering, influencing later games and engines that adopted similar methods for handling transient visual effects."
   - id: "delta-compression-for-network-efficiency"
-    line_start: 152
+    line_start: 150
     line_end: 158
     title: "Delta compression for network efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Delta_encoding"
@@ -79,7 +79,7 @@ enhancements:
     content: "The 'CL_ParsePacketEntities' function handles the parsing and interpolation of entity states received in network packets. It ensures that entities are correctly positioned and updated based on the latest data from the server. Interpolation is used to smooth out movements and transitions, reducing visual artifacts caused by network latency. This section highlights Quake's advanced handling of real-time multiplayer synchronization, a feature that set the standard for online gaming. Techniques developed here were studied and adapted by developers of later multiplayer games, such as Team Fortress and Battlefield."
   - id: "projectile-parsing-and-linking"
     line_start: 551
-    line_end: 608
+    line_end: 609
     title: "Projectile parsing and linking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Projectile_motion"
     image_url: ""

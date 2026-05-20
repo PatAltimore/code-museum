@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_AdjustAngles` function modifies the player's view angles based on input states and speed settings. It accounts for strafe movements, pitch adjustments, and speed scaling, ensuring smooth and responsive controls. This function also clamps the pitch and roll angles to prevent unnatural camera behavior, such as excessive tilting. By incorporating speed modifiers, Quake allowed players to perform actions like sprinting or precision aiming, enhancing the gameplay experience. In the mid-1990s, these features were rare in first-person shooters, making Quake a pioneer in player control mechanics. The angle adjustment system inspired similar implementations in later games, such as Half-Life and Call of Duty, which refined the concept to suit their gameplay styles."
   - id: "base-movement-command"
-    line_start: 281
+    line_start: 282
     line_end: 316
     title: "Building movement commands for the server"
     wikipedia_url: "https://en.wikipedia.org/wiki/Client-server_model"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_BaseMove` function constructs a movement command (`usercmd_t`) based on the player's input states. It adjusts angles, calculates movement vectors, and applies speed modifiers, ensuring that the command accurately represents the player's intentions. This command is then sent to the server for processing, enabling real-time multiplayer gameplay. The function's design reflects the constraints of the client-server model, where minimizing data transmission while preserving gameplay accuracy was critical. Quake's efficient encoding of movement commands set a standard for multiplayer games, influencing titles like Unreal Tournament and Battlefield, which adopted similar techniques to optimize network performance."
   - id: "command-registration-system"
-    line_start: 483
+    line_start: 484
     line_end: 523
     title: "Binding player actions to commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command_pattern"

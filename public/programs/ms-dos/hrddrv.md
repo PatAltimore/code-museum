@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The 'DSK_TBL' section defines a dispatch table mapping command codes to specific routines for hard disk operations. Each entry corresponds to a function, such as initialization, media checks, block reads, and writes. This design allows for modular handling of commands, simplifying the integration of new functionality. In the context of MS-DOS v2.0, dispatch tables were an efficient way to manage device-specific operations while maintaining compatibility with the broader system. This approach influenced the design of interrupt handlers and device management in subsequent operating systems, including Unix derivatives and Windows."
   - id: "strategy-routine"
-    line_start: 193
+    line_start: 191
     line_end: 215
     title: "Strategy routine for I/O packet handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The 'STRATEGY' routine saves pointers to I/O packets for later processing by interrupt routines. This simplistic approach reflects the single-tasking nature of MS-DOS, where operations are processed sequentially. By storing packet pointers, the system can defer handling until the appropriate interrupt is triggered. In the early 1980s, this method was a practical solution for limited hardware resources and single-threaded environments. It laid the groundwork for more sophisticated I/O management techniques in multitasking systems, influencing later developments in operating systems like Windows NT."
   - id: "disk-interrupt-handler"
-    line_start: 227
+    line_start: 225
     line_end: 247
     title: "Disk interrupt routine for I/O processing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"

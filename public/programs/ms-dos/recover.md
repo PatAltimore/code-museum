@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This short routine uses the BIOS interrupt 21h to output strings to the console. It demonstrates how MS-DOS leveraged BIOS calls for basic I/O operations, simplifying development for early PC software. The reliance on BIOS interrupts was a hallmark of early DOS programs, ensuring compatibility across different hardware configurations. This approach laid the groundwork for standardized I/O handling in operating systems, influencing later DOS versions and even early Windows."
   - id: "convert-numeric-processing"
-    line_start: 161
+    line_start: 163
     line_end: 171
     title: "Convert: Numeric Processing for FAT Entries"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The 'convlp' loop processes FAT entries iteratively, using bitwise operations and arithmetic to manipulate directory data. This section showcases the precision required in assembly programming to handle file system structures. The loop's design reflects the constraints of early PCs, where memory and processing power were limited. FAT's design, including routines like this, became a cornerstone of file systems, influencing not only MS-DOS but also modern storage solutions like SD cards and USB drives."
   - id: "getfat-read-fat-entry"
-    line_start: 281
+    line_start: 283
     line_end: 307
     title: "Getfat: Reading FAT Entries"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The 'getfat' routine reads entries from the File Allocation Table, a critical part of MS-DOS's file system. It calculates the location of the desired FAT entry using bitwise arithmetic and retrieves the data. This routine highlights the complexity of managing file systems in assembly language, where every operation must be explicitly defined. The FAT system was revolutionary for its time, enabling efficient file storage and retrieval. Techniques like those in 'getfat' influenced later file systems, including FAT32 and NTFS."
   - id: "setfat-write-fat-entry"
-    line_start: 317
+    line_start: 319
     line_end: 363
     title: "Setfat: Writing to the FAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"

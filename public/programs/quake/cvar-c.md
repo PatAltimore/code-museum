@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `Cvar_CompleteVariable` function implements autocompletion for console commands by checking both exact and partial matches against the list of dynamic variables. This feature enhances usability, allowing players and developers to quickly find and set variables without needing to remember their full names. Autocompletion was a novel addition to game engines in the 1990s, reflecting id Software's commitment to user experience and developer efficiency. At the time, consoles were a primary interface for debugging and configuration, and features like autocompletion helped streamline workflows. This technique influenced later engines and tools, where autocompletion became a standard feature in command-line interfaces and integrated development environments (IDEs)."
   - id: "cvar-set-variable"
-    line_start: 113
+    line_start: 110
     line_end: 152
     title: "Dynamic variable modification with network integration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Networking"

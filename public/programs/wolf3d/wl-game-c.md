@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "boolean-variable-declaration"
     line_start: 20
-    line_end: 38
+    line_end: 37
     title: "Boolean Variables for Gameplay State"
     wikipedia_url: "https://en.wikipedia.org/wiki/Boolean_data_type"
     image_url: ""

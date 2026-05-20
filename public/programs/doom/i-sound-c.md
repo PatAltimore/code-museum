@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines the global mixing buffer, a crucial component for audio playback in DOOM. The buffer aggregates sound samples from all active channels, modifies them based on volume and stereo separation, and prepares them for submission to the hardware device. The buffer size and sample rate are tailored to the limitations of consumer sound cards of the era, such as the Sound Blaster series. By using a fixed-size buffer and pre-calculated lookup tables, the system ensures consistent audio output even on hardware with limited processing power. This approach influenced later game engines by demonstrating how to balance performance and audio fidelity."
   - id: "sound-effect-loading"
     line_start: 181
-    line_end: 250
+    line_end: 251
     title: "Loading and padding sound effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The `I_UpdateSound` function is the heart of DOOM's sound system, mixing audio data from all active channels into the global buffer. It retrieves samples, applies volume adjustments, and clamps values to prevent overflow. The function uses a loop to iterate over channels, ensuring efficient cache use and minimizing performance overhead. This design reflects the challenges of real-time audio processing on early PCs, where CPU cycles were scarce. The mixing algorithm laid the groundwork for more advanced audio systems in later engines, such as id Tech 2 and Source, which expanded on these principles to support 3D positional audio."
   - id: "linux-audio-initialization"
     line_start: 738
-    line_end: 822
+    line_end: 825
     title: "Initializing Linux audio devices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
     image_url: ""

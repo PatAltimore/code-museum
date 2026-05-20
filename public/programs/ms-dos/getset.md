@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "This section introduces the GETSET module, which encapsulates system calls for retrieving and modifying various MS-DOS parameters. The programmer, likely Tim Paterson or a Microsoft engineer, defines the scope of the module and sets up the groundwork for the subsequent routines. In 1983, MS-DOS 2.0 was a significant rewrite inspired by Unix, and this module reflects the shift toward a more structured and extensible operating system. The inclusion of system calls for internationalization, device management, and interrupt handling illustrates the growing complexity of MS-DOS as it adapted to diverse hardware and user needs. These foundational definitions influenced later operating systems, including FreeDOS and other DOS-compatible environments, which retained similar modular structures."
   - id: "include-dosseg-dossym-devsym"
-    line_start: 43
-    line_end: 133
+    line_start: 49
+    line_end: 77
     title: "Including segment and symbol definitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This section includes external assembly files that define memory segments and symbols used throughout the GETSET module. DOSSEG.ASM, DOSSYM.ASM, and DEVSYM.ASM provide crucial definitions for memory layout, system variables, and device symbols. Memory segmentation was a cornerstone of 8086 architecture, enabling MS-DOS to operate within the constraints of the IBM PC's 640KB conventional memory limit. By modularizing these definitions, the developers ensured that the code could be reused and adapted for different configurations. This approach was typical of early operating systems, where hardware constraints necessitated careful planning and optimization. The modularity seen here influenced later software development practices, including the use of header files in C and C++."
   - id: "get-version-msdos"
     line_start: 139
-    line_end: 189
+    line_end: 191
     title: "Retrieving the MS-DOS version number"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_version_history"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The $INTERNATIONAL subroutine provides country-specific information, including date/time formats, currency symbols, and separators. This reflects MS-DOS's early efforts to support internationalization, a growing concern as the operating system gained global adoption. The routine uses a table-driven approach to manage country codes and associated data, a technique that balances flexibility with memory efficiency. In the early 1980s, internationalization was a novel feature for personal computer operating systems, as most software was tailored to specific regions. By incorporating these capabilities, MS-DOS set a precedent for global software design, influencing later systems like Windows and Linux, which expanded on these principles to support multilingual environments and diverse cultural norms."
   - id: "verify-after-write-flag"
     line_start: 359
-    line_end: 415
+    line_end: 417
     title: "Managing the verify-after-write flag"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_verification"
     image_url: ""
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "This routine retrieves the device availability flag, stored in memory, and places it in the DL register. The flag determines whether device names require the '/DEV/' prefix. During the development of MS-DOS v2.0, device management was evolving to accommodate more complex systems and user expectations. The ability to toggle device naming conventions reflects the influence of Unix-like systems, which used a standardized approach to device files. This routine helped bridge the gap between simpler CP/M-style systems and the more structured file and device handling seen in Unix and its derivatives."
   - id: "setdpb-convert-bpb-to-dpb"
-    line_start: 1235
+    line_start: 1105
     line_end: 1235
     title: "Converting BPB to DPB for file system compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_parameter_block"

@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "format-utility-header-and-switches"
     line_start: 1
-    line_end: 43
+    line_end: 62
     title: "Header and Predefined Switches for FORMAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the FILESTRUC data structure, which organizes metadata for system files like IO.SYS, MSDOS.SYS, and COMMAND.COM. Fields include file handle, size, offset, and timestamps, enabling precise management of file operations during formatting. The structure reflects the constraints of early PC hardware, where memory and storage were limited, and efficient data handling was paramount. By encapsulating file attributes in a structured format, the code simplifies operations like reading, writing, and transferring system files. This approach laid the groundwork for more sophisticated file systems and metadata handling in later operating systems, including FAT32 and NTFS."
   - id: "dos-version-check"
-    line_start: 97
+    line_start: 91
     line_end: 108
     title: "Checking Compatibility with DOS Versions"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

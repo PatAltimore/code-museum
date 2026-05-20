@@ -55,7 +55,7 @@ enhancements:
     content: "The $CHDIR subroutine changes the current working directory in MS-DOS 2.0. It validates the input path, updates the directory pointer, and ensures proper handling of edge cases like root directories and drive specifications. The routine includes checks for path length and formatting, reflecting the constraints of the 8086 processor and early PC file systems. The use of 'invoke' directives for operations like GETPATH and PATHCHRCMP highlights the modular design of the code. This subroutine demonstrates the Unix-inspired enhancements in MS-DOS 2.0, where the concept of a working directory was introduced to simplify file access. The ability to change directories dynamically influenced the development of command-line interfaces and scripting languages, where directory navigation became a fundamental operation."
   - id: "rmdir-subroutine-remove-directory"
     line_start: 797
-    line_end: 991
+    line_end: 1001
     title: "Deleting directories: $RMDIR subroutine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""

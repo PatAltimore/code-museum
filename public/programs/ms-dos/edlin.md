@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "revision-history-and-constants"
-    line_start: 1
+    line_start: 3
     line_end: 103
     title: "Revision history and constants setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Edlin"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The PARSE and DISPATCH routines interpret user commands and execute the corresponding operations. By scanning the command table (COMTAB) and validating parameters, the program ensures robust handling of user input. The use of UPCASE to normalize command characters reflects the need for case-insensitivity in command-line interfaces. The routines also account for read-only file restrictions, checking the ROTABLE table to determine whether a command is allowed. This structured approach to command parsing influenced the design of later command-line tools, emphasizing clarity and error handling. The techniques demonstrated here laid the foundation for modern CLI parsers, which continue to rely on similar principles for interpreting user input."
   - id: "append-operation-and-eof-handling"
-    line_start: 963
+    line_start: 934
     line_end: 1036
     title: "Append operation and EOF handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/End-of-file"

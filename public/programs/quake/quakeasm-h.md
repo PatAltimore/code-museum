@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "quakeasm-header-setup"
-    line_start: 24
-    line_end: 31
+    line_start: 19
+    line_end: 32
     title: "Conditional Compilation for i386 Processors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
     image_url: ""

@@ -48,16 +48,16 @@ enhancements:
     image_caption: ""
     content: "The `D_CheckCacheGuard` function verifies the integrity of the surface cache by checking guard bytes. These bytes act as a boundary marker, ensuring that memory writes do not overflow into adjacent areas. This was a critical safeguard in the mid-1990s, when memory corruption could easily crash a program. The technique reflects Michael Abrash's influence, as he often emphasized robust debugging and error prevention in his writings. Guard bytes remain a standard practice in modern programming, particularly in embedded systems and high-performance applications."
   - id: "initialize-surface-cache"
-    line_start: 79
-    line_end: 82
+    line_start: 77
+    line_end: 97
     title: "Initializing the Surface Cache"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `D_InitCaches` function initializes the surface cache, setting up the base memory block and establishing guard bytes. This function ensures that the cache is properly aligned and ready for dynamic allocation during rendering. In the mid-1990s, efficient initialization routines were essential for games like Quake, which pushed hardware to its limits. The method of pre-allocating a large memory block and subdividing it dynamically influenced later game engines, which adopted similar approaches to manage textures and geometry efficiently."
   - id: "dynamic-cache-allocation"
-    line_start: 128
-    line_end: 208
+    line_start: 124
+    line_end: 212
     title: "Dynamic Allocation: Surface Cache Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_memory_allocation"
     image_url: ""

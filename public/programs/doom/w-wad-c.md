@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "toupper-utility-function"
-    line_start: 69
+    line_start: 67
     line_end: 72
     title: "Simple string uppercase conversion"
     wikipedia_url: "https://en.wikipedia.org/wiki/C_string_handling"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `ExtractFileBase` function isolates the base name of a file, stripping away directory paths and extensions, and converts it to uppercase for consistency. This is crucial for naming lumps in single lump files, ensuring that lump names adhere to the 8-character limit imposed by the WAD format. In the early 1990s, file naming conventions were heavily influenced by the constraints of FAT file systems, which supported short filenames. By enforcing an 8-character limit, DOOM's developers ensured compatibility with these systems while maintaining a standardized naming convention. This approach laid the groundwork for the modularity of WAD files, enabling the creation of custom levels and assets. The function's simplicity and reliability contributed to DOOM's success in fostering a vibrant modding community."
   - id: "wad-file-loading"
-    line_start: 124
+    line_start: 120
     line_end: 225
     title: "Loading and validating WAD files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"

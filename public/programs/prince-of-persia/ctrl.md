@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This routine handles the character's interaction with floors while falling. It checks whether the character has passed through the floor plane and determines if the floor is solid or if the character should continue falling. If the floor is solid, the character's position is adjusted to align with the floor. In the late 1980s, game developers faced the challenge of simulating realistic physics on hardware with limited processing power. Jordan Mechner's approach here is meticulous, ensuring smooth transitions between falling and landing states. This technique, combined with the game's cinematic animations, set a new standard for realism in platformers. Later games like Another World and Flashback borrowed heavily from Prince of Persia's mechanics, especially its edge detection and realistic character movement."
   - id: "checkfloor-routine"
-    line_start: 106
+    line_start: 100
     line_end: 139
     title: "Checking floor conditions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The 'startfall' routine begins the falling sequence when the character loses contact with the ground. It adjusts the character's state and triggers animations to reflect the transition. This routine highlights Mechner's commitment to creating a cinematic experience, where every movement feels intentional and fluid. The falling sequence, combined with rotoscoped animations, set a new benchmark for realism in platformers. Games like Limbo and Inside drew inspiration from Prince of Persia's ability to convey emotion and tension through simple yet effective mechanics."
   - id: "insideblock-collision-resolution"
-    line_start: 465
-    line_end: 508
+    line_start: 457
+    line_end: 504
     title: "Resolving collisions with blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The 'InsideBlock' routine resolves situations where the character is 'inside' a block, adjusting their position to prevent clipping or unrealistic behavior. It calculates the character's distance to the edge of the block and moves them accordingly. This routine reflects the challenges of collision detection on limited hardware, where precise calculations were necessary to maintain gameplay integrity. Mechner's solution here influenced later games that prioritized realistic physics and collision handling, such as Half-Life and Portal."
   - id: "playerctrl-input-handling"
     line_start: 549
-    line_end: 585
+    line_end: 584
     title: "Handling player input for character control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `Stairs` routine allows the character to climb stairs when positioned correctly. It checks the surrounding environment for stair blocks and adjusts the character's position and animation accordingly. In the Apple II era, environmental navigation was often limited by hardware constraints, requiring developers to implement clever algorithms to simulate realistic movement. Mechner's implementation here is notable for its precision and fluidity, contributing to the game's cinematic feel. This approach to environmental interaction influenced later platformers, encouraging developers to integrate seamless transitions between different terrain types."
   - id: "crouching-and-crawling"
-    line_start: 1268
+    line_start: 1263
     line_end: 1300
     title: "Crouching: Transitioning to crawl"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stealth_game"

@@ -27,7 +27,7 @@ summary:
 
 enhancements:
   - id: "wad-file-foundation"
-    line_start: 22
+    line_start: 19
     line_end: 26
     title: "Foundation: WAD File Management Basics"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
@@ -59,7 +59,7 @@ enhancements:
     image_caption: ""
     content: "The `W_GetLumpinfo` function retrieves metadata for a specific lump by name. It first normalizes the name using `W_CleanupName` and then searches through the lump metadata for a match. If no match is found, the function triggers an error. This design prioritizes fast lookups and error handling, ensuring that asset retrieval is both efficient and robust. The function reflects the modular programming principles championed by id Software, where each component is designed to perform a specific task efficiently. The concept of metadata-driven asset management has since become a cornerstone of game development, influencing formats like Unity's asset bundles and Unreal Engine's package files."
   - id: "wad-byte-swapping"
-    line_start: 154
+    line_start: 152
     line_end: 158
     title: "Automatic Byte Swapping for Images"
     wikipedia_url: "https://en.wikipedia.org/wiki/Endianness"

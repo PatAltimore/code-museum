@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-data-structures"
-    line_start: 21
+    line_start: 19
     line_end: 32
     title: "Foundation: Data Structures for Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `Draw_CachePic` function implements a caching mechanism for images, ensuring that frequently used graphics are stored in memory for quick access. This avoids redundant disk reads, which were particularly slow on mid-90s hardware. The function uses a fixed-size array to store cached images, and when the cache is full, it triggers an error. This approach reflects the era's emphasis on performance optimization, where every millisecond counted in achieving smooth gameplay. The caching strategy here influenced later techniques in texture management, such as mipmapping and texture atlases, which are now standard in modern engines like Unity and Unreal."
   - id: "draw-character"
-    line_start: 125
+    line_start: 124
     line_end: 220
     title: "Drawing Characters: Pixel-Level Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Character_cell"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `Draw_FadeScreen` function creates a fade effect by selectively darkening pixels on the screen. This visual transition was used to signal events like pausing or exiting the game. The algorithm iterates over each pixel, applying a simple mask based on its position, which was computationally efficient for the hardware of the time. Such fade effects became a staple in game design, influencing the development of more sophisticated techniques like alpha blending and shader-based transitions in modern engines."
   - id: "draw-disc-icons"
-    line_start: 992
+    line_start: 990
     line_end: 1004
     title: "Disc Icons: Real-Time Feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphical_user_interface"

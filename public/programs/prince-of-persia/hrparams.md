@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "sprite-rendering-tables"
-    line_start: 7
+    line_start: 6
     line_end: 40
     title: "Sprite rendering tables: modular memory layout"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines memory tables used for sprite rendering in Prince of Persia. The tables include arrays for vertical and horizontal positions (`YLO`, `YHI`), shift values (`SHIFT0` to `SHIFT6`), carry values (`CARRY0` to `CARRY6`), and masks (`MIRROR`, `MASKTAB`). These tables are essential for calculating sprite positions, handling animation frames, and applying transformations like mirroring. The modular design allows efficient access to sprite-related data, which is critical given the Apple II's limited memory and processing power. In the mid-1980s, the Apple IIe and IIc were popular home computers, but their hardware imposed strict constraints: a 1 MHz 6502 processor and 128K of memory (with bank-switching to access auxiliary memory). Jordan Mechner, working solo, had to design systems that maximized performance within these limitations. The tables here are laid out in contiguous blocks to simplify addressing and reduce the overhead of calculations during gameplay. This modular approach to sprite rendering influenced later games on constrained hardware, where similar table-driven designs were used to optimize performance. The techniques seen here can be traced forward to games like Another World (1991), which also emphasized cinematic animation and relied on efficient memory layouts to achieve its visual style. Mechner's work on Prince of Persia demonstrated how careful planning of data structures could enable complex animations on hardware that seemed incapable of such feats."
   - id: "sprite-parameters-definition"
-    line_start: 43
+    line_start: 42
     line_end: 64
     title: "Sprite parameters: defining animation attributes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"

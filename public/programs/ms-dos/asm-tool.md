@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "revision-history-and-context"
     line_start: 1
-    line_end: 24
+    line_end: 26
     title: "Revision history: evolving the assembler"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

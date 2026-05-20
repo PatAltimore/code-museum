@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes key variables that form the foundation of player movement mechanics in Quake. Variables like `movevars`, `pmove`, and `frametime` are used throughout the file to manage player state, environmental interactions, and frame-based calculations. In 1996, real-time physics in games was still in its infancy, and Quake's approach to handling movement and collision detection was groundbreaking. John Carmack and his team designed these systems to work efficiently on hardware constrained by limited memory and processing power. These foundational variables enabled the game to simulate realistic movement while maintaining high performance, setting a standard for future 3D games. Modern physics engines, such as those in Unity and Unreal Engine, build upon concepts introduced here, including frame-based updates and environment-aware movement."
   - id: "player-bounds"
-    line_start: 37
+    line_start: 36
     line_end: 47
     title: "Defining player bounds and constants"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"

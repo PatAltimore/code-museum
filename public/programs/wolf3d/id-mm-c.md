@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "MM_ShowMemory provides a graphical representation of memory usage, helping developers debug and optimize the game's memory management. By plotting memory blocks on the screen, the function highlights locked, purgable, and free segments, offering insights into the game's runtime behavior. This tool reflects id Software's focus on debugging and performance tuning, which were essential for achieving Wolfenstein 3D's groundbreaking gameplay. Memory visualization tools like this influenced the development of modern debugging utilities, which provide detailed insights into memory and resource usage."
   - id: "mm-dumpdata-memory-diagnostics"
-    line_start: 814
+    line_start: 812
     line_end: 874
     title: "MM_DumpData: Memory diagnostics and logging"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "MM_DumpData creates a detailed log of memory blocks, including their attributes and sizes, and writes it to a file for analysis. This function serves as a diagnostic tool, helping developers identify memory allocation issues and optimize performance. The creation of a memory dump reflects id Software's commitment to debugging and their systematic approach to problem-solving. Tools like MM_DumpData influenced the development of modern profiling and diagnostic utilities, which are now standard in software development."
   - id: "mm-unusedmemory-free-space-calculation"
-    line_start: 889
+    line_start: 887
     line_end: 904
     title: "MM_UnusedMemory: Calculating free space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "MM_UnusedMemory calculates the total free space available without purging memory blocks. This function provides a snapshot of the game's memory usage, helping developers understand resource constraints during runtime. The ability to calculate free space reflects the team's focus on optimizing memory management, a critical aspect of early PC game development. This technique influenced later games and engines, where memory usage metrics became essential for performance tuning and debugging."
   - id: "mm-totalfree-memory-optimization"
-    line_start: 919
+    line_start: 917
     line_end: 936
     title: "MM_TotalFree: Maximizing memory availability"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"

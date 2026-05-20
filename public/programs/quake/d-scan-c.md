@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "foundation-initialization-variables"
-    line_start: 24
-    line_end: 26
+    line_start: 19
+    line_end: 33
     title: "Foundation: Initialization of Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"
     image_url: ""
@@ -46,32 +46,32 @@ enhancements:
     image_caption: ""
     content: "The `D_WarpScreen` function applies a sine wave distortion to the screen, creating a warping effect. This technique compresses the screen edges to prevent wrapping artifacts. By precomputing sine values and leveraging lookup tables, the function achieves real-time performance on mid-1990s hardware. John Carmack and Michael Abrash were pioneers in optimizing rendering techniques for constrained environments, and this function exemplifies their ingenuity. The warping effect became iconic in Quake, influencing visual effects in later games like Half-Life and Doom 3. Today, similar techniques are used in shaders for modern graphics APIs like OpenGL and Vulkan."
   - id: "draw-turbulent-span"
-    line_start: 94
-    line_end: 98
+    line_start: 92
+    line_end: 111
     title: "D_DrawTurbulent8Span: Turbulent Texture Mapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
     content: "This subroutine maps textures with a turbulent effect, using precomputed sine tables to distort texture coordinates. The algorithm iterates over spans of pixels, calculating distorted texture indices for each pixel. The use of fixed-point arithmetic ensures efficient computation on x86 processors, which were prevalent at the time. The turbulent effect added visual complexity to Quake's environments, enhancing immersion. Techniques like this laid the groundwork for procedural texture generation in later engines, such as Unity and Unreal Engine."
   - id: "turbulent-span-rendering"
-    line_start: 115
-    line_end: 119
+    line_start: 113
+    line_end: 138
     title: "Turbulent8: Span-Based Turbulence Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Span_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `Turbulent8` function processes spans of pixels to apply turbulence effects. It calculates texture coordinates using fixed-point arithmetic and clamps values to prevent artifacts. The function iterates over spans, ensuring efficient rendering by minimizing redundant calculations. Span-based rendering was a common optimization in the 1990s, allowing developers to achieve smooth visual effects on hardware with limited capabilities. This approach influenced later graphics techniques, including tile-based rendering in mobile GPUs and procedural effects in modern game engines."
   - id: "draw-spans-texture-mapping"
-    line_start: 250
-    line_end: 254
+    line_start: 248
+    line_end: 284
     title: "D_DrawSpans8: Efficient Texture Mapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
     content: "The `D_DrawSpans8` function maps textures to spans of pixels, using fixed-point arithmetic for efficiency. It calculates texture coordinates and steps across spans, ensuring smooth rendering. The function clamps values to prevent artifacts, a crucial consideration for real-time graphics. This method was part of Quake's innovative rendering pipeline, enabling detailed textures on constrained hardware. Techniques like this influenced the development of texture mapping algorithms in later engines, including Unreal Engine and CryEngine."
   - id: "z-buffer-depth-calculations"
-    line_start: 388
-    line_end: 392
+    line_start: 386
+    line_end: 422
     title: "D_DrawZSpans: Z-Buffer Depth Calculations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"
     image_url: ""

@@ -39,7 +39,7 @@ enhancements:
     content: "This section sets up the interrupt vector for the clock profiling routine. The interrupt vector table is a critical part of early PC architecture, allowing software to handle hardware interrupts by pointing to specific routines. Here, the code defines the segment and offset for the clock interrupt handler (`CLK_INTER`). The programmer, Tim Paterson, was working within the constraints of the 8086 processor and the IBM PC's hardware design. At the time, interrupt vectors were a common mechanism for handling asynchronous events, and their manipulation required precise assembly-level coding. This approach influenced later operating systems, which continued to use interrupt vector tables for hardware interaction. The technique is foundational to real-time systems and embedded programming, where interrupt handling remains a core concept."
   - id: "enable-clock-interrupts"
     line_start: 61
-    line_end: 143
+    line_end: 145
     title: "Enabling clock interrupts for profiling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Profiling_(computer_programming)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `CLOCKON` procedure enables the clock interrupt and configures the timer to generate periodic interrupts. This involves writing specific values to I/O ports to set the timer mode and load the counter. The code calculates the interval based on microseconds passed in the DX register, using bitwise operations and division to achieve the desired timing. This routine reflects the low-level nature of programming on early PCs, where direct hardware manipulation was necessary to achieve functionality. Tim Paterson's work on MS-DOS was heavily influenced by the hardware constraints of the IBM PC, including its 8253 Programmable Interval Timer. The ability to enable and configure interrupts was crucial for profiling and performance analysis, laying the groundwork for tools like profilers and debuggers in modern software development."
   - id: "disable-clock-interrupts"
     line_start: 149
-    line_end: 161
+    line_end: 163
     title: "Disabling clock interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""

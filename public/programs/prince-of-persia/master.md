@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The LoadMusic routines load music data into memory, divided into three sets: title, game, and epilog. Music is loaded from specific disk tracks and moved to auxiliary memory for playback. Mechner uses direct disk access commands to fetch and organize music data, showcasing his deep understanding of Apple II hardware. In the late 1980s, music in games was limited by hardware constraints, often relying on simple tones and sequences. Prince of Persia's music, while modest by modern standards, added a cinematic layer to the gameplay experience. This approach influenced later developers to integrate music as a core element of storytelling, paving the way for iconic soundtracks in games like The Legend of Zelda and Final Fantasy."
   - id: "driveon-disk-drive-activation"
-    line_start: 292
+    line_start: 291
     line_end: 326
     title: "DriveOn: Disk drive activation and memory setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The LoadLevel routine dynamically loads level data into memory, including background graphics and character sets. It uses disk commands to fetch data from specific tracks and regions, ensuring the correct assets are loaded for each level. Mechner's approach reflects the challenges of managing large amounts of data on the Apple II, where memory was limited and disk access was slow. By dynamically loading levels, Prince of Persia could offer a rich and varied gameplay experience without exceeding hardware constraints. This technique influenced later games to adopt dynamic loading systems, enabling expansive worlds in titles like The Elder Scrolls and Grand Theft Auto."
   - id: "attractloop-self-running-demo"
-    line_start: 683
+    line_start: 679
     line_end: 709
     title: "AttractLoop: Self-running demo mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Attract_mode"
@@ -143,7 +143,7 @@ enhancements:
     content: "The 'LoadStage3' routine loads full animation data for the game's most complex stage. This includes both background and character animations, showcasing the game's technical and artistic peak. Mechner's ability to fit such detailed animations into the Apple II's limited memory was a testament to his programming skill. Stage 3 represents the culmination of the game's cinematic platforming experience, influencing the genre for decades. Games like Limbo and Inside owe their atmospheric storytelling and fluid animations to the groundwork laid by Prince of Persia."
   - id: "music-playback-routines"
     line_start: 1369
-    line_end: 1411
+    line_end: 1406
     title: "Interruptible and non-interruptible music playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
@@ -151,7 +151,7 @@ enhancements:
     content: "The 'PlaySongNI' and 'PlaySongI' routines handle music playback, with options for interruptible and non-interruptible modes. Music was an integral part of Prince of Persia's cinematic experience, enhancing the game's emotional impact. The ability to toggle between interruptible and non-interruptible playback reflects Mechner's attention to detail, ensuring that music did not interfere with gameplay. In the late 1980s, sound capabilities on the Apple II were limited, but Mechner's routines demonstrate how developers could maximize the hardware's potential. This approach influenced later games with dynamic soundtracks, such as the LucasArts adventure games and RPGs like Chrono Trigger."
   - id: "pause-and-error-handling"
     line_start: 1407
-    line_end: 1447
+    line_end: 1441
     title: "Pausing and handling disk errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
     image_url: ""

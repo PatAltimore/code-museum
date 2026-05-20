@@ -166,7 +166,7 @@ enhancements:
     image_caption: ""
     content: "The `WAIT` subroutine simulates the passage of time in the game by printing \"Time passes...\" and decrementing a counter. It optionally accepts a numeric argument to specify the duration. This mechanic adds a sense of realism and pacing to the gameplay, allowing players to experience events unfolding over time. In the context of Zork, where immersion and narrative were paramount, such features helped create a dynamic world. The PDP-10's ITS operating system supported time-sharing, enabling games like Zork to include these interactive elements. This technique influenced later games that incorporated real-time mechanics, such as Sierra's adventure games and modern RPGs with day-night cycles."
   - id: "clock-demon-event-handler"
-    line_start: 1626
+    line_start: 1628
     line_end: 1651
     title: "Handling timed events with a demon"
     wikipedia_url: "https://en.wikipedia.org/wiki/Daemon_(computing)"

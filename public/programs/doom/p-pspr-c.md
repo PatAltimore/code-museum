@@ -44,7 +44,7 @@ enhancements:
     content: "The `P_CalcSwing` function calculates the swinging motion of weapons based on player movement. This adds a sense of realism and immersion, as the weapon appears to sway naturally while the player moves. The function uses trigonometric calculations with lookup tables (`finesine`) to simulate this effect efficiently. In 1993, computational efficiency was paramount, as DOOM had to run smoothly on hardware with limited processing power. This technique influenced the visual polish of later FPS games, where weapon bobbing became a standard feature to enhance player immersion."
   - id: "weapon-switching-mechanism"
     line_start: 132
-    line_end: 153
+    line_end: 154
     title: "Mechanics for switching weapons"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -59,7 +59,7 @@ enhancements:
     image_caption: ""
     content: "The `P_CheckAmmo` function ensures that players have sufficient ammunition to fire their current weapon. If ammo is insufficient, it automatically selects the next available weapon based on predefined preferences. This dynamic fallback mechanism ensures uninterrupted gameplay, even in resource-constrained scenarios. In the early 1990s, such systems were innovative, as they streamlined player interactions and minimized frustration. This design philosophy influenced later games, where automatic weapon switching became a standard feature, enhancing user experience and gameplay flow."
   - id: "weapon-fire-mechanics"
-    line_start: 244
+    line_start: 243
     line_end: 257
     title: "Core weapon firing logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -76,7 +76,7 @@ enhancements:
     content: "The `A_Saw` function defines the behavior of the chainsaw weapon, including sound effects and target tracking. It uses trigonometric calculations to adjust the player's angle toward the target, simulating the visceral experience of wielding a chainsaw in combat. The chainsaw's inclusion in DOOM exemplifies the game's blend of horror and action, creating memorable gameplay moments. This function's design influenced the implementation of melee weapons in later FPS games, where dynamic targeting and immersive sound effects became standard."
   - id: "bfg-explosion-mechanics"
     line_start: 777
-    line_end: 810
+    line_end: 811
     title: "BFG explosion logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/BFG_(weapon)"
     image_url: ""

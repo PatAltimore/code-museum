@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "bounding-box-collision-detection"
-    line_start: 46
+    line_start: 16
     line_end: 70
     title: "Bounding Boxes: Collision Detection Simplified"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"

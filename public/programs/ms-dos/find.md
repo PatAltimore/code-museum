@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This section handles errors during file operations, such as read and open failures. It checks if the file being accessed is standard input and, if not, closes the file and prints an error message. The error messages are constructed using predefined strings and lengths, which are passed to a routine for output. In the early 1980s, robust error handling was essential for user-friendly command-line tools, as users relied on clear feedback to diagnose issues. This approach to error reporting influenced the design of subsequent command-line utilities and APIs, where standardized error codes and messages became a norm. Developers studying MS-DOS often adapted these techniques for their own software, ensuring consistent and informative error handling."
   - id: "binary-to-ascii-conversion"
-    line_start: 1461
+    line_start: 1459
     line_end: 1523
     title: "Binary-to-ASCII conversion routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"

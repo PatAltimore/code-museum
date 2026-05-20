@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The dispatch tables map device-specific commands to their corresponding routines. For example, commands like block read, character write, and media checks are defined for devices such as disks, consoles, and printers. This design reflects the influence of Unix, where similar abstractions were used to unify device handling. By centralizing command processing, MS-DOS 2.0 improved maintainability and extensibility. This approach influenced the development of modern APIs and device management systems, where abstraction layers simplify hardware interactions for developers."
   - id: "strategy-routine-for-io-packets"
-    line_start: 417
+    line_start: 415
     line_end: 439
     title: "Strategy Routine for I/O Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This section implements a state machine to process escape sequences in text output. The states (ST1, ST2, ST3) handle characters like ESC and '[' to identify and parse control sequences. These sequences allow for advanced text formatting and terminal control, such as cursor movement or screen clearing. At the time, escape sequences were critical for interacting with terminals and printers, as they provided a standardized way to control hardware behavior. Tim Paterson likely adapted this approach from existing terminal standards like ANSI escape codes. This mechanism influenced later systems, including Unix-based terminal emulators and modern console applications, which still rely on escape sequences for text formatting and control."
   - id: "cursor-positioning-routines"
-    line_start: 1227
+    line_start: 1225
     line_end: 1287
     title: "Cursor positioning routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/ANSI_escape_code"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "This section defines drive parameter blocks (DBP), which describe the physical and logical characteristics of disk drives, including sector size, allocation units, and FAT structures. These blocks were essential for initializing and managing disk drives in MS-DOS. The design reflects the flexibility required to support various disk formats, from single-density floppy disks to double-density drives. This abstraction influenced later developments in disk partitioning and file system design, such as the Master Boot Record (MBR) and GUID Partition Table (GPT) standards."
   - id: "media-check-routine"
-    line_start: 1957
+    line_start: 1927
     line_end: 2063
     title: "Media check routine for disk changes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
@@ -135,7 +135,7 @@ enhancements:
     content: "The media check routine determines whether a disk has been changed, ensuring data integrity and preventing errors during read/write operations. It uses hardware ports to query the disk's status and density settings. In the early 1980s, floppy disks were the primary storage medium, and detecting disk changes was crucial for reliable operation. This routine highlights MS-DOS's low-level hardware interaction, a hallmark of early operating systems. The technique influenced later systems, including BIOS routines and modern OS-level disk management features."
   - id: "media5-disk-controller-command"
     line_start: 2065
-    line_end: 2075
+    line_end: 2095
     title: "Sending commands to the 1793 disk controller"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
     image_url: ""
@@ -167,7 +167,7 @@ enhancements:
     content: "The DERROR routines process disk errors using a lookup table (DERRTAB) to map error codes to specific conditions. This method simplifies error handling by centralizing the logic in a single table, a technique borrowed from earlier systems like CP/M. At the time, robust error handling was critical for reliability, as hardware failures were common. This approach influenced later operating systems by demonstrating the value of structured error management, which became a standard practice in software engineering. The lookup table concept persists in modern systems, where it is used for error codes, configuration settings, and more."
   - id: "rom-call-abstraction"
     line_start: 2635
-    line_end: 2673
+    line_end: 2659
     title: "Abstracting hardware interaction with ROM_CALL"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
@@ -183,7 +183,7 @@ enhancements:
     content: "The HWINIT routine sets up the system stack, initializes memory, and prepares the environment for MS-DOS to operate. This code reflects the constraints of early PCs, where memory was limited and hardware initialization was critical for stability. The routine also establishes key system variables, such as the location of the DOS kernel and available memory size. This initialization process influenced later operating systems by demonstrating the importance of a structured boot sequence, a concept that evolved into modern bootloaders and system initialization frameworks."
   - id: "dosspot-final-section"
     line_start: 2743
-    line_end: 2753
+    line_end: 2751
     title: "Final code section: DOSSPOT"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

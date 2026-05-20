@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The `drawobjs` subroutine handles the sorting and rendering of objects on the screen, ensuring they appear in the correct order for a cinematic effect. It uses a sorting algorithm to arrange objects back-to-front based on their indices, then transfers them to the mid list for rendering. This approach is reminiscent of Z-buffering, where depth information determines the rendering order. Mechner's implementation was groundbreaking for its time, creating a sense of depth and realism on the Apple II. The technique influenced later games with complex object interactions, such as The Legend of Zelda and Super Mario Bros. 3."
   - id: "getprev-rightmost-blocks"
-    line_start: 561
-    line_end: 615
+    line_start: 553
+    line_end: 602
     title: "getprev: Fetching neighboring screen data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The 'drawb' subroutine is responsible for rendering 'B' sections of the game environment, such as blocks, panels, and stripes. It dynamically determines the type of object to render based on the current game state and object identifiers. This section includes logic for masking, layering, and special handling for palace backgrounds and panels. In 1989, memory constraints on the Apple II required developers to optimize rendering routines to fit within 128K of memory using bank-switching techniques. Mechner's approach here demonstrates his ability to balance visual fidelity with hardware limitations. The logic for masking and layering sprites influenced later games that required complex environmental rendering, such as Another World (1991) and Flashback (1992)."
   - id: "drawd-section-rendering"
     line_start: 1096
-    line_end: 1133
+    line_end: 1114
     title: "Handling 'D' sections with masking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mask_(computing)"
     image_url: ""
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The 'drawa' subroutine is responsible for rendering 'A' sections, which include architectural elements and panels. It uses conditional logic to apply masking when adjacent sections intrude visually. This approach ensures seamless integration of overlapping elements, a hallmark of cinematic platformers. Mechner's implementation reflects the challenges of rendering complex environments on limited hardware. The conditional masking logic laid the groundwork for more sophisticated rendering systems in later games, such as Tomb Raider (1996), which relied heavily on layered environments and dynamic object interactions."
   - id: "drawfloor-and-drawhalf"
-    line_start: 1252
+    line_start: 1247
     line_end: 1325
     title: "Floor rendering and climbable sections"
     wikipedia_url: "https://en.wikipedia.org/wiki/Platform_game"
@@ -127,7 +127,7 @@ enhancements:
     content: "The 'drawfloor' and 'drawhalf' subroutines handle rendering of floor sections and climbable areas. These routines include logic for masking and layering to create visually distinct platforms and transitions. Mechner's attention to detail in these routines ensures smooth gameplay and visual consistency, critical for the immersive experience of Prince of Persia. The climbable sections introduced here influenced later platformers, such as Castlevania: Symphony of the Night (1997), which expanded on the concept of interactive environments."
   - id: "drawspikea-and-drawspikeb"
     line_start: 1450
-    line_end: 1488
+    line_end: 1478
     title: "Animating spikes dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The 'drawspikea' and 'drawspikeb' subroutines animate spikes, a key environmental hazard in Prince of Persia. These routines use state-based logic to determine whether spikes are extended or retracted, adding dynamic elements to the gameplay. Mechner's use of state-based animation reflects his cinematic approach to game design, where environmental elements are as dynamic as the characters. This technique influenced later games with interactive hazards, such as Donkey Kong Country (1994) and Limbo (2010)."
   - id: "drawgatec-and-drawgateb"
     line_start: 1698
-    line_end: 1907
+    line_end: 1815
     title: "Rendering gates with dynamic movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scrolling_(computer_graphics)"
     image_url: ""

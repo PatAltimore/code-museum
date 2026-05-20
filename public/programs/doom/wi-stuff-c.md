@@ -151,7 +151,7 @@ enhancements:
     content: "This block caches various graphical assets for the intermission screen, including numbers, text labels, and icons. The assets are loaded into memory using the `W_CacheLumpName` function, ensuring they are available for rendering without delays. The developers carefully managed memory to optimize performance on the limited hardware of early 1990s PCs. Each asset corresponds to a specific visual element, such as the percent sign, kills, or the player's face. The inclusion of French localization for certain assets highlights DOOM's international reach and the team's attention to detail. This asset caching strategy influenced later games, where preloading assets became a standard practice to minimize runtime performance issues. It also laid the groundwork for modern resource management techniques in game engines like Unity and Unreal."
   - id: "memory-tagging-and-cleanup"
     line_start: 1708
-    line_end: 1769
+    line_end: 1770
     title: "Memory Tagging for Efficient Cleanup"
     wikipedia_url: "https://doomwiki.org/wiki/Memory_management"
     image_url: ""

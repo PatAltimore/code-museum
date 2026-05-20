@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "model-initialization-and-caching"
-    line_start: 20
-    line_end: 26
+    line_start: 19
+    line_end: 50
     title: "Model Initialization and Caching"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `Mod_LoadBrushModel` function is a comprehensive routine for loading BSP models, including vertices, edges, surfaces, and other geometry data. It validates the BSP version, calculates checksums for data integrity, and allocates memory for various components. This function exemplifies Quake's modular approach to handling complex 3D environments, ensuring robustness and performance. The BSP format, pioneered by id Software, became a standard in the industry, influencing games like Unreal and Source Engine titles. Its modular design and validation techniques are still studied in game development courses today."
   - id: "mod-loadaliasframe-animation"
-    line_start: 1227
+    line_start: 1225
     line_end: 1261
     title: "Loading Frames for Alias Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The `Mod_LoadSpriteFrame` function loads individual frames for sprites, which are used for 2D elements like particles and effects. It calculates dimensions, origins, and pixel data, ensuring compatibility with Quake's rendering pipeline. Sprites were a versatile tool in 1990s game development, enabling visual effects without the overhead of 3D models. This technique influenced later engines, such as Unreal Engine and Unity, which expanded sprite handling to include advanced particle systems and UI elements."
   - id: "mod-loadspritemodel-sprite-loading"
-    line_start: 1798
+    line_start: 1796
     line_end: 1870
     title: "Loading Complete Sprite Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "The `Mod_LoadSpriteModel` function loads complete sprite models, including metadata and frames. It validates the sprite version and allocates memory for frame data, ensuring efficient rendering. Sprite models were essential for Quake's visual effects, such as explosions and projectiles. This modular approach to sprite handling influenced later engines, which adopted similar techniques for managing 2D assets within 3D environments."
   - id: "mod-print-debugging-cached-models"
-    line_start: 1878
+    line_start: 1874
     line_end: 1889
     title: "Debugging Cached Models in Quake's Engine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

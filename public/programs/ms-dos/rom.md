@@ -39,7 +39,7 @@ enhancements:
     content: "This section includes the DOS segment setup files (`DOSSEG.ASM` and `DOSSYM.ASM`) and defines the code segment as public. It establishes the environment for the routines that follow, ensuring compatibility with the MS-DOS memory model. At the time, memory segmentation was a critical aspect of programming for the Intel 8086 processor, which had a 1MB address space divided into 64KB segments. This setup reflects the constraints and design decisions of early PC operating systems, where every byte of memory had to be meticulously managed. By including these files, the programmer ensures that the routines can interface correctly with the rest of the MS-DOS kernel, a foundational step for the disk utilities implemented later in the file."
   - id: "name-rom-miscellaneous-routines"
     line_start: 33
-    line_end: 83
+    line_end: 93
     title: "Defining ROM routines and variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `GET_random_record` routine retrieves a specific record from a file based on its position in the File Control Block (FCB). This functionality is crucial for applications that need to access data non-sequentially, such as databases or random-access file systems. The routine checks whether the FCB is extended and adjusts its pointer accordingly, demonstrating an early implementation of backward compatibility in MS-DOS. At the time, the concept of random file access was gaining traction, as it allowed programs to handle larger datasets more efficiently. This routine's design reflects the growing demand for versatile file handling capabilities in the early 1980s, paving the way for more sophisticated database management systems and file APIs in later operating systems."
   - id: "fndclus-skip-clusters"
     line_start: 185
-    line_end: 259
+    line_end: 261
     title: "Skipping over disk allocation clusters"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `BUFRD` routine performs a partial sector read using one of the system buffers. It adjusts the buffer position, handles data transfer, and ensures that the buffer is correctly placed for subsequent operations. Buffered reads were an essential optimization for MS-DOS, as they minimized the number of direct disk accesses and improved the efficiency of file operations. This routine reflects the growing sophistication of disk I/O management in early PC operating systems, where performance was constrained by the limited speed of floppy and hard drives. The techniques demonstrated here laid the groundwork for more advanced disk caching mechanisms in later operating systems, such as Windows and Linux."
   - id: "nextsec-compute-next-sector"
     line_start: 473
-    line_end: 533
+    line_end: 473
     title: "Computing the next sector for I/O"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `NEXTSEC` routine calculates the next sector to read or write based on the current transfer state. It updates variables such as `CLUSNUM` (current cluster) and `SECCLUSPOS` (sector position within the cluster) and handles edge cases like end-of-file conditions. This routine is a key part of MS-DOS's disk management system, enabling efficient sequential file access. At the time, the ability to compute the next sector dynamically was crucial for supporting larger files and more complex file operations. The logic implemented here influenced later file systems, where similar techniques are used to optimize disk access patterns and improve performance."
   - id: "allocate-assign-disk-space"
     line_start: 925
-    line_end: 953
+    line_end: 925
     title: "Assigning disk space to a file"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `ALLOCATE` routine assigns disk space to a file by updating the FAT and the File Control Block (FCB). It handles tasks such as finding free clusters, marking them as allocated, and updating the file's metadata. Disk space allocation was a critical function in MS-DOS, as it allowed the operating system to manage files efficiently on limited storage devices. This routine reflects the challenges of early PC operating systems, where disk space was a scarce resource and fragmentation could significantly impact performance. The techniques demonstrated here influenced the design of later file systems, which introduced more sophisticated allocation strategies to minimize fragmentation and improve storage efficiency."
   - id: "release-endp-cleanup"
     line_start: 1007
-    line_end: 1045
+    line_end: 1007
     title: "Final cleanup routine for file operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The GETEOF routine determines the last cluster in a file, a critical operation for managing the File Allocation Table (FAT). FAT was the backbone of MS-DOS's file system, mapping files to clusters on disk. In this routine, the programmer uses ES:BP to point to the Disk Parameter Block (DPB), a structure describing the disk's layout. BX holds the cluster number, and the routine calculates the last cluster by invoking UNPACK and comparing values. This low-level manipulation of disk structures was essential for MS-DOS's ability to handle files efficiently on early PCs. The FAT file system, introduced here, became a standard across operating systems and storage devices, influencing everything from floppy disks to USB drives. Microsoft's decision to use FAT ensured widespread adoption, and its legacy persists in modern systems like exFAT, used in SD cards and flash drives."
   - id: "do-ext-final-section"
     line_start: 1051
-    line_end: 1059
+    line_end: 1057
     title: "Closing the code segment"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

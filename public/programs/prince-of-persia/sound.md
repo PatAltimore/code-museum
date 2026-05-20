@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "lookup-table-for-sound-routines"
     line_start: 23
-    line_end: 51
+    line_end: 53
     title: "Lookup table for sound routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""

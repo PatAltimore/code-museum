@@ -55,7 +55,7 @@ enhancements:
     content: "The `INTERNATVARS` block introduces support for internationalization, allowing CHKDSK to adapt to different language and regional settings. This feature reflects Microsoft's ambition to make MS-DOS a global standard, as the IBM PC was rapidly gaining international traction. By 1983, software localization was becoming a critical consideration for operating system developers. This section's design anticipates the widespread adoption of personal computers across diverse markets, setting a precedent for later systems like Windows, which would build on these early efforts to support multilingual environments."
   - id: "fat-file-allocation-table"
     line_start: 329
-    line_end: 363
+    line_end: 331
     title: "FAT Table Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""

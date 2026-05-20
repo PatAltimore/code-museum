@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "fixedmul-efficient-multiplication"
-    line_start: 43
+    line_start: 41
     line_end: 49
     title: "FixedMul: Efficient multiplication for 1990s CPUs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"

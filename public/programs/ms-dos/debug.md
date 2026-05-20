@@ -47,7 +47,7 @@ enhancements:
     content: "The `DSTRT` section checks the MS-DOS version to ensure compatibility with the debugger. It retrieves the version number using interrupt `21H` and compares it against the required version (2.00 or higher). If the version is insufficient, it jumps to `GOTBADDOS`, which displays an error message and terminates execution. In the early 1980s, software compatibility was a significant concern. MS-DOS was licensed to numerous OEMs, leading to slight variations in implementations. Ensuring compatibility with specific versions was crucial for tools like DEBUG, which relied on consistent system calls and memory layouts. This approach to version checking became standard practice in software development, influencing later systems like Windows, where applications often check for API availability or OS version before executing. The simplicity of using interrupts for system calls in MS-DOS laid the groundwork for more sophisticated API-based compatibility checks in modern operating systems."
   - id: "parity-error-trapping"
     line_start: 253
-    line_end: 345
+    line_end: 279
     title: "OKDOS: Parity Error Handling and Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parity_bit"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "This section contains routines like OUTSI, OUTDI, OUT16, HEX, and DIGIT, which are responsible for converting and displaying memory addresses and values in hexadecimal format. These routines are crucial for debugging, as they allow programmers to inspect memory and register states directly. Tim Paterson, the original author of 86-DOS, designed these routines to work efficiently on the Intel 8086 microprocessor, leveraging its instruction set for bit manipulation and arithmetic. At the time, debugging tools were minimal, and developers relied heavily on such utilities for low-level troubleshooting. The hexadecimal output routines influenced later debugging tools and environments, including Microsoft's own development platforms and third-party debuggers like Turbo Debugger."
   - id: "console-output-and-character-handling"
     line_start: 1111
-    line_end: 1181
+    line_end: 1187
     title: "Console output and character handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Console_application"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The OUT and related routines handle console output, ensuring characters are displayed correctly while managing special cases like tab, backspace, and delete. These routines include checks for system version compatibility and implement workarounds for quirks in early PC hardware. The design reflects the constraints of the era, where direct hardware manipulation was necessary to achieve consistent behavior across different systems. This approach laid the groundwork for more sophisticated text-handling libraries in later operating systems and influenced the development of standardized APIs for console I/O."
   - id: "tab-handling-and-column-management"
     line_start: 1191
-    line_end: 1213
+    line_end: 1221
     title: "Tab handling and column management"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tab_key"
     image_url: ""

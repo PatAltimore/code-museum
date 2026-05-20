@@ -27,7 +27,7 @@ summary:
 
 enhancements:
   - id: "yellow-flag-initialization"
-    line_start: 61
+    line_start: 59
     line_end: 68
     title: "Setting the Yellow Flag for Copy Protection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
@@ -35,7 +35,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes the 'yellowflag' variable, which is part of the game's copy protection mechanism. By setting this flag, the program ensures that certain routines related to disk verification can proceed. Copy protection was a major concern in the 1980s, as software piracy was rampant. Mechner implemented multiple layers of protection in Prince of Persia, including this check, to ensure the game could not be easily duplicated. This approach reflects the ingenuity required to safeguard intellectual property in an era before widespread internet connectivity. While modern games use DRM and online activation, these early methods laid the groundwork for protecting software assets."
   - id: "hourglass-animation-data"
-    line_start: 118
+    line_start: 117
     line_end: 126
     title: "Animating the Hourglass in Princess's Room"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
@@ -51,7 +51,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the animation frames for the torch flames, a recurring visual element in the game. The 'torchflame' and 'ptorchflame' arrays specify the sequence of frames for the animation. Torches create a dynamic atmosphere in the game's dungeons, enhancing the player's immersion. Mechner's attention to environmental details, such as flickering flames, helped establish Prince of Persia as a pioneer in creating mood and ambiance in platformers. This technique inspired later developers to integrate environmental storytelling into their games."
   - id: "time-left-message"
-    line_start: 183
+    line_start: 182
     line_end: 268
     title: "Displaying 'Minutes Left' Countdown"
     wikipedia_url: "https://en.wikipedia.org/wiki/Countdown"
@@ -67,7 +67,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine draws the player's strength meter at the lower left of the screen. It uses the 'KidStrength' variable to determine the number of bullets to display, dynamically adjusting based on the player's health. The routine includes logic for flashing the meter when health is critically low, adding a visual cue to alert the player. Mechner's implementation of health meters was innovative for its time, providing players with immediate feedback on their status. This concept has since become a staple in gaming, appearing in everything from RPGs to first-person shooters."
   - id: "setup-flask-animation"
-    line_start: 663
+    line_start: 661
     line_end: 719
     title: "Preparing the Bubbling Flask Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"

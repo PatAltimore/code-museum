@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "$FCB_SEQ_READ, system call 20, reads the next record from a file using the File Control Block (FCB) structure. It interacts with the disk transfer address and handles end-of-file conditions, returning status codes in the AL register. The FCB approach, inherited from CP/M, was central to MS-DOS's file management in its early versions. While later versions of MS-DOS transitioned to handle-based file I/O, the FCB routines laid the groundwork for structured file access, influencing APIs in modern operating systems and programming languages."
   - id: "fcb-delete-system-call"
-    line_start: 372
+    line_start: 342
     line_end: 372
     title: "Deleting Files via FCB"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "$FCB_DELETE, system call 19, deletes files matching a given FCB. It checks attributes and ensures system files or devices are not deleted. This routine reflects the importance of file management in MS-DOS, where user errors could have catastrophic consequences. The attribute checks here influenced later file systems, which implemented more robust permissions and safeguards. Modern systems like NTFS and ext4 continue to build on these principles, ensuring secure and reliable file operations."
   - id: "fcb-rename-system-call"
-    line_start: 455
+    line_start: 378
     line_end: 455
     title: "Renaming Files Using FCB"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "$FCB_RENAME, system call 23, renames files by modifying their FCB entries. It validates the new name, checks for conflicts, and updates the directory structure. This routine highlights the challenges of file management in early operating systems, where directory updates were manual and error-prone. The rename functionality was critical for business applications, enabling users to organize files efficiently. Modern file systems automate and optimize these operations, building on the principles established by routines like $FCB_RENAME."
   - id: "fcb-open-system-call"
-    line_start: 548
+    line_start: 459
     line_end: 548
     title: "Opening Files with FCB"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "$FCB_OPEN, system call 15, opens files by locating their FCB entries and initializing file metadata. It handles device files and sets default attributes. This routine reflects MS-DOS's reliance on FCBs for file management, a design inherited from CP/M. The open operation was foundational for MS-DOS's application ecosystem, enabling programs to interact with files seamlessly. Later operating systems transitioned to handle-based file access, but the principles of initialization and metadata management remain integral to modern file systems."
   - id: "fcb-close-system-call"
-    line_start: 621
+    line_start: 552
     line_end: 621
     title: "Closing Files and Flushing Buffers"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"

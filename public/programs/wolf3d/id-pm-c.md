@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the `PML_MapEMS` function, which maps logical pages to physical pages in Expanded Memory (EMS). EMS was a popular solution for overcoming the 640 KB memory limit of MS-DOS by providing access to additional memory through a paging mechanism. The function uses hardware interrupts (`int EMS_INT`) to communicate with the EMS driver, ensuring that logical pages are correctly mapped to physical memory locations. At the time, EMS was a critical technology for games like Wolfenstein 3D, enabling them to load large textures and sounds efficiently. This technique influenced later memory management systems in DOS-based games and applications, laying groundwork for more sophisticated virtual memory systems."
   - id: "ems-initialization"
-    line_start: 79
+    line_start: 70
     line_end: 162
     title: "EMS Initialization and Compatibility Checks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Expanded_memory"

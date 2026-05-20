@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The BlockEdge table calculates the screen X-coordinates of the left edges of blocks, ranging from -12 to 14. This table is essential for rendering the game world, as it defines the boundaries of each block on the screen. By precomputing these values, Mechner ensured efficient rendering and collision detection, allowing the game to maintain its cinematic feel despite hardware limitations. The use of edge tables influenced later tile-based rendering systems, which relied on similar techniques to optimize performance and simplify level design."
   - id: "block-top-bottom-floor-y-coordinates"
-    line_start: 157
+    line_start: 154
     line_end: 185
     title: "Defining vertical positions for blocks and floors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"

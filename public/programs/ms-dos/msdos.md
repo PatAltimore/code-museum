@@ -174,7 +174,7 @@ enhancements:
     image_caption: ""
     content: "The `OPTIMIZE` routine focuses on optimizing disk I/O by checking if sectors are already buffered, avoiding redundant reads or writes. This technique was crucial for improving performance on early PCs with slow disk drives. By leveraging the buffer, MS-DOS minimized disk access times, a key consideration given the hardware limitations of the IBM PC in 1981. This approach laid the groundwork for caching strategies in modern operating systems, where memory buffers play a significant role in reducing I/O bottlenecks."
   - id: "cluster-allocation-and-release"
-    line_start: 2362
+    line_start: 2335
     line_end: 2474
     title: "Cluster allocation and release routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-light-frame-counter"
-    line_start: 25
+    line_start: 19
     line_end: 25
     title: "Foundation: Light Frame Counter"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -39,14 +39,14 @@ enhancements:
     content: "This section defines a global counter, `r_dlightframecount`, used to track dynamic lighting updates per frame. By incrementing this counter each frame, Quake ensures that dynamic light effects are recalculated only when necessary, avoiding redundant computations. In 1996, hardware constraints like limited CPU power and memory made such optimizations critical for real-time rendering. John Carmack and his team were deeply aware of these limitations, designing systems that balanced visual fidelity with performance. This approach influenced later game engines, such as Unreal Engine and Source Engine, which adopted similar frame-based update mechanisms for lighting and physics."
   - id: "light-animation-styles"
     line_start: 28
-    line_end: 32
+    line_end: 53
     title: "Animating Light Styles Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_lighting"
     image_url: ""
     image_caption: ""
     content: "The `R_AnimateLight` function animates light styles based on the game's elapsed time. Light styles are predefined sequences that dictate how lighting changes over time, such as flickering or pulsing effects. This was a novel feature in 1996, as most games relied on static lighting. The function uses a modulo operation to cycle through the light style map, converting characters ('a' to 'z') into brightness levels. This technique, developed by Carmack and Abrash, allowed Quake to simulate dynamic environments without excessive computational overhead. It inspired similar systems in games like Half-Life and Doom 3, where dynamic lighting became a hallmark of immersive gameplay."
   - id: "dynamic-light-marking"
-    line_start: 64
+    line_start: 62
     line_end: 68
     title: "Marking Surfaces for Dynamic Lights"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bit_field"

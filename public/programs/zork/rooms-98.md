@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The RECORD subroutine logs detailed gameplay data, including scores, moves, deaths, and locations. This feature allowed developers to analyze player behavior and refine the game. In the 1970s, such analytics were rare, but Zork's developers recognized their value for debugging and improving design. The logging mechanism also provided a historical record of player achievements, a precursor to modern game analytics and telemetry systems used in AAA titles today."
   - id: "flag-names-setup"
-    line_start: 801
+    line_start: 792
     line_end: 816
     title: "Flags for tracking game state"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"

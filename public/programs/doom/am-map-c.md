@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `AM_changeWindowScale` function adjusts the automap's zoom level based on user input or predefined constraints. By recalculating scaling multipliers, the function ensures the map remains readable at different zoom levels. This dynamic zooming logic reflects DOOM's innovative approach to navigation, allowing players to explore complex levels with ease. The technique influenced later games with scalable map systems, such as Civilization and SimCity, where zooming is integral to gameplay."
   - id: "game-tick-automap-updates"
-    line_start: 802
+    line_start: 805
     line_end: 827
     title: "Real-time updates for automap responsiveness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Automap"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `AM_Ticker` function updates the automap system on each game tick. It handles player-following, zoom adjustments, panning, and light level updates. This ensures that the automap remains synchronized with the player's movements and actions in real-time. In 1993, real-time updates were a technical challenge due to limited processing power, but DOOM's efficient design allowed it to run smoothly on consumer-grade hardware. This approach laid the groundwork for dynamic map systems in later games, influencing titles like Quake and Half-Life that expanded on real-time navigation aids."
   - id: "clear-frame-buffer"
-    line_start: 830
+    line_start: 833
     line_end: 836
     title: "Clearing the automap frame buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `AM_clearFB` function clears the automap's frame buffer by filling it with a specified color. This ensures that the automap starts with a clean slate before rendering new elements. Frame buffers were a critical part of graphics programming in the early 1990s, as they allowed developers to manage pixel data directly. This technique is foundational to modern graphics systems, and its efficient implementation in DOOM contributed to the game's smooth visual performance."
   - id: "cohen-sutherland-clipping"
-    line_start: 839
+    line_start: 847
     line_end: 970
     title: "Optimized Cohen-Sutherland line clipping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cohen%E2%80%93Sutherland_algorithm"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `AM_clipMline` function adapts the Cohen-Sutherland line clipping algorithm to handle automap line rendering. It uses precalculated slopes and a faster rejection mechanism to determine whether lines are visible within the automap's viewport. This optimization was crucial for ensuring smooth performance on 1993 hardware, where computational efficiency was paramount. The algorithm's influence extends beyond DOOM, as it became a standard technique in computer graphics for handling visibility and rendering in constrained environments."
   - id: "bresenham-line-drawing"
-    line_start: 974
+    line_start: 978
     line_end: 1049
     title: "Bresenham's line-drawing algorithm for rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `AM_drawFline` function implements Bresenham's line-drawing algorithm to render lines on the automap. This algorithm calculates pixel positions efficiently by avoiding floating-point arithmetic, making it ideal for the limited hardware of the early 1990s. Bresenham's algorithm is a cornerstone of computer graphics, and its use in DOOM demonstrates the game's reliance on tried-and-true techniques to achieve high performance. Later games and engines continued to use this algorithm for 2D rendering tasks."
   - id: "grid-lines-rendering"
-    line_start: 1068
+    line_start: 1071
     line_end: 1109
     title: "Rendering grid lines for spatial orientation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Grid_(spatial_index)"
@@ -127,7 +127,7 @@ enhancements:
     content: "The `AM_drawGrid` function draws vertical and horizontal grid lines on the automap, helping players orient themselves within the game's levels. By aligning the grid with the game's spatial coordinates, the automap provides a clear visual reference for navigation. This feature was particularly useful in DOOM's labyrinthine levels, where players could easily lose their bearings. The concept of grid-based navigation has persisted in games like Minecraft and Civilization, where spatial organization is key to gameplay."
   - id: "player-arrow-rendering"
     line_start: 1168
-    line_end: 1237
+    line_end: 1238
     title: "Rendering player arrows with rotation and scaling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotation_(mathematics)"
     image_url: ""

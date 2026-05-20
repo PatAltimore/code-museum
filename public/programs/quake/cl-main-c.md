@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-client-initialization"
-    line_start: 20
+    line_start: 19
     line_end: 32
     title: "Foundation: Client Initialization Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This function reads incoming network packets, distinguishing between server messages and connectionless packets. It includes timeout checks to handle server unresponsiveness. Efficient packet processing was essential for Quake's low-latency multiplayer experience, especially on dial-up connections. John Carmack's focus on optimizing network code ensured smooth gameplay even under challenging conditions. This technique influenced later engines, including id Tech 3 and Source, which prioritized efficient packet handling for competitive online games like Quake III Arena and Team Fortress."
   - id: "cl-init-client-setup"
-    line_start: 1045
+    line_start: 1043
     line_end: 1178
     title: "Client Initialization and Command Registration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The `simple_crypt` function applies a basic XOR encryption to resource names, such as model and sound lists. While rudimentary, this technique was likely used to obscure resource names from casual inspection, offering minimal protection against tampering. In the broader context of software development, encryption methods evolved significantly, but this example highlights the early attempts at safeguarding game assets. Modern games use more sophisticated encryption and obfuscation techniques to protect intellectual property and enhance security."
   - id: "host-init-game-startup"
-    line_start: 1412
+    line_start: 1410
     line_end: 1504
     title: "Game Initialization and Resource Loading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"

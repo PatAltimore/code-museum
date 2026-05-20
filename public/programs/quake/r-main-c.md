@@ -86,8 +86,8 @@ enhancements:
     image_caption: ""
     content: "The function `R_RenderView` includes rigorous checks for stack alignment and memory integrity, ensuring the stability of Quake's rendering pipeline. Misaligned memory or stack pointers could cause crashes or undefined behavior, especially on x86 processors, which rely on specific alignment for efficient access. These checks highlight id Software's commitment to robustness, critical for a game designed to run on a wide range of hardware configurations. By catching alignment issues early, the code avoids subtle bugs that could degrade performance or reliability. This attention to detail set a standard for game development, influencing practices in debugging and hardware compatibility testing."
   - id: "sinusoidal-tables-for-turbulence"
-    line_start: 1091
-    line_end: 1093
+    line_start: 1090
+    line_end: 1103
     title: "Precomputed sinusoidal tables for turbulence effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sine_wave"
     image_url: ""

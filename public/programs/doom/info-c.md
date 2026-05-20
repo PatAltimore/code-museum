@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "sprite-name-array"
-    line_start: 40
+    line_start: 29
     line_end: 55
     title: "The Array of Sprite Names"
     wikipedia_url: "https://doomwiki.org/wiki/Sprite"
@@ -79,7 +79,7 @@ enhancements:
     content: "This section of the DOOM source code defines the attributes and behaviors of various game entities, including monsters, projectiles, and environmental objects. Each entity is represented as a structured block containing properties such as health, speed, sounds, and states for spawning, attacking, and dying. Flags further define how entities interact with the environment, such as whether they are solid, shootable, or affected by gravity. In 1993, DOOM's developers faced the challenge of creating a fast-paced, immersive game on hardware with limited processing power. The modular design of entities allowed for efficient memory usage and simplified the addition of new content. John Carmack, the lead programmer, emphasized simplicity and performance, which led to the creation of a flexible system that could handle a variety of behaviors without excessive computational overhead. This approach influenced the design of subsequent game engines, including id Software's own Quake engine, which expanded on the modular entity system with more advanced features. The concept of modular entities became a standard practice in game development, enabling developers to create complex worlds with reusable components. Today, similar systems are found in engines like Unity and Unreal Engine, which allow developers to define and customize entities with ease. DOOM's entity system laid the groundwork for modern game design, demonstrating how thoughtful architecture can overcome technical limitations and inspire innovation."
   - id: "object-properties-definition"
     line_start: 2401
-    line_end: 3200
+    line_end: 3212
     title: "Defining DOOM's 'things': Modular Object Design"
     wikipedia_url: "https://doomwiki.org/wiki/Thing"
     image_url: ""

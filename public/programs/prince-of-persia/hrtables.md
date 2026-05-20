@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The MIRROR table provides precomputed values for reflecting pixel data horizontally. This is used to create mirrored versions of sprites, such as the Prince's animations when facing left or right. The table eliminates the need for runtime calculations, allowing the program to quickly retrieve mirrored bytes. This was particularly useful for the Apple II, where the 6502 CPU lacked the processing power for complex graphics transformations. Mechner's inclusion of the MIRROR table reflects his commitment to creating a visually dynamic game, where character animations are responsive and lifelike. The technique influenced the design of sprite-based games on other platforms, where precomputed tables became a standard method for handling transformations efficiently."
   - id: "masktab-byte-masking"
-    line_start: 226
+    line_start: 217
     line_end: 253
     title: "Masking bytes for graphics blending"
     wikipedia_url: "https://en.wikipedia.org/wiki/Alpha_compositing"
@@ -94,8 +94,8 @@ enhancements:
     image_caption: ""
     content: "The AMASKS and BMASKS tables define bit masks used for pixel manipulation, such as setting or clearing specific bits in a byte. Each mask corresponds to a bit offset, allowing the program to apply masks efficiently during rendering. This technique was essential for the Apple II's high-resolution mode, where graphics operations had to be performed manually. Mechner's use of bit masks reflects his focus on optimizing performance while achieving precise control over pixel data. The approach influenced the design of graphics engines on other platforms, where bit masks became a standard method for handling pixel-level operations."
   - id: "opcode-for-self-modifying-code"
-    line_start: 321
-    line_end: 331
+    line_start: 312
+    line_end: 328
     title: "Dynamic opcodes for graphics routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""

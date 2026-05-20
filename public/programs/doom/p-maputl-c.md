@@ -27,7 +27,7 @@ summary:
 
 enhancements:
   - id: "approx-distance-calculation"
-    line_start: 44
+    line_start: 40
     line_end: 58
     title: "Approximation of distances using fixed-point math"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
@@ -52,7 +52,7 @@ enhancements:
     content: "The `P_BoxOnLineSide` function extends the logic of `P_PointOnLineSide` to handle bounding boxes, which are used to represent areas occupied by objects. This function determines whether a box is entirely on one side of a line, crosses it, or is ambiguous. Bounding boxes are a key optimization in collision detection, as they simplify calculations by reducing complex shapes to rectangular approximations. In DOOM, this method was crucial for handling interactions between moving entities and static map geometry. The use of bounding boxes for collision detection has since become standard practice in game development, influencing engines like Unreal and Unity."
   - id: "intercept-vector-calculation"
     line_start: 223
-    line_end: 283
+    line_end: 285
     title: "Finding intercept points between lines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Line_algorithm"
     image_url: ""

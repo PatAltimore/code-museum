@@ -612,14 +612,14 @@ async function route() {
   try {
     if (parts.length === 0 || (parts.length === 1 && parts[0] === '')) {
       const catalog = await getCatalog();
-      app.innerHTML = renderHeader() + renderShelf(catalog);
+      app.innerHTML = renderHeader({ githubUrl: 'https://github.com/PatAltimore/code-museum' }) + renderShelf(catalog);
 
     } else if (parts.length === 1) {
       const slug = parts[0];
       const catalog = await getCatalog();
       const program = getProgramFromCatalog(catalog, slug);
       if (!program) { setError('Program not found.'); return; }
-      app.innerHTML = renderHeader({ programSlug: slug, programTitle: program.title }) + renderProgramPage(program);
+      app.innerHTML = renderHeader({ programSlug: slug, programTitle: program.title, githubUrl: 'https://github.com/PatAltimore/code-museum' }) + renderProgramPage(program);
 
     } else if (parts.length >= 2) {
       const [programSlug, fileSlug] = parts;

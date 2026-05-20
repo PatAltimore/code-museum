@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The READBUFF section manages the data buffer used for printing, including setting up DMA (Direct Memory Access) and handling file reads. By optimizing buffer usage, PRINT minimizes disk I/O and ensures smooth operation. The use of DMA reflects the hardware capabilities of early PCs, where direct memory access was essential for high-performance applications. This section also includes error handling, restoring interrupt vectors and DMA addresses after a read operation. The buffer management techniques demonstrated here influenced later software, including print spoolers and data processing utilities, where efficient handling of large data sets is critical."
   - id: "disk-error-handling-dskerr"
-    line_start: 1019
+    line_start: 1015
     line_end: 1071
     title: "Disk Error Handling: DSKERR Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
@@ -191,7 +191,7 @@ enhancements:
     content: "The FILOOP routine iterates through a list of files associated with a device, processing each file and displaying relevant information. It uses File Control Blocks (FCBs), a data structure central to MS-DOS's file management. FCBs were a direct adaptation from CP/M, reflecting the influence of earlier systems on MS-DOS's design. This section demonstrates the importance of efficient file handling in an operating system, a concept that evolved into more sophisticated file systems like FAT and NTFS in later Microsoft products."
   - id: "file-name-message"
     line_start: 3017
-    line_end: 3049
+    line_end: 3081
     title: "Creating Messages with File Names"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -239,7 +239,7 @@ enhancements:
     content: "The anum_char routine handles the parsing of alphanumeric strings, storing characters in the token buffer and checking for delimiters like spaces, tabs, commas, and control characters. It uses a loop to process each character, ensuring that the input is tokenized correctly. This routine demonstrates the importance of flexible string handling in MS-DOS, where user commands often included complex input formats. By modularizing string parsing, MS-DOS v2.0 achieved a level of robustness and efficiency that was crucial for early personal computers. The techniques used in anum_char influenced later systems by showcasing how assembly language could be used to implement efficient string processing, contributing to the development of text-processing utilities in modern operating systems."
   - id: "kill-bl-whitespace-removal"
     line_start: 3245
-    line_end: 3265
+    line_end: 3267
     title: "Whitespace removal with kill_bl"
     wikipedia_url: "https://en.wikipedia.org/wiki/Whitespace_character"
     image_url: ""
@@ -247,7 +247,7 @@ enhancements:
     content: "The kill_bl routine removes extraneous whitespace characters, including spaces, tabs, commas, and equals signs, from the input buffer. It uses a loop to skip over these characters, ensuring that the token buffer contains only meaningful input. This routine reflects the necessity of preprocessing user input in MS-DOS, where commands often included unnecessary whitespace. By streamlining input processing, kill_bl contributed to the efficiency of command parsing in MS-DOS v2.0. The modular design of this routine influenced later systems by demonstrating the value of dedicated preprocessing functions, paving the way for text-processing utilities in modern operating systems like grep and sed."
   - id: "move-char-token-buffer-storage"
     line_start: 3273
-    line_end: 3279
+    line_end: 3281
     title: "Storing characters in the token buffer: move_char"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""

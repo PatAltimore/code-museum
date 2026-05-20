@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "crumble-trigger-loose-floors"
-    line_start: 103
+    line_start: 102
     line_end: 140
     title: "Triggering loose floors dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "DOFLASHON creates a lightning flash effect by interacting directly with Apple II hardware registers. It toggles between lo-res and hi-res modes to simulate the flash, adding dramatic visual impact during traumatic gameplay moments. This subroutine exemplifies Mechner's ability to leverage hardware quirks for cinematic storytelling. The technique of manipulating video modes directly influenced later games on similar platforms, showcasing how hardware constraints could be turned into creative opportunities."
   - id: "add-slicers-to-trans-list"
-    line_start: 245
+    line_start: 244
     line_end: 288
     title: "Dynamic slicer object management"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The PBURN subroutine animates torches in the princess's room by cycling through their states and updating their positions. It uses indexed addressing to manage multiple torches efficiently, ensuring they burn dynamically during gameplay. This detail adds to the game's cinematic atmosphere, showcasing Mechner's dedication to creating a visually rich experience. The technique of animating environmental objects influenced later games, particularly in how they handled dynamic lighting and effects in static scenes."
   - id: "playcut-cinematic-scenes"
-    line_start: 422
+    line_start: 420
     line_end: 452
     title: "Playing pre-recorded cinematic scenes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The PLAYCUT subroutine plays pre-recorded cinematic scenes by jumping to specific routines based on the scene number. It uses self-modifying code to dynamically determine the address of the scene routine, a clever workaround for the Apple II's memory limitations. This approach allowed Mechner to integrate cinematic storytelling seamlessly into gameplay, setting a precedent for narrative-driven platformers. The technique influenced later games that sought to blend gameplay with pre-rendered or scripted sequences."
   - id: "playloop-frame-sequence"
-    line_start: 870
+    line_start: 869
     line_end: 915
     title: "Simplified playback loop for animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `DEMO` routine initiates a self-running sequence by loading the `DemoProg1` data and jumping to `AutoPlayback`. This feature allows the game to showcase its gameplay without player input, a common practice in the era to attract players in retail environments or arcade settings. Mechner's implementation is notable for its precision, as the demo mimics actual gameplay mechanics, including jumps and combat. This technique influenced later games like Sonic the Hedgehog (1991), which used similar self-running demos to highlight gameplay features."
   - id: "gravity-and-freefall-mechanics"
-    line_start: 1610
+    line_start: 1608
     line_end: 1644
     title: "Gravity and freefall mechanics in assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"

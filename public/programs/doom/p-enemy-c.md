@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines two lookup tables (`opposite` and `diags`) that map directional relationships for enemy movement. The `opposite` table specifies the reverse direction for each of the eight cardinal and diagonal directions, while the `diags` table lists diagonal directions. These tables are used by functions like `P_NewChaseDir` to calculate movement paths efficiently. In the early 1990s, computational efficiency was paramount due to limited hardware capabilities, such as the Intel 386 processor, which DOOM targeted. Lookup tables were a common optimization technique, reducing the computational cost of complex calculations by precomputing results. This approach influenced later games, where similar techniques were employed for pathfinding and AI decision-making in real-time strategy and action games."
   - id: "recursive-sound-propagation"
-    line_start: 98
+    line_start: 97
     line_end: 149
     title: "Recursive sound propagation for AI awareness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `P_RecursiveSound` function implements a recursive algorithm to propagate sound alerts through connected sectors in the game world. When a player makes noise, this function wakes up monsters in adjacent sectors, respecting sound-blocking lines. This mechanic was innovative for its time, simulating a form of spatial awareness in enemies. In 1993, AI in games was often rudimentary, relying on simple triggers and proximity checks. DOOM's sound propagation added depth to enemy behavior, making them react dynamically to the player's actions. This technique inspired similar systems in later games, such as Half-Life's AI, which used sound cues to create immersive enemy responses."
   - id: "noise-alert-mechanism"
-    line_start: 154
+    line_start: 153
     line_end: 166
     title: "Noise alert mechanism for enemy coordination"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -103,7 +103,7 @@ enhancements:
     content: "The `A_PosAttack` function defines a positional attack for certain enemies, such as the pistol-wielding zombie. It calculates a random angle offset and damage value to simulate unpredictable attacks. This randomness adds variability to enemy behavior, making encounters feel dynamic and less scripted. In 1993, DOOM's developers were pioneering techniques to create engaging gameplay on limited hardware. The use of pseudo-random number generation for attack angles and damage was a clever way to simulate complexity without taxing the CPU. This approach influenced later games by showing how simple randomness could enhance perceived intelligence in AI."
   - id: "shotgun-enemy-multi-projectile"
     line_start: 821
-    line_end: 842
+    line_end: 843
     title: "Shotgun enemy firing multiple projectiles"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

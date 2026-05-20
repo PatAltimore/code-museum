@@ -54,24 +54,24 @@ enhancements:
     image_caption: ""
     content: "The `savemob` and `loadmob` routines handle saving and loading the properties of MOBs (mobile objects) like their position, velocity, type, and level. These routines use indexed addressing to read and write data directly to memory, ensuring minimal overhead. Mechner needed a way to manage the state of dynamic objects like enemies and environmental hazards while keeping memory usage low. The Apple II's limited RAM and lack of hardware support for advanced memory management meant that every byte counted. By organizing MOB data in contiguous memory blocks and using efficient routines to access them, Mechner optimized both speed and memory usage. This approach influenced later games that required efficient handling of dynamic entities, paving the way for techniques used in modern game engines to manage large numbers of objects in real-time."
   - id: "trigger-slicer-animation"
-    line_start: 217
-    line_end: 245
+    line_start: 210
+    line_end: 238
     title: "Trigger slicer animation dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "The `TRIGSLICER` subroutine triggers the animation of slicers, sharp objects that move back and forth to threaten the player. It checks the slicer's current state and only allows triggering if it is between slices. Mechner was solving the problem of creating believable and interactive environmental hazards that could respond to player actions. The slicer animation added tension and required precise timing from players, contributing to the game's cinematic feel. This subroutine reflects the broader trend in late 1980s game design toward more dynamic and responsive environments. The concept of state-driven animations for environmental hazards influenced later games, including platformers like Super Mario World and action-adventure titles like Tomb Raider, where dynamic traps became a staple."
   - id: "close-exit-animation"
-    line_start: 246
-    line_end: 258
+    line_start: 240
+    line_end: 256
     title: "Close exit with dramatic animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "The `CLOSEEXIT` subroutine animates the closing of an exit by setting its state to fully open and then rapidly transitioning it to closed. Mechner was creating a dramatic and visually impactful way to signal the end of a level or a failed attempt to escape. The Apple II's hardware constraints required careful timing and efficient state transitions to achieve smooth animations. This subroutine exemplifies how animation can be used to enhance storytelling and gameplay, a principle that has influenced countless games since. The dramatic closing of exits can be seen in modern titles like Dark Souls, where environmental changes signal shifts in narrative or gameplay."
   - id: "trigger-flask-animation"
-    line_start: 269
-    line_end: 288
+    line_start: 264
+    line_end: 282
     title: "Trigger flask animation with randomness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
     image_url: ""
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `TRIGSPIKES` subroutine triggers the animation of spikes, checking their current state and transitioning them accordingly. Mechner was solving the problem of creating interactive and believable environmental hazards that added tension and challenge to gameplay. The spikes' state-based logic reflects the game's focus on realism and precision, requiring players to time their movements carefully. This subroutine influenced later games by demonstrating how state-driven animations could create dynamic and engaging gameplay elements. Spikes and similar hazards are now a staple in platformers and action-adventure games, from Super Meat Boy to Hollow Knight."
   - id: "jam-spikes-animation"
-    line_start: 354
+    line_start: 347
     line_end: 364
     title: "Jam spikes to create permanent hazards"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"

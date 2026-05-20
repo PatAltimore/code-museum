@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "status-bar-constants"
-    line_start: 64
+    line_start: 34
     line_end: 275
     title: "Constants for Status Bar Layout and Colors"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"

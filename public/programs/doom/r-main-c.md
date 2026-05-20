@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "precomputed-trigonometric-tables"
-    line_start: 90
+    line_start: 89
     line_end: 113
     title: "Precomputed Trigonometric Tables for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"

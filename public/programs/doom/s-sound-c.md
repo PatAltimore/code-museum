@@ -35,7 +35,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes the sound system, setting default volumes for sound effects and music, and allocating memory for sound channels. The channels represent the maximum number of simultaneous sounds that can be played, a limitation imposed by the hardware of the era. The use of zone memory for channel allocation reflects DOOM's broader memory management strategy, which was designed to optimize performance on machines with limited RAM. By ensuring that no sounds are cached initially, the system minimizes memory usage until sounds are actually needed. This approach was crucial for running DOOM smoothly on consumer PCs of the early 1990s, which often had less than 4 MB of RAM. The sound system's modularity and efficiency influenced later game engines, including id Software's own Quake engine, which expanded on these principles."
   - id: "level-startup-sound-reset"
-    line_start: 198
+    line_start: 197
     line_end: 248
     title: "Level Startup: Sound Reset and Music Transition"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
@@ -51,7 +51,7 @@ enhancements:
     image_caption: ""
     content: "This section handles the playback and caching of music tracks, ensuring that the appropriate track is loaded and played when needed. The caching mechanism minimizes disk I/O during gameplay, improving performance on systems with slow storage devices. By registering and playing music tracks dynamically, DOOM creates a seamless auditory experience that adapts to gameplay. The use of lump-based caching reflects the game's broader data management strategy, which was designed to optimize performance on hardware with limited resources. This approach influenced the design of subsequent game engines, including id Software's Quake engine, which expanded on these principles to handle more complex audio systems."
   - id: "dynamic-sound-parameters"
-    line_start: 747
+    line_start: 746
     line_end: 818
     title: "Dynamic Sound Parameters: Distance and Orientation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Audio_signal_processing"

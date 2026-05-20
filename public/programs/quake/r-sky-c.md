@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `R_GenSkyTile16` function adapts the sky tile generation process for 16-bit color depth. It uses a lookup table (`d_8to16table`) to convert 8-bit color values into 16-bit format, ensuring compatibility with higher color fidelity. This reflects the transition from 8-bit to 16-bit graphics, a significant step in the evolution of gaming visuals. In the mid-1990s, 16-bit color depth was becoming the standard for PC gaming, offering a wider range of colors and smoother gradients. Quake's support for this format demonstrated id Software's forward-thinking approach, ensuring the game could take advantage of emerging hardware capabilities. The comments hint at potential optimizations, showing the team's focus on iterative improvement. This adaptation influenced the industry's move toward higher color depths, paving the way for 32-bit and HDR rendering in modern games. It also highlighted the importance of backward compatibility, as developers had to balance support for older hardware with advancements in technology. Techniques like these contributed to the seamless visual experiences we expect from contemporary games."
   - id: "sky-frame-calculation"
-    line_start: 257
+    line_start: 256
     line_end: 278
     title: "Sky Frame Calculation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Greatest_common_divisor"

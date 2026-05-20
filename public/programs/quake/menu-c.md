@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This enumeration defines the various states of the menu system, such as 'm_main' for the main menu, 'm_singleplayer' for single-player mode, and 'm_multiplayer' for multiplayer mode. By using a state-based design, id Software created a modular and extensible menu system where transitions between menus are controlled by changing the current state. In 1996, this approach was particularly effective for games like Quake, which needed to manage complex user interactions while maintaining performance on limited hardware. State-based systems have since become a standard in game development, influencing frameworks like Unity and Unreal Engine."
   - id: "menu-draw-character"
-    line_start: 105
+    line_start: 102
     line_end: 115
     title: "Rendering menu characters dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_processing_unit"

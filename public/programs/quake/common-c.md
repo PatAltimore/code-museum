@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "foundation-constants-and-variables"
-    line_start: 20
-    line_end: 31
+    line_start: 19
+    line_end: 33
     title: "Foundation: Constants and Variables for Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `ShortSwap`, `LongSwap`, and `FloatSwap` functions address endianness, ensuring data compatibility across platforms with different byte orders. This was critical for Quake's multiplayer functionality, where data exchanged between clients and servers needed consistent interpretation. In an era when cross-platform development was rare, these functions demonstrate id Software's foresight in designing scalable systems. The approach influenced later engines and networking libraries, which adopted similar techniques to ensure interoperability."
   - id: "message-io-functions"
     line_start: 498
-    line_end: 848
+    line_end: 845
     title: "Message Serialization for Network Communication"
     wikipedia_url: "https://en.wikipedia.org/wiki/Serialization"
     image_url: ""

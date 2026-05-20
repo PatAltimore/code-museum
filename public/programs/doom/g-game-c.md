@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This function, `G_BuildTiccmd`, assembles a `ticcmd_t` structure from various input sources, including keyboard, mouse, and joystick. It processes movement, turning, strafing, and special actions like attacking or using items. The function also handles input acceleration for smoother turning and double-click detection for certain actions. In the early 1990s, supporting diverse input devices was a technical challenge, as standards for peripherals were less uniform. DOOM's ability to integrate multiple input types set a precedent for modern games, which routinely support keyboards, mice, controllers, and touchscreens. This flexibility contributed to DOOM's widespread appeal and accessibility, influencing game engines like Unity and Unreal to prioritize input abstraction layers."
   - id: "load-level-sky-texture"
-    line_start: 445
+    line_start: 440
     line_end: 497
     title: "Dynamic sky textures based on game state"
     wikipedia_url: "https://en.wikipedia.org/wiki/Skybox_(video_games)"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `G_Ticker` function updates the game state by processing player commands, handling game actions, and ensuring consistency checks in multiplayer mode. It also manages special buttons like pause and save, as well as level-specific updates like intermissions and finales. This function exemplifies DOOM's innovative approach to multiplayer synchronization, using consistency checks to detect discrepancies between players' states. These techniques laid the groundwork for reliable multiplayer experiences in later games, influencing network protocols and synchronization methods in titles like Quake and Counter-Strike."
   - id: "player-initialization"
-    line_start: 757
+    line_start: 751
     line_end: 771
     title: "Initializing player states for gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `G_PlayerFinishLevel` function resets various player attributes, such as powers, cards, and visual effects, upon completing a level. This ensures that players start the next level with a clean slate, maintaining gameplay balance and continuity. By systematically clearing temporary effects like invisibility and damage indicators, DOOM established a clear separation between levels, a design principle that influenced later games with episodic structures, such as Half-Life and Portal."
   - id: "player-respawn-mechanics"
-    line_start: 796
+    line_start: 795
     line_end: 833
     title: "Player respawn: preserving progress and fairness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Deathmatch"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "The `G_TimeDemo` function activates timedemo mode, allowing players and developers to benchmark DOOM's performance. By disabling rendering (`nodrawers`) and screen updates (`noblit`), the game can focus solely on processing gameplay logic, providing an accurate measure of computational efficiency. This feature was particularly valuable in the early 1990s, when hardware performance varied widely and optimization was critical for ensuring a consistent experience across different systems. John Carmack's emphasis on performance testing helped establish a culture of benchmarking in game development, influencing tools like FRAPS and built-in performance modes in modern engines like Unreal Engine and Unity. Timedemo mode also became a staple for speedrunners, who used it to analyze frame timings and optimize their runs."
   - id: "demo-status-check"
-    line_start: 1647
+    line_start: 1645
     line_end: 1686
     title: "Cleaning up and finalizing demos"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"

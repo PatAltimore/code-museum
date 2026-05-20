@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-data-structures"
-    line_start: 24
+    line_start: 19
     line_end: 49
     title: "Foundation: Core Rendering Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines foundational variables used throughout the rendering pipeline, such as `r_worldentity` and `r_cache_thrash`. These variables track the state of the world and rendering cache, ensuring compatibility and efficiency. In 1996, memory constraints and hardware limitations demanded careful management of such global variables to optimize performance. John Carmack and his team designed these structures to support Quake's groundbreaking 3D environments. The approach influenced later engines, including id Tech 2 and id Tech 3, which refined global state tracking for more complex scenes."
   - id: "frustum-culling-optimization"
-    line_start: 105
+    line_start: 104
     line_end: 119
     title: "Frustum Culling: Efficient Visibility Checks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Frustum_culling"
@@ -79,7 +79,7 @@ enhancements:
     content: "The `R_DrawViewModel` function handles the rendering of the player's weapon or view model, ensuring it appears correctly within the scene. Special considerations, such as depth range adjustments, prevent the model from clipping into walls. This technique was essential for maintaining immersion in Quake's first-person perspective. The concept of view models became a staple in FPS games, influencing titles like Half-Life and Counter-Strike."
   - id: "gl-setup-perspective"
     line_start: 854
-    line_end: 918
+    line_end: 936
     title: "Setting Up the GL Perspective"
     wikipedia_url: "https://en.wikipedia.org/wiki/OpenGL"
     image_url: ""

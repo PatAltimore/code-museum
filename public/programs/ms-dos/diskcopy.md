@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `getkey` subroutine waits for a key press from the user, using BIOS interrupt `21h` with function `12h`. This routine displays a message (`keymsg`) before pausing execution, ensuring the user is prompted for interaction. In the early 1980s, user interfaces were primarily text-based, and programs relied on such routines to guide users through operations. Chris Peters included this feature to make DISKCOPY more user-friendly, a necessity given the technical nature of early PCs. The approach influenced later DOS utilities, which adopted similar methods to improve usability. It also reflects the era's emphasis on simplicity and direct interaction, laying the groundwork for more sophisticated user interfaces in subsequent decades."
   - id: "getdpb-disk-parameter-block"
-    line_start: 147
+    line_start: 153
     line_end: 181
     title: "Retrieving Disk Parameters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"

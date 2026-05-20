@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "ztemp-local-variable-setup"
     line_start: 64
-    line_end: 87
+    line_end: 82
     title: "Local variables and memory setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "This section initializes local variables and memory buffers used throughout the graphics routines. Variables like `AMASK`, `BMASK`, and `VISWIDTH` are reserved for handling sprite masking and visibility calculations. The programmer, Jordan Mechner, is setting up the groundwork for efficient memory access and manipulation, crucial for the Apple II's constrained 128K memory. At the time, memory management was a critical skill, as developers had to work within tight hardware limits. Techniques like these influenced future game development on constrained systems, including the NES and Commodore 64, where similar memory setups were used for sprite handling."
   - id: "cls-clear-hires-screen"
-    line_start: 200
+    line_start: 170
     line_end: 230
     title: "Clearing the hi-res screen to black"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `LAYRSAVE` routine saves the background behind a sprite before it is drawn, storing it in a peel buffer. This allows the background to be restored later when the sprite is removed, ensuring smooth animation without visual artifacts. Mechner's approach mirrors early double-buffering techniques, where off-screen buffers were used to manage graphics. This method was critical for achieving the cinematic quality of Prince of Persia's animations. It influenced later games with complex sprite interactions, such as Another World (1991) and Flashback (1992), which also emphasized smooth transitions and animations."
   - id: "lay-general-image-rendering"
-    line_start: 658
+    line_start: 641
     line_end: 680
     title: "General routine for rendering sprites"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `LayXOR` routine is responsible for rendering sprites using XOR logic, a technique that allows efficient manipulation of overlapping graphics. By leveraging the XOR operation, Mechner ensures that sprites can be drawn and erased without leaving residual artifacts on the screen. This subroutine initializes parameters, calculates offsets, and iteratively processes each byte of the sprite image, handling edge cases like off-screen portions. In 1989, the Apple II's limited graphical capabilities demanded such clever tricks to achieve smooth animation and dynamic visuals. XOR-based rendering was particularly useful for games requiring frequent updates to overlapping graphics, as it avoided the need for complex masking operations. This approach influenced later sprite manipulation techniques in other games and systems, particularly those with similar memory constraints."
   - id: "mlay-mirroring-logic"
-    line_start: 1186
+    line_start: 1172
     line_end: 1201
     title: "Mirroring sprites for dynamic visuals"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mirroring_(graphics)"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `MLayGen` routine handles general-purpose sprite rendering, supporting operations like AND, OR, and STORE. These operations allow sprites to interact with the background and other graphical elements in flexible ways, such as blending or masking. The routine prepares the rendering parameters, calculates offsets, and processes each byte of the sprite image. In the constrained environment of the Apple II, such versatility was critical for achieving the game's cinematic look. Mechner's ability to implement these operations efficiently contributed to the game's groundbreaking visuals, influencing subsequent games that sought to achieve similar graphical sophistication."
   - id: "mlaymask-mask-and-or"
-    line_start: 1356
+    line_start: 1350
     line_end: 1539
     title: "Masking and OR operations for sprites"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"

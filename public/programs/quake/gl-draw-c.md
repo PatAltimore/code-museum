@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-and-global-variables"
-    line_start: 21
+    line_start: 19
     line_end: 24
     title: "Foundation: Setting up global variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `Draw_Crosshair` function provides dynamic rendering of the crosshair, allowing for color customization and positioning adjustments. It uses OpenGL's texture environment modes to modulate the crosshair's color, showcasing the flexibility of hardware-accelerated graphics. This feature catered to players' preferences and hardware capabilities. By enabling modular crosshair rendering, Quake set a precedent for customizable HUD elements, influencing games like Counter-Strike and Overwatch, where player-centric customization is a key feature."
   - id: "gl-set2d-function"
-    line_start: 915
+    line_start: 913
     line_end: 938
     title: "GL_Set2D: Configuring 2D rendering mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/OpenGL"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `GL_Set2D` function configures the OpenGL viewport and projection matrix for 2D rendering, simulating a 320x200 screen resolution. This setup is essential for rendering UI elements and overlays in a 3D environment. By disabling depth testing and enabling alpha testing, the function optimizes the pipeline for 2D graphics. This approach reflects the duality of Quake's rendering system, which seamlessly integrates 2D and 3D elements. Techniques from this function influenced modern engines, where similar configurations are used for HUD rendering and post-processing effects."
   - id: "gl-resample-texture"
-    line_start: 963
+    line_start: 961
     line_end: 989
     title: "GL_ResampleTexture: Efficient texture scaling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `GL_ResampleTexture` function implements a fast algorithm for scaling textures, using integer arithmetic to map input pixels to output pixels. This method ensures efficient resizing while maintaining visual fidelity. In 1996, scaling textures was computationally expensive, and this function reflects the need for optimized solutions. The algorithm's efficiency influenced texture scaling techniques in later engines, including Unity and Unreal Engine, where similar methods are used to handle dynamic resolution changes and mipmapping."
   - id: "gl-mipmap-texture-scaling"
-    line_start: 1023
+    line_start: 1021
     line_end: 1046
     title: "Mipmapping: Efficient Texture Scaling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mipmap"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This section implements a mipmapping algorithm that reduces texture resolution for distant objects, improving rendering performance and visual quality. The function `GL_MipMap` averages pixel values to create a lower-resolution version of a texture. In 1996, hardware limitations required such optimizations to maintain playable frame rates in 3D environments. John Carmack and Michael Abrash, known for their focus on performance, adapted this technique from academic graphics research and earlier games like Doom. Mipmapping became a standard in 3D rendering, influencing APIs like OpenGL and DirectX. Today, it's a fundamental feature in modern game engines like Unity and Unreal Engine."
   - id: "gl-mipmap8bit-color-indexing"
-    line_start: 1050
+    line_start: 1048
     line_end: 1078
     title: "8-Bit Mipmapping: Color Index Optimization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Indexed_color"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `GL_MipMap8Bit` function handles mipmapping for 8-bit textures, using color indexing to reduce memory usage. It leverages lookup tables (`d_8to24table` and `d_15to8table`) to convert indexed colors into RGB values and back. This approach was critical for Quake's compatibility with older graphics hardware, which often lacked support for true-color textures. By optimizing for 8-bit textures, id Software ensured that Quake could run on a wide range of systems, broadening its audience. This technique influenced later games that sought to balance graphical fidelity with hardware accessibility."
   - id: "gl-upload32-dynamic-texture-handling"
-    line_start: 1082
+    line_start: 1080
     line_end: 1168
     title: "Dynamic Texture Upload for 32-bit Formats"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -134,7 +134,7 @@ enhancements:
     image_caption: ""
     content: "The `GL_LoadTexture` function manages texture caching, ensuring that textures are reused rather than reloaded, which saves memory and improves performance. It checks for existing textures using identifiers and updates the cache as needed. This approach was vital for Quake's ability to render complex 3D environments efficiently on mid-1990s hardware. By implementing texture caching, id Software reduced redundant operations, a technique that became standard in later engines like Unreal Engine and Frostbite. This function exemplifies the team's focus on scalability and optimization, principles that continue to shape game development today."
   - id: "gl-selecttexture-multitexture-support"
-    line_start: 1364
+    line_start: 1362
     line_end: 1378
     title: "Multitexture Support: Early GPU Optimization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multitexturing"

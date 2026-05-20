@@ -80,7 +80,7 @@ enhancements:
     image_caption: ""
     content: "The `EV_TurnTagLightsOff` function reduces the light level of sectors with a specific tag to the minimum surrounding light level. This effect is often used in DOOM to create dramatic transitions, such as plunging a room into darkness after a player activates a switch. By iterating through sectors and calculating minimum light levels, the function ensures that the effect is consistent and impactful. This technique demonstrates id Software's attention to detail in environmental design, influencing later games that used lighting to enhance storytelling, such as Bioshock and The Last of Us."
   - id: "spawn-glowing-light"
-    line_start: 315
+    line_start: 314
     line_end: 356
     title: "Simulating glowing light transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"

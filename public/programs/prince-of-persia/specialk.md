@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `freeze` routine handles the ESC key, allowing the game to pause or freeze. It uses a clever trick to ignore the keypress that breaks the ESC sequence, ensuring smooth transitions between gameplay and paused states. This routine highlights the importance of interrupt handling in real-time games, where unexpected inputs must be managed gracefully. In the late 1980s, such techniques were vital for creating immersive experiences on limited hardware. Mechner's careful attention to detail in input handling contributed to the game's reputation for polish and responsiveness, influencing later titles that sought to emulate its cinematic style."
   - id: "keys2-keypress-storage"
-    line_start: 161
+    line_start: 160
     line_end: 258
     title: "Store and process keypresses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `ZEROSOUND` routine resets the sound table, clearing all sound effects from memory. This routine is essential for managing audio resources on the Apple II, where memory constraints required careful allocation of sound data. Mechner's implementation demonstrates his ability to optimize resource management while maintaining the game's cinematic quality. Sound management techniques like these laid the groundwork for more sophisticated audio systems in later games, contributing to the evolution of immersive sound design in the gaming industry."
   - id: "addsound-add-sound-to-table"
-    line_start: 981
+    line_start: 980
     line_end: 1004
     title: "Add sound to sound table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
@@ -127,14 +127,14 @@ enhancements:
     content: "LISTTORCHES creates a list of visible torches on the screen without disturbing the game's graphics buffers. It iterates through screen elements, identifies torches, and stores their positions and states in arrays. This routine exemplifies Mechner's meticulous optimization for the Apple II's limited memory and processing power. By bypassing the standard graphics system, the game achieves smooth torch animations without impacting other visual elements. This technique of direct graphics manipulation influenced later developers working on constrained hardware, inspiring similar optimizations in games like Another World and Flashback, which also emphasized cinematic visuals."
   - id: "burn-torch-animation"
     line_start: 1114
-    line_end: 1172
+    line_end: 1149
     title: "Animating Torch Flames Directly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "The BURN routine animates torch flames by drawing directly onto the displayed graphics page, bypassing the normal graphics system. It cycles through the list of visible torches, updates their animation frames, and clips flames if they overlap with other objects. This direct manipulation of graphics memory was essential for achieving smooth animations on the Apple II, which lacked dedicated graphics hardware. Mechner's approach reflects the ingenuity required to create dynamic visuals on constrained systems. This technique influenced cinematic platformers like Limbo and Inside, which prioritize atmospheric effects and seamless animations."
   - id: "time-left-calculation"
-    line_start: 1173
+    line_start: 1164
     line_end: 1232
     title: "Calculating Time Left in Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"
@@ -166,8 +166,8 @@ enhancements:
     image_caption: ""
     content: "SHORTENTIME reduces the remaining time to 15 minutes when players skip levels, ensuring they still face a challenge. This routine reflects Mechner's attention to balancing gameplay difficulty, even for players who bypass normal progression. The concept of penalizing cheats while maintaining engagement influenced later games like Dark Souls, which subtly discourage exploits while rewarding perseverance."
   - id: "cue-song-routine"
-    line_start: 1332
-    line_end: 1341
+    line_start: 1324
+    line_end: 1337
     title: "Cueing Songs for Cinematic Effect"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
     image_url: ""

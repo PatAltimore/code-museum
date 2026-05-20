@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "include-directives-and-segment-assumptions"
-    line_start: 3
-    line_end: 21
+    line_start: 1
+    line_end: 19
     title: "Setting the stage: INCLUDE directives"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "SETCLUS is a critical subroutine for managing clusters in the FAT file system. It updates the file control block (FCB) with the current cluster and position information, ensuring that the file system can track where data is stored. This subroutine reflects the shift from single-level storage to cluster-based management, a concept borrowed from Unix and adapted for MS-DOS. By packing cluster information efficiently, SETCLUS enables the FAT file system to handle larger files and directories. This innovation influenced subsequent file systems, including VFAT and NTFS, which expanded on the idea of cluster management to support advanced features like journaling and metadata."
   - id: "diskread-perform-disk-read"
     line_start: 2131
-    line_end: 2191
+    line_end: 2131
     title: "Reading data from the disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
     image_url: ""

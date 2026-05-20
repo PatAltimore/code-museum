@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "CMPSPACE and CMPBARR are subroutines that determine whether a given object ID represents a passable space or a barrier. These routines are integral to the game's collision detection system, ensuring that the character interacts correctly with the environment. By categorizing objects like panels, gates, and blocks, Mechner created a flexible system for handling diverse gameplay scenarios. This approach influenced later games that required complex environmental interactions, such as the Metroid and Castlevania series."
   - id: "object-table-management"
-    line_start: 1592
+    line_start: 1585
     line_end: 1628
     title: "Adding characters and objects to the table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
@@ -134,7 +134,7 @@ enhancements:
     image_caption: ""
     content: "The ADDKIDOBJ, ADDREFLOBJ, ADDSHADOBJ, ADDGUARDOBJ, and ADDSWORDOBJ subroutines handle the addition of various characters and objects to the game's object table. This modular approach to object management reflects early principles of object-oriented programming, where each entity is treated as a distinct type with specific properties. Mechner's design here allowed for dynamic gameplay elements, such as the appearance of guards and the player's sword, to be seamlessly integrated into the game world. This modularity became a standard practice in game development, influencing engines like Unity and Unreal."
   - id: "strength-meter-management"
-    line_start: 2020
+    line_start: 2015
     line_end: 2050
     title: "Managing the strength meter dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"

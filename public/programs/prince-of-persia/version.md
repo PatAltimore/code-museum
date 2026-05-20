@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "version-string-prince-of-persia"
-    line_start: 9
+    line_start: 7
     line_end: 14
     title: "A version string etched in assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Versioning"

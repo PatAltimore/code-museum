@@ -135,7 +135,7 @@ enhancements:
     content: "The `$FIND_NEXT` procedure continues a file search initiated by `$FIND_FIRST`, scanning for subsequent matches within the directory. This routine ensures efficient traversal by leveraging the previously loaded directory buffer. At the time, MS-DOS v2.0 was designed to support more complex file operations, inspired by Unix's directory handling. The ability to iterate through files programmatically was crucial for applications like file managers and batch processing scripts. Modern operating systems have refined this approach, integrating directory iteration into high-level APIs and supporting parallel searches for improved performance."
   - id: "do-ext-end-of-file"
     line_start: 1805
-    line_end: 1813
+    line_end: 1811
     title: "Final cleanup: end-of-file marker"
     wikipedia_url: "https://en.wikipedia.org/wiki/End-of-file"
     image_url: ""

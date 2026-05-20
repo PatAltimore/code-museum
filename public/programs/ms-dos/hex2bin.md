@@ -27,7 +27,7 @@ summary:
 
 enhancements:
   - id: "file-handling-interrupts"
-    line_start: 4
+    line_start: 1
     line_end: 13
     title: "File handling via MS-DOS interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

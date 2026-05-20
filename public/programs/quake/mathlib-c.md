@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "foundation-vector-origin"
-    line_start: 20
-    line_end: 23
+    line_start: 19
+    line_end: 28
     title: "Foundation: Vector Origin and Constants"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
     image_url: ""
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `anglemod` function ensures angles remain within a valid range by applying a modulo operation. This prevents overflow and maintains precision during calculations involving rotations and orientations. The function uses a bitwise approach to optimize performance, a necessity given the hardware constraints of the era. This technique is widely adopted in modern game engines to manage angle calculations efficiently, ensuring smooth transitions and accurate physics simulations."
   - id: "box-on-plane-side"
-    line_start: 186
+    line_start: 180
     line_end: 287
     title: "Determining Box Position Relative to Planes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Plane_(geometry)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `GreatestCommonDivisor` function implements the Euclidean algorithm to find the greatest common divisor of two integers. This recursive approach is efficient and elegant, leveraging mathematical properties to minimize computational steps. While not directly related to 3D graphics, such utility functions are crucial for broader numerical operations within the engine. The use of recursion reflects the developers' deep understanding of algorithm design, influencing future implementations in game development and beyond."
   - id: "invert-24-to-16"
-    line_start: 566
+    line_start: 562
     line_end: 581
     title: "Inverting Fixed-Point Values"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"

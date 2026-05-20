@@ -135,7 +135,7 @@ enhancements:
     content: "The NOT_SINGLE section checks whether the drive is a single floppy drive or a hard disk. It uses bitwise operations to determine the maximum floppy drive number and compares it with the current drive number. This reflects the limitations of early PC hardware, where single floppy systems were common. By distinguishing between floppy and hard drives, the routine ensures proper handling of storage devices. This design influenced later systems, which expanded device detection capabilities to include network drives and removable media. The routine's efficient use of bitwise operations and register preservation highlights the ingenuity required to optimize assembly code for constrained environments."
   - id: "check-flop-boot-disk-validation"
     line_start: 1137
-    line_end: 1145
+    line_end: 1143
     title: "Boot Disk Validation for Floppy Drives"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""

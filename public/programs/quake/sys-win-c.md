@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-windows-integration"
-    line_start: 29
+    line_start: 19
     line_end: 33
     title: "Foundation: Constants for Windows Integration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Windows_95"

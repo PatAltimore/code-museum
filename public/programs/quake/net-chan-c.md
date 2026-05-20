@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The Netchan_OutOfBand function sends out-of-band messages, which are special packets marked with a sequence number of -1. These packets bypass the normal reliable/unreliable packet handling logic and are used for critical communication, such as server status updates or connection requests. Out-of-band messaging was a novel solution to ensure certain types of data could be transmitted immediately without waiting for standard packet sequencing. This technique became a standard feature in networked games, influencing later engines like Unreal Engine and Source, which implemented similar mechanisms for server-client communication."
   - id: "handling-reliable-message-retransmission"
-    line_start: 213
+    line_start: 211
     line_end: 314
     title: "Handling Reliable Message Retransmission"
     wikipedia_url: "https://en.wikipedia.org/wiki/Reliability_(computer_networking)"

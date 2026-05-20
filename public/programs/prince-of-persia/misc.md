@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The FIRSTGUARD subroutine prevents the player from running or jumping past an en-garde guard. It checks various conditions, such as the guard's alertness, sword status, and proximity to the player, before deciding whether to block the player's movement. If the guard is defeated, the routine triggers a cinematic sequence where the guard is bumped off. Mechner was addressing the challenge of creating dynamic interactions between characters, a hallmark of the cinematic platformer genre. In 1989, such mechanics were groundbreaking, as most games relied on static enemy behaviors. Mechner's approach added depth to the gameplay, making each encounter feel unique. This mechanic influenced later games, such as the Tomb Raider series, which incorporated dynamic enemy interactions and cinematic sequences. It also showcased the potential of assembly language to create complex gameplay systems."
   - id: "mark-strength-meters"
-    line_start: 221
+    line_start: 220
     line_end: 247
     title: "Mark strength meters: visualizing health"
     wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"

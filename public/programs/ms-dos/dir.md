@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `Dir_search` routine is responsible for locating files or directories within the hierarchical file system introduced in MS-DOS 2.0. This marks a significant departure from the flat file system of MS-DOS 1.x. The routine uses the File Control Block (FCB) structure to traverse directories and locate entries. At the time, the IBM PC's 8086 processor had limited computational power, so efficiency was paramount. The hierarchical directory structure, inspired by Unix, allowed users to organize files logically, improving usability for both personal and business applications. This routine laid the groundwork for subsequent file systems, influencing FAT12 and FAT16 designs and later operating systems like Windows."
   - id: "make-node-create-new-file-or-directory"
-    line_start: 1309
+    line_start: 1025
     line_end: 1309
     title: "Creating nodes: files and directories"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `MakeNode` procedure is a key part of MS-DOS's directory handling. It creates new nodes in the file system, which can represent files or directories. The routine checks for existing nodes, validates attributes, and handles errors such as bad paths or attribute mismatches. This functionality reflects the influence of Unix, which also uses hierarchical directories and attributes for file system entries. The introduction of this feature in MS-DOS 2.0 allowed users to create nested directories, a major usability improvement over MS-DOS 1.x. The technique of error handling and attribute validation became standard in later file systems, influencing FAT and NTFS designs."
   - id: "getpath-parse-asciz-paths"
-    line_start: 1389
+    line_start: 1319
     line_end: 1649
     title: "Path parsing: understanding user input"
     wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"
@@ -167,7 +167,7 @@ enhancements:
     content: "The MatchAttributes routine performs a comparison between the desired file attributes and those of a directory entry. By using logical operations like NOT and AND, it determines whether the entry matches the search criteria. This approach was optimized for the limited processing power of the 8086 CPU, ensuring fast execution even in resource-constrained environments. File attributes, such as 'read-only' or 'hidden,' were a key feature of MS-DOS's file system, allowing users and programs to manage files more effectively. The efficient implementation here influenced later file systems, where attribute-based searches became standard practice."
   - id: "do-ext-final-code-section"
     line_start: 2159
-    line_end: 2167
+    line_end: 2165
     title: "Finalizing the directory handling code"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

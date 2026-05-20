@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "editon-buffer-validation"
-    line_start: 26
-    line_end: 28
+    line_start: 20
+    line_end: 23
     title: "Buffer Validation and Edit Mode Activation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The COPYNEW routine copies the finalized input line from the internal buffer to the user buffer, ensuring that the input is accessible to the calling program. This involves swapping segment registers and using the REP MOVSB instruction for efficient memory copying. In the constrained environment of early PCs, efficient memory operations were critical for performance. Tim Paterson's implementation reflects the low-level optimization required in assembly programming. This technique influenced later systems, where efficient memory copying became a standard practice in operating system design and application development."
   - id: "phycrlf-non-buffered-crlf"
-    line_start: 104
+    line_start: 105
     line_end: 107
     title: "Outputting Non-Buffered CRLF"
     wikipedia_url: "https://en.wikipedia.org/wiki/Newline"

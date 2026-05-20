@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-dosseg-and-dossym"
     line_start: 1
-    line_end: 42
+    line_end: 15
     title: "Setting up the environment: INCLUDE directives"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The file begins by including key assembly files (`DOSSEG.ASM`, `DOSSYM.ASM`, `DEVSYM.ASM`) that define essential segments, symbols, and device-related constants for MS-DOS. These directives establish the groundwork for buffer management routines by importing predefined structures and macros. In the early 1980s, modular programming in assembly was rare but crucial for maintainability, especially in a project like MS-DOS 2.0, which had to support a wide range of hardware configurations. Tim Paterson and the Microsoft team leveraged these modular files to streamline development and ensure compatibility across OEMs. This modularity influenced later operating systems, including Windows, which continued to rely on segmented architecture and modular code organization."
   - id: "setvisit-buffer-scan-initialization"
     line_start: 25
-    line_end: 70
+    line_end: 50
     title: "SETVISIT: Resetting buffer visit flags"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
     image_url: ""

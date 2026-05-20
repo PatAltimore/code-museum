@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "include-directives-for-segment-and-symbols"
-    line_start: 13
+    line_start: 1
     line_end: 37
     title: "Segment and Symbol Definitions Setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
@@ -38,15 +38,15 @@ enhancements:
     image_caption: ""
     content: "This section sets up the necessary includes and segment definitions for the memory allocation routines. The INCLUDE directives pull in external files like DOSSEG.ASM, DOSSYM.ASM, and DEVSYM.ASM, which define constants, macros, and memory layout specifics. These files were crucial for ensuring consistency across the MS-DOS codebase, allowing developers to reference predefined symbols and memory segments without duplicating effort. In the early 1980s, modularity in assembly programming was a significant advancement, as it streamlined development and reduced errors in large projects. This approach influenced later programming practices, including the use of header files in C and modular libraries in modern programming languages."
   - id: "arena-free-process-loop"
-    line_start: 89
-    line_end: 101
+    line_start: 77
+    line_end: 119
     title: "Freeing Memory Blocks by Process ID"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "This routine iterates through memory blocks and frees those owned by a specific process ID (PID). It uses the arena_signature to identify valid memory blocks and checks the arena_owner field to match the PID. If a match is found, the block is marked as free. This mechanism reflects the constrained memory environments of early PCs, where efficient memory reuse was critical. The design borrows concepts from Unix-like systems, emphasizing process isolation and resource cleanup. This approach laid the groundwork for modern memory management techniques, such as garbage collection and process-specific memory allocation, seen in contemporary operating systems like Windows and Linux."
   - id: "arena-next"
-    line_start: 135
+    line_start: 123
     line_end: 155
     title: "Locating the Next Memory Block"
     wikipedia_url: "https://en.wikipedia.org/wiki/Heap_(data_structure)"
@@ -54,31 +54,31 @@ enhancements:
     image_caption: ""
     content: "The arena_next routine calculates the address of the next memory block by adding the current block's size to its starting address. This simple yet effective technique ensures sequential traversal of memory blocks. The routine also checks for corrupted memory using the check_signature subroutine. In the early 1980s, memory corruption was a common issue due to hardware limitations and lack of robust error-checking mechanisms. By incorporating signature validation, MS-DOS improved reliability in memory management. This technique influenced later memory allocation algorithms, including those used in dynamic heaps and garbage collectors in modern programming languages like Java and Python."
   - id: "coalesce-free-memory-blocks"
-    line_start: 231
-    line_end: 247
+    line_start: 215
+    line_end: 249
     title: "Combining Adjacent Free Memory Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The coalesce_check routine combines adjacent free memory blocks into a single larger block. This reduces fragmentation and maximizes usable memory, a critical feature in systems with limited RAM. The routine checks the ownership of the next block and updates the size and signature of the current block if the next block is free. This technique was inspired by Unix-like systems and became a standard practice in memory management. It influenced the design of modern heap allocators, such as those used in malloc/free in C and dynamic memory pools in game engines like Unreal Engine."
   - id: "alloc-scan-and-best-fit"
-    line_start: 319
-    line_end: 427
+    line_start: 289
+    line_end: 441
     title: "Scanning Memory for Best Fit Allocation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "This section implements a best-fit memory allocation strategy, scanning through available memory blocks to find the smallest block that meets the requested size. The routine tracks the first, best, and last suitable blocks, allowing flexibility in allocation strategies. Best-fit allocation minimizes wasted space but can lead to fragmentation over time. In the constrained environment of early PCs, this trade-off was acceptable to maximize memory utilization. The technique influenced later memory allocators, including those in embedded systems and real-time operating systems, where efficient memory usage is paramount."
   - id: "setblock-resizing-memory-blocks"
-    line_start: 599
-    line_end: 621
+    line_start: 583
+    line_end: 623
     title: "Resizing Allocated Memory Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The setblock_grab routine attempts to resize an allocated memory block. It checks the block's signature and coalesces adjacent free blocks to accommodate the new size. If the requested size exceeds the available memory, the routine fails gracefully, updating BX with the maximum possible size. This feature reflects the growing need for dynamic memory management in software, as programs became more complex and data-intensive. The ability to resize memory blocks influenced the design of modern dynamic memory allocators, such as realloc in C and memory pools in high-performance applications."
   - id: "dealloc-freeing-memory"
-    line_start: 651
+    line_start: 631
     line_end: 675
     title: "Freeing Allocated Memory Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The $DEALLOC routine frees previously allocated memory blocks by resetting their owner field to the arena_signature. This ensures the block can be reused by other processes. The routine validates the block's signature to prevent errors caused by corrupted memory. In the early 1980s, memory management was a manual and error-prone process, but routines like $DEALLOC helped automate and safeguard it. This approach influenced later systems that implemented automatic memory management, such as garbage collection in Java and reference counting in Objective-C."
   - id: "allocoper-get-and-set-method"
-    line_start: 685
+    line_start: 683
     line_end: 729
     title: "Configuring Memory Allocation Strategy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "networking-constants-and-structures"
-    line_start: 37
+    line_start: 29
     line_end: 75
     title: "Constants and structures for networking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Network_protocol"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `HSendPacket` function handles the transmission of network packets to other nodes. It calculates a checksum for the packet and sets various flags based on the packet's purpose, such as retransmission or setup. If the packet is intended for the local node, it stores the data in a rebound buffer instead of sending it over the network. The function also logs packet details to a debug file, aiding in troubleshooting. This modular approach to packet handling reflects the meticulous design philosophy of John Carmack and his team, who prioritized reliability and performance. The function's design influenced networking in later games, where packet management became increasingly sophisticated."
   - id: "receiving-network-packets"
-    line_start: 192
+    line_start: 188
     line_end: 253
     title: "Receiving and validating network packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Packet_loss"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `HGetPacket` function receives packets from the network and validates them for integrity and correctness. It checks the packet's checksum, length, and flags, rejecting packets that fail validation. The function also handles special cases, such as setup packets and packets indicating game exit or kill commands. Debugging information is logged for invalid packets, providing insights into potential issues. This robust error-handling mechanism was essential for maintaining a stable multiplayer experience, especially in the face of unreliable network conditions. The principles demonstrated here—validation, error logging, and handling special cases—became foundational in the development of reliable multiplayer systems."
   - id: "processing-incoming-packets"
-    line_start: 262
+    line_start: 261
     line_end: 357
     title: "Processing incoming network packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"

@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `SpawnGretel` function initializes Gretel, a unique boss character, with attributes tailored to her role in the game. By assigning specific hitpoints and ambush flags, the routine ensures Gretel provides a distinct challenge. This character-specific spawning highlights id Software's attention to detail, creating memorable encounters that resonate with players. The technique influenced later games, where unique enemy behaviors and attributes became standard, enriching the diversity of gameplay experiences."
   - id: "spawn-patrol-enemy-movement"
-    line_start: 975
+    line_start: 973
     line_end: 1049
     title: "Dynamic patrol spawning for enemy AI"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
