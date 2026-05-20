@@ -9,154 +9,178 @@ year: 1989
 author: "Jordan Mechner"
 slug: "grafix"
 order: 8
-description: "Graphics routines for Prince of Persia's Apple II version, showcasing cinematic techniques and hardware constraints."
+description: "Graphics routines for Prince of Persia's Apple II version, showcasing cinematic animation and memory-efficient techniques."
 
 summary:
-  - point: "Bank-switched memory to fit graphics in 128K"
-    link: "https://en.wikipedia.org/wiki/Bank-switching"
-    link_label: "Bank-switching"
-  - point: "Routines for layering and drawing images on a cinematic platformer"
-    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Rotoscoping animation technique traced from live-action footage"
+  - point: "Innovative use of rotoscoping for character animation"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Efficient use of Apple II soft switches for graphics manipulation"
-    link: "https://en.wikipedia.org/wiki/Apple_II_series"
-    link_label: "Apple II series"
-  - point: "Custom routines for handling foreground, background, and mid-plane graphics"
-    link: "https://en.wikipedia.org/wiki/Graphics_pipeline"
-    link_label: "Graphics pipeline"
+  - point: "Bank-switched memory to fit graphics in 128K"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank switching"
+  - point: "Optimized graphics routines for Apple II hardware"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
+  - point: "Layered image lists for cinematic effects"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
+  - point: "Custom routines for drawing wipes, backgrounds, and characters"
+    link: "https://en.wikipedia.org/wiki/6502"
+    link_label: "6502 Assembly"
 
 enhancements:
   - id: "vbl-interrupt-handler"
     line_start: 110
     line_end: 112
-    title: "Vertical blank interrupt handler setup"
+    title: "How Vertical Blank Timing Drives Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vertical_blank_interrupt"
     image_url: ""
     image_caption: ""
-    content: "This section sets up the vertical blank interrupt (VBLvect), which is a crucial mechanism for synchronizing graphics rendering with the Apple II's display refresh rate. By hooking into the VBL interrupt, the program ensures smooth animations and prevents screen tearing. In the late 1980s, this technique was essential for achieving cinematic visuals on hardware with limited graphical capabilities. Jordan Mechner's use of VBL interrupts allowed him to implement fluid animations derived from rotoscoped footage of his brother's movements. This approach influenced later games that sought to achieve smooth animations on constrained hardware, such as Another World (1991) and Flashback (1992)."
-  - id: "add-image-background"
+    content: "The VBLvect routine sets up the vertical blank interrupt handler, a critical mechanism for synchronizing graphics updates with the Apple II's display refresh cycle. Vertical blanking occurs when the CRT monitor's electron beam resets to the top of the screen, providing a brief window to update graphics without visible tearing. Mechner uses this interrupt to manage time-sensitive tasks like refreshing image lists and ensuring smooth animation. In 1989, leveraging the vertical blank was standard practice for achieving fluid graphics on systems with limited processing power. The Apple II's 1MHz 6502 CPU and lack of dedicated graphics hardware made this synchronization essential. By adapting this technique, Mechner ensured Prince of Persia's cinematic visuals ran seamlessly on hardware designed for far simpler applications. This approach influenced later game developers working on constrained systems, embedding the importance of timing in game design."
+  - id: "addback-image-management"
     line_start: 191
     line_end: 224
-    title: "Adding images to the background list"
+    title: "Adding Images to the Background List"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "The ADDBACK routine adds images to the background list, specifying their coordinates, image index, and opacity. This modular approach to handling graphics was a clever way to manage multiple layers of visuals on the Apple II. Mechner's design reflects the constraints of the time, where memory and processing power were limited, requiring efficient organization of graphical elements. The technique of separating background, foreground, and mid-plane graphics became a standard in game development, influencing later engines like id Software's Doom engine (1993), which also used layered graphics for rendering."
-  - id: "add-image-foreground"
-    line_start: 226
-    line_end: 255
-    title: "Adding images to the foreground list"
+    content: "The ADDBACK routine adds images to the background list, a key part of Prince of Persia's layered graphics system. It takes parameters like X and Y coordinates, image code, and opacity, storing them in a list for rendering. This modular approach allows dynamic updates to the background without redrawing the entire screen, a technique akin to modern double buffering. In the late 1980s, this was a clever workaround for the Apple II's limited memory and processing power. Mechner's focus on efficient image management helped create the game's fluid animations and layered visuals, which were groundbreaking for the time. This technique laid the groundwork for more sophisticated graphics engines in later games, influencing titles like Another World and Flashback."
+  - id: "addmsg-message-layering"
+    line_start: 257
+    line_end: 286
+    title: "How Messages Became Part of the Scene"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Overlay_(programming)"
+    image_url: ""
+    image_caption: ""
+    content: "ADDMSG integrates text or graphical messages into the game's visuals, treating them as part of the background layer. This routine uses parameters like X and Y coordinates, offsets, and opacity to position and render messages dynamically. By embedding messages into the graphics pipeline, Mechner avoided the need for separate text rendering routines, saving memory and CPU cycles. This approach reflects the constraints of the Apple II, where every byte and clock cycle mattered. The technique of overlaying messages directly onto graphical layers influenced later games that sought to blend UI elements seamlessly into their environments, a practice now common in cinematic and immersive games."
+  - id: "drawall-master-rendering"
+    line_start: 475
+    line_end: 507
+    title: "The Routine That Draws Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_pipeline"
     image_url: ""
     image_caption: ""
-    content: "The ADDFORE routine handles the addition of images to the foreground list, similar to ADDBACK but for elements that appear in front of the player character. This separation of graphical layers allowed Mechner to create a visually rich environment, with dynamic interactions between the player and the scenery. The concept of foreground and background layering became foundational in game graphics pipelines, influencing 2D game engines like Unity's Sprite Renderer and the parallax scrolling techniques seen in games like Super Mario Bros. (1985)."
-  - id: "add-image-message"
-    line_start: 257
-    line_end: 286
-    title: "Adding images to the message list"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Heads-up_display_(video_games)"
+    content: "DRAWALL is the master rendering routine that orchestrates the drawing of all image layers—background, middle, foreground, wipes, and messages. It calls subroutines like DOGEN, DRAWWIPE, and DRAWBACK to manage each layer efficiently. This modular design mirrors a modern graphics pipeline, where different stages handle specific tasks. On the Apple II, this structure was essential for managing the limited resources of the 6502 CPU and ensuring smooth animation. Mechner's approach to layering and rendering influenced the development of graphics engines in later games, particularly those aiming for cinematic effects on constrained hardware."
+  - id: "drawmid-character-and-floor-rendering"
+    line_start: 672
+    line_end: 752
+    title: "Rendering Characters and Floors with Precision"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
     image_caption: ""
-    content: "ADDMSG adds images to the message list, which is used for displaying in-game messages or HUD elements. This routine demonstrates how Mechner integrated storytelling and gameplay elements into the graphical pipeline. By using the same image handling system for messages as for other graphics, he maintained consistency and efficiency. This approach influenced the design of heads-up displays (HUDs) in later games, such as the health and ammo indicators in first-person shooters like Quake (1996)."
-  - id: "add-image-wipe"
-    line_start: 288
-    line_end: 319
-    title: "Adding images to the wipe list"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Transition_(filmmaking)"
+    content: "DRAWMID handles the rendering of middle-layer images, including characters and floor tiles. It uses parameters like image type, table number, and opacity to determine how each element is drawn. The routine supports advanced features like mirroring and cropping, allowing for dynamic character animations and seamless floor transitions. Mechner's focus on precision and flexibility in rendering was crucial for achieving the game's cinematic feel. This technique influenced later tile-based games and graphics engines, demonstrating how careful management of layers and parameters could create visually rich environments on limited hardware."
+  - id: "setbgimg-background-image-setup"
+    line_start: 809
+    line_end: 841
+    title: "Decoding Background Images for Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The ADDWIPE routine adds images to the wipe list, used for screen transitions such as fades or wipes. This cinematic technique was rare in games of the era, showcasing Mechner's ambition to create a film-like experience. Wipes and transitions became a hallmark of cinematic games, influencing titles like Metal Gear Solid (1998) and the cutscene-heavy Final Fantasy series. Mechner's work demonstrated how storytelling and visual presentation could elevate video games into a new artistic realm."
-  - id: "draw-all-layers"
-    line_start: 475
-    line_end: 505
-    title: "Drawing all graphical layers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
-    image_url: ""
-    image_caption: ""
-    content: "The DRAWALL routine orchestrates the rendering of all graphical layers, including background, mid-plane, foreground, wipes, and messages. This comprehensive approach ensures that all elements are drawn in the correct order, creating a cohesive visual experience. Mechner's use of layered rendering influenced later game engines, such as the Unreal Engine, which relies on similar principles for managing complex scenes. The routine also highlights the importance of double buffering in preventing flicker and ensuring smooth animations."
-  - id: "convert-x-coordinate"
+    content: "The setbgimg routine decodes a coded image number to determine its table and memory bank, preparing it for rendering. This process ensures that background images are fetched from the correct location in the Apple II's bank-switched memory. By abstracting the complexity of memory management, Mechner made it easier to handle dynamic graphics updates. This technique reflects the constraints of the Apple II, where developers had to manually manage memory banks to fit large games into limited RAM. The routine's efficiency influenced later practices in memory management and graphics rendering, particularly in systems with constrained resources."
+  - id: "cvt-x-coordinate-conversion"
     line_start: 885
     line_end: 959
-    title: "Converting X-coordinates for hires screens"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
+    title: "Converting Coordinates for Apple II Graphics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
     image_url: ""
     image_caption: ""
-    content: "The CVTX routine converts X-coordinates into byte and offset values for single and double hires screens. This calculation is essential for positioning graphics accurately on the Apple II's limited resolution display. Mechner's attention to detail in handling offscreen values and ensuring accurate results reflects the challenges of programming for early home computers. Techniques like this laid the groundwork for more advanced coordinate systems in modern game engines, such as Unity and Unreal, which handle 3D space with similar precision."
-  - id: "zero-image-lists"
-    line_start: 968
-    line_end: 976
-    title: "Resetting image lists for new frames"
+    content: "The CVTX routine converts X-coordinates into byte and offset values for single and double high-resolution modes on the Apple II. It handles input ranges from -32767 to 32767, ensuring accurate results even for offscreen values. This conversion is essential for positioning graphics correctly on the screen, given the Apple II's unique memory layout and graphics capabilities. Mechner's attention to detail in coordinate handling allowed for precise placement of images, contributing to the game's polished visual presentation. This routine showcases the ingenuity required to work within the Apple II's constraints and influenced later graphics systems that prioritized accuracy and efficiency."
+  - id: "zeropeel-memory-cleanup"
+    line_start: 989
+    line_end: 1015
+    title: "Clearing Peel Buffers for Smooth Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "ZEROLSTS resets all image lists except peel lists, preparing them for the next frame. This routine is a key part of the game's double buffering strategy, ensuring that old graphics do not interfere with new ones. By clearing lists efficiently, Mechner optimized the game's performance on the Apple II, a machine with limited memory and processing power. This approach influenced later games that relied on similar techniques to manage graphical updates, such as the tile-based rendering in The Legend of Zelda: A Link to the Past (1991)."
-  - id: "joystick-input-processing"
-    line_start: 1030
+    content: "ZEROPEEL clears the peel list and buffer for the current page, ensuring that old image data does not interfere with new frames. It sets the buffer pointer to the beginning of the appropriate memory area and resets the image count. This cleanup is crucial for maintaining smooth animation and avoiding graphical glitches. On the Apple II, where memory was limited and manually managed, routines like ZEROPEEL were essential for optimizing performance. Mechner's approach to memory cleanup influenced later practices in double buffering and graphics management, highlighting the importance of efficient resource handling in game development."
+  - id: "joystick-input-handling"
+    line_start: 1017
     line_end: 1062
-    title: "Joystick input for cinematic control"
+    title: "How Joystick Input Was Decoded"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
     image_caption: ""
-    content: "This section processes joystick input, including directional controls and button presses, translating raw hardware signals into usable game data. The routines `getjoy`, `getkbd`, and `CONTROLLER` handle input from both joystick and keyboard, allowing interchangeable use depending on the player's setup. At the time, joystick input was a critical feature for action games, providing precise control over the protagonist's movements. Jordan Mechner's implementation ensures smooth transitions between input devices, reflecting the game's emphasis on fluid, cinematic gameplay. The approach influenced later games by demonstrating how to integrate multiple input methods seamlessly, contributing to the evolution of user-friendly control schemes in platformers and action games."
-  - id: "sound-routines"
-    line_start: 1314
-    line_end: 1333
-    title: "Rotational sound routines for immersive effects"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_synthesis"
+    content: "This section decodes joystick input by reading the joystick's X and Y axes and button states, storing them in memory for use by the game logic. The routine includes support for reversing axis directions based on configuration flags. In the mid-1980s, joystick input was a common feature in games but required direct hardware interaction, as there was no standardized API. Jordan Mechner's implementation reflects the need for precise control over input devices to ensure smooth gameplay. This approach influenced later games, as joystick handling became a staple of platformers and action games, eventually leading to more sophisticated input libraries in modern game engines like Unity and Unreal."
+  - id: "button-input-handling"
+    line_start: 1117
+    line_end: 1169
+    title: "Reading Buttons: A Hardware-Level Hack"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
     image_url: ""
     image_caption: ""
-    content: "The `GTONE` and `WHOOP` routines produce sound effects, including tones and dynamic audio cues. These routines manipulate the Apple II's speaker directly, using pitch and duration parameters to create varied audio effects. Mechner's implementation enhances the game's cinematic atmosphere by integrating sound that complements the visuals and gameplay. This approach influenced later games by demonstrating how to use limited audio hardware creatively, contributing to the evolution of sound design in video games."
-  - id: "random-number-generation"
-    line_start: 1386
+    content: "The BUTTONS routine reads and processes button states directly from hardware registers, allowing the game to distinguish between raw and processed button inputs. This was necessary on the Apple II due to the lack of abstraction layers for input devices. Mechner's code demonstrates a deep understanding of the Apple II's hardware, leveraging memory-mapped I/O to interact with the joystick and keyboard. This low-level approach was typical of the era but required meticulous testing to ensure compatibility across different Apple II models. The technique paved the way for more abstracted input handling in later systems, such as the DirectInput API in Windows."
+  - id: "memory-move-routine"
+    line_start: 1272
+    line_end: 1301
+    title: "The Memory Move That Could Wipe 64K"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "MOVEMEM is a routine for copying blocks of memory, a common task in graphics and game logic. It uses indexed addressing to move data byte by byte, but includes a warning: if the source and destination ranges overlap improperly, it could overwrite 64K of memory. This highlights the risks of low-level programming, where a single mistake could crash the system. Mechner's careful implementation reflects the constraints of the Apple II, where memory was precious and errors were unforgiving. Memory manipulation routines like this became foundational in later game engines, influencing techniques for efficient asset loading and texture management."
+  - id: "sound-generation-routines"
+    line_start: 1303
+    line_end: 1358
+    title: "Generating Sound Without a Sound Card"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
+    image_url: ""
+    image_caption: ""
+    content: "The GTONE, WHOOP, and tone routines generate sound directly by toggling the Apple II's speaker. This was a common technique in the absence of dedicated sound hardware. By manipulating pitch and duration values, the game could produce simple sound effects to enhance gameplay. Mechner's use of sound reflects the era's ingenuity, where developers had to extract every ounce of capability from the hardware. These routines laid the groundwork for more sophisticated sound systems in later games, eventually leading to the integration of MIDI and digital audio in the 1990s."
+  - id: "random-number-generator"
+    line_start: 1379
     line_end: 1395
-    title: "Random number generation for gameplay"
+    title: "The Math Behind Randomness in Games"
     wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
     image_url: ""
     image_caption: ""
-    content: "The `RND` routine generates random numbers using a simple linear congruential generator formula: `(5 * RNDseed + 23) mod 256`. Random numbers are essential for gameplay elements such as enemy behavior, environmental effects, and unpredictability in challenges. Mechner's implementation is efficient and compact, fitting within the constraints of 6502 assembly while providing sufficient randomness for gameplay needs. This approach influenced later games by demonstrating how to implement randomization in resource-limited environments, paving the way for dynamic and engaging gameplay mechanics."
-  - id: "bank-switched-memory"
-    line_start: 1409
-    line_end: 1495
-    title: "Bank-switched memory for graphics routines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
-    image_url: ""
-    image_caption: ""
-    content: "This section demonstrates the use of bank-switched memory to manage graphics routines, including level loading (`LOADLEVEL`), attract mode (`ATTRACTMODE`), and cutscenes (`CUTPRINCESS`). Bank switching was a common technique on the Apple II to overcome its limited memory, enabling the game to fit complex graphics and animations into the 128K constraint. Mechner's implementation switches between auxiliary and main memory banks efficiently, ensuring that high-resolution graphics and cinematic sequences run smoothly. This technique influenced subsequent games on memory-constrained systems, showcasing how to maximize hardware capabilities for visually rich experiences."
+    content: "The RND routine implements a simple linear congruential generator to produce random numbers, a critical feature for gameplay mechanics like enemy behavior and item placement. The formula `(5 * seed + 23) mod 256` ensures a predictable yet varied sequence of numbers. Random number generation was essential for creating dynamic and replayable experiences, especially in an era when games were constrained by limited storage and processing power. This technique influenced later developments in procedural generation, seen in games like Minecraft and No Man's Sky."
   - id: "vertical-blank-synchronization"
     line_start: 1938
-    line_end: 1985
-    title: "Vertical blank synchronization for smooth animation"
+    line_end: 1984
+    title: "Synchronizing Graphics with Vertical Blank"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vertical_blank_interrupt"
     image_url: ""
     image_caption: ""
-    content: "The `VBLANK` and `VBLANKIIc` routines synchronize game updates with the vertical blank interval of the display, ensuring smooth animation and preventing screen tearing. On the Apple II, this technique was critical for maintaining the game's cinematic feel, as it allowed precise timing for graphics rendering and input handling. Mechner's use of vertical blank interrupts reflects his attention to detail in creating a visually immersive experience. This synchronization method became standard practice in game development, influencing how developers optimized performance on early hardware."
-  - id: "adjust-display-and-speed"
-    line_start: 2055
-    line_end: 2076
-    title: "Adjusting display and gameplay speed on Apple II"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
-    image_url: ""
-    image_caption: ""
-    content: "The NORMSPEED subroutine is responsible for setting the Apple II's display and gameplay speed to normal operation. It begins by checking whether the code is running on an Apple IIGS (a later model in the Apple II line). If not, the routine exits immediately. Otherwise, it manipulates specific memory-mapped hardware registers to adjust the display settings: setting a black border, black background, and white text. The subroutine also ensures normal gameplay speed by clearing a specific bit in the $C036 register. These hardware manipulations reflect the programmer's deep understanding of the Apple II's quirks and limitations. In the mid-1980s, developers often had to write directly to hardware registers to achieve desired effects, as higher-level abstractions were rare or nonexistent. Jordan Mechner, working solo on Prince of Persia, had to master these techniques to create a cinematic experience on a machine with just 128K of memory. This subroutine exemplifies the ingenuity required to make the Apple II hardware perform beyond its intended capabilities. Techniques like these influenced later developers working on constrained systems, including those creating games for early consoles like the NES and Sega Master System."
-  - id: "read-control-panel-parameter"
-    line_start: 2078
-    line_end: 2103
-    title: "Reading control panel parameters on Apple IIGS"
+    content: "The VBLANK routines synchronize graphics updates with the vertical blank interval, a brief period when the screen is not actively drawing. This prevents visual artifacts like tearing and ensures smooth animation. On the Apple II, this required precise timing and direct hardware interaction. Mechner's implementation reflects the challenges of programming for early computers, where developers had to manage every detail of the hardware. Vertical blank synchronization became standard practice in game development, influencing techniques like double buffering and vsync in modern graphics engines."
+  - id: "iigs-detection-and-optimization"
+    line_start: 2004
+    line_end: 2039
+    title: "Detecting and Optimizing for the Apple IIGS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIGS"
     image_url: ""
     image_caption: ""
-    content: "The getparam subroutine reads a control panel parameter from the Apple IIGS hardware. It begins by checking whether the code is running on an Apple IIGS; if not, it exits immediately. For the IIGS, the routine uses advanced instructions like REP and XCE to manipulate processor flags and memory access modes. It also performs a jump to subroutine (JSL) to an extended memory address, leveraging the IIGS's ability to access more memory than earlier Apple II models. This subroutine demonstrates how Mechner adapted his code to take advantage of the IIGS's enhanced capabilities while maintaining compatibility with earlier Apple II models. In the late 1980s, the IIGS was a significant upgrade, offering a 16-bit processor and more advanced graphics and sound capabilities. By incorporating IIGS-specific features, Mechner ensured that Prince of Persia could provide a richer experience for players using the newer hardware. This approach influenced other developers who sought to create software that could scale across multiple generations of machines, a practice that became common in the PC gaming industry during the 1990s."
-  - id: "write-control-panel-parameter"
-    line_start: 2105
-    line_end: 2123
-    title: "Writing control panel parameters on Apple IIGS"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bank-switching"
+    content: "The CHECKIIGS routine detects whether the game is running on an Apple IIGS and adjusts settings accordingly, including initializing the vertical blank routine. The IIGS was a more advanced model with enhanced graphics and sound capabilities, and Mechner's code takes advantage of these features while maintaining compatibility with older Apple II systems. This forward-thinking approach ensured that Prince of Persia could run optimally on a range of hardware, a practice that influenced later cross-platform development strategies."
+  - id: "temporary-fast-speed-mode"
+    line_start: 2041
+    line_end: 2053
+    title: "The Speed Boost for Apple IIGS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIGS"
     image_url: ""
     image_caption: ""
-    content: "The setparam subroutine writes a control panel parameter to the Apple IIGS hardware. It accepts two inputs: the desired value in the accumulator (A) and the location in the index register (Y). Like getparam, it uses advanced instructions like REP and XCE to manipulate processor flags and memory access modes. It also performs a jump to subroutine (JSL) to an extended memory address, enabling interaction with the IIGS's expanded memory space. This subroutine highlights Mechner's ability to optimize his code for the IIGS while maintaining compatibility with earlier Apple II models. The use of bank-switched memory techniques reflects the constraints of the era, where developers had to work within tight memory limits and hardware-specific quirks. By writing directly to the control panel, Mechner enabled dynamic adjustments to gameplay settings, enhancing the player's experience. This technique of direct hardware manipulation influenced later game developers working on systems with similar constraints, such as the Commodore Amiga and early IBM PCs. It also foreshadows modern practices in game development, where developers strive to optimize their code for multiple hardware configurations."
+    content: "The FASTSPEED routine temporarily sets the Apple IIGS to fast speed mode, leveraging its advanced capabilities for smoother gameplay. This optimization reflects Mechner's attention to detail and willingness to push hardware to its limits. By detecting the IIGS and enabling fast mode, the game could deliver a better experience on newer hardware while remaining compatible with older models. This technique foreshadowed the adaptive optimizations seen in modern games, where performance is tailored to the player's system."
+  - id: "normal-speed-black-border"
+    line_start: 2055
+    line_end: 2076
+    title: "How a Black Border Set the Speed"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    image_url: ""
+    image_caption: ""
+    content: "This routine, NORMSPEED, adjusts the Apple II's display settings and ensures the game runs at normal speed. It begins by checking if the program is running on an Apple IIGS, a later model in the Apple II series, and exits early if not. For compatible systems, it manipulates hardware registers ($c034 and $c022) to set a black border and a black background with white text. The key operation here is the TRB (Test and Reset Bits) instruction applied to $c036, which toggles the speed setting back to normal. This section highlights the direct manipulation of memory-mapped hardware registers, a common technique in 1980s assembly programming. In 1989, the Apple IIe and IIc were still widely used, but developers like Mechner were beginning to account for the newer Apple IIGS, which introduced enhanced graphics and sound capabilities. The NORMSPEED routine reflects this transitional period, where backward compatibility was essential. Mechner's careful handling of hardware quirks ensured the game could run smoothly across multiple Apple II models. This approach influenced later developers working on cross-platform compatibility in assembly. The direct manipulation of hardware registers became a hallmark of early game programming, especially for systems with limited abstraction layers. Techniques like this were studied by programmers working on subsequent systems, such as the Commodore 64 and early IBM PCs, where similar constraints existed. NORMSPEED exemplifies the ingenuity required to balance hardware-specific optimizations with broader compatibility."
+  - id: "read-control-panel-parameter"
+    line_start: 2078
+    line_end: 2103
+    title: "Reading Settings from the Apple IIGS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIGS"
+    image_url: ""
+    image_caption: ""
+    content: "The getparam routine reads a control panel parameter from the Apple IIGS, a machine with advanced capabilities compared to earlier Apple II models. It begins by checking if the program is running on an IIGS and exits if not. For IIGS systems, it saves the current processor state, switches to native mode (via the XCE and REP instructions), and calls a system routine (E10000) using the JSL (Jump to Subroutine Long) instruction. This retrieves the desired parameter based on the location specified in the Y register and returns it in the accumulator (A). By 1989, the Apple IIGS had introduced a 16-bit processor (the 65C816), which required different handling compared to the 8-bit 6502 used in earlier Apple II models. Mechner's inclusion of routines like getparam reflects his attention to detail and willingness to support newer hardware. The use of native mode and long subroutine calls demonstrates an understanding of the IIGS's expanded instruction set and memory model. This routine laid the groundwork for future developers working on multi-platform software. The ability to query system parameters dynamically became a standard practice in later operating systems and game engines. For example, the concept of reading hardware-specific settings influenced APIs like DirectX and OpenGL, which abstracted hardware queries for developers. Mechner's work on the Apple IIGS helped bridge the gap between low-level assembly programming and the higher-level abstractions that followed."
+  - id: "set-control-panel-parameter"
+    line_start: 2105
+    line_end: 2123
+    title: "Writing Settings to the Apple IIGS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIGS"
+    image_url: ""
+    image_caption: ""
+    content: "The setparam routine writes a control panel parameter to the Apple IIGS, complementing the getparam routine. It begins by saving the processor state and switching to native mode, similar to getparam. The desired value (in the accumulator) and the parameter location (in the Y register) are pushed onto the stack, and a system routine (E10000) is called using JSL to update the setting. Afterward, the processor state is restored, ensuring compatibility with the rest of the program. This routine showcases Mechner's ability to leverage the Apple IIGS's advanced features while maintaining compatibility with earlier Apple II models. The use of native mode and stack operations reflects the challenges of programming for a hybrid 8-bit/16-bit environment. By 1989, developers were increasingly tasked with supporting diverse hardware configurations, and routines like setparam demonstrate the meticulous planning required to achieve this. The concept of dynamically setting hardware parameters influenced later software development practices. Game engines like Unity and Unreal now provide high-level APIs for adjusting system settings, but the underlying principles—querying and updating hardware states—remain similar. Mechner's work on the Apple IIGS contributed to the evolution of these practices, showing how low-level assembly routines could pave the way for more sophisticated abstractions. The setparam routine is a testament to the ingenuity required to navigate the constraints of early computing."
 
 ---
 

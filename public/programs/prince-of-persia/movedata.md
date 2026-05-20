@@ -9,36 +9,44 @@ year: 1989
 author: "Jordan Mechner"
 slug: "movedata"
 order: 25
-description: "Defines object types and movement parameters for Prince of Persia's cinematic platforming gameplay."
+description: "Defines object types and movement parameters for Prince of Persia's cinematic platforming on the Apple II."
 
 summary:
-  - point: "Object type constants map gameplay elements to numeric identifiers."
+  - point: "Object type constants streamline level design and gameplay logic"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia"
-  - point: "Movement parameters establish physics-like rules for spikes and slicers."
-    link: "https://en.wikipedia.org/wiki/Physics_engine"
-    link_label: "Physics engine"
-  - point: "Bank-switched memory enables fitting complex animations into limited hardware."
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank switching"
+    link_label: "Prince of Persia (1989)"
+  - point: "Movement parameters reflect the game's focus on realistic physics and animation"
+    link: "https://en.wikipedia.org/wiki/Rotoscoping"
+    link_label: "Rotoscoping"
+  - point: "Bank-switched memory constraints shaped the game's data organization"
+    link: "https://en.wikipedia.org/wiki/Apple_II"
+    link_label: "Apple II"
 
 enhancements:
-  - id: "object-type-definitions"
+  - id: "object-type-constants"
     line_start: 4
     line_end: 37
-    title: "Mapping gameplay objects to numeric constants"
+    title: "How Object Types Simplified Level Design"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section defines constants for the various objects and environmental features in Prince of Persia, such as 'spikes', 'gate', 'torch', and 'sword'. Each object is assigned a numeric identifier, which is used throughout the game's code to reference and manipulate these elements. Jordan Mechner designed this system to simplify object management in a memory-constrained environment. By using numeric constants, the program can efficiently store and retrieve information about objects without requiring verbose descriptions or complex data structures. In 1989, the Apple IIe/IIc hardware imposed severe limitations, including a maximum of 128K memory and a 1 MHz processor. Mechner's approach reflects the ingenuity required to work within these constraints. The numeric identifiers allow quick lookups and compact storage, essential for a game with cinematic animations and detailed environments. Mechner's background in film influenced his focus on creating a visually immersive experience, which required careful optimization of every byte. This technique became a standard in game development, influencing how later games structured their internal object representations. Numeric constants for object types are still common in modern game engines, such as Unity and Unreal Engine, where they serve as identifiers for prefabs and assets. Mechner's work on Prince of Persia demonstrated how thoughtful design could overcome hardware limitations, paving the way for more ambitious games on constrained platforms."
-  - id: "movement-parameters"
-    line_start: 40
-    line_end: 57
-    title: "Defining physics-like movement parameters"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
+    content: "This section defines constants for the various object types in Prince of Persia, such as 'spikes', 'gate', and 'torch'. Each constant is assigned a unique numeric value, allowing the game to reference these objects efficiently in its logic and level data. For example, 'spikes' are represented by the value 2, while 'torch' is 19. By standardizing these identifiers, Jordan Mechner ensured that object-related operations—like collision detection or rendering—could be handled uniformly across the game's code. In 1989, the Apple IIe and IIc were constrained by limited memory and processing power. The use of numeric constants minimized the overhead of managing objects in a game that relied on cinematic realism and fluid animation. Mechner's approach reflects a broader trend in assembly programming at the time: using compact, efficient data structures to fit complex systems into tight hardware constraints. These constants became foundational to the game's level design. Designers could easily specify objects in a level by referencing their numeric IDs, streamlining the creation of intricate environments. This technique influenced later games, particularly those in the cinematic platformer genre, where object-oriented design became a staple. Games like Another World (1991) and Flashback (1992) adopted similar strategies to manage their environments and gameplay elements."
+  - id: "misc-values-from-bgdata"
+    line_start: 39
+    line_end: 49
+    title: "The Numbers Behind Spikes and Slicers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section establishes movement parameters for specific gameplay elements, such as spikes and slicers, as well as general values like 'falling' frames. These parameters dictate how objects behave during gameplay, simulating physics-like interactions. For example, 'spikeExt' and 'spikeRet' define the extension and retraction states of spikes, while 'slicerExt' and 'slicerRet' control the slicer's motion. The 'Ffalling' constant marks the first frame of the falling animation, ensuring smooth transitions between states. In the late 1980s, physics engines were not yet a standard feature in games. Developers like Mechner had to manually encode movement rules and animations to create believable interactions. The Apple II's hardware constraints meant that every calculation had to be efficient, with no room for unnecessary complexity. Mechner's approach combines pre-defined constants with clever programming to achieve dynamic and responsive gameplay. The principles established here influenced the development of physics engines in later games. The idea of defining states and transitions for objects became a cornerstone of game design, appearing in titles like Another World (1991) and Flashback (1992), which also emphasized cinematic gameplay. Today, modern engines like Unity and Unreal automate much of this process, but the foundational concepts remain rooted in the work of early pioneers like Mechner."
+    content: "This section defines key values for the behavior of specific objects, such as spikes and slicers. 'spikeExt' and 'spikeRet' represent the extended and retracted positions of spikes, while 'slicerExt' and 'slicerRet' define similar states for slicers. These values are likely used in animation routines to control the timing and movement of these hazards. In the late 1980s, creating realistic animations for environmental hazards was a novel challenge. Mechner's rotoscoping technique, where he traced filmed movements frame by frame, extended beyond character animation to include environmental elements like spikes and slicers. These values ensured that the hazards moved in a predictable and visually convincing manner, enhancing the game's cinematic feel. This attention to detail set Prince of Persia apart from other platformers of the era, which often relied on simpler, less dynamic hazards. The game's approach to environmental animation influenced later titles, such as Tomb Raider (1996), which emphasized realistic interactions between characters and their surroundings. Mechner's work demonstrated that even small details, like the movement of spikes, could contribute to a game's immersive experience."
+  - id: "movement-parameters"
+    line_start: 53
+    line_end: 57
+    title: "Gravity and Movement in a Cinematic World"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    image_url: ""
+    image_caption: ""
+    content: "The 'moveparams' section defines key parameters for movement, including 'gmaxval' and 'gminval'. These values likely represent the maximum and minimum thresholds for gravity or movement speed, ensuring that the game's physics remain consistent. 'gmaxval' is calculated as 47*4, suggesting a deliberate scaling factor tied to the game's frame rate or animation system. In the Apple II era, realistic physics were rare in platformers due to hardware limitations. Mechner's decision to implement gravity parameters reflects his commitment to creating a believable, cinematic experience. By carefully tuning these values, he ensured that the Prince's movements felt natural and fluid, aligning with the rotoscoped animations derived from real-life footage. This focus on realistic movement influenced the development of later cinematic platformers, such as Oddworld: Abe's Oddysee (1997) and Limbo (2010). These games built on Mechner's legacy by emphasizing physics-driven gameplay and animation, proving that the principles established in Prince of Persia were timeless."
 
 ---
 

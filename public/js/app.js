@@ -374,6 +374,29 @@ function renderFileTree(node, programSlug, depth) {
 
 // ---------------------------------------------------------------------------
 
+function renderHighlights(highlights, programSlug) {
+  if (!highlights || highlights.length === 0) return '';
+
+  const cards = highlights.map(h => {
+    const linksHtml = (h.links || []).map(lk =>
+      `<a class="highlight-link" href="#/${escapeAttr(programSlug)}/${escapeAttr(lk.file)}">${escapeHtml(lk.label)} →</a>`
+    ).join('');
+
+    return `
+<div class="highlight-card">
+  <h3 class="highlight-title">${escapeHtml(h.title)}</h3>
+  <p class="highlight-desc">${escapeHtml(h.description)}</p>
+  ${linksHtml ? `<div class="highlight-links">${linksHtml}</div>` : ''}
+</div>`;
+  }).join('');
+
+  return `
+<section class="highlights">
+  <h2 class="highlights-heading">Highlights</h2>
+  <div class="highlights-grid">${cards}</div>
+</section>`;
+}
+
 function renderProgramPage(program) {
   document.title = `${program.title} — Code Museum`;
 
@@ -403,6 +426,8 @@ function renderProgramPage(program) {
     ${program.image_caption ? `<figcaption>${escapeHtml(program.image_caption)}${commonsUrl(program.image_url) ? ` <a class="commons-link" href="${escapeAttr(commonsUrl(program.image_url))}" target="_blank" rel="noopener">Wikimedia Commons</a>` : ''}</figcaption>` : ''}
   </figure>` : '';
 
+  const highlightsHtml = renderHighlights(program.highlights || [], program.slug);
+
   return `
 <div class="program-page">
   <div class="program-page-header">
@@ -411,7 +436,7 @@ function renderProgramPage(program) {
     ${introImageHtml}
     ${introHtml}
   </div>
-  ${treeHtml ? `<p class="source-tree-hint">Highlighted files have annotations — click one to read the story behind the code.</p>` : ''}
+  ${highlightsHtml}
   <div class="file-tree">${treeHtml}</div>
   ${program.github_url ? `<a class="github-badge" href="${escapeAttr(program.github_url)}" target="_blank" rel="noopener">View source on GitHub ↗</a>` : ''}
 </div>`;

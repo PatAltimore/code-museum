@@ -9,60 +9,66 @@ year: 1989
 author: "Jordan Mechner"
 slug: "gameeq"
 order: 19
-description: "Equates and data structures for Prince of Persia's Apple II implementation"
+description: "This file defines equates, jump tables, and data structures for Prince of Persia's game engine, showcasing the intricate memory management and optimization techniques used to fit a cinematic platformer into the constraints of the Apple IIe/IIc."
 
 summary:
-  - point: "Memory bank-switching to fit within 128K constraints"
-    link: "https://en.wikipedia.org/wiki/Apple_II"
-    link_label: "Apple II"
+  - point: "Memory bank-switching techniques to fit 128K"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank switching"
   - point: "Extensive use of jump tables for efficient control flow"
     link: "https://en.wikipedia.org/wiki/Jump_table"
     link_label: "Jump table"
+  - point: "Character-specific data structures for animation and gameplay"
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia"
   - point: "Rotoscoping-inspired animation data organization"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
+  - point: "Optimized zero-page usage for performance-critical variables"
+    link: "https://en.wikipedia.org/wiki/Zero_page"
+    link_label: "Zero page"
 
 enhancements:
-  - id: "memory-address-equates"
+  - id: "memory-equates-and-addressing"
     line_start: 3
     line_end: 39
-    title: "Mapping memory addresses for game components"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    title: "How Memory Equates Organized 128K"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
     image_caption: ""
-    content: "This section defines memory address equates for various game components, including character tables, background tables, and control systems. Each equate assigns a specific hexadecimal address to a named variable, effectively mapping the game's logic to the Apple II's memory layout. In the constrained environment of the Apple II, with its 128K memory split across main and auxiliary banks, memory management was critical. Jordan Mechner carefully allocated memory to ensure that essential game data could be accessed efficiently while fitting within the hardware's limitations. This approach reflects the ingenuity required to work within the constraints of early home computers, where every byte mattered. The memory mapping laid out here would later influence how developers optimized memory usage in other resource-constrained systems, such as early consoles like the NES and Sega Genesis."
+    content: "This section defines memory equates, mapping key game components to specific addresses in the Apple II's memory space. The equates include tables for character animations, background graphics, control sequences, collision detection, and sound. By assigning fixed addresses, the code ensures efficient access to critical data during gameplay. At the time, the Apple IIe/IIc offered only 128K of memory, requiring bank-switching techniques to manage auxiliary and main memory. Jordan Mechner meticulously planned memory usage, leveraging these equates to avoid runtime overhead and fit the entire game within the constraints. This approach influenced later developers working on constrained systems, demonstrating how careful memory planning could enable complex games on limited hardware."
   - id: "jump-tables-for-control-flow"
     line_start: 41
-    line_end: 65
-    title: "Jump tables streamline control flow"
+    line_end: 189
+    title: "The Jump Tables That Directed Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
     image_url: ""
     image_caption: ""
-    content: "Jump tables are used extensively in this file to manage control flow efficiently. By defining tables of addresses corresponding to specific functions or actions, the program can quickly jump to the appropriate routine without lengthy conditional checks. This technique is particularly useful in assembly language programming, where performance is paramount and every instruction counts. Mechner's use of jump tables reflects a deep understanding of the Apple II's capabilities and limitations, allowing the game to handle complex interactions and animations seamlessly. This approach influenced later game development, as jump tables became a standard technique for managing state and control flow in resource-limited environments. Developers of games for early consoles and handheld devices often adopted similar strategies to optimize performance."
-  - id: "saved-game-data-structure"
-    line_start: 67
-    line_end: 74
-    title: "Saved game data structure"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
+    content: "The jump tables defined here are a hallmark of efficient assembly programming. They provide a way to quickly redirect execution to specific routines based on game state or events. For example, 'PlayerCtrl' handles player input, while 'AutoCtrl' manages automated behaviors like enemy actions. This design minimizes branching logic, reducing CPU cycles and improving performance. In the 1980s, jump tables were a common solution for constrained systems like the Apple II, where every instruction counted. Mechner's use of jump tables allowed Prince of Persia to handle complex interactions, such as sword fights and environmental hazards, without sacrificing responsiveness. This technique became a standard in game development, influencing later titles like Another World and Flashback."
+  - id: "zero-page-optimization"
+    line_start: 379
+    line_end: 496
+    title: "Zero-Page: The Fast Lane for Variables"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
     image_url: ""
     image_caption: ""
-    content: "The saved game data structure defines variables for storing the player's progress, including level, strength, and timer values. This section highlights the importance of persistence in gaming, allowing players to resume their adventure after turning off the system. In the late 1980s, save game functionality was still a novel feature, as many games relied on passwords or required players to start over each time. Mechner's implementation demonstrates forward-thinking design, enhancing the player's experience by providing continuity. This feature paved the way for more sophisticated save systems in later games, influencing titles on platforms like the SNES and PlayStation, where memory cards and battery-backed cartridges became standard."
-  - id: "character-data-organization"
+    content: "The zero-page section defines performance-critical variables stored in the Apple II's fastest-access memory area. These include flags for collision detection, timers, and character states. The zero-page is a special area in the 6502 processor's memory map, allowing single-byte instructions for read/write operations. Mechner's careful allocation of variables to this space ensured the game could handle real-time events, such as sword fights and platforming physics, without delays. This optimization was crucial for achieving the game's smooth gameplay on hardware with limited processing power. The technique of zero-page optimization became a staple in 6502 assembly programming, influencing other developers working on systems like the NES and Commodore 64."
+  - id: "character-data-structures"
     line_start: 561
     line_end: 644
-    title: "Organizing character data for animation and interaction"
+    title: "The Data Structures Behind Cinematic Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
-    content: "This section defines data structures for characters, including their position, velocity, actions, and sequences. These variables are essential for animating characters and handling interactions within the game world. Mechner's use of rotoscoping to create lifelike animations required precise control over character movement and state, which these data structures facilitate. By organizing character data in a systematic way, the game achieves a level of fluidity and realism that was groundbreaking for its time. The techniques pioneered here influenced the development of cinematic platformers and other genres that prioritize animation quality, such as Flashback and Another World."
-  - id: "miscellaneous-data-flags"
+    content: "This section defines detailed data structures for characters, including the protagonist (Kid), his shadow (Shad), and opponents (Op). Each structure tracks position, velocity, actions, screen location, and life state. These variables are essential for implementing the game's fluid animations, which were inspired by rotoscoping. Mechner filmed his brother performing moves, then traced each frame to create lifelike motion. The data structures here enable the game engine to interpolate between animation frames and respond dynamically to player input. This level of detail was groundbreaking for the era, setting a new standard for character animation in games. Developers of later cinematic platformers, such as Oddworld: Abe's Oddysee, drew inspiration from this approach."
+  - id: "miscellaneous-game-data"
     line_start: 648
     line_end: 671
-    title: "Flags and constants for game mechanics"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"
+    title: "Flags and Constants: Hidden Game Mechanics"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section defines various flags and constants used to control game mechanics, such as floor height, angles, and character types. These values are integral to the game's physics and logic, enabling features like jumping, collision detection, and object interaction. Mechner's attention to detail in defining these constants reflects the meticulous planning required to create a cohesive and engaging game world. The use of flags and constants became a common practice in game development, providing a flexible way to adjust mechanics and behaviors without rewriting code. This approach influenced the design of game engines and frameworks that prioritize modularity and ease of customization."
+    content: "This section defines constants and flags that govern game mechanics, such as floor height, vertical distance, and character types. These values are used throughout the game engine to control interactions and animations. For example, 'floorheight' determines the vertical alignment of characters on platforms, while 'TypeKid' and 'TypeShad' distinguish between the protagonist and his shadow. These constants reflect Mechner's attention to detail in creating a cohesive game world. By centralizing these values, the code becomes easier to maintain and adapt, a practice that influenced later game development methodologies. The use of flags and constants to encapsulate game logic is now standard in modern engines like Unity and Unreal."
 
 ---
 
