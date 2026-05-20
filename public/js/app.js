@@ -627,11 +627,24 @@ function setError(msg) {
   app.innerHTML = `<div class="error-msg">${escapeHtml(msg)}</div>`;
 }
 
+// Save scroll position before the hash changes so we can restore it on return.
+window.addEventListener('hashchange', function (e) {
+  const oldHash = new URL(e.oldURL).hash.replace(/^#\/?/, '');
+  try { sessionStorage.setItem('scroll:' + oldHash, window.scrollY); } catch (_) {}
+});
+
 async function route() {
   const hash = location.hash.replace(/^#\/?/, '');
   const parts = hash ? hash.split('/') : [];
 
-  window.scrollTo(0, 0);
+  // Retrieve and clear any saved scroll position for this page before rendering.
+  let savedY = null;
+  try {
+    const v = sessionStorage.getItem('scroll:' + hash);
+    if (v !== null) { savedY = parseInt(v, 10); sessionStorage.removeItem('scroll:' + hash); }
+  } catch (_) {}
+
+  if (savedY === null) window.scrollTo(0, 0);
   setLoading();
 
   try {
@@ -669,10 +682,13 @@ async function route() {
         }
       } catch(e) {}
     }
+
+    // Restore scroll position after content is painted.
+    if (savedY !== null) window.scrollTo(0, savedY);
+
   } catch (err) {
     setError('Failed to load: ' + err.message);
   }
 }
 
-window.addEventListener('hashchange', route);
 window.addEventListener('load', route);
