@@ -381,9 +381,12 @@ function renderHighlights(highlights, programSlug) {
   if (!highlights || highlights.length === 0) return '';
 
   const cards = highlights.map(h => {
-    const linksHtml = (h.links || []).map(lk =>
-      `<a class="highlight-link" href="#/${escapeAttr(programSlug)}/${escapeAttr(lk.file)}">${escapeHtml(lk.label)} →</a>`
-    ).join('');
+    const linksHtml = (h.links || []).map(lk => {
+      const href = lk.enhancement
+        ? `#/${escapeAttr(programSlug)}/${escapeAttr(lk.file)}/${escapeAttr(lk.enhancement)}`
+        : `#/${escapeAttr(programSlug)}/${escapeAttr(lk.file)}`;
+      return `<a class="highlight-link" href="${href}">${escapeHtml(lk.label)} →</a>`;
+    }).join('');
 
     return `
 <div class="highlight-card">
@@ -663,7 +666,7 @@ async function route() {
       app.innerHTML = renderHeader({ programSlug: slug, programTitle: program.title, githubUrl: 'https://github.com/PatAltimore/code-museum' }) + renderProgramPage(program);
 
     } else if (parts.length >= 2) {
-      const [programSlug, fileSlug] = parts;
+      const [programSlug, fileSlug, enhId] = parts;
       const catalog = await getCatalog();
       const program = getProgramFromCatalog(catalog, programSlug);
       const { meta, body } = await loadFile(programSlug, fileSlug);
@@ -684,6 +687,12 @@ async function route() {
           if (showBtn) showBtn.style.display = 'flex';
         }
       } catch(e) {}
+
+      // If an enhancement ID was included in the URL, scroll to it.
+      if (enhId) {
+        savedY = null;   // don't restore a stale scroll position
+        requestAnimationFrame(() => goToEnhancement(enhId));
+      }
     }
 
     // Restore scroll position after content is painted.

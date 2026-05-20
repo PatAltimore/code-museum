@@ -120,88 +120,84 @@
       "image_caption": "Zork map (CC BY 4.0)",
       "highlights": [
         {
-          "id": "gwim-algorithm-player-intent",
+          "id": "gwim-get-what-i-mean",
           "title": "The 'Get What I Mean' Algorithm",
-          "description": "Zork's 'Get What I Mean' (GWIM) algorithm allowed the game to interpret ambiguous player commands with surprising accuracy. For example, typing 'take key' near multiple keys would prompt Zork to choose the most relevant one based on context, like proximity or recent interactions. This was revolutionary for text-based games, as it solved the problem of rigid command parsing that frustrated players. The algorithm's ability to infer intent set a new standard for natural language processing in games, influencing later titles like Infocom's entire catalog and modern interactive fiction engines such as Inform.",
+          "description": "Zork’s parser was revolutionary in its ability to interpret ambiguous player commands. The 'Get What I Mean' (GWIM) algorithm allowed the game to guess player intent even when commands were incomplete or imprecise. This was critical for creating a seamless text adventure experience, as players often typed commands in natural language rather than adhering to strict syntax. On the limited PDP-10 hardware, GWIM solved the problem of making text-based interaction feel intuitive, despite constraints on memory and processing power. This innovation influenced future text parsers in games like Infocom’s later titles and even modern interactive fiction engines such as Inform.",
           "links": [
             {
-              "label": "GWIM: The 'Get What I Mean' Algorithm",
-              "file": "np-92"
-            },
-            {
               "label": "The Routine That Guessed Player Intent",
-              "file": "np"
+              "file": "np",
+              "enhancement": "get-what-i-mean"
             }
           ]
         },
         {
           "id": "dynamic-room-descriptions",
-          "title": "Dynamic Room Descriptions: A Text Adventure Breakthrough",
-          "description": "Zork introduced dynamic room descriptions that changed based on player actions and game state. For instance, a room might describe a trap door as 'open' or 'closed' depending on whether the player interacted with it. This innovation created a more immersive experience, as the world felt alive and reactive. On the PDP-10, memory constraints made this feature technically challenging, requiring clever use of flags and compact state tracking. Dynamic descriptions became a hallmark of text adventures, influencing games like Adventure and the broader genre of interactive fiction.",
+          "title": "Dynamic Room Descriptions: A New Frontier",
+          "description": "Zork introduced dynamic room descriptions that changed based on player actions and the state of the world. This feature made the game’s text-based environment feel alive, as players could see the consequences of their actions reflected in the descriptions. On the PDP-10, this required clever memory management and efficient state tracking to handle the complexity. The innovation set a new standard for immersion in text adventures, influencing games like Adventure and later graphical RPGs that incorporated dynamic environmental storytelling.",
           "links": [
-            {
-              "label": "Dynamic Room Descriptions: A New Frontier",
-              "file": "act1-37"
-            },
             {
               "label": "Dynamic Room Descriptions: A Text Adventure Breakthrough",
-              "file": "rooms"
+              "file": "rooms",
+              "enhancement": "room-description-system"
+            },
+            {
+              "label": "Dynamic Room Descriptions: A New Frontier",
+              "file": "act1-37",
+              "enhancement": "dynamic-room-descriptions"
             }
           ]
         },
         {
-          "id": "maze-design-twisty-passages",
-          "title": "Twisty Little Passages: Zork's Maze Design",
-          "description": "Zork's maze was a masterclass in disorienting level design, featuring identical descriptions for multiple rooms to confuse players. The maze required careful navigation and mapping, making it one of the game's most memorable challenges. This design leveraged the PDP-10's limited graphical capabilities to create a purely text-based puzzle that felt spatially complex. The maze inspired countless imitators in adventure games, becoming a staple of the genre and influencing titles like King's Quest and Myst.",
+          "id": "clock-demon-event-handler",
+          "title": "The Demon That Kept Zork Alive",
+          "description": "Zork’s 'Clock Demon' was a background event handler that managed timed actions and dynamic events, such as the appearance of the thief or environmental changes. This system allowed the game world to feel active and responsive, even when the player was idle. Implementing this on the PDP-10 required ingenuity to simulate real-time behavior within the constraints of a turn-based game. The concept of background event handling became a staple in game design, influencing real-time systems in RPGs and adventure games like Ultima and The Legend of Zelda.",
           "links": [
             {
-              "label": "Twisty Little Passages: Zork's Maze Design",
-              "file": "dung"
-            }
-          ]
-        },
-        {
-          "id": "clock-demon-event-scheduler",
-          "title": "The Clock Demon: Zork’s Event Scheduler",
-          "description": "The Clock Demon was Zork's ingenious event scheduler, managing timed events like the troll's movements or the flickering of a candle. It allowed the game to simulate a living world where actions unfolded over time, adding tension and realism to the gameplay. Implementing this on the PDP-10 required careful optimization to handle multiple simultaneous events without overwhelming the system. The Clock Demon influenced later games with dynamic worlds, including Ultima and The Elder Scrolls series.",
-          "links": [
-            {
-              "label": "The Clock Demon: Zork’s Event Scheduler",
-              "file": "rooms-98"
+              "label": "The Demon That Kept Zork Alive",
+              "file": "rooms",
+              "enhancement": "clock-demon-event-handler"
             },
             {
               "label": "How Zork Handles Timed Events",
-              "file": "makstr"
+              "file": "makstr",
+              "enhancement": "cevent-event-handler-definition"
             }
           ]
         },
         {
-          "id": "frobozz-magic-balloon",
-          "title": "The Frobozz Magic Balloon: Instructions and Humor",
-          "description": "The Frobozz Magic Balloon was a whimsical puzzle that combined humor with clever mechanics. Players had to inflate and navigate the balloon through a volcano, following cryptic instructions that added comedic flair. This puzzle showcased Zork's ability to blend challenging gameplay with narrative charm, setting a precedent for humor in adventure games. The Frobozz Corporation became a recurring joke in Infocom's titles, cementing its legacy as a symbol of absurdity and creativity in gaming.",
+          "id": "maze-navigation-logic",
+          "title": "Twisty Little Passages: Zork's Maze Design",
+          "description": "Zork’s maze design was a masterclass in creating disorientation and challenge in a text-based format. The game used clever navigation logic to make each passage feel unique while maintaining the illusion of a sprawling labyrinth. Players had to rely on mapping and deduction to navigate, as descriptions were intentionally vague. This design pushed the limits of interactive storytelling on the PDP-10 and inspired countless maze puzzles in adventure games, from Colossal Cave Adventure to Myst.",
           "links": [
             {
-              "label": "Frobozz Magic Balloon: Instructions and Humor",
-              "file": "dung"
-            },
-            {
-              "label": "How a Balloon Navigates a Volcano",
-              "file": "act2"
+              "label": "Twisty Little Passages: Zork's Maze Design",
+              "file": "dung",
+              "enhancement": "maze-navigation-logic"
             }
           ]
         },
         {
-          "id": "syntax-matching-parser",
-          "title": "Syntax Matching: Resolving Player Intent",
-          "description": "Zork's syntax matching system was a groundbreaking parser that could interpret complex player commands like 'put the lamp in the bag' or 'hit the troll with the sword.' It used conditional vectors to resolve ambiguity and match syntax to actions, creating a more intuitive interaction model. This innovation addressed the limitations of early text parsers, which often misunderstood player input. Zork's parser became the gold standard for interactive fiction, influencing Infocom's future games and modern text adventure engines.",
+          "id": "villain-and-combat-system",
+          "title": "The Troll That Blocked Your Path",
+          "description": "Zork’s combat system introduced dynamic encounters with villains like the troll, blending narrative and mechanics seamlessly. Players could engage in combat using text commands, with outcomes influenced by their inventory and prior actions. This system added tension and strategy to the game, setting it apart from earlier text adventures. The troll encounter became iconic, inspiring similar mechanics in Infocom’s later titles and influencing RPGs that combined text-based interaction with combat, such as the early Ultima series.",
           "links": [
             {
-              "label": "Syntax Matching: Resolving Player Intent",
-              "file": "np-92"
-            },
+              "label": "The Troll That Blocked Your Path",
+              "file": "dung",
+              "enhancement": "villain-and-combat-system"
+            }
+          ]
+        },
+        {
+          "id": "frobozz-magic-boat-label",
+          "title": "The Frobozz Magic Boat: Humor in Design",
+          "description": "Zork’s Frobozz Magic Boat showcased the game’s playful and absurd humor, a hallmark of its design. The boat’s description and mechanics added levity to the adventure, making the world feel whimsical and unpredictable. This humor was a deliberate choice to engage players and differentiate Zork from other serious or dry text adventures. The Frobozz Corporation became a recurring joke in Infocom games, cementing Zork’s legacy as a pioneer in blending humor with interactive storytelling.",
+          "links": [
             {
-              "label": "How Zork Matched Syntax to Actions",
-              "file": "np"
+              "label": "The Frobozz Magic Boat: Humor in Design",
+              "file": "dung",
+              "enhancement": "frobozz-magic-boat-label"
             }
           ]
         }
@@ -229,68 +225,62 @@
       ],
       "highlights": [
         {
-          "id": "chrget-text-parsing-efficiency",
-          "title": "The CHRGET Subroutine: Text Parsing Made Efficient",
-          "description": "CHRGET was a pivotal subroutine in Microsoft BASIC for the 6502, responsible for reading and advancing through characters in the source code. It solved the problem of parsing BASIC programs efficiently within the constraints of a 4KB memory footprint. By using clever pointer manipulation and minimal instructions, CHRGET enabled BASIC to interpret user-written programs in real-time without wasting precious cycles or memory. This subroutine became a foundational technique for text parsing in early programming languages and influenced later interpreters and compilers, including those for modern scripting languages.",
+          "id": "reserved-word-compression",
+          "title": "Reserved Word Compression: Saving Memory Byte by Byte",
+          "description": "Microsoft BASIC ingeniously compressed reserved keywords like PRINT and INPUT to single-byte tokens during parsing. This allowed the language to fit within the tight memory constraints of early personal computers, often limited to just 4KB of RAM. By reducing the memory footprint of program text, BASIC could store larger programs and execute them faster. This technique became a foundational optimization for many early programming languages on constrained hardware, influencing later interpreters and compilers in the microcomputer era.",
           "links": [
             {
-              "label": "Efficient text parsing logic",
-              "file": "m6502-asm"
+              "label": "The Trick That Saved BASIC's Memory",
+              "file": "m6502-asm",
+              "enhancement": "reserved-word-compression"
             }
           ]
         },
         {
-          "id": "line-editor-in-4kb",
-          "title": "The Line Editor That Fit in 4KB",
-          "description": "Microsoft BASIC included a line editor that allowed users to modify their programs directly within the interpreter. This feature had to fit within the tight memory constraints of early personal computers, often limited to just 4KB of RAM. The editor used ingenious techniques to manage program lines, including compact storage and efficient cursor movement. This innovation made BASIC user-friendly and accessible to non-programmers, helping popularize personal computing. The approach influenced later software design in text editors and IDEs, setting a precedent for interactive programming environments.",
+          "id": "chrget-text-parsing",
+          "title": "CHRGET: Efficient Text Parsing in Assembly",
+          "description": "The CHRGET subroutine was a key part of Microsoft BASIC's text parsing system, responsible for efficiently reading and interpreting characters from the program text. Designed to operate on the 6502 microprocessor, CHRGET handled input with minimal overhead, enabling BASIC to parse commands and expressions in real time. This subroutine solved the problem of parsing text on hardware with limited processing power and memory, and its efficiency inspired similar text-processing routines in later programming environments.",
           "links": [
             {
-              "label": "Compact line editing implementation",
-              "file": "m6502-asm"
+              "label": "The CHRGET Subroutine: Text Parsing Made Efficient",
+              "file": "m6502-asm",
+              "enhancement": "chrget-subroutine"
             }
           ]
         },
         {
-          "id": "floating-point-math-8-bit",
+          "id": "floating-point-math",
           "title": "Floating-Point Math on an 8-Bit Processor",
-          "description": "Microsoft BASIC implemented floating-point arithmetic on the 6502 microprocessor, which lacked hardware support for such operations. Using software routines, it enabled calculations with decimals and scientific notation, essential for many programming tasks. These routines had to be both accurate and efficient, despite the processor's 1MHz speed and limited memory. This achievement allowed BASIC to support a wide range of applications, from educational tools to scientific computing. The techniques pioneered here influenced the development of floating-point libraries in later programming languages and systems.",
+          "description": "Microsoft BASIC implemented a floating-point math package that allowed users to perform complex calculations, including multiplication, division, and exponentiation, without hardware support. This was achieved through clever software routines that approximated floating-point operations using integer math. These routines overcame the limitations of the 6502 microprocessor, which lacked a floating-point unit, and laid the groundwork for similar software-based math libraries in subsequent programming languages and systems.",
           "links": [
             {
-              "label": "Floating-point arithmetic routines",
-              "file": "m6502-asm"
+              "label": "Floating-Point Math on an 8-Bit Processor",
+              "file": "m6502-asm",
+              "enhancement": "floating-point-math-package"
             }
           ]
         },
         {
-          "id": "random-number-generator",
-          "title": "The Random Number Generator That Started It All",
-          "description": "Microsoft BASIC featured a software-based random number generator, enabling programs to include elements of chance and unpredictability. This routine had to produce sufficiently random results while operating within the constraints of the 6502's limited processing power and memory. It used a polynomial-based algorithm to generate pseudo-random sequences, a technique that influenced random number generation in later programming languages and game development. Early BASIC programs, including games and simulations, relied heavily on this feature, marking it as a cornerstone of interactive computing.",
+          "id": "pseudo-random-number-generator",
+          "title": "The Pseudo-Random Number Generator That Started It All",
+          "description": "Microsoft BASIC included a pseudo-random number generator (PRNG) that allowed developers to create games and simulations with unpredictable outcomes. This routine used a simple algorithm to generate sequences of numbers that appeared random, despite being deterministic. The PRNG was a critical feature for early personal computers, enabling BASIC programs to incorporate randomness without requiring additional hardware. Its influence extended to countless games and applications, establishing the importance of software-based randomness in computing.",
           "links": [
             {
-              "label": "Pseudo-random number generation algorithm",
-              "file": "m6502-asm"
+              "label": "The Random Number Generator That Started It All",
+              "file": "m6502-asm",
+              "enhancement": "pseudo-random-number-generator"
             }
           ]
         },
         {
-          "id": "peek-poke-direct-memory-access",
-          "title": "PEEK and POKE: Direct Memory Access",
-          "description": "The PEEK and POKE commands in Microsoft BASIC allowed users to directly read from and write to memory locations, giving unprecedented control over the computer's hardware. These commands empowered hobbyists and developers to experiment with low-level programming, enabling custom graphics, sound, and hardware interactions. This feature was crucial in the early days of personal computing, where users often pushed the limits of their machines. PEEK and POKE became iconic, inspiring similar functionality in later programming environments and fostering a generation of hardware-savvy programmers.",
+          "id": "dynamic-arrays",
+          "title": "Dynamic Arrays in a 4KB World",
+          "description": "Microsoft BASIC implemented dynamic arrays, allowing users to define and manipulate arrays of varying sizes within the constraints of limited memory. This was achieved through careful memory management and pointer arithmetic, enabling BASIC to allocate and deallocate memory as needed. Dynamic arrays were a groundbreaking feature for early programming languages, providing flexibility and efficiency on hardware with severe memory limitations. They influenced the design of array handling in later languages like C and Python.",
           "links": [
             {
-              "label": "Direct memory access implementation",
-              "file": "m6502-asm"
-            }
-          ]
-        },
-        {
-          "id": "for-loop-stack-format",
-          "title": "The Stack Format Behind 'FOR' Loops",
-          "description": "Microsoft BASIC used a stack-based format to manage 'FOR' loops, enabling efficient iteration even on the constrained 6502 microprocessor. This design allowed nested loops and dynamic loop control without consuming excessive memory. By storing loop variables and control information compactly, BASIC ensured that programs could handle complex logic within the tight limits of early personal computers. This approach influenced the implementation of control structures in later programming languages, demonstrating how thoughtful design could overcome hardware limitations.",
-          "links": [
-            {
-              "label": "Efficient 'FOR' loop stack management",
-              "file": "m6502-asm"
+              "label": "Dynamic Arrays in a 4KB World",
+              "file": "m6502-asm",
+              "enhancement": "array-dimensioning-and-management"
             }
           ]
         }
@@ -680,68 +670,62 @@
       "image_caption": "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)",
       "highlights": [
         {
-          "id": "file-allocation-table-optimization",
-          "title": "The Algorithm Behind FAT Filesystem Setup",
-          "description": "The File Allocation Table (FAT) was a groundbreaking method for managing disk storage efficiently on early PCs. It allowed MS-DOS to track which parts of a disk were used by files and which were free, solving the problem of limited storage and fragmented files on floppy disks. This system was designed to be lightweight and fast, enabling quick access to files even on hardware with minimal memory and processing power. FAT became the foundation for many later filesystems, influencing technologies like FAT32 and exFAT, and remains relevant in modern devices like USB drives and SD cards.",
+          "id": "fat-filesystem-setup",
+          "title": "The Birth of the FAT Filesystem",
+          "description": "The File Allocation Table (FAT) was a groundbreaking filesystem design that allowed MS-DOS to efficiently manage files on floppy disks and hard drives. It solved the problem of limited storage and slow access times by organizing data into clusters and tracking their allocation in a compact table. This innovation made MS-DOS compatible with a wide range of hardware and laid the foundation for future filesystems like FAT32, which became ubiquitous in USB drives and SD cards. The FAT system also influenced the development of other operating systems, including Windows and Linux, which implemented FAT compatibility.",
           "links": [
             {
               "label": "The Algorithm Behind FAT Filesystem Setup",
-              "file": "msdos"
+              "file": "msdos",
+              "enhancement": "fat-filesystem-setup"
             }
           ]
         },
         {
-          "id": "console-input-buffering-complexity",
-          "title": "Console Input Buffering: A Hidden Complexity",
-          "description": "MS-DOS's console input buffering system ensured smooth interaction between users and the operating system. It handled raw keyboard input, converting keystrokes into usable commands while managing edge cases like backspaces and control characters. This was critical for early PCs, where hardware constraints required efficient and reliable input handling. The buffering system laid the groundwork for modern command-line interfaces, influencing tools like PowerShell and Unix shells.",
+          "id": "interrupt-driven-architecture",
+          "title": "Interrupts: The Backbone of MS-DOS",
+          "description": "MS-DOS relied heavily on hardware interrupts to handle system calls and manage I/O operations. This architecture allowed the operating system to efficiently interact with hardware like keyboards, disks, and printers without polling, saving CPU cycles. It addressed the challenge of limited processing power in early PCs and became a standard approach in operating systems. The interrupt-driven design influenced later systems like Windows and even embedded devices, showcasing its enduring impact on software engineering.",
           "links": [
             {
-              "label": "Console Input Buffering: A Hidden Complexity",
-              "file": "msdos"
+              "label": "Interrupts: The Backbone of MS-DOS",
+              "file": "msdos",
+              "enhancement": "interrupt-entry-points"
             }
           ]
         },
         {
-          "id": "autoexec-bat-boot-automation",
-          "title": "How MS-DOS Found and Ran AUTOEXEC.BAT",
-          "description": "AUTOEXEC.BAT was a revolutionary feature that allowed users to automate system startup tasks. MS-DOS would locate and execute this batch file during boot, enabling users to configure their environment, load drivers, and launch applications without manual intervention. This solved the problem of repetitive setup tasks and made PCs more user-friendly. The concept of startup scripts became a staple in operating systems, influencing Windows startup programs and Unix/Linux init scripts.",
+          "id": "autoexec-bat-integration",
+          "title": "How MS-DOS Automated Boot with AUTOEXEC.BAT",
+          "description": "The integration of AUTOEXEC.BAT allowed MS-DOS to automatically execute a series of commands at startup, streamlining the boot process for users. This feature solved the problem of manually configuring the environment every time the system was powered on. It became a staple in personal computing, influencing the design of startup scripts in Unix and Linux systems. AUTOEXEC.BAT also paved the way for customizable boot sequences, enabling users to tailor their computing experience.",
           "links": [
             {
-              "label": "How MS-DOS Found and Ran AUTOEXEC.BAT",
-              "file": "command"
+              "label": "How MS-DOS Automated Boot with AUTOEXEC.BAT",
+              "file": "init",
+              "enhancement": "autoexec-bat-and-date-prompt"
             }
           ]
         },
         {
-          "id": "memory-allocation-64kb-limit",
+          "id": "memory-allocation-strategy",
           "title": "Allocating Memory in a 64KB World",
-          "description": "MS-DOS's memory allocation system was designed to work within the 64KB segment limit imposed by the 8086 processor. It used clever techniques to divide and manage memory, ensuring programs could run efficiently despite the constraints. This innovation addressed the challenge of limited addressable memory and influenced future operating systems, including Windows and OS/2, which built upon these principles to handle larger memory spaces.",
+          "description": "MS-DOS's memory allocation strategy was designed to work within the 64KB segment limit of the Intel 8086 processor. It used clever techniques to manage memory efficiently, including splitting memory into resident and transient parts. This solved the problem of running multiple programs on hardware with severe memory constraints. The approach influenced later operating systems, including Windows, which built on these principles to manage memory in more complex environments.",
           "links": [
             {
               "label": "Allocating Memory in a 64KB World",
-              "file": "exec"
+              "file": "exec",
+              "enhancement": "memory-allocation-strategy"
             }
           ]
         },
         {
-          "id": "batch-file-processing-byte-by-byte",
-          "title": "How MS-DOS Reads Batch Files Byte by Byte",
-          "description": "MS-DOS introduced batch file processing, allowing users to automate sequences of commands. The system read batch files byte by byte, interpreting commands and executing them in order. This lightweight approach was ideal for early PCs with limited resources and enabled users to streamline workflows. Batch files became a cornerstone of automation, influencing scripting languages like Windows PowerShell and Unix shell scripts.",
+          "id": "checksum-command-validation",
+          "title": "The Checksum That Protected COMMAND.COM",
+          "description": "COMMAND.COM, the command-line interpreter for MS-DOS, used a checksum validation mechanism to ensure its integrity. This feature addressed the problem of accidental corruption or tampering, providing a simple yet effective security measure. It influenced the development of more sophisticated integrity checks in later software, including cryptographic hashes used in modern systems. The checksum mechanism demonstrated the importance of reliability in critical system components.",
           "links": [
             {
-              "label": "How MS-DOS Reads Batch Files Byte by Byte",
-              "file": "command"
-            }
-          ]
-        },
-        {
-          "id": "bootstrapping-ms-dos-system-init",
-          "title": "Bootstrapping MS-DOS: System Initialization",
-          "description": "The system initialization routine in MS-DOS was a critical piece of code that prepared the operating system for use after booting. It set up memory, configured hardware, and loaded essential components, ensuring the system was ready to execute user commands. This routine addressed the challenge of initializing diverse hardware configurations and laid the foundation for modern boot processes in operating systems like Windows and Linux.",
-          "links": [
-            {
-              "label": "Bootstrapping MS-DOS: System Initialization",
-              "file": "msdos"
+              "label": "The Checksum That Protected COMMAND.COM",
+              "file": "command",
+              "enhancement": "command-checksum-integrity"
             }
           ]
         }
@@ -995,96 +979,87 @@
       "image_caption": "Sketches of the storyboard of Prince of Persia by Jordan Mechner. (CC BY-SA 4.0)",
       "highlights": [
         {
-          "id": "rotoscoped-animation-table",
-          "title": "The Animation Table That Made It Cinematic",
-          "description": "Prince of Persia's lifelike character movements were achieved through rotoscoping, a technique where Jordan Mechner filmed his brother performing actions and traced each frame. These animations were encoded into compact tables, allowing the Apple II to render fluid motion despite its hardware limitations. This innovation set a new standard for realism in platformers and influenced games like Flashback and Another World.",
+          "id": "rotoscoped-animation",
+          "title": "Rotoscoped Animation: Cinematic Movement",
+          "description": "Prince of Persia introduced rotoscoped animation to video games, capturing lifelike character movements by tracing real-life footage frame by frame. Jordan Mechner filmed his brother performing actions like running, jumping, and sword fighting, then meticulously translated these into the game's animation sequences. This technique solved the challenge of creating fluid, realistic motion on the Apple II's limited hardware, which lacked advanced graphics capabilities. The result was groundbreaking, inspiring future cinematic platformers like Another World and Flashback, and influencing animation techniques in games for decades.",
           "links": [
-            {
-              "label": "Compact codes for character logic",
-              "file": "seqdata"
-            },
             {
               "label": "Frame definitions for rotoscoped animation",
-              "file": "framedef"
+              "file": "framedef",
+              "enhancement": "frame-definitions-for-rotoscoped-animation"
             },
             {
-              "label": "The table that made animation cinematic",
-              "file": "seqtable"
+              "label": "The animation table that made it cinematic",
+              "file": "seqdata",
+              "enhancement": "sequence-table-entry-points"
             }
           ]
         },
         {
-          "id": "cinematic-sound-engine",
-          "title": "The Algorithm That Made the Apple II Sing",
-          "description": "Prince of Persia's sound engine used lookup tables and self-modifying code to produce rich, cinematic audio on the Apple II's limited hardware. This allowed for synchronized sound effects and music that enhanced the game's immersive experience. The approach inspired sound systems in later games and demonstrated how clever programming could overcome hardware constraints.",
+          "id": "bank-switched-memory",
+          "title": "Bank-Switched Memory: 128KB Feat",
+          "description": "To fit the ambitious Prince of Persia into the Apple II's 128KB memory, Jordan Mechner used bank-switched memory, dynamically toggling between auxiliary and main memory banks. This technique allowed the game to store large amounts of data, such as detailed animations and level designs, without exceeding hardware limits. It was a clever workaround for the constraints of the Apple II, enabling a level of complexity and cinematic depth previously unseen in platformers. This approach influenced memory management in later games and systems, showcasing how software ingenuity could overcome hardware limitations.",
           "links": [
             {
-              "label": "The algorithm behind sound generation",
-              "file": "sound"
+              "label": "How 128KB became enough for cinematic gameplay",
+              "file": "eq",
+              "enhancement": "bank-switched-memory-layout"
             },
             {
-              "label": "How sound effects tell a story",
-              "file": "soundnames"
+              "label": "The trick that made 128K work",
+              "file": "hires",
+              "enhancement": "auxmem-bank-switching"
             }
           ]
         },
         {
-          "id": "bank-switched-memory-trick",
-          "title": "The Trick That Made 128K Work",
-          "description": "To fit Prince of Persia's expansive world into the Apple II's 128K memory, Mechner employed bank-switched memory techniques, dynamically swapping between auxiliary and main memory banks. This allowed the game to load large levels and animations seamlessly without exceeding hardware limits. This technique became a blueprint for memory management in later games on constrained systems.",
+          "id": "self-modifying-sound-code",
+          "title": "Self-Modifying Sound Code: Dynamic Audio",
+          "description": "Prince of Persia's sound system featured self-modifying code, where the program rewrote parts of itself to handle sound playback dynamically. This allowed the game to produce complex, synchronized audio effects despite the Apple II's rudimentary speaker and limited sound capabilities. By packing sound routines into RAM and modifying them in real-time, Mechner achieved a cinematic audio experience that complemented the game's visuals and storytelling. This innovative approach demonstrated how assembly language could push hardware to its limits, influencing sound design in subsequent games.",
           "links": [
             {
-              "label": "Switching memory banks dynamically",
-              "file": "master"
+              "label": "Why Prince of Persia's sound code writes itself",
+              "file": "sound",
+              "enhancement": "self-modifying-code-for-sound-playback"
             },
             {
-              "label": "Allocating variables for memory efficiency",
-              "file": "hires"
+              "label": "The routine that packed sounds into RAM",
+              "file": "sound",
+              "enhancement": "adding-sounds-to-the-table"
             }
           ]
         },
         {
-          "id": "pixel-perfect-movement",
-          "title": "Pixel-Perfect Forward Steps",
-          "description": "The game's movement system was meticulously designed to allow pixel-perfect control over the Prince's actions, from running and jumping to grabbing ledges. This precision was achieved through carefully crafted subroutines that calculated movement and collision detection. It set a benchmark for platformers and influenced titles like Tomb Raider and Assassin's Creed.",
+          "id": "pixel-perfect-animation",
+          "title": "Pixel-Perfect Animation: Precision in Motion",
+          "description": "Prince of Persia achieved unprecedented precision in character movement, with animations calibrated to pixel-perfect accuracy. This allowed the Prince to interact seamlessly with the environment, such as grabbing ledges, stepping forward, or climbing stairs. These mechanics were essential for creating the game's cinematic tension and fluid gameplay. On the Apple II, where graphical fidelity was limited, this level of detail was a technical marvel. It set a new standard for platformers, influencing game design in titles like Tomb Raider and Uncharted.",
           "links": [
             {
-              "label": "Forward steps and movement logic",
-              "file": "seqtable"
+              "label": "Pixel-perfect forward steps",
+              "file": "seqtable",
+              "enhancement": "step-forward-pixel-precision"
             },
             {
-              "label": "Collision detection and gameplay consequences",
-              "file": "coll"
+              "label": "The art of climbing stairs",
+              "file": "ctrl",
+              "enhancement": "stairs-climbing-mechanics"
             }
           ]
         },
         {
-          "id": "dynamic-object-animation",
-          "title": "Animating the World, Frame by Frame",
-          "description": "Prince of Persia featured dynamic object animations, such as falling floors, swinging slicers, and flickering torches. These were managed through a queue system that updated each object's state and position frame by frame. This approach added depth and interactivity to the game world, influencing environmental storytelling in later games like Limbo and Inside.",
+          "id": "gravity-simulation",
+          "title": "Gravity Simulation: Realistic Physics",
+          "description": "Prince of Persia simulated gravity to create realistic character movement and environmental interactions. This included the Prince's ability to fall, land, and grab ledges, adding a sense of weight and danger to the gameplay. Implementing gravity on the Apple II's limited 6502 processor required clever use of assembly language, balancing performance with realism. This innovation contributed to the game's cinematic feel and inspired physics-based mechanics in later platformers like Limbo and Celeste.",
           "links": [
             {
-              "label": "Adding objects to the animation queue",
-              "file": "mover"
+              "label": "Simulating gravity on a 6502 processor",
+              "file": "subs",
+              "enhancement": "gravity-simulation"
             },
             {
-              "label": "Animating falling floors and slicers",
-              "file": "mover"
-            }
-          ]
-        },
-        {
-          "id": "self-modifying-code-for-cinematics",
-          "title": "Handling Cinematic Sequences with Self-Modifying Code",
-          "description": "Prince of Persia used self-modifying code to handle complex cinematic sequences, such as the opening title scene and dramatic moments like the Princess's embrace. This technique allowed the game to dynamically adjust its logic and animations, creating a seamless and emotionally engaging experience. It showcased the potential of assembly programming for storytelling and influenced cinematic approaches in games like Metal Gear Solid.",
-          "links": [
-            {
-              "label": "Creating the cinematic opening title scene",
-              "file": "subs"
-            },
-            {
-              "label": "Interruptible music playback in cinematic moments",
-              "file": "subs"
+              "label": "The trick that lets you grab ledges",
+              "file": "ctrl",
+              "enhancement": "grabbing-ledges-while-falling"
             }
           ]
         }
@@ -1308,70 +1283,77 @@
         {
           "id": "carmacks-compression-algorithm",
           "title": "Carmack's Compression: A Game-Changing Algorithm",
-          "description": "Wolfenstein 3D used a custom compression algorithm designed by John Carmack to store its graphics and map data efficiently. This algorithm solved the problem of limited disk space and memory on early PCs, enabling the game to include detailed textures and large levels without overwhelming hardware constraints. The approach used Huffman coding and clever data packing, allowing three bytes to perform the work of four. Carmack's compression became a foundational technique, influencing later games like Doom and Quake, and inspiring developers to innovate in data storage for constrained systems.",
+          "description": "Carmack's compression algorithm allowed Wolfenstein 3D to store large amounts of graphical data in limited memory by using a fast and efficient decompression method. This solved the problem of fitting detailed textures and sprites into constrained MS-DOS systems with only 640KB of conventional memory. The technique became a cornerstone for many games in the 1990s, influencing engines like Doom and Quake, and inspiring developers to push boundaries in resource optimization.",
           "links": [
             {
-              "label": "Carmack's compression algorithm implementation",
-              "file": "id-ca-c"
+              "label": "The implementation of Carmack's compression algorithm",
+              "file": "id-ca-c",
+              "enhancement": "carmack-expand-compression"
             }
           ]
         },
         {
-          "id": "raycasting-for-3d-worlds",
-          "title": "Raycasting: Rendering a World With No GPU",
-          "description": "Wolfenstein 3D pioneered the use of raycasting to simulate a 3D world on hardware without dedicated graphics acceleration. This technique calculated the distance to walls by casting rays, enabling immersive first-person gameplay with fast rendering. It solved the challenge of creating 3D environments on systems limited to 2D graphics capabilities. Raycasting became a cornerstone of early 3D game development, influencing titles like Doom and inspiring countless developers to explore efficient rendering techniques.",
+          "id": "raycasting-3d-worlds-no-gpu",
+          "title": "Rendering a World With No GPU",
+          "description": "Wolfenstein 3D used raycasting to simulate a 3D environment on hardware without dedicated graphics acceleration. This technique calculated the visible portions of walls by tracing rays from the player's viewpoint, ensuring fast rendering even on low-end PCs. It addressed the challenge of creating immersive 3D gameplay on MS-DOS systems with limited computational power. Raycasting became a foundational technique for early first-person shooters, influencing games like Doom and inspiring modern 3D rendering methods.",
           "links": [
             {
-              "label": "Projection math and trigonometric calculations for raycasting",
-              "file": "wl-main-c"
+              "label": "Projection math for immersive 3D gameplay",
+              "file": "wl-main-c",
+              "enhancement": "calc-projection-for-3d-view"
             },
             {
-              "label": "Drawing walls and transforming tiles into interactive worlds",
-              "file": "wl-draw-c"
+              "label": "Scaling walls one pixel at a time",
+              "file": "wl-draw-c",
+              "enhancement": "scale-post"
             }
           ]
         },
         {
-          "id": "pushable-wall-secrets",
-          "title": "The Secret Mechanic: Pushable Walls",
-          "description": "Wolfenstein 3D introduced pushable walls as a unique gameplay mechanic, allowing players to uncover hidden areas and rewards. This feature added depth to exploration and puzzle-solving, creating moments of surprise and discovery. It addressed the challenge of designing interactive environments within the constraints of tile-based maps. Pushable walls became a hallmark of the game's level design, influencing secret mechanics in later titles like Doom and inspiring developers to integrate interactive elements into static environments.",
+          "id": "one-bit-sound-engine",
+          "title": "The One-Bit Sound Engine",
+          "description": "Wolfenstein 3D managed to produce digitized sound effects using the PC speaker, a device originally designed for simple beeps. By rapidly toggling the speaker's state, the game created complex audio, overcoming the hardware's limitations. This innovation allowed players without sound cards to experience immersive soundscapes. The technique showcased id Software's ingenuity and influenced other developers seeking to maximize audio on minimal hardware.",
           "links": [
             {
-              "label": "Code for animating and spawning pushable walls",
-              "file": "wl-act1-c"
+              "label": "Making the PC Speaker sing (digitally)",
+              "file": "id-sd-c",
+              "enhancement": "pc-speaker-digitized-sound"
+            }
+          ]
+        },
+        {
+          "id": "pushable-walls-secret-mechanic",
+          "title": "The Secret Mechanic: Pushable Walls",
+          "description": "Wolfenstein 3D introduced pushable walls as a unique gameplay mechanic, allowing players to uncover hidden areas and secrets. This feature added depth to exploration and rewarded curiosity, addressing the challenge of creating engaging levels within a grid-based map system. Pushable walls became a hallmark of id Software's level design philosophy and inspired similar mechanics in later games, including Doom and Duke Nukem 3D.",
+          "links": [
+            {
+              "label": "Animating walls that moved and revealed secrets",
+              "file": "wl-act1-c",
+              "enhancement": "move-pushable-walls"
+            }
+          ]
+        },
+        {
+          "id": "adaptive-timing-smooth-gameplay",
+          "title": "Adaptive Timing for Smooth Gameplay",
+          "description": "Wolfenstein 3D implemented adaptive timing to ensure consistent gameplay across PCs with varying performance levels. By dynamically adjusting game speed based on hardware capabilities, it solved the problem of uneven frame rates on slower systems. This approach set a precedent for future games, demonstrating how software could adapt to hardware constraints to deliver a seamless experience.",
+          "links": [
+            {
+              "label": "How Wolfenstein stayed smooth on any PC",
+              "file": "wl-draw-c",
+              "enhancement": "adaptive-timing-calc-tics"
             }
           ]
         },
         {
           "id": "dynamic-stereo-sound-placement",
           "title": "Dynamic Stereo Sound Placement",
-          "description": "Wolfenstein 3D used dynamic stereo sound placement to enhance immersion, positioning audio cues based on the player's location and actions. This technique solved the problem of creating a spatial audio experience on hardware with limited sound capabilities. By manipulating sound channels and using clever algorithms, the game provided directional audio that added realism to its environments. This innovation influenced sound design in later games, setting a precedent for immersive audio in first-person shooters.",
+          "description": "Wolfenstein 3D used dynamic stereo sound placement to enhance spatial awareness, positioning audio effects based on the player's location and the source of the sound. This innovation addressed the challenge of creating immersive audio experiences on early sound hardware. The technique influenced sound design in later games, paving the way for advanced spatial audio systems in modern gaming.",
           "links": [
             {
-              "label": "Code for stereo sound placement and playback",
-              "file": "id-sd-c"
-            }
-          ]
-        },
-        {
-          "id": "state-machine-enemy-ai",
-          "title": "State Machines for Enemy AI",
-          "description": "Wolfenstein 3D implemented state machines to control enemy behavior, enabling dynamic responses like patrolling, chasing, and attacking. This approach solved the challenge of creating engaging AI on hardware with limited processing power. By breaking behavior into discrete states, the game achieved complex interactions without overwhelming the CPU. State machines became a standard technique in game AI, influencing titles like Doom and shaping the development of intelligent NPCs in gaming.",
-          "links": [
-            {
-              "label": "State-based AI routines for enemies and projectiles",
-              "file": "wl-act2-c"
-            }
-          ]
-        },
-        {
-          "id": "palette-shifting-damage-effects",
-          "title": "Palette Shifting: Simulating Damage",
-          "description": "Wolfenstein 3D used palette shifting to simulate damage effects, altering the screen's colors to convey player health and environmental changes. This technique solved the problem of creating visual feedback on systems with limited graphical capabilities. By manipulating VGA palette data, the game achieved dramatic effects without requiring additional memory or processing power. Palette shifting became a popular method for visual storytelling in early PC games, influencing titles like Doom and inspiring creative use of color in game design.",
-          "links": [
-            {
-              "label": "Code for palette shifting and damage simulation",
-              "file": "wl-play-c"
+              "label": "Dynamic stereo sound placement",
+              "file": "id-sd-c",
+              "enhancement": "stereo-positioning"
             }
           ]
         }
@@ -1713,72 +1695,74 @@
       ],
       "highlights": [
         {
-          "id": "bsp-trees-for-fast-rendering",
+          "id": "binary-space-partitioning",
           "title": "How BSP Trees Made DOOM Run Fast",
-          "description": "DOOM used Binary Space Partitioning (BSP) trees to divide its levels into smaller, manageable sections. This allowed the game to efficiently determine which parts of the environment were visible to the player, drastically reducing the computational load for rendering. On the limited hardware of 1993, this was a groundbreaking solution to the problem of real-time 3D graphics. The technique became a cornerstone for many future games, influencing engines like Quake and Unreal Engine.",
+          "description": "DOOM used Binary Space Partitioning (BSP) trees to divide its levels into manageable sections for rendering. This technique allowed the game to quickly determine which parts of the map were visible to the player, optimizing performance on 1990s hardware with limited processing power. BSP trees solved the problem of efficiently rendering complex 3D environments without requiring expensive hardware, making DOOM accessible to a wide audience. The method became a cornerstone of game development, influencing engines like Quake and Unreal, and remains a fundamental concept in computer graphics and spatial partitioning.",
           "links": [
             {
-              "label": "Efficient visibility determination and rendering",
-              "file": "r-main-c"
+              "label": "BSP tree implementation and rendering logic",
+              "file": "r-main-c",
+              "enhancement": "binary-space-partitioning"
             }
           ]
         },
         {
-          "id": "one-bit-sound-engine",
-          "title": "Dynamic Sound Adjustments and Randomized Pitch",
-          "description": "DOOM's sound engine dynamically allocated channels and adjusted pitch for sound effects, creating a richer and more immersive auditory experience. This was achieved despite hardware constraints, such as limited sound channels and memory. The randomized pitch added variety to repetitive sounds, like gunfire and monster growls, making the game feel alive. This approach influenced sound design in later games, setting a precedent for dynamic audio systems in interactive media.",
-          "links": [
-            {
-              "label": "Dynamic sound channel allocation and pitch adjustment",
-              "file": "s-sound-c"
-            }
-          ]
-        },
-        {
-          "id": "fixed-point-math-for-speed",
+          "id": "fixed-point-math",
           "title": "How DOOM Multiplied Without Floating-Point",
-          "description": "DOOM relied on fixed-point arithmetic to perform mathematical calculations without the need for floating-point operations, which were slow on 1993 consumer hardware. This allowed the game to handle complex geometry and physics calculations efficiently, enabling its fast-paced gameplay. Fixed-point math became a common optimization technique in games of the era, influencing titles like Duke Nukem 3D and early console games.",
+          "description": "DOOM's fixed-point arithmetic system replaced floating-point calculations to perform mathematical operations efficiently on hardware without dedicated floating-point processors. This approach allowed the game to handle geometry, physics, and rendering with precision while maintaining speed. Fixed-point math was crucial for running DOOM on consumer PCs of the era, which often lacked advanced CPUs. The technique influenced later games and engines, demonstrating how software could overcome hardware limitations through clever programming.",
           "links": [
             {
-              "label": "Efficient fixed-point arithmetic for geometry and physics",
-              "file": "m-fixed-c"
+              "label": "Fixed-point multiplication optimization",
+              "file": "m-fixed-c",
+              "enhancement": "fixed-multiplication-optimization"
             }
           ]
         },
         {
-          "id": "spectres-invisible-rendering",
-          "title": "How DOOM Made Spectres Invisible",
-          "description": "DOOM's Spectres, ghost-like enemies, were rendered with a clever transparency trick that made them appear partially invisible. This was achieved by selectively skipping pixels during rendering, creating a shimmering effect. On hardware without native transparency support, this was an ingenious solution that added a unique visual element to the game. The technique inspired similar effects in later games, such as Quake's translucent water surfaces.",
-          "links": [
-            {
-              "label": "Transparency rendering for Spectres",
-              "file": "r-draw-c"
-            }
-          ]
-        },
-        {
-          "id": "reject-table-cpu-saver",
-          "title": "How DOOM's REJECT Table Saved CPU Cycles",
-          "description": "DOOM used a REJECT table to precompute which areas of a level could not be seen from others, allowing the game to skip expensive line-of-sight calculations during gameplay. This optimization significantly reduced CPU usage, enabling smoother performance on low-end PCs. The REJECT table was a precursor to modern occlusion culling techniques, influencing how visibility is handled in 3D engines today.",
-          "links": [
-            {
-              "label": "Precomputed visibility optimization",
-              "file": "p-sight-c"
-            }
-          ]
-        },
-        {
-          "id": "dynamic-lighting-on-1990s-hardware",
+          "id": "dynamic-lighting",
           "title": "Dynamic Lighting on 1990s Hardware",
-          "description": "DOOM implemented dynamic lighting effects, such as flickering firelight and strobe lights, to enhance the atmosphere of its levels. These effects were calculated in real-time, despite the limited processing power of 1993 PCs. The lighting system added depth and tension to the game, influencing later titles like Quake and Half-Life, which expanded on dynamic lighting for immersive environments.",
+          "description": "DOOM introduced dynamic lighting effects, such as flickering lights and glowing sectors, to enhance its immersive atmosphere. These effects were calculated in real-time, adding depth and realism to the game's environments despite the constraints of early PC hardware. Dynamic lighting solved the challenge of creating visually engaging levels without the need for expensive graphical hardware. This innovation inspired future games to prioritize environmental storytelling through lighting, setting a standard for atmospheric design in 3D games.",
           "links": [
             {
-              "label": "Real-time dynamic lighting effects",
-              "file": "r-main-c"
-            },
+              "label": "Dynamic lighting implementation",
+              "file": "r-main-c",
+              "enhancement": "dynamic-lighting"
+            }
+          ]
+        },
+        {
+          "id": "fuzzy-rendering",
+          "title": "How DOOM Made Spectres Invisible",
+          "description": "DOOM used a 'fuzzy rendering' technique to create the illusion of semi-invisible enemies, such as the Spectres. By altering the rendering of these sprites to appear distorted and translucent, the game added an element of surprise and tension to encounters. This visual trick was achieved without requiring advanced transparency features, making it feasible on limited hardware. Fuzzy rendering became a memorable feature of DOOM and demonstrated how creative graphical techniques could enhance gameplay and atmosphere.",
+          "links": [
             {
-              "label": "Algorithms for flickering and strobe lighting",
-              "file": "p-lights-c"
+              "label": "Fuzzy rendering implementation for Spectres",
+              "file": "r-draw-c",
+              "enhancement": "fuzzy-rendering-for-invisibility"
+            }
+          ]
+        },
+        {
+          "id": "demo-system",
+          "title": "DOOM's Groundbreaking Demo System",
+          "description": "DOOM's demo system allowed players to record and replay their gameplay, showcasing their skills or sharing strategies. This feature was implemented efficiently by saving player inputs and game states rather than full video files, minimizing storage requirements. The demo system solved the problem of sharing gameplay in an era before widespread internet video sharing. It influenced later games, including Quake and Counter-Strike, which adopted similar systems for competitive play and community engagement.",
+          "links": [
+            {
+              "label": "Demo recording and playback logic",
+              "file": "g-game-c",
+              "enhancement": "demo-recording-playback"
+            }
+          ]
+        },
+        {
+          "id": "radius-attack-damage",
+          "title": "The Radius Attack That Shaped FPS Combat",
+          "description": "DOOM's radius-based damage system allowed explosions, such as rockets and barrels, to affect enemies and objects within a defined area. This mechanic added strategic depth to combat, encouraging players to position themselves carefully and use the environment to their advantage. The system was implemented efficiently using spatial calculations, ensuring smooth gameplay on limited hardware. Radius-based attacks became a staple of FPS design, influencing games like Half-Life and Call of Duty, where explosive weapons play a critical role.",
+          "links": [
+            {
+              "label": "Radius attack damage calculations",
+              "file": "p-map-c",
+              "enhancement": "radius-attack-damage"
             }
           ]
         }
@@ -2110,92 +2094,104 @@
       "introduction": "In the spring of 1996, a small team of developers at id Software in Mesquite, Texas, was racing against time to deliver what they hoped would be their magnum opus: Quake. The studio, already legendary for its work on Wolfenstein 3D and DOOM, was now venturing into uncharted territory — creating a true 3D game engine that would redefine the gaming landscape. At the center of this effort was John Carmack, the programming prodigy whose groundbreaking engines had already revolutionized how games were made. Joining him were Michael Abrash, a renowned expert in graphics optimization, and John Cash, a versatile systems programmer. Together, they faced immense technical challenges, working long hours to push the limits of what was possible on the hardware of the day.\n\nThe computing world of 1996 was a far cry from the high-performance machines of today. Most gamers were running Intel 486 or early Pentium processors, with clock speeds ranging from 66 to 200 MHz. Memory was scarce, with many systems limited to 8 or 16 MB of RAM. Graphics acceleration was in its infancy; the majority of players relied on software rendering, where every pixel was calculated by the CPU. These constraints shaped every decision the team made. Carmack’s engine had to squeeze every ounce of performance from x86 processors while maintaining compatibility with a wide range of hardware. Abrash’s expertise in assembly language and span-based polygon rendering was critical in achieving the necessary speed, while Cash focused on systems-level optimizations and network code.\n\nQuake’s development was as much a story of innovation as it was of collaboration. Carmack’s vision for a fully 3D engine was ambitious, requiring the team to abandon the 2.5D techniques used in DOOM and embrace complex new technologies like Binary Space Partitioning (BSP) trees for efficient rendering. Abrash contributed heavily to the span-based rasterizer, a key component of the software rendering pipeline that allowed Quake to draw textured polygons at unprecedented speeds. Cash tackled the multiplayer networking code, laying the groundwork for what would become QuakeWorld — a system that introduced client-side prediction and reliable UDP channels, making online play smoother and more responsive than ever before. The team’s relentless pursuit of optimization and innovation resulted in a game engine that was not only powerful but also flexible, supporting both software and OpenGL rendering paths.\n\nWhen Quake was released in June 1996, it was nothing short of a revolution. Players were awestruck by its fully 3D environments, dynamic lighting, and immersive sound design. The game’s multiplayer capabilities, including deathmatch and cooperative modes, became an instant phenomenon, paving the way for competitive gaming as we know it today. Quake’s engine quickly became the gold standard for game development, inspiring countless imitators and serving as the foundation for many future titles, including Half-Life and Team Fortress. Its influence extended beyond gaming, as developers in other industries began to explore the possibilities of real-time 3D rendering.\n\nThe legacy of Quake was further cemented in 1999 when id Software released its source code under the GNU General Public License (GPL). This unprecedented move empowered developers around the world to study, modify, and build upon the engine. From open-source projects to cutting-edge research in graphics and networking, Quake’s codebase became a cornerstone of software development. Today, echoes of its innovations can still be found in modern game engines, and its impact on the gaming industry remains undeniable. Quake was not just a game; it was a technological leap that changed the way we experience virtual worlds.",
       "highlights": [
         {
-          "id": "binary-space-partitioning",
-          "title": "Binary Space Partitioning: Efficient 3D World Rendering",
-          "description": "Quake introduced Binary Space Partitioning (BSP) to efficiently render complex 3D environments. BSP divides the game world into hierarchical nodes, enabling the engine to quickly determine visible areas and reduce rendering overhead. This was crucial for running on 1996 hardware with limited processing power and memory. BSP became a foundational technique for 3D game engines, influencing titles like Half-Life and Unreal. Its legacy persists in modern engines, where spatial partitioning remains critical for performance optimization.",
+          "id": "true-3d-rendering-pipeline",
+          "title": "True 3D Rendering Pipeline",
+          "description": "Quake introduced a groundbreaking rendering pipeline that allowed for true 3D environments, moving beyond the pseudo-3D techniques of earlier games like Doom. This system used Binary Space Partitioning (BSP) trees to efficiently organize and render complex 3D spaces, solving the challenge of limited processing power on 1996-era hardware. The innovation laid the foundation for modern 3D engines, influencing titles like Unreal and Half-Life, and became a staple technique in game development.",
           "links": [
             {
-              "label": "Traversing the world with Binary Space Partitioning",
-              "file": "gl-rsurf-c"
+              "label": "Traversing the BSP tree for rendering",
+              "file": "r-bsp-c",
+              "enhancement": "recursive-world-node"
             },
             {
-              "label": "Recursive world node: Traversing the BSP tree",
-              "file": "r-bsp-c"
+              "label": "Rendering the world using BSP data",
+              "file": "r-bsp-c",
+              "enhancement": "render-world-function"
             }
           ]
         },
         {
-          "id": "quake-lightmaps",
-          "title": "Lightmaps: Realistic Static Lighting in 3D",
-          "description": "Quake pioneered the use of lightmaps to simulate realistic lighting in 3D environments. Lightmaps are precomputed textures that store lighting information for surfaces, allowing the game to render static light and shadow effects efficiently. This approach overcame the limitations of real-time lighting on 1996 hardware, delivering immersive visuals without sacrificing performance. Lightmaps influenced countless games, from Doom 3 to Counter-Strike, and remain a staple in modern game development for static lighting solutions.",
+          "id": "dynamic-lighting-and-lightmaps",
+          "title": "Dynamic Lighting and Lightmaps",
+          "description": "Quake's dynamic lighting system combined precomputed lightmaps with real-time updates to simulate realistic illumination in its environments. This approach balanced visual fidelity with performance constraints, enabling effects like flickering lights and muzzle flashes without overwhelming hardware. The technique inspired future engines, including Unreal Engine and Source, and remains a cornerstone of lighting in modern games.",
           "links": [
             {
               "label": "Combining lightmaps for realistic illumination",
-              "file": "gl-rsurf-c"
+              "file": "gl-rsurf-c",
+              "enhancement": "lightmap-combination"
             },
             {
-              "label": "Building lightmaps for realistic lighting",
-              "file": "gl-rsurf-c"
+              "label": "Dynamic updates to lightmaps in real-time",
+              "file": "gl-rsurf-c",
+              "enhancement": "dynamic-lightmap-updates"
             }
           ]
         },
         {
-          "id": "quake-player-prediction",
-          "title": "Player Prediction: Smooth Multiplayer Gameplay",
-          "description": "Quake introduced groundbreaking player prediction techniques to ensure smooth gameplay in multiplayer environments. By predicting player movements locally and reconciling them with server updates, the engine minimized the effects of latency, a critical issue in the era of dial-up internet. This innovation enabled fast-paced, competitive multiplayer gaming and laid the groundwork for modern networked games like Call of Duty and Overwatch, where predictive algorithms are essential for seamless online experiences.",
+          "id": "quake-multiplayer-networking",
+          "title": "Quake's Multiplayer Networking",
+          "description": "Quake revolutionized multiplayer gaming by implementing a robust networking system that supported both reliable and unreliable packet transmission. This allowed for smooth real-time gameplay over dial-up connections, a significant technical achievement at the time. The system's innovations influenced multiplayer protocols in later games and helped establish online gaming as a mainstream activity.",
           "links": [
             {
-              "label": "Player prediction for smooth gameplay",
-              "file": "cl-ents-c"
+              "label": "Combining reliable and unreliable packets",
+              "file": "net-chan-c",
+              "enhancement": "reliable-unreliable-packet-combo"
             },
+            {
+              "label": "Tracking network performance and statistics",
+              "file": "net-chan-c",
+              "enhancement": "packet-processing-and-statistics"
+            }
+          ]
+        },
+        {
+          "id": "player-prediction-smooth-gameplay",
+          "title": "Player Prediction for Smooth Gameplay",
+          "description": "Quake introduced predictive algorithms to ensure smooth gameplay even under high latency conditions. By interpolating player movements and breaking long moves into smaller steps, the system minimized the impact of network lag, creating a seamless experience for players. This innovation became a standard feature in multiplayer games, influencing titles like Counter-Strike and Call of Duty.",
+          "links": [
             {
               "label": "Interpolating movement for smooth gameplay",
-              "file": "cl-pred-c"
+              "file": "cl-pred-c",
+              "enhancement": "predict-move-interpolation"
+            },
+            {
+              "label": "Breaking long moves for accuracy",
+              "file": "cl-pred-c",
+              "enhancement": "split-long-moves-for-prediction"
             }
           ]
         },
         {
-          "id": "quake-water-warp",
-          "title": "Warping Water: A Visual Trick for Fluid Surfaces",
-          "description": "Quake's water-warping effect simulated the appearance of fluid surfaces in a 3D world. Using sinusoidal distortion applied to textures, the engine created dynamic, rippling water that added depth and realism to environments. This technique was a clever workaround for hardware that lacked advanced shaders, showcasing id Software's ingenuity. The effect inspired visual tricks in later games and demonstrated how simple mathematical operations could produce striking graphical results.",
+          "id": "water-surface-warping-effect",
+          "title": "Warping Water: A Visual Trick",
+          "description": "Quake's water surface warping effect created the illusion of dynamic, flowing water using precomputed sine wave tables and efficient span-drawing algorithms. This visual trick was computationally lightweight, making it feasible on hardware with limited processing power. The technique influenced graphical effects in later games and demonstrated how clever algorithms could achieve striking visuals.",
           "links": [
             {
-              "label": "Warping water: A visual trick",
-              "file": "gl-rsurf-c"
+              "label": "Warping water surfaces dynamically",
+              "file": "gl-rsurf-c",
+              "enhancement": "water-surface-warping"
             },
             {
-              "label": "Rendering turbulent textures",
-              "file": "d-scan-c"
+              "label": "Precomputed sine wave tables for effects",
+              "file": "r-main-c",
+              "enhancement": "precomputed-sine-wave-tables"
             }
           ]
         },
         {
-          "id": "quake-edge-rendering",
-          "title": "Edge-Based Rendering: Precision Scanline Graphics",
-          "description": "Quake's edge-based rendering system optimized how visible surfaces were drawn. By sorting edges and finalizing spans for scanline rendering, the engine efficiently handled complex 3D geometry on limited hardware. This approach ensured sharp visuals and minimized rendering artifacts, setting a new standard for precision in 3D graphics. Edge-based rendering influenced techniques in later engines, contributing to the evolution of rasterization methods in real-time rendering.",
+          "id": "quake-console-system",
+          "title": "Quake's Interactive Console System",
+          "description": "Quake featured an interactive console system that allowed players and developers to execute commands, modify variables, and debug gameplay in real time. This modular and user-friendly interface empowered players to customize their experience and became a standard feature in PC games, influencing engines like Source and Unity.",
           "links": [
             {
-              "label": "Setting the stage for edge-based rendering",
-              "file": "r-edge-c"
+              "label": "Executing commands in real-time",
+              "file": "cmd-c",
+              "enhancement": "command-execution-loop"
             },
             {
-              "label": "Finalizing spans for visible surfaces",
-              "file": "r-edge-c"
-            }
-          ]
-        },
-        {
-          "id": "quake-one-bit-sound",
-          "title": "The One-Bit Sound Engine: Audio on a Budget",
-          "description": "Quake's sound engine cleverly optimized audio playback for limited hardware by using spatialization techniques and precaching sound data. Despite constraints like low memory and slow CPUs, the engine delivered immersive 3D audio effects, such as dynamic ambient sounds and spatialized channels. This innovation influenced audio systems in later games, proving that impactful sound design could thrive even under tight technical limitations.",
-          "links": [
-            {
-              "label": "Spatialize sound channels: 3D audio effects",
-              "file": "snd-dma-c"
-            },
-            {
-              "label": "Sound precaching: Loading audio for performance",
-              "file": "snd-dma-c"
+              "label": "Interactive console for debugging",
+              "file": "keys-c",
+              "enhancement": "interactive-console-editing"
             }
           ]
         }

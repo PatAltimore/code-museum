@@ -16,7 +16,7 @@ Output valid JSON only — no markdown fences and no extra text:
       "title": "Evocative 5-8 word title",
       "description": "150-200 word narrative",
       "links": [
-        {"label": "Short description of what this file shows", "file": "file-slug"}
+        {"label": "Short description of what this file shows", "file": "file-slug", "enhancement": "enhancement-id"}
       ]
     }
   ]
@@ -34,6 +34,9 @@ Rules:
     2. The constraint or problem it solved — hardware limits, memory, deadline, competition
     3. What it led to — name the specific games, engines, developers, or techniques that built on it
 - Links must only reference file slugs provided in the input
+- Each link must include an "enhancement" field set to the id of the most relevant \
+  annotated section within that file (shown as "id:" in the file listing below). \
+  Pick the single section that best shows the highlighted feature.
 - A highlight may link to multiple files if the feature spans them
 - Write past tense for history; present tense for what the code does
 - Do not end any paragraph with: "This underscores", "This highlights", "This reflects", \
@@ -63,7 +66,7 @@ def build_highlights_prompt(program: dict, files_with_enhancements: list[dict]) 
     for f in files_with_enhancements:
         parts.append(f"\n  slug: \"{f['slug']}\"  —  {f['title']}")
         for enh in f.get("enhancements", []):
-            parts.append(f"    · {enh['title']}")
+            parts.append(f"    · id: \"{enh['id']}\"  —  {enh['title']}")
 
     return [
         {"role": "system", "content": _SYSTEM},

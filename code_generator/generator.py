@@ -97,7 +97,7 @@ def generate_highlights(program: dict, client, gen_cfg: dict, force: bool,
             files_with_enhancements.append({
                 "slug": file_cfg["slug"],
                 "title": file_cfg["title"],
-                "enhancements": [{"title": en.get("title", "")} for en in enhs],
+                "enhancements": [{"id": en.get("id", ""), "title": en.get("title", "")} for en in enhs],
             })
         except Exception as exc:
             console.print(f"  [yellow]highlights: could not read {md_path.name}: {exc}[/yellow]")
@@ -134,10 +134,24 @@ def generate_highlights(program: dict, client, gen_cfg: dict, force: bool,
         console.print(f"  [red]could not parse highlights response: {e}[/red]")
         return False
 
-    # Drop links that reference unknown file slugs
+    # Drop links that reference unknown file slugs; also strip enhancement IDs
+    # that don't exist in the referenced file (model may hallucinate them).
     valid_slugs = {f["slug"] for f in files_with_enhancements}
+    enh_ids_by_file = {
+        f["slug"]: {e["id"] for e in f.get("enhancements", [])}
+        for f in files_with_enhancements
+    }
     for h in highlights:
-        h["links"] = [lk for lk in h.get("links", []) if lk.get("file") in valid_slugs]
+        cleaned = []
+        for lk in h.get("links", []):
+            file_slug = lk.get("file")
+            if file_slug not in valid_slugs:
+                continue
+            enh_id = lk.get("enhancement", "")
+            if enh_id and enh_id not in enh_ids_by_file.get(file_slug, set()):
+                lk.pop("enhancement", None)   # remove invalid id rather than drop the link
+            cleaned.append(lk)
+        h["links"] = cleaned
 
     save_highlights(slug, highlights)
     console.print(f"  [green]-> {len(highlights)} highlight(s) saved[/green]")
