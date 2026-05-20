@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "scrambled-input-mapping-table"
-    line_start: 30
+    line_start: 28
     line_end: 35
     title: "The Scrambled Table That Hid Cheat Codes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"

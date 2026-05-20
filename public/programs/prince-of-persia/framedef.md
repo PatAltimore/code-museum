@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "frame-definitions-for-rotoscoped-animation"
-    line_start: 19
+    line_start: 17
     line_end: 275
     title: "Frame Definitions for Rotoscoped Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
@@ -33,7 +33,7 @@ enhancements:
     content: "This section defines the animation frames for the main character using rotoscoping techniques. Each frame is represented as a data block with attributes like image index, position offsets (DX, DY), and additional flags. Jordan Mechner filmed his brother performing various moves, traced the footage frame-by-frame, and encoded the resulting animations into these data structures. This approach allowed for fluid, lifelike movement that was groundbreaking for its time. In 1989, the Apple IIe/IIc was constrained by limited memory and processing power. Mechner used bank-switched memory to fit the game into 128KB, a feat that required meticulous optimization. The frame definitions here are tightly packed and rely on precomputed offsets to minimize runtime calculations. This data-driven approach separated animation logic from gameplay code, a design philosophy that influenced later cinematic platformers like Another World and Flashback. The rotoscoping technique became a hallmark of Prince of Persia and inspired developers to focus on realism in character animation. It demonstrated that even limited hardware could deliver a cinematic experience, paving the way for modern motion capture techniques. The game's fluid animations were widely praised and contributed to its enduring legacy as a genre-defining title."
   - id: "alternate-character-set-1-enemy-animations"
     line_start: 277
-    line_end: 327
+    line_end: 318
     title: "Alternate Character Set 1: Enemy Animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "cl-stop-playback-demo-end"
-    line_start: 44
+    line_start: 25
     line_end: 57
     title: "How Quake Handles Demo Endings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This function, `CL_StopPlayback`, is called when a demo file finishes playback or the user starts a new game. It closes the demo file, resets playback state variables, and disconnects the client. If a timed demo is active, it triggers `CL_FinishTimeDemo` to calculate performance metrics. In 1996, demo playback was a novel feature, allowing developers to debug network synchronization and gameplay mechanics. John Carmack and Michael Abrash designed this system to work efficiently within the constraints of x86 hardware, where memory and processing power were limited. This approach influenced later engines like Source and Unreal, which adopted similar systems for replays and debugging. Today, demo playback is a standard feature in competitive games, enabling players to analyze strategies and share gameplay."
   - id: "cl-write-demo-cmd-recording-input"
-    line_start: 69
+    line_start: 59
     line_end: 103
     title: "Recording Player Input for Demos"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_WriteDemoCmd` function records player input commands into the demo file, ensuring that gameplay can be accurately replayed later. It converts data like movement and view angles into a consistent byte order using functions like `LittleFloat` and `LittleShort`, which were necessary for cross-platform compatibility in the 1990s. This meticulous attention to data serialization reflects the challenges of developing for diverse hardware environments, such as Intel's x86 architecture. The concept of recording player input for demos became a cornerstone of replay systems in modern engines, influencing tools like Valve's Source engine demo recorder and the replay systems in esports titles like Dota 2 and League of Legends."
   - id: "cl-write-demo-message-network-snapshot"
-    line_start: 111
+    line_start: 105
     line_end: 134
     title: "Capturing Network Snapshots for Playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_WriteDemoMessage` function writes network messages to the demo file, prefixed with metadata like message length and view angles. This ensures that all game state changes are preserved for accurate playback. In the mid-1990s, network synchronization was a critical challenge for multiplayer games, and Quake's demo system provided a way to debug and analyze these issues. The use of serialization and metadata in this function laid the groundwork for modern game engines, where network snapshots are essential for features like replays and lag compensation. Developers studying Quake's code have applied these principles to improve multiplayer reliability in games like Counter-Strike and Overwatch."
   - id: "cl-get-demo-message-playback-logic"
-    line_start: 142
+    line_start: 136
     line_end: 250
     title: "The Logic Behind Demo Playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_GetDemoMessage` function reads messages from the demo file during playback, ensuring synchronization with the game's timeline. It handles different message types (`dem_cmd`, `dem_read`, `dem_set`) and adjusts playback based on timestamps. This function exemplifies the complexity of demo systems in the 1990s, where developers had to account for varying hardware performance and network conditions. The logic here allowed Quake to replay gameplay with high fidelity, a feature that became invaluable for debugging and community sharing. Modern engines like Unreal and Unity have expanded on these ideas, incorporating advanced replay systems that support features like variable-speed playback and event tagging."
   - id: "cl-record-f-demo-initialization"
-    line_start: 375
+    line_start: 369
     line_end: 662
     title: "How Quake Starts Recording Demos"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_Record_f` function initializes demo recording, setting up the file and writing initial game state data like server info, sound lists, and entity baselines. This comprehensive approach ensures that all necessary information is captured for accurate playback. In 1996, this level of detail was groundbreaking, enabling developers to debug complex multiplayer interactions and players to share their gameplay experiences. The function's design reflects the expertise of John Carmack and Michael Abrash in optimizing for limited hardware, as it carefully manages memory and file I/O. The principles established here influenced later engines, which adopted similar methods for recording and replaying gameplay. Today, demo recording is a standard feature in competitive and multiplayer games, with advanced systems supporting features like live commentary and event tagging."
   - id: "cl-play-demo-f-loading-and-setup"
-    line_start: 719
+    line_start: 713
     line_end: 754
     title: "Loading and Starting Demo Playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -80,7 +80,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_FinishTimeDemo` function calculates performance metrics from a timed demo, including frame count, elapsed time, and frames per second (FPS). This feature was a critical tool for optimizing Quake's engine, enabling developers to measure performance across different hardware configurations. In 1996, FPS was a key metric for evaluating game performance, especially on limited hardware like Intel's 486 processors. The timed demo system became a standard benchmarking tool, influencing practices in game development and hardware testing. Today, timed demos are used to measure performance in engines like Unreal and Unity, as well as in benchmarking tools like 3DMark."
   - id: "cl-timedemo-f-benchmarking-gameplay"
-    line_start: 783
+    line_start: 777
     line_end: 804
     title: "Benchmarking Quake with Timed Demos"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

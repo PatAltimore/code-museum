@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `G_Responder` function processes events such as key presses, mouse movements, and joystick inputs, determining their impact on gameplay. It includes special cases like toggling spy mode with F12 and activating the control panel during demos. This event-driven approach allowed DOOM to respond dynamically to player actions, a key feature for its fast-paced gameplay. In the early 1990s, event-driven programming was gaining traction, and DOOM's implementation showcased its potential in real-time applications. This technique became standard in game engines like Unity and Unreal Engine."
   - id: "player-rebirth-and-level-completion"
-    line_start: 751
+    line_start: 756
     line_end: 792
     title: "The Code Behind Player Rebirth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Respawn_(gaming)"
@@ -80,7 +80,7 @@ enhancements:
     image_caption: ""
     content: "The G_CheckSpot function determines whether a player can respawn at a specific location, ensuring the spot isn't occupied by other objects or players. This logic prevents players from spawning into inaccessible or obstructed areas, a common issue in early multiplayer games. The function also handles removing old player corpses and spawning teleportation fog effects for visual feedback. This approach reflects the team's attention to detail, ensuring smooth gameplay even in chaotic multiplayer matches. The concept of validating spawn points became a standard in multiplayer game design, influencing titles like Counter-Strike and Halo."
   - id: "deathmatch-spawn-logic"
-    line_start: 897
+    line_start: 892
     line_end: 919
     title: "Randomized Deathmatch Spawn Points"
     wikipedia_url: "https://en.wikipedia.org/wiki/Deathmatch"
@@ -128,7 +128,7 @@ enhancements:
     image_caption: ""
     content: "The 'G_TimeDemo' function enables a special mode for benchmarking DOOM's performance. By disabling rendering ('nodrawers') and screen updates ('noblit'), the game focuses solely on processing gameplay logic, allowing developers to measure how many 'gametics' (game time units) are processed in real time. This was crucial for optimizing DOOM's engine on a wide range of hardware, from high-end PCs to budget systems. In the early 1990s, PC hardware varied greatly, and developers had to ensure their games ran smoothly on machines with limited processing power and memory. John Carmack's obsession with performance optimization led to tools like this, which provided precise metrics for tuning the game engine. The 'singletics' flag further simplifies the simulation, ensuring deterministic results during benchmarking. This approach to performance testing laid the groundwork for modern benchmarking tools used in game development. Techniques pioneered in DOOM influenced later engines like id Tech and Unreal Engine, which include built-in profiling and performance analysis tools. The idea of isolating specific subsystems for testing remains a cornerstone of software optimization."
   - id: "demo-status-cleanup"
-    line_start: 1645
+    line_start: 1637
     line_end: 1687
     title: "The Cleanup Routine That Kept DOOM Stable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"

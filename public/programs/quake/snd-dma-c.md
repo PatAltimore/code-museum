@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `S_AmbientOff` and `S_AmbientOn` functions toggle ambient sound effects, reflecting Quake's focus on creating an immersive environment. Ambient sounds, such as water or wind, were crucial for establishing the game's atmosphere, but they also added computational overhead. By providing these toggles, id Software allowed players to disable ambient sounds if performance issues arose—a practical consideration for hardware of the era, such as Intel Pentium processors and Sound Blaster cards. This feature demonstrated a balance between technical ambition and user accessibility, influencing later games like Doom 3 and Skyrim, which offered similar options to optimize performance."
   - id: "sound-system-startup"
-    line_start: 136
+    line_start: 134
     line_end: 162
     title: "Sound System Startup: Initialization Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Direct_memory_access"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `S_Startup` function initializes the sound system, including the DMA sound buffer via `SNDDMA_Init`. Direct Memory Access (DMA) was a critical technology for real-time audio processing in the 1990s, enabling efficient data transfer between memory and sound hardware without burdening the CPU. This routine checks for successful initialization and gracefully handles failures, ensuring the game can continue running even if sound cannot be started. The reliance on DMA reflects the hardware constraints of the time, where optimizing CPU cycles was paramount. This approach influenced later game engines, which continued to prioritize efficient hardware interaction for audio systems."
   - id: "sound-precaching"
-    line_start: 329
+    line_start: 327
     line_end: 347
     title: "Sound Precaching: Loading Audio for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `S_PrecacheSound` function ensures that sound effects are loaded into memory before they are needed, reducing latency during gameplay. Precaching was a common technique in the 1990s to optimize performance on systems with limited memory and storage speeds. By caching audio data, Quake minimized delays caused by disk access, enhancing the player's experience. This method was particularly important for multiplayer scenarios, where real-time responsiveness was critical. The concept of precaching extended beyond audio, influencing texture and model loading in later engines like Unreal Engine and Unity."
   - id: "spatialize-sound-channels"
-    line_start: 398
+    line_start: 396
     line_end: 430
     title: "Spatialize Sound Channels: 3D Audio Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `SND_Spatialize` function calculates stereo separation and distance attenuation for sound channels, creating a 3D audio experience. By determining the listener's position and orientation relative to the sound source, the function adjusts left and right volumes to simulate spatial effects. This technique was groundbreaking for its time, leveraging vector math to enhance immersion in Quake's 3D environments. The implementation reflects the influence of Michael Abrash, whose expertise in optimization and graphics extended to audio processing. Spatialized sound became a standard feature in modern engines, shaping the audio design of games like Battlefield and Call of Duty."
   - id: "ambient-sound-updates"
-    line_start: 660
+    line_start: 662
     line_end: 714
     title: "Ambient Sound Updates: Dynamic Adjustments"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"

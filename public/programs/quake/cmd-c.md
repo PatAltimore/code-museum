@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "Cbuf_Init sets up the command buffer, allocating 8KB for storing commands. This buffer is the backbone of Quake's scripting system, allowing commands to be queued and executed sequentially. In the mid-1990s, memory constraints on PCs meant developers had to carefully manage resources, and this fixed-size buffer was a pragmatic solution. The modularity of this system influenced later engines, which adopted similar structures for handling user input and scripting. It also laid the groundwork for more sophisticated systems in multiplayer games, where command synchronization is critical."
   - id: "command-buffer-overflow-check"
-    line_start: 85
+    line_start: 79
     line_end: 98
     title: "Preventing Command Buffer Overflow"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_overflow"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "Cbuf_AddText ensures that commands added to the buffer do not exceed its maximum size. Overflow prevention was crucial in an era when buffer overflows were a common source of bugs and security vulnerabilities. The implementation reflects id Software's attention to robustness, even in performance-critical code. This technique influenced best practices in memory management and error handling, becoming standard in modern game development. The explicit check and error message ('Cbuf_AddText: overflow') highlight the team's commitment to debugging and user feedback."
   - id: "dynamic-command-insertion"
-    line_start: 109
+    line_start: 101
     line_end: 135
     title: "Dynamic Command Insertion in Action"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "Cbuf_InsertText allows commands to be inserted immediately after the current command, enabling dynamic modification of the command buffer. This feature supports advanced scripting scenarios, such as executing commands from external files or dynamically altering gameplay behavior. The 'FIXME' comment suggests the developers were aware of potential inefficiencies in the implementation, highlighting the iterative nature of software development. This technique inspired similar systems in other engines, where dynamic command execution became essential for modding and real-time game customization."
   - id: "command-execution-loop"
-    line_start: 141
+    line_start: 137
     line_end: 192
     title: "Executing Commands in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"

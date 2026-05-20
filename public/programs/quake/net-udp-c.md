@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "foundation-networking-setup"
-    line_start: 22
-    line_end: 44
+    line_start: 1
+    line_end: 57
     title: "Foundation: Networking Setup and Definitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `NET_AdrToString` and `NET_BaseAdrToString` functions convert network addresses into human-readable strings. These functions are used for debugging and logging, making it easier for developers to understand the state of the network during runtime. The use of `sprintf` to format IPv4 addresses into the familiar `x.x.x.x` notation reflects the conventions of the era. This feature was particularly useful for diagnosing connectivity issues in multiplayer games, where understanding the network state was critical. The technique influenced debugging tools in later engines, such as Unity and Unreal Engine, which provide similar functionality for network diagnostics."
   - id: "parse-string-to-address"
-    line_start: 118
+    line_start: 109
     line_end: 155
     title: "Parsing Strings into Network Addresses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Domain_Name_System"
@@ -89,7 +89,7 @@ enhancements:
     content: "The `NET_SendPacket` function sends UDP packets to a specified address. It uses `sendto` for transmission and includes error handling for blocked and refused connections. This function was essential for enabling real-time communication in Quake's multiplayer mode. The decision to use UDP, rather than TCP, reflects the team's focus on minimizing latency, as UDP does not require the overhead of connection management. The approach influenced later multiplayer frameworks, which adopted UDP for performance-critical applications, including online shooters and real-time strategy games."
   - id: "open-udp-socket"
     line_start: 233
-    line_end: 262
+    line_end: 261
     title: "Opening a UDP Socket"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_Datagram_Protocol"
     image_url: ""

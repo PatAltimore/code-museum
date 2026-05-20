@@ -80,7 +80,7 @@ enhancements:
     image_caption: ""
     content: "This section implements sound volume control for both sound effects and music within DOOM's menu system. The functions `M_SfxVol` and `M_MusicVol` allow players to increase or decrease volume levels, constrained between 0 and 15. These values are then passed to `S_SetSfxVolume` and `S_SetMusicVolume`, which adjust the game's audio output. In 1993, sound cards were becoming more common in consumer PCs, but their capabilities varied widely. By providing granular control over sound levels, DOOM ensured compatibility with a range of hardware setups, from basic PC speakers to advanced sound cards like the Sound Blaster. This approach influenced later games, which adopted similar volume control mechanisms in their menus."
   - id: "menu-rendering-patches"
-    line_start: 867
+    line_start: 864
     line_end: 871
     title: "Rendering Menus with Cached Patches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -96,7 +96,7 @@ enhancements:
     image_caption: ""
     content: "The `M_Episode` function handles episode selection in DOOM, including a workaround for Ultimate DOOM's fourth episode. If the player selects an unavailable episode, the game prints an error message and defaults to the first episode. This hack reflects the challenges of supporting multiple game versions, such as shareware, registered, and commercial editions. In the early 1990s, developers often relied on such conditional logic to manage content across different releases. This technique influenced later games, which adopted more sophisticated methods for version-specific content management."
   - id: "menu-string-rendering"
-    line_start: 1255
+    line_start: 1252
     line_end: 1338
     title: "Rendering Text in DOOM's Menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_font"
@@ -104,7 +104,7 @@ enhancements:
     image_caption: ""
     content: "The functions `M_StringWidth`, `M_StringHeight`, and `M_WriteText` calculate dimensions and render text using DOOM's bitmap font system. Each character's width and height are determined dynamically, allowing precise placement of text elements. This approach was necessary for the game's custom font, which was stored as graphical patches rather than scalable vectors. In an era when hardware lacked native text rendering capabilities, DOOM's method was both efficient and visually appealing. This technique influenced later engines, which adopted bitmap fonts for UI rendering before transitioning to vector-based systems."
   - id: "menu-input-handling"
-    line_start: 1349
+    line_start: 1342
     line_end: 1600
     title: "How DOOM Handled Joystick and Mouse Input"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
@@ -112,7 +112,7 @@ enhancements:
     image_caption: ""
     content: "The `M_Responder` function processes input events from joysticks, mice, and keyboards, translating them into menu navigation commands. It uses thresholds and delays to ensure smooth interaction, such as waiting 30 milliseconds before processing rapid mouse movements. In 1993, input devices varied widely in quality and responsiveness, and DOOM's robust handling ensured compatibility across hardware. This input system influenced later games, which adopted similar techniques for handling diverse input devices. The function also includes keyboard shortcuts for quick access to menu functions, a feature that became standard in PC gaming."
   - id: "menu-keyboard-navigation"
-    line_start: 1622
+    line_start: 1621
     line_end: 1716
     title: "How DOOM Made Menus Feel Responsive"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"

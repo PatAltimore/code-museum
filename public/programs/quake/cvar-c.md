@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `Cvar_Set` function updates the value of a dynamic variable, with additional logic for multiplayer scenarios. When a variable marked as 'info' is changed, the function propagates the update to connected clients or servers, ensuring consistency across the network. This design was crucial for Quake's multiplayer experience, where settings like player names or server configurations needed to synchronize seamlessly. The function also frees and reallocates memory for the variable's string, reflecting the team's careful memory management practices. In an era of limited hardware resources, such optimizations were vital. This approach influenced later multiplayer games, where dynamic configuration became a key feature, and laid the groundwork for modern networked systems like Steam and Xbox Live."
   - id: "cvar-register-variable"
-    line_start: 170
+    line_start: 168
     line_end: 203
     title: "Registering Variables: A Modular Approach"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

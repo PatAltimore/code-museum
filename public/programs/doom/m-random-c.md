@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section defines a 256-byte lookup table (`rndtable`) used to generate random numbers. Instead of relying on computationally expensive algorithms to produce randomness, DOOM precomputes a sequence of values and stores them in this array. By cycling through the table with a simple index increment, the game achieves fast and predictable random number generation. This approach was essential for performance on early 1990s hardware, where CPU cycles were precious, and memory access was faster than complex calculations. The table itself is hardcoded, ensuring consistency across gameplay sessions. This deterministic randomness was vital for debugging and multiplayer synchronization, as every player could experience identical random events under the same conditions. Lookup tables like this became a common optimization in games and embedded systems, influencing later titles and hardware design."
   - id: "deterministic-random-generator"
-    line_start: 57
+    line_start: 56
     line_end: 61
     title: "How DOOM Kept Randomness Predictable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Deterministic_system"

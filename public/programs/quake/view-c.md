@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "foundation-player-eye-positioning"
     line_start: 17
-    line_end: 25
+    line_end: 32
     title: "How Quake Positioned the Player's Eyes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `V_CalcBob` function adds a bobbing motion to the player's view based on their movement speed and ground state. This effect mimics the natural sway of walking or running, making the game feel more lifelike. At a time when most games featured static or rigid camera perspectives, this innovation stood out as a leap forward in player immersion. The function uses trigonometric calculations to create a smooth, periodic motion, ensuring the effect feels natural rather than mechanical. This technique became a staple in first-person games, influencing titles like Doom 3 and Call of Duty."
   - id: "v-drift-pitch-auto-centering"
-    line_start: 187
+    line_start: 175
     line_end: 245
     title: "Auto-Centering the Player's Pitch Angle"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -71,7 +71,7 @@ enhancements:
     content: "This section implements palette flashes to visually indicate damage, environmental effects, and power-ups. By altering the color palette dynamically, the game provides immediate feedback to the player, enhancing immersion and situational awareness. In 1996, real-time palette manipulation was a clever workaround for hardware limitations, allowing developers to simulate complex visual effects without taxing the CPU. This technique became a hallmark of id Software's games, influencing titles like Unreal Tournament and Quake II, which expanded on the concept with more sophisticated shaders and lighting effects."
   - id: "v-calc-blend-environmental-color-shifts"
     line_start: 486
-    line_end: 491
+    line_end: 518
     title: "Blending Colors for Environmental Feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `V_RenderView` function ties together all the view calculations and rendering logic, producing the final image seen by the player. This includes handling intermission views, gameplay-specific adjustments, and dynamic lighting effects. By modularizing the rendering process, id Software ensured that the game could adapt to different scenarios without compromising performance or visual quality. This function represents the culmination of the team's efforts to create a responsive and immersive 3D experience, influencing countless games and engines that followed."
   - id: "quake-visual-initialization"
-    line_start: 1030
+    line_start: 1024
     line_end: 1070
     title: "How Quake Set the Stage for Visual Immersion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

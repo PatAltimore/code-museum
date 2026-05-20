@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "key-state-tracking"
-    line_start: 19
+    line_start: 1
     line_end: 45
     title: "How Quake Tracks Simultaneous Key Presses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_AdjustAngles` function modifies the player's view angles based on input states, ensuring smooth and precise control over yaw, pitch, and roll. It incorporates constraints to prevent excessive angle values, keeping the gameplay experience intuitive and preventing disorientation. This function also stops automatic pitch drifting when manual adjustments are made, a feature that enhances player control. In the context of 1996, this level of precision was groundbreaking, as most games relied on simpler, less responsive control schemes. The function reflects id Software's focus on creating a fluid and immersive gameplay experience. Techniques from this function influenced later FPS games, including Call of Duty and Battlefield, which adopted similar methods for handling player view angles."
   - id: "movement-command-serialization"
-    line_start: 382
+    line_start: 378
     line_end: 475
     title: "How Quake Sends Player Commands to the Server"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_SendCmd` function serializes player movement commands into a network message, ensuring that the server receives accurate and complete input data. It includes mechanisms for handling dropped packets by resending previous commands and calculates checksums to verify data integrity. This function also supports delta compression, reducing bandwidth usage by sending only changes from the last state. In 1996, network play was still in its infancy, and handling unreliable connections was a significant challenge. John Carmack and his team designed this system to optimize multiplayer performance on the limited bandwidth of dial-up connections. The serialization and compression techniques pioneered here influenced the development of networking in later games, including World of Warcraft and League of Legends, which built on these principles to handle massive multiplayer environments."
   - id: "input-initialization"
-    line_start: 480
+    line_start: 479
     line_end: 523
     title: "Initializing Quake's Modular Input System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

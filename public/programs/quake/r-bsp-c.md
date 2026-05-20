@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the rotation matrix used to transform entities in 3D space. Rotation matrices were a standard mathematical tool for 3D transformations, but their implementation in real-time engines like Quake demanded optimization for speed. Carmack's use of precomputed matrices and efficient dot product calculations allowed Quake to achieve smooth rotations even on hardware without dedicated graphics acceleration. This approach influenced later engines, which continued to refine matrix-based transformations for real-time rendering."
   - id: "entity-rotate-function"
-    line_start: 60
+    line_start: 56
     line_end: 71
     title: "Entity Rotate: A Simple Yet Powerful Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_computer_graphics"
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "This function applies the entity's rotation matrix to a given vector, effectively transforming it into the entity's local space. By leveraging dot products, the function minimizes computational overhead while maintaining precision. In the context of 1996 hardware, this was a clever optimization that avoided the need for more expensive matrix multiplications. The technique remains relevant today, as modern engines often use similar methods to transform vectors efficiently during rendering and physics calculations."
   - id: "rotate-bmodel-function"
-    line_start: 76
+    line_start: 74
     line_end: 150
     title: "Rotating BSP Models: A Three-Axis Challenge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "This function calculates the rotation of BSP models around the yaw, pitch, and roll axes. It combines three separate rotation matrices into a single transformation matrix, which is then applied to the model's origin and frustum vectors. The comments hint at potential optimizations, such as caching results or using lookup tables, which were common techniques for improving performance on hardware with limited computational power. This approach to model rotation influenced later engines, which adopted similar methods for handling complex 3D transformations."
   - id: "recursive-clip-poly"
-    line_start: 155
+    line_start: 153
     line_end: 187
     title: "Clipping Polygons: Recursive Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_clipping"
@@ -72,8 +72,8 @@ enhancements:
     image_caption: ""
     content: "This function recursively clips polygons against BSP planes, ensuring that only visible portions are rendered. The recursive approach allows the engine to efficiently traverse the BSP tree, a technique that was revolutionary for real-time graphics in the mid-90s. By breaking down complex polygons into smaller, manageable pieces, Quake's engine could render scenes with high detail while maintaining performance. This method became a cornerstone of real-time rendering, influencing engines like Unreal and CryEngine."
   - id: "draw-solid-clipped-polygons"
-    line_start: 325
-    line_end: 327
+    line_start: 323
+    line_end: 339
     title: "Drawing Solid Polygons: Handling Complexity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_rendering"
     image_url: ""

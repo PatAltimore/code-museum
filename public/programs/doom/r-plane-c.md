@@ -49,7 +49,7 @@ enhancements:
     content: "The `R_ClearPlanes` function initializes data structures at the start of each frame, including `floorclip` and `ceilingclip` arrays that define the visible bounds of floors and ceilings. It also resets cached height values and calculates texture scaling based on the player's view angle. This setup ensures that rendering begins with a clean slate, avoiding artifacts and maintaining performance. In the early 1990s, memory management was a critical concern, as PCs had limited RAM and no virtual memory. By efficiently resetting and reusing buffers, DOOM could maintain high frame rates even in complex scenes. This approach influenced later real-time rendering systems, including those in Quake and Unreal Engine."
   - id: "r-findplane-function"
     line_start: 214
-    line_end: 258
+    line_end: 259
     title: "Grouping Pixels by Height and Texture"
     wikipedia_url: "https://doomwiki.org/wiki/Visplane"
     image_url: ""

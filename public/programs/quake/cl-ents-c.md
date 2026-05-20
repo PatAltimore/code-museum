@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_ParseProjectiles` and `CL_LinkProjectiles` functions handle temporary entities like nails and rockets, ensuring they are rendered efficiently without permanent allocation. This approach allowed Quake to simulate high-speed projectiles and their effects without overwhelming the engine. By treating projectiles as temporary entities, id Software optimized memory usage and computational load, paving the way for modern entity systems used in games like Fortnite and Apex Legends."
   - id: "player-prediction-for-smooth-gameplay"
-    line_start: 949
+    line_start: 940
     line_end: 1009
     title: "Player Prediction for Smooth Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Latency_(engineering)"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_SetUpPlayerPrediction` function predicts player movements to compensate for network latency, ensuring smooth gameplay even in high-lag scenarios. By calculating future positions based on past inputs, the engine minimizes the effects of delay, creating a responsive experience for players. This technique was revolutionary in 1996, as online gaming was still in its infancy. Today, player prediction is a standard feature in multiplayer games, influencing titles like Overwatch and Valorant, which rely on similar methods to deliver competitive gameplay."
   - id: "solid-player-collision-management"
-    line_start: 1020
+    line_start: 1011
     line_end: 1053
     title: "How Quake Made Players Solid (or Not)"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine, `CL_SetSolidPlayers`, determines which players in a multiplayer session should be treated as solid objects for collision detection. It loops through all players, skipping inactive ones, the current player, and those flagged as dead. For active players, it sets up their bounding boxes (`mins` and `maxs`) and adds them to the physics entity list. This ensures accurate collision handling during gameplay. In 1996, multiplayer games were transitioning from simple sprite-based interactions to fully 3D environments. Quake's groundbreaking engine had to manage complex interactions between players in real-time, all while running on hardware like the Intel 486 and early Pentium processors with limited memory and processing power. The decision to exclude dead players and the current player from collision checks was not just logical but also a performance optimization, reducing unnecessary calculations. This approach influenced later multiplayer engines, including Unreal and Source, which adopted similar strategies for managing player entities. The concept of dynamically updating physics entities based on player state became a standard in game development, ensuring efficient use of computational resources while maintaining gameplay realism. Developers studying Quake's source code often cite this routine as an elegant example of balancing complexity and performance in real-time systems."
   - id: "dynamic-entity-linking"
-    line_start: 1064
+    line_start: 1056
     line_end: 1082
     title: "The Routine That Linked Quake’s World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This section defines a lookup table for vertex normals, used to calculate lighting effects on 3D models. The table, stored in 'anorms.h', contains precomputed normal vectors for 162 orientations, enabling fast lighting calculations without runtime computation. In the mid-1990s, real-time lighting was a significant challenge due to limited hardware capabilities. By using precomputed normals, Quake achieved realistic shading while maintaining high performance. This technique became a standard in 3D graphics, influencing games and engines that followed. Modern graphics pipelines still use similar optimizations, albeit with more advanced shaders and hardware acceleration."
   - id: "bounding-box-check"
-    line_start: 86
+    line_start: 84
     line_end: 245
     title: "Bounding Box Check: Rejecting Invisible Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The 'R_AliasCheckBBox' function determines whether a model's bounding box is visible on the screen, rejecting models that are entirely outside the view frustum. This optimization prevents unnecessary rendering calculations for objects that won't appear in the final frame. In the 1990s, frustum culling was a critical technique for maintaining performance in 3D games. By focusing computational resources only on visible objects, Quake could deliver smooth gameplay on hardware with limited processing power. This approach laid the groundwork for modern culling techniques used in engines like Unreal and Unity, which extend the concept to more complex visibility checks."
   - id: "transform-vector-matrix"
-    line_start: 250
+    line_start: 248
     line_end: 258
     title: "Transforming Vectors with Matrices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transformation_matrix"
@@ -62,15 +62,15 @@ enhancements:
     image_caption: ""
     content: "The 'R_AliasTransformVector' function applies a transformation matrix to a vector, converting model coordinates into world coordinates. This is a fundamental operation in 3D graphics, enabling models to be positioned and oriented in a scene. In the era of Quake's development, matrix transformations were computationally expensive, but essential for creating dynamic 3D environments. John Carmack's implementation balances precision and performance, leveraging the capabilities of x86 processors. This technique remains a cornerstone of 3D graphics, with modern GPUs accelerating matrix operations for real-time rendering."
   - id: "setup-transform-matrix"
-    line_start: 334
-    line_end: 366
+    line_start: 332
+    line_end: 369
     title: "Setting Up Transformation Matrices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transformation_matrix"
     image_url: ""
     image_caption: ""
     content: "The 'R_AliasSetUpTransform' function initializes transformation matrices for alias models, combining scaling, rotation, and translation. This prepares models for rendering in world space. In 1996, matrix operations were a computational bottleneck, but essential for realistic 3D graphics. Carmack's implementation optimizes these calculations, ensuring Quake's models could be rendered efficiently on consumer hardware. This method influenced later engines, which adopted similar matrix setups for handling transformations in 3D scenes."
   - id: "lighting-setup"
-    line_start: 629
+    line_start: 627
     line_end: 658
     title: "Lighting Setup: Guaranteeing Minimum Brightness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(computer_graphics)"

@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `D_InitCaches` function sets up the surface cache, allocating memory and preparing it for use in rendering. It also clears the guard bytes to prevent false positives during corruption checks. This initialization step was essential for ensuring efficient memory usage and stability in Quake's rendering system. The technique of preallocating and managing memory for graphical elements became a foundational concept in game engine design, influencing engines like Source and Unity."
   - id: "dynamic-cache-allocation"
-    line_start: 128
+    line_start: 124
     line_end: 212
     title: "Dynamic Allocation for Surface Caching"
     wikipedia_url: "https://en.wikipedia.org/wiki/Surface_cache"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `D_SCAlloc` function dynamically allocates memory for surface caches, ensuring that each surface has enough space for its texture data. It handles fragmentation by combining smaller blocks into larger ones and creates new fragments when necessary. This approach was a direct response to the limited memory available on consumer-grade PCs in 1996. By carefully managing memory allocation, id Software enabled Quake to render detailed 3D environments without exceeding hardware limits. This technique influenced later engines, which adopted similar strategies for handling dynamic resource allocation in real-time applications."
   - id: "surface-cache-reuse"
-    line_start: 266
+    line_start: 260
     line_end: 336
     title: "Reusing Cached Surfaces for Performance Gains"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

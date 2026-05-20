@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This section builds a translation table for color palettes, enabling dynamic remapping of colors during rendering. By manipulating the palette directly, Quake avoided the need for expensive per-pixel operations, which would have been prohibitive on 1990s hardware. This technique was particularly useful for rendering player skins in multiplayer mode, where different colors could represent different teams. The idea of using translation tables for indexed color manipulation was borrowed from earlier graphics systems like VGA, but Quake's implementation pushed it further by integrating it seamlessly into the game's rendering pipeline. This approach influenced later engines, including the Source engine, which used similar techniques for texture manipulation."
   - id: "menu-toggle-function"
-    line_start: 242
+    line_start: 240
     line_end: 268
     title: "The Function That Controlled Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The quit menu in Quake features humorous and sometimes sarcastic messages designed to entertain players as they decide whether to exit the game. This playful approach reflects the culture of id Software at the time, where developers often injected personality and humor into their work. The quit menu became a memorable part of Quake's identity and inspired similar features in later games, such as the tongue-in-cheek error messages in Portal and the humorous loading screens in Borderlands."
   - id: "multiplayer-menu-with-web-links"
-    line_start: 1029
+    line_start: 1025
     line_end: 1046
     title: "Why QuakeWorld Advertised Websites in 1996"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The Quit menu in QuakeWorld serves a dual purpose: it provides credits for the development team while also displaying legal notices. This section uses a combination of text formatting and conditional rendering to display the information. The credits highlight the contributions of key figures like John Carmack, Michael Abrash, and John Cash, while also acknowledging additional programmers and contributors. The legal notices emphasize the copyright and trademark protections for QuakeWorld and related assets. This design reflects id Software's meticulous attention to detail and their commitment to recognizing the team behind the game. It also underscores the importance of legal disclaimers in commercial software, especially during an era when intellectual property rights in gaming were becoming increasingly significant."
   - id: "menu-subsystem-initialization"
-    line_start: 1116
+    line_start: 1112
     line_end: 1126
     title: "How QuakeWorld Bootstrapped Its Menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command_pattern"

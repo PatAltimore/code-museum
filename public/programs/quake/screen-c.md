@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `SCR_SetUpToDrawConsole` function dynamically adjusts the console's visibility based on the game's state. Whether the player is actively gaming, viewing the console, or in a menu, the function calculates the appropriate height and smoothly transitions the display. This design reflects id Software's commitment to usability, ensuring the console never obstructs gameplay unnecessarily. In the mid-1990s, consoles were essential for debugging and player communication, but their integration into 3D environments posed challenges. Quake's solution influenced later engines, where dynamic UI elements became standard. For instance, the Source Engine and Unreal Engine adopted similar approaches to manage overlays and HUD elements, enhancing user experience across genres."
   - id: "screenshot-pcx-format"
-    line_start: 582
+    line_start: 576
     line_end: 650
     title: "Why Quake Saved Screenshots as PCX Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/PCX"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `WritePCXfile` function enables Quake to save screenshots in the PCX format, a popular choice in the 1990s due to its simplicity and widespread support. The function packs image data and appends a palette for color information, ensuring compatibility with tools like Paint Shop Pro. At the time, developers needed a reliable way to capture and analyze game visuals for debugging and promotional purposes. The choice of PCX reflects the era's focus on formats that balanced file size and ease of implementation. This functionality influenced game development workflows, where screenshot tools became essential for QA and marketing. Modern engines like Unity and Unreal offer similar features, though they use formats like PNG or JPEG. Quake's approach demonstrated the importance of integrating debugging tools directly into the game engine."
   - id: "remote-screenshot-multiplayer"
-    line_start: 778
+    line_start: 776
     line_end: 900
     title: "Taking Screenshots in Multiplayer Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"

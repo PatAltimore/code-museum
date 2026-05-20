@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "svc-strings-lookup-table"
-    line_start: 19
+    line_start: 1
     line_end: 102
     title: "The Lookup Table That Defined Multiplayer Messages"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This function calculates network latency by comparing the time a frame was sent to the time it was received. It accounts for dropped packets, choked connections, and invalid deltas, assigning specific codes to each scenario. In 1996, latency was a major challenge for multiplayer games, as most players connected via dial-up modems. Carmack's team designed this system to provide real-time feedback on network performance, enabling players to diagnose issues and developers to optimize server communication. The technique influenced later multiplayer games, including Counter-Strike and World of Warcraft, where latency monitoring became standard practice. It also contributed to the development of modern network diagnostic tools like ping and traceroute."
   - id: "cl-check-or-download-file"
-    line_start: 155
+    line_start: 146
     line_end: 197
     title: "The Trick That Made Missing Files Downloadable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This function checks if a required file exists locally and initiates a server download if it doesn't. It includes safeguards against malicious paths (e.g., '..') and prevents downloads during demo recording or playback. In the mid-90s, distributing game assets over the internet was novel, as most games relied on physical media. Quake's dynamic downloading system allowed players to join servers without manually installing additional content, a feature that became a hallmark of online gaming. This innovation paved the way for systems like Steam's content delivery and automatic patching in modern games. The concept of downloading missing resources dynamically is now ubiquitous in multiplayer games and software distribution platforms."
   - id: "model-next-download"
-    line_start: 201
+    line_start: 199
     line_end: 255
     title: "How Quake Managed Model Downloads"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This function handles the downloading and caching of model files required for gameplay. It iterates through a list of model names, skipping inline brush models and attempting downloads for missing files. If a model cannot be downloaded, the function disconnects the client with an error message. In 1996, managing game assets dynamically was a significant technical challenge, as players often lacked the bandwidth for large downloads. Carmack's team implemented this system to ensure seamless gameplay, even on slow connections. The approach influenced asset management in later engines like Unity and Unreal, which adopted similar techniques for dynamic resource loading. It also laid the groundwork for modern content delivery systems like CDN-based game updates."
   - id: "cl-parse-download"
-    line_start: 333
+    line_start: 327
     line_end: 436
     title: "What Happens When You Download a File in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This function processes a download message from the server, handling file creation, data writing, and completion checks. It uses temporary filenames to avoid leaving incomplete files if interrupted. The function also manages download progress, displaying percentages to the user. In 1996, this level of detail in file handling was rare, as most games relied on pre-installed assets. Quake's system ensured players could join servers with custom content without manual intervention. This technique influenced later games like Team Fortress and Minecraft, which adopted dynamic content downloading. It also contributed to the development of modern patching systems, where partial downloads and resumable updates are standard."
   - id: "cl-new-translation"
-    line_start: 870
+    line_start: 866
     line_end: 929
     title: "The Color Translation That Made Quake Personal"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The 'vec3_t transformed_modelorg' variable represents the transformed origin of the model in world space. This transformation is crucial for aligning objects within the 3D environment. At the time, 3D graphics were transitioning from pseudo-3D techniques like raycasting to true 3D environments, and handling transformations efficiently was a major challenge. This variable encapsulates the results of matrix transformations applied to the model's origin, ensuring that objects appear correctly positioned relative to the player's viewpoint. The use of such vectors laid the groundwork for modern 3D engines, where transformations are a core part of rendering pipelines."
   - id: "d-drawpoly-span-drawing"
-    line_start: 40
+    line_start: 38
     line_end: 47
     title: "Why Polygons Became Spans"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scanline_rendering"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The 'D_DrawPoly' function is a placeholder, indicating that the rendering driver takes spans rather than polygons. Span-based rendering was a common optimization in the 1990s, as it allowed developers to process horizontal slices of polygons directly, reducing computational overhead. This technique was particularly effective on x86 processors, which were limited in their ability to handle complex geometric calculations. By focusing on spans, id Software could achieve smoother rendering at higher frame rates. This method influenced later engines, including Unreal Engine and Source, which refined span-based techniques for more advanced hardware."
   - id: "d-miplevelforscale-mipmapping"
-    line_start: 52
+    line_start: 50
     line_end: 72
     title: "How Mipmapping Saved the Day"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mipmap"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The 'D_MipLevelForScale' function determines the appropriate mipmap level based on the scale of a texture. Mipmapping, introduced in the 1980s, became a staple in 3D graphics by the mid-1990s. It involves precomputing multiple levels of texture detail, allowing the renderer to select the best level based on the object's distance from the camera. This reduces aliasing and improves performance by avoiding unnecessary high-resolution texture sampling. Quake's implementation of mipmapping was a key factor in its ability to render complex scenes smoothly on hardware like the Pentium processors of the era. The technique remains a cornerstone of modern graphics engines."
   - id: "d-drawsolidsurface-span-optimization"
-    line_start: 77
+    line_start: 75
     line_end: 115
     title: "The Span Loop That Sped Up Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The 'D_DrawSolidSurface' function draws solid surfaces using a span-based loop. It optimizes rendering by grouping pixels into spans and processing them in batches, reducing the overhead of individual pixel operations. The function includes clever tricks like aligning spans to 4-byte boundaries for faster memory access, leveraging the x86 architecture's strengths. This approach was critical for achieving high frame rates on mid-1990s hardware, where memory bandwidth and processing power were limited. The span-based optimization influenced later engines, including Doom 3 and Half-Life, which adapted similar techniques for more advanced graphics pipelines."
   - id: "d-calcgradients-texture-mapping"
-    line_start: 120
+    line_start: 118
     line_end: 151
     title: "The Math Behind Texture Gradients"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"

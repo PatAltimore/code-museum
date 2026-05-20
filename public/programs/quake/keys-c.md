@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "foundation-includes-and-definitions"
     line_start: 1
-    line_end: 24
+    line_end: 31
     title: "Why Quake Needed Its Own Key System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The keynames array maps human-readable key names (like \"TAB\" or \"ENTER\") to their corresponding numeric codes. This lookup table simplifies the process of binding commands to keys and interpreting user input. In 1996, this approach was innovative for its focus on usability, allowing players to easily customize controls without needing to understand raw key codes. The inclusion of mouse and joystick buttons highlights Quake's forward-thinking design, accommodating a variety of input devices. Lookup tables like this became a standard feature in game engines, influencing the design of input systems in Unreal Engine and Unity."
   - id: "command-checking-and-completion"
-    line_start: 153
+    line_start: 145
     line_end: 174
     title: "How Quake Predicted Your Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_completion"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The CheckForCommand function checks if the user's input matches a known command or variable, enabling dynamic command completion in the console. This feature was a significant usability improvement, reducing the need for players to memorize exact command syntax. Inspired by Unix shell environments, this functionality reflects the influence of systems programming on game development. Command completion became a staple in game consoles and development tools, appearing in engines like Source and tools like Blender's Python console."
   - id: "interactive-console-editing"
-    line_start: 205
+    line_start: 199
     line_end: 353
     title: "Interactive Console: A Programmer's Playground"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The Key_Console function handles interactive line editing and console scrollback, allowing players to input commands and navigate command history. Features like command completion, clipboard integration, and history navigation demonstrate a focus on usability and efficiency. The inclusion of Windows-specific clipboard handling reflects the challenges of cross-platform development in the 1990s. This interactive console became a hallmark of id Software games, influencing the design of developer consoles in later engines like Unreal Engine and Unity."
   - id: "key-binding-system"
-    line_start: 469
+    line_start: 467
     line_end: 493
     title: "The Binding System That Empowered Players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "Key_Init initializes the key system, setting up default bindings and preparing arrays for input handling. This function ensures that the game starts with a consistent and functional input system, a critical requirement for a smooth user experience. The initialization process reflects the meticulous attention to detail that defined id Software's approach to game development. Similar initialization routines became standard in game engines, ensuring reliable input handling across diverse hardware configurations."
   - id: "key-event-handling"
-    line_start: 677
+    line_start: 670
     line_end: 822
     title: "Handling Key Events in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"

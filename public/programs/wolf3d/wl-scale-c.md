@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section introduces the `insetupscaling` boolean flag, which is used to indicate whether the scaling setup process is currently active. The flag is crucial for ensuring that memory allocation and scaler construction processes do not conflict with other operations. At the time, MS-DOS systems had limited multitasking capabilities, and careful state management was necessary to avoid crashes or memory corruption. By marking the scaling setup phase explicitly, the developers could safely allocate and free memory for compiled scalers without interference. This approach exemplifies the meticulous attention to detail required to work within the constraints of early 1990s hardware. The concept of using flags for state management influenced later game engines, including id Software's own Doom engine, which expanded on these techniques to handle more complex rendering tasks."
   - id: "badscale-error-handler"
-    line_start: 44
+    line_start: 36
     line_end: 49
     title: "The Error Handler That Quit the Game"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The `BadScale` subroutine is a simple yet critical error handler that terminates the game if an invalid scaling operation is attempted. It calls the `Quit` function with an error message, ensuring that the program does not continue in an undefined state. This defensive programming technique reflects the challenges of developing software for early PCs, where debugging tools were limited and crashes could easily corrupt memory or require a system reboot. By providing a clear exit point, the developers minimized the risk of cascading failures. This approach to error handling became a standard practice in game development, influencing how modern engines handle unexpected conditions."
   - id: "setupscaling-memory-management"
-    line_start: 58
+    line_start: 52
     line_end: 129
     title: "How Wolfenstein Freed and Rebuilt Scalers"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `SetupScaling` subroutine is responsible for preparing the scaling system by freeing old scalers, allocating memory for new ones, and locking them down for use. It uses memory management functions like `MM_FreePtr`, `MM_GetPtr`, and `MM_SetLock` to handle the limited resources available on MS-DOS systems. The routine also adjusts the scaling step size to optimize memory usage, doubling the step for larger heights to save space. This careful balance of memory allocation and performance optimization was essential for running Wolfenstein 3D on hardware with only a few megabytes of RAM. The technique of compacting memory and locking resources influenced later game engines, such as Doom and Quake, which built on these principles to manage increasingly complex rendering tasks."
   - id: "buildcompscale-compiled-scaler"
-    line_start: 151
+    line_start: 131
     line_end: 228
     title: "The Algorithm That Scaled Pixels to Height"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"

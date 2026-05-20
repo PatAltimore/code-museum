@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "foundation-sound-buffer-definition"
     line_start: 1
-    line_end: 36
+    line_end: 62
     title: "Why Define a Paint Buffer at 512?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `SND_InitScaletable` function initializes a lookup table for volume adjustments, precomputing values to avoid runtime calculations. This optimization leverages the principle of trading memory for speed, a common strategy in 90s game development. By storing scaled values for different volume levels, the code can quickly retrieve adjustments during audio mixing, reducing CPU overhead. This approach was inspired by similar techniques in graphics rendering, where lookup tables were used for color and lighting calculations. The scaletable's efficiency contributed to Quake's ability to deliver real-time audio on constrained hardware, influencing later engines and frameworks that adopted similar optimizations."
   - id: "channel-mixing-from-8-bit-samples"
     line_start: 344
-    line_end: 372
+    line_end: 370
     title: "Mixing Channels from 8-Bit Audio Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Audio_bit_depth"
     image_url: ""

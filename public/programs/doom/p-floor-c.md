@@ -47,7 +47,7 @@ enhancements:
     content: "The `T_MoveFloor` function builds on `T_MovePlane` to handle floor movement specifically. It adds sound effects to enhance the player's experience, playing a movement sound (`sfx_stnmov`) periodically as the floor moves and a stopping sound (`sfx_pstop`) when the floor reaches its destination. This attention to auditory detail was part of DOOM's immersive design philosophy, ensuring that players received sensory feedback for environmental changes. In the early 1990s, sound cards were becoming more common in consumer PCs, and DOOM leveraged this hardware to create a richer gaming experience. Dave Taylor, one of DOOM's developers, worked on integrating sound effects into the game engine, ensuring that they synchronized with gameplay events like moving floors and crushing ceilings. The use of sound effects for environmental interactions influenced later games, establishing a standard for auditory feedback in dynamic environments. Games like Half-Life and System Shock expanded on this concept, using sound to convey information about the game world. Modern game engines now include built-in audio systems that automate these processes, but the principles laid out in DOOM remain foundational."
   - id: "floor-types-handler"
     line_start: 256
-    line_end: 443
+    line_end: 444
     title: "Dynamic Floors: A Toolbox of Movement Types"
     wikipedia_url: "https://doomwiki.org/wiki/Floor"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `EV_DoFloor` function handles various types of floor movements, from lowering floors to their lowest surrounding height to raising them at turbo speeds. This modular design allows level designers to create diverse gameplay scenarios, such as elevators, traps, and platforms. Each movement type is associated with specific parameters, like speed and destination height, enabling precise control over the game's dynamic geometry. DOOM's level design was revolutionary for its time, offering unprecedented interactivity and verticality. John Romero, the game's designer, envisioned levels that felt alive, with moving parts that responded to player actions. The modular approach in `EV_DoFloor` reflects this vision, providing a flexible framework for implementing complex level mechanics. This design philosophy influenced the development of later games and engines. Quake expanded on the concept with more advanced physics and collision detection, while modern engines like Unreal and Unity offer even greater flexibility for dynamic level design. The ability to script diverse floor movements remains a staple of game development, rooted in the innovations of DOOM."
   - id: "build-stairs-algorithm"
     line_start: 449
-    line_end: 553
+    line_end: 554
     title: "How DOOM Built Stairs in Real Time"
     wikipedia_url: "https://doomwiki.org/wiki/Stairs"
     image_url: ""

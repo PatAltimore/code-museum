@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "foundation-initialization-constants"
     line_start: 1
-    line_end: 31
+    line_end: 59
     title: "Why Quake Needed Safe Startup Defaults"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This section defines functions for managing linked lists, including `ClearLink`, `RemoveLink`, and `InsertLinkBefore/After`. Linked lists were a common data structure in the 1990s, used for dynamic memory management and efficient traversal. Quake relied on linked lists for various subsystems, such as entity management and collision detection. These functions demonstrate id Software's focus on performance and modularity, ensuring that list operations were both fast and reusable. Michael Abrash, known for his expertise in optimization, likely contributed to these routines. The use of linked lists in Quake influenced later game engines, which adopted similar structures for handling dynamic game objects."
   - id: "library-replacement-functions"
-    line_start: 134
+    line_start: 128
     line_end: 284
     title: "Why Quake Rewrote Standard Library Functions"
     wikipedia_url: "https://en.wikipedia.org/wiki/C_standard_library"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The byte-order functions (`ShortSwap`, `LongSwap`, `FloatSwap`, etc.) address the issue of endianness, ensuring data consistency across different platforms. Endianness refers to the order in which bytes are stored in memory, which varies between architectures like x86 (little-endian) and PowerPC (big-endian). Multiplayer games like Quake required consistent data formats for communication between clients and servers. By implementing these functions, id Software guaranteed compatibility and avoided subtle bugs caused by mismatched byte orders. This solution became standard practice in networking code, influencing protocols and engines used in games like Counter-Strike and World of Warcraft."
   - id: "message-io-functions"
-    line_start: 503
+    line_start: 498
     line_end: 848
     title: "How Quake Serialized Multiplayer Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Serialization"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `skipwhite` function is designed to parse input strings, skipping over whitespace and handling quoted strings and comments. This utility is crucial for processing command-line arguments and configuration files in Quake. At the time, parsing input efficiently was a necessity due to limited CPU power and memory. The function's ability to handle quoted strings and comments ensures flexibility in user input, allowing complex configurations to be expressed succinctly. John Carmack and Michael Abrash were known for their focus on optimization, and this function reflects their attention to detail in handling edge cases. This approach influenced later games and engines by demonstrating the importance of robust input parsing, which remains a standard practice in modern software development."
   - id: "com-checkparm-argument-search"
-    line_start: 1085
+    line_start: 1078
     line_end: 1099
     title: "Finding Arguments in Quake's Command Line"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `COM_CheckParm` function searches for specific arguments in the program's command-line input. It returns the position of the argument or zero if not found. This functionality is essential for enabling features like safe mode or debugging options. In the mid-1990s, command-line interfaces were a primary method for configuring software, especially in gaming. The function includes a workaround for a bug in NEXTSTEP, an operating system used during development, showcasing id Software's adaptability to diverse platforms. This technique influenced later engines by emphasizing the importance of flexible and reliable argument parsing, which is now a staple in game development and software engineering."
   - id: "com-checkregistered-file-verification"
-    line_start: 1110
+    line_start: 1101
     line_end: 1141
     title: "Verifying Quake's Registration Status"
     wikipedia_url: "https://en.wikipedia.org/wiki/Software_registration"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `COM_CheckRegistered` function checks for the presence and integrity of the `pop.txt` file to determine whether the user is running the registered or shareware version of Quake. It uses CRC checks to verify file integrity, a technique that ensures data hasn't been corrupted or tampered with. This was critical in the 1990s for enforcing software licensing and preventing piracy. The function also exits if an unregistered user attempts to access restricted features, reflecting the era's approach to shareware distribution. This method of file verification influenced later games and software by demonstrating the effectiveness of CRC checks for maintaining data integrity and enforcing licensing."
   - id: "com-initargv-safe-mode"
-    line_start: 1149
+    line_start: 1145
     line_end: 1178
     title: "Enabling Safe Mode in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Safe_mode"
@@ -190,7 +190,7 @@ enhancements:
     image_caption: ""
     content: "The `chktbl` array is a precomputed table used for checksum calculations in multiplayer data validation. It includes a mix of static values and dynamic updates based on the map checksum, ensuring that data integrity checks remain robust and adaptable. In the mid-1990s, multiplayer games like Quake faced significant challenges in preventing data tampering and ensuring fair play. This table exemplifies Carmack's and Abrash's focus on efficient, lightweight solutions for real-time environments. The use of precomputed tables for checksums influenced later systems, including network protocols and game engines that required secure data exchange."
   - id: "com-blocksequencecrcbyte"
-    line_start: 2232
+    line_start: 2224
     line_end: 2257
     title: "How Quake Prevented Proxy Tampering"
     wikipedia_url: "https://en.wikipedia.org/wiki/CRC"

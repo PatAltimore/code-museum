@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section implements a long division routine optimized for Intel 386 processors. The programmer uses the `idiv` instruction, which performs signed division directly on 32-bit registers (`eax` and `edx`). The code sets up the stack frame to retrieve the dividend and divisor, performs the division, and then adjusts the result to fit the expected format. The use of `cdq` ensures the sign extension of the dividend, a critical step for signed division. At the time, the 386 processor was a major leap forward, introducing 32-bit registers and instructions that allowed faster and more efficient mathematical operations compared to earlier 16-bit CPUs. This optimization reflects the programmer's deep understanding of the hardware and the need for speed in a game like Wolfenstein 3D, where every CPU cycle mattered. The reliance on 386-specific instructions also highlights the transition in the early 1990s toward more powerful processors, enabling developers to push the boundaries of real-time graphics and gameplay. This approach influenced later game engines, where hardware-specific optimizations became standard practice to achieve high performance."
   - id: "signed-vs-unsigned-division"
-    line_start: 74
+    line_start: 70
     line_end: 92
     title: "Signed vs. Unsigned Division: A Flag-Based Solution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Division_(mathematics)"

@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `Mod_Init` function initializes the `mod_novis` array to all 0xFF values, effectively marking all map leaves as visible. This is a foundational step in Quake's model system, ensuring that visibility data starts in a consistent state. In 1996, memory management was a critical concern due to hardware limitations, with typical PCs having only 8–16 MB of RAM. By preemptively setting visibility data, the engine avoids undefined behavior during rendering. This approach influenced later game engines, which adopted similar initialization techniques to ensure stability in complex systems."
   - id: "mod-extradata-cache-check"
-    line_start: 58
+    line_start: 52
     line_end: 72
     title: "The Cache That Keeps Quake Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -166,7 +166,7 @@ enhancements:
     image_caption: ""
     content: "The `Mod_LoadSpriteModel` function loads 2D sprite models, which are used for effects and decorations in Quake's 3D world. By calculating bounding boxes and loading frame data, the function integrates sprites seamlessly into the game environment. Sprites were a staple of earlier 2D games, but their use in Quake demonstrated how they could complement 3D graphics for visual effects. This technique influenced hybrid graphics systems in later games, such as particle effects in Unreal Engine."
   - id: "debugging-cached-models-in-real-time"
-    line_start: 1878
+    line_start: 1872
     line_end: 1889
     title: "Debugging Cached Models in Real Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"

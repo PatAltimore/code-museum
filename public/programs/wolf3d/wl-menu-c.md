@@ -134,7 +134,7 @@ enhancements:
     image_caption: ""
     content: "The `CustomControls` function allows players to redefine input mappings for mouse, joystick, and keyboard. This level of customization was rare in 1992 but became a hallmark of PC gaming. The function calls specific routines to handle input remapping for each device, ensuring flexibility. John Carmack and Tom Hall prioritized player agency, allowing users to tailor controls to their preferences. This feature set a precedent for modern games, where customizable controls are expected, especially in competitive genres like first-person shooters."
   - id: "enter-control-data"
-    line_start: 2131
+    line_start: 2129
     line_end: 2362
     title: "How Wolfenstein handled input remapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
@@ -159,7 +159,7 @@ enhancements:
     content: "The `IntroScreen` function visually represents the system's memory configuration, including main memory, EMS, and XMS. It uses bar charts to display available resources, helping players understand their system's capabilities. In 1992, memory management was a critical aspect of PC gaming, as systems varied widely in configuration. This visualization was not only informative but also a clever way to engage players in the technical aspects of their hardware. The concept of memory visualization influenced system configuration screens in later games and operating systems, making technical data more accessible to users."
   - id: "clear-menu-screen"
     line_start: 2956
-    line_end: 2975
+    line_end: 2976
     title: "Clearing the screen with style"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_pipeline"
     image_url: ""
@@ -175,7 +175,7 @@ enhancements:
     content: "The `CacheLump` function caches a range of graphics chunks, ensuring that menu elements are quickly accessible during rendering. This approach minimizes disk access and improves performance, which was critical for games running on floppy disks or slow hard drives. By preloading graphics, id Software optimized the menu system for speed and responsiveness. This technique became a standard in game development, influencing asset management in modern engines like Unity and Unreal."
   - id: "uncache-lump-dynamic-asset-management"
     line_start: 2993
-    line_end: 3007
+    line_end: 3000
     title: "Dynamic asset management for constrained memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

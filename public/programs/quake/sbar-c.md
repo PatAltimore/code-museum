@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `Sbar_SoloScoreboard` function provides a simplified scoreboard for solo players, displaying essential stats like time elapsed. This minimalist approach ensured that players could focus on gameplay without being overwhelmed by information. The function calculates time in minutes and seconds, formatting it neatly for display. In the mid-1990s, user interface design in games was still evolving, and Quake's approach to balancing information density with usability was ahead of its time. The solo scoreboard influenced UI design in later single-player games, such as Half-Life and Portal, where clean and intuitive interfaces became a hallmark of the genre."
   - id: "inventory-rendering"
-    line_start: 495
+    line_start: 493
     line_end: 599
     title: "Rendering Inventory with Flashing Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `Sbar_DeathmatchOverlay` function dynamically renders the multiplayer scoreboard during deathmatch games. It adjusts its layout based on the number of players and screen dimensions, ensuring the scoreboard remains legible even in large games. The routine sorts players by their frag count, draws their ping, packet loss, time played, and team information (if applicable), and highlights the local player's entry for easy identification. In cases where the scoreboard exceeds the screen height, it switches to a 'large game' mode, reducing spacing between entries. This design reflects the constraints of 1996 hardware, where screen resolutions and memory were limited, and real-time rendering had to be efficient. Carmack and Abrash's experience with optimizing graphics and gameplay for low-latency environments is evident here. The approach influenced later multiplayer games, including Unreal Tournament and Counter-Strike, which adopted similar techniques for dynamic scoreboards."
   - id: "mini-deathmatch-overlay"
-    line_start: 1157
+    line_start: 1149
     line_end: 1293
     title: "The Compact Scoreboard for Tight Spaces"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `Sbar_MiniDeathmatchOverlay` function provides a condensed scoreboard for situations where screen space is limited, such as lower resolutions or when other HUD elements occupy significant space. It prioritizes essential information, including frag counts and player names, while omitting less critical details. The routine dynamically determines the number of lines to display based on available space and centers the local player's entry within the list for context. If teamplay is enabled, it includes team scores and separators for clarity. This function showcases id Software's attention to usability and adaptability, ensuring the game remains playable across diverse hardware configurations. By focusing on core gameplay metrics, it set a precedent for minimalist HUD designs in competitive games like Quake III Arena and later esports titles."
   - id: "intermission-overlay-logic"
-    line_start: 1302
+    line_start: 1296
     line_end: 1311
     title: "Switching Overlays Based on Game Mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `Sbar_IntermissionOverlay` function determines which overlay to display during intermission screens based on the game mode. If teamplay is active and score visibility is disabled, it calls `Sbar_TeamOverlay` to display team scores. Otherwise, it defaults to the deathmatch scoreboard. This conditional logic reflects the game's flexibility in accommodating different multiplayer styles, from free-for-all deathmatches to team-based modes. By centralizing overlay decisions, the function simplifies the game's rendering pipeline and ensures consistency across different scenarios. This modular approach to HUD rendering influenced later engines, such as Unreal Engine and Source, which adopted similar strategies for handling diverse game modes."
   - id: "finale-overlay-rendering"
-    line_start: 1320
+    line_start: 1314
     line_end: 1328
     title: "Rendering the Finale Screen with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

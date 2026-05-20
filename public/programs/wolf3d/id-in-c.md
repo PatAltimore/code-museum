@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `IN_GetJoyAbs` function reads the absolute position of a joystick using direct port access and assembly language. It interacts with port 0x201, which is tied to the joystick hardware, and uses precise timing loops to measure the resistance values of the joystick axes. This technique was necessary because joysticks of the era relied on analog signals that required careful calibration and timing to interpret correctly. The assembly code ensures that the process is uninterrupted by disabling interrupts (`CLI`) during the measurement. This approach highlights the ingenuity required to interface with hardware in the early 1990s, when standardized APIs for game controllers were not yet common. The method influenced joystick handling in later games and contributed to the development of more sophisticated input libraries."
   - id: "keyboard-hook-setup"
-    line_start: 426
+    line_start: 424
     line_end: 438
     title: "Setting Up Custom Keyboard Hooks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `INL_StartKbd` function sets up a custom keyboard interrupt handler by replacing the BIOS interrupt vector for IRQ 1 (keyboard) with the game's own `INL_KeyService` routine. This allows Wolfenstein 3D to process keyboard input directly, bypassing the slower BIOS routines. By storing the original interrupt vector and restoring it later, the function ensures compatibility with other software. This technique was widely used in DOS games to achieve faster and more responsive input handling. It reflects the low-level programming skills required to optimize performance on early PC hardware. The approach influenced later game engines, which continued to use custom interrupt handlers for specialized input processing."
   - id: "joystick-calibration"
-    line_start: 510
+    line_start: 509
     line_end: 538
     title: "Calibrating Joysticks for Precise Control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `IN_SetupJoy` function calibrates joystick input by defining threshold values for the axes and calculating scaling factors. It divides the joystick's range into segments for precise motion detection and uses these thresholds to interpret input accurately. This calibration process was essential for ensuring consistent gameplay across different joystick models, which often had varying ranges and sensitivities. The function's design reflects id Software's commitment to providing a seamless user experience, even on hardware with limited standardization. The technique influenced joystick handling in later games and contributed to the development of input libraries that automated calibration processes."
   - id: "input-manager-initialization"
-    line_start: 580
+    line_start: 578
     line_end: 613
     title: "Starting Up Wolfenstein 3D's Input Manager"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"

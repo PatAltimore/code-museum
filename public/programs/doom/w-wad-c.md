@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `W_Reload` function enables the reloading of WAD files, specifically for lumps marked as reloadable. This feature was designed to facilitate map reloads during development, allowing designers to test changes without restarting the game. However, the implementation is described as a 'fragile hack' in the comments, reflecting the challenges of adding dynamic features to a system not originally designed for them. Despite its limitations, this feature highlights DOOM's iterative development process and the team's willingness to experiment with new workflows. Reloadable assets became a standard feature in modern game engines, streamlining the development and testing of dynamic content."
   - id: "wad-cache-system"
-    line_start: 473
+    line_start: 472
     line_end: 500
     title: "How DOOM's Cache Kept Gameplay Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"

@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "This section defines two lookup tables: `opposite` and `diags`, which map directional movement for enemies. These tables allow enemies to calculate their next move based on their current direction and proximity to the player. The `opposite` table helps enemies reverse direction when blocked, while `diags` facilitates diagonal movement. In 1993, lookup tables were a common optimization technique, as they avoided computationally expensive calculations during runtime. John Carmack, known for his mastery of low-level optimization, likely included these tables to ensure smooth and responsive enemy behavior on the limited hardware of the era. This approach influenced later games, where lookup tables became standard for AI pathfinding and movement logic."
   - id: "recursive-sound-alert"
-    line_start: 88
-    line_end: 149
+    line_start: 105
+    line_end: 166
     title: "How Noise Wakes Up DOOM's Monsters"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "`P_NoiseAlert` is called when a monster detects a player, triggering a chain reaction that alerts other monsters in nearby sectors. It uses the `P_RecursiveSound` function to propagate the alert. This system creates a sense of interconnectedness among enemies, making the game world feel alive. In the early 1990s, AI systems were often isolated, but DOOM's approach to shared awareness among monsters was groundbreaking. This concept influenced later games like Left 4 Dead (2008), where enemy AI coordinates attacks based on player actions."
   - id: "melee-range-check"
-    line_start: 171
+    line_start: 174
     line_end: 192
     title: "How DOOM Decides If You're Too Close"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -62,15 +62,15 @@ enhancements:
     image_caption: ""
     content: "`P_CheckMeleeRange` determines whether an enemy is close enough to attack the player with a melee strike. It calculates the distance between the enemy and the player, factoring in the player's radius and checking line-of-sight. This ensures that melee attacks are realistic and only occur when the player is within reach. In 1993, such precise distance calculations were rare in games, as most relied on simple proximity checks. DOOM's implementation set a precedent for realistic enemy behavior, influencing later titles like Quake (1996) and Unreal (1998)."
   - id: "missile-range-check"
-    line_start: 194
-    line_end: 255
+    line_start: 197
+    line_end: 256
     title: "The Algorithm Behind DOOM's Missile Attacks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
     content: "`P_CheckMissileRange` evaluates whether an enemy should initiate a missile attack. It checks line-of-sight, reaction time, and distance to the player, adjusting the decision based on the enemy type. For example, certain enemies like the Cyberdemon have specific distance thresholds for missile attacks. This level of detail in AI decision-making was revolutionary in 1993, as most games used simpler attack logic. By tailoring behavior to enemy types, DOOM created a diverse and challenging gameplay experience, influencing AI systems in games like Halo (2001) and Call of Duty (2003)."
   - id: "enemy-movement-logic"
-    line_start: 259
+    line_start: 272
     line_end: 335
     title: "The Code That Makes DOOM's Monsters Move"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pathfinding"

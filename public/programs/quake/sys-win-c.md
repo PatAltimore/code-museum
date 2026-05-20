@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section implements a simple yet effective debug logging mechanism that writes formatted strings to a file. The function `Sys_DebugLog` uses `va_list` to handle variable arguments, allowing developers to log messages dynamically. Debugging was crucial during Quake's development, as the team pushed the limits of hardware and software capabilities. At the time, debugging tools were less sophisticated, and manual logging was a common practice. This approach ensured developers could trace issues in real-time, especially in a complex, performance-critical application like Quake. Debug logging became a standard feature in game engines, influencing later systems like Unreal Engine and Unity, where robust logging frameworks are integral to development workflows."
   - id: "filelength-function"
-    line_start: 81
+    line_start: 79
     line_end: 95
     title: "Determining File Length Without Metadata"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `filelength` function calculates the size of a file by seeking to the end and measuring the offset from the beginning. This was a practical solution in an era when file metadata was not always readily accessible or standardized across operating systems. By directly querying the file pointer position, the function avoids reliance on external libraries or APIs. This technique reflects the low-level programming mindset of the 1990s, where developers often worked close to the hardware and operating system. Such methods influenced later file handling practices in game engines, particularly in resource management systems that need to load assets efficiently."
   - id: "sys-make-code-writeable"
-    line_start: 137
+    line_start: 135
     line_end: 147
     title: "Making Memory Writeable for Dynamic Code"
     wikipedia_url: "https://en.wikipedia.org/wiki/Virtual_memory"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `Sys_MakeCodeWriteable` function uses the Windows API `VirtualProtect` to change memory protection settings, allowing code to be modified at runtime. This capability was essential for Quake's dynamic nature, where certain operations required modifying executable code or data in memory. The use of `VirtualProtect` reflects the team's deep understanding of Windows internals and their ability to leverage system-level features for performance and flexibility. This technique was not unique to Quake but became a hallmark of advanced game engines, enabling features like dynamic shaders and runtime code generation. It influenced later engines like Source and CryEngine, which also manipulate memory for similar purposes."
   - id: "sys-init-performance-timer"
-    line_start: 152
+    line_start: 150
     line_end: 226
     title: "Initializing High-Precision Timing"
     wikipedia_url: "https://en.wikipedia.org/wiki/QueryPerformanceCounter"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `Sys_ConsoleInput` function reads user input from the console, allowing developers to issue commands or debug the game in real-time. It processes key events, handles special cases like clipboard pasting, and supports basic editing operations. This feature was invaluable during development, enabling the team to interact with the game engine directly without relying on external tools. Console input systems became a staple in game development, influencing debugging and scripting workflows in later engines. Today, similar functionality appears in developer consoles across games, providing a powerful interface for testing and customization."
   - id: "winmain-entry-point"
-    line_start: 540
+    line_start: 527
     line_end: 697
     title: "The Windows Entry Point That Launched Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/WinMain"

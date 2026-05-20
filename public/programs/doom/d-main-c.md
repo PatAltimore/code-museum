@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "event-handling-with-d-postevent"
-    line_start: 146
+    line_start: 135
     line_end: 154
     title: "Event Handling with D_PostEvent"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"

@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "clear-split-vwb-initialization"
-    line_start: 15
+    line_start: 7
     line_end: 24
     title: "Resetting the Viewport for Split-Screen Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Viewport"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "The `ClearSplitVWB` function initializes the viewport dimensions and clears the update buffer, setting up the graphical environment for split-screen rendering. This was crucial for Wolfenstein 3D's intermission screens, which displayed information while maintaining the game's immersive feel. At the time, split-screen rendering was a novel technique, allowing developers to overlay dynamic content on static backgrounds efficiently. The function's simplicity reflects id Software's focus on performance optimization, ensuring smooth transitions even on limited hardware. This approach influenced later games that relied on similar techniques for HUDs and intermission screens, including Doom and Quake."
   - id: "end-screen-transitions"
-    line_start: 37
+    line_start: 27
     line_end: 47
     title: "Creating Cinematic End Screens with Fading Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(audio-visual)"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The `EndScreen` function combines screen caching, palette manipulation, and fading effects to create cinematic transitions between game states. By caching graphical chunks and fading them in and out, id Software achieved a polished presentation that enhanced the game's storytelling. This technique was particularly impactful in an era when hardware constraints limited graphical fidelity. The use of fading effects became a staple in video games, influencing titles like Myst and Half-Life, where transitions were used to convey mood and narrative seamlessly."
   - id: "victory-sequence-calculations"
-    line_start: 106
+    line_start: 95
     line_end: 296
     title: "Calculating Player Performance in Victory Screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Score_(game)"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `Victory` function calculates and displays player performance metrics, such as kill ratios, secrets found, and treasures collected. It uses pre-defined constants and ratios to determine averages and total times, presenting them in a visually engaging format. This function reflects id Software's commitment to rewarding players with detailed feedback, a feature that was rare in early 1990s games. By incorporating performance metrics into the victory sequence, Wolfenstein 3D set a precedent for games like Diablo and Call of Duty, which emphasize player achievements and statistics."
   - id: "pg13-warning-screen"
-    line_start: 308
+    line_start: 299
     line_end: 325
     title: "Displaying Content Ratings with PG-13 Screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Motion_Picture_Association_film_rating_system"
@@ -88,7 +88,7 @@ enhancements:
     image_caption: ""
     content: "The `PreloadGraphics` function preloads graphical assets into memory to minimize loading times during gameplay. It uses caching and double buffering techniques to ensure smooth transitions. This optimization was critical for Wolfenstein 3D, as it allowed the game to maintain its fast-paced action without interruptions. The concept of preloading graphics became a standard practice in the industry, influencing engines like Unity and Unreal, which prioritize efficient asset management."
   - id: "draw-high-scores-display"
-    line_start: 1028
+    line_start: 1020
     line_end: 1182
     title: "How Wolfenstein 3D Made High Scores Shine"
     wikipedia_url: "https://en.wikipedia.org/wiki/High_score"
@@ -96,7 +96,7 @@ enhancements:
     image_caption: ""
     content: "This section implements the high score display for Wolfenstein 3D, a staple feature in arcade and video games. The routine `DrawHighScores` sorts memory, caches graphical chunks for rendering, and draws the high score table with player names, levels completed, and scores. Fixed-width fonts are used for consistent alignment, and special graphics are displayed for achievements like completing all levels. In 1992, high scores were a critical part of gaming culture, encouraging competition and replayability. John Carmack and the id Software team optimized this feature to run smoothly on limited MS-DOS hardware, using techniques like caching and direct memory manipulation. The approach influenced later games, where high score tables became more dynamic and visually appealing, and it set a precedent for integrating UI elements seamlessly into gameplay."
   - id: "check-high-score-ranking"
-    line_start: 1193
+    line_start: 1187
     line_end: 1261
     title: "The Algorithm Behind High Score Rankings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sorting_algorithm"

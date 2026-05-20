@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "sprite-name-lookup-table"
-    line_start: 29
+    line_start: 26
     line_end: 55
     title: "The Lookup Table That Named DOOM's World"
     wikipedia_url: "https://doomwiki.org/wiki/Sprite"

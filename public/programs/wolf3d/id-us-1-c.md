@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "fatal-error-handler-ms-dos"
-    line_start: 72
+    line_start: 68
     line_end: 158
     title: "The Fatal Error Handler That Saved DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `US_Startup` function initializes the User Manager, a critical subsystem for handling user input and feedback in Wolfenstein 3D. It sets up error handling, random number generation, and parses command-line parameters for compatibility and debugging options. The inclusion of TED-level detection reflects id Software's workflow, where levels were often designed using internal tools. In the early 1990s, game developers had to build their own frameworks for managing user interaction, as no standardized libraries existed for MS-DOS. This startup routine ensured the game could adapt to various configurations and debugging scenarios, laying the groundwork for robust user management systems in future id Software titles like Doom and Quake."
   - id: "parameter-checking-case-insensitivity"
-    line_start: 231
+    line_start: 229
     line_end: 262
     title: "Case-Insensitive Parameter Matching"
     wikipedia_url: "https://en.wikipedia.org/wiki/String_(computer_science)"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `US_CheckParm` function implements case-insensitive string matching for command-line arguments. It skips non-alphabetic characters and compares strings by converting uppercase letters to lowercase. This was a practical solution for handling user input in an era when command-line interfaces were the norm. By ensuring flexibility in parameter matching, id Software made their game more accessible to players and developers alike. This technique, while simple, became a standard practice in software development, influencing how modern applications parse user input. It also reflects the meticulous attention to detail required to create a seamless user experience in the constrained environment of MS-DOS."
   - id: "centered-text-printing"
-    line_start: 367
+    line_start: 365
     line_end: 381
     title: "How to Center Text Without a GUI"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_fonts"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `US_PrintCentered` function calculates and prints text centered within the current window. It uses the `USL_MeasureString` routine to determine the dimensions of the text and adjusts the position accordingly. In the early 1990s, graphical user interfaces were rare in games, and developers had to manually handle text alignment. This routine showcases id Software's ability to create visually appealing interfaces despite hardware limitations. Centered text became a hallmark of polished user interfaces, influencing design choices in later games and applications. The technique demonstrated here is still relevant in modern game development, where text alignment plays a crucial role in user experience."
   - id: "xor-cursor-rendering"
-    line_start: 534
+    line_start: 530
     line_end: 561
     title: "The XOR Trick for Cursor Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Exclusive_or"

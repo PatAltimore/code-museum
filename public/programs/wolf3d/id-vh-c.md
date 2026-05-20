@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "byte-array-update-grid"
-    line_start: 21
+    line_start: 1
     line_end: 23
     title: "The Grid That Tracks Screen Updates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `VW_DrawColorPropString` function builds on the previous routine by adding color variation to the rendered text. Using assembly language, the routine manipulates VGA registers to increment the font color dynamically as each character is drawn. This technique showcases Carmack's ability to push hardware to its limits, creating visually engaging effects with minimal performance overhead. Assembly optimizations like these were crucial for achieving smooth gameplay on early PCs, where every CPU cycle mattered. This approach influenced later game engines, which continued to use low-level optimizations for graphical effects, particularly in resource-constrained environments like mobile devices."
   - id: "vl-munge-pic-data-reorganization"
-    line_start: 170
+    line_start: 162
     line_end: 204
     title: "Reorganizing Image Data for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `VL_MungePic` function reorganizes image data into a format optimized for VGA's planar memory layout. By copying the image into a temporary buffer and then rearranging its pixels, the routine ensures that the data aligns with VGA's requirements for efficient rendering. This technique reflects the constraints of early PC graphics hardware, where developers often had to adapt their data structures to fit the quirks of the display system. Such optimizations were common in the era and laid the groundwork for more sophisticated memory management techniques in later game engines. The concept of preprocessing graphical assets for performance remains relevant in modern game development."
   - id: "vw-mark-update-block"
-    line_start: 246
+    line_start: 235
     line_end: 289
     title: "Marking Tiles for Redraw Efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `VW_MarkUpdateBlock` function calculates which tiles on the screen need to be updated based on their coordinates. By marking these tiles in the `update` grid, the routine minimizes the amount of rendering required, focusing only on areas that have changed. This technique was essential for maintaining high performance on hardware with limited graphical capabilities. It reflects the broader trend in game development of optimizing rendering pipelines to achieve smooth gameplay. The idea of marking regions for redraw influenced later engines like Unreal Engine, where similar principles are applied in modern rendering systems to optimize performance."
   - id: "fizzle-fade-transition-effect"
-    line_start: 471
+    line_start: 469
     line_end: 516
     title: "The Randomized Pixel Transition Effect"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"

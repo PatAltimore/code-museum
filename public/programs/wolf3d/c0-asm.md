@@ -9,66 +9,58 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "c0-asm"
 order: 1
-description: "Critical startup code for Wolfenstein 3D, showcasing low-level assembly techniques to maximize performance and compatibility on MS-DOS systems."
+description: "Startup code for Wolfenstein 3D, showcasing low-level assembly techniques to initialize the game environment and ensure compatibility with MS-DOS systems."
 
 summary:
   - point: "Segment declarations for memory organization"
     link: "https://en.wikipedia.org/wiki/Memory_segmentation"
     link_label: "Memory Segmentation"
-  - point: "Processor compatibility check for 286 or better"
+  - point: "Check for 286 processor compatibility"
     link: "https://en.wikipedia.org/wiki/Intel_80286"
     link_label: "Intel 80286"
-  - point: "Interrupt vector saving for runtime stability"
-    link: "https://en.wikipedia.org/wiki/Interrupt_vector"
-    link_label: "Interrupt Vector"
-  - point: "Environment variable size calculation"
-    link: "https://en.wikipedia.org/wiki/Environment_variable"
-    link_label: "Environment Variable"
-  - point: "Memory management techniques for heap and stack"
-    link: "https://en.wikipedia.org/wiki/Heap_(computing)"
-    link_label: "Heap Memory"
+  - point: "Interrupt vector saving and restoration"
+    link: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
+    link_label: "Interrupt Vector Table"
+  - point: "Environment variable parsing and memory management"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Custom divide-by-zero handler installation"
+    link: "https://en.wikipedia.org/wiki/Divide_by_zero"
+    link_label: "Divide by Zero"
 
 enhancements:
   - id: "segment-declarations-memory-organization"
     line_start: 16
-    line_end: 32
-    title: "How MS-DOS Organized Memory Segments"
+    line_end: 57
+    title: "How Segments Organized MS-DOS Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
     image_url: ""
     image_caption: ""
-    content: "This section defines various memory segments such as '_TEXT', '_DATA', '_BSS', and '_STACK' to organize program data, code, and stack space. MS-DOS relied heavily on memory segmentation due to the 16-bit architecture of the Intel 8086 and 80286 processors, which could only address 64KB at a time. By dividing memory into segments, developers could work around these limitations and manage larger programs. Borland's Turbo C++ runtime library provided conventions for segment naming and organization, ensuring compatibility across different compilers and systems. This technique influenced memory management practices in early PC software and laid the groundwork for more sophisticated systems in later operating systems like Windows."
-  - id: "processor-compatibility-check-286-or-better"
+    content: "This section defines various memory segments such as CODE, DATA, BSS, STACK, and others, which are essential for organizing memory in an MS-DOS environment. Memory segmentation was a hallmark of x86 architecture, particularly in real mode, where programs had to manage memory within the 1MB address space. The programmers at id Software used these segments to ensure efficient memory usage and compatibility across different hardware configurations. At the time, MS-DOS programs relied heavily on manual memory management, as there was no built-in memory protection or virtual memory. These declarations laid the groundwork for the game's runtime environment, ensuring that data, stack, and code were properly isolated. This approach influenced later DOS-based games and applications, which adopted similar segmentation techniques to optimize performance."
+  - id: "processor-check-286-compatibility"
     line_start: 136
     line_end: 152
-    title: "The Check That Excluded 8086 PCs"
+    title: "The Check That Excluded Older PCs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80286"
     image_url: ""
     image_caption: ""
-    content: "This code checks whether the system is running on an Intel 80286 processor or better. It uses the 'pushf' and 'popf' instructions to manipulate the flags register and determine if the processor supports the 80286's extended instruction set. If the check fails, the program displays a message and exits, ensuring the game does not attempt to run on older hardware like the 8086 or 8088. This decision reflects id Software's focus on performance and their willingness to exclude legacy systems to deliver a smoother experience. The 80286 introduced protected mode and better memory management, which were critical for running advanced games like Wolfenstein 3D. This approach influenced other developers to adopt similar checks, prioritizing hardware capabilities over backward compatibility."
-  - id: "environment-variable-size-calculation"
+    content: "This code checks whether the system is running on an Intel 80286 or better processor by manipulating the CPU flags. The 286 introduced protected mode, a significant step forward from the 8086/8088 processors, enabling more advanced memory management and multitasking. By requiring a 286 or better, id Software ensured that Wolfenstein 3D could leverage these capabilities for smoother gameplay and faster performance. At the time, this decision excluded older PCs, but it allowed the game to push the boundaries of what was possible in terms of graphics and responsiveness. This processor check became a common practice in software development, as developers sought to optimize their programs for newer hardware while gracefully handling incompatibilities."
+  - id: "environment-variable-parsing"
     line_start: 220
-    line_end: 244
-    title: "Counting Environment Variables in 32KB"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Environment_variable"
+    line_end: 248
+    title: "Parsing Environment Variables in 32KB or Less"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This code calculates the size of the environment variables passed to the program, ensuring they do not exceed 32KB. Environment variables were stored in the Program Segment Prefix (PSP) in MS-DOS, a fixed-size structure that included command-line arguments and other program metadata. The loop scans for null-terminated strings, counting the variables and their total size. This was necessary to allocate memory correctly and avoid overwriting other data. The 32KB limit reflects the constraints of the MS-DOS memory model, where every byte had to be carefully managed. This approach influenced later systems, where environment variables became more flexible but still required careful handling to avoid security and stability issues."
-  - id: "memory-management-heap-and-stack"
-    line_start: 252
-    line_end: 303
-    title: "Balancing Heap and Stack in Limited Memory"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Heap_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "This section calculates the memory required for the stack and heap, ensuring the program has enough space to run without exceeding the 64KB limit of a single segment. It adjusts the stack size to a minimum value if the requested size is too small and checks whether the heap can fit within the remaining memory. If there is excess memory, it is returned to DOS for other programs to use. This careful balancing of memory reflects the constraints of the MS-DOS environment, where programs had to coexist in limited RAM. The technique influenced memory management practices in later systems, where dynamic allocation and virtual memory reduced the need for such manual adjustments."
-  - id: "interrupt-vector-saving-runtime-stability"
+    content: "This code parses environment variables, counting their number and calculating their total size. Environment variables provide configuration details such as file paths and system settings, and they are stored in a contiguous block of memory. The code ensures that the environment does not exceed 32KB, a limitation imposed by MS-DOS. This parsing routine was critical for initializing the game's runtime environment, as it allowed the program to adapt to different system configurations. At the time, managing environment variables was a common task for DOS programs, and id Software's implementation reflects the constraints and practices of the era. The technique influenced other developers, who adopted similar routines to handle environment variables efficiently."
+  - id: "interrupt-vector-saving"
     line_start: 521
-    line_end: 560
-    title: "Saving Interrupt Vectors for Stability"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
+    line_end: 561
+    title: "Why Save Interrupt Vectors at Startup?"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
     image_url: ""
     image_caption: ""
-    content: "The 'SaveVectors' routine saves the interrupt vectors for critical interrupts (0, 4, 5, and 6) at program startup. These vectors point to the handlers for divide-by-zero errors, arithmetic overflow, and other runtime exceptions. By saving and later restoring these vectors, the program ensures that other software or TSRs (Terminate-and-Stay-Resident programs) do not interfere with its operation. This was especially important in the MS-DOS environment, where multiple programs could modify the same interrupt vectors. The routine also installs a custom divide-by-zero handler to prevent crashes. This technique was widely used in DOS-era software to maintain stability and predictability, influencing practices in embedded systems and real-time applications."
+    content: "The SaveVectors subroutine saves the interrupt vectors for interrupts 0, 4, 5, and 6, ensuring that the program can restore them upon termination. Interrupt vectors are pointers to routines that handle specific events, such as divide-by-zero errors or hardware signals. During runtime, these vectors might be altered by other programs or the operating system, potentially causing instability. By saving and restoring these vectors, id Software ensured that Wolfenstein 3D could coexist with other software without causing system-wide issues. This technique reflects the careful attention to detail required when programming in the MS-DOS environment, where direct hardware interaction was common. The approach influenced other developers working on DOS-based applications, emphasizing the importance of preserving system integrity."
 
 ---
 

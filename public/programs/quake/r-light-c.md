@@ -31,22 +31,22 @@ summary:
 enhancements:
   - id: "foundation-lighting-in-quake"
     line_start: 1
-    line_end: 25
+    line_end: 53
     title: "Foundation: Lighting in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section sets up the groundwork for lighting calculations in Quake by defining a global variable `r_dlightframecount`. This variable tracks the frame count for dynamic lights, ensuring that lighting updates are synchronized with the game's rendering loop. In 1996, real-time lighting was a cutting-edge feature, and Quake's implementation aimed to balance visual fidelity with the hardware constraints of x86 processors. By using a frame-based counter, id Software optimized lighting updates to avoid redundant calculations, a necessity given the limited computational power of the Intel 486 and Pentium processors of the era. This foundational approach influenced later games and engines, which adopted similar strategies for managing dynamic effects efficiently."
   - id: "light-animation-with-character-maps"
-    line_start: 28
-    line_end: 53
+    line_start: 56
+    line_end: 107
     title: "Light Animation with Character Maps"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
     image_url: ""
     image_caption: ""
     content: "The `R_AnimateLight` function implements light animations using precomputed character maps. Each light style is represented as a sequence of characters, where 'm' indicates normal light, 'a' represents no light, and 'z' signifies double brightness. By indexing into these maps based on the game's time variable, Quake achieves dynamic light animations without recalculating brightness values every frame. This technique reflects the era's emphasis on precomputing data to save CPU cycles. John Carmack and Michael Abrash were known for their focus on optimization, and this approach exemplifies their philosophy of leveraging precomputed data to enhance performance. The concept of light styles and animations became a staple in game development, influencing engines like Unreal and Source, which expanded on these ideas to create more complex lighting systems."
   - id: "dynamic-light-marking-in-bsp-trees"
-    line_start: 64
+    line_start: 56
     line_end: 107
     title: "Dynamic Light Marking in BSP Trees"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"

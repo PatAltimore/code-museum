@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "status-bar-constants"
-    line_start: 34
+    line_start: 30
     line_end: 266
     title: "Why DOOM's Status Bar Was Perfectly Positioned"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"

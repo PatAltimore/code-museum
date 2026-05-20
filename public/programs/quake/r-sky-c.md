@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "sky-texture-initialization"
-    line_start: 55
+    line_start: 49
     line_end: 89
     title: "How Quake Packed Sky Textures into Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"

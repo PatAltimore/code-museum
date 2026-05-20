@@ -46,6 +46,10 @@ source excerpt, then return the exact line_start and line_end that tightly
 enclose it.
 
 Rules for line_start:
+- If a "⚠ line_start appears to be INSIDE a block comment" warning is shown,
+  the current line_start is wrong — it points to a line inside a /* */ comment.
+  Set line_start to the value shown in the "→ Set line_start = N" suggestion,
+  which is the /* opener (or the first line of any doc-comment above it).
 - If a "Candidate leading comments" block is shown, READ its content carefully.
   If those comments serve as documentation for THIS section — describing what
   the subroutine does, explaining its algorithm, or naming its purpose — set
@@ -123,6 +127,45 @@ def _is_comment_line(line: str) -> bool:
     return bool(s) and any(s.startswith(p) for p in _COMMENT_PREFIXES)
 
 
+def _enclosing_block_comment_start(
+    code_lines: list[str], line_start: int, floor: int
+) -> int | None:
+    """Return the 1-indexed line number of the /* that encloses line_start.
+
+    Walks backward from line_start-1 looking for a /* opener that has no
+    matching */ between it and line_start (i.e., line_start is inside that
+    block comment).  Returns None if line_start is not inside a block comment.
+
+    Blank lines inside block comments are allowed (Quake/id-style banners use
+    them).  Only hard code markers stop the search: line comments (//),
+    statements (containing ;), or closing braces.  A search limit of 80 lines
+    prevents runaway traversal.
+    """
+    i = line_start - 2          # 0-indexed line just before line_start
+    floor_idx = max(0, floor - 1)
+    limit = 80
+    steps = 0
+    while i >= floor_idx and steps < limit:
+        steps += 1
+        stripped = code_lines[i].strip()
+        if stripped.startswith("//"):
+            break   # line comment — not inside a /* block
+        if stripped.startswith("}") or stripped.startswith("{"):
+            break   # brace — definitely not inside a block comment
+        # A semicolon that isn't itself inside a /* comment string → real code
+        if ";" in stripped and "/*" not in stripped and not stripped.startswith("*"):
+            break
+        if stripped.endswith("*/") and "/*" not in stripped:
+            # Closing delimiter of a *different* block comment above us —
+            # line_start is NOT inside that one.
+            return None
+        if "/*" in stripped:
+            return i + 1    # 1-indexed opener line
+        # Blank lines and all other content (comment interior) — keep going
+        i -= 1
+    return None
+
+
 # Characters whose presence on a line means it cannot be a bare return-type
 # declaration (it must be a statement, a declaration with params, etc.)
 _NOT_RETURN_TYPE = frozenset('(){};=[]')
@@ -195,6 +238,18 @@ def _preceding_comment_block(
         preamble.insert(0, (i + 1, code_lines[i]))
         i -= 1
     collected.extend(preamble)
+
+    # If line_start itself is a */ closing delimiter, the current line_start
+    # is the END of a block comment rather than code.  Enter block-comment mode
+    # immediately so the main backward walk collects the full comment body
+    # (interior lines like ==== have no comment prefix and would otherwise stop
+    # the walk on the very first iteration).  Also add the */ line to collected
+    # so the presented block is complete.
+    if line_start <= len(code_lines):
+        _ls = code_lines[line_start - 1].strip()
+        if _ls.endswith("*/") and "/*" not in _ls:
+            in_block_comment = True
+            collected.append((line_start, code_lines[line_start - 1]))
 
     while i >= floor:
         line = code_lines[i]
@@ -348,9 +403,46 @@ def _build_batch_messages(batch: list[dict], code_lines: list[str],
         # within the lines we actually show in the excerpt.
         context_start = max(1, s - CONTEXT_LINES)
 
+        # Special case: line_start may be inside a /* */ block comment (e.g.
+        # the generator picked the function-name line inside a Quake-style
+        # /*=== FunctionName ===*/ header).  Detect this and surface the /*
+        # opener as the candidate start.
+        inside_block_opener = _enclosing_block_comment_start(
+            code_lines, s, context_start
+        )
+
         # Pre-extract any comment block immediately above the current range.
-        comment_block = _preceding_comment_block(code_lines, s, context_start)
-        if comment_block:
+        # If line_start is inside a block comment, look above that opener.
+        comment_search_start = inside_block_opener if inside_block_opener else s
+        comment_block = _preceding_comment_block(
+            code_lines, comment_search_start, context_start
+        )
+
+        if inside_block_opener:
+            # Build a candidate block that spans from /* opener to line_start,
+            # then any additional comment block found above the /*
+            opener_lines = [
+                (ln, code_lines[ln - 1])
+                for ln in range(inside_block_opener, s)
+            ]
+            full_block = (comment_block or []) + opener_lines
+            if full_block:
+                candidate_start = full_block[0][0]
+                cb_text = "\n".join(
+                    f"  {lineno:4d}  {text}" for lineno, text in full_block
+                )
+                candidate_section = (
+                    f"⚠ line_start ({s}) appears to be INSIDE a block comment "
+                    f"(/* opens at line {inside_block_opener}).\n"
+                    f"Candidate comment block "
+                    f"(lines {candidate_start}–{s - 1}):\n"
+                    f"{cb_text}\n"
+                    f"→ Set line_start = {candidate_start} to include the full "
+                    f"comment, then find the correct line_end.\n\n"
+                )
+            else:
+                candidate_section = ""
+        elif comment_block:
             cb_text = "\n".join(
                 f"  {lineno:4d}  {text}" for lineno, text in comment_block
             )

@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `ProjectPointOnPlane` function calculates the projection of a point onto a plane defined by a normal vector. This is crucial for collision detection and rendering, where objects interact with surfaces. The function uses the dot product to determine the distance and adjusts the point's position accordingly. In the mid-90s, real-time 3D calculations were computationally expensive, and this efficient implementation reflects the team's deep understanding of linear algebra. The technique became a staple in graphics programming, influencing APIs like OpenGL and DirectX."
   - id: "perpendicular-vector"
-    line_start: 53
+    line_start: 56
     line_end: 86
     title: "Finding Perpendicular Vectors for 3D Rotations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Perpendicular"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `RotatePointAroundVector` function performs a complex transformation: rotating a point around an arbitrary axis by a specified angle. This involves constructing rotation matrices and concatenating them to achieve the desired effect. Such operations were groundbreaking in 1996, enabling dynamic object manipulation and realistic physics in Quake's 3D world. The function's efficiency and modularity set a precedent for game engine design, influencing systems like Unity's Transform component and Unreal's rotation utilities."
   - id: "anglemod-precision"
-    line_start: 148
+    line_start: 154
     line_end: 164
     title: "Optimizing Angle Modulo Operations for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Modulo_operation"
