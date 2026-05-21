@@ -109,7 +109,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_TEXT.C
 
 #include "WL_DEF.H"

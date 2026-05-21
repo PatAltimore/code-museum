@@ -136,7 +136,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_STATE.C
 
 #include "WL_DEF.H"

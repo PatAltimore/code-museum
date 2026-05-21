@@ -10,5 +10,19 @@
   "mimeTypes": { ".md": "text/plain" },
   "globalHeaders": {
     "Referrer-Policy": "no-referrer-when-downgrade"
-  }
+  },
+  "headers": [
+    {
+      "route": "/index.html",
+      "headers": { "Cache-Control": "no-cache" }
+    },
+    {
+      "route": "/js/*",
+      "headers": { "Cache-Control": "no-cache" }
+    },
+    {
+      "route": "/css/*",
+      "headers": { "Cache-Control": "no-cache" }
+    }
+  ]
 }

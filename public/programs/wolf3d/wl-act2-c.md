@@ -240,7 +240,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_ACT2.C
 
 #include "WL_DEF.H"

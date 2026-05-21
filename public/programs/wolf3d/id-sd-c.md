@@ -192,7 +192,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 //
 //	ID Engine
 //	ID_SD.c - Sound Manager for Wolfenstein 3D

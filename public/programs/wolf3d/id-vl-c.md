@@ -112,7 +112,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // ID_VL.C
 
 #include <dos.h>

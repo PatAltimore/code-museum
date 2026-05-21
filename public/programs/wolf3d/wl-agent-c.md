@@ -152,7 +152,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_AGENT.C
 
 #include "WL_DEF.H"
