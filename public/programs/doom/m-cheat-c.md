@@ -76,6 +76,6 @@ enhancements:
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id:$
-// a different comment
+// no dollar signs here
+//
 ```
