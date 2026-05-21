@@ -47,7 +47,7 @@ enhancements:
     content: "The RELOAD routine is a temporary function used during development to reload code and images. It switches the disk drive on, loads permanent data, and then loads stage-specific data before turning the drive off. Debugging and iterative development were challenging in the 1980s due to limited tools and hardware constraints. Developers often included temporary routines like this to streamline testing and debugging. This routine highlights the practical challenges of developing complex games on early hardware. While temporary, routines like RELOAD reflect the iterative process that shaped the final game. Debugging techniques from this era laid the groundwork for modern development practices, including automated testing and continuous integration."
   - id: "loadmusic1-title-screen-music"
     line_start: 245
-    line_end: 289
+    line_end: 264
     title: "LoadMusic1: Title Screen Music"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_sound"
     image_url: ""

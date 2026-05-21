@@ -55,7 +55,7 @@ enhancements:
     content: "The `P_BringUpWeapon` function animates the process of switching weapons, moving the new weapon sprite from the bottom of the screen to its ready position. This visual feedback was groundbreaking in 1993, as it added a layer of realism and anticipation to gameplay. The function also plays specific sound effects, such as the chainsaw's revving noise, enhancing the sensory experience. This approach set a precedent for weapon switching in first-person shooters, influencing later games like Counter-Strike and Call of Duty, where weapon animations became integral to the player's experience."
   - id: "ammo-checking-and-auto-switch"
     line_start: 155
-    line_end: 239
+    line_end: 244
     title: "What Happens When You Run Out of Ammo?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Resource_management_(video_games)"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `A_BFGSpray` function simulates the BFG's explosive attack, spawning projectiles that damage all enemies in view. This weapon was a technical showcase, demonstrating DOOM's ability to handle complex interactions between multiple objects in real-time. The BFG's design became legendary, influencing the creation of powerful weapons in games like Unreal Tournament and Destiny, where 'superweapons' are a key gameplay element."
   - id: "level-initialization-weapons"
     line_start: 826
-    line_end: 841
+    line_end: 849
     title: "Setting Up Weapons at Level Start"
     wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(computer_science)"
     image_url: ""

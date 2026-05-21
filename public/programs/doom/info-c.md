@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines the `sprnames` array, a lookup table containing the names of all sprites used in DOOM. Each entry corresponds to a visual representation of entities, weapons, or effects, such as 'TROO' for the Imp or 'BFGG' for the BFG weapon. By using a compact array, the game efficiently associates sprite names with their corresponding graphical assets. In 1993, memory constraints on consumer PCs were severe, and lookup tables like this were a common technique to minimize memory usage while maintaining flexibility. John Carmack and the team at id Software leveraged this approach to streamline the game's rendering pipeline. This design influenced later games, where sprite-based systems evolved into texture atlases and object-oriented asset management. The concept of centralized sprite naming persists in modern engines like Unity and Unreal, albeit in more sophisticated forms."
   - id: "action-function-declarations"
     line_start: 57
-    line_end: 130
+    line_end: 107
     title: "How DOOM's Entities Came to Life"
     wikipedia_url: "https://doomwiki.org/wiki/Action_function"
     image_url: ""
@@ -62,40 +62,40 @@ enhancements:
     image_caption: ""
     content: "This section defines a large array of state transitions for DOOM's game objects, including monsters, projectiles, and environmental elements. Each entry specifies a sprite, duration, action function, and the next state, creating a finite-state machine for each object. For example, the Cyberdemon's attack sequence transitions through multiple states, invoking functions like A_CyberAttack and A_FaceTarget to control its behavior. In 1993, this approach was groundbreaking for its simplicity and efficiency. The finite-state machine model allowed developers to encode complex behaviors using compact data structures, minimizing CPU overhead on hardware like the Intel 80486. John Carmack, known for his focus on performance, designed this system to ensure smooth gameplay even on modest PCs. This technique influenced later game engines, including id Tech 2 and id Tech 3, which expanded on state-based logic for more complex interactions. Modern engines like Unity and Unreal still use similar concepts, albeit with more abstraction and flexibility. The state machine approach remains a cornerstone of game AI and animation systems, demonstrating the lasting impact of DOOM's design."
   - id: "mobjinfo-object-attributes"
-    line_start: 1105
-    line_end: 1599
+    line_start: 1025
+    line_end: 1025
     title: "The Blueprint Behind DOOM's Monsters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
     image_url: ""
     image_caption: ""
     content: "The mobjinfo array defines the attributes and behaviors of DOOM's movable objects (mobj), including enemies, projectiles, and pickups. Each entry specifies properties like health, speed, radius, height, and flags for interactions (e.g., MF_SOLID for collision or MF_NOGRAVITY for floating). For example, the Arch-Vile (MT_VILE) has high health, fast speed, and a unique attack state, making it one of the game's most challenging enemies. This design reflects the constraints and priorities of 1993-era game development. Memory was limited, and performance was critical, so attributes were stored in compact data structures. Carmack's focus on modularity ensured that new objects could be added with minimal changes to the codebase. The flags system, which controls interactions like gravity and collision, was particularly innovative, allowing for diverse behaviors without duplicating logic. The mobjinfo structure influenced object-oriented programming in later game engines. Concepts like encapsulating attributes and behaviors in a single entity became standard practice, shaping engines like Unreal and Unity. The modularity of DOOM's design also inspired the modding community, enabling the creation of custom monsters and levels. This section exemplifies how thoughtful engineering can have a lasting impact on both developers and players."
   - id: "monster-data-structure"
-    line_start: 1601
-    line_end: 2399
+    line_start: 1523
+    line_end: 1547
     title: "How DOOM Packed Monsters Into Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section of the code defines the attributes and behaviors of various entities in DOOM, including monsters, projectiles, and items. Each entity is represented as a compact data structure containing fields for health, speed, size, sound effects, and state transitions. For example, the Spider Mastermind (MT_SPIDER) is defined with a spawn health of 3000, a reaction time of 8, and specific sound effects for seeing, attacking, and dying. In 1993, memory was a precious resource on consumer PCs, which often had only 4MB of RAM. John Carmack and the DOOM team designed these data structures to be highly efficient, packing all necessary information into a minimal footprint. The use of predefined constants like `FRACUNIT` allowed for fixed-point arithmetic, avoiding the computational overhead of floating-point operations on hardware without dedicated math coprocessors. This modular approach to entity definition was groundbreaking. It allowed developers to easily add or modify entities without rewriting large portions of code. The design also supported extensibility, enabling modders to create custom monsters and items by simply defining new data structures. This flexibility contributed to DOOM's longevity and its thriving modding community. The techniques used here influenced the development of modern game engines, particularly the concept of entity-component systems (ECS), where entities are composed of reusable components. Games like Quake and Unreal built on these ideas, and today, ECS is a standard in game development frameworks like Unity and Unreal Engine. Carmack's focus on efficiency and modularity continues to shape the industry, proving that constraints can drive innovation."
   - id: "object-properties-table"
-    line_start: 2400
-    line_end: 3199
+    line_start: 2329
+    line_end: 2353
     title: "How DOOM Encoded Its World in Numbers"
     wikipedia_url: "https://doomwiki.org/wiki/Thing"
     image_url: ""
     image_caption: ""
     content: "This section of the file defines the properties of various objects (or 'things') in DOOM, ranging from items like health packs to weapons and decorative elements. Each object is described using a compact structure that includes attributes such as spawn state, health, radius, height, sound effects, and flags that control its behavior. For example, the MF_SPECIAL flag marks objects that can be picked up, while MF_COUNTITEM indicates items that contribute to the player's score. In 1993, DOOM was designed to run on consumer-grade PCs with limited memory and processing power. John Carmack and his team optimized the game by using fixed-point arithmetic (e.g., FRACUNIT) and tightly packed data structures to minimize overhead. This approach allowed DOOM to handle dozens of objects in real-time without compromising performance. The design of these object properties influenced not only DOOM but also countless games that followed. The concept of encoding game objects with compact, extensible attributes became standard practice in game development. Modern engines like Unity and Unreal use similar principles, albeit with more sophisticated systems. The flags defined here, such as MF_SPECIAL, laid the groundwork for object-oriented behavior in games, enabling dynamic interactions and emergent gameplay. DOOM's object system was studied by developers of later games like Quake and Half-Life, and its influence can be seen in the modular design of contemporary game engines. The efficiency and flexibility of this approach remain a testament to the ingenuity of Carmack and his team, who pushed the boundaries of what was possible on 1993 hardware."
   - id: "static-object-definitions"
-    line_start: 3188
-    line_end: 4668
+    line_start: 3109
+    line_end: 3133
     title: "Why DOOM's Decorations Were More Than Eye Candy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section of the DOOM source code defines a series of static objects, referred to as 'Things,' which populate the game's levels. These objects include environmental decorations such as torches, pillars, and meat piles, each with attributes like spawn state, dimensions, and flags for behavior. For example, the 'MF_SOLID' flag ensures collision detection, while 'MF_NOGRAVITY' allows objects to float. The use of fixed-point arithmetic (e.g., '16*FRACUNIT') for dimensions reflects the era's hardware constraints, where floating-point operations were often too costly for real-time applications. In 1993, DOOM was pushing the limits of consumer PCs, which typically featured 386 or 486 processors with limited memory. John Carmack and the team at id Software had to optimize every aspect of the game to ensure smooth performance. Static objects like these were carefully designed to enhance the game's atmosphere without taxing the hardware. The inclusion of flags for behaviors like 'MF_SPAWNCEILING' and 'MF_NOGRAVITY' allowed for creative level design, enabling objects to appear suspended in mid-air or attached to ceilings. The detailed definition of these objects contributed to DOOM's immersive environments, a key factor in its success. Later games, including Quake and Unreal, built on this approach, incorporating even more complex environmental interactions. The concept of 'Things' as modular, attribute-driven entities influenced game engines like Unity and Unreal Engine, where similar systems are used to define objects in 3D worlds. DOOM's efficient handling of static objects remains a touchstone in game development, demonstrating how technical constraints can inspire creative solutions."
   - id: "object-properties-definition"
-    line_start: 3994
-    line_end: 4668
+    line_start: 3915
+    line_end: 3939
     title: "How DOOM's Objects Were Built to Last"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

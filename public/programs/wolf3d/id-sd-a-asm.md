@@ -47,15 +47,15 @@ enhancements:
     content: "The `COMMONSTART` macro encapsulates boilerplate setup code for sound routines. It pushes registers onto the stack, sets the data segment, and increments a debug counter. Macros like this were essential in assembly programming, reducing repetitive code and minimizing errors. Debugging tools were rudimentary in 1992, so macros provided a way to standardize operations across multiple routines. The inclusion of debug-specific instructions, such as changing the overscan color, highlights the team's focus on testing under constrained conditions. This macro reflects the meticulous attention to detail required to develop complex software on early PCs. The practice of using macros for common setup tasks influenced later programming paradigms, including inline functions in C and preprocessor directives in modern languages."
   - id: "pc-speaker-sound-effect"
     line_start: 123
-    line_end: 175
+    line_end: 176
     title: "How Wolfenstein Made the PC Speaker Sing"
     wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
     image_url: ""
     image_caption: ""
     content: "This section handles sound effects for the PC speaker, a primitive audio device capable of producing simple tones. The code uses a lookup table (`pcSoundLookup`) to map sound data to frequencies, then manipulates hardware registers to play the sound. The speaker is toggled on and off using precise timing, creating the illusion of more complex audio. In the early 1990s, the PC speaker was the most common sound output device, but its limitations forced developers to innovate. John Carmack and the team at id Software used clever techniques like frequency modulation and rapid toggling to enhance the speaker's capabilities. These methods were groundbreaking at the time, inspiring other developers to push the boundaries of low-cost audio hardware. The PC speaker routines in Wolfenstein 3D laid the groundwork for more sophisticated sound engines in later games."
   - id: "adlib-sound-effect"
-    line_start: 176
-    line_end: 205
+    line_start: 178
+    line_end: 209
     title: "AdLib: The Sound Card That Changed Gaming"
     wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "This section manages sound effects for the AdLib sound card, a popular audio device in the early 1990s. The code interacts with the AdLib's FM synthesis capabilities, sending frequency and block data to its registers via the `alOut` routine. The AdLib card was revolutionary, offering richer audio compared to the PC speaker. Its FM synthesis allowed developers to create dynamic soundscapes, enhancing immersion in games like Wolfenstein 3D. The routines here demonstrate id Software's mastery of hardware-level programming, using direct register manipulation to achieve precise control over audio playback. The AdLib's influence extended far beyond Wolfenstein, shaping the soundtracks of countless DOS games and establishing FM synthesis as a staple of early PC gaming."
   - id: "timer-driven-sound-service"
     line_start: 276
-    line_end: 337
+    line_end: 350
     title: "Interrupts: The Secret to Real-Time Sound"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""

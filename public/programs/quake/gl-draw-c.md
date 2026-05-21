@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "foundation-variables-and-constants"
     line_start: 1
-    line_end: 29
+    line_end: 31
     title: "The Variables That Set the Stage"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "Here, the static byte array defines the crosshair texture data. This compact representation of a 64-byte crosshair demonstrates the efficiency required for mid-1990s hardware. At the time, GPUs were limited in texture memory, and developers often used small, tightly packed arrays for graphical elements. The crosshair's design reflects id Software's philosophy of balancing visual clarity with performance. This minimalist approach influenced later games, where HUD elements were optimized for readability and speed. The crosshair's simplicity also made it easy to modify, paving the way for user-driven customization in multiplayer games."
   - id: "scrap-allocation-for-small-textures"
     line_start: 119
-    line_end: 159
+    line_end: 158
     title: "The Scrap Allocation Hack"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "This section dynamically modifies the console background to include the version number. By embedding text directly into the texture, id Software avoided the performance hit of rendering additional overlays. This technique reflects the ingenuity required to optimize for hardware with limited texture memory and processing power. The dynamic console background became a hallmark of Quake's user interface, setting a precedent for interactive and visually integrated HUDs in games. The approach also inspired modders, who extended the technique to create custom backgrounds and overlays for multiplayer servers."
   - id: "draw-character-and-string"
     line_start: 488
-    line_end: 529
+    line_end: 535
     title: "Rendering Text One Character at a Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The `GL_Upload8_EXT` function processes 8-bit textures, checking for transparency (alpha) and optimizing the format accordingly. If no transparent pixels are found, the texture is converted to a simpler format to save memory and improve performance. This routine reflects the era's emphasis on squeezing every ounce of efficiency from hardware. By dynamically adjusting texture formats, id Software ensured Quake could deliver high-quality visuals without overwhelming systems with limited resources. This approach influenced later engines, which adopted similar strategies for handling texture formats dynamically based on content and hardware capabilities."
   - id: "texture-caching-for-performance-boost"
     line_start: 1310
-    line_end: 1350
+    line_end: 1349
     title: "Texture Caching for Performance Boost"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""

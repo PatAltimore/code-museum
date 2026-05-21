@@ -47,7 +47,7 @@ enhancements:
     content: "This section defines key variables used throughout MS-DOS's device call routines, such as IOXAD, IOSCNT, DEVIOBUF, and others. These variables represent the state and parameters of device I/O operations, including buffer addresses, function codes, and device attributes. In the constrained environment of 8086 assembly, every byte mattered, and these variables were meticulously chosen to balance functionality and memory usage. Tim Paterson and Microsoft's engineers designed these abstractions to make device handling modular and extensible, inspired by Unix's device driver model. This modularity allowed MS-DOS to support a wide range of hardware, contributing to its success as an OEM-friendly operating system. Later systems like Windows and Linux built on these principles, creating more sophisticated driver architectures."
   - id: "iofunc-retry-error-handling"
     line_start: 91
-    line_end: 175
+    line_end: 95
     title: "Retrying I/O: A Clever Error Handling Mechanism"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""

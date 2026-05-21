@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "menu-state-enumeration"
     line_start: 26
-    line_end: 26
+    line_end: 28
     title: "How Quake Organized Its Menu States"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The `M_AdjustSliders` function dynamically adjusts various game settings, such as screen size, gamma, and mouse sensitivity, based on user input. By mapping slider values to game variables, the developers created an intuitive way for players to customize their experience. This was a significant step forward in user interface design for games, as it provided immediate visual feedback and granular control. The technique of using sliders for configuration became standard in later games, including titles like The Sims and World of Warcraft, which expanded on this idea with more complex UI frameworks."
   - id: "keybinding-system"
     line_start: 671
-    line_end: 676
+    line_end: 836
     title: "The Keybinding System That Empowered Players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Key_binding"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This section implements Quake's keybinding system, allowing players to customize controls by assigning actions to specific keys. The `M_FindKeysForCommand` and `M_UnbindCommand` functions provide the core logic for managing bindings, while the menu interface lets players make changes interactively. In 1996, customizable keybindings were a relatively novel feature, and Quake's implementation set a precedent for player empowerment in game design. This system directly influenced later games like Counter-Strike and Team Fortress, which built on the idea by adding more sophisticated binding options and scripting capabilities."
   - id: "quit-menu-humor"
     line_start: 956
-    line_end: 966
+    line_end: 969
     title: "The Quit Menu That Mocked You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The quit menu in Quake features humorous and sometimes sarcastic messages designed to entertain players as they decide whether to exit the game. This playful approach reflects the culture of id Software at the time, where developers often injected personality and humor into their work. The quit menu became a memorable part of Quake's identity and inspired similar features in later games, such as the tongue-in-cheek error messages in Portal and the humorous loading screens in Borderlands."
   - id: "multiplayer-menu-with-web-links"
     line_start: 1025
-    line_end: 1027
+    line_end: 1051
     title: "Why QuakeWorld Advertised Websites in 1996"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
     image_url: ""

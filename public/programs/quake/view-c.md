@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "foundation-player-eye-positioning"
     line_start: 1
-    line_end: 34
+    line_end: 20
     title: "How Quake Positioned the Player's Eyes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section introduces the foundational logic for positioning the player's viewpoint in the game world. The comments highlight the importance of maintaining a consistent view position to avoid graphical errors, such as missing entities when crossing boundaries like water. In 1996, developers faced significant challenges in rendering 3D environments on hardware like the Intel 80486. John Carmack and his team at id Software devised techniques to ensure the player's view remained stable and immersive, even under constraints like limited memory and processing power. This approach influenced later games by emphasizing the importance of precise view positioning in 3D engines, paving the way for advancements in rendering stability and realism."
   - id: "v-calc-roll-motion-feedback"
     line_start: 75
-    line_end: 102
+    line_end: 100
     title: "The Roll Effect That Simulated Motion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `V_CalcRoll` function calculates the roll of the player's view based on their velocity and angles. This subtle effect enhances immersion by simulating the physical sensation of movement. In the mid-1990s, such techniques were groundbreaking, as most games relied on static or simplistic camera movements. Inspired by real-world physics, this function uses vector math to determine the roll direction and magnitude, creating a dynamic and responsive experience. This innovation influenced future first-person shooters, including Half-Life and Counter-Strike, which adopted similar techniques to heighten player immersion."
   - id: "v-calc-bob-immersive-player-motion"
     line_start: 105
-    line_end: 142
+    line_end: 121
     title: "The Bobbing Effect That Made Walking Real"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

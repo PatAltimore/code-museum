@@ -95,7 +95,7 @@ enhancements:
     content: "DAM-ROOM describes the top of Flood Control Dam #3, a location with dynamic water levels and interactive elements like a control panel. Players can manipulate the sluice gates to change the environment, showcasing Zork's innovative approach to environmental puzzles. The dam became a memorable part of the game, influencing the design of later titles with dynamic environments, such as 'Half-Life' and 'Bioshock.'"
   - id: "define-maint-room"
     line_start: 737
-    line_end: 755
+    line_end: 753
     title: "Maintenance Room: The Water Rises"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""

@@ -38,15 +38,15 @@ enhancements:
     image_caption: ""
     content: "This section begins with the inclusion of DOSSEG.ASM and DOSSYM.ASM, which define segment structures and symbolic constants used throughout the disk routines. In the early 1980s, modular programming in assembly was rare but increasingly necessary as operating systems grew in complexity. By separating reusable definitions into include files, MS-DOS v2.0 achieved better maintainability and portability. Tim Paterson and the Microsoft team likely adopted this approach to streamline development for multiple OEMs. This modularity influenced later operating systems, including Windows, where header files became standard practice for defining system-level constants and structures."
   - id: "name-disk-initialization"
-    line_start: 35
-    line_end: 193
+    line_start: 33
+    line_end: 63
     title: "The Setup That Made Disk I/O Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
     content: "The NAME section initializes key variables and structures for disk operations, including file control blocks (FCBs) and device-specific parameters. FCBs were a legacy from CP/M, which MS-DOS inherited and extended. This setup reflects the constraints of the IBM PC's 8086 processor, which lacked advanced memory management features. By explicitly defining variables like DMAADD and THISFCB, the code ensures compatibility with the hardware's direct memory access (DMA) capabilities. This approach laid the groundwork for later abstractions like file handles and virtual file systems, which became standard in modern operating systems."
   - id: "swapback-subroutine"
-    line_start: 195
+    line_start: 131
     line_end: 207
     title: "How MS-DOS Swapped File Buffers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
@@ -94,8 +94,8 @@ enhancements:
     image_caption: ""
     content: "The GetThisDrv routine determines the current drive based on user input or default settings. It validates the drive identifier and updates system variables like THISDRV. This operation reflects the simplicity of MS-DOS's drive management, where each drive was represented by a single letter (e.g., A:, B:). The routine's design influenced later systems, where drive letters became a standard convention for accessing storage devices."
   - id: "getthisdrv-disk-drive-selection"
-    line_start: 1015
-    line_end: 1077
+    line_start: 989
+    line_end: 1015
     title: "How MS-DOS Decides Which Drive to Use"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `SETUP` routine initializes the parameters for disk read or write operations, setting up the drive, cluster, and sector information. It calculates positions within clusters and segments, ensuring that data transfers are correctly aligned with the physical disk structure. This routine reflects the constraints of early PCs, where memory and storage were tightly limited, requiring careful planning to avoid overflows or misaligned transfers. By abstracting these details, MS-DOS enabled developers to focus on higher-level application logic, a design principle that influenced later operating systems like Windows and Linux, which further abstracted hardware details from user-space applications."
   - id: "breakdown-large-disk-transfers"
-    line_start: 1735
+    line_start: 1689
     line_end: 1765
     title: "Breaking Down Large Disk Transfers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_buffer"
@@ -135,7 +135,7 @@ enhancements:
     content: "`BreakDown` splits large disk transfers into smaller chunks, calculating the number of sectors and bytes to transfer in each step. This routine is essential for handling files larger than the memory segment size, a common limitation in 16-bit systems. By dividing transfers into manageable pieces, MS-DOS ensured compatibility with the FAT file system and BIOS-level disk operations. This technique influenced buffer management in later systems, where efficient handling of large data transfers became critical for performance. It also laid the groundwork for modern file systems that optimize disk I/O through caching and prefetching."
   - id: "diskread-user-disk-read-operation"
     line_start: 1773
-    line_end: 2131
+    line_end: 2013
     title: "Performing User-Level Disk Reads"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -175,7 +175,7 @@ enhancements:
     content: "The DISKREAD subroutine performs a user disk read operation, handling inputs from the FCB and outputs such as the last record position and the number of records read. It marks the file as dirty, calculates the last sector accessed, and invokes routines like BREAKDOWN and CALCLUS to manage cluster and sector calculations. This routine showcases the complexity of disk I/O optimization in the constrained environment of early PCs. In 1983, personal computers like the IBM PC relied on floppy disks and hard drives with limited capacity and slow access speeds. Efficient disk I/O was critical to ensure acceptable performance for users. The techniques used in DISKREAD reflect the influence of Unix-like systems, where similar methods were employed to optimize file handling. Tim Paterson's original design for 86-DOS provided a simple interface for disk operations, but MS-DOS 2.0 expanded on this foundation to support advanced features. Disk I/O optimization remains a key area of focus in modern computing, with techniques like caching, buffering, and prefetching building on the principles established here. The routines in DISK.ASM influenced later operating systems, including Windows, where efficient disk access became a cornerstone of performance improvements. The legacy of these optimizations can be seen in technologies like SSDs and NVMe drives, which push the boundaries of storage performance."
   - id: "wrteof-file-end-handling"
     line_start: 2513
-    line_end: 2593
+    line_end: 2565
     title: "Handling File End: Closing the Loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""

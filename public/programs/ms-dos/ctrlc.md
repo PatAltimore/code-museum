@@ -55,7 +55,7 @@ enhancements:
     content: "The CNTCHAND routine is the Ctrl-C handler, responsible for restoring the user's stack and executing the user-defined Ctrl-C handler. It carefully manipulates the stack to ensure that the system can either continue processing or terminate gracefully, depending on the user's input. This routine highlights the challenges of implementing multitasking and error recovery in an environment with limited hardware support. The stack manipulation techniques used here became foundational for later operating systems, influencing how interrupts and exceptions are handled in modern kernels."
   - id: "division-overflow-handler"
     line_start: 231
-    line_end: 237
+    line_end: 243
     title: "What Happens When Division Overflows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Division_by_zero"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The DIVOV routine handles division overflow errors, a common issue in low-level programming. When a division operation exceeds the maximum representable value, this routine displays an error message and invokes the Ctrl-C abort handler to terminate the program. This approach reflects the simplicity of error handling in early operating systems, where graceful recovery was often sacrificed for simplicity and performance. The concept of trapping arithmetic errors influenced later programming languages and systems, which introduced more sophisticated exception handling mechanisms."
   - id: "hard-disk-error-handler"
     line_start: 287
-    line_end: 379
+    line_end: 351
     title: "Recovering From Disk Errors in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_error"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The HardErr routine handles errors encountered during disk operations, such as write protection or sector failures. It uses a combination of stack manipulation and device-specific logic to determine the cause of the error and attempt recovery. If recovery is not possible, it invokes the fatal error interrupt vector to terminate the operation. This routine showcases the challenges of implementing reliable disk I/O in early PCs, where hardware limitations often led to errors that required careful handling to avoid data loss. The techniques used here influenced later file systems and error recovery mechanisms, such as journaling and RAID."
   - id: "reset-environment-process-management"
     line_start: 381
-    line_end: 461
+    line_end: 463
     title: "The Routine That Reset the World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Process_management_(computing)"
     image_url: ""

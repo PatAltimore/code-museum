@@ -47,7 +47,7 @@ enhancements:
     content: "This section defines a lookup table for vertex normals, used to calculate lighting effects on 3D models. The table, stored in 'anorms.h', contains precomputed normal vectors for 162 orientations, enabling fast lighting calculations without runtime computation. In the mid-1990s, real-time lighting was a significant challenge due to limited hardware capabilities. By using precomputed normals, Quake achieved realistic shading while maintaining high performance. This technique became a standard in 3D graphics, influencing games and engines that followed. Modern graphics pipelines still use similar optimizations, albeit with more advanced shaders and hardware acceleration."
   - id: "bounding-box-check"
     line_start: 84
-    line_end: 245
+    line_end: 244
     title: "Bounding Box Check: Rejecting Invisible Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"
     image_url: ""

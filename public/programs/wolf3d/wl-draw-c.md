@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "fixed-point-multiplication"
     line_start: 128
-    line_end: 181
+    line_end: 183
     title: "The Trick That Made Fixed Point Work"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""

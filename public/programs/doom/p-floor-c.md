@@ -55,7 +55,7 @@ enhancements:
     content: "The `EV_DoFloor` function handles various types of floor movements, from lowering floors to their lowest surrounding height to raising them at turbo speeds. This modular design allows level designers to create diverse gameplay scenarios, such as elevators, traps, and platforms. Each movement type is associated with specific parameters, like speed and destination height, enabling precise control over the game's dynamic geometry. DOOM's level design was revolutionary for its time, offering unprecedented interactivity and verticality. John Romero, the game's designer, envisioned levels that felt alive, with moving parts that responded to player actions. The modular approach in `EV_DoFloor` reflects this vision, providing a flexible framework for implementing complex level mechanics. This design philosophy influenced the development of later games and engines. Quake expanded on the concept with more advanced physics and collision detection, while modern engines like Unreal and Unity offer even greater flexibility for dynamic level design. The ability to script diverse floor movements remains a staple of game development, rooted in the innovations of DOOM."
   - id: "build-stairs-algorithm"
     line_start: 448
-    line_end: 553
+    line_end: 552
     title: "How DOOM Built Stairs in Real Time"
     wikipedia_url: "https://doomwiki.org/wiki/Stairs"
     image_url: ""

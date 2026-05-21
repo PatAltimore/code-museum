@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "memory-allocation-highmem"
     line_start: 149
-    line_end: 253
+    line_end: 337
     title: "How MS-DOS Allocated Memory in 1983"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -49,7 +49,7 @@ enhancements:
     content: "The 'CHKARG' routine parses command-line arguments, a critical feature for MS-DOS's command-line interface. It identifies switches (e.g., `/P`) and processes them, converting characters to lowercase for case-insensitive comparison. This approach reflects the constraints of assembly programming, where every operation must be explicitly coded. Command-line parsing was essential for DOS's usability, allowing users to pass parameters to programs and scripts. The technique influenced later command-line systems, including Unix shells and Windows CMD. Developers studying this code learned how to implement efficient string processing in low-level languages, a skill still relevant in embedded systems and performance-critical applications."
   - id: "device-initialization"
     line_start: 685
-    line_end: 709
+    line_end: 767
     title: "Making Any File Act Like a Device"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
     image_url: ""
@@ -65,7 +65,7 @@ enhancements:
     content: "The 'COMTRLOOP' section includes code for handling Kanji characters, reflecting Microsoft's efforts to support international markets. Kanji, used in Japanese writing, requires multi-byte encoding, which complicates string processing. This routine checks for Kanji characters and adjusts the parsing logic accordingly. In the early 1980s, internationalization was becoming increasingly important as personal computers gained global popularity. Microsoft's inclusion of Kanji support in MS-DOS v2.0 helped the operating system succeed in Japan, one of the world's largest PC markets. This work influenced later efforts in software localization and encoding standards, including Unicode, which solved many of the challenges seen here."
   - id: "command-com-validation"
     line_start: 877
-    line_end: 925
+    line_end: 965
     title: "Ensuring COMMAND.COM Exists"
     wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""
@@ -97,7 +97,7 @@ enhancements:
     content: "The `LOOPIT` routine iterates through command-line arguments using the `LOOP` instruction, a compact and efficient way to repeat operations in assembly language. This technique was crucial for parsing user input in an era when graphical user interfaces were rare and command-line interfaces dominated. Parsing arguments efficiently was a priority, as it directly impacted the usability of the operating system. The design here reflects the influence of Unix, which popularized command-line utilities and argument parsing. This routine set the stage for more sophisticated argument handling in later versions of MS-DOS and inspired similar mechanisms in early scripting languages like batch files and shell scripts."
   - id: "handling-environment-pointers"
     line_start: 1057
-    line_end: 1175
+    line_end: 1199
     title: "Handling Environment Pointers for Process Control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Environment_variable"
     image_url: ""
@@ -113,7 +113,7 @@ enhancements:
     content: "The `COPYCOMSP` routine copies the environment of the command processor into a new memory segment. This ensures the environment variables are preserved and accessible during the execution of subsequent processes. The routine uses instructions like `LODSB` and `STOSB` to copy byte-by-byte, reflecting the manual memory management required in assembly programming. This approach was critical for supporting batch files and scripts, which relied on consistent environment settings. The technique influenced the development of scripting languages and tools, such as PowerShell and Bash, which expanded on the concept of environment management to enable more sophisticated automation and process control."
   - id: "kanji-character-handling-2"
     line_start: 1669
-    line_end: 1809
+    line_end: 1793
     title: "Handling Kanji Characters for Internationalization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""

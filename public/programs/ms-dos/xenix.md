@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-dosseg-setup"
     line_start: 9
-    line_end: 93
+    line_end: 37
     title: "Setting Up Segments for DOS Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

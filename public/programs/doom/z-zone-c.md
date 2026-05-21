@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "zone-memory-allocation-overview"
     line_start: 31
-    line_end: 55
+    line_end: 59
     title: "Why DOOM Avoided Contiguous Free Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

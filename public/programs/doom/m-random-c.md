@@ -49,7 +49,7 @@ enhancements:
     content: "The `M_Random` function generates random numbers for gameplay elements, such as enemy behavior and item drops. Unlike `P_Random`, which is deterministic, `M_Random` uses a separate index (`rndindex`) to cycle through the `rndtable`. This introduces non-deterministic randomness, adding unpredictability to the single-player experience. Players could encounter varied gameplay scenarios, enhancing replayability and immersion. In the early 1990s, this approach was innovative, as it balanced performance constraints with the need for engaging gameplay. The technique influenced later game designs, where controlled randomness became a staple for creating dynamic and memorable experiences."
   - id: "resetting-random-state"
     line_start: 68
-    line_end: 71
+    line_end: 70
     title: "Why DOOM Could Reset Randomness"
     wikipedia_url: "https://en.wikipedia.org/wiki/State_(computer_science)"
     image_url: ""

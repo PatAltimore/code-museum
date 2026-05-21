@@ -63,7 +63,7 @@ enhancements:
     content: "The `Mod_DecompressVis` function decompresses visibility data for map leaves, converting compacted data into a usable format. This compression was necessary to fit large maps into limited memory while maintaining fast access during rendering. By using run-length encoding, Quake's developers optimized memory usage without sacrificing performance. This technique became a standard in game development, influencing how visibility data is handled in modern engines like Unity and Unreal."
   - id: "mod-loadtextures-animated-textures"
     line_start: 332
-    line_end: 479
+    line_end: 485
     title: "Animating Textures in a 3D World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `Mod_LoadLeafs` function loads leaf data, including visibility information and ambient sound levels. Leafs are the smallest units in Quake's BSP tree, representing areas of space used for rendering and collision detection. By compressing visibility data and associating sound levels with leaves, Quake created immersive environments that felt alive. This granular approach to spatial data influenced later engines like Source, which expanded on the concept with more detailed environmental interactions."
   - id: "mod-loadclipnodes-clipping-hulls"
     line_start: 921
-    line_end: 971
+    line_end: 979
     title: "How Quake Handles Collision with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The `Mod_LoadAliasFrame` function processes individual animation frames for alias models, which represent characters and objects in Quake. By copying vertex data and bounding box information, the function prepares models for rendering and animation. Alias models were a significant step forward in 3D graphics, allowing detailed and animated characters to populate game worlds. This technique influenced the development of skeletal animation systems in later engines, such as Unity and Unreal Engine."
   - id: "mod-loadaliasgroup-frame-groups"
     line_start: 1275
-    line_end: 1337
+    line_end: 1344
     title: "Handling Frame Groups for Smooth Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
@@ -151,7 +151,7 @@ enhancements:
     content: "The `Mod_LoadAliasGroup` function loads groups of animation frames, enabling smooth transitions between different states. By precomputing intervals and bounding box data, the function optimizes animation playback. This approach was crucial for creating fluid character movements in Quake, a feature that set it apart from earlier games with rigid animations. Frame grouping techniques were later expanded in engines like Unreal to support complex animations and blending."
   - id: "mod-loadaliasmodel-comprehensive-alias-loading"
     line_start: 1434
-    line_end: 1683
+    line_end: 1691
     title: "Comprehensive Alias Model Loading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

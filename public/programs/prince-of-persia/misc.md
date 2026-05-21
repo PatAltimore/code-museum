@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "vanish-character-mechanics"
     line_start: 67
-    line_end: 97
+    line_end: 81
     title: "How Characters Vanish in Prince of Persia"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "MOVEMEM is a subroutine for moving blocks of memory, a critical operation in a game that uses bank-switched memory. It copies data byte-by-byte from a source to a destination, iterating until the end of the source block. A warning in the comments highlights the risk: if the source and destination overlap incorrectly, the routine could overwrite 64K of memory. This reflects the challenges of programming on the Apple II, where memory management was manual and errors could be catastrophic. Mechner's careful documentation and design ensured reliability, a necessity in a game that pushed the hardware to its limits. Techniques like this influenced memory management in later systems, including early consoles like the NES."
   - id: "move-music-data"
     line_start: 120
-    line_end: 150
+    line_end: 136
     title: "How Music Data Moves Between Memory Banks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "MOVEAUXLC transfers a block of memory from main memory to the auxiliary language card, setting interrupt vectors in both memory banks. This routine is loaded into main memory by the MASTER program and becomes useless once transferred to auxiliary memory. The Apple II's language card was a clever hardware extension that allowed developers to work around the system's memory limitations. Mechner's use of this feature demonstrates his deep understanding of the hardware and his ability to exploit its quirks for gameplay purposes. This approach influenced later developers working on systems with similar memory constraints, such as the Commodore 64 and early IBM PCs."
   - id: "guard-ai-mechanics"
     line_start: 186
-    line_end: 234
+    line_end: 218
     title: "The AI That Stops You in Your Tracks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "POTIONEFFECT handles the effects of potions, which can grant abilities like weightlessness, boost strength, or invert the screen. The routine checks the type of potion and applies the corresponding effect, often accompanied by visual and audio cues. Potions were a key gameplay mechanic in Prince of Persia, adding variety and strategy to the player's experience. Mechner's implementation reflects his cinematic approach, where gameplay and storytelling are closely intertwined. The use of potions as dynamic modifiers influenced later games, such as The Legend of Zelda series, where items play a similar role in shaping gameplay."
   - id: "mouse-rescue-mechanics"
     line_start: 347
-    line_end: 379
+    line_end: 373
     title: "How a Mouse Saves the Day"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "MOUSERESCUE triggers a sequence where a mouse rescues the player. It sets up the mouse as a character, positions it in the game world, and animates its movement. This sequence is an example of Mechner's storytelling through gameplay. The mouse rescue adds a cinematic touch to the game, making the world feel alive and interconnected. This approach to integrating narrative and gameplay influenced later cinematic platformers, such as Another World and Flashback."
   - id: "reflection-mechanics"
     line_start: 475
-    line_end: 481
+    line_end: 523
     title: "The Mirror That Creates a Shadow"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "REFLECTION handles the mechanics of the mirror and the player's shadow. It checks if the player is standing before the mirror and draws their reflection as a pseudo-character. This routine is part of the game's cinematic storytelling, where the mirror plays a key role in the narrative. The reflection mechanic was groundbreaking for its time, creating a sense of depth and immersion that few games had achieved. It influenced later games with similar storytelling techniques, such as Silent Hill and Shadow of the Colossus."
   - id: "bones-rise-mechanics"
     line_start: 595
-    line_end: 690
+    line_end: 679
     title: "Skeletons That Rise From the Floor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "BONESRISE triggers the appearance of skeletons, a memorable moment in Prince of Persia. It checks conditions like the player's position and level state, removes a dead skeleton, and creates a live one. This sequence adds a cinematic and eerie touch to the game, showcasing Mechner's ability to use simple mechanics for dramatic effect. The rising skeletons became an iconic part of the game, influencing later titles with similar horror or suspense elements, such as Resident Evil and Dark Souls."
   - id: "check-alert-mechanics"
     line_start: 827
-    line_end: 978
+    line_end: 968
     title: "How Enemies Spot You in Prince of Persia"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -119,14 +119,14 @@ enhancements:
     content: "This section begins with the `DISPVERSION` label and contains a loop that prints the version information to the top line of the Apple II screen. The loop iterates over the `textline` array, checking for an end marker (`@`) and writing each character to memory address `$400`, which corresponds to the top line of the text screen. The programmer, Jordan Mechner, needed a way to display static information like the game version while working within the constraints of the Apple II's text and graphics modes. At the time, the Apple II's memory layout required direct manipulation of screen memory, as there were no high-level APIs for rendering text. This approach reflects the hands-on nature of programming in 6502 assembly, where developers had to intimately understand hardware registers and memory maps. The technique of directly writing to screen memory became a standard practice for Apple II developers, influencing other games and utilities written for the platform. Mechner's careful handling of the loop ensures efficiency and avoids unnecessary overhead, a hallmark of assembly programming on constrained systems."
   - id: "keypress-detection-loop"
     line_start: 1003
-    line_end: 1013
+    line_end: 1007
     title: "Waiting for a Keypress: A Hardware Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""
     image_caption: ""
     content: "This section implements a loop (`:wloop`) that waits for a keypress by polling the Apple II's keyboard hardware register at `$c000`. The loop continuously checks the status of the register until a key is pressed, indicated by the register's high bit being set. Once a keypress is detected, the program writes to `$c010` to clear the keyboard strobe, resetting the register for future input. This technique was common on the Apple II, where developers often had to interact directly with hardware registers to handle input. Mechner's approach here is minimalistic and efficient, reflecting the constraints of the era: there were no operating system-level abstractions for input handling, so developers relied on direct polling. This method of handling input influenced other Apple II games and utilities, as it was both simple and effective. The reliance on hardware polling highlights the low-level nature of programming on the Apple II, where developers had to balance responsiveness with CPU cycles carefully."
   - id: "graphics-mode-switching"
-    line_start: 1014
+    line_start: 1009
     line_end: 1016
     title: "Switching Between Text and Graphics Modes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"

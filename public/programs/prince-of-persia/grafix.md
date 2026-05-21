@@ -127,7 +127,7 @@ enhancements:
     content: "The `RND` routine generates random numbers using a linear congruential formula: `(5 * seed + 23) mod 256`. This simple algorithm updates the `RNDseed` variable, providing pseudo-random values for gameplay elements like enemy behavior or environmental effects. Random number generation was essential for creating dynamic and unpredictable experiences in games, especially on hardware without dedicated RNG support. Mechner's implementation reflects the ingenuity required to simulate randomness on the Apple II. This technique influenced later games, where similar algorithms were used for procedural generation and AI decision-making, paving the way for modern game mechanics."
   - id: "music-system-integration"
     line_start: 1618
-    line_end: 1892
+    line_end: 1866
     title: "Music System II: Modular Sound Design"
     wikipedia_url: "https://en.wikipedia.org/wiki/Music_system"
     image_url: ""
@@ -159,7 +159,7 @@ enhancements:
     content: "The getparam routine reads a control panel parameter from the Apple IIGS. It accepts a location in the Y register and returns the current setting in the accumulator (A). The routine begins by verifying that it is running on an IIGS, exiting early if not. It then saves the processor state, switches to 16-bit mode (via REP $30), and calls a system routine at address E10000 using a JSL (Jump to Subroutine Long) instruction. This address is specific to the IIGS control panel. In the mid-1980s, the Apple IIGS introduced a more advanced graphical user interface and system-level features compared to earlier Apple II models. Mechner’s decision to include IIGS-specific routines highlights his effort to optimize Prince of Persia for the latest hardware, ensuring compatibility and leveraging its capabilities. The use of JSL reflects the IIGS’s expanded instruction set, which allowed for more sophisticated system interactions. This routine exemplifies how developers adapted their code to support multiple hardware configurations, a practice that became increasingly important as personal computing diversified. While modern APIs abstract hardware differences, early developers like Mechner had to write specific routines for each platform. The control panel interaction here foreshadows the modular design principles seen in later operating systems and game engines, where configuration settings are abstracted into centralized systems."
   - id: "set-control-panel-parameter"
     line_start: 2105
-    line_end: 2127
+    line_end: 2123
     title: "Setting Parameters: A Glimpse into IIGS Control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIGS"
     image_url: ""

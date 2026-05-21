@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "status-bar-initialization"
     line_start: 126
-    line_end: 220
+    line_end: 231
     title: "How Quake's Status Bar Was Built"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
     image_url: ""

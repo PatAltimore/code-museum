@@ -47,7 +47,7 @@ enhancements:
     content: "The LOCATE procedure begins by checking the version of DOS using interrupt 21h, function AH=30h. If the DOS version is less than 2.0, the program displays an error message and exits. This reflects the transition from 86-DOS to MS-DOS 2.0, which introduced significant improvements, including better file handling and system calls. The version check ensured compatibility with the newer features of MS-DOS 2.0, such as subdirectories and file handles. At the time, backward compatibility was a critical concern, as many users were still running older versions of DOS. This approach influenced future software development, where version checks became standard practice to ensure compatibility and prevent runtime errors."
   - id: "file-name-parsing"
     line_start: 301
-    line_end: 485
+    line_end: 517
     title: "Parsing File Names with Assembly Loops"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "This section parses file names provided by the user, storing them in memory while handling spaces and extensions. It uses assembly loops and conditional jumps to process each character, checking for spaces, carriage returns, and periods to identify extensions. In the early 1980s, user input was typically raw and unstructured, requiring programs to handle edge cases like missing extensions or invalid characters. The parsing logic here ensures that file names are properly formatted before proceeding with the conversion process. This technique, though basic by today's standards, was foundational for file handling in early operating systems. It influenced later developments in command-line utilities and scripting languages, where robust input parsing became a critical feature."
   - id: "exe-header-validation"
     line_start: 571
-    line_end: 699
+    line_end: 603
     title: "Validating and Adjusting EXE Headers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Executable"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The RELOC procedure processes the relocation table of the .EXE file, adjusting memory addresses to match the load location of the binary file. It reads relocation pointers from the file and applies the necessary adjustments to ensure the binary file functions correctly. Relocation was a critical operation in early computing, as programs needed to run in different memory locations depending on system configuration. This section showcases the programmer's deep understanding of memory management and file structures. The relocation logic here influenced later developments in dynamic linking and loading, where similar techniques are used to adjust memory addresses at runtime. It also laid the groundwork for modern executable formats that support relocatable code."
   - id: "binary-file-creation"
     line_start: 951
-    line_end: 1013
+    line_end: 1003
     title: "Creating and Writing Binary Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_file"
     image_url: ""

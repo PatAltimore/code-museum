@@ -63,7 +63,7 @@ enhancements:
     content: "The do_exec subroutine implements the EXEC system call, enabling the creation of new processes in MS-DOS. This routine saves the current state of the CPU registers and stack, allocates memory for the new process, and switches to the new stack if necessary. EXEC was inspired by Unix's fork and exec system calls but adapted for the simpler MS-DOS environment. Process creation was a novel feature for early personal computers, allowing users to run multiple programs sequentially. This routine laid the groundwork for multitasking in later operating systems and influenced the design of process management in Windows."
   - id: "get-mem-memory-allocation"
     line_start: 385
-    line_end: 537
+    line_end: 493
     title: "The Trick That Allocated All Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The LODCOM subroutine handles memory allocation and recovery for the transient portion of COMMAND.COM. If the transient portion is corrupted or insufficient memory is available, this routine attempts to allocate new memory and reload the command interpreter. Memory recovery was a critical feature in MS-DOS, as crashes and memory corruption were common in the early days of personal computing. By implementing robust recovery mechanisms, MS-DOS improved reliability and user experience. This approach influenced memory management in later operating systems, which adopted more sophisticated techniques for detecting and recovering from errors."
   - id: "havcom-path-separator-selection"
     line_start: 1029
-    line_end: 1063
+    line_end: 1067
     title: "Why MS-DOS Supports Two Path Separators"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "This section determines whether the default path separator should be '/' or '\\'. The code checks the value of the 'RSWITCHAR' variable and sets the alternative separator accordingly. This decision reflects compatibility concerns during the early 1980s, as MS-DOS aimed to accommodate both Unix-like conventions (using '/') and IBM PC conventions (using '\\'). At the time, Unix systems were gaining traction, and Microsoft wanted MS-DOS to appeal to a broad audience, including developers familiar with Unix. This dual-path separator approach became a hallmark of MS-DOS and influenced later systems like Windows, which inherited the '\\' convention. The choice also highlights the pragmatic design philosophy of MS-DOS: prioritize compatibility and ease of use over strict adherence to one standard."
   - id: "remcheck-media-type-detection"
     line_start: 1079
-    line_end: 1167
+    line_end: 1159
     title: "How MS-DOS Identified Removable Media"
     wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The REMCHECK routine determines whether the media in a drive is removable or fixed. It uses an interrupt call to retrieve equipment information and performs bitwise operations to classify the media type. This functionality was crucial for MS-DOS, as removable floppy disks were the primary storage medium for early PCs. IBM PCs, launched in 1981, relied heavily on floppy drives, and software needed to differentiate between removable and fixed media to manage file systems effectively. The routine's reliance on hardware-specific interrupts underscores the tight coupling between software and hardware during this era. This approach influenced later operating systems, which continued to refine media detection mechanisms as storage technologies evolved."
   - id: "savhand-stdin-stdout-redirection"
     line_start: 1223
-    line_end: 1255
+    line_end: 1259
     title: "Redirecting Input and Output for Transient Programs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Standard_streams"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The SAVHAND routine temporarily redirects standard input (stdin) and standard output (stdout) to the standard error (stderr) stream. This is achieved by saving the current handles, duplicating stderr, and updating the process's header table. Such redirection was essential for transient programs like COMMAND.COM, which needed to manage user input and output streams dynamically. In the early 1980s, transient programs were a novel concept, allowing MS-DOS to load and execute small utilities without permanently occupying memory. This technique influenced later operating systems and programming practices, where stream redirection became a standard feature for managing subprocesses and logging."
   - id: "readcom-loading-command-com"
     line_start: 1391
-    line_end: 1463
+    line_end: 1455
     title: "The Routine That Loaded COMMAND.COM"
     wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The CHKSUM routine computes a checksum for transient programs loaded into memory. It iterates through the program's data, summing 16-bit words to produce a validation value. Checksums were a common method for verifying data integrity in the 1980s, especially in systems like MS-DOS that operated close to hardware. This routine ensured that transient programs were correctly loaded and not corrupted, a critical feature for maintaining system stability. The use of checksums influenced later software development, where more sophisticated integrity checks, such as cryptographic hashes, became standard practice. This routine exemplifies the careful attention to reliability in early operating systems."
   - id: "setvect-interrupt-vector-setup"
     line_start: 1501
-    line_end: 1525
+    line_end: 1521
     title: "Setting Interrupt Vectors for Error Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
     image_url: ""

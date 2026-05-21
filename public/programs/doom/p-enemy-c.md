@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "directional-movement-lookup-table"
     line_start: 50
-    line_end: 63
+    line_end: 78
     title: "The Lookup Table That Guides Enemy Movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "`P_CheckMeleeRange` determines whether an enemy is close enough to attack the player with a melee strike. It calculates the distance between the enemy and the player, factoring in the player's radius and checking line-of-sight. This ensures that melee attacks are realistic and only occur when the player is within reach. In 1993, such precise distance calculations were rare in games, as most relied on simple proximity checks. DOOM's implementation set a precedent for realistic enemy behavior, influencing later titles like Quake (1996) and Unreal (1998)."
   - id: "missile-range-check"
     line_start: 193
-    line_end: 255
+    line_end: 208
     title: "The Algorithm Behind DOOM's Missile Attacks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
@@ -199,7 +199,7 @@ enhancements:
     content: "The `A_BrainAwake` function initializes the targeting system for the final boss, the Icon of Sin. It scans the game world for specific target objects (`MT_BOSSTARGET`) and stores them in an array for later use. This mechanic ensures that the boss can dynamically interact with the environment by spawning projectiles aimed at these targets. In 1993, such dynamic behavior was rare in games, which often relied on static patterns. The Icon of Sin's targeting system added unpredictability and challenge to the final encounter, influencing boss design in later games like Dark Souls, where environmental interaction plays a key role."
   - id: "brain-explode-and-telefrag"
     line_start: 1874
-    line_end: 1892
+    line_end: 1922
     title: "Brain Explode and Telefrag Mechanics"
     wikipedia_url: "https://doomwiki.org/wiki/Telefrag"
     image_url: ""

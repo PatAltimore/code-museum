@@ -55,7 +55,7 @@ enhancements:
     content: "This section defines functions for managing linked lists, including `ClearLink`, `RemoveLink`, and `InsertLinkBefore/After`. Linked lists were a common data structure in the 1990s, used for dynamic memory management and efficient traversal. Quake relied on linked lists for various subsystems, such as entity management and collision detection. These functions demonstrate id Software's focus on performance and modularity, ensuring that list operations were both fast and reusable. Michael Abrash, known for his expertise in optimization, likely contributed to these routines. The use of linked lists in Quake influenced later game engines, which adopted similar structures for handling dynamic game objects."
   - id: "library-replacement-functions"
     line_start: 128
-    line_end: 151
+    line_end: 291
     title: "Why Quake Rewrote Standard Library Functions"
     wikipedia_url: "https://en.wikipedia.org/wiki/C_standard_library"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The byte-order functions (`ShortSwap`, `LongSwap`, `FloatSwap`, etc.) address the issue of endianness, ensuring data consistency across different platforms. Endianness refers to the order in which bytes are stored in memory, which varies between architectures like x86 (little-endian) and PowerPC (big-endian). Multiplayer games like Quake required consistent data formats for communication between clients and servers. By implementing these functions, id Software guaranteed compatibility and avoided subtle bugs caused by mismatched byte orders. This solution became standard practice in networking code, influencing protocols and engines used in games like Counter-Strike and World of Warcraft."
   - id: "message-io-functions"
     line_start: 498
-    line_end: 522
+    line_end: 848
     title: "How Quake Serialized Multiplayer Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Serialization"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `MSG_Write` and `MSG_Read` functions handle serialization and deserialization of game data for multiplayer communication. Serialization converts complex data structures into a format suitable for transmission over a network, while deserialization reconstructs them on the receiving end. Quake's implementation includes checks for data alignment and byte-ordering, ensuring reliability and performance. This system was critical for Quake's groundbreaking multiplayer capabilities, allowing players to interact seamlessly in real-time. The techniques pioneered here influenced later networking frameworks, including those used in Unreal Tournament and modern engines like Unity and Unreal Engine."
   - id: "com-skip-path-and-file-utilities"
     line_start: 900
-    line_end: 917
+    line_end: 923
     title: "File Management Tricks for Game Modding"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_modding"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `COM_Parse` function extracts tokens from strings, a crucial utility for handling command-line arguments and scripting. This capability allowed Quake to support complex configurations and commands, empowering users to customize their gameplay experience. The tokenization approach reflects id Software's focus on flexibility and user control, which became a defining feature of their games. Techniques like this influenced scripting systems in later engines, including Lua integration in World of Warcraft and Python scripting in Blender."
   - id: "skipwhite-comment-handling"
     line_start: 1029
-    line_end: 1036
+    line_end: 1043
     title: "How Quake Parses Arguments and Ignores Comments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The `COM_CheckRegistered` function checks for the presence and integrity of the `pop.txt` file to determine whether the user is running the registered or shareware version of Quake. It uses CRC checks to verify file integrity, a technique that ensures data hasn't been corrupted or tampered with. This was critical in the 1990s for enforcing software licensing and preventing piracy. The function also exits if an unregistered user attempts to access restricted features, reflecting the era's approach to shareware distribution. This method of file verification influenced later games and software by demonstrating the effectiveness of CRC checks for maintaining data integrity and enforcing licensing."
   - id: "com-initargv-safe-mode"
     line_start: 1145
-    line_end: 1178
+    line_end: 1186
     title: "Enabling Safe Mode in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Safe_mode"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The `COM_LoadPackFile` function loads and verifies Quake's pack files, which contain game assets like textures and models. It reads the pack file header and directory, checks for modifications using CRC, and parses the file list. Pack files were an innovative solution for organizing and compressing game data, enabling faster loading and easier distribution. The CRC check ensures the integrity of the files, preventing issues caused by corruption or tampering. This system influenced later games by popularizing the use of pack files for asset management, a practice still used in modern engines like Unity and Unreal."
   - id: "com-addgamedirectory-dynamic-paths"
     line_start: 1702
-    line_end: 1747
+    line_end: 1755
     title: "Adding Game Directories Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Filesystem"
     image_url: ""

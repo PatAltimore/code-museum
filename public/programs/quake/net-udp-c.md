@@ -41,7 +41,7 @@ enhancements:
     content: "The `NetadrToSockadr` and `SockadrToNetadr` functions convert between Quake's internal `netadr_t` structure and the standard `sockaddr_in` structure used by the operating system. This translation is essential for interfacing with the underlying network stack. In 1996, the choice to use IPv4 (`AF_INET`) reflected the dominance of this protocol in networking. The functions use direct memory manipulation (`memset` and pointer casting) for efficiency, a hallmark of Carmack's programming style. These conversions allowed Quake to abstract network addresses in a way that was portable across platforms, a necessity given the game's release on multiple operating systems. The technique influenced later game engines, which adopted similar abstractions to manage network communication."
   - id: "compare-network-addresses"
     line_start: 76
-    line_end: 89
+    line_end: 81
     title: "Comparing Network Addresses: Base and Full"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_network"
     image_url: ""
@@ -49,7 +49,7 @@ enhancements:
     content: "The `NET_CompareBaseAdr` and `NET_CompareAdr` functions provide mechanisms to compare network addresses, either by their base IP or including the port number. These functions are critical for determining whether two addresses represent the same client or server, enabling efficient handling of multiplayer connections. The decision to separate base address comparison from full address comparison reflects the need for flexibility in networking logic, such as distinguishing between clients on the same IP but different ports. In the mid-1990s, this level of granularity was uncommon in gaming but necessary for Quake's advanced multiplayer capabilities. The approach influenced later multiplayer frameworks, such as Valve's Steamworks, which adopted similar address comparison techniques for matchmaking and server management."
   - id: "string-address-conversions"
     line_start: 91
-    line_end: 107
+    line_end: 98
     title: "String Representations of Network Addresses"
     wikipedia_url: "https://en.wikipedia.org/wiki/IPv4_address"
     image_url: ""
@@ -104,7 +104,7 @@ enhancements:
     image_caption: ""
     content: "The `NET_Init` function initializes Quake's networking system, opening a UDP socket and setting up the message buffer. It also determines the local machine's network address, enabling the game to identify itself on the network. This function was the entry point for Quake's multiplayer mode, laying the foundation for real-time communication. The approach influenced later engines, which adopted similar initialization routines for networking, including Unreal Engine and Source Engine."
   - id: "shutdown-networking"
-    line_start: 314
+    line_start: 309
     line_end: 317
     title: "Shutting Down Networking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

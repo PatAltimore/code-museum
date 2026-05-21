@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-directives-and-segment-assumptions"
     line_start: 1
-    line_end: 120
+    line_end: 54
     title: "Why INCLUDE Directives Were Vital"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This section generates the version and copyright header displayed to users. It dynamically constructs the version string based on constants like DOS_MAJOR_VERSION and DOS_MINOR_VERSION. In the early 1980s, versioning was crucial for compatibility, as software often relied on specific OS features. The inclusion of Kanji support shows Microsoft's global ambitions, particularly in Japan. This dynamic header approach influenced later software practices, where versioning became integral to debugging and user communication. The copyright notice reflects Microsoft's growing dominance in the software industry, a strategy that would culminate in their near-monopoly on PC operating systems."
   - id: "system-call-dispatcher"
     line_start: 83
-    line_end: 120
+    line_end: 215
     title: "How MS-DOS Handled System Calls"
     wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The SAVREGS, restore_world, and save_world routines manage the saving and restoring of CPU registers during system calls. This mechanism ensures that user programs can resume execution without interference from the operating system. While MS-DOS was not a multitasking OS, these routines simulate a form of task switching, laying the groundwork for more advanced systems. The concept of saving and restoring context became a cornerstone of modern operating systems, enabling features like multitasking and virtualization. MS-DOS's implementation influenced early Windows versions and other DOS-based multitasking environments like DESQview."
   - id: "dispatch-table-for-system-functions"
     line_start: 259
-    line_end: 407
+    line_end: 403
     title: "The Table That Mapped MS-DOS's Brain"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This section defines a dispatch table mapping system call numbers to their corresponding handlers. Each entry represents a function, such as file I/O or process management. The table simplifies the dispatcher logic, enabling quick lookups and modular expansion. This design reflects the influence of interrupt vector tables, a common pattern in assembly programming. By organizing functionality in this way, MS-DOS could efficiently handle a growing set of features without rewriting the dispatcher. This approach influenced later operating systems, where function tables became standard for API management and dynamic linking."
   - id: "oem-handler-setup"
     line_start: 409
-    line_end: 449
+    line_end: 436
     title: "Customizing MS-DOS for OEMs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Original_equipment_manufacturer"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The $SET_OEM_HANDLER and DO_OEM_FUNC routines allow OEMs to define custom system call handlers. This feature was critical to Microsoft's licensing strategy, enabling hardware manufacturers to adapt MS-DOS to their specific needs. By providing this flexibility, Microsoft ensured widespread adoption of MS-DOS across diverse platforms. The ability to customize system behavior influenced later operating systems, where extensibility became a key selling point. This OEM-friendly design helped solidify Microsoft's dominance in the PC market, as manufacturers could tailor the OS without developing their own from scratch."
   - id: "null-device-driver"
     line_start: 462
-    line_end: 472
+    line_end: 483
     title: "The Null Device: A Programmer's Shortcut"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
     image_url: ""

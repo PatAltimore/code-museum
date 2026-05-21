@@ -153,7 +153,7 @@ enhancements:
     content: "The `WAIT` function simulates the passage of time in the game, displaying the message \"Time passes...\" and decrementing a counter. It optionally checks for a clock demon to interrupt the wait, reflecting the game's dynamic event system. This mechanic was crucial for creating immersion in Zork, allowing players to experience a living world where time-sensitive events could occur. The concept of time passage influenced later real-time and turn-based games, where time management became a core gameplay element."
   - id: "clock-demon-event-handler"
     line_start: 1628
-    line_end: 1653
+    line_end: 1651
     title: "The Demon That Kept Zork Alive"
     wikipedia_url: "https://en.wikipedia.org/wiki/Daemon_(computing)"
     image_url: ""

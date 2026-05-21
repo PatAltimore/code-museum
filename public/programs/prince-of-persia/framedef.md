@@ -49,7 +49,7 @@ enhancements:
     content: "This section defines additional animations for special situations, such as character interactions and unique movements. Frames include actions like embracing, turning, and casting, which add depth to the game's narrative and cinematic feel. The data structure mirrors the format of previous sets, emphasizing modularity and reuse. In 1989, cinematic storytelling in games was still in its infancy. Mechner's inclusion of these animations demonstrated a commitment to creating a cohesive and emotionally engaging experience. The Apple II's hardware constraints required creative solutions, such as encoding animations as compact data blocks and leveraging bank-switched memory. These special animations enriched the game's storytelling and set a precedent for integrating narrative and gameplay. They influenced later cinematic platformers and adventure games, showing that animation could be a powerful tool for emotional resonance. Developers like Eric Chahi (Another World) and Delphine Software (Flashback) built on these ideas to push the boundaries of interactive storytelling."
   - id: "sword-table-combat-precision"
     line_start: 431
-    line_end: 486
+    line_end: 484
     title: "Sword Table: Combat Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

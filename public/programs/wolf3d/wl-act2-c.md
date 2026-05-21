@@ -63,7 +63,7 @@ enhancements:
     content: "The `T_Projectile` function governs the behavior of projectiles, including movement, collision detection, and interactions with the player. It uses a state-based approach, where each projectile has a defined state that determines its actions and transitions. This design was inspired by finite-state machines, a concept widely used in computer science. By encapsulating behavior in states, id Software created a modular and extensible system that influenced AI design in games like Quake and Unreal Tournament."
   - id: "spawn-stand-enemy-placement"
     line_start: 839
-    line_end: 907
+    line_end: 917
     title: "Spawning Enemies with Ambush Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Enemy_(video_games)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `SpawnStand` function places enemies in the game world, initializing their attributes based on difficulty and position. It includes logic to handle ambush tiles, where enemies remain hidden until the player enters their area. This mechanic added tension and unpredictability to the gameplay, a hallmark of Wolfenstein 3D's design. The ambush system influenced stealth and survival horror games, such as Thief and Resident Evil, which adopted similar mechanics to create immersive experiences."
   - id: "spawn-boss-special-enemy"
     line_start: 927
-    line_end: 949
+    line_end: 957
     title: "The Birth of Boss Battles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Boss_(video_gaming)"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "This routine dynamically spawns patrolling enemies based on their type, position, and direction. Each enemy type is assigned specific attributes such as speed, hitpoints, and flags that determine their behavior. The routine also updates the game state to track the total number of enemies. This approach allowed Wolfenstein 3D to create a sense of a living, reactive world within the constraints of 1992 hardware. The idea of dynamically spawning and managing enemies influenced later games like Doom and Quake, which expanded on this concept with more complex AI."
   - id: "death-scream-audio"
     line_start: 1053
-    line_end: 1163
+    line_end: 1174
     title: "The Death Screams That Defined Immersion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "This section defines state machines for the 'Trans' enemy, detailing its behaviors such as standing, chasing, dying, and shooting. Each state is associated with specific animations and actions, creating a fluid and believable enemy AI. The use of state machines was a practical solution to manage complex behaviors within the limited computational power of MS-DOS systems. This technique became a foundational element in game development, influencing AI design in titles like System Shock and Deus Ex."
   - id: "boss-spawn-routines"
     line_start: 1238
-    line_end: 1259
+    line_end: 1264
     title: "Spawning Bosses with Unique Attributes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_boss"
     image_url: ""
@@ -151,7 +151,7 @@ enhancements:
     content: "The `T_SchabbThrow` function calculates the angle between Dr. Schabbs and the player using trigonometry, enabling him to throw needles accurately. This approach, leveraging `atan2` for angle calculation, was a clever solution to the challenge of aiming projectiles in a grid-based world. At the time, such calculations were computationally expensive, but id Software optimized them for real-time gameplay. This technique became a foundational element in first-person shooters, influencing how projectiles and aiming systems were implemented in later games like Doom and Quake. The use of trigonometry in game development remains a critical skill for modern developers."
   - id: "gift-throwing-rocket"
     line_start: 2331
-    line_end: 2368
+    line_end: 2378
     title: "From Gift to Rocket: A Deadly Surprise"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rocket_launcher"
     image_url: ""
@@ -159,7 +159,7 @@ enhancements:
     content: "The `T_GiftThrow` function defines how the enemy Gift throws rockets at the player. Similar to Schabbs' needle-throwing routine, it uses trigonometry to calculate the angle and trajectory. Rockets, a staple of first-person shooters, were introduced here as a high-damage projectile, adding tension and strategy to encounters. This mechanic foreshadowed the prominence of rocket launchers in Doom, where they became a signature weapon. The inclusion of rockets in Wolfenstein 3D marked a shift towards more varied and explosive gameplay, influencing the design of enemy attacks in countless future titles."
   - id: "hitler-morphing-mechanic"
     line_start: 2878
-    line_end: 2903
+    line_end: 2911
     title: "Hitler's Transformation: A Morphing Mechanic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
@@ -175,7 +175,7 @@ enhancements:
     content: "The `T_FakeFire` function defines Fake Hitler's flamethrower attack, spawning fire projectiles aimed at the player. This routine uses trigonometry to calculate the angle and trajectory, ensuring the flames follow the player dynamically. Flamethrowers were a rare weapon type in games at the time, and their inclusion here added variety to enemy attacks. The visual and auditory impact of the flamethrower made it a memorable part of the Fake Hitler encounter. This mechanic influenced later games, where flamethrowers became a popular weapon type, appearing in titles like Doom and Team Fortress 2."
   - id: "fake-ai-dodge-and-attack"
     line_start: 2966
-    line_end: 3027
+    line_end: 3036
     title: "The AI That Dodges and Shoots Back"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
@@ -207,7 +207,7 @@ enhancements:
     content: "The `T_Ghosts` routine manages the movement of ghost enemies, emphasizing relentless pursuit. Unlike other AI routines, it focuses solely on chasing the player, with no attack logic. This design creates a unique gameplay dynamic where the player must constantly evade these enemies. The routine uses simple pathfinding (`SelectChaseDir`) and adjusts positions to ensure smooth movement. This relentless chase behavior added tension to the game and inspired similar mechanics in later horror-themed games, such as Resident Evil and Silent Hill, where enemies relentlessly pursue players to create a sense of dread."
   - id: "dog-ai-chase-and-jump"
     line_start: 3249
-    line_end: 3319
+    line_end: 3338
     title: "The Dogs That Leap at You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""

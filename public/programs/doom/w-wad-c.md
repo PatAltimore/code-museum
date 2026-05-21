@@ -57,7 +57,7 @@ enhancements:
     content: "The `W_AddFile` function is responsible for loading WAD files, validating their headers, and populating the lump directory. It distinguishes between IWADs (core game data) and PWADs (custom or user-created content). This distinction allowed DOOM to support modding while protecting the integrity of its original game assets. The function reads the WAD header to determine the number of lumps and their locations, ensuring compatibility with both official and homebrew levels. This modular approach to game content was revolutionary, enabling users to create and share custom levels. The concept of separating core assets from user-generated content influenced countless games and engines, including Quake and Unreal."
   - id: "reloadable-wad-support"
     line_start: 230
-    line_end: 274
+    line_end: 290
     title: "The Hack That Made Map Reloads Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Reload_(computing)"
     image_url: ""

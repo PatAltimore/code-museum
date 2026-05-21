@@ -39,14 +39,14 @@ enhancements:
     content: "This section establishes the foundation for Quake's keyboard input handling, including necessary includes and initial definitions. The inclusion of platform-specific headers like <windows.h> reflects the need to support multiple operating systems, a significant challenge in the mid-1990s. Quake's key system was designed to handle both gameplay and console input seamlessly, a departure from simpler input models in earlier games. By defining constants like MAXCMDLINE and initializing arrays for key lines and bindings, the developers laid the groundwork for a flexible input system capable of handling complex user interactions. This approach influenced later games and engines, including id Software's own Doom 3 and the Source engine, which adopted similar abstractions for input handling."
   - id: "key-data-structures"
     line_start: 31
-    line_end: 55
+    line_end: 42
     title: "The Data Structures Behind Key Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
     image_caption: ""
     content: "This section introduces the core data structures used for managing keyboard input in Quake. Arrays like key_lines and keybindings store user input and command mappings, while variables like key_linepos and key_lastpress track the state of the input system. These structures were designed to balance performance and flexibility, enabling features like command history and dynamic key binding. In the constrained environment of 1996, where memory and processing power were limited, such efficient use of data structures was critical. The design principles seen here influenced later game engines, which expanded on these ideas to support more complex input systems, including joystick and gamepad integration."
   - id: "keyname-lookup-table"
-    line_start: 57
+    line_start: 51
     line_end: 143
     title: "The Lookup Table That Made Keys Human-Friendly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
@@ -63,7 +63,7 @@ enhancements:
     content: "The CheckForCommand function checks if the user's input matches a known command or variable, enabling dynamic command completion in the console. This feature was a significant usability improvement, reducing the need for players to memorize exact command syntax. Inspired by Unix shell environments, this functionality reflects the influence of systems programming on game development. Command completion became a staple in game consoles and development tools, appearing in engines like Source and tools like Blender's Python console."
   - id: "interactive-console-editing"
     line_start: 199
-    line_end: 353
+    line_end: 355
     title: "Interactive Console: A Programmer's Playground"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The Key_Console function handles interactive line editing and console scrollback, allowing players to input commands and navigate command history. Features like command completion, clipboard integration, and history navigation demonstrate a focus on usability and efficiency. The inclusion of Windows-specific clipboard handling reflects the challenges of cross-platform development in the 1990s. This interactive console became a hallmark of id Software games, influencing the design of developer consoles in later engines like Unreal Engine and Unity."
   - id: "key-binding-system"
     line_start: 467
-    line_end: 493
+    line_end: 499
     title: "The Binding System That Empowered Players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
     image_url: ""

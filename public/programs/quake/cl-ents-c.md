@@ -63,7 +63,7 @@ enhancements:
     content: "The `CL_ParseDelta` function implements delta compression, which transmits only the differences between successive states of an entity. This technique drastically reduces the amount of data sent over the network, enabling smoother multiplayer gameplay even on slow connections. In the mid-1990s, network bandwidth was a significant constraint, and id Software's use of delta compression was a breakthrough in optimizing online gaming. This method influenced later multiplayer games, including Counter-Strike and World of Warcraft, which rely on similar techniques to handle large-scale player interactions."
   - id: "projectile-parsing-and-linking"
     line_start: 577
-    line_end: 609
+    line_end: 616
     title: "Efficient Parsing and Linking of Projectiles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Entity_component_system"
     image_url: ""

@@ -49,7 +49,7 @@ enhancements:
     content: "The `Victory` function calculates and displays player performance metrics, such as kill ratios, secrets found, and treasures collected. It uses pre-defined constants and ratios to determine averages and total times, presenting them in a visually engaging format. This function reflects id Software's commitment to rewarding players with detailed feedback, a feature that was rare in early 1990s games. By incorporating performance metrics into the victory sequence, Wolfenstein 3D set a precedent for games like Diablo and Call of Duty, which emphasize player achievements and statistics."
   - id: "pg13-warning-screen"
     line_start: 299
-    line_end: 325
+    line_end: 326
     title: "Displaying Content Ratings with PG-13 Screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Motion_Picture_Association_film_rating_system"
     image_url: ""
@@ -65,7 +65,7 @@ enhancements:
     content: "The `Write` function dynamically renders text on the screen using pre-defined bitmap graphics for each character. It supports special characters and handles line breaks, ensuring text is displayed correctly in various contexts. This approach allowed Wolfenstein 3D to display localized messages and player feedback efficiently. The use of bitmap-based text rendering influenced later games and engines, including Unreal Engine, which adopted similar techniques for HUD and menu systems."
   - id: "bj-breathe-animation"
     line_start: 389
-    line_end: 406
+    line_end: 426
     title: "Animating BJ Blazkowicz's Breathing for Immersion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
@@ -73,15 +73,15 @@ enhancements:
     content: "The `BJ_Breathe` function animates the protagonist's breathing by alternating between two graphical frames. This subtle animation adds a layer of realism to the character, making him feel alive even during intermission screens. Such attention to detail was uncommon in early 1990s games, showcasing id Software's dedication to immersion. The technique inspired other developers to incorporate idle animations into their characters, a feature now standard in modern games."
   - id: "level-completed-intermission"
     line_start: 427
-    line_end: 880
+    line_end: 959
     title: "Rewarding Players with Detailed Level Completion Stats"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intermission_(video_games)"
     image_url: ""
     image_caption: ""
     content: "The `LevelCompleted` function displays detailed statistics and rewards players for their performance in each level. It calculates kill, secret, and treasure ratios, awarding bonuses for high scores. The function also includes animations and sound effects to enhance the player's sense of accomplishment. This feature was groundbreaking for its time, as it provided players with tangible feedback and motivation to improve. The concept of rewarding players with detailed stats influenced games like StarCraft and Civilization, where performance metrics are integral to gameplay."
   - id: "graphics-preloading"
-    line_start: 995
-    line_end: 1017
+    line_start: 962
+    line_end: 993
     title: "Optimizing Gameplay with Graphics Preloading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Preloading"
     image_url: ""
@@ -105,7 +105,7 @@ enhancements:
     content: "The `CheckHighScore` routine determines whether a player's score qualifies for the high score table. It compares scores and levels completed, inserting the new score into the appropriate position and shifting others down. This algorithm is simple but effective, leveraging direct array manipulation to maintain the sorted order. In the early 1990s, such routines were common in games, but id Software's implementation stands out for its efficiency and integration with gameplay. The routine also prompts players to enter their name if they achieve a high score, enhancing the personal connection to the game. This technique influenced later games, where high score systems became more sophisticated, incorporating online leaderboards and global rankings."
   - id: "non-shareware-notice"
     line_start: 1264
-    line_end: 1309
+    line_end: 1458
     title: "The Message That Fought Piracy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Shareware"
     image_url: ""
@@ -121,7 +121,7 @@ enhancements:
     content: "This section defines strings and logic for copy protection in Spear of Destiny, a follow-up to Wolfenstein 3D. It includes humorous backdoor phrases like 'a spoon?' and 'bite me!' that bypass the protection mechanism. These phrases reflect id Software's playful culture, where developers often embedded jokes and Easter eggs into their code. Copy protection was a critical feature in the early 1990s, as physical distribution made piracy relatively easy. By incorporating randomized quizzes and secret phrases, id Software created a system that was both functional and entertaining. This approach influenced later games, where developers continued to embed humor and personality into otherwise mundane features."
   - id: "copy-protection-quizzes"
     line_start: 1485
-    line_end: 1714
+    line_end: 1713
     title: "The Quiz That Protected Spear of Destiny"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spear_of_Destiny_(video_game)"
     image_url: ""

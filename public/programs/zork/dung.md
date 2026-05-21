@@ -55,7 +55,7 @@ enhancements:
     content: "This section introduces the troll, a key villain in Zork. The troll is defined as an object with properties like `VICBIT` (indicating it can be a victim in combat) and `VILLAIN` (marking it as an antagonist). The troll's behavior is managed through demons, a feature of MDL that allows asynchronous processes to handle events like combat. In the late 1970s, implementing dynamic NPCs was a significant technical challenge, as most games relied on static encounters. Zork's troll system paved the way for more interactive villains in games like 'Wizardry' and 'Baldur's Gate,' where NPCs could react to player actions and influence the story."
   - id: "maze-navigation-logic"
     line_start: 441
-    line_end: 474
+    line_end: 796
     title: "Twisty Little Passages: Zork's Maze Design"
     wikipedia_url: "https://en.wikipedia.org/wiki/Maze"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This section defines the forest and clearing rooms, such as `FORE1`, `FORE2`, and `CLEAR`. Each room is described with exits leading to other areas, creating a sense of exploration. The forest's descriptions, like 'dimly lit' and 'obstructing all views,' evoke a vivid atmosphere despite the text-based format. In 1977, creating immersive environments with text alone was a novel concept, as most games focused on gameplay mechanics rather than storytelling. Zork's forest inspired later games, such as 'Myst' and 'The Elder Scrolls,' to prioritize world-building and environmental storytelling."
   - id: "mirror-room-navigation"
     line_start: 798
-    line_end: 812
+    line_end: 855
     title: "Mirror Rooms: A Puzzle in Reflection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The Mirror Rooms ('MIRR1' and 'MIRR2') are defined here with exits leading to adjacent areas and a special object ('REFL1' or 'REFL2') tied to the room. These rooms likely play a role in a puzzle where players must interact with reflective surfaces or navigate based on mirrored paths. At the time, such puzzles were groundbreaking in text-based games, offering a spatial and conceptual challenge. The authors of Zork, inspired by Crowther and Woods' Adventure, aimed to push the boundaries of interactive fiction by creating environments that felt alive and mysterious. The Mirror Rooms exemplify this ambition, requiring players to think beyond simple navigation. This approach influenced later games like Infocom's Enchanter series, where environmental puzzles became a hallmark."
   - id: "coal-mine-environment"
     line_start: 856
-    line_end: 878
+    line_end: 904
     title: "Coal Mine: A Journey Underground"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The rooms 'SLIDE' and 'ENTRA' introduce players to a coal mine environment, complete with evocative descriptions of steep slides and eerie sounds. These areas immerse players in a dangerous underground world, leveraging text to create vivid imagery. In 1977, text-based games relied entirely on prose to convey atmosphere, and Zork's authors excelled at crafting environments that felt tangible. The coal mine reflects the influence of tabletop RPGs like Dungeons & Dragons, where dungeon exploration was central. This design philosophy carried forward into games like Sierra's King's Quest, which expanded on Zork's environmental storytelling with graphical interfaces."
   - id: "timber-room-navigation"
     line_start: 1019
-    line_end: 1040
+    line_end: 1103
     title: "Timber Room: Conditional Navigation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The Carousel Room ('CAROU') is a unique area where exits are dynamically altered based on the 'CAROUSEL-FLIP' flag. This mechanic simulates a rotating room, disorienting players and adding a layer of unpredictability to navigation. Such features were rare in early text-based games, showcasing Zork's ambition to create immersive and challenging environments. The rotating room concept was inspired by tabletop RPGs and influenced later games like Myst, where spatial puzzles became a core gameplay element. Zork's innovative use of flags and dynamic exits set a precedent for interactive fiction design."
   - id: "grail-room-treasure"
     line_start: 1216
-    line_end: 1226
+    line_end: 1221
     title: "Grail Room: Treasure and Myth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The Grail Room ('MGRAI') contains a valuable object, the grail, which players can interact with and collect. This room exemplifies Zork's treasure-hunting gameplay, where players explore and gather items of significance. The grail's inclusion reflects the game's roots in fantasy and mythology, drawing inspiration from Arthurian legends. In 1977, such thematic elements were groundbreaking for interactive fiction, adding depth and narrative richness. The treasure-hunting mechanic became a staple of adventure games, influencing titles like Ultima and The Legend of Zelda, which expanded on the concept with graphical interfaces and open-world exploration."
   - id: "cyclops-room-combat"
     line_start: 1374
-    line_end: 1380
+    line_end: 1387
     title: "Cyclops Room: Introducing Combat"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -159,7 +159,7 @@ enhancements:
     content: "This section defines the label for the 'RBOAT' object, a plastic boat with humorous instructions and a satirical warranty. The label includes phrases like 'Good Luck!' and guarantees against defects for '76 milliseconds,' showcasing Zork's trademark humor. This playful approach to object descriptions adds charm to the game, making interactions memorable for players. Zork's developers were known for their wit, often embedding humor into the game's text. The Frobozz Magic Boat label reflects their creative use of MDL to enhance player engagement. At the time, text-based games relied heavily on writing to create immersive experiences, and Zork's humor set it apart from other titles. The Frobozz Magic Boat label became an iconic example of Zork's humor, influencing the tone of later games like 'The Hitchhiker's Guide to the Galaxy' and 'Portal.' The use of humor in object descriptions remains a popular technique in game design, demonstrating how Zork's legacy continues to shape the industry."
   - id: "volcano-and-library-rooms"
     line_start: 2045
-    line_end: 2106
+    line_end: 2385
     title: "Volcano Gnomes and Gnawed Libraries"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -207,7 +207,7 @@ enhancements:
     content: "This section introduces a robot object with a humorous green paper manual. The robot is described as a late-model trained at MIT Tech, capable of performing household functions. The manual includes instructions for activating the robot and a disclaimer of warranty, showcasing the developers' humor and creativity. Robots in Zork reflect the era's fascination with artificial intelligence and automation, themes explored in computing and science fiction during the late 1970s. This playful take on AI influenced future games, inspiring characters like GLaDOS in Portal and the use of robots as interactive NPCs in gaming."
   - id: "verbs-and-synonyms"
     line_start: 2760
-    line_end: 3057
+    line_end: 3117
     title: "The Language of Adventure: Verbs and Synonyms"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""

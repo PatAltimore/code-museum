@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines constants for MS-DOS system calls, such as file operations (OPEN, CLOSE, READ, WRITE) and memory management (SETDMA). These constants are used throughout the program to interact with the operating system. At the time, MS-DOS provided a simple API for developers to perform essential tasks, but programmers had to manage low-level details like DMA (Direct Memory Access) manually. Tim Paterson designed these calls to be lightweight and efficient, reflecting the constraints of early PCs with limited memory and processing power. This approach influenced later DOS-based utilities and applications, which relied on similar system call conventions."
   - id: "buffer-management-cleverness"
     line_start: 124
-    line_end: 172
+    line_end: 175
     title: "The Trick That Prevented Buffer Overflows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_overflow"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This segment manages the output buffer (`PUTBUF`) to prevent overflows. When the buffer is full, it writes the contents to the output file and resets the buffer pointer. This technique ensures efficient use of memory while avoiding the risk of overwriting data. Buffer management was a critical skill for early programmers, as memory was scarce and errors could crash the entire system. Paterson's careful handling of buffers here reflects his deep understanding of hardware limitations and his ability to write robust code for constrained environments. Similar techniques became standard in later operating systems and programming languages, influencing how developers think about memory safety."
   - id: "opcode-translation-algorithm"
     line_start: 405
-    line_end: 533
+    line_end: 477
     title: "Translating Z80 Opcodes to 8086 Instructions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Opcode"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "Pseudo-operations (pseudo-ops) are assembly language directives that do not correspond to actual machine instructions but control the assembler's behavior. This section processes pseudo-ops during translation, ensuring they are correctly interpreted and handled. Pseudo-ops were essential for assembly programming, allowing developers to define constants, allocate memory, and manage program structure. By including support for pseudo-ops, Paterson's translator accommodates the full range of Z80 assembly features, making it a comprehensive tool for software migration. This capability influenced later assemblers and compilers, which expanded on the idea to support higher-level abstractions in programming."
   - id: "opcode-table-definition"
     line_start: 891
-    line_end: 974
+    line_end: 924
     title: "The Lookup Table That Made Translation Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The BLMOVE routine facilitates block memory transfers, using instructions like 'MOV' and 'REP' to move data between registers and memory locations. This was a common operation in systems programming, especially for tasks like copying buffers or initializing memory regions. In the constrained environment of the IBM PC, efficient memory management was critical, as the system had only 64KB to 640KB of RAM. Techniques like this influenced later innovations in memory management, including the development of DMA (Direct Memory Access) and optimized memory copy routines in modern operating systems."
   - id: "djnz-looping-without-affecting-flags"
     line_start: 1054
-    line_end: 1114
+    line_end: 1116
     title: "The Looping Instruction That Warned Developers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Loop_(computing)"
     image_url: ""

@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "fatal-error-handler-ms-dos"
     line_start: 68
-    line_end: 158
+    line_end: 160
     title: "The Fatal Error Handler That Saved DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This routine, `USL_HardError`, handles critical device errors in MS-DOS, such as write protection or drive failures. It provides a user-friendly interface for retrying or aborting operations, displaying error messages in a centered window. The programmer uses direct memory access (`peekb`) to retrieve the screen mode and custom routines to save and restore window states. At the time, MS-DOS lacked robust error handling, leaving developers to implement their own solutions. John Carmack and his team built this handler to ensure the game could gracefully recover from hardware issues. This approach influenced later games and software, where error handling became a critical component of user experience. It also highlights the ingenuity required to work within the constraints of MS-DOS, where even basic error messages required manual implementation."
   - id: "user-manager-startup"
     line_start: 163
-    line_end: 212
+    line_end: 219
     title: "Starting Up the User Manager"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
@@ -54,8 +54,8 @@ enhancements:
     image_caption: ""
     content: "The `US_CheckParm` function implements case-insensitive string matching for command-line arguments. It skips non-alphabetic characters and compares strings by converting uppercase letters to lowercase. This was a practical solution for handling user input in an era when command-line interfaces were the norm. By ensuring flexibility in parameter matching, id Software made their game more accessible to players and developers alike. This technique, while simple, became a standard practice in software development, influencing how modern applications parse user input. It also reflects the meticulous attention to detail required to create a seamless user experience in the constrained environment of MS-DOS."
   - id: "centered-text-printing"
-    line_start: 365
-    line_end: 381
+    line_start: 281
+    line_end: 317
     title: "How to Center Text Without a GUI"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_fonts"
     image_url: ""

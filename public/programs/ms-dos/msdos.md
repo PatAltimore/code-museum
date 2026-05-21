@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "revision-history-timeline"
     line_start: 5
-    line_end: 33
+    line_end: 32
     title: "The Timeline of MS-DOS Evolution"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section documents the revision history of MS-DOS, highlighting key milestones in its development. Tim Paterson's original 86-DOS evolved rapidly between December 1980 and March 1982, adapting to new hardware and user needs. For example, version 0.42 introduced 32-byte directory entries, a precursor to the FAT file system. Version 1.10 added hidden files and fatal error trapping, crucial for robust operation on the IBM PC. These updates reflect the intense pace of development in the early PC era, where software had to adapt quickly to hardware constraints and market demands. The revision history also underscores Microsoft's strategy of continuous improvement, which helped MS-DOS dominate the personal computing landscape. Later versions inspired features in Windows and other operating systems."
   - id: "interrupt-entry-points"
     line_start: 36
-    line_end: 74
+    line_end: 61
     title: "Interrupts: The Backbone of MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The BIOS segment defines entry points for low-level hardware interactions, such as console input/output, disk reads/writes, and time/date management. These routines were essential for MS-DOS to function on the IBM PC, which relied on the BIOS for hardware abstraction. By leveraging the BIOS, MS-DOS minimized its hardware-specific code, making it easier to port to other systems. This design philosophy was inherited from CP/M and became a cornerstone of PC software development. The BIOS segment also highlights the collaborative nature of early computing, where software developers worked closely with hardware manufacturers to ensure compatibility. Modern operating systems have largely replaced BIOS with UEFI, but the principles of hardware abstraction remain unchanged."
   - id: "esc-tab-lookup-table"
     line_start: 221
-    line_end: 252
+    line_end: 250
     title: "The Lookup Table That Simplified Input Parsing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The ESCTAB lookup table maps escape sequences to specific actions, such as copying, skipping, or editing characters. This design allowed MS-DOS to efficiently parse user input, a critical feature for command-line operations. The table includes different mappings for IBM and non-IBM systems, reflecting the need for compatibility across hardware platforms. Lookup tables like ESCTAB were a common optimization technique in assembly programming, reducing the complexity of input parsing while improving performance. This approach influenced later systems, where lookup tables became a standard method for handling input and character encoding. The ESCTAB's simplicity and effectiveness are a testament to the ingenuity of early software developers."
   - id: "system-call-dispatcher"
     line_start: 277
-    line_end: 324
+    line_end: 347
     title: "How MS-DOS Handled System Calls"
     wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The DELETE subroutine implements file deletion in MS-DOS, including support for wildcard patterns like '*.*'. It marks directory entries as free and releases associated clusters in the FAT. This process reflects the simplicity of early file systems, where deletion was primarily a matter of updating metadata. The subroutine also includes checks to prevent deletion of I/O devices, highlighting the need for robustness in system calls. File deletion was a critical feature for managing limited storage on early PCs, and its implementation in MS-DOS influenced later file systems. Modern systems have built on this foundation, adding features like undelete and secure deletion."
   - id: "fat-write-dirty-bit-reset"
     line_start: 1055
-    line_end: 1091
+    line_end: 1093
     title: "How MS-DOS Kept FAT Updates Efficient"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "HARDERR is a robust error-handling routine that responds to disk read/write failures. It calculates the sectors successfully transferred, retries failed operations, and flags problematic disk areas. In 1981, disk errors were common due to hardware limitations like misaligned heads or bad sectors. This routine reflects Paterson's pragmatic approach to ensure data integrity in MS-DOS. By isolating errors and attempting retries, it minimized the risk of data loss—a critical feature for business users adopting the IBM PC. Techniques from this routine influenced later operating systems, including Windows and Linux, which implemented similar error recovery mechanisms."
   - id: "sequential-file-access"
     line_start: 1396
-    line_end: 1404
+    line_end: 1408
     title: "Sequential File Access: A Simpler Era"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "SEQRD and SEQWRT provide system calls for sequential file access. These routines simplify reading and writing files in order, a common pattern in early PC applications. Sequential access was efficient and easy to implement on hardware with limited seek capabilities. Tim Paterson borrowed this concept from CP/M but extended it with MS-DOS's FAT-based file system. Sequential file access remains relevant today in streaming applications and log file processing, demonstrating the enduring influence of these early routines."
   - id: "random-file-access"
     line_start: 1410
-    line_end: 1434
+    line_end: 1418
     title: "Random File Access: Precision in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "RNDRD and RNDWRT enable random file access, allowing applications to read or write specific records in a file. This capability was crucial for database software and other applications requiring non-linear data access. In 1981, random access was a significant advancement over CP/M's simpler file system. Paterson's implementation leveraged FAT to locate clusters efficiently. Random access routines paved the way for modern database systems and influenced APIs in operating systems like Windows and Linux."
   - id: "disk-transfer-breakdown"
     line_start: 1588
-    line_end: 1653
+    line_end: 1618
     title: "Breaking Down Disk Transfers for Efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
     image_url: ""
@@ -151,7 +151,7 @@ enhancements:
     content: "BUFSEC ensures that the correct disk sector is loaded into memory, flushing the buffer if necessary. This routine optimizes disk reads and writes by leveraging a sector buffer, reducing redundant disk access. In the early 1980s, memory was scarce, and disk operations were slow, so buffering was a vital optimization. Paterson's implementation reflects his deep understanding of hardware constraints, ensuring MS-DOS could perform efficiently on the IBM PC's limited resources. Buffered I/O became a standard practice in operating systems, influencing designs from Unix to modern file systems like NTFS."
   - id: "device-i-o-handling"
     line_start: 1817
-    line_end: 2042
+    line_end: 2046
     title: "How MS-DOS Managed Device I/O"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
     image_url: ""
@@ -159,7 +159,7 @@ enhancements:
     content: "READDEV and related routines handle input/output for devices like keyboards, printers, and serial ports. These routines abstract hardware-specific details, providing a consistent API for applications. In the early 1980s, device I/O was a complex task due to the diversity of peripherals. Paterson's design simplified development for PC software, enabling rapid adoption of MS-DOS. This abstraction influenced later operating systems, including Windows, which extended the concept with device drivers and plug-and-play support."
   - id: "store-file-records-efficiently"
     line_start: 2067
-    line_end: 2169
+    line_end: 2184
     title: "How MS-DOS Stored File Records Efficiently"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -167,7 +167,7 @@ enhancements:
     content: "The `STORE` routine is responsible for writing file records to disk, updating the File Control Block (FCB) with the last accessed cluster and position. This routine handles file size adjustments, cluster allocation, and marking files as 'dirty' when modified. In 1981, disk storage was constrained by hardware limitations, and MS-DOS relied on the FAT (File Allocation Table) system to manage these constraints. Tim Paterson designed this routine to maximize efficiency while adhering to FAT's structure, which was revolutionary for its time. The approach influenced later operating systems, including Windows, which continued to use FAT for decades. This routine's ability to handle partial records and dynamically allocate clusters set a precedent for file systems in embedded and portable devices."
   - id: "optimize-cluster-access"
     line_start: 2228
-    line_end: 2333
+    line_end: 2312
     title: "The Algorithm That Optimized Cluster Access"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -183,7 +183,7 @@ enhancements:
     content: "The `ALLOCATE` routine dynamically allocates clusters for file storage, ensuring sufficient space while updating the FAT. It handles edge cases like insufficient space and null files, marking the first cluster in the FCB if needed. In the constrained environment of early PCs, this routine was critical for managing limited disk space efficiently. Paterson's design anticipated scenarios where files grew unpredictably, ensuring robustness in cluster allocation. This method laid the groundwork for modern file systems, which continue to rely on dynamic allocation strategies to optimize storage utilization."
   - id: "release-cluster-chains"
     line_start: 2452
-    line_end: 2525
+    line_end: 2474
     title: "The Routine That Freed Disk Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -191,7 +191,7 @@ enhancements:
     content: "The `RELEASE` routine frees cluster chains starting from a given cluster, marking them as available in the FAT. This process was essential for reclaiming disk space when files were deleted or truncated. In 1981, efficient disk space management was a critical feature, as hard drives were small and expensive. This routine ensured that MS-DOS could handle file deletions gracefully, a feature that became standard in all subsequent operating systems. The concept of freeing cluster chains influenced garbage collection techniques in modern file systems and memory management."
   - id: "console-input-buffering"
     line_start: 2705
-    line_end: 2792
+    line_end: 3002
     title: "Console Input Buffering: A Hidden Complexity"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -199,7 +199,7 @@ enhancements:
     content: "The `BUFIN` routine manages console input, including editing and special character handling. It buffers input, processes escape sequences, and supports features like backspacing and tabbing. In the early 1980s, user interaction with computers was primarily through text-based interfaces, and this routine ensured a smooth experience. Paterson's implementation reflects the constraints of the time, where memory and processing power were limited. The techniques used here influenced later console and terminal designs, including those in Unix and Linux systems, which adopted similar methods for handling user input efficiently."
   - id: "system-call-console-output"
     line_start: 3015
-    line_end: 3083
+    line_end: 3031
     title: "System Call for Console Output"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_21h"
     image_url: ""
@@ -207,7 +207,7 @@ enhancements:
     content: "The `CONOUT` routine handles console output, including special character processing and interaction with BIOS routines. It ensures compatibility with hardware while providing features like cursor movement and printing. In the early days of MS-DOS, direct interaction with hardware was necessary to achieve acceptable performance. This routine showcases Paterson's ability to bridge the gap between software and hardware, a skill that was crucial for early PC development. The approach influenced later operating systems, which abstracted hardware interactions while maintaining compatibility with legacy systems."
   - id: "system-call-rawio"
     line_start: 3143
-    line_end: 3152
+    line_end: 3161
     title: "How MS-DOS Managed Raw Input and Output"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -223,7 +223,7 @@ enhancements:
     content: "MAKEFCB constructs a File Control Block (FCB), a data structure used in MS-DOS to manage file metadata. It parses file names, drive letters, and extensions, filling in default values when necessary. The routine includes logic to handle ambiguous file specifications, such as wildcards ('*' and '?'), and validates drive numbers. FCBs were a holdover from CP/M, an earlier operating system that influenced MS-DOS's design. By the mid-1980s, FCBs were largely replaced by file handles in MS-DOS v2.0, which adopted a Unix-like approach to file management. However, the legacy of FCBs persisted in backward compatibility and shaped the design of early DOS-based applications."
   - id: "date-time-management"
     line_start: 3412
-    line_end: 3630
+    line_end: 3431
     title: "How MS-DOS Kept Track of Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/System_time"
     image_url: ""
@@ -231,7 +231,7 @@ enhancements:
     content: "This section handles date and time management, including routines like READTIME, SETYEAR, and WKDAY. MS-DOS relies on BIOS calls to retrieve the current time and date, then processes this data to calculate day counts, leap years, and weekdays. The code includes tables for days in each month and year, adjusting February's length for leap years. In the early 1980s, PCs lacked real-time clocks, so MS-DOS depended on BIOS for timekeeping. These routines highlight the challenges of managing time in software, especially when hardware support was minimal. The techniques developed here influenced later operating systems, which integrated real-time clocks and more sophisticated time APIs."
   - id: "system-initialization"
     line_start: 3755
-    line_end: 3992
+    line_end: 3994
     title: "Bootstrapping MS-DOS: System Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
@@ -239,7 +239,7 @@ enhancements:
     content: "The DOSINIT routine initializes the system, setting up memory, drive tables, and the FAT filesystem. It calculates buffer sizes, allocates memory for FATs, and prepares interrupt vectors. This code reflects the constraints of early PCs, where every byte of memory was precious, and initialization had to account for varying hardware configurations. Tim Paterson's design ensured MS-DOS could run on a wide range of IBM-compatible machines, a key factor in its commercial success. The initialization process laid the groundwork for modern bootstrapping techniques, influencing BIOS and UEFI designs used in contemporary systems."
   - id: "fat-filesystem-setup"
     line_start: 3996
-    line_end: 4025
+    line_end: 4017
     title: "The Algorithm Behind FAT Filesystem Setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""

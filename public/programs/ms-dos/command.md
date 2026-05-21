@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "resident-transient-memory-split"
     line_start: 1
-    line_end: 73
+    line_end: 282
     title: "Why MS-DOS Split Memory into Two Parts"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The opening comments of COMMAND.ASM describe the division of MS-DOS's command interpreter into resident and transient portions. The resident portion handles critical functions like interrupt processing and remains in memory, while the transient portion, which processes commands, is loaded at the end of physical memory and can be overwritten by user programs. This design reflects the constraints of early PCs, where memory was scarce (typically 64KB to 256KB) and programs needed to maximize available space. Tim Paterson, the original author of 86-DOS, adapted this approach to ensure the command interpreter could coexist with memory-intensive applications. This split became a hallmark of MS-DOS's efficiency, influencing later operating systems like DR-DOS and FreeDOS, and demonstrating how software could adapt to hardware limitations."
   - id: "error-handling-disk-operations"
     line_start: 359
-    line_end: 481
+    line_end: 429
     title: "The Default Disk Error Handler That Saved Users"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_24H"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The DSKERR routine provides default handling for disk errors, triggered by interrupt 24H. It displays error messages like 'Write protect' or 'Sector not found,' computes the drive letter, and offers options to abort, retry, or ignore the operation. This routine highlights the importance of robust error handling in early computing, where hardware failures were common and user intervention was often necessary. The design reflects Paterson's pragmatic approach to usability, ensuring users could recover from errors without crashing the system. This method of error handling influenced later operating systems, including Windows, where similar user prompts for retrying or aborting operations became standard practice."
   - id: "command-checksum-integrity"
     line_start: 483
-    line_end: 513
+    line_end: 496
     title: "The Checksum That Protected COMMAND.COM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Checksum"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The CHKSUM routine calculates a checksum for the transient portion of COMMAND.COM to verify its integrity. If the checksum does not match the stored value, the transient portion is reloaded. This mechanism ensured reliability in an environment where memory corruption or overwriting was a risk, especially when running large programs. The use of checksums for integrity verification became a standard practice in software development, influencing techniques in data transmission, file storage, and modern cryptographic hashes."
   - id: "batch-file-autoexec-processing"
     line_start: 588
-    line_end: 589
+    line_end: 592
     title: "How MS-DOS Found and Ran AUTOEXEC.BAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/AUTOEXEC.BAT"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "This section initializes the default file specification to '*.*', a convention that allows users to target all files in a directory. The programmer sets this default by moving the '?' character into the file control block (FCB). In the early 1980s, wildcard patterns like '*.*' were a common way to simplify file operations on systems with limited user interfaces. This approach made it easier for users to interact with files without specifying exact names, a necessity given the constraints of the IBM PC's 16KB ROM BIOS and 64KB RAM. The technique influenced later command-line interfaces, including Unix shells, which adopted similar wildcard mechanisms."
   - id: "switch-handling-in-dos"
     line_start: 1040
-    line_end: 1057
+    line_end: 1047
     title: "How MS-DOS Processes Command Switches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "This routine flushes memory buffers to disk during file operations, ensuring efficient use of limited RAM. It creates or opens destination files, writes buffered data, and handles edge cases like full memory or write errors. In the constrained environment of early PCs, this approach minimized disk I/O and optimized performance. The technique influenced later operating systems, where buffer management became a key aspect of file system design."
   - id: "batch-file-byte-retrieval"
     line_start: 1743
-    line_end: 1745
+    line_end: 1759
     title: "How MS-DOS Reads Batch Files Byte by Byte"
     wikipedia_url: "https://en.wikipedia.org/wiki/Batch_file"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "This routine retrieves a single byte from a batch file, handling end-of-file conditions gracefully. Batch files were an early form of scripting, allowing users to automate repetitive tasks. By reading files byte by byte, this implementation provided fine-grained control over script execution. The approach influenced later scripting languages, including shell scripts in Unix and batch files in Windows."
   - id: "date-and-time-handling"
     line_start: 1787
-    line_end: 1803
+    line_end: 1800
     title: "Setting the Clock in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_clock"
     image_url: ""
@@ -167,7 +167,7 @@ enhancements:
     content: "The SETUP routine includes logic for handling batch files, which were a cornerstone of automation in MS-DOS. Batch files allowed users to execute a series of commands automatically, streamlining repetitive tasks. This routine checks if a batch file is in progress and adjusts memory and file control block (FCB) pointers accordingly. Batch file support was a major innovation in personal computing, enabling users to write simple scripts for tasks like file management and program execution. This feature influenced later scripting languages like Windows Batch and PowerShell, as well as Unix shell scripting, which expanded on the concept of automated command execution."
   - id: "final-program-launch"
     line_start: 2160
-    line_end: 2162
+    line_end: 2161
     title: "The Jump That Starts Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

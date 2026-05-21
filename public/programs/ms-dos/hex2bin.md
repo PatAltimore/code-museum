@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "hex2bin-entry-point"
-    line_start: 15
-    line_end: 75
+    line_start: 18
+    line_end: 84
     title: "Why HEX2BIN Starts at 100H"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -49,7 +49,7 @@ enhancements:
     content: "This loop reads and parses Intel HEX file lines, extracting byte counts, load addresses, and data bytes. It uses GETCH and GETBYT subroutines to process each character and convert hexadecimal digits into binary. The loop ensures that data is loaded into memory at the correct address, accounting for offsets. Intel HEX was a popular format for microcontroller programming, and this routine reflects the precision required to handle it. The parsing logic, with its careful checks and conversions, showcases the programmer's attention to detail and understanding of the format's structure. This approach influenced later tools for firmware and embedded systems programming, where parsing efficiency and accuracy are critical."
   - id: "error-handling-and-exit"
     line_start: 112
-    line_end: 134
+    line_end: 121
     title: "When Things Go Wrong: Error Messages in HEX2BIN"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""

@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "wad-foundation-variables"
-    line_start: 22
+    line_start: 1
     line_end: 26
     title: "The Variables That Define WAD Management"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
@@ -57,7 +57,7 @@ enhancements:
     content: "The `W_LoadWadFile` function loads a WAD file into memory, verifies its format, and initializes lump metadata. It begins by calling `COM_LoadHunkFile`, which loads the file into a memory region managed by Quake's hunk allocator—a system designed to avoid fragmentation and maximize performance. The function then checks the file's identification string to ensure it adheres to the WAD2 format, a successor to Doom's WAD format that supports Quake's more complex asset types. Finally, it processes lump metadata, converting values to little-endian format and cleaning names for efficient lookup. This robust error handling and initialization process set a precedent for file loading routines in later engines, emphasizing reliability and performance."
   - id: "wad-lumpinfo-retrieval"
     line_start: 102
-    line_end: 123
+    line_end: 122
     title: "Finding Game Assets by Name"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

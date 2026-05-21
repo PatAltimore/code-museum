@@ -55,7 +55,7 @@ enhancements:
     content: "The console input routines in IO.ASM demonstrate two approaches to handling keyboard input: interrupt-driven and polled. Interrupt-driven input uses a keyboard interrupt handler to process keystrokes as they occur, storing them in a queue for later retrieval. Polled input, on the other hand, continuously checks the keyboard status, a simpler but less efficient method. This dual approach reflects the constraints of early PCs, where hardware capabilities varied widely. Tim Paterson's design ensured MS-DOS could operate on systems with or without advanced interrupt support. The interrupt-driven model became the standard for modern systems, as it minimizes CPU usage and improves responsiveness. This section highlights the transition from basic polling methods to more sophisticated event-driven programming."
   - id: "disk-change-detection"
     line_start: 673
-    line_end: 710
+    line_end: 777
     title: "Detecting Disk Changes: A Hardware Challenge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_formats"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The READSECT routine reads a sector from the disk, incorporating retry logic to handle transient errors. It uses the SETUP routine to configure the disk controller and retries the read operation multiple times if errors occur. This resilience was necessary for early floppy disks, which were prone to read errors due to dust, magnetic degradation, and mechanical issues. Paterson's implementation reflects the practical challenges of working with unreliable storage media in the early 1980s. The retry mechanism became a standard feature in disk I/O programming, influencing later systems like Windows and Linux."
   - id: "writeloop-disk-write"
     line_start: 1262
-    line_end: 1267
+    line_end: 1285
     title: "Writing Data to Disk in WRLOOP"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The INITTAB section defines initialization tables for configuring disk I/O drivers, specifying parameters like sector size, allocation units, and directory entries. These tables allow MS-DOS to adapt to different disk formats and hardware configurations, providing a level of customization that was rare in early operating systems. This flexibility was a key selling point for MS-DOS, enabling OEMs to tailor the system to their specific needs. The concept of initialization tables influenced the design of BIOS and firmware settings in later systems, allowing for greater hardware abstraction and user configurability."
   - id: "drive-parameters"
     line_start: 1847
-    line_end: 1927
+    line_end: 1864
     title: "Defining Drive Parameters for Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"
     image_url: ""

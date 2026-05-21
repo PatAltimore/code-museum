@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "The INCLUDE directives here pull in external assembly files, such as DOSSEG.ASM and DOSSYM.ASM, which define essential segments and symbols used throughout the program. This modular approach allowed developers to reuse common definitions and maintain consistency across large codebases. In the early 1980s, assembly programming was notoriously error-prone, and these include files helped reduce redundancy and errors. Tim Paterson's use of modularity reflects a growing trend in software development at the time, influenced by structured programming principles. This technique became standard practice in assembly and later influenced higher-level languages, where header files and libraries serve similar purposes."
   - id: "name-rom-and-variable-definitions"
-    line_start: 35
-    line_end: 93
+    line_start: 33
+    line_end: 35
     title: "Defining Variables for Disk Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"
     image_url: ""
@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The BUFRD routine performs a buffered read operation, using system buffers to optimize partial sector reads. It adjusts pointers and memory locations to ensure data is read efficiently. This approach was vital for early PCs, where disk access speeds were a bottleneck. By leveraging buffers, MS-DOS reduced the overhead of disk I/O, improving overall system performance. Buffered reads became a standard technique in operating systems, influencing later designs like Linux and Windows."
   - id: "bufwrt-buffered-write"
-    line_start: 307
-    line_end: 331
+    line_start: 335
+    line_end: 411
     title: "Writing Data Without Wasting Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Write_(system_call)"
     image_url: ""
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "ALLOCATE assigns disk space by updating the file allocation table (FAT) and file control block (FCB). It checks for available clusters and marks them as used, ensuring efficient use of disk space. This routine reflects the challenges of managing storage on early PCs, where disk space was limited and fragmentation was common. Paterson's implementation influenced later file systems, such as FAT32 and NTFS, which built on these principles to improve storage efficiency and reliability."
   - id: "release-endp-cleanup-routine"
-    line_start: 985
+    line_start: 963
     line_end: 1007
     title: "The Cleanup Routine That Frees Resources"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

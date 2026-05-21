@@ -39,15 +39,15 @@ enhancements:
     content: "The `P_AproxDistance` function provides a quick estimation of distance between two points using fixed-point arithmetic. Instead of calculating the exact Euclidean distance, which involves computationally expensive square roots, this function uses a heuristic that combines the absolute differences of x and y coordinates, subtracting half of the smaller difference. This approach was crucial for DOOM, as it allowed the game to perform distance calculations rapidly on the limited hardware of the early 1990s. Fixed-point arithmetic was a common choice for games of this era, as floating-point operations were slow or unavailable on consumer-grade CPUs. John Carmack, known for his optimization prowess, likely adapted this technique from earlier game development practices, ensuring DOOM's gameplay remained smooth even on modest PCs. This method influenced later game engines, where approximations were often preferred over exact calculations for real-time performance."
   - id: "point-on-line-side"
     line_start: 60
-    line_end: 99
+    line_end: 107
     title: "How DOOM Decided Front or Back"
     wikipedia_url: "https://en.wikipedia.org/wiki/Line_algorithm"
     image_url: ""
     image_caption: ""
     content: "The `P_PointOnLineSide` function determines whether a point lies on the front or back side of a line segment. This is achieved by comparing the relative positions of the point and the line's endpoints using fixed-point arithmetic. The function is optimized for cases where the line is vertical or horizontal, avoiding unnecessary calculations. This decision-making process was vital for DOOM's collision detection and rendering system, as it helped determine visibility and interactions between objects and map geometry. The technique reflects Carmack's ability to balance precision with performance, ensuring the game could handle complex environments without sacrificing speed. Similar algorithms have been used in countless games since, forming the backbone of spatial reasoning in 2D and 3D engines."
   - id: "box-on-line-side"
-    line_start: 103
-    line_end: 152
+    line_start: 60
+    line_end: 107
     title: "When a Box Crosses a Line"
     wikipedia_url: "https://doomwiki.org/wiki/Blockmap"
     image_url: ""
@@ -55,15 +55,15 @@ enhancements:
     content: "The `P_BoxOnLineSide` function extends the logic of `P_PointOnLineSide` to handle bounding boxes. It determines whether a box is entirely on one side of a line, crosses it, or is ambiguous. This function is critical for DOOM's collision detection system, especially when dealing with moving objects like enemies or projectiles. By treating lines as infinite and using precomputed slope types, the function avoids unnecessary calculations, a necessity given the hardware constraints of the time. The bounding box approach was a clever optimization, allowing DOOM to handle interactions efficiently without resorting to pixel-perfect checks. This technique influenced later games and engines, where bounding boxes became a standard tool for collision detection and spatial reasoning."
   - id: "unset-thing-position"
     line_start: 339
-    line_end: 385
+    line_end: 393
     title: "Unlinking Objects from the World"
     wikipedia_url: "https://doomwiki.org/wiki/Thing"
     image_url: ""
     image_caption: ""
     content: "The `P_UnsetThingPosition` function removes an object (or 'thing') from the game's spatial structures, including the blockmap and sector lists. This is necessary whenever an object's position changes, ensuring the game's lookup tables remain accurate. The function handles both dynamic and static objects, checking flags to determine whether they need to be unlinked. This approach reflects DOOM's modular design, where objects are dynamically managed within a grid-based map system. The ability to efficiently update spatial data was crucial for DOOM's fast-paced gameplay, allowing objects to move seamlessly without causing lag or errors. This dynamic management system influenced later engines, where similar techniques are used to handle object interactions in real-time."
   - id: "path-traverse-algorithm"
-    line_start: 734
-    line_end: 879
+    line_start: 676
+    line_end: 703
     title: "Tracing Paths Through DOOM's World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Line_algorithm"
     image_url: ""

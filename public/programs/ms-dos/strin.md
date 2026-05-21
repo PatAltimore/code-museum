@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "editon-buffer-reset"
     line_start: 24
-    line_end: 28
+    line_end: 26
     title: "Why Resetting Buffers Was Crucial in 1983"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The GOTCH routine filters out specific characters, such as control sequences and invalid inputs, ensuring that only meaningful data is processed. This was a vital feature in MS-DOS 2.0, where user input was often unpredictable due to the variety of keyboards and terminal setups. By implementing these checks, MS-DOS reduced errors and improved reliability. This approach to input validation became standard practice in software development, influencing everything from web forms to database systems."
   - id: "savch-buffer-storage"
     line_start: 46
-    line_end: 86
+    line_end: 79
     title: "Saving Characters: A Buffering Breakthrough"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The SAVCH routine stores characters in the buffer while ensuring there is enough space. If the buffer is full, it signals an error by invoking a bell sound. This was a clever workaround for the lack of dynamic memory allocation in early PCs. By predefining buffer sizes and managing them explicitly, MS-DOS avoided crashes and ensured predictable behavior. This technique influenced later systems, where dynamic memory allocation and error handling became more sophisticated but still relied on the principles established here."
   - id: "copynew-template-copy"
     line_start: 87
-    line_end: 230
+    line_end: 97
     title: "Copying Templates: A Step Toward Modern Text Editing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Template_(programming)"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The FINDOLD routine scans the template for a match to the user's input, using REPNE SCASB to search efficiently. This was a low-level implementation of string searching, tailored to the constraints of assembly language and early hardware. By optimizing this process, MS-DOS ensured quick responses to user input, even on slow CPUs like the Intel 8088. This technique influenced later developments in string searching algorithms, which became a key area of study in computer science."
   - id: "notfnd-error-handling"
     line_start: 265
-    line_end: 292
+    line_end: 267
     title: "Handling Errors: When Matches Fail"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""

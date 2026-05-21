@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "foundation-entity-info"
-    line_start: 26
-    line_end: 45
+    line_start: 1
+    line_end: 42
     title: "Entity Info: The Root of Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -73,7 +73,7 @@ enhancements:
     content: "This function recursively clips polygons against BSP planes, ensuring that only visible portions are rendered. The recursive approach allows the engine to efficiently traverse the BSP tree, a technique that was revolutionary for real-time graphics in the mid-90s. By breaking down complex polygons into smaller, manageable pieces, Quake's engine could render scenes with high detail while maintaining performance. This method became a cornerstone of real-time rendering, influencing engines like Unreal and CryEngine."
   - id: "draw-solid-clipped-polygons"
     line_start: 323
-    line_end: 402
+    line_end: 409
     title: "Drawing Solid Polygons: Handling Complexity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_rendering"
     image_url: ""

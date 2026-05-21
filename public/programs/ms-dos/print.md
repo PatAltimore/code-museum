@@ -39,7 +39,7 @@ enhancements:
     content: "The `START` label begins with a jump to `TRANSIENT`, bypassing initialization code. This design reflects the dual nature of the PRINT program: it operates as both a transient (temporary) and a resident (background) utility. By jumping directly to transient code, the program prioritizes immediate execution of user commands before setting up its resident components. In 1983, MS-DOS was evolving to support multitasking-like behaviors, and PRINT exemplifies this shift. The jump ensures that the program can quickly respond to user input while reserving background tasks for later. This approach influenced later designs of TSR (Terminate and Stay Resident) programs, which became a hallmark of MS-DOS utilities."
   - id: "istack-resident-data"
     line_start: 247
-    line_end: 405
+    line_end: 409
     title: "Resident Data: PRINT's Persistent Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `ISTACK` section defines resident data structures that persist while PRINT operates in the background. These include flags for interrupt handling (`BUSY`, `SOFINT`), counters (`TICKCNT`, `SLICECNT`), and device pointers (`LISTDEV`, `CURRFIL`). This memory layout reflects the constraints of early PCs, where programs had to manage their own state without relying on an operating system for multitasking. Tim Paterson's design ensures PRINT can efficiently handle interrupts and maintain its spooler functionality. The resident data approach influenced later DOS utilities and even modern operating systems, where background processes rely on persistent memory structures for state management."
   - id: "srchmes-error-messages"
     line_start: 463
-    line_end: 477
+    line_end: 467
     title: "The Messages That Warned Users"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_message"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `SRCHMES` section contains error messages displayed when PRINT encounters issues, such as missing files or unassigned devices. These messages are critical for user feedback in a time when graphical interfaces were rare. PRINT's reliance on textual error messages reflects the user experience of early DOS systems, where clear communication was essential for troubleshooting. The inclusion of detailed messages like \"File not found\" and \"List output is not assigned to a device\" demonstrates the program's focus on usability. This approach influenced the design of error handling in later command-line utilities and graphical interfaces, where user feedback remains a cornerstone of software design."
   - id: "int-17-hitlist-device-names"
     line_start: 489
-    line_end: 501
+    line_end: 503
     title: "Reserved Names for Printers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `TIMENOW` subroutine checks whether DOS is busy before proceeding with printing tasks. By inspecting the `INDOS` flag, PRINT avoids making DOS calls during critical operations, preventing system instability. This careful coordination reflects the limitations of early DOS systems, where concurrent access to system resources could lead to crashes. Tim Paterson's design ensures PRINT operates smoothly alongside other programs, a necessity in the single-tasking environment of MS-DOS. This technique influenced later multitasking operating systems, where resource locking and coordination are essential for stability."
   - id: "spint-software-interrupt"
     line_start: 621
-    line_end: 901
+    line_end: 657
     title: "INT 28H: PRINT's Software Interrupt"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The INT_13 routine interfaces directly with the BIOS to perform disk operations. It pushes the current flags and increments a BUSY flag to prevent concurrent access, then calls the real BIOS interrupt handler stored in REAL_INT_13. This low-level interaction highlights the reliance on BIOS for hardware control in early PCs. MS-DOS's design prioritized compatibility with IBM's BIOS, ensuring the operating system could run on any IBM-compatible hardware. This approach was pivotal in establishing the IBM PC as the industry standard. By exposing BIOS interrupts, MS-DOS allowed developers to write software that directly manipulated hardware, a practice that persisted in DOS-based systems and influenced early Windows versions. The INT_13 routine is a reminder of the close coupling between software and hardware in the early PC era."
   - id: "printer-error-int-17"
     line_start: 1939
-    line_end: 1969
+    line_end: 1975
     title: "Handling Printer Errors with INT 17"
     wikipedia_url: "https://en.wikipedia.org/wiki/Printer_(computing)"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The INT_17 routine manages printer errors by checking the status of the current file and the printer unit number. If the printer is busy or out of paper, it sets the AH register to indicate an error and exits via IRET. This routine demonstrates MS-DOS's modular approach to device handling, where each device type had dedicated interrupt handlers. In the early 1980s, printers were slow and prone to errors, making robust error handling essential. MS-DOS's ability to interface with printers directly through BIOS interrupts allowed it to support a wide range of hardware without requiring device-specific drivers. This modularity influenced later operating systems, which adopted similar abstractions for device management. The INT_17 routine is an example of how MS-DOS balanced simplicity and flexibility in its design."
   - id: "serial-port-int-14"
     line_start: 1985
-    line_end: 2029
+    line_end: 2035
     title: "Serial Port Communication via INT 14"
     wikipedia_url: "https://en.wikipedia.org/wiki/Serial_port"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The `INT_5` routine handles the Print Screen interrupt, a feature that allows users to print the current screen contents. It checks if there is a pending operation and whether the interrupt is for unit 0. If not, it exits gracefully with an `IRET` instruction, simulating success. This approach reflects the simplicity of early interrupt handling, where hardware constraints often required software to 'fake' functionality. In 1983, the IBM PC's hardware was limited, and MS-DOS had to work within these constraints while maintaining compatibility across multiple OEMs. This routine set a precedent for handling interrupts in a way that minimized system disruption. Later operating systems, such as Windows, built on these principles to manage hardware events more robustly."
   - id: "do-int-5-jump"
     line_start: 2065
-    line_end: 2067
+    line_end: 2075
     title: "Jumping to Real Interrupt Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
@@ -159,7 +159,7 @@ enhancements:
     content: "The `SETUP` routine installs resident code, ensuring the program remains in memory after execution. It initializes interrupt vectors and prompts the user for a device name. This technique, known as Terminate and Stay Resident (TSR), was a hallmark of MS-DOS programming. TSR programs allowed limited multitasking by enabling background processes, such as printing or keyboard monitoring. In 1983, this was a groundbreaking approach to extend the capabilities of single-tasking operating systems. TSR programs inspired later innovations in multitasking, eventually leading to fully multitasking environments in Windows and Unix-like systems."
   - id: "check-hitlist-printer-rs232"
     line_start: 2325
-    line_end: 2411
+    line_end: 2409
     title: "Checking Hitlists for Printer and RS-232"
     wikipedia_url: "https://en.wikipedia.org/wiki/RS-232"
     image_url: ""
@@ -167,7 +167,7 @@ enhancements:
     content: "The `CHKHIT` and `CHKHIT2` routines verify whether a device name matches entries in predefined 'hitlists' for printers and RS-232 ports. If a match is found, the corresponding interrupt vector is set. This mechanism reflects the need to manage multiple devices in a constrained environment. In 1983, the IBM PC's hardware was limited, and MS-DOS had to provide flexible device support without overwhelming the system's resources. These routines demonstrate early techniques for dynamic device configuration, a concept that evolved into plug-and-play systems in later operating systems like Windows 95."
   - id: "parse-command-line-arguments"
     line_start: 2601
-    line_end: 2775
+    line_end: 2669
     title: "Parsing Command-Line Arguments with Switches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -183,7 +183,7 @@ enhancements:
     content: "The `SRCHLOOP` routine iterates through files, attempting to open each one and perform operations. If an error occurs, it calls `OPENERR` to handle it gracefully. This loop demonstrates the file handling capabilities of MS-DOS, which relied on File Control Blocks (FCBs) for managing file metadata. In 1983, FCBs were a standard approach, but they were eventually replaced by more robust file systems like FAT. The iterative file processing in this routine influenced later file system APIs, such as those in Windows and Unix, which abstracted file operations for greater flexibility and reliability."
   - id: "getsplist-error-count-check"
     line_start: 2919
-    line_end: 3013
+    line_end: 3001
     title: "Checking Error Counts in Spool Lists"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spooling"
     image_url: ""

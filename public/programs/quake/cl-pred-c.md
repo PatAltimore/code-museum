@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-variables-for-prediction"
-    line_start: 23
+    line_start: 1
     line_end: 24
     title: "The Variables That Define Prediction"
     wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"

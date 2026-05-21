@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This function calculates network latency by comparing the time a frame was sent to the time it was received. It accounts for dropped packets, choked connections, and invalid deltas, assigning specific codes to each scenario. In 1996, latency was a major challenge for multiplayer games, as most players connected via dial-up modems. Carmack's team designed this system to provide real-time feedback on network performance, enabling players to diagnose issues and developers to optimize server communication. The technique influenced later multiplayer games, including Counter-Strike and World of Warcraft, where latency monitoring became standard practice. It also contributed to the development of modern network diagnostic tools like ping and traceroute."
   - id: "cl-check-or-download-file"
-    line_start: 148
+    line_start: 146
     line_end: 197
     title: "The Trick That Made Missing Files Downloadable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
