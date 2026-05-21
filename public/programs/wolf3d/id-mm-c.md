@@ -72,7 +72,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // NEWMM.C
 
 /*

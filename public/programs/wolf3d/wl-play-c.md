@@ -96,7 +96,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_PLAY.C
 
 #include "WL_DEF.H"

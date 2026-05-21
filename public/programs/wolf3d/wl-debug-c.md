@@ -72,7 +72,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_DEBUG.C
 
 #include "WL_DEF.H"

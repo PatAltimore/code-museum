@@ -82,7 +82,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_SCALE.C
 
 #include "WL_DEF.H"

@@ -136,7 +136,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_DRAW.C
 
 #include "WL_DEF.H"
