@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "include-dosseg-and-dossym"
-    line_start: 1
+    line_start: 5
     line_end: 15
     title: "Why Include Files Were Crucial in Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"

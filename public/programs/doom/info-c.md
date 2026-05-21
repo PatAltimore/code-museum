@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "sprite-name-lookup-table"
-    line_start: 25
+    line_start: 1
     line_end: 54
     title: "The Lookup Table That Named DOOM's World"
     wikipedia_url: "https://doomwiki.org/wiki/Sprite"
@@ -87,7 +87,7 @@ enhancements:
     content: "This section of the file defines the properties of various objects (or 'things') in DOOM, ranging from items like health packs to weapons and decorative elements. Each object is described using a compact structure that includes attributes such as spawn state, health, radius, height, sound effects, and flags that control its behavior. For example, the MF_SPECIAL flag marks objects that can be picked up, while MF_COUNTITEM indicates items that contribute to the player's score. In 1993, DOOM was designed to run on consumer-grade PCs with limited memory and processing power. John Carmack and his team optimized the game by using fixed-point arithmetic (e.g., FRACUNIT) and tightly packed data structures to minimize overhead. This approach allowed DOOM to handle dozens of objects in real-time without compromising performance. The design of these object properties influenced not only DOOM but also countless games that followed. The concept of encoding game objects with compact, extensible attributes became standard practice in game development. Modern engines like Unity and Unreal use similar principles, albeit with more sophisticated systems. The flags defined here, such as MF_SPECIAL, laid the groundwork for object-oriented behavior in games, enabling dynamic interactions and emergent gameplay. DOOM's object system was studied by developers of later games like Quake and Half-Life, and its influence can be seen in the modular design of contemporary game engines. The efficiency and flexibility of this approach remain a testament to the ingenuity of Carmack and his team, who pushed the boundaries of what was possible on 1993 hardware."
   - id: "static-object-definitions"
     line_start: 3188
-    line_end: 3991
+    line_end: 4668
     title: "Why DOOM's Decorations Were More Than Eye Candy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
     image_url: ""

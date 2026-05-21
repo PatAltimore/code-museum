@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the forest and clearing rooms, such as `FORE1`, `FORE2`, and `CLEAR`. Each room is described with exits leading to other areas, creating a sense of exploration. The forest's descriptions, like 'dimly lit' and 'obstructing all views,' evoke a vivid atmosphere despite the text-based format. In 1977, creating immersive environments with text alone was a novel concept, as most games focused on gameplay mechanics rather than storytelling. Zork's forest inspired later games, such as 'Myst' and 'The Elder Scrolls,' to prioritize world-building and environmental storytelling."
   - id: "mirror-room-navigation"
-    line_start: 801
+    line_start: 798
     line_end: 812
     title: "Mirror Rooms: A Puzzle in Reflection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The Mirror Rooms ('MIRR1' and 'MIRR2') are defined here with exits leading to adjacent areas and a special object ('REFL1' or 'REFL2') tied to the room. These rooms likely play a role in a puzzle where players must interact with reflective surfaces or navigate based on mirrored paths. At the time, such puzzles were groundbreaking in text-based games, offering a spatial and conceptual challenge. The authors of Zork, inspired by Crowther and Woods' Adventure, aimed to push the boundaries of interactive fiction by creating environments that felt alive and mysterious. The Mirror Rooms exemplify this ambition, requiring players to think beyond simple navigation. This approach influenced later games like Infocom's Enchanter series, where environmental puzzles became a hallmark."
   - id: "coal-mine-environment"
-    line_start: 859
+    line_start: 856
     line_end: 878
     title: "Coal Mine: A Journey Underground"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "This section defines interconnected rooms along the Frigid River and the Great Canyon, complete with detailed descriptions and exits. For instance, the 'RIVR3' room describes a valley with a faint rumbling sound, hinting at a waterfall ahead. The rooms are linked through exits like 'UP,' 'DOWN,' and 'LAND,' creating a navigable environment for players to explore. In 1977, Zork's developers were crafting one of the first text-based adventure games, leveraging the PDP-10's capabilities to simulate a rich game world. The detailed room descriptions demonstrate their commitment to immersion, using text to convey spatial relationships and atmospheric details. The interconnected design reflects their understanding of player navigation and puzzle-solving. These techniques influenced the design of later adventure games, including 'Myst' and 'King's Quest,' which expanded on the idea of interconnected environments. Zork's approach to room design set a standard for creating immersive worlds in interactive fiction, inspiring generations of game developers to prioritize exploration and storytelling."
   - id: "frobozz-magic-boat-label"
-    line_start: 1973
+    line_start: 1972
     line_end: 2001
     title: "The Frobozz Magic Boat: Humor in Design"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
@@ -166,7 +166,7 @@ enhancements:
     image_caption: ""
     content: "This section introduces rooms within a dormant volcano, including ledges, a library, and a gnome-inhabited area. The library description humorously mentions shelves gnawed by unfriendly gnomes, adding a whimsical touch to the environment. The rooms are connected through exits like 'DOWN,' 'WEST,' and 'SOUTH,' creating a navigable space for players. In the late 1970s, Zork's developers were exploring ways to create engaging environments within the constraints of text-based games. The volcano and library rooms demonstrate their ability to blend humor with exploration, using MDL to define complex interactions and descriptions. The gnome-related humor reflects their playful approach to storytelling. These rooms influenced the design of later games, including 'Ultima' and 'Baldur's Gate,' which expanded on the idea of detailed environments with unique characters. Zork's blend of humor and exploration set a precedent for creating memorable game worlds, inspiring developers to prioritize creativity and player engagement."
   - id: "frobozz-magic-balloon-label"
-    line_start: 2290
+    line_start: 2289
     line_end: 2313
     title: "Frobozz Magic Balloon: Instructions and Humor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
@@ -190,7 +190,7 @@ enhancements:
     image_caption: ""
     content: "This section sets up light-related interrupts and defines the number of matches available in the game. For example, the 'MATCH' object is initialized with a value of 5, representing the number of matches players can use. The light interrupts ensure that objects like lamps behave correctly, adding realism to the game world. Zork's developers were pioneering interactive fiction on the DEC PDP-10, a machine with limited memory and processing power. The use of MDL allowed them to manage game state efficiently, ensuring that objects like lamps and matches contributed to the gameplay experience. This attention to detail reflects their commitment to creating an immersive world. These techniques influenced the design of later adventure games, including 'Ultima' and 'Baldur's Gate,' which expanded on the idea of managing resources and environmental interactions. Zork's approach to light and object management set a precedent for creating realistic game worlds, inspiring developers to prioritize immersion and player engagement."
   - id: "tomb-of-the-unknown-implementer"
-    line_start: 2403
+    line_start: 2399
     line_end: 2457
     title: "A Tomb for Headless Implementers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
@@ -198,7 +198,7 @@ enhancements:
     image_caption: ""
     content: "This section introduces the 'Tomb of the Unknown Implementer,' a humorous nod to the developers' own struggles and quirks. The tomb contains objects like heads on poles, empty Coke bottles, and stacks of unreadable line-printer paper, each reflecting the developers' experiences during Zork's creation. The inscription 'Feel Free' adds a cryptic touch, blending humor with mystery. In 1977, Zork was developed on the PDP-10 under ITS, a time when programming was both a technical challenge and a creative endeavor. The tomb's objects and descriptions reveal the developers' personalities and their playful approach to game design. This humor and self-awareness influenced later games, embedding Easter eggs and developer references as a tradition in interactive fiction."
   - id: "robot-and-green-paper"
-    line_start: 2724
+    line_start: 2723
     line_end: 2759
     title: "A Robot and Its User Manual"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence"

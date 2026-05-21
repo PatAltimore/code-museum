@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "foundation-networking-setup"
-    line_start: 1
+    line_start: 20
     line_end: 57
     title: "Foundation: Networking Setup and Definitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -80,7 +80,7 @@ enhancements:
     image_caption: ""
     content: "The `NET_GetPacket` function handles incoming UDP packets, storing them in a buffer and converting their source address into a `netadr_t` structure. It includes error handling for common issues like blocked connections (`EWOULDBLOCK`) and refused connections (`ECONNREFUSED`). This function was critical for Quake's real-time multiplayer mode, where low-latency communication was essential. The use of `recvfrom` reflects the reliance on Unix networking APIs, which were state-of-the-art at the time. The approach influenced later engines, which adopted similar packet handling techniques for multiplayer games, including Valve's Source Engine and Epic's Unreal Engine."
   - id: "send-network-packets"
-    line_start: 214
+    line_start: 216
     line_end: 231
     title: "Sending Network Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Packet_(networking)"
@@ -88,7 +88,7 @@ enhancements:
     image_caption: ""
     content: "The `NET_SendPacket` function sends UDP packets to a specified address. It uses `sendto` for transmission and includes error handling for blocked and refused connections. This function was essential for enabling real-time communication in Quake's multiplayer mode. The decision to use UDP, rather than TCP, reflects the team's focus on minimizing latency, as UDP does not require the overhead of connection management. The approach influenced later multiplayer frameworks, which adopted UDP for performance-critical applications, including online shooters and real-time strategy games."
   - id: "open-udp-socket"
-    line_start: 233
+    line_start: 235
     line_end: 261
     title: "Opening a UDP Socket"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_Datagram_Protocol"
@@ -96,7 +96,7 @@ enhancements:
     image_caption: ""
     content: "The `UDP_OpenSocket` function creates and configures a UDP socket for communication. It includes support for binding to specific IP interfaces, a feature added by Zoid Kirsch, who contributed to Quake's networking code. The use of `ioctl` to enable non-blocking mode reflects the team's focus on real-time performance. This function was critical for initializing Quake's multiplayer mode, allowing the game to handle multiple connections efficiently. The approach influenced later engines, which adopted similar socket management techniques for multiplayer games, including Blizzard's Battle.net and Valve's Steamworks."
   - id: "initialize-networking"
-    line_start: 283
+    line_start: 288
     line_end: 307
     title: "Initializing Networking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -104,7 +104,7 @@ enhancements:
     image_caption: ""
     content: "The `NET_Init` function initializes Quake's networking system, opening a UDP socket and setting up the message buffer. It also determines the local machine's network address, enabling the game to identify itself on the network. This function was the entry point for Quake's multiplayer mode, laying the foundation for real-time communication. The approach influenced later engines, which adopted similar initialization routines for networking, including Unreal Engine and Source Engine."
   - id: "shutdown-networking"
-    line_start: 309
+    line_start: 314
     line_end: 317
     title: "Shutting Down Networking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The GETVAL routine analyzes expressions, allowing for base and index registers in memory references. It computes addressing modes and handles constants, ensuring the assembler can generate correct machine code. The routine includes checks for undefined labels and optimizes displacement sizes based on the value's range. This approach reflects the constraints of the 8086 architecture, where addressing modes were limited and required careful calculation. The techniques used here influenced the design of expression analyzers in later programming tools, emphasizing efficiency and accuracy in code generation."
   - id: "floating-point-registers"
-    line_start: 932
+    line_start: 931
     line_end: 957
     title: "Floating-Point Registers: A Stack of Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8087"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The PUTADD routine handles addressing modes, distinguishing between direct and indirect addressing. It saves the addressing mode as pure code and processes optional displacement bytes for indirect modes. Addressing modes were a critical feature of the 8086 architecture, enabling flexible memory access. MS-DOS's implementation reflects the need to optimize for both performance and code size, ensuring compatibility with the IBM PC's segmented memory model. This routine showcases the low-level control programmers had over hardware in the early 1980s, a stark contrast to today's high-level abstractions. The handling of addressing modes influenced later systems, including x86 assembly tools and compilers, which continue to rely on similar mechanisms for instruction encoding."
   - id: "jmp-call-mnemonics"
-    line_start: 2001
+    line_start: 2002
     line_end: 2065
     title: "How MS-DOS Encoded JMP and CALL"
     wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computing)"
@@ -158,7 +158,7 @@ enhancements:
     image_caption: ""
     content: "The error reporting mechanism in this section is a fascinating example of early software debugging practices. The routine uses an error table (ERRTAB) to map error codes to human-readable messages. When an error occurs, the code searches the table for the corresponding message and prints it. If no message is found, the error code itself is displayed. This method was crucial in the era of MS-DOS, where debugging tools were rudimentary, and developers relied heavily on meaningful error messages to diagnose issues. Tim Paterson's design reflects the practical needs of developers working with limited resources and tight deadlines. This approach to error handling influenced later operating systems and programming languages, where robust error reporting became a standard feature. The concept of mapping error codes to messages persists in modern software development, from kernel logs to high-level application frameworks."
   - id: "hexadecimal-output-for-machine-code"
-    line_start: 2873
+    line_start: 2867
     line_end: 2937
     title: "Hexadecimal Output: Generating Machine Code"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_HEX"
@@ -166,7 +166,7 @@ enhancements:
     image_caption: ""
     content: "This section handles the generation of hexadecimal output for machine code, a critical step in the assembly process. The routine converts binary data into the Intel HEX format, which was widely used for storing and transferring machine code in the early 1980s. Each line of HEX output includes a checksum to ensure data integrity, reflecting the importance of reliability in software distribution. The routine also manages buffer flushing and error handling, ensuring that the generated HEX file is complete and accurate. At the time, this functionality was vital for developers who needed to load machine code onto hardware devices or share it with other systems. The Intel HEX format became a standard for firmware updates and embedded systems programming, and its influence can still be seen in modern development tools. This section demonstrates the meticulous attention to detail required to produce reliable software in the constrained environment of the IBM PC."
   - id: "mnemonic-table-for-8086-instructions"
-    line_start: 2975
+    line_start: 2977
     line_end: 3104
     title: "Mnemonic Table: Decoding Assembly Language"
     wikipedia_url: "https://en.wikipedia.org/wiki/X86_instruction_listings"
@@ -183,7 +183,7 @@ enhancements:
     content: "This section defines the OPTAB, a table mapping mnemonics to their corresponding machine instructions for the Intel 8086 processor. Mnemonics are human-readable representations of opcodes, such as 'MOV' for moving data or 'ADD' for addition. The table organizes mnemonics by their starting letter and length, allowing the assembler to efficiently look up instructions during compilation. In the early 1980s, programming directly in assembly was common due to hardware constraints. Mnemonic tables like this were essential for translating human-readable code into binary instructions. Tim Paterson, the author of MS-DOS, designed this table to support the assembler's functionality, ensuring compatibility with the 8086 instruction set. This approach influenced later assemblers and compilers by demonstrating the importance of structured lookup mechanisms. Today, similar mnemonic systems are used in modern assembly languages and even higher-level languages that compile down to machine code."
   - id: "mnemonic-table-8087"
     line_start: 3866
-    line_end: 3896
+    line_end: 3894
     title: "The Floating-Point Revolution: 8087 Mnemonics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8087"
     image_url: ""

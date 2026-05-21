@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The opening section of IO.ASM defines hardware configuration options for MS-DOS, allowing it to support a variety of controllers and devices. These include CPU support cards, disk controllers from SCP, Tarbell, and Cromemco, and auxiliary ports for serial or parallel communication. In 1981, hardware diversity was a major challenge for operating systems, as the IBM PC had just launched, and OEMs were rapidly adopting MS-DOS for their own hardware. Tim Paterson's design ensured flexibility by enabling users to select interrupt-driven or polled input, baud rates, and disk configurations. This approach allowed MS-DOS to become the dominant OS for PCs, as it could be easily adapted to new hardware. The configurable nature of this section foreshadowed the modularity seen in later systems like Linux and Windows."
   - id: "time-of-day-clock-initialization"
-    line_start: 151
+    line_start: 149
     line_end: 256
     title: "Setting the Clock: Time-of-Day Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_clock"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes the time-of-day clock using the 9513 Timer chip. The clock setup involves configuring registers to enable timekeeping and setting counters for seconds, minutes, hours, and days. In the early 1980s, real-time clocks were a luxury feature in PCs, often requiring separate hardware. By integrating clock initialization directly into the I/O system, MS-DOS provided a standardized way to manage time-dependent operations. This feature was critical for applications like scheduling and file timestamping. The design influenced later operating systems, which integrated more sophisticated timekeeping mechanisms, eventually leading to the ubiquitous real-time clocks found in modern PCs and embedded systems."
   - id: "console-input-handling"
-    line_start: 265
+    line_start: 262
     line_end: 535
     title: "Interrupts vs Polling: Console Input Strategies"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The console input routines in IO.ASM demonstrate two approaches to handling keyboard input: interrupt-driven and polled. Interrupt-driven input uses a keyboard interrupt handler to process keystrokes as they occur, storing them in a queue for later retrieval. Polled input, on the other hand, continuously checks the keyboard status, a simpler but less efficient method. This dual approach reflects the constraints of early PCs, where hardware capabilities varied widely. Tim Paterson's design ensured MS-DOS could operate on systems with or without advanced interrupt support. The interrupt-driven model became the standard for modern systems, as it minimizes CPU usage and improves responsiveness. This section highlights the transition from basic polling methods to more sophisticated event-driven programming."
   - id: "disk-change-detection"
-    line_start: 673
+    line_start: 670
     line_end: 777
     title: "Detecting Disk Changes: A Hardware Challenge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_formats"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The DSKCHG routine addresses the problem of detecting whether a floppy disk has been changed. It checks the drive's status and head load bit to determine if the disk has been swapped or if its density has changed. This was a critical feature in the era of floppy disks, as users frequently swapped disks during operation. The routine also handles different disk controllers, reflecting the diversity of hardware supported by MS-DOS. Disk change detection was a challenging problem due to the lack of standardized hardware signals. Paterson's solution laid the groundwork for more robust disk management systems in later operating systems, which automated disk detection and format handling."
   - id: "direct-disk-read-write"
-    line_start: 816
+    line_start: 811
     line_end: 929
     title: "Direct Disk Access: Speed Meets Flexibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_operating_system"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The DIRECTREAD and DIRECTWRITE routines provide low-level disk access, bypassing higher-level abstractions for maximum performance. These routines handle tasks like seeking to the correct track, reading or writing sectors, and managing errors. Direct disk access was essential for early PCs, where performance was constrained by slow hardware. By allowing programs to interact directly with the disk controller, MS-DOS enabled applications like FORMAT and disk utilities to operate efficiently. This approach influenced the design of later operating systems, which continued to offer direct disk access for specialized applications. The routines also highlight the complexity of error handling in early systems, where hardware limitations required careful management of edge cases."
   - id: "seek-routine"
-    line_start: 942
+    line_start: 938
     line_end: 1038
     title: "Seeking Tracks: Precision Disk Positioning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The READSECT routine reads a sector from the disk, incorporating retry logic to handle transient errors. It uses the SETUP routine to configure the disk controller and retries the read operation multiple times if errors occur. This resilience was necessary for early floppy disks, which were prone to read errors due to dust, magnetic degradation, and mechanical issues. Paterson's implementation reflects the practical challenges of working with unreliable storage media in the early 1980s. The retry mechanism became a standard feature in disk I/O programming, influencing later systems like Windows and Linux."
   - id: "writeloop-disk-write"
-    line_start: 1263
+    line_start: 1262
     line_end: 1298
     title: "Writing Data to Disk in WRLOOP"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The WRLOOP routine writes data to a disk sector, ensuring that each byte is transferred correctly. It includes conditional code to handle different disk controllers, reflecting the diverse hardware landscape of the early PC era. The routine also incorporates error checking and retry logic, ensuring data integrity even on unreliable hardware. This meticulous attention to detail was necessary to meet the expectations of business users, who relied on MS-DOS for critical tasks. WRLOOP's design influenced the development of file systems and disk I/O subsystems in later operating systems, emphasizing reliability and compatibility."
   - id: "inittab-customization-table"
-    line_start: 1491
+    line_start: 1485
     line_end: 1847
     title: "Customizing Disk I/O with INITTAB"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"

@@ -135,7 +135,7 @@ enhancements:
     content: "`BreakDown` splits large disk transfers into smaller chunks, calculating the number of sectors and bytes to transfer in each step. This routine is essential for handling files larger than the memory segment size, a common limitation in 16-bit systems. By dividing transfers into manageable pieces, MS-DOS ensured compatibility with the FAT file system and BIOS-level disk operations. This technique influenced buffer management in later systems, where efficient handling of large data transfers became critical for performance. It also laid the groundwork for modern file systems that optimize disk I/O through caching and prefetching."
   - id: "diskread-user-disk-read-operation"
     line_start: 1773
-    line_end: 2013
+    line_end: 2131
     title: "Performing User-Level Disk Reads"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

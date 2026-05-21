@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "This subroutine, `decodeim`, decodes sword images by manipulating bits in the `Fimage` and `Fsword` variables. It calculates the correct table index and image data, storing them in `FCharTable` and `FCharImage`. This process ensures the correct graphical representation of the sword based on the character's state and actions. In the mid-1980s, graphical fidelity was constrained by hardware limitations, and developers like Mechner had to creatively use bitwise operations to pack and unpack visual data efficiently. This technique allowed Prince of Persia to feature detailed animations and objects despite the Apple II's limited memory and processing power. The method of decoding and storing graphical data influenced later games, particularly in optimizing sprite handling for 2D platformers."
   - id: "get-character-edges"
-    line_start: 1071
-    line_end: 1170
+    line_start: 1057
+    line_end: 1159
     title: "Calculating Character Boundaries for Collision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `CROPCHAR` subroutine adjusts the character's visible boundaries based on their position and surroundings. It handles scenarios like climbing stairs, standing under solid floors, or interacting with panels. By dynamically cropping the character's image, Mechner ensured seamless integration with the environment, enhancing the game's cinematic feel. This technique of clipping graphics based on context was ahead of its time, influencing later games that required dynamic sprite manipulation, such as Another World and Flashback."
   - id: "compare-space-for-passability"
-    line_start: 1506
+    line_start: 1495
     line_end: 1532
     title: "Determining Passable Spaces in the Environment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pathfinding"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `CMPSPACE` subroutine checks whether a given space is passable based on its object ID. It identifies spaces like solid blocks, pillars, and panels, returning whether the character can move through them. This logic is fundamental to the game's platforming mechanics, ensuring that the environment reacts realistically to the player's movements. Mechner's approach to space comparison laid the groundwork for more advanced pathfinding and environmental interaction systems in later games, such as Tomb Raider and Uncharted."
   - id: "add-objects-to-table"
-    line_start: 1592
+    line_start: 1585
     line_end: 1616
     title: "Adding Characters and Objects to the Game World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `RECHARGEMETER` and `BOOSTMETER` subroutines manage the character's strength meter, recharging it to the maximum or boosting its capacity. This mechanic adds a layer of progression and strategy to the gameplay, encouraging players to manage their resources carefully. Mechner's implementation of strength meters influenced similar mechanics in RPGs and action games, such as the stamina systems in Dark Souls and Breath of the Wild."
   - id: "calculate-character-distance"
-    line_start: 2050
+    line_start: 2043
     line_end: 2102
     title: "How to Measure Distance in 6502 Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"

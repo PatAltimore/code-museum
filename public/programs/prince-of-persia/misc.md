@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "MOVEAUXLC transfers a block of memory from main memory to the auxiliary language card, setting interrupt vectors in both memory banks. This routine is loaded into main memory by the MASTER program and becomes useless once transferred to auxiliary memory. The Apple II's language card was a clever hardware extension that allowed developers to work around the system's memory limitations. Mechner's use of this feature demonstrates his deep understanding of the hardware and his ability to exploit its quirks for gameplay purposes. This approach influenced later developers working on systems with similar memory constraints, such as the Commodore 64 and early IBM PCs."
   - id: "guard-ai-mechanics"
-    line_start: 191
+    line_start: 186
     line_end: 224
     title: "The AI That Stops You in Your Tracks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "CHECKALERT determines whether enemies can see the player. It checks conditions like screen position, block alignment, and obstacles. If the path is clear, the enemy becomes alert. This routine is part of the game's dynamic AI system, which creates tension and challenge for the player. Mechner's approach to enemy behavior was ahead of its time, influencing later games with stealth and visibility mechanics, such as Metal Gear Solid and Assassin's Creed."
   - id: "display-version-text-loop"
-    line_start: 980
+    line_start: 985
     line_end: 997
     title: "The Loop That Prints Version Text"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"

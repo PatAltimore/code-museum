@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-setup-for-turbulence"
-    line_start: 1
+    line_start: 20
     line_end: 33
     title: "Foundation: Setting Up for Turbulence"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `D_WarpScreen` function creates a sine-wave distortion effect on the screen, a signature visual feature of Quake. This effect compresses the edges to prevent wrapping artifacts, demonstrating attention to detail in visual fidelity. The algorithm uses precomputed sine tables for efficiency, a common technique in the era to avoid costly trigonometric calculations. This effect became iconic, influencing later games and graphics engines to incorporate similar distortion techniques for atmosphere or special effects."
   - id: "turbulent-span-drawing"
-    line_start: 94
+    line_start: 92
     line_end: 111
     title: "Span Drawing for Turbulent Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `D_DrawTurbulent8Span` function handles drawing spans of turbulent textures, using fixed-point arithmetic to calculate texture coordinates. This approach balances precision and performance, critical for real-time rendering on 1990s CPUs. The turbulence effect adds visual complexity to textures, enhancing immersion in Quake's 3D environments. Techniques like this paved the way for advanced texture manipulation in later engines, including dynamic texture effects in games like Half-Life and Doom 3."
   - id: "turbulent-texture-rendering"
-    line_start: 115
+    line_start: 113
     line_end: 245
     title: "Rendering Turbulent Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `Turbulent8` function orchestrates the rendering of turbulent textures by calculating texture coordinates and invoking span-drawing routines. It uses sine tables to create the turbulence effect, a clever optimization that avoids runtime trigonometric calculations. This function exemplifies the blend of mathematical precision and performance tuning that defined Quake's rendering engine. The turbulent texture effect became a staple in graphics programming, influencing techniques in games like Unreal Tournament and modern shaders."
   - id: "optimized-span-drawing"
-    line_start: 250
+    line_start: 248
     line_end: 381
     title: "Optimized Span Drawing for 8-bit Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `D_DrawSpans8` function draws spans of 8-bit textures, optimizing for memory and CPU constraints. By dividing spans into smaller chunks and precomputing texture coordinates, the code minimizes runtime overhead. This function showcases Carmack's mastery of low-level optimization, a skill that set Quake apart from its contemporaries. The techniques here influenced texture rendering in later engines, including the Quake II and Unreal engines, which built upon these principles for more complex environments."
   - id: "z-buffer-span-drawing"
-    line_start: 388
+    line_start: 386
     line_end: 444
     title: "Z-Buffer Span Drawing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"

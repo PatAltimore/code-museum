@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "vbl-interrupt-handler"
-    line_start: 110
+    line_start: 106
     line_end: 112
     title: "How VBLANK Keeps Graphics Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vertical_blank_interrupt"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "DRAWALL is the central routine that renders all graphical layers: background, mid-plane, foreground, and messages. It calls subroutines for each layer and manages the order of rendering to ensure visual coherence. This routine also interacts with the Apple II's high-resolution graphics mode, a feature that was groundbreaking for its time. By organizing rendering in this way, Mechner created a system that could handle complex scenes without overwhelming the hardware. The concept of layered rendering became a cornerstone of game graphics, influencing engines like Unity and Unreal, which use similar principles for scene composition."
   - id: "convert-x-coordinate"
-    line_start: 886
+    line_start: 885
     line_end: 959
     title: "Turning Coordinates Into Pixels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `RND` routine generates random numbers using a linear congruential formula: `(5 * seed + 23) mod 256`. This simple algorithm updates the `RNDseed` variable, providing pseudo-random values for gameplay elements like enemy behavior or environmental effects. Random number generation was essential for creating dynamic and unpredictable experiences in games, especially on hardware without dedicated RNG support. Mechner's implementation reflects the ingenuity required to simulate randomness on the Apple II. This technique influenced later games, where similar algorithms were used for procedural generation and AI decision-making, paving the way for modern game mechanics."
   - id: "music-system-integration"
-    line_start: 1845
+    line_start: 1825
     line_end: 1892
     title: "Music System II: Modular Sound Design"
     wikipedia_url: "https://en.wikipedia.org/wiki/Music_system"
@@ -134,7 +134,7 @@ enhancements:
     image_caption: ""
     content: "The `CALLMINIT` and `CALLMPLAY` routines interface with Music System II, handling initialization and playback of songs. They use zero-page switching to manage memory efficiently, ensuring smooth transitions between sound routines. Modular sound systems like Music System II were a breakthrough in game audio during the 1980s, enabling dynamic and layered soundtracks on limited hardware. Mechner's integration showcases his ability to leverage existing tools while maintaining control over memory and performance. This modular approach influenced later sound engines, such as those used in LucasArts adventure games and early MIDI-based systems."
   - id: "vertical-blank-optimization"
-    line_start: 1938
+    line_start: 1936
     line_end: 2014
     title: "Waiting for VBLANK: Timing Graphics Perfectly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vertical_blank_interrupt"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "This routine, NORMSPEED, configures the Apple II's display settings and speed. It begins by checking whether the code is running on an Apple IIGS (a later model in the Apple II series). If not, it exits immediately. For the IIGS, it sets the border color to black and the background to black with white text—choices likely made for visual clarity during gameplay. It then adjusts a hardware register ($C036) to ensure normal speed operation. This manipulation of hardware registers reflects the direct control programmers had over Apple II hardware, bypassing abstractions to achieve precise effects. In 1989, the Apple II was nearing the end of its commercial life, but the IIGS offered enhanced graphics and sound capabilities. Jordan Mechner leveraged these features to create a visually striking game that felt cinematic—a rarity on the platform. The black border and text settings ensured the player’s focus remained on the game’s animations, which were rotoscoped from live-action footage. This approach influenced later games that prioritized visual clarity and immersion. The direct manipulation of hardware registers became less common as operating systems abstracted hardware interactions, but it remains a hallmark of early game programming. Mechner’s meticulous attention to detail in graphical presentation helped establish Prince of Persia as a landmark title, inspiring developers of cinematic platformers like Another World and Flashback."
   - id: "read-control-panel-parameter"
-    line_start: 2080
+    line_start: 2078
     line_end: 2103
     title: "How to Read a Control Panel Parameter"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIGS"

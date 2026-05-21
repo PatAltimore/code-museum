@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The `SpawnBoss` function introduces special enemies like Hans and Gretel, with unique attributes and behaviors that distinguish them from regular foes. These boss battles were pivotal in defining Wolfenstein 3D's narrative and pacing, creating memorable moments for players. The concept of boss battles became a staple in video game design, influencing titles across genres, from platformers like Super Mario Bros. to RPGs like Final Fantasy."
   - id: "spawn-patrol-routine"
-    line_start: 973
-    line_end: 1049
+    line_start: 951
+    line_end: 1021
     title: "How Enemies Patrol the Maze"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "This section plays unique audio cues when enemies die, enhancing the game's immersive experience. Each enemy type has a distinct sound, ranging from human screams to dog whimpers. The implementation leverages randomization to vary the audio, ensuring players don't hear repetitive sounds. This was particularly impactful given the widespread adoption of Sound Blaster cards at the time, which allowed for high-quality digital audio. The use of audio to reinforce gameplay events became a hallmark of id Software's titles and influenced the broader industry, including games like Half-Life and Call of Duty."
   - id: "trans-state-machine"
-    line_start: 1181
+    line_start: 1179
     line_end: 1235
     title: "State Machines for Enemy AI"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"

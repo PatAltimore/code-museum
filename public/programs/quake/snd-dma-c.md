@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The `SND_Spatialize` function calculates stereo separation and distance attenuation for sound channels, creating a 3D audio experience. By determining the listener's position and orientation relative to the sound source, the function adjusts left and right volumes to simulate spatial effects. This technique was groundbreaking for its time, leveraging vector math to enhance immersion in Quake's 3D environments. The implementation reflects the influence of Michael Abrash, whose expertise in optimization and graphics extended to audio processing. Spatialized sound became a standard feature in modern engines, shaping the audio design of games like Battlefield and Call of Duty."
   - id: "ambient-sound-updates"
-    line_start: 662
+    line_start: 660
     line_end: 714
     title: "Ambient Sound Updates: Dynamic Adjustments"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"

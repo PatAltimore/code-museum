@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The $PARSE_FILE_DESCRIPTOR routine converts a command-line string into a File Control Block (FCB), enabling file operations. This function reflects the simplicity of MS-DOS's file handling, which relied on FCBs for storing file metadata. Parsing strings into FCBs was critical for command-line utilities, which needed to interpret user input efficiently. This approach influenced later operating systems, which adopted more sophisticated file handling mechanisms, such as file descriptors and handles, while retaining the principle of parsing user input for file operations."
   - id: "dup-pdb-process-copying"
-    line_start: 1021
+    line_start: 1027
     line_end: 1033
     title: "How MS-DOS Managed Process Duplication"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

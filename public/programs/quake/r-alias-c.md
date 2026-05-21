@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-alias-models"
-    line_start: 1
+    line_start: 20
     line_end: 73
     title: "Alias Models: A Foundation for 3D Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_computer_graphics"

@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine handles the character's interaction with the floor plane during freefall. If the character passes through the floor, the code checks whether the floor is solid or contains special elements like spikes. If the floor is solid, the character's position is adjusted to align with the floor. If not, the character continues falling or interacts with the floor's special properties. In 1989, handling such interactions required precise calculations due to the Apple II's limited processing power and memory. Jordan Mechner designed this logic to ensure smooth gameplay transitions, avoiding glitches like characters getting stuck inside blocks. This approach influenced later games by demonstrating how to handle edge cases in platformers, inspiring developers to focus on seamless environmental interactions."
   - id: "check-floor-for-actions"
-    line_start: 106
+    line_start: 100
     line_end: 139
     title: "How Floors Dictate Character Actions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The startfall subroutine initiates the character's fall when no floor is detected underfoot. It adjusts the character's state and triggers animations for different types of falls, such as step falls or jump falls. This level of detail contributed to the game's cinematic quality, making each movement feel deliberate and impactful. In the context of 1980s gaming, such nuanced animations were rare, especially on hardware as limited as the Apple II. Mechner's work here influenced the design of later platformers, where character animations became integral to storytelling and gameplay."
   - id: "inside-block-bumping"
-    line_start: 465
+    line_start: 457
     line_end: 508
     title: "What Happens When You're Inside a Block?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
@@ -88,7 +88,7 @@ enhancements:
     image_caption: ""
     content: "The SHADCTRL subroutine manages the shadow character, including its life state and control settings. If the shadow's life runs out, it vanishes, adding a dramatic element to the gameplay. This subroutine showcases Mechner's narrative-driven approach, where even secondary characters contribute to the game's cinematic feel. The shadow mechanic was a unique feature of Prince of Persia, influencing later games that incorporated doppelgänger or shadow elements, such as Zelda: Ocarina of Time and Dark Souls."
   - id: "player-control-and-input"
-    line_start: 554
+    line_start: 549
     line_end: 585
     title: "How Player Input Shapes the Game"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
@@ -152,7 +152,7 @@ enhancements:
     image_caption: ""
     content: "The 'hanging' subroutine handles the character's ability to hang from ledges, a feature that adds tension and realism to the gameplay. The code checks for joystick inputs and environmental conditions to determine whether the character can climb up, drop down, or remain hanging. This mechanic was a significant departure from traditional platformers, which rarely included such dynamic interactions with the environment. Mechner's focus on creating a cinematic experience is evident here, as hanging from ledges often serves as a dramatic moment in the game. This feature influenced later games like Uncharted, which used similar mechanics to enhance its action-adventure gameplay."
   - id: "run-jump-calibration"
-    line_start: 1740
+    line_start: 1739
     line_end: 1843
     title: "Calibrating the Perfect Run Jump"
     wikipedia_url: "https://en.wikipedia.org/wiki/Platform_game"

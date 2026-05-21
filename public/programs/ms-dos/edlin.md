@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "This section defines constants and data areas used throughout EDLIN. Key constants include TRUE/FALSE definitions, the quote character (^V), and the command line length. These constants reflect the constraints of the MS-DOS environment, where memory was scarce and every byte mattered. The data areas include buffers for file names, command lines, and editing operations, as well as flags for file attributes and directory states. The careful organization of these variables ensured efficient memory usage and quick access during runtime. This approach to defining constants and data areas became standard practice in assembly programming, influencing how later systems like Unix and Linux structured their low-level utilities."
   - id: "start-and-edlin-entry"
-    line_start: 236
+    line_start: 235
     line_end: 265
     title: "The Jump That Starts EDLIN"
     wikipedia_url: "https://en.wikipedia.org/wiki/Edlin"

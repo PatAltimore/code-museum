@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `Mult10` table precomputes multiples of 10 (0, 10, 20, ..., 150), enabling fast multiplication without relying on the Apple II's limited arithmetic capabilities. Multiplication was expensive on 6502 processors, which lacked dedicated hardware for such operations. By storing results in a table, Mechner ensured that calculations involving multiples of 10 could be performed instantly, a significant optimization for gameplay mechanics like physics and scoring. This technique exemplifies the resourcefulness required to work within the constraints of early microprocessors. Precomputed multiplication tables became a common practice in assembly programming, influencing the design of game engines and embedded systems."
   - id: "block-edge-left-coordinates"
-    line_start: 140
+    line_start: 142
     line_end: 154
     title: "Where Blocks Begin: Left Edges"
     wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"

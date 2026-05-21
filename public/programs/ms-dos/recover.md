@@ -38,23 +38,23 @@ enhancements:
     image_caption: ""
     content: "The `recover` label marks the entry point of the RECOVER utility, immediately jumping to `rec_start`. This jump simplifies debugging by isolating initialization routines from the main logic. The header message (`HEADER`) and global flags (`the_root`, `fudge`) are defined here, setting up the program's state. Chris Peters, who joined Microsoft in 1982, wrote this utility to address the growing need for reliable file recovery on MS-DOS systems. At the time, IBM PCs were becoming ubiquitous, and disk corruption was a common issue due to hardware limitations and user errors. This entry point reflects the modular design philosophy of MS-DOS v2.0, which was heavily influenced by Unix. The RECOVER utility's ability to rebuild directories and handle corrupted file systems laid the groundwork for future disk repair tools, including Norton Utilities and modern file recovery software."
   - id: "print-subroutine"
-    line_start: 155
-    line_end: 157
+    line_start: 153
+    line_end: 159
     title: "Printing Strings via BIOS Interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
     image_caption: ""
     content: "The `print` subroutine uses the BIOS interrupt `int 21h` to output strings to the console. This approach leverages the standard MS-DOS interface for interacting with hardware, ensuring compatibility across different PC configurations. In 1982, direct hardware access was common, but MS-DOS provided abstractions like this to simplify programming. The reliance on interrupts reflects the efficiency required for low-level system utilities running on the Intel 8086 processor, which had limited processing power and memory. This technique became a staple in MS-DOS programming, influencing countless utilities and applications that followed. It also highlights the trade-offs of early PC software development: balancing direct hardware access with portability and maintainability."
   - id: "convert-and-convlp-loop"
-    line_start: 163
-    line_end: 211
+    line_start: 161
+    line_end: 213
     title: "Converting Data with Clever Bit Manipulation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
     image_caption: ""
     content: "The `convert` subroutine and its loop (`convlp`) perform bitwise operations to manipulate data efficiently. This section showcases the programmer's deep understanding of the Intel 8086 architecture, using instructions like `shl`, `rcl`, and `adc` to process data without relying on higher-level abstractions. In the early 1980s, such techniques were essential for optimizing performance on hardware with limited resources. Chris Peters likely drew inspiration from assembly programming practices developed for earlier microprocessors, adapting them for MS-DOS's needs. These operations are foundational to many algorithms in system software, influencing later developments in file systems and data processing routines. The use of bitwise manipulation here underscores the ingenuity required to maximize the capabilities of early PCs."
   - id: "fat-manipulation-getfat-setfat"
-    line_start: 283
+    line_start: 281
     line_end: 357
     title: "How MS-DOS Repaired Its File Allocation Table"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `getfat` and `setfat` subroutines handle reading and writing to the File Allocation Table (FAT), the core structure of MS-DOS's file system. These routines use bitwise operations and memory offsets to access and modify FAT entries, ensuring efficient disk recovery. The FAT system was revolutionary in its simplicity, allowing MS-DOS to manage files on floppy disks and hard drives with minimal overhead. In 1982, this approach was critical for supporting the limited storage capacities and slow access speeds of early PC hardware. The techniques demonstrated here influenced not only later versions of MS-DOS but also other operating systems like Windows and embedded systems that adopted FAT as a standard. The modularity of these routines made them reusable, a hallmark of good system software design."
   - id: "readit-and-wrtit-disk-io"
-    line_start: 385
+    line_start: 383
     line_end: 437
     title: "Reading and Writing Disk Sectors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"

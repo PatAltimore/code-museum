@@ -39,7 +39,7 @@ enhancements:
     content: "The INCLUDE directives here pull in external assembly files, such as DOSSEG.ASM and DOSSYM.ASM, which define essential segments and symbols used throughout the program. This modular approach allowed developers to reuse common definitions and maintain consistency across large codebases. In the early 1980s, assembly programming was notoriously error-prone, and these include files helped reduce redundancy and errors. Tim Paterson's use of modularity reflects a growing trend in software development at the time, influenced by structured programming principles. This technique became standard practice in assembly and later influenced higher-level languages, where header files and libraries serve similar purposes."
   - id: "name-rom-and-variable-definitions"
     line_start: 35
-    line_end: 83
+    line_end: 93
     title: "Defining Variables for Disk Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"
     image_url: ""
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The BUFRD routine performs a buffered read operation, using system buffers to optimize partial sector reads. It adjusts pointers and memory locations to ensure data is read efficiently. This approach was vital for early PCs, where disk access speeds were a bottleneck. By leveraging buffers, MS-DOS reduced the overhead of disk I/O, improving overall system performance. Buffered reads became a standard technique in operating systems, influencing later designs like Linux and Windows."
   - id: "bufwrt-buffered-write"
-    line_start: 411
+    line_start: 381
     line_end: 411
     title: "Writing Data Without Wasting Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Write_(system_call)"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "BUFWRT handles buffered write operations, ensuring that data is written to disk efficiently. It checks if a sector has been written before and skips unnecessary operations, reducing disk wear and improving speed. This routine reflects the constraints of early PCs, where minimizing disk access was crucial. Buffered writes became a standard optimization in operating systems, influencing how modern systems handle disk I/O and caching."
   - id: "nextsec-compute-next-sector"
-    line_start: 473
+    line_start: 419
     line_end: 473
     title: "Finding the Next Sector to Write"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "NEXTSEC calculates the next sector to read or write, updating cluster and sector positions as needed. This routine ensures that disk operations proceed smoothly, even in fragmented environments. Early PCs often struggled with disk fragmentation, and routines like NEXTSEC were essential for maintaining file system integrity. The logic here influenced later tools for managing disk fragmentation and optimizing file systems, such as defragmentation utilities and advanced allocation algorithms."
   - id: "optimize-disk-request"
-    line_start: 619
+    line_start: 481
     line_end: 619
     title: "Optimizing Disk Requests for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_access"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "OPTIMIZE handles user disk requests by calculating the number of records to transfer and updating cluster positions. This routine prioritizes efficient disk access, reducing the overhead of fragmented reads and writes. In the constrained environment of the IBM PC, optimizing disk operations was critical for performance. Paterson's approach reflects the influence of Unix-like systems, which also emphasized efficient disk access. This technique influenced later operating systems, shaping how disk I/O is managed in modern environments."
   - id: "allocate-disk-space"
-    line_start: 925
+    line_start: 895
     line_end: 925
     title: "How MS-DOS Assigned Disk Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "ALLOCATE assigns disk space by updating the file allocation table (FAT) and file control block (FCB). It checks for available clusters and marks them as used, ensuring efficient use of disk space. This routine reflects the challenges of managing storage on early PCs, where disk space was limited and fragmentation was common. Paterson's implementation influenced later file systems, such as FAT32 and NTFS, which built on these principles to improve storage efficiency and reliability."
   - id: "release-endp-cleanup-routine"
-    line_start: 1007
+    line_start: 985
     line_end: 1007
     title: "The Cleanup Routine That Frees Resources"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `RELEASE` routine is a cleanup procedure designed to free resources and ensure proper memory management. In this section, the code likely handles the release of allocated memory or file handles, ensuring that MS-DOS maintains stability and avoids resource leaks. This was critical in the constrained environment of early PCs, where memory was limited to 640KB and efficient management was paramount. In 1983, when MS-DOS v2.0 was released, the IBM PC had become a dominant force in personal computing. The operating system needed to handle increasingly complex tasks, including multitasking-like operations and device-independent file management. The `RELEASE` routine reflects this shift, as it ensures that resources are properly cleaned up after use, a practice borrowed from more advanced operating systems like Unix. This approach influenced later operating systems, including Windows, which adopted similar resource management techniques. Efficient cleanup routines became standard practice in software development, ensuring that programs could run reliably without exhausting system resources. Developers studying MS-DOS source code often cite these routines as foundational examples of low-level memory and resource management."
   - id: "get-eof-find-end-of-file"
-    line_start: 1047
+    line_start: 1015
     line_end: 1047
     title: "Finding the Last Cluster in a File"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -127,7 +127,7 @@ enhancements:
     content: "The `GETEOF` routine calculates the last cluster of a file in the MS-DOS file system. It takes as input a cluster number and a pointer to the Disk Parameter Block (DPB), then determines the final cluster in the file. This is achieved by invoking the `UNPACK` routine and comparing the result to a predefined value (`0FF8H`), which represents the end-of-file marker in the FAT (File Allocation Table). In the early 1980s, file systems were evolving rapidly. MS-DOS adopted the FAT system, which was simple yet effective for managing files on floppy disks and early hard drives. The `GETEOF` routine demonstrates how MS-DOS leveraged FAT to perform file operations efficiently, even on hardware with limited processing power and memory. This technique became a cornerstone of MS-DOS file management and influenced later operating systems, including Windows, which continued to use FAT variants for decades. The concept of cluster-based file management remains relevant today, especially in embedded systems and portable storage devices that still use FAT due to its simplicity and widespread support."
   - id: "do-ext-final-code-section"
     line_start: 1051
-    line_end: 1057
+    line_end: 1055
     title: "The Final Code Section: Wrapping Up MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

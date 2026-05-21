@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `getkey` subroutine waits for a keypress using BIOS interrupt `21h` with function `12h`. It displays a message (`keymsg`) before pausing execution until a key is pressed. This was a common way to handle user input in early command-line programs, ensuring the user acknowledged prompts or errors before proceeding. In the early 1980s, user interfaces were minimal, relying on text-based interactions. Chris Peters likely included this feature to make the program more user-friendly, providing clear feedback during the disk copying process. This technique influenced later command-line utilities, where pausing for user input became standard practice. It also underscores the simplicity of early software design, where user interaction was tightly coupled with program flow."
   - id: "getdpb-disk-parameters"
-    line_start: 153
+    line_start: 147
     line_end: 181
     title: "The Routine That Reads Disk Geometry"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"

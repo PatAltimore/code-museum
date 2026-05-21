@@ -71,7 +71,7 @@ enhancements:
     content: "The RELOC procedure processes the relocation table of the .EXE file, adjusting memory addresses to match the load location of the binary file. It reads relocation pointers from the file and applies the necessary adjustments to ensure the binary file functions correctly. Relocation was a critical operation in early computing, as programs needed to run in different memory locations depending on system configuration. This section showcases the programmer's deep understanding of memory management and file structures. The relocation logic here influenced later developments in dynamic linking and loading, where similar techniques are used to adjust memory addresses at runtime. It also laid the groundwork for modern executable formats that support relocatable code."
   - id: "binary-file-creation"
     line_start: 951
-    line_end: 1003
+    line_end: 1021
     title: "Creating and Writing Binary Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_file"
     image_url: ""

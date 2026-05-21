@@ -105,7 +105,7 @@ enhancements:
     content: "This section dynamically updates netgame statistics during intermission screens. It uses incremental counters to animate the display of kills, items, secrets, and frags, creating a sense of progression. Sound effects like 'pistol' and 'barexp' signal changes, adding auditory feedback to the visual updates. The code ensures that stats are capped at their maximum values, preventing anomalies. This real-time update system was ahead of its time, adding depth to cooperative gameplay. It influenced later games with similar modes, such as Left 4 Dead and Borderlands, where detailed stat tracking and dynamic updates are integral to the experience."
   - id: "single-player-stats-initialization"
     line_start: 1317
-    line_end: 1326
+    line_end: 1327
     title: "Preparing Stats for Solo Missions"
     wikipedia_url: "https://doomwiki.org/wiki/Single-player"
     image_url: ""

@@ -63,7 +63,7 @@ enhancements:
     content: "The `R_DrawMaskedColumn` function handles rendering of masked textures, which are partly transparent and stored as runs of opaque pixels. This allowed DOOM to display objects like fences or semi-transparent sprites without requiring complex alpha blending, which was computationally expensive at the time. The technique was a clever workaround for hardware limitations and became a staple in sprite-based games of the era. It influenced later engines that used similar methods for transparency effects."
   - id: "player-sprite-rendering"
     line_start: 742
-    line_end: 774
+    line_end: 775
     title: "Rendering the Player's Gun in DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `R_DrawPlayerSprites` function handles rendering of player sprites, such as the weapon visible in the first-person view. This feature was revolutionary in 1993, as it enhanced immersion by visually connecting the player to the game world. The function also adjusts lighting and transparency based on game state, such as invisibility power-ups. This technique influenced countless first-person shooters, from Quake to Call of Duty, where the player's weapon remains a central visual element."
   - id: "sprite-sorting-algorithm"
     line_start: 786
-    line_end: 833
+    line_end: 834
     title: "Sorting Sprites for Perfect Rendering Order"
     wikipedia_url: "https://en.wikipedia.org/wiki/Painter%27s_algorithm"
     image_url: ""

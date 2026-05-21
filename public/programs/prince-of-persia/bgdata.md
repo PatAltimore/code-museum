@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "piece-id-definitions"
-    line_start: 3
+    line_start: 1
     line_end: 35
     title: "The 29 IDs That Built a World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"

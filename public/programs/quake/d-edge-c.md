@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "foundation-initialization-variables"
     line_start: 17
-    line_end: 23
+    line_end: 36
     title: "Why These Variables Were Preloaded"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

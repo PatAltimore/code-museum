@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "extrastrength-data-table"
-    line_start: 123
+    line_start: 97
     line_end: 124
     title: "The Data Table That Defines Enemy Strength"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the 'extrastrength' data table, which assigns specific strength values to enemies based on their program index. These values influence how challenging each enemy is during combat. Jordan Mechner's design here reflects his focus on creating a dynamic and cinematic experience for players. By varying enemy strength, the game ensures that each encounter feels unique and progressively challenging. In 1989, the Apple II's limited memory and processing power meant that developers had to be extremely efficient in their use of resources. Mechner's decision to use a simple data table to define enemy attributes allowed him to quickly reference these values during gameplay without consuming excessive memory or CPU cycles. This approach was common in 6502 assembly programming, where lookup tables were often used to optimize performance. The concept of using data tables to define enemy behavior became a staple in game development. Later games, such as Doom (1993) and Diablo (1996), expanded on this idea by incorporating more complex attributes and behaviors into their enemy AI systems. Mechner's work on Prince of Persia demonstrated how even simple data structures could contribute to a rich and engaging gameplay experience."
   - id: "basicstrength-and-basiccolor"
-    line_start: 131
+    line_start: 128
     line_end: 158
     title: "How Enemy Strength and Color Are Linked"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The 'MouseProg' routine handles the behavior of the mouse character, a minor but memorable element in Prince of Persia. The routine checks the mouse's position and action, ensuring it reacts appropriately to the environment. For example, the mouse stops moving when it reaches certain coordinates or vanishes when it exits the screen. This routine exemplifies Mechner's attention to detail. Even a seemingly insignificant character like the mouse is given specific behaviors that enhance the game's narrative and atmosphere. The mouse's actions often serve as subtle hints to the player, guiding them through puzzles or indicating hidden paths. The inclusion of such detailed AI for a minor character influenced later games that used environmental storytelling and non-playable characters to enrich the player's experience. Games like The Last of Us (2013) and Red Dead Redemption 2 (2018) feature similarly detailed NPC behaviors that contribute to their immersive worlds. Mechner's work on Prince of Persia shows how small touches can leave a lasting impression on players."
   - id: "shadowprog-level-specific-ai"
-    line_start: 226
+    line_start: 225
     line_end: 244
     title: "How the Shadow Became a Nemesis"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -79,14 +79,14 @@ enhancements:
     content: "The 'FinalShad' routine handles the climactic moment in Level 12 where the shadow merges with the player character. This sequence involves complex interactions, such as jumping on top of the player, turning into the player, and triggering visual and audio effects to signify the merge. The routine also boosts the player's health meter and plays a special song to mark the event. This moment is a culmination of Mechner's cinematic vision for Prince of Persia. The merging of the shadow and the player symbolizes the resolution of the protagonist's inner conflict. The use of visual and audio cues enhances the emotional impact, making it one of the most memorable moments in the game. The idea of using gameplay mechanics to convey narrative themes influenced later games like Journey (2012) and Celeste (2018), which similarly integrate story and mechanics to create powerful emotional experiences. Mechner's work on Prince of Persia demonstrates how games can transcend their medium to deliver meaningful storytelling."
   - id: "alert-enemy-awareness"
     line_start: 462
-    line_end: 512
+    line_end: 506
     title: "The Guard That Always Watches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
     content: "The 'Alert' routine governs the behavior of guards when they are not actively engaged in combat. It checks various conditions, such as the player's position and whether the guard has been alerted by a sound. Depending on these factors, the guard may turn to face the player, remain stationary, or prepare for combat. This routine showcases Mechner's commitment to creating realistic and engaging enemy behavior. Guards feel alive and responsive, adding tension to the gameplay. The use of sound as a trigger for alertness is particularly innovative, reflecting the game's cinematic aspirations. This approach influenced later games that emphasized stealth and enemy awareness, such as Metal Gear Solid (1998) and Splinter Cell (2002). Mechner's work on Prince of Persia highlights the importance of AI in creating immersive and dynamic gameplay experiences."
   - id: "engarde-combat-initiation"
-    line_start: 513
+    line_start: 508
     line_end: 637
     title: "The Routine That Starts the Fight"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -102,8 +102,8 @@ enhancements:
     image_caption: ""
     content: "The CHECKSTAB routine handles simultaneous lunges between the Kid and his shadow counterpart. It checks their actions and determines the outcome of their interaction. If both characters perform a lunge (action code 99), the routine ensures the Kid wins the tie, reinforcing the player's agency. This subroutine is an example of Mechner's cinematic approach to gameplay, where dramatic moments are scripted to enhance the narrative. In the late 1980s, such scripted interactions were rare in platformers, which typically relied on simple collision detection. Mechner's focus on storytelling and character-driven gameplay influenced later games like Another World (1991) and Flashback (1992), which also emphasized cinematic experiences."
   - id: "chgshadposn-update-shadow-position"
-    line_start: 1047
-    line_end: 1067
+    line_start: 1042
+    line_end: 1065
     title: "Updating Shadowman's Position Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

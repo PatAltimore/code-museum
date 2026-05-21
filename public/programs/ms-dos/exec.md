@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "zexec-data-segment"
-    line_start: 75
+    line_start: 45
     line_end: 120
     title: "Why MS-DOS Segmented Its Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the ZEXEC_DATA segment, which houses variables and buffers used during the execution process. Segmentation was a necessity on the Intel 8086 processor, which had a 20-bit address space but could only access 64KB segments at a time. By splitting data into segments, the programmer could manage memory more effectively within these constraints. Tim Paterson, the original author of MS-DOS, adapted this approach from CP/M, which also used fixed memory layouts. The ZEXEC_DATA segment includes critical variables like `exec_blk` and `exec_environ`, which store program-specific information such as environment pointers and memory allocation details. This segmentation strategy influenced later operating systems, including Windows, which retained segmented memory models for backward compatibility."
   - id: "exec-check-function-validation"
-    line_start: 131
+    line_start: 124
     line_end: 185
     title: "How MS-DOS Validated System Calls"
     wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This section transfers control to the loaded program's entry point, setting up the stack and registers beforehand. The code ensures that the program starts with the correct segment and offset values, enabling seamless execution. This final step in the EXEC system call is critical for program loading, as it transitions from the operating system to the user program. Tim Paterson's implementation reflects the simplicity and efficiency required for early personal computers, where every instruction mattered. This technique influenced later operating systems, which built on MS-DOS's approach to program execution, incorporating features like dynamic linking and process isolation."
   - id: "finalizing-exec-code-segment"
-    line_start: 1032
+    line_start: 1031
     line_end: 1034
     title: "Why This Code Block Ends So Precisely"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

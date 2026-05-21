@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "`P_NoiseAlert` is called when a monster detects a player, triggering a chain reaction that alerts other monsters in nearby sectors. It uses the `P_RecursiveSound` function to propagate the alert. This system creates a sense of interconnectedness among enemies, making the game world feel alive. In the early 1990s, AI systems were often isolated, but DOOM's approach to shared awareness among monsters was groundbreaking. This concept influenced later games like Left 4 Dead (2008), where enemy AI coordinates attacks based on player actions."
   - id: "melee-range-check"
-    line_start: 173
+    line_start: 170
     line_end: 191
     title: "How DOOM Decides If You're Too Close"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "`P_CheckMeleeRange` determines whether an enemy is close enough to attack the player with a melee strike. It calculates the distance between the enemy and the player, factoring in the player's radius and checking line-of-sight. This ensures that melee attacks are realistic and only occur when the player is within reach. In 1993, such precise distance calculations were rare in games, as most relied on simple proximity checks. DOOM's implementation set a precedent for realistic enemy behavior, influencing later titles like Quake (1996) and Unreal (1998)."
   - id: "missile-range-check"
-    line_start: 196
+    line_start: 193
     line_end: 255
     title: "The Algorithm Behind DOOM's Missile Attacks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"

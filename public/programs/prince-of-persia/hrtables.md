@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "ylo-yhi-coordinate-mapping"
-    line_start: 16
+    line_start: 7
     line_end: 56
     title: "How Screen Coordinates Map to Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The SHIFTn and CARRYn tables handle pixel shifting, a critical operation for rendering sprites and animations. SHIFTn shifts a byte's pixels to the right by 'n' positions, while CARRYn calculates the carryover pixels that spill into the next byte. These tables are precomputed to avoid runtime calculations, saving precious CPU cycles on the Apple II's 1 MHz 6502 processor. The need for such optimization arose from the hardware's limitations: the Apple II lacked dedicated graphics hardware, so all rendering had to be done in software. Mechner's use of lookup tables for pixel manipulation was innovative and allowed for the fluid animations that made Prince of Persia stand out. This technique influenced later developers working on similarly constrained systems, and the concept of precomputed tables remains a staple in graphics programming today."
   - id: "mirror-byte-reflection"
-    line_start: 207
+    line_start: 198
     line_end: 224
     title: "Mirroring Bytes for Sprite Symmetry"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"

@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `G_Responder` function processes events such as key presses, mouse movements, and joystick inputs, determining their impact on gameplay. It includes special cases like toggling spy mode with F12 and activating the control panel during demos. This event-driven approach allowed DOOM to respond dynamically to player actions, a key feature for its fast-paced gameplay. In the early 1990s, event-driven programming was gaining traction, and DOOM's implementation showcased its potential in real-time applications. This technique became standard in game engines like Unity and Unreal Engine."
   - id: "player-rebirth-and-level-completion"
-    line_start: 755
+    line_start: 750
     line_end: 791
     title: "The Code Behind Player Rebirth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Respawn_(gaming)"

@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `VGAClearScreen` function clears the screen by writing through all VGA planes, filling the background with ceiling and floor colors. This routine uses assembly to manipulate VGA registers directly, ensuring fast and efficient screen clearing. In 1992, VGA graphics were cutting-edge, but programming them required deep knowledge of hardware-level operations. Carmack's use of assembly here demonstrates his ability to optimize even mundane tasks like screen clearing. This technique influenced later games, where efficient graphics operations became critical for maintaining high frame rates in increasingly complex environments."
   - id: "calc-rotate-object-angle"
-    line_start: 1014
+    line_start: 1016
     line_end: 1048
     title: "The Simplified Math Behind Object Rotation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Trigonometry"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "This function calculates the rotation angle for objects relative to the player's view, using a simplified approach to trigonometry. Instead of precise calculations, it approximates angles based on predefined rotations, leveraging the game's limited set of eight directional sprites. This simplification was critical for performance on early 1990s hardware, where floating-point operations were expensive and memory was scarce. The technique reflects John Carmack's philosophy of 'good enough' optimization, prioritizing speed and playability over mathematical precision. This approach influenced later games, where similar approximations were used to balance visual fidelity and computational efficiency."
   - id: "draw-scaleds-visibility-rendering"
-    line_start: 1051
+    line_start: 1052
     line_end: 1184
     title: "How Wolfenstein Decided What to Draw"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `DrawScaleds` function handles the visibility and rendering of objects in the game world. It first determines which static and active objects are visible based on their positions relative to the player's view, then sorts them by distance to ensure proper rendering order (back-to-front). This sorting avoids visual artifacts like overlapping sprites. The function also integrates bonus collection logic and rotation adjustments for animated objects. The visibility checks and scaling calculations were groundbreaking for their time, enabling immersive gameplay on hardware with limited processing power. This method laid the groundwork for more advanced visibility algorithms in later 3D engines, such as BSP trees in Doom."
   - id: "draw-player-weapon-sprite"
-    line_start: 1186
+    line_start: 1189
     line_end: 1222
     title: "The Hands That Defined First-Person Shooters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `DrawPlayerWeapon` function renders the player's weapon and hands at the bottom of the screen, a defining feature of first-person shooters. It selects the appropriate sprite based on the player's current weapon and animation frame, ensuring smooth transitions during gameplay. This visual feedback was a key innovation, enhancing immersion by making the player feel physically present in the game world. The technique became a staple of the FPS genre, influencing titles like Doom, Quake, and countless others. The decision to include the player's hands and weapon in the viewport helped establish the visual language of first-person games."
   - id: "adaptive-timing-calc-tics"
-    line_start: 1228
+    line_start: 1229
     line_end: 1267
     title: "How Wolfenstein Stayed Smooth on Any PC"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `CalcTics` function calculates the time elapsed since the last frame, ensuring adaptive timing for smooth gameplay across different hardware configurations. By dynamically adjusting the game loop based on the number of 'tics' (time units), the game could maintain consistent performance even on slower machines. This approach was crucial in the early 1990s, when PC hardware varied widely in speed and capabilities. Carmack's adaptive timing mechanism influenced real-time computing techniques in later games, helping developers optimize performance for diverse systems without compromising gameplay quality."
   - id: "wall-refresh-view-calculation"
-    line_start: 1290
+    line_start: 1291
     line_end: 1324
     title: "The Math Behind Wolfenstein's Walls"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `WallRefresh` function calculates the player's view parameters, including angles, positions, and partial offsets, to prepare for rendering the game's walls. It uses fixed-point arithmetic and precomputed trigonometric tables to optimize performance, avoiding costly floating-point operations. This setup enables the game's pseudo-3D perspective, where walls appear to recede into the distance. The technique represents a clever workaround for the limited graphical capabilities of early VGA hardware, demonstrating Carmack's ability to extract maximum performance from minimal resources. The principles behind this function influenced the development of more advanced 3D engines, including the one used in Doom."
   - id: "three-d-refresh-full-render-loop"
-    line_start: 1326
+    line_start: 1328
     line_end: 1399
     title: "The Loop That Brought Wolfenstein to Life"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
