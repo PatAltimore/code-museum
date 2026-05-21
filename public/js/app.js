@@ -136,18 +136,134 @@ function parseYaml(text) {
   return parseBlock(0);
 }
 
-function syntaxClass(line) {
-  const trimmed = line.trimStart();
-  if (trimmed === '') return 'asm-empty';
-  if (trimmed.startsWith('*') || trimmed.startsWith(';')) return 'asm-comment';
-  if (/^\w+:/.test(trimmed) && !/^(org|equ|db|dw|ds|hex|asc|put|use|lst|tr|dum|dend)\b/i.test(trimmed)) return 'asm-label';
-  if (/^\s*[.:]\w/.test(line)) return 'asm-label';
-  if (/^\s+(\.|\b)(org|equ|db|dw|ds|hex|asc|put|use|lst|tr|dum|dend|sav|usr|lstdo)\b/i.test(line)) return 'asm-directive';
-  if (/^\s*\w+\s*=\s*/.test(line)) return 'asm-directive';
-  return '';
+/**
+ * Register a custom Highlight.js grammar for 6502 assembly.
+ *
+ * x86asm cannot be used here because it treats single quotes as character
+ * literal delimiters and does not recognise the asterisk (*) comment style
+ * used by Apple II assemblers.  Apostrophes inside "* comment" lines would
+ * therefore be interpreted as unclosed string literals, breaking all token
+ * colouring from that point until the next apostrophe.
+ */
+function register6502Asm() {
+  if (typeof hljs === 'undefined') return;
+  hljs.registerLanguage('6502asm', function(hljs) {
+    return {
+      name: '6502 Assembly',
+      case_insensitive: true,
+      keywords: {
+        keyword:
+          'adc and asl bcc bcs beq bit bmi bne bpl brk bvc bvs ' +
+          'clc cld cli clv cmp cpx cpy dec dex dey eor inc inx iny ' +
+          'jmp jsr lda ldx ldy lsr nop ora pha php pla plp ' +
+          'rol ror rti rts sbc sec sed sei sta stx sty ' +
+          'tax tay tsx txa txs tya',
+      },
+      contains: [
+        // DEC MACRO / M80 block comments: COMMENT X ... X
+        // The closing delimiter is the same character that follows COMMENT.
+        // We handle the two delimiters used in this codebase: * and %.
+        // end uses \n<delim> so the entire interior is absorbed as comment.
+        {
+          scope: 'comment',
+          begin: /COMMENT\s+\*/,
+          end: /\n\s*\*/,
+          contains: [],
+        },
+        {
+          scope: 'comment',
+          begin: /COMMENT\s+%/,
+          end: /\n\s*%/,
+          contains: [],
+        },
+        // Whole-line "*" comments (Apple II / Merlin assembler style).
+        // Must be listed before number/string rules so an apostrophe inside
+        // a "* comment" line is never seen by those rules.
+        { scope: 'comment', begin: /^\s*\*/, end: /$/ },
+        // Semicolon inline comments
+        hljs.COMMENT(';', '$'),
+        // Hex ($xx), binary (%bbbb), decimal literals
+        { scope: 'number', begin: /\$[0-9A-Fa-f]+/ },
+        { scope: 'number', begin: /%[01]+/ },
+        { scope: 'number', begin: /\b[0-9]+\b/ },
+        // Labels: bare word at start of line (with optional colon),
+        // local labels starting with ":" or ".", and equate-style labels
+        { scope: 'symbol', begin: /^[A-Za-z_][A-Za-z0-9_]*:?(?=\s)/ },
+        { scope: 'symbol', begin: /^[:.][A-Za-z0-9_]+/ },
+        // Assembler directives
+        {
+          scope: 'meta',
+          begin: /\b(org|equ|db|dw|ds|hex|asc|put|use|lst|tr|dum|dend|sav|usr|lstdo|byte|word|block|end|include|if|else|endif|macro|endm)\b/i,
+          relevance: 0,
+        },
+      ],
+    };
+  });
 }
 
-function renderCodeWithEnhancements(body, enhancements) {
+/**
+ * Map a code-fence identifier (from the markdown ``` line) or a program
+ * language string to a Highlight.js language name.
+ * fenceId is preferred (per-file precision); language is used for cases
+ * where multiple assembly dialects share the same fence identifier.
+ */
+function getHljsLanguage(fenceId, language) {
+  const lang = (language || '').toLowerCase();
+  // 6502 shares fenceId='asm' with x86 but needs a different grammar because
+  // its * comment style breaks x86asm's apostrophe/string handling.
+  if (lang.includes('6502')) return '6502asm';
+  // Per-file fence IDs written by formatter.py's _fence_id()
+  if (fenceId === 'cpp')  return 'cpp';
+  if (fenceId === 'asm')  return 'x86asm';
+  if (fenceId === 'lisp') return 'lisp';
+  // Fallback: infer from program-level language string
+  if (lang.includes('mdl') || lang.includes('lisp')) return 'lisp';
+  if (lang.includes('assembly') || lang.includes('asm')) return 'x86asm';
+  if (/\bc\b|c\+\+|c\/c/.test(lang)) return 'cpp';
+  return null;
+}
+
+/**
+ * Split Highlight.js HTML output (which may have <span> tags spanning multiple
+ * source lines) into per-line HTML strings, closing open spans at each newline
+ * and reopening them on the next line.
+ */
+function splitHighlightedHtml(html) {
+  const lines = [];
+  const stack = []; // currently open <span ...> tags
+  let current = '';
+  let i = 0;
+
+  while (i < html.length) {
+    if (html[i] === '\n') {
+      current += '</span>'.repeat(stack.length);
+      lines.push(current);
+      current = stack.join('');
+      i++;
+    } else if (html.startsWith('<span', i)) {
+      const end = html.indexOf('>', i);
+      const tag = html.slice(i, end + 1);
+      stack.push(tag);
+      current += tag;
+      i = end + 1;
+    } else if (html.startsWith('</span>', i)) {
+      stack.pop();
+      current += '</span>';
+      i += 7;
+    } else {
+      current += html[i];
+      i++;
+    }
+  }
+
+  if (current !== '' || lines.length === 0) lines.push(current);
+  return lines;
+}
+
+// Register grammars that are not bundled in the CDN language files.
+register6502Asm();
+
+function renderCodeWithEnhancements(body, enhancements, language) {
   const lines = body.replace(/\r/g, '').split('\n');
   if (lines[lines.length - 1] === '') lines.pop();
   // The formatter always writes exactly one blank separator line after the
@@ -156,9 +272,26 @@ function renderCodeWithEnhancements(body, enhancements) {
   // (not a while-loop) preserves any genuine blank lines at the top of the
   // source file, keeping line_start/line_end indices exact.
   lines.splice(0, 2);
-  // Strip code fence wrapper if present (```lang opener and ``` closer).
-  if (lines.length && lines[0].startsWith('```')) lines.splice(0, 1);
+  // Strip code fence wrapper, capturing the fence language identifier first.
+  let fenceId = null;
+  if (lines.length && lines[0].startsWith('```')) {
+    fenceId = lines[0].slice(3).trim() || null;
+    lines.splice(0, 1);
+  }
   if (lines.length && lines[lines.length - 1] === '```') lines.pop();
+
+  // Pre-highlight the entire code block so token spans are consistent
+  // across all section boundaries.
+  let highlightedLines = null;
+  const hljsLang = getHljsLanguage(fenceId, language);
+  if (hljsLang && typeof hljs !== 'undefined') {
+    try {
+      const result = hljs.highlight(lines.join('\n'), { language: hljsLang });
+      highlightedLines = splitHighlightedHtml(result.value);
+    } catch (e) {
+      // Fall through to plain (escaped) rendering
+    }
+  }
 
   const sorted = [...(enhancements || [])].sort((a, b) => a.line_start - b.line_start);
 
@@ -179,18 +312,19 @@ function renderCodeWithEnhancements(body, enhancements) {
     sections.push({ lines: lines.slice(cursor), startLine: cursor + 1, enhancement: null });
   }
 
-  return sections.map(sec => renderSection(sec)).join('');
+  return sections.map(sec => renderSection(sec, highlightedLines)).join('');
 }
 
-function renderSection({ lines, startLine, enhancement, highlighted }) {
+function renderSection({ lines, startLine, enhancement, highlighted }, highlightedLines) {
   if (lines.length === 0 && !enhancement) return '';
 
   const codeHtml = lines.map((line, idx) => {
     const lineNum = startLine + idx;
-    const cls = syntaxClass(line);
     const hl = highlighted ? ' highlighted' : '';
-    const escaped = escapeHtml(line);
-    return `<div class="code-line${hl}"><span class="line-num">${lineNum}</span><span class="line-code${cls ? ' ' + cls : ''}">${escaped}</span></div>`;
+    const content = (highlightedLines && highlightedLines[lineNum - 1] != null)
+      ? highlightedLines[lineNum - 1]
+      : escapeHtml(line);
+    return `<div class="code-line${hl}"><span class="line-num">${lineNum}</span><span class="line-code">${content}</span></div>`;
   }).join('');
 
   let html = '';
@@ -643,7 +777,7 @@ function renderReader(meta, body, program) {
     `<li>${escapeHtml(s.point)}${s.link ? ` <a href="${escapeAttr(s.link)}" target="_blank" rel="noopener">${escapeHtml(s.link_label || 'Wikipedia')}</a>` : ''}</li>`
   ).join('');
 
-  const codeHtml = renderCodeWithEnhancements(body, meta.enhancements || []);
+  const codeHtml = renderCodeWithEnhancements(body, meta.enhancements || [], meta.language);
   const { mobileHtml, sidebarHtml } = renderEnhancementIndex(meta.enhancements || []);
 
   const prevNav = prevFile
