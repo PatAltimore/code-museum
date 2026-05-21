@@ -74,8 +74,8 @@ enhancements:
 
 ```cpp
 // Emacs style mode select   -*- C++ -*- 
-//-----------------------------------------------------------------------------
+// short comment
 //
-// no dollar signs here
-//
+// no dollars
+// line 6
 ```
