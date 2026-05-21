@@ -670,6 +670,23 @@ function renderEnhancementIndex(enhancements) {
   return { mobileHtml, sidebarHtml };
 }
 
+// Scroll the sidebar list so the given item is visible (centers it if off-screen).
+// Operates directly on the <ol> scroll container to avoid triggering page scroll.
+function scrollSidebarToItem(id) {
+  const sidebar = document.getElementById('enh-index-sidebar');
+  if (!sidebar || sidebar.style.display === 'none') return;
+  const list = sidebar.querySelector('.enh-index-list');
+  const btn  = sidebar.querySelector(`.enh-index-item[data-enh-id="${id}"]`);
+  if (!list || !btn) return;
+  const listH  = list.clientHeight;
+  const btnTop = btn.offsetTop;
+  const btnH   = btn.offsetHeight;
+  // Already fully visible — do nothing
+  if (btnTop >= list.scrollTop && btnTop + btnH <= list.scrollTop + listH) return;
+  // Center the item within the list
+  list.scrollTo({ top: btnTop - listH / 2 + btnH / 2, behavior: 'smooth' });
+}
+
 window.goToEnhancement = function(id) {
   const panel = document.getElementById('enh-' + id);
   if (!panel) return;
@@ -677,6 +694,11 @@ window.goToEnhancement = function(id) {
   // Scroll to the highlighted code block that sits just above the panel
   const target = panel.previousElementSibling || panel;
   requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  // Immediately sync sidebar active state and scroll it into view
+  document.querySelectorAll('.enh-index-item').forEach(btn => {
+    btn.classList.toggle('enh-index-item--active', btn.dataset.enhId === id);
+  });
+  scrollSidebarToItem(id);
   // On mobile, collapse the index after navigating
   const mobileList = document.getElementById('enh-index-mobile-list');
   if (mobileList && !mobileList.hidden) toggleEnhIndexMobile();
@@ -727,12 +749,8 @@ function setupScrollSpy(enhancements) {
       btn.classList.toggle('enh-index-item--active', btn.dataset.enhId === activeId);
     });
 
-    // Scroll the active item into view within the sidebar (does nothing if
-    // it is already visible).
-    if (activeId) {
-      const activeBtn = document.querySelector(`.enh-index-item[data-enh-id="${activeId}"]`);
-      if (activeBtn) activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    }
+    // Scroll the active item into view within the sidebar list.
+    if (activeId) scrollSidebarToItem(activeId);
   }
 
   let ticking = false;
