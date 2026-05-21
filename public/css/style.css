@@ -13,7 +13,7 @@
   --comment: #8b949e;
   --label: #ffc640;        /* lighter amber phosphor */
   --directive: #85e89d;    /* soft phosphor green for directives */
-  --highlight-bg: #1c2128;
+  --highlight-bg: #131920;
   --highlight-border: #39d353; /* green phosphor */
   --code-size: 13px;
   --prose-size: 16px;
@@ -748,49 +748,49 @@ a:hover {
   flex: 1;
 }
 
-/* ── Syntax highlighting — VS Code Dark+ / Light+ palette ─────────────────── */
+/* ── Syntax highlighting — brightened for #0d1117 dark background ─────────── */
 
-/* Dark theme (default) */
+/* Dark theme (default) — VS Code Dark+ hues, lifted ~10-15% luminance */
 .hljs-comment,
-.hljs-quote       { color: #6a9955; font-style: italic; }
+.hljs-quote       { color: #88bf78; font-style: italic; }
 
 .hljs-keyword,
-.hljs-selector-tag { color: #569cd6; }
+.hljs-selector-tag { color: #79b8ff; }
 
 .hljs-string,
-.hljs-attr        { color: #ce9178; }
+.hljs-attr        { color: #f0a87c; }
 
 .hljs-number,
-.hljs-literal     { color: #b5cea8; }
+.hljs-literal     { color: #c8ddc0; }
 
 .hljs-title,
-.hljs-title.function_ { color: #dcdcaa; }
+.hljs-title.function_ { color: #e8e8b4; }
 
 .hljs-type,
-.hljs-class .hljs-title { color: #4ec9b0; }
+.hljs-class .hljs-title { color: #6be0c8; }
 
-.hljs-built_in    { color: #569cd6; }
+.hljs-built_in    { color: #79b8ff; }
 
 .hljs-meta,
-.hljs-meta .hljs-keyword { color: #c586c0; }
+.hljs-meta .hljs-keyword { color: #d89fd4; }
 
-.hljs-meta .hljs-string { color: #ce9178; }
+.hljs-meta .hljs-string { color: #f0a87c; }
 
 .hljs-variable,
-.hljs-params      { color: #9cdcfe; }
+.hljs-params      { color: #b0e0ff; }
 
 /* x86asm: section names (.text, .data …) */
-.hljs-section     { color: #dcdcaa; font-weight: 600; }
+.hljs-section     { color: #e8e8b4; font-weight: 600; }
 
 /* x86asm: labels */
-.hljs-symbol      { color: #9cdcfe; }
+.hljs-symbol      { color: #b0e0ff; }
 
 /* x86asm: instructions rendered as name */
-.hljs-name        { color: #569cd6; }
+.hljs-name        { color: #79b8ff; }
 
 /* Deletion / addition in diffs */
-.hljs-deletion    { color: #f44747; }
-.hljs-addition    { color: #b5cea8; }
+.hljs-deletion    { color: #ff6b6b; }
+.hljs-addition    { color: #c8ddc0; }
 
 /* Light theme overrides */
 html[data-theme="light"] .hljs-comment,
@@ -1159,23 +1159,26 @@ html[data-theme="light"] .hljs-name        { color: #0000ff; }
     display: none;
   }
 
-  /* Keep code and nav clear of the sidebar */
+  /* Keep all reader content clear of the left sidebar */
+  .reader-header-meta,
+  .enh-index-mobile,
   .reader-content,
   .file-nav {
+    margin-left: 260px;
     max-width: calc(100vw - 280px);
   }
 
-  /* Fixed sidebar on the right */
+  /* Fixed sidebar on the left */
   .enh-index-sidebar {
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 56px; /* below sticky header */
-    right: 0;
+    left: 0;
     width: 260px;
     height: calc(100vh - 56px);
     background: var(--surface);
-    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
     overflow: hidden;
     z-index: 90;
   }
@@ -1184,11 +1187,11 @@ html[data-theme="light"] .hljs-name        { color: #0000ff; }
   .enh-index-show {
     position: fixed;
     top: 80px;
-    right: 0;
+    left: 0;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-right: none;
-    border-radius: 6px 0 0 6px;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
     color: var(--muted);
     cursor: pointer;
     padding: 0.45rem 0.55rem;
