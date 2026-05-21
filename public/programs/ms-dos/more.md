@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "version-check-and-exit"
-    line_start: 27
+    line_start: 31
     line_end: 47
     title: "The Version Check That Ends It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "This section checks the MS-DOS version using INT 21H, a BIOS interrupt for system services. If the version is below 2.0, the program outputs an error message and terminates via INT 20H. At the time, MS-DOS was rapidly evolving, and version 2.0 introduced significant features like subdirectories and file handles. Ensuring compatibility was crucial for programs relying on these new features. Tim Paterson and Microsoft engineers designed this mechanism to gracefully handle older systems while leveraging new capabilities. This approach influenced future software development practices, where version checks became standard for compatibility and feature detection."
   - id: "initialize-screen-dimensions"
-    line_start: 49
-    line_end: 103
+    line_start: 53
+    line_end: 79
     title: "Setting Screen Dimensions for Pagination"
     wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The ALOOP subroutine reads up to 4KB of data into a buffer using INT 21H's file read service. This buffered approach minimizes disk I/O, which was slow on early PCs with floppy drives. The code checks the read result and exits if no data remains. Buffering was a critical optimization in the 1980s, as it reduced the overhead of frequent disk access. This technique influenced later file handling practices, becoming a standard in operating systems and programming languages. Developers of text editors and utilities like MORE relied on such efficient I/O handling to ensure smooth user experiences."
   - id: "control-character-handling"
     line_start: 133
-    line_end: 225
+    line_end: 147
     title: "How MS-DOS Handles Tabs, Backspaces, and Line Feeds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "This section processes control characters like carriage returns (CR), line feeds (LF), backspaces (BP), and tabs (TB). Each character adjusts the cursor position or triggers specific actions, such as moving to the next line or column. The code uses bitwise operations to align tabs to 8-column boundaries, a clever optimization for screen formatting. Control character handling was essential for text-based interfaces, where precise cursor control dictated user experience. The approach here reflects Unix's influence, where terminal control was a core concept. This technique laid the groundwork for text editors, terminal emulators, and command-line utilities that followed."
   - id: "ask-for-more-prompt"
     line_start: 245
-    line_end: 273
+    line_end: 251
     title: "The Pause That Keeps Users Reading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pagination"
     image_url: ""

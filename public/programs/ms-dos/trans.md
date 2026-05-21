@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines constants for MS-DOS system calls, such as file operations (OPEN, CLOSE, READ, WRITE) and memory management (SETDMA). These constants are used throughout the program to interact with the operating system. At the time, MS-DOS provided a simple API for developers to perform essential tasks, but programmers had to manage low-level details like DMA (Direct Memory Access) manually. Tim Paterson designed these calls to be lightweight and efficient, reflecting the constraints of early PCs with limited memory and processing power. This approach influenced later DOS-based utilities and applications, which relied on similar system call conventions."
   - id: "buffer-management-cleverness"
     line_start: 124
-    line_end: 163
+    line_end: 172
     title: "The Trick That Prevented Buffer Overflows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_overflow"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This segment manages the output buffer (`PUTBUF`) to prevent overflows. When the buffer is full, it writes the contents to the output file and resets the buffer pointer. This technique ensures efficient use of memory while avoiding the risk of overwriting data. Buffer management was a critical skill for early programmers, as memory was scarce and errors could crash the entire system. Paterson's careful handling of buffers here reflects his deep understanding of hardware limitations and his ability to write robust code for constrained environments. Similar techniques became standard in later operating systems and programming languages, influencing how developers think about memory safety."
   - id: "opcode-translation-algorithm"
     line_start: 405
-    line_end: 462
+    line_end: 533
     title: "Translating Z80 Opcodes to 8086 Instructions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Opcode"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "This section implements the core logic for translating Z80 opcodes into their 8086 equivalents. It uses a lookup table (`OPTAB`) to match Z80 instructions with corresponding 8086 instructions. The translator ensures compatibility between software written for Z80-based systems and the newer 8086 architecture. At the time, the Z80 was widely used in personal computers like the TRS-80, while the 8086 powered the IBM PC. By enabling software migration, this translator helped bridge the gap between two processor families, accelerating the adoption of the IBM PC. The concept of opcode translation influenced later emulators and cross-compilers, which continue to rely on similar techniques to support legacy software."
   - id: "pseudo-op-handling"
     line_start: 826
-    line_end: 843
+    line_end: 844
     title: "Handling Pseudo-Ops in Assembly Translation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -63,54 +63,54 @@ enhancements:
     content: "Pseudo-operations (pseudo-ops) are assembly language directives that do not correspond to actual machine instructions but control the assembler's behavior. This section processes pseudo-ops during translation, ensuring they are correctly interpreted and handled. Pseudo-ops were essential for assembly programming, allowing developers to define constants, allocate memory, and manage program structure. By including support for pseudo-ops, Paterson's translator accommodates the full range of Z80 assembly features, making it a comprehensive tool for software migration. This capability influenced later assemblers and compilers, which expanded on the idea to support higher-level abstractions in programming."
   - id: "opcode-table-definition"
     line_start: 891
-    line_end: 1034
+    line_end: 974
     title: "The Lookup Table That Made Translation Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
     content: "The `OPTAB` section defines a lookup table mapping Z80 opcodes to their 8086 equivalents. Each entry includes the opcode and a pointer to the corresponding translation routine. Lookup tables like this were a common technique for optimizing performance in assembly programs, as they allowed quick access to pre-defined data. This table is the backbone of the translator, enabling efficient and accurate instruction conversion. The use of lookup tables in this context influenced later software tools, such as compilers and interpreters, which rely on similar structures to map high-level language constructs to machine code."
   - id: "rops-opcode-translation-table"
-    line_start: 1035
-    line_end: 1062
+    line_start: 975
+    line_end: 1002
     title: "The Table That Translated Z80 to 8086"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zilog_Z80"
     image_url: ""
     image_caption: ""
     content: "The ROPS table is a data structure mapping Z80 opcodes to their corresponding 8086 operations. Each entry pairs a mnemonic (e.g., 'ET', 'LA') with its associated operation and operand type. This table was essential for translating Z80 assembly code into 8086-compatible instructions, enabling software originally written for Z80-based systems to run on the IBM PC. At the time, this was critical because many developers had invested heavily in Z80 software, and the transition to the 8086 architecture required compatibility solutions. Tim Paterson likely adapted this approach from earlier opcode mapping techniques used in cross-compilers. The ROPS table reflects the constraints of early PCs, where memory was scarce, and every byte mattered. This technique influenced later tools like binary translators and emulators, such as DOSBox, which emulate older architectures for modern systems."
   - id: "sops-bitwise-and-arithmetic-operations"
-    line_start: 1063
-    line_end: 1078
+    line_start: 1003
+    line_end: 1026
     title: "How MS-DOS Handled Arithmetic and Bitwise Ops"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
     image_caption: ""
     content: "The SOPS table defines mappings for arithmetic and bitwise operations, such as 'UB' (unsigned byte arithmetic) and 'BC' (borrowed carry subtraction). These mappings were part of the opcode translation mechanism, ensuring that Z80 operations could be accurately represented on the 8086 architecture. In 1981, the IBM PC's hardware was relatively new, and developers faced the challenge of adapting software written for earlier systems. This table showcases the meticulous attention to detail required to ensure compatibility and correctness in low-level operations. The SOPS table's influence can be seen in later assembly-level optimization techniques and in the design of high-level languages that abstract these operations, such as C and its derivatives."
   - id: "xops-simple-opcode-mapping"
-    line_start: 1087
-    line_end: 1090
+    line_start: 1027
+    line_end: 1043
     title: "The Minimalist Opcode Mapping Table"
     wikipedia_url: "https://en.wikipedia.org/wiki/Opcode"
     image_url: ""
     image_caption: ""
     content: "The XOPS table is a compact mapping for a single operation, 'OR', paired with its opcode. This simplicity highlights the modular design of MS-DOS's opcode translation system, where each table handled specific categories of operations. In the early 1980s, modularity was a practical necessity due to the limited memory and processing power of the IBM PC. This approach allowed developers to isolate and optimize individual components without affecting the entire system. The modularity seen here influenced later software design principles, such as object-oriented programming, where encapsulation and modularity are key."
   - id: "blmove-block-memory-transfer"
-    line_start: 1104
-    line_end: 1106
+    line_start: 1044
+    line_end: 1053
     title: "Moving Blocks of Memory Efficiently"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The BLMOVE routine facilitates block memory transfers, using instructions like 'MOV' and 'REP' to move data between registers and memory locations. This was a common operation in systems programming, especially for tasks like copying buffers or initializing memory regions. In the constrained environment of the IBM PC, efficient memory management was critical, as the system had only 64KB to 640KB of RAM. Techniques like this influenced later innovations in memory management, including the development of DMA (Direct Memory Access) and optimized memory copy routines in modern operating systems."
   - id: "djnz-looping-without-affecting-flags"
-    line_start: 1114
-    line_end: 1116
+    line_start: 1054
+    line_end: 1114
     title: "The Looping Instruction That Warned Developers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Loop_(computing)"
     image_url: ""
     image_caption: ""
     content: "The DJNZ routine implements a loop by decrementing a counter and jumping if the result is not zero. Notably, the accompanying comment warns developers that DJNZ does not affect flags, unlike DEC. This reflects the challenges of low-level programming, where understanding the nuances of each instruction was critical. Such warnings were vital for debugging and avoiding subtle errors in assembly code. This routine and its warning highlight the importance of documentation and developer education, practices that remain essential in software engineering today."
   - id: "toktab-token-parsing-table"
-    line_start: 1162
+    line_start: 1137
     line_end: 1166
     title: "Parsing Tokens for Assembly Translation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lexical_analysis"

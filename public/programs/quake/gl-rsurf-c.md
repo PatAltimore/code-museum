@@ -47,7 +47,7 @@ enhancements:
     content: "The `R_BuildLightMap` function combines static and dynamic lightmaps into a single texture, scaling and blending light contributions into an 8.8 format. This process was essential for achieving Quake's visually complex environments without overwhelming the hardware. In the mid-1990s, lightmaps were a novel solution to the challenge of rendering realistic lighting on limited hardware. By precomputing static lighting and dynamically updating only affected areas, id Software created a system that balanced performance and visual fidelity. This technique influenced later engines like Source and CryEngine, which refined lightmap handling for more advanced effects."
   - id: "texture-animation"
     line_start: 225
-    line_end: 258
+    line_end: 259
     title: "Animating Textures for Dynamic Environments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `R_TextureAnimation` function selects the appropriate texture frame for animated surfaces based on the current time. This allowed Quake to display moving textures, such as flowing water or flickering flames, adding dynamism to its environments. Texture animation was a relatively new concept in 1996, as most games relied on static textures. By integrating this feature, id Software enhanced the realism and immersion of their levels. Modern engines like Unreal and Unity have expanded this concept, enabling complex shader-based animations and procedural texture generation."
   - id: "multitexture-handling"
     line_start: 287
-    line_end: 303
+    line_end: 294
     title: "Multitexture: Lightmaps Meet Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multitexturing"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `DrawGLWaterPoly` function applies a sine-wave distortion to vertex coordinates, creating the illusion of rippling water. This effect was achieved by manipulating vertex positions in real-time, a clever workaround for hardware that lacked programmable shaders. In 1996, such visual tricks were necessary to simulate complex phenomena within the constraints of fixed-function pipelines. Quake's water effects inspired similar techniques in other games, and the concept of vertex manipulation evolved into modern GPU-based vertex shaders, enabling far more sophisticated effects."
   - id: "lightmap-blending"
     line_start: 664
-    line_end: 669
+    line_end: 759
     title: "Blending Lightmaps for Depth and Realism"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `R_BlendLightmaps` function blends multiple lightmaps into the scene, ensuring smooth transitions and realistic lighting effects. By leveraging OpenGL's blending capabilities, Quake achieved a level of visual fidelity that was unprecedented for its time. This technique was a precursor to more advanced lighting systems, such as HDR (High Dynamic Range) and global illumination, which are now standard in modern engines like Unreal and Unity."
   - id: "brush-poly-rendering"
     line_start: 761
-    line_end: 789
+    line_end: 838
     title: "Rendering Brush Polygons with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `R_RenderBrushPoly` function handles the rendering of brush-based surfaces, including texture binding, lightmap application, and dynamic updates. Brush models were a cornerstone of Quake's level geometry, enabling complex 3D structures. This function exemplifies id Software's modular approach to rendering, where each surface type is treated as a distinct entity. The concept of brush-based geometry influenced later engines like Source, which expanded on the idea with tools like Hammer Editor for level design."
   - id: "dynamic-lightmap-updates"
     line_start: 840
-    line_end: 875
+    line_end: 896
     title: "Dynamic Lightmap Updates in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
     image_url: ""

@@ -41,7 +41,7 @@ enhancements:
     content: "The `Con_ToggleConsole_f` function toggles the visibility of the console, switching between gameplay and console interaction. This feature was essential for debugging and executing commands during development and gameplay. In the mid-1990s, such functionality was rare, as most games lacked real-time debugging tools. John Carmack and his team at id Software prioritized developer efficiency and player empowerment, allowing users to modify game settings and troubleshoot issues without restarting. This design philosophy influenced later games like Half-Life and Counter-Strike, which incorporated similar console systems for advanced user control."
   - id: "console-resize"
     line_start: 149
-    line_end: 171
+    line_end: 206
     title: "Dynamic Console Resizing for Changing Displays"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

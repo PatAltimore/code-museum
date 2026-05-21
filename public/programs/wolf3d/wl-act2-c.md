@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The `SpawnBoss` function introduces special enemies like Hans and Gretel, with unique attributes and behaviors that distinguish them from regular foes. These boss battles were pivotal in defining Wolfenstein 3D's narrative and pacing, creating memorable moments for players. The concept of boss battles became a staple in video game design, influencing titles across genres, from platformers like Super Mario Bros. to RPGs like Final Fantasy."
   - id: "spawn-patrol-routine"
-    line_start: 951
-    line_end: 1021
+    line_start: 973
+    line_end: 1049
     title: "How Enemies Patrol the Maze"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "This section defines state machines for the 'Trans' enemy, detailing its behaviors such as standing, chasing, dying, and shooting. Each state is associated with specific animations and actions, creating a fluid and believable enemy AI. The use of state machines was a practical solution to manage complex behaviors within the limited computational power of MS-DOS systems. This technique became a foundational element in game development, influencing AI design in titles like System Shock and Deus Ex."
   - id: "boss-spawn-routines"
     line_start: 1238
-    line_end: 1340
+    line_end: 1259
     title: "Spawning Bosses with Unique Attributes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_boss"
     image_url: ""
@@ -215,7 +215,7 @@ enhancements:
     content: "The `T_DogChase` routine controls the behavior of dog enemies, adding a unique twist to the chase mechanics. Dogs not only pursue the player but also leap to attack when within a certain range (`MINACTORDIST`). This behavior is calculated based on the player’s position and the dog’s movement. The routine includes logic for adjusting positions and selecting new directions (`SelectDodgeDir`). The addition of leaping attacks created a sense of urgency and unpredictability, making these enemies particularly memorable. This mechanic influenced later games with animal-based enemies, such as Far Cry and Tomb Raider, where creatures exhibit dynamic and aggressive behaviors."
   - id: "bj-victory-sequence"
     line_start: 3613
-    line_end: 3670
+    line_end: 3631
     title: "The Victory Run of BJ Blazkowicz"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

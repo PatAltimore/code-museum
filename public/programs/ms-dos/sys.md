@@ -55,7 +55,7 @@ enhancements:
     content: "The 'GOTBADDOS' routine handles cases where the DOS version is outside the acceptable range. It displays an error message using interrupt 21h and exits gracefully. This kind of user feedback was essential in the early days of computing, where cryptic errors could confuse users. By providing clear messages, MS-DOS set a precedent for user-friendly error handling, which later became a hallmark of software design across platforms."
   - id: "memory-management-for-small-machines"
     line_start: 365
-    line_end: 427
+    line_end: 367
     title: "Memory Management for Small Machines"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The 'PUTSYS' routine creates new files for the BIOS and DOS system components on the destination drive. It sets file attributes using interrupt 21h, ensuring the files are marked as system files. This level of control over file attributes was a key feature of MS-DOS, allowing developers to manage file visibility and access. The concept of file attributes influenced later operating systems, including Windows NT, where attributes like 'hidden' and 'system' are still used."
   - id: "recursive-memory-loading-for-file-copy"
     line_start: 557
-    line_end: 573
+    line_end: 655
     title: "Recursive Memory Loading for File Copy"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The 'Copy' routine uses a recursive approach to load memory with file data and write it to the destination. It checks if more data remains to be copied and reloads the buffer as needed. This technique was necessary for handling large files on systems with limited memory. The recursive logic ensured efficient use of available resources, a principle that remains relevant in modern programming for constrained environments like embedded systems."
   - id: "dynamic-buffer-allocation-for-file-handling"
     line_start: 657
-    line_end: 693
+    line_end: 723
     title: "Dynamic Buffer Allocation for File Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The 'FillMem' routine dynamically allocates buffer space for reading BIOS and DOS files. It calculates the buffer size based on available memory and adjusts the read length accordingly. This adaptive approach was innovative for its time, allowing MS-DOS to run efficiently on machines with varying memory sizes. Dynamic memory allocation became a cornerstone of modern operating systems, enabling features like virtual memory and dynamic heap management."
   - id: "file-opening-and-size-calculation"
     line_start: 727
-    line_end: 775
+    line_end: 821
     title: "File Opening and Size Calculation"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The 'OpenFile' routine opens files for reading and calculates their size using interrupt 21h. It retrieves the file's last write time and stores it for later use. This meticulous handling of file metadata reflects the importance of data integrity in MS-DOS. The ability to track file sizes and timestamps influenced later systems, where metadata became critical for features like journaling and file versioning."
   - id: "boot-sector-writing-for-ibm-compatibility"
     line_start: 893
-    line_end: 913
+    line_end: 1025
     title: "Boot Sector Writing for IBM Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "When no relocations are required, this section writes the linked list buffer directly to disk using interrupt 26h. The routine prepares the buffer address and sector count, then invokes the BIOS disk write function. Direct disk access was a defining feature of MS-DOS, allowing programs to bypass higher-level abstractions for maximum performance. This approach was common in the early 1980s, when disk controllers offered minimal functionality and programmers had to manage sector-level operations manually. The reliance on BIOS interrupts highlights the tight coupling between software and hardware in this era. Later operating systems abstracted these operations, but MS-DOS's direct disk access inspired tools like Norton Utilities and other low-level disk management software."
   - id: "check-tran-drive-validation"
     line_start: 1071
-    line_end: 1133
+    line_end: 1117
     title: "Drive Validation and Media Type Detection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Drive_letter_assignment"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The CHECK_TRAN routine validates the specified drive and determines its media type. It retrieves the drive parameter block (DPB) using interrupt 21h, extracts the first sector and media type, and updates the system's start sector. The routine also checks whether the drive is a floppy disk or hard drive, using BIOS equipment calls to identify the maximum floppy number. This logic reflects the transition from single-drive systems to multi-drive setups, a major shift in personal computing during the early 1980s. By dynamically detecting media types, MS-DOS ensured compatibility with a wide range of storage devices. This technique laid the groundwork for modern operating systems, which continue to rely on device discovery and validation mechanisms."
   - id: "not-single-floppy-check"
     line_start: 1119
-    line_end: 1133
+    line_end: 1145
     title: "Floppy Disk Boot Validation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The NOT_SINGLE section checks whether the drive is a bootable floppy disk. It compares the media type against a predefined value (0FBh), ensuring only valid bootable floppies are accepted. This logic was critical for systems that relied on floppy disks for booting, as hard drives were still a luxury in 1983. By enforcing strict validation, MS-DOS reduced the risk of boot errors and ensured reliable startup. This approach influenced later boot loaders, which adopted similar checks for removable media. The floppy disk's decline in the 1990s marked the end of such routines, but their legacy persists in USB boot validation and other modern equivalents."
   - id: "getkeystroke-bios-input"
     line_start: 1149
-    line_end: 1161
+    line_end: 1165
     title: "Keystroke Input via BIOS Interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""

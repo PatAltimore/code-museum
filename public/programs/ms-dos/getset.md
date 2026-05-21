@@ -24,16 +24,16 @@ summary:
 
 enhancements:
   - id: "name-getset-intro"
-    line_start: 3
-    line_end: 47
+    line_start: 1
+    line_end: 41
     title: "Why MS-DOS Needed 'Get and Set'"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section introduces the purpose of the 'GETSET' module, which provides system calls for querying and modifying various MS-DOS parameters. At the time, MS-DOS 2.0 was transitioning from a simple CP/M-like operating system to one inspired by Unix, adding features like subdirectories and file handles. These routines allowed applications to interact with the operating system at a deeper level, enabling functionality like verifying writes, managing DMA addresses, and handling interrupt vectors. Tim Paterson, the original author of 86-DOS, laid the groundwork for these system-level interactions, but by version 2.0, the codebase had been heavily rewritten by Microsoft engineers to accommodate IBM PC hardware and Unix-inspired abstractions. These routines became foundational for DOS's extensibility, influencing later operating systems like Windows and even Linux, which adopted similar system call paradigms."
   - id: "include-dosseg-dossym"
-    line_start: 49
-    line_end: 133
+    line_start: 43
+    line_end: 69
     title: "The Hidden Role of INCLUDE Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -105,7 +105,7 @@ enhancements:
     content: "The $GET_INTERRUPT_VECTOR routine retrieves the address of an interrupt handler, while $SET_INTERRUPT_VECTOR modifies it. Interrupts were a cornerstone of early PC architecture, enabling asynchronous event handling for tasks like I/O operations and error management. By providing system calls for managing interrupt vectors, MS-DOS allowed developers to customize hardware interactions, a necessity for supporting diverse peripherals. This approach reflects the low-level nature of DOS, where direct hardware control was both a feature and a challenge. The concept of interrupt vector management influenced later systems, including BIOS and modern operating systems, which abstract these interactions into device drivers and APIs."
   - id: "break-char-oper-hack"
     line_start: 1015
-    line_end: 1063
+    line_end: 1053
     title: "The Hack That Made XENIX Look Like DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Xenix"
     image_url: ""
@@ -121,7 +121,7 @@ enhancements:
     content: "This subroutine sets the switch character used for command-line parsing, storing it in memory at `switch_character`. The programmer was addressing the need for customizable command-line syntax, a feature borrowed from Unix-like systems. By decrementing the `AL` register and checking its value, the routine acts as a simple state machine, branching to the appropriate operation. This approach reflects the constraints of early 8086 assembly programming, where compact and efficient code was paramount due to limited memory and processing power. The ability to set switch characters contributed to MS-DOS's flexibility, making it more adaptable to different user needs and environments. This technique influenced later operating systems, where customizable command-line syntax became a standard feature."
   - id: "char-oper-read-avail"
     line_start: 1065
-    line_end: 1073
+    line_end: 1083
     title: "Reading Device Availability: A Flag-Based Approach"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
@@ -129,7 +129,7 @@ enhancements:
     content: "This subroutine reads the availability of devices, storing the result in the `DL` register. The programmer was solving the problem of determining whether device names required a `/DEV/` prefix, a convention borrowed from Unix-like systems. The routine uses a flag stored in memory at `device_availability` to indicate the current state. This flag-based approach was a common technique in early operating systems, where simplicity and efficiency were crucial. The ability to query device availability helped MS-DOS manage devices more effectively, paving the way for more sophisticated device management in later systems like Windows."
   - id: "setdpb-create-valid-dpb"
     line_start: 1103
-    line_end: 1233
+    line_end: 1235
     title: "Building Disk Parameter Blocks: File System Foundations"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""

@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `ReadConfig` function reads a configuration file to initialize game settings such as sound modes, joystick configurations, and view size. If no configuration file is found, the function dynamically selects settings based on the hardware detected. This approach ensured compatibility across a wide range of MS-DOS systems, which varied greatly in capabilities during the early 1990s. By detecting hardware like AdLib and Sound Blaster cards, the game could provide optimized audio experiences for players with advanced setups while gracefully degrading for simpler systems. This technique influenced later games by emphasizing adaptability to hardware constraints, a necessity in the era of diverse PC configurations. Developers at id Software, including John Carmack, leveraged this flexibility to make Wolfenstein 3D accessible to a broader audience, setting a precedent for hardware-aware game design."
   - id: "patch-386-optimization"
-    line_start: 230
+    line_start: 241
     line_end: 262
     title: "Optimizing for 386 processors with custom patches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `Patch386` function checks if the system is running on an Intel 386 processor and applies a custom patch (`jabhack2`) to optimize division operations using 32-bit instructions. This highlights id Software’s focus on squeezing performance out of available hardware. The Intel 386 was a significant upgrade over earlier processors, introducing 32-bit computing to personal computers. By tailoring the game for this architecture, Wolfenstein 3D could achieve smoother gameplay and faster calculations, critical for its fast-paced action. This optimization reflects Carmack’s reputation for technical ingenuity, as he often pushed hardware to its limits. The technique of processor-specific optimization became less common as hardware standards converged, but it was pivotal in the early PC gaming era, influencing other developers to consider hardware-specific enhancements."
   - id: "build-tables-for-3d-rendering"
-    line_start: 569
+    line_start: 586
     line_end: 626
     title: "Lookup tables for fast trigonometric calculations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `Quit` function handles game termination, including error reporting and cleanup. If an error message is provided, it displays the message on the screen and exits the program. Otherwise, it writes the configuration to disk and displays an order screen, encouraging players to purchase the full game. This dual-purpose exit routine reflects id Software's business model at the time, which relied on shareware distribution to attract players. The function also clears memory and shuts down subsystems, ensuring a clean exit. This attention to detail in error handling and user experience influenced later games, particularly those distributed as shareware or demos. It also highlights the importance of robust termination routines in software development, a practice that remains relevant today."
   - id: "demo-loop-gameplay-showcase"
-    line_start: 1401
+    line_start: 1411
     line_end: 1570
     title: "Demo Loop: Showcasing Gameplay Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_demo"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `DemoLoop` function is a central feature for showcasing Wolfenstein 3D's gameplay to players. It includes a sequence of title screens, credits, high scores, and gameplay demos, creating a compelling introduction to the game. The loop also checks for special launch parameters, such as starting from the TED level editor, allowing developers to test specific levels directly. This feature reflects id Software's understanding of marketing and user engagement, as the demo loop was often the first impression players had of the game. By automating gameplay showcases, id Software ensured that even passive viewers could appreciate the game's mechanics and visuals. Demo loops became a standard feature in many games, influencing titles like Doom and Quake, and remain a staple in modern game development for trailers and promotional materials."
   - id: "main-beta-expiration"
-    line_start: 1576
+    line_start: 1586
     line_end: 1615
     title: "Beta Expiration and Main Execution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Software_testing"

@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "object-type-constants"
     line_start: 4
-    line_end: 37
+    line_end: 32
     title: "Why Objects Are Numbers, Not Words"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -33,7 +33,7 @@ enhancements:
     content: "This section defines numeric constants for various game objects, such as 'floor', 'spikes', and 'torch'. Each object is assigned a unique number, starting from 0 for 'space' and incrementing sequentially. This approach allows the game to reference objects efficiently in memory-constrained environments like the Apple II, where every byte counts. By using numbers instead of strings, Mechner reduced the memory footprint and sped up comparisons during gameplay. In 1985–1989, the Apple II was a popular home computer but had severe limitations: only 128KB of RAM and a 1MHz 6502 processor. Developers had to optimize every aspect of their code. Mechner, working solo, adopted this numeric mapping to ensure the game could handle complex scenes without exhausting system resources. This decision also aligns with the broader practice of using lookup tables in assembly programming, a technique common in the era. The numeric constants defined here directly influenced the game's ability to render diverse environments and interactable objects. Later games, including platformers like Another World (1991), borrowed similar techniques for object management. The efficiency of this approach contributed to Prince of Persia's fluid gameplay and cinematic feel, setting a standard for future platformers and inspiring developers to think creatively within hardware constraints."
   - id: "misc-values-bgdata"
     line_start: 39
-    line_end: 51
+    line_end: 49
     title: "The Numbers Behind Spikes and Slicers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

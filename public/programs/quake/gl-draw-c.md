@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "foundation-variables-and-constants"
-    line_start: 21
-    line_end: 50
+    line_start: 1
+    line_end: 29
     title: "The Variables That Set the Stage"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section initializes key variables and constants that underpin the rendering system. It includes external references to color tables and crosshair settings, which are pivotal for graphical customization. In 1996, hardware constraints meant developers needed to carefully manage memory and predefine settings to optimize performance. By externalizing these variables, id Software ensured flexibility for future tweaks and modding. This approach influenced later games, where configuration files became standard for user customization. The reliance on predefined constants also highlights the era's emphasis on predictable, low-overhead operations in graphics programming."
   - id: "static-crosshair-data"
     line_start: 41
-    line_end: 57
+    line_end: 50
     title: "Static Crosshair: A Minimalist Design"
     wikipedia_url: "https://en.wikipedia.org/wiki/Crosshair_(video_games)"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "This section dynamically modifies the console background to include the version number. By embedding text directly into the texture, id Software avoided the performance hit of rendering additional overlays. This technique reflects the ingenuity required to optimize for hardware with limited texture memory and processing power. The dynamic console background became a hallmark of Quake's user interface, setting a precedent for interactive and visually integrated HUDs in games. The approach also inspired modders, who extended the technique to create custom backgrounds and overlays for multiplayer servers."
   - id: "draw-character-and-string"
     line_start: 488
-    line_end: 559
+    line_end: 529
     title: "Rendering Text One Character at a Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The `GL_Upload32` function prepares and uploads 32-bit textures to OpenGL, scaling them to power-of-two dimensions as required by the API. It ensures textures fit within hardware limits (`gl_max_size`) and handles mipmap generation for smoother rendering at different resolutions. This routine demonstrates the challenges of working with early OpenGL implementations, which lacked flexibility in texture dimensions. By incorporating scaling and error handling (`Sys_Error`), the developers ensured robust performance across a wide range of systems. The use of OpenGL in Quake marked a turning point in game development, popularizing hardware-accelerated graphics and paving the way for modern 3D engines like Unity and Unreal."
   - id: "handling-8-bit-textures-with-alpha"
     line_start: 1170
-    line_end: 1243
+    line_end: 1256
     title: "Handling 8-Bit Textures with Alpha"
     wikipedia_url: "https://en.wikipedia.org/wiki/Alpha_compositing"
     image_url: ""

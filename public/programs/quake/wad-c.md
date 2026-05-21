@@ -64,8 +64,8 @@ enhancements:
     image_caption: ""
     content: "The `W_GetLumpinfo` function retrieves metadata for a lump (asset) by its name. It first cleans the name using `W_CleanupName` to ensure consistent formatting, then iterates through the lump metadata to find a match. If no match is found, it triggers a fatal error using `Sys_Error`. This design prioritizes fast lookups and strict error handling, reflecting the high performance and reliability standards of Quake's engine. By centralizing lump metadata access, this function simplifies asset management and debugging, influencing similar systems in later engines like Source and Unreal."
   - id: "automatic-byte-swapping"
-    line_start: 149
-    line_end: 152
+    line_start: 146
+    line_end: 158
     title: "Automatic Byte Swapping for Asset Consistency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Endianness"
     image_url: ""

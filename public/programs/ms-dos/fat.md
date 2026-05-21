@@ -31,23 +31,23 @@ summary:
 enhancements:
   - id: "include-dosseg-setup"
     line_start: 9
-    line_end: 21
+    line_end: 29
     title: "Setting Up Segments for FAT Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section includes DOSSEG.ASM and sets up the code segment for FAT operations. The programmer uses `ASSUME` directives to establish segment registers, ensuring the assembler correctly interprets memory references. In 1983, segment management was critical for 8086 assembly, as the CPU only supported 16-bit addressing, requiring careful segmentation to access larger memory spaces. Tim Paterson and Microsoft engineers designed MS-DOS 2.0 to work seamlessly with IBM PC hardware, where memory constraints were a constant challenge. This setup laid the groundwork for efficient FAT operations, enabling MS-DOS to handle file storage on floppy disks and hard drives. The segmentation approach influenced later operating systems, including Windows, which inherited many low-level conventions from MS-DOS."
   - id: "name-fat-data-structure"
-    line_start: 35
-    line_end: 113
+    line_start: 33
+    line_end: 69
     title: "Defining FAT Data Structures for Disk Access"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
     content: "The `NAME FAT` section defines essential data structures and variables used throughout the FAT filesystem implementation. These include cluster numbers, drive parameters, and buffer management fields. By organizing these variables, the programmer creates a cohesive system for tracking file allocation and disk sectors. In the early 1980s, FAT was revolutionary for its simplicity and adaptability, allowing MS-DOS to support multiple storage devices with minimal overhead. This design was inspired by CP/M's file system but extended to handle larger disks and hierarchical directories. The FAT system became a cornerstone of personal computing, influencing storage formats in Windows, Linux (via VFAT), and embedded systems like USB drives and SD cards."
   - id: "unpack-fat-entries"
-    line_start: 141
-    line_end: 191
+    line_start: 71
+    line_end: 141
     title: "Unpacking FAT Entries for Cluster Access"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `UNPACK` subroutine retrieves the contents of the FAT for a given cluster number. It checks the cluster's validity and maps it to the corresponding FAT entry. If the cluster is free, it sets a zero flag; otherwise, it extracts the cluster's data. This routine demonstrates the low-level manipulation required to interact with the FAT structure, including bitwise operations and register management. In 1983, such routines were essential for optimizing performance on the 8086 processor, which lacked advanced instructions for complex data handling. The `UNPACK` logic directly influenced how operating systems managed file allocation, and its principles are still visible in modern FAT-based systems like FAT32 and exFAT."
   - id: "pack-fat-entries"
     line_start: 277
-    line_end: 409
+    line_end: 277
     title: "Packing Data into FAT Entries"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The `PACK` subroutine writes data into the FAT for a specified cluster. It calculates the cluster's position in the FAT, aligns the data, and updates the buffer. This routine ensures that changes to the FAT are reflected in memory and marked as 'dirty' for later disk writes. The complexity of this operation lies in handling both aligned and unaligned clusters, requiring precise bit manipulation. In the early 1980s, such routines were critical for maintaining filesystem integrity on limited hardware. The `PACK` logic influenced the development of journaling filesystems and caching mechanisms in later operating systems, as it demonstrated the importance of efficient data handling and error recovery."
   - id: "mapcluster-fat-buffering"
     line_start: 427
-    line_end: 439
+    line_end: 427
     title: "Buffering FAT Sectors for Cluster Mapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""

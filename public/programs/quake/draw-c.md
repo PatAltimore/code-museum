@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-data-structures"
-    line_start: 26
+    line_start: 1
     line_end: 32
     title: "The Data Structures That Grounded Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"

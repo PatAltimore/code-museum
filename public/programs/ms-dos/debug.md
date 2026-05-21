@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "debug-entry-point"
     line_start: 217
-    line_end: 223
+    line_end: 219
     title: "The Jump That Starts It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The DEBUG entry point begins with a simple jump to the DSTRT routine, setting the stage for the debugger's initialization. This section includes a version header ('Vers 2.30') that reflects the evolution of DEBUG over time. At this moment, the programmer is ensuring that the debugger starts cleanly and identifies itself. In the early 1980s, debugging tools were essential for developers working close to hardware, and DEBUG provided a way to inspect memory, registers, and execute assembly instructions interactively. Tim Paterson's original 86-DOS debugger laid the groundwork for this tool, which was later refined by Microsoft engineers. DEBUG became a staple utility for PC developers, influencing the design of debugging tools in operating systems like Windows and Linux. Its modular design and direct device I/O were particularly innovative for the time, enabling compatibility across different hardware setups."
   - id: "dos-version-check"
     line_start: 227
-    line_end: 239
+    line_end: 249
     title: "Checking DOS Version for Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The DSTRT routine checks the DOS version using interrupt 21h, function GET_VERSION. By comparing the returned version number against a predefined constant (2.00 in hex), the code ensures that the debugger is running on a compatible version of MS-DOS. If the version is too low, the program jumps to GOTBADDOS, which displays an error message and terminates. This check reflects the challenges of software compatibility in the early PC era, where multiple DOS versions existed, and developers had to account for differences in system calls and features. The inclusion of this routine highlights Microsoft's focus on robustness and user experience, ensuring that DEBUG would not attempt to run on unsupported systems. This approach to version checking became a standard practice in software development, influencing how applications handle compatibility across different operating system versions."
   - id: "parity-error-handling"
     line_start: 253
-    line_end: 361
+    line_end: 269
     title: "Trapping Parity Errors in Real Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parity_bit"
     image_url: ""
@@ -71,14 +71,14 @@ enhancements:
     content: "The SET_TERMINATE_VECTOR routine sets interrupt vector 22h to point to the TERMINATE routine, ensuring that the debugger can gracefully exit when required. This setup reflects the importance of managing interrupt vectors in early PC software, where direct hardware interaction was common. By explicitly defining termination behavior, DEBUG provides a reliable way to clean up resources and return control to the operating system. This technique highlights the low-level nature of MS-DOS programming, where developers had to manage hardware and system resources manually. The concept of interrupt vector management influenced the design of modern operating systems, where similar mechanisms are used to handle system events and exceptions."
   - id: "input-line-conversion"
     line_start: 819
-    line_end: 855
+    line_end: 925
     title: "Converting Input to Uppercase"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
     image_url: ""
     image_caption: ""
     content: "The INBUF routine reads the input line and converts all characters outside of quotes to uppercase. This ensures consistency in command processing, as MS-DOS commands were case-insensitive. The routine uses ASCII value comparisons to identify lowercase letters and convert them to their uppercase equivalents. This design reflects the simplicity and efficiency required in early PC software, where memory and processing constraints shaped every decision. By handling input conversion at the assembly level, DEBUG minimizes overhead and ensures reliable command interpretation. This approach influenced the design of text processing routines in later software, emphasizing the importance of normalization in user input handling."
   - id: "hex-addition-subtraction"
-    line_start: 977
+    line_start: 981
     line_end: 1013
     title: "Adding and Subtracting Hexadecimals"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hexadecimal"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The HEXADD routine performs addition and subtraction on hexadecimal values, showcasing the utility of DEBUG for low-level arithmetic operations. It reads two hex values, adds and subtracts them, and outputs the results in hexadecimal format. This routine reflects the needs of early PC developers, who often worked directly with memory addresses and binary data. By providing built-in support for hex arithmetic, DEBUG simplifies tasks like memory inspection and manipulation. This feature influenced the design of debugging tools in later operating systems, where similar capabilities are integrated into development environments to support low-level programming and diagnostics."
   - id: "hex-address-output-routine"
-    line_start: 1017
+    line_start: 1021
     line_end: 1033
     title: "Hexadecimal Address Output: A Debugger's Backbone"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugger"
@@ -94,16 +94,16 @@ enhancements:
     image_caption: ""
     content: "This section outputs a hexadecimal address in the format segment:offset, a staple of debugging tools. The OUTSI routine first displays the segment (DS) and then jumps to OUT16 to print the offset (SI). This design reflects the segmented memory model of the Intel 8086, where memory was addressed as segment:offset pairs. In 1981, debugging tools like DEBUG were essential for developers working directly with assembly language and hardware, as higher-level abstractions were rare. The segmented memory model was both a constraint and an opportunity, forcing programmers to think in terms of physical memory layout. This routine's simplicity and efficiency influenced the design of later debuggers, including those integrated into IDEs like Turbo Debugger and Visual Studio."
   - id: "hex-digit-output"
-    line_start: 1071
-    line_end: 1093
+    line_start: 1075
+    line_end: 1187
     title: "Hex Digit Conversion: A Clever 8086 Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
     content: "The HEX subroutine converts a byte in AL into two hexadecimal digits. It uses a clever sequence of bit shifts and additions to isolate and convert each nibble (4 bits) into its ASCII representation. The use of DAA (Decimal Adjust after Addition) is particularly notable, as it exploits the 8086's BCD arithmetic capabilities to simplify conversion. This technique showcases the ingenuity required to work within the constraints of early CPUs, where every instruction and register mattered. The approach was widely studied and adapted in other low-level programming contexts, influencing routines in embedded systems and BIOS development."
   - id: "command-table-design"
-    line_start: 1571
-    line_end: 1643
+    line_start: 1577
+    line_end: 1579
     title: "Command Table: The Heart of DEBUG's Flexibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The QUIT routine sets a flag (QFLAG) and prepares the system for a clean exit. It interacts with the USER_PROC_PDB to ensure that the debugger's state is properly released. This routine highlights the importance of graceful termination in software design, especially in tools that interact directly with hardware and system resources. In the early 1980s, debugging tools had to account for the limited stability of operating systems and hardware, making clean exits essential to avoid corruption or crashes. The principles demonstrated here influenced the design of later debugging and profiling tools, ensuring reliability in critical system utilities."
   - id: "find-debug-routine"
     line_start: 1653
-    line_end: 1673
+    line_end: 1659
     title: "FIND_DEBUG: Locating Debug Resources in Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

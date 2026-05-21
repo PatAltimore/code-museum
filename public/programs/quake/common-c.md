@@ -47,7 +47,7 @@ enhancements:
     content: "The `pop` array defines a graphic used to verify whether the game is running with official data files. This was a clever anti-piracy measure: if the graphic was missing or altered, certain features would be disabled. In the mid-1990s, software piracy was rampant, and developers often relied on creative methods to protect their intellectual property. By embedding this check directly into the code, id Software ensured that unauthorized modifications to the game's data files would be detected. This technique was later studied by other developers looking for non-intrusive ways to enforce licensing, influencing approaches in games like Half-Life and Diablo II."
   - id: "clearlink-and-linked-list-management"
     line_start: 101
-    line_end: 126
+    line_end: 105
     title: "How Quake Managed Dynamic Linked Lists"
     wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "This section defines functions for managing linked lists, including `ClearLink`, `RemoveLink`, and `InsertLinkBefore/After`. Linked lists were a common data structure in the 1990s, used for dynamic memory management and efficient traversal. Quake relied on linked lists for various subsystems, such as entity management and collision detection. These functions demonstrate id Software's focus on performance and modularity, ensuring that list operations were both fast and reusable. Michael Abrash, known for his expertise in optimization, likely contributed to these routines. The use of linked lists in Quake influenced later game engines, which adopted similar structures for handling dynamic game objects."
   - id: "library-replacement-functions"
     line_start: 128
-    line_end: 284
+    line_end: 151
     title: "Why Quake Rewrote Standard Library Functions"
     wikipedia_url: "https://en.wikipedia.org/wiki/C_standard_library"
     image_url: ""
@@ -71,15 +71,15 @@ enhancements:
     content: "The byte-order functions (`ShortSwap`, `LongSwap`, `FloatSwap`, etc.) address the issue of endianness, ensuring data consistency across different platforms. Endianness refers to the order in which bytes are stored in memory, which varies between architectures like x86 (little-endian) and PowerPC (big-endian). Multiplayer games like Quake required consistent data formats for communication between clients and servers. By implementing these functions, id Software guaranteed compatibility and avoided subtle bugs caused by mismatched byte orders. This solution became standard practice in networking code, influencing protocols and engines used in games like Counter-Strike and World of Warcraft."
   - id: "message-io-functions"
     line_start: 498
-    line_end: 848
+    line_end: 522
     title: "How Quake Serialized Multiplayer Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Serialization"
     image_url: ""
     image_caption: ""
     content: "The `MSG_Write` and `MSG_Read` functions handle serialization and deserialization of game data for multiplayer communication. Serialization converts complex data structures into a format suitable for transmission over a network, while deserialization reconstructs them on the receiving end. Quake's implementation includes checks for data alignment and byte-ordering, ensuring reliability and performance. This system was critical for Quake's groundbreaking multiplayer capabilities, allowing players to interact seamlessly in real-time. The techniques pioneered here influenced later networking frameworks, including those used in Unreal Tournament and modern engines like Unity and Unreal Engine."
   - id: "com-skip-path-and-file-utilities"
-    line_start: 897
-    line_end: 1004
+    line_start: 900
+    line_end: 917
     title: "File Management Tricks for Game Modding"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_modding"
     image_url: ""
@@ -87,15 +87,15 @@ enhancements:
     content: "Functions like `COM_SkipPath`, `COM_StripExtension`, and `COM_FileBase` simplify file path manipulation, enabling Quake's flexible file system. These utilities were essential for handling game assets and supporting mods, which often required custom file structures. By abstracting file operations, id Software made it easier for developers and modders to work with the game's data. This modular approach contributed to Quake's legacy as a highly moddable game, inspiring communities and tools like QuakeC and later modding frameworks for games like Skyrim and Minecraft."
   - id: "com-parse-tokenization"
     line_start: 1011
-    line_end: 1075
+    line_end: 1027
     title: "Parsing Tokens for Command-Line Magic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
     content: "The `COM_Parse` function extracts tokens from strings, a crucial utility for handling command-line arguments and scripting. This capability allowed Quake to support complex configurations and commands, empowering users to customize their gameplay experience. The tokenization approach reflects id Software's focus on flexibility and user control, which became a defining feature of their games. Techniques like this influenced scripting systems in later engines, including Lua integration in World of Warcraft and Python scripting in Blender."
   - id: "skipwhite-comment-handling"
-    line_start: 1030
-    line_end: 1079
+    line_start: 1029
+    line_end: 1036
     title: "How Quake Parses Arguments and Ignores Comments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""

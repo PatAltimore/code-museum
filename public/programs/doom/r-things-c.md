@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InstallSpriteLump` function initializes sprite frames and rotations, while performing rigorous error checks to ensure consistency in sprite definitions. For example, it verifies that no sprite frame has overlapping rotations or missing data. This meticulous attention to detail reflects John Carmack's philosophy of robust software engineering, which was critical to DOOM's success. By catching errors early, this function prevented crashes and visual glitches, ensuring a smooth gameplay experience. The approach set a standard for error handling in game engines, influencing later titles like Quake and Unreal."
   - id: "masked-texture-rendering"
-    line_start: 338
+    line_start: 350
     line_end: 387
     title: "Transparency Tricks in DOOM's Sprites"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"

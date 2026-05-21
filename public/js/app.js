@@ -243,8 +243,40 @@ function splitHighlightedHtml(html) {
   return lines;
 }
 
+// Patch the CDN x86asm grammar to remove BACKSLASH_ESCAPE from string modes.
+//
+// The built-in grammar uses hljs.QUOTE_STRING_MODE (which treats \ as an
+// escape character) and a single-quote mode with end: "[^\\\\]'" (which also
+// has backslash-sensitive semantics).  In x86 assembly, \ is NOT an escape
+// character inside strings, so patterns like "\" should be a valid one-char
+// string containing a backslash — but with escape handling the closing " is
+// swallowed as \", the string spans to the next line, and everything breaks.
+function patchX86AsmStrings() {
+  if (typeof hljs === 'undefined') return;
+  const lang = hljs.getLanguage('x86asm');
+  if (!lang || !Array.isArray(lang.contains)) return;
+
+  lang.contains = lang.contains.map(m => {
+    // Replace the pre-built QUOTE_STRING_MODE (double-quote with BACKSLASH_ESCAPE)
+    if (m === hljs.QUOTE_STRING_MODE) {
+      return { scope: 'string', begin: '"', end: '"', relevance: 0 };
+    }
+    // Replace single-quote mode that uses the [^\\]' end pattern
+    if (m.begin === "'" || (m.begin && m.begin.toString() === "/'/")) {
+      return { scope: 'string', begin: "'", end: "'", relevance: 0 };
+    }
+    // Fallback: any string mode that still carries BACKSLASH_ESCAPE in its contains
+    const s = m.scope || m.className;
+    if (s === 'string' && Array.isArray(m.contains) && m.contains.length) {
+      return { scope: 'string', begin: m.begin, end: m.end, relevance: m.relevance || 0 };
+    }
+    return m;
+  });
+}
+
 // Register grammars that are not bundled in the CDN language files.
 register6502Asm();
+patchX86AsmStrings();
 
 function renderCodeWithEnhancements(body, enhancements, language) {
   const lines = body.replace(/\r/g, '').split('\n');

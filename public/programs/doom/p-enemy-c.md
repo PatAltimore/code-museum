@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "directional-movement-lookup-table"
     line_start: 50
-    line_end: 78
+    line_end: 63
     title: "The Lookup Table That Guides Enemy Movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `A_SPosAttack` function simulates a shotgun-like attack by firing multiple projectiles in slightly different directions. This is achieved by iterating three times and applying randomized offsets to the base angle for each shot. The result is a spread pattern that mimics the behavior of a shotgun blast, adding variety to enemy attacks. This design choice reflects DOOM's emphasis on creating diverse and memorable combat encounters. The shotgun spread attack became a staple in many FPS games, influencing weapon and enemy design in titles like Quake and Half-Life."
   - id: "corpse-resurrection-mechanic"
-    line_start: 1119
+    line_start: 1128
     line_end: 1158
     title: "The Code That Raised the Dead"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -175,7 +175,7 @@ enhancements:
     content: "The `A_BossDeath` function handles the logic for triggering special events when a boss enemy dies. Depending on the game mode, episode, and map, specific actions are performed, such as lowering floors or opening doors. This logic ensures that defeating a boss not only signifies victory but also progresses the game by altering the environment. Written by John Carmack and team, this approach reflects the careful integration of gameplay mechanics with level design. In 1993, games often relied on scripted sequences, but DOOM's dynamic event system was groundbreaking. It allowed players to experience unique outcomes based on their actions, enhancing replayability. The concept of tying environmental changes to enemy deaths influenced later games like Quake and Half-Life, where scripted events and dynamic environments became standard."
   - id: "hoof-metal-sounds-for-immersive-feedback"
     line_start: 1758
-    line_end: 1774
+    line_end: 1762
     title: "Hoof and Metal Sounds for Immersive Feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
     image_url: ""
@@ -199,7 +199,7 @@ enhancements:
     content: "The `A_BrainAwake` function initializes the targeting system for the final boss, the Icon of Sin. It scans the game world for specific target objects (`MT_BOSSTARGET`) and stores them in an array for later use. This mechanic ensures that the boss can dynamically interact with the environment by spawning projectiles aimed at these targets. In 1993, such dynamic behavior was rare in games, which often relied on static patterns. The Icon of Sin's targeting system added unpredictability and challenge to the final encounter, influencing boss design in later games like Dark Souls, where environmental interaction plays a key role."
   - id: "brain-explode-and-telefrag"
     line_start: 1874
-    line_end: 1989
+    line_end: 1892
     title: "Brain Explode and Telefrag Mechanics"
     wikipedia_url: "https://doomwiki.org/wiki/Telefrag"
     image_url: ""

@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This section implements DOOM's cheat codes, including 'IDDQD' (god mode), 'IDKFA' (full ammo and keys), and 'IDSPISPOPD' (no clipping). The codes are stored as sequences of hexadecimal values, making them harder to decipher directly from the binary. Cheat codes were a staple of 1990s gaming, providing players with a way to experiment, explore, or simply have fun without the usual constraints. John Carmack and John Romero included these cheats partly as debugging tools during development. Their inclusion in the final game added to DOOM's mystique, as players shared and discovered them through word of mouth and gaming magazines. Cheat codes became a cultural phenomenon, influencing games like GTA and The Sims."
   - id: "status-bar-refresh"
-    line_start: 493
+    line_start: 498
     line_end: 511
     title: "Refreshing DOOM's Status Bar Without Missing a Frame"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"
@@ -71,15 +71,15 @@ enhancements:
     content: "The `ST_calcPainOffset` function calculates the appropriate face animation based on the player's health. It maps health values to predefined face states, ensuring the face widget reflects the player's condition accurately. This dynamic feedback was groundbreaking in 1993, adding a layer of emotional connection to the game. Players could see their avatar's pain, fear, or triumph, making the experience more immersive. The face widget became a hallmark of DOOM's design, influencing similar features in games like Duke Nukem 3D and Half-Life."
   - id: "face-widget-update"
     line_start: 745
-    line_end: 799
+    line_end: 795
     title: "The Algorithm Behind DOOM's Iconic Face Widget"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"
     image_url: ""
     image_caption: ""
     content: "The `ST_updateFaceWidget` function manages the animations and transitions of DOOM's face widget. It prioritizes expressions based on game events, such as death, picking up a weapon, or taking damage. The widget's precedence rules—dead > evil grin > turned head > straight ahead—ensure it conveys the most relevant information to the player. This feature was a technical and artistic achievement, combining real-time game state monitoring with expressive animations. The face widget became one of DOOM's most memorable elements, influencing HUD designs in games like System Shock and Fallout."
   - id: "player-face-animation-system"
-    line_start: 800
-    line_end: 921
+    line_start: 797
+    line_end: 852
     title: "How DOOM Made Faces React to Pain"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The `ST_createWidgets` function initializes all the widgets used in the status bar, including health, armor, ammo, and keycards. Each widget is tied to specific player data, ensuring real-time updates during gameplay. This system was groundbreaking for its time, as it provided a dynamic and interactive UI in a resource-constrained environment. The modular design allowed developers to easily add new widgets or modify existing ones. This approach influenced modern game UI frameworks, which prioritize modularity and real-time data binding for flexibility and responsiveness."
   - id: "status-bar-initialization"
     line_start: 1443
-    line_end: 1470
+    line_end: 1453
     title: "How DOOM's Status Bar Came to Life"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

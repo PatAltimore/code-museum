@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "sysinit-jump-to-goinit"
     line_start: 145
-    line_end: 147
+    line_end: 261
     title: "Why SYSINIT jumps directly to GOINIT"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The SYSINIT label serves as the entry point for system initialization but immediately jumps to GOINIT. This design reflects the modular approach of MS-DOS v2.0, where initialization tasks are compartmentalized for clarity and maintainability. At the time, bootstrapping an operating system required careful sequencing to ensure memory was sized, the kernel was relocated, and the environment was prepared for user interaction. By jumping to GOINIT, the code avoids cluttering the entry point with detailed initialization logic, instead delegating these tasks to a dedicated routine. This modularity became a hallmark of MS-DOS v2.0, influenced by Unix's philosophy of small, focused components. The approach allowed developers to expand and modify the initialization process without disrupting the entry point, a practice that persists in modern bootloaders and operating systems."
   - id: "memory-sizing-memscan-setend"
     line_start: 265
-    line_end: 289
+    line_end: 359
     title: "The clever trick behind MEMSCAN"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "MEMSCAN is a routine designed to detect available RAM by writing and reading bit patterns across memory boundaries. Starting at a 32KB boundary, it increments through memory, testing each segment by flipping bits and verifying their persistence. This method was a practical solution for the hardware constraints of early PCs, where BIOS often lacked robust memory detection capabilities. Tim Paterson, the original author of 86-DOS, likely adapted this technique from similar approaches used in early microcomputers. By determining the upper limit of usable memory, MEMSCAN ensures the operating system can allocate resources efficiently. This technique influenced later memory management practices, including BIOS extensions and utilities like HIMEM.SYS, which managed extended memory in the MS-DOS ecosystem."
   - id: "sysin-relocates-dos"
     line_start: 361
-    line_end: 423
+    line_end: 491
     title: "How SYSIN relocates DOS into high memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "NOPROB calculates the size of a file and resets the file pointer to the beginning. This routine is a critical part of MS-DOS's file handling capabilities, ensuring that the system can accurately determine file sizes for subsequent operations. In the early 1980s, file systems were relatively primitive, and routines like NOPROB were essential for managing files efficiently. The use of interrupts (INT 21H) to interact with the DOS kernel demonstrates the modular design philosophy of MS-DOS. NOPROB's approach to file size calculation influenced later file systems by highlighting the importance of accurate metadata management. Its design principles are echoed in modern file system APIs and libraries."
   - id: "conferr-config-error-handling"
     line_start: 1377
-    line_end: 1381
+    line_end: 1383
     title: "Handling CONFIG.SYS Errors Gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/CONFIG.SYS"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "CONFERR is a short routine that handles errors in the CONFIG.SYS file. When an error is detected, it prints a message and redirects execution to a safe state. CONFIG.SYS was a critical configuration file in MS-DOS, allowing users to customize their system's behavior. Tim Paterson's decision to include robust error handling for CONFIG.SYS reflects his understanding of user needs and the importance of system stability. This approach influenced the design of configuration file handling in later operating systems, where clear messages and safe recovery paths became standard practice. CONFERR's simplicity and effectiveness are a testament to the power of thoughtful design in software development."
   - id: "getcom-command-parsing"
     line_start: 1387
-    line_end: 1391
+    line_end: 1389
     title: "Parsing Commands at System Startup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "CONFLP is a looping routine that processes multiple commands during system initialization. It interacts with the CONFIG.SYS file to parse and execute commands sequentially. This approach ensures that the system can handle complex configurations and adapt to user needs. Tim Paterson's decision to include a looping mechanism reflects his understanding of the importance of flexibility in operating systems. CONFLP's modular design influenced later operating systems by demonstrating how to handle complex configurations efficiently. Its design principles are echoed in modern shell environments and scripting languages, where loops are a fundamental construct."
   - id: "endsh-section-handling-command-line"
     line_start: 2029
-    line_end: 2039
+    line_end: 2055
     title: "How MS-DOS Handles Command Line Input"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -151,7 +151,7 @@ enhancements:
     content: "GETCHR retrieves a single character from the input buffer, decrementing the count and advancing the pointer. If no characters remain, it sets the carry flag to indicate an empty buffer. This low-level routine exemplifies the direct manipulation of hardware registers and memory that defined early PC programming. Tim Paterson's approach ensured minimal overhead, crucial for systems with limited resources. This method influenced how input/output operations were handled in subsequent DOS versions and other operating systems, emphasizing efficiency and simplicity."
   - id: "findcom-command-table-search"
     line_start: 2131
-    line_end: 2159
+    line_end: 2229
     title: "Searching the Command Table for Matches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -159,7 +159,7 @@ enhancements:
     content: "FINDCOM searches a predefined command table for a match to the user's input. It uses string comparison and flag manipulation to iterate through potential matches. This routine highlights the influence of Unix-like systems on MS-DOS 2.0, where command tables were a common feature. The ability to dynamically match user input to commands was essential for extensibility and usability. This approach influenced later shell designs, including those in Windows and Linux, where command lookup remains a core feature."
   - id: "mapcase-case-normalization-routine"
     line_start: 2305
-    line_end: 2317
+    line_end: 2369
     title: "Normalizing Case for Command Parsing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Case_sensitivity"
     image_url: ""
@@ -167,7 +167,7 @@ enhancements:
     content: "MAPCASE converts lowercase characters to uppercase to ensure case-insensitive command parsing. This routine reflects the design philosophy of MS-DOS, where simplicity and user-friendliness were prioritized. Case normalization was crucial for compatibility with early keyboards and user expectations. The technique, inspired by Unix systems, became standard in many operating systems, influencing how commands and filenames are handled today."
   - id: "testkanj-kanji-character-detection"
     line_start: 2375
-    line_end: 2391
+    line_end: 2401
     title: "Detecting Kanji Characters in Input"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""
@@ -183,7 +183,7 @@ enhancements:
     content: "ROUND adjusts memory sizes to align with allocation boundaries, ensuring efficient use of RAM. This routine reflects the constraints of early PCs, where memory was scarce and fragmentation could severely impact performance. By rounding to the nearest boundary, MS-DOS optimized memory usage, a technique that influenced memory management in later operating systems. This approach remains relevant in modern systems, where alignment is critical for performance."
   - id: "ldfil-loading-files-into-memory"
     line_start: 2597
-    line_end: 2655
+    line_end: 2683
     title: "Loading Files into Memory Efficiently"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -191,7 +191,7 @@ enhancements:
     content: "LDFIL opens a file, reads its contents into memory, and checks for executable headers. This routine is central to MS-DOS's ability to load and execute programs. It highlights the direct interaction with the file system and hardware interrupts that defined early PC operating systems. The design influenced how file loading was handled in later systems, including Windows, where similar checks and memory operations occur during program execution."
   - id: "open-dev-device-opening-routine"
     line_start: 2685
-    line_end: 2725
+    line_end: 2773
     title: "Opening Devices with Fallback Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
@@ -199,7 +199,7 @@ enhancements:
     content: "OPEN_DEV attempts to open a device and falls back to the null device if unsuccessful. This routine showcases MS-DOS's robust error handling and support for device abstraction. By providing fallback mechanisms, the system ensured stability and usability, even in the face of hardware issues. This approach influenced the design of device drivers in later operating systems, emphasizing resilience and compatibility."
   - id: "bootmes-version-display-message"
     line_start: 2775
-    line_end: 2793
+    line_end: 2811
     title: "Displaying MS-DOS Version at Startup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
@@ -207,7 +207,7 @@ enhancements:
     content: "BOOTMES constructs and displays the MS-DOS version message during startup. This routine reflects the importance of branding and user communication in early operating systems. By prominently displaying the version and copyright information, Microsoft reinforced its identity and ownership of the software. This practice became standard in operating systems, with startup messages evolving into splash screens and graphical boot sequences in modern systems."
   - id: "config-sys-command-lookup-table"
     line_start: 2815
-    line_end: 2833
+    line_end: 2839
     title: "The Lookup Table That Parsed CONFIG.SYS"
     wikipedia_url: "https://en.wikipedia.org/wiki/CONFIG.SYS"
     image_url: ""

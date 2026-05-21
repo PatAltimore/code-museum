@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "include-dosseg-and-dossym"
-    line_start: 5
-    line_end: 15
+    line_start: 1
+    line_end: 21
     title: "Why Include Files Were Crucial in Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -39,14 +39,14 @@ enhancements:
     content: "This section includes references to external files, `DOSSEG.ASM`, `DOSSYM.ASM`, and `DEVSYM.ASM`, which define constants, macros, and symbols used throughout the buffer management routines. In the constrained environment of 8086 assembly, modularity was achieved through include files, allowing developers to reuse code and maintain consistency across large projects. Tim Paterson's use of include files reflects the influence of structured programming practices, even in low-level assembly. These files likely contain definitions for buffer structures, device symbols, and segment directives, enabling MS-DOS to interface with hardware efficiently. This modular approach became a standard in assembly programming and influenced later operating systems, including Windows, which continued to rely on header files for modularity."
   - id: "setvisit-buffer-scan"
     line_start: 23
-    line_end: 71
+    line_end: 50
     title: "The Pre-Scan That Prevented Disk Errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_buffer"
     image_url: ""
     image_caption: ""
     content: "The `SETVISIT` routine initializes a scan of I/O buffers, ensuring all visit flags are cleared. This pre-scan is critical because hard disk errors could interrupt scans, leaving some flags in inconsistent states. By resetting these flags, MS-DOS avoids potential corruption or mismanagement of buffers. In 1983, disk errors were a common occurrence due to hardware limitations, and routines like this were essential for maintaining system stability. The technique of preemptively clearing state before operations became a best practice in software engineering, influencing error handling in later operating systems. The use of linked buffer structures here also reflects the influence of Unix-like systems, which employed similar mechanisms for managing I/O."
   - id: "placebuf-buffer-reordering"
-    line_start: 74
+    line_start: 99
     line_end: 258
     title: "How MS-DOS Reordered Buffers for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"

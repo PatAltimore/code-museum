@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The initialization section sets up the program's stack pointer and displays a header message identifying the assembler's version and copyright information. This was a common practice in early software to provide users with immediate feedback about the tool they were using. The header message also serves as a branding mechanism for Seattle Computer Products, emphasizing their role in the development of the assembler. By setting the stack pointer and loading the header, this section ensures the assembler is ready to process input files and interact with the user. This approach influenced later software design, where initialization routines became standard for setting up program environments."
   - id: "file-handling-defaults"
-    line_start: 76
+    line_start: 72
     line_end: 142
     title: "The Clever Defaults for File Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -63,7 +63,7 @@ enhancements:
     content: "This section handles file operations, including setting default drive letters and opening source, HEX, and PRN files. The code includes checks for valid drive letters and suppresses file creation based on user input (e.g., 'Z' to suppress HEX files). These routines demonstrate the challenges of working with the MS-DOS file system, which relied on fixed-length file control blocks (FCBs) and limited error reporting. The assembler's ability to adapt to different file configurations made it versatile for developers working on various projects. This approach influenced the design of file handling routines in later programming tools and operating systems, emphasizing flexibility and error handling."
   - id: "line-assembly-loop"
     line_start: 144
-    line_end: 172
+    line_end: 185
     title: "The Loop That Assembles Your Code"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This loop processes each line of assembly code, checking for errors and assembling tokens into machine instructions. The code includes routines for handling end-of-line markers and comments, ensuring the assembler can parse input files correctly. This loop is the heart of the assembler, translating human-readable assembly language into binary code for the 8086 processor. The design of this loop reflects the constraints of early computing, where efficiency and accuracy were paramount. The techniques used here influenced the development of later assemblers and compilers, which adopted similar approaches for parsing and code generation."
   - id: "operand-parsing-mrops"
     line_start: 259
-    line_end: 374
+    line_end: 381
     title: "How Operands Get Their Meaning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Operand"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The FORMATTAB section defines a lookup table for memory formats, used to encode addressing modes and operand types. The table uses a 4-bit index to determine valid combinations of integer/real types and extended/normal memory operations. This compact encoding reflects the constraints of early PCs, where every byte of memory mattered. By precomputing these combinations, MS-DOS could quickly validate and generate instructions, avoiding runtime overhead. This technique influenced later assemblers and compilers, which adopted similar tables for opcode and operand validation. The design also highlights the ingenuity required to work within the IBM PC's limited resources, a hallmark of early software engineering."
   - id: "opcode-generation"
     line_start: 1563
-    line_end: 1597
+    line_end: 1572
     title: "The Routine That Generated Opcodes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Opcode"
     image_url: ""
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The PUTADD routine handles addressing modes, distinguishing between direct and indirect addressing. It saves the addressing mode as pure code and processes optional displacement bytes for indirect modes. Addressing modes were a critical feature of the 8086 architecture, enabling flexible memory access. MS-DOS's implementation reflects the need to optimize for both performance and code size, ensuring compatibility with the IBM PC's segmented memory model. This routine showcases the low-level control programmers had over hardware in the early 1980s, a stark contrast to today's high-level abstractions. The handling of addressing modes influenced later systems, including x86 assembly tools and compilers, which continue to rely on similar mechanisms for instruction encoding."
   - id: "jmp-call-mnemonics"
-    line_start: 2002
+    line_start: 2001
     line_end: 2065
     title: "How MS-DOS Encoded JMP and CALL"
     wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computing)"
@@ -135,14 +135,14 @@ enhancements:
     content: "The GRP14 routine processes JMP and CALL mnemonics, handling both direct and indirect jumps. It uses relocation bits for inter-segment jumps, ensuring compatibility with MS-DOS's segmented memory model. Direct jumps are encoded with relative offsets, while indirect jumps use addressing modes. This flexibility was essential for MS-DOS, as programs needed to run in different memory locations. The routine reflects the challenges of early PC programming, where memory management was a constant concern. Microsoft's approach influenced later executable formats, including PE and ELF, which also support relocation and flexible addressing. The encoding of JMP and CALL mnemonics remains a fundamental aspect of assembly language programming."
   - id: "pass-two-processing-finalization"
     line_start: 2337
-    line_end: 2665
+    line_end: 2715
     title: "Pass Two: Completing the Assembly Process"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
     content: "This section marks the final stages of pass-two processing in the MS-DOS assembler. Pass two is responsible for resolving forward references, generating machine code, and producing output files. The routines handle tasks such as fixing up unresolved symbols, managing special pseudo-operations (e.g., ORG, PUT, DS), and outputting source lines with corresponding machine code. The assembler's two-pass design reflects the constraints of early computing, where memory limitations required careful planning and efficient algorithms. By splitting the assembly process into two passes, the software could handle complex source code without exceeding the IBM PC's capabilities. This approach influenced the design of later assemblers and compilers, which adopted multi-pass architectures to balance functionality and performance. The routines in this section demonstrate the ingenuity of Tim Paterson and the MS-DOS team, who created a robust and flexible assembler under significant constraints."
   - id: "symbol-table-dump-and-tree-walk"
-    line_start: 2666
+    line_start: 2717
     line_end: 2778
     title: "Symbol Table Dump: Recursive Tree Walk"
     wikipedia_url: "https://en.wikipedia.org/wiki/Symbol_table"
@@ -151,15 +151,15 @@ enhancements:
     content: "This routine performs a recursive tree walk to dump the symbol table, a key data structure in the assembly process. The symbol table stores information about labels, variables, and other identifiers used in the source code. The recursive approach reflects the hierarchical nature of the symbol table, where each node may have child nodes representing nested scopes or related symbols. By traversing the tree, the routine outputs the symbols in a structured format, ensuring that developers can review and debug their code effectively. In the early 1980s, this feature was essential for understanding the behavior of the assembler and optimizing source code. The recursive tree walk technique influenced later compilers and interpreters, which adopted similar methods for managing symbol tables and other hierarchical data structures. This routine highlights the sophistication of MS-DOS's design, which balanced functionality with the constraints of the IBM PC's hardware."
   - id: "error-reporting-with-custom-messages"
     line_start: 2810
-    line_end: 2847
+    line_end: 2839
     title: "Error Reporting: Custom Messages in Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
     content: "The error reporting mechanism in this section is a fascinating example of early software debugging practices. The routine uses an error table (ERRTAB) to map error codes to human-readable messages. When an error occurs, the code searches the table for the corresponding message and prints it. If no message is found, the error code itself is displayed. This method was crucial in the era of MS-DOS, where debugging tools were rudimentary, and developers relied heavily on meaningful error messages to diagnose issues. Tim Paterson's design reflects the practical needs of developers working with limited resources and tight deadlines. This approach to error handling influenced later operating systems and programming languages, where robust error reporting became a standard feature. The concept of mapping error codes to messages persists in modern software development, from kernel logs to high-level application frameworks."
   - id: "hexadecimal-output-for-machine-code"
-    line_start: 2867
-    line_end: 2937
+    line_start: 2858
+    line_end: 2960
     title: "Hexadecimal Output: Generating Machine Code"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_HEX"
     image_url: ""
@@ -167,7 +167,7 @@ enhancements:
     content: "This section handles the generation of hexadecimal output for machine code, a critical step in the assembly process. The routine converts binary data into the Intel HEX format, which was widely used for storing and transferring machine code in the early 1980s. Each line of HEX output includes a checksum to ensure data integrity, reflecting the importance of reliability in software distribution. The routine also manages buffer flushing and error handling, ensuring that the generated HEX file is complete and accurate. At the time, this functionality was vital for developers who needed to load machine code onto hardware devices or share it with other systems. The Intel HEX format became a standard for firmware updates and embedded systems programming, and its influence can still be seen in modern development tools. This section demonstrates the meticulous attention to detail required to produce reliable software in the constrained environment of the IBM PC."
   - id: "mnemonic-table-for-8086-instructions"
     line_start: 2977
-    line_end: 3104
+    line_end: 3005
     title: "Mnemonic Table: Decoding Assembly Language"
     wikipedia_url: "https://en.wikipedia.org/wiki/X86_instruction_listings"
     image_url: ""

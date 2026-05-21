@@ -24,15 +24,15 @@ summary:
 
 enhancements:
   - id: "id-software-caching-manager"
-    line_start: 3
-    line_end: 15
+    line_start: 1
+    line_end: 36
     title: "Why Caching Was Critical for Wolfenstein"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This brief section introduces the caching manager, a foundational system for Wolfenstein 3D. The caching manager was designed to handle the game's assets dynamically, ensuring that critical data like graphics and audio headers were loaded into memory before the memory manager initialized. This approach was necessary because early PCs, particularly those running MS-DOS, had severe memory limitations. By structuring the asset management system this way, id Software could maximize the use of available memory while maintaining the game's fast-paced action. The caching manager became a template for asset management in later games, influencing systems in Doom and Quake."
   - id: "huffman-node-structure"
-    line_start: 33
+    line_start: 1
     line_end: 36
     title: "The Huffman Node Structure That Saved Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Huffman_coding"
@@ -48,8 +48,8 @@ enhancements:
     image_caption: ""
     content: "This section implements a clever optimization: using three-byte offsets instead of four-byte offsets to reference data in the graphics file. By masking and manipulating the offsets, id Software reduced the memory footprint of the `grstarts` array, which stored positions of chunks in the graphics file. This was critical in an era where every byte of memory mattered. The technique reflects the ingenuity required to work within the constraints of MS-DOS systems, where memory was often limited to 640KB. This approach influenced later game engines, which adopted similar tricks to optimize memory usage."
   - id: "debug-file-management"
-    line_start: 171
-    line_end: 180
+    line_start: 148
+    line_end: 175
     title: "Debugging with Persistent File Logs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""
@@ -104,7 +104,7 @@ enhancements:
     image_caption: ""
     content: "The `CA_Shutdown` function ensures all open files are closed when the game exits, preventing resource leaks. This routine reflects the meticulous attention to detail required in an era when operating systems provided limited safeguards against improper resource management. MS-DOS did not automatically close files or free memory on program termination, so developers had to handle cleanup explicitly. This practice of careful resource management influenced later game development, where robust shutdown routines became standard to ensure stability and portability across platforms."
   - id: "cache-audio-chunk"
-    line_start: 1126
+    line_start: 1124
     line_end: 1194
     title: "Loading Audio: One Chunk at a Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Huffman_coding"
@@ -112,7 +112,7 @@ enhancements:
     image_caption: ""
     content: "The `CA_CacheAudioChunk` function dynamically loads and decompresses audio chunks into memory. It uses Huffman coding for compression and supports both small and large buffers, depending on the chunk size. This flexibility was crucial for handling varying asset sizes within the constraints of early PCs. Huffman coding, a lossless compression algorithm, was widely used in the 1990s for its efficiency in reducing file sizes without sacrificing quality. Carmack's implementation here demonstrates his ability to adapt theoretical algorithms to practical game development needs. This technique influenced audio handling in later games, where dynamic loading and decompression became standard for managing large sound libraries."
   - id: "load-all-sounds"
-    line_start: 1198
+    line_start: 1196
     line_end: 1246
     title: "Switching Sound Modes on the Fly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"

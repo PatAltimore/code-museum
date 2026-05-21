@@ -39,79 +39,79 @@ enhancements:
     content: "This section defines global flags that track the state of the game world. Each flag represents a specific condition or event, such as whether the troll has been defeated or the carousel has flipped. These flags are stored in a global variable (`MGVALS`) and are referenced throughout the game to ensure consistency. For example, the `TRAP-DOOR!-FLAG` determines whether the trap door in the living room is open or closed. In the late 1970s, managing game state efficiently was crucial due to the limited memory of the DEC PDP-10, which had only 36-bit words and a few megabytes of RAM. The authors of Zork, all MIT graduates, leveraged MDL's list processing capabilities to organize these flags compactly. This approach influenced later adventure games, which adopted similar state-tracking mechanisms. Games like Infocom's 'Enchanter' and 'Planetfall' built on this technique, incorporating increasingly complex state systems to create immersive worlds."
   - id: "object-and-room-definitions"
     line_start: 206
-    line_end: 284
+    line_end: 213
     title: "The Objects That Made Zork Tangible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Text-based_game"
     image_url: ""
     image_caption: ""
     content: "This section introduces object definitions, such as the sandwich bag (`SBAG`), garlic (`GARLI`), and food (`FOOD`). Each object is described with attributes like its name, description, and properties (e.g., `TAKEBIT` for items that can be picked up). These objects are placed in specific rooms, creating a sense of physicality in the text-based world. The MDL language allowed the authors to define objects with intricate behaviors, such as the `CONTBIT` for containers. In 1977, this level of detail was groundbreaking, as most games were limited to simple interactions. Zork's object system inspired future games, including 'The Hitchhiker's Guide to the Galaxy' and 'Leather Goddesses of Phobos,' which expanded on the idea of interactive objects to enhance storytelling and puzzle complexity."
   - id: "villain-and-combat-system"
-    line_start: 413
-    line_end: 439
+    line_start: 405
+    line_end: 415
     title: "The Troll That Blocked Your Path"
     wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
     image_url: ""
     image_caption: ""
     content: "This section introduces the troll, a key villain in Zork. The troll is defined as an object with properties like `VICBIT` (indicating it can be a victim in combat) and `VILLAIN` (marking it as an antagonist). The troll's behavior is managed through demons, a feature of MDL that allows asynchronous processes to handle events like combat. In the late 1970s, implementing dynamic NPCs was a significant technical challenge, as most games relied on static encounters. Zork's troll system paved the way for more interactive villains in games like 'Wizardry' and 'Baldur's Gate,' where NPCs could react to player actions and influence the story."
   - id: "maze-navigation-logic"
-    line_start: 445
-    line_end: 586
+    line_start: 441
+    line_end: 443
     title: "Twisty Little Passages: Zork's Maze Design"
     wikipedia_url: "https://en.wikipedia.org/wiki/Maze"
     image_url: ""
     image_caption: ""
     content: "This section defines the maze rooms, including `MAZE1`, `MAZE2`, and `DEAD1`. Each room is described with exits leading to other rooms, creating a network of interconnected spaces. The maze's design, with its 'twisty little passages, all alike,' became iconic, challenging players to map their way through trial and error. In the late 1970s, maze navigation was a common feature in adventure games, but Zork's implementation stood out for its complexity and the use of flags to alter room states dynamically. The maze influenced later games, such as 'Adventure' and 'Ultima,' which incorporated similar navigation puzzles. It also inspired the use of procedural generation in modern games like 'Minecraft' and 'Rogue,' where maze-like environments are created algorithmically."
   - id: "forest-and-clearing-rooms"
-    line_start: 588
-    line_end: 627
+    line_start: 586
+    line_end: 588
     title: "A Forest Full of Possibilities"
     wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
     image_url: ""
     image_caption: ""
     content: "This section defines the forest and clearing rooms, such as `FORE1`, `FORE2`, and `CLEAR`. Each room is described with exits leading to other areas, creating a sense of exploration. The forest's descriptions, like 'dimly lit' and 'obstructing all views,' evoke a vivid atmosphere despite the text-based format. In 1977, creating immersive environments with text alone was a novel concept, as most games focused on gameplay mechanics rather than storytelling. Zork's forest inspired later games, such as 'Myst' and 'The Elder Scrolls,' to prioritize world-building and environmental storytelling."
   - id: "mirror-room-navigation"
-    line_start: 798
-    line_end: 812
+    line_start: 726
+    line_end: 732
     title: "Mirror Rooms: A Puzzle in Reflection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "The Mirror Rooms ('MIRR1' and 'MIRR2') are defined here with exits leading to adjacent areas and a special object ('REFL1' or 'REFL2') tied to the room. These rooms likely play a role in a puzzle where players must interact with reflective surfaces or navigate based on mirrored paths. At the time, such puzzles were groundbreaking in text-based games, offering a spatial and conceptual challenge. The authors of Zork, inspired by Crowther and Woods' Adventure, aimed to push the boundaries of interactive fiction by creating environments that felt alive and mysterious. The Mirror Rooms exemplify this ambition, requiring players to think beyond simple navigation. This approach influenced later games like Infocom's Enchanter series, where environmental puzzles became a hallmark."
   - id: "coal-mine-environment"
-    line_start: 856
-    line_end: 878
+    line_start: 798
+    line_end: 804
     title: "Coal Mine: A Journey Underground"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
     content: "The rooms 'SLIDE' and 'ENTRA' introduce players to a coal mine environment, complete with evocative descriptions of steep slides and eerie sounds. These areas immerse players in a dangerous underground world, leveraging text to create vivid imagery. In 1977, text-based games relied entirely on prose to convey atmosphere, and Zork's authors excelled at crafting environments that felt tangible. The coal mine reflects the influence of tabletop RPGs like Dungeons & Dragons, where dungeon exploration was central. This design philosophy carried forward into games like Sierra's King's Quest, which expanded on Zork's environmental storytelling with graphical interfaces."
   - id: "timber-room-navigation"
-    line_start: 1019
-    line_end: 1026
+    line_start: 947
+    line_end: 957
     title: "Timber Room: Conditional Navigation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
     image_url: ""
     image_caption: ""
     content: "The Timber Room ('TIMBE') introduces conditional exits, where players must be 'empty-handed' to access certain paths. This mechanic adds complexity to navigation, forcing players to make strategic decisions about inventory management. In the late 1970s, such conditional logic was innovative, as most games offered straightforward movement between locations. Zork's authors used MDL's capabilities to implement these constraints, creating a more dynamic and challenging experience. This technique influenced later adventure games, including LucasArts' Monkey Island series, where puzzles often revolved around item usage and environmental interaction."
   - id: "carousel-room-mechanics"
-    line_start: 1091
-    line_end: 1103
+    line_start: 1009
+    line_end: 1017
     title: "Carousel Room: A Rotating Challenge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "The Carousel Room ('CAROU') is a unique area where exits are dynamically altered based on the 'CAROUSEL-FLIP' flag. This mechanic simulates a rotating room, disorienting players and adding a layer of unpredictability to navigation. Such features were rare in early text-based games, showcasing Zork's ambition to create immersive and challenging environments. The rotating room concept was inspired by tabletop RPGs and influenced later games like Myst, where spatial puzzles became a core gameplay element. Zork's innovative use of flags and dynamic exits set a precedent for interactive fiction design."
   - id: "grail-room-treasure"
-    line_start: 1216
-    line_end: 1226
+    line_start: 1142
+    line_end: 1146
     title: "Grail Room: Treasure and Myth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
     content: "The Grail Room ('MGRAI') contains a valuable object, the grail, which players can interact with and collect. This room exemplifies Zork's treasure-hunting gameplay, where players explore and gather items of significance. The grail's inclusion reflects the game's roots in fantasy and mythology, drawing inspiration from Arthurian legends. In 1977, such thematic elements were groundbreaking for interactive fiction, adding depth and narrative richness. The treasure-hunting mechanic became a staple of adventure games, influencing titles like Ultima and The Legend of Zelda, which expanded on the concept with graphical interfaces and open-world exploration."
   - id: "cyclops-room-combat"
-    line_start: 1374
-    line_end: 1380
+    line_start: 1312
+    line_end: 1371
     title: "Cyclops Room: Introducing Combat"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -119,23 +119,23 @@ enhancements:
     content: "The Cyclops Room ('CYCLO') introduces a hostile NPC ('CYCLO') that players must confront. This marks one of the game's few combat scenarios, where players interact with enemies through text commands. The cyclops is a formidable opponent, adding tension and stakes to the exploration. Zork's authors drew inspiration from Dungeons & Dragons, where combat was integral to gameplay. While Zork's combat system is rudimentary compared to later RPGs, it laid the groundwork for integrating narrative and mechanics. Games like Baldur's Gate expanded on this foundation, blending storytelling with complex combat systems."
   - id: "robber-demon-mechanics"
     line_start: 1447
-    line_end: 1467
+    line_end: 1452
     title: "Robber Demon: Dynamic Threats"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
     content: "The Robber Demon ('ROBBER-DEMON') is a dynamic NPC that interacts with players, stealing items and creating obstacles. This mechanic adds unpredictability to the game, forcing players to adapt their strategies. In the late 1970s, such dynamic NPC behavior was rare, showcasing Zork's innovative use of MDL's capabilities. The Robber Demon reflects the influence of tabletop RPGs, where dungeon masters introduced random events to challenge players. This mechanic influenced later games like Fallout, where NPCs and environmental factors dynamically altered gameplay."
   - id: "engraved-beliefs-and-prayers"
-    line_start: 1614
-    line_end: 1630
+    line_start: 1573
+    line_end: 1595
     title: "Engravings and Prayers: Ancient Zork Lore"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "This section defines descriptions for two objects, 'ENGRA' and 'PRAYE,' which represent ancient engravings and prayers found in the game world. The engravings are described as symbolic depictions of Zork's ancient beliefs, interwoven with sacred texts that were later defaced. The prayer, inscribed in an ancient script, humorously condemns small insects and absent-mindedness, reflecting the game's whimsical tone. These descriptions add depth to Zork's world, creating a sense of history and mystery for players to uncover. In 1977, Zork's developers were pioneering interactive fiction on the DEC PDP-10, a machine with limited memory and processing power. The use of MDL allowed them to create rich textual environments with detailed descriptions, a hallmark of the genre. The humor and creativity in these descriptions reflect the developers' backgrounds at MIT, where they were immersed in a culture of innovation and playful experimentation. These elements influenced later games like Infocom's titles, which expanded on Zork's world-building techniques. The idea of embedding lore in object descriptions became a standard in adventure games, seen in titles like 'The Secret of Monkey Island' and 'Elder Scrolls.' Zork's approach to humor and history set a precedent for blending storytelling with gameplay, a technique still celebrated in modern interactive fiction."
   - id: "assorted-doors-and-buttons"
-    line_start: 1632
-    line_end: 1721
+    line_start: 1637
+    line_end: 1639
     title: "Doors, Buttons, and Interactive Objects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
@@ -143,14 +143,14 @@ enhancements:
     content: "This section defines a variety of objects, including doors, buttons, and gratings, each with unique properties and functions. For example, 'WDOOR' has engravings that humorously state, 'This space intentionally left blank.' The objects are created using MDL's object-oriented features, with attributes like 'NDESCBIT' for non-descriptive objects and 'DOORBIT' for door-like behavior. These objects contribute to Zork's interactive environment, allowing players to manipulate the world and solve puzzles. In the late 1970s, interactive fiction was in its infancy. Zork's developers used MDL to push the boundaries of what text-based games could achieve. The PDP-10's limitations required efficient coding, and MDL's Lisp-like syntax facilitated the creation of complex object interactions. The humor embedded in these objects reflects the developers' playful approach to storytelling. Zork's object system influenced the design of later adventure games, including Infocom's 'Enchanter' series and Sierra's graphical adventures. The concept of interactive objects with detailed descriptions became a staple of the genre, shaping how players engage with game worlds. Modern games like 'The Legend of Zelda' and 'Portal' continue to build on these principles, integrating interactive objects into their gameplay mechanics."
   - id: "river-and-canyon-rooms"
     line_start: 1730
-    line_end: 1920
+    line_end: 1731
     title: "Exploring the Frigid River and Canyon"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "This section defines interconnected rooms along the Frigid River and the Great Canyon, complete with detailed descriptions and exits. For instance, the 'RIVR3' room describes a valley with a faint rumbling sound, hinting at a waterfall ahead. The rooms are linked through exits like 'UP,' 'DOWN,' and 'LAND,' creating a navigable environment for players to explore. In 1977, Zork's developers were crafting one of the first text-based adventure games, leveraging the PDP-10's capabilities to simulate a rich game world. The detailed room descriptions demonstrate their commitment to immersion, using text to convey spatial relationships and atmospheric details. The interconnected design reflects their understanding of player navigation and puzzle-solving. These techniques influenced the design of later adventure games, including 'Myst' and 'King's Quest,' which expanded on the idea of interconnected environments. Zork's approach to room design set a standard for creating immersive worlds in interactive fiction, inspiring generations of game developers to prioritize exploration and storytelling."
   - id: "frobozz-magic-boat-label"
-    line_start: 1972
+    line_start: 1980
     line_end: 2001
     title: "The Frobozz Magic Boat: Humor in Design"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
@@ -158,24 +158,24 @@ enhancements:
     image_caption: ""
     content: "This section defines the label for the 'RBOAT' object, a plastic boat with humorous instructions and a satirical warranty. The label includes phrases like 'Good Luck!' and guarantees against defects for '76 milliseconds,' showcasing Zork's trademark humor. This playful approach to object descriptions adds charm to the game, making interactions memorable for players. Zork's developers were known for their wit, often embedding humor into the game's text. The Frobozz Magic Boat label reflects their creative use of MDL to enhance player engagement. At the time, text-based games relied heavily on writing to create immersive experiences, and Zork's humor set it apart from other titles. The Frobozz Magic Boat label became an iconic example of Zork's humor, influencing the tone of later games like 'The Hitchhiker's Guide to the Galaxy' and 'Portal.' The use of humor in object descriptions remains a popular technique in game design, demonstrating how Zork's legacy continues to shape the industry."
   - id: "volcano-and-library-rooms"
-    line_start: 2045
-    line_end: 2106
+    line_start: 2054
+    line_end: 2056
     title: "Volcano Gnomes and Gnawed Libraries"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "This section introduces rooms within a dormant volcano, including ledges, a library, and a gnome-inhabited area. The library description humorously mentions shelves gnawed by unfriendly gnomes, adding a whimsical touch to the environment. The rooms are connected through exits like 'DOWN,' 'WEST,' and 'SOUTH,' creating a navigable space for players. In the late 1970s, Zork's developers were exploring ways to create engaging environments within the constraints of text-based games. The volcano and library rooms demonstrate their ability to blend humor with exploration, using MDL to define complex interactions and descriptions. The gnome-related humor reflects their playful approach to storytelling. These rooms influenced the design of later games, including 'Ultima' and 'Baldur's Gate,' which expanded on the idea of detailed environments with unique characters. Zork's blend of humor and exploration set a precedent for creating memorable game worlds, inspiring developers to prioritize creativity and player engagement."
   - id: "frobozz-magic-balloon-label"
-    line_start: 2289
-    line_end: 2313
+    line_start: 2198
+    line_end: 2220
     title: "Frobozz Magic Balloon: Instructions and Humor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "This section defines the label for the 'BALLO' object, a wicker basket with humorous instructions for use. The label includes phrases like 'You're on your own, sport!' and provides satirical guidance for boarding and landing the balloon. This playful approach to object descriptions exemplifies Zork's unique blend of humor and world-building. Zork's developers were known for their wit, often embedding humor into the game's text. The Frobozz Magic Balloon label reflects their creative use of MDL to enhance player engagement. At the time, text-based games relied heavily on writing to create immersive experiences, and Zork's humor set it apart from other titles. The Frobozz Magic Balloon label became an iconic example of Zork's humor, influencing the tone of later games like 'The Hitchhiker's Guide to the Galaxy' and 'Portal.' The use of humor in object descriptions remains a popular technique in game design, demonstrating how Zork's legacy continues to shape the industry."
   - id: "flathead-stamp-and-books"
-    line_start: 2359
-    line_end: 2385
+    line_start: 2289
+    line_end: 2294
     title: "Flathead Stamp and Mysterious Books"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -183,7 +183,7 @@ enhancements:
     content: "This section defines the 'STAMP' object, a Flathead Commemorative stamp with humorous engravings, and several books written in an unfamiliar tongue. The stamp's description includes phrases like 'Our Excessive Leader,' showcasing Zork's satirical tone. The books add a sense of mystery, with their unreadable text hinting at deeper lore. In 1977, Zork's developers were crafting one of the first text-based adventure games, leveraging the PDP-10's capabilities to simulate a rich game world. The humorous and mysterious descriptions reflect their commitment to immersion and storytelling, using MDL to define complex objects and interactions. These elements influenced the design of later adventure games, including 'Myst' and 'King's Quest,' which expanded on the idea of embedding lore in objects. Zork's approach to humor and mystery set a standard for creating engaging worlds in interactive fiction, inspiring generations of game developers to prioritize creativity and player engagement."
   - id: "light-interrupts-and-matches"
     line_start: 2389
-    line_end: 2395
+    line_end: 2397
     title: "Managing Light and Matches in Zork"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -191,15 +191,15 @@ enhancements:
     content: "This section sets up light-related interrupts and defines the number of matches available in the game. For example, the 'MATCH' object is initialized with a value of 5, representing the number of matches players can use. The light interrupts ensure that objects like lamps behave correctly, adding realism to the game world. Zork's developers were pioneering interactive fiction on the DEC PDP-10, a machine with limited memory and processing power. The use of MDL allowed them to manage game state efficiently, ensuring that objects like lamps and matches contributed to the gameplay experience. This attention to detail reflects their commitment to creating an immersive world. These techniques influenced the design of later adventure games, including 'Ultima' and 'Baldur's Gate,' which expanded on the idea of managing resources and environmental interactions. Zork's approach to light and object management set a precedent for creating realistic game worlds, inspiring developers to prioritize immersion and player engagement."
   - id: "tomb-of-the-unknown-implementer"
     line_start: 2399
-    line_end: 2457
+    line_end: 2407
     title: "A Tomb for Headless Implementers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "This section introduces the 'Tomb of the Unknown Implementer,' a humorous nod to the developers' own struggles and quirks. The tomb contains objects like heads on poles, empty Coke bottles, and stacks of unreadable line-printer paper, each reflecting the developers' experiences during Zork's creation. The inscription 'Feel Free' adds a cryptic touch, blending humor with mystery. In 1977, Zork was developed on the PDP-10 under ITS, a time when programming was both a technical challenge and a creative endeavor. The tomb's objects and descriptions reveal the developers' personalities and their playful approach to game design. This humor and self-awareness influenced later games, embedding Easter eggs and developer references as a tradition in interactive fiction."
   - id: "robot-and-green-paper"
-    line_start: 2723
-    line_end: 2759
+    line_start: 2660
+    line_end: 2666
     title: "A Robot and Its User Manual"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence"
     image_url: ""
@@ -207,7 +207,7 @@ enhancements:
     content: "This section introduces a robot object with a humorous green paper manual. The robot is described as a late-model trained at MIT Tech, capable of performing household functions. The manual includes instructions for activating the robot and a disclaimer of warranty, showcasing the developers' humor and creativity. Robots in Zork reflect the era's fascination with artificial intelligence and automation, themes explored in computing and science fiction during the late 1970s. This playful take on AI influenced future games, inspiring characters like GLaDOS in Portal and the use of robots as interactive NPCs in gaming."
   - id: "verbs-and-synonyms"
     line_start: 2760
-    line_end: 3128
+    line_end: 2774
     title: "The Language of Adventure: Verbs and Synonyms"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""

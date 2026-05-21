@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "ztemp-local-variable-allocation"
     line_start: 43
-    line_end: 72
+    line_end: 80
     title: "Why Allocate Variables at $F0 and $18?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
     image_url: ""
     image_caption: ""
     content: "This section defines local variables in two distinct memory areas: $F0 and $18. These addresses are part of the Apple II's zero-page memory, which allows faster access due to shorter instruction lengths. By allocating variables here, Mechner optimized the game's performance, ensuring critical operations like screen rendering and animation updates could execute quickly. In the 1980s, zero-page memory was a precious resource, often reserved for high-frequency tasks. Mechner's careful allocation reflects his deep understanding of the Apple II hardware and the constraints of 6502 assembly programming. This technique influenced later developers working on constrained systems, emphasizing the importance of efficient memory use in performance-critical applications."
   - id: "cls-clear-hires-screen"
-    line_start: 89
+    line_start: 82
     line_end: 91
     title: "Clearing the Hi-Res Screen in Two Steps"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
@@ -54,8 +54,8 @@ enhancements:
     image_caption: ""
     content: "The `lay` subroutine is a general-purpose routine for rendering images on the hi-res screen. It switches to main memory, calls the `LAY` routine, and returns to auxiliary memory. This modular design allows for flexible image rendering, including edge-clipping, bit-shifting, and mirroring. Mechner's choice to separate rendering logic into distinct routines demonstrates a clear understanding of the complexity involved in cinematic animation. This modularity influenced later game engines, where separating rendering logic became standard practice for handling diverse graphical effects efficiently."
   - id: "auxmem-bank-switching"
-    line_start: 149
-    line_end: 151
+    line_start: 144
+    line_end: 147
     title: "The Trick That Made 128K Work"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The `auxmem` and `mainmem` routines manage the Apple II's bank-switched memory, toggling between auxiliary and main memory banks. This technique was essential for fitting Prince of Persia's complex animations and logic into the Apple II's limited 128K RAM. By carefully controlling memory access, Mechner ensured the game could handle high-resolution graphics and smooth animations without exceeding hardware limits. Bank switching was a common technique for Apple II developers, but Mechner's implementation stands out for its efficiency and reliability. This approach influenced memory management techniques in later systems, including early PC games and embedded devices."
   - id: "cls-hires-clear-routine"
     line_start: 153
-    line_end: 230
+    line_end: 240
     title: "Clearing Hi-Res Graphics with Assembly Loops"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `CLS` routine clears the hi-res screen by writing black pixels across two memory pages. Using nested loops, it iterates through each byte of the screen memory, ensuring every pixel is set to black. This routine is optimized for the Apple II's graphics architecture, which divides the screen into two memory pages. Mechner's use of assembly loops reflects the constraints of 6502 programming, where every instruction had to be carefully chosen for speed and efficiency. This routine became a template for similar screen-clearing operations in other games and applications, demonstrating the enduring influence of Mechner's techniques."
   - id: "crop-image-clipping"
     line_start: 352
-    line_end: 507
+    line_end: 516
     title: "The Algorithm That Handles Offscreen Images"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `CROP` routine calculates the visible portion of an image based on screen boundaries and image dimensions. It adjusts the image's coordinates and dimensions to ensure only the visible part is rendered. This routine is critical for handling edge cases where images extend beyond the screen's edges, a common scenario in cinematic platformers. Mechner's implementation uses precise arithmetic and conditional branching to optimize performance. This clipping algorithm influenced later graphics engines, where efficient edge handling became essential for rendering complex scenes without wasting resources."
   - id: "layrsave-background-preservation"
     line_start: 527
-    line_end: 634
+    line_end: 639
     title: "Saving Backgrounds for Smooth Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
@@ -103,15 +103,15 @@ enhancements:
     content: "The `LayXOR` routine is responsible for rendering graphics using XOR operations, a clever technique that allowed for efficient manipulation of sprite data. XOR (exclusive OR) is used here to combine image data with the background, enabling effects like transparency and inversion without requiring additional memory or complex calculations. The routine carefully sets up memory addresses and uses lookup tables (`SHIFTL`, `SHIFTH`, `CARRYL`, `CARRYH`) to manage carry bits and offsets for pixel alignment. At the time, the Apple II's 6502 processor had limited computational power and memory, so techniques like XOR were essential for achieving dynamic visuals without slowing down gameplay. Mechner's use of XOR here reflects a deep understanding of the hardware's constraints. This approach influenced later games and graphics engines, as XOR became a standard method for sprite manipulation in early computer graphics, particularly in systems with limited resources."
   - id: "mlay-mirroring-graphics"
     line_start: 1172
-    line_end: 1201
+    line_end: 1195
     title: "Mirroring Sprites: A Graphics Shortcut"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mirroring_(graphics)"
     image_url: ""
     image_caption: ""
     content: "The `MLAY` routine introduces mirroring, a technique used to flip sprites horizontally or vertically. This was particularly useful for animations where symmetrical movements (like running left versus right) could be achieved without duplicating sprite data. The routine checks the opacity mode and redirects to specialized subroutines (`MLayXOR`, `MLayMask`, or `MLayGen`) based on the rendering requirements. Mirroring saved memory and development time, as artists only needed to create one set of sprites. In the context of the Apple II, this was a critical optimization, given the constraints of 128KB of memory and the need to bank-switch between auxiliary and main memory. Mirroring techniques like this became common in 2D games, influencing titles on later platforms like the NES and Sega Genesis."
   - id: "mlaygen-general-rendering"
-    line_start: 1202
-    line_end: 1354
+    line_start: 1197
+    line_end: 1348
     title: "General Rendering: AND, OR, and Store"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The `PEEL` routine serves as a streamlined entry point to the `fastlaySTA` routine, bypassing complex setup steps for faster rendering. This shortcut reflects Mechner's focus on optimizing performance, ensuring that the game could handle rapid graphics updates without lag. By directly calling `fastlaySTA`, `PEEL` avoids unnecessary calculations, making it ideal for situations where speed was more important than precision. This kind of optimization was critical for the Apple II, where processor cycles were limited and every instruction counted. Techniques like `PEEL` influenced later game developers, who adopted similar shortcuts to improve rendering performance in resource-constrained environments."
   - id: "fastlay-high-speed-rendering"
     line_start: 1727
-    line_end: 1818
+    line_end: 1824
     title: "Fastlay: The Speed-First Graphics Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_rendering"
     image_url: ""
@@ -159,7 +159,7 @@ enhancements:
     content: "The `FASTMASK` routine combines the speed of `FASTLAY` with masking capabilities, allowing sprites to be rendered quickly while preserving transparency and blending effects. This routine uses lookup tables (`MASKTAB`) and direct memory manipulation to achieve high-speed rendering without sacrificing visual quality. On the Apple II, this was a critical optimization, as the 6502 processor had limited computational power and memory. By streamlining masking operations, Mechner was able to create dynamic visuals that pushed the boundaries of what the Apple II could achieve. Techniques like `FASTMASK` influenced later graphics engines, particularly in the realm of 2D games where efficient masking was essential."
   - id: "setfastmain-aux-memory-switching"
     line_start: 1971
-    line_end: 2003
+    line_end: 1988
     title: "SetFastMain/Aux: Switching Memory Banks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
@@ -183,7 +183,7 @@ enhancements:
     content: "COPYSCRN is a routine that copies screen data from one memory region to another, enabling smooth transitions and animations. It takes two inputs: the source screen (`IMAGE`) and the destination screen (`IMAGE+1`). Using a loop, it transfers blocks of 256 bytes from the source to the destination, incrementing the memory addresses after each transfer. This ensures that the entire screen is updated without tearing or artifacts. In the Apple II era, double buffering was a common technique to avoid flickering during screen updates. By preparing the next frame in a hidden buffer and then copying it to the visible screen, developers could create seamless animations. Mechner's implementation in COPYSCRN demonstrates his mastery of this technique, which was crucial for the cinematic feel of Prince of Persia. This approach became a cornerstone of game development, influencing not only Apple II games but also titles on the Commodore 64 and early PC platforms. It laid the groundwork for modern graphics engines, where double buffering is still a fundamental concept. Developers like John Carmack later refined these techniques in games like Commander Keen and Doom, pushing the boundaries of smooth animation and screen rendering."
   - id: "inverty-y-coordinate-table-swap"
     line_start: 2095
-    line_end: 2124
+    line_end: 2126
     title: "How INVERTY Flips Animation Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""

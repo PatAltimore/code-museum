@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "This section defines several `cvar_t` variables that control movement speeds, including forward, backward, side, and up speeds. These variables allow players to customize their movement experience, a feature that was relatively rare in 1996. By exposing these values as console variables, id Software empowered players to tweak gameplay to their liking, enhancing the game's appeal to competitive players and modders. The use of cvars became a hallmark of id Software's engines, influencing the design of configuration systems in games like Counter-Strike and Team Fortress. Today, customizable settings are a standard feature in games, but Quake's implementation was one of the earliest examples of this approach."
   - id: "angle-adjustment"
-    line_start: 230
+    line_start: 224
     line_end: 273
     title: "Adjusting Angles for Precision Movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

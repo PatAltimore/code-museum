@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "texture-animation-structures"
     line_start: 55
-    line_end: 131
+    line_end: 67
     title: "Animating Textures: A Simple Yet Effective Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `P_InitPicAnims` function initializes texture animations by processing the `animdefs` array. It checks whether the start and end frames exist in the WAD file, calculates the number of frames in the animation, and assigns the animation properties to the global `anims` array. This function demonstrates how DOOM's modular design allowed developers to define animations externally via WAD files, making it easy to add or modify content. The reliance on WAD files for resource management became a hallmark of DOOM's extensibility, enabling the creation of user-generated mods and levels. This approach influenced the design of later games, including Quake and Half-Life, which adopted similar modular resource systems."
   - id: "sector-utilities"
     line_start: 196
-    line_end: 261
+    line_end: 209
     title: "Sector Utilities: Navigating DOOM's Level Geometry"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
     image_url: ""
@@ -70,8 +70,8 @@ enhancements:
     image_caption: ""
     content: "The `P_FindSectorFromLineTag` function retrieves the next sector associated with a line tag, enabling scripted events like opening doors or triggering teleportation. Line tags were a simple yet powerful mechanism for defining interactions in DOOM's levels. By associating tags with sectors and lines, designers could create complex behaviors without hardcoding them into the game logic. This approach was a precursor to modern event-driven programming in games, where triggers and actions are defined declaratively. Line tags influenced the scripting systems of later games, including Quake's entity-based triggers and Half-Life's input-output system."
   - id: "light-level-calculations"
-    line_start: 449
-    line_end: 474
+    line_start: 429
+    line_end: 444
     title: "Dynamic Lighting: Calculating Surrounding Light Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(rendering)"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `P_FindMinSurroundingLight` function calculates the minimum light level in adjacent sectors, enabling dynamic lighting effects like dimming or brightening areas based on player movement. Dynamic lighting was a significant innovation in DOOM, creating a sense of atmosphere and tension in its levels. This function showcases how Carmack's code optimized lighting calculations for performance, using integer arithmetic and efficient loops. Dynamic lighting became a staple of game design, influencing later engines like Quake and Unreal, which expanded on these techniques with real-time lighting and shadow systems."
   - id: "cross-special-line-trigger"
     line_start: 479
-    line_end: 534
+    line_end: 949
     title: "Crossing the Line: Activating Special Events"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
     image_url: ""
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `EV_DoDonut` function creates a unique environmental effect known as the 'donut sector.' It spawns a rising slime floor in one sector while lowering the floor in an adjacent sector, creating a dynamic visual and gameplay element. This effect is achieved by iterating through sectors connected to the triggering line and initializing floor movement objects. The donut sector showcases DOOM's ability to create complex environmental interactions with relatively simple code structures. This technique inspired creative level designs in later games, encouraging developers to experiment with dynamic environments and interconnected sector mechanics."
   - id: "p-spawn-specials"
-    line_start: 1224
+    line_start: 1237
     line_end: 1361
     title: "Initializing flickering lights and secret areas"
     wikipedia_url: "https://doomwiki.org/wiki/Sector_special"

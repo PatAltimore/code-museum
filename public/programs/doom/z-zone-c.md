@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "zone-memory-allocation-overview"
     line_start: 31
-    line_end: 40
+    line_end: 55
     title: "Why DOOM Avoided Contiguous Free Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -57,7 +57,7 @@ enhancements:
     content: "The `Z_Free` function handles the deallocation of memory blocks in DOOM's zone memory system. It verifies the block's integrity using a unique identifier (`ZONEID`) and merges adjacent free blocks to prevent fragmentation. This approach was crucial for maintaining performance on hardware with limited RAM. In the early 1990s, memory management was a complex challenge, especially for real-time applications like games. Carmack's solution ensured stability and efficiency, avoiding the pitfalls of traditional malloc/free systems. The merging of free blocks inspired similar techniques in later engines, where memory fragmentation remained a critical concern."
   - id: "malloc-allocation-strategy"
     line_start: 175
-    line_end: 287
+    line_end: 288
     title: "How DOOM Allocated Memory Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -65,7 +65,7 @@ enhancements:
     content: "The `Z_Malloc` function dynamically allocates memory blocks in DOOM's zone memory system. It scans the blocklist for a free block of sufficient size, purging blocks if necessary. The function also splits oversized blocks to minimize wasted space. This allocation strategy was designed to handle the game's demanding real-time requirements while avoiding fragmentation. In 1993, dynamic memory allocation was a significant challenge for game developers, especially on hardware with limited resources. Carmack's implementation ensured that DOOM could manage memory efficiently without compromising performance. This technique influenced later engines, which adopted similar strategies for dynamic allocation in real-time applications."
   - id: "heap-dump-debugging"
     line_start: 321
-    line_end: 358
+    line_end: 359
     title: "Debugging Memory with Heap Dumps"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""

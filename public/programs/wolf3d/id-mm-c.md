@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `Quit` function is a simple yet critical error handler that halts the program when a severe issue arises, such as running out of memory or encountering corrupted data. This approach reflects the constraints of early 1990s game development, where graceful recovery from errors was often impractical due to limited system resources and the need for performance. John Carmack's decision to implement a hard stop ensured that debugging was straightforward, as the program would fail immediately and visibly. This technique influenced later game engines, where similar error-handling mechanisms were used to prioritize stability during development."
   - id: "check-xms-driver"
-    line_start: 119
+    line_start: 117
     line_end: 143
     title: "How to Check for Extra Memory in 1992"
     wikipedia_url: "https://en.wikipedia.org/wiki/Expanded_memory"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `MML_SetupXMS` function attempts to allocate Upper Memory Blocks (UMBs), which were segments of memory located between conventional memory and extended memory. This was a clever way to maximize memory usage on systems with limited resources. The function uses the XMS driver to request the largest available UMB and marks it as usable by the memory manager. This technique reflects the ingenuity required to work within the constraints of MS-DOS, where memory was fragmented and difficult to manage. By leveraging UMBs, Wolfenstein 3D could allocate more memory for game assets, improving performance and enabling richer gameplay. This strategy influenced memory management in later games and applications, particularly those targeting resource-constrained environments."
   - id: "compress-fragmented-memory"
-    line_start: 656
+    line_start: 654
     line_end: 759
     title: "The Algorithm That Packs Memory Like Tetris"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fragmentation_(computing)"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `MM_SortMem` function compresses fragmented memory by moving blocks to eliminate gaps and free up contiguous space. It first locks critical blocks, such as those related to audio playback, and then purges non-essential blocks to reclaim memory. Finally, it moves remaining blocks to consolidate free space. This algorithm reflects the challenges of memory management on systems with limited resources and no built-in garbage collection. By manually compressing memory, Wolfenstein 3D could optimize performance and reduce the risk of running out of memory during gameplay. This approach influenced memory management techniques in later games and operating systems, where similar strategies were used to handle fragmentation and optimize resource usage."
   - id: "visualize-memory-usage"
-    line_start: 764
+    line_start: 762
     line_end: 810
     title: "Debugging Memory with Colorful Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"

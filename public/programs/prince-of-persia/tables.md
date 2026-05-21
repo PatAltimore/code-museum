@@ -63,23 +63,23 @@ enhancements:
     content: "The `PixelTable` maps block numbers to pixel positions within each block (0–13). This table provides fine-grained control over rendering, ensuring that characters and objects align perfectly with the game's environment. By precomputing pixel positions, Mechner avoided costly real-time calculations, a necessity given the Apple II's limited processing power. This level of precision was crucial for the game's cinematic feel, as it allowed smooth transitions and realistic movements. The technique highlights the intersection of technical constraints and artistic ambition, a hallmark of Mechner's work. Later games adopted similar methods to achieve pixel-perfect rendering, particularly in the era of 2D platformers and adventure games."
   - id: "mult10-multiplication-table"
     line_start: 109
-    line_end: 118
+    line_end: 122
     title: "A Multiplication Table for Tens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplication_table"
     image_url: ""
     image_caption: ""
     content: "The `Mult10` table precomputes multiples of 10 (0, 10, 20, ..., 150), enabling fast multiplication without relying on the Apple II's limited arithmetic capabilities. Multiplication was expensive on 6502 processors, which lacked dedicated hardware for such operations. By storing results in a table, Mechner ensured that calculations involving multiples of 10 could be performed instantly, a significant optimization for gameplay mechanics like physics and scoring. This technique exemplifies the resourcefulness required to work within the constraints of early microprocessors. Precomputed multiplication tables became a common practice in assembly programming, influencing the design of game engines and embedded systems."
   - id: "block-edge-left-coordinates"
-    line_start: 142
-    line_end: 154
+    line_start: 140
+    line_end: 153
     title: "Where Blocks Begin: Left Edges"
     wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
     image_url: ""
     image_caption: ""
     content: "The `BlockEdge` table defines the screen X-coordinates of the left edges of blocks, mapping block numbers (-5 to 14) to their starting positions. This table is essential for rendering and collision detection, as it allows the game engine to determine where each block begins on the screen. Mechner's decision to precompute these values reflects his focus on efficiency and precision, ensuring that the game could handle complex interactions without sacrificing performance. The use of precomputed edge coordinates influenced later games that relied on grid-based level design, such as Tetris and SimCity, where spatial relationships are central to gameplay."
   - id: "block-top-bottom-floor-y"
-    line_start: 157
-    line_end: 185
+    line_start: 154
+    line_end: 196
     title: "Vertical Geometry: Tops, Bottoms, and Floors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""

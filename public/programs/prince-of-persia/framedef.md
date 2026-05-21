@@ -24,32 +24,32 @@ summary:
 
 enhancements:
   - id: "frame-definitions-for-rotoscoped-animation"
-    line_start: 17
-    line_end: 275
+    line_start: 21
+    line_end: 277
     title: "Frame Definitions for Rotoscoped Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
     content: "This section defines the animation frames for the main character using rotoscoping techniques. Each frame is represented as a data block with attributes like image index, position offsets (DX, DY), and additional flags. Jordan Mechner filmed his brother performing various moves, traced the footage frame-by-frame, and encoded the resulting animations into these data structures. This approach allowed for fluid, lifelike movement that was groundbreaking for its time. In 1989, the Apple IIe/IIc was constrained by limited memory and processing power. Mechner used bank-switched memory to fit the game into 128KB, a feat that required meticulous optimization. The frame definitions here are tightly packed and rely on precomputed offsets to minimize runtime calculations. This data-driven approach separated animation logic from gameplay code, a design philosophy that influenced later cinematic platformers like Another World and Flashback. The rotoscoping technique became a hallmark of Prince of Persia and inspired developers to focus on realism in character animation. It demonstrated that even limited hardware could deliver a cinematic experience, paving the way for modern motion capture techniques. The game's fluid animations were widely praised and contributed to its enduring legacy as a genre-defining title."
   - id: "alternate-character-set-1-enemy-animations"
-    line_start: 277
-    line_end: 318
+    line_start: 279
+    line_end: 329
     title: "Alternate Character Set 1: Enemy Animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section defines the alternate character set for enemies, with animations tailored to their sword in the left hand. The data includes frame indices, offsets, and flags for mirroring to ensure visual consistency. Mechner's decision to encode enemy animations separately reflects the game's emphasis on precision and detail, as enemies needed distinct movements to match the player's fluidity. In the late 1980s, games often reused assets to save memory, but Prince of Persia's approach was more sophisticated. By allocating specific memory for enemy animations, Mechner ensured that the antagonists felt as lifelike as the protagonist. This attention to detail was rare in an era dominated by arcade-style games with simpler graphics and mechanics. The enemy animations contributed to the game's immersive combat system, which influenced later titles like the Assassin's Creed series. The mirroring technique used here became a standard practice in sprite-based games, demonstrating how thoughtful design could overcome hardware limitations."
   - id: "alternate-character-set-2-special-animations"
-    line_start: 320
-    line_end: 427
+    line_start: 331
+    line_end: 429
     title: "Alternate Character Set 2: Special Animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section defines additional animations for special situations, such as character interactions and unique movements. Frames include actions like embracing, turning, and casting, which add depth to the game's narrative and cinematic feel. The data structure mirrors the format of previous sets, emphasizing modularity and reuse. In 1989, cinematic storytelling in games was still in its infancy. Mechner's inclusion of these animations demonstrated a commitment to creating a cohesive and emotionally engaging experience. The Apple II's hardware constraints required creative solutions, such as encoding animations as compact data blocks and leveraging bank-switched memory. These special animations enriched the game's storytelling and set a precedent for integrating narrative and gameplay. They influenced later cinematic platformers and adventure games, showing that animation could be a powerful tool for emotional resonance. Developers like Eric Chahi (Another World) and Delphine Software (Flashback) built on these ideas to push the boundaries of interactive storytelling."
   - id: "sword-table-combat-precision"
-    line_start: 429
-    line_end: 490
+    line_start: 431
+    line_end: 486
     title: "Sword Table: Combat Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

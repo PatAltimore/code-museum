@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "include-dosseg-symbols"
     line_start: 1
-    line_end: 11
+    line_end: 7
     title: "Why Include Files Were Crucial in Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
     content: "This section includes the DOSSEG.ASM file, setting up segment definitions and symbol references for the rest of the program. In the early 1980s, modularity in assembly language was achieved through include files, which allowed developers to reuse common definitions and macros across multiple source files. Tim Paterson's use of these files reflects the growing complexity of MS-DOS 2.0 compared to its predecessor, which had fewer features and simpler code. This modular approach influenced later operating systems and programming practices, as it demonstrated the importance of separating concerns and reusing code in resource-constrained environments."
   - id: "ctrl-c-check-con-io"
-    line_start: 43
+    line_start: 47
     line_end: 110
     title: "The Routine That Detected Ctrl-C"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control-C"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The CNTCHAND routine is the Ctrl-C handler, responsible for restoring the user's stack and executing the user-defined Ctrl-C handler. It carefully manipulates the stack to ensure that the system can either continue processing or terminate gracefully, depending on the user's input. This routine highlights the challenges of implementing multitasking and error recovery in an environment with limited hardware support. The stack manipulation techniques used here became foundational for later operating systems, influencing how interrupts and exceptions are handled in modern kernels."
   - id: "division-overflow-handler"
-    line_start: 229
+    line_start: 231
     line_end: 237
     title: "What Happens When Division Overflows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Division_by_zero"
@@ -63,15 +63,15 @@ enhancements:
     content: "The DIVOV routine handles division overflow errors, a common issue in low-level programming. When a division operation exceeds the maximum representable value, this routine displays an error message and invokes the Ctrl-C abort handler to terminate the program. This approach reflects the simplicity of error handling in early operating systems, where graceful recovery was often sacrificed for simplicity and performance. The concept of trapping arithmetic errors influenced later programming languages and systems, which introduced more sophisticated exception handling mechanisms."
   - id: "hard-disk-error-handler"
     line_start: 287
-    line_end: 356
+    line_end: 379
     title: "Recovering From Disk Errors in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_error"
     image_url: ""
     image_caption: ""
     content: "The HardErr routine handles errors encountered during disk operations, such as write protection or sector failures. It uses a combination of stack manipulation and device-specific logic to determine the cause of the error and attempt recovery. If recovery is not possible, it invokes the fatal error interrupt vector to terminate the operation. This routine showcases the challenges of implementing reliable disk I/O in early PCs, where hardware limitations often led to errors that required careful handling to avoid data loss. The techniques used here influenced later file systems and error recovery mechanisms, such as journaling and RAID."
   - id: "reset-environment-process-management"
-    line_start: 374
-    line_end: 460
+    line_start: 381
+    line_end: 461
     title: "The Routine That Reset the World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Process_management_(computing)"
     image_url: ""

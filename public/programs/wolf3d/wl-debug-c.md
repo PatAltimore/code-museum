@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine, `DebugMemory`, provides a snapshot of memory usage in the game. It displays total memory, free memory, and memory available after purging unused resources, all calculated in kilobytes. The function uses helper routines like `MM_UnusedMemory` and `MM_TotalFree` to query the memory manager. The output is presented in a centered window on the screen, with user acknowledgment required to proceed. In the early 1990s, memory constraints were a significant challenge for developers. Wolfenstein 3D ran on MS-DOS, which often limited programs to 640KB of conventional memory. Efficient memory management was critical for ensuring smooth gameplay. John Carmack, known for his technical brilliance, designed systems to optimize memory usage, including purging unused resources dynamically. This approach influenced later game engines, such as the Doom engine, which further refined memory management techniques. It also set a precedent for debugging tools in game development, helping developers understand and optimize resource usage in real-time. Modern game engines like Unity and Unreal Engine include similar profiling tools, tracing their lineage back to innovations like this."
   - id: "counting-game-objects"
-    line_start: 78
+    line_start: 76
     line_end: 125
     title: "Counting Actors, Doors, and Statics in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `CountObjects` function provides a detailed breakdown of game objects, including static objects, doors, and actors. It iterates through lists of objects and counts active and inactive actors, displaying the results in a debug window. This routine was essential for validating the game's object management system during development. In 1992, Wolfenstein 3D's fast-paced gameplay required efficient handling of numerous objects in memory. The game's developers, including John Romero and Tom Hall, used routines like this to ensure the game could handle complex levels without performance degradation. Debugging tools like `CountObjects` allowed them to identify bottlenecks and optimize object handling. This technique influenced later games, including Doom and Quake, where object management became even more critical due to increased complexity. It also contributed to the development of debugging practices in modern game engines, where real-time object tracking is a standard feature."
   - id: "picture-pause-vga-trick"
-    line_start: 129
+    line_start: 127
     line_end: 202
     title: "The VGA Trick Behind PicturePause"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `PicturePause` routine implements a unique pause feature that preserves the screen's visual state. It uses VGA-specific operations to read and write screen memory, ensuring the display remains unchanged during the pause. The function also manipulates the VGA palette and memory buffers to achieve this effect. In the early 1990s, VGA graphics were the standard for PC gaming, offering a resolution of 320x200 pixels with 256 colors. Direct manipulation of VGA memory was common practice, as it allowed developers to achieve effects not supported by higher-level APIs. John Carmack's mastery of low-level graphics programming is evident in this routine, which demonstrates his ability to push hardware to its limits. This technique influenced later games that relied on direct hardware manipulation for performance and visual effects. It also inspired graphics programming practices in modern engines, where developers often use shaders and low-level APIs like DirectX and OpenGL to achieve similar results."
   - id: "shape-test-debugging"
-    line_start: 211
+    line_start: 208
     line_end: 399
     title: "ShapeTest: Debugging Sprites and Walls"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `ShapeTest` function is a visual debugging tool that allows developers to inspect and validate graphics assets, including walls, sprites, and sounds. It displays detailed information about each asset, such as memory location, page type, and last access time. The routine also includes code for rendering walls and sprites directly on the screen. During Wolfenstein 3D's development, debugging graphical assets was a critical task. The game's immersive environments relied on accurate rendering of walls and sprites, which were stored in memory as pages. Tools like `ShapeTest` enabled developers to identify and fix issues with asset loading and rendering. This approach influenced debugging practices in later games, where visual tools became standard for validating graphics and animations. Modern game engines include similar features, such as asset inspectors and real-time rendering previews, which trace their origins to innovations like this."
   - id: "debug-keys-cheat-system"
-    line_start: 410
+    line_start: 407
     line_end: 599
     title: "DebugKeys: The Cheat System Developers Loved"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"

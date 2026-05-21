@@ -31,22 +31,22 @@ summary:
 enhancements:
   - id: "name-section-miscellaneous-routines"
     line_start: 3
-    line_end: 41
+    line_end: 3
     title: "Why MS-DOS Needed 'Miscellaneous' Routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section begins with the declaration of the MISC segment, which houses various utility routines for MS-DOS. These routines were designed to handle tasks that did not fit neatly into other categories, reflecting the ad-hoc nature of early operating system development. Tim Paterson, the original author of 86-DOS, laid the groundwork for these kinds of modular sections, which were later expanded by Microsoft engineers. In 1983, MS-DOS v2.0 introduced features inspired by Unix, such as hierarchical directories and file handles, necessitating a more sophisticated organization of system calls. The MISC segment encapsulates these utility functions, ensuring they are accessible across the system. This modular approach influenced later operating systems, including Windows, which continued to rely on segmented design for backward compatibility and extensibility."
   - id: "include-dosseg-dossym-devsym"
-    line_start: 43
-    line_end: 119
+    line_start: 5
+    line_end: 57
     title: "The Headers That Defined MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section includes three key assembly headers: DOSSEG.ASM, DOSSYM.ASM, and DEVSYM.ASM. These files define segment structures, symbolic constants, and device-specific symbols, respectively. By centralizing these definitions, MS-DOS ensured consistency and reduced errors across its codebase. This practice was critical in an era when assembly programming required precise memory management and hardware interaction. The use of symbolic constants and segment definitions reflects the influence of structured programming principles, which were gaining traction in the early 1980s. These headers laid the groundwork for modular programming in MS-DOS, influencing later operating systems like Windows, which continued to use header files for system-wide definitions."
   - id: "sleazefunc-media-byte-pointer"
-    line_start: 123
+    line_start: 127
     line_end: 213
     title: "The 'SleazeFunc' That Accessed Disk Media"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The $SLEAZEFUNC routine retrieves the FAT ID byte and disk allocation information, providing critical data for file system operations. This function reflects the low-level nature of MS-DOS, where direct hardware interaction was common. The name 'SleazeFunc' humorously acknowledges the hacky nature of this routine, which bypasses higher-level abstractions to access raw disk data. At the time, MS-DOS's reliance on the FAT file system was groundbreaking, enabling efficient storage and retrieval on floppy disks and hard drives. This approach influenced later file systems, including FAT32 and exFAT, which expanded on the principles established here. The direct access to hardware also inspired the design of device drivers in subsequent operating systems."
   - id: "abort-process-termination"
-    line_start: 227
+    line_start: 229
     line_end: 295
     title: "How MS-DOS Terminated Processes"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The $ABORT routine handles process termination, restoring system state and flushing buffers before transferring control to the terminate address. This function highlights the simplicity of MS-DOS's process management, which lacked the multitasking capabilities of Unix. In the early 1980s, personal computers were single-user systems, so process termination was straightforward. However, the careful restoration of system state ensured stability, a critical feature for business applications running on IBM PCs. This routine influenced later operating systems, which built more complex process management systems while retaining the principle of state restoration during termination."
   - id: "directory-search-first"
-    line_start: 299
+    line_start: 301
     line_end: 453
     title: "The Routine That Found Files in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
@@ -70,8 +70,8 @@ enhancements:
     image_caption: ""
     content: "The $DIR_SEARCH_FIRST routine initiates a directory search, locating the first matching entry and loading it into the disk transfer address. This function was essential for file management in MS-DOS, which relied on the File Control Block (FCB) structure. The routine's design reflects the constraints of early PCs, where memory and processing power were limited. By directly manipulating FCBs, MS-DOS achieved efficient file searches, a feature that was critical for business applications. This approach influenced later file systems, which adopted more sophisticated search algorithms while retaining the concept of indexed file structures."
   - id: "disk-reset-buffer-management"
-    line_start: 669
-    line_end: 727
+    line_start: 671
+    line_end: 729
     title: "How MS-DOS Flushed Dirty Buffers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
     image_url: ""
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The $RAW_CON_IO routine provides raw input and output functionality for the console, bypassing higher-level abstractions. This system call highlights the low-level nature of MS-DOS, which was designed for direct interaction with hardware. Raw console I/O was critical for applications that required precise control over user input and output, such as text editors and command-line utilities. This routine influenced the design of later operating systems, which retained raw I/O capabilities for specialized applications while introducing higher-level APIs for general use."
   - id: "parse-file-descriptor"
-    line_start: 963
+    line_start: 965
     line_end: 1015
     title: "Parsing Strings into File Control Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The $PARSE_FILE_DESCRIPTOR routine converts a command-line string into a File Control Block (FCB), enabling file operations. This function reflects the simplicity of MS-DOS's file handling, which relied on FCBs for storing file metadata. Parsing strings into FCBs was critical for command-line utilities, which needed to interpret user input efficiently. This approach influenced later operating systems, which adopted more sophisticated file handling mechanisms, such as file descriptors and handles, while retaining the principle of parsing user input for file operations."
   - id: "dup-pdb-process-copying"
-    line_start: 1027
+    line_start: 1021
     line_end: 1033
     title: "How MS-DOS Managed Process Duplication"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -103,7 +103,7 @@ enhancements:
     content: "This section begins with the `$Dup_PDB` routine, which handles the duplication of Process Data Blocks (PDBs). PDBs are central to MS-DOS's process management, storing critical information about running programs such as memory segments and control flags. The routine checks a flag (`CreatePDB`) to determine whether to duplicate an existing process or create a new one. This decision-making mechanism reflects a shift in MS-DOS v2.0 towards Unix-inspired process management, where processes could be dynamically created and managed. In 1983, when MS-DOS v2.0 was released, personal computing was rapidly evolving. IBM PCs were becoming the standard, and software needed to adapt to multitasking and memory constraints in a single-user environment. Tim Paterson and the Microsoft team borrowed ideas from Unix, which had already established robust process management techniques. However, MS-DOS had to operate within the limitations of the 8086 architecture, which lacked hardware support for multitasking. The `$Dup_PDB` routine laid the groundwork for more sophisticated process handling in later operating systems. By introducing a structured approach to process duplication, it influenced subsequent MS-DOS versions and other DOS-based systems like DR-DOS and PC-DOS. The concept of a PDB eventually evolved into more advanced process control blocks in multitasking operating systems, including Windows NT. This routine represents an early step in bridging single-tasking systems with the multitasking capabilities that would define modern computing."
   - id: "create-pdb-old-legacy-support"
     line_start: 1073
-    line_end: 1077
+    line_end: 1075
     title: "Legacy Process Creation in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The `Create_PDB_old` routine provides backward compatibility for older process creation methods. It retrieves the user stack and sets up the segment registers (`DS`) for the process. This routine reflects Microsoft's commitment to supporting legacy applications while introducing new features in MS-DOS v2.0. In the early 1980s, backward compatibility was a critical concern for software developers. MS-DOS had to maintain compatibility with programs written for earlier versions of DOS and the 8086 processor. This was especially important for OEMs and businesses that relied on existing software investments. Tim Paterson's original 86-DOS design had been simple and direct, but as MS-DOS evolved, it needed to balance innovation with stability. The legacy support provided by `Create_PDB_old` ensured that older applications could run seamlessly on newer versions of MS-DOS, preserving the ecosystem of software built for the IBM PC. This approach influenced later operating systems, including Windows, which maintained backward compatibility with DOS applications for decades. The routine exemplifies the trade-offs required to innovate while maintaining a stable foundation for users."
   - id: "create-copy-memory-transfer"
     line_start: 1081
-    line_end: 1113
+    line_end: 1109
     title: "Copying Memory Blocks for Process Creation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The `Create_copy` routine is responsible for copying memory blocks during process creation. It uses the `REP MOVSW` instruction to transfer 128 bytes (`80h`) of data from the source to the destination. This efficient block copy operation is a hallmark of assembly programming, leveraging the 8086 processor's capabilities to minimize overhead. In the context of MS-DOS v2.0, memory management was a critical challenge. The IBM PC's 8086 processor operated in real mode, limiting addressable memory to 1MB. Efficient use of this memory was essential for running multiple processes and supporting larger applications. The `Create_copy` routine exemplifies the low-level optimization required to maximize performance on constrained hardware. This approach to memory copying influenced later developments in operating systems and programming languages. The use of block copy operations became standard practice in performance-critical applications, from game engines to embedded systems. The routine also highlights the ingenuity of early software developers, who had to work within severe hardware limitations to deliver functionality that users now take for granted."
   - id: "create-dup-jfn-file-handles"
     line_start: 1117
-    line_end: 1133
+    line_end: 1173
     title: "Duplicating File Handles for Processes"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_descriptor"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The `Create_dup_jfn` routine duplicates file handles (JFNs) for a new process. It iterates through all file handles associated with the current process, incrementing reference counts and copying them to the new process's PDB. This ensures that the child process inherits access to the same files as the parent. File handle duplication is a concept borrowed from Unix, where file descriptors are a fundamental part of process management. In MS-DOS v2.0, this feature was adapted to the single-user environment of the IBM PC. The routine reflects the influence of Unix on MS-DOS's design, as Microsoft sought to introduce more sophisticated features while maintaining simplicity. The ability to duplicate file handles became a standard feature in operating systems, enabling process creation and inter-process communication. This routine's approach to file handle management influenced later DOS-based systems and contributed to the development of more advanced file descriptor mechanisms in multitasking operating systems like Windows and Linux."
   - id: "entry-memory-preparation"
     line_start: 1191
-    line_end: 1285
+    line_end: 1255
     title: "Preparing Memory for New Processes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

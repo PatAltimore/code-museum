@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `StartDemoRecord` function initializes a demo recording system, capturing gameplay data for later playback. This feature served multiple purposes: debugging, marketing, and showcasing the game's capabilities. Demo recording was a novel concept at the time, allowing developers to share gameplay sequences without requiring users to play the game themselves. This technique influenced later games like Quake and Counter-Strike, where demo recording became a standard feature for esports and community content creation."
   - id: "finish-demo-record"
-    line_start: 927
+    line_start: 937
     line_end: 965
     title: "Saving Demos for Posterity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_demo"

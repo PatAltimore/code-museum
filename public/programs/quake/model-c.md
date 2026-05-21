@@ -55,7 +55,7 @@ enhancements:
     content: "The `Mod_PointInLeaf` function determines which leaf node a given point resides in within a model's BSP tree. BSP trees were a revolutionary spatial organization technique, enabling efficient visibility determination and collision detection. This method was adapted from earlier work in computer graphics and became synonymous with real-time 3D engines. Quake's use of BSP trees inspired their adoption in other engines, including Source and Unreal, shaping the way 3D environments are structured to this day."
   - id: "mod-decompress-vis-visibility-data"
     line_start: 105
-    line_end: 131
+    line_end: 152
     title: "The Compression Trick That Made Maps Work"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""

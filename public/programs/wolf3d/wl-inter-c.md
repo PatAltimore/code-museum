@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "clear-split-vwb-initialization"
-    line_start: 9
+    line_start: 7
     line_end: 24
     title: "Resetting the Viewport for Split-Screen Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Viewport"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "The `ClearSplitVWB` function initializes the viewport dimensions and clears the update buffer, setting up the graphical environment for split-screen rendering. This was crucial for Wolfenstein 3D's intermission screens, which displayed information while maintaining the game's immersive feel. At the time, split-screen rendering was a novel technique, allowing developers to overlay dynamic content on static backgrounds efficiently. The function's simplicity reflects id Software's focus on performance optimization, ensuring smooth transitions even on limited hardware. This approach influenced later games that relied on similar techniques for HUDs and intermission screens, including Doom and Quake."
   - id: "end-screen-transitions"
-    line_start: 29
+    line_start: 27
     line_end: 47
     title: "Creating Cinematic End Screens with Fading Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(audio-visual)"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The `EndScreen` function combines screen caching, palette manipulation, and fading effects to create cinematic transitions between game states. By caching graphical chunks and fading them in and out, id Software achieved a polished presentation that enhanced the game's storytelling. This technique was particularly impactful in an era when hardware constraints limited graphical fidelity. The use of fading effects became a staple in video games, influencing titles like Myst and Half-Life, where transitions were used to convey mood and narrative seamlessly."
   - id: "victory-sequence-calculations"
-    line_start: 100
+    line_start: 95
     line_end: 296
     title: "Calculating Player Performance in Victory Screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Score_(game)"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `Victory` function calculates and displays player performance metrics, such as kill ratios, secrets found, and treasures collected. It uses pre-defined constants and ratios to determine averages and total times, presenting them in a visually engaging format. This function reflects id Software's commitment to rewarding players with detailed feedback, a feature that was rare in early 1990s games. By incorporating performance metrics into the victory sequence, Wolfenstein 3D set a precedent for games like Diablo and Call of Duty, which emphasize player achievements and statistics."
   - id: "pg13-warning-screen"
-    line_start: 302
+    line_start: 299
     line_end: 325
     title: "Displaying Content Ratings with PG-13 Screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Motion_Picture_Association_film_rating_system"
@@ -72,8 +72,8 @@ enhancements:
     image_caption: ""
     content: "The `BJ_Breathe` function animates the protagonist's breathing by alternating between two graphical frames. This subtle animation adds a layer of realism to the character, making him feel alive even during intermission screens. Such attention to detail was uncommon in early 1990s games, showcasing id Software's dedication to immersion. The technique inspired other developers to incorporate idle animations into their characters, a feature now standard in modern games."
   - id: "level-completed-intermission"
-    line_start: 410
-    line_end: 955
+    line_start: 427
+    line_end: 880
     title: "Rewarding Players with Detailed Level Completion Stats"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intermission_(video_games)"
     image_url: ""
@@ -104,7 +104,7 @@ enhancements:
     image_caption: ""
     content: "The `CheckHighScore` routine determines whether a player's score qualifies for the high score table. It compares scores and levels completed, inserting the new score into the appropriate position and shifting others down. This algorithm is simple but effective, leveraging direct array manipulation to maintain the sorted order. In the early 1990s, such routines were common in games, but id Software's implementation stands out for its efficiency and integration with gameplay. The routine also prompts players to enter their name if they achieve a high score, enhancing the personal connection to the game. This technique influenced later games, where high score systems became more sophisticated, incorporating online leaderboards and global rankings."
   - id: "non-shareware-notice"
-    line_start: 1267
+    line_start: 1264
     line_end: 1309
     title: "The Message That Fought Piracy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Shareware"

@@ -27,15 +27,15 @@ summary:
 
 enhancements:
   - id: "text-formatting-commands"
-    line_start: 6
-    line_end: 49
+    line_start: 9
+    line_end: 58
     title: "Text Commands That Controlled Layouts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section defines the text formatting commands used throughout Wolfenstein 3D's article and help screens. Commands like '^C' for changing text color and '^G' for drawing graphics allowed developers to dynamically control how text and images were displayed. At the time, MS-DOS systems lacked sophisticated graphical interfaces, so developers had to create their own systems for rendering text and graphics together. These commands were a clever abstraction, enabling layouts to be defined in a simple text-based format. The approach influenced later games, which adopted similar systems for in-game text rendering and layout management."
   - id: "rip-to-eol"
-    line_start: 62
+    line_start: 60
     line_end: 75
     title: "The Routine That Skipped Lines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
@@ -83,7 +83,7 @@ enhancements:
     image_caption: ""
     content: "The `CacheLayoutGraphics` function scans the layout file for all graphics commands and preloads the necessary assets into memory. By caching graphics ahead of time, the game minimized delays during rendering, ensuring smooth transitions between pages. This technique was critical on MS-DOS systems, where disk access was slow and memory was limited. Preloading assets became a standard practice in game development, influencing how modern engines handle texture and model caching. The efficiency achieved here contributed to Wolfenstein 3D's reputation for fast, fluid gameplay."
   - id: "show-article"
-    line_start: 590
+    line_start: 600
     line_end: 723
     title: "Interactive Help Screens with Page Navigation"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_interface_design"

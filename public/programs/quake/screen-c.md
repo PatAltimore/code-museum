@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "center-printing-dynamic-messaging"
-    line_start: 121
-    line_end: 240
+    line_start: 136
+    line_end: 158
     title: "How Quake Made Messages Feel Immediate"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `SCR_SetUpToDrawConsole` function dynamically adjusts the console's visibility based on the game's state. Whether the player is actively gaming, viewing the console, or in a menu, the function calculates the appropriate height and smoothly transitions the display. This design reflects id Software's commitment to usability, ensuring the console never obstructs gameplay unnecessarily. In the mid-1990s, consoles were essential for debugging and player communication, but their integration into 3D environments posed challenges. Quake's solution influenced later engines, where dynamic UI elements became standard. For instance, the Source Engine and Unreal Engine adopted similar approaches to manage overlays and HUD elements, enhancing user experience across genres."
   - id: "screenshot-pcx-format"
-    line_start: 576
+    line_start: 585
     line_end: 650
     title: "Why Quake Saved Screenshots as PCX Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/PCX"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `SCR_UpdateWholeScreen` function is a concise wrapper that forces a complete screen refresh by resetting the `scr_fullupdate` flag to zero and calling `SCR_UpdateScreen`. This ensures that all screen elements are redrawn, regardless of their previous state. Such functionality is particularly useful during moments when the game requires a visual reset, such as transitioning between levels or recovering from minimized states. This approach reflects the careful design philosophy of id Software during Quake's development. In the mid-1990s, hardware constraints like limited VRAM and slow CPUs meant that unnecessary rendering could severely impact performance. By isolating the logic for full-screen updates, the developers ensured that these operations were only triggered when absolutely necessary. The concept of a forced refresh became a staple in game engines, influencing later systems like Unreal Engine and Unity. It also aligns with modern practices in graphics programming, where selective rendering and efficient state management are critical for performance optimization. This function exemplifies the balance between simplicity and functionality that defined Quake’s codebase, showcasing how small, focused routines can have a significant impact on overall system behavior."
   - id: "final-cleanup-wrapper"
-    line_start: 1172
+    line_start: 1167
     line_end: 1176
     title: "The Final Cleanup for Screen Updates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

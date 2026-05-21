@@ -65,7 +65,7 @@ enhancements:
     content: "This function calculates the rotation of BSP models around the yaw, pitch, and roll axes. It combines three separate rotation matrices into a single transformation matrix, which is then applied to the model's origin and frustum vectors. The comments hint at potential optimizations, such as caching results or using lookup tables, which were common techniques for improving performance on hardware with limited computational power. This approach to model rotation influenced later engines, which adopted similar methods for handling complex 3D transformations."
   - id: "recursive-clip-poly"
     line_start: 153
-    line_end: 187
+    line_end: 320
     title: "Clipping Polygons: Recursive Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_clipping"
     image_url: ""
@@ -73,7 +73,7 @@ enhancements:
     content: "This function recursively clips polygons against BSP planes, ensuring that only visible portions are rendered. The recursive approach allows the engine to efficiently traverse the BSP tree, a technique that was revolutionary for real-time graphics in the mid-90s. By breaking down complex polygons into smaller, manageable pieces, Quake's engine could render scenes with high detail while maintaining performance. This method became a cornerstone of real-time rendering, influencing engines like Unreal and CryEngine."
   - id: "draw-solid-clipped-polygons"
     line_start: 323
-    line_end: 339
+    line_end: 402
     title: "Drawing Solid Polygons: Handling Complexity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_rendering"
     image_url: ""
@@ -81,7 +81,7 @@ enhancements:
     content: "This function handles the drawing of solid polygons that have been clipped to fit within the view frustum. By iterating through surfaces and edges, it ensures that only visible geometry is processed. The comments highlight potential improvements, such as using bounding-box-based frustum clipping, which would later become standard practice in graphics engines. This function demonstrates the balance between precision and performance that defined Quake's rendering pipeline."
   - id: "recursive-world-node"
     line_start: 443
-    line_end: 499
+    line_end: 639
     title: "Recursive World Node: Traversing the BSP Tree"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""

@@ -1,29 +1,53 @@
 """range_fixer.py — post-processing pass to correct enhancement line ranges.
 
-For each enhancement in a generated .md file, sends a small code-context
-window to the model and asks it to return corrected line_start / line_end
-values.  Only the two integer fields are ever rewritten; annotation text,
-images, and all other metadata are left untouched.
+Strategy: instead of asking the model to count and output line numbers (which
+LLMs do poorly), ask for **text anchors** — the exact stripped content of the
+first and last line of each range.  Python then:
+
+  1. Finds the anchor line by string search within a window (no counting).
+  2. Walks backward deterministically to include any preceding doc-comment.
+  3. Finds the end boundary deterministically:
+       C/C++:    forward brace-depth scan to the matching closing }
+       Lisp/MDL: forward angle-bracket depth scan (same idea, < / > delimiters)
+       Assembly: forward scan to ENDP/ENDS/ENDM, then RTS/RTI/RET fallback
+       Other:    end_anchor search within a window
+  4. Resolves ALL ranges first, sorts by start line, then trims overlaps so
+     that each range ends before the next one begins (no repeated code).
+
+The model is shown the FULL source file so it can understand the overall
+structure and correctly identify each annotated section.  All enhancements
+for a file are sent in a single request.
 """
 
 import json
 import re
 from pathlib import Path
 
+import yaml
+
 # Matches assembly closing-directive lines: ENDP, ENDS, ENDM (optionally
 # preceded by a label such as "SaveVectors     ENDP").
 _ASM_CLOSING_RE = re.compile(r'\bEND[PSM]\b', re.IGNORECASE)
 
-import yaml
+# Return instructions for various assembly architectures:
+#   6502/65C02:  RTS, RTI
+#   68k:         RTS, RTD, RTR
+#   x86:         RET, RETN, RETF, RETW, RETD, IRET, IRETD
+#   Z80/8080:    RET (with optional condition)
+# Must be indented (not at column 0) to avoid matching labels named e.g. RTSUB.
+_ASM_RETURN_RE = re.compile(
+    r'^\s+(RTS|RTI|RTD|RTR|RET[NFWD]?|IRET[D]?)\b', re.IGNORECASE
+)
 
-# Lines of source shown above and below the current annotated range.
-CONTEXT_LINES = 30
+# A top-level (non-local) assembly label at column 0.
+# Local labels start with '.' or ':' and are branch targets within a routine.
+_ASM_TOPLABEL_RE = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*\s*:')
 
-# Enhancements sent per API call
-BATCH_SIZE = 6
+# How far (in lines) to search around the approximate position when hunting
+# for an anchor string.
+ANCHOR_RADIUS = 80
 
 # Comment-start tokens recognised across common languages.
-# Order matters: longer prefixes first so startswith matches correctly.
 _COMMENT_PREFIXES = (
     "//", "/*", "(*", "--", ";;",
     ";", "*", "#", "!", "'",
@@ -32,72 +56,63 @@ _COMMENT_PREFIXES = (
 _SYSTEM = """\
 You are correcting line-range metadata for source code annotations.
 
-For each annotation in the batch you will see:
+You will be given the COMPLETE source file (all lines, numbered) followed by a
+list of annotations.  Each annotation has:
   - id and title
-  - The full annotation text — read this carefully, it describes exactly what
-    subroutine, algorithm, data structure, or technique the range should cover
-  - If comment lines were found immediately above the current range, they are
-    shown in a "Candidate leading comments" block with their exact line numbers
-  - A numbered source excerpt; lines inside the current annotated range are
-    prefixed with >> and context lines are prefixed with two spaces
+  - The annotation text — read this carefully; it describes exactly what
+    function, subroutine, data structure, or algorithm the range should cover
+  - A hint: the approximate current line range (often WRONG — treat as a rough
+    starting point only, not as the answer)
 
-Your task: use the annotation text to identify the correct code section in the
-source excerpt, then return the exact line_start and line_end that tightly
-enclose it.
+Your task: read the annotation text, study the full source, identify the correct
+code section, and return anchors for its boundaries.
 
-Rules for line_start:
-- If a "⚠ line_start appears to be INSIDE a block comment" warning is shown,
-  the current line_start is wrong — it points to a line inside a /* */ comment.
-  Set line_start to the value shown in the "→ Set line_start = N" suggestion,
-  which is the /* opener (or the first line of any doc-comment above it).
-- If a "Candidate leading comments" block is shown, READ its content carefully.
-  If those comments serve as documentation for THIS section — describing what
-  the subroutine does, explaining its algorithm, or naming its purpose — set
-  line_start to the first line of that block.
-- Do NOT include the comment block if it is a file header, a copyright notice,
-  a visual separator (rows of asterisks, dashes, or equal signs with no prose),
-  or a comment that clearly belongs to or closes the previous section.
-- When in doubt, include the comment block — err on the side of inclusion.
-- If no candidate comment block is shown, or the block does not belong here,
-  set line_start to the first non-blank code line (label, function signature,
-  or opening declaration).
+────────────────────────────────────────────────────────────
+OUTPUT FIELDS (all text is stripped of leading/trailing whitespace)
+────────────────────────────────────────────────────────────
 
-Rules for line_end:
-- The last non-blank line of the section, which MUST include the closing
-  directive if one is present:
-    C/C++:     the closing } of the function body. For C/C++ files, closing-brace
-               lines are annotated with [brace depth after: N] in the excerpt.
-               The function body opens at depth 1 and its closing } brings the
-               depth back to 0 — that line marked [brace depth after: 0] is
-               line_end. Never stop at an inner } (depth > 0).
-    Assembly:  ENDP, ENDS, ENDM, END, .end, end_proc — always include these.
-               ENDP frequently appears as "ProcName  ENDP" (the procedure name
-               followed by ENDP on the same line) — this is still a closing
-               directive and must be included.
-    Other:     the final instruction, RTS, RET, JMP, or last data value
-- Look ahead past the last instruction for a closing directive on the lines
-  immediately following — ENDP and } in particular often sit one or two lines
-  after the last substantive instruction.
-- Do not stop at a RET, RTS, or inner } if a closing directive follows within
-  a few lines.
-- Do not include blank lines or the opening line of the next section.
+"start_anchor"  (required)
+  The FIRST SUBSTANTIVE line of the section, copied verbatim.
+  "Substantive" means the function/procedure signature, label, or opening
+  declaration — NOT a blank line, NOT a comment, NOT a separator (rows of
+  = * - chars).  Leading doc-comments are included automatically; do not
+  put them in the anchor.
+  • C/C++:      return-type + name line:  "void R_DrawWall (void)"
+  • Assembly:   label / PROC header:     "SaveVectors"  or  "DrawPlayer  PROC"
+  • Lisp/MDL:   opening form:            "<DEFINE SPARSE"  or  "<SETG WINNER"
+  • If the return type is on a line above the name (Doom/Quake style), copy
+    the return-type line — it is the earliest substantive line.
 
-General rules:
-- Ranges must not overlap — each annotation's line_start must be greater than
-  the previous annotation's line_end. If correcting one range would cause it
-  to overlap an adjacent one, stop the boundary at the line before the
-  neighbouring range starts or ends.
-- Do not include blank lines at either boundary
-- Do not place either boundary outside the lines shown in the excerpt
-- If the current range already looks correct, return the same values
+"end_anchor"  (required)
+  The LAST SUBSTANTIVE line of the section, copied verbatim.
+  • C/C++:      closing brace:           "}"  or  "};"
+  • Assembly (MASM/TASM):               the ENDP / ENDS / ENDM line
+  • Assembly (6502/flat):               the last instruction before the next
+                                        major label, e.g. "rts" or "]rts rts"
+  • Lisp/MDL:   last closing form:      ">" or the line containing it
+  • Data sections: last data byte/word line
+  Do NOT include blank lines or the first line of the next section.
 
-Output valid JSON only — no markdown fences, no explanation:
-[{"id": "...", "line_start": N, "line_end": N}, ...]
+"next_anchor"  (optional but STRONGLY PREFERRED when end is ambiguous)
+  The FIRST SUBSTANTIVE line of the FOLLOWING section — i.e. the line that
+  immediately comes after the section you are annotating.
+  When provided, the caller finds this line and uses the last non-blank line
+  before it as the end.  This is more reliable than end_anchor for:
+  • Assembly files where the end of one routine/table is defined by the
+    start of the next label (e.g. "AUTOCTRL" follows the data tables)
+  • Lisp/MDL forms where ">" is hard to locate uniquely
+  • Any section whose last line is a common/ambiguous token
+  Omit next_anchor only when the current section is the last in the file
+  or when end_anchor is already unambiguous.
+
+────────────────────────────────────────────────────────────
+Do NOT output line numbers.  Do NOT explain.  Output valid JSON only:
+[{"id": "...", "start_anchor": "...", "end_anchor": "...", "next_anchor": "..."}, ...]
 """
 
 
 # ---------------------------------------------------------------------------
-# Internal helpers
+# File I/O
 # ---------------------------------------------------------------------------
 
 def _read_md(path: Path):
@@ -107,13 +122,9 @@ def _read_md(path: Path):
     end   = text.index("---", start + 3)
     meta  = yaml.safe_load(text[start + 3 : end])
     body  = text[end + 3:]
-    # The formatter writes exactly one blank line after the closing "---",
-    # producing "\n\n<code>".  Mirror app.js splice(0, 2): skip the first
-    # two elements after splitting on "\n".
     code_lines = body.split("\n")[2:]
     if code_lines and code_lines[-1] == "":
         code_lines.pop()
-    # Strip code fence wrapper if present (```lang opener, ``` closer)
     if code_lines and code_lines[0].startswith("```"):
         code_lines = code_lines[1:]
     if code_lines and code_lines[-1] == "```":
@@ -121,67 +132,276 @@ def _read_md(path: Path):
     return meta, code_lines
 
 
+# ---------------------------------------------------------------------------
+# Language helpers
+# ---------------------------------------------------------------------------
+
+def _is_c_like(language: str) -> bool:
+    lang = (language or "").lower()
+    return any(t in lang for t in ("c++", "c/c++", " c ", "c,", "objective-c")) \
+        or lang in ("c", "c++")
+
+
+def _is_lisp_like(language: str) -> bool:
+    lang = (language or "").lower()
+    return any(t in lang for t in ("lisp", "mdl", "muddle", "scheme", "clojure", "racket"))
+
+
+def _is_asm_like(language: str) -> bool:
+    lang = (language or "").lower()
+    return any(t in lang for t in ("assembly", "asm", "6502", "x86", "68k", "mips", "z80"))
+
+
+# ---------------------------------------------------------------------------
+# Anchor search  (replaces line-number counting)
+# ---------------------------------------------------------------------------
+
+def _find_anchor_line(
+    anchor: str,
+    code_lines: list[str],
+    approx: int,
+    radius: int = ANCHOR_RADIUS,
+) -> int | None:
+    """Return the 1-based line number of anchor text near approx.
+
+    Tries three strategies in decreasing strictness:
+      1. Exact stripped match
+      2. Line strip starts with the first 40 characters of anchor
+      3. Anchor is a substring of the line
+
+    Searches within [approx - radius, approx + radius].  Returns None if
+    no match is found.
+    """
+    if not anchor:
+        return None
+    anchor = anchor.strip()
+    lo = max(0, approx - 1 - radius)
+    hi = min(len(code_lines), approx - 1 + radius)
+
+    # Strategy 1: exact stripped match
+    for i in range(lo, hi):
+        if code_lines[i].strip() == anchor:
+            return i + 1
+
+    # Strategy 2: stripped line starts with anchor prefix (robust to minor
+    # trailing differences like parameter lists cut off)
+    prefix = anchor[:40]
+    if prefix:
+        for i in range(lo, hi):
+            if code_lines[i].strip().startswith(prefix):
+                return i + 1
+
+    # Strategy 3: anchor is a substring of the line
+    for i in range(lo, hi):
+        if anchor in code_lines[i]:
+            return i + 1
+
+    return None
+
+
+def _find_anchor_forward(
+    anchor: str,
+    code_lines: list[str],
+    from_line: int,
+    max_lines: int = 2000,
+) -> int | None:
+    """Search forward from from_line for anchor text.
+
+    Unlike _find_anchor_line (which searches ±radius around an approximate
+    position that may be wrong), this starts at a known-good position and
+    scans forward.  Used for end_anchor lookup so a badly-off approx_end
+    cannot cause the search to miss the true end.
+
+    Tries the same three strategies as _find_anchor_line (exact, prefix,
+    substring) but in a single forward pass.
+    """
+    if not anchor:
+        return None
+    anchor = anchor.strip()
+    prefix = anchor[:40]
+    limit  = min(len(code_lines), from_line - 1 + max_lines)
+
+    for i in range(from_line - 1, limit):
+        stripped = code_lines[i].strip()
+        if stripped == anchor:
+            return i + 1
+        if prefix and stripped.startswith(prefix):
+            return i + 1
+        if len(anchor) >= 15 and anchor in code_lines[i]:
+            return i + 1
+
+    return None
+
+
+# Short / high-frequency tokens that appear so often they are useless as
+# search targets.  For these we rely on structural scanning instead.
+_GENERIC_CLOSERS = frozenset({
+    "}", "};", "})", ">", "))>", ">)", ")", "]",
+    "rts", "rti", "rte", "ret", "retf", "retw", "retd", "iret", "iretd",
+    "end", "endp", "ends", "endm",
+})
+
+
+def _anchor_is_generic(anchor: str) -> bool:
+    """Return True when anchor is too short or too common to search for reliably."""
+    s = (anchor or "").strip().lower()
+    return not s or len(s) <= 4 or s in _GENERIC_CLOSERS
+
+
+# ---------------------------------------------------------------------------
+# Deterministic end detection
+# ---------------------------------------------------------------------------
+
+def _find_end_c(
+    code_lines: list[str],
+    line_start: int,
+    search_limit: int = 500,
+) -> int | None:
+    """Scan forward from line_start and return the 1-based line number of
+    the closing } that brings the brace depth back to 0.
+
+    Handles strings and both // and /* */ comments so inner braces are ignored.
+    """
+    depth = 0
+    opened = False
+    in_block_comment = False
+
+    for i in range(line_start - 1, min(len(code_lines), line_start - 1 + search_limit)):
+        line = code_lines[i]
+        j = 0
+        while j < len(line):
+            if in_block_comment:
+                if line[j:j+2] == "*/":
+                    in_block_comment = False
+                    j += 2
+                else:
+                    j += 1
+            elif line[j:j+2] == "//":
+                break
+            elif line[j:j+2] == "/*":
+                in_block_comment = True
+                j += 2
+            elif line[j] in ('"', "'"):
+                q = line[j]
+                j += 1
+                while j < len(line):
+                    if line[j] == "\\":
+                        j += 2
+                    elif line[j] == q:
+                        j += 1
+                        break
+                    else:
+                        j += 1
+            elif line[j] == "{":
+                depth += 1
+                opened = True
+                j += 1
+            elif line[j] == "}":
+                depth -= 1
+                j += 1
+            else:
+                j += 1
+
+        if opened and depth == 0:
+            return i + 1  # 1-based
+
+    return None
+
+
+def _find_end_lisp(
+    code_lines: list[str],
+    line_start: int,
+    search_limit: int = 500,
+) -> int | None:
+    """Scan forward from line_start and return the 1-based line where the
+    top-level MDL/Lisp form closes (angle-bracket depth returns to 0).
+
+    Handles string literals (double-quoted) and MDL line comments (;).
+    """
+    depth  = 0
+    opened = False
+
+    for i in range(line_start - 1, min(len(code_lines), line_start - 1 + search_limit)):
+        line = code_lines[i]
+        in_str = False
+        j = 0
+        while j < len(line):
+            c = line[j]
+            if in_str:
+                if c == "\\" and j + 1 < len(line):
+                    j += 2
+                    continue
+                if c == '"':
+                    in_str = False
+            elif c == '"':
+                in_str = True
+            elif c == ";":
+                break          # rest of line is a comment
+            elif c == "<":
+                depth += 1
+                opened = True
+            elif c == ">":
+                depth -= 1
+            j += 1
+
+        if opened and depth == 0:
+            return i + 1   # 1-based
+
+    return None
+
+
+def _find_end_asm(
+    code_lines: list[str],
+    line_start: int,
+    search_limit: int = 300,
+) -> int | None:
+    """Scan forward from line_start for the end of an assembly routine.
+
+    Pass 1 — definitive: ENDP / ENDS / ENDM (MASM/TASM structured macros).
+    Pass 2 — fallback:   RTS / RTI / RET / etc.  Returns the last such
+      instruction before the next top-level (column-0, non-local) label,
+      which signals the start of the next routine.
+    """
+    limit = min(len(code_lines), line_start - 1 + search_limit)
+
+    # Pass 1: structured-macro end directive — always wins
+    for i in range(line_start - 1, limit):
+        if _ASM_CLOSING_RE.search(code_lines[i]):
+            return i + 1
+
+    # Pass 2: return instruction scan.
+    # Keep track of the last RTS/RET/etc. seen.  Stop collecting when a new
+    # top-level label appears (start of the next routine) — but only after we
+    # have already found at least one return instruction, so we don't bail out
+    # at the label that opens the current routine.
+    last_return: int | None = None
+    for i in range(line_start - 1, limit):
+        line = code_lines[i]
+        if (
+            i > line_start - 1          # skip the routine's own opening label
+            and last_return is not None  # only stop once we've seen a return
+            and _ASM_TOPLABEL_RE.match(line)
+        ):
+            break
+        if _ASM_RETURN_RE.match(line):
+            last_return = i + 1
+
+    return last_return
+
+
+# ---------------------------------------------------------------------------
+# Comment-block detection  (unchanged from original)
+# ---------------------------------------------------------------------------
+
 def _is_comment_line(line: str) -> bool:
-    """Return True if the line looks like a comment in any common language."""
     s = line.strip()
     return bool(s) and any(s.startswith(p) for p in _COMMENT_PREFIXES)
 
 
-def _enclosing_block_comment_start(
-    code_lines: list[str], line_start: int, floor: int
-) -> int | None:
-    """Return the 1-indexed line number of the /* that encloses line_start.
+_NOT_RETURN_TYPE = frozenset("(){};=[]")
 
-    Walks backward from line_start-1 looking for a /* opener that has no
-    matching */ between it and line_start (i.e., line_start is inside that
-    block comment).  Returns None if line_start is not inside a block comment.
-
-    Blank lines inside block comments are allowed (Quake/id-style banners use
-    them).  Only hard code markers stop the search: line comments (//),
-    statements (containing ;), or closing braces.  A search limit of 80 lines
-    prevents runaway traversal.
-    """
-    i = line_start - 2          # 0-indexed line just before line_start
-    floor_idx = max(0, floor - 1)
-    limit = 80
-    steps = 0
-    while i >= floor_idx and steps < limit:
-        steps += 1
-        stripped = code_lines[i].strip()
-        if stripped.startswith("//"):
-            break   # line comment — not inside a /* block
-        if stripped.startswith("}") or stripped.startswith("{"):
-            break   # brace — definitely not inside a block comment
-        # A semicolon that isn't itself inside a /* comment string → real code
-        if ";" in stripped and "/*" not in stripped and not stripped.startswith("*"):
-            break
-        if stripped.endswith("*/") and "/*" not in stripped:
-            # Closing delimiter of a *different* block comment above us —
-            # line_start is NOT inside that one.
-            return None
-        if "/*" in stripped:
-            return i + 1    # 1-indexed opener line
-        # Blank lines and all other content (comment interior) — keep going
-        i -= 1
-    return None
-
-
-# Characters whose presence on a line means it cannot be a bare return-type
-# declaration (it must be a statement, a declaration with params, etc.)
-_NOT_RETURN_TYPE = frozenset('(){};=[]')
 
 def _is_orphaned_return_type(line: str) -> bool:
-    """Return True if the line looks like a C/C++ return type on its own line.
-
-    Covers patterns like:
-        void
-        static void
-        static int *
-        boolean
-    These appear in Doom/id-style code where the return type is written on a
-    separate line above the function name.  Characteristics: non-empty,
-    no comment prefix, and none of ( ) { } ; = [ ] in the line.
-    """
     s = line.strip()
     if not s:
         return False
@@ -193,58 +413,24 @@ def _is_orphaned_return_type(line: str) -> bool:
 def _preceding_comment_block(
     code_lines: list[str], line_start: int, context_start: int
 ) -> list[tuple[int, str]]:
-    """Return the comment block immediately above line_start.
+    """Return the comment block immediately above line_start (ascending order).
 
-    Walks backward from line_start-1 to context_start, collecting consecutive
-    comment lines.  A single blank line is allowed within a block (common in
-    multi-paragraph doc comments); two or more consecutive blanks, or any
-    non-comment non-blank line, ends the walk.
-
-    Multi-line /* ... */ blocks are collected in their entirety: when the walk
-    encounters a closing */ delimiter (the block end, walking backward), it
-    switches into block-comment mode and keeps collecting until it finds the
-    matching /* opener.  This handles the Quake/id-Software style:
-
-        /*
-        ================
-        R_SomeName
-        ================
-        */
-        void R_SomeName (void) { ...
-
-    where the interior lines (====) have no recognisable comment prefix.
-
-    Returns a list of (1-indexed lineno, raw_line) in ascending line order,
-    with leading and trailing blank entries stripped.  Empty list if nothing
-    found.
+    Walks backward collecting consecutive comment lines; allows one blank line
+    inside a block.  Handles /* ... */ blocks (including Quake-style banners
+    with plain interior lines).  Returns [] if nothing found.
     """
     collected: list[tuple[int, str]] = []
     blank_streak = 0
-    in_block_comment = False   # True when inside a /* ... */ block (walking backward)
-    floor = max(0, context_start - 1)   # 0-indexed lower bound
+    in_block_comment = False
+    floor = max(0, context_start - 1)
 
-    # Step past any orphaned return-type lines sitting between the function
-    # name and the doc-comment above it (Doom / id-Software style):
-    #   //
-    #   // R_RenderMaskedSegRange
-    #   //
-    #   void                   ← orphaned return type
-    #   R_RenderMaskedSegRange ← line_start
-    # We collect these lines so they appear in the candidate block and are
-    # therefore included in the corrected line_start.
-    i = line_start - 2          # 0-indexed: line just before line_start
+    i = line_start - 2
     preamble: list[tuple[int, str]] = []
     while i >= floor and _is_orphaned_return_type(code_lines[i]):
         preamble.insert(0, (i + 1, code_lines[i]))
         i -= 1
     collected.extend(preamble)
 
-    # If line_start itself is a */ closing delimiter, the current line_start
-    # is the END of a block comment rather than code.  Enter block-comment mode
-    # immediately so the main backward walk collects the full comment body
-    # (interior lines like ==== have no comment prefix and would otherwise stop
-    # the walk on the very first iteration).  Also add the */ line to collected
-    # so the presented block is complete.
     if line_start <= len(code_lines):
         _ls = code_lines[line_start - 1].strip()
         if _ls.endswith("*/") and "/*" not in _ls:
@@ -256,7 +442,6 @@ def _preceding_comment_block(
         stripped = line.strip()
 
         if in_block_comment:
-            # Collect everything; exit block-comment mode when we hit the opener.
             collected.insert(0, (i + 1, line))
             if "/*" in line:
                 in_block_comment = False
@@ -267,7 +452,6 @@ def _preceding_comment_block(
                 break
             collected.insert(0, (i + 1, line))
         elif stripped.endswith("*/") and "/*" not in line:
-            # Closing delimiter of a multi-line block comment — enter block mode.
             in_block_comment = True
             blank_streak = 0
             collected.insert(0, (i + 1, line))
@@ -275,10 +459,9 @@ def _preceding_comment_block(
             blank_streak = 0
             collected.insert(0, (i + 1, line))
         else:
-            break   # hit non-comment code — stop
+            break
         i -= 1
 
-    # Strip leading/trailing blank entries
     while collected and not collected[0][1].strip():
         collected.pop(0)
     while collected and not collected[-1][1].strip():
@@ -287,236 +470,295 @@ def _preceding_comment_block(
     return collected
 
 
-def _is_c_like(language: str) -> bool:
-    """Return True for C, C++, and similar brace-delimited languages."""
-    lang = (language or "").lower()
-    return any(t in lang for t in ("c++", "c/c++", " c ", "c,", "objective-c"))  \
-        or lang in ("c", "c++")
+# ---------------------------------------------------------------------------
+# Message builder  — full file shown once, all enhancements in one request
+# ---------------------------------------------------------------------------
 
+def _build_messages(
+    enhancements: list[dict],
+    code_lines: list[str],
+    file_info: str,
+    language: str = "",
+) -> list[dict]:
+    """Build the single API request for all enhancements in a file.
 
-def _is_asm_like(language: str) -> bool:
-    """Return True for assembly languages."""
-    lang = (language or "").lower()
-    return any(t in lang for t in ("assembly", "asm", "6502", "x86", "68k", "mips", "z80"))
-
-
-def _brace_depth_map(code_lines: list[str], win_start: int, win_end: int) -> dict[int, int]:
-    """Return a {0-indexed line: cumulative brace depth after that line} map.
-
-    Scans from the beginning of the window, counting { and } while ignoring
-    those inside string literals and single-line // comments.
+    The complete source is shown (all lines, numbered) so the model has full
+    structural context rather than a narrow excerpt centred on the (possibly
+    wrong) approximate range.  Each annotation lists its approximate range as
+    a rough hint only.
     """
-    depth = 0
-    depths = {}
-    in_block_comment = False
-    for i in range(win_start, win_end):
-        line = code_lines[i]
-        j = 0
-        while j < len(line):
-            if in_block_comment:
-                if line[j:j+2] == "*/":
-                    in_block_comment = False
-                    j += 2
-                else:
-                    j += 1
-            elif line[j:j+2] == "//":
-                break   # rest of line is a comment
-            elif line[j:j+2] == "/*":
-                in_block_comment = True
-                j += 2
-            elif line[j] in ('"', "'"):
-                q = line[j]
-                j += 1
-                while j < len(line):
-                    if line[j] == '\\':
-                        j += 2
-                    elif line[j] == q:
-                        j += 1
-                        break
-                    else:
-                        j += 1
-            elif line[j] == '{':
-                depth += 1
-                j += 1
-            elif line[j] == '}':
-                depth -= 1
-                j += 1
-            else:
-                j += 1
-        depths[i] = depth
-    return depths
+    # Full file listing — plain line numbers, no >> markers (the approximate
+    # ranges are wrong by definition, so marking them would anchor the model
+    # on incorrect locations)
+    listing_parts = []
+    for i, line in enumerate(code_lines):
+        listing_parts.append(f"{i + 1:4d}  {line}")
+    listing = "\n".join(listing_parts)
 
-
-def _excerpt(code_lines: list[str], line_start: int, line_end: int,
-             language: str = "") -> str:
-    """Numbered excerpt around the range; annotated lines prefixed with >>."""
-    total     = len(code_lines)
-    win_start = max(0, line_start - 1 - CONTEXT_LINES)
-    win_end   = min(total, line_end + CONTEXT_LINES)
-
-    # For C/C++ files annotate closing-brace lines with their resulting depth
-    # so the model can easily spot the function-level closing brace.
-    depth_map: dict[int, int] = {}
-    if _is_c_like(language):
-        depth_map = _brace_depth_map(code_lines, win_start, win_end)
-
-    asm_mode = _is_asm_like(language)
-
-    out = []
-    for i in range(win_start, win_end):
-        lineno = i + 1
-        marker = ">>" if line_start <= lineno <= line_end else "  "
-        text   = code_lines[i]
-        suffix = ""
-        if depth_map and text.strip() in ("}", "};", "} ;"):
-            d = depth_map.get(i, "?")
-            suffix = f"  [brace depth after: {d}]"
-        elif asm_mode and _ASM_CLOSING_RE.search(text):
-            suffix = "  [assembly closing directive — must be line_end]"
-        out.append(f"{marker}{lineno:4d}  {text}{suffix}")
-    return "\n".join(out)
-
-
-def _build_batch_messages(batch: list[dict], code_lines: list[str],
-                          file_info: str,
-                          prev_end: int = 0,
-                          next_start: int = 0,
-                          language: str = "") -> list[dict]:
-    """Build messages for one batch.
-
-    prev_end:   line_end of the annotation immediately before this batch (0 = none)
-    next_start: line_start of the annotation immediately after this batch (0 = none)
-    These are shown to the model so it can honour the no-overlap constraint.
-    """
-    parts = [f"File: {file_info}\n"]
-    if prev_end:
-        parts.append(f"Note: the annotation before this batch ends at line {prev_end}.\n")
-    if next_start:
-        parts.append(f"Note: the annotation after this batch starts at line {next_start}.\n")
-
-    for idx, enh in enumerate(batch, 1):
-        s = int(enh.get("line_start", 1))
-        e = int(enh.get("line_end", s))
+    # Annotation blocks
+    annotation_parts = []
+    for idx, enh in enumerate(enhancements, 1):
+        s       = int(enh.get("line_start", 1))
+        e       = int(enh.get("line_end", s))
         content = (enh.get("content") or "").strip()
-
-        # Compute the context window start so _preceding_comment_block stays
-        # within the lines we actually show in the excerpt.
-        context_start = max(1, s - CONTEXT_LINES)
-
-        # Special case: line_start may be inside a /* */ block comment (e.g.
-        # the generator picked the function-name line inside a Quake-style
-        # /*=== FunctionName ===*/ header).  Detect this and surface the /*
-        # opener as the candidate start.
-        inside_block_opener = _enclosing_block_comment_start(
-            code_lines, s, context_start
-        )
-
-        # Pre-extract any comment block immediately above the current range.
-        # If line_start is inside a block comment, look above that opener.
-        comment_search_start = inside_block_opener if inside_block_opener else s
-        comment_block = _preceding_comment_block(
-            code_lines, comment_search_start, context_start
-        )
-
-        if inside_block_opener:
-            # Build a candidate block that spans from /* opener to line_start,
-            # then any additional comment block found above the /*
-            opener_lines = [
-                (ln, code_lines[ln - 1])
-                for ln in range(inside_block_opener, s)
-            ]
-            full_block = (comment_block or []) + opener_lines
-            if full_block:
-                candidate_start = full_block[0][0]
-                cb_text = "\n".join(
-                    f"  {lineno:4d}  {text}" for lineno, text in full_block
-                )
-                candidate_section = (
-                    f"⚠ line_start ({s}) appears to be INSIDE a block comment "
-                    f"(/* opens at line {inside_block_opener}).\n"
-                    f"Candidate comment block "
-                    f"(lines {candidate_start}–{s - 1}):\n"
-                    f"{cb_text}\n"
-                    f"→ Set line_start = {candidate_start} to include the full "
-                    f"comment, then find the correct line_end.\n\n"
-                )
-            else:
-                candidate_section = ""
-        elif comment_block:
-            cb_text = "\n".join(
-                f"  {lineno:4d}  {text}" for lineno, text in comment_block
-            )
-            candidate_section = (
-                f"Candidate leading comments "
-                f"(lines {comment_block[0][0]}–{comment_block[-1][0]}):\n"
-                f"{cb_text}\n"
-                f"→ If these comments document this section, "
-                f"set line_start = {comment_block[0][0]}.\n\n"
-            )
-        else:
-            candidate_section = ""
-
-        parts.append(
-            f"--- Annotation {idx}/{len(batch)} ---\n"
+        annotation_parts.append(
+            f"--- Annotation {idx}/{len(enhancements)} ---\n"
             f'id: {enh["id"]}\n'
             f'title: "{enh.get("title", "")}"\n'
             f"Annotation text:\n{content}\n\n"
-            f"Current range: lines {s}–{e}\n"
-            f"{candidate_section}"
-            f"Source:\n{_excerpt(code_lines, s, e, language=language)}\n"
+            f"Approximate location hint (may be wrong): lines {s}–{e}\n"
         )
+
+    user_content = (
+        f"File: {file_info}\n\n"
+        f"Complete source ({len(code_lines)} lines):\n"
+        f"{listing}\n\n"
+        + "\n".join(annotation_parts)
+    )
+
     return [
         {"role": "system", "content": _SYSTEM},
-        {"role": "user",   "content": "\n".join(parts)},
+        {"role": "user",   "content": user_content},
     ]
 
 
+# ---------------------------------------------------------------------------
+# Response parsing and application
+# ---------------------------------------------------------------------------
+
+def _sanitize_json_strings(s: str) -> str:
+    """Replace bare control characters inside JSON string literals with spaces.
+
+    LLMs occasionally emit literal newlines or other control characters inside
+    string values, which is invalid JSON.  This walks the raw text character by
+    character, tracking whether we are inside a quoted string, and substitutes
+    any control character (0x00–0x1f) found there with a space.
+    """
+    out: list[str] = []
+    in_str = False
+    i = 0
+    while i < len(s):
+        c = s[i]
+        if in_str:
+            if c == "\\" and i + 1 < len(s):   # escape sequence — keep as-is
+                out.append(c)
+                out.append(s[i + 1])
+                i += 2
+                continue
+            elif c == '"':
+                in_str = False
+                out.append(c)
+            elif ord(c) < 0x20:                 # bare control char — replace
+                out.append(" ")
+            else:
+                out.append(c)
+        else:
+            if c == '"':
+                in_str = True
+                out.append(c)
+            else:
+                out.append(c)
+        i += 1
+    return "".join(out)
+
+
 def _parse_response(raw: str, valid_ids: set) -> list[dict]:
-    """Parse model response into validated correction dicts."""
     raw = raw.strip()
     raw = re.sub(r"^```[a-z]*\n?", "", raw)
     raw = re.sub(r"\n?```$",       "", raw)
-    corrections = json.loads(raw.strip())
-    return [c for c in corrections if c.get("id") in valid_ids]
+    raw = raw.strip()
+
+    def _load(s: str) -> list[dict] | None:
+        try:
+            out = json.loads(s)
+            return [c for c in out if c.get("id") in valid_ids]
+        except json.JSONDecodeError:
+            return None
+
+    # Pass 1: direct parse (fast path — no modification)
+    result = _load(raw)
+    if result is not None:
+        return result
+
+    # Pass 2: sanitize bare control characters inside string values
+    result = _load(_sanitize_json_strings(raw))
+    if result is not None:
+        return result
+
+    # Pass 3: extract individual { … } objects (handles missing commas between
+    # objects, truncated arrays, or other structural defects)
+    found: list[dict] = []
+    seen: set = set()
+    for m in re.finditer(r"\{[^{}]+\}", raw, re.DOTALL):
+        blob = _sanitize_json_strings(m.group())
+        try:
+            obj = json.loads(blob)
+        except json.JSONDecodeError:
+            continue
+        eid = obj.get("id")
+        if eid in valid_ids and eid not in seen:
+            found.append(obj)
+            seen.add(eid)
+    return found
 
 
-def _apply_corrections(path: Path, corrections: list[dict],
-                       code_lines: list[str]) -> int:
-    """Rewrite line_start / line_end in the YAML frontmatter by id.
+def _apply_corrections(
+    path: Path,
+    corrections: list[dict],
+    code_lines: list[str],
+    enhancements: list[dict],
+    language: str,
+) -> int:
+    """Resolve anchor strings to line numbers and rewrite the YAML frontmatter.
 
-    Uses targeted regex replacement so nothing else in the file is touched.
+    Phase 1 — resolve: for each correction find start/end line numbers.
+    Phase 2 — sort:    order resolved ranges by start line.
+    Phase 3 — trim:    where adjacent ranges overlap, trim the earlier one so
+                       it ends just before the later one starts (no repeated
+                       code in the viewer).
+    Phase 4 — write:   rewrite only the line_start / line_end YAML fields.
+
     Returns the number of enhancements actually changed.
     """
     if not corrections:
         return 0
 
-    total = len(code_lines)
-    text  = path.read_text(encoding="utf-8")
-    changed = 0
+    total     = len(code_lines)
+    enh_by_id = {e["id"]: e for e in enhancements}
 
-    # Track accepted new ranges to catch any overlaps the model introduced
-    accepted: list[tuple[int, int]] = []
+    # ── Phase 1: resolve every correction to (new_s, new_e, eid) ─────────────
+    resolved: list[tuple[int, int, str]] = []
+    seen_eids: set[str] = set()
 
     for c in corrections:
-        eid   = c.get("id", "")
-        new_s = int(c.get("line_start", 0))
-        new_e = int(c.get("line_end",   0))
+        eid          = c.get("id", "")
+        start_anchor = (c.get("start_anchor") or "").strip()
+        end_anchor   = (c.get("end_anchor")   or "").strip()
+        next_anchor  = (c.get("next_anchor")  or "").strip()
 
-        # Basic sanity checks — reject anything suspicious
-        if not eid:
+        if not eid or not start_anchor or eid in seen_eids:
             continue
+        enh = enh_by_id.get(eid)
+        if not enh:
+            continue
+
+        approx_start = int(enh.get("line_start", 1))
+        approx_end   = int(enh.get("line_end", approx_start))
+
+        # Step 1a: locate the first substantive line
+        found_start = _find_anchor_line(start_anchor, code_lines, approx_start)
+        if found_start is None:
+            continue
+
+        # Step 1b: walk backward to include any preceding doc-comment
+        comment_block = _preceding_comment_block(
+            code_lines, found_start, max(1, found_start - 60)
+        )
+        new_s = comment_block[0][0] if comment_block else found_start
+
+        # Step 1c: find end boundary.
+        #
+        # Priority order:
+        #   1. next_anchor  — the start of the FOLLOWING section.  The end is
+        #      the last non-blank line before it.  Most reliable because the
+        #      next label / form opener is typically unique and easy to locate.
+        #   2. Specific end_anchor (long / unique text) — trust the model;
+        #      searched forward from found_start, not around approx_end.
+        #   3. Structural scan for generic closers (}, >, RTS …) — these
+        #      tokens repeat too often to search for directly.
+        #   4. Forward anchor search for generic tokens — last resort when
+        #      structural scan comes up empty.
+        new_e = None
+
+        # ── 1. next_anchor: find the following section, back up one line ──────
+        if next_anchor:
+            next_start = _find_anchor_forward(next_anchor, code_lines, found_start + 1)
+            if next_start is not None:
+                candidate = next_start - 1
+                # Skip any blank lines that sit between sections
+                while candidate > found_start and not code_lines[candidate - 1].strip():
+                    candidate -= 1
+                if candidate >= found_start:
+                    new_e = candidate
+
+        # ── 2. Specific end_anchor ────────────────────────────────────────────
+        if new_e is None and end_anchor and not _anchor_is_generic(end_anchor):
+            new_e = _find_anchor_forward(end_anchor, code_lines, found_start)
+
+        # ── 3. Structural / language-aware scan ───────────────────────────────
+        if new_e is None:
+            if _is_c_like(language):
+                new_e = _find_end_c(code_lines, found_start)
+            elif _is_lisp_like(language):
+                new_e = _find_end_lisp(code_lines, found_start)
+            elif _is_asm_like(language):
+                new_e = _find_end_asm(code_lines, found_start)
+
+        # ── 4. Generic end_anchor forward search (last resort) ────────────────
+        if new_e is None and end_anchor:
+            new_e = _find_anchor_forward(end_anchor, code_lines, found_start)
+
+        if new_e is None:
+            new_e = approx_end   # absolute last resort: keep original end
+
+        # Trim trailing blank lines
+        while new_e > new_s and not code_lines[new_e - 1].strip():
+            new_e -= 1
+
+        # Basic sanity check
         if not (1 <= new_s <= new_e <= total):
             continue
-        if not code_lines[new_s - 1].strip():   # line_start must not be blank
-            continue
-        if not code_lines[new_e - 1].strip():   # line_end must not be blank
+        if not code_lines[new_s - 1].strip() or not code_lines[new_e - 1].strip():
             continue
 
-        # Reject if this range overlaps any already-accepted correction
-        if any(new_s <= ae and new_e >= as_ for as_, ae in accepted):
-            continue
-        accepted.append((new_s, new_e))
+        resolved.append((new_s, new_e, eid))
+        seen_eids.add(eid)
 
+    if not resolved:
+        return 0
+
+    # ── Phase 2: sort by start line ───────────────────────────────────────────
+    resolved.sort(key=lambda x: x[0])
+
+    # ── Phase 3: trim overlaps ────────────────────────────────────────────────
+    # Each range must end strictly before the next one starts.  When two
+    # resolved ranges overlap we try two strategies in order:
+    #
+    #   A) Trim the earlier range's end to just before the later range starts.
+    #      Works whenever the two ranges have different start lines.
+    #
+    #   B) Same start line (fix-ranges returned the same anchor for both, or
+    #      the generator produced duplicate starts):  push the later range's
+    #      start forward to just after the earlier range ends.
+    #
+    # Both strategies skip blank lines at the new boundary.
+    for i in range(len(resolved) - 1):
+        ns,  ne,  eid       = resolved[i]
+        next_ns, next_ne, next_eid = resolved[i + 1]
+
+        if ne < next_ns:
+            continue  # no overlap, nothing to do
+
+        # Strategy A: trim the earlier range's end
+        trimmed = next_ns - 1
+        while trimmed > ns and not code_lines[trimmed - 1].strip():
+            trimmed -= 1
+        if trimmed >= ns:
+            resolved[i] = (ns, trimmed, eid)
+            continue
+
+        # Strategy B: same start (trimmed < ns) — push the later range forward
+        new_ns = ne + 1
+        while new_ns <= next_ne and new_ns <= total and not code_lines[new_ns - 1].strip():
+            new_ns += 1
+        if new_ns <= next_ne:
+            resolved[i + 1] = (new_ns, next_ne, next_eid)
+
+    # ── Phase 4: apply to file text ───────────────────────────────────────────
+    text    = path.read_text(encoding="utf-8")
+    changed = 0
+
+    for new_s, new_e, eid in resolved:
         before = text
         text = re.sub(
             rf'(  - id: "{re.escape(eid)}"\n    line_start: )\d+(\n    line_end: )\d+',
@@ -539,10 +781,10 @@ def _apply_corrections(path: Path, corrections: list[dict],
 def fix_ranges(path, client, gen_cfg: dict = None, console=None) -> int:
     """Run the range-alignment pass on a single .md file.
 
-    Sends each enhancement (in batches of BATCH_SIZE) to the model with a
-    context window of source code around its current range, asks for
-    corrected boundaries, validates the response, and rewrites only the
-    line_start / line_end fields in the YAML frontmatter.
+    Sends the complete source file plus all enhancements to the model in a
+    single request.  The model returns text anchors (not line numbers); Python
+    resolves those to exact line numbers via string search and deterministic
+    end detection, then rewrites only the line_start / line_end fields.
 
     Returns the number of enhancements whose ranges were updated.
     """
@@ -559,30 +801,17 @@ def fix_ranges(path, client, gen_cfg: dict = None, console=None) -> int:
     )
     temperature = (gen_cfg or {}).get("temperature", 0)
 
-    all_corrections: list[dict] = []
+    valid_ids = {e["id"] for e in enhancements}
+    messages  = _build_messages(enhancements, code_lines, file_info, language=language)
 
-    for batch_num, i in enumerate(range(0, len(enhancements), BATCH_SIZE), 1):
-        batch     = enhancements[i : i + BATCH_SIZE]
-        valid_ids = {e["id"] for e in batch}
+    try:
+        raw         = client.complete(messages, temperature=temperature, max_tokens=8192)
+        corrections = _parse_response(raw, valid_ids)
+    except Exception as exc:
+        if console:
+            console.print(f"  [yellow]range-fix failed: {exc}[/yellow]")
+        return 0
 
-        prev_end   = int(enhancements[i - 1].get("line_end",   0)) if i > 0 else 0
-        next_start = int(enhancements[i + BATCH_SIZE].get("line_start", 0)) \
-                     if i + BATCH_SIZE < len(enhancements) else 0
-
-        messages  = _build_batch_messages(
-            batch, code_lines, file_info,
-            prev_end=prev_end, next_start=next_start,
-            language=language,
-        )
-
-        try:
-            raw = client.complete(messages, temperature=temperature, max_tokens=8192)
-            corrections = _parse_response(raw, valid_ids)
-            all_corrections.extend(corrections)
-        except Exception as exc:
-            if console:
-                console.print(
-                    f"  [yellow]range-fix batch {batch_num} failed: {exc}[/yellow]"
-                )
-
-    return _apply_corrections(path, all_corrections, code_lines)
+    return _apply_corrections(
+        path, corrections, code_lines, enhancements, language
+    )

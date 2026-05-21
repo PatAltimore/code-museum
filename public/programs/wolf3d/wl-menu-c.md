@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines dynamic menu text strings, which change based on the version of the game (e.g., 'SPEAR' or 'GOODTIMES') and localization settings. The text includes humorous prompts for quitting, such as 'Press N to save the world. Press Y to abandon it.' These strings highlight id Software's attention to player engagement and humor, even in mundane actions like quitting the game. In 1992, localization in games was still relatively rare, and this approach demonstrated forward-thinking design. It influenced later games to incorporate dynamic text and localization, paving the way for global accessibility in gaming."
   - id: "menu-item-configuration"
     line_start: 52
-    line_end: 61
+    line_end: 53
     title: "Menu Item Configuration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Menu_(computing)"
     image_url: ""
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This routine handles the display of high scores, accompanied by music to enhance the experience. High scores were a staple of arcade culture, and their inclusion in Wolfenstein 3D reflects the game's roots in that tradition. The integration of music adds emotional weight to the achievement, a technique that became common in later games. Titles like Unreal Tournament and Halo adopted similar approaches, using music to underscore player accomplishments and create memorable moments."
   - id: "episode-selection-menu"
-    line_start: 935
+    line_start: 921
     line_end: 1042
     title: "The Menu That Sold Episodes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -95,7 +95,7 @@ enhancements:
     content: "The `CP_Sound` function allows players to configure sound settings, including sound effects, digitized sound, and music. It supports multiple sound modes, such as AdLib and Sound Blaster, reflecting the diverse hardware landscape of the era. The menu dynamically disables options based on hardware availability, ensuring a smooth user experience. This adaptability was crucial in the early 1990s, when PC configurations varied widely. The function's modular design influenced later games, which adopted similar approaches to hardware detection and configuration."
   - id: "save-game-functionality"
     line_start: 1368
-    line_end: 1655
+    line_end: 1461
     title: "Saving Progress in the Age of DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `CalibrateJoystick` function ensures accurate input from joystick devices. It prompts the user to move the joystick to its extremes, capturing minimum and maximum values for calibration. This process was essential for games like Wolfenstein 3D, where precise control could mean the difference between victory and defeat. The function's design reflects id Software's attention to player experience, accommodating a wide range of hardware. Joystick calibration routines became a staple in gaming, appearing in titles from flight simulators to racing games."
   - id: "mouse-sensitivity-adjustment"
-    line_start: 1831
+    line_start: 1880
     line_end: 1955
     title: "Fine-Tuning the Mouse for FPS Mastery"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mouse_(computing)"
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "This section draws the control configuration screen, dynamically enabling menu options based on detected hardware like joysticks and mice. The code uses conditional compilation to adapt the menu's appearance for different regions, such as Japan. In 1992, hardware detection was a critical feature for PC games, as peripherals varied widely. By enabling or disabling menu options based on hardware presence, id Software ensured a seamless experience for players regardless of their setup. This approach influenced later games, which adopted similar techniques for dynamic UI adjustments based on hardware capabilities."
   - id: "customize-controls"
-    line_start: 2040
+    line_start: 2050
     line_end: 2082
     title: "Customizing controls for every player"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
@@ -134,7 +134,7 @@ enhancements:
     image_caption: ""
     content: "The `CustomControls` function allows players to redefine input mappings for mouse, joystick, and keyboard. This level of customization was rare in 1992 but became a hallmark of PC gaming. The function calls specific routines to handle input remapping for each device, ensuring flexibility. John Carmack and Tom Hall prioritized player agency, allowing users to tailor controls to their preferences. This feature set a precedent for modern games, where customizable controls are expected, especially in competitive genres like first-person shooters."
   - id: "enter-control-data"
-    line_start: 2129
+    line_start: 2136
     line_end: 2362
     title: "How Wolfenstein handled input remapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
@@ -215,7 +215,7 @@ enhancements:
     content: "The `ReadAnyControl` function integrates input from multiple devices, including mouse, keyboard, and joystick. It interprets directional movements and button presses, ensuring seamless gameplay regardless of the player's preferred input method. This flexibility was a hallmark of Wolfenstein 3D, accommodating a wide range of hardware configurations. The function's ability to detect subtle movements and button states reflects the game's commitment to precision and responsiveness. Multi-input support became a standard feature in later games, influencing titles like Quake and Unreal."
   - id: "confirm-localized-menu-responses"
     line_start: 3587
-    line_end: 3660
+    line_end: 3634
     title: "Localized menu responses for global audiences"
     wikipedia_url: "https://en.wikipedia.org/wiki/Localization_(video_games)"
     image_url: ""
@@ -255,7 +255,7 @@ enhancements:
     content: "The `DrawStripes` function adds decorative stripes to screen titles, enhancing the visual appeal of menus and transitions. This small but impactful detail contributed to the game's polished presentation, setting it apart from other titles of the era. By using graphical primitives like `VWB_Bar` and `VWB_Hlin`, the function demonstrates how simple techniques can create a striking effect. Such attention to aesthetics influenced later games, including Doom, which continued to refine visual design in menus and interfaces."
   - id: "dynamic-game-data-detection"
     line_start: 3877
-    line_end: 3986
+    line_end: 3909
     title: "How Wolfenstein 3D Adapted to Multiple Versions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

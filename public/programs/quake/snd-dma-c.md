@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "foundation-sound-initialization"
     line_start: 35
-    line_end: 56
+    line_end: 72
     title: "Foundation: Sound Initialization Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines foundational variables and structures for Quake's sound system, including the `channels` array for managing sound channels and the `snd_initialized` flag to track system readiness. At the time, sound systems in games were often rudimentary, but Quake aimed to create an immersive experience by managing multiple dynamic and ambient sound channels. The use of `volatile dma_t` reflects the direct interaction with hardware buffers, a technique common in the era of limited CPU resources. By establishing these variables, the developers laid the groundwork for a sound engine that could spatialize audio and dynamically allocate resources. This approach influenced subsequent game engines, including Unreal Engine and Source Engine, which adopted similar abstractions for sound management."
   - id: "user-settable-sound-variables"
     line_start: 74
-    line_end: 84
+    line_end: 74
     title: "User-Settable Sound Variables: Fine-Tuning Audio"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This section introduces configurable sound variables, such as `volume`, `ambient_level`, and `bgmvolume`, allowing players to adjust audio settings to their preferences. In the mid-1990s, user customization was becoming a hallmark of PC gaming, and Quake's inclusion of adjustable sound parameters reflected this trend. These variables were registered with the console system, enabling real-time adjustments during gameplay—a feature that enhanced player immersion and control. By exposing these settings, id Software empowered players to tailor their experience, a practice that became standard in modern game engines. Games like Half-Life and Counter-Strike later expanded on this concept, offering even more granular control over audio and other settings."
   - id: "ambient-sound-control"
     line_start: 103
-    line_end: 112
+    line_end: 106
     title: "Ambient Sound Control: On and Off Switch"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"
     image_url: ""
@@ -62,8 +62,8 @@ enhancements:
     image_caption: ""
     content: "The `S_Startup` function initializes the sound system, including the DMA sound buffer via `SNDDMA_Init`. Direct Memory Access (DMA) was a critical technology for real-time audio processing in the 1990s, enabling efficient data transfer between memory and sound hardware without burdening the CPU. This routine checks for successful initialization and gracefully handles failures, ensuring the game can continue running even if sound cannot be started. The reliance on DMA reflects the hardware constraints of the time, where optimizing CPU cycles was paramount. This approach influenced later game engines, which continued to prioritize efficient hardware interaction for audio systems."
   - id: "sound-precaching"
-    line_start: 327
-    line_end: 347
+    line_start: 310
+    line_end: 325
     title: "Sound Precaching: Loading Audio for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `S_PrecacheSound` function ensures that sound effects are loaded into memory before they are needed, reducing latency during gameplay. Precaching was a common technique in the 1990s to optimize performance on systems with limited memory and storage speeds. By caching audio data, Quake minimized delays caused by disk access, enhancing the player's experience. This method was particularly important for multiplayer scenarios, where real-time responsiveness was critical. The concept of precaching extended beyond audio, influencing texture and model loading in later engines like Unreal Engine and Unity."
   - id: "spatialize-sound-channels"
     line_start: 396
-    line_end: 430
+    line_end: 447
     title: "Spatialize Sound Channels: 3D Audio Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"
     image_url: ""

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "event-handling-with-d-postevent"
-    line_start: 134
+    line_start: 145
     line_end: 153
     title: "Event Handling with D_PostEvent"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "D_ProcessEvents iterates through the event buffer, passing each event to responder functions like M_Responder (menu handling) and G_Responder (gameplay input). If the menu consumes an event, it skips further processing. This modular approach separates input handling for different game states, ensuring that menus and gameplay can coexist seamlessly. In the early 1990s, games often struggled to manage simultaneous user inputs effectively. DOOM's approach, where events are processed in a loop and dispatched to state-specific handlers, was groundbreaking. It allowed the game to maintain high responsiveness even during intense action sequences. This technique influenced later game engines, including id Tech 2 and id Tech 3, which refined the concept further. The modularity seen here is echoed in modern engines like Unity and Unreal, where input handling is often state-dependent and event-driven. DOOM's code serves as a foundational example of how to architect input systems for real-time applications."
   - id: "real-time-rendering-d-display"
-    line_start: 181
+    line_start: 192
     line_end: 344
     title: "Real-Time Rendering in D_Display"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The D_Display function orchestrates the game's rendering pipeline, handling screen wipes, HUD updates, and frame-by-frame drawing. It integrates various subsystems, such as the automap (AM_Drawer), status bar (ST_Drawer), and player view rendering (R_RenderPlayerView). The function also manages transitions between game states, ensuring smooth visual updates. In 1993, real-time rendering on consumer-grade hardware was a significant challenge. DOOM's ability to deliver fluid visuals on machines like the 386 and 486 was a testament to John Carmack's mastery of optimization. Techniques like screen wipes were not just aesthetic but also functional, helping to mask loading times and state changes. The rendering pipeline established here influenced countless games and engines. The concept of modular rendering subsystems, each responsible for a specific aspect of the visual output, became a standard practice. Modern engines like Unity and Unreal continue to use similar architectures, with rendering systems divided into layers for efficiency and maintainability. DOOM's rendering code remains a touchstone for developers studying optimization and real-time graphics."
   - id: "game-loop-d-doomloop"
-    line_start: 348
+    line_start: 353
     line_end: 406
     title: "The Infinite Game Loop: D_DoomLoop"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
@@ -86,8 +86,8 @@ enhancements:
     image_caption: ""
     content: "FindResponseFile processes command-line arguments to locate and parse response files, which contain additional arguments for the game. It reads the file into memory, appends its contents to the argument list, and displays the updated arguments for debugging purposes. This feature allows users to specify complex configurations without typing lengthy command lines. In the early 1990s, command-line interfaces were a common way to configure software. Response files provided a convenient way to manage complex setups, especially for developers and advanced users. DOOM's implementation reflects id Software's focus on flexibility and user empowerment. Response files influenced later tools and engines, which adopted similar mechanisms for batch processing and configuration. They remain relevant in modern development workflows, where scripts and configuration files are used to automate tasks. DOOM's code serves as a historical example of how to balance usability with technical sophistication."
   - id: "command-line-options-flexibility"
-    line_start: 800
-    line_end: 901
+    line_start: 792
+    line_end: 1170
     title: "How Command-Line Arguments Shaped Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""

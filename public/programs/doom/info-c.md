@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "sprite-name-lookup-table"
-    line_start: 1
+    line_start: 28
     line_end: 54
     title: "The Lookup Table That Named DOOM's World"
     wikipedia_url: "https://doomwiki.org/wiki/Sprite"
@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines the `sprnames` array, a lookup table containing the names of all sprites used in DOOM. Each entry corresponds to a visual representation of entities, weapons, or effects, such as 'TROO' for the Imp or 'BFGG' for the BFG weapon. By using a compact array, the game efficiently associates sprite names with their corresponding graphical assets. In 1993, memory constraints on consumer PCs were severe, and lookup tables like this were a common technique to minimize memory usage while maintaining flexibility. John Carmack and the team at id Software leveraged this approach to streamline the game's rendering pipeline. This design influenced later games, where sprite-based systems evolved into texture atlases and object-oriented asset management. The concept of centralized sprite naming persists in modern engines like Unity and Unreal, albeit in more sophisticated forms."
   - id: "action-function-declarations"
     line_start: 57
-    line_end: 131
+    line_end: 130
     title: "How DOOM's Entities Came to Life"
     wikipedia_url: "https://doomwiki.org/wiki/Action_function"
     image_url: ""

@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the interrupt vector table segment and sets up the vector for the clock interrupt. The programmer uses the `ORG` directive to position the interrupt vector at a specific memory location (60H + 7 * 4). This is a critical step in enabling hardware interrupts, as the CPU needs to know where to jump when an interrupt occurs. In 1983, this approach reflected the low-level nature of programming for the IBM PC, where developers had to manage hardware directly. Tim Paterson, the author of MS-DOS, adapted techniques from his earlier work on 86-DOS, which itself borrowed from CP/M. This method of interrupt handling influenced later operating systems, including Windows, which retained the concept of interrupt vectors in its kernel design."
   - id: "clock-enable-routine"
-    line_start: 63
+    line_start: 61
     line_end: 145
     title: "The Arithmetic Behind Clock Interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Timer_interrupt"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `CLOCKON` routine enables the clock interrupt and configures the timer hardware. It begins by setting the mode register and loading the counter with a calculated value based on the desired interval in microseconds (passed in DX). The arithmetic here is notable: the code performs bit shifts and division to convert the interval into a value suitable for the timer hardware. This reflects the constraints of the 8086 CPU, which lacked floating-point arithmetic and required clever use of integer math. By directly interacting with hardware ports (`OUT` instructions), the routine demonstrates the hands-on nature of early PC programming. This approach laid the groundwork for profiling tools and performance monitoring software, influencing later systems like Windows Performance Monitor and third-party tools like Intel VTune."
   - id: "clock-disable-routine"
-    line_start: 151
+    line_start: 149
     line_end: 163
     title: "Turning Off the Clock Interrupt"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
@@ -54,8 +54,8 @@ enhancements:
     image_caption: ""
     content: "The `CLOCKOFF` routine disables the clock interrupt by modifying the interrupt mask register. This simple operation ensures that the timer no longer triggers interrupts, allowing the system to conserve resources when profiling is not needed. The routine's brevity highlights the efficiency required in assembly programming, where every instruction counts. Disabling interrupts was a common practice in early operating systems to manage hardware resources effectively. This technique influenced later systems, where interrupt masking became a standard feature in device drivers and kernel-level programming."
   - id: "leave-interrupt-routine"
-    line_start: 171
-    line_end: 195
+    line_start: 169
+    line_end: 199
     title: "Resetting the Clock After an Interrupt"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""

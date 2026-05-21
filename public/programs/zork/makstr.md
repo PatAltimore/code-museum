@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The OBJECT routine defines the creation and properties of objects in Zork's world. Each object has identifiers, descriptions, attributes (e.g., size, capacity), and flags for special behaviors (e.g., emitting light). The routine uses MDL's PUT operation to associate these properties with the object, enabling dynamic interactions like picking up, examining, or using objects. This modular approach to object creation was revolutionary in 1977, as most games had static, predefined objects. The authors of Zork leveraged MDL's flexibility to implement this efficiently. This technique influenced object systems in later adventure games and RPGs, including the inventory mechanics in The Elder Scrolls series."
   - id: "add-word-vocabulary-management"
-    line_start: 165
+    line_start: 167
     line_end: 169
     title: "Adding Words to Zork's Vocabulary"
     wikipedia_url: "https://en.wikipedia.org/wiki/Natural_language_processing"

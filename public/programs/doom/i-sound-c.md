@@ -71,7 +71,7 @@ enhancements:
     content: "The `I_InitSound` function initializes DOOM's sound system, configuring the Linux OSS (Open Sound System) for audio output. It sets parameters like sample rate, stereo mode, and fragment size, ensuring compatibility with the `/dev/dsp` device. This was a significant adaptation for the Linux port, as the original DOS version relied on different APIs. By pre-caching sound data and zeroing the mixing buffer, the function prepared the system for efficient runtime audio handling. This approach demonstrated how games could adapt to diverse operating systems, paving the way for cross-platform development."
   - id: "timer-interrupts"
     line_start: 892
-    line_end: 984
+    line_end: 937
     title: "Experimental Timer Interrupts for Sound"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""

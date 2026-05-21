@@ -70,8 +70,8 @@ enhancements:
     image_caption: ""
     content: "The `VW_MarkUpdateBlock` function calculates which tiles on the screen need to be updated based on their coordinates. By marking these tiles in the `update` grid, the routine minimizes the amount of rendering required, focusing only on areas that have changed. This technique was essential for maintaining high performance on hardware with limited graphical capabilities. It reflects the broader trend in game development of optimizing rendering pipelines to achieve smooth gameplay. The idea of marking regions for redraw influenced later engines like Unreal Engine, where similar principles are applied in modern rendering systems to optimize performance."
   - id: "fizzle-fade-transition-effect"
-    line_start: 457
-    line_end: 516
+    line_start: 471
+    line_end: 547
     title: "The Randomized Pixel Transition Effect"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

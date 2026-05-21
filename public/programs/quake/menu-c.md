@@ -62,16 +62,16 @@ enhancements:
     image_caption: ""
     content: "The `M_AdjustSliders` function dynamically adjusts various game settings, such as screen size, gamma, and mouse sensitivity, based on user input. By mapping slider values to game variables, the developers created an intuitive way for players to customize their experience. This was a significant step forward in user interface design for games, as it provided immediate visual feedback and granular control. The technique of using sliders for configuration became standard in later games, including titles like The Sims and World of Warcraft, which expanded on this idea with more complex UI frameworks."
   - id: "keybinding-system"
-    line_start: 641
-    line_end: 772
+    line_start: 671
+    line_end: 676
     title: "The Keybinding System That Empowered Players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Key_binding"
     image_url: ""
     image_caption: ""
     content: "This section implements Quake's keybinding system, allowing players to customize controls by assigning actions to specific keys. The `M_FindKeysForCommand` and `M_UnbindCommand` functions provide the core logic for managing bindings, while the menu interface lets players make changes interactively. In 1996, customizable keybindings were a relatively novel feature, and Quake's implementation set a precedent for player empowerment in game design. This system directly influenced later games like Counter-Strike and Team Fortress, which built on the idea by adding more sophisticated binding options and scripting capabilities."
   - id: "quit-menu-humor"
-    line_start: 905
-    line_end: 954
+    line_start: 956
+    line_end: 966
     title: "The Quit Menu That Mocked You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The quit menu in Quake features humorous and sometimes sarcastic messages designed to entertain players as they decide whether to exit the game. This playful approach reflects the culture of id Software at the time, where developers often injected personality and humor into their work. The quit menu became a memorable part of Quake's identity and inspired similar features in later games, such as the tongue-in-cheek error messages in Portal and the humorous loading screens in Borderlands."
   - id: "multiplayer-menu-with-web-links"
     line_start: 1025
-    line_end: 1046
+    line_end: 1027
     title: "Why QuakeWorld Advertised Websites in 1996"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
     image_url: ""
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The Quit menu in QuakeWorld serves a dual purpose: it provides credits for the development team while also displaying legal notices. This section uses a combination of text formatting and conditional rendering to display the information. The credits highlight the contributions of key figures like John Carmack, Michael Abrash, and John Cash, while also acknowledging additional programmers and contributors. The legal notices emphasize the copyright and trademark protections for QuakeWorld and related assets. This design reflects id Software's meticulous attention to detail and their commitment to recognizing the team behind the game. It also underscores the importance of legal disclaimers in commercial software, especially during an era when intellectual property rights in gaming were becoming increasingly significant."
   - id: "menu-subsystem-initialization"
-    line_start: 1112
+    line_start: 1116
     line_end: 1126
     title: "How QuakeWorld Bootstrapped Its Menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command_pattern"

@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "foundation-and-includes"
     line_start: 1
-    line_end: 32
+    line_end: 37
     title: "How Quake's Foundation Was Laid"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -41,7 +41,7 @@ enhancements:
     content: "The `noclip_anglehack` variable is a remnant from earlier versions of Quake, hinting at the iterative development process id Software employed. This variable likely facilitated debugging or testing during development, allowing developers to bypass collision detection and explore environments freely. Such hacks were common in the 1990s, as developers worked under tight deadlines and hardware constraints. While it may seem trivial, the presence of this variable underscores the challenges of creating a groundbreaking 3D engine and the creative solutions developers employed. Today, similar debugging tools are standard in game development environments, influenced by practices like this."
   - id: "static-allowremotecmd"
     line_start: 65
-    line_end: 69
+    line_end: 70
     title: "A Security Measure in Multiplayer Gaming"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""
@@ -105,7 +105,7 @@ enhancements:
     content: "The `CL_Init` function is responsible for initializing the client-side components of QuakeWorld. It sets up default user information, registers configuration variables (`cvars`), and initializes subsystems like input handling, prediction, and camera controls. This modular initialization process reflects id Software's design philosophy of separating concerns, allowing individual systems to be updated or replaced without affecting others. In 1996, multiplayer gaming was still in its infancy, and Quake's approach to client initialization laid the groundwork for modern multiplayer architectures. The modularity and extensibility of this system influenced later engines like Unreal Engine and Source, which adopted similar principles for managing complex game state and user interactions."
   - id: "host-endgame-error-handling"
     line_start: 1181
-    line_end: 1234
+    line_end: 1203
     title: "Graceful error handling in a multiplayer world"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
@@ -120,7 +120,7 @@ enhancements:
     image_caption: ""
     content: "The `Host_WriteConfiguration` function writes key bindings and archived configuration variables (`cvars`) to a file (`config.cfg`). This ensures that user preferences persist across sessions, a feature that was becoming standard in games by the mid-1990s. The function checks if the host is initialized before attempting to write, preventing errors during shutdown or initialization. By using plain text files for configuration, id Software made it easy for players to manually edit settings, a practice that became popular among enthusiasts and modders. This approach influenced later games, which often included editable configuration files to allow advanced customization and troubleshooting."
   - id: "host-frame-simulation"
-    line_start: 1294
+    line_start: 1302
     line_end: 1393
     title: "The heartbeat of Quake's client-side simulation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
@@ -129,7 +129,7 @@ enhancements:
     content: "The `Host_Frame` function is the central loop for client-side simulation in QuakeWorld. It determines the simulation time, processes input events, executes console commands, reads packets from the server, and updates the screen and audio. The function also includes framerate limiting logic to ensure smooth gameplay on hardware constrained by the era's limitations. This loop is an early example of the game engine architecture that became standard in later titles, where a central frame function coordinates all subsystems. The modular design of `Host_Frame` allowed id Software to iterate quickly and optimize individual components, influencing the development of engines like Unity and Unreal, which adopted similar frame-based architectures."
   - id: "simple-encryption-for-model-names"
     line_start: 1395
-    line_end: 1408
+    line_end: 1399
     title: "A lightweight trick for obfuscating data"
     wikipedia_url: "https://en.wikipedia.org/wiki/XOR_cipher"
     image_url: ""

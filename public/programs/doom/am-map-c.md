@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines the color palette used in DOOM's automap, assigning specific colors to walls, objects, and other map elements. The palette was carefully chosen to ensure visibility and contrast on CRT monitors of the early 1990s, which often had limited color fidelity. The automap colors not only served functional purposes but also contributed to the game's aesthetic consistency. John Carmack and the team at id Software prioritized usability, ensuring players could quickly distinguish map features during gameplay. The approach influenced later games, where color coding became standard in automap designs, such as in Quake and Unreal."
   - id: "player-arrow-definition"
     line_start: 154
-    line_end: 190
+    line_end: 168
     title: "The Arrow That Always Points Right"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vector_graphics"
     image_url: ""

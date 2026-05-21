@@ -33,7 +33,7 @@ enhancements:
     content: "The ALT-FLAG is set to true at the start of the file, signaling a global state variable used throughout the game logic. This flag likely controls alternative behaviors or modes in the game. In the context of Zork, global flags like this were essential for managing state transitions, given the limited memory and processing power of the DEC PDP-10. The PDP-10's architecture required programmers to be highly efficient with their use of variables and flags, as memory was a scarce resource. This approach influenced later adventure games, which adopted similar global state management techniques to handle complex branching narratives."
   - id: "save-it-subroutine"
     line_start: 8
-    line_end: 60
+    line_end: 13
     title: "The Subroutine That Saved Zork"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The ROOM-INFO routine is central to Zork's gameplay, handling room descriptions, object visibility, and player interactions. It checks for light conditions, warns players of dangers (e.g., being eaten by a grue), and provides detailed descriptions of the surroundings. This routine showcases the developers' mastery of text-based storytelling, creating immersive environments with limited resources. The use of flags like BRIEF!-FLAG and SUPER-BRIEF!-FLAG allows players to toggle between detailed and concise descriptions, a feature that enhances replayability. ROOM-INFO's design influenced the narrative mechanics of later adventure games, setting a standard for dynamic and interactive storytelling."
   - id: "score-calculation"
-    line_start: 649
+    line_start: 663
     line_end: 693
     title: "How Zork Measured Your Adventure"
     wikipedia_url: "https://en.wikipedia.org/wiki/Score_(video_gaming)"
@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The SCORE routine calculates and displays the player's score, rank, and progress in the game. It uses the player's achievements, moves, and deaths to assign a rank, ranging from 'Beginner' to 'Wizard.' This ranking system added a competitive element to Zork, encouraging players to improve their performance. In the late 1970s, scoring systems were common in arcade games but rare in adventure games. Zork's implementation of a detailed scoring mechanism influenced the design of point-based systems in later games, including role-playing and strategy games. The ranks also reflect the developers' humor and creativity, adding personality to the gameplay."
   - id: "record-logging"
-    line_start: 709
+    line_start: 717
     line_end: 790
     title: "Logging Your Journey Through Zork"
     wikipedia_url: "https://en.wikipedia.org/wiki/Log_file"
@@ -81,7 +81,7 @@ enhancements:
     content: "The RECORD routine logs the player's progress, including score, moves, deaths, and location. It interacts with the PDP-10's file system to create and update log files, ensuring persistence across sessions. Logging was an advanced feature for its time, allowing players to review their journey and developers to debug the game. The routine includes checks for file access and handles errors gracefully, reflecting the constraints of the PDP-10's multi-user environment. This feature influenced the development of save and logging systems in later games, providing a foundation for tracking player progress and debugging complex software."
   - id: "flag-names-and-short-names"
     line_start: 792
-    line_end: 822
+    line_end: 826
     title: "Flags and Short Names: A Compact State Tracker"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -97,7 +97,7 @@ enhancements:
     content: "The PDSKDATE routine formats a date stored as a word (WD) into a human-readable string, including the month, day, and time. It extracts bits from the word using MDL's GETBITS function and converts them to fixed-point numbers. This was necessary because the PDP-10 stored data in compact formats that required bitwise manipulation to interpret. The routine also accounts for AM/PM distinctions and handles edge cases like unknown dates. This kind of low-level manipulation was common in the era, as developers had to work directly with hardware-specific data representations. Techniques like this laid the groundwork for modern date/time libraries in programming languages."
   - id: "jigs-up-death-handler"
     line_start: 865
-    line_end: 947
+    line_end: 945
     title: "The Death Handler: When Grues Attack"
     wikipedia_url: "https://en.wikipedia.org/wiki/Grue_(monster)"
     image_url: ""
@@ -105,14 +105,14 @@ enhancements:
     content: "The JIGS-UP routine handles player death scenarios, including interactions with the infamous 'grue'. It updates the game state by removing the player from the active room, deducting points, and optionally offering a humorous 'patch' to restore the player. The routine reflects Zork's blend of dark humor and technical ingenuity. Written in MDL, it demonstrates the game's ability to dynamically adjust object states and player inventory. The concept of handling player death with both narrative and mechanical consequences influenced later adventure games, which adopted similar systems to maintain immersion while penalizing players for mistakes."
   - id: "lamp-on-and-lamp-off"
     line_start: 1500
-    line_end: 1527
+    line_end: 1516
     title: "Turning On and Off the Light"
     wikipedia_url: "https://en.wikipedia.org/wiki/Text-based_game"
     image_url: ""
     image_caption: ""
     content: "These routines manage the state of light sources in the game, such as the player's lamp. LAMP-ON checks if the lamp can be lit, updates its state, and adjusts the room's lighting. LAMP-OFF reverses the process, potentially plunging the room into darkness. Light sources are critical to Zork's gameplay, as certain areas are inaccessible without illumination. The routines showcase MDL's ability to manipulate object properties dynamically. This mechanic became a staple in adventure games, influencing titles like Infocom's later works and even modern survival games where light plays a strategic role."
   - id: "parsing-player-input"
-    line_start: 1531
+    line_start: 1551
     line_end: 1589
     title: "Parsing Player Input: Making Sense of Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
