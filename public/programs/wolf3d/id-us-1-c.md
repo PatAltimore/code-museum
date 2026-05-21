@@ -80,7 +80,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 //
 //	ID Engine
 //	ID_US_1.c - User Manager - General routines

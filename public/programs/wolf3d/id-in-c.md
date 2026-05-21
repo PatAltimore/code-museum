@@ -96,7 +96,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 //
 //	ID Engine
 //	ID_IN.c - Input Manager

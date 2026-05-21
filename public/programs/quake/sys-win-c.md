@@ -88,7 +88,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 /*
 Copyright (C) 1996-1997 Id Software, Inc.
 

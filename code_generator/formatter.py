@@ -3,12 +3,15 @@ import re
 
 
 _LANG_FENCE: list[tuple[str, str]] = [
+    # More-specific entries must come before less-specific ones because
+    # matching is substring-based.  "c, x86 assembly" and "c and x86" must
+    # precede "x86 assembly" / "assembly" or the shorter string wins first.
+    ("c, x86 assembly",  "cpp"),
+    ("c and x86",        "cpp"),
     ("6502 assembly",    "asm"),
     ("8086 assembly",    "asm"),
     ("x86 assembly",     "asm"),
     ("assembly",         "asm"),
-    ("c, x86 assembly",  "cpp"),
-    ("c and x86",        "cpp"),
     ("c/c++",            "cpp"),
     ("c++",              "cpp"),
     ("mdl",              "lisp"),
@@ -17,8 +20,29 @@ _LANG_FENCE: list[tuple[str, str]] = [
     ("c",                "cpp"),
 ]
 
+# File extensions that unambiguously identify the language, regardless of
+# the program-level language string.
+_EXT_FENCE: dict[str, str] = {
+    "c":   "cpp",
+    "h":   "cpp",
+    "cpp": "cpp",
+    "cc":  "cpp",
+    "cxx": "cpp",
+    "hpp": "cpp",
+    "asm": "asm",
+    "s":   "asm",
+}
 
-def _fence_id(language: str) -> str:
+
+def _fence_id(language: str, file_path: str = "") -> str:
+    # Use the file extension as the primary signal when available — this
+    # handles programs like Quake / Wolf3D whose language is "C, x86 Assembly"
+    # but whose individual files are either .c/.h or .asm.
+    if file_path and "." in file_path:
+        ext = file_path.rsplit(".", 1)[-1].lower()
+        if ext in _EXT_FENCE:
+            return _EXT_FENCE[ext]
+    # Fall back to the program-level language string
     lang_lower = (language or "").lower()
     for key, fence in _LANG_FENCE:
         if key in lang_lower:
@@ -175,7 +199,7 @@ def _format_from_data(
     lines.append("---")
     lines.append("")
 
-    fence = _fence_id(program.get("language", ""))
+    fence = _fence_id(program.get("language", ""), file_cfg.get("path", ""))
     lines.append(f"```{fence}")
     # Strip Emacs file-mode comment lines (e.g. "// Emacs style mode select -*- C++ -*-")
     # which contain *-* emphasis spans that break GitHub's fenced-code-block renderer.

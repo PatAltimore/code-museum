@@ -122,7 +122,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 //
 //	ID_PM.C
 //	Id Engine's Page Manager v1.0

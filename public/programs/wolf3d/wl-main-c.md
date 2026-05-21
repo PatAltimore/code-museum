@@ -120,7 +120,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_MAIN.C
 
 #include <conio.h>

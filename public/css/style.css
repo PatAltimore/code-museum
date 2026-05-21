@@ -779,14 +779,18 @@ a:hover {
 .hljs-variable,
 .hljs-params      { color: #9cdcfe; }
 
-/* Assembly: section names (.text, .data …) */
+/* x86asm: section names (.text, .data …) */
 .hljs-section     { color: #dcdcaa; font-weight: 600; }
 
-/* Assembly: labels */
+/* x86asm: labels */
 .hljs-symbol      { color: #9cdcfe; }
 
 /* x86asm: instructions rendered as name */
 .hljs-name        { color: #569cd6; }
+
+/* Deletion / addition in diffs */
+.hljs-deletion    { color: #f44747; }
+.hljs-addition    { color: #b5cea8; }
 
 /* Light theme overrides */
 html[data-theme="light"] .hljs-comment,

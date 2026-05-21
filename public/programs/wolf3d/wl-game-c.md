@@ -128,7 +128,7 @@ enhancements:
 
 ---
 
-```asm
+```cpp
 // WL_GAME.C
 
 #include "WL_DEF.H"
