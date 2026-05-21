@@ -748,10 +748,84 @@ a:hover {
   flex: 1;
 }
 
-.line-code.asm-comment { color: var(--comment); font-style: italic; }
-.line-code.asm-label   { color: var(--label); font-weight: 700; }
-.line-code.asm-directive { color: var(--directive); }
-.line-code.asm-empty   { color: var(--muted); }
+/* ── Syntax highlighting — VS Code Dark+ / Light+ palette ─────────────────── */
+
+/* Dark theme (default) */
+.hljs-comment,
+.hljs-quote       { color: #6a9955; font-style: italic; }
+
+.hljs-keyword,
+.hljs-selector-tag { color: #569cd6; }
+
+.hljs-string,
+.hljs-attr        { color: #ce9178; }
+
+.hljs-number,
+.hljs-literal     { color: #b5cea8; }
+
+.hljs-title,
+.hljs-title.function_ { color: #dcdcaa; }
+
+.hljs-type,
+.hljs-class .hljs-title { color: #4ec9b0; }
+
+.hljs-built_in    { color: #569cd6; }
+
+.hljs-meta,
+.hljs-meta .hljs-keyword { color: #c586c0; }
+
+.hljs-meta .hljs-string { color: #ce9178; }
+
+.hljs-variable,
+.hljs-params      { color: #9cdcfe; }
+
+/* x86asm: section names (.text, .data …) */
+.hljs-section     { color: #dcdcaa; font-weight: 600; }
+
+/* x86asm: labels */
+.hljs-symbol      { color: #9cdcfe; }
+
+/* x86asm: instructions rendered as name */
+.hljs-name        { color: #569cd6; }
+
+/* Deletion / addition in diffs */
+.hljs-deletion    { color: #f44747; }
+.hljs-addition    { color: #b5cea8; }
+
+/* Light theme overrides */
+html[data-theme="light"] .hljs-comment,
+html[data-theme="light"] .hljs-quote       { color: #008000; }
+
+html[data-theme="light"] .hljs-keyword,
+html[data-theme="light"] .hljs-selector-tag { color: #0000ff; }
+
+html[data-theme="light"] .hljs-string,
+html[data-theme="light"] .hljs-attr        { color: #a31515; }
+
+html[data-theme="light"] .hljs-number,
+html[data-theme="light"] .hljs-literal     { color: #098658; }
+
+html[data-theme="light"] .hljs-title,
+html[data-theme="light"] .hljs-title.function_ { color: #795e26; }
+
+html[data-theme="light"] .hljs-type,
+html[data-theme="light"] .hljs-class .hljs-title { color: #267f99; }
+
+html[data-theme="light"] .hljs-built_in    { color: #0000ff; }
+
+html[data-theme="light"] .hljs-meta,
+html[data-theme="light"] .hljs-meta .hljs-keyword { color: #af00db; }
+
+html[data-theme="light"] .hljs-meta .hljs-string { color: #a31515; }
+
+html[data-theme="light"] .hljs-variable,
+html[data-theme="light"] .hljs-params      { color: #001080; }
+
+html[data-theme="light"] .hljs-section     { color: #795e26; }
+
+html[data-theme="light"] .hljs-symbol      { color: #001080; }
+
+html[data-theme="light"] .hljs-name        { color: #0000ff; }
 
 .enhancement-panel {
   background: var(--surface);
