@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `R_RenderDynamicLightmaps` function updates lightmaps dynamically based on changes in lighting conditions, such as moving light sources. This feature was critical for maintaining visual consistency in Quake's dynamic environments. In the 1990s, real-time updates to lightmaps were a significant technical achievement, as they required efficient memory management and fast calculations. The principles behind this function laid the groundwork for dynamic lighting systems in modern engines, which now leverage GPU acceleration for even greater complexity."
   - id: "draw-texture-chains"
-    line_start: 1039
+    line_start: 1032
     line_end: 1081
     title: "Sorting Textures for Efficient Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "This function, `DrawTextureChains`, organizes textures into chains for rendering, ensuring that surfaces sharing the same texture are drawn sequentially. This minimizes state changes in the graphics pipeline, which were costly on 1990s hardware. The function also handles special cases like sky textures and mirrors, which require unique rendering techniques. At the time, hardware constraints such as limited VRAM and slow texture swapping necessitated such optimizations. John Carmack and Michael Abrash, both renowned for their expertise in graphics programming, implemented these techniques to push the limits of what was possible on consumer-grade hardware. This approach influenced later engines like Unreal Engine and Unity, which continue to optimize rendering by batching similar operations together."
   - id: "draw-brush-model"
-    line_start: 1088
+    line_start: 1083
     line_end: 1185
     title: "Rendering Rotated Brush Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Brush_(computer_graphics)"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `R_DrawBrushModel` function is responsible for rendering brush models, which are 3D objects defined by planes. It accounts for rotation and dynamic lighting, ensuring that models are correctly positioned and lit in the scene. Brush models were a staple of Quake's level design, enabling complex structures like doors and platforms. The function also includes a workaround for a bug in Quake's handling of angles, highlighting the challenges of debugging in a high-pressure development environment. Carmack's innovative use of dynamic lighting here laid the groundwork for more advanced lighting systems in later games, such as Doom 3's per-pixel lighting."
   - id: "recursive-world-node"
-    line_start: 1200
+    line_start: 1187
     line_end: 1319
     title: "Traversing the World with Binary Space Partitioning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"

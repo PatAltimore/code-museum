@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes the sky texture for Quake, dividing it into two parts: a main texture and a masked overlay. The texture is packed into memory in a way that aligns with the hardware's requirement for 256-byte scan widths. This clever packing ensures efficient access during rendering, minimizing memory fragmentation and maximizing performance. At the time, memory was a scarce resource, and optimizing its use was critical for achieving smooth gameplay. John Carmack and Michael Abrash, known for their expertise in low-level optimization, likely devised this approach to balance visual fidelity with hardware constraints. The technique of dividing textures into overlays influenced later game engines, such as Unreal Engine, which adopted similar methods for texture management."
   - id: "dynamic-sky-generation"
-    line_start: 97
+    line_start: 92
     line_end: 153
     title: "The Algorithm Behind Quake's Moving Sky"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `R_MakeSky` function dynamically generates the sky texture based on time and speed variables (`skytime`, `skyspeed`). By shifting texture coordinates, it creates the illusion of a moving sky. This was a groundbreaking feature in 1996, as dynamic environments were rare in games of the era. The function includes optimizations for unaligned memory access, a technique that was crucial for performance on x86 processors. The fallback paths ensure compatibility with systems lacking support for unaligned access. This approach laid the groundwork for dynamic environmental effects in later games, influencing titles like Half-Life and the Source engine."
   - id: "sky-tile-generation"
-    line_start: 161
+    line_start: 156
     line_end: 212
     title: "How Quake Generated Sky Tiles on the Fly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Procedural_generation"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `R_GenSkyTile` function generates individual sky tiles dynamically, using bitwise operations to combine texture data from the `bottomsky` and `bottommask` arrays. This procedural generation technique allows Quake to create visually complex skies without storing every frame as a static texture, saving memory and enabling real-time changes. Procedural generation was a forward-thinking approach in 1996, predating its widespread use in games like Minecraft. The function's reliance on unaligned memory access highlights the team's deep understanding of hardware optimization. This technique influenced later engines that relied on procedural generation for dynamic environments, such as Unity and Unreal Engine."
   - id: "16-bit-sky-tile-generation"
-    line_start: 220
+    line_start: 215
     line_end: 253
     title: "Quake's Transition to 16-Bit Sky Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_depth"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `R_GenSkyTile16` function adapts sky tile generation for 16-bit color depth, using the `d_8to16table` lookup table to convert 8-bit color values. This transition was significant in the mid-1990s, as hardware began supporting higher color depths, enabling richer visuals. The function retains the procedural generation approach of `R_GenSkyTile` but optimizes it for 16-bit rendering. This reflects id Software's commitment to pushing graphical boundaries while maintaining compatibility with emerging hardware. The move to 16-bit rendering influenced the industry's shift toward higher color fidelity, seen in later games like Unreal and Quake II."
   - id: "sky-frame-calculation"
-    line_start: 261
+    line_start: 256
     line_end: 278
     title: "The Math Behind Quake's Sky Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Greatest_common_divisor"

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-lighting-in-quake"
-    line_start: 1
+    line_start: 25
     line_end: 53
     title: "Foundation: Lighting in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `R_AnimateLight` function implements light animations using precomputed character maps. Each light style is represented as a sequence of characters, where 'm' indicates normal light, 'a' represents no light, and 'z' signifies double brightness. By indexing into these maps based on the game's time variable, Quake achieves dynamic light animations without recalculating brightness values every frame. This technique reflects the era's emphasis on precomputing data to save CPU cycles. John Carmack and Michael Abrash were known for their focus on optimization, and this approach exemplifies their philosophy of leveraging precomputed data to enhance performance. The concept of light styles and animations became a staple in game development, influencing engines like Unreal and Source, which expanded on these ideas to create more complex lighting systems."
   - id: "dynamic-light-marking-in-bsp-trees"
-    line_start: 56
+    line_start: 69
     line_end: 107
     title: "Dynamic Light Marking in BSP Trees"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `R_MarkLights` function is a recursive routine that propagates dynamic light information through a Binary Space Partitioning (BSP) tree. BSP trees were a cornerstone of Quake's rendering engine, allowing efficient traversal and visibility determination in complex 3D environments. This function calculates the distance between a light source and the BSP node's splitting plane to decide whether to traverse the front or back child nodes. Surfaces within the node are then marked with dynamic light bits, enabling real-time lighting effects. In the mid-90s, BSP trees were considered state-of-the-art for 3D rendering, and Quake's use of them for dynamic lighting set a precedent for future engines. The recursive approach influenced later games like Half-Life and Counter-Strike, which relied on BSP-based techniques for both rendering and gameplay mechanics."
   - id: "recursive-light-point-sampling"
-    line_start: 133
+    line_start: 141
     line_end: 236
     title: "Recursive Light Point Sampling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"

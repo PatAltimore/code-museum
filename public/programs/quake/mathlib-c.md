@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The declaration of `vec3_origin` as `{0,0,0}` establishes a universal reference point for 3D calculations. In Quake's 3D world, vectors represent positions, directions, and velocities. By defining a constant origin vector, the developers simplified operations like resetting positions or calculating relative distances. In 1996, hardware constraints meant every optimization mattered, and predefining common constants avoided unnecessary computation. This approach influenced later game engines, where such constants became standard practice for efficiency and clarity in vector math."
   - id: "project-point-plane"
-    line_start: 34
+    line_start: 30
     line_end: 51
     title: "The Math Behind Projecting Points onto Planes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Plane_(geometry)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `ProjectPointOnPlane` function calculates the projection of a point onto a plane defined by a normal vector. This is crucial for collision detection and rendering, where objects interact with surfaces. The function uses the dot product to determine the distance and adjusts the point's position accordingly. In the mid-90s, real-time 3D calculations were computationally expensive, and this efficient implementation reflects the team's deep understanding of linear algebra. The technique became a staple in graphics programming, influencing APIs like OpenGL and DirectX."
   - id: "perpendicular-vector"
-    line_start: 56
+    line_start: 53
     line_end: 86
     title: "Finding Perpendicular Vectors for 3D Rotations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Perpendicular"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `RotatePointAroundVector` function performs a complex transformation: rotating a point around an arbitrary axis by a specified angle. This involves constructing rotation matrices and concatenating them to achieve the desired effect. Such operations were groundbreaking in 1996, enabling dynamic object manipulation and realistic physics in Quake's 3D world. The function's efficiency and modularity set a precedent for game engine design, influencing systems like Unity's Transform component and Unreal's rotation utilities."
   - id: "anglemod-precision"
-    line_start: 154
+    line_start: 148
     line_end: 164
     title: "Optimizing Angle Modulo Operations for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Modulo_operation"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `anglemod` function ensures angles remain within a valid range (0 to 360 degrees) using bitwise operations. This avoids floating-point inaccuracies and improves performance, critical for real-time applications like Quake. By leveraging fixed-point arithmetic, the developers sidestepped hardware limitations of the era. This technique influenced later games and engines, where efficient angle normalization is vital for camera control, AI pathfinding, and physics simulations."
   - id: "box-on-plane-side"
-    line_start: 187
+    line_start: 178
     line_end: 285
     title: "Efficient Collision Detection with Plane-Side Tests"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"

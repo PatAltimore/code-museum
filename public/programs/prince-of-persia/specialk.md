@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "LISTTORCHES builds a list of visible torches on the screen without disturbing other graphics buffers. It iterates through the screen's visible area, identifying torch objects and storing their positions and states in dedicated arrays. This was essential for animating torch flames later in the BURN routine. In the mid-1980s, the Apple II's graphics system was notoriously limited, with no hardware support for sprites. Mechner bypassed these limitations by directly manipulating memory to track and animate objects. This technique showcases the ingenuity required to create dynamic visuals on hardware with minimal graphical capabilities. The approach influenced later developers working on constrained systems, such as the NES, where similar object-tracking routines were used to simulate sprite-like behavior."
   - id: "torch-flame-animation"
-    line_start: 1125
+    line_start: 1114
     line_end: 1172
     title: "Animating Torch Flames Directly in Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "SHORTENTIME reduces the remaining time to 15 minutes when players skip a level, ensuring the game remains challenging while accommodating cheats. This routine adjusts the frame counter and next message timing, maintaining the game's pacing. In the 1980s, cheat codes and shortcuts were often included as debugging tools but became a beloved feature for players. Mechner's implementation reflects his understanding of player psychology, balancing fairness with accessibility. Cheat mechanics like this influenced later games, such as the Konami Code, which became iconic for providing players with advantages while preserving gameplay integrity."
   - id: "keyboard-strobing"
-    line_start: 1338
+    line_start: 1337
     line_end: 1345
     title: "How the Keyboard Is Strobed for Input"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"

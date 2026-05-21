@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-variables-and-constants"
-    line_start: 1
+    line_start: 21
     line_end: 50
     title: "The Variables That Set the Stage"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

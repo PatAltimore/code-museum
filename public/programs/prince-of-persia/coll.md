@@ -120,16 +120,16 @@ enhancements:
     image_caption: ""
     content: "GoneUpstairs handles transitions between levels, including special cases like the mirror level and level 13, which lack music cues. This routine increments the level counter and triggers the appropriate background music. The Apple II's sound capabilities were limited, relying on simple tones and sequences. Mechner's use of cuesong demonstrates his ability to create an immersive experience despite hardware constraints. This level transition mechanic added to the game's cinematic quality, making each level feel distinct and purposeful. The idea of level-specific transitions and music cues became standard in later platformers and adventure games, influencing titles like Tomb Raider and Uncharted."
   - id: "checkslice-slicer-collision-detection"
-    line_start: 1186
-    line_end: 1265
+    line_start: 1178
+    line_end: 1217
     title: "What Happens When You Touch a Slicer?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "CHECKSLICE determines whether the protagonist overlaps with a slicer—a deadly environmental obstacle. If a collision is detected, the subroutine aligns the character with the slicer's position and triggers a dramatic animation sequence where the character is sliced in half. This gruesome detail added tension and realism to the game, emphasizing the stakes of precise movement. The subroutine uses clever tricks to check for collisions within the Apple II's limited processing power, such as comparing screen coordinates and object states. This approach to environmental hazards influenced later games like Dark Souls, where precise collision detection and punishing consequences became hallmarks of the genre."
   - id: "checkslice2-enemy-slicer-collision"
-    line_start: 1266
-    line_end: 1318
+    line_start: 1257
+    line_end: 1309
     title: "Enemies Meet Their Match with Slicers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -144,8 +144,8 @@ enhancements:
     image_caption: ""
     content: "CHECKGATE handles collisions with closing gates, ensuring the protagonist is pushed aside rather than crushed. This subroutine checks the character's position relative to the gate and calculates the direction of the push. The logic reflects Mechner's attention to detail, creating a realistic interaction with the environment. Gates were a recurring obstacle in Prince of Persia, adding to the game's puzzle-like platforming. This mechanic inspired similar environmental interactions in games like The Legend of Zelda, where moving objects and obstacles became integral to gameplay."
   - id: "enemycoll-limited-enemy-collision"
-    line_start: 1389
-    line_end: 1463
+    line_start: 1383
+    line_end: 1424
     title: "Enemies Backing Into Barriers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

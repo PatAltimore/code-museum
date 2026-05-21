@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "wad-foundation-variables"
-    line_start: 1
+    line_start: 22
     line_end: 26
     title: "The Variables That Define WAD Management"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"

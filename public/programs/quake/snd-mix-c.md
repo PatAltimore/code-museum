@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-sound-buffer-definition"
-    line_start: 1
+    line_start: 20
     line_end: 62
     title: "Why Define a Paint Buffer at 512?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"

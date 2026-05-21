@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "foundation-entity-info"
-    line_start: 1
+    line_start: 26
     line_end: 45
     title: "Entity Info: The Root of Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

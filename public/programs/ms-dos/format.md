@@ -79,14 +79,14 @@ enhancements:
     content: "This routine prompts the user for a volume label, validates the input, and writes it to the disk. Volume labels provided a way to identify disks, a feature borrowed from Unix and other early operating systems. In an era when disks were the primary means of data storage and transfer, labeling was crucial for organization and tracking. The implementation here reflects MS-DOS's focus on usability, allowing users to assign meaningful names to their disks. This feature influenced later systems, where volume labels became standard for hard drives, USB drives, and other storage media. It also underscores the importance of user-centric design in software development, a principle that continues to shape modern interfaces."
   - id: "system-file-transfer"
     line_start: 837
-    line_end: 958
+    line_end: 878
     title: "The Routine That Made Disks Bootable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
     image_caption: ""
     content: "This section reads system files (IO.SYS, MSDOS.SYS, COMMAND.COM) and prepares them for transfer to the newly formatted disk. Bootable disks were essential for early PCs, which relied on floppy disks to load the operating system. The routine ensures that the necessary files are copied, handling partial transfers and memory constraints. This functionality was a direct response to the limitations of early hardware, where storage and memory were scarce. By automating the process, MS-DOS simplified disk preparation, making it accessible to non-technical users. The concept of bootable media influenced later developments, including USB boot drives and recovery disks, which continue to play a vital role in system maintenance and installation."
   - id: "dosdone-file-finalization"
-    line_start: 1033
+    line_start: 1030
     line_end: 1043
     title: "How MS-DOS Closed Files Gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -95,7 +95,7 @@ enhancements:
     content: "The DOSDONE subroutine finalizes file operations by closing the target file and ensuring its metadata (time and date) is updated correctly. This was critical for maintaining file integrity in an era when unexpected power loss or system crashes were common. The programmer's goal here was to ensure the file system remained consistent and recoverable. In 1983, disk operations were slow, and the IBM PC's hardware lacked advanced safeguards like journaling file systems. Tim Paterson and the MS-DOS team had to design routines that worked reliably across diverse hardware configurations. This approach influenced later operating systems, where file finalization routines became standard practice for ensuring data integrity. The concept of updating metadata during file closure persists in modern systems like NTFS and ext4."
   - id: "makefil-dos-bug-workaround"
     line_start: 1091
-    line_end: 1122
+    line_end: 1124
     title: "The Bug That Forced a File Creation Hack"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The CLOSETARG subroutine updates a file's time and date metadata before closing it. This was a crucial feature for maintaining accurate file records in MS-DOS. The use of INT 21H interrupts reflects the low-level nature of DOS programming, where direct interaction with the operating system was necessary. In the early 1980s, metadata management was a novel concept, as many systems did not track file modification times. This routine laid the groundwork for modern file systems, where metadata is integral to features like version control and search indexing."
   - id: "normalize-address-adjustment"
     line_start: 1481
-    line_end: 1522
+    line_end: 1497
     title: "The Routine That Adjusted Memory Addresses"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

@@ -46,8 +46,8 @@ enhancements:
     image_caption: ""
     content: "The sequence table maps animation frames to specific routines, defining how the Prince moves, jumps, fights, and interacts with the environment. Each entry in the table points to a subroutine that handles the corresponding animation logic. This design allowed Mechner to implement rotoscoped animations, traced from film footage of his brother performing the moves. The table's compact format was crucial for fitting the game into the Apple II's limited memory. At the time, cinematic animation in games was rare, and Mechner's work set a new standard for realism. The sequence table concept influenced later games like Another World, which also used rotoscoping to create lifelike movement."
   - id: "running-animation-loop"
-    line_start: 151
-    line_end: 158
+    line_start: 148
+    line_end: 154
     title: "The Loop That Kept the Prince Running"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
@@ -166,7 +166,7 @@ enhancements:
     image_caption: ""
     content: "The 'Pembrace' sequence encodes the animation for the Princess's embrace, a tender moment in the game's narrative. It uses precise adjustments (chx) to simulate lifelike movements, adding emotional depth to the interaction. This sequence reflects Mechner's cinematic vision, where character animations serve both gameplay and storytelling. The embrace scene influenced the use of animation to convey emotion in later games, such as Journey and Shadow of the Colossus."
   - id: "mouse-scurry-animation"
-    line_start: 1666
+    line_start: 1665
     line_end: 1675
     title: "The Mouse That Scurries"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"

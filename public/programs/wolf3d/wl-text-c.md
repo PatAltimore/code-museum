@@ -27,7 +27,7 @@ summary:
 
 enhancements:
   - id: "text-formatting-commands"
-    line_start: 1
+    line_start: 6
     line_end: 49
     title: "Text Commands That Controlled Layouts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -35,7 +35,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the text formatting commands used throughout Wolfenstein 3D's article and help screens. Commands like '^C' for changing text color and '^G' for drawing graphics allowed developers to dynamically control how text and images were displayed. At the time, MS-DOS systems lacked sophisticated graphical interfaces, so developers had to create their own systems for rendering text and graphics together. These commands were a clever abstraction, enabling layouts to be defined in a simple text-based format. The approach influenced later games, which adopted similar systems for in-game text rendering and layout management."
   - id: "rip-to-eol"
-    line_start: 60
+    line_start: 62
     line_end: 75
     title: "The Routine That Skipped Lines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
@@ -99,7 +99,7 @@ enhancements:
     image_caption: ""
     content: "The `HelpScreens` function loads and displays help content, providing players with guidance on game mechanics and controls. It uses the `ShowArticle` function to render text and graphics, ensuring a consistent presentation across all help screens. This feature was an early example of in-game documentation, reducing the need for external manuals. By embedding help systems directly into the game, Wolfenstein 3D set a precedent for accessible design, influencing how developers approached player onboarding in later titles."
   - id: "end-text"
-    line_start: 800
+    line_start: 795
     line_end: 859
     title: "Ending the Game with Story Text"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_endings"

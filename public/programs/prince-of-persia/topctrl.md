@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `RESTART` subroutine resets the current level, reloading blueprints and image sets, zeroing variables, and initializing collision detection buffers. This routine ensures that players can restart levels without encountering glitches or inconsistencies. Mechner's approach reflects his commitment to a seamless player experience, even under the constraints of the Apple II. This technique influenced level restart mechanics in later games, particularly those with cinematic elements like Tomb Raider and Uncharted."
   - id: "main-game-loop"
-    line_start: 361
+    line_start: 366
     line_end: 401
     title: "The Heartbeat of Prince of Persia"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_loop"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `MainLoop` subroutine is the central game loop, handling input, timers, frame updates, and sound playback. It ensures the game runs smoothly, updating the screen and responding to player actions. This loop reflects the real-time nature of Prince of Persia, where gameplay and storytelling are tightly integrated. Mechner's design influenced game loops in later titles, particularly those with real-time elements like platformers and action-adventure games. The use of a central loop became a standard in game development, appearing in engines like Unity and Unreal."
   - id: "load-next-level"
-    line_start: 403
+    line_start: 413
     line_end: 429
     title: "Loading Levels: Disk-Side Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `LoadNextLevel` subroutine prepares the game to transition to the next level, managing strength levels and disk-side logic. This routine reflects the constraints of floppy disk-based systems, where levels were often stored on different sides of the disk. Mechner's implementation ensured a smooth transition, preserving the cinematic flow of the game. This approach influenced level loading mechanics in later games, particularly those on disk-based platforms."
   - id: "next-frame-determination"
-    line_start: 494
+    line_start: 503
     line_end: 597
     title: "What Happens in the Next Frame?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Frame_(video_game)"
@@ -110,7 +110,7 @@ enhancements:
     image_caption: ""
     content: "The `NextFrame` subroutine determines the appearance of the next frame, updating mobile objects, transitional objects, and the player character. This routine reflects the real-time nature of Prince of Persia, where gameplay is tightly integrated with animation and storytelling. Mechner's approach influenced frame update mechanics in later games, particularly those with cinematic elements like Another World and Flashback."
   - id: "prep-cut-screen-transition"
-    line_start: 1028
+    line_start: 1039
     line_end: 1064
     title: "The Screen Transition That Wins the Game"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The 'PrepCut' routine determines whether to transition to a new screen and handles the special case of reaching the princess's room, which triggers the game's victory sequence. This routine checks if the current screen matches the target screen, updates the visible screen, and invokes subroutines to load the necessary elements like guards, torches, and crumble animations. The victory condition is hardcoded: level 14, screen 5 marks the end of the player's journey. In 1989, cinematic transitions like this were groundbreaking, creating a sense of narrative progression. Mechner's approach to embedding story moments directly into gameplay influenced later cinematic platformers like Another World and Flashback."
   - id: "you-lose-cutscene"
-    line_start: 1066
+    line_start: 1071
     line_end: 1076
     title: "The Cutscene That Ends It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_over"
@@ -126,8 +126,8 @@ enhancements:
     image_caption: ""
     content: "The 'YouLose' routine triggers the 'game over' sequence when the player runs out of time. It cuts to the princess's room and plays a specific cutscene before returning to the title screen. This cinematic approach to failure was uncommon in 1989, as most games simply displayed a static 'game over' message. By incorporating narrative elements into failure states, Mechner added emotional weight to losing, a technique that would later be adopted by games like Dark Souls to deepen player engagement."
   - id: "player-death-handling"
-    line_start: 1095
-    line_end: 1199
+    line_start: 1088
+    line_end: 1122
     title: "What Happens When the Player Dies?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Death_(video_gaming)"
     image_url: ""
@@ -142,7 +142,7 @@ enhancements:
     image_caption: ""
     content: "The 'deathsong' routine selects and cues music based on the circumstances of the player's death. If the player dies heroically in battle, a 'heroic death' song is played; otherwise, an 'accidental death' song is triggered. This dynamic use of music to reflect gameplay events was innovative for its time, enhancing the emotional impact of the player's actions. Mechner's approach to integrating music into gameplay influenced later games like The Legend of Zelda and Final Fantasy, where music became a key storytelling tool."
   - id: "copy-protection-flip-disk"
-    line_start: 1546
+    line_start: 1541
     line_end: 1593
     title: "The Copy Protection Hidden in Disk Flipping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
@@ -151,14 +151,14 @@ enhancements:
     content: "The 'flipdisk' routine includes a copy protection mechanism that checks for specific disk identifiers before allowing the game to proceed. If the check fails, the player is redirected to the attract mode. This was a common technique in the 1980s to prevent piracy, as games were often distributed on floppy disks. Mechner's implementation ensured that even if the game was copied, it wouldn't function correctly without the original disk. This approach was part of a broader industry effort to combat software piracy, which included measures like code wheels and manual-based puzzles."
   - id: "weightlessness-screen-flash"
     line_start: 1680
-    line_end: 1700
+    line_end: 1699
     title: "The Flash That Ends Weightlessness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
     content: "The 'wtlessflash' routine creates a visual effect as the player's weightlessness period ends. It decrements the weightless timer and toggles the screen's 'vibes' value to produce a flashing effect. This small but impactful detail adds to the game's cinematic feel, emphasizing the transition back to normal physics. Mechner's attention to such details helped establish Prince of Persia as a pioneer in realistic animation and environmental storytelling, influencing later games with advanced physics engines like Half-Life and Portal."
   - id: "yellow-copy-protection-check"
-    line_start: 1707
+    line_start: 1702
     line_end: 1720
     title: "The Yellow Flag That Guards the Princess"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"

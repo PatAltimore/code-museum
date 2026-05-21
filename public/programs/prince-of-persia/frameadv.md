@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `initsettings` section initializes key variables that define the game's state, such as object positions, gate coordinates, and screen dimensions. This setup routine is critical for ensuring the game starts with consistent and predictable behavior. In the mid-1980s, programming for the Apple II required meticulous memory management due to the 128K RAM constraint. Jordan Mechner's approach reflects the era's emphasis on efficiency and precision. By allocating memory for essential variables upfront, the game avoids runtime errors and ensures smooth transitions between screens. This initialization technique influenced later games, where structured setup routines became standard practice in game engines like Unity and Unreal Engine."
   - id: "sure-full-screen-redraw"
-    line_start: 44
+    line_start: 49
     line_end: 179
     title: "The Trick Behind Full-Screen Redraws"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `SURE` routine redraws the entire screen from scratch, a process that involves clearing the screen, calculating object positions, and rendering rows and columns of blocks. This method ensures visual consistency but is computationally intensive. On the Apple II, where CPU cycles were precious, Mechner's decision to redraw the entire screen reflects his commitment to cinematic quality. The technique borrows from double-buffering principles, minimizing flicker by preparing the screen off-screen before displaying it. This approach laid the groundwork for modern rendering pipelines in games, where full-screen redraws are optimized using GPU acceleration."
   - id: "fast-partial-redraw"
-    line_start: 181
+    line_start: 189
     line_end: 337
     title: "How Partial Redraws Save the Day"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dirty_rectangle"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `FAST` routine optimizes screen rendering by redrawing only the blocks marked for update. This technique, known as dirty rectangle rendering, was a clever solution to the Apple II's limited processing power. By tracking changes in redraw buffers, Mechner avoided unnecessary computations, enabling smoother gameplay. This method became a staple in 2D game development, influencing engines like SDL and frameworks like DirectX. It demonstrates how constraints can inspire innovation, leading to techniques that endure across decades of game development."
   - id: "redblocksure-full-block-redraw"
-    line_start: 341
+    line_start: 346
     line_end: 359
     title: "The Anatomy of a Block Redraw"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `RedBlockSure` routine redraws an entire block, including its A, B, C, and D sections. Blocks are the fundamental unit of the game's tile-based design, representing floors, walls, and other environmental elements. Mechner's meticulous handling of block sections ensures seamless transitions between tiles, a critical aspect of the game's cinematic feel. This tile-based approach influenced later platformers like Super Mario Bros. and The Legend of Zelda, where efficient block management enabled expansive worlds within limited hardware."
   - id: "drawobjs-object-rendering"
-    line_start: 495
+    line_start: 503
     line_end: 551
     title: "Sorting Objects for Cinematic Depth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `drawobjs` routine sorts and renders objects based on their depth, creating a sense of visual hierarchy. Mechner's implementation predates modern Z-buffering but achieves similar results by manually sorting objects into a back-to-front order. This technique enhances the game's cinematic quality, ensuring characters and objects appear in the correct visual layers. It influenced later games and engines, where depth sorting became automated and optimized through hardware acceleration."
   - id: "getprev-screen-edge-handling"
-    line_start: 553
+    line_start: 561
     line_end: 602
     title: "What Happens at the Screen's Edge?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scrolling_(computer_graphics)"
@@ -182,7 +182,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine, `DrawFF`, handles the drawing of animation frames for the main character using a layered approach. It manipulates the character's image and opacity settings, applying masks and offsets to position the sprite correctly. The routine divides the process into sections (A, B, D) that correspond to different parts of the animation frame, ensuring that each layer is drawn with the correct opacity and blending mode. Mechner's use of rotoscoping—tracing live-action footage frame by frame—was groundbreaking for its time, lending the game a cinematic quality. On the Apple II, with its limited graphical capabilities, this layering technique allowed for smoother animations and more lifelike movement. The approach influenced later games that sought to replicate realistic character motion, such as Another World (1991) and Flashback (1992)."
   - id: "getobjid-object-identification"
-    line_start: 2041
+    line_start: 2029
     line_end: 2100
     title: "Identifying Objects in a Screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
@@ -206,7 +206,7 @@ enhancements:
     image_caption: ""
     content: "The `sortlist` routine implements a sorting algorithm to arrange objects in back-to-front order for rendering. This ensures that objects closer to the camera appear on top of those farther away, adhering to the painter's algorithm. The routine repeatedly compares adjacent objects in the list and swaps them if necessary, continuing until no further swaps are needed. This approach was critical for achieving visual depth on the Apple II, which lacked hardware support for z-buffering. Mechner's implementation influenced later games that required efficient sorting for 2D and pseudo-3D environments, such as Doom (1993) and Diablo (1996)."
   - id: "compare-object-comparison"
-    line_start: 2182
+    line_start: 2174
     line_end: 2216
     title: "Comparing Object Positions and Types"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sorting_algorithm"
@@ -222,7 +222,7 @@ enhancements:
     image_caption: ""
     content: "The `GETINITOBJ` and `getinitobj1` routines initialize the state of objects based on their type and blueprint specifications. This includes setting gates to their initial positions, marking loose floors, and configuring flasks. The routines use a combination of direct memory access and bitwise operations to extract and apply settings efficiently. Mechner's design ensures that objects start in consistent states, which is crucial for gameplay logic and player expectations. This initialization process influenced later games with dynamic environments, such as The Legend of Zelda: A Link to the Past (1991) and Metroid Prime (2002)."
   - id: "mbsub-memory-buffer-manipulation"
-    line_start: 2256
+    line_start: 2251
     line_end: 2261
     title: "Combining Buffers for Graphics Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"

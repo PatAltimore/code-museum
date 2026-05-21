@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines constants for MS-DOS system calls, such as file operations (OPEN, CLOSE, READ, WRITE) and memory management (SETDMA). These constants are used throughout the program to interact with the operating system. At the time, MS-DOS provided a simple API for developers to perform essential tasks, but programmers had to manage low-level details like DMA (Direct Memory Access) manually. Tim Paterson designed these calls to be lightweight and efficient, reflecting the constraints of early PCs with limited memory and processing power. This approach influenced later DOS-based utilities and applications, which relied on similar system call conventions."
   - id: "buffer-management-cleverness"
-    line_start: 148
+    line_start: 124
     line_end: 163
     title: "The Trick That Prevented Buffer Overflows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_overflow"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "This segment manages the output buffer (`PUTBUF`) to prevent overflows. When the buffer is full, it writes the contents to the output file and resets the buffer pointer. This technique ensures efficient use of memory while avoiding the risk of overwriting data. Buffer management was a critical skill for early programmers, as memory was scarce and errors could crash the entire system. Paterson's careful handling of buffers here reflects his deep understanding of hardware limitations and his ability to write robust code for constrained environments. Similar techniques became standard in later operating systems and programming languages, influencing how developers think about memory safety."
   - id: "opcode-translation-algorithm"
-    line_start: 409
+    line_start: 405
     line_end: 462
     title: "Translating Z80 Opcodes to 8086 Instructions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Opcode"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This section implements the core logic for translating Z80 opcodes into their 8086 equivalents. It uses a lookup table (`OPTAB`) to match Z80 instructions with corresponding 8086 instructions. The translator ensures compatibility between software written for Z80-based systems and the newer 8086 architecture. At the time, the Z80 was widely used in personal computers like the TRS-80, while the 8086 powered the IBM PC. By enabling software migration, this translator helped bridge the gap between two processor families, accelerating the adoption of the IBM PC. The concept of opcode translation influenced later emulators and cross-compilers, which continue to rely on similar techniques to support legacy software."
   - id: "pseudo-op-handling"
-    line_start: 839
+    line_start: 826
     line_end: 843
     title: "Handling Pseudo-Ops in Assembly Translation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "Pseudo-operations (pseudo-ops) are assembly language directives that do not correspond to actual machine instructions but control the assembler's behavior. This section processes pseudo-ops during translation, ensuring they are correctly interpreted and handled. Pseudo-ops were essential for assembly programming, allowing developers to define constants, allocate memory, and manage program structure. By including support for pseudo-ops, Paterson's translator accommodates the full range of Z80 assembly features, making it a comprehensive tool for software migration. This capability influenced later assemblers and compilers, which expanded on the idea to support higher-level abstractions in programming."
   - id: "opcode-table-definition"
-    line_start: 918
+    line_start: 891
     line_end: 1034
     title: "The Lookup Table That Made Translation Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"

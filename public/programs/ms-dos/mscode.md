@@ -55,7 +55,7 @@ enhancements:
     content: "This section implements the entry points for system calls, including INT 20H and INT 21H. System calls are the bridge between user programs and the operating system, allowing tasks like file access and device control. MS-DOS's dispatcher checks the call number (AH register) and routes it to the appropriate handler. This design was inspired by CP/M but expanded in v2.0 to support Unix-like features. The modularity and efficiency of this dispatcher influenced later operating systems, including Windows, which built upon MS-DOS's system call architecture. It also set a precedent for interrupt-driven programming in personal computing."
   - id: "save-and-restore-registers"
     line_start: 123
-    line_end: 232
+    line_end: 210
     title: "The Multitasking Illusion: Saving Registers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Context_switch"
     image_url: ""

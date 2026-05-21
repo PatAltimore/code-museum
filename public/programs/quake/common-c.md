@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-initialization-constants"
-    line_start: 1
+    line_start: 20
     line_end: 59
     title: "Why Quake Needed Safe Startup Defaults"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -39,7 +39,7 @@ enhancements:
     content: "This section sets up foundational constants and variables for Quake's initialization process, including safe defaults for command-line arguments (`safeargvs`) and a zeroed user command (`nullcmd`). At the time, PCs varied widely in hardware and configuration, and games often failed to run due to incompatible settings. By defining safe defaults, id Software ensured Quake could start reliably across different systems. This approach reflects John Carmack's philosophy of robustness, minimizing user frustration while debugging. The safe argument list also hints at the modularity of Quake's design, allowing features like sound and joystick support to be toggled off for compatibility or testing. This initialization strategy influenced later games and engines, including the Unreal Engine and Source Engine, which adopted similar practices for handling diverse hardware environments."
   - id: "pop-graphic-check"
     line_start: 61
-    line_end: 82
+    line_end: 80
     title: "The Graphic That Prevented Piracy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Software_piracy"
     image_url: ""

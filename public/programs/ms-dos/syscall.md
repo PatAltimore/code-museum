@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The INCLUDE directives at the start of SYSCALL.ASM pull in external assembly files, such as DOSSEG.ASM and DOSSYM.ASM, which define segment structures and symbolic constants used throughout the program. This modular approach allowed MS-DOS developers to maintain consistency across multiple source files while reducing redundancy. In the early 1980s, assembly programming was highly manual, and symbolic constants were critical for readability and maintainability. By centralizing definitions, programmers could update shared constants or segment structures without combing through thousands of lines of code. This technique was borrowed from earlier operating systems like CP/M, which also relied on modular assembly files. The modularity here influenced later programming environments, including the use of header files in C and other high-level languages."
   - id: "get-date-system-call"
-    line_start: 41
+    line_start: 40
     line_end: 64
     title: "The System Call That Returned 1980"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "$SET_DATE validates and sets the system date, ensuring the year falls between 1980 and 2099 and that month and day values are non-zero and within valid ranges. This routine reflects the limited date handling capabilities of early PCs, which lacked robust error-checking or support for broader date ranges. The constraints here stem from the IBM PC's hardware clock and the need to minimize code size in MS-DOS's compact design. The error-checking logic, while rudimentary by modern standards, was sufficient for most applications of the era. This routine influenced later systems by establishing conventions for date validation and error handling, which became standard in operating system APIs."
   - id: "fcb-sequential-read"
-    line_start: 302
+    line_start: 300
     line_end: 302
     title: "Reading Files Sequentially with FCBs"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "$FCB_SEQ_READ reads the next record from a file using the File Control Block (FCB) structure, a legacy from CP/M that MS-DOS inherited. The routine handles errors such as end-of-file (EOF) or insufficient space at the disk transfer address, returning status codes in the AL register. Sequential reading was critical for early applications, which often processed files record by record due to memory constraints. The reliance on FCBs reflects MS-DOS's roots in CP/M and the simplicity of its file system design. As MS-DOS evolved, FCBs were gradually replaced by file handles, which offered more flexibility and better support for multitasking. This transition influenced modern operating systems, where file handles remain the standard for file I/O operations."
   - id: "fcb-rename-system-call"
-    line_start: 455
+    line_start: 450
     line_end: 455
     title: "Renaming Files in MS-DOS: A Legacy Technique"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"

@@ -71,7 +71,7 @@ enhancements:
     content: "The CHDIR routine allows users to change the current working directory, a feature borrowed from Unix. It validates the path, updates internal pointers, and ensures the new directory is accessible. In the early 1980s, this was a revolutionary feature for MS-DOS, which previously operated on a flat file system. The ability to navigate subdirectories made the operating system more intuitive and powerful, enabling complex file organization. This routine also highlights the constraints of the IBM PC hardware, as it carefully manages memory and registers to perform the operation efficiently. CHDIR's design influenced later command-line interfaces, including those in Linux and Windows."
   - id: "rmdir-remove-directory"
     line_start: 797
-    line_end: 991
+    line_end: 1001
     title: "RMDIR: Deleting Directories with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rmdir"
     image_url: ""

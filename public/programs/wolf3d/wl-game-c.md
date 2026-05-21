@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "boolean-variable-initialization"
-    line_start: 34
+    line_start: 28
     line_end: 34
     title: "Why Boolean Variables Were Crucial"
     wikipedia_url: "https://en.wikipedia.org/wiki/Boolean_data_type"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes a boolean variable `spearflag`, which is used to track the presence of a special in-game object, the spear. At the time, boolean variables were a simple yet effective way to manage state in a game running on constrained hardware like MS-DOS. The developers needed to minimize memory usage while maintaining clarity in their code. This approach influenced later games, where boolean flags became a standard practice for managing game states and events. By using such variables, id Software ensured their code was both efficient and readable, setting a precedent for game development in the early 1990s."
   - id: "sound-positioning-tables"
-    line_start: 76
+    line_start: 74
     line_end: 110
     title: "The Lookup Tables That Positioned Sound"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"

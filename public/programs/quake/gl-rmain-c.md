@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-initialization"
-    line_start: 1
+    line_start: 20
     line_end: 57
     title: "Foundation: Setting Up Rendering Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "This section of code implements the `R_Mirror` function, which handles rendering reflective surfaces in Quake. The function begins by checking if a mirror surface exists (`mirror` variable) and exits early if none is present. It then manipulates the view matrix and angles to simulate the reflection by flipping the player's perspective relative to the mirror plane. This involves calculating a dot product and applying transformations to the view origin and direction vectors. The depth buffer (`glDepthRange`) is adjusted to ensure proper layering of the mirrored scene. The mirrored scene is rendered using `R_RenderScene` and `R_DrawWaterSurfaces`, followed by blending the mirror texture on top using OpenGL functions like `glEnable(GL_BLEND)` and `glScalef`. Finally, brush polygons associated with the mirror texture are rendered, and blending is disabled. In 1996, rendering realistic reflections was a significant challenge due to hardware limitations. Quake's approach used clever matrix manipulations and OpenGL state changes to simulate mirrors without requiring additional hardware support. John Carmack and Michael Abrash were pioneers in pushing the boundaries of real-time graphics, leveraging their deep understanding of mathematics and hardware constraints. This technique was groundbreaking for its time, as it allowed immersive environments with reflective surfaces on consumer-grade hardware. The mirror rendering technique influenced later games and engines, such as Unreal Engine and Source Engine, which adopted similar concepts for reflective surfaces. It also inspired developers to explore advanced rendering effects, leading to innovations like real-time ray tracing decades later. Quake's source code, released under GPL in 1999, became a treasure trove for aspiring game developers, spreading these techniques across the industry."
   - id: "view-rendering-conditional-optimization"
-    line_start: 1096
+    line_start: 1094
     line_end: 1144
     title: "Rendering the Player's View with Speed in Mind"
     wikipedia_url: "https://en.wikipedia.org/wiki/Optimization_(computer_science)"

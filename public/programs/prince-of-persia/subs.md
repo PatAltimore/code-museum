@@ -79,15 +79,15 @@ enhancements:
     content: "The PlayCut0 subroutine orchestrates the opening title scene, blending animation, music, and gameplay seamlessly. It initializes character positions, plays sound effects, and animates the Vizier's entrance and interaction with the Princess. This sequence set a new standard for storytelling in games, combining gameplay with cinematic elements. In 1989, such integration was rare, as most games separated cutscenes from gameplay. Mechner's work here influenced the development of cinematic platformers like Heart of Darkness (1998) and demonstrated the potential of games as a storytelling medium."
   - id: "play-song-interruptible-music-handler"
     line_start: 785
-    line_end: 821
+    line_end: 809
     title: "Interruptible Music Playback in Princess's Room"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The PlaySong subroutine handles music playback in the Princess's room, allowing players to interrupt the song with a button press to start a new game. This feature highlights Mechner's attention to player agency, ensuring that cinematic elements did not hinder gameplay. In the late 1980s, interactive music systems were uncommon, and this approach influenced later games with dynamic soundtracks, such as The Legend of Zelda: Ocarina of Time (1998), where music and gameplay were tightly integrated."
   - id: "play-loop-main-animation-handler"
-    line_start: 870
-    line_end: 917
+    line_start: 869
+    line_end: 915
     title: "The Loop That Drives Animation Playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
@@ -102,8 +102,8 @@ enhancements:
     image_caption: ""
     content: "The pjumpseq subroutine handles animation sequences for the Princess, loading her character data and executing the specified sequence. This modular approach to animation allowed Mechner to create detailed and varied character movements without duplicating code. In 1989, such techniques were innovative, as most games relied on simpler sprite-based animations. This approach influenced the development of animation systems in later cinematic platformers, such as Limbo (2010), which emphasized fluid character movement and interaction."
   - id: "vjumpseq-character-jump-sequence"
-    line_start: 1028
-    line_end: 1042
+    line_start: 1026
+    line_end: 1033
     title: "How Jumping Became Cinematic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -126,7 +126,7 @@ enhancements:
     image_caption: ""
     content: "The `DEMO` subroutine triggers the self-running demo sequence, loading the `DemoProg1` data and calling `AutoPlayback`. This feature was crucial for showcasing the game at trade shows and in stores, where potential buyers could see the gameplay without needing to interact. In the late 1980s, self-running demos were a popular marketing tool, especially for games with complex mechanics like Prince of Persia. Mechner's implementation ensured the demo highlighted the game's fluid animations and cinematic style, helping it stand out in a crowded market. The concept of self-running demos persists today, often seen in attract modes for arcade games and trailers for modern titles."
   - id: "gravity-simulation"
-    line_start: 1610
+    line_start: 1608
     line_end: 1644
     title: "Simulating Gravity on a 6502 Processor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"

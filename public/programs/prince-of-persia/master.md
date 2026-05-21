@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The loadmusic1 routine loads the first set of music data for the title screen. It reads data from the disk into main memory and then moves it to auxiliary memory. Music in Prince of Persia plays a significant role in creating its cinematic atmosphere. The Apple II's sound capabilities were limited, relying on simple tones and basic sound effects. Mechner's decision to include music required careful planning to fit audio data alongside graphics and code within the 128K memory limit. This routine showcases the technical ingenuity required to incorporate music into the game. The use of music to enhance storytelling influenced later games, including those on more advanced platforms like the SNES and Sega Genesis."
   - id: "driveon-switches-memory-bank"
-    line_start: 292
+    line_start: 291
     line_end: 326
     title: "DriveOn: Switches Memory Bank"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The LOADLEVEL routine loads level data into the working blueprint buffer in auxiliary memory. It ensures that background and character sets are correctly loaded before gameplay begins. Level loading on the Apple II required careful coordination between disk operations and memory management due to the system's limited resources. Mechner's use of auxiliary memory and backup copies demonstrates his deep understanding of the hardware. This routine exemplifies the technical challenges of creating dynamic and visually rich levels on early computers. Techniques for loading and managing level data evolved significantly, influencing later games like Doom and Quake, which relied on efficient level streaming."
   - id: "attractloop-self-running-demo-mode"
-    line_start: 683
+    line_start: 679
     line_end: 709
     title: "AttractLoop: Self-Running Demo Mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Demo_mode"

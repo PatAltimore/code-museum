@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The DRV0 routine checks for the presence of AUTOEXEC.BAT, a batch file that automates startup commands. If the file exists, it sets up the environment for batch processing; otherwise, it disables batch mode. AUTOEXEC.BAT became a defining feature of MS-DOS, allowing users to customize their system's behavior at boot. This innovation simplified repetitive tasks and laid the groundwork for automation in personal computing. The concept of startup scripts influenced Unix/Linux systems (e.g., .bashrc) and continues to be relevant in modern computing environments."
   - id: "command-parsing-execution"
-    line_start: 749
+    line_start: 748
     line_end: 761
     title: "Parsing Commands: How MS-DOS Understood You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
@@ -150,7 +150,7 @@ enhancements:
     image_caption: ""
     content: "The BADEXE routine is a simple but critical part of the command interpreter. If the program header or data fails validation during loading, this routine is invoked to signal an error. It sets up an error message pointing to the EXEBAD string and jumps to the ERROR routine for further handling. This kind of error handling was essential in the early days of personal computing, where users frequently encountered corrupted or incompatible executables. By providing clear feedback, MS-DOS helped users diagnose issues and avoid system crashes. This approach to error handling influenced later operating systems, which adopted similar mechanisms for reporting and managing errors during program execution."
   - id: "relocation-table-processing"
-    line_start: 2110
+    line_start: 2109
     line_end: 2124
     title: "Relocating Executable Code for Flexibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_programming)"

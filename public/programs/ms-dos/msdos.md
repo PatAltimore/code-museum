@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The ESCTAB lookup table maps escape sequences to specific actions, such as copying, skipping, or editing characters. This design allowed MS-DOS to efficiently parse user input, a critical feature for command-line operations. The table includes different mappings for IBM and non-IBM systems, reflecting the need for compatibility across hardware platforms. Lookup tables like ESCTAB were a common optimization technique in assembly programming, reducing the complexity of input parsing while improving performance. This approach influenced later systems, where lookup tables became a standard method for handling input and character encoding. The ESCTAB's simplicity and effectiveness are a testament to the ingenuity of early software developers."
   - id: "system-call-dispatcher"
-    line_start: 277
+    line_start: 270
     line_end: 396
     title: "How MS-DOS Handled System Calls"
     wikipedia_url: "https://en.wikipedia.org/wiki/System_call"

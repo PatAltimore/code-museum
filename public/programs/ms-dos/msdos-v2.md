@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "msdos-2-name-section"
-    line_start: 2
+    line_start: 1
     line_end: 2
     title: "Why 'NAME MSDOS_2' Changed Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

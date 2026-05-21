@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "foundation-data-structures"
-    line_start: 1
+    line_start: 26
     line_end: 32
     title: "The Data Structures That Grounded Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `Draw_ConsoleBackground` function renders the console's background, providing a visually distinct area for debugging and player commands. This feature was essential for developers and players alike, as it facilitated real-time interaction with the game's engine. The inclusion of version information directly in the background image highlights the team's attention to detail and transparency. The console's design influenced debugging tools in later engines, where developer consoles became standard for testing and diagnostics."
   - id: "draw-fade-screen"
-    line_start: 956
+    line_start: 954
     line_end: 988
     title: "The Fade Effect That Set the Mood"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(visual_effect)"

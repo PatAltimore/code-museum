@@ -151,7 +151,7 @@ enhancements:
     content: "This subroutine, BADPATHPOP, handles errors related to excessively long file paths or invalid directory elements. It pops values off the stack, checks the current directory element, and sets a status flag (STC) to indicate an error condition. The programmer's immediate goal was to clean up and signal a failure when a path exceeded the allowed length or contained invalid elements. In 1983, file systems were evolving rapidly. MS-DOS v2.0 introduced hierarchical directories, a major leap from the flat file system of earlier versions. This change was inspired by Unix, which had already demonstrated the power of subdirectories for organizing files. However, implementing these features on the limited hardware of the IBM PC, with its 8086 processor and constrained memory, required careful error handling and optimization. The consequences of this work were significant. BADPATHPOP ensured that the system could gracefully handle user errors, preventing crashes or undefined behavior. This kind of robust error handling became a hallmark of MS-DOS and influenced later operating systems. Developers building file systems for Windows, Linux, and other platforms studied these early routines to understand how to manage errors efficiently in constrained environments. The concept of signaling path-related errors through flags and stack manipulation persists in modern file system APIs."
   - id: "rootpath-directory-search-initialization"
     line_start: 2059
-    line_end: 2105
+    line_end: 2107
     title: "The Routine That Finds Your Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -159,7 +159,7 @@ enhancements:
     content: "ROOTPATH initializes the directory search process, setting up key parameters for locating files. It loads drive parameters into ES:BP, resets search-related variables like LASTENT and ENTFREE, and prepares the system to iterate through directory entries. The immediate goal was to establish a clean slate for file searches, ensuring consistency and reliability. In the early 1980s, file systems were a critical feature of operating systems, but they were constrained by hardware limitations. MS-DOS v2.0's directory handling routines drew heavily from Unix's hierarchical file system but had to be adapted for the IBM PC's 8086 processor and limited memory. ROOTPATH reflects this adaptation, balancing functionality with efficiency. This routine laid the groundwork for modern file search algorithms. By organizing directory entries and initializing search parameters, it influenced the design of file systems in Windows and other operating systems. The idea of setting up a structured search environment became standard practice, appearing in APIs like FindFirstFile and FindNextFile in Windows. ROOTPATH's approach to directory search initialization remains a foundational concept in computing."
   - id: "matchattributes-attribute-checking"
     line_start: 2111
-    line_end: 2153
+    line_end: 2155
     title: "How MS-DOS Checked File Attributes"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_attribute"
     image_url: ""

@@ -49,7 +49,7 @@ enhancements:
     content: "The `ExtractFileBase` function extracts the base name of a file, limited to eight characters, and converts it to uppercase. This design stems from the 8.3 filename convention used in MS-DOS, where filenames were restricted to eight characters plus a three-character extension. By enforcing this limit, DOOM ensures compatibility with legacy systems while maintaining a consistent naming scheme for WAD lumps. The function also validates the length, throwing an error if the base name exceeds eight characters. This reflects the constraints of the era, where hardware and software limitations shaped design decisions. The eight-character limit became iconic in early PC gaming and influenced how modders named their custom assets."
   - id: "wad-file-validation"
     line_start: 119
-    line_end: 224
+    line_end: 225
     title: "How DOOM Distinguishes IWADs from PWADs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
     image_url: ""

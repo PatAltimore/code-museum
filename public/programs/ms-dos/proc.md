@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `$WAIT` procedure retrieves the exit code of the previous process and resets it to zero. This routine is a simple yet critical piece of inter-process communication, ensuring that error codes are propagated correctly to parent processes. At the time, MS-DOS was evolving from a single-tasking environment to one that could mimic multitasking behaviors, inspired by Unix-like systems. Tim Paterson and Microsoft's team were working under constraints imposed by the 8086 processor and IBM PC hardware, which lacked advanced memory management or multitasking support. This routine reflects the pragmatic approach taken to implement basic process control in a constrained environment. Later operating systems, including Windows, built on these foundational ideas, introducing more sophisticated error handling and inter-process communication mechanisms."
   - id: "terminate-stay-resident-handler"
-    line_start: 56
+    line_start: 54
     line_end: 99
     title: "How MS-DOS Made Programs Stay Forever"
     wikipedia_url: "https://en.wikipedia.org/wiki/Terminate_and_Stay_Resident"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `$Keep_process` and `Stay_resident` procedures implement Terminate and Stay Resident (TSR) functionality, allowing programs to remain in memory after termination. TSR was a groundbreaking feature in MS-DOS, enabling rudimentary multitasking by allowing background programs like keyboard enhancers or memory-resident utilities to persist. This was a clever workaround for the lack of hardware or OS-level multitasking support in the IBM PC. TSRs were inspired by similar techniques in earlier operating systems but adapted to fit the constraints of MS-DOS's single-tasking model. Developers quickly embraced TSRs to extend the capabilities of MS-DOS, leading to a proliferation of utilities that defined the PC experience in the 1980s. TSR functionality influenced later operating systems, including Windows, which incorporated background services and multitasking natively."
   - id: "return-to-parent-process"
-    line_start: 103
+    line_start: 101
     line_end: 125
     title: "The Exit Routine That Closed the Loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

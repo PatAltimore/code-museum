@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine draws the Kid’s strength meter at the lower left of the screen, using a combination of precomputed data tables and dynamic calculations. It iterates through the Kid’s current health value, drawing bullets to represent remaining strength and blanks for lost health. The routine includes a flashing effect when the Kid is down to one health point, adding a visual cue for danger. Mechner’s implementation here is a masterclass in efficient graphics rendering on constrained hardware. The visual representation of health became a staple of gaming, influencing everything from RPGs to modern shooters like Halo, where health bars are now ubiquitous."
   - id: "draw-opponent-strength-meter"
-    line_start: 574
+    line_start: 579
     line_end: 673
     title: "Mirrored Health Bars for the Opponent"
     wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `pretext` routine sets up the game's text rendering system by initializing the background table (`bgtable2`) and bypassing normal data structures to write directly to the Apple II's hi-res graphics page. This ensures that text appears on top of all other graphical elements, maintaining its visibility during gameplay. Direct manipulation of hi-res graphics was a common technique on the Apple II, where developers often had to work around hardware limitations to achieve desired effects. Mechner's decision to bypass standard structures reflects his focus on performance and visual clarity, ensuring that critical text elements like dialogue and instructions are never obscured. This technique influenced later games that prioritized text readability in complex visual environments. It also showcased the flexibility of the Apple II's graphics system, inspiring other developers to experiment with direct memory manipulation for unique effects."
   - id: "copy-protection-yellow"
-    line_start: 1146
+    line_start: 1143
     line_end: 1152
     title: "The Copy-Protection Routine Hidden in Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "soundblaster-macros"
-    line_start: 20
+    line_start: 1
     line_end: 59
     title: "Macros That Simplified SoundBlaster Programming"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The SDL_DetectSoundSource function iterates through possible ports to detect the presence of a Sound Source device, a lesser-known audio hardware option. This routine highlights the challenges of supporting diverse hardware in the early 1990s, when compatibility was a major concern for game developers. By implementing detection for multiple devices, id Software ensured that Wolfenstein 3D could deliver audio on a wide range of systems. This commitment to compatibility set a precedent for future games, which increasingly prioritized broad hardware support to reach larger audiences."
   - id: "pc-speaker-digitized-sound"
-    line_start: 829
+    line_start: 827
     line_end: 860
     title: "Making the PC Speaker Sing (Digitally)"
     wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"

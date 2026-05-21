@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The `NetbufferChecksum` function calculates a checksum to verify the integrity of network packets. This ensures that data transmitted between players is accurate and uncorrupted. The checksum algorithm uses a combination of multiplication and addition, incorporating the packet's contents and position. At the time, network reliability was a significant concern, especially on consumer-grade hardware. By implementing checksums, DOOM reduced the risk of errors disrupting gameplay. This technique became a standard practice in networking, influencing protocols used in later games and even broader applications like TCP/IP."
   - id: "expand-tics"
-    line_start: 119
+    line_start: 116
     line_end: 134
     title: "Solving the Tic Synchronization Problem"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clock_synchronization"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `GetPackets` function processes incoming network packets, updating the game's state based on their contents. It handles setup packets, retransmission requests, and game exit notifications. The function also checks for packet integrity using checksums and ensures packets are processed in the correct order. This robust packet handling mechanism was essential for DOOM's multiplayer experience, allowing players to interact seamlessly despite the limitations of 1990s networking hardware. The techniques used here influenced the design of network protocols in later games, contributing to the evolution of online multiplayer gaming."
   - id: "netupdate-function"
-    line_start: 361
+    line_start: 360
     line_end: 445
     title: "Keeping Multiplayer Games in Sync"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The `NetUpdate` function is responsible for maintaining synchronization between players in a multiplayer game. It builds new commands for the local player, sends packets to other nodes, and listens for incoming packets. This function ensures that all players are operating on the same game state, a critical requirement for fast-paced action games like DOOM. The synchronization mechanisms developed here were innovative for their time, enabling smooth multiplayer gameplay on hardware with limited processing power. This approach influenced the design of networking systems in later games, including Quake and Half-Life."
   - id: "d-arbitrate-net-start"
-    line_start: 472
+    line_start: 452
     line_end: 546
     title: "Negotiating Multiplayer Game Start"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
@@ -80,7 +80,7 @@ enhancements:
     image_caption: ""
     content: "The `D_ArbitrateNetStart` function establishes the initial conditions for a multiplayer game. It negotiates settings like skill level, map, and game mode between nodes. The function ensures that all players are using the same version of the game, preventing compatibility issues. This negotiation process reflects the challenges of multiplayer gaming in the early 1990s, where hardware and software differences could easily disrupt gameplay. By automating the setup process, DOOM made multiplayer gaming more accessible, paving the way for the widespread adoption of online gaming."
   - id: "try-run-tics"
-    line_start: 625
+    line_start: 628
     line_end: 766
     title: "Balancing Real-Time Gameplay Across Nodes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"

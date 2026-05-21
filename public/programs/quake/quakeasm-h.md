@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "This section lists external references to critical variables used throughout Quake's rendering pipeline. These variables, such as `d_zistepu`, `r_turb_s`, and `d_viewbuffer`, represent the building blocks of the game's 3D graphics system. They control everything from depth buffering to texture mapping and lighting calculations. In 1996, real-time 3D rendering was still a nascent field. Developers had to invent techniques to simulate depth, perspective, and lighting on hardware that lacked dedicated graphics processors. Quake's software renderer was a marvel of engineering, using these variables to manage complex calculations efficiently. For example, depth buffering (`d_pzbuffer`) ensured that closer objects occluded farther ones, while texture coordinates (`r_turb_s`, `r_turb_t`) enabled detailed surfaces. The modularity of these variables reflects the influence of Michael Abrash, who advocated for clean, reusable code even in assembly-heavy projects. This approach allowed Quake's engine to be adapted for later games like Quake II and influenced the design of modern engines. Developers studying Quake's source code learned how to structure rendering systems, a lesson that resonates in today's industry standards."
   - id: "sound-system-hooks"
-    line_start: 263
+    line_start: 261
     line_end: 272
     title: "How Quake's Sound System Kept Pace"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"

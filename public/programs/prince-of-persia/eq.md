@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "bank-switched-memory-layout"
-    line_start: 3
+    line_start: 1
     line_end: 32
     title: "How 128KB Became Enough for Cinematic Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"

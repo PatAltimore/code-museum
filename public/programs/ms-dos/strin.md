@@ -79,7 +79,7 @@ enhancements:
     content: "The FINDOLD routine scans the template for a match to the user's input, using REPNE SCASB to search efficiently. This was a low-level implementation of string searching, tailored to the constraints of assembly language and early hardware. By optimizing this process, MS-DOS ensured quick responses to user input, even on slow CPUs like the Intel 8088. This technique influenced later developments in string searching algorithms, which became a key area of study in computer science."
   - id: "notfnd-error-handling"
     line_start: 265
-    line_end: 292
+    line_end: 267
     title: "Handling Errors: When Matches Fail"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""

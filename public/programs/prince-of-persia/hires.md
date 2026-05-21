@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines local variables in two distinct memory areas: $F0 and $18. These addresses are part of the Apple II's zero-page memory, which allows faster access due to shorter instruction lengths. By allocating variables here, Mechner optimized the game's performance, ensuring critical operations like screen rendering and animation updates could execute quickly. In the 1980s, zero-page memory was a precious resource, often reserved for high-frequency tasks. Mechner's careful allocation reflects his deep understanding of the Apple II hardware and the constraints of 6502 assembly programming. This technique influenced later developers working on constrained systems, emphasizing the importance of efficient memory use in performance-critical applications."
   - id: "cls-clear-hires-screen"
-    line_start: 82
+    line_start: 89
     line_end: 91
     title: "Clearing the Hi-Res Screen in Two Steps"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `auxmem` and `mainmem` routines manage the Apple II's bank-switched memory, toggling between auxiliary and main memory banks. This technique was essential for fitting Prince of Persia's complex animations and logic into the Apple II's limited 128K RAM. By carefully controlling memory access, Mechner ensured the game could handle high-resolution graphics and smooth animations without exceeding hardware limits. Bank switching was a common technique for Apple II developers, but Mechner's implementation stands out for its efficiency and reliability. This approach influenced memory management techniques in later systems, including early PC games and embedded devices."
   - id: "cls-hires-clear-routine"
-    line_start: 176
+    line_start: 153
     line_end: 230
     title: "Clearing Hi-Res Graphics with Assembly Loops"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
@@ -126,16 +126,16 @@ enhancements:
     image_caption: ""
     content: "The `MLayMask` routine focuses on masking sprites, a technique used to selectively render parts of an image while preserving transparency or blending effects. This routine combines masking with OR operations, allowing sprites to be layered over the background without overwriting existing pixels. It uses lookup tables (`MASKTAB`, `AMASKS`, `BMASKS`) to manage how each pixel is processed. Masking was essential for creating the intricate visuals of Prince of Persia, where characters and objects needed to interact dynamically with the environment. On the Apple II, this required careful management of memory and processor cycles, as the 6502 had limited capabilities. Masking techniques like those in `MLayMask` became standard practice in 2D game development, influencing later titles on more advanced systems."
   - id: "mlayxor-special-xor"
-    line_start: 1541
-    line_end: 1720
+    line_start: 1535
+    line_end: 1714
     title: "Special XOR: Advanced Sprite Manipulation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
     image_caption: ""
     content: "The `MLayXOR` routine builds on the XOR technique introduced in `LayXOR`, providing advanced capabilities for sprite manipulation. This routine uses XOR to create visual effects like inversion and transparency, which were groundbreaking for the Apple II's limited graphics capabilities. By leveraging lookup tables (`SHIFTL`, `SHIFTH`, `CARRYL`, `CARRYH`) and carefully managing memory addresses, Mechner was able to achieve cinematic visuals that pushed the boundaries of what the Apple II could do. The use of XOR in `MLayXOR` reflects a deep understanding of both the hardware and the artistic requirements of the game. This technique influenced later graphics engines, particularly in the realm of 2D games where efficient sprite manipulation was critical."
   - id: "peel-simple-graphics-call"
-    line_start: 1721
-    line_end: 1739
+    line_start: 1716
+    line_end: 1725
     title: "Peel: A Simple Graphics Shortcut"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_rendering"
     image_url: ""
@@ -158,7 +158,7 @@ enhancements:
     image_caption: ""
     content: "The `FASTMASK` routine combines the speed of `FASTLAY` with masking capabilities, allowing sprites to be rendered quickly while preserving transparency and blending effects. This routine uses lookup tables (`MASKTAB`) and direct memory manipulation to achieve high-speed rendering without sacrificing visual quality. On the Apple II, this was a critical optimization, as the 6502 processor had limited computational power and memory. By streamlining masking operations, Mechner was able to create dynamic visuals that pushed the boundaries of what the Apple II could achieve. Techniques like `FASTMASK` influenced later graphics engines, particularly in the realm of 2D games where efficient masking was essential."
   - id: "setfastmain-aux-memory-switching"
-    line_start: 1980
+    line_start: 1971
     line_end: 2003
     title: "SetFastMain/Aux: Switching Memory Banks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
