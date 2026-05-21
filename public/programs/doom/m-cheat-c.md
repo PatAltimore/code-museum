@@ -73,7 +73,7 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select C++
+// Emacs style mode select   xxx C++ xxx
 plain2
 plain3
 plain4
