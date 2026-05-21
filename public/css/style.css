@@ -748,49 +748,49 @@ a:hover {
   flex: 1;
 }
 
-/* ── Syntax highlighting — brightened for #0d1117 dark background ─────────── */
+/* ── Syntax highlighting — VS Code Dark+ / Light+ palette ─────────────────── */
 
-/* Dark theme (default) — VS Code Dark+ hues, lifted ~10-15% luminance */
+/* Dark theme (default) */
 .hljs-comment,
-.hljs-quote       { color: #88bf78; font-style: italic; }
+.hljs-quote       { color: #6a9955; font-style: italic; }
 
 .hljs-keyword,
-.hljs-selector-tag { color: #79b8ff; }
+.hljs-selector-tag { color: #569cd6; }
 
 .hljs-string,
-.hljs-attr        { color: #f0a87c; }
+.hljs-attr        { color: #ce9178; }
 
 .hljs-number,
-.hljs-literal     { color: #c8ddc0; }
+.hljs-literal     { color: #b5cea8; }
 
 .hljs-title,
-.hljs-title.function_ { color: #e8e8b4; }
+.hljs-title.function_ { color: #dcdcaa; }
 
 .hljs-type,
-.hljs-class .hljs-title { color: #6be0c8; }
+.hljs-class .hljs-title { color: #4ec9b0; }
 
-.hljs-built_in    { color: #79b8ff; }
+.hljs-built_in    { color: #569cd6; }
 
 .hljs-meta,
-.hljs-meta .hljs-keyword { color: #d89fd4; }
+.hljs-meta .hljs-keyword { color: #c586c0; }
 
-.hljs-meta .hljs-string { color: #f0a87c; }
+.hljs-meta .hljs-string { color: #ce9178; }
 
 .hljs-variable,
-.hljs-params      { color: #b0e0ff; }
+.hljs-params      { color: #9cdcfe; }
 
 /* x86asm: section names (.text, .data …) */
-.hljs-section     { color: #e8e8b4; font-weight: 600; }
+.hljs-section     { color: #dcdcaa; font-weight: 600; }
 
 /* x86asm: labels */
-.hljs-symbol      { color: #b0e0ff; }
+.hljs-symbol      { color: #9cdcfe; }
 
 /* x86asm: instructions rendered as name */
-.hljs-name        { color: #79b8ff; }
+.hljs-name        { color: #569cd6; }
 
 /* Deletion / addition in diffs */
-.hljs-deletion    { color: #ff6b6b; }
-.hljs-addition    { color: #c8ddc0; }
+.hljs-deletion    { color: #f44747; }
+.hljs-addition    { color: #b5cea8; }
 
 /* Light theme overrides */
 html[data-theme="light"] .hljs-comment,
