@@ -72,10 +72,10 @@ enhancements:
 
 ---
 
-```cpp
-// Emacs style mode select   xxx C++ xxx
-plain2
-plain3
-plain4
-plain5
-```
+~~~cpp
+// Emacs style mode select   -*- C++ -*- 
+//-----------------------------------------------------------------------------
+//
+// $Id:$
+//
+~~~
