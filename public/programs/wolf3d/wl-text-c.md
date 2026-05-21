@@ -27,8 +27,8 @@ summary:
 
 enhancements:
   - id: "text-formatting-commands"
-    line_start: 9
-    line_end: 58
+    line_start: 1
+    line_end: 26
     title: "Text Commands That Controlled Layouts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

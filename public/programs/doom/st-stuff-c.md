@@ -79,7 +79,7 @@ enhancements:
     content: "The `ST_updateFaceWidget` function manages the animations and transitions of DOOM's face widget. It prioritizes expressions based on game events, such as death, picking up a weapon, or taking damage. The widget's precedence rules—dead > evil grin > turned head > straight ahead—ensure it conveys the most relevant information to the player. This feature was a technical and artistic achievement, combining real-time game state monitoring with expressive animations. The face widget became one of DOOM's most memorable elements, influencing HUD designs in games like System Shock and Fallout."
   - id: "player-face-animation-system"
     line_start: 797
-    line_end: 852
+    line_end: 921
     title: "How DOOM Made Faces React to Pain"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

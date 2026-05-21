@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "This section defines the memory layout for various game elements, including character tables, background tables, and control systems. Each equate assigns a specific memory address to a game component, ensuring efficient access during runtime. Jordan Mechner was working within the constraints of the Apple II's 128K memory, which required bank-switching to access auxiliary and main memory. By carefully organizing these memory locations, Mechner could fit the game's cinematic animations and complex gameplay mechanics into the limited space. At the time, memory management was a critical skill for developers, as hardware limitations dictated the scope of their designs. This approach influenced later games on constrained systems, demonstrating how thoughtful memory allocation could enable ambitious projects."
   - id: "jump-table-efficiency"
-    line_start: 3
-    line_end: 39
+    line_start: 41
+    line_end: 67
     title: "The Jump Tables That Kept Gameplay Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
     image_url: ""
@@ -54,8 +54,8 @@ enhancements:
     image_caption: ""
     content: "This section defines the game's global variables and state data, stored in the Apple II's zero-page memory ($40-$E7). Zero-page memory is faster to access due to its addressing mode, making it ideal for frequently used variables like character positions, collision flags, and timers. Mechner's decision to pack critical game state into this space reflects his deep understanding of the hardware's capabilities. In the mid-1980s, zero-page optimization was a hallmark of skilled assembly programming. This technique allowed Prince of Persia to deliver responsive gameplay despite the Apple II's modest processing power. The practice of optimizing memory access influenced later game developers working on similarly constrained systems."
   - id: "character-data-structures"
-    line_start: 498
-    line_end: 501
+    line_start: 561
+    line_end: 634
     title: "How Characters Came to Life in 128K"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""

@@ -143,7 +143,7 @@ enhancements:
     content: "The 'drawhalf' routine is a specialized version of 'drawfloor,' designed for scenarios where the player character climbs up. It includes logic for masking and rendering half-pieces of the floor, ensuring that the animation appears smooth and realistic. This routine exemplifies Mechner's attention to detail, as it addresses a specific gameplay scenario that could easily be overlooked. By creating a separate routine for climbing animations, Mechner ensured that the game's visuals remained consistent and cinematic, even during complex movements. This approach influenced later platformers by highlighting the importance of tailoring graphical routines to specific gameplay mechanics."
   - id: "drawspikea-drawspikeb-rendering-spikes"
     line_start: 1450
-    line_end: 1472
+    line_end: 1764
     title: "Rendering Spikes: Dynamic Graphics for Hazards"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

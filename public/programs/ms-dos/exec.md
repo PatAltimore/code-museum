@@ -63,7 +63,7 @@ enhancements:
     content: "This section reads the program header to determine the format (.COM or .EXE) and memory requirements. .COM files are flat, single-segment binaries, while .EXE files are segmented and include relocation information. The header is read into a buffer, and its contents are analyzed to decide the next steps. This distinction was critical for MS-DOS, as it needed to support legacy CP/M-style programs while introducing more advanced features like segmented memory. The decision to support both formats ensured compatibility with existing software while enabling developers to create more complex applications. This dual-format approach influenced later operating systems, which often included backward compatibility layers for older software."
   - id: "memory-allocation-strategy"
     line_start: 393
-    line_end: 472
+    line_end: 486
     title: "Allocating Memory in a 64KB World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This section allocates memory for the program being loaded, considering both minimum and maximum requirements. The code calculates the size needed based on the program header and attempts to allocate it using the DOS memory management system. If the requested memory cannot be allocated, the program gracefully handles the error (`exec_no_mem`). Memory allocation was a challenging task on the 8086 processor due to its segmented architecture and limited address space. Tim Paterson's approach reflects the careful planning required to optimize memory usage in early personal computers. The techniques used here influenced later systems, including Windows, which built on DOS's memory management strategies."
   - id: "relocation-table-processing"
     line_start: 557
-    line_end: 658
+    line_end: 649
     title: "Relocating Code for Segmented Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_science)"
     image_url: ""

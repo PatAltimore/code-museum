@@ -79,7 +79,7 @@ enhancements:
     content: "The `Sys_ConsoleInput` function reads user input from the console, allowing developers to issue commands or debug the game in real-time. It processes key events, handles special cases like clipboard pasting, and supports basic editing operations. This feature was invaluable during development, enabling the team to interact with the game engine directly without relying on external tools. Console input systems became a staple in game development, influencing debugging and scripting workflows in later engines. Today, similar functionality appears in developer consoles across games, providing a powerful interface for testing and customization."
   - id: "winmain-entry-point"
     line_start: 552
-    line_end: 697
+    line_end: 696
     title: "The Windows Entry Point That Launched Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/WinMain"
     image_url: ""

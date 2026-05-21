@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "texture-definition-structure"
     line_start: 60
-    line_end: 75
+    line_end: 124
     title: "How DOOM Built Textures from Patches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""

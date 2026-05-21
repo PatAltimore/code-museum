@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-directives-and-symbols"
     line_start: 1
-    line_end: 39
+    line_end: 37
     title: "Why INCLUDE Directives Were Essential"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""

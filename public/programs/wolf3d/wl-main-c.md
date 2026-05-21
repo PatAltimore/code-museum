@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "read-config-file"
     line_start: 82
-    line_end: 182
+    line_end: 191
     title: "Dynamic hardware-based configuration setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hardware_detection"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The `ReadConfig` function reads a configuration file to initialize game settings such as sound modes, joystick configurations, and view size. If no configuration file is found, the function dynamically selects settings based on the hardware detected. This approach ensured compatibility across a wide range of MS-DOS systems, which varied greatly in capabilities during the early 1990s. By detecting hardware like AdLib and Sound Blaster cards, the game could provide optimized audio experiences for players with advanced setups while gracefully degrading for simpler systems. This technique influenced later games by emphasizing adaptability to hardware constraints, a necessity in the era of diverse PC configurations. Developers at id Software, including John Carmack, leveraged this flexibility to make Wolfenstein 3D accessible to a broader audience, setting a precedent for hardware-aware game design."
   - id: "patch-386-optimization"
     line_start: 241
-    line_end: 262
+    line_end: 274
     title: "Optimizing for 386 processors with custom patches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `Patch386` function checks if the system is running on an Intel 386 processor and applies a custom patch (`jabhack2`) to optimize division operations using 32-bit instructions. This highlights id Software’s focus on squeezing performance out of available hardware. The Intel 386 was a significant upgrade over earlier processors, introducing 32-bit computing to personal computers. By tailoring the game for this architecture, Wolfenstein 3D could achieve smoother gameplay and faster calculations, critical for its fast-paced action. This optimization reflects Carmack’s reputation for technical ingenuity, as he often pushed hardware to its limits. The technique of processor-specific optimization became less common as hardware standards converged, but it was pivotal in the early PC gaming era, influencing other developers to consider hardware-specific enhancements."
   - id: "build-tables-for-3d-rendering"
     line_start: 586
-    line_end: 626
+    line_end: 628
     title: "Lookup tables for fast trigonometric calculations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `BuildTables` function precomputes trigonometric values like sine and tangent into lookup tables, enabling rapid calculations during gameplay. This approach avoids the computational overhead of calculating these values in real-time, a necessity given the limited processing power of early 1990s PCs. The tables are cleverly structured to overlap and reuse data, minimizing memory usage while maintaining precision. This technique was inspired by earlier work in computer graphics and became a staple in game development, especially for 3D engines. By reducing the computational burden, id Software could achieve the smooth and fast rendering that defined Wolfenstein 3D. The use of lookup tables influenced later engines, including the Doom engine, and remains a fundamental optimization in modern graphics programming."
   - id: "calc-projection-for-3d-view"
     line_start: 631
-    line_end: 690
+    line_end: 704
     title: "Projection math for immersive 3D gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `InitDigiMap` function initializes a mapping between in-game sound effects and their corresponding digital sound IDs. This mapping allows the game to dynamically trigger sounds based on gameplay events, enhancing immersion. The sound effects range from enemy shouts to weapon fire, each carefully chosen to match the game's atmosphere. The function supports multiple configurations, including variations for different game versions like Spear of Destiny. This modular approach to sound design reflects id Software’s attention to detail and adaptability, ensuring the game could deliver a rich audio experience across diverse hardware setups. The use of sound mapping influenced later games by demonstrating the importance of audio in creating immersive environments, a principle that remains central to game design today."
   - id: "dynamic-jukebox-menu"
     line_start: 1012
-    line_end: 1131
+    line_end: 1132
     title: "Dynamic Jukebox Menu for In-Game Music"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

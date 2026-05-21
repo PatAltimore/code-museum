@@ -39,7 +39,7 @@ enhancements:
     content: "This section includes DOSSEG.ASM and sets up the code segment for FAT operations. The programmer uses `ASSUME` directives to establish segment registers, ensuring the assembler correctly interprets memory references. In 1983, segment management was critical for 8086 assembly, as the CPU only supported 16-bit addressing, requiring careful segmentation to access larger memory spaces. Tim Paterson and Microsoft engineers designed MS-DOS 2.0 to work seamlessly with IBM PC hardware, where memory constraints were a constant challenge. This setup laid the groundwork for efficient FAT operations, enabling MS-DOS to handle file storage on floppy disks and hard drives. The segmentation approach influenced later operating systems, including Windows, which inherited many low-level conventions from MS-DOS."
   - id: "name-fat-data-structure"
     line_start: 33
-    line_end: 69
+    line_end: 59
     title: "Defining FAT Data Structures for Disk Access"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""

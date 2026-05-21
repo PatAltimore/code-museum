@@ -55,7 +55,7 @@ enhancements:
     content: "The SCANCDONE section includes a call to the UPCONV subroutine, which converts characters to uppercase. This ensures that MS-DOS treats file names and commands as case-insensitive, a design choice that simplified user interaction and avoided confusion. The routine also checks for special delimiters and sets flags accordingly. Case insensitivity was a deliberate decision in MS-DOS, influenced by the need to make the operating system accessible to non-technical users. At the time, Unix systems were case-sensitive, which could lead to errors if users were unfamiliar with the conventions. By converting input to uppercase, MS-DOS eliminated this potential source of frustration. The Intel 8086 processor's instruction set made such conversions relatively straightforward, allowing the routine to be implemented efficiently. This approach became a defining feature of MS-DOS and influenced other operating systems like Windows, which inherited case insensitivity for file names. While modern systems like Linux and macOS have embraced case sensitivity, the legacy of MS-DOS's design can still be seen in the default behavior of Windows file systems and command-line tools. The SCANCDONE section highlights the trade-offs between user-friendly design and technical precision, a balance that continues to shape software development today."
   - id: "testdot-extension-handling"
     line_start: 315
-    line_end: 483
+    line_end: 455
     title: "Handling File Extensions: The Dot Matters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Filename_extension"
     image_url: ""

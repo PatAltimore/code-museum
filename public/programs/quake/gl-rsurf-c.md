@@ -87,7 +87,7 @@ enhancements:
     content: "The `R_RenderBrushPoly` function handles the rendering of brush-based surfaces, including texture binding, lightmap application, and dynamic updates. Brush models were a cornerstone of Quake's level geometry, enabling complex 3D structures. This function exemplifies id Software's modular approach to rendering, where each surface type is treated as a distinct entity. The concept of brush-based geometry influenced later engines like Source, which expanded on the idea with tools like Hammer Editor for level design."
   - id: "dynamic-lightmap-updates"
     line_start: 840
-    line_end: 896
+    line_end: 902
     title: "Dynamic Lightmap Updates in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The `R_DrawBrushModel` function is responsible for rendering brush models, which are 3D objects defined by planes. It accounts for rotation and dynamic lighting, ensuring that models are correctly positioned and lit in the scene. Brush models were a staple of Quake's level design, enabling complex structures like doors and platforms. The function also includes a workaround for a bug in Quake's handling of angles, highlighting the challenges of debugging in a high-pressure development environment. Carmack's innovative use of dynamic lighting here laid the groundwork for more advanced lighting systems in later games, such as Doom 3's per-pixel lighting."
   - id: "recursive-world-node"
     line_start: 1187
-    line_end: 1319
+    line_end: 1327
     title: "Traversing the World with Binary Space Partitioning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The `AllocBlock` function allocates space for lightmaps within texture blocks, ensuring efficient use of memory. Lightmaps store precomputed lighting information, enabling realistic shading without the computational cost of dynamic lighting. This function uses a clever packing algorithm to fit lightmaps into fixed-size blocks, a necessity given the limited memory of 1990s hardware. The technique was a precursor to modern texture atlases, which optimize GPU memory usage in contemporary engines. Quake's lightmap system inspired similar approaches in games like Half-Life and Counter-Strike, which relied heavily on precomputed lighting."
   - id: "build-surface-display-list"
     line_start: 1461
-    line_end: 1573
+    line_end: 1579
     title: "Eliminating Co-linear Vertices for Faster Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_mesh"
     image_url: ""

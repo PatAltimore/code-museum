@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "scrambled-input-mapping-table"
-    line_start: 27
+    line_start: 34
     line_end: 34
     title: "The Scrambled Table That Hid Cheat Codes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
@@ -41,7 +41,7 @@ enhancements:
     content: "Lines 42–75 implement the `cht_CheckCheat` function, which validates user input against predefined cheat code sequences. The function uses the scrambled translation table to match keystrokes to the expected sequence. If the sequence is completed successfully, the cheat is activated. This routine cleverly handles edge cases, such as resetting the sequence if an incorrect key is pressed, and initializing the sequence pointer (`cht->p`) on first use. In 1993, cheat codes were a hallmark of gaming culture, often serving as Easter eggs or developer tools. DOOM's implementation was notable for its robustness and modularity, allowing the cheat system to integrate seamlessly with the game's input handling. The technique of sequence validation influenced later games, where cheat codes evolved into unlockable achievements or developer modes. It also highlights the meticulous attention to detail that defined DOOM's programming, contributing to its reputation as a technical masterpiece."
   - id: "extracting-cheat-code-parameters"
     line_start: 76
-    line_end: 98
+    line_end: 96
     title: "The Function That Read Cheat Code Secrets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
     image_url: ""

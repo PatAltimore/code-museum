@@ -87,15 +87,15 @@ enhancements:
     content: "FindResponseFile processes command-line arguments to locate and parse response files, which contain additional arguments for the game. It reads the file into memory, appends its contents to the argument list, and displays the updated arguments for debugging purposes. This feature allows users to specify complex configurations without typing lengthy command lines. In the early 1990s, command-line interfaces were a common way to configure software. Response files provided a convenient way to manage complex setups, especially for developers and advanced users. DOOM's implementation reflects id Software's focus on flexibility and user empowerment. Response files influenced later tools and engines, which adopted similar mechanisms for batch processing and configuration. They remain relevant in modern development workflows, where scripts and configuration files are used to automate tasks. DOOM's code serves as a historical example of how to balance usability with technical sophistication."
   - id: "command-line-options-flexibility"
     line_start: 792
-    line_end: 1170
+    line_end: 935
     title: "How Command-Line Arguments Shaped Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
     content: "This section of the code processes command-line arguments to customize gameplay. Options like '-nomonsters', '-respawn', and '-fast' allow players to modify the game's behavior, while '-deathmatch' sets up multiplayer modes. The '-turbo' option adjusts movement speed, demonstrating how DOOM catered to both casual players and advanced users. In the early 1990s, command-line interfaces were a common way to configure software, especially on DOS-based systems. John Carmack's design philosophy emphasized user control and flexibility, which was rare for games at the time. This approach influenced later games, inspiring developers to include similar customization options. Today, command-line arguments remain a staple in software development, especially in debugging and server applications."
   - id: "wad-file-handling"
-    line_start: 903
-    line_end: 945
+    line_start: 937
+    line_end: 944
     title: "The Hack That Made Modding Easy"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "This section initializes DOOM's subsystems, including memory management (Z_Init), graphics (V_Init), sound (S_Init), and gameplay state (P_Init). Each subsystem is modular, allowing the engine to be maintainable and adaptable. In the early 1990s, modular programming was gaining traction as developers sought ways to manage increasingly complex software. John Carmack's focus on clean, modular design ensured DOOM's engine could be extended and optimized over time. This modularity influenced later engines like Quake and Unreal, which adopted similar principles. Today, modularity is a fundamental concept in software engineering, underpinning frameworks like Unity and Unreal Engine."
   - id: "game-start-logic"
     line_start: 1125
-    line_end: 1169
+    line_end: 1139
     title: "How DOOM Decides What to Do First"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

@@ -49,7 +49,7 @@ enhancements:
     content: "The `P_CrossSubsector` function performs detailed visibility checks by calculating slopes to determine whether an object is occluded. It examines the geometry of subsectors, comparing floor and ceiling heights to detect potential blockers. If the slopes of the top and bottom edges of a target overlap, the line of sight is considered obstructed. This slope-based approach was a clever solution to the problem of occlusion in a 2.5D engine, where true 3D calculations were infeasible on consumer hardware. By using fixed-point arithmetic and precomputed geometry data, DOOM achieved fast and accurate visibility checks, enabling realistic enemy AI and player interactions. This technique was a precursor to more advanced occlusion culling methods used in modern engines, such as Umbra's visibility solutions in Unity and Unreal."
   - id: "bsp-traversal-for-visibility"
     line_start: 251
-    line_end: 289
+    line_end: 288
     title: "BSP Traversal: The Backbone of DOOM's World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""

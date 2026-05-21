@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "mobj-state-machine"
-    line_start: 46
+    line_start: 52
     line_end: 83
     title: "How DOOM Objects Change State Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
@@ -87,7 +87,7 @@ enhancements:
     content: "The `P_RespawnSpecials` function handles item respawns in deathmatch mode, ensuring that players always have access to weapons and power-ups. Items respawn after a fixed delay, accompanied by visual and sound effects like teleport fog (`MT_IFOG`) and the teleport sound (`sfx_itmbk`). This mechanic was crucial for maintaining balance and pacing in multiplayer matches, influencing later games like Quake and Unreal Tournament, which refined item respawn systems for competitive play."
   - id: "spawn-player"
     line_start: 635
-    line_end: 699
+    line_end: 706
     title: "Player Spawning: Setting the Stage for Action"
     wikipedia_url: "https://doom.fandom.com/wiki/Player"
     image_url: ""

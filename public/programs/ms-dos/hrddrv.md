@@ -39,7 +39,7 @@ enhancements:
     content: "The `DSKDEV` section defines the header for the hard disk driver, specifying attributes such as device type, strategy pointer, interrupt pointer, and the number of units supported. This header acts as the entry point for the driver, enabling MS-DOS to interface with the hardware. At the time, modularity was a key innovation, allowing MS-DOS to support diverse hardware configurations without rewriting the operating system. The structure reflects the influence of Unix-like systems, where device drivers were similarly abstracted. This modular approach allowed Microsoft to license MS-DOS to multiple OEMs, each with unique hardware setups. The concept of device headers became a standard in operating systems, influencing later systems like Windows and Linux."
   - id: "dsk-tbl-dispatch-table"
     line_start: 125
-    line_end: 137
+    line_end: 149
     title: "The Dispatch Table That Simplified Drivers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `DSK_TBL` section defines a dispatch table mapping command codes to subroutine addresses. This design allows the driver to quickly route commands like initialization, media checks, and block reads/writes to the appropriate subroutine. Dispatch tables were a clever solution to the constraints of early hardware, where memory and processing power were limited. Tim Paterson adapted this approach from earlier systems, ensuring MS-DOS could efficiently handle I/O operations without hardcoding logic for every device. This technique influenced later operating systems, where dispatch tables became a common pattern for modular driver design. It also laid the groundwork for plug-and-play functionality in modern systems."
   - id: "strategy-routine-save-io-pointers"
     line_start: 205
-    line_end: 219
+    line_end: 229
     title: "How Strategy Saved I/O Pointers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `GET_BPB` routine constructs a BIOS Parameter Block (BPB) for the specified disk unit. BPBs describe disk geometry and layout, enabling MS-DOS to interface with different storage devices. This routine retrieves the BPB from the driver and updates the I/O packet with its address. In 1983, BPBs were a novel concept, borrowed from CP/M and adapted for MS-DOS to support diverse disk formats. This innovation allowed MS-DOS to handle disks with varying sector sizes, allocation units, and file system structures. BPBs became a standard in operating systems, influencing FAT file system design and modern storage management."
   - id: "disk-io-functions"
     line_start: 701
-    line_end: 853
+    line_end: 839
     title: "The Disk I/O Functions That Moved Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_operating_system"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `DSK_RED`, `DSK_WRT`, and `DSK_COM` routines implement disk read and write operations by interacting with the Altos ROM and the I/O packet structure. These routines calculate sector addresses, manage retries, and handle errors using predefined masks. The design reflects the constraints of the Altos ACS-86C hardware, where direct manipulation of disk geometry was necessary. By abstracting these operations into reusable routines, MS-DOS enabled developers to write applications without worrying about hardware details. This modularity influenced later operating systems, where disk I/O became increasingly abstracted and standardized."
   - id: "disk-error-handling"
     line_start: 857
-    line_end: 937
+    line_end: 921
     title: "How MS-DOS Interpreted Disk Errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The `DERROR` routines process disk errors by mapping hardware error codes to MS-DOS error codes using a lookup table (`DERRTAB`). This design ensures consistent error reporting across different hardware platforms. The routines also update the I/O packet to indicate failure and exit through a common error routine. In 1983, error handling was a critical feature, as unreliable hardware and removable media often caused failures. By centralizing error processing, MS-DOS simplified debugging and improved user experience. This approach influenced later systems, where error codes and lookup tables became standard in driver design."
   - id: "rom-call-routine"
     line_start: 941
-    line_end: 973
+    line_end: 965
     title: "The ROM Call That Bridged Hardware"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
     image_url: ""

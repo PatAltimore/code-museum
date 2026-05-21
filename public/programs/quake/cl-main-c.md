@@ -41,7 +41,7 @@ enhancements:
     content: "The `noclip_anglehack` variable is a remnant from earlier versions of Quake, hinting at the iterative development process id Software employed. This variable likely facilitated debugging or testing during development, allowing developers to bypass collision detection and explore environments freely. Such hacks were common in the 1990s, as developers worked under tight deadlines and hardware constraints. While it may seem trivial, the presence of this variable underscores the challenges of creating a groundbreaking 3D engine and the creative solutions developers employed. Today, similar debugging tools are standard in game development environments, influenced by practices like this."
   - id: "static-allowremotecmd"
     line_start: 65
-    line_end: 70
+    line_end: 65
     title: "A Security Measure in Multiplayer Gaming"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""
@@ -49,7 +49,7 @@ enhancements:
     content: "The `allowremotecmd` variable, set to `true` by default, controls whether remote commands can be executed. This reflects early considerations of security in multiplayer gaming. In the mid-1990s, online gaming was in its infancy, and developers were beginning to grapple with issues like unauthorized access and cheating. By introducing such variables, id Software demonstrated an awareness of these challenges, laying the groundwork for more robust security measures in future games. Modern multiplayer games have evolved significantly, employing encryption and authentication protocols, but the principles seen here remain foundational."
   - id: "cl-quit-f"
     line_start: 143
-    line_end: 159
+    line_end: 165
     title: "The Function That Ends It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -57,7 +57,7 @@ enhancements:
     content: "The `CL_Quit_f` function handles the game's quit command. It ensures a graceful exit by disconnecting from the server and shutting down the system. This function reflects id Software's meticulous attention to user experience, ensuring that quitting the game doesn't leave lingering connections or processes. In 1996, such considerations were vital as system resources were limited, and improper shutdowns could lead to crashes or corrupted data. This approach influenced later games, which adopted similar practices to ensure stability and reliability during exit operations."
   - id: "cl-send-connect-packet"
     line_start: 173
-    line_end: 222
+    line_end: 231
     title: "Sending Packets in the Age of Dial-Up"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -105,7 +105,7 @@ enhancements:
     content: "The `CL_Init` function is responsible for initializing the client-side components of QuakeWorld. It sets up default user information, registers configuration variables (`cvars`), and initializes subsystems like input handling, prediction, and camera controls. This modular initialization process reflects id Software's design philosophy of separating concerns, allowing individual systems to be updated or replaced without affecting others. In 1996, multiplayer gaming was still in its infancy, and Quake's approach to client initialization laid the groundwork for modern multiplayer architectures. The modularity and extensibility of this system influenced later engines like Unreal Engine and Source, which adopted similar principles for managing complex game state and user interactions."
   - id: "host-endgame-error-handling"
     line_start: 1181
-    line_end: 1203
+    line_end: 1211
     title: "Graceful error handling in a multiplayer world"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
@@ -113,7 +113,7 @@ enhancements:
     content: "The `Host_EndGame` and `Host_Error` functions provide mechanisms for handling errors and exiting gracefully. `Host_EndGame` drops the client to the console without exiting the application, while `Host_Error` shuts down the client entirely. Both functions use formatted output to display error messages and ensure proper cleanup of resources, such as disconnecting from the server and resetting state variables. This robust error handling was crucial for multiplayer stability, where unexpected network conditions or bugs could otherwise crash the game. The use of `longjmp` for error recovery reflects the constraints of C programming in the 1990s, where structured exception handling was not yet standard. These techniques influenced later game engines, which adopted more sophisticated error handling mechanisms to improve reliability."
   - id: "write-configuration-to-file"
     line_start: 1237
-    line_end: 1262
+    line_end: 1301
     title: "Saving user preferences to disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/Configuration_file"
     image_url: ""

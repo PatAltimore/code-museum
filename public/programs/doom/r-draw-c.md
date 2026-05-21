@@ -39,7 +39,7 @@ enhancements:
     content: "The `R_DrawColumn` function is responsible for rendering vertical slices of wall textures, a technique optimized for DOOM's fixed-view perspective. By leveraging lookup tables (`ylookup` and `columnofs`), the function avoids costly multiplications to calculate framebuffer addresses, instead relying on precomputed offsets. This approach is rooted in techniques used in earlier games like Wolfenstein 3D, where fixed-view angles simplified rendering calculations. In 1993, consumer PCs had limited processing power, often lacking hardware acceleration for graphics. John Carmack's decision to optimize for fixed-view angles allowed DOOM to achieve its groundbreaking speed and fluidity on modest hardware. This technique influenced later games and engines, including Quake, which built on these principles while introducing more advanced 3D rendering."
   - id: "unused-loop-unrolling"
     line_start: 151
-    line_end: 206
+    line_end: 207
     title: "The Loop Unrolling That Never Shipped"
     wikipedia_url: "https://en.wikipedia.org/wiki/Loop_unrolling"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `R_InitTranslationTables` function initializes the translation tables used for dynamic color remapping. It maps the green color ramp (used for player sprites) to gray, brown, and red, allowing for visual differentiation between players or sprite variants. The function assumes a specific structure for the PLAYPAL lump, which defines the game's color palette. This design choice reflects the constraints of the era, where memory and storage limitations required developers to maximize the utility of existing assets. Translation tables became a common feature in game engines, enabling efficient color customization and paving the way for features like team-based multiplayer color schemes."
   - id: "span-rendering-for-floors-and-ceilings"
     line_start: 517
-    line_end: 562
+    line_end: 567
     title: "The Horizontal Trick Behind DOOM's Floors"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

@@ -47,7 +47,7 @@ enhancements:
     content: "The `R_RenderSegLoop` routine is the heart of DOOM's wall rendering system. It draws wall textures, handles lighting, and marks floor and ceiling planes for further rendering. The loop iterates over each pixel column of a wall segment, calculating texture offsets and lighting values dynamically. It also supports multi-tiered walls, drawing separate textures for the top, middle, and bottom sections as needed. Special cases like masked textures are handled here, ensuring transparent walls are rendered correctly. In the early 1990s, real-time graphics were still in their infancy. DOOM's rendering engine was groundbreaking, achieving smooth 3D visuals on hardware with no dedicated graphics acceleration. The use of fixed-point arithmetic and precomputed lookup tables allowed the game to perform complex calculations quickly. Carmack's approach to rendering was heavily influenced by earlier games like Wolfenstein 3D but introduced innovations like variable lighting and texture alignment. This rendering loop became a cornerstone of real-time graphics programming. Its influence can be seen in later engines like Quake's, which expanded on these ideas with true 3D environments and hardware acceleration. Modern game engines still rely on similar principles, albeit implemented with shaders and parallel processing. The techniques pioneered in DOOM's rendering loop remain a testament to the ingenuity of early game developers."
   - id: "wall-segment-storage"
     line_start: 368
-    line_end: 744
+    line_end: 743
     title: "How DOOM Decided What to Draw"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

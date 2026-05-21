@@ -135,7 +135,7 @@ enhancements:
     content: "The `INITLAY` routine initializes the screen layout by setting memory bank (`BANK`) and defining the screen boundaries (`RIGHTCUT`, `BOTCUT`, `LEFTCUT`, `TOPCUT`). This ensures that the game uses the full screen for rendering, maximizing the visual impact of the Apple II's hi-res graphics. In the 1980s, full-screen rendering was a technical challenge on systems like the Apple II, which had limited graphics capabilities and memory. Mechner's routine here demonstrates his mastery of the hardware, allowing Prince of Persia to deliver a visually immersive experience despite its constraints. This approach to screen layout influenced later games that sought to maximize graphical fidelity on limited hardware. It also showcased the importance of optimizing screen boundaries for gameplay, a principle that continues to shape modern game design."
   - id: "print-character-hires"
     line_start: 1166
-    line_end: 1188
+    line_end: 1186
     title: "Printing Characters in Hi-Res Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""

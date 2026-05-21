@@ -39,7 +39,7 @@ enhancements:
     content: "These lines include critical assembly headers (`DOSSEG.ASM`, `DOSSYM.ASM`, and `DEVSYM.ASM`) that define the memory management structures and symbols used throughout the file. At the time, MS-DOS was transitioning from a simple single-tasking OS to a more Unix-inspired system with features like subdirectories and device drivers. These headers provided the foundational definitions for memory arenas, process data blocks, and allocation methods. Tim Paterson and Microsoft engineers used these headers to ensure consistency and modularity across the codebase. By abstracting hardware-specific details into headers, they made the code easier to adapt for different OEMs, a key factor in MS-DOS's widespread adoption. This modular approach influenced later operating systems, including Windows and Linux, where header files and modularity became standard practice."
   - id: "arena-free-process-loop"
     line_start: 67
-    line_end: 155
+    line_end: 123
     title: "Freeing Memory Blocks by Process ID"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

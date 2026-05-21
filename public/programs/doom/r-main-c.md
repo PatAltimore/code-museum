@@ -63,7 +63,7 @@ enhancements:
     content: "The `R_InitTextureMapping` function sets up texture mapping by using tangent tables to calculate screen coordinates for visible angles. This allows DOOM to efficiently map textures onto walls and other surfaces, creating the illusion of depth in its pseudo-3D environments. Texture mapping was a relatively new concept in the early 1990s, and DOOM's implementation pushed the boundaries of what was possible on consumer hardware. The technique influenced later games and engines, including Quake, which expanded on these ideas with true 3D rendering."
   - id: "dynamic-lighting"
     line_start: 606
-    line_end: 641
+    line_end: 638
     title: "Dynamic Lighting on 1990s Hardware"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `R_InitLightTables` function calculates light levels based on distance and view size, creating a dynamic lighting effect that enhances DOOM's immersive atmosphere. By scaling light intensity with distance, the game simulates realistic lighting without requiring advanced hardware capabilities. This was a significant innovation at a time when most games used static lighting. The technique influenced later engines, including the Build Engine used in Duke Nukem 3D, and laid the groundwork for more sophisticated lighting systems in modern games."
   - id: "frame-setup-and-rendering"
     line_start: 866
-    line_end: 897
+    line_end: 880
     title: "What Happens Before DOOM Draws a Frame"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""

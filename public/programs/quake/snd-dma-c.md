@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines foundational variables and structures for Quake's sound system, including the `channels` array for managing sound channels and the `snd_initialized` flag to track system readiness. At the time, sound systems in games were often rudimentary, but Quake aimed to create an immersive experience by managing multiple dynamic and ambient sound channels. The use of `volatile dma_t` reflects the direct interaction with hardware buffers, a technique common in the era of limited CPU resources. By establishing these variables, the developers laid the groundwork for a sound engine that could spatialize audio and dynamically allocate resources. This approach influenced subsequent game engines, including Unreal Engine and Source Engine, which adopted similar abstractions for sound management."
   - id: "user-settable-sound-variables"
     line_start: 74
-    line_end: 74
+    line_end: 85
     title: "User-Settable Sound Variables: Fine-Tuning Audio"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The `S_Startup` function initializes the sound system, including the DMA sound buffer via `SNDDMA_Init`. Direct Memory Access (DMA) was a critical technology for real-time audio processing in the 1990s, enabling efficient data transfer between memory and sound hardware without burdening the CPU. This routine checks for successful initialization and gracefully handles failures, ensuring the game can continue running even if sound cannot be started. The reliance on DMA reflects the hardware constraints of the time, where optimizing CPU cycles was paramount. This approach influenced later game engines, which continued to prioritize efficient hardware interaction for audio systems."
   - id: "sound-precaching"
     line_start: 310
-    line_end: 325
+    line_end: 332
     title: "Sound Precaching: Loading Audio for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `S_UpdateAmbientSounds` function dynamically adjusts ambient sound levels based on the player's location in the game world. By calculating sound levels from the surrounding environment, the function creates a seamless audio experience that responds to player movement. This innovation was part of Quake's effort to integrate audio into its immersive 3D environments. The technique influenced later games like Half-Life, which used similar systems to enhance atmosphere and storytelling through sound."
   - id: "debugging-sound-channels"
     line_start: 792
-    line_end: 807
+    line_end: 806
     title: "Debugging Sound Channels: Real-Time Insights"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""

@@ -79,7 +79,7 @@ enhancements:
     content: "The `GetBonus` function handles interactions with collectible items, such as health packs, ammo, and treasure. Each item triggers specific effects, like increasing health or awarding points, and plays a corresponding sound. This system encouraged players to explore levels thoroughly, rewarding curiosity and persistence. In 1992, such mechanics were relatively new, as most games focused on linear progression. Wolfenstein 3D’s emphasis on exploration and rewards influenced later titles like Doom and Duke Nukem 3D, where secret areas and collectibles became integral to gameplay."
   - id: "collision-detection"
     line_start: 791
-    line_end: 855
+    line_end: 864
     title: "The Tile-Based Collision System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "This section defines the `Cmd_Use` function, which determines the player's interaction with the environment based on their facing direction. The code calculates the cardinal direction the player is facing and checks the tile in front of them for interactive objects like doors, elevators, or pushable walls. The function handles different scenarios, such as flipping elevator switches or opening doors, and plays corresponding sound effects to enhance immersion. In 1992, real-time interaction with the environment was a cutting-edge feature in games, especially on hardware like the IBM PC with limited processing power. John Carmack's efficient use of lookup tables and bitwise operations ensured smooth gameplay even on machines without dedicated graphics hardware. This approach influenced later games by demonstrating how to optimize player-environment interactions in constrained systems. Games like Doom and Quake built on these principles, further refining real-time interactivity."
   - id: "spawn-player-initialization"
     line_start: 1092
-    line_end: 1118
+    line_end: 1121
     title: "The Code That Places You in the World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The `GunAttack` function is responsible for ranged combat, finding targets and calculating damage based on distance. It iterates through potential enemies, checks visibility, and traces a line to ensure the shot is unobstructed. Damage is scaled based on proximity, adding realism to the shooting mechanics. This function also plays sound effects for different weapons, enhancing the player's experience. In 1992, simulating realistic gunfire on limited hardware was a technical challenge. Carmack's use of efficient loops and conditional checks ensured smooth gameplay without sacrificing performance. This targeting system influenced later FPS games, including Doom and Quake, which expanded on these mechanics with more sophisticated physics and AI."
   - id: "victory-spin-celebration"
     line_start: 1245
-    line_end: 1280
+    line_end: 1283
     title: "The Code Behind Victory Spins"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

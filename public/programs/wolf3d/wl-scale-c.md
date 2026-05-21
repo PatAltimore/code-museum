@@ -49,7 +49,7 @@ enhancements:
     content: "The `SetupScaling` subroutine is responsible for preparing the scaling system by freeing old scalers, allocating memory for new ones, and locking them down for use. It uses memory management functions like `MM_FreePtr`, `MM_GetPtr`, and `MM_SetLock` to handle the limited resources available on MS-DOS systems. The routine also adjusts the scaling step size to optimize memory usage, doubling the step for larger heights to save space. This careful balance of memory allocation and performance optimization was essential for running Wolfenstein 3D on hardware with only a few megabytes of RAM. The technique of compacting memory and locking resources influenced later game engines, such as Doom and Quake, which built on these principles to manage increasingly complex rendering tasks."
   - id: "buildcompscale-compiled-scaler"
     line_start: 131
-    line_end: 228
+    line_end: 246
     title: "The Algorithm That Scaled Pixels to Height"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
@@ -57,7 +57,7 @@ enhancements:
     content: "The `BuildCompScale` subroutine constructs a compiled scaler object that maps a 64-pixel-tall source image to a specified height. It calculates the step size for scaling and generates assembly instructions to move source pixels to their scaled positions on the screen. The compiled scaler is stored in memory and can be called repeatedly for efficient rendering. This technique allowed Wolfenstein 3D to achieve smooth scaling without relying on hardware acceleration, which was unavailable on most consumer PCs in 1992. By precomputing the scaling logic, the game minimized CPU overhead during gameplay. This approach was a precursor to modern techniques like shader programming, where rendering logic is compiled and executed efficiently on the GPU."
   - id: "scaleline-assembly-optimization"
     line_start: 249
-    line_end: 394
+    line_end: 419
     title: "The Assembly Code That Scaled Lines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -65,7 +65,7 @@ enhancements:
     content: "The `ScaleLine` subroutine uses inline assembly to scale individual lines of pixels based on precomputed scaler data. It interacts directly with hardware registers, such as the map mask register, to control pixel rendering. The subroutine handles different cases for one-byte, two-byte, and three-byte scaling, optimizing the process for varying line widths. This low-level approach was necessary to achieve real-time performance on early PCs, where every CPU cycle counted. The use of inline assembly reflects the deep understanding of hardware that id Software's developers brought to the project. These optimizations laid the groundwork for techniques used in later engines, where low-level control over rendering remains a key factor in achieving high performance."
   - id: "scaleshape-complex-scaling"
     line_start: 421
-    line_end: 597
+    line_end: 623
     title: "Scaling Shapes with Visibility Checks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

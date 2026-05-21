@@ -71,7 +71,7 @@ enhancements:
     content: "The 'PUTSYS' routine creates new files for the BIOS and DOS system components on the destination drive. It sets file attributes using interrupt 21h, ensuring the files are marked as system files. This level of control over file attributes was a key feature of MS-DOS, allowing developers to manage file visibility and access. The concept of file attributes influenced later operating systems, including Windows NT, where attributes like 'hidden' and 'system' are still used."
   - id: "recursive-memory-loading-for-file-copy"
     line_start: 557
-    line_end: 655
+    line_end: 573
     title: "Recursive Memory Loading for File Copy"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The 'FillMem' routine dynamically allocates buffer space for reading BIOS and DOS files. It calculates the buffer size based on available memory and adjusts the read length accordingly. This adaptive approach was innovative for its time, allowing MS-DOS to run efficiently on machines with varying memory sizes. Dynamic memory allocation became a cornerstone of modern operating systems, enabling features like virtual memory and dynamic heap management."
   - id: "file-opening-and-size-calculation"
     line_start: 727
-    line_end: 821
+    line_end: 775
     title: "File Opening and Size Calculation"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The 'OpenFile' routine opens files for reading and calculates their size using interrupt 21h. It retrieves the file's last write time and stores it for later use. This meticulous handling of file metadata reflects the importance of data integrity in MS-DOS. The ability to track file sizes and timestamps influenced later systems, where metadata became critical for features like journaling and file versioning."
   - id: "boot-sector-writing-for-ibm-compatibility"
     line_start: 893
-    line_end: 1025
+    line_end: 979
     title: "Boot Sector Writing for IBM Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The NOT_SINGLE section checks whether the drive is a bootable floppy disk. It compares the media type against a predefined value (0FBh), ensuring only valid bootable floppies are accepted. This logic was critical for systems that relied on floppy disks for booting, as hard drives were still a luxury in 1983. By enforcing strict validation, MS-DOS reduced the risk of boot errors and ensured reliable startup. This approach influenced later boot loaders, which adopted similar checks for removable media. The floppy disk's decline in the 1990s marked the end of such routines, but their legacy persists in USB boot validation and other modern equivalents."
   - id: "getkeystroke-bios-input"
     line_start: 1149
-    line_end: 1165
+    line_end: 1161
     title: "Keystroke Input via BIOS Interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""

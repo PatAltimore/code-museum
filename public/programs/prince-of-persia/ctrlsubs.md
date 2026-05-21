@@ -63,7 +63,7 @@ enhancements:
     content: "The SETUPCHAR subroutine translates character data into a format suitable for frame advancement, ensuring smooth transitions between animation frames. It decodes image and sword data, adjusts screen coordinates, and aligns the character's X-coordinate based on their facing direction. This meticulous setup was crucial for implementing the rotoscoped animations that defined Prince of Persia's visual style. Mechner filmed his brother performing the game's moves and traced each frame, creating lifelike animations that were groundbreaking for the era. This technique inspired later developers, including Eric Chahi (Another World) and Delphine Software (Flashback), to explore rotoscoping and cinematic storytelling in games."
   - id: "sword-visibility-logic"
     line_start: 843
-    line_end: 904
+    line_end: 895
     title: "Logic for Sword Visibility and Placement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The SETUPSWORD subroutine determines whether a character's sword should be visible and, if so, calculates its position relative to the character. It checks conditions like the character's life status, position, and current frame to decide whether the sword is sheathed or drawn. If visible, the sword's frame data is decoded and added to the object table for rendering. This attention to detail contributed to the game's cinematic feel, where every element of the character's appearance was carefully managed. The sword mechanics influenced later action-adventure games, such as the Legend of Zelda series, where weapon visibility and placement became integral to gameplay."
   - id: "decode-sword-image"
     line_start: 1007
-    line_end: 1049
+    line_end: 1055
     title: "How Sword Images Are Decoded"
     wikipedia_url: "https://en.wikipedia.org/wiki/6502"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `QUICKFLOOR` subroutine marks floor pieces for redraw based on the character's position and action. It uses block coordinates to identify affected areas and ensures that only necessary sections of the screen are updated. This optimization minimizes redraw overhead, a crucial technique for maintaining performance on the Apple II's limited hardware. Mechner's use of selective redraws reflects the ingenuity required to create visually dynamic games on early computers. This approach influenced later techniques like double buffering and partial screen updates, which became standard in game graphics rendering."
   - id: "crop-character-image"
     line_start: 1303
-    line_end: 1484
+    line_end: 1493
     title: "Cropping Character Images for Interaction"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The `CROPCHAR` subroutine adjusts the character's visible boundaries based on their position and surroundings. It handles scenarios like climbing stairs, standing under solid floors, or interacting with panels. By dynamically cropping the character's image, Mechner ensured seamless integration with the environment, enhancing the game's cinematic feel. This technique of clipping graphics based on context was ahead of its time, influencing later games that required dynamic sprite manipulation, such as Another World and Flashback."
   - id: "compare-space-for-passability"
     line_start: 1495
-    line_end: 1532
+    line_end: 1583
     title: "Determining Passable Spaces in the Environment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pathfinding"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The `RECHARGEMETER` and `BOOSTMETER` subroutines manage the character's strength meter, recharging it to the maximum or boosting its capacity. This mechanic adds a layer of progression and strategy to the gameplay, encouraging players to manage their resources carefully. Mechner's implementation of strength meters influenced similar mechanics in RPGs and action games, such as the stamina systems in Dark Souls and Breath of the Wild."
   - id: "calculate-character-distance"
     line_start: 2052
-    line_end: 2102
+    line_end: 2098
     title: "How to Measure Distance in 6502 Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

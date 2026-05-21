@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "foundation-vector-origin"
     line_start: 27
-    line_end: 27
+    line_end: 28
     title: "Why Quake Needed a Vector Origin Constant"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
     image_url: ""

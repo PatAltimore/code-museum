@@ -111,7 +111,7 @@ enhancements:
     content: "The `FindFile` routine searches for a specific file within a directory, checking attributes and validating the path. It was a key component of MS-DOS 2.0's hierarchical file system, which represented a major evolution from the flat file structure of earlier versions. This routine had to balance functionality with performance, as it ran on hardware with limited resources. The ability to locate files efficiently was essential for applications and users navigating complex directory trees. This approach influenced later file system designs, including FAT32 and NTFS, which built upon the principles established here to improve scalability and reliability."
   - id: "setdir-change-current-directory"
     line_start: 1927
-    line_end: 1997
+    line_end: 1991
     title: "Changing Directories: A Unix-inspired Feature"
     wikipedia_url: "https://en.wikipedia.org/wiki/Working_directory"
     image_url: ""

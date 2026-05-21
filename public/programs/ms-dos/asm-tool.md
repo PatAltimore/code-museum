@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "revision-history-tim-paterson"
     line_start: 1
-    line_end: 26
+    line_end: 25
     title: "Why Tim Paterson Kept Revising This Assembler"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tim_Paterson"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "This section handles file operations, including setting default drive letters and opening source, HEX, and PRN files. The code includes checks for valid drive letters and suppresses file creation based on user input (e.g., 'Z' to suppress HEX files). These routines demonstrate the challenges of working with the MS-DOS file system, which relied on fixed-length file control blocks (FCBs) and limited error reporting. The assembler's ability to adapt to different file configurations made it versatile for developers working on various projects. This approach influenced the design of file handling routines in later programming tools and operating systems, emphasizing flexibility and error handling."
   - id: "line-assembly-loop"
     line_start: 144
-    line_end: 185
+    line_end: 172
     title: "The Loop That Assembles Your Code"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""

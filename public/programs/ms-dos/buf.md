@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-dosseg-and-dossym"
     line_start: 1
-    line_end: 21
+    line_end: 15
     title: "Why Include Files Were Crucial in Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `SETVISIT` routine initializes a scan of I/O buffers, ensuring all visit flags are cleared. This pre-scan is critical because hard disk errors could interrupt scans, leaving some flags in inconsistent states. By resetting these flags, MS-DOS avoids potential corruption or mismanagement of buffers. In 1983, disk errors were a common occurrence due to hardware limitations, and routines like this were essential for maintaining system stability. The technique of preemptively clearing state before operations became a best practice in software engineering, influencing error handling in later operating systems. The use of linked buffer structures here also reflects the influence of Unix-like systems, which employed similar mechanisms for managing I/O."
   - id: "placebuf-buffer-reordering"
     line_start: 99
-    line_end: 258
+    line_end: 118
     title: "How MS-DOS Reordered Buffers for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
     image_url: ""

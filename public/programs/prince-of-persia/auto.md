@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines the 'extrastrength' data table, which assigns specific strength values to enemies based on their program index. These values influence how challenging each enemy is during combat. Jordan Mechner's design here reflects his focus on creating a dynamic and cinematic experience for players. By varying enemy strength, the game ensures that each encounter feels unique and progressively challenging. In 1989, the Apple II's limited memory and processing power meant that developers had to be extremely efficient in their use of resources. Mechner's decision to use a simple data table to define enemy attributes allowed him to quickly reference these values during gameplay without consuming excessive memory or CPU cycles. This approach was common in 6502 assembly programming, where lookup tables were often used to optimize performance. The concept of using data tables to define enemy behavior became a staple in game development. Later games, such as Doom (1993) and Diablo (1996), expanded on this idea by incorporating more complex attributes and behaviors into their enemy AI systems. Mechner's work on Prince of Persia demonstrated how even simple data structures could contribute to a rich and engaging gameplay experience."
   - id: "basicstrength-and-basiccolor"
     line_start: 128
-    line_end: 137
+    line_end: 158
     title: "How Enemy Strength and Color Are Linked"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The 'MouseProg' routine handles the behavior of the mouse character, a minor but memorable element in Prince of Persia. The routine checks the mouse's position and action, ensuring it reacts appropriately to the environment. For example, the mouse stops moving when it reaches certain coordinates or vanishes when it exits the screen. This routine exemplifies Mechner's attention to detail. Even a seemingly insignificant character like the mouse is given specific behaviors that enhance the game's narrative and atmosphere. The mouse's actions often serve as subtle hints to the player, guiding them through puzzles or indicating hidden paths. The inclusion of such detailed AI for a minor character influenced later games that used environmental storytelling and non-playable characters to enrich the player's experience. Games like The Last of Us (2013) and Red Dead Redemption 2 (2018) feature similarly detailed NPC behaviors that contribute to their immersive worlds. Mechner's work on Prince of Persia shows how small touches can leave a lasting impression on players."
   - id: "shadowprog-level-specific-ai"
     line_start: 216
-    line_end: 249
+    line_end: 316
     title: "How the Shadow Became a Nemesis"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The AUTOPLAYBACK routine executes prerecorded movement sequences for characters, using a frame-by-frame approach. It increments a frame counter, checks for the next command, and executes it based on the sequence data. This system allowed Mechner to script complex character movements, such as the Shadowman's actions, without relying on real-time input. The use of prerecorded sequences was innovative for its time, enabling cinematic storytelling and choreographed gameplay. This technique later became standard in games with scripted events, influencing titles like Tomb Raider (1996) and the Uncharted series."
   - id: "cutcheck-screen-transition"
     line_start: 1220
-    line_end: 1319
+    line_end: 1389
     title: "Handling Screen Transitions with CUTCHECK"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The CUTCHECK routine manages screen transitions when the Kid moves off-screen. It checks for conditions like guard presence and determines whether to transfer or update the guard's position. This logic ensures continuity across screens, maintaining the game's immersive feel. In the constrained Apple IIe environment, managing transitions without graphical glitches was a significant challenge. Mechner's solution here influenced later games with interconnected levels, such as Super Metroid (1994), which also relied on seamless transitions to enhance exploration."
   - id: "cutguard-catch-falling-enemies"
     line_start: 1391
-    line_end: 1469
+    line_end: 1738
     title: "Catching Falling Guards Before Screen Wrap"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

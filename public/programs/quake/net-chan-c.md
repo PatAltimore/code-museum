@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "packet-header-design"
-    line_start: 27
-    line_end: 76
+    line_start: 1
+    line_end: 79
     title: "How Quake Solved Multiplayer Packet Reliability"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `Netchan_Init` function initializes the network channel system and assigns a random port value to the `qport` variable. On Windows, this randomness is derived from the system time, while on Unix-like systems, it combines the process ID and user ID with the current time. This randomness helps mitigate issues with port remapping by routers and adds a layer of security against spoofing attacks. In the mid-1990s, network security and stability were critical concerns for multiplayer games, as malicious actors could exploit predictable port assignments. By introducing randomness, id Software ensured that Quake's multiplayer connections were more robust and less prone to interference. This technique became a common practice in networking systems, influencing later games and even broader network security protocols."
   - id: "out-of-band-datagram"
     line_start: 106
-    line_end: 132
+    line_end: 140
     title: "Sending Messages Outside the Game Loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_Datagram_Protocol"
     image_url: ""

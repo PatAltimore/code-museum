@@ -39,7 +39,7 @@ enhancements:
     content: "This section implements dynamic center printing for important messages in Quake. The `SCR_CenterPrint` function stores a message string, calculates its display duration, and determines the number of lines for proper centering. The subsequent functions handle erasing and drawing the message on the screen. At the time, conveying critical information to players in a visually impactful way was a challenge, especially in fast-paced games. John Carmack and Michael Abrash designed this mechanism to ensure messages were prominent without disrupting gameplay. The approach reflects the era's constraints: limited screen space and the need for efficient rendering on hardware like the Intel 486. This technique influenced later games, where center-screen messages became a standard for alerts, objectives, and achievements. Developers studying Quake's source code often adapted this method for their own engines, such as in Unreal Engine and Source Engine."
   - id: "calc-fov-optimal-3d-viewing"
     line_start: 242
-    line_end: 264
+    line_end: 273
     title: "The Math Behind Quake's Immersive Views"
     wikipedia_url: "https://en.wikipedia.org/wiki/Field_of_view"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `CalcFov` function calculates the vertical field of view based on the horizontal field of view and screen dimensions. This ensures that the player's perspective adapts correctly to different resolutions and aspect ratios. In 1996, most players used CRT monitors with varying resolutions, and optimizing the field of view was crucial for maintaining immersion. The formula uses trigonometric functions to derive the vertical FOV, balancing performance and visual fidelity. This approach was groundbreaking for its time, as it allowed Quake to deliver a consistent experience across hardware configurations. The technique influenced later engines, including Unity and Unreal, where dynamic FOV calculations are standard practice. It also laid the groundwork for modern VR applications, where precise FOV calculations are essential for user comfort."
   - id: "dynamic-console-resizing"
     line_start: 506
-    line_end: 553
+    line_end: 559
     title: "Quake's Console: Adapting to the Game State"
     wikipedia_url: "https://en.wikipedia.org/wiki/Console_(video_game)"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `SCR_SetUpToDrawConsole` function dynamically adjusts the console's visibility based on the game's state. Whether the player is actively gaming, viewing the console, or in a menu, the function calculates the appropriate height and smoothly transitions the display. This design reflects id Software's commitment to usability, ensuring the console never obstructs gameplay unnecessarily. In the mid-1990s, consoles were essential for debugging and player communication, but their integration into 3D environments posed challenges. Quake's solution influenced later engines, where dynamic UI elements became standard. For instance, the Source Engine and Unreal Engine adopted similar approaches to manage overlays and HUD elements, enhancing user experience across genres."
   - id: "screenshot-pcx-format"
     line_start: 585
-    line_end: 650
+    line_end: 658
     title: "Why Quake Saved Screenshots as PCX Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/PCX"
     image_url: ""

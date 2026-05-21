@@ -119,7 +119,7 @@ enhancements:
     content: "The 'PrepCut' routine determines whether to transition to a new screen and handles the special case of reaching the princess's room, which triggers the game's victory sequence. This routine checks if the current screen matches the target screen, updates the visible screen, and invokes subroutines to load the necessary elements like guards, torches, and crumble animations. The victory condition is hardcoded: level 14, screen 5 marks the end of the player's journey. In 1989, cinematic transitions like this were groundbreaking, creating a sense of narrative progression. Mechner's approach to embedding story moments directly into gameplay influenced later cinematic platformers like Another World and Flashback."
   - id: "you-lose-cutscene"
     line_start: 1066
-    line_end: 1086
+    line_end: 1082
     title: "The Cutscene That Ends It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_over"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The 'ctrlplayer' routine handles player control and death mechanics. When the player's character dies, the routine increments a death timer and displays a 'Press Button to Continue' message after a delay. It also includes a temporary resurrection feature for debugging or development purposes. This level of detail in handling player death reflects Mechner's focus on creating a seamless and immersive experience. The idea of giving players a chance to continue after dying became a staple in platformers and action games, influencing titles like Super Mario Bros. and Sonic the Hedgehog."
   - id: "death-song-selection"
     line_start: 1195
-    line_end: 1539
+    line_end: 1219
     title: "The Music That Marks Your Demise"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
     image_url: ""

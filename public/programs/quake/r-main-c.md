@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "foundation-global-variables"
-    line_start: 17
+    line_start: 1
     line_end: 56
     title: "Why Quake Needed So Many Global Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Global_variable"
@@ -33,7 +33,7 @@ enhancements:
     content: "This section initializes several global variables that are used throughout the rendering pipeline. These include flags for polygon drawing, warp effects, and memory tracking. In the mid-1990s, global variables were a common way to manage state in performance-critical applications like Quake. The decision to use globals was influenced by the need for speed and simplicity, as accessing global memory was faster than passing parameters or using complex object-oriented designs. John Carmack, Quake's lead programmer, was known for his pragmatic approach to coding, prioritizing performance over architectural purity. This reliance on global variables shaped the structure of Quake's codebase, making it easier to optimize but harder to maintain. Modern game engines, influenced by Quake, have moved toward encapsulation and modularity, but the directness of global state management remains a hallmark of early game development."
   - id: "entity-t-structure"
     line_start: 58
-    line_end: 66
+    line_end: 58
     title: "The Entity Structure That Defined Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
@@ -81,7 +81,7 @@ enhancements:
     content: "The `R_EdgeDrawing` function handles edge rendering, a critical part of Quake's graphics pipeline. This function ensures that edges are drawn correctly, preventing visual artifacts and maintaining the integrity of the 3D world. Edge rendering was particularly challenging in the 1990s due to hardware constraints and the need for real-time performance. Quake's solution, which included efficient memory management and caching, was a testament to the ingenuity of its developers. The techniques used in `R_EdgeDrawing` influenced later engines and graphics libraries, contributing to the evolution of real-time rendering. This function highlights the attention to detail that made Quake a groundbreaking achievement in computer graphics."
   - id: "visibility-optimization-for-rendering"
     line_start: 959
-    line_end: 1038
+    line_end: 1036
     title: "Visibility Optimization for Rendering Efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""
@@ -104,8 +104,8 @@ enhancements:
     image_caption: ""
     content: "The `R_InitTurb` function precomputes sine wave tables used for turbulent effects in water and other dynamic surfaces. By calculating these values in advance and storing them in arrays (`sintable` and `intsintable`), the game avoids expensive runtime calculations, significantly improving performance. This technique was essential in 1996, as real-time computation of trigonometric functions would have been prohibitively slow on consumer-grade hardware. Precomputing data for effects like these became a standard optimization in game development, influencing later engines to use lookup tables for lighting, physics, and other complex calculations. The use of sine waves also highlights the creative ways developers simulated natural phenomena within the constraints of early 3D graphics."
   - id: "debugging-tools-for-rendering-performance"
-    line_start: 1040
-    line_end: 1066
+    line_start: 1038
+    line_end: 1065
     title: "Debugging Tools for Rendering Performance Analysis"
     wikipedia_url: "https://en.wikipedia.org/wiki/Profiling_(computer_programming)"
     image_url: ""

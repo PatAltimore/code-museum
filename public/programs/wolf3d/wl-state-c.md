@@ -47,7 +47,7 @@ enhancements:
     content: "This two-dimensional array maps combinations of cardinal directions to their diagonal equivalents. For example, moving north and east simultaneously results in northeast. This table ensures consistent behavior for diagonal movement, a crucial feature in Wolfenstein 3D's tile-based world. The design reflects the constraints of the time, where computational efficiency was paramount. Similar techniques were later adapted in pathfinding algorithms like A* and in games with grid-based movement, such as Civilization and Fire Emblem."
   - id: "spawn-new-actor"
     line_start: 68
-    line_end: 99
+    line_end: 111
     title: "How Wolfenstein Spawns New Enemies"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spawn_(computing)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `SelectDodgeDir` function allows enemies to choose a movement direction that avoids the player's attacks while still advancing toward them. It prioritizes cardinal and diagonal directions based on proximity to the player, randomizing choices to make behavior less predictable. This technique reflects early attempts at creating dynamic and reactive AI in games. The randomness added a layer of unpredictability, making encounters more engaging. This approach influenced later games like Unreal Tournament, where AI bots exhibited similar dodging behaviors."
   - id: "select-chase-direction"
     line_start: 465
-    line_end: 572
+    line_end: 583
     title: "Chasing the Player: AI's Single-Minded Pursuit"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pathfinding"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `SelectChaseDir` function directs enemies to pursue the player without attempting to dodge. It calculates the optimal path based on the player's position and adjusts direction accordingly. If the direct path is blocked, the function tries alternative directions, ensuring relentless pursuit. This straightforward chasing logic was a precursor to more advanced pathfinding algorithms like A*, which became standard in later games. The relentless AI in Wolfenstein 3D set the stage for the intense enemy behaviors seen in DOOM and Quake."
   - id: "move-object"
     line_start: 644
-    line_end: 757
+    line_end: 776
     title: "Moving Objects Without Breaking the Game"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `KillActor` function handles the death of an enemy, updating its state and dropping items based on its type. It also increments the player's kill count and awards points. The function's detailed handling of different enemy types adds variety to the game, rewarding players for defeating tougher foes. This approach influenced later games like DOOM, where enemy deaths were accompanied by dramatic animations and item drops, enhancing the player's sense of accomplishment."
   - id: "damage-actor"
     line_start: 951
-    line_end: 1016
+    line_end: 1024
     title: "When Enemies Take Damage"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hit_points"
     image_url: ""

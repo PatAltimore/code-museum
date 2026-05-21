@@ -30,16 +30,16 @@ summary:
 
 enhancements:
   - id: "name-section-miscellaneous-routines"
-    line_start: 3
-    line_end: 3
+    line_start: 1
+    line_end: 35
     title: "Why MS-DOS Needed 'Miscellaneous' Routines"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section begins with the declaration of the MISC segment, which houses various utility routines for MS-DOS. These routines were designed to handle tasks that did not fit neatly into other categories, reflecting the ad-hoc nature of early operating system development. Tim Paterson, the original author of 86-DOS, laid the groundwork for these kinds of modular sections, which were later expanded by Microsoft engineers. In 1983, MS-DOS v2.0 introduced features inspired by Unix, such as hierarchical directories and file handles, necessitating a more sophisticated organization of system calls. The MISC segment encapsulates these utility functions, ensuring they are accessible across the system. This modular approach influenced later operating systems, including Windows, which continued to rely on segmented design for backward compatibility and extensibility."
   - id: "include-dosseg-dossym-devsym"
-    line_start: 5
-    line_end: 57
+    line_start: 37
+    line_end: 67
     title: "The Headers That Defined MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "This section begins with the `$Dup_PDB` routine, which handles the duplication of Process Data Blocks (PDBs). PDBs are central to MS-DOS's process management, storing critical information about running programs such as memory segments and control flags. The routine checks a flag (`CreatePDB`) to determine whether to duplicate an existing process or create a new one. This decision-making mechanism reflects a shift in MS-DOS v2.0 towards Unix-inspired process management, where processes could be dynamically created and managed. In 1983, when MS-DOS v2.0 was released, personal computing was rapidly evolving. IBM PCs were becoming the standard, and software needed to adapt to multitasking and memory constraints in a single-user environment. Tim Paterson and the Microsoft team borrowed ideas from Unix, which had already established robust process management techniques. However, MS-DOS had to operate within the limitations of the 8086 architecture, which lacked hardware support for multitasking. The `$Dup_PDB` routine laid the groundwork for more sophisticated process handling in later operating systems. By introducing a structured approach to process duplication, it influenced subsequent MS-DOS versions and other DOS-based systems like DR-DOS and PC-DOS. The concept of a PDB eventually evolved into more advanced process control blocks in multitasking operating systems, including Windows NT. This routine represents an early step in bridging single-tasking systems with the multitasking capabilities that would define modern computing."
   - id: "create-pdb-old-legacy-support"
     line_start: 1073
-    line_end: 1075
+    line_end: 1077
     title: "Legacy Process Creation in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The `Create_PDB_old` routine provides backward compatibility for older process creation methods. It retrieves the user stack and sets up the segment registers (`DS`) for the process. This routine reflects Microsoft's commitment to supporting legacy applications while introducing new features in MS-DOS v2.0. In the early 1980s, backward compatibility was a critical concern for software developers. MS-DOS had to maintain compatibility with programs written for earlier versions of DOS and the 8086 processor. This was especially important for OEMs and businesses that relied on existing software investments. Tim Paterson's original 86-DOS design had been simple and direct, but as MS-DOS evolved, it needed to balance innovation with stability. The legacy support provided by `Create_PDB_old` ensured that older applications could run seamlessly on newer versions of MS-DOS, preserving the ecosystem of software built for the IBM PC. This approach influenced later operating systems, including Windows, which maintained backward compatibility with DOS applications for decades. The routine exemplifies the trade-offs required to innovate while maintaining a stable foundation for users."
   - id: "create-copy-memory-transfer"
     line_start: 1081
-    line_end: 1109
+    line_end: 1113
     title: "Copying Memory Blocks for Process Creation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The `Create_copy` routine is responsible for copying memory blocks during process creation. It uses the `REP MOVSW` instruction to transfer 128 bytes (`80h`) of data from the source to the destination. This efficient block copy operation is a hallmark of assembly programming, leveraging the 8086 processor's capabilities to minimize overhead. In the context of MS-DOS v2.0, memory management was a critical challenge. The IBM PC's 8086 processor operated in real mode, limiting addressable memory to 1MB. Efficient use of this memory was essential for running multiple processes and supporting larger applications. The `Create_copy` routine exemplifies the low-level optimization required to maximize performance on constrained hardware. This approach to memory copying influenced later developments in operating systems and programming languages. The use of block copy operations became standard practice in performance-critical applications, from game engines to embedded systems. The routine also highlights the ingenuity of early software developers, who had to work within severe hardware limitations to deliver functionality that users now take for granted."
   - id: "create-dup-jfn-file-handles"
     line_start: 1117
-    line_end: 1173
+    line_end: 1183
     title: "Duplicating File Handles for Processes"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_descriptor"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The `HAVDIF` routine calculates the difference between available memory and the maximum allowed memory for a process. It adjusts memory allocation based on this difference, ensuring that processes do not exceed their limits. This routine is part of MS-DOS's memory management strategy, which balances resource allocation with system stability. In 1983, memory management was a critical concern for operating systems. The IBM PC's limited memory required careful planning to avoid conflicts and crashes. The `HAVDIF` routine reflects the challenges of working within these constraints, as developers had to implement efficient algorithms to maximize available resources. The concept of calculating memory differences influenced later developments in operating systems, where dynamic memory allocation became standard practice. This routine's approach to memory management paved the way for more advanced techniques, such as paging and virtual memory, which are now integral to modern computing. It also highlights the ingenuity of early software developers, who had to find creative solutions to overcome hardware limitations."
   - id: "create-process-data-block-finalization"
     line_start: 1285
-    line_end: 1285
+    line_end: 1287
     title: "Finalizing Process Data Block Creation"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

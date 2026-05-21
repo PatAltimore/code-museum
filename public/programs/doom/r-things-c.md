@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "sprite-rotation-perspective"
     line_start: 66
-    line_end: 76
+    line_end: 71
     title: "How DOOM Made Sprites Face You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines the logic for sprite rotation, ensuring that objects in the game dynamically adjust their appearance based on the player's perspective. Sprite rotation 0 represents the sprite facing the viewer, while other rotations represent incremental clockwise turns. This approach was necessary in DOOM's pseudo-3D environment, where sprites needed to simulate depth and orientation without true 3D models. At the time, hardware constraints made polygonal models impractical for real-time rendering, so developers relied on sprites and clever rotation logic to create the illusion of a 3D world. This technique influenced later games like Duke Nukem 3D and even modern engines that use billboarding for distant objects."
   - id: "sprite-clipping-arrays"
     line_start: 78
-    line_end: 81
+    line_end: 84
     title: "Arrays That Keep Sprites in Bounds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `R_InstallSpriteLump` function initializes sprite frames and rotations, while performing rigorous error checks to ensure consistency in sprite definitions. For example, it verifies that no sprite frame has overlapping rotations or missing data. This meticulous attention to detail reflects John Carmack's philosophy of robust software engineering, which was critical to DOOM's success. By catching errors early, this function prevented crashes and visual glitches, ensuring a smooth gameplay experience. The approach set a standard for error handling in game engines, influencing later titles like Quake and Unreal."
   - id: "masked-texture-rendering"
     line_start: 350
-    line_end: 387
+    line_end: 386
     title: "Transparency Tricks in DOOM's Sprites"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""

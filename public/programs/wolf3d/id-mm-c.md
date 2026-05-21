@@ -47,7 +47,7 @@ enhancements:
     content: "The `MML_CheckForXMS` function queries the presence of an Extended Memory Specification (XMS) driver by invoking interrupt `0x2f`. This low-level interaction with the hardware was necessary to determine whether the system supported extended memory, a crucial feature for running complex programs on MS-DOS. At the time, memory management was a significant challenge due to the 640KB conventional memory limit imposed by the IBM PC architecture. By checking for XMS, the game could utilize additional memory beyond this limit, enabling smoother gameplay and more complex features. This approach laid the groundwork for memory management techniques in later games and operating systems, where detecting and utilizing hardware capabilities became standard practice."
   - id: "allocate-upper-memory-blocks"
     line_start: 146
-    line_end: 197
+    line_end: 206
     title: "Allocating Upper Memory Blocks for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The `MM_SortMem` function compresses fragmented memory by moving blocks to eliminate gaps and free up contiguous space. It first locks critical blocks, such as those related to audio playback, and then purges non-essential blocks to reclaim memory. Finally, it moves remaining blocks to consolidate free space. This algorithm reflects the challenges of memory management on systems with limited resources and no built-in garbage collection. By manually compressing memory, Wolfenstein 3D could optimize performance and reduce the risk of running out of memory during gameplay. This approach influenced memory management techniques in later games and operating systems, where similar strategies were used to handle fragmentation and optimize resource usage."
   - id: "visualize-memory-usage"
     line_start: 762
-    line_end: 810
+    line_end: 820
     title: "Debugging Memory with Colorful Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""

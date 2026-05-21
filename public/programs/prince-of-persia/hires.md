@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "ztemp-local-variable-allocation"
     line_start: 43
-    line_end: 80
+    line_end: 74
     title: "Why Allocate Variables at $F0 and $18?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
     image_url: ""

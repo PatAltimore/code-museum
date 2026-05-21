@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "name-section-initialization"
     line_start: 1
-    line_end: 3
+    line_end: 11
     title: "Why MS-DOS Needed a NAME Directive"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The NAME directive at the start of the file declares the module name as 'DIRCALL,' signaling its role in handling directory manipulation routines. This was crucial in the modular design of MS-DOS 2.0, where different segments of code were organized into logical units for easier maintenance and debugging. In 1983, when MS-DOS 2.0 was released, modular programming was becoming a necessity due to the increasing complexity of operating systems. The NAME directive helped developers identify and manage specific functionalities within the sprawling assembly codebase. This approach influenced later modular designs in operating systems and programming languages, including C's header files and object-oriented programming's class-based structure."
   - id: "include-dosseg-symbols"
     line_start: 15
-    line_end: 33
+    line_end: 35
     title: "The INCLUDE Directive: Borrowing Symbols"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The INCLUDE directive pulls in external symbol definitions from 'DOSSEG.ASM' and 'DOSSYM.ASM,' providing constants and macros used throughout the file. This technique was a precursor to modern header files in C and other languages. By centralizing definitions, developers avoided duplication and ensured consistency across the codebase. In the early 1980s, this was a significant step toward modular programming, allowing MS-DOS to be more maintainable despite its assembly language roots. The use of external symbol files also reflects the influence of Unix and XENIX, which emphasized reusable components and system-wide conventions. This modularity became a cornerstone of software development, influencing practices like library linking and API design."
   - id: "nodeexists-check-directory"
     line_start: 89
-    line_end: 273
+    line_end: 277
     title: "NODEEXISTS: How MS-DOS Validates Directories"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""

@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "This section defines foundational data structures like `rectdesc_t`, which encapsulates rectangle dimensions and texture data. These structures are critical for managing graphical elements and their placement on the screen. In 1996, hardware constraints like limited memory and processing power meant that every byte and cycle counted. By organizing graphical data into compact, reusable structures, the Quake team optimized rendering efficiency. This approach, while common today, was groundbreaking in its application to real-time 3D environments at the time. These structures influenced later game engines, including Unreal Engine and Source Engine, which adopted similar abstractions for rendering pipelines."
   - id: "cachepic-lookup-system"
-    line_start: 54
-    line_end: 101
+    line_start: 59
+    line_end: 85
     title: "The Lookup System That Kept Quake Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""

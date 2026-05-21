@@ -63,7 +63,7 @@ enhancements:
     content: "The `getdpb` subroutine retrieves disk parameters using BIOS interrupt `21h` with function `GET_DPB`. It calculates the number of sectors on the disk and the sector size, storing these values in registers for later use. This routine was essential for copying disks accurately, as it ensured the program understood the physical layout of the source and destination media. In 1982, floppy disks were the primary storage medium, and their geometry varied between formats. Chris Peters designed this routine to handle these variations dynamically, making DISKCOPY adaptable to different disk types. This approach influenced later disk utilities and operating systems, where dynamic detection of disk geometry became standard. It also highlights the low-level nature of early software, where programmers had to interact directly with hardware details."
   - id: "disk-entry-initialization"
     line_start: 225
-    line_end: 313
+    line_end: 317
     title: "Setting Up the Stack and Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `disk_entry` routine initializes the program's stack and memory, setting up local variables and allocating memory for the buffer. It uses BIOS interrupts to reset the disk system and request the largest available memory block. This setup was crucial for handling the large data transfers required during disk copying. In the early 1980s, memory was a scarce resource, and programs had to manage it carefully. Chris Peters designed this routine to maximize available memory, ensuring the program could handle disks larger than 64KB. This technique influenced later software, where dynamic memory allocation became a standard practice. It also reflects the challenges of programming for early PCs, where hardware limitations dictated software design."
   - id: "copyagn-restart-copying"
     line_start: 321
-    line_end: 361
+    line_end: 331
     title: "Restarting the Copy Process"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
     image_url: ""

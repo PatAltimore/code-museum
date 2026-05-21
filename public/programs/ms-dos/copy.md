@@ -31,22 +31,22 @@ summary:
 enhancements:
   - id: "domelcopy-initialization-loop"
     line_start: 129
-    line_end: 139
+    line_end: 141
     title: "Why 'MELCOPY' Needed Special Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section initializes the 'MELCOPY' flag, a special variable used to track whether a specific type of copy operation (likely related to concatenation or multi-file copying) is in progress. The code checks if 'MELCOPY' is set to 0xFF, indicating that the operation is already active. If not, it sets up the source pointer and marks the operation as started. At the time, MS-DOS v2.0 was introducing features inspired by Unix, such as file concatenation, and this flag likely facilitated handling such operations efficiently. The inclusion of this flag reflects the growing complexity of file operations in MS-DOS compared to its earlier versions, which were simpler and lacked advanced features like subdirectories. This approach influenced later file management systems, where flags and state variables became standard practice for tracking multi-step operations."
   - id: "contmel-buffer-reset"
-    line_start: 141
-    line_end: 147
+    line_start: 143
+    line_end: 145
     title: "Resetting Buffers for Multi-File Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
     image_caption: ""
     content: "The 'CONTMEL' section resets the buffer pointers and prepares the system for continued file operations. By zeroing out the BP register and setting up the source pointer, the code ensures that subsequent operations start with a clean slate. This meticulous buffer management was crucial in the constrained memory environment of early PCs, where every byte counted. The use of assembly instructions to directly manipulate memory and registers showcases the low-level control programmers had over hardware at the time. This technique influenced later operating systems and programming languages, where buffer management became abstracted but remained a critical concept for performance optimization."
   - id: "scansrc2-parsing-source-names"
-    line_start: 149
+    line_start: 147
     line_end: 181
     title: "Parsing Source File Names with CPARSE"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
@@ -55,7 +55,7 @@ enhancements:
     content: "The 'SCANSRC2' section uses the 'CPARSE' routine to parse source file names and check for switches or special arguments. The code tests various conditions, such as whether the argument is a switch or a '+' delimiter, and handles them accordingly. Parsing was a critical task in MS-DOS, as it had to interpret user input from the command line and convert it into actionable instructions. The reliance on assembly-level parsing routines reflects the limitations of the time, where higher-level abstractions for string manipulation were unavailable. This approach laid the groundwork for more sophisticated command-line interpreters in later operating systems, such as Windows and Linux, which built on the principles established here."
   - id: "nextmel-cleanup-and-reinitialization"
     line_start: 187
-    line_end: 209
+    line_end: 211
     title: "Closing Destinations and Resetting States"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_(computing)"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The 'DESTSCAN' routine parses destination arguments for the COPY command, checking for switches and handling the '+' delimiter for concatenation. This section demonstrates the importance of robust argument parsing in command-line utilities, where user input could vary widely. The use of assembly instructions to directly manipulate memory and registers reflects the low-level nature of MS-DOS programming. This routine influenced the design of later command-line utilities, which adopted more sophisticated parsing techniques while retaining the flexibility to handle complex input scenarios."
   - id: "checkdone-argument-validation"
     line_start: 339
-    line_end: 367
+    line_end: 565
     title: "Validating Arguments for COPY Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_validation"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The 'CHECKDONE' routine validates the arguments provided to the COPY command, ensuring that the number of arguments is correct and that they meet specific criteria. This section highlights the importance of input validation in software development, particularly in command-line utilities where user input could be unpredictable. The explicit checks for argument count and content reflect the procedural nature of MS-DOS, where every aspect of an operation had to be carefully managed. This approach influenced later software development practices, emphasizing the importance of robust input validation to prevent errors and ensure reliable operation."
   - id: "sourceproc-source-buffer-management"
     line_start: 587
-    line_end: 635
+    line_end: 647
     title: "Managing Source Buffers for COPY"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The 'SOURCEPROC' routine manages the source buffers for the COPY command, saving the source file name and associated information. This section showcases the meticulous buffer management required in early operating systems, where memory constraints necessitated careful planning and optimization. The use of assembly instructions to directly manipulate memory and registers reflects the low-level nature of MS-DOS programming. This routine influenced the design of later file management systems, which adopted more sophisticated buffer management techniques while retaining the principles established here."
   - id: "buildpath-path-resolution"
     line_start: 827
-    line_end: 861
+    line_end: 859
     title: "Resolving File Paths in COPY"
     wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The 'BUILDPATH' routine resolves file paths for the COPY command, determining whether the path refers to a file, a directory, or a device. This section highlights the complexity of path resolution in MS-DOS, which had to handle various scenarios, such as ambiguous paths and device names. The use of assembly instructions to directly manipulate memory and registers reflects the low-level nature of MS-DOS programming. This routine influenced the design of later file management systems, which adopted more sophisticated path resolution techniques while retaining the principles established here."
   - id: "checkcd-directory-handling"
     line_start: 929
-    line_end: 975
+    line_end: 1019
     title: "Handling Directories in COPY Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""
