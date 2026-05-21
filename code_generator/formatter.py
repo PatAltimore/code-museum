@@ -107,6 +107,33 @@ def _format_from_data(
     summary = data.get("summary", [])
     enhancements = _clean_enhancements(data.get("enhancements", []), code_lines)
 
+    # Build a mapping from original 1-based line numbers to filtered 1-based line
+    # numbers, removing lines that would break GitHub's markdown renderer (e.g.
+    # Emacs file-mode comments like "// Emacs style mode select   -*- C++ -*-"
+    # which contain *-* patterns that GitHub incorrectly treats as emphasis).
+    _BROKEN_LINE_PATTERNS = ("Emacs style mode select",)
+    _removed_before = []  # removed[i] = count of removed lines with orig index <= i
+    _removed_count = 0
+    for orig_line in code_lines:
+        if any(p in orig_line for p in _BROKEN_LINE_PATTERNS):
+            _removed_count += 1
+        _removed_before.append(_removed_count)
+
+    def _adjust_line(n: int) -> int:
+        """Adjust a 1-based line number for removed lines."""
+        if n <= 0:
+            return n
+        idx = min(n - 1, len(_removed_before) - 1)
+        return n - _removed_before[idx]
+
+    if _removed_count:
+        enhancements = [
+            dict(enh,
+                 line_start=_adjust_line(int(enh.get("line_start", 1))),
+                 line_end=_adjust_line(int(enh.get("line_end", 1))))
+            for enh in enhancements
+        ]
+
     lines = ["---"]
     lines.append(f"title: {_q(file_cfg['title'])}")
     lines.append(f"program: {_q(program['title'])}")
@@ -150,7 +177,13 @@ def _format_from_data(
 
     fence = _fence_id(program.get("language", ""))
     lines.append(f"```{fence}")
-    lines.append("\n".join(code_lines))
+    # Strip Emacs file-mode comment lines (e.g. "// Emacs style mode select -*- C++ -*-")
+    # which contain *-* emphasis spans that break GitHub's fenced-code-block renderer.
+    filtered_code_lines = [
+        l for l in code_lines
+        if "Emacs style mode select" not in l
+    ]
+    lines.append("\n".join(filtered_code_lines))
     lines.append("```")
 
     return "\n".join(lines)
