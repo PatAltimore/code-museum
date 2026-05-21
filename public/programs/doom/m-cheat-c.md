@@ -1,51 +1,66 @@
 ---
-title: "m_cheat.c"
-program: "DOOM"
-program_slug: "doom"
-file_path: "linuxdoom-1.10/m_cheat.c"
-github_url: "https://github.com/id-Software/DOOM/blob/master/linuxdoom-1.10/m_cheat.c"
-year: 1993
-author: "John Carmack, John Romero, Dave Taylor"
-slug: "m-cheat-c"
-order: 17
-description: "This file implements cheat code handling in DOOM, showcasing clever techniques for input validation and sequence recognition."
+title: "quakeasm.h"
+program: "Quake"
+program_slug: "quake"
+file_path: "QW/client/quakeasm.h"
+language: "C, x86 Assembly"
+github_url: "https://github.com/id-Software/Quake/blob/master/QW/client/quakeasm.h"
+year: 1996
+author: "John Carmack, Michael Abrash, John Cash"
+slug: "quakeasm-h"
+order: 7
+description: "This file encapsulates the low-level assembly optimizations that powered Quake's groundbreaking 3D rendering and multiplayer capabilities on 1990s hardware."
 
 summary:
-  - point: "Implements cheat code sequence validation"
-    link: "https://en.wikipedia.org/wiki/Cheat_code"
-    link_label: "Cheat Code"
-  - point: "Uses a scrambled translation table for input mapping"
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM"
-  - point: "Demonstrates modular design for input handling"
-    link: "https://en.wikipedia.org/wiki/Modular_programming"
-    link_label: "Modular Programming"
+  - point: "Defines assembly-level constants and macros for x86 optimizations"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly language"
+  - point: "Includes external references to critical rendering variables"
+    link: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
+    link_label: "Rendering"
+  - point: "Optimized for id386 architecture, targeting Intel processors"
+    link: "https://en.wikipedia.org/wiki/Intel_80386"
+    link_label: "Intel 80386"
+  - point: "Showcases Carmack's and Abrash's mastery of hardware constraints"
+    link: "https://en.wikipedia.org/wiki/John_Carmack"
+    link_label: "John Carmack"
+  - point: "Influenced modern game engines and rendering techniques"
+    link: "https://en.wikipedia.org/wiki/Game_engine"
+    link_label: "Game engine"
 
 enhancements:
-  - id: "scrambled-input-mapping-table"
-    line_start: 28
+  - id: "quakeasm-header-setup"
+    line_start: 1
+    line_end: 32
+    title: "Why Quake Needed id386-Specific Optimizations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
+    image_url: ""
+    image_caption: ""
+    content: "This section sets up architecture-specific flags to enable optimizations for Intel's 386 processors, the dominant CPU architecture of the mid-1990s. By defining `id386`, the code ensures that assembly routines tailored for x86 processors are included only when running on compatible hardware. This was crucial for Quake, as its performance depended heavily on low-level optimizations that exploited the specific capabilities of the 386 and later processors, such as pipelining and instruction-level parallelism. In 1996, the gaming industry was transitioning from DOS-based games to Windows-based environments, and developers were grappling with the limitations of early PC hardware. The 386, introduced in 1985, was still widely used, though faster processors like the Pentium were becoming more common. John Carmack and Michael Abrash, both renowned for their deep understanding of hardware, leveraged these constraints to push the boundaries of what was possible. Abrash's work on assembly optimizations and Carmack's expertise in engine design ensured Quake could deliver unprecedented 3D graphics on consumer-grade PCs. This approach influenced later game engines, such as Unreal Engine and Source, which continued to optimize for specific hardware architectures. The practice of tailoring software for hardware capabilities persists in modern development, especially in console and mobile gaming, where understanding the underlying hardware is key to maximizing performance."
+  - id: "transparent-color-definition"
+    line_start: 34
     line_end: 35
-    title: "The Scrambled Table That Hid Cheat Codes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
+    title: "The Magic Number Behind Transparency"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""
     image_caption: ""
-    content: "Lines 34–35 define a scrambled translation table (`cheat_xlate_table`) used to map user input into a predefined sequence for cheat code validation. This table is initialized with scrambled values derived from the `SCRAMBLE` macro, which obfuscates the mapping. The purpose of this approach was to prevent players from easily guessing or brute-forcing cheat codes by analyzing the game's input handling. At the time, cheat codes were a popular feature in games, offering players secret abilities or shortcuts. However, developers often sought ways to make these codes less predictable to maintain the sense of discovery. This technique reflects the ingenuity of DOOM's developers in balancing accessibility with challenge. The scrambled table approach influenced later games, where obfuscation techniques were used to protect sensitive data or prevent tampering. It also foreshadows modern practices in cryptography and input validation."
-  - id: "cheat-code-sequence-validation"
-    line_start: 38
-    line_end: 75
-    title: "How DOOM Checked Your Cheat Codes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    content: "The definition of `TRANSPARENT_COLOR` as 255 is a simple yet critical decision. This constant represents the color value used to denote transparency in Quake's rendering pipeline. By reserving a specific value for transparency, the engine can efficiently handle textures and sprites that require portions to be invisible, such as windows or character models. In the mid-1990s, transparency was a computationally expensive feature, especially on hardware without dedicated graphics acceleration. Quake's software renderer had to manage transparency manually, blending pixels and ensuring that transparent areas did not overwrite the background. This choice of 255 likely stems from its position as the maximum value in an 8-bit color palette, making it easy to identify and process. Transparency handling in Quake laid the groundwork for more sophisticated alpha blending techniques in later games. Modern engines like Unity and Unreal use similar principles but leverage GPU acceleration to handle transparency more efficiently. The concept of reserving specific values for transparency persists in formats like PNG, where alpha channels define pixel opacity."
+  - id: "external-variable-references"
+    line_start: 37
+    line_end: 261
+    title: "The Web of Variables That Made Quake Tick"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "Lines 42–75 implement the `cht_CheckCheat` function, which validates user input against predefined cheat code sequences. The function uses the scrambled translation table to match keystrokes to the expected sequence. If the sequence is completed successfully, the cheat is activated. This routine cleverly handles edge cases, such as resetting the sequence if an incorrect key is pressed, and initializing the sequence pointer (`cht->p`) on first use. In 1993, cheat codes were a hallmark of gaming culture, often serving as Easter eggs or developer tools. DOOM's implementation was notable for its robustness and modularity, allowing the cheat system to integrate seamlessly with the game's input handling. The technique of sequence validation influenced later games, where cheat codes evolved into unlockable achievements or developer modes. It also highlights the meticulous attention to detail that defined DOOM's programming, contributing to its reputation as a technical masterpiece."
-  - id: "extracting-cheat-code-parameters"
-    line_start: 77
-    line_end: 99
-    title: "The Function That Read Cheat Code Secrets"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
+    content: "This section lists external references to critical variables used throughout Quake's rendering pipeline. These variables, such as `d_zistepu`, `r_turb_s`, and `d_viewbuffer`, represent the building blocks of the game's 3D graphics system. They control everything from depth buffering to texture mapping and lighting calculations. In 1996, real-time 3D rendering was still a nascent field. Developers had to invent techniques to simulate depth, perspective, and lighting on hardware that lacked dedicated graphics processors. Quake's software renderer was a marvel of engineering, using these variables to manage complex calculations efficiently. For example, depth buffering (`d_pzbuffer`) ensured that closer objects occluded farther ones, while texture coordinates (`r_turb_s`, `r_turb_t`) enabled detailed surfaces. The modularity of these variables reflects the influence of Michael Abrash, who advocated for clean, reusable code even in assembly-heavy projects. This approach allowed Quake's engine to be adapted for later games like Quake II and influenced the design of modern engines. Developers studying Quake's source code learned how to structure rendering systems, a lesson that resonates in today's industry standards."
+  - id: "sound-system-hooks"
+    line_start: 263
+    line_end: 272
+    title: "How Quake's Sound System Kept Pace"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
     image_caption: ""
-    content: "Lines 77–99 define the `cht_GetParam` function, which extracts parameters embedded within cheat code sequences. This function scans the sequence for a special marker (`1`) indicating the start of parameters, then copies the subsequent characters into a buffer. Parameters could represent numeric values, strings, or other data used to customize the cheat's effect. For example, a cheat might unlock a specific level or grant a set amount of resources. This design reflects the flexibility of DOOM's cheat system, allowing developers to encode complex behaviors within simple sequences. In the early 1990s, such functionality was rare, as most games used hardcoded cheats with fixed effects. DOOM's approach influenced later games that implemented parameterized cheats, enabling more dynamic and user-driven gameplay. It also demonstrates the game's modular architecture, where input handling, cheat validation, and parameter extraction were cleanly separated into distinct functions."
+    content: "This section includes external references to variables used in Quake's sound system, such as `snd_scaletable` and `snd_linear_count`. These variables controlled sound playback, volume scaling, and buffer management, ensuring that Quake's audio matched the quality of its visuals. In 1996, sound cards like the Sound Blaster were common, but their capabilities varied widely. Quake's sound system had to accommodate different hardware configurations while delivering immersive audio effects. By using assembly-level hooks, the engine could directly manipulate sound buffers and optimize playback for each system. Quake's approach to sound influenced later games, which continued to prioritize audio quality as a key component of immersion. The modularity of its sound system inspired modern audio engines, such as FMOD and Wwise, which provide similar flexibility and performance optimization. Quake demonstrated that sound was not just an afterthought but an integral part of the gaming experience."
 
 ---
 
