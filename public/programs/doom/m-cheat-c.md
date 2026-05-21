@@ -73,9 +73,9 @@ enhancements:
 ---
 
 ```cpp
-line1
-line2
-line3
-line4
-line5
+// Emacs style mode select   -*- C++ -*- 
+plain2
+plain3
+plain4
+plain5
 ```
