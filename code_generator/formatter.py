@@ -7,14 +7,14 @@ _LANG_FENCE: list[tuple[str, str]] = [
     ("8086 assembly",    "asm"),
     ("x86 assembly",     "asm"),
     ("assembly",         "asm"),
-    ("c, x86 assembly",  "c"),
-    ("c and x86",        "c"),
-    ("c/c++",            "c"),
+    ("c, x86 assembly",  "cpp"),
+    ("c and x86",        "cpp"),
+    ("c/c++",            "cpp"),
     ("c++",              "cpp"),
     ("mdl",              "lisp"),
     ("basic",            "basic"),
     ("pascal",           "pascal"),
-    ("c",                "c"),
+    ("c",                "cpp"),
 ]
 
 
