@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "yellow-flag-initialization"
-    line_start: 61
+    line_start: 59
     line_end: 68
     title: "Why a Yellow Flag Matters in 1989"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
@@ -39,15 +39,15 @@ enhancements:
     content: "This section initializes a 'yellow flag' used for copy protection checks. The routine sets a memory location to a specific value, ensuring the game can verify the presence of a valid disk. In the late 1980s, piracy was rampant, and developers like Jordan Mechner had to implement creative solutions to protect their work. The Apple II’s limited hardware meant that such checks had to be lightweight and unobtrusive, often relying on clever tricks like this flag system. While modern games use complex DRM systems, this approach reflects the ingenuity required to enforce copy protection in an era of floppy disks and manual distribution. Mechner’s work here ensured that players experienced the game as intended, and similar techniques were adopted by other developers fighting piracy on early personal computers."
   - id: "hourglass-animation"
     line_start: 122
-    line_end: 130
+    line_end: 123
     title: "Animating Time: The Hourglass Frames"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hourglass_(symbol)"
     image_url: ""
     image_caption: ""
     content: "The hourglass animation frames defined here are used to visually represent the passage of time in the Princess's room. Each frame corresponds to a different state of sand height, creating a dynamic visual cue for players. Mechner’s use of animation to convey gameplay mechanics was groundbreaking for the era, as most games relied on static imagery or text. The hourglass serves both as a narrative device and a gameplay element, reinforcing the urgency of the Kid’s mission. This technique of tying animations to game mechanics became a hallmark of cinematic platformers and influenced later titles like Another World and Flashback."
   - id: "torch-animation-frames"
-    line_start: 147
-    line_end: 154
+    line_start: 142
+    line_end: 148
     title: "How Torches Flickered on the Apple II"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine dynamically prints the 'Minutes Left' message on the screen, updating it based on gameplay state. It calculates the remaining time, converts it to a readable format, and positions the message to avoid overlapping with the Kid’s sprite. The routine also switches to 'Seconds Left' when time is critically low, heightening tension for players. Mechner’s cinematic approach to game design is evident here, as the countdown reinforces the narrative urgency. This technique of dynamically updating UI elements based on game state became standard in later action and adventure games, influencing titles like Resident Evil and its iconic 'You Are Dead' screen."
   - id: "draw-kid-strength-meter"
-    line_start: 491
+    line_start: 411
     line_end: 572
     title: "The Algorithm Behind Health Bullets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine draws the Kid’s strength meter at the lower left of the screen, using a combination of precomputed data tables and dynamic calculations. It iterates through the Kid’s current health value, drawing bullets to represent remaining strength and blanks for lost health. The routine includes a flashing effect when the Kid is down to one health point, adding a visual cue for danger. Mechner’s implementation here is a masterclass in efficient graphics rendering on constrained hardware. The visual representation of health became a staple of gaming, influencing everything from RPGs to modern shooters like Halo, where health bars are now ubiquitous."
   - id: "draw-opponent-strength-meter"
-    line_start: 579
+    line_start: 574
     line_end: 673
     title: "Mirrored Health Bars for the Opponent"
     wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
@@ -94,8 +94,8 @@ enhancements:
     image_caption: ""
     content: "The `SETUPCOMIX` routine initializes a character's position, appearance, and collision boundaries based on their state (alive, dead, impaled, etc.). It uses conditional branching to assign specific coordinates and attributes depending on the character's status. For example, dead characters are positioned differently than crouching or halved ones. This section also calculates the character's color and sets up their visual representation using predefined tables (`starimage` and `startable`). In 1989, the Apple II's hardware was limited to 128K of memory, requiring developers to optimize every byte. Jordan Mechner's approach here reflects his deep understanding of the Apple II's graphical capabilities and memory constraints. By directly manipulating the character's attributes and using lookup tables, he avoided costly runtime calculations, ensuring smooth gameplay. This routine laid the groundwork for cinematic platformers, where characters' animations and states dynamically influenced gameplay. The technique of using conditional logic to adjust visual and collision properties became a standard in later games, influencing titles like Another World (1991) and Flashback (1992). Mechner's attention to detail in character behavior helped establish Prince of Persia as a groundbreaking title in the genre."
   - id: "add-character-object"
-    line_start: 1050
-    line_end: 1104
+    line_start: 1040
+    line_end: 1096
     title: "The Object Table That Never Overflows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The `pretext` routine sets up the game's text rendering system by initializing the background table (`bgtable2`) and bypassing normal data structures to write directly to the Apple II's hi-res graphics page. This ensures that text appears on top of all other graphical elements, maintaining its visibility during gameplay. Direct manipulation of hi-res graphics was a common technique on the Apple II, where developers often had to work around hardware limitations to achieve desired effects. Mechner's decision to bypass standard structures reflects his focus on performance and visual clarity, ensuring that critical text elements like dialogue and instructions are never obscured. This technique influenced later games that prioritized text readability in complex visual environments. It also showcased the flexibility of the Apple II's graphics system, inspiring other developers to experiment with direct memory manipulation for unique effects."
   - id: "copy-protection-yellow"
     line_start: 1143
-    line_end: 1152
+    line_end: 1150
     title: "The Copy-Protection Routine Hidden in Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The `INITLAY` routine initializes the screen layout by setting memory bank (`BANK`) and defining the screen boundaries (`RIGHTCUT`, `BOTCUT`, `LEFTCUT`, `TOPCUT`). This ensures that the game uses the full screen for rendering, maximizing the visual impact of the Apple II's hi-res graphics. In the 1980s, full-screen rendering was a technical challenge on systems like the Apple II, which had limited graphics capabilities and memory. Mechner's routine here demonstrates his mastery of the hardware, allowing Prince of Persia to deliver a visually immersive experience despite its constraints. This approach to screen layout influenced later games that sought to maximize graphical fidelity on limited hardware. It also showcased the importance of optimizing screen boundaries for gameplay, a principle that continues to shape modern game design."
   - id: "print-character-hires"
     line_start: 1166
-    line_end: 1186
+    line_end: 1188
     title: "Printing Characters in Hi-Res Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""

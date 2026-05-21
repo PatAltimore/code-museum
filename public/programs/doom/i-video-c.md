@@ -55,7 +55,7 @@ enhancements:
     content: "The `I_ShutdownGraphics` function ensures proper cleanup of graphics resources, including detaching shared memory and releasing buffers. This was vital for Unix systems, where failing to detach shared memory could lead to resource leaks and system instability. The paranoia evident in the code (e.g., setting `image->data` to NULL) reflects the challenges of programming in environments where manual resource management was critical. This meticulous approach influenced later game engines, which adopted similar practices to ensure stability and reliability across diverse platforms."
   - id: "mouse-event-handling"
     line_start: 193
-    line_end: 276
+    line_end: 278
     title: "How DOOM Made Mouse Input Work on X11"
     wikipedia_url: "https://en.wikipedia.org/wiki/X_Window_System"
     image_url: ""
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "This section implements screen scaling algorithms to adapt DOOM's 320x200 resolution to higher resolutions by duplicating pixels. The `multiply` variable determines the scaling factor, with options for 2x, 3x, or 4x scaling. These algorithms were essential for making DOOM playable on a variety of displays, as consumer monitors in 1993 varied widely in resolution and capabilities. The blocky graphics mode, described as 'boneheaded' by developer Dave Taylor, was a pragmatic solution to hardware constraints. This technique influenced later games that used similar scaling methods to achieve compatibility across devices."
   - id: "palette-uploading"
-    line_start: 532
+    line_start: 537
     line_end: 576
     title: "Optimizing Color Palettes for 256-Color Screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_depth#Indexed_color"
@@ -87,7 +87,7 @@ enhancements:
     content: "The `grabsharedmemory` function manages shared memory segments for DOOM's graphics buffers. It includes logic to detect and clean up stale memory left by previous processes, a common issue on Unix systems. The code even checks for other users running DOOM and warns against potential conflicts. This meticulous handling of shared memory reflects the challenges of developing multiplayer and high-performance applications on Unix, where resource management was often manual. The techniques here influenced later Unix-based games and applications, which adopted similar strategies to ensure stability and performance."
   - id: "graphics-initialization"
     line_start: 691
-    line_end: 914
+    line_end: 853
     title: "Setting Up DOOM's Graphics on X11"
     wikipedia_url: "https://en.wikipedia.org/wiki/X_Window_System"
     image_url: ""
@@ -102,8 +102,8 @@ enhancements:
     image_caption: ""
     content: "This section initializes and maps the main window for DOOM's Linux port using the X11 API. The code creates a window with specific attributes, such as colormap and border pixel, and sets up a graphics context (GC) for rendering. It then waits for an Expose event to ensure the window is ready for drawing. The use of X11 reflects the challenges of adapting DOOM to run on Unix-like systems, which lacked the standardized graphical environments of DOS or Windows. At the time, X11 was the dominant windowing system for Unix, but its complexity made it a daunting choice for game developers. John Carmack and the team leveraged X11's capabilities to bring DOOM's groundbreaking graphics to Linux users, showcasing their adaptability and technical prowess. This approach paved the way for future Linux game ports, demonstrating that high-performance gaming was possible on open-source platforms."
   - id: "shared-memory-image-creation"
-    line_start: 852
-    line_end: 894
+    line_start: 855
+    line_end: 888
     title: "Shared Memory: Speeding Up DOOM's Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Shared_memory"
     image_url: ""

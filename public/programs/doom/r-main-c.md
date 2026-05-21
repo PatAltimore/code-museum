@@ -55,7 +55,7 @@ enhancements:
     content: "The `R_PointToAngle` function calculates the angle between two points using a combination of coordinate flipping and a precalculated `tantoangle` lookup table. This avoids expensive trigonometric calculations, which were impractical on 1990s CPUs. Instead, DOOM uses integer arithmetic and precomputed values to achieve the same result efficiently. This approach reflects the constraints of the era, where performance was paramount and every CPU cycle counted. The technique was widely studied and adapted by other developers, influencing rendering methods in games like Duke Nukem 3D and Quake."
   - id: "texture-mapping-setup"
     line_start: 540
-    line_end: 601
+    line_end: 602
     title: "Optimized Texture Mapping with Tangent Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -63,15 +63,15 @@ enhancements:
     content: "The `R_InitTextureMapping` function sets up texture mapping by using tangent tables to calculate screen coordinates for visible angles. This allows DOOM to efficiently map textures onto walls and other surfaces, creating the illusion of depth in its pseudo-3D environments. Texture mapping was a relatively new concept in the early 1990s, and DOOM's implementation pushed the boundaries of what was possible on consumer hardware. The technique influenced later games and engines, including Quake, which expanded on these ideas with true 3D rendering."
   - id: "dynamic-lighting"
     line_start: 606
-    line_end: 640
+    line_end: 641
     title: "Dynamic Lighting on 1990s Hardware"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `R_InitLightTables` function calculates light levels based on distance and view size, creating a dynamic lighting effect that enhances DOOM's immersive atmosphere. By scaling light intensity with distance, the game simulates realistic lighting without requiring advanced hardware capabilities. This was a significant innovation at a time when most games used static lighting. The technique influenced later engines, including the Build Engine used in Duke Nukem 3D, and laid the groundwork for more sophisticated lighting systems in modern games."
   - id: "frame-setup-and-rendering"
-    line_start: 826
-    line_end: 896
+    line_start: 866
+    line_end: 897
     title: "What Happens Before DOOM Draws a Frame"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""

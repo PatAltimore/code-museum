@@ -63,7 +63,7 @@ enhancements:
     content: "The `getdpb` subroutine retrieves disk parameters using BIOS interrupt `21h` with function `GET_DPB`. It calculates the number of sectors on the disk and the sector size, storing these values in registers for later use. This routine was essential for copying disks accurately, as it ensured the program understood the physical layout of the source and destination media. In 1982, floppy disks were the primary storage medium, and their geometry varied between formats. Chris Peters designed this routine to handle these variations dynamically, making DISKCOPY adaptable to different disk types. This approach influenced later disk utilities and operating systems, where dynamic detection of disk geometry became standard. It also highlights the low-level nature of early software, where programmers had to interact directly with hardware details."
   - id: "disk-entry-initialization"
     line_start: 225
-    line_end: 311
+    line_end: 313
     title: "Setting Up the Stack and Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `disk_entry` routine initializes the program's stack and memory, setting up local variables and allocating memory for the buffer. It uses BIOS interrupts to reset the disk system and request the largest available memory block. This setup was crucial for handling the large data transfers required during disk copying. In the early 1980s, memory was a scarce resource, and programs had to manage it carefully. Chris Peters designed this routine to maximize available memory, ensuring the program could handle disks larger than 64KB. This technique influenced later software, where dynamic memory allocation became a standard practice. It also reflects the challenges of programming for early PCs, where hardware limitations dictated software design."
   - id: "copyagn-restart-copying"
     line_start: 321
-    line_end: 331
+    line_end: 361
     title: "Restarting the Copy Process"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `copyagn` routine resets the starting sector and prepares for another pass through the disk copying process. It checks whether the source and destination drives are the same, displaying appropriate messages to the user. This routine reflects the iterative nature of disk copying, where data is transferred in chunks until the entire disk is copied. In 1982, floppy disks were slow, and programs had to manage these operations efficiently to minimize user wait times. Chris Peters designed this routine to handle errors and user prompts gracefully, ensuring the program could recover from interruptions. This approach influenced later utilities, where iterative processing and user feedback became standard features."
   - id: "twodrv1-verify-disk-compatibility"
     line_start: 365
-    line_end: 377
+    line_end: 379
     title: "Checking Media and Size Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_format"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `twodrv1` routine verifies that the source and destination disks have compatible media types and sizes. It compares the media descriptor byte and the total number of sectors, ensuring the disks match before proceeding. This check was critical in 1982, as floppy disks came in various formats, and mismatched disks could cause errors or data loss. Chris Peters included this routine to prevent such issues, making DISKCOPY more robust and reliable. This technique influenced later disk utilities, where compatibility checks became standard practice. It also highlights the challenges of working with diverse hardware in the early PC era."
   - id: "loop-main-copying-routine"
     line_start: 421
-    line_end: 435
+    line_end: 499
     title: "The Heart of Disk Copying"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_transfer"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `loop` routine performs the main disk copying operation, reading sectors from the source disk into memory and writing them to the destination disk. It uses BIOS interrupts to interact with the disk controller, ensuring data is transferred accurately. This routine reflects the low-level nature of early software, where programmers had to manage hardware interactions directly. In 1982, floppy disks were slow and prone to errors, requiring careful handling to avoid data corruption. Chris Peters designed this routine to handle these challenges, making DISKCOPY reliable and efficient. This approach influenced later file transfer utilities, where error handling and hardware abstraction became standard features."
   - id: "quitcopy-cleanup"
     line_start: 503
-    line_end: 515
+    line_end: 533
     title: "Cleaning Up After Copying"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

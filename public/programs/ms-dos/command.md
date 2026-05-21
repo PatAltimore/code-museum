@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "resident-transient-memory-split"
     line_start: 1
-    line_end: 15
+    line_end: 73
     title: "Why MS-DOS Split Memory into Two Parts"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The opening comments of COMMAND.ASM describe the division of MS-DOS's command interpreter into resident and transient portions. The resident portion handles critical functions like interrupt processing and remains in memory, while the transient portion, which processes commands, is loaded at the end of physical memory and can be overwritten by user programs. This design reflects the constraints of early PCs, where memory was scarce (typically 64KB to 256KB) and programs needed to maximize available space. Tim Paterson, the original author of 86-DOS, adapted this approach to ensure the command interpreter could coexist with memory-intensive applications. This split became a hallmark of MS-DOS's efficiency, influencing later operating systems like DR-DOS and FreeDOS, and demonstrating how software could adapt to hardware limitations."
   - id: "error-handling-disk-operations"
     line_start: 359
-    line_end: 379
+    line_end: 481
     title: "The Default Disk Error Handler That Saved Users"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_24H"
     image_url: ""
@@ -47,15 +47,15 @@ enhancements:
     content: "The DSKERR routine provides default handling for disk errors, triggered by interrupt 24H. It displays error messages like 'Write protect' or 'Sector not found,' computes the drive letter, and offers options to abort, retry, or ignore the operation. This routine highlights the importance of robust error handling in early computing, where hardware failures were common and user intervention was often necessary. The design reflects Paterson's pragmatic approach to usability, ensuring users could recover from errors without crashing the system. This method of error handling influenced later operating systems, including Windows, where similar user prompts for retrying or aborting operations became standard practice."
   - id: "command-checksum-integrity"
     line_start: 483
-    line_end: 496
+    line_end: 513
     title: "The Checksum That Protected COMMAND.COM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Checksum"
     image_url: ""
     image_caption: ""
     content: "The CHKSUM routine calculates a checksum for the transient portion of COMMAND.COM to verify its integrity. If the checksum does not match the stored value, the transient portion is reloaded. This mechanism ensured reliability in an environment where memory corruption or overwriting was a risk, especially when running large programs. The use of checksums for integrity verification became a standard practice in software development, influencing techniques in data transmission, file storage, and modern cryptographic hashes."
   - id: "batch-file-autoexec-processing"
-    line_start: 569
-    line_end: 586
+    line_start: 588
+    line_end: 589
     title: "How MS-DOS Found and Ran AUTOEXEC.BAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/AUTOEXEC.BAT"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The DRV0 routine checks for the presence of AUTOEXEC.BAT, a batch file that automates startup commands. If the file exists, it sets up the environment for batch processing; otherwise, it disables batch mode. AUTOEXEC.BAT became a defining feature of MS-DOS, allowing users to customize their system's behavior at boot. This innovation simplified repetitive tasks and laid the groundwork for automation in personal computing. The concept of startup scripts influenced Unix/Linux systems (e.g., .bashrc) and continues to be relevant in modern computing environments."
   - id: "command-parsing-execution"
     line_start: 748
-    line_end: 761
+    line_end: 873
     title: "Parsing Commands: How MS-DOS Understood You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -79,15 +79,15 @@ enhancements:
     content: "This section initializes the default file specification to '*.*', a convention that allows users to target all files in a directory. The programmer sets this default by moving the '?' character into the file control block (FCB). In the early 1980s, wildcard patterns like '*.*' were a common way to simplify file operations on systems with limited user interfaces. This approach made it easier for users to interact with files without specifying exact names, a necessity given the constraints of the IBM PC's 16KB ROM BIOS and 64KB RAM. The technique influenced later command-line interfaces, including Unix shells, which adopted similar wildcard mechanisms."
   - id: "switch-handling-in-dos"
     line_start: 1040
-    line_end: 1059
+    line_end: 1057
     title: "How MS-DOS Processes Command Switches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
     content: "This routine processes command switches like '/W' or '/P' by combining flags from the command line and the first parameter. The switches are stored in a dedicated memory location and checked using bitwise operations. In the early days of computing, command switches were a compact way to pass options to programs without requiring complex user interfaces. Tim Paterson's implementation here reflects the simplicity and efficiency needed for systems with limited memory and processing power. This design influenced subsequent operating systems, including Windows and Linux, where command-line switches remain a fundamental feature."
   - id: "file-search-and-display"
-    line_start: 1060
-    line_end: 1128
+    line_start: 1058
+    line_end: 1148
     title: "The Routine That Lists Files in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "This section implements the file listing functionality, including searching for files that match a given specification and displaying their names, sizes, dates, and times. It uses BIOS interrupt 21H to interact with the file system and retrieve file metadata. The routine also formats and prints this information to the console, handling details like zero suppression for dates and converting binary values to ASCII. This functionality was essential for users navigating the file system in an era before graphical interfaces. The approach laid the groundwork for similar directory listing commands in Unix ('ls') and Windows ('dir')."
   - id: "copy-command-implementation"
     line_start: 1322
-    line_end: 1489
+    line_end: 1418
     title: "How MS-DOS Copies Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_(command)"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "This routine flushes memory buffers to disk during file operations, ensuring efficient use of limited RAM. It creates or opens destination files, writes buffered data, and handles edge cases like full memory or write errors. In the constrained environment of early PCs, this approach minimized disk I/O and optimized performance. The technique influenced later operating systems, where buffer management became a key aspect of file system design."
   - id: "batch-file-byte-retrieval"
     line_start: 1743
-    line_end: 1759
+    line_end: 1745
     title: "How MS-DOS Reads Batch Files Byte by Byte"
     wikipedia_url: "https://en.wikipedia.org/wiki/Batch_file"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "This routine retrieves a single byte from a batch file, handling end-of-file conditions gracefully. Batch files were an early form of scripting, allowing users to automate repetitive tasks. By reading files byte by byte, this implementation provided fine-grained control over script execution. The approach influenced later scripting languages, including shell scripts in Unix and batch files in Windows."
   - id: "date-and-time-handling"
     line_start: 1787
-    line_end: 1936
+    line_end: 1803
     title: "Setting the Clock in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_clock"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "This section handles date and time operations, including parsing user input and validating formats. It interacts with the BIOS to retrieve and set the system clock. The routines use inline parsing to extract numbers and separators, ensuring robust handling of various formats. In the early 1980s, accurate timekeeping was critical for file timestamps and scheduling tasks. This implementation reflects the importance of real-time clock functionality in operating systems and influenced similar features in later systems like Windows and Linux."
   - id: "program-loader-memory-check"
     line_start: 2028
-    line_end: 2071
+    line_end: 2073
     title: "How MS-DOS Ensured Programs Fit in Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -151,7 +151,7 @@ enhancements:
     content: "The BADEXE routine is a simple but critical part of the command interpreter. If the program header or data fails validation during loading, this routine is invoked to signal an error. It sets up an error message pointing to the EXEBAD string and jumps to the ERROR routine for further handling. This kind of error handling was essential in the early days of personal computing, where users frequently encountered corrupted or incompatible executables. By providing clear feedback, MS-DOS helped users diagnose issues and avoid system crashes. This approach to error handling influenced later operating systems, which adopted similar mechanisms for reporting and managing errors during program execution."
   - id: "relocation-table-processing"
     line_start: 2109
-    line_end: 2124
+    line_end: 2138
     title: "Relocating Executable Code for Flexibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_programming)"
     image_url: ""
@@ -167,7 +167,7 @@ enhancements:
     content: "The SETUP routine includes logic for handling batch files, which were a cornerstone of automation in MS-DOS. Batch files allowed users to execute a series of commands automatically, streamlining repetitive tasks. This routine checks if a batch file is in progress and adjusts memory and file control block (FCB) pointers accordingly. Batch file support was a major innovation in personal computing, enabling users to write simple scripts for tasks like file management and program execution. This feature influenced later scripting languages like Windows Batch and PowerShell, as well as Unix shell scripting, which expanded on the concept of automated command execution."
   - id: "final-program-launch"
     line_start: 2160
-    line_end: 2166
+    line_end: 2162
     title: "The Jump That Starts Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

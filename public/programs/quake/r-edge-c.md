@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "r-draw-culled-polys"
-    line_start: 76
+    line_start: 79
     line_end: 119
     title: "Why Quake Avoided Drawing Hidden Polygons"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hidden_surface_determination"
@@ -65,7 +65,7 @@ enhancements:
     content: "The `R_CleanupSpan` function finalizes spans for surfaces that are visible at the end of a scanline. It emits spans for the topmost surface and resets span states for all active surfaces. This ensures that rendering proceeds smoothly to the next scanline without leaving unfinished spans. The function's design reflects the meticulous attention to detail required for scanline rendering, where every pixel must be accounted for. By managing spans efficiently, Quake achieved high performance on hardware with limited resources, paving the way for more advanced rendering techniques in later engines."
   - id: "r-leading-edge-backwards"
     line_start: 331
-    line_end: 362
+    line_end: 408
     title: "Handling Inverted Spans in Backward Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Backface_culling"
     image_url: ""

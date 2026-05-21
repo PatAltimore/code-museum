@@ -49,7 +49,7 @@ enhancements:
     content: "The `F_StartFinale` function initializes the finale sequence, setting the game state to `GS_FINALE` and disabling gameplay elements like the automap. It dynamically selects the background texture (`finaleflat`) and text (`finaletext`) based on the game mode and episode. This function showcases id Software's attention to detail, ensuring that each ending feels tailored to the player's journey. The modular design allowed DOOM to support multiple game modes and expansions seamlessly. This approach influenced later games with branching narratives and dynamic endings, such as the Mass Effect series."
   - id: "monster-cast-roll"
     line_start: 328
-    line_end: 359
+    line_end: 337
     title: "The Monster Cast Roll: A DOOM Icon"
     wikipedia_url: "https://doomwiki.org/wiki/Cast_roll"
     image_url: ""

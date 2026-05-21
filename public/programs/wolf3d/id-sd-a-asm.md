@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "data-segment-setup"
     line_start: 17
-    line_end: 81
+    line_end: 83
     title: "Why Sound Data Needs Its Own Segment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
     image_url: ""

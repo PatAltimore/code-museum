@@ -25,15 +25,15 @@ summary:
 enhancements:
   - id: "dirbuf-initialization"
     line_start: 165
-    line_end: 197
+    line_end: 179
     title: "Why CHKDSK Needed a Dedicated Buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
     content: "This section defines `DIRBUF`, a buffer used for directory searches, along with related data structures like `VOLID` and `ALLFILE`. The programmer's goal here was to create a workspace for traversing and verifying the file allocation table (FAT) and directory entries. In the early 1980s, disk drives were slow, and memory was scarce—IBM PCs typically had 64KB to 256KB of RAM. Efficient use of buffers like `DIRBUF` minimized disk I/O, speeding up operations. Tim Paterson, the original author of 86-DOS, likely drew inspiration from CP/M's file control blocks (FCBs), adapting them for FAT-based systems. This approach influenced later utilities, including Norton Disk Doctor and modern filesystem checkers like `fsck` in Unix-based systems."
   - id: "rootstr-and-internationalization"
-    line_start: 199
-    line_end: 265
+    line_start: 197
+    line_end: 257
     title: "How MS-DOS Adapted to Global Users"
     wikipedia_url: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
     image_url: ""
@@ -49,7 +49,7 @@ enhancements:
     content: "The `INTERNATVARS` block defines a placeholder for internationalization-specific variables. This design reflects Microsoft's growing awareness of the global market in the early 1980s. As MS-DOS expanded beyond the U.S., developers had to account for differences in language, character sets, and conventions. This foresight allowed MS-DOS to dominate the OEM market, influencing later systems like Windows NT, which inherited many localization features from MS-DOS."
   - id: "fat-label-and-data"
     line_start: 329
-    line_end: 331
+    line_end: 329
     title: "The Data Structure That Defined MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -57,7 +57,7 @@ enhancements:
     content: "The `FAT` label marks the start of the file allocation table handling logic. FAT was a revolutionary filesystem for its time, enabling efficient storage and retrieval on floppy disks and hard drives. This section sets up the groundwork for CHKDSK's ability to verify and repair FAT structures, ensuring data integrity. FAT's simplicity and adaptability made it the de facto standard for early PCs, influencing later filesystems like VFAT and exFAT, which extended FAT's capabilities for larger storage devices."
   - id: "chkdsk-entry-point"
     line_start: 367
-    line_end: 373
+    line_end: 369
     title: "The Jump That Starts Disk Repair"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -81,7 +81,7 @@ enhancements:
     content: "The `GOTBADDOS` routine handles cases where the MS-DOS version is outside the supported range. It displays an error message and exits gracefully, preventing undefined behavior. This defensive programming approach reflects the challenges of developing software for diverse hardware and software environments. By anticipating errors, Microsoft ensured CHKDSK's reliability, setting a precedent for robust error handling in utilities and operating systems."
   - id: "okdos-stack-check"
     line_start: 417
-    line_end: 443
+    line_end: 809
     title: "The Stack Check That Prevented Crashes"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -105,7 +105,7 @@ enhancements:
     content: "The FIGREC subroutine converts a cluster number into a sector number by applying a shift operation based on the cluster size and adding the first sector offset. This routine is pivotal for file system operations, as it translates logical cluster addresses into physical disk locations. In the early 1980s, efficient disk access was critical due to the slow speed of floppy drives and limited memory. Tim Paterson's design here reflects the constraints of the 8086 processor and the FAT12 file system. This algorithm laid the groundwork for later FAT file systems, which became ubiquitous in personal computing and embedded systems."
   - id: "volume-id-printing"
     line_start: 1095
-    line_end: 1149
+    line_end: 1197
     title: "Printing Volume IDs with Internationalization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
     image_url: ""
@@ -113,7 +113,7 @@ enhancements:
     content: "The PRINTID subroutine retrieves and prints the volume ID, including date and time formatting based on internationalization settings. This reflects MS-DOS v2.0's shift towards supporting global markets, as IBM PCs were sold worldwide. The use of INTERNATVARS for date/time formats demonstrates an early attempt at localization, predating modern libraries like ICU. This routine influenced later operating systems, including Windows, which expanded internationalization support significantly."
   - id: "date-separator-printing"
     line_start: 1201
-    line_end: 1209
+    line_end: 1211
     title: "The Separator That Bridged Cultures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Date_and_time_representation_by_country"
     image_url: ""

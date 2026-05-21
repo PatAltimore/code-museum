@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-dosseg-and-dossym"
     line_start: 9
-    line_end: 21
+    line_end: 25
     title: "Why Include Files Were Crucial in Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The BUFRD routine performs a buffered read operation, using system buffers to optimize partial sector reads. It adjusts pointers and memory locations to ensure data is read efficiently. This approach was vital for early PCs, where disk access speeds were a bottleneck. By leveraging buffers, MS-DOS reduced the overhead of disk I/O, improving overall system performance. Buffered reads became a standard technique in operating systems, influencing later designs like Linux and Windows."
   - id: "bufwrt-buffered-write"
-    line_start: 381
-    line_end: 411
+    line_start: 307
+    line_end: 331
     title: "Writing Data Without Wasting Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Write_(system_call)"
     image_url: ""

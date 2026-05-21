@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "newtypes-for-parser"
     line_start: 7
-    line_end: 12
+    line_end: 14
     title: "Why Zork Needed Custom Data Types"
     wikipedia_url: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section introduces several new types in MDL, such as BUZZ, DIRECTION, ADJECTIVE, and PREP. These types are tailored for the game's parser, which interprets player commands like 'go north' or 'take the lamp.' By defining these types explicitly, the authors ensured that the parser could handle linguistic nuances efficiently. In 1977, text parsing was still a novel challenge, especially in interactive fiction. The PDP-10's limited memory and processing power made it essential to optimize data representation. These types allowed Zork to distinguish between different categories of words, laying the groundwork for its sophisticated command interpretation. This approach influenced later adventure games, which adopted similar strategies for parsing player input."
   - id: "generalized-oflags-tester"
     line_start: 17
-    line_end: 32
+    line_end: 34
     title: "The Macros That Made Zork Dynamic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Flag_(computing)"
     image_url: ""
@@ -47,15 +47,15 @@ enhancements:
     content: "This block defines macros for testing, setting, clearing, and toggling flags on objects and rooms. Flags are binary markers used to track states, such as whether a room has been visited or an object is visible. The TRNN macro, for example, checks if a specific flag is set, while TRO sets a flag. These macros abstract away low-level bit manipulation, making the code easier to read and maintain. In the late 1970s, efficient flag handling was crucial for games like Zork, which had to manage complex states within the constraints of PDP-10 hardware. The use of macros for flag operations became a common practice in game development, influencing later programming languages and engines that relied on similar techniques for state management."
   - id: "room-definition"
     line_start: 37
-    line_end: 52
+    line_end: 55
     title: "How Zork’s Rooms Came to Life"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "This section defines the ROOM structure, a cornerstone of Zork's world-building. Each room is represented as a vector with attributes like a unique ID (RID), descriptions (RDESC1 and RDESC2), a list of exits (REXITS), and objects present (ROBJS). The structure also includes flags for whether the room has been visited (RSEEN?) or contains a light source (RLIGHT?). By encapsulating room data in a single structure, the authors streamlined the game's logic for navigation and interaction. In 1977, this approach was innovative, as most games were far simpler and lacked such detailed environments. Zork's ROOM structure influenced the design of later adventure games and RPGs, which adopted similar data-driven approaches to represent game worlds."
   - id: "parser-related-types"
-    line_start: 86
-    line_end: 119
+    line_start: 66
+    line_end: 72
     title: "Building Zork’s Command Interpreter"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
@@ -63,15 +63,15 @@ enhancements:
     content: "This section defines types and structures related to Zork's parser, including ACTION, VSPEC, SYNTAX, and VARG. These types enable the game to interpret player commands by associating verbs with syntaxes and arguments. For example, the SYNTAX structure specifies the direct and indirect objects a verb can take, while VARG defines acceptable object characteristics and prepositions. In the late 1970s, natural language processing was in its infancy, and Zork's parser was a pioneering effort in interactive fiction. The game's ability to understand complex commands like 'put the lamp in the box' set a new standard for text-based games. This parser design influenced the development of later games and even modern virtual assistants."
   - id: "clock-interrupts"
     line_start: 276
-    line_end: 282
+    line_end: 284
     title: "The Secret Behind Zork’s Dynamic Events"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
     image_caption: ""
     content: "This section defines the CEVENT structure, which represents clock-based events in Zork. Each event includes a tick count (CTICK), an action to perform (CACTION), and a flag for enabling or disabling the event (CFLAG). Clock interrupts allow the game to execute actions at specific intervals, such as triggering a random encounter or updating the game state. In 1977, this was an advanced feature for a text-based game, adding a layer of dynamism that made Zork feel alive. The use of clock-based events influenced later games, particularly in the RPG genre, where timed events became a staple for creating immersive experiences."
   - id: "utility-functions"
-    line_start: 303
-    line_end: 445
+    line_start: 307
+    line_end: 369
     title: "Managing Zork’s Dynamic World"
     wikipedia_url: "https://en.wikipedia.org/wiki/State_(computer_science)"
     image_url: ""

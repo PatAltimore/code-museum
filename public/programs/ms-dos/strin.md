@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "editon-buffer-reset"
-    line_start: 26
+    line_start: 24
     line_end: 28
     title: "Why Resetting Buffers Was Crucial in 1983"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
@@ -39,23 +39,23 @@ enhancements:
     content: "The EDITON routine resets the buffer length and prepares the system to accept new input. This was critical in MS-DOS 2.0, where memory constraints meant every byte had to be carefully managed. At the time, the IBM PC shipped with as little as 16 KB of RAM, so efficient buffer handling was essential. Tim Paterson, the original author of MS-DOS, designed these routines to ensure stability and prevent buffer overflows, which could crash the system or corrupt data. This approach influenced later operating systems, where buffer management became a cornerstone of input handling, appearing in Unix shells and even modern text editors."
   - id: "newline-buffer-build"
     line_start: 29
-    line_end: 41
+    line_end: 39
     title: "Building a New Line, One Byte at a Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""
     image_caption: ""
     content: "The NEWLIN routine constructs a new line in the input buffer, filtering out unwanted characters like linefeeds (LF) and handling control characters. This was a direct response to the limitations of early keyboards and console interfaces, which often sent extraneous or unexpected characters. By carefully managing these inputs, MS-DOS ensured that user commands were interpreted correctly. This technique, rooted in the constraints of 1980s hardware, laid the groundwork for robust input parsing in later systems, influencing command-line interfaces in Unix, Linux, and beyond."
   - id: "gotch-character-filtering"
-    line_start: 42
-    line_end: 56
+    line_start: 40
+    line_end: 45
     title: "Filtering Characters: The Early Days of Input Validation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_validation"
     image_url: ""
     image_caption: ""
     content: "The GOTCH routine filters out specific characters, such as control sequences and invalid inputs, ensuring that only meaningful data is processed. This was a vital feature in MS-DOS 2.0, where user input was often unpredictable due to the variety of keyboards and terminal setups. By implementing these checks, MS-DOS reduced errors and improved reliability. This approach to input validation became standard practice in software development, influencing everything from web forms to database systems."
   - id: "savch-buffer-storage"
-    line_start: 57
-    line_end: 69
+    line_start: 46
+    line_end: 86
     title: "Saving Characters: A Buffering Breakthrough"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The SAVCH routine stores characters in the buffer while ensuring there is enough space. If the buffer is full, it signals an error by invoking a bell sound. This was a clever workaround for the lack of dynamic memory allocation in early PCs. By predefining buffer sizes and managing them explicitly, MS-DOS avoided crashes and ensured predictable behavior. This technique influenced later systems, where dynamic memory allocation and error handling became more sophisticated but still relied on the principles established here."
   - id: "copynew-template-copy"
     line_start: 87
-    line_end: 95
+    line_end: 230
     title: "Copying Templates: A Step Toward Modern Text Editing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Template_(programming)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "COPYNEW copies the final line from the internal buffer to the user buffer, completing the input process. This routine also swaps the segment registers to facilitate the copy operation, a common technique in 8086 assembly programming. The use of templates for editing and copying was inspired by Unix text editors, which influenced MS-DOS 2.0's design. This approach paved the way for more advanced text editing features in later software, including word processors and integrated development environments (IDEs)."
   - id: "findold-template-scan"
     line_start: 232
-    line_end: 243
+    line_end: 263
     title: "Scanning Templates: Finding Matches in Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/String_searching_algorithm"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The FINDOLD routine scans the template for a match to the user's input, using REPNE SCASB to search efficiently. This was a low-level implementation of string searching, tailored to the constraints of assembly language and early hardware. By optimizing this process, MS-DOS ensured quick responses to user input, even on slow CPUs like the Intel 8088. This technique influenced later developments in string searching algorithms, which became a key area of study in computer science."
   - id: "notfnd-error-handling"
     line_start: 265
-    line_end: 267
+    line_end: 292
     title: "Handling Errors: When Matches Fail"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""

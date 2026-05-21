@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `ExtractFileBase` function extracts the base name of a file, limited to eight characters, and converts it to uppercase. This design stems from the 8.3 filename convention used in MS-DOS, where filenames were restricted to eight characters plus a three-character extension. By enforcing this limit, DOOM ensures compatibility with legacy systems while maintaining a consistent naming scheme for WAD lumps. The function also validates the length, throwing an error if the base name exceeds eight characters. This reflects the constraints of the era, where hardware and software limitations shaped design decisions. The eight-character limit became iconic in early PC gaming and influenced how modders named their custom assets."
   - id: "wad-file-validation"
-    line_start: 119
+    line_start: 140
     line_end: 225
     title: "How DOOM Distinguishes IWADs from PWADs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The `W_CacheLumpNum` function implements a caching system for WAD lumps, ensuring frequently accessed data is stored in memory for quick retrieval. This optimization was critical for maintaining DOOM's fast-paced gameplay on limited hardware. The function checks if a lump is already cached; if not, it reads the lump into memory and tags it for future use. By minimizing disk I/O during gameplay, DOOM achieves smoother performance and shorter load times. This caching strategy influenced later game engines, which adopted similar techniques to manage large asset libraries efficiently. The concept of caching remains a cornerstone of performance optimization in modern software."
   - id: "wad-profiling-tool"
-    line_start: 515
+    line_start: 521
     line_end: 574
     title: "The Hidden Tool That Profiles WAD Usage"
     wikipedia_url: "https://en.wikipedia.org/wiki/Profiling_(computer_programming)"

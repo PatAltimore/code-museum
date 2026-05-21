@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `R_DrawFuzzColumn` function creates a 'fuzzy' rendering effect by copying pixels from adjacent columns, simulating invisibility for spectres and players. This effect relies on a predefined table (`fuzzoffset`) to determine pixel offsets, combined with a black colormap to darken the image. In the early 1990s, hardware limitations made true transparency effects impractical, so developers often resorted to creative hacks like this. Carmack's implementation is a clever workaround that achieves a visually convincing result without requiring additional hardware support. The fuzzy effect became iconic, influencing later games that sought to simulate transparency or invisibility within similar constraints."
   - id: "dynamic-color-remapping"
-    line_start: 372
+    line_start: 384
     line_end: 446
     title: "The Translation Tables That Changed Colors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_mapping"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InitTranslationTables` function initializes the translation tables used for dynamic color remapping. It maps the green color ramp (used for player sprites) to gray, brown, and red, allowing for visual differentiation between players or sprite variants. The function assumes a specific structure for the PLAYPAL lump, which defines the game's color palette. This design choice reflects the constraints of the era, where memory and storage limitations required developers to maximize the utility of existing assets. Translation tables became a common feature in game engines, enabling efficient color customization and paving the way for features like team-based multiplayer color schemes."
   - id: "span-rendering-for-floors-and-ceilings"
-    line_start: 487
+    line_start: 517
     line_end: 562
     title: "The Horizontal Trick Behind DOOM's Floors"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -87,7 +87,7 @@ enhancements:
     content: "The `R_InitBuffer` function creates lookup tables (`ylookup` and `columnofs`) to simplify framebuffer address calculations. By precomputing offsets for rows and columns, the function eliminates the need for multiplications during rendering, significantly improving performance. This optimization was critical for DOOM's ability to run smoothly on early 1990s hardware, where CPU cycles were precious. The use of lookup tables for address calculations became a standard technique in graphics programming, influencing the design of later engines and contributing to the industry's understanding of performance optimization."
   - id: "variable-screen-size-border"
     line_start: 724
-    line_end: 809
+    line_end: 810
     title: "How DOOM Drew Its Iconic Borders"
     wikipedia_url: "https://en.wikipedia.org/wiki/Aspect_ratio_(image)"
     image_url: ""

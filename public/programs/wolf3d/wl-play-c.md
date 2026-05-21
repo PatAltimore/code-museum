@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "multi-device-input-polling"
-    line_start: 237
-    line_end: 437
+    line_start: 246
+    line_end: 268
     title: "Multi-Device Input: Keyboard, Mouse, Joystick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
     image_url: ""
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `CheckKeys` function implements cheat codes and debug modes, a hallmark of early PC gaming. Players could activate cheats like god mode or infinite ammo by pressing specific key combinations, such as 'TAB-G-F10' or 'MLI'. These codes served dual purposes: they provided entertainment for players and allowed developers to test the game more efficiently. Cheat codes were a common feature in the early 1990s, reflecting the era's playful approach to software development. John Romero, known for his sense of humor, likely contributed to the inclusion of these Easter eggs. Debug modes, on the other hand, were essential for testing complex interactions and ensuring stability in a game as ambitious as Wolfenstein 3D. The legacy of cheat codes persists in modern gaming, where they often appear as unlockable features or developer tools. Debug modes have evolved into sophisticated debugging tools integrated into game engines, enabling developers to test and optimize their creations with unprecedented precision."
   - id: "dynamic-actor-list-management"
-    line_start: 862
+    line_start: 875
     line_end: 901
     title: "Dynamic Actor List: Real-Time Gameplay Innovation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `DoActor` subroutine is responsible for managing the behavior of game actors, including enemies and interactive objects. It uses a finite-state machine approach, where each actor has a current state that determines its actions. The routine checks whether the actor is active and visible to the player, then processes its logic based on the state. Transitional states, such as animations or timed actions, are handled by decrementing a timer (`ticcount`) and advancing to the next state when the timer expires. Finite-state machines were a popular choice for game AI in the early 1990s due to their simplicity and efficiency. Wolfenstein 3D's implementation allowed for dynamic interactions, such as enemies reacting to player actions or transitioning between patrol and attack modes. This design was influenced by earlier arcade games and adapted to fit the constraints of PC hardware. The actor logic in Wolfenstein 3D laid the groundwork for more complex AI systems in Doom and Quake, where states became more nuanced and included pathfinding and environmental awareness. Today, finite-state machines are still used in game development, often as part of larger AI frameworks."
   - id: "play-loop-core"
-    line_start: 1358
+    line_start: 1368
     line_end: 1471
     title: "The Play Loop That Defined FPS Games"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_loop"

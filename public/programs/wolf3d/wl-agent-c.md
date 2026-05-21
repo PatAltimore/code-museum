@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "This section defines the `objtype` structure, which tracks the state of the player and other objects in the game. The `LastAttacker` variable records the last entity that damaged the player, enabling contextual responses such as displaying the attacker’s face in the HUD. In 1992, games like Wolfenstein 3D were pioneering ways to make player interactions feel personal and immersive. Tracking state was critical for implementing features like health updates, weapon changes, and damage feedback. This approach influenced later games that relied on object-oriented designs for managing entities and interactions, such as Doom and Quake."
   - id: "attack-info-table"
-    line_start: 61
-    line_end: 73
+    line_start: 63
+    line_end: 66
     title: "The Lookup Table Behind Player Attacks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""

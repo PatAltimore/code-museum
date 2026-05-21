@@ -54,24 +54,24 @@ enhancements:
     image_caption: ""
     content: "The 'running' routine defines the animation loop for the Prince's running motion. It uses a series of frames and transitions to create the illusion of continuous movement. The loop cycles through frames stored in 'runcyc1' and other related variables, ensuring smooth animation. Mechner's use of loops and frame cycling was a clever way to achieve fluid motion on hardware with limited graphical capabilities. This technique became a staple in game development, influencing animation systems in later platformers and action games."
   - id: "start-run-sequence"
-    line_start: 159
-    line_end: 181
+    line_start: 156
+    line_end: 177
     title: "How the Prince Starts Running"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The 'startrun' routine handles the transition from standing to running. It initializes the animation frames and sets the horizontal movement speed using 'chx' values. This sequence ensures a smooth and realistic start to the running motion. Mechner's attention to detail in transitions like this contributed to the game's cinematic feel. The use of incremental frame adjustments and precise timing was groundbreaking for its era, influencing animation systems in games like Flashback and Oddworld."
   - id: "stand-animation"
-    line_start: 182
-    line_end: 190
+    line_start: 179
+    line_end: 186
     title: "The Simplicity of Standing Still"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "The 'stand' routine defines the Prince's idle animation when not performing any actions. It uses a single frame ('act,0') to represent the standing state. While simple, this routine is essential for grounding the character in the environment and providing a baseline for other animations. Mechner's minimalist approach to idle states ensured that memory was conserved for more complex sequences. This design influenced idle animations in later games, where standing states often serve as the foundation for transitions into movement or action."
   - id: "alert-stand-animation"
-    line_start: 193
-    line_end: 200
+    line_start: 188
+    line_end: 196
     title: "The Animation That Warned of Danger"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -95,23 +95,23 @@ enhancements:
     content: "The 'guardengarde' routine transitions the guard character into a defensive stance, preparing for combat. This routine uses a simple 'goto' instruction to loop back to the 'ready' state, ensuring the guard remains in position until an action occurs. Mechner's use of defensive stances added depth to the game's combat system, influencing enemy AI behavior in later games like Assassin's Creed and The Witcher series."
   - id: "engarde-animation"
     line_start: 218
-    line_end: 227
+    line_end: 240
     title: "The Prince Prepares to Duel"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The 'engarde' routine transitions the Prince into a combat-ready stance, setting the stage for sword fights. It adjusts the character's position ('chx') and initializes the animation frames for the dueling sequence. Mechner's focus on fluid transitions between states ensured that combat felt dynamic and responsive. This approach influenced the design of combat systems in later games, including the fencing mechanics in The Legend of Zelda: Twilight Princess."
   - id: "ready-animation"
-    line_start: 228
-    line_end: 236
+    line_start: 241
+    line_end: 1039
     title: "The Calm Before the Sword Strike"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The 'ready' routine represents the Prince's preparation for combat, transitioning into a poised stance. This animation loop ('loop db 171') maintains tension while waiting for the player's input. Mechner's use of anticipation in animations added a cinematic quality to the gameplay, influencing how readiness states were implemented in later action games like God of War and Devil May Cry."
   - id: "testfoot-animation-trigger"
-    line_start: 1037
-    line_end: 1054
+    line_start: 888
+    line_end: 982
     title: "How a Footstep Became Cinematic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
@@ -119,15 +119,15 @@ enhancements:
     content: "The 'testfoot' sequence encodes animation frames for a footstep, including horizontal movement (chx) and visual frame transitions. This sequence is part of the game's rotoscoped animation system, where Jordan Mechner traced filmed footage of his brother to create lifelike movement. At the time, encoding such detailed animations in assembly was groundbreaking, especially given the Apple II's hardware constraints. The use of 'goto' and 'dw stand' ensures smooth transitions between animation states. This technique influenced later cinematic platformers, such as Flashback and Another World, which also prioritized fluid character motion."
   - id: "stepback-retreat-animation"
     line_start: 1056
-    line_end: 1062
+    line_end: 1068
     title: "The Art of Stepping Back"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The 'stepback' sequence defines a retreating motion, a subtle yet critical animation for Prince of Persia's gameplay. It uses 'chx,-5' to move the character backward while transitioning to a standing state. This animation reflects the game's emphasis on precision and timing, as players often need to retreat to avoid traps or enemies. Mechner's attention to detail in animating such movements set a standard for realistic character interactions in platformers, influencing games like Tomb Raider and Uncharted decades later."
   - id: "step-forward-pixel-precision"
-    line_start: 1064
-    line_end: 1083
+    line_start: 984
+    line_end: 1054
     title: "Pixel-Perfect Forward Steps"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The 'step14' sequence encodes a forward step spanning 14 pixels, with precise adjustments to the character's position (chx) and visual frames. This level of detail was essential for the game's platforming mechanics, where every movement had to align perfectly with the environment. Mechner's use of incremental steps (step14, step13, etc.) allowed for granular control over animations, ensuring smooth transitions and responsiveness. This approach influenced the design of later platformers, where pixel-perfect movement became a hallmark of the genre."
   - id: "stoop-crouch-animation"
     line_start: 1224
-    line_end: 1236
+    line_end: 1253
     title: "The Low Profile: Stoop and Crouch"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The 'stoop' sequence encodes the animation for crouching, a vital action for avoiding traps and navigating tight spaces. It transitions smoothly to a crouch state using 'goto' and 'dw :crouch'. This animation showcases Mechner's focus on realistic character movements, which were rare in games of the era. The crouching mechanic added depth to the gameplay, requiring players to think strategically about their movements. This innovation paved the way for stealth mechanics in later games like Metal Gear Solid."
   - id: "pickupsword-animation"
     line_start: 1255
-    line_end: 1265
+    line_end: 1457
     title: "How to Pick Up a Sword"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -151,23 +151,23 @@ enhancements:
     content: "The 'pickupsword' sequence defines the animation for retrieving the sword, a pivotal moment in the game. It uses 'effect,1' to trigger visual effects, followed by a series of frames representing the action. This sequence highlights Mechner's cinematic approach, treating even mundane actions as opportunities for storytelling. The sword pickup is not just functional but symbolic, marking the player's readiness to face combat challenges. This attention to detail influenced the narrative-driven animations in games like The Last of Us."
   - id: "climbstairs-complex-motion"
     line_start: 1459
-    line_end: 1486
+    line_end: 1495
     title: "Climbing Stairs: A Technical Feat"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
     image_caption: ""
     content: "The 'climbstairs' sequence encodes a complex climbing animation, involving both horizontal (chx) and vertical (chy) movements. This sequence demonstrates Mechner's ability to simulate realistic motion within the Apple II's constraints. The use of 'tap' and incremental adjustments creates a fluid climbing action, essential for the game's platforming challenges. This technique inspired similar climbing mechanics in games like Assassin's Creed, where smooth transitions between movements are critical."
   - id: "princess-embrace-animation"
-    line_start: 1601
-    line_end: 1619
+    line_start: 1524
+    line_end: 1583
     title: "The Princess's Embrace: A Cinematic Touch"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The 'Pembrace' sequence encodes the animation for the Princess's embrace, a tender moment in the game's narrative. It uses precise adjustments (chx) to simulate lifelike movements, adding emotional depth to the interaction. This sequence reflects Mechner's cinematic vision, where character animations serve both gameplay and storytelling. The embrace scene influenced the use of animation to convey emotion in later games, such as Journey and Shadow of the Colossus."
   - id: "mouse-scurry-animation"
-    line_start: 1665
-    line_end: 1675
+    line_start: 1585
+    line_end: 1599
     title: "The Mouse That Scurries"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

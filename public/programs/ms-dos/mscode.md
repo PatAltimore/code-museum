@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-directives-and-segment-assumptions"
     line_start: 1
-    line_end: 11
+    line_end: 120
     title: "Why INCLUDE Directives Were Vital"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -39,22 +39,22 @@ enhancements:
     content: "This section sets up the assembly environment by including external files like DOSSEG.ASM and STDSW.ASM. These files define segment structures and standard routines, ensuring modularity and reusability. In the early 1980s, assembly language programming was heavily reliant on such modular setups to manage the complexity of low-level code. Tim Paterson and later Microsoft engineers used these directives to structure the growing MS-DOS codebase, which had to support multiple hardware configurations. This modular approach influenced later operating systems, where header files and libraries became standard practice in languages like C."
   - id: "copyright-header-and-versioning"
     line_start: 57
-    line_end: 87
+    line_end: 82
     title: "The Header That Defined MS-DOS Versions"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section generates the version and copyright header displayed to users. It dynamically constructs the version string based on constants like DOS_MAJOR_VERSION and DOS_MINOR_VERSION. In the early 1980s, versioning was crucial for compatibility, as software often relied on specific OS features. The inclusion of Kanji support shows Microsoft's global ambitions, particularly in Japan. This dynamic header approach influenced later software practices, where versioning became integral to debugging and user communication. The copyright notice reflects Microsoft's growing dominance in the software industry, a strategy that would culminate in their near-monopoly on PC operating systems."
   - id: "system-call-dispatcher"
-    line_start: 88
-    line_end: 122
+    line_start: 83
+    line_end: 120
     title: "How MS-DOS Handled System Calls"
     wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
     image_url: ""
     image_caption: ""
     content: "This section implements the entry points for system calls, including INT 20H and INT 21H. System calls are the bridge between user programs and the operating system, allowing tasks like file access and device control. MS-DOS's dispatcher checks the call number (AH register) and routes it to the appropriate handler. This design was inspired by CP/M but expanded in v2.0 to support Unix-like features. The modularity and efficiency of this dispatcher influenced later operating systems, including Windows, which built upon MS-DOS's system call architecture. It also set a precedent for interrupt-driven programming in personal computing."
   - id: "save-and-restore-registers"
-    line_start: 123
+    line_start: 121
     line_end: 210
     title: "The Multitasking Illusion: Saving Registers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Context_switch"
@@ -63,15 +63,15 @@ enhancements:
     content: "The SAVREGS, restore_world, and save_world routines manage the saving and restoring of CPU registers during system calls. This mechanism ensures that user programs can resume execution without interference from the operating system. While MS-DOS was not a multitasking OS, these routines simulate a form of task switching, laying the groundwork for more advanced systems. The concept of saving and restoring context became a cornerstone of modern operating systems, enabling features like multitasking and virtualization. MS-DOS's implementation influenced early Windows versions and other DOS-based multitasking environments like DESQview."
   - id: "dispatch-table-for-system-functions"
     line_start: 259
-    line_end: 403
+    line_end: 407
     title: "The Table That Mapped MS-DOS's Brain"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
     image_url: ""
     image_caption: ""
     content: "This section defines a dispatch table mapping system call numbers to their corresponding handlers. Each entry represents a function, such as file I/O or process management. The table simplifies the dispatcher logic, enabling quick lookups and modular expansion. This design reflects the influence of interrupt vector tables, a common pattern in assembly programming. By organizing functionality in this way, MS-DOS could efficiently handle a growing set of features without rewriting the dispatcher. This approach influenced later operating systems, where function tables became standard for API management and dynamic linking."
   - id: "oem-handler-setup"
-    line_start: 412
-    line_end: 431
+    line_start: 409
+    line_end: 449
     title: "Customizing MS-DOS for OEMs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Original_equipment_manufacturer"
     image_url: ""
@@ -79,14 +79,14 @@ enhancements:
     content: "The $SET_OEM_HANDLER and DO_OEM_FUNC routines allow OEMs to define custom system call handlers. This feature was critical to Microsoft's licensing strategy, enabling hardware manufacturers to adapt MS-DOS to their specific needs. By providing this flexibility, Microsoft ensured widespread adoption of MS-DOS across diverse platforms. The ability to customize system behavior influenced later operating systems, where extensibility became a key selling point. This OEM-friendly design helped solidify Microsoft's dominance in the PC market, as manufacturers could tailor the OS without developing their own from scratch."
   - id: "null-device-driver"
     line_start: 462
-    line_end: 483
+    line_end: 472
     title: "The Null Device: A Programmer's Shortcut"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
     image_url: ""
     image_caption: ""
     content: "The SNULDEV and INULDEV routines implement the null device driver, a special file that discards all data written to it. This 'black hole' device is useful for testing and redirecting output without affecting other processes. Null devices originated in Unix and were adopted by MS-DOS to provide similar functionality. Their simplicity and utility made them a standard feature in operating systems, appearing in Linux (/dev/null) and Windows (NUL). This implementation reflects MS-DOS's growing sophistication and its efforts to incorporate features from more advanced systems like Unix."
   - id: "absolute-disk-read-and-write"
-    line_start: 559
+    line_start: 486
     line_end: 585
     title: "Direct Disk Access: The Power and the Risk"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_operating_system"

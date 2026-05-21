@@ -63,7 +63,7 @@ enhancements:
     content: "The 'R_AliasTransformVector' function applies a transformation matrix to a vector, converting model coordinates into world coordinates. This is a fundamental operation in 3D graphics, enabling models to be positioned and oriented in a scene. In the era of Quake's development, matrix transformations were computationally expensive, but essential for creating dynamic 3D environments. John Carmack's implementation balances precision and performance, leveraging the capabilities of x86 processors. This technique remains a cornerstone of 3D graphics, with modern GPUs accelerating matrix operations for real-time rendering."
   - id: "setup-transform-matrix"
     line_start: 332
-    line_end: 369
+    line_end: 407
     title: "Setting Up Transformation Matrices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transformation_matrix"
     image_url: ""

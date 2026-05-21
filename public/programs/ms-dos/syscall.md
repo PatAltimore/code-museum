@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-directives-and-symbols"
     line_start: 1
-    line_end: 15
+    line_end: 39
     title: "Why INCLUDE Directives Were Essential"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "$FCB_SEQ_READ reads the next record from a file using the File Control Block (FCB) structure, a legacy from CP/M that MS-DOS inherited. The routine handles errors such as end-of-file (EOF) or insufficient space at the disk transfer address, returning status codes in the AL register. Sequential reading was critical for early applications, which often processed files record by record due to memory constraints. The reliance on FCBs reflects MS-DOS's roots in CP/M and the simplicity of its file system design. As MS-DOS evolved, FCBs were gradually replaced by file handles, which offered more flexibility and better support for multitasking. This transition influenced modern operating systems, where file handles remain the standard for file I/O operations."
   - id: "fcb-rename-system-call"
-    line_start: 450
+    line_start: 378
     line_end: 455
     title: "Renaming Files in MS-DOS: A Legacy Technique"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "$FCB_RENAME renames files by modifying their FCB entries. The routine checks for matching entries and ensures the new name is valid and not a reserved device name. If successful, it updates the directory entry with the new name and attributes. This approach reflects the limitations of FCB-based file systems, which lacked robust error handling or support for complex operations. The reliance on FCBs made file renaming cumbersome, as it required direct manipulation of directory entries. As MS-DOS transitioned to file handles in later versions, these limitations were addressed, paving the way for more advanced file systems like FAT32 and NTFS. The legacy of this routine can still be seen in modern APIs that support file renaming as a basic operation."
   - id: "fcb-create-system-call"
-    line_start: 623
+    line_start: 624
     line_end: 742
     title: "Creating Files in MS-DOS: The FCB Way"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"

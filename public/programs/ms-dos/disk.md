@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-dosseg-and-dossym"
     line_start: 9
-    line_end: 23
+    line_end: 27
     title: "Why Include Files Were Crucial in 1983"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The STORE routine handles file writes, updating metadata like file date and time. It checks for device-specific conditions, such as EOF markers, and invokes subroutines like DISKWRITE for disk operations. This routine reflects the constraints of floppy disk storage, where sectors and clusters had to be managed manually. By abstracting these details, MS-DOS made file operations more accessible to developers. The techniques used here influenced later storage systems, including FAT, which became ubiquitous in personal computing."
   - id: "get-io-fcb-subroutine"
-    line_start: 973
-    line_end: 979
+    line_start: 943
+    line_end: 981
     title: "The Subroutine That Found File Buffers"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The `DISKREAD` procedure executes user-level disk read operations, utilizing the outputs of `SETUP` and `BreakDown` to manage clusters, sectors, and buffers. It incorporates error handling and retry mechanisms, ensuring reliable data access even in the face of hardware failures. This routine highlights the challenges of programming for early PCs, where disk drives were slow and prone to errors. By implementing robust error handling and optimizing disk reads, MS-DOS set a standard for reliability that influenced later operating systems. The techniques used here, such as buffering and retry logic, remain relevant in modern disk I/O systems, ensuring data integrity and performance."
   - id: "rdlast-partial-record-transfer"
     line_start: 2017
-    line_end: 2091
+    line_end: 2079
     title: "How MS-DOS Handles Partial Record Transfers"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -151,7 +151,7 @@ enhancements:
     content: "The RDLAST subroutine is responsible for managing the transfer of the last record during a disk read operation. It checks if the byte count for the current transfer is zero, invokes the NEXTSEC routine to move to the next sector, and ensures that any remaining bytes are handled correctly. If the record is incomplete, it flags the error and pads the remaining bytes with zeros to maintain data integrity. This approach reflects the constraints of early file systems, where disk operations had to account for partial transfers due to fixed sector sizes. In 1983, MS-DOS 2.0 introduced significant changes inspired by Unix, including support for hierarchical directories and improved file handling. The RDLAST routine demonstrates the meticulous attention to detail required to ensure compatibility with the FAT (File Allocation Table) system while optimizing disk I/O performance. Tim Paterson's original design for 86-DOS laid the groundwork for these innovations, but the rewrite for MS-DOS 2.0 added sophistication to handle edge cases like partial records. This technique influenced later operating systems and file systems, where handling incomplete data transfers became a standard practice. Modern file systems like NTFS and ext4 build on these principles, ensuring robust error handling and data integrity during disk operations. The padding approach seen here echoes in contemporary systems, where zero-filling is used to prevent data corruption and maintain predictable behavior."
   - id: "evenfil-buffer-padding"
     line_start: 2081
-    line_end: 2089
+    line_end: 2095
     title: "Buffer Padding: Filling the Gaps with Zeros"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_buffer"
     image_url: ""
@@ -159,7 +159,7 @@ enhancements:
     content: "The EVENFIL routine is a continuation of RDLAST, focusing on padding the buffer with zeros when the last record is incomplete. It uses the REP STOSW instruction to efficiently fill memory with zeros, ensuring that the buffer aligns with the expected record size. This technique was crucial in an era when hardware constraints dictated fixed sector sizes and alignment requirements. In the early 1980s, disk drives operated with rigid sector boundaries, and software had to accommodate these limitations. The padding approach seen here was a pragmatic solution to ensure data consistency without requiring hardware modifications. Tim Paterson's work on MS-DOS 2.0 reflects the influence of Unix-like systems, where similar techniques were used to manage file I/O. Buffer padding remains relevant in modern computing, particularly in scenarios involving network transmission or storage systems. Techniques like zero-filling are used in protocols like TCP/IP to maintain alignment and prevent fragmentation. The efficiency of REP STOSW, a single instruction that performs repetitive memory operations, highlights the ingenuity of assembly language programming in optimizing performance on constrained hardware."
   - id: "setclus-cluster-management"
     line_start: 2097
-    line_end: 2127
+    line_end: 2131
     title: "Cluster Management: Packing File Data Efficiently"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cluster_(file_system)"
     image_url: ""
@@ -175,7 +175,7 @@ enhancements:
     content: "The DISKREAD subroutine performs a user disk read operation, handling inputs from the FCB and outputs such as the last record position and the number of records read. It marks the file as dirty, calculates the last sector accessed, and invokes routines like BREAKDOWN and CALCLUS to manage cluster and sector calculations. This routine showcases the complexity of disk I/O optimization in the constrained environment of early PCs. In 1983, personal computers like the IBM PC relied on floppy disks and hard drives with limited capacity and slow access speeds. Efficient disk I/O was critical to ensure acceptable performance for users. The techniques used in DISKREAD reflect the influence of Unix-like systems, where similar methods were employed to optimize file handling. Tim Paterson's original design for 86-DOS provided a simple interface for disk operations, but MS-DOS 2.0 expanded on this foundation to support advanced features. Disk I/O optimization remains a key area of focus in modern computing, with techniques like caching, buffering, and prefetching building on the principles established here. The routines in DISK.ASM influenced later operating systems, including Windows, where efficient disk access became a cornerstone of performance improvements. The legacy of these optimizations can be seen in technologies like SSDs and NVMe drives, which push the boundaries of storage performance."
   - id: "wrteof-file-end-handling"
     line_start: 2513
-    line_end: 2539
+    line_end: 2593
     title: "Handling File End: Closing the Loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""

@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "extrastrength-data-table"
-    line_start: 97
+    line_start: 24
     line_end: 124
     title: "The Data Table That Defines Enemy Strength"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines the 'extrastrength' data table, which assigns specific strength values to enemies based on their program index. These values influence how challenging each enemy is during combat. Jordan Mechner's design here reflects his focus on creating a dynamic and cinematic experience for players. By varying enemy strength, the game ensures that each encounter feels unique and progressively challenging. In 1989, the Apple II's limited memory and processing power meant that developers had to be extremely efficient in their use of resources. Mechner's decision to use a simple data table to define enemy attributes allowed him to quickly reference these values during gameplay without consuming excessive memory or CPU cycles. This approach was common in 6502 assembly programming, where lookup tables were often used to optimize performance. The concept of using data tables to define enemy behavior became a staple in game development. Later games, such as Doom (1993) and Diablo (1996), expanded on this idea by incorporating more complex attributes and behaviors into their enemy AI systems. Mechner's work on Prince of Persia demonstrated how even simple data structures could contribute to a rich and engaging gameplay experience."
   - id: "basicstrength-and-basiccolor"
     line_start: 128
-    line_end: 158
+    line_end: 137
     title: "How Enemy Strength and Color Are Linked"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The 'basicstrength' and 'basiccolor' tables define the strength and uniform color of guards based on the level number. Strength values determine how resilient guards are in combat, while color values visually differentiate them. This dual-purpose design adds both gameplay and aesthetic depth to the game. In the late 1980s, visual storytelling in games was still in its infancy. Mechner's decision to use guard colors as a visual cue for their strength was a clever way to communicate gameplay information without overloading the player with text or numbers. This approach aligns with the cinematic aspirations of Prince of Persia, where visual elements play a crucial role in immersing the player. This technique influenced later games that used visual cues to convey enemy attributes. For example, The Legend of Zelda series often uses color variations to indicate enemy difficulty. Mechner's work here highlights the importance of integrating gameplay mechanics with visual design to create a cohesive experience."
   - id: "autoctrl-enemy-ai"
     line_start: 160
-    line_end: 197
+    line_end: 193
     title: "The Routine That Makes Enemies Intelligent"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
@@ -62,8 +62,8 @@ enhancements:
     image_caption: ""
     content: "The 'MouseProg' routine handles the behavior of the mouse character, a minor but memorable element in Prince of Persia. The routine checks the mouse's position and action, ensuring it reacts appropriately to the environment. For example, the mouse stops moving when it reaches certain coordinates or vanishes when it exits the screen. This routine exemplifies Mechner's attention to detail. Even a seemingly insignificant character like the mouse is given specific behaviors that enhance the game's narrative and atmosphere. The mouse's actions often serve as subtle hints to the player, guiding them through puzzles or indicating hidden paths. The inclusion of such detailed AI for a minor character influenced later games that used environmental storytelling and non-playable characters to enrich the player's experience. Games like The Last of Us (2013) and Red Dead Redemption 2 (2018) feature similarly detailed NPC behaviors that contribute to their immersive worlds. Mechner's work on Prince of Persia shows how small touches can leave a lasting impression on players."
   - id: "shadowprog-level-specific-ai"
-    line_start: 225
-    line_end: 244
+    line_start: 216
+    line_end: 249
     title: "How the Shadow Became a Nemesis"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The 'ShadowProg' routine governs the behavior of the shadow character, a key antagonist in Prince of Persia. Depending on the level, the routine branches to specific subroutines like 'ShadLevel4' or 'FinalShad' to execute level-specific actions. For example, in Level 4, the shadow interacts with the mirror, while in Level 12, it engages in the final battle. Mechner's design for the shadow character is a masterclass in storytelling through gameplay. The shadow serves as both a physical and symbolic adversary, representing the player's inner struggles. By tailoring its behavior to each level, Mechner ensures that the shadow's presence feels meaningful and impactful. This approach influenced later games that used recurring antagonists to deepen their narratives. For instance, the Nemesis system in Middle-earth: Shadow of Mordor (2014) builds on the idea of personalized enemy interactions. Mechner's work on Prince of Persia demonstrates how thoughtful character design can enhance both gameplay and storytelling."
   - id: "finalshad-merging-mechanics"
     line_start: 318
-    line_end: 428
+    line_end: 432
     title: "The Shadow That Became the Player"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The 'EnGarde' routine is responsible for initiating combat between the player and enemies. It checks the player's position, the enemy's alertness level, and other conditions to determine whether combat should begin. If the conditions are met, the routine transitions the enemy into 'en garde' mode, ready for battle. In 1989, combat systems in games were often simplistic, relying on predefined patterns or turn-based mechanics. Mechner's implementation stands out for its dynamic nature, allowing enemies to react intelligently to the player's actions. This makes combat feel more fluid and engaging, aligning with the game's cinematic goals. This approach influenced later games that sought to create realistic and immersive combat systems. Titles like Assassin's Creed (2007) and Batman: Arkham Asylum (2009) built on the idea of context-sensitive combat initiation. Mechner's work on Prince of Persia demonstrates how thoughtful design can elevate gameplay and contribute to a game's legacy."
   - id: "checkstab-shadow-and-kid-lunge"
     line_start: 1006
-    line_end: 1046
+    line_end: 1040
     title: "Shadow and Kid Lunge Simultaneously"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The CHECKSTAB routine handles simultaneous lunges between the Kid and his shadow counterpart. It checks their actions and determines the outcome of their interaction. If both characters perform a lunge (action code 99), the routine ensures the Kid wins the tie, reinforcing the player's agency. This subroutine is an example of Mechner's cinematic approach to gameplay, where dramatic moments are scripted to enhance the narrative. In the late 1980s, such scripted interactions were rare in platformers, which typically relied on simple collision detection. Mechner's focus on storytelling and character-driven gameplay influenced later games like Another World (1991) and Flashback (1992), which also emphasized cinematic experiences."
   - id: "chgshadposn-update-shadow-position"
     line_start: 1042
-    line_end: 1065
+    line_end: 1078
     title: "Updating Shadowman's Position Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The chgshadposn routine updates the position of the Shadowman character by copying positional data into the character's memory space. It also resets playback counters and prepares the Shadowman for interaction. This routine highlights the game's reliance on precise memory manipulation to create fluid animations and interactions. In the constrained environment of the Apple IIe, where memory was limited to 128K, such routines were essential for maintaining performance while delivering complex gameplay. Mechner's work here laid the groundwork for efficient character management in later cinematic platformers and inspired developers to push the limits of hardware constraints."
   - id: "shadpos-data-tables"
     line_start: 1080
-    line_end: 1128
+    line_end: 1093
     title: "Data Tables for Shadowman Positions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -119,14 +119,14 @@ enhancements:
     content: "The shadpos data tables define various positions and states for the Shadowman character, such as standing or falling. These tables are crucial for the game's animation system, allowing predefined states to be quickly loaded and displayed. In an era where real-time computation was limited by hardware speed, using lookup tables like these was a common optimization technique. Mechner's approach ensured smooth transitions and consistent animations, which were pivotal for the game's cinematic feel. This technique influenced later games that relied on predefined animation states to enhance performance and visual fidelity."
   - id: "autoplayback-prerecorded-sequences"
     line_start: 1140
-    line_end: 1229
+    line_end: 1219
     title: "Playing Back Prerecorded Movement Sequences"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The AUTOPLAYBACK routine executes prerecorded movement sequences for characters, using a frame-by-frame approach. It increments a frame counter, checks for the next command, and executes it based on the sequence data. This system allowed Mechner to script complex character movements, such as the Shadowman's actions, without relying on real-time input. The use of prerecorded sequences was innovative for its time, enabling cinematic storytelling and choreographed gameplay. This technique later became standard in games with scripted events, influencing titles like Tomb Raider (1996) and the Uncharted series."
   - id: "cutcheck-screen-transition"
-    line_start: 1230
+    line_start: 1220
     line_end: 1319
     title: "Handling Screen Transitions with CUTCHECK"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
@@ -143,15 +143,15 @@ enhancements:
     content: "The CUTGUARD routine prevents guards from wrapping around the screen when falling off the bottom edge. It checks the guard's position and either removes them or updates their state. This routine reflects Mechner's attention to detail, ensuring the game's physics and interactions remain believable. Such meticulous handling of edge cases was rare in 1980s platformers, which often ignored off-screen behavior. Mechner's approach influenced later games that prioritized realism, such as the Half-Life series, which carefully managed character states and transitions."
   - id: "addguard-bring-guards-to-life"
     line_start: 1740
-    line_end: 1829
+    line_end: 1827
     title: "Bringing Guards to Life on New Screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The ADDGUARD routine activates guards when the Kid transitions to a new screen. It checks the screen's state and either spawns a guard or handles special cases like the Shadowman's appearances. This routine showcases Mechner's ability to balance scripted events with dynamic gameplay. By ensuring guards appear in contextually appropriate ways, the game maintains its cinematic tension. This technique influenced later games with dynamic enemy spawning, such as Resident Evil (1996), which used similar logic to create suspenseful encounters."
   - id: "addnormalgd-guard-activation"
-    line_start: 1830
-    line_end: 1940
+    line_start: 1829
+    line_end: 1936
     title: "Activating Guards Based on Screen State"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

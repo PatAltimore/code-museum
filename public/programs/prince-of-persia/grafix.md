@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "vbl-interrupt-handler"
     line_start: 106
-    line_end: 112
+    line_end: 224
     title: "How VBLANK Keeps Graphics Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vertical_blank_interrupt"
     image_url: ""
     image_caption: ""
     content: "The VBLvect routine sets up the vertical blank interrupt handler, a critical mechanism for smooth graphics rendering on the Apple II. Vertical blanking occurs when the CRT monitor finishes drawing one frame and prepares for the next. By hooking into this interrupt, the game ensures that graphics updates occur during this downtime, avoiding visible tearing. In 1989, this was a standard technique for synchronizing graphics but required meticulous timing due to the Apple II's limited processing power. Jordan Mechner leveraged this to keep the cinematic animations fluid, a hallmark of Prince of Persia. This approach influenced later games on similar hardware, such as Karateka, also by Mechner, and became a staple in early console development."
   - id: "add-background-image"
-    line_start: 191
+    line_start: 114
     line_end: 224
     title: "Adding Images to the Background Layer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -55,22 +55,22 @@ enhancements:
     content: "The ADDFORE routine handles the addition of images to the foreground layer, which is rendered above the background and mid-plane layers. This layer is used for objects and characters that interact with the player. Foreground layering was a key innovation in creating visually engaging games on systems like the Apple II. By isolating interactive elements in this layer, Mechner ensured that the game could efficiently update only the necessary parts of the screen during gameplay. This technique became standard in platformers and action games, influencing titles like Castlevania and Mega Man."
   - id: "add-message-layer"
     line_start: 257
-    line_end: 286
+    line_end: 296
     title: "Messages on Screen: A Layer for Communication"
     wikipedia_url: "https://en.wikipedia.org/wiki/Heads-up_display"
     image_url: ""
     image_caption: ""
     content: "ADDMSG adds images to the message layer, used for displaying text or icons during gameplay. This layer operates similarly to the background layer but is reserved for transient information. In Prince of Persia, messages like 'Press Button to Start' or 'Level Complete' are handled through this routine. By dedicating a separate layer for messages, Mechner could ensure that gameplay graphics remained unaffected by temporary overlays. This separation of concerns influenced the design of heads-up displays (HUDs) in modern games, where dynamic information is layered over the main game visuals."
   - id: "draw-all-layers"
-    line_start: 475
-    line_end: 507
+    line_start: 380
+    line_end: 380
     title: "The Routine That Brings It All Together"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
     content: "DRAWALL is the central routine that renders all graphical layers: background, mid-plane, foreground, and messages. It calls subroutines for each layer and manages the order of rendering to ensure visual coherence. This routine also interacts with the Apple II's high-resolution graphics mode, a feature that was groundbreaking for its time. By organizing rendering in this way, Mechner created a system that could handle complex scenes without overwhelming the hardware. The concept of layered rendering became a cornerstone of game graphics, influencing engines like Unity and Unreal, which use similar principles for scene composition."
   - id: "convert-x-coordinate"
-    line_start: 885
+    line_start: 754
     line_end: 959
     title: "Turning Coordinates Into Pixels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
@@ -87,7 +87,7 @@ enhancements:
     content: "ZEROLSTS clears all image lists except for the peel lists, preparing the graphics system for a new frame. This routine is part of the game's double-buffering strategy, where one buffer is prepared while the other is displayed. By resetting lists at the start of each frame, Mechner ensured that the game could dynamically update graphics without leaving artifacts on the screen. This approach was critical for achieving the smooth animations that Prince of Persia is known for and influenced similar techniques in later games, including those on early consoles like the NES and Sega Genesis."
   - id: "zero-peel-lists"
     line_start: 978
-    line_end: 987
+    line_end: 998
     title: "Clearing the Peel Lists for Character Updates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "ZEROPEELS clears both peel lists, which store underlayers for characters and other dynamic elements. Peel lists are a clever solution to the problem of overlapping graphics: they allow the game to restore the background after a character moves away. This technique was particularly important for the Apple II, where hardware constraints made real-time graphics manipulation challenging. By managing peel lists efficiently, Mechner created a system that could handle complex animations without sacrificing performance. The concept of storing underlayers influenced later techniques in sprite-based games and modern graphics engines."
   - id: "joystick-keyboard-input-routines"
     line_start: 1017
-    line_end: 1062
+    line_end: 1070
     title: "Joystick and Keyboard: Two Inputs, One Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
@@ -103,30 +103,30 @@ enhancements:
     content: "These routines, `getjoy` and `getkbd`, handle input from the joystick and keyboard, respectively. The code reads X and Y positions from the joystick or keyboard, storing them in memory locations `JSTKX` and `JSTKY`. It also processes button states, allowing manual control modes where buttons can be reassigned dynamically. In the mid-1980s, input devices like joysticks were becoming standard for gaming, but handling both joystick and keyboard input required careful programming due to hardware constraints. Mechner's approach ensures flexibility in gameplay, allowing players to use either input device seamlessly. This dual-input logic influenced later games that supported multiple input methods, laying groundwork for configurable controls in modern gaming."
   - id: "joystick-calibration-and-thresholds"
     line_start: 1225
-    line_end: 1270
+    line_end: 1281
     title: "Setting the Joystick's Center: Calibration Matters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""
     image_caption: ""
     content: "The `SETCENTER` routine calibrates the joystick by defining its current position as the center. It calculates thresholds for X and Y axes based on raw joystick values and stores them for later use. This calibration ensures accurate input interpretation, critical for precise character movement in a platformer like Prince of Persia. During the 1980s, joystick calibration was a common challenge due to varying hardware tolerances. Mechner's implementation reflects a deep understanding of these constraints, ensuring consistent gameplay across different devices. This technique became standard in later games, influencing joystick calibration routines in arcade systems and home consoles."
   - id: "memory-movement-routine"
-    line_start: 1272
-    line_end: 1301
+    line_start: 1117
+    line_end: 1266
     title: "Moving Memory Blocks: A Dangerous Efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `MOVEMEM` routine transfers blocks of memory from one location to another. It uses indexed addressing to copy data byte by byte, incrementing pointers until the transfer is complete. A warning in the comments highlights the risk of overwriting 64KB if the source and destination ranges overlap improperly. Memory management was a critical skill for 6502 assembly programmers, especially on hardware with limited RAM. Mechner's routine demonstrates both the power and peril of direct memory manipulation. This approach influenced later developers, who adopted similar techniques for efficient data handling in constrained environments, such as early console games and embedded systems."
   - id: "random-number-generation"
-    line_start: 1379
-    line_end: 1395
+    line_start: 1303
+    line_end: 1333
     title: "Random Numbers: Simple Formula, Big Impact"
     wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
     image_url: ""
     image_caption: ""
     content: "The `RND` routine generates random numbers using a linear congruential formula: `(5 * seed + 23) mod 256`. This simple algorithm updates the `RNDseed` variable, providing pseudo-random values for gameplay elements like enemy behavior or environmental effects. Random number generation was essential for creating dynamic and unpredictable experiences in games, especially on hardware without dedicated RNG support. Mechner's implementation reflects the ingenuity required to simulate randomness on the Apple II. This technique influenced later games, where similar algorithms were used for procedural generation and AI decision-making, paving the way for modern game mechanics."
   - id: "music-system-integration"
-    line_start: 1825
+    line_start: 1618
     line_end: 1892
     title: "Music System II: Modular Sound Design"
     wikipedia_url: "https://en.wikipedia.org/wiki/Music_system"
@@ -134,15 +134,15 @@ enhancements:
     image_caption: ""
     content: "The `CALLMINIT` and `CALLMPLAY` routines interface with Music System II, handling initialization and playback of songs. They use zero-page switching to manage memory efficiently, ensuring smooth transitions between sound routines. Modular sound systems like Music System II were a breakthrough in game audio during the 1980s, enabling dynamic and layered soundtracks on limited hardware. Mechner's integration showcases his ability to leverage existing tools while maintaining control over memory and performance. This modular approach influenced later sound engines, such as those used in LucasArts adventure games and early MIDI-based systems."
   - id: "vertical-blank-optimization"
-    line_start: 1936
-    line_end: 2014
+    line_start: 1938
+    line_end: 1954
     title: "Waiting for VBLANK: Timing Graphics Perfectly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vertical_blank_interrupt"
     image_url: ""
     image_caption: ""
     content: "The `VBLANK` and `VBLANKIIc` routines synchronize graphics rendering with the vertical blank interval, ensuring smooth updates without tearing. The code uses hardware-specific checks to wait for the VBL interval, adapting to differences between Apple IIe and IIc models. Vertical blank interrupts were a cornerstone of graphics programming in the 1980s, allowing developers to optimize rendering within the display's refresh cycle. Mechner's implementation highlights his attention to hardware nuances, ensuring consistent performance across Apple II variants. This approach influenced later developers, who relied on similar techniques for graphics optimization in early consoles like the NES and Sega Master System."
   - id: "normal-speed-black-border"
-    line_start: 2055
+    line_start: 1936
     line_end: 2076
     title: "Normal Speed and a Black Border: Why?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
@@ -159,7 +159,7 @@ enhancements:
     content: "The getparam routine reads a control panel parameter from the Apple IIGS. It accepts a location in the Y register and returns the current setting in the accumulator (A). The routine begins by verifying that it is running on an IIGS, exiting early if not. It then saves the processor state, switches to 16-bit mode (via REP $30), and calls a system routine at address E10000 using a JSL (Jump to Subroutine Long) instruction. This address is specific to the IIGS control panel. In the mid-1980s, the Apple IIGS introduced a more advanced graphical user interface and system-level features compared to earlier Apple II models. Mechner’s decision to include IIGS-specific routines highlights his effort to optimize Prince of Persia for the latest hardware, ensuring compatibility and leveraging its capabilities. The use of JSL reflects the IIGS’s expanded instruction set, which allowed for more sophisticated system interactions. This routine exemplifies how developers adapted their code to support multiple hardware configurations, a practice that became increasingly important as personal computing diversified. While modern APIs abstract hardware differences, early developers like Mechner had to write specific routines for each platform. The control panel interaction here foreshadows the modular design principles seen in later operating systems and game engines, where configuration settings are abstracted into centralized systems."
   - id: "set-control-panel-parameter"
     line_start: 2105
-    line_end: 2123
+    line_end: 2127
     title: "Setting Parameters: A Glimpse into IIGS Control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_IIGS"
     image_url: ""

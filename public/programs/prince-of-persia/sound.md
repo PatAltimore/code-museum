@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "lookup-table-for-sound-routines"
     line_start: 23
-    line_end: 55
+    line_end: 53
     title: "The Lookup Table That Made Sound Cinematic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The ZEROSOUND routine clears the sound table by setting its size to zero. This ensures that no residual sound effects are played after a new scene or event begins. On the Apple II, memory management was a manual process, and routines like this were critical to maintaining the integrity of gameplay. By resetting the sound table, Mechner avoided potential bugs where old sound effects might interfere with new ones. This kind of meticulous memory handling was a hallmark of programming for early home computers, where every byte of RAM was precious. The technique of zeroing tables or buffers before reuse became standard practice in game development, influencing later systems with more sophisticated sound engines."
   - id: "adding-sounds-to-the-table"
     line_start: 69
-    line_end: 91
+    line_end: 99
     title: "The Routine That Packed Sounds into RAM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Random-access_memory"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "ADDSOUND adds a new sound effect to the sound table, preserving registers to avoid disrupting other processes. The routine checks if the table is full, and if not, increments the table size and stores the sound effect number. This careful management of sound effects reflects the constraints of the Apple II, which had limited RAM and could only handle a small number of simultaneous sounds. Mechner's approach ensured that sound effects were queued efficiently without exceeding memory limits. This routine exemplifies the kind of low-level optimization required to make complex games like Prince of Persia run smoothly on early hardware. The concept of queuing sound effects influenced later sound engines, including those used in arcade machines and early consoles like the NES."
   - id: "self-modifying-code-for-sound-playback"
     line_start: 120
-    line_end: 140
+    line_end: 147
     title: "Why Prince of Persia's Sound Code Writes Itself"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""

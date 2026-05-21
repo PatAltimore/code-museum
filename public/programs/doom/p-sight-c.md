@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "The `P_InterceptVector2` function calculates the fractional intercept point between two lines, a critical operation for determining whether a line crosses a subsector. This function uses fixed-point arithmetic, a method that avoids the performance penalties of floating-point calculations on early CPUs like the Intel 486. Fixed-point math was a hallmark of DOOM's engine, enabling precise calculations with minimal computational overhead. The intercept calculation is used in visibility checks and collision detection, ensuring that DOOM's fast-paced gameplay remains smooth even in complex environments. This reliance on fixed-point arithmetic influenced later engines, such as Build (used in Duke Nukem 3D), which also prioritized performance on limited hardware. Modern engines have largely transitioned to floating-point math, but DOOM's efficient techniques remain a benchmark in game optimization history."
   - id: "slope-based-occlusion-testing"
-    line_start: 134
+    line_start: 129
     line_end: 247
     title: "Slope Calculations: DOOM's Clever Occlusion Test"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(geometry)"
@@ -48,7 +48,7 @@ enhancements:
     image_caption: ""
     content: "The `P_CrossSubsector` function performs detailed visibility checks by calculating slopes to determine whether an object is occluded. It examines the geometry of subsectors, comparing floor and ceiling heights to detect potential blockers. If the slopes of the top and bottom edges of a target overlap, the line of sight is considered obstructed. This slope-based approach was a clever solution to the problem of occlusion in a 2.5D engine, where true 3D calculations were infeasible on consumer hardware. By using fixed-point arithmetic and precomputed geometry data, DOOM achieved fast and accurate visibility checks, enabling realistic enemy AI and player interactions. This technique was a precursor to more advanced occlusion culling methods used in modern engines, such as Umbra's visibility solutions in Unity and Unreal."
   - id: "bsp-traversal-for-visibility"
-    line_start: 256
+    line_start: 251
     line_end: 289
     title: "BSP Traversal: The Backbone of DOOM's World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"

@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "include-dosseg-setup"
     line_start: 9
-    line_end: 29
+    line_end: 93
     title: "Setting Up Segments for DOS Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section includes the DOSSEG.ASM file, which defines segment structures and memory layout conventions for MS-DOS. The programmer sets up assumptions for segment registers (SS and CS) to align with DOSGROUP, a memory model used by MS-DOS. This setup reflects the constraints of the 8086 processor, which relied heavily on segmented memory due to its 16-bit architecture. At the time, memory management was a critical concern, as the IBM PC typically shipped with only 64KB to 256KB of RAM. By organizing code and data into segments, developers could maximize efficiency and ensure compatibility across different hardware configurations. This approach influenced later memory models in DOS and other operating systems, including Windows 3.x, which retained segmented memory for backward compatibility."
   - id: "validate-path-meta-check"
-    line_start: 131
+    line_start: 135
     line_end: 287
     title: "How MS-DOS Handles Path Validation"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The 'Validate_path' procedure checks for meta-characters in file paths, ensuring that paths are well-formed and free of invalid characters like '*' and '?'. This routine reflects the influence of Unix-style path handling, as MS-DOS 2.0 introduced hierarchical directories inspired by Unix. At the time, file systems were evolving from flat structures (as seen in CP/M) to more complex hierarchies, which allowed for better organization and scalability. The inclusion of path validation was crucial for maintaining system integrity and preventing errors caused by malformed paths. This technique laid the groundwork for more robust file system APIs in later operating systems, such as Windows NT, which expanded on these concepts with support for long filenames and advanced error handling."
   - id: "find-free-jfn"
-    line_start: 339
+    line_start: 363
     line_end: 413
     title: "Finding Free File Handles in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_descriptor"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The 'Find_free_jfn' procedure scans the user's Process Descriptor Block (PDB) to locate an available Job File Number (JFN). JFNs are analogous to file descriptors in Unix, representing open files or devices. This routine uses the SCASB instruction to efficiently search for a free entry in the JFN table, a linear data structure initialized during system startup. The use of REPNE SCASB highlights the programmer's focus on optimizing performance for constrained hardware, as the IBM PC's 8086 processor lacked advanced features like hardware-assisted searching. This approach influenced later file system designs, where efficient handle management became a cornerstone of operating system development. The concept of file handles persists today, forming the backbone of APIs in modern systems like Windows and Linux."
   - id: "find-free-sfn"
-    line_start: 417
+    line_start: 419
     line_end: 509
     title: "Locating Free System File Table Entries"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_descriptor"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The 'Find_free_sfn' procedure searches the System File Table (SFT) for an available entry, representing a file or device in use. The SFT is organized as a chain of tables, with each table containing a fixed number of entries. The routine traverses this chain using linked pointers, checking each entry's reference count to determine availability. This design reflects the influence of Unix file systems, which use similar structures to manage open files. The reliance on linear searches and linked lists underscores the limitations of early hardware, where memory and processing power were scarce. Despite these constraints, the approach proved effective and laid the foundation for more sophisticated file management systems in later operating systems, such as Windows NT, which introduced advanced caching and indexing techniques."
   - id: "open-file-handle"
-    line_start: 513
+    line_start: 555
     line_end: 797
     title: "Opening Files with MS-DOS's $Open Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_descriptor"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The '$Open' procedure implements file opening functionality, validating access modes and allocating resources like Job File Numbers (JFNs) and System File Table (SFT) entries. The routine checks for errors such as invalid access modes, too many open files, and permission violations. It also handles device-specific operations, reflecting the dual role of MS-DOS as both an operating system and a hardware abstraction layer. This procedure showcases the influence of Unix on MS-DOS, as it incorporates concepts like file handles and access validation. The design decisions made here—such as separating file metadata from operational state—became standard practice in later operating systems. Modern APIs like Win32 and POSIX continue to build on these principles, offering more sophisticated error handling and resource management."
   - id: "unlink-file-entry"
-    line_start: 803
+    line_start: 805
     line_end: 881
     title: "Deleting Files in MS-DOS with $UNLINK"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_deletion"
@@ -78,7 +78,7 @@ enhancements:
     image_caption: ""
     content: "The '$UNLINK' procedure deletes a file entry by marking its directory entry as unused and flushing the associated buffer. The routine checks for errors like read-only attributes and permission violations, ensuring that only valid deletions occur. The use of the 0xE5 byte to mark deleted entries reflects a convention inherited from CP/M, MS-DOS's predecessor. This approach highlights the challenges of file system design in constrained environments, where efficient use of limited storage was paramount. The concept of marking deleted entries persisted in file systems like FAT, which MS-DOS popularized. Modern file systems, such as NTFS, have moved away from this approach, using more sophisticated techniques like journaling and metadata updates to manage deletions securely and efficiently."
   - id: "create-file-entry"
-    line_start: 885
+    line_start: 917
     line_end: 981
     title: "Creating Files with MS-DOS's $CREAT Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_creation"
@@ -87,14 +87,14 @@ enhancements:
     content: "The '$CREAT' procedure creates a new file entry and opens it for input. It validates the file path, checks access permissions, and allocates resources like System File Table (SFT) entries. The routine uses conventions like setting the 0xE5 byte in directory entries to indicate creation, a technique inherited from CP/M. This approach reflects the influence of Unix, as MS-DOS 2.0 introduced hierarchical directories and file creation APIs inspired by Unix's system calls. The '$CREAT' routine laid the groundwork for more advanced file system operations in later operating systems, such as Windows NT, which expanded on these concepts with support for long filenames, access control lists, and transactional file operations."
   - id: "dup-force-handle-reference"
     line_start: 1019
-    line_end: 1047
+    line_end: 1061
     title: "How MS-DOS Managed File Handle References"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_descriptor"
     image_url: ""
     image_caption: ""
     content: "This subroutine, `dup_force`, increases the reference count for a file handle (known as a 'JFN' or Job File Number in MS-DOS). It ensures that the file handle is properly duplicated, storing the old file handle in a new location. At the time, file handles were a critical abstraction for managing open files in an operating system, inspired by similar concepts in Unix. Tim Paterson and the Microsoft team adapted this idea to fit the constraints of early IBM PCs, which had limited memory and processing power. The technique allowed efficient file management even on hardware with only 64KB or 128KB of RAM. This approach influenced later operating systems, including Windows, where file handles remain a core concept for resource management."
   - id: "dup2-close-and-duplicate"
-    line_start: 1065
+    line_start: 1067
     line_end: 1113
     title: "Closing and Duplicating File Handles in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_descriptor"
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "The `$DUP2` subroutine implements a Unix-inspired feature where a file handle can be closed and replaced with another. This was an essential addition to MS-DOS 2.0, which aimed to provide more sophisticated file manipulation capabilities. The routine first closes the destination file handle, then duplicates the source handle into the destination. This reflects a deliberate effort to align MS-DOS with Unix's file descriptor model, making it more appealing to developers familiar with Unix-like systems. The feature became foundational for scripting and system-level programming, influencing later operating systems like Windows NT, which expanded on the concept of file handles and descriptors."
   - id: "chmod-change-file-attributes"
-    line_start: 1149
+    line_start: 1121
     line_end: 1217
     title: "Changing File Attributes: MS-DOS Meets Unix"
     wikipedia_url: "https://en.wikipedia.org/wiki/Chmod"

@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "Cbuf_Execute processes the command buffer, executing commands line by line. It handles special cases like quoted strings and line breaks, ensuring robust parsing. The ability to execute commands dynamically was pivotal for Quake's multiplayer capabilities, as players could issue commands to the server in real-time. This system influenced the development of scripting in multiplayer games, including QuakeWorld and later engines like Source. The modular design allowed for extensibility, enabling developers to add new commands and features without overhauling the system."
   - id: "aliasing-custom-commands"
-    line_start: 319
+    line_start: 336
     line_end: 388
     title: "Aliasing: Custom Commands Made Easy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Console_command"

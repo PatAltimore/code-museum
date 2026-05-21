@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `initsettings` section initializes key variables that define the game's state, such as object positions, gate coordinates, and screen dimensions. This setup routine is critical for ensuring the game starts with consistent and predictable behavior. In the mid-1980s, programming for the Apple II required meticulous memory management due to the 128K RAM constraint. Jordan Mechner's approach reflects the era's emphasis on efficiency and precision. By allocating memory for essential variables upfront, the game avoids runtime errors and ensures smooth transitions between screens. This initialization technique influenced later games, where structured setup routines became standard practice in game engines like Unity and Unreal Engine."
   - id: "sure-full-screen-redraw"
-    line_start: 49
+    line_start: 44
     line_end: 179
     title: "The Trick Behind Full-Screen Redraws"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
@@ -46,23 +46,23 @@ enhancements:
     image_caption: ""
     content: "The `SURE` routine redraws the entire screen from scratch, a process that involves clearing the screen, calculating object positions, and rendering rows and columns of blocks. This method ensures visual consistency but is computationally intensive. On the Apple II, where CPU cycles were precious, Mechner's decision to redraw the entire screen reflects his commitment to cinematic quality. The technique borrows from double-buffering principles, minimizing flicker by preparing the screen off-screen before displaying it. This approach laid the groundwork for modern rendering pipelines in games, where full-screen redraws are optimized using GPU acceleration."
   - id: "fast-partial-redraw"
-    line_start: 189
-    line_end: 337
+    line_start: 181
+    line_end: 339
     title: "How Partial Redraws Save the Day"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dirty_rectangle"
     image_url: ""
     image_caption: ""
     content: "The `FAST` routine optimizes screen rendering by redrawing only the blocks marked for update. This technique, known as dirty rectangle rendering, was a clever solution to the Apple II's limited processing power. By tracking changes in redraw buffers, Mechner avoided unnecessary computations, enabling smoother gameplay. This method became a staple in 2D game development, influencing engines like SDL and frameworks like DirectX. It demonstrates how constraints can inspire innovation, leading to techniques that endure across decades of game development."
   - id: "redblocksure-full-block-redraw"
-    line_start: 346
-    line_end: 359
+    line_start: 341
+    line_end: 367
     title: "The Anatomy of a Block Redraw"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
     image_caption: ""
     content: "The `RedBlockSure` routine redraws an entire block, including its A, B, C, and D sections. Blocks are the fundamental unit of the game's tile-based design, representing floors, walls, and other environmental elements. Mechner's meticulous handling of block sections ensures seamless transitions between tiles, a critical aspect of the game's cinematic feel. This tile-based approach influenced later platformers like Super Mario Bros. and The Legend of Zelda, where efficient block management enabled expansive worlds within limited hardware."
   - id: "drawobjs-object-rendering"
-    line_start: 503
+    line_start: 495
     line_end: 551
     title: "Sorting Objects for Cinematic Depth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"
@@ -70,8 +70,8 @@ enhancements:
     image_caption: ""
     content: "The `drawobjs` routine sorts and renders objects based on their depth, creating a sense of visual hierarchy. Mechner's implementation predates modern Z-buffering but achieves similar results by manually sorting objects into a back-to-front order. This technique enhances the game's cinematic quality, ensuring characters and objects appear in the correct visual layers. It influenced later games and engines, where depth sorting became automated and optimized through hardware acceleration."
   - id: "getprev-screen-edge-handling"
-    line_start: 561
-    line_end: 602
+    line_start: 553
+    line_end: 700
     title: "What Happens at the Screen's Edge?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scrolling_(computer_graphics)"
     image_url: ""
@@ -87,15 +87,15 @@ enhancements:
     content: "The `loadobj` routine loads variables with object data, including coordinates, images, and collision properties. This data-driven approach simplifies object management, allowing Mechner to define behaviors and appearances in a centralized table. In the 1980s, this technique was revolutionary, enabling dynamic gameplay without hardcoding every object. It influenced modern game development, where data-driven design is a cornerstone of flexible and scalable systems."
   - id: "drawfrnt-special-object-rendering"
     line_start: 749
-    line_end: 828
+    line_end: 848
     title: "Special Cases: Gates, Slicers, and Flasks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `drawfrnt` routine handles special cases in object rendering, such as gates, slicers, and flasks. These objects require unique logic to ensure their animations and interactions align with the game's cinematic style. Mechner's attention to detail in handling these edge cases reflects his commitment to creating a polished experience. This approach influenced sprite-based games, where special objects often require tailored rendering logic."
   - id: "checkc-c-section-visibility"
-    line_start: 912
-    line_end: 928
+    line_start: 825
+    line_end: 873
     title: "Is This Section Visible or Hidden?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""
@@ -103,15 +103,15 @@ enhancements:
     content: "The `checkc` routine determines whether the C-section of a block is visible or hidden. Visibility checks are essential for optimizing rendering, ensuring only necessary sections are drawn. On the Apple II, where every CPU cycle mattered, Mechner's approach minimized overhead while maintaining visual fidelity. This logic influenced visibility determination in later games, where efficient rendering remains a priority."
   - id: "domaskb-b-section-masking"
     line_start: 975
-    line_end: 990
+    line_end: 996
     title: "Masking: The Art of Layering Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Alpha_compositing"
     image_url: ""
     image_caption: ""
     content: "The `domaskb` routine masks the B-section of a block to the left, ensuring proper layering in the game's visuals. Masking techniques like this were critical for achieving the cinematic look of Prince of Persia on hardware with no native support for transparency or layering. Mechner's solution demonstrates ingenuity in overcoming hardware limitations, influencing later games where alpha compositing became standard."
   - id: "drawb-rendering-b-section"
-    line_start: 992
-    line_end: 1085
+    line_start: 912
+    line_end: 1154
     title: "How B-Sections Were Rendered on Apple II"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
@@ -119,15 +119,15 @@ enhancements:
     content: "The 'drawb' routine handles rendering the B-section of graphical objects, including blocks, panels, and palace stripes. It begins by checking the object ID and the preceding state to determine the appropriate rendering path. For example, if the object is a block, the routine skips rendering entirely, as blocks obscure the B-section. Special handling is included for palace stripes and panels, which require unique masking and opacity settings. This routine exemplifies the complexity of managing layered graphics on the Apple II, where memory constraints and the lack of hardware acceleration demanded meticulous programming. Jordan Mechner's approach here reflects the broader challenge of creating cinematic visuals on a machine originally designed for text-based applications. The techniques used in 'drawb' influenced later games by demonstrating how to achieve nuanced graphical effects on constrained hardware."
   - id: "redrawd-drawd-d-section-rendering"
     line_start: 1087
-    line_end: 1133
+    line_end: 1123
     title: "Rendering D-Sections: Masking and Opacity Tricks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""
     image_caption: ""
     content: "The 'redrawd' and 'drawd' routines focus on rendering the D-section of objects, which often requires masking and opacity adjustments. The code checks whether the D-section needs to be masked based on the object's type and state, applying an 'OR' operation to blend the graphics appropriately. This level of detail highlights Mechner's commitment to creating visually cohesive environments, even when working within the constraints of the Apple II's graphical capabilities. The masking logic here is particularly notable, as it ensures that overlapping graphical elements appear seamless, a technique that would later become standard in sprite-based games. These routines also demonstrate how assembly language can be used to manipulate graphical properties directly, a skill that was essential for game developers in the 1980s."
   - id: "drawa-rendering-a-section"
-    line_start: 1134
-    line_end: 1157
+    line_start: 1125
+    line_end: 1259
     title: "A-Section Rendering: Handling Intrusive Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The 'drawa' routine is responsible for rendering the A-section of objects, with special handling for cases where adjacent graphics intrude. For example, if the object to the left has an intrusive B-section, the routine applies a mask to ensure proper layering. This approach reflects the challenges of creating visually complex scenes on the Apple II, where overlapping graphics could easily become a visual mess. Mechner's solution involves precise checks and conditional masking, ensuring that each graphical element is rendered correctly. This routine is a testament to the ingenuity required to create cinematic visuals on hardware with limited graphical capabilities. The techniques used here influenced later games by demonstrating how to manage complex graphical interactions in real-time."
   - id: "drawhalf-special-floor-rendering"
     line_start: 1261
-    line_end: 1325
+    line_end: 1448
     title: "Special Floor Rendering for Climbing Animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The 'drawhalf' routine is a specialized version of 'drawfloor,' designed for scenarios where the player character climbs up. It includes logic for masking and rendering half-pieces of the floor, ensuring that the animation appears smooth and realistic. This routine exemplifies Mechner's attention to detail, as it addresses a specific gameplay scenario that could easily be overlooked. By creating a separate routine for climbing animations, Mechner ensured that the game's visuals remained consistent and cinematic, even during complex movements. This approach influenced later platformers by highlighting the importance of tailoring graphical routines to specific gameplay mechanics."
   - id: "drawspikea-drawspikeb-rendering-spikes"
     line_start: 1450
-    line_end: 1492
+    line_end: 1472
     title: "Rendering Spikes: Dynamic Graphics for Hazards"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -151,15 +151,15 @@ enhancements:
     content: "The 'drawspikea' and 'drawspikeb' routines handle the rendering of spikes, a key hazard in Prince of Persia. These routines dynamically adjust the graphics based on the state of the spikes, whether extended or retracted, ensuring that the visual representation matches the gameplay mechanics. This level of detail is crucial for creating a cohesive and immersive experience, as it ties the game's visuals directly to its interactive elements. Mechner's approach here reflects his broader philosophy of integrating graphics and gameplay seamlessly, a principle that would influence countless games in the years to come."
   - id: "drawgateb-rendering-gates"
     line_start: 1813
-    line_end: 1909
+    line_end: 1907
     title: "Rendering Gates: Layered Graphics for Moving Objects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scrolling_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The 'drawgateb' routine is responsible for rendering gates, which are complex moving objects in Prince of Persia. This routine includes logic for drawing the bottom piece of the gate, followed by middle pieces, and finally the top piece, ensuring that the gate appears to rise smoothly. The code also handles cases where the gate overlaps with the floor, applying masking and opacity adjustments to maintain visual consistency. This routine showcases Mechner's ability to manage layered graphics effectively, a skill that was essential for creating dynamic environments on the Apple II. The techniques used here influenced later games by demonstrating how to handle moving objects with precision and elegance."
   - id: "restorebot-repairing-bottom-graphics"
-    line_start: 1910
-    line_end: 1936
+    line_start: 1909
+    line_end: 1927
     title: "Repairing Bottom Graphics After Gate Movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
@@ -167,14 +167,14 @@ enhancements:
     content: "The 'restorebot' routine repairs the bottom graphics after a gate has moved, ensuring that the visual elements remain consistent. This routine includes logic for restoring the background and redrawing the A-section of the gate, a process that requires careful coordination to avoid graphical glitches. Mechner's approach here reflects the challenges of managing dynamic graphics on the Apple II, where memory constraints and limited hardware capabilities demanded meticulous programming. The techniques used in 'restorebot' influenced later games by demonstrating how to handle graphical repairs efficiently, a principle that would become standard in sprite-based games."
   - id: "drawobjx-dynamic-object-rendering"
     line_start: 1929
-    line_end: 1968
+    line_end: 1964
     title: "Dynamic Object Rendering: Handling Multiple Types"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The 'drawobjx' routine handles the rendering of dynamic objects, including the player character, guards, and various hazards. This routine begins by loading object data and determining the type of object to render, branching to specific routines for each type. This approach reflects Mechner's commitment to creating a diverse and visually rich environment, where each object is rendered with care and precision. The techniques used in 'drawobjx' influenced later games by demonstrating how to manage a wide variety of graphical elements efficiently, a principle that would become standard in game development."
   - id: "drawff-animation-layering"
-    line_start: 1969
+    line_start: 1966
     line_end: 2027
     title: "How Animation Layers Were Drawn"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
@@ -183,15 +183,15 @@ enhancements:
     content: "This subroutine, `DrawFF`, handles the drawing of animation frames for the main character using a layered approach. It manipulates the character's image and opacity settings, applying masks and offsets to position the sprite correctly. The routine divides the process into sections (A, B, D) that correspond to different parts of the animation frame, ensuring that each layer is drawn with the correct opacity and blending mode. Mechner's use of rotoscoping—tracing live-action footage frame by frame—was groundbreaking for its time, lending the game a cinematic quality. On the Apple II, with its limited graphical capabilities, this layering technique allowed for smoother animations and more lifelike movement. The approach influenced later games that sought to replicate realistic character motion, such as Another World (1991) and Flashback (1992)."
   - id: "getobjid-object-identification"
     line_start: 2029
-    line_end: 2100
+    line_end: 2098
     title: "Identifying Objects in a Screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
     image_caption: ""
     content: "The `getobjid` and `getobjid1` routines determine the identity and state of objects within the current screen. By checking the screen number and accessing object blueprints stored in memory, the code retrieves the object's type and state. It includes special handling for pressplates and upressplates, which are interactive elements in the game. This logic is part of a larger finite-state machine design that governs object interactions and behaviors. Mechner's meticulous attention to detail ensured that every object behaved consistently, whether it was a gate, a loose floor, or a flask. This approach laid the groundwork for complex object interactions in later platformers and adventure games, such as Tomb Raider (1996) and the Uncharted series."
   - id: "gonull-null-screen-handler"
-    line_start: 2102
-    line_end: 2116
+    line_start: 2100
+    line_end: 2127
     title: "Handling the Null Screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_graphics"
     image_url: ""
@@ -207,15 +207,15 @@ enhancements:
     content: "The `sortlist` routine implements a sorting algorithm to arrange objects in back-to-front order for rendering. This ensures that objects closer to the camera appear on top of those farther away, adhering to the painter's algorithm. The routine repeatedly compares adjacent objects in the list and swaps them if necessary, continuing until no further swaps are needed. This approach was critical for achieving visual depth on the Apple II, which lacked hardware support for z-buffering. Mechner's implementation influenced later games that required efficient sorting for 2D and pseudo-3D environments, such as Doom (1993) and Diablo (1996)."
   - id: "compare-object-comparison"
     line_start: 2174
-    line_end: 2216
+    line_end: 2206
     title: "Comparing Object Positions and Types"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sorting_algorithm"
     image_url: ""
     image_caption: ""
     content: "The `compare` routine determines the relative positions of two objects in the sort list. It checks their types and Y-coordinates to decide whether one object should be rendered in front of the other. Special rules prioritize certain object types, such as shadows, which are always rendered in front. This logic is a key part of the sorting mechanism that ensures visual coherence in the game. The routine's simplicity and efficiency were necessary for the Apple II's limited processing power, and it exemplifies the ingenuity required to create complex visual effects on early hardware."
   - id: "getinitobj-object-initialization"
-    line_start: 2217
-    line_end: 2251
+    line_start: 2208
+    line_end: 2249
     title: "Initializing Object States"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
@@ -223,7 +223,7 @@ enhancements:
     content: "The `GETINITOBJ` and `getinitobj1` routines initialize the state of objects based on their type and blueprint specifications. This includes setting gates to their initial positions, marking loose floors, and configuring flasks. The routines use a combination of direct memory access and bitwise operations to extract and apply settings efficiently. Mechner's design ensures that objects start in consistent states, which is crucial for gameplay logic and player expectations. This initialization process influenced later games with dynamic environments, such as The Legend of Zelda: A Link to the Past (1991) and Metroid Prime (2002)."
   - id: "mbsub-memory-buffer-manipulation"
     line_start: 2251
-    line_end: 2261
+    line_end: 2263
     title: "Combining Buffers for Graphics Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""

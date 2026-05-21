@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "revision-history-timeline"
-    line_start: 3
+    line_start: 1
     line_end: 91
     title: "Why EDLIN Changed 14 Times in Two Years"
     wikipedia_url: "https://en.wikipedia.org/wiki/Edlin"
@@ -33,15 +33,15 @@ enhancements:
     content: "This section documents the revision history of EDLIN, showing the iterative process of refining the program from its initial release to version 2.0. Each revision addressed specific bugs, added features like the quote character (^V), and adapted the program for IBM compatibility. The timeline reflects the rapid pace of software development in the early 1980s, driven by the need to support new hardware and user demands. M.A. Ulloa and N. Panners played key roles in these updates, demonstrating the collaborative nature of software evolution. The addition of commands like U and V and their subsequent removal highlight the trial-and-error approach to feature design. This iterative refinement process influenced how software teams approached updates, leading to practices like agile development cycles."
   - id: "constants-and-data-areas"
     line_start: 94
-    line_end: 233
+    line_end: 127
     title: "The Constants That Defined EDLIN's World"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section defines constants and data areas used throughout EDLIN. Key constants include TRUE/FALSE definitions, the quote character (^V), and the command line length. These constants reflect the constraints of the MS-DOS environment, where memory was scarce and every byte mattered. The data areas include buffers for file names, command lines, and editing operations, as well as flags for file attributes and directory states. The careful organization of these variables ensured efficient memory usage and quick access during runtime. This approach to defining constants and data areas became standard practice in assembly programming, influencing how later systems like Unix and Linux structured their low-level utilities."
   - id: "start-and-edlin-entry"
-    line_start: 235
-    line_end: 265
+    line_start: 243
+    line_end: 245
     title: "The Jump That Starts EDLIN"
     wikipedia_url: "https://en.wikipedia.org/wiki/Edlin"
     image_url: ""
@@ -49,15 +49,15 @@ enhancements:
     content: "The START and EDLIN labels mark the entry points for the program. START initializes the data segment and stack, preparing the environment for execution. EDLIN then jumps to SIMPED, which handles initial setup tasks like clearing flags and checking the MS-DOS version. This structure reflects the modular design philosophy of early assembly programs, where initialization routines were separated from main functionality to ensure clarity and maintainability. The jump to SIMPED also highlights the reliance on interrupt-driven operations, a hallmark of MS-DOS programming. This modular entry-point design influenced later software architectures, including bootloaders and operating system kernels."
   - id: "version-checking-routine"
     line_start: 271
-    line_end: 290
+    line_end: 289
     title: "How EDLIN Ensured Compatibility with MS-DOS 2.0"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The SIMPED routine includes a version-checking mechanism to ensure the program runs only on MS-DOS 2.0 or later. It uses interrupt 21h to retrieve the version number and compares it against the minimum required version. If the version is incompatible, the program displays an error message and exits. This approach reflects the challenges of maintaining compatibility across different versions of an operating system. By embedding version checks, developers could prevent crashes and ensure a consistent user experience. This technique became a standard practice in software development, influencing how modern applications handle backward compatibility."
   - id: "pathname-processing"
-    line_start: 292
-    line_end: 312
+    line_start: 290
+    line_end: 304
     title: "The Slash That Decided EDLIN's Path"
     wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"
     image_url: ""
@@ -65,15 +65,15 @@ enhancements:
     content: "The vers_ok and slashok routines handle pathname processing, adapting to the directory separator conventions of different systems. On IBM PCs, the backslash (\\) is used as the directory separator, while other systems might use a forward slash (/). This flexibility allowed EDLIN to function across various environments, reflecting the need for adaptability in early software. The routines also initialize the pathname buffer, preparing it for further processing. This approach to handling pathnames influenced later file system designs, including the hierarchical structures used in Unix and Windows."
   - id: "option-parsing"
     line_start: 314
-    line_end: 339
+    line_end: 332
     title: "How EDLIN Decoded Command Line Options"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
     content: "The next_char and an_option routines parse command line options, identifying flags like 'B' for load mode. These routines use a combination of string operations and conditional jumps to process input efficiently. The use of inline assembly for option parsing reflects the constraints of the MS-DOS environment, where performance and memory usage were critical. This method of parsing influenced the design of command-line interfaces in later systems, including the getopt function in Unix."
   - id: "read-only-file-check"
-    line_start: 347
-    line_end: 360
+    line_start: 344
+    line_end: 358
     title: "The Flag That Protected Read-Only Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -81,7 +81,7 @@ enhancements:
     content: "The name_copied and attr_are_ok routines check whether a file is read-only before allowing edits. This safeguard reflects the importance of file protection in early computing, where accidental modifications could have severe consequences. By using interrupt 21h to retrieve file attributes, the program ensures that only writable files are edited. This approach to file protection influenced the development of access control mechanisms in modern file systems, including NTFS and ext4."
   - id: "directory-scanning-kanji-support"
     line_start: 365
-    line_end: 403
+    line_end: 389
     title: "How EDLIN Handled Kanji in Directories"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""
@@ -96,8 +96,8 @@ enhancements:
     image_caption: ""
     content: "This section implements the EWRITE routine, responsible for writing text to a file. It uses DOS interrupt 21H to set the DMA address and perform random block writes via file control blocks (FCBs). The code checks for conditions like whether a backup file (.BAK) needs deletion before proceeding with the write operation. This reflects the low-level nature of MS-DOS file handling, where programmers directly manipulated memory and hardware registers. In 1983, MS-DOS 2.0 introduced features inspired by Unix, such as hierarchical directories and file handles, but retained legacy FCBs for backward compatibility. This routine exemplifies the transition from simpler CP/M-like systems to more sophisticated file systems. The use of interrupts and direct memory access was common in the constrained environment of early PCs, where every byte of memory mattered. Techniques like these influenced later DOS utilities and even early Windows file handling mechanisms."
   - id: "text-display-routine"
-    line_start: 1164
-    line_end: 1212
+    line_start: 1167
+    line_end: 1233
     title: "Displaying Lines with Leading Numbers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Edlin"
     image_url: ""
@@ -105,14 +105,14 @@ enhancements:
     content: "The DISPLAY routine outputs a specified number of lines to the terminal, each prefixed with its line number. It uses the SHOWNUM subroutine to format the line numbers and processes text character-by-character, handling control characters like tabs and carriage returns. This reflects the simplicity of text-based interfaces in the early 1980s, where line editors like EDLIN were the standard for text manipulation. At the time, graphical user interfaces were rare, and most users interacted with computers via command-line tools. The routine's reliance on REP MOVSB and other low-level instructions highlights the efficiency required to operate within the limited memory and processing power of the IBM PC. This approach influenced later text editors and utilities, laying the groundwork for more advanced tools like EDIT and Notepad."
   - id: "line-replacement-routine"
     line_start: 1237
-    line_end: 1294
+    line_end: 1341
     title: "Replacing Lines in a Text Buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The REPLAC routine replaces a line in the text buffer with new content. It calculates the length of the new line, checks for buffer overflow, and adjusts the buffer size accordingly. This routine showcases the challenges of dynamic memory management in assembly language, where programmers had to manually track buffer sizes and ensure no memory corruption occurred. In the early 1980s, memory constraints were a significant concern, as the IBM PC typically shipped with 16–64KB of RAM. The careful handling of buffer sizes and the use of REP MOVSB for efficient memory copying reflect the ingenuity required to work within these limitations. Techniques like these influenced the design of later text editors and programming environments, where dynamic memory management became more abstracted but still relied on principles established in this era."
   - id: "block-copy-move-routine"
-    line_start: 1475
+    line_start: 1481
     line_end: 1596
     title: "Copying and Moving Text Blocks in Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -129,7 +129,7 @@ enhancements:
     content: "The MERGE routine combines the contents of two files into one, using direct memory access (DMA) and DOS interrupts for file operations. It opens the source file, reads its contents into the buffer, and appends them to the destination file. The routine ensures proper handling of end-of-file markers and updates buffer pointers accordingly. This reflects the manual nature of file handling in assembly language, where programmers interacted directly with hardware-level features like DMA. In the early 1980s, such routines were critical for utilities like EDLIN, which provided basic text manipulation capabilities. The MERGE routine's design influenced later file utilities and programming environments, where file merging became a standard feature. Its reliance on low-level operations highlights the challenges of working within the constraints of early PC hardware."
   - id: "insert-line-routine"
     line_start: 1695
-    line_end: 1739
+    line_end: 1774
     title: "Inserting Lines into a Text Buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Edlin"
     image_url: ""
@@ -137,7 +137,7 @@ enhancements:
     content: "The INSERT routine adds a new line to the text buffer at a specified location. It updates buffer pointers, checks for memory availability, and handles special characters like quotes. This routine exemplifies the challenges of dynamic text manipulation in assembly language, where every operation required careful memory management. In the early 1980s, text editors like EDLIN were essential tools for programmers and users working in a command-line environment. The INSERT routine's design influenced the development of more advanced text editors, where similar principles were applied to implement features like undo and redo. Its reliance on low-level instructions highlights the efficiency required to operate within the limited resources of the IBM PC."
   - id: "buffer-fill-and-file-write"
     line_start: 1776
-    line_end: 1815
+    line_end: 1825
     title: "Filling Buffers and Writing Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -153,7 +153,7 @@ enhancements:
     content: "The DELBAK subroutine is responsible for deleting old backup files with the .BAK extension. It begins by setting a flag (DELFLG) to indicate that a deletion operation is in progress. Then, it prepares the file control block (FCB) structure, a legacy DOS file management system, by copying the name of the backup file (.BAK) into the appropriate memory location. The MOVSW and MOVSB instructions handle this memory transfer efficiently, reflecting the assembly programmer's focus on speed and minimal memory usage. Next, the routine invokes DOS interrupt 21h with the FCB_DELETE function, which deletes the file specified by the FCB. This approach predates modern file APIs, relying instead on low-level manipulation of memory structures. After deletion, the routine overwrites the FCB's filename field with the '$' character, a convention used to mark the end of strings in DOS memory structures. Finally, the routine returns control to the caller. In 1983, MS-DOS v2.0 was a major step forward, introducing features inspired by Unix, but it retained legacy elements like FCBs for backward compatibility with earlier DOS versions. Tim Paterson's original 86-DOS design heavily influenced these structures, which were optimized for the limited hardware of the IBM PC. By 1983, the IBM PC typically shipped with 64KB to 256KB of RAM, making efficient memory usage critical. The DELBAK routine exemplifies the transitional nature of MS-DOS v2.0. While later versions of DOS moved toward handle-based file management, the reliance on FCBs in this code reflects the constraints and compatibility concerns of the era. Techniques like this influenced early PC software development, and the legacy of MS-DOS can still be seen in modern Windows systems, which maintain backward compatibility with many DOS conventions."
   - id: "edlin-final-directives"
     line_start: 1844
-    line_end: 1846
+    line_end: 1845
     title: "The Final Lines of EDLIN's Source Code"
     wikipedia_url: "https://en.wikipedia.org/wiki/EDLIN"
     image_url: ""

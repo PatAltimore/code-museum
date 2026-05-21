@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "zexec-data-segment"
-    line_start: 45
+    line_start: 15
     line_end: 120
     title: "Why MS-DOS Segmented Its Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section defines the ZEXEC_DATA segment, which houses variables and buffers used during the execution process. Segmentation was a necessity on the Intel 8086 processor, which had a 20-bit address space but could only access 64KB segments at a time. By splitting data into segments, the programmer could manage memory more effectively within these constraints. Tim Paterson, the original author of MS-DOS, adapted this approach from CP/M, which also used fixed memory layouts. The ZEXEC_DATA segment includes critical variables like `exec_blk` and `exec_environ`, which store program-specific information such as environment pointers and memory allocation details. This segmentation strategy influenced later operating systems, including Windows, which retained segmented memory models for backward compatibility."
   - id: "exec-check-function-validation"
-    line_start: 124
+    line_start: 184
     line_end: 185
     title: "How MS-DOS Validated System Calls"
     wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
@@ -55,7 +55,7 @@ enhancements:
     content: "This section handles environment variables, a feature inspired by Unix. Environment variables provide a way to pass configuration data to programs, such as file paths or user preferences. MS-DOS v2.0 introduced this feature as part of its Unix-like enhancements, marking a significant evolution from the simpler CP/M system. The code retrieves the environment block and allocates memory for it, ensuring that the loaded program has access to its environment. This innovation allowed programs to be more flexible and portable, laying the groundwork for modern software development practices. Environment variables remain a fundamental concept in operating systems today, used extensively in scripting and application configuration."
   - id: "exec-read-header"
     line_start: 289
-    line_end: 330
+    line_end: 334
     title: "Reading Program Headers: .COM vs .EXE"
     wikipedia_url: "https://en.wikipedia.org/wiki/EXE_file"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "This section reads the program header to determine the format (.COM or .EXE) and memory requirements. .COM files are flat, single-segment binaries, while .EXE files are segmented and include relocation information. The header is read into a buffer, and its contents are analyzed to decide the next steps. This distinction was critical for MS-DOS, as it needed to support legacy CP/M-style programs while introducing more advanced features like segmented memory. The decision to support both formats ensured compatibility with existing software while enabling developers to create more complex applications. This dual-format approach influenced later operating systems, which often included backward compatibility layers for older software."
   - id: "memory-allocation-strategy"
     line_start: 393
-    line_end: 451
+    line_end: 472
     title: "Allocating Memory in a 64KB World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This section allocates memory for the program being loaded, considering both minimum and maximum requirements. The code calculates the size needed based on the program header and attempts to allocate it using the DOS memory management system. If the requested memory cannot be allocated, the program gracefully handles the error (`exec_no_mem`). Memory allocation was a challenging task on the 8086 processor due to its segmented architecture and limited address space. Tim Paterson's approach reflects the careful planning required to optimize memory usage in early personal computers. The techniques used here influenced later systems, including Windows, which built on DOS's memory management strategies."
   - id: "relocation-table-processing"
     line_start: 557
-    line_end: 632
+    line_end: 658
     title: "Relocating Code for Segmented Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_science)"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "This section processes the relocation table for .EXE files, adjusting memory addresses to match the allocated segment. Relocation was necessary because .EXE files could be loaded into different memory locations, requiring their internal addresses to be updated. The code reads relocation entries from the file and applies them to the loaded image. This technique was borrowed from Unix and other operating systems that supported dynamic memory allocation. Relocation enabled more flexible program loading, allowing multiple programs to coexist in memory. This feature became standard in operating systems, influencing designs like Windows and Linux, which use similar techniques for dynamic linking and loading."
   - id: "exec-com-file-handling"
     line_start: 663
-    line_end: 757
+    line_end: 790
     title: "Loading .COM Files: Simplicity Wins"
     wikipedia_url: "https://en.wikipedia.org/wiki/COM_file"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "This section handles the loading of .COM files, which are simpler than .EXE files. .COM files are flat binaries with no headers or relocation information, making them easier to load and execute. The code allocates the maximum possible memory block and sets up the program's stack and registers. This simplicity was a key feature of early personal computers, where ease of use and compatibility were paramount. Tim Paterson's decision to support .COM files ensured that MS-DOS could run existing CP/M programs without modification. This compatibility helped MS-DOS gain widespread adoption, influencing the development of software ecosystems for decades."
   - id: "exec-build-header"
     line_start: 792
-    line_end: 805
+    line_end: 922
     title: "Assigning Ownership in Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Process_control_block"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "This section builds the program header, assigning ownership of the allocated memory block to the process. The header includes information like the environment pointer and memory size, which are essential for process management. This design reflects Unix's influence on MS-DOS v2.0, where process control blocks were used to manage resources. By assigning ownership, the operating system could track and manage memory usage more effectively. This approach laid the foundation for modern process management techniques, influencing operating systems like Windows and Linux, which use similar concepts to manage processes and their resources."
   - id: "exec-go-entry-point"
     line_start: 924
-    line_end: 943
+    line_end: 944
     title: "Jumping to the Program's Entry Point"
     wikipedia_url: "https://en.wikipedia.org/wiki/Entry_point"
     image_url: ""

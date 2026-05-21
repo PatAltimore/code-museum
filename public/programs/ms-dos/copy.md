@@ -55,7 +55,7 @@ enhancements:
     content: "The 'SCANSRC2' section uses the 'CPARSE' routine to parse source file names and check for switches or special arguments. The code tests various conditions, such as whether the argument is a switch or a '+' delimiter, and handles them accordingly. Parsing was a critical task in MS-DOS, as it had to interpret user input from the command line and convert it into actionable instructions. The reliance on assembly-level parsing routines reflects the limitations of the time, where higher-level abstractions for string manipulation were unavailable. This approach laid the groundwork for more sophisticated command-line interpreters in later operating systems, such as Windows and Linux, which built on the principles established here."
   - id: "nextmel-cleanup-and-reinitialization"
     line_start: 187
-    line_end: 207
+    line_end: 209
     title: "Closing Destinations and Resetting States"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_(computing)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The 'COPY' routine initializes the state for the COPY command, setting up buffers, flags, and variables to track the operation's progress. It prepares the system for parsing arguments, handling switches, and managing files. This section highlights the procedural nature of MS-DOS, where every aspect of an operation had to be explicitly defined. The initialization of multiple buffers and flags reflects the complexity of file operations introduced in v2.0, such as concatenation and subdirectory support. This routine showcases the influence of Unix-like systems on MS-DOS, as it adopts similar concepts for managing file operations. The COPY command became a cornerstone of MS-DOS and influenced the design of file management utilities in later operating systems."
   - id: "destscan-destination-parsing"
     line_start: 265
-    line_end: 279
+    line_end: 335
     title: "Parsing Destination Arguments for COPY"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The 'DESTSCAN' routine parses destination arguments for the COPY command, checking for switches and handling the '+' delimiter for concatenation. This section demonstrates the importance of robust argument parsing in command-line utilities, where user input could vary widely. The use of assembly instructions to directly manipulate memory and registers reflects the low-level nature of MS-DOS programming. This routine influenced the design of later command-line utilities, which adopted more sophisticated parsing techniques while retaining the flexibility to handle complex input scenarios."
   - id: "checkdone-argument-validation"
     line_start: 339
-    line_end: 361
+    line_end: 367
     title: "Validating Arguments for COPY Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_validation"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The 'CHECKDONE' routine validates the arguments provided to the COPY command, ensuring that the number of arguments is correct and that they meet specific criteria. This section highlights the importance of input validation in software development, particularly in command-line utilities where user input could be unpredictable. The explicit checks for argument count and content reflect the procedural nature of MS-DOS, where every aspect of an operation had to be carefully managed. This approach influenced later software development practices, emphasizing the importance of robust input validation to prevent errors and ensure reliable operation."
   - id: "sourceproc-source-buffer-management"
     line_start: 587
-    line_end: 623
+    line_end: 635
     title: "Managing Source Buffers for COPY"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The 'SOURCEPROC' routine manages the source buffers for the COPY command, saving the source file name and associated information. This section showcases the meticulous buffer management required in early operating systems, where memory constraints necessitated careful planning and optimization. The use of assembly instructions to directly manipulate memory and registers reflects the low-level nature of MS-DOS programming. This routine influenced the design of later file management systems, which adopted more sophisticated buffer management techniques while retaining the principles established here."
   - id: "buildpath-path-resolution"
     line_start: 827
-    line_end: 859
+    line_end: 861
     title: "Resolving File Paths in COPY"
     wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The 'BUILDPATH' routine resolves file paths for the COPY command, determining whether the path refers to a file, a directory, or a device. This section highlights the complexity of path resolution in MS-DOS, which had to handle various scenarios, such as ambiguous paths and device names. The use of assembly instructions to directly manipulate memory and registers reflects the low-level nature of MS-DOS programming. This routine influenced the design of later file management systems, which adopted more sophisticated path resolution techniques while retaining the principles established here."
   - id: "checkcd-directory-handling"
     line_start: 929
-    line_end: 961
+    line_end: 975
     title: "Handling Directories in COPY Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "COMPNAME is responsible for parsing drive letters and setting up source and destination buffers for file operations. It checks whether the source and destination paths include a drive letter, such as 'C:', and adjusts the current drive context accordingly. This routine highlights the simplicity of MS-DOS's file system, which relied heavily on drive letters to organize storage. The code uses direct memory manipulation to compare and extract drive information, a hallmark of assembly programming. This approach was necessary to operate within the limited memory and processing power of early IBM PCs. The concept of drive letters became a defining feature of DOS and persists in Windows today, shaping how users think about file systems."
   - id: "nosrcdrv-nodstdrv-drive-validation"
     line_start: 1083
-    line_end: 1103
+    line_end: 1131
     title: "The Checks That Prevented Drive Confusion"
     wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "NOSRCDRV and NODSTDRV validate the source and destination drive letters during file operations. If a drive letter is missing or mismatched, the routines handle the discrepancy gracefully. This was critical in an era when users manually specified paths and drives, and errors could easily disrupt operations. The code uses comparisons and arithmetic to ensure drive letters fall within the expected range ('A' to 'Z'). These routines reflect the meticulous attention to detail required in early operating systems, where robustness was paramount. The drive validation logic influenced later systems, ensuring reliable file handling across different storage devices. Developers studying MS-DOS often cite these routines as examples of efficient error checking in constrained environments."
   - id: "checkcl-ret81p-file-comparison-edge-cases"
     line_start: 1133
-    line_end: 1147
+    line_end: 1151
     title: "What Happens When Files Don't Match?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Null_character"
     image_url: ""

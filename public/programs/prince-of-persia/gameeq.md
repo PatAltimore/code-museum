@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "memory-layout-optimization"
-    line_start: 1
+    line_start: 3
     line_end: 39
     title: "How Memory Layout Made Cinematic Gameplay Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "This section defines the memory layout for various game elements, including character tables, background tables, and control systems. Each equate assigns a specific memory address to a game component, ensuring efficient access during runtime. Jordan Mechner was working within the constraints of the Apple II's 128K memory, which required bank-switching to access auxiliary and main memory. By carefully organizing these memory locations, Mechner could fit the game's cinematic animations and complex gameplay mechanics into the limited space. At the time, memory management was a critical skill for developers, as hardware limitations dictated the scope of their designs. This approach influenced later games on constrained systems, demonstrating how thoughtful memory allocation could enable ambitious projects."
   - id: "jump-table-efficiency"
-    line_start: 41
-    line_end: 65
+    line_start: 3
+    line_end: 39
     title: "The Jump Tables That Kept Gameplay Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
     image_url: ""
@@ -47,15 +47,15 @@ enhancements:
     content: "Jump tables are used here to efficiently dispatch subroutines based on game state or input. By predefining memory locations for various actions, such as sound effects and object control, the game avoids costly conditional branching. This technique was essential for maintaining performance on the Apple II, where CPU cycles were precious. Mechner's use of jump tables reflects the influence of earlier assembly programming practices, where direct memory manipulation was the norm. This method became a standard for performance-critical applications, influencing game engines and real-time systems in later decades."
   - id: "zero-page-game-state"
     line_start: 379
-    line_end: 496
+    line_end: 384
     title: "Packing Game State into Zero-Page Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
     image_url: ""
     image_caption: ""
     content: "This section defines the game's global variables and state data, stored in the Apple II's zero-page memory ($40-$E7). Zero-page memory is faster to access due to its addressing mode, making it ideal for frequently used variables like character positions, collision flags, and timers. Mechner's decision to pack critical game state into this space reflects his deep understanding of the hardware's capabilities. In the mid-1980s, zero-page optimization was a hallmark of skilled assembly programming. This technique allowed Prince of Persia to deliver responsive gameplay despite the Apple II's modest processing power. The practice of optimizing memory access influenced later game developers working on similarly constrained systems."
   - id: "character-data-structures"
-    line_start: 561
-    line_end: 644
+    line_start: 498
+    line_end: 501
     title: "How Characters Came to Life in 128K"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""

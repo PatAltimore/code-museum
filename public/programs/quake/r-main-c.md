@@ -65,7 +65,7 @@ enhancements:
     content: "The `R_Init` function sets up the rendering pipeline, initializing critical components like particle systems, surface caches, and clipping planes. This function reflects the complexity of rendering in a 3D environment, where multiple subsystems must work together seamlessly. In 1996, real-time 3D rendering was still in its infancy, and Quake's pipeline represented a significant leap forward. John Carmack and Michael Abrash, the architects of Quake's graphics engine, drew on their deep understanding of hardware and mathematics to optimize every aspect of the pipeline. The techniques pioneered in `R_Init` influenced later engines like Source and CryEngine, which built on Quake's foundations to achieve even greater levels of realism and performance."
   - id: "r-draw-entities-list"
     line_start: 542
-    line_end: 576
+    line_end: 616
     title: "Drawing Entities: The Heart of Quake's World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
@@ -73,15 +73,15 @@ enhancements:
     content: "The `R_DrawEntitiesOnList` function iterates through visible entities and renders them based on their type, such as sprites or alias models. This function is a key part of Quake's rendering loop, ensuring that dynamic objects like players and enemies are drawn correctly in the 3D world. In the mid-1990s, rendering entities was a challenging task due to hardware limitations and the need for real-time performance. Quake's approach, which included bounding box checks and dynamic lighting calculations, set a new standard for efficiency and visual fidelity. The techniques used here influenced later games like Half-Life and Doom 3, which built on Quake's entity rendering system to create even more immersive experiences."
   - id: "r-edge-drawing"
     line_start: 884
-    line_end: 917
+    line_end: 956
     title: "The Algorithm That Made Quake's Edges Sharp"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
     image_caption: ""
     content: "The `R_EdgeDrawing` function handles edge rendering, a critical part of Quake's graphics pipeline. This function ensures that edges are drawn correctly, preventing visual artifacts and maintaining the integrity of the 3D world. Edge rendering was particularly challenging in the 1990s due to hardware constraints and the need for real-time performance. Quake's solution, which included efficient memory management and caching, was a testament to the ingenuity of its developers. The techniques used in `R_EdgeDrawing` influenced later engines and graphics libraries, contributing to the evolution of real-time rendering. This function highlights the attention to detail that made Quake a groundbreaking achievement in computer graphics."
   - id: "visibility-optimization-for-rendering"
-    line_start: 977
-    line_end: 1066
+    line_start: 959
+    line_end: 1038
     title: "Visibility Optimization for Rendering Efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""
@@ -104,8 +104,8 @@ enhancements:
     image_caption: ""
     content: "The `R_InitTurb` function precomputes sine wave tables used for turbulent effects in water and other dynamic surfaces. By calculating these values in advance and storing them in arrays (`sintable` and `intsintable`), the game avoids expensive runtime calculations, significantly improving performance. This technique was essential in 1996, as real-time computation of trigonometric functions would have been prohibitively slow on consumer-grade hardware. Precomputing data for effects like these became a standard optimization in game development, influencing later engines to use lookup tables for lighting, physics, and other complex calculations. The use of sine waves also highlights the creative ways developers simulated natural phenomena within the constraints of early 3D graphics."
   - id: "debugging-tools-for-rendering-performance"
-    line_start: 1094
-    line_end: 1103
+    line_start: 1040
+    line_end: 1066
     title: "Debugging Tools for Rendering Performance Analysis"
     wikipedia_url: "https://en.wikipedia.org/wiki/Profiling_(computer_programming)"
     image_url: ""

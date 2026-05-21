@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "file-corruption-or-encoding-error"
     line_start: 1
-    line_end: 800
+    line_end: 12
     title: "Why Does This File Look Corrupted?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Character_encoding"
     image_url: ""

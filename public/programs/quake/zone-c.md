@@ -55,7 +55,7 @@ enhancements:
     content: "`Z_Malloc` is a dynamic memory allocation function designed for small objects like strings and structures. It ensures memory alignment and initializes allocated memory to zero, preventing undefined behavior. In the 1990s, developers had to carefully manage memory to avoid performance bottlenecks. This function exemplifies the meticulous engineering that went into Quake's codebase, enabling it to run efficiently on hardware with limited resources. The concept of zone-based memory allocation influenced later systems, including the Source engine used in games like Half-Life 2."
   - id: "hunk-allocname-for-large-allocations"
     line_start: 394
-    line_end: 428
+    line_end: 432
     title: "Hunk Allocations: Memory for Big Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

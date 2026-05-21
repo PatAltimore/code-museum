@@ -31,15 +31,15 @@ summary:
 enhancements:
   - id: "foundation-includes-and-definitions"
     line_start: 1
-    line_end: 31
+    line_end: 28
     title: "Why Quake Needed Its Own Key System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section establishes the foundation for Quake's keyboard input handling, including necessary includes and initial definitions. The inclusion of platform-specific headers like <windows.h> reflects the need to support multiple operating systems, a significant challenge in the mid-1990s. Quake's key system was designed to handle both gameplay and console input seamlessly, a departure from simpler input models in earlier games. By defining constants like MAXCMDLINE and initializing arrays for key lines and bindings, the developers laid the groundwork for a flexible input system capable of handling complex user interactions. This approach influenced later games and engines, including id Software's own Doom 3 and the Source engine, which adopted similar abstractions for input handling."
   - id: "key-data-structures"
-    line_start: 26
-    line_end: 31
+    line_start: 31
+    line_end: 55
     title: "The Data Structures Behind Key Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""

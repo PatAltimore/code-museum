@@ -33,7 +33,7 @@ enhancements:
     content: "This section defines constants that control the layout and positioning of elements on the intermission screens. These include coordinates for single-player statistics, net game results, and deathmatch matrices. By using predefined constants, the developers ensured consistent rendering across different game modes and screen resolutions. In the early 1990s, screen resolutions varied widely, and DOOM's reliance on fixed pixel coordinates reflects the era's approach to graphics programming. This design choice allowed DOOM to achieve visually appealing layouts on modest hardware without requiring dynamic scaling or resolution independence. Later games, such as Quake and Unreal Tournament, would adopt more flexible systems, but DOOM's hardcoded approach remains a snapshot of early graphical design practices."
   - id: "animation-data-structures"
     line_start: 113
-    line_end: 173
+    line_end: 119
     title: "How DOOM Handles Animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
@@ -97,7 +97,7 @@ enhancements:
     content: "This section initializes statistics for netgame modes, focusing on cooperative gameplay. It tracks kills, items, secrets, and frags for each player, ensuring that all aspects of performance are recorded. The code also calculates whether frags are relevant for the current game mode, optimizing memory usage. Cooperative modes were less common in 1993, but DOOM's implementation showcased its versatility in multiplayer design. This initialization routine influenced later co-op games, where detailed stat tracking became a key feature for enhancing teamwork and competition."
   - id: "netgame-stats-update"
     line_start: 1105
-    line_end: 1255
+    line_end: 1256
     title: "Real-Time Updates for Cooperative Stats"
     wikipedia_url: "https://doomwiki.org/wiki/Cooperative_gameplay"
     image_url: ""
@@ -113,7 +113,7 @@ enhancements:
     content: "This section sets up statistics for single-player missions, including kills, items, secrets, and time. It initializes counters to -1, a common practice to indicate uninitialized values. The code also sets up an animated background, maintaining the visual consistency of intermission screens. Single-player modes were the core of DOOM's appeal, and this initialization routine ensured that players received detailed feedback on their performance. The focus on stats influenced later single-player games, where performance tracking became a staple feature."
   - id: "single-player-stats-update"
     line_start: 1329
-    line_end: 1431
+    line_end: 1433
     title: "Animating Single-Player Stats with Precision"
     wikipedia_url: "https://doomwiki.org/wiki/Single-player"
     image_url: ""
@@ -129,7 +129,7 @@ enhancements:
     content: "This section checks for button presses to accelerate intermission screens, allowing players to skip delays. It monitors the 'attack' and 'use' buttons, setting flags to bypass animations. This feature reflects DOOM's responsiveness to player input, prioritizing user experience. The ability to skip delays became a standard feature in later games, allowing players to control pacing during transitions. It influenced titles like Half-Life and Portal, where user control over transitions enhances immersion."
   - id: "load-intermission-data"
     line_start: 1537
-    line_end: 1623
+    line_end: 1599
     title: "Loading Graphics for Intermission Screens"
     wikipedia_url: "https://doomwiki.org/wiki/Intermission_screen"
     image_url: ""
@@ -137,7 +137,7 @@ enhancements:
     content: "This section loads the graphics and patches required for intermission screens, including background images and 'you are here' markers. It uses memory allocation techniques to optimize resource usage, reflecting the constraints of 1993 hardware. The code dynamically selects assets based on the game mode and episode, ensuring that intermission screens are visually consistent. This approach influenced later games, where dynamic asset loading became a key technique for optimizing performance and enhancing visual fidelity."
   - id: "animation-data-loading-hacks"
     line_start: 1601
-    line_end: 1619
+    line_end: 1622
     title: "The Animation Hack That Saved DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -145,7 +145,7 @@ enhancements:
     content: "This section loads animation data for the intermission screens, with a notable hack to reuse animation assets for Episode 1, Level 8. The code bypasses standard loading logic by directly referencing assets from Episode 1, Level 4. This 'MONDO HACK' reflects the practical constraints of 1993 hardware, where memory was precious and reusing assets was a necessity. John Carmack and the team often prioritized performance and resource efficiency over pristine code. This approach allowed DOOM to run smoothly on consumer-grade PCs while delivering visually rich intermission screens. Such hacks were common in early game development, where developers had to creatively work around hardware limitations. The technique of reusing assets influenced later games, especially in the era of sprite-based graphics, where memory optimization was critical."
   - id: "intermission-text-and-symbol-loading"
     line_start: 1625
-    line_end: 1703
+    line_end: 1633
     title: "How DOOM Loaded Its Intermission Symbols"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -161,7 +161,7 @@ enhancements:
     content: "This section loads player-specific assets for multiplayer modes, including icons and statistics. The use of sprintf to dynamically generate asset names allowed DOOM to support up to four players in deathmatch mode. Multiplayer was a groundbreaking feature in DOOM, setting the stage for competitive gaming. The ability to track individual player stats and display them visually on intermission screens added depth to the multiplayer experience. This feature was a precursor to modern multiplayer stat tracking, seen in games like Counter-Strike and Call of Duty. By laying the groundwork for competitive gaming, DOOM's multiplayer innovations helped define an entire genre."
   - id: "data-unloading-and-memory-management"
     line_start: 1707
-    line_end: 1768
+    line_end: 1769
     title: "How DOOM Freed Memory for the Next Level"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

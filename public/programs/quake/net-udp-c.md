@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "foundation-networking-setup"
-    line_start: 20
+    line_start: 1
     line_end: 57
     title: "Foundation: Networking Setup and Definitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -33,7 +33,7 @@ enhancements:
     content: "This section establishes the groundwork for Quake's networking functionality by defining key variables and including necessary system headers. The variables `net_local_adr`, `net_from`, and `net_message` represent the local network address, incoming packets, and the message buffer, respectively. The inclusion of headers like `<sys/socket.h>` and `<arpa/inet.h>` reflects the reliance on low-level Unix networking APIs. At the time, real-time multiplayer gaming was still in its infancy, and developers like John Carmack and Michael Abrash were pioneering techniques to leverage the limited capabilities of 1990s hardware. These definitions set the stage for the UDP-based networking system that would enable Quake's groundbreaking multiplayer mode. The approach influenced later engines, such as Unreal Engine and Source Engine, which adopted similar low-level networking practices for performance-critical applications."
   - id: "convert-address-structures"
     line_start: 59
-    line_end: 74
+    line_end: 68
     title: "Converting Between Address Structures"
     wikipedia_url: "https://en.wikipedia.org/wiki/IPv4"
     image_url: ""
@@ -80,7 +80,7 @@ enhancements:
     image_caption: ""
     content: "The `NET_GetPacket` function handles incoming UDP packets, storing them in a buffer and converting their source address into a `netadr_t` structure. It includes error handling for common issues like blocked connections (`EWOULDBLOCK`) and refused connections (`ECONNREFUSED`). This function was critical for Quake's real-time multiplayer mode, where low-latency communication was essential. The use of `recvfrom` reflects the reliance on Unix networking APIs, which were state-of-the-art at the time. The approach influenced later engines, which adopted similar packet handling techniques for multiplayer games, including Valve's Source Engine and Epic's Unreal Engine."
   - id: "send-network-packets"
-    line_start: 216
+    line_start: 214
     line_end: 231
     title: "Sending Network Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Packet_(networking)"
@@ -88,15 +88,15 @@ enhancements:
     image_caption: ""
     content: "The `NET_SendPacket` function sends UDP packets to a specified address. It uses `sendto` for transmission and includes error handling for blocked and refused connections. This function was essential for enabling real-time communication in Quake's multiplayer mode. The decision to use UDP, rather than TCP, reflects the team's focus on minimizing latency, as UDP does not require the overhead of connection management. The approach influenced later multiplayer frameworks, which adopted UDP for performance-critical applications, including online shooters and real-time strategy games."
   - id: "open-udp-socket"
-    line_start: 235
-    line_end: 261
+    line_start: 233
+    line_end: 262
     title: "Opening a UDP Socket"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_Datagram_Protocol"
     image_url: ""
     image_caption: ""
     content: "The `UDP_OpenSocket` function creates and configures a UDP socket for communication. It includes support for binding to specific IP interfaces, a feature added by Zoid Kirsch, who contributed to Quake's networking code. The use of `ioctl` to enable non-blocking mode reflects the team's focus on real-time performance. This function was critical for initializing Quake's multiplayer mode, allowing the game to handle multiple connections efficiently. The approach influenced later engines, which adopted similar socket management techniques for multiplayer games, including Blizzard's Battle.net and Valve's Steamworks."
   - id: "initialize-networking"
-    line_start: 288
+    line_start: 283
     line_end: 307
     title: "Initializing Networking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

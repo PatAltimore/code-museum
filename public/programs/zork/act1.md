@@ -39,7 +39,7 @@ enhancements:
     content: "The BLO function is an example of Zork's reliance on MDL's ability to manipulate types dynamically. This function checks the type of an object and sets up a custom read table for ASCII characters, allowing the game to parse and evaluate input efficiently. In the late 1970s, programming languages like MDL were pushing the boundaries of what interactive software could do. The DEC PDP-10, Zork's host machine, had limited memory and processing power, so developers had to use clever tricks like this to optimize performance. This approach to type handling influenced later games and programming languages, demonstrating the power of dynamic typing and evaluation in interactive systems."
   - id: "define-east-house-description"
     line_start: 23
-    line_end: 33
+    line_end: 35
     title: "Behind the White House: A Window's Story"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The LIVING-ROOM function describes one of Zork's most iconic locations, complete with a trap door hidden under a rug. Players can interact with the environment to discover the trap door and descend into the dungeon. This room exemplifies Zork's layered storytelling, where simple descriptions hide deeper secrets. The concept of hidden pathways and interactive environments became a staple in adventure games, inspiring titles like 'Ultima' and 'King's Quest.'"
   - id: "define-mirror-room"
-    line_start: 417
-    line_end: 471
+    line_start: 419
+    line_end: 430
     title: "Breaking Mirrors: Seven Years of Luck"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "DAM-ROOM describes the top of Flood Control Dam #3, a location with dynamic water levels and interactive elements like a control panel. Players can manipulate the sluice gates to change the environment, showcasing Zork's innovative approach to environmental puzzles. The dam became a memorable part of the game, influencing the design of later titles with dynamic environments, such as 'Half-Life' and 'Bioshock.'"
   - id: "define-maint-room"
     line_start: 737
-    line_end: 778
+    line_end: 753
     title: "Maintenance Room: The Water Rises"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -175,7 +175,7 @@ enhancements:
     content: "The DOORMUNGS data structure and DDOOR-FUNCTION subroutine define humorous responses to players attempting to open, burn, or damage an indestructible door. The game uses randomized messages from DOORMUNGS to keep interactions fresh and entertaining. This playful approach highlights Zork's blend of challenge and humor, engaging players while subtly guiding them toward alternative solutions. The use of randomized text responses influenced later games, encouraging developers to add variety and personality to repetitive actions."
   - id: "inflating-and-deflating-boats"
     line_start: 1652
-    line_end: 1666
+    line_end: 1660
     title: "Inflating and Deflating Boats"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -183,7 +183,7 @@ enhancements:
     content: "The INFLATER and DEFLATER subroutines handle interactions with inflatable boats, checking whether the player has the correct tools and providing feedback based on the object's state. These routines showcase Zork's attention to environmental detail and logical consistency, ensuring that players can't perform nonsensical actions. By simulating realistic object behaviors, Zork set a precedent for immersive gameplay mechanics in adventure games, influencing titles like Myst and The Legend of Zelda series."
   - id: "locking-and-unlocking-grates"
     line_start: 1668
-    line_end: 1698
+    line_end: 1681
     title: "Locking and Unlocking Grates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""

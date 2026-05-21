@@ -54,8 +54,8 @@ enhancements:
     image_caption: ""
     content: "The console input routines in IO.ASM demonstrate two approaches to handling keyboard input: interrupt-driven and polled. Interrupt-driven input uses a keyboard interrupt handler to process keystrokes as they occur, storing them in a queue for later retrieval. Polled input, on the other hand, continuously checks the keyboard status, a simpler but less efficient method. This dual approach reflects the constraints of early PCs, where hardware capabilities varied widely. Tim Paterson's design ensured MS-DOS could operate on systems with or without advanced interrupt support. The interrupt-driven model became the standard for modern systems, as it minimizes CPU usage and improves responsiveness. This section highlights the transition from basic polling methods to more sophisticated event-driven programming."
   - id: "disk-change-detection"
-    line_start: 670
-    line_end: 777
+    line_start: 673
+    line_end: 710
     title: "Detecting Disk Changes: A Hardware Challenge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_formats"
     image_url: ""
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The DIRECTREAD and DIRECTWRITE routines provide low-level disk access, bypassing higher-level abstractions for maximum performance. These routines handle tasks like seeking to the correct track, reading or writing sectors, and managing errors. Direct disk access was essential for early PCs, where performance was constrained by slow hardware. By allowing programs to interact directly with the disk controller, MS-DOS enabled applications like FORMAT and disk utilities to operate efficiently. This approach influenced the design of later operating systems, which continued to offer direct disk access for specialized applications. The routines also highlight the complexity of error handling in early systems, where hardware limitations required careful management of edge cases."
   - id: "seek-routine"
-    line_start: 938
+    line_start: 942
     line_end: 1038
     title: "Seeking Tracks: Precision Disk Positioning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
@@ -79,14 +79,14 @@ enhancements:
     content: "The SEEK routine positions the disk head on the correct track for reading or writing. It calculates the track and sector based on the logical record number and adjusts for disk density and format. The routine also handles drive selection and motor speed, ensuring the disk is ready for operation. Seeking was a critical operation for floppy disks, as precise positioning was required to avoid data corruption. Tim Paterson's implementation reflects the challenges of working with diverse hardware, including SCP, Tarbell, and Cromemco controllers. The SEEK routine influenced later disk management systems, which automated track positioning and improved reliability. Its design showcases the ingenuity required to overcome hardware limitations in early PCs."
   - id: "trysk-retry-disk-seek"
     line_start: 1039
-    line_end: 1051
+    line_end: 1049
     title: "Retrying Disk Seeks with TRYSK"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
     image_url: ""
     image_caption: ""
     content: "The TRYSK routine attempts to move the disk read/write head to the desired track, retrying the operation if errors occur. It uses a loop to retry the seek command until success or a fatal error is encountered. This approach reflects the unreliable nature of early floppy disk drives, where mechanical issues and alignment problems were common. In 1981, disk controllers were still primitive, and routines like this were essential to ensure data integrity. Tim Paterson likely wrote this code to handle the quirks of hardware like the Shugart SA400 drives, which were widely used at the time. This retry mechanism became a staple in disk I/O programming, influencing later operating systems and hardware abstraction layers."
   - id: "seekerr-error-handling"
-    line_start: 1052
+    line_start: 1050
     line_end: 1058
     title: "Handling Seek Errors Gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
@@ -95,7 +95,7 @@ enhancements:
     content: "The SEEKERR routine processes errors encountered during disk seeks, distinguishing between 'Not Ready' errors and other seek failures. It sets appropriate status codes in the processor's registers, allowing higher-level routines to respond intelligently. In the early 1980s, robust error handling was critical for consumer-grade hardware, where failures were frequent. Paterson's approach reflects the need for resilience in MS-DOS, which had to operate reliably across a wide range of OEM hardware. This error-handling strategy influenced later systems, laying the groundwork for standardized error codes and recovery mechanisms in modern operating systems."
   - id: "setup-disk-controller"
     line_start: 1060
-    line_end: 1133
+    line_end: 1178
     title: "Configuring Disk Controllers for Multiple Formats"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_controller"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The SETUP routine configures the disk controller for different disk formats and densities, including single-density and double-density disks. It includes conditional assembly directives to support various hardware configurations, such as SCP, Cromemco, and Tarbell controllers. This flexibility was crucial for MS-DOS, which had to work with a diverse range of hardware from different manufacturers. The code reflects the modular design philosophy of MS-DOS, enabling OEMs to customize the operating system for their specific hardware. This modularity influenced the development of device drivers in later operating systems, allowing for greater hardware compatibility and extensibility."
   - id: "readsect-read-disk-sector"
     line_start: 1180
-    line_end: 1231
+    line_end: 1246
     title: "Reading Disk Sectors with Retry Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The READSECT routine reads a sector from the disk, incorporating retry logic to handle transient errors. It uses the SETUP routine to configure the disk controller and retries the read operation multiple times if errors occur. This resilience was necessary for early floppy disks, which were prone to read errors due to dust, magnetic degradation, and mechanical issues. Paterson's implementation reflects the practical challenges of working with unreliable storage media in the early 1980s. The retry mechanism became a standard feature in disk I/O programming, influencing later systems like Windows and Linux."
   - id: "writeloop-disk-write"
     line_start: 1262
-    line_end: 1298
+    line_end: 1267
     title: "Writing Data to Disk in WRLOOP"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -119,14 +119,14 @@ enhancements:
     content: "The WRLOOP routine writes data to a disk sector, ensuring that each byte is transferred correctly. It includes conditional code to handle different disk controllers, reflecting the diverse hardware landscape of the early PC era. The routine also incorporates error checking and retry logic, ensuring data integrity even on unreliable hardware. This meticulous attention to detail was necessary to meet the expectations of business users, who relied on MS-DOS for critical tasks. WRLOOP's design influenced the development of file systems and disk I/O subsystems in later operating systems, emphasizing reliability and compatibility."
   - id: "inittab-customization-table"
     line_start: 1485
-    line_end: 1847
+    line_end: 1767
     title: "Customizing Disk I/O with INITTAB"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
     image_url: ""
     image_caption: ""
     content: "The INITTAB section defines initialization tables for configuring disk I/O drivers, specifying parameters like sector size, allocation units, and directory entries. These tables allow MS-DOS to adapt to different disk formats and hardware configurations, providing a level of customization that was rare in early operating systems. This flexibility was a key selling point for MS-DOS, enabling OEMs to tailor the system to their specific needs. The concept of initialization tables influenced the design of BIOS and firmware settings in later systems, allowing for greater hardware abstraction and user configurability."
   - id: "drive-parameters"
-    line_start: 1848
+    line_start: 1847
     line_end: 1927
     title: "Defining Drive Parameters for Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"

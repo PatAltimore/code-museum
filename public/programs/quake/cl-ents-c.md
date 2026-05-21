@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_DecayLights` function gradually reduces the radius of dynamic lights over time, simulating natural light decay. This feature added a layer of realism to Quake's visuals, as lights from explosions or projectiles would fade rather than disappear abruptly. This technique was innovative for its time, as it required careful management of computational resources to ensure smooth gameplay. The concept of light decay has since been refined in modern engines, such as Unity and Unreal Engine, where it is used to create realistic lighting effects in open-world environments."
   - id: "delta-compression-for-network-packets"
-    line_start: 144
+    line_start: 160
     line_end: 220
     title: "Delta Compression for Efficient Network Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Delta_encoding"
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "The `CL_ParseDelta` function implements delta compression, which transmits only the differences between successive states of an entity. This technique drastically reduces the amount of data sent over the network, enabling smoother multiplayer gameplay even on slow connections. In the mid-1990s, network bandwidth was a significant constraint, and id Software's use of delta compression was a breakthrough in optimizing online gaming. This method influenced later multiplayer games, including Counter-Strike and World of Warcraft, which rely on similar techniques to handle large-scale player interactions."
   - id: "projectile-parsing-and-linking"
-    line_start: 551
+    line_start: 577
     line_end: 609
     title: "Efficient Parsing and Linking of Projectiles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Entity_component_system"

@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "recover-entry-point"
     line_start: 107
-    line_end: 149
+    line_end: 111
     title: "The Jump That Starts Recovery"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The `recover` label marks the entry point of the RECOVER utility, immediately jumping to `rec_start`. This jump simplifies debugging by isolating initialization routines from the main logic. The header message (`HEADER`) and global flags (`the_root`, `fudge`) are defined here, setting up the program's state. Chris Peters, who joined Microsoft in 1982, wrote this utility to address the growing need for reliable file recovery on MS-DOS systems. At the time, IBM PCs were becoming ubiquitous, and disk corruption was a common issue due to hardware limitations and user errors. This entry point reflects the modular design philosophy of MS-DOS v2.0, which was heavily influenced by Unix. The RECOVER utility's ability to rebuild directories and handle corrupted file systems laid the groundwork for future disk repair tools, including Norton Utilities and modern file recovery software."
   - id: "print-subroutine"
-    line_start: 153
+    line_start: 155
     line_end: 159
     title: "Printing Strings via BIOS Interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
@@ -55,15 +55,15 @@ enhancements:
     content: "The `convert` subroutine and its loop (`convlp`) perform bitwise operations to manipulate data efficiently. This section showcases the programmer's deep understanding of the Intel 8086 architecture, using instructions like `shl`, `rcl`, and `adc` to process data without relying on higher-level abstractions. In the early 1980s, such techniques were essential for optimizing performance on hardware with limited resources. Chris Peters likely drew inspiration from assembly programming practices developed for earlier microprocessors, adapting them for MS-DOS's needs. These operations are foundational to many algorithms in system software, influencing later developments in file systems and data processing routines. The use of bitwise manipulation here underscores the ingenuity required to maximize the capabilities of early PCs."
   - id: "fat-manipulation-getfat-setfat"
     line_start: 281
-    line_end: 357
+    line_end: 361
     title: "How MS-DOS Repaired Its File Allocation Table"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
     content: "The `getfat` and `setfat` subroutines handle reading and writing to the File Allocation Table (FAT), the core structure of MS-DOS's file system. These routines use bitwise operations and memory offsets to access and modify FAT entries, ensuring efficient disk recovery. The FAT system was revolutionary in its simplicity, allowing MS-DOS to manage files on floppy disks and hard drives with minimal overhead. In 1982, this approach was critical for supporting the limited storage capacities and slow access speeds of early PC hardware. The techniques demonstrated here influenced not only later versions of MS-DOS but also other operating systems like Windows and embedded systems that adopted FAT as a standard. The modularity of these routines made them reusable, a hallmark of good system software design."
   - id: "readit-and-wrtit-disk-io"
-    line_start: 383
-    line_end: 437
+    line_start: 385
+    line_end: 421
     title: "Reading and Writing Disk Sectors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
     image_url: ""
@@ -71,15 +71,15 @@ enhancements:
     content: "The `readit` and `wrtit` subroutines implement low-level disk I/O operations, interacting directly with the hardware via BIOS interrupts. These routines are responsible for reading and writing sectors on the disk, a fundamental task for file recovery. In the early 1980s, disk drives were prone to errors, and utilities like RECOVER were essential for maintaining data integrity. The use of interrupts (`int 21h`) reflects the reliance on BIOS services to abstract hardware differences, ensuring compatibility across various PC configurations. These routines laid the groundwork for more sophisticated disk utilities, influencing tools like CHKDSK and third-party software such as Norton Disk Doctor. They also highlight the challenges of programming for hardware with limited error handling capabilities, requiring careful management of state and retries."
   - id: "rec-start-initialization"
     line_start: 461
-    line_end: 489
+    line_end: 501
     title: "Starting Recovery: DOS Version Checks"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The `rec_start` section initializes the RECOVER utility, checking the MS-DOS version to ensure compatibility. This routine uses the `int 21h` interrupt to retrieve the version number and compares it against a predefined threshold (`DOSVER_HIGH`). If the version is insufficient, the program exits gracefully with an error message. This check reflects the evolving nature of MS-DOS in the early 1980s, as new features and APIs were introduced with each version. Chris Peters designed this utility to work seamlessly with MS-DOS v2.0, which introduced significant enhancements inspired by Unix. The version check ensures that RECOVER doesn't attempt operations on incompatible systems, preventing potential crashes or data corruption. This approach influenced later software development practices, where version checks became standard for ensuring compatibility and stability."
   - id: "path-handling-slashok-kill-bl"
-    line_start: 623
-    line_end: 665
+    line_start: 639
+    line_end: 649
     title: "Handling Path Separators and Whitespace"
     wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `dir_save_loop` routine saves the current directory state, ensuring that the RECOVER utility can restore it after performing its operations. This loop uses `lodsb` and `stosb` instructions to copy the directory path into a buffer, terminating it with a null character. In the early 1980s, preserving the working directory was essential for utilities that modified the file system, as users expected their environment to remain consistent. This routine reflects the careful attention to user experience that characterized MS-DOS development. The concept of saving and restoring state influenced later operating systems and programming paradigms, where maintaining context became a key principle. Tools like RECOVER set a precedent for utilities that prioritize stability and predictability in file system operations."
   - id: "drvok-disk-geometry-initialization"
     line_start: 1021
-    line_end: 1107
+    line_end: 1057
     title: "How MS-DOS Reads Disk Geometry at Boot"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `nam0` subroutine generates unique filenames for recovered files by incrementing a numeric suffix. This ensures that recovered files do not overwrite existing ones. The naming convention (e.g., FILE0000REC) reflects the constraints of the 8.3 filename format used in MS-DOS. This technique was inspired by Unix's approach to file naming but adapted to the limitations of FAT. The ability to generate unique names programmatically became a staple of recovery utilities and influenced later tools like Recuva and Windows' file recovery features."
   - id: "int-24-error-handling"
-    line_start: 1563
+    line_start: 1571
     line_end: 1589
     title: "Interrupt 24: Handling Disk Errors Gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
@@ -126,8 +126,8 @@ enhancements:
     image_caption: ""
     content: "The `int_24` subroutine sets up a custom interrupt handler for disk errors, allowing MS-DOS to recover gracefully from issues like bad sectors. By pushing the current state onto the stack and redirecting execution, the system avoids crashes and provides the user with options to retry or abort operations. This level of error handling was advanced for its time, reflecting Microsoft's focus on reliability in a business environment. The concept of custom interrupt handling influenced later operating systems, including Windows, which expanded on this idea with structured exception handling."
   - id: "testkanj-kanji-character-support"
-    line_start: 1619
-    line_end: 1663
+    line_start: 1621
+    line_end: 1667
     title: "Supporting Kanji Characters in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""

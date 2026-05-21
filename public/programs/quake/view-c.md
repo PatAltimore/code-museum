@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "foundation-player-eye-positioning"
-    line_start: 17
-    line_end: 32
+    line_start: 1
+    line_end: 34
     title: "How Quake Positioned the Player's Eyes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `V_CalcRoll` function calculates the roll of the player's view based on their velocity and angles. This subtle effect enhances immersion by simulating the physical sensation of movement. In the mid-1990s, such techniques were groundbreaking, as most games relied on static or simplistic camera movements. Inspired by real-world physics, this function uses vector math to determine the roll direction and magnitude, creating a dynamic and responsive experience. This innovation influenced future first-person shooters, including Half-Life and Counter-Strike, which adopted similar techniques to heighten player immersion."
   - id: "v-calc-bob-immersive-player-motion"
     line_start: 105
-    line_end: 140
+    line_end: 142
     title: "The Bobbing Effect That Made Walking Real"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This section implements palette flashes to visually indicate damage, environmental effects, and power-ups. By altering the color palette dynamically, the game provides immediate feedback to the player, enhancing immersion and situational awareness. In 1996, real-time palette manipulation was a clever workaround for hardware limitations, allowing developers to simulate complex visual effects without taxing the CPU. This technique became a hallmark of id Software's games, influencing titles like Unreal Tournament and Quake II, which expanded on the concept with more sophisticated shaders and lighting effects."
   - id: "v-calc-blend-environmental-color-shifts"
     line_start: 486
-    line_end: 518
+    line_end: 528
     title: "Blending Colors for Environmental Feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `V_CalcRefdef` function dynamically adjusts the player's view based on their state, environment, and movement. This includes bobbing effects, roll adjustments, and height changes for different scenarios like being dead or gibbed. The function also ensures the view remains stable during stair-step movements, preventing visual glitches. In 1996, such comprehensive view management was revolutionary, setting a new standard for realism in first-person games. This approach influenced later titles like Halo and Battlefield, which adopted similar techniques to enhance immersion and responsiveness."
   - id: "v-render-view-final-rendering"
-    line_start: 982
+    line_start: 992
     line_end: 1022
     title: "Rendering the Final Player View"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

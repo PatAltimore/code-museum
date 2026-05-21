@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "memory-allocation-highmem"
-    line_start: 135
-    line_end: 337
+    line_start: 149
+    line_end: 253
     title: "How MS-DOS Allocated Memory in 1983"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -97,7 +97,7 @@ enhancements:
     content: "The `LOOPIT` routine iterates through command-line arguments using the `LOOP` instruction, a compact and efficient way to repeat operations in assembly language. This technique was crucial for parsing user input in an era when graphical user interfaces were rare and command-line interfaces dominated. Parsing arguments efficiently was a priority, as it directly impacted the usability of the operating system. The design here reflects the influence of Unix, which popularized command-line utilities and argument parsing. This routine set the stage for more sophisticated argument handling in later versions of MS-DOS and inspired similar mechanisms in early scripting languages like batch files and shell scripts."
   - id: "handling-environment-pointers"
     line_start: 1057
-    line_end: 1099
+    line_end: 1175
     title: "Handling Environment Pointers for Process Control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Environment_variable"
     image_url: ""
@@ -113,7 +113,7 @@ enhancements:
     content: "The `COPYCOMSP` routine copies the environment of the command processor into a new memory segment. This ensures the environment variables are preserved and accessible during the execution of subsequent processes. The routine uses instructions like `LODSB` and `STOSB` to copy byte-by-byte, reflecting the manual memory management required in assembly programming. This approach was critical for supporting batch files and scripts, which relied on consistent environment settings. The technique influenced the development of scripting languages and tools, such as PowerShell and Bash, which expanded on the concept of environment management to enable more sophisticated automation and process control."
   - id: "kanji-character-handling-2"
     line_start: 1669
-    line_end: 1683
+    line_end: 1809
     title: "Handling Kanji Characters for Internationalization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""
@@ -129,7 +129,7 @@ enhancements:
     content: "The `IUPCONV` routine converts lowercase ASCII characters to uppercase by subtracting 0x20 from their value. This ensures case-insensitivity in file and command names, a hallmark of MS-DOS's design. Case-insensitivity was crucial for usability, as it simplified interactions for users unfamiliar with strict case requirements in Unix-like systems. This routine reflects the influence of CP/M, the predecessor to MS-DOS, which also used case-insensitive file systems. The approach became standard practice in operating systems like Windows, where case-insensitivity remains a key feature of the file system."
   - id: "device-path-and-command-definitions"
     line_start: 1831
-    line_end: 1841
+    line_end: 1871
     title: "Why MS-DOS Needed '/DEV/' and 'COMMAND.COM'"
     wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""
@@ -137,7 +137,7 @@ enhancements:
     content: "This section defines key strings and paths used during the MS-DOS initialization process. '/DEV/' represents the device path prefix, while 'COMMAND.COM' identifies the default command interpreter. These definitions were crucial for MS-DOS's modular design, allowing it to locate and interact with devices and execute commands. At the time, the IBM PC had limited storage and memory, so every byte mattered. Tim Paterson's original 86-DOS design was inspired by CP/M, but MS-DOS v2.0 incorporated Unix-like features such as hierarchical directories and environment variables. This section reflects the transition to a more flexible and powerful operating system. The inclusion of 'COMMAND.COM' as the default shell was a direct response to the need for a user-friendly interface on the IBM PC. This approach influenced later operating systems, including Windows, which retained the concept of a default command interpreter. Developers studying this code would later adapt similar techniques for defining system paths and environment variables in their own systems."
   - id: "autoexec-bat-and-date-prompt"
     line_start: 1845
-    line_end: 1845
+    line_end: 1861
     title: "How MS-DOS Automated Boot with AUTOEXEC.BAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/AUTOEXEC.BAT"
     image_url: ""
@@ -145,7 +145,7 @@ enhancements:
     content: "This section initializes the AUTOEXEC.BAT file path and a flag for prompting the user to enter the date and time. AUTOEXEC.BAT was a revolutionary feature in MS-DOS that allowed users to automate tasks during boot, such as setting environment variables or launching programs. The flag for date/time prompts (-1 here) reflects the flexibility of MS-DOS to adapt to user preferences or system requirements. In the early 1980s, automation was a significant step forward for personal computing, reducing the need for manual configuration at every boot. Tim Paterson's design philosophy emphasized simplicity and usability, which resonated with IBM's vision for the PC as a consumer-friendly device. AUTOEXEC.BAT became a staple of MS-DOS systems and influenced the design of startup scripts in later operating systems, including Windows and Linux."
   - id: "environment-variable-comspec"
     line_start: 1865
-    line_end: 1865
+    line_end: 1871
     title: "The Birth of COMSPEC: An Environment Variable Icon"
     wikipedia_url: "https://en.wikipedia.org/wiki/Environment_variable"
     image_url: ""

@@ -25,23 +25,23 @@ summary:
 enhancements:
   - id: "menu-data-structures"
     line_start: 136
-    line_end: 166
+    line_end: 153
     title: "How DOOM Structured Its Menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
     image_caption: ""
     content: "This section defines the core data structures for DOOM's menu system, including `menuitem_t` and `menu_t`. These structures encapsulate menu items and their properties, such as status, name, hotkey, and associated routines, as well as the overall menu layout. In 1993, this approach was considered highly modular, allowing developers to easily add or modify menus without disrupting the rest of the code. The use of function pointers (`routine`) to handle menu actions was a clever way to decouple the menu's visual representation from its behavior, a technique that would later become standard in game development. The modularity here laid the groundwork for more sophisticated UI systems in later games, such as Quake and Unreal."
   - id: "main-menu-definition"
-    line_start: 235
-    line_end: 268
+    line_start: 249
+    line_end: 258
     title: "The Main Menu: A Gateway to DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Menu_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `MainMenu` array and `MainDef` structure define DOOM's main menu, including options like New Game, Load Game, and Quit. Each menu item is associated with a function pointer, enabling dynamic behavior based on user input. This design reflects the constraints of the era, where memory and processing power were limited, necessitating efficient and straightforward implementations. The menu's layout and functionality were designed to be intuitive, ensuring players could quickly access game features. This approach influenced the design of menus in later games, emphasizing simplicity and usability."
   - id: "episode-selection-menu"
-    line_start: 271
-    line_end: 299
+    line_start: 283
+    line_end: 289
     title: "Selecting Episodes in DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
     image_url: ""
@@ -49,15 +49,15 @@ enhancements:
     content: "The `EpisodeMenu` and `EpiDef` structures define the episode selection menu, allowing players to choose between different chapters of the game. This menu reflects DOOM's episodic structure, a design choice influenced by the shareware distribution model popular in the early 1990s. By offering a free episode and charging for additional ones, id Software could reach a wide audience while monetizing the game's full experience. The episodic menu design also influenced the structure of later games, including expansions and DLCs, where content is segmented into distinct chapters or levels."
   - id: "save-load-system"
     line_start: 506
-    line_end: 588
+    line_end: 535
     title: "The Save and Load System: Persistence in DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "The `M_ReadSaveStrings`, `M_DrawLoad`, and `M_LoadSelect` functions implement DOOM's save and load system, allowing players to persist their progress. Save files are read from disk and displayed in the menu, with empty slots marked accordingly. This system was designed to be robust and user-friendly, ensuring players could easily manage their save data. The reliance on file I/O operations (`open`, `read`, `close`) reflects the low-level programming practices of the time, where developers interacted directly with the operating system. This approach influenced future games, where save systems became increasingly sophisticated, incorporating features like autosave and cloud storage."
   - id: "quick-save-load"
-    line_start: 675
-    line_end: 742
+    line_start: 689
+    line_end: 710
     title: "Quick Save and Load: Speeding Up Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
@@ -65,7 +65,7 @@ enhancements:
     content: "The `M_QuickSave` and `M_QuickLoad` functions provide a streamlined way for players to save and load their progress without navigating the full menu system. This feature was a response to the fast-paced nature of DOOM, where players needed to quickly resume gameplay after a mistake or interruption. Quick save/load systems became a staple in gaming, emphasizing convenience and reducing downtime. The implementation here reflects id Software's focus on player experience, ensuring the game remained engaging and accessible."
   - id: "help-screens"
     line_start: 747
-    line_end: 793
+    line_end: 768
     title: "Help Screens: Guiding Players Through DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_guide"
     image_url: ""
@@ -73,7 +73,7 @@ enhancements:
     content: "The `M_DrawReadThis1` and `M_DrawReadThis2` functions display help screens, providing players with instructions and credits. These screens were essential in an era where games often lacked comprehensive manuals, relying instead on in-game guidance. The use of `V_DrawPatchDirect` to render graphics reflects the low-level graphics programming typical of the time. The inclusion of help screens highlights id Software's commitment to accessibility, ensuring players could understand the game's mechanics and context. This approach influenced later games, where tutorials and in-game guides became standard features."
   - id: "sound-volume-control"
     line_start: 796
-    line_end: 847
+    line_end: 808
     title: "How DOOM Let Players Adjust Sound Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Volume_control"
     image_url: ""
@@ -97,7 +97,7 @@ enhancements:
     content: "The `M_Episode` function handles episode selection in DOOM, including a workaround for Ultimate DOOM's fourth episode. If the player selects an unavailable episode, the game prints an error message and defaults to the first episode. This hack reflects the challenges of supporting multiple game versions, such as shareware, registered, and commercial editions. In the early 1990s, developers often relied on such conditional logic to manage content across different releases. This technique influenced later games, which adopted more sophisticated methods for version-specific content management."
   - id: "menu-string-rendering"
     line_start: 1251
-    line_end: 1337
+    line_end: 1270
     title: "Rendering Text in DOOM's Menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_font"
     image_url: ""
@@ -105,7 +105,7 @@ enhancements:
     content: "The functions `M_StringWidth`, `M_StringHeight`, and `M_WriteText` calculate dimensions and render text using DOOM's bitmap font system. Each character's width and height are determined dynamically, allowing precise placement of text elements. This approach was necessary for the game's custom font, which was stored as graphical patches rather than scalable vectors. In an era when hardware lacked native text rendering capabilities, DOOM's method was both efficient and visually appealing. This technique influenced later engines, which adopted bitmap fonts for UI rendering before transitioning to vector-based systems."
   - id: "menu-input-handling"
     line_start: 1341
-    line_end: 1599
+    line_end: 1617
     title: "How DOOM Handled Joystick and Mouse Input"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
     image_url: ""
@@ -113,7 +113,7 @@ enhancements:
     content: "The `M_Responder` function processes input events from joysticks, mice, and keyboards, translating them into menu navigation commands. It uses thresholds and delays to ensure smooth interaction, such as waiting 30 milliseconds before processing rapid mouse movements. In 1993, input devices varied widely in quality and responsiveness, and DOOM's robust handling ensured compatibility across hardware. This input system influenced later games, which adopted similar techniques for handling diverse input devices. The function also includes keyboard shortcuts for quick access to menu functions, a feature that became standard in PC gaming."
   - id: "menu-keyboard-navigation"
     line_start: 1620
-    line_end: 1715
+    line_end: 1712
     title: "How DOOM Made Menus Feel Responsive"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
