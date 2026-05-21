@@ -81,7 +81,7 @@ enhancements:
     content: "The RECORD routine logs the player's progress, including score, moves, deaths, and location. It interacts with the PDP-10's file system to create and update log files, ensuring persistence across sessions. Logging was an advanced feature for its time, allowing players to review their journey and developers to debug the game. The routine includes checks for file access and handles errors gracefully, reflecting the constraints of the PDP-10's multi-user environment. This feature influenced the development of save and logging systems in later games, providing a foundation for tracking player progress and debugging complex software."
   - id: "flag-names-and-short-names"
     line_start: 792
-    line_end: 826
+    line_end: 818
     title: "Flags and Short Names: A Compact State Tracker"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""

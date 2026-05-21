@@ -55,7 +55,7 @@ enhancements:
     content: "The GRUE-FUNCTION subroutine provides lore and warnings about the infamous Grue, a creature that preys on adventurers in dark places. The code delivers descriptive text when players examine or search for the Grue, emphasizing its fear of light and its deadly nature. The Grue became a cultural icon in gaming, symbolizing the dangers of unprepared exploration. Its origins in Zork influenced countless games that incorporated environmental hazards and unseen threats, cementing its legacy as a hallmark of early interactive fiction."
   - id: "balloon-mechanics"
     line_start: 421
-    line_end: 612
+    line_end: 555
     title: "How a Balloon Navigates a Volcano"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
