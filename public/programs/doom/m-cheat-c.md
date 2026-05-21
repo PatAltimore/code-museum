@@ -3,7 +3,6 @@ title: "m_cheat.c"
 program: "DOOM"
 program_slug: "doom"
 file_path: "linuxdoom-1.10/m_cheat.c"
-language: "C, Assembly"
 github_url: "https://github.com/id-Software/DOOM/blob/master/linuxdoom-1.10/m_cheat.c"
 year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
