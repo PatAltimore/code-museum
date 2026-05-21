@@ -30,64 +30,64 @@ summary:
 
 enhancements:
   - id: "column-rendering-optimization"
-    line_start: 98
-    line_end: 148
+    line_start: 97
+    line_end: 147
     title: "The Trick That Made Walls Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawColumn` function is responsible for rendering vertical slices of wall textures, a technique optimized for DOOM's fixed-view perspective. By leveraging lookup tables (`ylookup` and `columnofs`), the function avoids costly multiplications to calculate framebuffer addresses, instead relying on precomputed offsets. This approach is rooted in techniques used in earlier games like Wolfenstein 3D, where fixed-view angles simplified rendering calculations. In 1993, consumer PCs had limited processing power, often lacking hardware acceleration for graphics. John Carmack's decision to optimize for fixed-view angles allowed DOOM to achieve its groundbreaking speed and fluidity on modest hardware. This technique influenced later games and engines, including Quake, which built on these principles while introducing more advanced 3D rendering."
   - id: "unused-loop-unrolling"
-    line_start: 152
-    line_end: 207
+    line_start: 151
+    line_end: 206
     title: "The Loop Unrolling That Never Shipped"
     wikipedia_url: "https://en.wikipedia.org/wiki/Loop_unrolling"
     image_url: ""
     image_caption: ""
     content: "This section contains an unused, loop-unrolled version of the `R_DrawColumn` function. Loop unrolling is a common optimization technique that reduces the overhead of loop control by manually expanding iterations. While this approach can improve performance, it increases code size and complexity. The inclusion of this code suggests that Carmack experimented with various optimization strategies to squeeze every ounce of performance from the hardware. Ultimately, this version was not used, likely because the benefits did not outweigh the trade-offs in maintainability or memory usage. Loop unrolling remains a staple in performance-critical applications, and its presence here highlights the meticulous attention to optimization that defined DOOM's development."
   - id: "fuzzy-rendering-for-invisibility"
-    line_start: 277
-    line_end: 368
+    line_start: 276
+    line_end: 367
     title: "How DOOM Made Spectres Invisible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawFuzzColumn` function creates a 'fuzzy' rendering effect by copying pixels from adjacent columns, simulating invisibility for spectres and players. This effect relies on a predefined table (`fuzzoffset`) to determine pixel offsets, combined with a black colormap to darken the image. In the early 1990s, hardware limitations made true transparency effects impractical, so developers often resorted to creative hacks like this. Carmack's implementation is a clever workaround that achieves a visually convincing result without requiring additional hardware support. The fuzzy effect became iconic, influencing later games that sought to simulate transparency or invisibility within similar constraints."
   - id: "dynamic-color-remapping"
-    line_start: 373
-    line_end: 447
+    line_start: 372
+    line_end: 446
     title: "The Translation Tables That Changed Colors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_mapping"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawTranslatedColumn` function uses translation tables to dynamically remap colors, allowing sprites to appear in different color schemes. This technique is used for player sprites and enemies like the Hell Knight, which shares the Baron of Hell's sprites but uses a brighter color palette. The translation tables are precomputed to map specific color ramps to alternate colors, enabling efficient runtime remapping. This approach reflects Carmack's focus on performance, as it avoids recalculating color mappings during gameplay. Dynamic color remapping became a standard feature in game engines, enabling customization and variety without increasing asset sizes."
   - id: "translation-table-initialization"
-    line_start: 452
-    line_end: 483
+    line_start: 451
+    line_end: 482
     title: "Mapping Green to Gray, Brown, and Red"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_mapping"
     image_url: ""
     image_caption: ""
     content: "The `R_InitTranslationTables` function initializes the translation tables used for dynamic color remapping. It maps the green color ramp (used for player sprites) to gray, brown, and red, allowing for visual differentiation between players or sprite variants. The function assumes a specific structure for the PLAYPAL lump, which defines the game's color palette. This design choice reflects the constraints of the era, where memory and storage limitations required developers to maximize the utility of existing assets. Translation tables became a common feature in game engines, enabling efficient color customization and paving the way for features like team-based multiplayer color schemes."
   - id: "span-rendering-for-floors-and-ceilings"
-    line_start: 488
-    line_end: 563
+    line_start: 487
+    line_end: 562
     title: "The Horizontal Trick Behind DOOM's Floors"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawSpan` function handles rendering horizontal spans for floors and ceilings. Unlike walls, which are rendered column by column, floors and ceilings are drawn as horizontal slices with constant z-depth. This method leverages DOOM's fixed-view orientation to simplify calculations, using precomputed steps to traverse texture space. The function avoids perspective-correct texture mapping, which would have been computationally expensive on 1993 hardware. Instead, it uses a faster approximation that was sufficient for the game's visual style. This technique influenced later engines, which adopted similar optimizations for rendering large flat surfaces efficiently."
   - id: "framebuffer-lookup-table"
-    line_start: 688
-    line_end: 720
+    line_start: 687
+    line_end: 719
     title: "The Lookup Table That Sped Up Pixels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""
     image_caption: ""
     content: "The `R_InitBuffer` function creates lookup tables (`ylookup` and `columnofs`) to simplify framebuffer address calculations. By precomputing offsets for rows and columns, the function eliminates the need for multiplications during rendering, significantly improving performance. This optimization was critical for DOOM's ability to run smoothly on early 1990s hardware, where CPU cycles were precious. The use of lookup tables for address calculations became a standard technique in graphics programming, influencing the design of later engines and contributing to the industry's understanding of performance optimization."
   - id: "variable-screen-size-border"
-    line_start: 725
-    line_end: 810
+    line_start: 724
+    line_end: 809
     title: "How DOOM Drew Its Iconic Borders"
     wikipedia_url: "https://en.wikipedia.org/wiki/Aspect_ratio_(image)"
     image_url: ""
@@ -97,7 +97,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

@@ -30,40 +30,40 @@ summary:
 
 enhancements:
   - id: "sound-initialization-and-channel-allocation"
-    line_start: 156
-    line_end: 192
+    line_start: 155
+    line_end: 191
     title: "How DOOM Allocated Sound Channels Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
     image_caption: ""
     content: "This section initializes the sound system, setting up sound effect (SFX) and music volumes, allocating memory for sound channels, and preparing the sound lookup table. The function `S_Init` is responsible for configuring the game's audio environment, ensuring that the limited number of sound channels can be efficiently utilized during gameplay. In 1993, consumer PCs had limited audio capabilities, often restricted to basic sound cards like the Sound Blaster. DOOM's developers had to work within these constraints, dynamically allocating channels to ensure that the most critical sounds were played. This approach influenced later games, which adopted similar dynamic sound management techniques to handle audio playback on constrained hardware."
   - id: "level-specific-sound-reset-and-music-selection"
-    line_start: 197
-    line_end: 248
+    line_start: 196
+    line_end: 247
     title: "Resetting Sounds and Picking Music Per Level"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `S_Start` function resets all playing sounds at the start of a new level and selects the appropriate music track based on the game mode and level. This ensures a clean audio slate, preventing overlapping or lingering sounds from the previous level. The music selection logic also highlights DOOM's modular design, allowing different tracks to be assigned to levels dynamically. In the early '90s, this was a novel approach, as many games used static soundtracks. By dynamically associating music with levels, DOOM enhanced its immersive experience, a technique that became standard in later games like Quake and Unreal."
   - id: "dynamic-sound-parameters-and-pitch-variation"
-    line_start: 254
-    line_end: 395
+    line_start: 253
+    line_end: 394
     title: "Dynamic Sound Adjustments and Randomized Pitch"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_localization"
     image_url: ""
     image_caption: ""
     content: "The `S_StartSoundAtVolume` function dynamically adjusts sound parameters like volume, stereo separation, and pitch based on the listener's position relative to the sound source. It also introduces randomized pitch variations for certain sound effects, adding a layer of realism and variety to the audio experience. This technique was critical for creating DOOM's immersive soundscape, as it simulated spatial audio effects on hardware that lacked advanced 3D sound capabilities. The use of pseudo-random pitch adjustments influenced later game engines, which adopted similar techniques to enhance realism in sound effects."
   - id: "sound-attenuation-and-stereo-separation"
-    line_start: 746
-    line_end: 818
+    line_start: 745
+    line_end: 817
     title: "The Formula Behind DOOM's Sound Attenuation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_localization"
     image_url: ""
     image_caption: ""
     content: "The `S_AdjustSoundParams` function calculates sound attenuation based on the distance between the listener and the sound source, using a pseudo-Euclidean distance formula for efficiency. It also determines stereo separation based on the relative angle of the sound source. These calculations allowed DOOM to simulate spatial audio effects on hardware with limited capabilities, creating a sense of directionality and immersion. The use of efficient distance calculations and stereo separation techniques influenced later game engines, which refined these methods to support more advanced audio systems."
   - id: "sound-channel-priority-management"
-    line_start: 823
-    line_end: 875
+    line_start: 822
+    line_end: 874
     title: "How DOOM Decided Which Sound to Play"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
@@ -73,7 +73,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

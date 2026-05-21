@@ -30,56 +30,56 @@ summary:
 
 enhancements:
   - id: "sprite-rotation-perspective"
-    line_start: 67
-    line_end: 77
+    line_start: 66
+    line_end: 76
     title: "How DOOM Made Sprites Face You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "This section defines the logic for sprite rotation, ensuring that objects in the game dynamically adjust their appearance based on the player's perspective. Sprite rotation 0 represents the sprite facing the viewer, while other rotations represent incremental clockwise turns. This approach was necessary in DOOM's pseudo-3D environment, where sprites needed to simulate depth and orientation without true 3D models. At the time, hardware constraints made polygonal models impractical for real-time rendering, so developers relied on sprites and clever rotation logic to create the illusion of a 3D world. This technique influenced later games like Duke Nukem 3D and even modern engines that use billboarding for distant objects."
   - id: "sprite-clipping-arrays"
-    line_start: 79
-    line_end: 82
+    line_start: 78
+    line_end: 81
     title: "Arrays That Keep Sprites in Bounds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `negonearray` and `screenheightarray` are constant arrays used for clipping sprites to the screen boundaries. These arrays prevent sprites from being drawn outside the visible area, a crucial optimization for performance on 1990s hardware. At the time, CPUs like the Intel 486 lacked the power to handle unnecessary rendering, so efficient clipping was essential. This technique influenced later graphics engines, where clipping remains a fundamental part of rendering pipelines."
   - id: "sprite-initialization-checks"
-    line_start: 101
-    line_end: 157
+    line_start: 100
+    line_end: 156
     title: "The Error-Checking That Saved DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `R_InstallSpriteLump` function initializes sprite frames and rotations, while performing rigorous error checks to ensure consistency in sprite definitions. For example, it verifies that no sprite frame has overlapping rotations or missing data. This meticulous attention to detail reflects John Carmack's philosophy of robust software engineering, which was critical to DOOM's success. By catching errors early, this function prevented crashes and visual glitches, ensuring a smooth gameplay experience. The approach set a standard for error handling in game engines, influencing later titles like Quake and Unreal."
   - id: "masked-texture-rendering"
-    line_start: 339
-    line_end: 388
+    line_start: 338
+    line_end: 387
     title: "Transparency Tricks in DOOM's Sprites"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawMaskedColumn` function handles rendering of masked textures, which are partly transparent and stored as runs of opaque pixels. This allowed DOOM to display objects like fences or semi-transparent sprites without requiring complex alpha blending, which was computationally expensive at the time. The technique was a clever workaround for hardware limitations and became a staple in sprite-based games of the era. It influenced later engines that used similar methods for transparency effects."
   - id: "player-sprite-rendering"
-    line_start: 743
-    line_end: 775
+    line_start: 742
+    line_end: 774
     title: "Rendering the Player's Gun in DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawPlayerSprites` function handles rendering of player sprites, such as the weapon visible in the first-person view. This feature was revolutionary in 1993, as it enhanced immersion by visually connecting the player to the game world. The function also adjusts lighting and transparency based on game state, such as invisibility power-ups. This technique influenced countless first-person shooters, from Quake to Call of Duty, where the player's weapon remains a central visual element."
   - id: "sprite-sorting-algorithm"
-    line_start: 787
-    line_end: 834
+    line_start: 786
+    line_end: 833
     title: "Sorting Sprites for Perfect Rendering Order"
     wikipedia_url: "https://en.wikipedia.org/wiki/Painter%27s_algorithm"
     image_url: ""
     image_caption: ""
     content: "The `R_SortVisSprites` function sorts visible sprites by scale, ensuring they are drawn in the correct order from back to front. This implementation of the painter's algorithm was essential for DOOM's rendering system, as it prevented visual artifacts caused by overlapping sprites. At the time, sorting algorithms had to be efficient due to limited CPU power, and this approach balanced accuracy with performance. The technique influenced later games and engines, where sorting remains a critical part of rendering pipelines."
   - id: "sprite-clipping-against-walls"
-    line_start: 839
-    line_end: 950
+    line_start: 838
+    line_end: 949
     title: "How DOOM's Sprites Avoid Walls"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
     image_url: ""
@@ -89,7 +89,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

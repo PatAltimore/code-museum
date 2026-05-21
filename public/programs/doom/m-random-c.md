@@ -24,32 +24,32 @@ summary:
 
 enhancements:
   - id: "random-number-lookup-table"
-    line_start: 27
-    line_end: 51
+    line_start: 26
+    line_end: 50
     title: "The Lookup Table That Made Random Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
     content: "This section defines a 256-byte lookup table (`rndtable`) used to generate random numbers. Instead of relying on computationally expensive algorithms to produce randomness, DOOM precomputes a sequence of values and stores them in this array. By cycling through the table with a simple index increment, the game achieves fast and predictable random number generation. This approach was essential for performance on early 1990s hardware, where CPU cycles were precious, and memory access was faster than complex calculations. The table itself is hardcoded, ensuring consistency across gameplay sessions. This deterministic randomness was vital for debugging and multiplayer synchronization, as every player could experience identical random events under the same conditions. Lookup tables like this became a common optimization in games and embedded systems, influencing later titles and hardware design."
   - id: "deterministic-random-generator"
-    line_start: 56
-    line_end: 61
+    line_start: 55
+    line_end: 60
     title: "How DOOM Kept Randomness Predictable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Deterministic_system"
     image_url: ""
     image_caption: ""
     content: "The `P_Random` function provides deterministic random numbers by cycling through the `rndtable` using the `prndindex`. This ensures that the sequence of random numbers is reproducible, which was crucial for debugging and multiplayer consistency. In multiplayer mode, deterministic randomness allowed all players to experience identical random events, preventing desynchronization. At the time, this was a clever solution to the problem of maintaining fairness and consistency in networked gameplay, where computational resources were limited, and synchronization mechanisms were rudimentary. This deterministic approach influenced later multiplayer game engines, which adopted similar techniques to ensure synchronized gameplay across different machines."
   - id: "non-deterministic-random-generator"
-    line_start: 63
-    line_end: 67
+    line_start: 62
+    line_end: 66
     title: "The Randomness That Kept DOOM Unpredictable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
     image_url: ""
     image_caption: ""
     content: "The `M_Random` function generates random numbers for gameplay elements, such as enemy behavior and item drops. Unlike `P_Random`, which is deterministic, `M_Random` uses a separate index (`rndindex`) to cycle through the `rndtable`. This introduces non-deterministic randomness, adding unpredictability to the single-player experience. Players could encounter varied gameplay scenarios, enhancing replayability and immersion. In the early 1990s, this approach was innovative, as it balanced performance constraints with the need for engaging gameplay. The technique influenced later game designs, where controlled randomness became a staple for creating dynamic and memorable experiences."
   - id: "resetting-random-state"
-    line_start: 69
-    line_end: 72
+    line_start: 68
+    line_end: 71
     title: "Why DOOM Could Reset Randomness"
     wikipedia_url: "https://en.wikipedia.org/wiki/State_(computer_science)"
     image_url: ""
@@ -59,7 +59,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

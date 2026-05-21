@@ -24,56 +24,56 @@ summary:
 
 enhancements:
   - id: "toupper-string-conversion"
-    line_start: 67
-    line_end: 72
+    line_start: 66
+    line_end: 71
     title: "Why DOOM Converts Strings to Uppercase"
     wikipedia_url: "https://en.wikipedia.org/wiki/Case_sensitivity"
     image_url: ""
     image_caption: ""
     content: "This small utility function converts strings to uppercase, ensuring case-insensitive comparisons throughout the WAD handling code. In the early 1990s, case sensitivity in filenames and identifiers was a common source of bugs, especially when software needed to run on multiple operating systems with differing conventions (e.g., MS-DOS vs. UNIX). By standardizing all names to uppercase, DOOM sidesteps these issues entirely. This approach reflects John Carmack's pragmatic programming philosophy: eliminate potential pitfalls with simple, robust solutions. The technique became a standard practice in many game engines and tools, influencing how developers approached cross-platform compatibility."
   - id: "file-length-detection"
-    line_start: 74
-    line_end: 82
+    line_start: 73
+    line_end: 81
     title: "How DOOM Measures File Sizes Without Errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stat_(system_call)"
     image_url: ""
     image_caption: ""
     content: "The `filelength` function uses the `fstat` system call to determine the size of a file. This was crucial for handling WAD files, which contain variable-length lumps of data. By relying on system-level calls, DOOM ensures accurate file size detection regardless of the underlying filesystem. In the early 1990s, developers often had to deal with quirks in file handling across different operating systems. This function reflects Carmack's focus on reliability and portability, ensuring DOOM's WAD system could function seamlessly on both MS-DOS and UNIX-based systems. The technique influenced later game engines, which adopted similar methods to handle asset files dynamically."
   - id: "extract-file-base"
-    line_start: 85
-    line_end: 114
+    line_start: 84
+    line_end: 113
     title: "The Eight-Character Filename Limit Explained"
     wikipedia_url: "https://en.wikipedia.org/wiki/8.3_filename"
     image_url: ""
     image_caption: ""
     content: "The `ExtractFileBase` function extracts the base name of a file, limited to eight characters, and converts it to uppercase. This design stems from the 8.3 filename convention used in MS-DOS, where filenames were restricted to eight characters plus a three-character extension. By enforcing this limit, DOOM ensures compatibility with legacy systems while maintaining a consistent naming scheme for WAD lumps. The function also validates the length, throwing an error if the base name exceeds eight characters. This reflects the constraints of the era, where hardware and software limitations shaped design decisions. The eight-character limit became iconic in early PC gaming and influenced how modders named their custom assets."
   - id: "wad-file-validation"
-    line_start: 120
-    line_end: 225
+    line_start: 119
+    line_end: 224
     title: "How DOOM Distinguishes IWADs from PWADs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
     image_url: ""
     image_caption: ""
     content: "The `W_AddFile` function is responsible for loading WAD files, validating their headers, and populating the lump directory. It distinguishes between IWADs (core game data) and PWADs (custom or user-created content). This distinction allowed DOOM to support modding while protecting the integrity of its original game assets. The function reads the WAD header to determine the number of lumps and their locations, ensuring compatibility with both official and homebrew levels. This modular approach to game content was revolutionary, enabling users to create and share custom levels. The concept of separating core assets from user-generated content influenced countless games and engines, including Quake and Unreal."
   - id: "reloadable-wad-support"
-    line_start: 231
-    line_end: 275
+    line_start: 230
+    line_end: 274
     title: "The Hack That Made Map Reloads Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Reload_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `W_Reload` function enables the reloading of WAD files, specifically for lumps marked as reloadable. This feature was designed to facilitate map reloads during development, allowing designers to test changes without restarting the game. However, the implementation is described as a 'fragile hack' in the comments, reflecting the challenges of adding dynamic features to a system not originally designed for them. Despite its limitations, this feature highlights DOOM's iterative development process and the team's willingness to experiment with new workflows. Reloadable assets became a standard feature in modern game engines, streamlining the development and testing of dynamic content."
   - id: "wad-cache-system"
-    line_start: 472
-    line_end: 500
+    line_start: 471
+    line_end: 499
     title: "How DOOM's Cache Kept Gameplay Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `W_CacheLumpNum` function implements a caching system for WAD lumps, ensuring frequently accessed data is stored in memory for quick retrieval. This optimization was critical for maintaining DOOM's fast-paced gameplay on limited hardware. The function checks if a lump is already cached; if not, it reads the lump into memory and tags it for future use. By minimizing disk I/O during gameplay, DOOM achieves smoother performance and shorter load times. This caching strategy influenced later game engines, which adopted similar techniques to manage large asset libraries efficiently. The concept of caching remains a cornerstone of performance optimization in modern software."
   - id: "wad-profiling-tool"
-    line_start: 516
-    line_end: 575
+    line_start: 515
+    line_end: 574
     title: "The Hidden Tool That Profiles WAD Usage"
     wikipedia_url: "https://en.wikipedia.org/wiki/Profiling_(computer_programming)"
     image_url: ""
@@ -83,7 +83,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

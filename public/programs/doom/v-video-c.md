@@ -30,48 +30,48 @@ summary:
 
 enhancements:
   - id: "gamma-correction-lut"
-    line_start: 50
-    line_end: 133
+    line_start: 49
+    line_end: 132
     title: "The Gamma Tables That Brightened DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Gamma_correction"
     image_url: ""
     image_caption: ""
     content: "This section defines gamma correction lookup tables (LUTs) that adjust the brightness of the game's visuals. Gamma correction is crucial for ensuring consistent visual output across different monitors, which varied widely in brightness and color reproduction in the early 1990s. The tables provide predefined mappings for pixel brightness levels, allowing players to select from five levels of gamma correction. This was a practical solution to hardware inconsistencies, as monitors of the era lacked standardized brightness controls. The tables are hardcoded, reflecting the era's preference for performance over flexibility. Gamma correction in DOOM influenced later games, which adopted similar techniques for visual customization. Today, gamma adjustment is a standard feature in graphics settings, but DOOM's implementation was among the earliest examples in gaming."
   - id: "mark-dirty-rectangles"
-    line_start: 139
-    line_end: 151
+    line_start: 138
+    line_end: 150
     title: "Marking Dirty Rectangles for Efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Dirty_rectangle"
     image_url: ""
     image_caption: ""
     content: "The `V_MarkRect` function marks rectangular regions of the screen that need to be updated. This technique, known as dirty rectangle management, minimizes the computational cost of redrawing the entire screen by focusing only on areas that have changed. In DOOM, this was critical for maintaining high frame rates on hardware with limited processing power, such as 386 and 486 PCs. By marking and tracking these regions, the game could optimize rendering operations, ensuring smooth gameplay without unnecessary overhead. This approach was widely adopted in subsequent games and graphical applications, influencing techniques in modern rendering engines like Unity and Unreal Engine."
   - id: "copy-rectangles-between-screens"
-    line_start: 154
-    line_end: 196
+    line_start: 153
+    line_end: 195
     title: "Copying Rectangles Across Screen Buffers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""
     image_caption: ""
     content: "The `V_CopyRect` function copies rectangular blocks of pixels from one screen buffer to another. This operation is essential for managing multiple screen buffers, which DOOM uses to handle different views or layers of graphics. The function includes range-checking to prevent out-of-bounds errors, ensuring robust handling of screen dimensions. By leveraging memory manipulation techniques like `memcpy`, the function achieves high performance, a necessity for real-time rendering on early PCs. Screen buffer management became a foundational concept in graphics programming, influencing later developments in framebuffers and GPU architectures."
   - id: "draw-patch-to-screen"
-    line_start: 199
-    line_end: 263
+    line_start: 198
+    line_end: 262
     title: "Drawing Patches: DOOM's Modular Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `V_DrawPatch` function renders graphical patches (sprites) onto the screen. Patches in DOOM are modular graphic elements, such as textures or UI components, stored in a column-based format. This function iterates through columns and posts within a patch, drawing pixel data directly to the screen buffer. The modular design of patches allowed DOOM to efficiently manage and render complex scenes, a key innovation in its graphics engine. The function also includes range-checking to handle errors gracefully. DOOM's patch-based rendering influenced sprite handling in later 2D and 3D games, paving the way for modular asset systems in modern engines."
   - id: "draw-patch-flipped"
-    line_start: 265
-    line_end: 327
+    line_start: 264
+    line_end: 326
     title: "Flipping Patches: Mirroring Graphics in DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mirroring_(graphics)"
     image_url: ""
     image_caption: ""
     content: "The `V_DrawPatchFlipped` function renders patches to the screen while flipping them horizontally. This capability is useful for creating mirrored graphics, such as symmetrical UI elements or character sprites. The function adjusts column offsets to reverse the drawing order, ensuring the patch appears flipped. Mirroring graphics was a clever way to reuse assets without duplicating data, saving memory and storage space on constrained hardware. This technique became a standard practice in game development, influencing asset optimization strategies in later games and engines."
   - id: "initialize-screen-buffers"
-    line_start: 479
-    line_end: 493
+    line_start: 478
+    line_end: 492
     title: "Allocating Screen Buffers in Low DOS Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOS_memory_management"
     image_url: ""
@@ -81,7 +81,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

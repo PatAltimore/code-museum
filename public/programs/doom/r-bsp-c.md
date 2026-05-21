@@ -30,40 +30,40 @@ summary:
 
 enhancements:
   - id: "clear-draw-segments"
-    line_start: 65
-    line_end: 71
+    line_start: 64
+    line_end: 70
     title: "Why DOOM Clears Draw Segments Before Rendering"
     wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
     image_url: ""
     image_caption: ""
     content: "This function, `R_ClearDrawSegs`, resets the draw segment pointer (`ds_p`) to the beginning of the `drawsegs` array. Draw segments represent portions of walls that need to be rendered, and clearing them ensures that no stale data from previous frames interferes with the current rendering pass. In 1993, memory management was critical due to hardware constraints—DOOM had to run efficiently on machines with as little as 4MB of RAM. By reusing pre-allocated arrays like `drawsegs`, the developers avoided costly dynamic memory allocation during gameplay. This approach influenced later game engines, which adopted similar strategies for managing render lists and minimizing frame-to-frame overhead."
   - id: "clip-solid-wall-segment"
-    line_start: 97
-    line_end: 185
+    line_start: 96
+    line_end: 184
     title: "How DOOM Handles Solid Wall Clipping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
     content: "The `R_ClipSolidWallSegment` function processes solid walls that block the player's view entirely. It uses a list of clip ranges (`solidsegs`) to track visible portions of the screen and inserts new segments when necessary. The algorithm ensures efficient rendering by avoiding redundant calculations for occluded areas. At the time, this was a novel solution to the problem of visibility determination in 3D environments. John Carmack's implementation of BSP trees and clipping algorithms in DOOM set a precedent for real-time rendering in games, influencing engines like Quake and Unreal. The technique also became a staple in computer graphics education, demonstrating how spatial partitioning can optimize rendering pipelines."
   - id: "clip-pass-wall-segment"
-    line_start: 189
-    line_end: 238
+    line_start: 188
+    line_end: 237
     title: "Clipping Windows: DOOM's Pass Wall Segments"
     wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
     image_url: ""
     image_caption: ""
     content: "The `R_ClipPassWallSegment` function handles walls that act as windows, allowing partial visibility through textures. Unlike solid walls, these segments are not added to the clip list but are processed for rendering. This distinction between solid and passable walls was crucial for creating DOOM's immersive environments, where players could see through windows or openings while maintaining performance. The function's design reflects the game's reliance on efficient algorithms to manage complex scenes on limited hardware. This approach influenced later games that needed to balance visual fidelity with computational constraints, especially in early 3D engines."
   - id: "check-bounding-box"
-    line_start: 359
-    line_end: 487
+    line_start: 358
+    line_end: 486
     title: "The Bounding Box Trick That Saved DOOM's Frame Rate"
     wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
     image_url: ""
     image_caption: ""
     content: "The `R_CheckBBox` function determines whether a bounding box might be visible from the player's viewpoint. It uses precomputed coordinates and angles to quickly reject portions of the scene that are outside the field of view. This optimization was essential for DOOM's performance, as it reduced the number of subsectors and walls that needed to be processed during rendering. Bounding box checks were a direct response to the hardware limitations of the era, where CPUs lacked the power to handle exhaustive visibility calculations. The technique influenced later engines, including Quake, which built on DOOM's spatial partitioning and visibility determination methods to enable even more complex 3D environments."
   - id: "render-bsp-node"
-    line_start: 547
-    line_end: 578
+    line_start: 546
+    line_end: 577
     title: "Recursive BSP Traversal: DOOM's Rendering Backbone"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
@@ -73,7 +73,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

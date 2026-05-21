@@ -30,32 +30,32 @@ summary:
 
 enhancements:
   - id: "vertical-door-mechanics"
-    line_start: 56
-    line_end: 198
+    line_start: 55
+    line_end: 197
     title: "How DOOM Made Doors Feel Alive"
     wikipedia_url: "https://doomwiki.org/wiki/Door"
     image_url: ""
     image_caption: ""
     content: "The `T_VerticalDoor` function is the heart of DOOM's door mechanics, handling the opening, closing, and waiting states of vertical doors. It uses a state machine approach, where the door's behavior changes based on its current state (`direction`) and type (`normal`, `blazeRaise`, etc.). The function also integrates sound effects to enhance the player's experience, such as the distinct 'door open' and 'door close' sounds. At the time, real-time animation and interaction with the environment were rare, and this implementation helped make DOOM's world feel dynamic and immersive. In 1993, DOOM was designed to run on consumer PCs equipped with Intel 80486 processors, which had limited computational power. John Carmack's programming expertise ensured that even complex mechanics like doors were optimized for performance. The modular 'thinker' system allowed objects like doors to have their own behavior routines, making the codebase extensible and easier to manage. The vertical door mechanics became a staple in level design for FPS games, influencing titles like Quake and Half-Life. The state machine approach and modular object behavior inspired game developers to adopt similar systems for interactive environments. Today, this technique is foundational in game engines like Unity and Unreal Engine, where state-driven animations are ubiquitous."
   - id: "locked-door-logic"
-    line_start: 201
-    line_end: 260
+    line_start: 200
+    line_end: 259
     title: "The Keys That Locked DOOM's Levels"
     wikipedia_url: "https://doomwiki.org/wiki/Keys"
     image_url: ""
     image_caption: ""
     content: "The `EV_DoLockedDoor` function implements the logic for locked doors in DOOM, requiring players to collect specific keys (blue, red, or yellow) to progress. If the player lacks the necessary key, the game provides feedback through a message and a sound effect ('oof'). This mechanic added a layer of strategy and exploration to DOOM's fast-paced gameplay, encouraging players to thoroughly explore levels. In the early '90s, key-based progression was a common design choice in adventure games, but DOOM adapted it to the FPS genre, integrating it seamlessly into its labyrinthine level design. The locked door mechanic was a collaborative effort by id Software's team, including John Romero, who focused on level design and player experience. This approach influenced countless games, from Duke Nukem 3D to modern titles like DOOM Eternal. The concept of collectible items unlocking new areas became a staple in game design, appearing in genres ranging from RPGs to platformers. The feedback system—providing both visual and auditory cues—set a precedent for clear player communication that remains standard in game design today."
   - id: "spawn-door-close-in-30"
-    line_start: 502
-    line_end: 522
+    line_start: 501
+    line_end: 521
     title: "The Door That Waited 30 Seconds"
     wikipedia_url: "https://doomwiki.org/wiki/Door"
     image_url: ""
     image_caption: ""
     content: "The `P_SpawnDoorCloseIn30` function creates a door that automatically closes after 30 seconds. This mechanic added tension and urgency to DOOM's gameplay, forcing players to act quickly or risk being trapped. The countdown is implemented using the game's 'thinker' system, which schedules behaviors for objects in the game world. Timed events like this were innovative in 1993, as most games relied on static environments. The ability to dynamically alter the game world based on time was a testament to John Carmack's programming ingenuity. It showcased how DOOM's engine could handle complex interactions efficiently, even on limited hardware. Timed mechanics like these became a hallmark of interactive level design, influencing games like Portal and Half-Life. The concept of environmental changes tied to player actions or time constraints is now a common feature in modern game design, demonstrating DOOM's lasting impact on the industry."
   - id: "abandoned-sliding-door-code"
-    line_start: 554
-    line_end: 763
+    line_start: 553
+    line_end: 762
     title: "The Sliding Doors That Never Opened"
     wikipedia_url: "https://doomwiki.org/wiki/Sliding_doors"
     image_url: ""
@@ -65,7 +65,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

@@ -24,48 +24,48 @@ summary:
 
 enhancements:
   - id: "finale-stage-logic"
-    line_start: 28
-    line_end: 57
+    line_start: 27
+    line_end: 56
     title: "How DOOM Decides Its Finale Stage"
     wikipedia_url: "https://doomwiki.org/wiki/Finale"
     image_url: ""
     image_caption: ""
     content: "This section defines the stages of the finale sequence: text display, art screens, and the monster cast roll. The variable `finalestage` acts as a state machine, transitioning between these stages based on player progress and timing. In 1993, this kind of state-driven design was common in games, as it allowed developers to create dynamic sequences without hardcoding every frame. By abstracting the stages, DOOM could adapt its finale logic for different game modes and expansions, such as DOOM II or The Ultimate DOOM. This modularity influenced later games, which adopted similar state-driven approaches for cutscenes and endgame sequences."
   - id: "finale-text-selection"
-    line_start: 59
-    line_end: 83
+    line_start: 58
+    line_end: 82
     title: "Dynamic Text Selection for DOOM’s Endings"
     wikipedia_url: "https://doomwiki.org/wiki/Endings"
     image_url: ""
     image_caption: ""
     content: "This section defines pointers to various text strings (`e1text`, `e2text`, etc.) that correspond to different episodes and game modes. The finale dynamically selects the appropriate text based on the player's progress and game mode. This design reflects the modularity of DOOM's engine, which was built to accommodate expansions and modifications. By separating text definitions from the rendering logic, id Software ensured that new content could be added without altering core code. This technique became a standard in game development, enabling easier localization and content updates."
   - id: "start-finale-sequence"
-    line_start: 93
-    line_end: 191
+    line_start: 92
+    line_end: 190
     title: "The Code That Starts DOOM’s Finale"
     wikipedia_url: "https://doomwiki.org/wiki/Finale"
     image_url: ""
     image_caption: ""
     content: "The `F_StartFinale` function initializes the finale sequence, setting the game state to `GS_FINALE` and disabling gameplay elements like the automap. It dynamically selects the background texture (`finaleflat`) and text (`finaletext`) based on the game mode and episode. This function showcases id Software's attention to detail, ensuring that each ending feels tailored to the player's journey. The modular design allowed DOOM to support multiple game modes and expansions seamlessly. This approach influenced later games with branching narratives and dynamic endings, such as the Mass Effect series."
   - id: "monster-cast-roll"
-    line_start: 329
-    line_end: 360
+    line_start: 328
+    line_end: 359
     title: "The Monster Cast Roll: A DOOM Icon"
     wikipedia_url: "https://doomwiki.org/wiki/Cast_roll"
     image_url: ""
     image_caption: ""
     content: "The `castorder` array defines the sequence of monsters displayed during the cast roll, including their names and types. This feature was a playful way for id Software to showcase the game's iconic enemies while adding a cinematic touch to the finale. The cast roll became a memorable part of DOOM's identity, influencing other games to include similar sequences, such as character or enemy showcases in fighting games and RPGs. It also highlights the developers' sense of humor, as the cast roll ends with the player character listed as 'HERO.'"
   - id: "cast-animation-ticker"
-    line_start: 392
-    line_end: 495
+    line_start: 391
+    line_end: 494
     title: "Animating DOOM’s Monster Cast Roll"
     wikipedia_url: "https://doomwiki.org/wiki/Sprite_animation"
     image_url: ""
     image_caption: ""
     content: "The `F_CastTicker` function drives the animations for the monster cast roll, transitioning between states and synchronizing sounds. It includes clever hacks, such as manually resetting attack frames (`goto stopattack`) and handling sound effects for specific states. These techniques reflect the constraints of 1993 hardware, where developers had to optimize every frame and byte. The cast roll's fluid animation and sound synchronization were groundbreaking at the time, influencing sprite-based animation systems in later games, including platformers and 2D RPGs."
   - id: "bunny-scroll-ending"
-    line_start: 641
-    line_end: 694
+    line_start: 640
+    line_end: 693
     title: "The Bunny Scroll: DOOM’s Quirky Finale"
     wikipedia_url: "https://doomwiki.org/wiki/Bunny_scroll"
     image_url: ""
@@ -75,7 +75,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

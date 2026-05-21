@@ -24,40 +24,40 @@ summary:
 
 enhancements:
   - id: "visplane-data-structure"
-    line_start: 47
-    line_end: 56
+    line_start: 46
+    line_end: 55
     title: "The Data Structure That Solved Overdraw"
     wikipedia_url: "https://doomwiki.org/wiki/Visplane"
     image_url: ""
     image_caption: ""
     content: "The visplane data structure is central to DOOM's floor and ceiling rendering. It tracks regions of the screen that correspond to a specific height, texture, and light level. By grouping pixels into contiguous spans, visplanes prevent redundant rendering of overlapping areas, a problem known as overdraw. In 1993, consumer PCs were limited by slow CPUs and no dedicated GPUs, making efficient algorithms critical. John Carmack devised the visplane system to minimize computational overhead while maintaining visual fidelity. This approach allowed DOOM to render complex 3D environments in real time on hardware like the Intel 486. The visplane concept influenced later engines, including Quake, and remains a foundational idea in optimizing rasterization for real-time graphics."
   - id: "r-mapplane-function"
-    line_start: 107
-    line_end: 178
+    line_start: 106
+    line_end: 177
     title: "Mapping Pixels to World Coordinates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
     content: "The `R_MapPlane` function calculates texture mapping for floor and ceiling spans. It uses precomputed values like `yslope` and `distscale` to determine the distance from the viewer to each pixel, enabling accurate perspective correction. This was a critical innovation in DOOM's rendering pipeline, as it allowed textures to appear correctly aligned and scaled despite the lack of hardware acceleration. Carmack's use of fixed-point arithmetic ensured precision while avoiding the performance hit of floating-point calculations. This function exemplifies the ingenuity required to deliver immersive graphics on early PCs. Techniques from `R_MapPlane` influenced later advancements in texture mapping, including mipmapping and anisotropic filtering in modern GPUs."
   - id: "r-clearplanes-function"
-    line_start: 181
-    line_end: 209
+    line_start: 180
+    line_end: 208
     title: "Resetting the Frame for Efficient Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Frame_buffer"
     image_url: ""
     image_caption: ""
     content: "The `R_ClearPlanes` function initializes data structures at the start of each frame, including `floorclip` and `ceilingclip` arrays that define the visible bounds of floors and ceilings. It also resets cached height values and calculates texture scaling based on the player's view angle. This setup ensures that rendering begins with a clean slate, avoiding artifacts and maintaining performance. In the early 1990s, memory management was a critical concern, as PCs had limited RAM and no virtual memory. By efficiently resetting and reusing buffers, DOOM could maintain high frame rates even in complex scenes. This approach influenced later real-time rendering systems, including those in Quake and Unreal Engine."
   - id: "r-findplane-function"
-    line_start: 214
-    line_end: 259
+    line_start: 213
+    line_end: 258
     title: "Grouping Pixels by Height and Texture"
     wikipedia_url: "https://doomwiki.org/wiki/Visplane"
     image_url: ""
     image_caption: ""
     content: "The `R_FindPlane` function searches for an existing visplane that matches the specified height, texture, and light level. If no match is found, it creates a new visplane. This grouping mechanism is key to DOOM's efficient rendering, as it minimizes redundant calculations for areas of the screen that share visual properties. By consolidating spans into visplanes, the engine reduces memory usage and computational overhead. This technique was groundbreaking in 1993, when real-time 3D rendering was still in its infancy. The visplane system inspired similar optimizations in later engines, helping to establish best practices for rasterization and span-based rendering."
   - id: "r-drawplanes-function"
-    line_start: 363
-    line_end: 453
+    line_start: 362
+    line_end: 452
     title: "Rendering Floors, Ceilings, and Skies"
     wikipedia_url: "https://doomwiki.org/wiki/Rendering"
     image_url: ""
@@ -67,7 +67,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

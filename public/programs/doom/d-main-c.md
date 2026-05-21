@@ -30,88 +30,88 @@ summary:
 
 enhancements:
   - id: "event-handling-with-d-postevent"
-    line_start: 135
-    line_end: 154
+    line_start: 134
+    line_end: 153
     title: "Event Handling with D_PostEvent"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
     image_url: ""
     image_caption: ""
     content: "The D_PostEvent function is responsible for queuing user input events into a circular buffer. Events, such as key presses or mouse movements, are stored in the 'events' array, with the 'eventhead' index incrementing in a wraparound manner using a bitwise AND operation. This design ensures efficient memory usage and avoids buffer overflow, a critical consideration given the limited RAM of early 1990s PCs. In 1993, event-driven programming was a relatively novel concept in game development. DOOM's implementation of asynchronous event handling allowed the game to respond to user inputs without blocking other operations, such as rendering or sound processing. This approach was influenced by techniques used in operating systems and real-time applications, adapted here for a fast-paced action game. The circular buffer design became a standard in game development, influencing later engines like Quake and Unreal. It demonstrated how to balance responsiveness with performance constraints, paving the way for modern input systems in games. Developers studying DOOM's source code often cite this function as an elegant solution to input handling under tight resource constraints."
   - id: "processing-inputs-d-processevents"
-    line_start: 157
-    line_end: 177
+    line_start: 156
+    line_end: 176
     title: "Processing Inputs with D_ProcessEvents"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
     image_url: ""
     image_caption: ""
     content: "D_ProcessEvents iterates through the event buffer, passing each event to responder functions like M_Responder (menu handling) and G_Responder (gameplay input). If the menu consumes an event, it skips further processing. This modular approach separates input handling for different game states, ensuring that menus and gameplay can coexist seamlessly. In the early 1990s, games often struggled to manage simultaneous user inputs effectively. DOOM's approach, where events are processed in a loop and dispatched to state-specific handlers, was groundbreaking. It allowed the game to maintain high responsiveness even during intense action sequences. This technique influenced later game engines, including id Tech 2 and id Tech 3, which refined the concept further. The modularity seen here is echoed in modern engines like Unity and Unreal, where input handling is often state-dependent and event-driven. DOOM's code serves as a foundational example of how to architect input systems for real-time applications."
   - id: "real-time-rendering-d-display"
-    line_start: 182
-    line_end: 345
+    line_start: 181
+    line_end: 344
     title: "Real-Time Rendering in D_Display"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The D_Display function orchestrates the game's rendering pipeline, handling screen wipes, HUD updates, and frame-by-frame drawing. It integrates various subsystems, such as the automap (AM_Drawer), status bar (ST_Drawer), and player view rendering (R_RenderPlayerView). The function also manages transitions between game states, ensuring smooth visual updates. In 1993, real-time rendering on consumer-grade hardware was a significant challenge. DOOM's ability to deliver fluid visuals on machines like the 386 and 486 was a testament to John Carmack's mastery of optimization. Techniques like screen wipes were not just aesthetic but also functional, helping to mask loading times and state changes. The rendering pipeline established here influenced countless games and engines. The concept of modular rendering subsystems, each responsible for a specific aspect of the visual output, became a standard practice. Modern engines like Unity and Unreal continue to use similar architectures, with rendering systems divided into layers for efficiency and maintainability. DOOM's rendering code remains a touchstone for developers studying optimization and real-time graphics."
   - id: "game-loop-d-doomloop"
-    line_start: 349
-    line_end: 407
+    line_start: 348
+    line_end: 406
     title: "The Infinite Game Loop: D_DoomLoop"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""
     image_caption: ""
     content: "D_DoomLoop is the core of DOOM's engine, running indefinitely to manage gameplay, input, and rendering. It synchronizes operations like sound mixing (I_UpdateSound), event processing (D_ProcessEvents), and frame updates (D_Display). The loop also adapts to single-tic or multi-tic modes, ensuring smooth performance across different hardware configurations. The concept of an infinite game loop was not new in 1993, but DOOM's implementation was particularly efficient. It balanced CPU usage with responsiveness, leveraging techniques like frame synchronization and adaptive tic processing. This design allowed DOOM to run on a wide range of hardware, from high-end PCs to modest setups. The infinite game loop became a cornerstone of game engine design, influencing engines like id Tech, Unreal Engine, and Source. It demonstrated how to structure a real-time application for maximum efficiency and scalability. Developers studying DOOM's source code often cite D_DoomLoop as a masterclass in game engine architecture."
   - id: "demo-management-d-doadvancedemo"
-    line_start: 450
-    line_end: 518
+    line_start: 449
+    line_end: 517
     title: "Managing Demo Sequences with D_DoAdvanceDemo"
     wikipedia_url: "https://doomwiki.org/wiki/Demo"
     image_url: ""
     image_caption: ""
     content: "D_DoAdvanceDemo cycles through DOOM's demo sequences, transitioning between gameplay demos and static screens like the title or credits. It adjusts game state variables, starts appropriate music tracks, and handles special cases for different game modes (e.g., retail vs. commercial). Demo sequences were a popular feature in early 1990s games, serving as both promotional tools and technical showcases. DOOM's implementation was particularly polished, with seamless transitions and synchronized audio. This attention to detail reflected id Software's commitment to creating an immersive experience. The demo system influenced later games, which adopted similar techniques for attract modes and gameplay previews. It also inspired the development of tools for recording and replaying gameplay, a feature now standard in competitive gaming and streaming platforms. DOOM's demo code remains a valuable resource for developers exploring automated gameplay systems."
   - id: "wad-file-handling-identifyversion"
-    line_start: 557
-    line_end: 717
+    line_start: 556
+    line_end: 716
     title: "WAD File Handling in IdentifyVersion"
     wikipedia_url: "https://doomwiki.org/wiki/WAD"
     image_url: ""
     image_caption: ""
     content: "IdentifyVersion determines the game's mode (shareware, registered, retail, or commercial) by checking the availability of specific WAD files. It uses platform-specific file access methods and environment variables like DOOMWADDIR to locate these files. The function also includes debugging notes, such as a malloc bug fix attributed to Shawn Green. WAD files were a revolutionary concept in game development, allowing levels, textures, and other assets to be packaged separately from the executable. This modularity enabled easy distribution of mods and expansions, fostering a vibrant community of creators. DOOM's ability to detect and load WAD files dynamically was a key factor in its longevity. The modular asset system pioneered here influenced countless games and engines. Modern engines like Unity and Unreal use similar concepts, with asset bundles and resource managers handling dynamic loading. DOOM's WAD system remains a touchstone for developers exploring extensibility and modding support."
   - id: "response-file-handling-findresponsefile"
-    line_start: 719
-    line_end: 790
+    line_start: 718
+    line_end: 789
     title: "Handling Response Files with FindResponseFile"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
     content: "FindResponseFile processes command-line arguments to locate and parse response files, which contain additional arguments for the game. It reads the file into memory, appends its contents to the argument list, and displays the updated arguments for debugging purposes. This feature allows users to specify complex configurations without typing lengthy command lines. In the early 1990s, command-line interfaces were a common way to configure software. Response files provided a convenient way to manage complex setups, especially for developers and advanced users. DOOM's implementation reflects id Software's focus on flexibility and user empowerment. Response files influenced later tools and engines, which adopted similar mechanisms for batch processing and configuration. They remain relevant in modern development workflows, where scripts and configuration files are used to automate tasks. DOOM's code serves as a historical example of how to balance usability with technical sophistication."
   - id: "command-line-options-flexibility"
-    line_start: 801
-    line_end: 902
+    line_start: 800
+    line_end: 901
     title: "How Command-Line Arguments Shaped Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
     content: "This section of the code processes command-line arguments to customize gameplay. Options like '-nomonsters', '-respawn', and '-fast' allow players to modify the game's behavior, while '-deathmatch' sets up multiplayer modes. The '-turbo' option adjusts movement speed, demonstrating how DOOM catered to both casual players and advanced users. In the early 1990s, command-line interfaces were a common way to configure software, especially on DOS-based systems. John Carmack's design philosophy emphasized user control and flexibility, which was rare for games at the time. This approach influenced later games, inspiring developers to include similar customization options. Today, command-line arguments remain a staple in software development, especially in debugging and server applications."
   - id: "wad-file-handling"
-    line_start: 904
-    line_end: 946
+    line_start: 903
+    line_end: 945
     title: "The Hack That Made Modding Easy"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
     image_caption: ""
     content: "DOOM's support for custom WAD files revolutionized gaming by enabling user-generated content. This section adds WAD files specified via the '-file' command-line argument to the game's resource list, marking the game as 'modified.' The code even includes a hack to allow '-wart' commands to load specific maps. In the 1990s, modding was in its infancy, and DOOM's modular file structure made it a pioneer. Players could create and share custom levels, fostering a vibrant community. This openness inspired later games like Quake and Half-Life, which built on DOOM's modding legacy. Today, modding is a cornerstone of PC gaming, with tools and platforms like Steam Workshop making it accessible to millions."
   - id: "subsystem-initialization"
-    line_start: 1010
-    line_end: 1113
+    line_start: 1009
+    line_end: 1112
     title: "Why Modular Engines Win Every Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Modular_programming"
     image_url: ""
     image_caption: ""
     content: "This section initializes DOOM's subsystems, including memory management (Z_Init), graphics (V_Init), sound (S_Init), and gameplay state (P_Init). Each subsystem is modular, allowing the engine to be maintainable and adaptable. In the early 1990s, modular programming was gaining traction as developers sought ways to manage increasingly complex software. John Carmack's focus on clean, modular design ensured DOOM's engine could be extended and optimized over time. This modularity influenced later engines like Quake and Unreal, which adopted similar principles. Today, modularity is a fundamental concept in software engineering, underpinning frameworks like Unity and Unreal Engine."
   - id: "game-start-logic"
-    line_start: 1126
-    line_end: 1170
+    line_start: 1125
+    line_end: 1169
     title: "How DOOM Decides What to Do First"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -121,7 +121,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

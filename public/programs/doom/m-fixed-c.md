@@ -24,24 +24,24 @@ summary:
 
 enhancements:
   - id: "fixed-multiplication-optimization"
-    line_start: 41
-    line_end: 49
+    line_start: 40
+    line_end: 48
     title: "How DOOM Multiplied Without Floating-Point"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
     content: "The `FixedMul` function performs multiplication using fixed-point arithmetic, a technique where numbers are represented as integers scaled by a constant factor (here defined by `FRACBITS`). This avoids the need for floating-point operations, which were slow or unavailable on consumer hardware in the early 1990s. By shifting the result right by `FRACBITS`, the function scales the product back to the fixed-point range. In 1993, most PCs lacked dedicated floating-point units (FPUs), and software-based floating-point calculations were prohibitively slow. John Carmack and the id Software team designed DOOM to run efficiently on such hardware, leveraging fixed-point arithmetic for critical calculations like rendering and physics. This approach was inspired by earlier games and graphics techniques but refined to meet DOOM's demanding performance goals. The use of fixed-point arithmetic in DOOM influenced countless other games and engines of the era. Developers studying DOOM's source code adopted similar techniques for their own projects, ensuring compatibility with low-cost hardware. Even today, fixed-point arithmetic remains relevant in embedded systems, mobile devices, and performance-critical applications where floating-point operations are costly or unavailable."
   - id: "fixed-division-edge-case-handling"
-    line_start: 53
-    line_end: 65
+    line_start: 52
+    line_end: 64
     title: "The Division That Prevented Crashes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
     content: "The `FixedDiv` function handles division in fixed-point arithmetic, but with added safeguards to prevent catastrophic errors. If the absolute value of the numerator (`a`) shifted right by 14 bits exceeds the denominator (`b`), the function returns a predefined minimum or maximum integer value based on the signs of `a` and `b`. This prevents division by zero or overflow errors, which could crash the game. In the early 1990s, error handling was a critical concern for game developers. PCs of the era lacked robust operating systems capable of gracefully recovering from crashes, and a single unhandled exception could force players to reboot their machines. Carmack's meticulous attention to edge cases ensured DOOM's stability, even under extreme conditions. This defensive programming approach became a hallmark of id Software's coding style and influenced other developers who studied DOOM's source code. Modern game engines continue to incorporate similar safeguards, ensuring reliability across diverse hardware and software environments."
   - id: "fixed-division-with-floating-point"
-    line_start: 69
-    line_end: 87
+    line_start: 68
+    line_end: 86
     title: "When Fixed-Point Needed Floating-Point"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
@@ -51,7 +51,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

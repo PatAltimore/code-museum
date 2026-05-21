@@ -24,56 +24,56 @@ summary:
 
 enhancements:
   - id: "zone-memory-allocation-overview"
-    line_start: 32
-    line_end: 41
+    line_start: 31
+    line_end: 40
     title: "Why DOOM Avoided Contiguous Free Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "This section introduces DOOM's zone memory allocation system, which was designed to minimize fragmentation and maximize performance on constrained hardware. The key insight was ensuring that no two contiguous free memory blocks existed, which avoided costly coalescing operations during runtime. By maintaining a 'rover' pointer to track the next free block, the system streamlined allocation and deallocation. In the early 1990s, consumer PCs typically had limited RAM (often 4–8 MB), making efficient memory management crucial for a game as ambitious as DOOM. John Carmack, the lead programmer, drew inspiration from prior work in systems programming and adapted these techniques to fit the game's real-time requirements. This approach influenced later game engines, including Quake and Unreal, which adopted similar strategies for memory management."
   - id: "clear-zone-initialization"
-    line_start: 64
-    line_end: 86
+    line_start: 63
+    line_end: 85
     title: "How DOOM Reset Memory Zones"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `Z_ClearZone` function resets a memory zone to a single free block, effectively clearing all allocations. This was a foundational operation for initializing or resetting memory in DOOM. The function sets up the blocklist and rover pointer, ensuring the entire zone is ready for new allocations. In the early 1990s, memory management was often manual, and games needed to handle fragmentation carefully to avoid crashes or performance degradation. Carmack's approach ensured stability and predictability, even under heavy memory usage. This technique laid the groundwork for more sophisticated memory management systems in later engines, where zone-based allocation became a standard practice."
   - id: "zone-initialization"
-    line_start: 90
-    line_end: 116
+    line_start: 89
+    line_end: 115
     title: "The Function That Starts It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Z_Init` function initializes the main memory zone used by DOOM. It calls `I_ZoneBase` to allocate memory and sets up the blocklist and rover pointer. This function ensures that the entire memory zone starts as a single free block, ready for allocation. At the time, games like DOOM had to run on hardware with very limited resources, often relying on manual memory management to avoid crashes and ensure smooth gameplay. This initialization routine exemplifies Carmack's meticulous approach to performance optimization. The concept of a single contiguous memory zone influenced later game engines, which adopted similar strategies to manage memory efficiently in real-time applications."
   - id: "freeing-memory-blocks"
-    line_start: 119
-    line_end: 172
+    line_start: 118
+    line_end: 171
     title: "The Art of Freeing Memory Safely"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `Z_Free` function handles the deallocation of memory blocks in DOOM's zone memory system. It verifies the block's integrity using a unique identifier (`ZONEID`) and merges adjacent free blocks to prevent fragmentation. This approach was crucial for maintaining performance on hardware with limited RAM. In the early 1990s, memory management was a complex challenge, especially for real-time applications like games. Carmack's solution ensured stability and efficiency, avoiding the pitfalls of traditional malloc/free systems. The merging of free blocks inspired similar techniques in later engines, where memory fragmentation remained a critical concern."
   - id: "malloc-allocation-strategy"
-    line_start: 176
-    line_end: 288
+    line_start: 175
+    line_end: 287
     title: "How DOOM Allocated Memory Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `Z_Malloc` function dynamically allocates memory blocks in DOOM's zone memory system. It scans the blocklist for a free block of sufficient size, purging blocks if necessary. The function also splits oversized blocks to minimize wasted space. This allocation strategy was designed to handle the game's demanding real-time requirements while avoiding fragmentation. In 1993, dynamic memory allocation was a significant challenge for game developers, especially on hardware with limited resources. Carmack's implementation ensured that DOOM could manage memory efficiently without compromising performance. This technique influenced later engines, which adopted similar strategies for dynamic allocation in real-time applications."
   - id: "heap-dump-debugging"
-    line_start: 322
-    line_end: 359
+    line_start: 321
+    line_end: 358
     title: "Debugging Memory with Heap Dumps"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""
     image_caption: ""
     content: "The `Z_DumpHeap` function provides a detailed view of the memory zone, listing each block's size, user, and tag. This debugging tool was invaluable for identifying memory issues during development. In the early 1990s, debugging tools were limited, and developers often relied on custom functions like this to diagnose problems. Carmack's inclusion of `Z_DumpHeap` reflects his commitment to robust development practices, ensuring that DOOM's memory system was both efficient and reliable. This approach influenced later engines, where detailed memory debugging became a standard feature."
   - id: "check-heap-integrity"
-    line_start: 396
-    line_end: 420
+    line_start: 395
+    line_end: 419
     title: "Ensuring Memory Integrity in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -83,7 +83,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

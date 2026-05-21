@@ -30,72 +30,72 @@ summary:
 
 enhancements:
   - id: "mobj-state-machine"
-    line_start: 47
-    line_end: 84
+    line_start: 46
+    line_end: 83
     title: "How DOOM Objects Change State Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
     image_caption: ""
     content: "This section implements the state machine for DOOM's moving objects (mobjs). Each mobj has a state that determines its current behavior, sprite, and animation frame. The function `P_SetMobjState` transitions mobjs between states, triggering actions like movement or sound effects. The use of a state machine allowed developers to manage complex behaviors efficiently, such as enemy AI or environmental effects, without hardcoding every possible interaction. In 1993, this approach was innovative for games, enabling modularity and extensibility. The state machine concept influenced later game engines, including Quake and Unreal Engine, where similar systems manage object behaviors."
   - id: "missile-explosion-handling"
-    line_start: 87
-    line_end: 105
+    line_start: 86
+    line_end: 104
     title: "The Code Behind DOOM's Exploding Missiles"
     wikipedia_url: "https://doom.fandom.com/wiki/Missile"
     image_url: ""
     image_caption: ""
     content: "The `P_ExplodeMissile` function handles the logic for missile explosions, a key feature in DOOM's combat system. When a missile hits an obstacle or expires, it transitions to its death state, plays a sound effect, and stops moving. This mechanic added visceral feedback to combat, making explosions feel impactful. The randomization of explosion timing (`mo->tics -= P_Random()&3`) ensured that animations felt organic, avoiding mechanical repetition. This approach to missile handling influenced later games like Duke Nukem 3D and Half-Life, which refined projectile physics and effects."
   - id: "xy-movement-physics"
-    line_start: 108
-    line_end: 241
+    line_start: 107
+    line_end: 240
     title: "Physics That Made DOOM Feel Fast and Fluid"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
     content: "The `P_XYMovement` function calculates horizontal movement for mobjs, including players and enemies. It handles collisions, sliding, and momentum, ensuring smooth navigation through DOOM's maze-like levels. The use of fixed-point arithmetic optimized calculations for the limited CPUs of the early 1990s, such as the Intel 486. This section also includes clever hacks, like preventing missiles from exploding against sky textures (`ceilingline->backsector->ceilingpic == skyflatnum`). These optimizations and tricks became standard in game development, influencing engines like Build and Source."
   - id: "z-movement-logic"
-    line_start: 243
-    line_end: 349
+    line_start: 242
+    line_end: 348
     title: "Vertical Movement: Gravity and Floating Enemies"
     wikipedia_url: "https://en.wikipedia.org/wiki/Gravity_(game_physics)"
     image_url: ""
     image_caption: ""
     content: "The `P_ZMovement` function governs vertical movement, including gravity, floating behavior, and collisions with floors and ceilings. This section highlights DOOM's ability to simulate realistic physics while accommodating fantastical elements like floating enemies (`MF_FLOAT`). It also includes player-specific effects, such as view height adjustments after hard landings (`mo->player->deltaviewheight`). These mechanics contributed to DOOM's immersive gameplay and inspired similar systems in later 3D games, including Quake and Unreal Tournament."
   - id: "nightmare-respawn"
-    line_start: 353
-    line_end: 409
+    line_start: 352
+    line_end: 408
     title: "Nightmare Mode: Monsters Never Stay Dead"
     wikipedia_url: "https://doom.fandom.com/wiki/Nightmare"
     image_url: ""
     image_caption: ""
     content: "The `P_NightmareRespawn` function implements the respawn logic for monsters in DOOM's nightmare difficulty. When a monster dies, it leaves behind a 'teleport fog' effect and eventually respawns at its original position. This mechanic added tension and replayability, as players faced relentless enemies. The respawn system was a precursor to mechanics in survival games like Left 4 Dead, where enemy persistence creates a constant challenge. DOOM's nightmare mode remains iconic, influencing difficulty design across genres."
   - id: "spawn-mobj"
-    line_start: 476
-    line_end: 534
+    line_start: 475
+    line_end: 533
     title: "The Function That Brought DOOM's World to Life"
     wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
     image_url: ""
     image_caption: ""
     content: "The `P_SpawnMobj` function is responsible for creating mobjs, the dynamic entities that populate DOOM's levels. It initializes properties like position, health, and state, and links the object to the game's thinker system for ongoing updates. This modular approach allowed developers to easily add new objects and behaviors, laying the groundwork for object-oriented programming in games. The concept of spawning objects dynamically influenced countless game engines, including Unity and Unreal Engine."
   - id: "respawn-specials"
-    line_start: 575
-    line_end: 631
+    line_start: 574
+    line_end: 630
     title: "Deathmatch Item Respawn: Keeping the Fight Alive"
     wikipedia_url: "https://doom.fandom.com/wiki/Deathmatch"
     image_url: ""
     image_caption: ""
     content: "The `P_RespawnSpecials` function handles item respawns in deathmatch mode, ensuring that players always have access to weapons and power-ups. Items respawn after a fixed delay, accompanied by visual and sound effects like teleport fog (`MT_IFOG`) and the teleport sound (`sfx_itmbk`). This mechanic was crucial for maintaining balance and pacing in multiplayer matches, influencing later games like Quake and Unreal Tournament, which refined item respawn systems for competitive play."
   - id: "spawn-player"
-    line_start: 636
-    line_end: 700
+    line_start: 635
+    line_end: 699
     title: "Player Spawning: Setting the Stage for Action"
     wikipedia_url: "https://doom.fandom.com/wiki/Player"
     image_url: ""
     image_caption: ""
     content: "The `P_SpawnPlayer` function initializes players when they enter a level, setting properties like health, position, and view height. It also equips players with all keycards in deathmatch mode, ensuring they can access every area. This function highlights DOOM's focus on multiplayer accessibility and level design flexibility. The concept of player spawning influenced multiplayer game design in titles like Counter-Strike and Call of Duty, where spawn points are critical for gameplay balance."
   - id: "spawn-missile"
-    line_start: 885
-    line_end: 927
+    line_start: 884
+    line_end: 926
     title: "Missile Spawning: Precision and Chaos Combined"
     wikipedia_url: "https://doom.fandom.com/wiki/Missile"
     image_url: ""
@@ -105,7 +105,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

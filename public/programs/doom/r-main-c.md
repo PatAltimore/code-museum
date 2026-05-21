@@ -30,48 +30,48 @@ summary:
 
 enhancements:
   - id: "field-of-view-optimization"
-    line_start: 47
-    line_end: 98
+    line_start: 46
+    line_end: 97
     title: "The Trick That Flattened DOOM's Field of View"
     wikipedia_url: "https://en.wikipedia.org/wiki/Field_of_view_in_video_games"
     image_url: ""
     image_caption: ""
     content: "This section defines the field of view (FOV) and sets up the `viewangletox` lookup table, which maps view angles to screen X coordinates. The table flattens the arc of visible angles into a projection plane, allowing DOOM to efficiently render its pseudo-3D environments. At the time, consumer hardware lacked the power for true 3D rendering, so developers relied on clever tricks like this to simulate depth and perspective. By precalculating these mappings, DOOM avoided costly runtime calculations, enabling smooth gameplay even on modest PCs. This technique influenced later games, including Quake, which built on similar principles for its rendering pipeline."
   - id: "binary-space-partitioning"
-    line_start: 155
-    line_end: 211
+    line_start: 154
+    line_end: 210
     title: "How BSP Trees Made DOOM Run Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
     content: "The `R_PointOnSide` function is part of DOOM's Binary Space Partitioning (BSP) system, which divides the game world into hierarchical subspaces for efficient visibility determination. By checking whether a point lies on the front or back side of a partition plane, the game could quickly decide which parts of the map were visible to the player. BSP trees were a groundbreaking technique in the early 1990s, enabling games like DOOM to handle complex environments without overwhelming the hardware. John Carmack adapted this approach from computer graphics research, and it became a standard in game development, influencing titles like Half-Life and Unreal."
   - id: "angle-calculation-optimization"
-    line_start: 277
-    line_end: 374
+    line_start: 276
+    line_end: 373
     title: "The Lookup Table That Replaced Trigonometry"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
     content: "The `R_PointToAngle` function calculates the angle between two points using a combination of coordinate flipping and a precalculated `tantoangle` lookup table. This avoids expensive trigonometric calculations, which were impractical on 1990s CPUs. Instead, DOOM uses integer arithmetic and precomputed values to achieve the same result efficiently. This approach reflects the constraints of the era, where performance was paramount and every CPU cycle counted. The technique was widely studied and adapted by other developers, influencing rendering methods in games like Duke Nukem 3D and Quake."
   - id: "texture-mapping-setup"
-    line_start: 541
-    line_end: 602
+    line_start: 540
+    line_end: 601
     title: "Optimized Texture Mapping with Tangent Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
     content: "The `R_InitTextureMapping` function sets up texture mapping by using tangent tables to calculate screen coordinates for visible angles. This allows DOOM to efficiently map textures onto walls and other surfaces, creating the illusion of depth in its pseudo-3D environments. Texture mapping was a relatively new concept in the early 1990s, and DOOM's implementation pushed the boundaries of what was possible on consumer hardware. The technique influenced later games and engines, including Quake, which expanded on these ideas with true 3D rendering."
   - id: "dynamic-lighting"
-    line_start: 607
-    line_end: 641
+    line_start: 606
+    line_end: 640
     title: "Dynamic Lighting on 1990s Hardware"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `R_InitLightTables` function calculates light levels based on distance and view size, creating a dynamic lighting effect that enhances DOOM's immersive atmosphere. By scaling light intensity with distance, the game simulates realistic lighting without requiring advanced hardware capabilities. This was a significant innovation at a time when most games used static lighting. The technique influenced later engines, including the Build Engine used in Duke Nukem 3D, and laid the groundwork for more sophisticated lighting systems in modern games."
   - id: "frame-setup-and-rendering"
-    line_start: 827
-    line_end: 897
+    line_start: 826
+    line_end: 896
     title: "What Happens Before DOOM Draws a Frame"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""
@@ -81,7 +81,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

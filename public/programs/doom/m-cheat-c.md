@@ -1,82 +1,152 @@
 ---
-title: "r_bsp.c"
+title: "m_cheat.c"
 program: "DOOM"
 program_slug: "doom"
-file_path: "linuxdoom-1.10/r_bsp.c"
+file_path: "linuxdoom-1.10/m_cheat.c"
 language: "C"
-github_url: "https://github.com/id-Software/DOOM/blob/master/linuxdoom-1.10/r_bsp.c"
+github_url: "https://github.com/id-Software/DOOM/blob/master/linuxdoom-1.10/m_cheat.c"
 year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
-slug: "r-bsp-c"
-order: 12
-description: "This file implements BSP traversal and rendering, a key innovation in DOOM's real-time 3D graphics engine."
+slug: "m-cheat-c"
+order: 17
+description: "This file implements cheat code handling in DOOM, showcasing clever techniques for input validation and sequence recognition."
 
 summary:
-  - point: "Introduced BSP traversal for efficient rendering"
-    link: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
-    link_label: "Binary Space Partitioning"
-  - point: "Optimized wall clipping using solid segment lists"
-    link: "https://doomwiki.org/wiki/Rendering_engine"
-    link_label: "DOOM Rendering Engine"
-  - point: "Handled subsector rendering and sprite addition"
-    link: "https://doomwiki.org/wiki/Subsector"
-    link_label: "Subsector Rendering"
-  - point: "Recursive BSP traversal for spatial division"
-    link: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
-    link_label: "BSP Trees"
-  - point: "Efficient visibility checks using bounding boxes"
-    link: "https://doomwiki.org/wiki/Rendering_engine"
-    link_label: "Bounding Box Checks"
+  - point: "Implements cheat code sequence validation"
+    link: "https://en.wikipedia.org/wiki/Cheat_code"
+    link_label: "Cheat Code"
+  - point: "Uses a scrambled translation table for input mapping"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM"
+  - point: "Demonstrates modular design for input handling"
+    link: "https://en.wikipedia.org/wiki/Modular_programming"
+    link_label: "Modular Programming"
 
 enhancements:
-  - id: "clear-draw-segments"
-    line_start: 65
-    line_end: 71
-    title: "Why DOOM Clears Draw Segments Before Rendering"
-    wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
+  - id: "scrambled-input-mapping-table"
+    line_start: 27
+    line_end: 34
+    title: "The Scrambled Table That Hid Cheat Codes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
     image_url: ""
     image_caption: ""
-    content: "This function, `R_ClearDrawSegs`, resets the draw segment pointer (`ds_p`) to the beginning of the `drawsegs` array. Draw segments represent portions of walls that need to be rendered, and clearing them ensures that no stale data from previous frames interferes with the current rendering pass. In 1993, memory management was critical due to hardware constraints—DOOM had to run efficiently on machines with as little as 4MB of RAM. By reusing pre-allocated arrays like `drawsegs`, the developers avoided costly dynamic memory allocation during gameplay. This approach influenced later game engines, which adopted similar strategies for managing render lists and minimizing frame-to-frame overhead."
-  - id: "clip-solid-wall-segment"
-    line_start: 97
-    line_end: 185
-    title: "How DOOM Handles Solid Wall Clipping"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
+    content: "Lines 34–35 define a scrambled translation table (`cheat_xlate_table`) used to map user input into a predefined sequence for cheat code validation. This table is initialized with scrambled values derived from the `SCRAMBLE` macro, which obfuscates the mapping. The purpose of this approach was to prevent players from easily guessing or brute-forcing cheat codes by analyzing the game's input handling. At the time, cheat codes were a popular feature in games, offering players secret abilities or shortcuts. However, developers often sought ways to make these codes less predictable to maintain the sense of discovery. This technique reflects the ingenuity of DOOM's developers in balancing accessibility with challenge. The scrambled table approach influenced later games, where obfuscation techniques were used to protect sensitive data or prevent tampering. It also foreshadows modern practices in cryptography and input validation."
+  - id: "cheat-code-sequence-validation"
+    line_start: 37
+    line_end: 74
+    title: "How DOOM Checked Your Cheat Codes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `R_ClipSolidWallSegment` function processes solid walls that block the player's view entirely. It uses a list of clip ranges (`solidsegs`) to track visible portions of the screen and inserts new segments when necessary. The algorithm ensures efficient rendering by avoiding redundant calculations for occluded areas. At the time, this was a novel solution to the problem of visibility determination in 3D environments. John Carmack's implementation of BSP trees and clipping algorithms in DOOM set a precedent for real-time rendering in games, influencing engines like Quake and Unreal. The technique also became a staple in computer graphics education, demonstrating how spatial partitioning can optimize rendering pipelines."
-  - id: "clip-pass-wall-segment"
-    line_start: 189
-    line_end: 238
-    title: "Clipping Windows: DOOM's Pass Wall Segments"
-    wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
+    content: "Lines 42–75 implement the `cht_CheckCheat` function, which validates user input against predefined cheat code sequences. The function uses the scrambled translation table to match keystrokes to the expected sequence. If the sequence is completed successfully, the cheat is activated. This routine cleverly handles edge cases, such as resetting the sequence if an incorrect key is pressed, and initializing the sequence pointer (`cht->p`) on first use. In 1993, cheat codes were a hallmark of gaming culture, often serving as Easter eggs or developer tools. DOOM's implementation was notable for its robustness and modularity, allowing the cheat system to integrate seamlessly with the game's input handling. The technique of sequence validation influenced later games, where cheat codes evolved into unlockable achievements or developer modes. It also highlights the meticulous attention to detail that defined DOOM's programming, contributing to its reputation as a technical masterpiece."
+  - id: "extracting-cheat-code-parameters"
+    line_start: 76
+    line_end: 98
+    title: "The Function That Read Cheat Code Secrets"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
     image_url: ""
     image_caption: ""
-    content: "The `R_ClipPassWallSegment` function handles walls that act as windows, allowing partial visibility through textures. Unlike solid walls, these segments are not added to the clip list but are processed for rendering. This distinction between solid and passable walls was crucial for creating DOOM's immersive environments, where players could see through windows or openings while maintaining performance. The function's design reflects the game's reliance on efficient algorithms to manage complex scenes on limited hardware. This approach influenced later games that needed to balance visual fidelity with computational constraints, especially in early 3D engines."
-  - id: "check-bounding-box"
-    line_start: 359
-    line_end: 487
-    title: "The Bounding Box Trick That Saved DOOM's Frame Rate"
-    wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_CheckBBox` function determines whether a bounding box might be visible from the player's viewpoint. It uses precomputed coordinates and angles to quickly reject portions of the scene that are outside the field of view. This optimization was essential for DOOM's performance, as it reduced the number of subsectors and walls that needed to be processed during rendering. Bounding box checks were a direct response to the hardware limitations of the era, where CPUs lacked the power to handle exhaustive visibility calculations. The technique influenced later engines, including Quake, which built on DOOM's spatial partitioning and visibility determination methods to enable even more complex 3D environments."
-  - id: "render-bsp-node"
-    line_start: 547
-    line_end: 578
-    title: "Recursive BSP Traversal: DOOM's Rendering Backbone"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_RenderBSPNode` function is the heart of DOOM's BSP-based rendering system. It recursively traverses the BSP tree, rendering subsectors and checking visibility using bounding boxes. This approach allowed DOOM to efficiently divide the game world into manageable chunks, ensuring that only visible portions were processed. BSP trees were a groundbreaking innovation in 1993, enabling real-time 3D graphics on hardware that lacked dedicated GPUs. John Carmack adapted the technique from academic research and earlier games like Wolfenstein 3D, refining it to handle DOOM's more complex environments. The success of BSP traversal in DOOM directly influenced the development of Quake and other 3D engines, solidifying its place in the history of computer graphics."
+    content: "Lines 77–99 define the `cht_GetParam` function, which extracts parameters embedded within cheat code sequences. This function scans the sequence for a special marker (`1`) indicating the start of parameters, then copies the subsequent characters into a buffer. Parameters could represent numeric values, strings, or other data used to customize the cheat's effect. For example, a cheat might unlock a specific level or grant a set amount of resources. This design reflects the flexibility of DOOM's cheat system, allowing developers to encode complex behaviors within simple sequences. In the early 1990s, such functionality was rare, as most games used hardcoded cheats with fixed effects. DOOM's approach influenced later games that implemented parameterized cheats, enabling more dynamic and user-driven gameplay. It also demonstrates the game's modular architecture, where input handling, cheat validation, and parameter extraction were cleanly separated into distinct functions."
 
 ---
 
 ```cpp
+//-----------------------------------------------------------------------------
+//
+// $Id:$
+//
+// Copyright (C) 1993-1996 by id Software, Inc.
+//
+// This source is available for distribution and/or modification
+// only under the terms of the DOOM Source Code License as
+// published by id Software. All rights reserved.
+//
+// The source is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// FITNESS FOR A PARTICULAR PURPOSE. See the DOOM Source Code License
+// for more details.
+//
+// $Log:$
+//
+// DESCRIPTION:
+//	Cheat sequence checking.
+//
+//-----------------------------------------------------------------------------
 
-// Emacs style mode select   -*- C++ -*- 
-// short
-// comment
-// lines
-// here
+
+static const char
+rcsid[] = "$Id: m_cheat.c,v 1.1 1997/02/03 21:24:34 b1 Exp $";
+
+#include "m_cheat.h"
+
+//
+// CHEAT SEQUENCE PACKAGE
+//
+
+static int		firsttime = 1;
+static unsigned char	cheat_xlate_table[256];
+
+
+//
+// Called in st_stuff module, which handles the input.
+// Returns a 1 if the cheat was successful, 0 if failed.
+//
+int
+cht_CheckCheat
+( cheatseq_t*	cht,
+  char		key )
+{
+    int i;
+    int rc = 0;
+
+    if (firsttime)
+    {
+	firsttime = 0;
+	for (i=0;i<256;i++) cheat_xlate_table[i] = SCRAMBLE(i);
+    }
+
+    if (!cht->p)
+	cht->p = cht->sequence; // initialize if first time
+
+    if (*cht->p == 0)
+	*(cht->p++) = key;
+    else if
+	(cheat_xlate_table[(unsigned char)key] == *cht->p) cht->p++;
+    else
+	cht->p = cht->sequence;
+
+    if (*cht->p == 1)
+	cht->p++;
+    else if (*cht->p == 0xff) // end of sequence character
+    {
+	cht->p = cht->sequence;
+	rc = 1;
+    }
+
+    return rc;
+}
+
+void
+cht_GetParam
+( cheatseq_t*	cht,
+  char*		buffer )
+{
+
+    unsigned char *p, c;
+
+    p = cht->sequence;
+    while (*(p++) != 1);
+    
+    do
+    {
+	c = *p;
+	*(buffer++) = c;
+	*(p++) = 0;
+    }
+    while (c && *p!=0xff );
+
+    if (*p==0xff)
+	*buffer = 0;
+
+}
 ```

@@ -24,16 +24,16 @@ summary:
 
 enhancements:
   - id: "music-track-mapping"
-    line_start: 30
-    line_end: 107
+    line_start: 29
+    line_end: 106
     title: "How DOOM's Music Tracks Were Mapped"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section defines the `S_music` array, which maps music tracks to specific levels in DOOM. Each entry consists of a track name and a placeholder value (0), suggesting that the music data was managed externally or dynamically loaded during runtime. The track names, such as 'e1m1' and 'e2m1', correspond to the game's episodic structure and levels, while others like 'intro' and 'victor' denote special sequences. At the time, audio in games was constrained by hardware capabilities, with MIDI being a popular format due to its small size and compatibility with sound cards like the Sound Blaster. Bobby Prince composed DOOM's music, blending heavy metal influences with atmospheric tones to enhance gameplay immersion. This mapping allowed developers to easily associate music with levels, a technique that became standard in game development. Later games, such as Quake and Unreal, expanded on this approach by integrating dynamic music systems that adjusted based on player actions."
   - id: "sound-effect-metadata"
-    line_start: 110
-    line_end: 227
+    line_start: 109
+    line_end: 226
     title: "The Metadata Behind DOOM's Iconic Sounds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
     image_url: ""
@@ -43,7 +43,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

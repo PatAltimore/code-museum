@@ -24,64 +24,64 @@ summary:
 
 enhancements:
   - id: "firelight-flicker-effect"
-    line_start: 36
-    line_end: 61
+    line_start: 35
+    line_end: 60
     title: "The Trick Behind Flickering Firelight"
     wikipedia_url: "https://doomwiki.org/wiki/Doom_rendering_engine"
     image_url: ""
     image_caption: ""
     content: "The `T_FireFlicker` function simulates the flickering effect of firelight by periodically adjusting the light level of a sector. The code uses a random number generator to introduce variability, creating a convincing illusion of natural firelight. At the time, DOOM's developers were working with hardware constraints that limited graphical fidelity, so dynamic lighting effects like this were a clever way to enhance immersion without taxing the CPU. John Carmack's focus on efficient algorithms ensured that even these atmospheric touches could run smoothly on consumer-grade PCs. This technique influenced later games, including Quake and Unreal, which expanded on dynamic lighting to create even more realistic environments."
   - id: "spawn-firelight-flicker"
-    line_start: 65
-    line_end: 85
+    line_start: 64
+    line_end: 84
     title: "How DOOM Made Firelight Feel Alive"
     wikipedia_url: "https://doomwiki.org/wiki/Sector"
     image_url: ""
     image_caption: ""
     content: "The `P_SpawnFireFlicker` function initializes the firelight flickering effect for a given sector. It allocates memory for a `fireflicker_t` structure, sets up the 'Thinker' system to manage periodic updates, and calculates minimum and maximum light levels. This modular approach allowed DOOM's developers to reuse the flickering logic across multiple levels without duplicating code. At the time, memory management was a critical concern, and the use of the `Z_Malloc` function reflects id Software's careful handling of resources. The idea of associating dynamic effects with game sectors became a standard practice in level design, influencing engines like Source and Unity."
   - id: "broken-light-flash-effect"
-    line_start: 94
-    line_end: 114
+    line_start: 93
+    line_end: 113
     title: "Simulating Broken Lights with Random Timing"
     wikipedia_url: "https://doomwiki.org/wiki/Lighting"
     image_url: ""
     image_caption: ""
     content: "The `T_LightFlash` function creates the effect of broken or malfunctioning lights by alternating between maximum and minimum light levels with random timing. This randomness adds unpredictability, enhancing the eerie atmosphere of DOOM's levels. The use of pseudo-random numbers (`P_Random`) was a common technique in games of the era to simulate natural or chaotic phenomena. This effect, though simple, contributed to DOOM's reputation for immersive environments and was later refined in games like Half-Life, where lighting played a critical role in storytelling and mood."
   - id: "spawn-light-flash"
-    line_start: 119
-    line_end: 143
+    line_start: 118
+    line_end: 142
     title: "Automating Broken Light Effects in Levels"
     wikipedia_url: "https://doomwiki.org/wiki/Sector_specials"
     image_url: ""
     image_caption: ""
     content: "The `P_SpawnLightFlash` function automates the creation of broken light effects for sectors in a level. It sets up the 'Thinker' system to periodically update the light level, ensuring the effect persists throughout gameplay. By scanning sectors for special attributes after a map is loaded, DOOM's engine could dynamically apply effects without hardcoding them into the level design. This flexibility allowed level designers to focus on creativity while the engine handled technical implementation. The modularity of this system influenced later engines like Unreal Engine, which adopted similar approaches for dynamic environment effects."
   - id: "strobe-light-effect"
-    line_start: 152
-    line_end: 171
+    line_start: 151
+    line_end: 170
     title: "The Algorithm Behind Strobe Lighting"
     wikipedia_url: "https://doomwiki.org/wiki/Doom_rendering_engine"
     image_url: ""
     image_caption: ""
     content: "The `T_StrobeFlash` function implements strobe lighting by alternating between bright and dark light levels at fixed intervals. This effect was used to create dramatic and unsettling environments, particularly in DOOM's more intense levels. The function's simplicity reflects id Software's philosophy of building efficient, reusable code. Strobe lighting became a staple in horror and action games, influencing level design in titles like Resident Evil and Dead Space, where lighting is used to heighten tension and direct player focus."
   - id: "spawn-strobe-light"
-    line_start: 175
-    line_end: 209
+    line_start: 174
+    line_end: 208
     title: "Synchronizing Strobe Lights Across Levels"
     wikipedia_url: "https://doomwiki.org/wiki/Sector_specials"
     image_url: ""
     image_caption: ""
     content: "The `P_SpawnStrobeFlash` function initializes strobe lighting for a sector, with options for synchronization and speed. By allowing strobe lights to operate in sync or independently, DOOM's engine provided level designers with greater creative control. This function also demonstrates the modularity of DOOM's 'Thinker' system, which was designed to handle diverse game logic efficiently. The ability to synchronize effects across sectors influenced later engines, enabling complex environmental interactions in games like Bioshock and Portal."
   - id: "turn-tag-lights-off"
-    line_start: 233
-    line_end: 264
+    line_start: 232
+    line_end: 263
     title: "How DOOM Turned Lights Off Dynamically"
     wikipedia_url: "https://doomwiki.org/wiki/Lighting"
     image_url: ""
     image_caption: ""
     content: "The `EV_TurnTagLightsOff` function dynamically adjusts the light levels of sectors tagged with a specific line identifier, setting them to the minimum surrounding light level. This feature allowed for scripted events, such as lights going out when a player triggers a trap. At the time, dynamic lighting adjustments were rare in games, as most relied on static pre-rendered lighting. DOOM's ability to manipulate light levels in real-time contributed to its immersive gameplay and inspired similar mechanics in games like System Shock and Thief."
   - id: "glowing-light-effect"
-    line_start: 310
-    line_end: 356
+    line_start: 309
+    line_end: 355
     title: "The Glow That Made DOOM Feel Alive"
     wikipedia_url: "https://doomwiki.org/wiki/Doom_rendering_engine"
     image_url: ""
@@ -91,7 +91,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

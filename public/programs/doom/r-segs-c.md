@@ -30,24 +30,24 @@ summary:
 
 enhancements:
   - id: "masked-texture-rendering"
-    line_start: 99
-    line_end: 190
+    line_start: 98
+    line_end: 189
     title: "How DOOM Made Transparent Walls Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""
     image_caption: ""
     content: "This subroutine, `R_RenderMaskedSegRange`, is responsible for rendering masked textures, such as transparent walls or grates, in DOOM. Masked textures allow parts of the wall to be see-through, enabling effects like windows or fences. The routine calculates lighting based on the wall's orientation and light levels, adjusts texture positioning based on flags like `ML_DONTPEGBOTTOM`, and iterates over each column of the wall segment to render the texture. The use of fixed-point arithmetic ensures performance on the limited hardware of the early 1990s, where floating-point operations were expensive. In 1993, the computing landscape was dominated by machines like the Intel 486, which lacked hardware acceleration for graphics. Developers had to rely on clever software techniques to achieve effects that are now trivial with GPUs. John Carmack, DOOM's lead programmer, was known for his ability to push hardware to its limits. The masked texture system was a direct response to the need for dynamic and immersive environments, allowing players to see through barriers while maintaining high frame rates. This technique influenced countless games that followed, particularly in the first-person shooter genre. Titles like Quake and Unreal built on these ideas, incorporating more advanced transparency effects as hardware improved. Even today, the concept of masked textures persists in modern engines like Unity and Unreal Engine, albeit implemented with vastly more powerful tools. Carmack's work on DOOM laid the foundation for real-time rendering techniques that remain relevant decades later."
   - id: "core-rendering-loop"
-    line_start: 195
-    line_end: 364
+    line_start: 194
+    line_end: 363
     title: "The Loop That Drew DOOM's Walls"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computer_graphics"
     image_url: ""
     image_caption: ""
     content: "The `R_RenderSegLoop` routine is the heart of DOOM's wall rendering system. It draws wall textures, handles lighting, and marks floor and ceiling planes for further rendering. The loop iterates over each pixel column of a wall segment, calculating texture offsets and lighting values dynamically. It also supports multi-tiered walls, drawing separate textures for the top, middle, and bottom sections as needed. Special cases like masked textures are handled here, ensuring transparent walls are rendered correctly. In the early 1990s, real-time graphics were still in their infancy. DOOM's rendering engine was groundbreaking, achieving smooth 3D visuals on hardware with no dedicated graphics acceleration. The use of fixed-point arithmetic and precomputed lookup tables allowed the game to perform complex calculations quickly. Carmack's approach to rendering was heavily influenced by earlier games like Wolfenstein 3D but introduced innovations like variable lighting and texture alignment. This rendering loop became a cornerstone of real-time graphics programming. Its influence can be seen in later engines like Quake's, which expanded on these ideas with true 3D environments and hardware acceleration. Modern game engines still rely on similar principles, albeit implemented with shaders and parallel processing. The techniques pioneered in DOOM's rendering loop remain a testament to the ingenuity of early game developers."
   - id: "wall-segment-storage"
-    line_start: 369
-    line_end: 745
+    line_start: 368
+    line_end: 744
     title: "How DOOM Decided What to Draw"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -57,7 +57,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

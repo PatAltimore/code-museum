@@ -30,104 +30,104 @@ summary:
 
 enhancements:
   - id: "texture-animation-structures"
-    line_start: 56
-    line_end: 132
+    line_start: 55
+    line_end: 131
     title: "Animating Textures: A Simple Yet Effective Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
     content: "This section defines structures and data for animating textures and planes in DOOM. The `anim_t` and `animdef_t` structures specify the animation properties, such as whether the animation applies to textures or flats, the sequence of frames, and the speed of the animation. The `animdefs` array lists predefined animations, including iconic effects like flowing lava and dripping blood. In 1993, texture animation was a novel way to make environments feel alive and dynamic, especially on hardware with limited graphical capabilities. John Carmack's approach leveraged the WAD file format to define animations using sequential frames found in the game's resource files. This technique inspired later games to use similar methods for environmental effects, and it remains a fundamental concept in modern game engines like Unity and Unreal Engine."
   - id: "initialize-texture-animations"
-    line_start: 148
-    line_end: 187
+    line_start: 147
+    line_end: 186
     title: "Initializing Texture Animations: A WAD-driven Method"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_WAD"
     image_url: ""
     image_caption: ""
     content: "The `P_InitPicAnims` function initializes texture animations by processing the `animdefs` array. It checks whether the start and end frames exist in the WAD file, calculates the number of frames in the animation, and assigns the animation properties to the global `anims` array. This function demonstrates how DOOM's modular design allowed developers to define animations externally via WAD files, making it easy to add or modify content. The reliance on WAD files for resource management became a hallmark of DOOM's extensibility, enabling the creation of user-generated mods and levels. This approach influenced the design of later games, including Quake and Half-Life, which adopted similar modular resource systems."
   - id: "sector-utilities"
-    line_start: 197
-    line_end: 262
+    line_start: 196
+    line_end: 261
     title: "Sector Utilities: Navigating DOOM's Level Geometry"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
     image_url: ""
     image_caption: ""
     content: "Functions like `getSide`, `getSector`, `twoSided`, and `getNextSector` provide essential utilities for navigating and querying DOOM's sector-based level geometry. These functions allow the game to determine properties of adjacent sectors, such as whether a line is two-sided or which sector lies on the other side of a line. In the early 1990s, sector-based level design was a practical solution for creating complex environments on limited hardware. DOOM's efficient handling of sector relationships enabled dynamic interactions like doors, lifts, and teleportation. This approach influenced the design of other games that used similar geometry systems, including Duke Nukem 3D and Build Engine games."
   - id: "floor-and-ceiling-height-algorithms"
-    line_start: 266
-    line_end: 426
+    line_start: 265
+    line_end: 425
     title: "Finding Heights: Algorithms for Dynamic Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Algorithm"
     image_url: ""
     image_caption: ""
     content: "The functions `P_FindLowestFloorSurrounding`, `P_FindHighestFloorSurrounding`, `P_FindLowestCeilingSurrounding`, and `P_FindHighestCeilingSurrounding` calculate floor and ceiling heights in adjacent sectors. These algorithms enable dynamic level interactions, such as raising or lowering floors and ceilings based on surrounding geometry. In DOOM, these calculations were crucial for creating realistic and responsive environments. The use of fixed-point arithmetic reflects the constraints of 1990s hardware, where floating-point operations were often too slow. These techniques laid the groundwork for more advanced geometry manipulation in later games, influencing engines like Quake's BSP-based system and Unreal Engine's dynamic level editing."
   - id: "line-tag-triggers"
-    line_start: 430
-    line_end: 445
+    line_start: 429
+    line_end: 444
     title: "Line Tags: The Key to Scripted Events"
     wikipedia_url: "https://en.wikipedia.org/wiki/Trigger_(game_design)"
     image_url: ""
     image_caption: ""
     content: "The `P_FindSectorFromLineTag` function retrieves the next sector associated with a line tag, enabling scripted events like opening doors or triggering teleportation. Line tags were a simple yet powerful mechanism for defining interactions in DOOM's levels. By associating tags with sectors and lines, designers could create complex behaviors without hardcoding them into the game logic. This approach was a precursor to modern event-driven programming in games, where triggers and actions are defined declaratively. Line tags influenced the scripting systems of later games, including Quake's entity-based triggers and Half-Life's input-output system."
   - id: "light-level-calculations"
-    line_start: 450
-    line_end: 475
+    line_start: 449
+    line_end: 474
     title: "Dynamic Lighting: Calculating Surrounding Light Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(rendering)"
     image_url: ""
     image_caption: ""
     content: "The `P_FindMinSurroundingLight` function calculates the minimum light level in adjacent sectors, enabling dynamic lighting effects like dimming or brightening areas based on player movement. Dynamic lighting was a significant innovation in DOOM, creating a sense of atmosphere and tension in its levels. This function showcases how Carmack's code optimized lighting calculations for performance, using integer arithmetic and efficient loops. Dynamic lighting became a staple of game design, influencing later engines like Quake and Unreal, which expanded on these techniques with real-time lighting and shadow systems."
   - id: "cross-special-line-trigger"
-    line_start: 480
-    line_end: 535
+    line_start: 479
+    line_end: 534
     title: "Crossing the Line: Activating Special Events"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
     image_url: ""
     image_caption: ""
     content: "The `P_CrossSpecialLine` function handles events triggered when a player or object crosses a line with a special property. These events include opening doors, activating lifts, and teleporting. The function checks the type of object crossing the line and the line's special property, ensuring that only valid triggers are activated. This system allowed DOOM's levels to feel interactive and responsive, with scripted events seamlessly integrated into the gameplay. The concept of line-based triggers influenced the design of later games, including Quake and Unreal, which expanded on this idea with more sophisticated event systems and scripting languages."
   - id: "case-statement-special-actions"
-    line_start: 802
-    line_end: 949
+    line_start: 801
+    line_end: 948
     title: "How DOOM's case statements control the world"
     wikipedia_url: "https://doomwiki.org/wiki/Line_special"
     image_url: ""
     image_caption: ""
     content: "This section contains a large switch-case structure that maps specific line specials (triggered by player actions or map events) to their corresponding effects in the game world. Each case corresponds to an action, such as opening doors, raising floors, or teleporting objects. For example, case 97 triggers a teleportation event, while case 94 raises a floor and crushes anything above it. At the time, such direct mappings were a practical way to implement complex interactions in a resource-constrained environment. This approach allowed DOOM to offer a wide variety of dynamic effects without requiring extensive computational overhead. The technique influenced later games by demonstrating how simple structures could yield complex behaviors, especially in level design. Games like Quake and Unreal adopted similar methods for handling environmental interactions."
   - id: "impact-specials-shooting-lines"
-    line_start: 954
-    line_end: 1000
+    line_start: 953
+    line_end: 999
     title: "What happens when you shoot a wall?"
     wikipedia_url: "https://doomwiki.org/wiki/Line_special"
     image_url: ""
     image_caption: ""
     content: "The `P_ShootSpecialLine` function handles the impact of projectiles on special lines in the game world. When a projectile hits a line with a special property, this function determines whether the line should activate an effect, such as opening a door or raising a floor. The function checks if the shooter is a player or another entity, ensuring that only valid interactions occur. This mechanic added depth to DOOM's gameplay by allowing players to interact with the environment in unexpected ways, such as shooting switches to trigger events. The idea of environmental interaction through shooting influenced later games like Half-Life, where players could manipulate objects and solve puzzles with their weapons."
   - id: "player-in-special-sector"
-    line_start: 1004
-    line_end: 1071
+    line_start: 1003
+    line_end: 1070
     title: "Walking through slime and secrets"
     wikipedia_url: "https://doomwiki.org/wiki/Sector_special"
     image_url: ""
     image_caption: ""
     content: "The `P_PlayerInSpecialSector` function checks whether the player is in a special sector and applies the corresponding effects. Special sectors include damage zones like 'hellslime' and 'nukage,' secret areas that increase the player's secret count, and finale zones that trigger level exits. This function also handles unique mechanics, such as disabling god mode in the E1M8 finale. By tying environmental hazards and rewards to specific sectors, DOOM created a more immersive and strategic gameplay experience. Players had to navigate carefully, avoiding damage zones while seeking out secrets. This sector-based system became a staple in level design for future games, influencing titles like Duke Nukem 3D and System Shock."
   - id: "update-specials-animation-and-effects"
-    line_start: 1083
-    line_end: 1156
+    line_start: 1082
+    line_end: 1155
     title: "Animating textures and scrolling walls"
     wikipedia_url: "https://doomwiki.org/wiki/Texture_animation"
     image_url: ""
     image_caption: ""
     content: "The `P_UpdateSpecials` function handles global animations and special effects, including texture animations, scrolling walls, and timed events. It updates animated textures by cycling through frames based on the game's level time and manages line specials like scrolling offsets. The function also processes button timers, resetting textures when a button's effect expires. These dynamic elements added visual variety and interactivity to DOOM's levels, making the game world feel alive. The concept of animated textures and environmental effects was groundbreaking at the time and influenced later games like Quake and Unreal, which expanded on these ideas with more advanced rendering techniques."
   - id: "ev-do-donut"
-    line_start: 1160
-    line_end: 1221
+    line_start: 1159
+    line_end: 1220
     title: "The donut sector: rising slime and lowering floors"
     wikipedia_url: "https://doomwiki.org/wiki/Donut_sector"
     image_url: ""
     image_caption: ""
     content: "The `EV_DoDonut` function creates a unique environmental effect known as the 'donut sector.' It spawns a rising slime floor in one sector while lowering the floor in an adjacent sector, creating a dynamic visual and gameplay element. This effect is achieved by iterating through sectors connected to the triggering line and initializing floor movement objects. The donut sector showcases DOOM's ability to create complex environmental interactions with relatively simple code structures. This technique inspired creative level designs in later games, encouraging developers to experiment with dynamic environments and interconnected sector mechanics."
   - id: "p-spawn-specials"
-    line_start: 1225
-    line_end: 1362
+    line_start: 1224
+    line_end: 1361
     title: "Initializing flickering lights and secret areas"
     wikipedia_url: "https://doomwiki.org/wiki/Sector_special"
     image_url: ""
@@ -137,7 +137,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$

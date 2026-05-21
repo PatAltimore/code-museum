@@ -30,96 +30,96 @@ summary:
 
 enhancements:
   - id: "status-bar-constants"
-    line_start: 30
-    line_end: 266
+    line_start: 29
+    line_end: 265
     title: "Why DOOM's Status Bar Was Perfectly Positioned"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"
     image_url: ""
     image_caption: ""
     content: "This section defines constants for the layout and behavior of DOOM's status bar, including positions, dimensions, and color palettes for various elements like health, armor, weapons, and keys. The status bar was designed to fit neatly within the bottom portion of the screen, ensuring it didn't obstruct gameplay while providing critical information at a glance. In 1993, screen resolutions were limited, typically 320x200 pixels, so every pixel had to be used efficiently. The constants here reflect a meticulous effort to balance functionality and aesthetics. This design became iconic, influencing HUD layouts in countless games that followed, from Quake to modern FPS titles."
   - id: "cheat-code-implementation"
-    line_start: 397
-    line_end: 487
+    line_start: 396
+    line_end: 486
     title: "How DOOM Hid Its Cheat Codes in Plain Sight"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cheating_in_video_games"
     image_url: ""
     image_caption: ""
     content: "This section implements DOOM's cheat codes, including 'IDDQD' (god mode), 'IDKFA' (full ammo and keys), and 'IDSPISPOPD' (no clipping). The codes are stored as sequences of hexadecimal values, making them harder to decipher directly from the binary. Cheat codes were a staple of 1990s gaming, providing players with a way to experiment, explore, or simply have fun without the usual constraints. John Carmack and John Romero included these cheats partly as debugging tools during development. Their inclusion in the final game added to DOOM's mystique, as players shared and discovered them through word of mouth and gaming magazines. Cheat codes became a cultural phenomenon, influencing games like GTA and The Sims."
   - id: "status-bar-refresh"
-    line_start: 494
-    line_end: 512
+    line_start: 493
+    line_end: 511
     title: "Refreshing DOOM's Status Bar Without Missing a Frame"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"
     image_url: ""
     image_caption: ""
     content: "The `ST_refreshBackground` function redraws the status bar and its background elements, ensuring they remain visually consistent during gameplay. It uses functions like `V_DrawPatch` and `V_CopyRect` to manipulate the frame buffer directly, a common technique in the pre-GPU era when graphics rendering relied heavily on CPU operations. By optimizing these routines, id Software ensured DOOM's status bar could update seamlessly without impacting the game's frame rate. This approach reflects the team's deep understanding of hardware limitations and their ability to push the boundaries of what was possible on 1993-era PCs."
   - id: "cheat-code-responder"
-    line_start: 515
-    line_end: 725
+    line_start: 514
+    line_end: 724
     title: "The Code That Made 'IDDQD' Legendary"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cheating_in_video_games"
     image_url: ""
     image_caption: ""
     content: "The `ST_Responder` function intercepts keyboard input to detect and activate cheat codes. It checks for specific sequences, like 'IDDQD' for god mode, and toggles the corresponding game state or player attributes. This function also handles other cheats, such as 'IDFA' for full ammo and 'IDSPISPOPD' for no clipping. The cheat system was both a debugging tool and a playful addition for players. John Romero famously said, 'IDDQD' was a nod to the team's sense of humor and their desire to make the game accessible to all types of players. Cheat codes like these became iconic, cementing DOOM's place in gaming history and inspiring similar systems in future games."
   - id: "pain-offset-calculation"
-    line_start: 729
-    line_end: 743
+    line_start: 728
+    line_end: 742
     title: "How DOOM's Face Widget Reacts to Pain"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"
     image_url: ""
     image_caption: ""
     content: "The `ST_calcPainOffset` function calculates the appropriate face animation based on the player's health. It maps health values to predefined face states, ensuring the face widget reflects the player's condition accurately. This dynamic feedback was groundbreaking in 1993, adding a layer of emotional connection to the game. Players could see their avatar's pain, fear, or triumph, making the experience more immersive. The face widget became a hallmark of DOOM's design, influencing similar features in games like Duke Nukem 3D and Half-Life."
   - id: "face-widget-update"
-    line_start: 746
-    line_end: 800
+    line_start: 745
+    line_end: 799
     title: "The Algorithm Behind DOOM's Iconic Face Widget"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"
     image_url: ""
     image_caption: ""
     content: "The `ST_updateFaceWidget` function manages the animations and transitions of DOOM's face widget. It prioritizes expressions based on game events, such as death, picking up a weapon, or taking damage. The widget's precedence rules—dead > evil grin > turned head > straight ahead—ensure it conveys the most relevant information to the player. This feature was a technical and artistic achievement, combining real-time game state monitoring with expressive animations. The face widget became one of DOOM's most memorable elements, influencing HUD designs in games like System Shock and Fallout."
   - id: "player-face-animation-system"
-    line_start: 801
-    line_end: 922
+    line_start: 800
+    line_end: 921
     title: "How DOOM Made Faces React to Pain"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section dynamically updates the player's face on the status bar based on their health, attack status, and other conditions. The code calculates angles to determine the direction of incoming attacks and adjusts the face animation accordingly. The priority system ensures that more critical states, such as being attacked or rapid firing, override less important ones like invulnerability. This feature added a layer of immersion, making the UI feel alive and responsive. At the time, real-time UI updates were rare in games due to hardware constraints. John Carmack's approach to prioritizing animations and using efficient calculations allowed DOOM to deliver a polished experience on modest hardware. This technique influenced later games like Quake and Unreal, which expanded on dynamic UI elements to enhance player engagement."
   - id: "status-bar-widget-update"
-    line_start: 924
-    line_end: 986
+    line_start: 923
+    line_end: 985
     title: "The Modular Widget System Behind DOOM's Status Bar"
     wikipedia_url: "https://en.wikipedia.org/wiki/Widget_(GUI)"
     image_url: ""
     image_caption: ""
     content: "The `ST_updateWidgets` function updates various elements of the status bar, including ammo counts, keycards, and frags. It uses modular widgets to refresh specific components based on the player's state. This modularity allowed developers to easily add or modify status bar elements without disrupting the entire system. In 1993, modular UI systems were uncommon in games, as most interfaces were hardcoded. DOOM's widget-based approach influenced modern game engines like Unity and Unreal Engine, which rely on modular UI components for flexibility and scalability."
   - id: "palette-manipulation-for-visual-effects"
-    line_start: 1000
-    line_end: 1052
+    line_start: 999
+    line_end: 1051
     title: "The Palette Trick That Made DOOM Glow"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""
     image_caption: ""
     content: "The `ST_doPaletteStuff` function adjusts the game's color palette based on player states like damage, bonuses, or radiation exposure. By dynamically changing the palette, DOOM created visual effects such as red flashes for damage or green hues for radiation. This technique was a clever workaround for the limited graphical capabilities of early PCs, as it avoided the need for complex rendering while still delivering impactful visuals. Carmack's use of palette manipulation became a standard trick in game development, influencing titles like Duke Nukem 3D and Half-Life, which used similar techniques to enhance immersion."
   - id: "graphics-asset-loading"
-    line_start: 1124
-    line_end: 1199
+    line_start: 1123
+    line_end: 1198
     title: "How DOOM Loaded Status Bar Graphics Efficiently"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `ST_loadGraphics` function loads various graphical assets for the status bar, including numbers, keycards, and player faces. By caching these assets in memory, the game minimized loading times and ensured smooth transitions. This approach was critical in an era when disk access was slow and memory was limited. Carmack's focus on efficient memory management allowed DOOM to run seamlessly on hardware with as little as 4MB of RAM. This technique influenced later games and engines, which adopted asset caching as a best practice for performance optimization."
   - id: "widget-initialization-system"
-    line_start: 1282
-    line_end: 1439
+    line_start: 1281
+    line_end: 1438
     title: "The Code That Built DOOM's Status Bar"
     wikipedia_url: "https://en.wikipedia.org/wiki/Widget_(GUI)"
     image_url: ""
     image_caption: ""
     content: "The `ST_createWidgets` function initializes all the widgets used in the status bar, including health, armor, ammo, and keycards. Each widget is tied to specific player data, ensuring real-time updates during gameplay. This system was groundbreaking for its time, as it provided a dynamic and interactive UI in a resource-constrained environment. The modular design allowed developers to easily add new widgets or modify existing ones. This approach influenced modern game UI frameworks, which prioritize modularity and real-time data binding for flexibility and responsiveness."
   - id: "status-bar-initialization"
-    line_start: 1444
-    line_end: 1471
+    line_start: 1443
+    line_end: 1470
     title: "How DOOM's Status Bar Came to Life"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -129,7 +129,6 @@ enhancements:
 ---
 
 ```cpp
-// Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
 // $Id:$
