@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "toupper-string-conversion"
-    line_start: 66
-    line_end: 71
+    line_start: 162
+    line_end: 166
     title: "Why DOOM Converts Strings to Uppercase"
     wikipedia_url: "https://en.wikipedia.org/wiki/Case_sensitivity"
     image_url: ""
@@ -49,7 +49,7 @@ enhancements:
     content: "The `ExtractFileBase` function extracts the base name of a file, limited to eight characters, and converts it to uppercase. This design stems from the 8.3 filename convention used in MS-DOS, where filenames were restricted to eight characters plus a three-character extension. By enforcing this limit, DOOM ensures compatibility with legacy systems while maintaining a consistent naming scheme for WAD lumps. The function also validates the length, throwing an error if the base name exceeds eight characters. This reflects the constraints of the era, where hardware and software limitations shaped design decisions. The eight-character limit became iconic in early PC gaming and influenced how modders named their custom assets."
   - id: "wad-file-validation"
     line_start: 140
-    line_end: 225
+    line_end: 160
     title: "How DOOM Distinguishes IWADs from PWADs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
     image_url: ""
@@ -57,7 +57,7 @@ enhancements:
     content: "The `W_AddFile` function is responsible for loading WAD files, validating their headers, and populating the lump directory. It distinguishes between IWADs (core game data) and PWADs (custom or user-created content). This distinction allowed DOOM to support modding while protecting the integrity of its original game assets. The function reads the WAD header to determine the number of lumps and their locations, ensuring compatibility with both official and homebrew levels. This modular approach to game content was revolutionary, enabling users to create and share custom levels. The concept of separating core assets from user-generated content influenced countless games and engines, including Quake and Unreal."
   - id: "reloadable-wad-support"
     line_start: 230
-    line_end: 290
+    line_end: 274
     title: "The Hack That Made Map Reloads Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Reload_(computing)"
     image_url: ""

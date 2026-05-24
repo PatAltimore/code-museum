@@ -24,24 +24,24 @@ summary:
 
 enhancements:
   - id: "intermission-screen-constants"
-    line_start: 59
-    line_end: 108
+    line_start: 736
+    line_end: 746
     title: "Constants That Define Intermission Layout"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section defines constants that control the layout and positioning of elements on the intermission screens. These include coordinates for single-player statistics, net game results, and deathmatch matrices. By using predefined constants, the developers ensured consistent rendering across different game modes and screen resolutions. In the early 1990s, screen resolutions varied widely, and DOOM's reliance on fixed pixel coordinates reflects the era's approach to graphics programming. This design choice allowed DOOM to achieve visually appealing layouts on modest hardware without requiring dynamic scaling or resolution independence. Later games, such as Quake and Unreal Tournament, would adopt more flexible systems, but DOOM's hardcoded approach remains a snapshot of early graphical design practices."
   - id: "animation-data-structures"
-    line_start: 113
-    line_end: 173
+    line_start: 736
+    line_end: 746
     title: "How DOOM Handles Animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "This section introduces the data structures used to manage animations on intermission screens. The `anim_t` structure encapsulates details such as animation type, frame count, location, and timing. Animations are categorized into 'always', 'random', and 'level-specific', reflecting the game's need to balance dynamic visuals with performance constraints. In 1993, animations were a luxury on consumer-grade PCs, and DOOM's implementation showcases clever optimization. By using patches (small graphical elements) instead of full-screen frames, DOOM reduced memory usage and improved rendering speed. This technique influenced later games, which adopted similar strategies to manage animations efficiently."
   - id: "world-map-node-locations"
-    line_start: 176
-    line_end: 224
+    line_start: 736
+    line_end: 746
     title: "Mapping Levels to World Coordinates"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -121,7 +121,7 @@ enhancements:
     content: "This section updates single-player statistics during intermission screens, animating the display of kills, items, secrets, and time. It uses incremental counters to create a sense of progression and employs sound effects like 'pistol' and 'barexp' for auditory feedback. The code ensures that stats are capped at their maximum values and synchronizes time and par values for accurate display. This attention to detail enhanced the single-player experience, making players feel rewarded for their performance. The technique influenced later games with similar stat tracking, such as Resident Evil and Dark Souls."
   - id: "check-for-accelerate"
     line_start: 1469
-    line_end: 1501
+    line_end: 1497
     title: "Skipping Delays with Button Presses"
     wikipedia_url: "https://doomwiki.org/wiki/Controls"
     image_url: ""
@@ -137,7 +137,7 @@ enhancements:
     content: "This section loads the graphics and patches required for intermission screens, including background images and 'you are here' markers. It uses memory allocation techniques to optimize resource usage, reflecting the constraints of 1993 hardware. The code dynamically selects assets based on the game mode and episode, ensuring that intermission screens are visually consistent. This approach influenced later games, where dynamic asset loading became a key technique for optimizing performance and enhancing visual fidelity."
   - id: "animation-data-loading-hacks"
     line_start: 1601
-    line_end: 1623
+    line_end: 1622
     title: "The Animation Hack That Saved DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -145,7 +145,7 @@ enhancements:
     content: "This section loads animation data for the intermission screens, with a notable hack to reuse animation assets for Episode 1, Level 8. The code bypasses standard loading logic by directly referencing assets from Episode 1, Level 4. This 'MONDO HACK' reflects the practical constraints of 1993 hardware, where memory was precious and reusing assets was a necessity. John Carmack and the team often prioritized performance and resource efficiency over pristine code. This approach allowed DOOM to run smoothly on consumer-grade PCs while delivering visually rich intermission screens. Such hacks were common in early game development, where developers had to creatively work around hardware limitations. The technique of reusing assets influenced later games, especially in the era of sprite-based graphics, where memory optimization was critical."
   - id: "intermission-text-and-symbol-loading"
     line_start: 1625
-    line_end: 1692
+    line_end: 1668
     title: "How DOOM Loaded Its Intermission Symbols"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -153,7 +153,7 @@ enhancements:
     content: "This section loads various text and symbols used in the intermission screens, such as numbers, percent signs, and phrases like 'finished' and 'entering.' Each element is cached using the W_CacheLumpName function, ensuring efficient memory usage. The intermission screens were a crucial part of DOOM's storytelling, providing players with a sense of progression and accomplishment. The choice to cache these assets reflects the team's focus on performance, as reloading these elements repeatedly would have slowed down the game. The inclusion of specific assets like 'sucks' and 'par' also highlights DOOM's irreverent tone, which resonated with its audience. This method of caching graphical assets became standard practice in game development, influencing engines like Quake and Unreal."
   - id: "multiplayer-statistics-loading"
     line_start: 1694
-    line_end: 1705
+    line_end: 1703
     title: "Multiplayer Stats: DOOM's Competitive Edge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""

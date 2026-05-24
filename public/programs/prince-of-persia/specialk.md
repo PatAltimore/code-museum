@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "keys-detect-keypresses"
-    line_start: 16
+    line_start: 131
     line_end: 140
     title: "Detecting Keypresses in Real-Time Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_(computing)"
@@ -47,7 +47,7 @@ enhancements:
     content: "The 'freeze' subroutine handles the ESC key, which pauses the game and prevents further keypresses from being registered until unpaused. This functionality was crucial for debugging during development and provided players with a way to pause gameplay, a feature that was becoming standard in games of the era. In the Apple II environment, pausing required halting the game's main loop while preserving the state of all variables and hardware registers. Mechner's implementation ensures that the ESC key's press is ignored after freezing to prevent accidental unpausing. This approach reflects the dual-purpose nature of many features in early game development: tools created for debugging often became part of the final product. The freeze functionality influenced later games by demonstrating how debugging tools could enhance player experience, leading to features like pause menus and debug consoles in modern games."
   - id: "legit-keys-special-actions"
     line_start: 260
-    line_end: 359
+    line_end: 353
     title: "Special Keys for Legitimate Actions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_shortcut"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The 'LegitKeys' routine maps specific keypresses to in-game actions, such as restarting the level, aborting the game, or toggling sound and music. These shortcuts provided players with quick access to essential functions without navigating menus, enhancing the game's cinematic flow. In the constrained environment of the Apple II, implementing such shortcuts required careful memory management and efficient code. Mechner's use of direct comparisons and jumps ensured minimal overhead, allowing the game to respond quickly to player inputs. This design influenced the use of keyboard shortcuts in games and software, where quick access to functions became a standard feature. It also highlights the importance of user experience in game design, a principle that continues to shape modern gaming interfaces."
   - id: "temp-devel-debug-keys"
     line_start: 375
-    line_end: 546
+    line_end: 543
     title: "Debugging Keys Hidden in Plain Sight"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""
@@ -63,14 +63,14 @@ enhancements:
     content: "The 'TempDevel' routine includes development-only keys used for debugging and testing during development. These keys allowed Mechner to quickly modify game states, such as skipping levels, toggling redraw flags, or adjusting gameplay variables. Debugging tools like this were essential for solo developers working on complex projects like Prince of Persia. The ability to manipulate game states without recompiling saved valuable time and enabled rapid iteration. While these keys were removed or disabled in the final version, their legacy lives on in modern games, where debug consoles and developer modes provide similar functionality. This routine demonstrates how development tools can shape the final product, influencing features like cheat codes and modding tools."
   - id: "addkey-buffer-management"
     line_start: 560
-    line_end: 584
+    line_end: 576
     title: "Managing the Keyboard Buffer with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
     image_url: ""
     image_caption: ""
     content: "The 'addkey' routine adds a keypress to the keyboard buffer, ensuring that inputs are processed in the order they are received. This routine uses a circular buffer to manage limited memory efficiently, wrapping around when the buffer reaches its maximum length. In the Apple II's constrained environment, managing input buffers was a common challenge. Mechner's implementation avoids overwriting data and ensures smooth gameplay by maintaining a reliable input queue. This technique influenced later games and systems, where input buffering became a standard practice. It highlights the importance of efficient memory management in real-time applications, a principle that remains relevant in modern game development."
   - id: "kread-keyboard-control"
-    line_start: 560
+    line_start: 707
     line_end: 786
     title: "Keyboard Control: Mapping Keys to Movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The 'KREAD' routine maps keypresses to player movements, translating keyboard inputs into changes in the character's position. It handles both fresh and stale keypresses, ensuring that the character responds appropriately to held keys. This routine was critical for Prince of Persia's fluid animations and precise controls, which were key to its cinematic gameplay. Mechner's implementation accounts for diagonal movements and shift-modified keys, providing a rich control scheme on a limited hardware platform. The principles demonstrated here influenced input handling in later games, particularly those requiring complex movement systems. It showcases how thoughtful design can overcome hardware limitations to deliver a compelling player experience."
   - id: "zerosound-clear-sound-table"
-    line_start: 824
-    line_end: 978
+    line_start: 968
+    line_end: 990
     title: "Clearing the Sound Table for a Fresh Start"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
@@ -103,15 +103,15 @@ enhancements:
     content: "This section implements a routine to handle keyboard input specifically for the game's demo mode. It checks for keypresses and interrupts if certain keys, like ESC or sound-related keys, are pressed. The programmer, Jordan Mechner, needed a way to ensure the demo mode could run uninterrupted while still allowing for specific user interactions. In 1989, the Apple II's hardware constraints meant that direct polling of memory-mapped I/O registers (like $C061 and $C062 for keyboard input) was common practice. This approach reflects the era's reliance on low-level hardware manipulation to achieve responsiveness. The technique influenced later games by demonstrating how to balance automated sequences with user input, a concept that became foundational in interactive demos and attract modes in arcade games."
   - id: "list-visible-torches"
     line_start: 1052
-    line_end: 1124
+    line_end: 1112
     title: "The Routine That Tracks Torches on Screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
     image_caption: ""
     content: "LISTTORCHES builds a list of visible torches on the screen without disturbing other graphics buffers. It iterates through the screen's visible area, identifying torch objects and storing their positions and states in dedicated arrays. This was essential for animating torch flames later in the BURN routine. In the mid-1980s, the Apple II's graphics system was notoriously limited, with no hardware support for sprites. Mechner bypassed these limitations by directly manipulating memory to track and animate objects. This technique showcases the ingenuity required to create dynamic visuals on hardware with minimal graphical capabilities. The approach influenced later developers working on constrained systems, such as the NES, where similar object-tracking routines were used to simulate sprite-like behavior."
   - id: "torch-flame-animation"
-    line_start: 1034
-    line_end: 1050
+    line_start: 1114
+    line_end: 1162
     title: "Animating Torch Flames Directly in Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
@@ -127,23 +127,23 @@ enhancements:
     content: "GETMINLEFT calculates the remaining time in minutes and seconds based on the game's frame counter. It uses binary-coded decimal (BCD) arithmetic, a common technique on 6502 processors, to ensure human-readable time values. This routine reflects the era's focus on precision and efficiency, as real-time calculations had to fit within the constraints of the Apple II's limited processing power. By breaking down time into smaller units, Mechner ensured the game could dynamically adjust pacing, a hallmark of cinematic platformers. The concept of real-time timekeeping influenced later games that relied on countdown mechanics, such as the Tomb Raider series, which also emphasized tension and pacing."
   - id: "time-event-scheduling"
     line_start: 1232
-    line_end: 1260
+    line_end: 1251
     title: "The Table That Schedules Time-Based Events"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "The timetable defines key moments in the game's countdown, such as when messages or events should occur. Each entry corresponds to a specific frame count, allowing precise scheduling of in-game events. This approach reflects Mechner's cinematic ambitions, as it enabled the game to deliver scripted moments at exactly the right time. In the late 1980s, such techniques were rare in games, which often relied on simpler event triggers. The timetable concept influenced later games with scripted sequences, such as Half-Life, where precise timing was crucial for narrative delivery."
   - id: "shorten-time-cheat"
-    line_start: 1232
-    line_end: 1260
+    line_start: 1306
+    line_end: 1322
     title: "The Cheat That Gives Players More Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "SHORTENTIME reduces the remaining time to 15 minutes when players skip a level, ensuring the game remains challenging while accommodating cheats. This routine adjusts the frame counter and next message timing, maintaining the game's pacing. In the 1980s, cheat codes and shortcuts were often included as debugging tools but became a beloved feature for players. Mechner's implementation reflects his understanding of player psychology, balancing fairness with accessibility. Cheat mechanics like this influenced later games, such as the Konami Code, which became iconic for providing players with advantages while preserving gameplay integrity."
   - id: "keyboard-strobing"
-    line_start: 1255
-    line_end: 1304
+    line_start: 1337
+    line_end: 1349
     title: "How the Keyboard Is Strobed for Input"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""

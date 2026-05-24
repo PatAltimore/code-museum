@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "version-string-embedded-in-code"
-    line_start: 7
+    line_start: 1
     line_end: 11
     title: "Why Embed Version Strings in Assembly?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"

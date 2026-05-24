@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "ylo-yhi-coordinate-mapping"
     line_start: 7
-    line_end: 44
+    line_end: 29
     title: "How Screen Coordinates Map to Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
@@ -33,7 +33,7 @@ enhancements:
     content: "The YLO and YHI tables map screen Y-coordinates (0–191) to base memory addresses on the Apple II's high-resolution graphics pages. YLO provides the low byte, while YHI provides the high byte of the address. This mapping is essential for rendering graphics efficiently, as it allows the program to calculate pixel positions without expensive arithmetic operations. At the time, the Apple II's graphics system was notoriously difficult to work with due to its non-linear memory layout, which required developers to account for gaps and irregularities in the address space. Jordan Mechner's approach here reflects a deep understanding of the Apple II hardware and a commitment to performance. These tables enabled the smooth scrolling and precise animations that defined Prince of Persia's groundbreaking visual style. Later games and engines borrowed similar techniques for efficient memory addressing, especially on constrained systems like the NES and Commodore 64."
   - id: "shift-carry-pixel-manipulation"
     line_start: 46
-    line_end: 196
+    line_end: 126
     title: "The Tables That Shift Pixels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
@@ -57,7 +57,7 @@ enhancements:
     content: "The MASKTAB table provides precomputed bit masks for manipulating individual pixels within a byte. Each mask corresponds to a specific bit offset, enabling precise control over which pixels are affected during rendering operations. This is particularly useful for tasks like sprite transparency and collision detection. On the Apple II, where graphics operations had to be performed manually in software, such masks were indispensable. Mechner's use of MASKTAB demonstrates his attention to detail and his ability to extract maximum performance from limited hardware. The concept of bit masking remains fundamental in graphics programming, and similar tables can be found in the rendering systems of many early consoles and computers."
   - id: "shift-carry-addressing"
     line_start: 246
-    line_end: 294
+    line_end: 285
     title: "Dynamic Addressing for Shift and Carry Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -65,7 +65,7 @@ enhancements:
     content: "The SHIFTL, SHIFTH, CARRYL, and CARRYH tables provide dynamic addressing for the SHIFTn and CARRYn tables. By indexing these tables with a bit offset, the program can quickly locate the appropriate shift or carry table for a given operation. This design minimizes the overhead of table lookups and streamlines the rendering process. On the Apple II, where memory and CPU cycles were at a premium, such optimizations were critical. Mechner's approach here reflects his deep understanding of the hardware and his ability to design systems that balance flexibility with performance. This dynamic addressing technique influenced later graphics engines, where similar methods were used to manage texture and sprite data efficiently."
   - id: "opacity-opcode-self-modifying-code"
     line_start: 312
-    line_end: 328
+    line_end: 326
     title: "Self-Modifying Code for Opacity Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""

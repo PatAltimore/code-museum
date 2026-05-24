@@ -49,7 +49,7 @@ enhancements:
     content: "The 'CHKARG' routine parses command-line arguments, a critical feature for MS-DOS's command-line interface. It identifies switches (e.g., `/P`) and processes them, converting characters to lowercase for case-insensitive comparison. This approach reflects the constraints of assembly programming, where every operation must be explicitly coded. Command-line parsing was essential for DOS's usability, allowing users to pass parameters to programs and scripts. The technique influenced later command-line systems, including Unix shells and Windows CMD. Developers studying this code learned how to implement efficient string processing in low-level languages, a skill still relevant in embedded systems and performance-critical applications."
   - id: "device-initialization"
     line_start: 685
-    line_end: 767
+    line_end: 709
     title: "Making Any File Act Like a Device"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
     image_url: ""
@@ -65,7 +65,7 @@ enhancements:
     content: "The 'COMTRLOOP' section includes code for handling Kanji characters, reflecting Microsoft's efforts to support international markets. Kanji, used in Japanese writing, requires multi-byte encoding, which complicates string processing. This routine checks for Kanji characters and adjusts the parsing logic accordingly. In the early 1980s, internationalization was becoming increasingly important as personal computers gained global popularity. Microsoft's inclusion of Kanji support in MS-DOS v2.0 helped the operating system succeed in Japan, one of the world's largest PC markets. This work influenced later efforts in software localization and encoding standards, including Unicode, which solved many of the challenges seen here."
   - id: "command-com-validation"
     line_start: 877
-    line_end: 965
+    line_end: 953
     title: "Ensuring COMMAND.COM Exists"
     wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""
@@ -121,7 +121,7 @@ enhancements:
     content: "The `NOTKANJ4` routine checks whether a character is part of a Kanji sequence, using specific ranges of values to identify lead bytes. This reflects early efforts to support internationalization in MS-DOS, accommodating non-English character sets like Japanese Kanji. The inclusion of Kanji handling was significant in 1983, as it demonstrated Microsoft's recognition of global markets and the need for localized software. This work laid the groundwork for broader internationalization efforts in software development, influencing later operating systems, applications, and programming languages that prioritize multilingual support."
   - id: "uppercase-conversion-for-compatibility"
     line_start: 1813
-    line_end: 1827
+    line_end: 1823
     title: "Uppercase Conversion for Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
     image_url: ""
@@ -129,7 +129,7 @@ enhancements:
     content: "The `IUPCONV` routine converts lowercase ASCII characters to uppercase by subtracting 0x20 from their value. This ensures case-insensitivity in file and command names, a hallmark of MS-DOS's design. Case-insensitivity was crucial for usability, as it simplified interactions for users unfamiliar with strict case requirements in Unix-like systems. This routine reflects the influence of CP/M, the predecessor to MS-DOS, which also used case-insensitive file systems. The approach became standard practice in operating systems like Windows, where case-insensitivity remains a key feature of the file system."
   - id: "device-path-and-command-definitions"
     line_start: 1831
-    line_end: 1871
+    line_end: 1841
     title: "Why MS-DOS Needed '/DEV/' and 'COMMAND.COM'"
     wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""
@@ -137,7 +137,7 @@ enhancements:
     content: "This section defines key strings and paths used during the MS-DOS initialization process. '/DEV/' represents the device path prefix, while 'COMMAND.COM' identifies the default command interpreter. These definitions were crucial for MS-DOS's modular design, allowing it to locate and interact with devices and execute commands. At the time, the IBM PC had limited storage and memory, so every byte mattered. Tim Paterson's original 86-DOS design was inspired by CP/M, but MS-DOS v2.0 incorporated Unix-like features such as hierarchical directories and environment variables. This section reflects the transition to a more flexible and powerful operating system. The inclusion of 'COMMAND.COM' as the default shell was a direct response to the need for a user-friendly interface on the IBM PC. This approach influenced later operating systems, including Windows, which retained the concept of a default command interpreter. Developers studying this code would later adapt similar techniques for defining system paths and environment variables in their own systems."
   - id: "autoexec-bat-and-date-prompt"
     line_start: 1845
-    line_end: 1861
+    line_end: 1845
     title: "How MS-DOS Automated Boot with AUTOEXEC.BAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/AUTOEXEC.BAT"
     image_url: ""

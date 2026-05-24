@@ -24,31 +24,31 @@ summary:
 
 enhancements:
   - id: "cvar-find-variable"
-    line_start: 31
-    line_end: 45
+    line_start: 33
+    line_end: 48
     title: "How Quake Found Its Dynamic Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This function, `Cvar_FindVar`, searches for a dynamic variable by name within a linked list of variables. Dynamic variables, or 'cvars', were a cornerstone of Quake's configuration system, allowing players and developers to tweak settings like graphics, physics, and gameplay parameters without recompiling the code. At the time, linked lists were a common choice for such tasks due to their simplicity and adaptability in low-memory environments. In 1996, hardware constraints like the Intel 486 processor's limited memory meant developers had to prioritize efficiency and simplicity. John Carmack and his team designed this system to allow real-time adjustments, a feature that became standard in game engines like Unreal Engine and Source Engine. The concept of dynamic variables influenced not only game development but also broader software practices, as runtime configurability became a hallmark of modern systems."
   - id: "cvar-variable-value"
-    line_start: 47
-    line_end: 60
+    line_start: 49
+    line_end: 64
     title: "Turning Strings into Numbers for Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Cvar_VariableValue` function retrieves a variable's value as a floating-point number. This conversion, using the `Q_atof` function, was essential for numerical settings like gravity or movement speed. In the mid-1990s, floating-point arithmetic was computationally expensive, but it was necessary for the precision required in Quake's groundbreaking 3D physics engine. The reliance on runtime string-to-number conversion highlights the trade-offs developers faced: flexibility versus performance. This approach influenced later engines, where similar systems allowed developers to balance gameplay mechanics dynamically. The technique also demonstrated the importance of abstraction in game development, paving the way for scripting languages like Lua and Python in modern engines."
   - id: "cvar-variable-string"
-    line_start: 63
-    line_end: 76
+    line_start: 65
+    line_end: 80
     title: "Fallbacks and Defaults: A Null String Solution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Cvar_VariableString` function retrieves a variable's string value, returning a default empty string if the variable is not found. This design ensured stability in cases where a variable might be referenced before being defined, a common issue in dynamic systems. The use of a null string as a fallback reflects the team's focus on robustness in a multiplayer environment, where unpredictable user input could lead to crashes. This approach influenced error-handling practices in later engines, emphasizing the importance of graceful degradation. It also highlights the meticulous attention to detail that characterized id Software's development process, ensuring their games were both innovative and reliable."
   - id: "cvar-complete-variable"
-    line_start: 79
+    line_start: 81
     line_end: 105
     title: "Autocomplete in the Console: A User-Friendly Touch"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -56,32 +56,32 @@ enhancements:
     image_caption: ""
     content: "The `Cvar_CompleteVariable` function implements autocomplete for variable names in the console, checking both exact and partial matches. This feature enhanced usability, allowing players and developers to quickly find and modify settings without memorizing exact names. In the mid-1990s, such user-friendly features were rare in games, reflecting id Software's commitment to empowering users. The autocomplete system also demonstrated the team's understanding of player needs, as Quake's multiplayer environment demanded quick adjustments during gameplay. This innovation influenced later game engines and tools, where console commands and autocomplete became standard, improving accessibility for both casual players and modders."
   - id: "cvar-set-variable"
-    line_start: 110
-    line_end: 152
+    line_start: 114
+    line_end: 155
     title: "Setting Variables Across Multiplayer Boundaries"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Cvar_Set` function updates the value of a dynamic variable, with additional logic for multiplayer scenarios. When a variable marked as 'info' is changed, the function propagates the update to connected clients or servers, ensuring consistency across the network. This design was crucial for Quake's multiplayer experience, where settings like player names or server configurations needed to synchronize seamlessly. The function also frees and reallocates memory for the variable's string, reflecting the team's careful memory management practices. In an era of limited hardware resources, such optimizations were vital. This approach influenced later multiplayer games, where dynamic configuration became a key feature, and laid the groundwork for modern networked systems like Steam and Xbox Live."
   - id: "cvar-register-variable"
-    line_start: 168
-    line_end: 203
+    line_start: 170
+    line_end: 206
     title: "Registering Variables: A Modular Approach"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Cvar_RegisterVariable` function adds a new variable to the linked list, ensuring no conflicts with existing variables or commands. This modular approach allowed developers to extend Quake's functionality without altering core systems, a key advantage in a rapidly evolving project. The function also checks for overlap with console commands, preventing ambiguities that could confuse users. By copying and managing the variable's value string, the team ensured consistency and memory safety, critical in an era where crashes were common. This registration system influenced the design of extensible engines like Unreal Engine, where modularity and safety became defining features."
   - id: "cvar-command-console"
-    line_start: 205
-    line_end: 230
+    line_start: 207
+    line_end: 234
     title: "Console Commands: Bridging Players and Code"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Cvar_Command` function handles variable inspection and modification from the console, bridging the gap between players and the underlying code. By allowing users to query and set variables directly, id Software empowered players to customize their experience and troubleshoot issues. This feature was particularly valuable in Quake's multiplayer environment, where quick adjustments could mean the difference between victory and defeat. The console system influenced later games, where developer consoles became essential tools for debugging and modding. It also demonstrated the team's commitment to transparency and user empowerment, principles that shaped the open-source movement in gaming."
   - id: "cvar-write-variables"
-    line_start: 233
-    line_end: 248
+    line_start: 235
+    line_end: 247
     title: "Saving Settings: Archiving for the Future"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

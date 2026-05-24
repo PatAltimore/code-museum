@@ -65,7 +65,7 @@ enhancements:
     content: "The onground subroutine includes special logic for Level 12, where a phantom bridge dynamically creates floorboards as the character moves. This clever workaround allowed Mechner to create a unique gameplay moment despite the Apple II's hardware limitations. By dynamically altering the environment, Mechner demonstrated how to push the boundaries of what was possible on early computers. This technique inspired later developers to use procedural generation and dynamic environments in games, leading to innovations in titles like Minecraft and Spelunky."
   - id: "starting-to-fall"
     line_start: 353
-    line_end: 455
+    line_end: 436
     title: "The Subroutine That Starts a Fall"
     wikipedia_url: "https://en.wikipedia.org/wiki/Platform_game"
     image_url: ""
@@ -97,7 +97,7 @@ enhancements:
     content: "The PLAYERCTRL subroutine handles input from the player, translating joystick or keyboard actions into character movements. It includes logic for demo mode and live gameplay, showcasing Mechner's ability to optimize for multiple scenarios. In the 1980s, input handling was a complex task due to hardware constraints, and Mechner's approach here influenced the development of input systems in later games. By prioritizing responsiveness and flexibility, he set a standard for player control that persists in modern gaming."
   - id: "demo-mode-control"
     line_start: 584
-    line_end: 609
+    line_end: 607
     title: "The Code Behind Demo Mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_demo"
     image_url: ""
@@ -121,7 +121,7 @@ enhancements:
     content: "The 'Stairs' subroutine handles the character's ability to climb stairs, a feature that adds verticality to the game's level design. The code checks for specific conditions, such as the presence of stairs blocks and the player's position relative to them, before initiating the climbing animation. This mechanic was part of Mechner's effort to create a realistic and immersive environment, where the player's actions felt natural and responsive. At the time, most platformers focused on horizontal movement, but Prince of Persia's inclusion of stairs and other vertical elements expanded the genre's possibilities. This innovation influenced later games like Tomb Raider, which integrated climbing and exploration into its core gameplay."
   - id: "crouching-and-crawling"
     line_start: 1263
-    line_end: 1300
+    line_end: 1292
     title: "Crouching: A Gateway to Crawling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -129,23 +129,23 @@ enhancements:
     content: "The 'crouching' subroutine introduces the ability to crouch and crawl, allowing the player to navigate tight spaces and avoid obstacles. The code checks for button presses and joystick movements to determine whether the character should remain crouched, stand up, or transition into crawling. This mechanic was groundbreaking in 1989, as it added a layer of realism and strategy to the gameplay. Mechner's decision to include crouching and crawling reflects his commitment to creating a cinematic experience, where the character's movements mirrored those of a real person. This feature influenced later games like Metal Gear Solid, which used similar mechanics for stealth gameplay."
   - id: "turning-and-turnrun"
     line_start: 1323
-    line_end: 1347
+    line_end: 1341
     title: "Turning: Precision in Movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Platform_game"
     image_url: ""
     image_caption: ""
     content: "The 'turning' subroutine handles the character's ability to turn around, a simple yet essential action in the game's fluid movement system. The code checks joystick inputs to determine whether the character should turn or transition into a 'turnrun,' where the character turns and immediately starts running. This mechanic exemplifies Mechner's attention to detail, ensuring that every movement felt deliberate and responsive. At the time, most platformers lacked such nuanced control, often limiting the player to binary states of movement. Prince of Persia's turning mechanic influenced the design of later games like Super Mario 64, which prioritized fluid and intuitive character movement."
   - id: "running-dive-roll"
-    line_start: 1263
-    line_end: 1304
+    line_start: 1343
+    line_end: 1401
     title: "The Dive Roll: Cinematic Action"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
     content: "The 'arunning' subroutine includes logic for running and transitioning into a dive roll, one of the game's most cinematic actions. The code checks joystick inputs to determine whether the character should continue running, perform a running jump, or execute a dive roll. Mechner's use of rotoscoping to animate these movements ensured that they appeared smooth and realistic, enhancing the game's cinematic feel. The dive roll mechanic added a sense of urgency and drama to the gameplay, influencing later action-adventure games like Assassin's Creed, which adopted similar fluid animations for parkour and combat."
   - id: "hanging-and-climbing-up"
-    line_start: 1323
-    line_end: 1450
+    line_start: 1403
+    line_end: 1530
     title: "Hanging: The Edge of Survival"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -153,15 +153,15 @@ enhancements:
     content: "The 'hanging' subroutine handles the character's ability to hang from ledges, a feature that adds tension and realism to the gameplay. The code checks for joystick inputs and environmental conditions to determine whether the character can climb up, drop down, or remain hanging. This mechanic was a significant departure from traditional platformers, which rarely included such dynamic interactions with the environment. Mechner's focus on creating a cinematic experience is evident here, as hanging from ledges often serves as a dramatic moment in the game. This feature influenced later games like Uncharted, which used similar mechanics to enhance its action-adventure gameplay."
   - id: "run-jump-calibration"
     line_start: 1752
-    line_end: 2015
+    line_end: 1837
     title: "Calibrating the Perfect Run Jump"
     wikipedia_url: "https://en.wikipedia.org/wiki/Platform_game"
     image_url: ""
     image_caption: ""
     content: "The 'DoRunjump' subroutine calibrates the character's running jump to ensure that the foot pushes off at the edge of a platform. The code calculates the distance to the edge and adjusts the character's position accordingly, creating a seamless and cinematic jump sequence. This level of precision was rare in 1989, as most platformers relied on fixed jump mechanics that often felt clunky and unresponsive. Mechner's approach here reflects his commitment to creating a realistic and immersive experience, where every action feels deliberate. This mechanic influenced later games like Celeste, which prioritized precise and responsive controls for platforming challenges."
   - id: "spike-impalement-check"
-    line_start: 1926
-    line_end: 1995
+    line_start: 2007
+    line_end: 2051
     title: "The Brutality of Spike Impalement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -185,7 +185,7 @@ enhancements:
     content: "The TryPickup routine determines whether the player character can pick up an object, such as a flask or sword. It checks the type of object underfoot or in front of the character and verifies if there is enough space to interact with it. If the object is accessible, the character is moved closer to it, and the PickItUp subroutine is called. In the Apple II era, memory constraints required developers to optimize routines for efficiency. Mechner's code demonstrates careful handling of proximity checks and character positioning, ensuring smooth gameplay interactions without wasting cycles. The use of conditional jumps and subroutine calls minimizes redundancy and keeps the code compact. This approach to object interaction laid the groundwork for more complex systems in later games, such as inventory management and environmental puzzles. Titles like Tomb Raider and The Legend of Zelda built upon these mechanics, introducing nuanced interactions with objects and surroundings. Mechner's work here showcases the importance of intuitive and responsive gameplay design in creating immersive experiences."
   - id: "item-acquisition-and-character-positioning"
     line_start: 2120
-    line_end: 2164
+    line_end: 2162
     title: "Item Acquisition: Positioning and Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
     image_url: ""

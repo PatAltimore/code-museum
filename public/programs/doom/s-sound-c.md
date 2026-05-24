@@ -62,8 +62,8 @@ enhancements:
     image_caption: ""
     content: "The `S_AdjustSoundParams` function calculates sound attenuation based on the distance between the listener and the sound source, using a pseudo-Euclidean distance formula for efficiency. It also determines stereo separation based on the relative angle of the sound source. These calculations allowed DOOM to simulate spatial audio effects on hardware with limited capabilities, creating a sense of directionality and immersion. The use of efficient distance calculations and stereo separation techniques influenced later game engines, which refined these methods to support more advanced audio systems."
   - id: "sound-channel-priority-management"
-    line_start: 822
-    line_end: 874
+    line_start: 745
+    line_end: 817
     title: "How DOOM Decided Which Sound to Play"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""

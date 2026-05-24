@@ -27,80 +27,80 @@ summary:
 
 enhancements:
   - id: "text-formatting-commands"
-    line_start: 1
-    line_end: 26
+    line_start: 9
+    line_end: 28
     title: "Text Commands That Controlled Layouts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section defines the text formatting commands used throughout Wolfenstein 3D's article and help screens. Commands like '^C' for changing text color and '^G' for drawing graphics allowed developers to dynamically control how text and images were displayed. At the time, MS-DOS systems lacked sophisticated graphical interfaces, so developers had to create their own systems for rendering text and graphics together. These commands were a clever abstraction, enabling layouts to be defined in a simple text-based format. The approach influenced later games, which adopted similar systems for in-game text rendering and layout management."
   - id: "rip-to-eol"
-    line_start: 60
-    line_end: 75
+    line_start: 31
+    line_end: 68
     title: "The Routine That Skipped Lines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""
     image_caption: ""
     content: "The `RipToEOL` function scans text until it reaches the end of a line, effectively skipping over irrelevant data. This was a simple yet essential utility for parsing text commands. In the early 1990s, text parsing was a common challenge due to limited memory and processing power. By efficiently handling line breaks, this function ensured smooth operation of the game's text rendering system. Techniques like this became standard in text processing libraries, influencing how developers approached parsing in constrained environments."
   - id: "parse-number"
-    line_start: 78
-    line_end: 110
+    line_start: 31
+    line_end: 68
     title: "Extracting Numbers from Text Streams"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
     image_url: ""
     image_caption: ""
     content: "The `ParseNumber` function extracts numeric values from a text stream. It scans for digits, assembles them into a string, and converts the result into an integer. This was crucial for interpreting commands like '^Gyyy,xxx,ppp', where numbers specified coordinates and graphics IDs. Parsing numbers efficiently was a key requirement in early game engines, where performance and memory constraints dictated every decision. This technique laid the groundwork for more sophisticated parsers in later engines, such as those used in Quake and Unreal."
   - id: "timed-pic-command"
-    line_start: 144
-    line_end: 175
+    line_start: 31
+    line_end: 68
     title: "Graphics with Built-In Delays"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
     content: "The `TimedPicCommand` function draws a graphic on the screen after a specified delay. It uses the `VW_UpdateScreen` function to refresh the display and waits for a timer to elapse before rendering the image. This technique allowed Wolfenstein 3D to create dynamic visual effects, such as timed animations or transitions. The use of delays and screen updates was a precursor to double buffering and other advanced rendering techniques that became standard in later games. Developers studying this code learned how to synchronize graphics with gameplay events, a skill that shaped the evolution of real-time rendering."
   - id: "handle-command"
-    line_start: 178
-    line_end: 278
+    line_start: 31
+    line_end: 68
     title: "Interpreting Text Commands for Layouts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
     content: "The `HandleCommand` function interprets text commands embedded in the layout stream. Commands like '^P' for starting a new page and '^C' for changing text color are parsed and executed. This modular approach allowed designers to define complex layouts without modifying the underlying code. In the early 1990s, embedding commands within text files was a common technique for separating content from logic. This function exemplifies how Wolfenstein 3D's developers balanced flexibility and performance, influencing later engines that adopted similar scripting systems for content management."
   - id: "page-layout"
-    line_start: 401
-    line_end: 504
+    line_start: 31
+    line_end: 68
     title: "Rendering Pages with Word Wrapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Word_wrap"
     image_url: ""
     image_caption: ""
     content: "The `PageLayout` function clears the screen, draws graphics, and wraps text to fit within defined margins. It ensures that text does not overflow the page, dynamically adjusting margins and starting new lines as needed. This was a significant challenge on MS-DOS systems, where developers had to manually calculate text positions and handle overflow. The word wrapping algorithm here influenced later text rendering systems, including those in modern game engines. By solving the problem of dynamic text layout, Wolfenstein 3D set a precedent for how games could present readable, visually appealing text."
   - id: "cache-layout-graphics"
-    line_start: 533
-    line_end: 586
+    line_start: 31
+    line_end: 68
     title: "Preloading Graphics for Faster Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_caching"
     image_url: ""
     image_caption: ""
     content: "The `CacheLayoutGraphics` function scans the layout file for all graphics commands and preloads the necessary assets into memory. By caching graphics ahead of time, the game minimized delays during rendering, ensuring smooth transitions between pages. This technique was critical on MS-DOS systems, where disk access was slow and memory was limited. Preloading assets became a standard practice in game development, influencing how modern engines handle texture and model caching. The efficiency achieved here contributed to Wolfenstein 3D's reputation for fast, fluid gameplay."
   - id: "show-article"
-    line_start: 600
-    line_end: 723
+    line_start: 31
+    line_end: 68
     title: "Interactive Help Screens with Page Navigation"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_interface_design"
     image_url: ""
     image_caption: ""
     content: "The `ShowArticle` function displays in-game articles and help screens, allowing players to navigate between pages using keyboard inputs. It integrates text rendering, graphics, and user interaction into a cohesive system. This was a novel feature in 1992, providing players with detailed instructions and lore within the game itself. The interactive nature of these screens influenced later games, which adopted similar systems for tutorials and story exposition. By combining usability with performance, Wolfenstein 3D demonstrated how thoughtful design could enhance the player experience."
   - id: "help-screens"
-    line_start: 737
-    line_end: 794
+    line_start: 31
+    line_end: 68
     title: "Dynamic Help Screens for Player Guidance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Help_system"
     image_url: ""
     image_caption: ""
     content: "The `HelpScreens` function loads and displays help content, providing players with guidance on game mechanics and controls. It uses the `ShowArticle` function to render text and graphics, ensuring a consistent presentation across all help screens. This feature was an early example of in-game documentation, reducing the need for external manuals. By embedding help systems directly into the game, Wolfenstein 3D set a precedent for accessible design, influencing how developers approached player onboarding in later titles."
   - id: "end-text"
-    line_start: 795
-    line_end: 859
+    line_start: 31
+    line_end: 68
     title: "Ending the Game with Story Text"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_endings"
     image_url: ""

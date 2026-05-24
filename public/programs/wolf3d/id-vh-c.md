@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "byte-array-update-grid"
     line_start: 1
-    line_end: 23
+    line_end: 25
     title: "The Grid That Tracks Screen Updates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
     content: "This section defines a two-dimensional byte array named `update`, which serves as a grid to track which parts of the screen need to be refreshed during gameplay. By marking tiles in this grid, the game avoids unnecessary redraws, optimizing performance on hardware with limited processing power. In 1992, MS-DOS games often relied on such techniques to achieve smooth graphics updates without overloading the CPU. This approach was particularly important for Wolfenstein 3D, which aimed to deliver fast-paced action at a consistent frame rate. The concept of marking update regions influenced later games, where similar techniques were used in engines like Doom and Quake to manage rendering efficiently."
   - id: "proportional-font-rendering"
-    line_start: 38
+    line_start: 34
     line_end: 93
     title: "How Wolfenstein Drew Proportional Fonts"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
@@ -46,24 +46,24 @@ enhancements:
     image_caption: ""
     content: "The `VW_DrawPropString` function handles the rendering of proportional fonts, where each character has a variable width. This was a departure from fixed-width fonts and added a touch of polish to the game's text displays. The routine uses VGA-specific hardware instructions to manipulate pixels directly, ensuring that the text is drawn efficiently. At the time, VGA graphics were state-of-the-art, and leveraging its capabilities required deep knowledge of assembly language and hardware quirks. John Carmack's mastery of these techniques allowed Wolfenstein 3D to stand out visually. The use of proportional fonts became standard in later games, enhancing readability and aesthetics in user interfaces."
   - id: "assembly-optimized-color-string"
-    line_start: 96
-    line_end: 156
+    line_start: 34
+    line_end: 93
     title: "Assembly Optimizations for Colorful Text"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
     content: "The `VW_DrawColorPropString` function builds on the previous routine by adding color variation to the rendered text. Using assembly language, the routine manipulates VGA registers to increment the font color dynamically as each character is drawn. This technique showcases Carmack's ability to push hardware to its limits, creating visually engaging effects with minimal performance overhead. Assembly optimizations like these were crucial for achieving smooth gameplay on early PCs, where every CPU cycle mattered. This approach influenced later game engines, which continued to use low-level optimizations for graphical effects, particularly in resource-constrained environments like mobile devices."
   - id: "vl-munge-pic-data-reorganization"
-    line_start: 162
-    line_end: 204
+    line_start: 34
+    line_end: 93
     title: "Reorganizing Image Data for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `VL_MungePic` function reorganizes image data into a format optimized for VGA's planar memory layout. By copying the image into a temporary buffer and then rearranging its pixels, the routine ensures that the data aligns with VGA's requirements for efficient rendering. This technique reflects the constraints of early PC graphics hardware, where developers often had to adapt their data structures to fit the quirks of the display system. Such optimizations were common in the era and laid the groundwork for more sophisticated memory management techniques in later game engines. The concept of preprocessing graphical assets for performance remains relevant in modern game development."
   - id: "vw-mark-update-block"
-    line_start: 235
-    line_end: 289
+    line_start: 28
+    line_end: 31
     title: "Marking Tiles for Redraw Efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""

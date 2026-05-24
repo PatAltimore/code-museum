@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "runvar-memory-variables"
     line_start: 133
-    line_end: 165
+    line_end: 169
     title: "Memory Variables for Relocation Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_programming)"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The RUNVAR section defines memory locations used for relocation operations during the conversion of .EXE files to .BIN files. These variables, such as RELPT and RELSEG, store critical information about the executable's relocation table and memory layout. In 1983, memory management was a significant challenge due to the limited resources of early PCs, such as the IBM PC with its 640KB memory limit. This section reflects the programmer's need to handle relocation efficiently to ensure the converted binary files function correctly. The relocation process, which adjusts memory addresses in an executable to match its load location, was crucial for compatibility across different systems. This technique influenced later software development tools and operating systems, which adopted similar approaches for handling relocatable code."
   - id: "locate-version-check"
     line_start: 197
-    line_end: 267
+    line_end: 261
     title: "Version Check for DOS Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -71,15 +71,15 @@ enhancements:
     content: "The RELOC procedure processes the relocation table of the .EXE file, adjusting memory addresses to match the load location of the binary file. It reads relocation pointers from the file and applies the necessary adjustments to ensure the binary file functions correctly. Relocation was a critical operation in early computing, as programs needed to run in different memory locations depending on system configuration. This section showcases the programmer's deep understanding of memory management and file structures. The relocation logic here influenced later developments in dynamic linking and loading, where similar techniques are used to adjust memory addresses at runtime. It also laid the groundwork for modern executable formats that support relocatable code."
   - id: "binary-file-creation"
     line_start: 951
-    line_end: 1003
+    line_end: 1021
     title: "Creating and Writing Binary Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_file"
     image_url: ""
     image_caption: ""
     content: "The STORE procedure creates a new .BIN file and writes the converted binary data to it. It uses DOS interrupts for file creation (AH=3Ch) and writing (AH=40h), ensuring compatibility with the operating system's file handling mechanisms. This section reflects the constraints of early PCs, where disk operations were slow and error-prone. The careful handling of file creation and writing here ensured the reliability of the conversion process. The techniques used in this section influenced later file manipulation utilities and programming libraries, where robust error handling and compatibility with operating system APIs became standard practice."
   - id: "final-directives-and-program-entry"
-    line_start: 1021
-    line_end: 1025
+    line_start: 265
+    line_end: 485
     title: "Why These Final Lines Matter"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

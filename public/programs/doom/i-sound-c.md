@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines the global sound mixing buffer and the parameters for handling multiple sound channels simultaneously. The buffer is sized to accommodate 512 samples per channel, with stereo output requiring two hardware channels. At the time, consumer-grade sound cards like the Sound Blaster were common, and DOOM's sound system was designed to work within their constraints. By mixing audio from up to eight channels into a single buffer, the game could produce complex soundscapes, such as overlapping gunfire and monster growls. This approach influenced later game engines, which adopted similar techniques for real-time sound mixing."
   - id: "sound-data-loading"
     line_start: 180
-    line_end: 186
+    line_end: 249
     title: "The WAD File Trick for Fast Sound Access"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `getsfx` function loads sound effects from DOOM's WAD files, padding them to ensure compatibility with the mixing buffer size. This design allowed the game to pre-cache sound data, reducing latency during gameplay. WAD files were a novel format at the time, enabling developers to bundle game assets like textures, levels, and sounds into a single file. This approach not only streamlined asset management but also inspired modding communities, as fans could easily replace or add custom sounds. The concept of bundling assets in a single file became standard practice in game development."
   - id: "sound-channel-management"
     line_start: 256
-    line_end: 394
+    line_end: 379
     title: "How DOOM Prioritized Chainsaw Sounds"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `addsfx` function manages active sound channels, ensuring that only a limited number of sounds play simultaneously. It prioritizes sounds based on their age and uniqueness, with special handling for effects like the chainsaw, which are restricted to one instance at a time. This was crucial for maintaining performance on hardware with limited audio capabilities. By dynamically assigning channels and adjusting stereo separation, DOOM achieved immersive soundscapes that enhanced its gameplay. This technique influenced later games, which adopted similar methods for sound prioritization and channel management."
   - id: "sound-mixing-loop"
     line_start: 525
-    line_end: 653
+    line_end: 651
     title: "The Loop That Mixed DOOM's Audio"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `I_InitSound` function initializes DOOM's sound system, configuring the Linux OSS (Open Sound System) for audio output. It sets parameters like sample rate, stereo mode, and fragment size, ensuring compatibility with the `/dev/dsp` device. This was a significant adaptation for the Linux port, as the original DOS version relied on different APIs. By pre-caching sound data and zeroing the mixing buffer, the function prepared the system for efficient runtime audio handling. This approach demonstrated how games could adapt to diverse operating systems, paving the way for cross-platform development."
   - id: "timer-interrupts"
     line_start: 915
-    line_end: 939
+    line_end: 974
     title: "Experimental Timer Interrupts for Sound"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""

@@ -46,8 +46,8 @@ enhancements:
     image_caption: ""
     content: "The `R_DrawColumnInCache` function clips and draws a column from a patch into a cached post. This caching mechanism was crucial for DOOM's performance, as it avoided recalculating texture data during gameplay. By storing columns in memory, the renderer could quickly access precomputed graphics data, enabling smooth frame rates even on modest hardware. John Carmack's focus on optimizing memory usage and rendering speed was a hallmark of DOOM's development, and this routine exemplifies his approach. Techniques like this laid the groundwork for efficient graphics handling in later engines, including the id Tech series."
   - id: "r-generate-composite"
-    line_start: 221
-    line_end: 288
+    line_start: 178
+    line_end: 217
     title: "Generating Composite Textures Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -62,8 +62,8 @@ enhancements:
     image_caption: ""
     content: "The `R_InitTextures` function initializes the texture list by loading texture definitions from WAD files. It handles both shareware and commercial texture lumps (`TEXTURE1` and `TEXTURE2`), ensuring compatibility across different versions of the game. The function also precomputes lookup tables for texture rendering, optimizing performance. This modular initialization process reflects DOOM's well-structured design, which separated data preparation from rendering logic. The use of WAD files for storing texture data became a standard in game development, influencing titles like Duke Nukem 3D and Half-Life."
   - id: "r-init-sprite-lumps"
-    line_start: 596
-    line_end: 625
+    line_start: 577
+    line_end: 593
     title: "Preloading Sprite Metadata for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""

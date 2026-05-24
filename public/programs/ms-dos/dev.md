@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "include-kanji-flag"
     line_start: 13
-    line_end: 17
+    line_end: 15
     title: "Why MS-DOS Checked for Kanji Support"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""
     image_caption: ""
     content: "This section defines a conditional flag for Kanji support, setting it to false by default. Kanji, the logographic characters used in Japanese writing, posed unique challenges for early computing systems due to their complexity and encoding requirements. By 1983, Japan was emerging as a major player in the personal computer market, and software compatibility with Kanji was becoming a competitive necessity. MS-DOS v2.0 included hooks for Kanji support, reflecting Microsoft's awareness of international markets. This decision foreshadowed the eventual localization of software for global audiences, a practice now standard in the industry. While Kanji support in MS-DOS was rudimentary, it paved the way for more sophisticated internationalization efforts in later operating systems like Windows."
   - id: "name-device-variables"
-    line_start: 47
+    line_start: 43
     line_end: 83
     title: "The Variables That Defined Device I/O"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
@@ -47,7 +47,7 @@ enhancements:
     content: "This section defines key variables used throughout MS-DOS's device call routines, such as IOXAD, IOSCNT, DEVIOBUF, and others. These variables represent the state and parameters of device I/O operations, including buffer addresses, function codes, and device attributes. In the constrained environment of 8086 assembly, every byte mattered, and these variables were meticulously chosen to balance functionality and memory usage. Tim Paterson and Microsoft's engineers designed these abstractions to make device handling modular and extensible, inspired by Unix's device driver model. This modularity allowed MS-DOS to support a wide range of hardware, contributing to its success as an OEM-friendly operating system. Later systems like Windows and Linux built on these principles, creating more sophisticated driver architectures."
   - id: "iofunc-retry-error-handling"
     line_start: 91
-    line_end: 95
+    line_end: 91
     title: "Retrying I/O: A Clever Error Handling Mechanism"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The IOFUNC_RETRY subroutine implements error handling for device I/O operations by retrying failed calls. It checks the status of the device and determines whether to retry or ignore the error, ensuring the system doesn't enter an infinite loop. This approach reflects the constraints of early hardware, where devices were often slow or unreliable, and software had to compensate. Tim Paterson's design prioritized robustness, allowing MS-DOS to handle errors gracefully without crashing. This technique influenced later operating systems, where retry mechanisms became standard for handling transient hardware failures. It also highlights the ingenuity required to build reliable systems on early PCs, where hardware limitations were a constant challenge."
   - id: "iotodev-device-vs-file"
     line_start: 179
-    line_end: 449
+    line_end: 447
     title: "How MS-DOS Distinguished Devices from Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The IOTODEV subroutine checks whether an I/O request is directed at a device or a file, branching accordingly. This distinction is fundamental to MS-DOS's design, as devices and files are treated differently in terms of I/O operations. Devices often require direct interaction with hardware, while files involve disk-based operations. This separation was inspired by Unix's philosophy of treating devices as files but adapted to the constraints of the 8086 architecture. The modularity of this approach allowed MS-DOS to support a wide range of devices and storage media, contributing to its flexibility and widespread adoption. Modern operating systems continue to build on this concept, integrating device and file handling into unified frameworks."
   - id: "devname-device-name-lookup"
     line_start: 651
-    line_end: 651
+    line_end: 707
     title: "Finding Devices by Name in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The DevName subroutine searches for a device by name in the list of I/O drivers, setting flags and pointers based on the result. This functionality was crucial for MS-DOS's modular device handling, allowing programs to interact with devices dynamically. By abstracting device names, MS-DOS enabled developers to write software that could run on a variety of hardware configurations without modification. This approach was inspired by Unix's device naming conventions but adapted to the simpler architecture of the IBM PC. The ability to dynamically locate and interact with devices became a cornerstone of modern operating systems, influencing driver models in Windows, Linux, and beyond."
   - id: "setcallhead-device-call-header"
     line_start: 755
-    line_end: 865
+    line_end: 863
     title: "Setting Up Device Calls: A Modular Header"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""

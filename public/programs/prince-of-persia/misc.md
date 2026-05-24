@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "vanish-character-mechanics"
     line_start: 67
-    line_end: 81
+    line_end: 97
     title: "How Characters Vanish in Prince of Persia"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -94,8 +94,8 @@ enhancements:
     image_caption: ""
     content: "REFLECTION handles the mechanics of the mirror and the player's shadow. It checks if the player is standing before the mirror and draws their reflection as a pseudo-character. This routine is part of the game's cinematic storytelling, where the mirror plays a key role in the narrative. The reflection mechanic was groundbreaking for its time, creating a sense of depth and immersion that few games had achieved. It influenced later games with similar storytelling techniques, such as Silent Hill and Shadow of the Colossus."
   - id: "bones-rise-mechanics"
-    line_start: 595
-    line_end: 679
+    line_start: 525
+    line_end: 681
     title: "Skeletons That Rise From the Floor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "BONESRISE triggers the appearance of skeletons, a memorable moment in Prince of Persia. It checks conditions like the player's position and level state, removes a dead skeleton, and creates a live one. This sequence adds a cinematic and eerie touch to the game, showcasing Mechner's ability to use simple mechanics for dramatic effect. The rising skeletons became an iconic part of the game, influencing later titles with similar horror or suspense elements, such as Resident Evil and Dark Souls."
   - id: "check-alert-mechanics"
     line_start: 827
-    line_end: 968
+    line_end: 978
     title: "How Enemies Spot You in Prince of Persia"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -118,16 +118,16 @@ enhancements:
     image_caption: ""
     content: "This section begins with the `DISPVERSION` label and contains a loop that prints the version information to the top line of the Apple II screen. The loop iterates over the `textline` array, checking for an end marker (`@`) and writing each character to memory address `$400`, which corresponds to the top line of the text screen. The programmer, Jordan Mechner, needed a way to display static information like the game version while working within the constraints of the Apple II's text and graphics modes. At the time, the Apple II's memory layout required direct manipulation of screen memory, as there were no high-level APIs for rendering text. This approach reflects the hands-on nature of programming in 6502 assembly, where developers had to intimately understand hardware registers and memory maps. The technique of directly writing to screen memory became a standard practice for Apple II developers, influencing other games and utilities written for the platform. Mechner's careful handling of the loop ensures efficiency and avoids unnecessary overhead, a hallmark of assembly programming on constrained systems."
   - id: "keypress-detection-loop"
-    line_start: 1003
-    line_end: 1007
+    line_start: 1
+    line_end: 97
     title: "Waiting for a Keypress: A Hardware Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""
     image_caption: ""
     content: "This section implements a loop (`:wloop`) that waits for a keypress by polling the Apple II's keyboard hardware register at `$c000`. The loop continuously checks the status of the register until a key is pressed, indicated by the register's high bit being set. Once a keypress is detected, the program writes to `$c010` to clear the keyboard strobe, resetting the register for future input. This technique was common on the Apple II, where developers often had to interact directly with hardware registers to handle input. Mechner's approach here is minimalistic and efficient, reflecting the constraints of the era: there were no operating system-level abstractions for input handling, so developers relied on direct polling. This method of handling input influenced other Apple II games and utilities, as it was both simple and effective. The reliance on hardware polling highlights the low-level nature of programming on the Apple II, where developers had to balance responsiveness with CPU cycles carefully."
   - id: "graphics-mode-switching"
-    line_start: 1009
-    line_end: 1016
+    line_start: 1
+    line_end: 65
     title: "Switching Between Text and Graphics Modes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""

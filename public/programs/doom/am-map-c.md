@@ -63,7 +63,7 @@ enhancements:
     content: "This section handles user input for the automap, allowing players to pan, zoom, mark locations, and toggle features like gridlines. The key bindings were designed for intuitive use, leveraging common keys like arrow keys and 'TAB'. The responsiveness of these controls was a testament to id Software's focus on player experience. The ability to mark and clear points on the map was particularly innovative, giving players a way to track objectives visually. This feature influenced later games, where interactive maps became a staple of open-world and RPG genres."
   - id: "zooming-mechanics"
     line_start: 737
-    line_end: 758
+    line_end: 753
     title: "Zooming Into the World of DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zoom_lens"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The `AM_drawFline` function uses Bresenham's line-drawing algorithm to render lines on the automap's frame buffer. This algorithm calculates the optimal path for a line between two points, minimizing computational overhead by avoiding floating-point arithmetic. DOOM's implementation includes optimizations for speed, such as precomputing increments and using inline macros for pixel placement. Bresenham's algorithm was widely adopted in computer graphics, and its use in DOOM demonstrated how classic techniques could be adapted for real-time applications, influencing later game engines like Unreal Engine."
   - id: "automap-grid-rendering"
     line_start: 1067
-    line_end: 1115
+    line_end: 1110
     title: "Rendering a grid aligned to game geometry"
     wikipedia_url: "https://doomwiki.org/wiki/Automap"
     image_url: ""

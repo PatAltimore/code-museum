@@ -30,56 +30,56 @@ summary:
 
 enhancements:
   - id: "byte-table-screen-x-to-byte"
-    line_start: 44
-    line_end: 58
+    line_start: 13
+    line_end: 13
     title: "How Screen X Coordinates Map to Bytes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
     content: "This section defines the `ByteTable`, a lookup table mapping screen X-coordinates (0–255) to byte numbers (0–36). The table uses a compact representation, with each byte corresponding to a specific range of screen pixels. This design allows the game to quickly translate graphical positions into memory addresses for rendering. The use of precomputed tables like this was essential in the Apple II's constrained environment, where computational power was limited, and real-time calculations were expensive. Jordan Mechner likely adopted this approach to ensure smooth gameplay and precise animations, leveraging the Apple II's 128KB memory and bank-switching capabilities. This technique influenced later games that relied on similar precomputed tables for efficient rendering, particularly in the era of 8-bit and 16-bit consoles."
   - id: "offset-table-byte-to-offset"
-    line_start: 60
-    line_end: 71
+    line_start: 14
+    line_end: 14
     title: "From Byte to Offset: A Second Layer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
     content: "The `OffsetTable` maps the same screen X-coordinates as the `ByteTable` but provides offsets (0–6) within each byte. This second layer of indirection allows the game to pinpoint exact pixel positions within a byte, essential for rendering fine details in the Apple II's low-resolution graphics. By separating byte and offset calculations, Mechner optimized memory usage and computational efficiency, ensuring the game could handle complex animations and interactions without slowing down. This dual-table approach reflects the ingenuity required to work within the constraints of 6502 assembly and limited hardware resources. Similar techniques appeared in later games for systems like the NES and Commodore 64, which also relied on lookup tables for efficient graphics handling."
   - id: "block-table-screen-x-to-block"
-    line_start: 73
-    line_end: 91
+    line_start: 15
+    line_end: 15
     title: "Mapping Screen X to Game Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""
     image_caption: ""
     content: "The `BlockTable` maps screen X-coordinates to block numbers (-5 to 14), defining the spatial layout of the game's levels. Blocks represent discrete segments of the environment, such as platforms or walls, and are central to the game's physics and collision detection. This table enables the game engine to quickly determine which block a character or object is interacting with, a critical feature for the game's platforming mechanics. Mechner's use of precomputed block mappings reflects his focus on precision and efficiency, inspired by his rotoscoping technique for animation. This approach influenced later platformers, where block-based level design became a standard practice, particularly in games like Super Mario Bros. and Sonic the Hedgehog."
   - id: "pixel-table-block-to-pixel"
-    line_start: 93
-    line_end: 107
+    line_start: 16
+    line_end: 16
     title: "Pixel Precision Within Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pixel_art"
     image_url: ""
     image_caption: ""
     content: "The `PixelTable` maps block numbers to pixel positions within each block (0–13). This table provides fine-grained control over rendering, ensuring that characters and objects align perfectly with the game's environment. By precomputing pixel positions, Mechner avoided costly real-time calculations, a necessity given the Apple II's limited processing power. This level of precision was crucial for the game's cinematic feel, as it allowed smooth transitions and realistic movements. The technique highlights the intersection of technical constraints and artistic ambition, a hallmark of Mechner's work. Later games adopted similar methods to achieve pixel-perfect rendering, particularly in the era of 2D platformers and adventure games."
   - id: "mult10-multiplication-table"
-    line_start: 109
-    line_end: 122
+    line_start: 17
+    line_end: 17
     title: "A Multiplication Table for Tens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplication_table"
     image_url: ""
     image_caption: ""
     content: "The `Mult10` table precomputes multiples of 10 (0, 10, 20, ..., 150), enabling fast multiplication without relying on the Apple II's limited arithmetic capabilities. Multiplication was expensive on 6502 processors, which lacked dedicated hardware for such operations. By storing results in a table, Mechner ensured that calculations involving multiples of 10 could be performed instantly, a significant optimization for gameplay mechanics like physics and scoring. This technique exemplifies the resourcefulness required to work within the constraints of early microprocessors. Precomputed multiplication tables became a common practice in assembly programming, influencing the design of game engines and embedded systems."
   - id: "block-edge-left-coordinates"
-    line_start: 140
-    line_end: 153
+    line_start: 21
+    line_end: 21
     title: "Where Blocks Begin: Left Edges"
     wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
     image_url: ""
     image_caption: ""
     content: "The `BlockEdge` table defines the screen X-coordinates of the left edges of blocks, mapping block numbers (-5 to 14) to their starting positions. This table is essential for rendering and collision detection, as it allows the game engine to determine where each block begins on the screen. Mechner's decision to precompute these values reflects his focus on efficiency and precision, ensuring that the game could handle complex interactions without sacrificing performance. The use of precomputed edge coordinates influenced later games that relied on grid-based level design, such as Tetris and SimCity, where spatial relationships are central to gameplay."
   - id: "block-top-bottom-floor-y"
-    line_start: 154
-    line_end: 196
+    line_start: 22
+    line_end: 197
     title: "Vertical Geometry: Tops, Bottoms, and Floors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""

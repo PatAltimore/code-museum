@@ -31,79 +31,79 @@ summary:
 enhancements:
   - id: "palette-data-structure"
     line_start: 28
-    line_end: 32
+    line_end: 28
     title: "Why Palette Data Was Key to VGA"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""
     image_caption: ""
     content: "This section defines two 256x3 arrays, `palette1` and `palette2`, which store RGB color values for VGA graphics. These palettes were critical for controlling the appearance of the game, as VGA hardware allowed only 256 colors to be displayed simultaneously. By manipulating these palettes, the developers could create effects like fading, color transitions, and dynamic lighting. In 1992, VGA was the dominant graphics standard for MS-DOS games, and efficient use of its capabilities was essential for achieving smooth and visually appealing gameplay. The approach here influenced later games that relied on similar palette manipulation techniques for visual effects, including Doom and Quake."
   - id: "vga-plane-mode-switch"
-    line_start: 107
-    line_end: 122
+    line_start: 35
+    line_end: 57
     title: "Switching VGA to Plane Mode for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
     image_url: ""
     image_caption: ""
     content: "The `VL_SetVGAPlaneMode` function switches the VGA graphics card into a mode where the screen is divided into four memory planes. This mode allows for more efficient rendering by enabling direct access to specific planes. The function uses BIOS interrupt 0x10 to set the graphics mode and then adjusts VGA registers to optimize rendering. Plane mode was a common technique in the early 1990s for maximizing performance on hardware with limited memory bandwidth. By leveraging this mode, Wolfenstein 3D achieved its signature fast-paced gameplay. This technique influenced other developers working on VGA-based games, setting a standard for efficient graphics programming."
   - id: "clear-video-buffer"
-    line_start: 139
-    line_end: 172
+    line_start: 35
+    line_end: 57
     title: "Clearing the Video Buffer in One Sweep"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
     image_caption: ""
     content: "The `VL_ClearVideo` function fills the entire video buffer with a single color. It uses inline assembly to manipulate VGA registers directly, ensuring that all four planes are written simultaneously. This approach bypasses the slower BIOS routines and directly accesses hardware, which was crucial for maintaining high frame rates in Wolfenstein 3D. The use of `rep stosw` in assembly highlights the emphasis on speed and efficiency. This technique was a hallmark of id Software's programming style and became a model for other developers seeking to optimize graphics performance on MS-DOS systems."
   - id: "palette-fade-out"
-    line_start: 438
-    line_end: 489
+    line_start: 35
+    line_end: 57
     title: "How Wolfenstein Faded to Black"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""
     image_caption: ""
     content: "The `VL_FadeOut` function gradually transitions the screen's palette to a single color over a specified number of steps. This effect was used to create dramatic transitions, such as fading to black during level changes or game over screens. The function calculates intermediate palette values for each step and updates the VGA palette accordingly. This technique relied on direct manipulation of VGA registers and careful timing to avoid visual artifacts. Palette fading became a standard feature in games of the era, and its implementation here influenced later titles like Doom and Duke Nukem 3D."
   - id: "pixel-drawing-algorithm"
-    line_start: 593
-    line_end: 609
+    line_start: 35
+    line_end: 57
     title: "The Algorithm Behind Single Pixel Plotting"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
     image_caption: ""
     content: "The `VL_Plot` function draws a single pixel to the screen at the specified coordinates. It uses a combination of bit masking and direct memory access to manipulate the VGA buffer efficiently. The function ensures that only the relevant plane is updated, minimizing the impact on performance. This low-level approach to pixel manipulation was necessary for creating detailed graphics on hardware with limited capabilities. The techniques used here laid the groundwork for more advanced rendering algorithms in later games and graphics engines."
   - id: "horizontal-line-drawing"
-    line_start: 612
-    line_end: 654
+    line_start: 35
+    line_end: 57
     title: "Drawing Horizontal Lines with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
     image_caption: ""
     content: "The `VL_Hlin` function draws a horizontal line on the screen. It calculates the starting and ending positions, applies bit masks for partial bytes, and uses direct memory access to fill the line efficiently. By optimizing for the VGA's memory layout, the function minimizes the number of operations required to render a line. This technique was essential for creating the game's walls and other horizontal elements quickly. The approach demonstrated here influenced the development of more advanced line-drawing algorithms in later graphics engines."
   - id: "memory-to-screen-transfer"
-    line_start: 781
-    line_end: 811
+    line_start: 35
+    line_end: 57
     title: "Transferring Memory Blocks to the Screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `VL_MemToScreen` function transfers a block of data from memory to the screen. It divides the data into planes and uses direct memory access to write each plane to the VGA buffer. This approach was crucial for rendering textures and other graphical elements efficiently. By leveraging the VGA's plane mode, the function achieves high performance while maintaining visual fidelity. The techniques used here were foundational for later games that relied on efficient memory-to-screen transfers, such as Doom and Quake."
   - id: "tile-string-rendering"
-    line_start: 952
-    line_end: 993
+    line_start: 35
+    line_end: 57
     title: "Rendering Tile-Based Strings on VGA"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
     image_caption: ""
     content: "The `VL_DrawTile8String` function renders a string of characters using 8x8 tiles stored in memory. Each character is drawn by copying its corresponding tile data to the VGA buffer, plane by plane. This method was used for displaying text in the game's menus and HUD. By optimizing the rendering process for the VGA's plane mode, the function achieves high performance while maintaining visual clarity. Tile-based rendering was a common technique in early video games and influenced the design of later graphics engines that supported text and UI elements."
   - id: "vga-memory-write-loop"
-    line_start: 1051
-    line_end: 1060
+    line_start: 117
+    line_end: 134
     title: "How Assembly Made VGA Graphics Fly"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
     image_url: ""
     image_caption: ""
     content: "This section of assembly code directly manipulates VGA memory to render graphics efficiently. The sequence of instructions, including `lodsw`, `mov`, and `add`, is part of a loop that writes pixel data to the screen by transferring data from a source to a destination pointer (`di`). The use of `mov ds, ax` sets the data segment register to point to the stack segment, ensuring proper memory access. At the time, VGA graphics were limited to specific modes and memory layouts, requiring developers to work directly with hardware registers and memory addresses. John Carmack's mastery of assembly allowed Wolfenstein 3D to achieve smooth scrolling and fast rendering, critical for its immersive gameplay. This approach was born out of necessity, as MS-DOS lacked high-level APIs for graphics. By bypassing the operating system and interacting directly with hardware, id Software could push the limits of what VGA could achieve. This technique influenced later games and engines, including Doom and Quake, which continued to leverage low-level optimization for performance."
   - id: "tile-string-dimensions"
-    line_start: 1063
-    line_end: 1075
+    line_start: 35
+    line_end: 57
     title: "The Math Behind Tile-Based Text Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_rendering"
     image_url: ""

@@ -31,15 +31,15 @@ summary:
 enhancements:
   - id: "option-table-initialization"
     line_start: 265
-    line_end: 283
+    line_end: 265
     title: "The Table That Tracks User Options"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
     content: "This section defines the option flags table (`opt_tbl`), which tracks user-selected options for the FIND command. Each flag is initialized to `0`, indicating the option is not selected. The flags correspond to features like inverse matches (`v_flg`), line counting (`c_flg`), and line numbering (`n_flg`). This design reflects the simplicity of early command-line utilities, where options were toggled using single-character flags. In 1983, the idea of parsing command-line arguments was still evolving, and this table-based approach was a straightforward way to manage options. The order of the flags in the table is critical, as it must align with the dispatch code later in the program. This technique influenced how command-line tools in DOS and later Windows handled options, laying the groundwork for more sophisticated argument parsing libraries in modern programming languages like Python and Java."
   - id: "dos-version-check"
-    line_start: 303
-    line_end: 337
+    line_start: 293
+    line_end: 325
     title: "What Happens When DOS Is Too Old?"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This routine checks the version of DOS running on the system. If the version is less than 2.0, the program exits gracefully with an error message. The check is performed using interrupt `21h` with function `48h` to retrieve the DOS version number. This was necessary because FIND relies on features introduced in DOS 2.0, such as subdirectories and enhanced file handling. The inclusion of this check highlights the rapid evolution of DOS in its early years, as Microsoft added features to meet the demands of IBM and other OEMs. The error handling here is rudimentary but effective, ensuring compatibility without crashing older systems. This approach influenced later software development practices, where version checks became standard for ensuring backward compatibility."
   - id: "find-options-parsing"
     line_start: 381
-    line_end: 489
+    line_end: 391
     title: "Parsing Options Like It's 1983"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -55,15 +55,15 @@ enhancements:
     content: "This routine begins parsing the command-line options provided by the user. It retrieves the DOS switch character (default `/` on IBM PCs) using interrupt `21h` and scans the command line for valid options. The parsing logic is case-insensitive and supports multiple options, reflecting the influence of Unix-like utilities. The simplicity of this approach underscores the constraints of early assembly programming, where every byte of memory and CPU cycle was precious. The design also demonstrates the growing importance of user-friendly command-line tools in the early 1980s, as personal computers became more accessible. This technique inspired similar option-parsing mechanisms in later DOS utilities and even modern command-line tools."
   - id: "string-argument-validation"
     line_start: 509
-    line_end: 541
+    line_end: 519
     title: "Why Strings Must Start with Quotes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quotation_mark"
     image_url: ""
     image_caption: ""
     content: "This routine validates the string argument provided by the user, ensuring it begins with a double quote (`\"`). If the string does not start with a quote, the program exits with an error message. This strict validation reflects the influence of Unix conventions, where quoted strings were used to handle spaces and special characters in arguments. The decision to enforce quotes was likely driven by the need to simplify parsing in assembly language, where handling complex input formats was challenging. This approach influenced the design of later command-line tools, where quoting became a standard practice for handling arguments with spaces or special characters."
   - id: "kanji-character-handling"
-    line_start: 915
-    line_end: 1011
+    line_start: 95
+    line_end: 261
     title: "The Kanji Challenge: Localizing FIND"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This section introduces special handling for Kanji characters, reflecting Microsoft's early efforts to localize software for Japanese markets. Kanji characters are multi-byte, requiring a different comparison algorithm than single-byte ASCII characters. The code adjusts the string and line pointers to accommodate Kanji's complexity, ensuring accurate matching. This localization effort was groundbreaking in 1983, as most software at the time was designed for English-speaking users. The challenges of handling multi-byte characters in assembly language highlight the ingenuity required to adapt software for international markets. This work laid the foundation for Microsoft's later success in globalizing its products, influencing the development of Unicode and other character encoding standards."
   - id: "string-matching-with-repz-scasb"
     line_start: 1015
-    line_end: 1055
+    line_end: 1049
     title: "String Matching with REPZ and SCASB"
     wikipedia_url: "https://en.wikipedia.org/wiki/X86_instruction_listings"
     image_url: ""
@@ -79,31 +79,31 @@ enhancements:
     content: "This section implements a string matching routine using x86 assembly instructions REPZ and SCASB. The programmer's goal was to efficiently locate a substring within a line of text, comparing characters one by one until a match was found. REPZ (repeat while zero flag is set) and SCASB (scan string byte) are used to iterate over the line, searching for the first occurrence of the substring. These instructions were highly optimized for the 8086 processor, allowing for rapid text processing. At the time, memory and CPU cycles were precious resources, and assembly programmers often relied on such specialized instructions to achieve performance goals. This approach influenced later text-processing utilities in DOS and other operating systems, demonstrating the power of hardware-specific optimizations."
   - id: "error-handling-in-file-operations"
     line_start: 1189
-    line_end: 1213
+    line_end: 1227
     title: "Error Handling in File Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section handles errors encountered during file operations, such as reading or opening files. The code checks for standard input (STD_IN) and gracefully exits if an error occurs. If the error is related to a file, it prints an error message and the filename using routines like `prt_file_name`. Error handling was critical in MS-DOS, as the operating system had to manage diverse hardware configurations and ensure reliability for end-users. Tim Paterson's design reflects the early emphasis on user feedback and robustness in software. These routines set a precedent for error reporting in later operating systems, influencing practices in file I/O libraries and APIs across the industry."
   - id: "binary-to-ascii-conversion"
-    line_start: 1399
-    line_end: 1535
+    line_start: 1459
+    line_end: 1495
     title: "Binary-to-ASCII Conversion Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
     image_url: ""
     image_caption: ""
     content: "This routine converts binary numbers in the AX register to their ASCII representation, storing the result in a buffer. The conversion is performed using division by 10 (decimal base) and extracting digits one by one, which are then converted to ASCII by adding '0'. This technique was a common way to handle numeric output in assembly, as processors lacked higher-level libraries for such tasks. The routine modifies several registers (AX, BX, CX, DX, DI) and demonstrates the careful management of resources typical of assembly programming. Binary-to-ASCII conversion remains a fundamental operation in computing, and this implementation influenced similar routines in early programming libraries and embedded systems."
   - id: "ascii-capitalization-optimization"
-    line_start: 1541
-    line_end: 1839
+    line_start: 1617
+    line_end: 1651
     title: "ASCII Capitalization Optimization"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
     image_url: ""
     image_caption: ""
     content: "This routine capitalizes a character in the AL register by checking if it falls within the lowercase ASCII range ('a' to 'z') and applying a bitwise AND operation with 0xDF. This clever use of bitwise arithmetic avoids conditional branching and ensures fast execution. At the time, assembly programmers often sought such optimizations to minimize CPU cycles. The routine reflects the constraints of early computing, where performance was paramount, and every instruction mattered. This approach influenced later text-processing libraries and demonstrated the utility of bitwise operations for character manipulation."
   - id: "kanji-character-handling-2"
-    line_start: 1667
-    line_end: 1713
+    line_start: 915
+    line_end: 1011
     title: "Kanji Character Handling for Japanese Text"
     wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""
@@ -127,15 +127,15 @@ enhancements:
     content: "The 'patch_area' defines a block of memory reserved for post-release fixes or updates. By allocating 256 bytes (100h in hexadecimal), the developers ensured space for small adjustments without requiring a complete rebuild of the program. This was a common practice in early software development, where distributing updated binaries was costly and time-consuming. In the early 1980s, software patches were often applied manually, with users typing in hex codes or using specialized utilities to modify executable files. MS-DOS v2.0, released in 1983, was designed for the IBM PC and compatible systems, which were rapidly proliferating. Ensuring adaptability and ease of maintenance was crucial for Microsoft's licensing strategy, which depended on supporting dozens of OEMs. This approach to patching influenced later practices in software maintenance. While modern systems use automated updates and version control, the concept of reserving space for fixes persists in embedded systems and firmware design. Microsoft's foresight in accommodating patches helped establish its reputation for reliability and adaptability, key factors in its dominance of the PC market."
   - id: "buffer-area-runtime-memory"
     line_start: 1799
-    line_end: 1819
+    line_end: 1803
     title: "Buffers: The Lifeblood of Early File I/O"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
     image_url: ""
     image_caption: ""
     content: "This section defines multiple buffers for runtime operations, including string arguments, file names, and file contents. Each buffer is allocated with specific sizes, reflecting the constrained memory environment of early PCs. For example, 'buffer_size+1' ensures an extra byte for a guard, preventing overflow during forced insertion of a CRLF pair. In 1983, the IBM PC typically had 64KB to 256KB of RAM, making efficient memory management critical. MS-DOS v2.0 introduced advanced features like subdirectories and file handles, which required careful handling of strings and file data. These buffers were essential for operations like parsing filenames, managing file contents, and interfacing with the disk. The use of fixed-size buffers influenced later programming practices, including the development of safer dynamic memory allocation techniques. However, it also highlighted risks like buffer overflows, which became a notorious source of security vulnerabilities. The lessons learned from early buffer management shaped the evolution of programming languages and frameworks, including C's standard library and modern memory-safe languages like Rust."
   - id: "error-messages-runtime-external"
-    line_start: 1823
-    line_end: 1837
+    line_start: 1815
+    line_end: 1839
     title: "Error Messages: Externalized for Flexibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_message"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "This section declares external references to error messages, including strings like 'bad_vers' and 'errmsg1'. By externalizing these messages, the developers ensured flexibility in localization and updates. Instead of hardcoding error text, MS-DOS v2.0 could load messages dynamically, simplifying maintenance and adaptation for different markets. In the early 1980s, internationalization was not yet a widespread concern, but Microsoft's licensing model required compatibility across diverse OEMs. Externalizing error messages allowed for easier customization, a feature that became increasingly important as MS-DOS spread globally. This technique influenced later software design, particularly in operating systems and applications that needed to support multiple languages. The separation of code and text became standard practice, leading to innovations like resource files and localization frameworks. Microsoft's early attention to modular design helped pave the way for its success in international markets, including the dominance of Windows in the 1990s."
   - id: "stack-segment-setup"
     line_start: 1845
-    line_end: 1857
+    line_end: 1851
     title: "The Stack: A Foundation for Program Execution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Call_stack"
     image_url: ""

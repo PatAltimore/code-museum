@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "texture-animation-structures"
     line_start: 55
-    line_end: 71
+    line_end: 78
     title: "Animating Textures: A Simple Yet Effective Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `P_InitPicAnims` function initializes texture animations by processing the `animdefs` array. It checks whether the start and end frames exist in the WAD file, calculates the number of frames in the animation, and assigns the animation properties to the global `anims` array. This function demonstrates how DOOM's modular design allowed developers to define animations externally via WAD files, making it easy to add or modify content. The reliance on WAD files for resource management became a hallmark of DOOM's extensibility, enabling the creation of user-generated mods and levels. This approach influenced the design of later games, including Quake and Half-Life, which adopted similar modular resource systems."
   - id: "sector-utilities"
     line_start: 196
-    line_end: 217
+    line_end: 209
     title: "Sector Utilities: Navigating DOOM's Level Geometry"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_design"
     image_url: ""
@@ -70,8 +70,8 @@ enhancements:
     image_caption: ""
     content: "The `P_FindSectorFromLineTag` function retrieves the next sector associated with a line tag, enabling scripted events like opening doors or triggering teleportation. Line tags were a simple yet powerful mechanism for defining interactions in DOOM's levels. By associating tags with sectors and lines, designers could create complex behaviors without hardcoding them into the game logic. This approach was a precursor to modern event-driven programming in games, where triggers and actions are defined declaratively. Line tags influenced the scripting systems of later games, including Quake's entity-based triggers and Half-Life's input-output system."
   - id: "light-level-calculations"
-    line_start: 429
-    line_end: 444
+    line_start: 1174
+    line_end: 1218
     title: "Dynamic Lighting: Calculating Surrounding Light Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(rendering)"
     image_url: ""

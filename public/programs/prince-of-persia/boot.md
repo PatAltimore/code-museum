@@ -39,7 +39,7 @@ enhancements:
     content: "This section initializes the boot process for Prince of Persia on the Apple IIe/IIc. It begins by setting key hardware registers to prepare the system for execution. The programmer, Jordan Mechner, carefully configures memory and display settings, including disabling auxiliary memory and alternate character sets. This ensures the game operates correctly within the Apple II's constrained environment. The code also sets up disk sector reading by calculating the correct skew table and sector addresses, a technique optimized for the Apple II's floppy disk controller. In 1989, this level of hardware-specific programming was common for games, as developers had to account for the quirks of each platform. Mechner's attention to detail here enabled the game to load efficiently, paving the way for the cinematic experience that followed. This approach influenced later developers who worked on tightly constrained systems, teaching them the importance of understanding hardware intimately."
   - id: "skew-table-for-disk-reading"
     line_start: 66
-    line_end: 89
+    line_end: 67
     title: "The Skew Table That Speeds Up Disk Reads"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The skew table defines the order in which disk sectors are read, optimizing for the rotational latency of the Apple II's floppy disk drive. By rearranging the sector read order, Mechner ensures that data is retrieved as quickly as possible, minimizing the time the CPU spends waiting for the disk to spin into position. This was a critical optimization for games of the era, where loading times could make or break the user experience. The skew table reflects a deep understanding of the hardware's mechanical limitations and was likely informed by experimentation or existing best practices in Apple II development. This technique became a standard approach for disk-based games on similar hardware, influencing other developers working in constrained environments."
   - id: "stage-2-memory-check"
     line_start: 91
-    line_end: 120
+    line_end: 165
     title: "Checking Memory Before the Game Begins"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""
@@ -55,15 +55,15 @@ enhancements:
     content: "This subroutine checks for the presence of 128K of memory, a requirement for Prince of Persia to run on the Apple IIe/IIc. The code uses specific memory addresses and hardware flags to determine compatibility. If the system passes the check, it proceeds to load the next stage of the boot process; otherwise, it halts execution. In the late 1980s, developers often had to write custom routines to detect hardware configurations, as there was no standardized way to query system capabilities. Mechner's approach here reflects the ingenuity required to ensure his game could run on the intended machines. This memory check routine influenced other developers working on multi-platform games, teaching them how to gracefully handle hardware limitations."
   - id: "unsupported-hardware-message"
     line_start: 167
-    line_end: 191
+    line_end: 187
     title: "What Happens When Your Apple II Isn’t Enough"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""
     image_caption: ""
     content: "This section displays a message if the system does not meet the game's requirements. It gracefully informs the user that the game requires an Apple IIe or IIc with 128K of memory. The message is stored as an ASCII string and printed character by character to the screen. This fallback mechanism reflects Mechner's commitment to user experience, ensuring that players on unsupported hardware receive clear feedback rather than a cryptic crash. In the late 1980s, such messages were rare, as many games simply failed silently or displayed garbled output. Mechner's approach here set a precedent for better error handling in games, influencing later developers to prioritize clear communication with users."
   - id: "memory-copy-routine"
-    line_start: 193
-    line_end: 233
+    line_start: 10
+    line_end: 21
     title: "The Routine That Moves Memory Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

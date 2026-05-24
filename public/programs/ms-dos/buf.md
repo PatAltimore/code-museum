@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-dosseg-and-dossym"
     line_start: 1
-    line_end: 15
+    line_end: 21
     title: "Why Include Files Were Crucial in Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -39,22 +39,22 @@ enhancements:
     content: "This section includes references to external files, `DOSSEG.ASM`, `DOSSYM.ASM`, and `DEVSYM.ASM`, which define constants, macros, and symbols used throughout the buffer management routines. In the constrained environment of 8086 assembly, modularity was achieved through include files, allowing developers to reuse code and maintain consistency across large projects. Tim Paterson's use of include files reflects the influence of structured programming practices, even in low-level assembly. These files likely contain definitions for buffer structures, device symbols, and segment directives, enabling MS-DOS to interface with hardware efficiently. This modular approach became a standard in assembly programming and influenced later operating systems, including Windows, which continued to rely on header files for modularity."
   - id: "setvisit-buffer-scan"
     line_start: 23
-    line_end: 50
+    line_end: 71
     title: "The Pre-Scan That Prevented Disk Errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_buffer"
     image_url: ""
     image_caption: ""
     content: "The `SETVISIT` routine initializes a scan of I/O buffers, ensuring all visit flags are cleared. This pre-scan is critical because hard disk errors could interrupt scans, leaving some flags in inconsistent states. By resetting these flags, MS-DOS avoids potential corruption or mismanagement of buffers. In 1983, disk errors were a common occurrence due to hardware limitations, and routines like this were essential for maintaining system stability. The technique of preemptively clearing state before operations became a best practice in software engineering, influencing error handling in later operating systems. The use of linked buffer structures here also reflects the influence of Unix-like systems, which employed similar mechanisms for managing I/O."
   - id: "placebuf-buffer-reordering"
-    line_start: 99
-    line_end: 118
+    line_start: 97
+    line_end: 256
     title: "How MS-DOS Reordered Buffers for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `PLACEBUF` routine removes a buffer from the queue and reinserts it based on its priority. This ensures that frequently accessed buffers are closer to the head of the queue, optimizing disk I/O. The routine uses linked list traversal and priority comparison to determine the correct position for each buffer. In the constrained environment of the IBM PC, where memory and processing power were limited, such optimizations were vital for performance. Tim Paterson's implementation here reflects a deep understanding of hardware constraints and the need for efficient resource management. This approach influenced later systems, including Windows, which adopted similar techniques for managing disk caches and memory buffers."
   - id: "getbuffr-sector-buffering"
-    line_start: 313
+    line_start: 74
     line_end: 409
     title: "The Sector Buffer That Saved Disk I/O"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_sector"
@@ -70,8 +70,8 @@ enhancements:
     image_caption: ""
     content: "The `FlushBuf` routine writes out all dirty buffers to disk, marking them as clean afterward. Dirty buffers contain modified data that hasn't yet been saved to disk, and flushing them ensures data integrity. This routine also handles unit-specific flushing, allowing selective writes based on physical unit numbers. In the era of MS-DOS v2.0, disk writes were expensive operations, and minimizing unnecessary writes was a key optimization. The concept of dirty buffers became standard practice in operating systems, influencing the design of write-back caching mechanisms in modern systems. Tim Paterson's implementation here reflects the careful balance between performance and reliability that defined early PC software."
   - id: "bufwrite-dirty-buffer-handler"
-    line_start: 459
-    line_end: 503
+    line_start: 23
+    line_end: 95
     title: "The Routine That Kept Buffers Clean"
     wikipedia_url: "https://en.wikipedia.org/wiki/Write-back_(cache)"
     image_url: ""

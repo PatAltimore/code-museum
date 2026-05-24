@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section initializes global symbols for the game, including lists of words, objects, actions, and orphaned commands. The use of global tables reflects the constraints of the PDP-10 environment, where memory was limited and efficient data access was critical. By centralizing these lists, the authors ensured rapid lookup and manipulation of game elements during runtime. The decision to use MDL's `MOBLIST` function highlights the language's strength in handling structured data, a feature inherited from its Lisp ancestry. These tables laid the groundwork for Zork's dynamic and responsive gameplay, influencing later text-based games like Adventure and Infocom's entire catalog of interactive fiction."
   - id: "command-parsing-initialization"
-    line_start: 12
+    line_start: 10
     line_end: 17
     title: "How Zork Prepared for Complex Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
@@ -71,7 +71,7 @@ enhancements:
     content: "The `SYN-MATCH` routine matches parsed player input to predefined syntax structures, determining the appropriate game action. For example, if the input is 'take lantern,' the routine checks whether the syntax matches the 'take' action and whether the object ('lantern') is valid. This process involves flipping object order when necessary and handling cases where objects are missing or ambiguous. The authors leveraged MDL's vector manipulation capabilities to create a flexible and efficient system. This approach ensured that Zork could interpret a wide range of inputs accurately, contributing to its reputation as a sophisticated and user-friendly game. The technique influenced later games with complex command systems, such as Ultima and Baldur's Gate."
   - id: "get-what-i-mean"
     line_start: 256
-    line_end: 284
+    line_end: 282
     title: "The Routine That Guessed Player Intent"
     wikipedia_url: "https://en.wikipedia.org/wiki/Natural_language_processing"
     image_url: ""

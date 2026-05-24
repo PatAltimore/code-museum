@@ -25,14 +25,14 @@ summary:
 enhancements:
   - id: "hex2bin-entry-point"
     line_start: 18
-    line_end: 84
+    line_end: 55
     title: "Why HEX2BIN Starts at 100H"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The HEX2BIN subroutine begins at memory address 100H, which is a convention for .COM programs in MS-DOS. This address is reserved for program execution, ensuring the program doesn't overwrite the Program Segment Prefix (PSP) located at 0–100H. The subroutine initializes file control blocks (FCBs) and prepares the environment for file operations. At the time, MS-DOS relied heavily on FCBs for file access, a design inherited from CP/M. Tim Paterson, the author of MS-DOS, adapted this approach to maintain compatibility with existing software. This section also demonstrates the use of interrupts (INT 21H) for system calls, a hallmark of MS-DOS programming. The reliance on FCBs was eventually replaced by file handles in MS-DOS 2.0, inspired by Unix. This initialization routine laid the groundwork for countless utilities and applications that followed, influencing early PC software development."
   - id: "segment-zeroing-and-buffer-setup"
-    line_start: 76
+    line_start: 56
     line_end: 84
     title: "Zeroing Memory: A Programmer's Ritual"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -49,7 +49,7 @@ enhancements:
     content: "This loop reads and parses Intel HEX file lines, extracting byte counts, load addresses, and data bytes. It uses GETCH and GETBYT subroutines to process each character and convert hexadecimal digits into binary. The loop ensures that data is loaded into memory at the correct address, accounting for offsets. Intel HEX was a popular format for microcontroller programming, and this routine reflects the precision required to handle it. The parsing logic, with its careful checks and conversions, showcases the programmer's attention to detail and understanding of the format's structure. This approach influenced later tools for firmware and embedded systems programming, where parsing efficiency and accuracy are critical."
   - id: "error-handling-and-exit"
     line_start: 112
-    line_end: 121
+    line_end: 134
     title: "When Things Go Wrong: Error Messages in HEX2BIN"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
@@ -57,7 +57,7 @@ enhancements:
     content: "HEX2BIN includes robust error handling routines to manage file not found errors, address out-of-range issues, and disk directory full conditions. These routines display descriptive messages using INT 21H, ensuring the user understands the problem. Error handling was a critical aspect of early software development, as users often lacked technical expertise. The inclusion of clear error messages reflects the programmer's empathy and foresight. This approach influenced the design of error handling in later software, emphasizing user-friendly communication. The exit routine, which gracefully terminates the program, showcases the importance of clean program termination in assembly language, a practice that remains relevant in modern software development."
   - id: "data-definitions-and-memory-allocation"
     line_start: 201
-    line_end: 214
+    line_end: 213
     title: "Defining Data: The Backbone of HEX2BIN"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""

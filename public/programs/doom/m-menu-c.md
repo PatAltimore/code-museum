@@ -49,7 +49,7 @@ enhancements:
     content: "The `EpisodeMenu` and `EpiDef` structures define the episode selection menu, allowing players to choose between different chapters of the game. This menu reflects DOOM's episodic structure, a design choice influenced by the shareware distribution model popular in the early 1990s. By offering a free episode and charging for additional ones, id Software could reach a wide audience while monetizing the game's full experience. The episodic menu design also influenced the structure of later games, including expansions and DLCs, where content is segmented into distinct chapters or levels."
   - id: "save-load-system"
     line_start: 506
-    line_end: 540
+    line_end: 535
     title: "The Save and Load System: Persistence in DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
@@ -57,7 +57,7 @@ enhancements:
     content: "The `M_ReadSaveStrings`, `M_DrawLoad`, and `M_LoadSelect` functions implement DOOM's save and load system, allowing players to persist their progress. Save files are read from disk and displayed in the menu, with empty slots marked accordingly. This system was designed to be robust and user-friendly, ensuring players could easily manage their save data. The reliance on file I/O operations (`open`, `read`, `close`) reflects the low-level programming practices of the time, where developers interacted directly with the operating system. This approach influenced future games, where save systems became increasingly sophisticated, incorporating features like autosave and cloud storage."
   - id: "quick-save-load"
     line_start: 689
-    line_end: 724
+    line_end: 710
     title: "Quick Save and Load: Speeding Up Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
@@ -65,7 +65,7 @@ enhancements:
     content: "The `M_QuickSave` and `M_QuickLoad` functions provide a streamlined way for players to save and load their progress without navigating the full menu system. This feature was a response to the fast-paced nature of DOOM, where players needed to quickly resume gameplay after a mistake or interruption. Quick save/load systems became a staple in gaming, emphasizing convenience and reducing downtime. The implementation here reflects id Software's focus on player experience, ensuring the game remained engaging and accessible."
   - id: "help-screens"
     line_start: 747
-    line_end: 774
+    line_end: 768
     title: "Help Screens: Guiding Players Through DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_guide"
     image_url: ""
@@ -97,7 +97,7 @@ enhancements:
     content: "The `M_Episode` function handles episode selection in DOOM, including a workaround for Ultimate DOOM's fourth episode. If the player selects an unavailable episode, the game prints an error message and defaults to the first episode. This hack reflects the challenges of supporting multiple game versions, such as shareware, registered, and commercial editions. In the early 1990s, developers often relied on such conditional logic to manage content across different releases. This technique influenced later games, which adopted more sophisticated methods for version-specific content management."
   - id: "menu-string-rendering"
     line_start: 1251
-    line_end: 1276
+    line_end: 1270
     title: "Rendering Text in DOOM's Menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_font"
     image_url: ""

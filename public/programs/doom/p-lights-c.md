@@ -72,8 +72,8 @@ enhancements:
     image_caption: ""
     content: "The `P_SpawnStrobeFlash` function initializes strobe lighting for a sector, with options for synchronization and speed. By allowing strobe lights to operate in sync or independently, DOOM's engine provided level designers with greater creative control. This function also demonstrates the modularity of DOOM's 'Thinker' system, which was designed to handle diverse game logic efficiently. The ability to synchronize effects across sectors influenced later engines, enabling complex environmental interactions in games like Bioshock and Portal."
   - id: "turn-tag-lights-off"
-    line_start: 232
-    line_end: 263
+    line_start: 220
+    line_end: 227
     title: "How DOOM Turned Lights Off Dynamically"
     wikipedia_url: "https://doomwiki.org/wiki/Lighting"
     image_url: ""

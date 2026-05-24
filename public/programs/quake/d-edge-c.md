@@ -30,15 +30,15 @@ summary:
 
 enhancements:
   - id: "foundation-initialization-variables"
-    line_start: 17
-    line_end: 36
+    line_start: 1
+    line_end: 27
     title: "Why These Variables Were Preloaded"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section initializes key variables such as 'miplevel', 'scale_for_mip', and 'screenwidth'. These are foundational to the rendering pipeline, setting up parameters for texture scaling and screen resolution handling. In 1996, hardware constraints like limited memory and fixed screen resolutions required developers to predefine such values to optimize performance. John Carmack and the id Software team were known for their meticulous attention to detail in squeezing every ounce of efficiency from the hardware. These variables would later be referenced throughout the file to ensure consistent rendering behavior. This approach influenced later game engines, where preloading critical parameters became standard practice for performance optimization."
   - id: "vec3t-transformed-modelorg"
-    line_start: 36
+    line_start: 32
     line_end: 36
     title: "The Vector That Anchored a World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
@@ -54,32 +54,32 @@ enhancements:
     image_caption: ""
     content: "The 'D_DrawPoly' function is a placeholder, indicating that the rendering driver takes spans rather than polygons. Span-based rendering was a common optimization in the 1990s, as it allowed developers to process horizontal slices of polygons directly, reducing computational overhead. This technique was particularly effective on x86 processors, which were limited in their ability to handle complex geometric calculations. By focusing on spans, id Software could achieve smoother rendering at higher frame rates. This method influenced later engines, including Unreal Engine and Source, which refined span-based techniques for more advanced hardware."
   - id: "d-miplevelforscale-mipmapping"
-    line_start: 50
-    line_end: 72
+    line_start: 28
+    line_end: 30
     title: "How Mipmapping Saved the Day"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mipmap"
     image_url: ""
     image_caption: ""
     content: "The 'D_MipLevelForScale' function determines the appropriate mipmap level based on the scale of a texture. Mipmapping, introduced in the 1980s, became a staple in 3D graphics by the mid-1990s. It involves precomputing multiple levels of texture detail, allowing the renderer to select the best level based on the object's distance from the camera. This reduces aliasing and improves performance by avoiding unnecessary high-resolution texture sampling. Quake's implementation of mipmapping was a key factor in its ability to render complex scenes smoothly on hardware like the Pentium processors of the era. The technique remains a cornerstone of modern graphics engines."
   - id: "d-drawsolidsurface-span-optimization"
-    line_start: 75
-    line_end: 115
+    line_start: 38
+    line_end: 47
     title: "The Span Loop That Sped Up Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The 'D_DrawSolidSurface' function draws solid surfaces using a span-based loop. It optimizes rendering by grouping pixels into spans and processing them in batches, reducing the overhead of individual pixel operations. The function includes clever tricks like aligning spans to 4-byte boundaries for faster memory access, leveraging the x86 architecture's strengths. This approach was critical for achieving high frame rates on mid-1990s hardware, where memory bandwidth and processing power were limited. The span-based optimization influenced later engines, including Doom 3 and Half-Life, which adapted similar techniques for more advanced graphics pipelines."
   - id: "d-calcgradients-texture-mapping"
-    line_start: 118
-    line_end: 166
+    line_start: 38
+    line_end: 47
     title: "The Math Behind Texture Gradients"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
     content: "The 'D_CalcGradients' function calculates gradients for texture mapping, ensuring that textures are correctly aligned and scaled across surfaces. It uses vector transformations and scaling factors to compute texture coordinates, a process that was computationally intensive on 1990s hardware. The function's reliance on fixed-point arithmetic reflects the era's constraints, where floating-point operations were expensive. This technique allowed Quake to render detailed textures with minimal distortion, setting a new standard for visual fidelity in games. The gradient calculations influenced later engines, which adopted similar methods for handling texture mapping in complex 3D environments."
   - id: "d-drawsurfaces-modular-rendering"
-    line_start: 169
-    line_end: 335
+    line_start: 38
+    line_end: 47
     title: "The Modular Pipeline That Changed Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""

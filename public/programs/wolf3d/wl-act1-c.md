@@ -46,48 +46,48 @@ enhancements:
     image_caption: ""
     content: "The `InitStaticList` function initializes the static object list by setting `laststatobj` to the beginning of the array. This simple yet crucial step ensures that the game starts with a clean slate for static objects. Without it, uninitialized pointers could lead to crashes or undefined behavior. In the early 1990s, such bugs were common due to the lack of modern debugging tools. This function exemplifies the meticulous attention to detail required to create stable software in an era of limited resources. The technique of initializing object lists became standard practice in game development, influencing countless titles that followed."
   - id: "spawn-static-object"
-    line_start: 131
-    line_end: 184
+    line_start: 116
+    line_end: 127
     title: "Spawning Objects That Blocked or Rewarded Players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "The `SpawnStatic` function places static objects in the game world, assigning properties based on their type. Objects can block movement, provide bonuses, or serve as decorations. The function increments the treasure count for collectible items, ensuring accurate tracking of player progress. This routine highlights the game's interactive environment, where objects are not just visual elements but integral to gameplay. The concept of dynamic object spawning influenced later games, enabling developers to create rich, interactive worlds. It also showcases the balance between performance and functionality, as the routine avoids excessive computation while maintaining flexibility."
   - id: "door-mechanics"
-    line_start: 244
-    line_end: 259
+    line_start: 254
+    line_end: 256
     title: "Doors That Connected the Game World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section introduces the mechanics of doors in Wolfenstein 3D. Doors connect areas, allowing sound and sight to pass through when open. The `doorposition` array tracks the state of each door, ranging from fully closed to fully open. The limited number of doors (64) reflects the constraints of the tile-based system and the need to optimize memory usage. By dynamically recalculating area connectivity, the game creates a sense of immersion and realism. This technique influenced later games by demonstrating how to handle dynamic environments efficiently. It also laid the groundwork for more complex systems, such as pathfinding and AI navigation."
   - id: "recursive-area-connectivity"
-    line_start: 283
-    line_end: 305
+    line_start: 116
+    line_end: 127
     title: "Recursive Algorithm for Dynamic Area Connectivity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "The `RecursiveConnect` function scans outward from the player's current area, marking all connected areas. This recursive algorithm ensures that the game world remains dynamically connected, allowing for realistic sound propagation and AI behavior. The use of recursion reflects the developers' ingenuity in solving complex problems with simple techniques. In the early 1990s, recursion was a powerful tool for tasks like connectivity and pathfinding, despite the risks of stack overflow on limited hardware. This approach influenced later games by demonstrating the potential of dynamic systems to enhance immersion and gameplay."
   - id: "spawn-door"
-    line_start: 342
-    line_end: 388
+    line_start: 116
+    line_end: 127
     title: "Spawning Doors That Blocked and Opened Worlds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "The `SpawnDoor` function creates doors in the game world, assigning properties such as position, orientation, and lock status. Doors start fully closed and are marked as solid walls in the `actorat` array. The function also updates adjacent tiles to indicate door sides, ensuring accurate collision detection. This routine exemplifies the game's tile-based architecture, where every element is carefully managed to optimize performance. The concept of dynamic door spawning influenced later games, enabling developers to create interactive environments with minimal overhead. It also highlights the balance between simplicity and functionality, a hallmark of id Software's design philosophy."
   - id: "pushable-walls"
-    line_start: 724
-    line_end: 797
+    line_start: 275
+    line_end: 290
     title: "The Secret Mechanic: Pushable Walls"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "The `PushWall` function implements one of Wolfenstein 3D's most iconic mechanics: pushable walls. Players can uncover hidden areas by pushing certain walls, adding an element of exploration and discovery. The function checks for obstacles before allowing a wall to move, ensuring that the mechanic integrates seamlessly with the game's collision system. Pushable walls were a novel feature at the time, showcasing the developers' creativity in enhancing gameplay. This mechanic influenced later games by introducing the concept of environmental puzzles, where players interact with the world to uncover secrets and progress."
   - id: "move-pushable-walls"
-    line_start: 801
-    line_end: 899
+    line_start: 131
+    line_end: 136
     title: "Animating Walls That Moved and Revealed Secrets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

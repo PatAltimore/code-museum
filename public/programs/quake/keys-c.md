@@ -31,71 +31,71 @@ summary:
 enhancements:
   - id: "foundation-includes-and-definitions"
     line_start: 1
-    line_end: 28
+    line_end: 2
     title: "Why Quake Needed Its Own Key System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section establishes the foundation for Quake's keyboard input handling, including necessary includes and initial definitions. The inclusion of platform-specific headers like <windows.h> reflects the need to support multiple operating systems, a significant challenge in the mid-1990s. Quake's key system was designed to handle both gameplay and console input seamlessly, a departure from simpler input models in earlier games. By defining constants like MAXCMDLINE and initializing arrays for key lines and bindings, the developers laid the groundwork for a flexible input system capable of handling complex user interactions. This approach influenced later games and engines, including id Software's own Doom 3 and the Source engine, which adopted similar abstractions for input handling."
   - id: "key-data-structures"
-    line_start: 31
-    line_end: 42
+    line_start: 4
+    line_end: 26
     title: "The Data Structures Behind Key Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
     image_caption: ""
     content: "This section introduces the core data structures used for managing keyboard input in Quake. Arrays like key_lines and keybindings store user input and command mappings, while variables like key_linepos and key_lastpress track the state of the input system. These structures were designed to balance performance and flexibility, enabling features like command history and dynamic key binding. In the constrained environment of 1996, where memory and processing power were limited, such efficient use of data structures was critical. The design principles seen here influenced later game engines, which expanded on these ideas to support more complex input systems, including joystick and gamepad integration."
   - id: "keyname-lookup-table"
-    line_start: 51
-    line_end: 143
+    line_start: 45
+    line_end: 49
     title: "The Lookup Table That Made Keys Human-Friendly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
     content: "The keynames array maps human-readable key names (like \"TAB\" or \"ENTER\") to their corresponding numeric codes. This lookup table simplifies the process of binding commands to keys and interpreting user input. In 1996, this approach was innovative for its focus on usability, allowing players to easily customize controls without needing to understand raw key codes. The inclusion of mouse and joystick buttons highlights Quake's forward-thinking design, accommodating a variety of input devices. Lookup tables like this became a standard feature in game engines, influencing the design of input systems in Unreal Engine and Unity."
   - id: "command-checking-and-completion"
-    line_start: 145
-    line_end: 174
+    line_start: 31
+    line_end: 44
     title: "How Quake Predicted Your Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_completion"
     image_url: ""
     image_caption: ""
     content: "The CheckForCommand function checks if the user's input matches a known command or variable, enabling dynamic command completion in the console. This feature was a significant usability improvement, reducing the need for players to memorize exact command syntax. Inspired by Unix shell environments, this functionality reflects the influence of systems programming on game development. Command completion became a staple in game consoles and development tools, appearing in engines like Source and tools like Blender's Python console."
   - id: "interactive-console-editing"
-    line_start: 199
-    line_end: 355
+    line_start: 176
+    line_end: 201
     title: "Interactive Console: A Programmer's Playground"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
     content: "The Key_Console function handles interactive line editing and console scrollback, allowing players to input commands and navigate command history. Features like command completion, clipboard integration, and history navigation demonstrate a focus on usability and efficiency. The inclusion of Windows-specific clipboard handling reflects the challenges of cross-platform development in the 1990s. This interactive console became a hallmark of id Software games, influencing the design of developer consoles in later engines like Unreal Engine and Unity."
   - id: "key-binding-system"
-    line_start: 467
-    line_end: 499
+    line_start: 203
+    line_end: 496
     title: "The Binding System That Empowered Players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
     image_url: ""
     image_caption: ""
     content: "Key_SetBinding allows players to bind commands to specific keys, enabling customization of controls. This feature was a major step forward in user empowerment, allowing players to tailor the game experience to their preferences. The system's design reflects the influence of Unix command-line tools, where flexibility and user control were paramount. Key binding systems like this became standard in PC gaming, influencing titles like Half-Life and Counter-Strike, which expanded on the concept to include advanced scripting capabilities."
   - id: "key-initialization"
-    line_start: 592
-    line_end: 668
+    line_start: 497
+    line_end: 593
     title: "Initializing Keys for a Seamless Experience"
     wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(programming)"
     image_url: ""
     image_caption: ""
     content: "Key_Init initializes the key system, setting up default bindings and preparing arrays for input handling. This function ensures that the game starts with a consistent and functional input system, a critical requirement for a smooth user experience. The initialization process reflects the meticulous attention to detail that defined id Software's approach to game development. Similar initialization routines became standard in game engines, ensuring reliable input handling across diverse hardware configurations."
   - id: "key-event-handling"
-    line_start: 670
-    line_end: 822
+    line_start: 594
+    line_end: 671
     title: "Handling Key Events in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
     image_url: ""
     image_caption: ""
     content: "Key_Event processes key up and key down events, updating key states and executing bound commands. This function demonstrates the principles of event-driven programming, where user input triggers specific actions. The handling of autorepeat and special keys like ESCAPE reflects the complexity of real-time input processing in games. Quake's approach to event handling influenced later engines, including Unreal Engine and Unity, which adopted similar models for managing user input."
   - id: "key-clear-states"
-    line_start: 824
-    line_end: 838
+    line_start: 672
+    line_end: 825
     title: "Resetting Keys for a Clean Slate"
     wikipedia_url: "https://en.wikipedia.org/wiki/State_(computer_science)"
     image_url: ""

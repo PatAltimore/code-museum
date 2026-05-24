@@ -38,24 +38,24 @@ enhancements:
     image_caption: ""
     content: "These lines include critical assembly headers (`DOSSEG.ASM`, `DOSSYM.ASM`, and `DEVSYM.ASM`) that define the memory management structures and symbols used throughout the file. At the time, MS-DOS was transitioning from a simple single-tasking OS to a more Unix-inspired system with features like subdirectories and device drivers. These headers provided the foundational definitions for memory arenas, process data blocks, and allocation methods. Tim Paterson and Microsoft engineers used these headers to ensure consistency and modularity across the codebase. By abstracting hardware-specific details into headers, they made the code easier to adapt for different OEMs, a key factor in MS-DOS's widespread adoption. This modular approach influenced later operating systems, including Windows and Linux, where header files and modularity became standard practice."
   - id: "arena-free-process-loop"
-    line_start: 67
-    line_end: 123
+    line_start: 89
+    line_end: 101
     title: "Freeing Memory Blocks by Process ID"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This subroutine loops through memory blocks in the arena and frees all blocks allocated to a specific process ID (PID). The programmer's immediate goal was to ensure that memory allocated to terminated processes could be reclaimed efficiently. The use of `arena_signature` and `arena_owner` fields reflects the structured memory management approach inspired by Unix. In 1983, memory management was constrained by the 8086 processor's segmented architecture, which limited addressable memory to 1MB. Efficient reclamation of memory was critical to keep the system running smoothly. This technique influenced future memory management strategies, including garbage collection in higher-level languages like Java and Python. The concept of associating memory blocks with process IDs laid the groundwork for modern operating systems' process isolation and memory protection mechanisms."
   - id: "check-signature"
-    line_start: 159
-    line_end: 199
+    line_start: 193
+    line_end: 197
     title: "Validating Memory Block Integrity"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This subroutine checks the integrity of a memory block by validating its signature. The `arena_signature` field ensures that the block is either normal or marked as the end of the arena. If the signature is invalid, the carry flag is set to indicate an error. Memory corruption was a common issue in early computing due to hardware glitches or software bugs. By implementing signature checks, MS-DOS introduced a rudimentary form of memory protection. This approach was inspired by similar techniques in Unix and other operating systems of the era. The concept of using signatures to validate memory blocks influenced later systems, including modern file systems and databases, which use checksums and other integrity checks to prevent corruption."
   - id: "coalesce"
-    line_start: 203
-    line_end: 249
+    line_start: 231
+    line_end: 247
     title: "Combining Adjacent Free Memory Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The `Coalesce` subroutine combines adjacent free memory blocks into a single larger block. This technique minimizes fragmentation and maximizes usable memory, a critical concern in the constrained environment of the 8086 processor. The subroutine iterates through the arena, checking ownership and size fields to determine whether blocks can be merged. Fragmentation was a major challenge in early operating systems, as memory allocation and deallocation patterns could quickly lead to unusable gaps. Coalescing free blocks was a direct response to this problem, inspired by similar strategies in Unix. This technique became a standard feature in memory allocators, influencing designs like the buddy system and slab allocation used in modern kernels."
   - id: "alloc-scan"
     line_start: 319
-    line_end: 341
+    line_end: 327
     title: "Scanning for Free Memory Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `alloc_scan` subroutine iterates through the memory arena to find free blocks that match the requested size. It uses the `arena_owner` field to identify free blocks and checks their size against the requested size (`BX`). This subroutine is part of the `$ALLOC` routine, which handles dynamic memory allocation. At the time, dynamic memory allocation was a relatively new concept, and MS-DOS's implementation was heavily influenced by Unix's malloc function. The ability to scan and allocate memory dynamically was a key feature that enabled more complex applications to run on MS-DOS. This approach influenced later memory allocation strategies, including the heap management systems used in modern programming languages like C++ and Java."
   - id: "alloc-do-split-high"
     line_start: 441
-    line_end: 543
+    line_end: 467
     title: "Splitting Memory Blocks for Allocation"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -79,14 +79,14 @@ enhancements:
     content: "The `alloc_do_split_high` subroutine splits a memory block into two parts: one for the requested allocation and one for the remaining free space. This technique ensures efficient use of memory by avoiding over-allocation. The subroutine adjusts the size and signature fields of the split blocks to maintain arena integrity. Splitting blocks was a common technique in early memory management systems, inspired by Unix's malloc function. It allowed MS-DOS to handle dynamic memory allocation efficiently despite the limited resources of the 8086 processor. This approach influenced later memory management systems, including the buddy system and slab allocation used in modern operating systems."
   - id: "setblock-grab"
     line_start: 605
-    line_end: 621
+    line_end: 623
     title: "Resizing Allocated Memory Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The `setblock_grab` subroutine attempts to resize an allocated memory block to match a new requested size (`BX`). It uses the `coalesce` subroutine to merge adjacent free blocks if possible, ensuring that the resized block fits within the available memory. Resizing memory blocks was a challenging problem in early operating systems due to fragmentation and limited resources. MS-DOS's implementation was inspired by Unix's realloc function, which allowed dynamic resizing of memory allocations. This feature enabled more flexible memory management, paving the way for applications that required variable-sized data structures. The concept of resizing memory blocks influenced later systems, including dynamic memory allocators in modern programming languages like C++ and Python."
   - id: "dealloc"
-    line_start: 631
+    line_start: 671
     line_end: 675
     title: "Freeing Allocated Memory Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

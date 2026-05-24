@@ -31,22 +31,22 @@ summary:
 enhancements:
   - id: "include-dosseg-symbols"
     line_start: 1
-    line_end: 7
+    line_end: 5
     title: "Why Include Files Were Crucial in Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
     content: "This section includes the DOSSEG.ASM file, setting up segment definitions and symbol references for the rest of the program. In the early 1980s, modularity in assembly language was achieved through include files, which allowed developers to reuse common definitions and macros across multiple source files. Tim Paterson's use of these files reflects the growing complexity of MS-DOS 2.0 compared to its predecessor, which had fewer features and simpler code. This modular approach influenced later operating systems and programming practices, as it demonstrated the importance of separating concerns and reusing code in resource-constrained environments."
   - id: "ctrl-c-check-con-io"
-    line_start: 47
-    line_end: 110
+    line_start: 43
+    line_end: 109
     title: "The Routine That Detected Ctrl-C"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control-C"
     image_url: ""
     image_caption: ""
     content: "This routine checks for a Ctrl-C interrupt during console I/O operations. It uses the INDOS flag to determine whether the system is in a critical section and avoids interrupting essential operations. By invoking the DEVIOCALL2 routine, it interacts with the device I/O subsystem to process the input. The design reflects the constraints of early PCs, where interrupt-driven input was essential for responsiveness but had to be carefully managed to avoid corrupting the system state. This technique influenced later interrupt handling in operating systems, where similar mechanisms were used to balance responsiveness and stability."
   - id: "ctrl-c-handler"
-    line_start: 170
+    line_start: 227
     line_end: 227
     title: "How MS-DOS Restored State After Ctrl-C"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
@@ -54,16 +54,16 @@ enhancements:
     image_caption: ""
     content: "The CNTCHAND routine is the Ctrl-C handler, responsible for restoring the user's stack and executing the user-defined Ctrl-C handler. It carefully manipulates the stack to ensure that the system can either continue processing or terminate gracefully, depending on the user's input. This routine highlights the challenges of implementing multitasking and error recovery in an environment with limited hardware support. The stack manipulation techniques used here became foundational for later operating systems, influencing how interrupts and exceptions are handled in modern kernels."
   - id: "division-overflow-handler"
-    line_start: 231
-    line_end: 243
+    line_start: 110
+    line_end: 227
     title: "What Happens When Division Overflows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Division_by_zero"
     image_url: ""
     image_caption: ""
     content: "The DIVOV routine handles division overflow errors, a common issue in low-level programming. When a division operation exceeds the maximum representable value, this routine displays an error message and invokes the Ctrl-C abort handler to terminate the program. This approach reflects the simplicity of error handling in early operating systems, where graceful recovery was often sacrificed for simplicity and performance. The concept of trapping arithmetic errors influenced later programming languages and systems, which introduced more sophisticated exception handling mechanisms."
   - id: "hard-disk-error-handler"
-    line_start: 287
-    line_end: 351
+    line_start: 229
+    line_end: 463
     title: "Recovering From Disk Errors in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_error"
     image_url: ""

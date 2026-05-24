@@ -55,7 +55,7 @@ enhancements:
     content: "The `R_PointToAngle` function calculates the angle between two points using a combination of coordinate flipping and a precalculated `tantoangle` lookup table. This avoids expensive trigonometric calculations, which were impractical on 1990s CPUs. Instead, DOOM uses integer arithmetic and precomputed values to achieve the same result efficiently. This approach reflects the constraints of the era, where performance was paramount and every CPU cycle counted. The technique was widely studied and adapted by other developers, influencing rendering methods in games like Duke Nukem 3D and Quake."
   - id: "texture-mapping-setup"
     line_start: 540
-    line_end: 602
+    line_end: 601
     title: "Optimized Texture Mapping with Tangent Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `R_InitLightTables` function calculates light levels based on distance and view size, creating a dynamic lighting effect that enhances DOOM's immersive atmosphere. By scaling light intensity with distance, the game simulates realistic lighting without requiring advanced hardware capabilities. This was a significant innovation at a time when most games used static lighting. The technique influenced later engines, including the Build Engine used in Duke Nukem 3D, and laid the groundwork for more sophisticated lighting systems in modern games."
   - id: "frame-setup-and-rendering"
     line_start: 866
-    line_end: 880
+    line_end: 893
     title: "What Happens Before DOOM Draws a Frame"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""

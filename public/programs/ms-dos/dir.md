@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "include-dosseg-setup"
     line_start: 9
-    line_end: 29
+    line_end: 9
     title: "Why Include Files Were Crucial in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,14 +39,14 @@ enhancements:
     content: "This section includes external assembly files, such as DOSSEG.ASM and DOSSYM.ASM, which define segment structures and symbolic constants for MS-DOS. These files were essential for modular programming in assembly, allowing developers to reuse code and maintain consistency across the operating system. In the early 1980s, modularity was critical due to the limited memory and storage of personal computers like the IBM PC, which often had only 64KB to 256KB of RAM. By separating reusable definitions into include files, MS-DOS developers could streamline development and reduce errors. This approach influenced later operating systems and programming practices, where header files and libraries became standard. Modern software development still relies on similar modular principles, as seen in languages like C and Python."
   - id: "name-dir-segment"
     line_start: 33
-    line_end: 253
+    line_end: 83
     title: "The Segment That Named Directories"
     wikipedia_url: "https://en.wikipedia.org/wiki/FAT_file_system"
     image_url: ""
     image_caption: ""
     content: "This segment initializes variables and structures related to directory management, such as directory start points, cluster numbers, and attributes. The use of 'i_need' directives highlights the assembly language's ability to define and allocate memory for critical file system components. In MS-DOS 2.0, the introduction of hierarchical directories marked a significant departure from the flat file structure of earlier versions. Inspired by Unix, this innovation allowed users to organize files more effectively, paving the way for complex file systems like NTFS and ext4. The techniques shown here, such as managing clusters and sectors, were foundational for the FAT file system, which became ubiquitous in personal computing and embedded systems."
   - id: "builddir-grow-directory"
-    line_start: 253
+    line_start: 87
     line_end: 253
     title: "How MS-DOS Expanded Directories on the Fly"
     wikipedia_url: "https://en.wikipedia.org/wiki/FAT_file_system"
@@ -54,16 +54,16 @@ enhancements:
     image_caption: ""
     content: "The BUILDDIR subroutine dynamically grows directories when no free entries are available, provided the directory is not the root. This functionality was critical for supporting hierarchical file systems introduced in MS-DOS 2.0. The subroutine checks for free entries and allocates additional space if necessary, ensuring efficient use of disk clusters. In the constrained environment of early PCs, where storage was limited and expensive, dynamic allocation minimized wasted space and optimized performance. This approach influenced later file systems, such as FAT32, which improved scalability and efficiency. The ability to grow directories dynamically became a standard feature in modern operating systems, enabling seamless file management even as storage capacities expanded."
   - id: "setdotent-dot-dot-entry"
-    line_start: 257
-    line_end: 303
+    line_start: 87
+    line_end: 253
     title: "The Origins of '.' and '..' in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""
     image_caption: ""
     content: "SETDOTENT creates the special directory entries '.' and '..', representing the current directory and its parent, respectively. These entries were borrowed from Unix, where they were integral to navigating hierarchical file systems. By adopting this convention, MS-DOS 2.0 made directory traversal intuitive for users and developers. At the time, personal computers were transitioning from single-tasking systems to more complex environments, and hierarchical directories were a key innovation. The '.' and '..' entries became standard across operating systems, including Windows and Linux, and are still used today in command-line interfaces and programming. This design decision reflects the influence of Unix on MS-DOS and underscores the importance of interoperability and user familiarity in software design."
   - id: "search-find-file"
-    line_start: 487
-    line_end: 655
+    line_start: 87
+    line_end: 253
     title: "How MS-DOS Found Files with Wildcards"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wildcard_character"
     image_url: ""
@@ -71,31 +71,31 @@ enhancements:
     content: "The SEARCH subroutine locates files in a directory, supporting wildcard characters like '?' for flexible matching. This functionality was essential for command-line operations, such as listing files or copying groups of files. In the early 1980s, wildcard matching was a novel feature that simplified file management for users. The implementation here demonstrates efficient use of assembly language to iterate through directory entries and compare names. Wildcard support became a staple of file systems and command-line interfaces, influencing tools like grep and globbing in Unix-like systems. The ability to search and manipulate files programmatically laid the groundwork for automation and scripting, which are now integral to software development and system administration."
   - id: "setrootsrch-root-directory"
     line_start: 909
-    line_end: 939
+    line_end: 1017
     title: "Resetting to Root: A Safety Net for Paths"
     wikipedia_url: "https://en.wikipedia.org/wiki/Root_directory"
     image_url: ""
     image_caption: ""
     content: "SETROOTSRCH resets the search parameters to the root directory when a path is invalid or unspecified. This ensures that file operations always have a fallback, preventing errors and maintaining system stability. In MS-DOS 2.0, the root directory was the anchor point for all file system operations, mirroring the design of Unix. This subroutine reflects the challenges of managing paths in early operating systems, where user input could easily lead to invalid states. By resetting to the root, MS-DOS provided a robust mechanism for recovering from errors. This concept influenced later operating systems, where root directories serve as the foundation for file hierarchies and system organization."
   - id: "dir-search-directory-lookup"
-    line_start: 987
-    line_end: 1017
+    line_start: 87
+    line_end: 253
     title: "How MS-DOS Found Files in Directories"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
     content: "The `Dir_search` routine is responsible for locating files within directories in MS-DOS. It uses a combination of path parsing and file attribute checks to determine whether a file exists, whether it matches the requested attributes, and whether it resides in the correct directory. At the time, MS-DOS 2.0 was introducing hierarchical file systems, a significant leap from the flat file structure of MS-DOS 1.x. This routine reflects the growing complexity of consumer operating systems as they began to mimic features of Unix, such as subdirectories. Written in 8086 assembly, it had to be highly optimized to run efficiently on the IBM PC's limited hardware. This approach influenced later DOS versions and other operating systems, which continued to refine directory lookup algorithms for performance and scalability."
   - id: "make-node-create-new-directory-entry"
-    line_start: 1025
-    line_end: 1309
+    line_start: 257
+    line_end: 1017
     title: "Creating Directory Entries on 1983 Hardware"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_control_block"
     image_url: ""
     image_caption: ""
     content: "The `MakeNode` procedure creates new directory entries, handling both files and subdirectories. It checks for existing entries, validates attributes, and sets up the necessary file control block (FCB). This routine showcases the challenges of implementing hierarchical file systems on early PCs, where memory and processing power were scarce. Tim Paterson and the Microsoft team adapted concepts from Unix to fit within the constraints of the IBM PC architecture. The ability to create nodes dynamically was critical for supporting the new subdirectory structure introduced in MS-DOS 2.0. This innovation laid the groundwork for modern file systems and influenced software like Windows, which inherited many of these design principles."
   - id: "getpath-parse-paths"
-    line_start: 1319
-    line_end: 1649
+    line_start: 87
+    line_end: 253
     title: "Parsing Paths: From Root to Device"
     wikipedia_url: "https://en.wikipedia.org/wiki/Path_(computing)"
     image_url: ""
@@ -151,14 +151,14 @@ enhancements:
     content: "This subroutine, BADPATHPOP, handles errors related to excessively long file paths or invalid directory elements. It pops values off the stack, checks the current directory element, and sets a status flag (STC) to indicate an error condition. The programmer's immediate goal was to clean up and signal a failure when a path exceeded the allowed length or contained invalid elements. In 1983, file systems were evolving rapidly. MS-DOS v2.0 introduced hierarchical directories, a major leap from the flat file system of earlier versions. This change was inspired by Unix, which had already demonstrated the power of subdirectories for organizing files. However, implementing these features on the limited hardware of the IBM PC, with its 8086 processor and constrained memory, required careful error handling and optimization. The consequences of this work were significant. BADPATHPOP ensured that the system could gracefully handle user errors, preventing crashes or undefined behavior. This kind of robust error handling became a hallmark of MS-DOS and influenced later operating systems. Developers building file systems for Windows, Linux, and other platforms studied these early routines to understand how to manage errors efficiently in constrained environments. The concept of signaling path-related errors through flags and stack manipulation persists in modern file system APIs."
   - id: "rootpath-directory-search-initialization"
     line_start: 2059
-    line_end: 2107
+    line_end: 2059
     title: "The Routine That Finds Your Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "ROOTPATH initializes the directory search process, setting up key parameters for locating files. It loads drive parameters into ES:BP, resets search-related variables like LASTENT and ENTFREE, and prepares the system to iterate through directory entries. The immediate goal was to establish a clean slate for file searches, ensuring consistency and reliability. In the early 1980s, file systems were a critical feature of operating systems, but they were constrained by hardware limitations. MS-DOS v2.0's directory handling routines drew heavily from Unix's hierarchical file system but had to be adapted for the IBM PC's 8086 processor and limited memory. ROOTPATH reflects this adaptation, balancing functionality with efficiency. This routine laid the groundwork for modern file search algorithms. By organizing directory entries and initializing search parameters, it influenced the design of file systems in Windows and other operating systems. The idea of setting up a structured search environment became standard practice, appearing in APIs like FindFirstFile and FindNextFile in Windows. ROOTPATH's approach to directory search initialization remains a foundational concept in computing."
   - id: "matchattributes-attribute-checking"
-    line_start: 2115
+    line_start: 2111
     line_end: 2155
     title: "How MS-DOS Checked File Attributes"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_attribute"

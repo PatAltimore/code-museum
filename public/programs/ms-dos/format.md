@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "formatting-utility-header"
     line_start: 1
-    line_end: 24
+    line_end: 27
     title: "Why This Header Defines MS-DOS's Legacy"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The opening lines of FORMAT.ASM establish the purpose of the utility: formatting disks, clearing the File Allocation Table (FAT), and optionally transferring system files. This header is a snapshot of MS-DOS's evolution from a simple disk operating system to a more robust tool inspired by Unix. The comments document revisions, including fixes for rounding bugs and enhancements for small memory systems, reflecting the iterative nature of software development in the early 1980s. Tim Paterson's original 86-DOS was a quick solution for Seattle Computer Products, but Microsoft's acquisition and subsequent rewrite transformed it into a cornerstone of the IBM PC ecosystem. The modularity hinted at here—predefined switches and revision tracking—became a hallmark of MS-DOS's adaptability, enabling widespread OEM licensing and customization. This approach influenced later operating systems, including Windows, which inherited MS-DOS's modular design philosophy."
   - id: "file-structure-definition"
-    line_start: 51
+    line_start: 48
     line_end: 62
     title: "How File Structures Shaped Disk Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
@@ -47,7 +47,7 @@ enhancements:
     content: "The FILESTRUC definition encapsulates metadata about files, including handles, sizes, offsets, timestamps, and names. This structure is pivotal for managing system files during formatting and transfer operations. In the early 1980s, disk storage was limited, and efficient file management was critical. MS-DOS's reliance on the FAT system meant that every byte of metadata had to be carefully tracked. The FILESTRUC approach, with its compact representation, was influenced by earlier systems like CP/M, which also used fixed-size file control blocks. This design became foundational for subsequent operating systems, including Windows, which extended the concept with more sophisticated file systems like NTFS. The abstraction provided by structures like FILESTRUC allowed developers to focus on higher-level functionality, paving the way for more complex applications and utilities."
   - id: "version-checking-routine"
     line_start: 91
-    line_end: 110
+    line_end: 108
     title: "The Version Check That Prevented Chaos"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_version_history"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The logic here parses command-line switches, allowing users to customize the formatting operation. Switches like '/S' for system transfer and '/V' for volume ID prompt provide flexibility, making the utility adaptable to various scenarios. Command-line interfaces were the norm in the early 1980s, and parsing user input efficiently was a critical skill for developers. This section demonstrates how MS-DOS handled user input with minimal overhead, leveraging assembly language's direct access to hardware and memory. The switch-parsing logic influenced later utilities and operating systems, where command-line arguments became a powerful tool for automation and scripting. Modern systems like Linux and Windows PowerShell owe much to the simplicity and effectiveness of these early designs."
   - id: "bad-sector-handling"
     line_start: 346
-    line_end: 427
+    line_end: 390
     title: "The Algorithm That Saved Corrupted Disks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bad_sector"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This section marks bad sectors on the disk, ensuring they aren't used for data storage. The algorithm calculates the number of clusters affected, rounds boundaries to cluster alignments, and updates the FAT accordingly. Bad sectors were a common issue in early disk drives, which lacked the reliability of modern storage devices. MS-DOS's approach to handling bad sectors was inspired by similar techniques in CP/M and other contemporary systems. By isolating corrupted areas, the utility preserved the integrity of the disk and minimized data loss. This technique became standard practice in file systems, influencing successors like NTFS and ext4. It also highlights the ingenuity required to work within the constraints of early hardware, where every sector mattered."
   - id: "volume-label-creation"
     line_start: 774
-    line_end: 781
+    line_end: 779
     title: "How MS-DOS Gave Disks Their Identity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Volume_label"
     image_url: ""
@@ -79,15 +79,15 @@ enhancements:
     content: "This routine prompts the user for a volume label, validates the input, and writes it to the disk. Volume labels provided a way to identify disks, a feature borrowed from Unix and other early operating systems. In an era when disks were the primary means of data storage and transfer, labeling was crucial for organization and tracking. The implementation here reflects MS-DOS's focus on usability, allowing users to assign meaningful names to their disks. This feature influenced later systems, where volume labels became standard for hard drives, USB drives, and other storage media. It also underscores the importance of user-centric design in software development, a principle that continues to shape modern interfaces."
   - id: "system-file-transfer"
     line_start: 837
-    line_end: 878
+    line_end: 844
     title: "The Routine That Made Disks Bootable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
     image_caption: ""
     content: "This section reads system files (IO.SYS, MSDOS.SYS, COMMAND.COM) and prepares them for transfer to the newly formatted disk. Bootable disks were essential for early PCs, which relied on floppy disks to load the operating system. The routine ensures that the necessary files are copied, handling partial transfers and memory constraints. This functionality was a direct response to the limitations of early hardware, where storage and memory were scarce. By automating the process, MS-DOS simplified disk preparation, making it accessible to non-technical users. The concept of bootable media influenced later developments, including USB boot drives and recovery disks, which continue to play a vital role in system maintenance and installation."
   - id: "dosdone-file-finalization"
-    line_start: 1030
-    line_end: 1081
+    line_start: 1026
+    line_end: 1032
     title: "How MS-DOS Closed Files Gracefully"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The DOSDONE subroutine finalizes file operations by closing the target file and ensuring its metadata (time and date) is updated correctly. This was critical for maintaining file integrity in an era when unexpected power loss or system crashes were common. The programmer's goal here was to ensure the file system remained consistent and recoverable. In 1983, disk operations were slow, and the IBM PC's hardware lacked advanced safeguards like journaling file systems. Tim Paterson and the MS-DOS team had to design routines that worked reliably across diverse hardware configurations. This approach influenced later operating systems, where file finalization routines became standard practice for ensuring data integrity. The concept of updating metadata during file closure persists in modern systems like NTFS and ext4."
   - id: "makefil-dos-bug-workaround"
     line_start: 1091
-    line_end: 1124
+    line_end: 1122
     title: "The Bug That Forced a File Creation Hack"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The NORMALIZE subroutine adjusts memory addresses by shifting and aligning them. This was necessary for handling large files and ensuring compatibility with the 8086's segmented memory model. The routine demonstrates the challenges of programming for early PCs, where memory management was a constant concern. By aligning addresses, the subroutine avoids errors and ensures efficient use of memory. This technique influenced later systems, where address normalization became a standard practice in memory management routines."
   - id: "biosdata-system-file-handling"
     line_start: 1524
-    line_end: 1578
+    line_end: 1576
     title: "Handling System Files with BIOSData"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The BIOSData section defines variables and structures for handling system files like IO.SYS and MSDOS.SYS. These files were essential for booting and operating MS-DOS. The use of BIOS interrupts for file operations reflects the reliance on firmware for low-level tasks. In the early 1980s, system files were tightly coupled with hardware, and this section highlights the effort to standardize file handling across OEMs. The approach influenced later operating systems, where system files became modular and more abstracted from hardware."
   - id: "stack-memory-layout"
     line_start: 1610
-    line_end: 1626
+    line_end: 1624
     title: "The Stack That Powered MS-DOS FORMAT"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
     image_url: ""

@@ -30,24 +30,24 @@ summary:
 
 enhancements:
   - id: "segment-declarations-memory-organization"
-    line_start: 16
-    line_end: 57
+    line_start: 61
+    line_end: 74
     title: "How Segments Organized MS-DOS Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
     image_url: ""
     image_caption: ""
     content: "This section defines various memory segments such as CODE, DATA, BSS, STACK, and others, which are essential for organizing memory in an MS-DOS environment. Memory segmentation was a hallmark of x86 architecture, particularly in real mode, where programs had to manage memory within the 1MB address space. The programmers at id Software used these segments to ensure efficient memory usage and compatibility across different hardware configurations. At the time, MS-DOS programs relied heavily on manual memory management, as there was no built-in memory protection or virtual memory. These declarations laid the groundwork for the game's runtime environment, ensuring that data, stack, and code were properly isolated. This approach influenced later DOS-based games and applications, which adopted similar segmentation techniques to optimize performance."
   - id: "processor-check-286-compatibility"
-    line_start: 144
-    line_end: 218
+    line_start: 75
+    line_end: 90
     title: "The Check That Excluded Older PCs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80286"
     image_url: ""
     image_caption: ""
     content: "This code checks whether the system is running on an Intel 80286 or better processor by manipulating the CPU flags. The 286 introduced protected mode, a significant step forward from the 8086/8088 processors, enabling more advanced memory management and multitasking. By requiring a 286 or better, id Software ensured that Wolfenstein 3D could leverage these capabilities for smoother gameplay and faster performance. At the time, this decision excluded older PCs, but it allowed the game to push the boundaries of what was possible in terms of graphics and responsiveness. This processor check became a common practice in software development, as developers sought to optimize their programs for newer hardware while gracefully handling incompatibilities."
   - id: "environment-variable-parsing"
-    line_start: 220
-    line_end: 248
+    line_start: 92
+    line_end: 96
     title: "Parsing Environment Variables in 32KB or Less"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

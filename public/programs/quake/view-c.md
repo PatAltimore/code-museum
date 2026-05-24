@@ -31,70 +31,70 @@ summary:
 enhancements:
   - id: "foundation-player-eye-positioning"
     line_start: 1
-    line_end: 20
+    line_end: 17
     title: "How Quake Positioned the Player's Eyes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section introduces the foundational logic for positioning the player's viewpoint in the game world. The comments highlight the importance of maintaining a consistent view position to avoid graphical errors, such as missing entities when crossing boundaries like water. In 1996, developers faced significant challenges in rendering 3D environments on hardware like the Intel 80486. John Carmack and his team at id Software devised techniques to ensure the player's view remained stable and immersive, even under constraints like limited memory and processing power. This approach influenced later games by emphasizing the importance of precise view positioning in 3D engines, paving the way for advancements in rendering stability and realism."
   - id: "v-calc-roll-motion-feedback"
-    line_start: 75
-    line_end: 100
+    line_start: 77
+    line_end: 106
     title: "The Roll Effect That Simulated Motion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `V_CalcRoll` function calculates the roll of the player's view based on their velocity and angles. This subtle effect enhances immersion by simulating the physical sensation of movement. In the mid-1990s, such techniques were groundbreaking, as most games relied on static or simplistic camera movements. Inspired by real-world physics, this function uses vector math to determine the roll direction and magnitude, creating a dynamic and responsive experience. This innovation influenced future first-person shooters, including Half-Life and Counter-Strike, which adopted similar techniques to heighten player immersion."
   - id: "v-calc-bob-immersive-player-motion"
-    line_start: 105
-    line_end: 121
+    line_start: 107
+    line_end: 142
     title: "The Bobbing Effect That Made Walking Real"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `V_CalcBob` function adds a bobbing motion to the player's view based on their movement speed and ground state. This effect mimics the natural sway of walking or running, making the game feel more lifelike. At a time when most games featured static or rigid camera perspectives, this innovation stood out as a leap forward in player immersion. The function uses trigonometric calculations to create a smooth, periodic motion, ensuring the effect feels natural rather than mechanical. This technique became a staple in first-person games, influencing titles like Doom 3 and Call of Duty."
   - id: "v-drift-pitch-auto-centering"
-    line_start: 175
-    line_end: 245
+    line_start: 177
+    line_end: 256
     title: "Auto-Centering the Player's Pitch Angle"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `V_DriftPitch` function automatically adjusts the player's pitch angle toward an ideal value, creating a smoother and more intuitive gameplay experience. This feature ensures that the player's view gradually returns to center when manual adjustments are not being made, preventing disorienting camera angles. In the mid-1990s, such attention to detail was rare, as most games relied on manual camera control. The function's logic, including checks for user input and gradual velocity adjustments, reflects id Software's commitment to creating a polished and user-friendly experience. This approach influenced later games by demonstrating the importance of responsive and adaptive camera controls."
   - id: "palette-flashes-damage-feedback"
-    line_start: 251
-    line_end: 295
+    line_start: 260
+    line_end: 298
     title: "The Palette Trick That Showed Pain"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""
     image_caption: ""
     content: "This section implements palette flashes to visually indicate damage, environmental effects, and power-ups. By altering the color palette dynamically, the game provides immediate feedback to the player, enhancing immersion and situational awareness. In 1996, real-time palette manipulation was a clever workaround for hardware limitations, allowing developers to simulate complex visual effects without taxing the CPU. This technique became a hallmark of id Software's games, influencing titles like Unreal Tournament and Quake II, which expanded on the concept with more sophisticated shaders and lighting effects."
   - id: "v-calc-blend-environmental-color-shifts"
-    line_start: 486
-    line_end: 528
+    line_start: 488
+    line_end: 532
     title: "Blending Colors for Environmental Feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `V_CalcBlend` function calculates color blending effects based on environmental conditions and player state. This feature creates a seamless transition between different color shifts, such as underwater or lava effects, enhancing the game's visual realism. The function uses weighted averages to blend colors dynamically, ensuring smooth transitions without abrupt changes. In the mid-1990s, such techniques were cutting-edge, as most games lacked the ability to adapt their visuals in real-time. This innovation influenced later engines, including Unreal Engine and Source Engine, which adopted similar methods for dynamic lighting and color effects."
   - id: "v-calc-refdef-dynamic-view-adjustments"
-    line_start: 863
-    line_end: 968
+    line_start: 865
+    line_end: 971
     title: "Dynamic Adjustments for Player View"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `V_CalcRefdef` function dynamically adjusts the player's view based on their state, environment, and movement. This includes bobbing effects, roll adjustments, and height changes for different scenarios like being dead or gibbed. The function also ensures the view remains stable during stair-step movements, preventing visual glitches. In 1996, such comprehensive view management was revolutionary, setting a new standard for realism in first-person games. This approach influenced later titles like Halo and Battlefield, which adopted similar techniques to enhance immersion and responsiveness."
   - id: "v-render-view-final-rendering"
-    line_start: 992
-    line_end: 1022
+    line_start: 984
+    line_end: 1027
     title: "Rendering the Final Player View"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `V_RenderView` function ties together all the view calculations and rendering logic, producing the final image seen by the player. This includes handling intermission views, gameplay-specific adjustments, and dynamic lighting effects. By modularizing the rendering process, id Software ensured that the game could adapt to different scenarios without compromising performance or visual quality. This function represents the culmination of the team's efforts to create a responsive and immersive 3D experience, influencing countless games and engines that followed."
   - id: "quake-visual-initialization"
-    line_start: 1024
+    line_start: 1028
     line_end: 1070
     title: "How Quake Set the Stage for Visual Immersion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

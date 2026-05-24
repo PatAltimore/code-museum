@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "divline-side-classification"
-    line_start: 49
-    line_end: 98
+    line_start: 280
+    line_end: 285
     title: "Classifying Points: Front, Back, or On?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Line_(geometry)"
     image_url: ""

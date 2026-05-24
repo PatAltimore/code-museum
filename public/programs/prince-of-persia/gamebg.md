@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "yellow-flag-initialization"
     line_start: 59
-    line_end: 68
+    line_end: 80
     title: "Why a Yellow Flag Matters in 1989"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
     image_url: ""
@@ -62,7 +62,7 @@ enhancements:
     image_caption: ""
     content: "This subroutine dynamically prints the 'Minutes Left' message on the screen, updating it based on gameplay state. It calculates the remaining time, converts it to a readable format, and positions the message to avoid overlapping with the Kid’s sprite. The routine also switches to 'Seconds Left' when time is critically low, heightening tension for players. Mechner’s cinematic approach to game design is evident here, as the countdown reinforces the narrative urgency. This technique of dynamically updating UI elements based on game state became standard in later action and adventure games, influencing titles like Resident Evil and its iconic 'You Are Dead' screen."
   - id: "draw-kid-strength-meter"
-    line_start: 411
+    line_start: 491
     line_end: 572
     title: "The Algorithm Behind Health Bullets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
@@ -71,15 +71,15 @@ enhancements:
     content: "This subroutine draws the Kid’s strength meter at the lower left of the screen, using a combination of precomputed data tables and dynamic calculations. It iterates through the Kid’s current health value, drawing bullets to represent remaining strength and blanks for lost health. The routine includes a flashing effect when the Kid is down to one health point, adding a visual cue for danger. Mechner’s implementation here is a masterclass in efficient graphics rendering on constrained hardware. The visual representation of health became a staple of gaming, influencing everything from RPGs to modern shooters like Halo, where health bars are now ubiquitous."
   - id: "draw-opponent-strength-meter"
     line_start: 574
-    line_end: 673
+    line_end: 659
     title: "Mirrored Health Bars for the Opponent"
     wikipedia_url: "https://en.wikipedia.org/wiki/Health_(gaming)"
     image_url: ""
     image_caption: ""
     content: "This subroutine mirrors the Kid’s strength meter logic to draw the opponent’s health bar on the lower right of the screen. It includes special conditions for certain characters, such as the Shadowman, whose health is only displayed on level 12. The mirrored rendering technique minimizes code duplication while maintaining visual symmetry. Mechner’s decision to display health bars for both the Kid and the opponent added a layer of strategy to combat, as players could gauge their enemy’s remaining strength. This dual health bar system influenced later fighting games like Street Fighter, where visible health bars became a core mechanic."
   - id: "setup-flask-animation"
-    line_start: 675
-    line_end: 734
+    line_start: 661
+    line_end: 722
     title: "Potion Effects: Bubbling Flask Frames"
     wikipedia_url: "https://en.wikipedia.org/wiki/Potion_(gaming)"
     image_url: ""

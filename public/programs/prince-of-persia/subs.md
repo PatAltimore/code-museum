@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "crumble-triggering-loose-floors"
     line_start: 108
-    line_end: 129
+    line_end: 140
     title: "Triggering Loose Floors Above Level 13"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The PAUSE subroutine implements a busy-wait loop to create a timed delay. It uses nested loops to decrement counters until the desired pause duration is achieved. While this approach was common in the era of 6502 assembly, it highlights the constraints developers faced when precise timing was required without dedicated hardware timers. This technique was a simple yet effective solution for creating pauses in gameplay and is an early example of time management in games. Later systems with more advanced hardware would replace such loops with interrupt-driven timers, but the principle remains foundational in game development."
   - id: "doflashon-lightning-effect"
     line_start: 202
-    line_end: 413
+    line_end: 217
     title: "Lightning Flash Effect for Dramatic Impact"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The DOFLASHON subroutine creates a lightning flash effect by interacting with the Apple II's video memory and screen modes. It temporarily switches to low-resolution mode to simulate the flash. This was a clever use of hardware capabilities to enhance the game's cinematic feel. In 1989, such visual effects were groundbreaking on the Apple II, a machine not designed for advanced graphics. Mechner's ability to manipulate the hardware directly inspired other developers to push the limits of early computers, leading to more sophisticated visual effects in games like Ultima VI (1990)."
   - id: "playcut-cinematic-sequence-handler"
     line_start: 434
-    line_end: 452
+    line_end: 653
     title: "Handling Cinematic Sequences with Self-Modifying Code"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""
@@ -87,15 +87,15 @@ enhancements:
     content: "The PlaySong subroutine handles music playback in the Princess's room, allowing players to interrupt the song with a button press to start a new game. This feature highlights Mechner's attention to player agency, ensuring that cinematic elements did not hinder gameplay. In the late 1980s, interactive music systems were uncommon, and this approach influenced later games with dynamic soundtracks, such as The Legend of Zelda: Ocarina of Time (1998), where music and gameplay were tightly integrated."
   - id: "play-loop-main-animation-handler"
     line_start: 869
-    line_end: 1024
+    line_end: 915
     title: "The Loop That Drives Animation Playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "The playloop subroutine is the heart of the game's animation system, iterating through frames and updating the screen based on the current state. It integrates randomization, flash effects, and sound playback to create dynamic scenes. This loop exemplifies the challenges of real-time animation on limited hardware, where every cycle had to be carefully optimized. Mechner's work here laid the groundwork for real-time animation systems in later games, influencing titles like Another World (1991) and the development of game engines capable of handling complex animations."
   - id: "pjumpseq-princess-animation-sequences"
-    line_start: 856
-    line_end: 923
+    line_start: 1012
+    line_end: 1024
     title: "Jump Sequences for Princess Animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The `DEMO` subroutine triggers the self-running demo sequence, loading the `DemoProg1` data and calling `AutoPlayback`. This feature was crucial for showcasing the game at trade shows and in stores, where potential buyers could see the gameplay without needing to interact. In the late 1980s, self-running demos were a popular marketing tool, especially for games with complex mechanics like Prince of Persia. Mechner's implementation ensured the demo highlighted the game's fluid animations and cinematic style, helping it stand out in a crowded market. The concept of self-running demos persists today, often seen in attract modes for arcade games and trailers for modern titles."
   - id: "gravity-simulation"
     line_start: 1618
-    line_end: 1635
+    line_end: 1644
     title: "Simulating Gravity on a 6502 Processor"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""

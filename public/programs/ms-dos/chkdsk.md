@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "dirbuf-initialization"
     line_start: 165
-    line_end: 179
+    line_end: 165
     title: "Why CHKDSK Needed a Dedicated Buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -49,7 +49,7 @@ enhancements:
     content: "The `INTERNATVARS` block defines a placeholder for internationalization-specific variables. This design reflects Microsoft's growing awareness of the global market in the early 1980s. As MS-DOS expanded beyond the U.S., developers had to account for differences in language, character sets, and conventions. This foresight allowed MS-DOS to dominate the OEM market, influencing later systems like Windows NT, which inherited many localization features from MS-DOS."
   - id: "fat-label-and-data"
     line_start: 329
-    line_end: 329
+    line_end: 331
     title: "The Data Structure That Defined MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -105,7 +105,7 @@ enhancements:
     content: "The FIGREC subroutine converts a cluster number into a sector number by applying a shift operation based on the cluster size and adding the first sector offset. This routine is pivotal for file system operations, as it translates logical cluster addresses into physical disk locations. In the early 1980s, efficient disk access was critical due to the slow speed of floppy drives and limited memory. Tim Paterson's design here reflects the constraints of the 8086 processor and the FAT12 file system. This algorithm laid the groundwork for later FAT file systems, which became ubiquitous in personal computing and embedded systems."
   - id: "volume-id-printing"
     line_start: 1095
-    line_end: 1197
+    line_end: 1149
     title: "Printing Volume IDs with Internationalization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
     image_url: ""
@@ -129,7 +129,7 @@ enhancements:
     content: "The P_MONTH_NAM subroutine retrieves and prints the name of a month based on the value in the DX register. It uses a lookup table (MONTAB) to map month indices to their ASCII representations. This routine is an example of efficient string manipulation in assembly language, where memory and processing constraints required careful optimization. The lookup table approach became a standard technique in programming, influencing later implementations in higher-level languages like C and Python."
   - id: "ascii-filename-conversion"
     line_start: 1737
-    line_end: 1793
+    line_end: 1797
     title: "Turning File Control Blocks into ASCII Strings"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
     image_url: ""

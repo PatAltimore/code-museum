@@ -55,7 +55,7 @@ enhancements:
     content: "The `P_UnArchivePlayers` function reverses the serialization process, restoring player states from the save buffer. It carefully reconstructs pointers to sprite states and resets transient fields like `mo` (map object) and `message`. This meticulous restoration ensures that players resume their game exactly as they left it, including animations and interactions. The function also highlights the challenges of pointer-based data structures in save files, as pointers must be recalculated during deserialization. This technique influenced later game engines, which adopted similar methods for reconstructing complex game states, such as NPC behaviors and player inventories."
   - id: "archive-world-geometry"
     line_start: 110
-    line_end: 159
+    line_end: 158
     title: "Saving DOOM's World in Fixed-Point"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The `P_ArchiveWorld` function serializes the game's world geometry, including sectors (rooms) and lines (walls). It uses fixed-point arithmetic to store heights and offsets, dividing by `FRACBITS` to convert from the internal representation to integers suitable for saving. Fixed-point arithmetic was a common choice in the 1990s, as floating-point operations were slow or unavailable on consumer CPUs. By saving only the essential attributes, such as floor textures and light levels, id Software optimized the save file size for the limited storage capacities of the era. This approach influenced later engines, which also prioritized efficient serialization of game worlds to minimize load times and disk usage."
   - id: "unarchive-world-geometry"
     line_start: 163
-    line_end: 210
+    line_end: 209
     title: "Reconstructing DOOM's World from Disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The `P_UnArchiveWorld` function restores the world geometry from a save file, reversing the fixed-point conversion to reconstruct heights and offsets. It also resets transient fields, such as `specialdata`, which are not saved but are required for gameplay. This function demonstrates the complexity of deserializing interconnected game elements, as sectors and lines must be restored in a way that preserves their relationships. The technique was essential for DOOM's fast-paced gameplay, allowing players to seamlessly reload their progress without noticeable delays. Similar methods were later adopted by engines like Quake and Source, which also needed to reconstruct dynamic worlds efficiently."
   - id: "archive-thinkers-game-objects"
     line_start: 228
-    line_end: 258
+    line_end: 254
     title: "Saving DOOM's Dynamic Game Objects"
     wikipedia_url: "https://doomwiki.org/wiki/Thinker"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `P_UnArchiveThinkers` function reconstructs dynamic game objects ('thinkers') from the save file. It clears the current thinker list, initializes new thinkers based on the saved data, and recalculates pointers to ensure proper functionality. This process includes restoring connections between objects, such as a player's link to their map object (`mo`). The function highlights the challenges of deserializing complex systems, as it must handle various thinker types and ensure their interactions are preserved. The thinker system's flexibility influenced later engines, which adopted similar designs to manage dynamic entities in games ranging from first-person shooters to strategy titles."
   - id: "archive-specials-game-events"
     line_start: 343
-    line_end: 468
+    line_end: 463
     title: "How DOOM Saved Its Active Events"
     wikipedia_url: "https://doomwiki.org/wiki/Thinker"
     image_url: ""

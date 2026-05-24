@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `P_SetPsprite` function is the heart of DOOM's weapon state management system. It transitions a weapon's sprite through various states, such as firing, reloading, or being idle. Each state is defined by a `statenum_t` identifier, and the function updates the sprite's position, animation ticks, and calls any associated action routines. This modular approach allowed DOOM's developers to easily add new weapons or modify existing ones. In 1993, the concept of state machines was well-known in computer science but had rarely been applied to video games in such a structured way. John Carmack's use of this technique ensured that DOOM could handle complex weapon behaviors efficiently on the limited hardware of the era, such as 386 and 486 processors. This system influenced later games and engines, such as Quake and Unreal Engine, which adopted similar modular state-based designs for handling animations and player interactions."
   - id: "weapon-bob-simulation"
-    line_start: 105
+    line_start: 111
     line_end: 127
     title: "Simulating Weapon Bob with Fixed-point Math"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
@@ -55,7 +55,7 @@ enhancements:
     content: "The `P_BringUpWeapon` function animates the process of switching weapons, moving the new weapon sprite from the bottom of the screen to its ready position. This visual feedback was groundbreaking in 1993, as it added a layer of realism and anticipation to gameplay. The function also plays specific sound effects, such as the chainsaw's revving noise, enhancing the sensory experience. This approach set a precedent for weapon switching in first-person shooters, influencing later games like Counter-Strike and Call of Duty, where weapon animations became integral to the player's experience."
   - id: "ammo-checking-and-auto-switch"
     line_start: 155
-    line_end: 244
+    line_end: 239
     title: "What Happens When You Run Out of Ammo?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Resource_management_(video_games)"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `A_BFGSpray` function simulates the BFG's explosive attack, spawning projectiles that damage all enemies in view. This weapon was a technical showcase, demonstrating DOOM's ability to handle complex interactions between multiple objects in real-time. The BFG's design became legendary, influencing the creation of powerful weapons in games like Unreal Tournament and Destiny, where 'superweapons' are a key gameplay element."
   - id: "level-initialization-weapons"
     line_start: 826
-    line_end: 849
+    line_end: 841
     title: "Setting Up Weapons at Level Start"
     wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(computer_science)"
     image_url: ""

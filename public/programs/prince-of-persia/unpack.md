@@ -55,7 +55,7 @@ enhancements:
     content: "The WipeRgtExp routine processes compressed graphics data column by column, expanding it into the screen buffer. It loops through each column, calling the ExpandClm subroutine to decode and write pixel data. This columnar approach was a practical solution for the Apple II's memory layout, where screen data was stored in interleaved rows and columns. In the late 1980s, developers often had to work around hardware limitations by designing algorithms tailored to the quirks of specific machines. The Apple II's graphics memory was notoriously difficult to work with, requiring careful manipulation of pointers and offsets. Mechner's solution here reflects a deep understanding of the hardware and a commitment to optimizing performance. This technique of column-by-column processing influenced later games on similar hardware, including the Commodore 64 and ZX Spectrum. It also parallels modern graphics pipelines, where data is processed in chunks to improve efficiency. The routine's focus on memory optimization and real-time processing remains relevant in today's game development, particularly for mobile and embedded systems."
   - id: "delta-expand"
     line_start: 279
-    line_end: 533
+    line_end: 357
     title: "Delta Compression: Saving Bytes, Adding Complexity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Delta_encoding"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "DeltaExp is a routine that unpacks graphics data compressed using delta encoding, a method where only changes between successive data points are stored. This technique reduces the size of the data but requires additional computation to reconstruct the original image. The routine reads compressed data from auxiliary memory, decodes it, and writes it to the screen buffer column by column. Delta encoding was a popular compression method in the 1980s, especially for graphics and audio data. It was well-suited to systems like the Apple II, where memory and storage were limited. Mechner's implementation here reflects the trade-offs developers faced: sacrificing CPU cycles for reduced memory usage. This routine's use of delta compression influenced later games and applications that needed to store large amounts of data in limited space. The technique is still used today in video codecs like H.264 and VP9, where delta encoding helps compress successive frames. Mechner's work on Prince of Persia demonstrates how early game developers anticipated modern data compression strategies."
   - id: "invert-y-tables"
     line_start: 535
-    line_end: 581
+    line_end: 579
     title: "Flipping the Screen: Y-Table Inversion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The FADEIN and FADEOUT routines create smooth transitions by gradually changing the screen's palette. FADEIN initializes the palette to black and then fades it to the desired colors, while FADEOUT does the reverse. These routines use the PalFade subroutine to interpolate between the current and target palettes. Smooth transitions were a hallmark of cinematic platformers like Prince of Persia, where visual effects were used to enhance storytelling and immersion. On the Apple II, achieving these effects required careful manipulation of hardware registers and memory. Mechner's implementation reflects his focus on creating a polished and cinematic experience despite the limitations of the platform. The concept of fading palettes influenced later games and graphics engines, where transitions are used to create mood and guide the player's attention. It also parallels modern techniques like alpha blending and gradient interpolation, which are used in shaders and graphical user interfaces. Mechner's work on fading routines demonstrates how early game developers anticipated the needs of modern graphics programming."
   - id: "load-super-hires"
     line_start: 844
-    line_end: 877
+    line_end: 880
     title: "Loading Super Hi-Res: A Graphics Breakthrough"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""

@@ -95,7 +95,7 @@ enhancements:
     content: "The 'OpenFile' routine opens files for reading and calculates their size using interrupt 21h. It retrieves the file's last write time and stores it for later use. This meticulous handling of file metadata reflects the importance of data integrity in MS-DOS. The ability to track file sizes and timestamps influenced later systems, where metadata became critical for features like journaling and file versioning."
   - id: "boot-sector-writing-for-ibm-compatibility"
     line_start: 893
-    line_end: 979
+    line_end: 927
     title: "Boot Sector Writing for IBM Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The CHECK_TRAN routine validates the specified drive and determines its media type. It retrieves the drive parameter block (DPB) using interrupt 21h, extracts the first sector and media type, and updates the system's start sector. The routine also checks whether the drive is a floppy disk or hard drive, using BIOS equipment calls to identify the maximum floppy number. This logic reflects the transition from single-drive systems to multi-drive setups, a major shift in personal computing during the early 1980s. By dynamically detecting media types, MS-DOS ensured compatibility with a wide range of storage devices. This technique laid the groundwork for modern operating systems, which continue to rely on device discovery and validation mechanisms."
   - id: "not-single-floppy-check"
     line_start: 1119
-    line_end: 1145
+    line_end: 1133
     title: "Floppy Disk Boot Validation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The NOT_SINGLE section checks whether the drive is a bootable floppy disk. It compares the media type against a predefined value (0FBh), ensuring only valid bootable floppies are accepted. This logic was critical for systems that relied on floppy disks for booting, as hard drives were still a luxury in 1983. By enforcing strict validation, MS-DOS reduced the risk of boot errors and ensured reliable startup. This approach influenced later boot loaders, which adopted similar checks for removable media. The floppy disk's decline in the 1990s marked the end of such routines, but their legacy persists in USB boot validation and other modern equivalents."
   - id: "getkeystroke-bios-input"
     line_start: 1149
-    line_end: 1161
+    line_end: 1165
     title: "Keystroke Input via BIOS Interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
