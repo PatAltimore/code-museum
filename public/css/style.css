@@ -708,10 +708,18 @@ a:hover {
   font-size: var(--code-size);
 }
 
+/* Wrapper that stretches to the widest line so highlighted rows fill the full
+   scroll width even on narrow / mobile viewports. */
+.code-lines {
+  display: inline-block; /* shrinks to max-content, but… */
+  min-width: 100%;       /* …never narrower than the scroll container */
+}
+
 .code-line {
   display: flex;
   align-items: flex-start;
   min-height: 1.6em;
+  min-width: 100%;       /* fill .code-lines width so background spans full row */
   padding: 0 0.5rem;
   cursor: pointer;
 }

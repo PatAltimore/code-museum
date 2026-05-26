@@ -43,9 +43,11 @@ _ASM_CLOSING_RE = re.compile(r'\bEND[PSM]\b', re.IGNORECASE)
 #   68k:         RTS, RTD, RTR
 #   x86:         RET, RETN, RETF, RETW, RETD, IRET, IRETD
 #   Z80/8080:    RET (with optional condition)
-# Must be indented (not at column 0) to avoid matching labels named e.g. RTSUB.
+# Handles both indented returns and labeled return stubs at column 0,
+# e.g. "FFRTS:  RTS" or "CHRRTS: RTS" (common in Microsoft BASIC 6502 style).
 _ASM_RETURN_RE = re.compile(
-    r'^\s+(RTS|RTI|RTD|RTR|RET[NFWD]?|IRET[D]?)\b', re.IGNORECASE
+    r'^(?:[ \t]+|[A-Za-z_][A-Za-z0-9_]*:[ \t]*)(RTS|RTI|RTD|RTR|RET[NFWD]?|IRET[D]?)\b',
+    re.IGNORECASE
 )
 
 # A top-level (non-local) assembly label at column 0.
@@ -139,11 +141,23 @@ You are verifying code range extractions for source code annotations.
 For each extraction you will see the annotation description and the extracted
 code (lines marked with >>>) with a few lines of context above and below.
 
-Check that the extracted code is complete and correct for the annotation:
-- Does not start too late (missing a preceding label or separator comment)
-- Does not end too early (data rows or instructions cut off)
-- Does not end too late (includes lines from the next section)
-- Is the right section entirely
+Check ONLY for clearly obvious errors — the kind visible without the full file:
+- Starts several lines TOO LATE: the annotation label or opening comment is in
+  the context ABOVE the >>> lines
+- Ends TOO EARLY: the last >>> line is in the middle of an instruction sequence
+  with more related instructions immediately below it in the context
+- Ends TOO LATE: clearly includes the opening label of a completely different,
+  unrelated section that is visible in the context BELOW the >>> lines
+- Is the completely wrong section (description does not match the code at all)
+
+IMPORTANT CONSERVATIVE RULES:
+- If you are not certain, output {"id": "...", "ok": true} — do NOT guess.
+- For large ranges shown as head+tail, only flag if both the start AND end
+  are clearly wrong. Never flag based on the omitted middle section.
+- A range that looks "a bit off" is NOT a reason to flag it — only flag
+  obvious, unambiguous errors that would make the annotation misleading.
+- Assembly routines often span many lines; do NOT trim end lines unless
+  you can clearly see the routine has ended inside the >>> block.
 
 Output a JSON array:
   Correct:  {"id": "...", "ok": true}
@@ -215,8 +229,8 @@ def _extract_boundaries_asm(code_lines: list[str]) -> list[tuple[int, str]]:
     their own line:
         SkelProg          ← standalone label, nothing after it
          lda #2           ← instruction on next line
-    The old regex required [\s:] after the name, which silently dropped all
-    of these.  The fix uses (?:[\s:]|$) so end-of-line is also a valid stop.
+    The old regex required [\\s:] after the name, which silently dropped all
+    of these.  The fix uses (?:[\\s:]|$) so end-of-line is also a valid stop.
     """
     result: list[tuple[int, str]] = []
     ident_re = re.compile(r'^([A-Za-z_][A-Za-z0-9_.]*)(?:[\s:]|$)')
@@ -358,12 +372,49 @@ def _extract_boundaries(
         return []
 
 
-def _lookup_boundary(name: str, boundaries: list[tuple[int, str]]) -> int | None:
-    """Case-insensitive exact match of name in the boundary list.
+_BOUNDARY_ENTRY_RE = re.compile(r'[Ll]ine\s+(\d+)\s+(\S.*)', re.IGNORECASE)
 
-    Returns the line number if found, or None.
+def _lookup_boundary(name: str, boundaries: list[tuple[int, str]]) -> int | None:
+    """Look up a boundary by name, returning its 1-based line number.
+
+    Accepts two formats:
+      - Plain name:               "$Z"  or  "RADIX"
+      - Full boundary entry:      "Line   204  RADIX"   (as the LLM sometimes echoes)
+
+    In the full-entry form we first try the embedded line number directly (fast
+    path), then fall back to a name search in case the LLM slightly garbled the
+    number.
     """
-    name_lower = name.strip().lower()
+    raw = (name or "").strip()
+    if not raw:
+        return None
+
+    # Try to parse a full boundary-entry string like "Line   204  RADIX"
+    m = _BOUNDARY_ENTRY_RE.match(raw)
+    if m:
+        lineno_hint = int(m.group(1))
+        bname_hint  = m.group(2).strip().lower()
+        # Fast path: line number AND name both match (most reliable)
+        for lineno, bname in boundaries:
+            if lineno == lineno_hint and bname.lower() == bname_hint:
+                return lineno
+        # Fallback 1: match by name alone, choosing the entry CLOSEST to
+        # lineno_hint.  Many assembly directives like SUBTTL appear multiple
+        # times; picking the nearest avoids returning a far-away occurrence
+        # that would fail the START_DRIFT guard.
+        name_matches = [(lineno, bname) for lineno, bname in boundaries
+                        if bname.lower() == bname_hint]
+        if name_matches:
+            best = min(name_matches, key=lambda x: abs(x[0] - lineno_hint))
+            return best[0]
+        # Fallback 2: match by line number alone — the LLM gave an unrecognised
+        # name but the line number is correct
+        for lineno, bname in boundaries:
+            if lineno == lineno_hint:
+                return lineno
+
+    # Plain name lookup (case-insensitive)
+    name_lower = raw.lower()
     for lineno, bname in boundaries:
         if bname.lower() == name_lower:
             return lineno
@@ -592,17 +643,29 @@ def _find_end_asm(
     # top-level label appears (start of the next routine) — but only after we
     # have already found at least one return instruction, so we don't bail out
     # at the label that opens the current routine.
+    #
+    # IMPORTANT: check _ASM_RETURN_RE BEFORE the break condition.
+    # Labeled return stubs such as "FFRTS:  RTS" are simultaneously a
+    # top-level label (triggering the break) AND a return instruction.
+    # We must record them first, then stop — not stop before recording.
     last_return: int | None = None
     for i in range(line_start - 1, limit):
         line = code_lines[i]
-        if (
+        is_return  = bool(_ASM_RETURN_RE.match(line))
+        is_new_label = (
             i > line_start - 1          # skip the routine's own opening label
-            and last_return is not None  # only stop once we've seen a return
             and _ASM_TOPLABEL_RE.match(line)
-        ):
+        )
+
+        if is_return:
+            last_return = i + 1         # record BEFORE deciding to break
+
+        # Stop at the next routine's top-level label, but only once we've
+        # seen at least one return (avoids stopping at the current routine's
+        # own opening label).  If this line is both a label and a return stub
+        # we already recorded it above, so breaking here is correct.
+        if is_new_label and last_return is not None:
             break
-        if _ASM_RETURN_RE.match(line):
-            last_return = i + 1
 
     return last_return
 
@@ -765,57 +828,81 @@ def _build_verify_messages(
 
     verifications is a list of dicts: {id, title, content, new_s, new_e}
 
-    For each verification item, shows ±5 lines of context around the range
-    with '>>>' prefix on range lines and '   ' on context lines.
-    Includes the boundary map for reference.
-    """
-    context_radius = 5
-    total = len(code_lines)
+    For each verification item shows ±CONTEXT_RADIUS lines around the range.
+    For large ranges (> MAX_INLINE_LINES) only the first and last CONTEXT_RADIUS
+    lines of the range are shown with a "[... N lines omitted ...]" banner, to
+    keep the prompt from ballooning on wrongly-expanded ranges.
 
-    # Boundary map for reference
-    if boundaries:
-        blines = [
-            "STRUCTURAL BOUNDARIES (reference for corrections):"
-        ]
-        for lineno, name in boundaries:
-            blines.append(f"  Line {lineno:5d}  {name}")
-        boundary_section = "\n".join(blines) + "\n\n"
-    else:
-        boundary_section = ""
+    The boundary map is *not* included here — it was already given in the main
+    prompt, and repeating 1000+ boundaries in every verify call wastes tokens.
+    """
+    CONTEXT_RADIUS  = 5
+    MAX_INLINE_LINES = 60   # show full range only when it's ≤ this many lines
+    total = len(code_lines)
 
     # Build each verification block
     blocks: list[str] = []
     for v in verifications:
-        eid    = v["id"]
-        title  = v.get("title", "")
+        eid     = v["id"]
+        title   = v.get("title", "")
         content = (v.get("content") or "")[:400].strip()
-        new_s  = v["new_s"]
-        new_e  = v["new_e"]
+        new_s   = v["new_s"]
+        new_e   = v["new_e"]
 
-        ctx_start = max(1, new_s - context_radius)
-        ctx_end   = min(total, new_e + context_radius)
+        range_len = new_e - new_s + 1
 
-        lines_block: list[str] = []
-        for i in range(ctx_start - 1, ctx_end):
-            lineno = i + 1
-            raw    = code_lines[i]
-            if new_s <= lineno <= new_e:
-                lines_block.append(f">>> {lineno:4d}  {raw}")
-            else:
-                lines_block.append(f"    {lineno:4d}  {raw}")
+        if range_len <= MAX_INLINE_LINES:
+            # Show the full range with surrounding context
+            ctx_start = max(1, new_s - CONTEXT_RADIUS)
+            ctx_end   = min(total, new_e + CONTEXT_RADIUS)
+            lines_block: list[str] = []
+            for i in range(ctx_start - 1, ctx_end):
+                lineno = i + 1
+                raw    = code_lines[i]
+                if new_s <= lineno <= new_e:
+                    lines_block.append(f">>> {lineno:4d}  {raw}")
+                else:
+                    lines_block.append(f"    {lineno:4d}  {raw}")
+            code_section = "\n".join(lines_block)
+        else:
+            # Range is too large to show in full — show head + tail only
+            head_start = max(1, new_s - CONTEXT_RADIUS)
+            head_end   = min(total, new_s + CONTEXT_RADIUS)
+            tail_start = max(1, new_e - CONTEXT_RADIUS)
+            tail_end   = min(total, new_e + CONTEXT_RADIUS)
+
+            head_lines: list[str] = []
+            for i in range(head_start - 1, head_end):
+                lineno = i + 1
+                raw    = code_lines[i]
+                prefix = ">>>" if new_s <= lineno <= new_e else "   "
+                head_lines.append(f"{prefix} {lineno:4d}  {raw}")
+
+            tail_lines: list[str] = []
+            for i in range(tail_start - 1, tail_end):
+                lineno = i + 1
+                raw    = code_lines[i]
+                prefix = ">>>" if new_s <= lineno <= new_e else "   "
+                tail_lines.append(f"{prefix} {lineno:4d}  {raw}")
+
+            omitted = tail_start - head_end - 1
+            code_section = (
+                "\n".join(head_lines)
+                + f"\n    [... {omitted} lines omitted — range too large ...]\n"
+                + "\n".join(tail_lines)
+            )
 
         blocks.append(
             f"--- Verification item ---\n"
             f"id: {eid}\n"
             f'title: "{title}"\n'
             f"Description (truncated to 400 chars):\n{content}\n\n"
-            f"Extracted range: lines {new_s}–{new_e}\n"
-            + "\n".join(lines_block)
+            f"Extracted range: lines {new_s}–{new_e} ({range_len} lines)\n"
+            + code_section
         )
 
     user_content = (
         f"File: {file_info}\n\n"
-        + boundary_section
         + "\n\n".join(blocks)
     )
 
@@ -1001,8 +1088,15 @@ def _resolve_single(
     found_start: int | None = None
 
     # Priority 1: start_boundary
+    # Guard: reject the resolved line if it is more than START_DRIFT lines away
+    # from approx_start.  LLMs occasionally pick a file-header boundary
+    # (e.g. "TITLE" at line 6) for sections that start thousands of lines later.
+    START_DRIFT = 300
     if start_boundary:
-        found_start = _lookup_boundary(start_boundary, boundaries)
+        candidate_start = _lookup_boundary(start_boundary, boundaries)
+        if candidate_start is not None and abs(candidate_start - approx_start) <= START_DRIFT:
+            found_start = candidate_start
+        # else: too far from expected position — fall through to anchor
 
     # Priority 2: start_anchor
     if found_start is None and start_anchor:
@@ -1066,6 +1160,42 @@ def _resolve_single(
     # Priority 6: Fallback to approx_end
     if new_e is None:
         new_e = approx_end
+
+    # ASM extension: if the boundary/anchor resolved a non-None end but the
+    # structural scan would extend it by a small amount (≤ RTS_EXTEND_LINES),
+    # prefer the structural result.  This captures labeled return stubs like
+    # "CHRRTS: RTS" that appear 1–4 lines past the LLM-resolved next_boundary.
+    RTS_EXTEND_LINES = 15
+    if _is_asm_like(language) and new_e is not None:
+        struct_end = _find_end_asm(code_lines, found_start)
+        if (
+            struct_end is not None
+            and struct_end > new_e
+            and struct_end - new_e <= RTS_EXTEND_LINES
+        ):
+            new_e = struct_end
+
+    # Sanity: if the anchor/boundary resolution produced a suspiciously short
+    # range (< 5 lines), the LLM gave a bad next_boundary/next_anchor that
+    # happens to be right after the start.  In that case, try the structural
+    # scan as a better fallback.  This prevents "1671-1671" single-line ranges.
+    MIN_RANGE = 5
+    if new_e - new_s + 1 < MIN_RANGE:
+        structural_end: int | None = None
+        if _is_c_like(language):
+            structural_end = _find_end_c(code_lines, found_start)
+        elif _is_lisp_like(language):
+            structural_end = _find_end_lisp(code_lines, found_start)
+        elif _is_asm_like(language):
+            structural_end = _find_end_asm(code_lines, found_start)
+        if structural_end is not None and structural_end > new_e:
+            new_e = structural_end
+        elif new_e - new_s + 1 < MIN_RANGE:
+            new_e = approx_end   # last resort: keep original approx
+
+    # Clamp to valid range before any index access.
+    new_s = max(1, min(new_s, total))
+    new_e = max(new_s, min(new_e, total))
 
     # Trim trailing blank lines and inter-section comment banners/headers.
     # Pure comment lines at the end of a range belong to the next section, not
@@ -1269,14 +1399,36 @@ def _verify_ranges(
         new_result = _resolve_single(
             correction, code_lines, enhancements, language, boundaries
         )
-        if new_result is not None:
-            resolved_map[eid] = new_result
-            corrections_count += 1
-            if console:
-                console.print(
-                    f"  [cyan]verify corrected {eid}: "
-                    f"{new_result[0]}–{new_result[1]}[/cyan]"
-                )
+        if new_result is None:
+            continue
+
+        new_s, new_e, _ = new_result
+        old_s, old_e, _ = resolved_map.get(eid, (new_s, new_e, eid))
+
+        # Sanity guards: reject corrections that produce nonsensical ranges.
+        #   1. Range is tiny (< 3 lines) — very rarely correct, usually a
+        #      sign the LLM latched onto a wrong anchor.
+        #   2. Start drifted more than START_DRIFT lines from the original —
+        #      same heuristic applied in the primary resolution pass.
+        #   3. The new range is more than 4× smaller than the original — the
+        #      verify LLM is almost certainly trimming too aggressively.
+        START_DRIFT = 300
+        if new_e - new_s + 1 < 3:
+            continue
+        if abs(new_s - old_s) > START_DRIFT:
+            continue
+        orig_len = max(old_e - old_s + 1, 1)
+        new_len  = new_e - new_s + 1
+        if new_len < orig_len // 4:
+            continue
+
+        resolved_map[eid] = new_result
+        corrections_count += 1
+        if console:
+            console.print(
+                f"  [cyan]verify corrected {eid}: "
+                f"{new_result[0]}–{new_result[1]}[/cyan]"
+            )
 
     if corrections_count and console:
         console.print(f"  [green]verification corrected {corrections_count} range(s)[/green]")
@@ -1372,10 +1524,16 @@ def fix_ranges(path, client, gen_cfg: dict = None, console=None) -> int:
             console.print(f"  [yellow]range-fix failed: {exc}[/yellow]")
         return 0
 
+    if console:
+        console.print(f"  [dim]LLM returned {len(corrections)} correction(s)[/dim]")
+
     # Phase 3: resolve corrections to line numbers
     resolved = _resolve_corrections(
         corrections, code_lines, enhancements, language, boundaries
     )
+
+    if console:
+        console.print(f"  [dim]resolved {len(resolved)} range(s)[/dim]")
 
     # Phase 4: verification pass
     if resolved:
