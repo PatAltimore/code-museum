@@ -31,15 +31,15 @@ summary:
 enhancements:
   - id: "move-plane-crushing-check"
     line_start: 40
-    line_end: 202
+    line_end: 201
     title: "How DOOM Simulated Crushing Floors"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `T_MovePlane` function is responsible for moving floors and ceilings in DOOM, with additional logic to check for crushing objects or players. This routine adjusts the height of a sector's floor or ceiling based on the specified speed and destination, while ensuring that entities in the affected area are not crushed unless explicitly allowed. The function uses fixed-point arithmetic to perform calculations efficiently on the limited hardware of the early 1990s. At the time, consumer PCs lacked floating-point units, making fixed-point math a necessity for real-time applications like games. John Carmack, the lead programmer of DOOM, designed this routine to handle dynamic level geometry—a groundbreaking feature in 1993. The ability to move floors and ceilings in real-time added a layer of interactivity and immersion that was rare in games of the era. Carmack's approach drew inspiration from earlier games like Wolfenstein 3D but expanded on the concept by introducing vertical movement and environmental hazards. The crushing mechanic became a hallmark of DOOM's level design, allowing for creative traps and puzzles. This technique influenced later games, including Quake and Unreal, which adopted similar methods for dynamic environments. Today, the concept of moving level geometry is standard in game engines like Unity and Unreal Engine, showcasing the lasting impact of Carmack's innovations."
   - id: "move-floor-destination"
-    line_start: 205
-    line_end: 253
+    line_start: 271
+    line_end: 441
     title: "The Sound of Moving Floors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
     image_url: ""

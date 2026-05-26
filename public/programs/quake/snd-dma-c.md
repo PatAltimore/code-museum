@@ -30,72 +30,72 @@ summary:
 
 enhancements:
   - id: "foundation-sound-initialization"
-    line_start: 35
-    line_end: 72
+    line_start: 19
+    line_end: 42
     title: "Foundation: Sound Initialization Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section defines foundational variables and structures for Quake's sound system, including the `channels` array for managing sound channels and the `snd_initialized` flag to track system readiness. At the time, sound systems in games were often rudimentary, but Quake aimed to create an immersive experience by managing multiple dynamic and ambient sound channels. The use of `volatile dma_t` reflects the direct interaction with hardware buffers, a technique common in the era of limited CPU resources. By establishing these variables, the developers laid the groundwork for a sound engine that could spatialize audio and dynamically allocate resources. This approach influenced subsequent game engines, including Unreal Engine and Source Engine, which adopted similar abstractions for sound management."
   - id: "user-settable-sound-variables"
-    line_start: 74
-    line_end: 85
+    line_start: 43
+    line_end: 46
     title: "User-Settable Sound Variables: Fine-Tuning Audio"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section introduces configurable sound variables, such as `volume`, `ambient_level`, and `bgmvolume`, allowing players to adjust audio settings to their preferences. In the mid-1990s, user customization was becoming a hallmark of PC gaming, and Quake's inclusion of adjustable sound parameters reflected this trend. These variables were registered with the console system, enabling real-time adjustments during gameplay—a feature that enhanced player immersion and control. By exposing these settings, id Software empowered players to tailor their experience, a practice that became standard in modern game engines. Games like Half-Life and Counter-Strike later expanded on this concept, offering even more granular control over audio and other settings."
   - id: "ambient-sound-control"
-    line_start: 103
-    line_end: 106
+    line_start: 1
+    line_end: 17
     title: "Ambient Sound Control: On and Off Switch"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"
     image_url: ""
     image_caption: ""
     content: "The `S_AmbientOff` and `S_AmbientOn` functions toggle ambient sound effects, reflecting Quake's focus on creating an immersive environment. Ambient sounds, such as water or wind, were crucial for establishing the game's atmosphere, but they also added computational overhead. By providing these toggles, id Software allowed players to disable ambient sounds if performance issues arose—a practical consideration for hardware of the era, such as Intel Pentium processors and Sound Blaster cards. This feature demonstrated a balance between technical ambition and user accessibility, influencing later games like Doom 3 and Skyrim, which offered similar options to optimize performance."
   - id: "sound-system-startup"
-    line_start: 134
-    line_end: 162
+    line_start: 43
+    line_end: 137
     title: "Sound System Startup: Initialization Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Direct_memory_access"
     image_url: ""
     image_caption: ""
     content: "The `S_Startup` function initializes the sound system, including the DMA sound buffer via `SNDDMA_Init`. Direct Memory Access (DMA) was a critical technology for real-time audio processing in the 1990s, enabling efficient data transfer between memory and sound hardware without burdening the CPU. This routine checks for successful initialization and gracefully handles failures, ensuring the game can continue running even if sound cannot be started. The reliance on DMA reflects the hardware constraints of the time, where optimizing CPU cycles was paramount. This approach influenced later game engines, which continued to prioritize efficient hardware interaction for audio systems."
   - id: "sound-precaching"
-    line_start: 310
-    line_end: 332
+    line_start: 1
+    line_end: 60
     title: "Sound Precaching: Loading Audio for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `S_PrecacheSound` function ensures that sound effects are loaded into memory before they are needed, reducing latency during gameplay. Precaching was a common technique in the 1990s to optimize performance on systems with limited memory and storage speeds. By caching audio data, Quake minimized delays caused by disk access, enhancing the player's experience. This method was particularly important for multiplayer scenarios, where real-time responsiveness was critical. The concept of precaching extended beyond audio, influencing texture and model loading in later engines like Unreal Engine and Unity."
   - id: "spatialize-sound-channels"
-    line_start: 396
-    line_end: 447
+    line_start: 35
+    line_end: 42
     title: "Spatialize Sound Channels: 3D Audio Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"
     image_url: ""
     image_caption: ""
     content: "The `SND_Spatialize` function calculates stereo separation and distance attenuation for sound channels, creating a 3D audio experience. By determining the listener's position and orientation relative to the sound source, the function adjusts left and right volumes to simulate spatial effects. This technique was groundbreaking for its time, leveraging vector math to enhance immersion in Quake's 3D environments. The implementation reflects the influence of Michael Abrash, whose expertise in optimization and graphics extended to audio processing. Spatialized sound became a standard feature in modern engines, shaping the audio design of games like Battlefield and Call of Duty."
   - id: "ambient-sound-updates"
-    line_start: 660
-    line_end: 714
+    line_start: 63
+    line_end: 665
     title: "Ambient Sound Updates: Dynamic Adjustments"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"
     image_url: ""
     image_caption: ""
     content: "The `S_UpdateAmbientSounds` function dynamically adjusts ambient sound levels based on the player's location in the game world. By calculating sound levels from the surrounding environment, the function creates a seamless audio experience that responds to player movement. This innovation was part of Quake's effort to integrate audio into its immersive 3D environments. The technique influenced later games like Half-Life, which used similar systems to enhance atmosphere and storytelling through sound."
   - id: "debugging-sound-channels"
-    line_start: 792
-    line_end: 806
+    line_start: 666
+    line_end: 722
     title: "Debugging Sound Channels: Real-Time Insights"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""
     image_caption: ""
     content: "This section includes debugging output for sound channels, providing real-time insights into the audio system's state. Developers could use this feature to monitor active channels, their volumes, and associated sound effects, ensuring proper functionality during development and testing. Debugging tools like this were essential for optimizing performance and identifying issues in complex systems. The inclusion of such tools reflects id Software's commitment to robust development practices, influencing the debugging features of later engines like Source and Unreal."
   - id: "end-of-audio-precaching"
-    line_start: 1014
-    line_end: 1016
+    line_start: 1
+    line_end: 17
     title: "Why a Two-Line Function Matters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

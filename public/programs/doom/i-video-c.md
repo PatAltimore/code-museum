@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "This section initializes key variables for DOOM's graphics system on X11, including shared memory (MIT SHM) and display properties. Shared memory was a critical optimization for DOOM's rendering pipeline, allowing direct access to memory buffers without costly copying operations. In 1993, Unix systems were not typically associated with high-performance gaming, but id Software leveraged the MIT SHM extension to bypass some of the limitations of X11's standard image handling. This approach reduced latency and enabled smoother gameplay on modest hardware. The use of shared memory also required careful management to avoid 'pollution'—stale shared memory segments left behind by previous processes. This technique influenced later Unix-based games and applications, which adopted similar optimizations for graphics rendering."
   - id: "keyboard-input-translation"
-    line_start: 92
-    line_end: 159
+    line_start: 101
+    line_end: 157
     title: "Translating X11 Key Events into DOOM Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/X_Window_System"
     image_url: ""

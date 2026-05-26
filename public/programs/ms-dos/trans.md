@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "system-call-initialization"
     line_start: 1
-    line_end: 16
+    line_end: 123
     title: "How MS-DOS System Calls Were Set Up"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines constants for MS-DOS system calls, such as file operations (OPEN, CLOSE, READ, WRITE) and memory management (SETDMA). These constants are used throughout the program to interact with the operating system. At the time, MS-DOS provided a simple API for developers to perform essential tasks, but programmers had to manage low-level details like DMA (Direct Memory Access) manually. Tim Paterson designed these calls to be lightweight and efficient, reflecting the constraints of early PCs with limited memory and processing power. This approach influenced later DOS-based utilities and applications, which relied on similar system call conventions."
   - id: "buffer-management-cleverness"
     line_start: 124
-    line_end: 175
+    line_end: 167
     title: "The Trick That Prevented Buffer Overflows"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_overflow"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This segment manages the output buffer (`PUTBUF`) to prevent overflows. When the buffer is full, it writes the contents to the output file and resets the buffer pointer. This technique ensures efficient use of memory while avoiding the risk of overwriting data. Buffer management was a critical skill for early programmers, as memory was scarce and errors could crash the entire system. Paterson's careful handling of buffers here reflects his deep understanding of hardware limitations and his ability to write robust code for constrained environments. Similar techniques became standard in later operating systems and programming languages, influencing how developers think about memory safety."
   - id: "opcode-translation-algorithm"
     line_start: 405
-    line_end: 477
+    line_end: 533
     title: "Translating Z80 Opcodes to 8086 Instructions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Opcode"
     image_url: ""

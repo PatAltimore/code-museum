@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "foundation-global-variables"
     line_start: 1
-    line_end: 56
+    line_end: 29
     title: "Why Quake Needed So Many Global Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Global_variable"
     image_url: ""
@@ -33,22 +33,22 @@ enhancements:
     content: "This section initializes several global variables that are used throughout the rendering pipeline. These include flags for polygon drawing, warp effects, and memory tracking. In the mid-1990s, global variables were a common way to manage state in performance-critical applications like Quake. The decision to use globals was influenced by the need for speed and simplicity, as accessing global memory was faster than passing parameters or using complex object-oriented designs. John Carmack, Quake's lead programmer, was known for his pragmatic approach to coding, prioritizing performance over architectural purity. This reliance on global variables shaped the structure of Quake's codebase, making it easier to optimize but harder to maintain. Modern game engines, influenced by Quake, have moved toward encapsulation and modularity, but the directness of global state management remains a hallmark of early game development."
   - id: "entity-t-structure"
     line_start: 58
-    line_end: 58
+    line_end: 116
     title: "The Entity Structure That Defined Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
     image_caption: ""
     content: "The `entity_t` structure represents objects in the game world, such as players, enemies, and items. It encapsulates properties like position, orientation, and model data. This abstraction was crucial for managing the complexity of a 3D environment, where entities interact dynamically with the world and each other. In 1996, the concept of entities was already established in game development, but Quake's implementation pushed the boundaries by integrating entities seamlessly into a true 3D space. This approach influenced later engines like Unreal Engine and Unity, which adopted similar entity-component systems to manage game objects. The `entity_t` structure also highlights the shift from 2D sprite-based games to fully 3D worlds, a transition that Quake helped to pioneer."
   - id: "vec3-t-coordinate-system"
-    line_start: 60
-    line_end: 66
+    line_start: 28
+    line_end: 29
     title: "How Quake Handled 3D Coordinates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Coordinate_system"
     image_url: ""
     image_caption: ""
     content: "The `vec3_t` structure defines a 3D vector, representing positions, directions, or velocities in the game world. This simple yet powerful abstraction allowed Quake to perform complex mathematical operations like vector addition, subtraction, and normalization, which are essential for rendering, physics, and collision detection. At the time, hardware limitations meant that every calculation had to be optimized for speed, and the compact design of `vec3_t` reflects this constraint. The use of 3D vectors became a standard practice in game development, influencing not only other engines but also graphics libraries like OpenGL and DirectX. Quake's efficient handling of 3D coordinates set a precedent for how games would manage spatial data in the years to come."
   - id: "r-init-textures-checkerboard"
-    line_start: 148
+    line_start: 150
     line_end: 179
     title: "The Checkerboard Texture That Saved the Day"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `R_InitTextures` function creates a default checkerboard texture used when no other texture is available. This fallback mechanism ensured that the game could render objects even if texture data was missing or corrupted. The checkerboard pattern was chosen for its simplicity and visibility, making it easy to identify rendering issues during development. In the mid-1990s, texture mapping was still a relatively new technique, and handling edge cases like missing textures was a practical necessity. This approach influenced later game engines, which adopted similar fallback systems to improve robustness and debugging. The checkerboard texture became an iconic symbol of early 3D graphics, appearing in countless games and development tools."
   - id: "r-init-rendering-setup"
-    line_start: 181
+    line_start: 183
     line_end: 244
     title: "Initializing Quake's Rendering Pipeline"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
@@ -64,7 +64,7 @@ enhancements:
     image_caption: ""
     content: "The `R_Init` function sets up the rendering pipeline, initializing critical components like particle systems, surface caches, and clipping planes. This function reflects the complexity of rendering in a 3D environment, where multiple subsystems must work together seamlessly. In 1996, real-time 3D rendering was still in its infancy, and Quake's pipeline represented a significant leap forward. John Carmack and Michael Abrash, the architects of Quake's graphics engine, drew on their deep understanding of hardware and mathematics to optimize every aspect of the pipeline. The techniques pioneered in `R_Init` influenced later engines like Source and CryEngine, which built on Quake's foundations to achieve even greater levels of realism and performance."
   - id: "r-draw-entities-list"
-    line_start: 542
+    line_start: 544
     line_end: 616
     title: "Drawing Entities: The Heart of Quake's World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The `R_DrawEntitiesOnList` function iterates through visible entities and renders them based on their type, such as sprites or alias models. This function is a key part of Quake's rendering loop, ensuring that dynamic objects like players and enemies are drawn correctly in the 3D world. In the mid-1990s, rendering entities was a challenging task due to hardware limitations and the need for real-time performance. Quake's approach, which included bounding box checks and dynamic lighting calculations, set a new standard for efficiency and visual fidelity. The techniques used here influenced later games like Half-Life and Doom 3, which built on Quake's entity rendering system to create even more immersive experiences."
   - id: "r-edge-drawing"
-    line_start: 884
+    line_start: 886
     line_end: 956
     title: "The Algorithm That Made Quake's Edges Sharp"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
@@ -80,23 +80,23 @@ enhancements:
     image_caption: ""
     content: "The `R_EdgeDrawing` function handles edge rendering, a critical part of Quake's graphics pipeline. This function ensures that edges are drawn correctly, preventing visual artifacts and maintaining the integrity of the 3D world. Edge rendering was particularly challenging in the 1990s due to hardware constraints and the need for real-time performance. Quake's solution, which included efficient memory management and caching, was a testament to the ingenuity of its developers. The techniques used in `R_EdgeDrawing` influenced later engines and graphics libraries, contributing to the evolution of real-time rendering. This function highlights the attention to detail that made Quake a groundbreaking achievement in computer graphics."
   - id: "visibility-optimization-for-rendering"
-    line_start: 959
-    line_end: 1036
+    line_start: 961
+    line_end: 1066
     title: "Visibility Optimization for Rendering Efficiency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "This section begins with the `SetVisibilityByPassages` function, which optimizes visibility calculations for rendering. The goal is to determine which parts of the game world are visible from the player's perspective, reducing the computational load by skipping unseen areas. Techniques like these were crucial in 1996, as hardware constraints limited the ability to render large, complex 3D environments in real time. The section also adjusts floating-point precision using `Sys_LowFPPrecision`, a clever trick to improve performance during rendering calculations. This approach reflects the era's focus on squeezing every ounce of performance from processors like the Intel Pentium. By carefully managing visibility and precision, the developers ensured Quake could deliver smooth gameplay and detailed environments on mid-90s hardware. These techniques influenced later engines, such as Unreal Engine and Source Engine, which adopted similar visibility optimization strategies to handle increasingly complex 3D worlds."
   - id: "stack-and-memory-alignment-checks"
-    line_start: 1068
-    line_end: 1087
+    line_start: 1
+    line_end: 27
     title: "Stack and Memory Alignment Checks Prevent Crashes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure_alignment"
     image_url: ""
     image_caption: ""
     content: "The `R_RenderView` function includes a series of checks to ensure proper stack and memory alignment. Misaligned memory can cause crashes or undefined behavior, especially in performance-critical applications like Quake. By verifying alignment of the stack, global variables, and memory allocation (`Hunk_LowMark`), the developers safeguarded the game against subtle bugs that could arise on different hardware configurations. These checks reflect the meticulous attention to detail required when programming for diverse x86 systems in the mid-90s, where hardware inconsistencies were common. This approach set a precedent for robust error handling in game engines, influencing later developers to adopt similar practices to ensure cross-platform stability."
   - id: "precomputed-sine-wave-tables"
-    line_start: 1089
+    line_start: 1091
     line_end: 1103
     title: "Precomputed Sine Wave Tables for Turbulent Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sine_wave"

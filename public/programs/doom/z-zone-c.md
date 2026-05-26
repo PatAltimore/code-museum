@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "zone-memory-allocation-overview"
     line_start: 31
-    line_end: 59
+    line_end: 55
     title: "Why DOOM Avoided Contiguous Free Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The `Z_Free` function handles the deallocation of memory blocks in DOOM's zone memory system. It verifies the block's integrity using a unique identifier (`ZONEID`) and merges adjacent free blocks to prevent fragmentation. This approach was crucial for maintaining performance on hardware with limited RAM. In the early 1990s, memory management was a complex challenge, especially for real-time applications like games. Carmack's solution ensured stability and efficiency, avoiding the pitfalls of traditional malloc/free systems. The merging of free blocks inspired similar techniques in later engines, where memory fragmentation remained a critical concern."
   - id: "malloc-allocation-strategy"
-    line_start: 175
+    line_start: 182
     line_end: 288
     title: "How DOOM Allocated Memory Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"

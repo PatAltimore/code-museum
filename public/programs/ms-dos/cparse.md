@@ -55,7 +55,7 @@ enhancements:
     content: "The SCANCDONE section includes a call to the UPCONV subroutine, which converts characters to uppercase. This ensures that MS-DOS treats file names and commands as case-insensitive, a design choice that simplified user interaction and avoided confusion. The routine also checks for special delimiters and sets flags accordingly. Case insensitivity was a deliberate decision in MS-DOS, influenced by the need to make the operating system accessible to non-technical users. At the time, Unix systems were case-sensitive, which could lead to errors if users were unfamiliar with the conventions. By converting input to uppercase, MS-DOS eliminated this potential source of frustration. The Intel 8086 processor's instruction set made such conversions relatively straightforward, allowing the routine to be implemented efficiently. This approach became a defining feature of MS-DOS and influenced other operating systems like Windows, which inherited case insensitivity for file names. While modern systems like Linux and macOS have embraced case sensitivity, the legacy of MS-DOS's design can still be seen in the default behavior of Windows file systems and command-line tools. The SCANCDONE section highlights the trade-offs between user-friendly design and technical precision, a balance that continues to shape software development today."
   - id: "testdot-extension-handling"
     line_start: 315
-    line_end: 455
+    line_end: 441
     title: "Handling File Extensions: The Dot Matters"
     wikipedia_url: "https://en.wikipedia.org/wiki/Filename_extension"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The TESTDOT section checks for the presence of a dot ('.') in the input, signaling the start of a file extension. If a dot is found, the routine sets flags to indicate that the parser is now processing the extension part of the file name. It also resets the element count, ensuring that subsequent characters are treated as part of the extension. File extensions were a critical feature in MS-DOS, used to identify file types and associate them with specific programs. This convention originated in earlier operating systems like CP/M and was carried forward into MS-DOS. The TESTDOT routine reflects the importance of maintaining compatibility with existing software while introducing new features. At the time, the IBM PC's hardware constraints required efficient parsing routines, and this section demonstrates how MS-DOS balanced functionality with performance. The concept of file extensions became ubiquitous, influencing not only operating systems but also application software and file formats. Modern systems like Windows and macOS still rely on extensions to manage file associations, a testament to the enduring impact of MS-DOS's design. The TESTDOT routine is a small but significant part of this legacy, showcasing how careful attention to detail can shape the user experience for decades."
   - id: "move-char-token-buffer"
     line_start: 565
-    line_end: 573
+    line_end: 577
     title: "Storing Characters: Building the Token Buffer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""

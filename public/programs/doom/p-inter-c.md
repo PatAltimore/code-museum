@@ -39,30 +39,30 @@ enhancements:
     content: "The `P_GiveAmmo` function governs how players acquire ammunition in DOOM. It calculates the amount of ammo added based on the game's difficulty level and ensures players never exceed their maximum ammo capacity. If a player is out of ammo, the function automatically selects a new weapon, prioritizing the most powerful available. This design ensures smooth gameplay flow, preventing players from being stuck without a viable weapon. In 1993, this was a crucial innovation, as many games of the era lacked dynamic weapon-switching mechanics. John Carmack and the team at id Software aimed to create a fast-paced experience where players could focus on action rather than inventory management. This approach influenced later FPS games like Quake and Half-Life, which adopted similar systems for seamless weapon and ammo management."
   - id: "weapon-pickup-logic"
     line_start: 162
-    line_end: 223
+    line_end: 219
     title: "The logic behind DOOM's weapon pickups"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `P_GiveWeapon` function handles the acquisition of weapons, ensuring players receive appropriate ammo when picking up a weapon. It differentiates between dropped weapons and those placed in the environment, granting fewer resources for dropped items. This subtle distinction reflects the game's emphasis on resource management and strategic gameplay. In multiplayer deathmatches, weapons remain available for all players, encouraging competitive play. The function also triggers sound effects and visual feedback, enhancing the player's sense of accomplishment. This system was groundbreaking in 1993, as it combined immersive feedback with practical gameplay mechanics. The influence of this design can be seen in modern FPS games like Call of Duty and Destiny, where weapon pickups are integral to gameplay."
   - id: "health-and-armor-systems"
-    line_start: 224
-    line_end: 269
+    line_start: 223
+    line_end: 265
     title: "How DOOM balanced health and armor mechanics"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `P_GiveBody` and `P_GiveArmor` functions manage player health and armor acquisition. These systems ensure players can't exceed predefined limits, maintaining balance and challenge. Health items like medikits and stimpacks restore health, while armor types provide varying levels of protection. The design reflects id Software's focus on creating a challenging yet fair gameplay experience. In the early 1990s, health and armor systems were relatively simple in games, but DOOM's implementation added depth by introducing limits and strategic choices. This approach influenced later games like Halo, which expanded on the concept with regenerating shields and health packs."
   - id: "power-up-mechanics"
-    line_start: 270
-    line_end: 334
+    line_start: 269
+    line_end: 330
     title: "The power-ups that defined DOOM's gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `P_GivePower` function governs the acquisition of power-ups, such as invulnerability, invisibility, and berserk strength. Each power-up provides a unique advantage, encouraging players to adapt their strategies. For example, invulnerability allows players to survive intense combat, while berserk strength enhances melee attacks. The function also prevents redundant pickups, ensuring players don't waste resources. In 1993, power-ups were a staple of arcade games, but DOOM elevated their importance by integrating them into its fast-paced gameplay. This innovation influenced countless FPS titles, including Unreal Tournament and Overwatch, where power-ups play a central role in competitive play."
   - id: "special-item-interactions"
-    line_start: 335
+    line_start: 334
     line_end: 660
     title: "How DOOM made item pickups satisfying"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -79,7 +79,7 @@ enhancements:
     content: "The `P_KillMobj` function governs monster deaths and item drops. When a monster dies, it spawns items like ammo or weapons, depending on its type. This mechanic rewards players for defeating enemies, encouraging aggressive gameplay. The function also handles player deaths, ensuring a smooth transition to the post-death state. In 1993, this level of detail was rare in games, as most titles featured static death animations. DOOM's dynamic system added replayability and depth, influencing later games like Diablo, where enemies drop loot upon defeat."
   - id: "damage-calculation-and-reactions"
     line_start: 762
-    line_end: 916
+    line_end: 794
     title: "How DOOM calculated damage and reactions"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

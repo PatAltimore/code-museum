@@ -30,31 +30,31 @@ summary:
 
 enhancements:
   - id: "long-division-on-386-cpus"
-    line_start: 30
-    line_end: 66
+    line_start: 13
+    line_end: 92
     title: "Long Division on 386 CPUs: Faster Math"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
     image_url: ""
     image_caption: ""
     content: "This section implements a long division routine optimized for Intel 386 processors. The programmer uses the `idiv` instruction, which performs signed division directly on 32-bit registers (`eax` and `edx`). The code sets up the stack frame to retrieve the dividend and divisor, performs the division, and then adjusts the result to fit the expected format. The use of `cdq` ensures the sign extension of the dividend, a critical step for signed division. At the time, the 386 processor was a major leap forward, introducing 32-bit registers and instructions that allowed faster and more efficient mathematical operations compared to earlier 16-bit CPUs. This optimization reflects the programmer's deep understanding of the hardware and the need for speed in a game like Wolfenstein 3D, where every CPU cycle mattered. The reliance on 386-specific instructions also highlights the transition in the early 1990s toward more powerful processors, enabling developers to push the boundaries of real-time graphics and gameplay. This approach influenced later game engines, where hardware-specific optimizations became standard practice to achieve high performance."
   - id: "signed-vs-unsigned-division"
-    line_start: 68
-    line_end: 75
+    line_start: 94
+    line_end: 148
     title: "Signed vs. Unsigned Division: A Flag-Based Solution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Division_(mathematics)"
     image_url: ""
     image_caption: ""
     content: "This section introduces a flag-based mechanism to handle signed and unsigned division. The `cx` register is set to different values depending on whether the operation is signed (`xor cx, cx`) or unsigned (`mov cx, 1`). The code later uses these flags to determine how to process the division and remainder calculations. This approach reflects the constraints of assembly programming, where explicit control over data types and operations is necessary. In the early 1990s, high-level languages like C were gaining popularity, but assembly was still essential for performance-critical tasks. The use of flags to distinguish signed and unsigned operations demonstrates the programmer's ingenuity in managing low-level details efficiently. This technique influenced later game engines and software libraries, where similar mechanisms were used to optimize mathematical operations in performance-sensitive contexts."
   - id: "slow-division-algorithm"
-    line_start: 123
-    line_end: 212
+    line_start: 149
+    line_end: 207
     title: "Slow Division Algorithm: When Hardware Falls Short"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
     image_caption: ""
     content: "This section implements a slow division algorithm using bitwise operations for environments where the hardware does not support efficient division. The algorithm shifts the dividend left one bit at a time (`shl ax, 1`) and compares it to the divisor, subtracting when necessary to build the quotient. This approach is a fallback for CPUs that lack the `idiv` instruction or when high words in the divisor and dividend are non-zero. In the early 1990s, developers often had to account for hardware limitations, especially when targeting a broad range of machines. This algorithm reflects the ingenuity required to perform complex mathematical operations without relying on advanced hardware features. While slower than the 386-specific implementation, it ensures correctness and compatibility across different CPUs. Techniques like this influenced later software development, where fallback algorithms became a standard way to handle diverse hardware capabilities, ensuring broader accessibility and reliability."
   - id: "quick-division-path"
-    line_start: 214
+    line_start: 208
     line_end: 224
     title: "Quick Division Path: Optimizing for Zero Cases"
     wikipedia_url: "https://en.wikipedia.org/wiki/Division_(mathematics)"

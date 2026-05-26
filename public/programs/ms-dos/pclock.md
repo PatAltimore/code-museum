@@ -55,7 +55,7 @@ enhancements:
     content: "The `CLOCKOFF` routine disables the clock interrupt by modifying the interrupt mask register. This simple operation ensures that the timer no longer triggers interrupts, allowing the system to conserve resources when profiling is not needed. The routine's brevity highlights the efficiency required in assembly programming, where every instruction counts. Disabling interrupts was a common practice in early operating systems to manage hardware resources effectively. This technique influenced later systems, where interrupt masking became a standard feature in device drivers and kernel-level programming."
   - id: "leave-interrupt-routine"
     line_start: 169
-    line_end: 195
+    line_end: 199
     title: "Resetting the Clock After an Interrupt"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""

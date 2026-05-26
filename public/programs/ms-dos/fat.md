@@ -46,32 +46,32 @@ enhancements:
     image_caption: ""
     content: "The `NAME FAT` section defines essential data structures and variables used throughout the FAT filesystem implementation. These include cluster numbers, drive parameters, and buffer management fields. By organizing these variables, the programmer creates a cohesive system for tracking file allocation and disk sectors. In the early 1980s, FAT was revolutionary for its simplicity and adaptability, allowing MS-DOS to support multiple storage devices with minimal overhead. This design was inspired by CP/M's file system but extended to handle larger disks and hierarchical directories. The FAT system became a cornerstone of personal computing, influencing storage formats in Windows, Linux (via VFAT), and embedded systems like USB drives and SD cards."
   - id: "unpack-fat-entries"
-    line_start: 71
-    line_end: 141
+    line_start: 63
+    line_end: 139
     title: "Unpacking FAT Entries for Cluster Access"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
     content: "The `UNPACK` subroutine retrieves the contents of the FAT for a given cluster number. It checks the cluster's validity and maps it to the corresponding FAT entry. If the cluster is free, it sets a zero flag; otherwise, it extracts the cluster's data. This routine demonstrates the low-level manipulation required to interact with the FAT structure, including bitwise operations and register management. In 1983, such routines were essential for optimizing performance on the 8086 processor, which lacked advanced instructions for complex data handling. The `UNPACK` logic directly influenced how operating systems managed file allocation, and its principles are still visible in modern FAT-based systems like FAT32 and exFAT."
   - id: "pack-fat-entries"
-    line_start: 277
-    line_end: 277
+    line_start: 141
+    line_end: 141
     title: "Packing Data into FAT Entries"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
     content: "The `PACK` subroutine writes data into the FAT for a specified cluster. It calculates the cluster's position in the FAT, aligns the data, and updates the buffer. This routine ensures that changes to the FAT are reflected in memory and marked as 'dirty' for later disk writes. The complexity of this operation lies in handling both aligned and unaligned clusters, requiring precise bit manipulation. In the early 1980s, such routines were critical for maintaining filesystem integrity on limited hardware. The `PACK` logic influenced the development of journaling filesystems and caching mechanisms in later operating systems, as it demonstrated the importance of efficient data handling and error recovery."
   - id: "mapcluster-fat-buffering"
-    line_start: 427
-    line_end: 427
+    line_start: 145
+    line_end: 277
     title: "Buffering FAT Sectors for Cluster Mapping"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
     content: "The `MAPCLUSTER` subroutine buffers a FAT sector to provide access to a specific cluster's data. It calculates the sector number and index within the FAT, retrieves the buffer, and sets pointers for subsequent operations. This routine highlights the challenges of working with segmented memory on the 8086 processor, where direct access to large data structures was impossible. By buffering sectors, the programmer ensures efficient access to the FAT without exceeding memory limits. This technique became a standard practice in filesystem design, influencing caching strategies in modern operating systems and storage devices."
   - id: "fat-operation-error-handling"
-    line_start: 711
-    line_end: 711
+    line_start: 281
+    line_end: 427
     title: "Error Handling in FAT Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""

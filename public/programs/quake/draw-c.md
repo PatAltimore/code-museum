@@ -38,63 +38,63 @@ enhancements:
     image_caption: ""
     content: "This section defines foundational data structures like `rectdesc_t`, which encapsulates rectangle dimensions and texture data. These structures are critical for managing graphical elements and their placement on the screen. In 1996, hardware constraints like limited memory and processing power meant that every byte and cycle counted. By organizing graphical data into compact, reusable structures, the Quake team optimized rendering efficiency. This approach, while common today, was groundbreaking in its application to real-time 3D environments at the time. These structures influenced later game engines, including Unreal Engine and Source Engine, which adopted similar abstractions for rendering pipelines."
   - id: "cachepic-lookup-system"
-    line_start: 59
-    line_end: 85
+    line_start: 61
+    line_end: 106
     title: "The Lookup System That Kept Quake Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `Draw_CachePic` function implements a caching system for graphical assets, ensuring that frequently used textures are quickly accessible. This was vital for maintaining performance on mid-90s hardware, where disk access was slow and memory was limited. The cache avoids redundant file loads by storing assets in memory and checking for existing entries before loading new ones. This technique, pioneered by John Carmack and his team, became a standard in game development, influencing asset management in engines like Unity and Unreal. The error handling (`Sys_Error`) reflects the team's emphasis on robustness, ensuring the game fails gracefully if the cache exceeds its limits."
   - id: "draw-init-graphics-setup"
-    line_start: 105
-    line_end: 120
+    line_start: 107
+    line_end: 125
     title: "How Quake Prepared Its Graphics Pipeline"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_pipeline"
     image_url: ""
     image_caption: ""
     content: "The `Draw_Init` function initializes essential graphical assets, including character sets (`draw_chars`) and background tiles (`draw_backtile`). This setup phase ensures that all necessary textures are loaded into memory before rendering begins. In the mid-90s, games like Quake had to carefully manage memory to fit within the constraints of consumer-grade PCs. By preloading assets, the game avoided runtime delays caused by disk access. This initialization pattern influenced later engines, which adopted similar practices for preloading textures and shaders to optimize performance."
   - id: "draw-character-rendering"
-    line_start: 124
-    line_end: 220
+    line_start: 126
+    line_end: 223
     title: "The Routine That Drew Every Letter"
     wikipedia_url: "https://en.wikipedia.org/wiki/Character_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `Draw_Character` function is responsible for rendering individual 8x8 pixel characters on the screen. It includes clipping logic to handle cases where characters are partially off-screen, ensuring graphical consistency. The function supports both 8-bit and 16-bit color modes, reflecting the transitionary period of PC graphics hardware in the mid-90s. This routine demonstrates the team's attention to detail, as efficient text rendering was crucial for console output and in-game messages. The use of lookup tables (`d_8to16table`) for color translation highlights the team's optimization efforts. Techniques like these influenced later text rendering systems in games and operating systems."
   - id: "draw-string-text-rendering"
-    line_start: 222
-    line_end: 235
+    line_start: 224
+    line_end: 238
     title: "How Quake Rendered Entire Sentences"
     wikipedia_url: "https://en.wikipedia.org/wiki/Text_rendering"
     image_url: ""
     image_caption: ""
     content: "The `Draw_String` function builds on `Draw_Character` to render entire strings of text. By iterating through each character in a string and calling the character rendering routine, it provides a straightforward mechanism for displaying text in the game. This modular approach allowed the team to reuse the character rendering logic across multiple contexts, including menus, console output, and HUD elements. The simplicity and efficiency of this design influenced text rendering in later engines, where modularity and reuse became standard practices."
   - id: "draw-crosshair-aiming"
-    line_start: 271
-    line_end: 294
+    line_start: 107
+    line_end: 125
     title: "The Crosshair That Defined Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Crosshair"
     image_url: ""
     image_caption: ""
     content: "The `Draw_Crosshair` function implements the rendering logic for the player's aiming reticle. It supports multiple styles, including a simple '+' character and a more detailed pixel-based crosshair. This feature reflects the team's focus on gameplay precision, as accurate aiming was critical in Quake's multiplayer matches. The ability to customize the crosshair's position and color demonstrates an early example of user-centric design in games. Crosshairs became a staple of first-person shooters, with later games like Counter-Strike and Call of Duty offering extensive customization options inspired by this approach."
   - id: "draw-console-background"
-    line_start: 639
-    line_end: 733
+    line_start: 641
+    line_end: 737
     title: "The Console That Anchored Quake's Debugging"
     wikipedia_url: "https://en.wikipedia.org/wiki/Console_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Draw_ConsoleBackground` function renders the console's background, providing a visually distinct area for debugging and player commands. This feature was essential for developers and players alike, as it facilitated real-time interaction with the game's engine. The inclusion of version information directly in the background image highlights the team's attention to detail and transparency. The console's design influenced debugging tools in later engines, where developer consoles became standard for testing and diagnostics."
   - id: "draw-fade-screen"
-    line_start: 954
-    line_end: 988
+    line_start: 958
+    line_end: 993
     title: "The Fade Effect That Set the Mood"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(visual_effect)"
     image_url: ""
     image_caption: ""
     content: "The `Draw_FadeScreen` function creates a fade effect by darkening the screen pixel by pixel. This visual transition was used to signal events like game over screens or level transitions. The implementation relies on bitwise operations to achieve the fade, showcasing the team's mastery of low-level graphics manipulation. Fade effects became a common technique in games, influencing visual storytelling and atmosphere in titles like Half-Life and Bioshock."
   - id: "draw-end-disc-rendering-trick"
-    line_start: 1007
+    line_start: 1009
     line_end: 1019
     title: "Why Quake's Loading Disc Was So Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

@@ -55,7 +55,7 @@ enhancements:
     content: "This section defines the ROOM structure, a cornerstone of Zork's world-building. Each room is represented as a vector with attributes like a unique ID (RID), descriptions (RDESC1 and RDESC2), a list of exits (REXITS), and objects present (ROBJS). The structure also includes flags for whether the room has been visited (RSEEN?) or contains a light source (RLIGHT?). By encapsulating room data in a single structure, the authors streamlined the game's logic for navigation and interaction. In 1977, this approach was innovative, as most games were far simpler and lacked such detailed environments. Zork's ROOM structure influenced the design of later adventure games and RPGs, which adopted similar data-driven approaches to represent game worlds."
   - id: "parser-related-types"
     line_start: 66
-    line_end: 72
+    line_end: 262
     title: "Building Zork’s Command Interpreter"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "This section defines the CEVENT structure, which represents clock-based events in Zork. Each event includes a tick count (CTICK), an action to perform (CACTION), and a flag for enabling or disabling the event (CFLAG). Clock interrupts allow the game to execute actions at specific intervals, such as triggering a random encounter or updating the game state. In 1977, this was an advanced feature for a text-based game, adding a layer of dynamism that made Zork feel alive. The use of clock-based events influenced later games, particularly in the RPG genre, where timed events became a staple for creating immersive experiences."
   - id: "utility-functions"
     line_start: 307
-    line_end: 369
+    line_end: 468
     title: "Managing Zork’s Dynamic World"
     wikipedia_url: "https://en.wikipedia.org/wiki/State_(computer_science)"
     image_url: ""

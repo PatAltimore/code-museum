@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "makefcb-file-name-parsing"
-    line_start: 30
-    line_end: 165
+    line_start: 167
+    line_end: 223
     title: "The Bug That Scanned Forever"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
@@ -33,31 +33,31 @@ enhancements:
     content: "This section implements the `MakeFcb` procedure, which parses a file name and constructs a File Control Block (FCB). FCBs were a data structure inherited from CP/M, used to manage files in MS-DOS 1.x and 2.x. The routine includes logic for handling default drive letters, file name padding, and extensions, as well as scanning off delimiters like colons and dots. Notably, a comment at line 110 reveals a critical bug: if the file name exceeds the expected length (`CX`), the routine continues reading indefinitely. This reflects the rushed development of MS-DOS, where deadlines often trumped thorough testing. In 1983, MS-DOS 2.0 was a major rewrite influenced by Unix, introducing hierarchical directories and file handles. However, FCBs remained for backward compatibility with older software. Tim Paterson, the original author of 86-DOS (the precursor to MS-DOS), likely adapted this approach from CP/M's file system. This bug and the reliance on FCBs highlight the transitional nature of MS-DOS 2.0. While later versions of MS-DOS moved to file handles, the legacy of FCBs persisted in older applications. Developers studying this code learned the importance of robust input validation, especially in file systems. The bug likely inspired stricter bounds-checking in later operating systems, such as Windows and OS/2."
   - id: "nametrans-path-element-scanning"
     line_start: 167
-    line_end: 223
+    line_end: 222
     title: "Spaces in Pathnames: A Controversial Decision"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The `NameTrans` procedure scans and extracts elements of a file path, allowing spaces in pathnames—a feature uncommon in early operating systems like CP/M. This decision reflects MS-DOS 2.0's attempt to modernize file handling, inspired by Unix's more flexible path conventions. The routine initializes the `SpaceFlag` to permit spaces, then processes path elements while handling delimiters like dots and slashes. In 1983, MS-DOS was competing with Unix-based systems like XENIX, which Microsoft licensed and sold. Unix's hierarchical file system and flexible naming conventions were seen as superior to CP/M's flat structure. By adopting similar features, MS-DOS aimed to appeal to developers transitioning from Unix environments. This routine influenced later operating systems, including Windows, which continued to support spaces in file names. However, it also introduced complexities, such as the need for quoting or escaping spaces in command-line operations. The decision to allow spaces shaped the evolution of file systems, making them more user-friendly but also more prone to errors in scripts and automation."
   - id: "buildfcb-device-io"
-    line_start: 225
-    line_end: 254
+    line_start: 223
+    line_end: 253
     title: "Building FCBs for Devices: A Legacy Hack"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
     content: "The `BuildFCB` procedure creates a blank FCB for I/O operations with devices. It initializes the FCB structure with zeros and sets up fields like the extent and device number. This reflects MS-DOS's reliance on FCBs for both file and device management, a design inherited from CP/M. In the early 1980s, hardware constraints shaped software design. Devices like printers and serial ports were often treated as files, simplifying the operating system's architecture. However, this approach became a limitation as hardware evolved. MS-DOS 2.0 attempted to modernize by introducing file handles, but FCBs remained for backward compatibility. This routine demonstrates the transitional nature of MS-DOS 2.0, bridging the gap between CP/M's legacy and modern file systems. It influenced the design of later systems like OS/2 and early versions of Windows, which moved away from FCBs entirely. Developers studying this code learned the importance of abstraction layers, separating file and device management to accommodate future hardware advancements."
   - id: "fcb-move-name-validation"
-    line_start: 256
-    line_end: 418
+    line_start: 254
+    line_end: 417
     title: "Uppercase Everything: File Name Validation"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The `FCB_move` procedure examines and validates file names, converting them to uppercase and copying them into the `NAME1` field. It also checks for extended FCBs, attributes, and drive selectors. This routine ensures compatibility with MS-DOS's case-insensitive file system. Case-insensitivity was a design choice inherited from CP/M, where file names were stored in uppercase to simplify comparisons. In the early 1980s, this approach reduced computational overhead on hardware with limited processing power. MS-DOS 2.0 retained this convention for backward compatibility, even as it introduced Unix-inspired features like subdirectories. This routine influenced the design of later file systems, including FAT and NTFS, which preserved case-insensitivity while allowing mixed-case storage. It also shaped user expectations, making case-insensitive file handling a standard feature in consumer operating systems. Developers learned the trade-offs of simplifying file systems for performance, a lesson that continues to inform modern software design."
   - id: "getlet-character-conversion"
-    line_start: 420
-    line_end: 476
+    line_start: 418
+    line_end: 475
     title: "The Character Conversion Shortcut"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
     image_url: ""

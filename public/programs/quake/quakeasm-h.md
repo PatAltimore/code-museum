@@ -30,32 +30,32 @@ summary:
 
 enhancements:
   - id: "quakeasm-header-setup"
-    line_start: 1
-    line_end: 35
+    line_start: 4
+    line_end: 17
     title: "Why Quake Needed id386-Specific Optimizations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
     image_url: ""
     image_caption: ""
     content: "This section sets up architecture-specific flags to enable optimizations for Intel's 386 processors, the dominant CPU architecture of the mid-1990s. By defining `id386`, the code ensures that assembly routines tailored for x86 processors are included only when running on compatible hardware. This was crucial for Quake, as its performance depended heavily on low-level optimizations that exploited the specific capabilities of the 386 and later processors, such as pipelining and instruction-level parallelism. In 1996, the gaming industry was transitioning from DOS-based games to Windows-based environments, and developers were grappling with the limitations of early PC hardware. The 386, introduced in 1985, was still widely used, though faster processors like the Pentium were becoming more common. John Carmack and Michael Abrash, both renowned for their deep understanding of hardware, leveraged these constraints to push the boundaries of what was possible. Abrash's work on assembly optimizations and Carmack's expertise in engine design ensured Quake could deliver unprecedented 3D graphics on consumer-grade PCs. This approach influenced later game engines, such as Unreal Engine and Source, which continued to optimize for specific hardware architectures. The practice of tailoring software for hardware capabilities persists in modern development, especially in console and mobile gaming, where understanding the underlying hardware is key to maximizing performance."
   - id: "transparent-color-definition"
-    line_start: 34
-    line_end: 35
+    line_start: 4
+    line_end: 9
     title: "The Magic Number Behind Transparency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""
     image_caption: ""
     content: "The definition of `TRANSPARENT_COLOR` as 255 is a simple yet critical decision. This constant represents the color value used to denote transparency in Quake's rendering pipeline. By reserving a specific value for transparency, the engine can efficiently handle textures and sprites that require portions to be invisible, such as windows or character models. In the mid-1990s, transparency was a computationally expensive feature, especially on hardware without dedicated graphics acceleration. Quake's software renderer had to manage transparency manually, blending pixels and ensuring that transparent areas did not overwrite the background. This choice of 255 likely stems from its position as the maximum value in an 8-bit color palette, making it easy to identify and process. Transparency handling in Quake laid the groundwork for more sophisticated alpha blending techniques in later games. Modern engines like Unity and Unreal use similar principles but leverage GPU acceleration to handle transparency more efficiently. The concept of reserving specific values for transparency persists in formats like PNG, where alpha channels define pixel opacity."
   - id: "external-variable-references"
-    line_start: 37
-    line_end: 260
+    line_start: 4
+    line_end: 6
     title: "The Web of Variables That Made Quake Tick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "This section lists external references to critical variables used throughout Quake's rendering pipeline. These variables, such as `d_zistepu`, `r_turb_s`, and `d_viewbuffer`, represent the building blocks of the game's 3D graphics system. They control everything from depth buffering to texture mapping and lighting calculations. In 1996, real-time 3D rendering was still a nascent field. Developers had to invent techniques to simulate depth, perspective, and lighting on hardware that lacked dedicated graphics processors. Quake's software renderer was a marvel of engineering, using these variables to manage complex calculations efficiently. For example, depth buffering (`d_pzbuffer`) ensured that closer objects occluded farther ones, while texture coordinates (`r_turb_s`, `r_turb_t`) enabled detailed surfaces. The modularity of these variables reflects the influence of Michael Abrash, who advocated for clean, reusable code even in assembly-heavy projects. This approach allowed Quake's engine to be adapted for later games like Quake II and influenced the design of modern engines. Developers studying Quake's source code learned how to structure rendering systems, a lesson that resonates in today's industry standards."
   - id: "sound-system-hooks"
-    line_start: 261
-    line_end: 272
+    line_start: 4
+    line_end: 6
     title: "How Quake's Sound System Kept Pace"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""

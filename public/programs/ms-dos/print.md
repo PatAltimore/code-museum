@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "start-jump-transient"
     line_start: 235
-    line_end: 237
+    line_end: 245
     title: "Why PRINT Starts with a Jump"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_instruction"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The `START` label begins with a jump to `TRANSIENT`, bypassing initialization code. This design reflects the dual nature of the PRINT program: it operates as both a transient (temporary) and a resident (background) utility. By jumping directly to transient code, the program prioritizes immediate execution of user commands before setting up its resident components. In 1983, MS-DOS was evolving to support multitasking-like behaviors, and PRINT exemplifies this shift. The jump ensures that the program can quickly respond to user input while reserving background tasks for later. This approach influenced later designs of TSR (Terminate and Stay Resident) programs, which became a hallmark of MS-DOS utilities."
   - id: "istack-resident-data"
     line_start: 247
-    line_end: 409
+    line_end: 303
     title: "Resident Data: PRINT's Persistent Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `ISTACK` section defines resident data structures that persist while PRINT operates in the background. These include flags for interrupt handling (`BUSY`, `SOFINT`), counters (`TICKCNT`, `SLICECNT`), and device pointers (`LISTDEV`, `CURRFIL`). This memory layout reflects the constraints of early PCs, where programs had to manage their own state without relying on an operating system for multitasking. Tim Paterson's design ensures PRINT can efficiently handle interrupts and maintain its spooler functionality. The resident data approach influenced later DOS utilities and even modern operating systems, where background processes rely on persistent memory structures for state management."
   - id: "srchmes-error-messages"
     line_start: 463
-    line_end: 467
+    line_end: 465
     title: "The Messages That Warned Users"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_message"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The `SRCHMES` section contains error messages displayed when PRINT encounters issues, such as missing files or unassigned devices. These messages are critical for user feedback in a time when graphical interfaces were rare. PRINT's reliance on textual error messages reflects the user experience of early DOS systems, where clear communication was essential for troubleshooting. The inclusion of detailed messages like \"File not found\" and \"List output is not assigned to a device\" demonstrates the program's focus on usability. This approach influenced the design of error handling in later command-line utilities and graphical interfaces, where user feedback remains a cornerstone of software design."
   - id: "int-17-hitlist-device-names"
     line_start: 489
-    line_end: 503
+    line_end: 501
     title: "Reserved Names for Printers"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The `TIMENOW` subroutine checks whether DOS is busy before proceeding with printing tasks. By inspecting the `INDOS` flag, PRINT avoids making DOS calls during critical operations, preventing system instability. This careful coordination reflects the limitations of early DOS systems, where concurrent access to system resources could lead to crashes. Tim Paterson's design ensures PRINT operates smoothly alongside other programs, a necessity in the single-tasking environment of MS-DOS. This technique influenced later multitasking operating systems, where resource locking and coordination are essential for stability."
   - id: "spint-software-interrupt"
     line_start: 621
-    line_end: 657
+    line_end: 653
     title: "INT 28H: PRINT's Software Interrupt"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `READBUFF` subroutine manages DMA (Direct Memory Access) and error handling during file reads. PRINT temporarily replaces the system's DMA address and error interrupt vector to ensure uninterrupted operation. This technique allows PRINT to handle errors internally, avoiding system-wide disruptions. The use of DMA reflects the need for efficient data transfer in a constrained environment, while the error handling mechanism highlights the program's robustness. These techniques influenced later designs of device drivers and background utilities, where efficient data transfer and error isolation are critical."
   - id: "disk-error-handling-dskerr"
     line_start: 1019
-    line_end: 1135
+    line_end: 1129
     title: "How MS-DOS Caught Disk Errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The DSKERR routine is responsible for handling disk errors in MS-DOS. It begins by checking a global flag (PABORT) to determine if the system is in an abort state. If not, it saves the current register state and switches the data segment to access error messages stored in memory. The routine then adjusts the drive letter and calls LISTMES to display the error message. This section reflects the challenges of early PC programming, where disk errors were common due to unreliable hardware and limited error detection capabilities. Tim Paterson, the original author of 86-DOS, designed these routines to ensure robustness in a constrained environment. By saving the register state, the routine avoids corrupting the system during error handling—a critical feature for multitasking systems. This approach influenced later operating systems, including Windows, which inherited MS-DOS's error handling conventions. Developers studying this code would learn techniques for managing hardware errors and preserving system stability."
   - id: "ascii-case-conversion-upconv"
     line_start: 1555
-    line_end: 1569
+    line_end: 1565
     title: "The Simple Trick Behind Case-Insensitive Matching"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The INT_13 routine interfaces directly with the BIOS to perform disk operations. It pushes the current flags and increments a BUSY flag to prevent concurrent access, then calls the real BIOS interrupt handler stored in REAL_INT_13. This low-level interaction highlights the reliance on BIOS for hardware control in early PCs. MS-DOS's design prioritized compatibility with IBM's BIOS, ensuring the operating system could run on any IBM-compatible hardware. This approach was pivotal in establishing the IBM PC as the industry standard. By exposing BIOS interrupts, MS-DOS allowed developers to write software that directly manipulated hardware, a practice that persisted in DOS-based systems and influenced early Windows versions. The INT_13 routine is a reminder of the close coupling between software and hardware in the early PC era."
   - id: "printer-error-int-17"
     line_start: 1939
-    line_end: 1975
+    line_end: 1969
     title: "Handling Printer Errors with INT 17"
     wikipedia_url: "https://en.wikipedia.org/wiki/Printer_(computing)"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The INT_17 routine manages printer errors by checking the status of the current file and the printer unit number. If the printer is busy or out of paper, it sets the AH register to indicate an error and exits via IRET. This routine demonstrates MS-DOS's modular approach to device handling, where each device type had dedicated interrupt handlers. In the early 1980s, printers were slow and prone to errors, making robust error handling essential. MS-DOS's ability to interface with printers directly through BIOS interrupts allowed it to support a wide range of hardware without requiring device-specific drivers. This modularity influenced later operating systems, which adopted similar abstractions for device management. The INT_17 routine is an example of how MS-DOS balanced simplicity and flexibility in its design."
   - id: "serial-port-int-14"
     line_start: 1985
-    line_end: 2035
+    line_end: 2029
     title: "Serial Port Communication via INT 14"
     wikipedia_url: "https://en.wikipedia.org/wiki/Serial_port"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The `INT_5` routine handles the Print Screen interrupt, a feature that allows users to print the current screen contents. It checks if there is a pending operation and whether the interrupt is for unit 0. If not, it exits gracefully with an `IRET` instruction, simulating success. This approach reflects the simplicity of early interrupt handling, where hardware constraints often required software to 'fake' functionality. In 1983, the IBM PC's hardware was limited, and MS-DOS had to work within these constraints while maintaining compatibility across multiple OEMs. This routine set a precedent for handling interrupts in a way that minimized system disruption. Later operating systems, such as Windows, built on these principles to manage hardware events more robustly."
   - id: "do-int-5-jump"
     line_start: 2065
-    line_end: 2075
+    line_end: 2069
     title: "Jumping to Real Interrupt Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
@@ -151,7 +151,7 @@ enhancements:
     content: "The `DO_INT_5` routine directly jumps to the real interrupt handler stored in `REAL_INT_5`. This design separates the interrupt's high-level logic from its low-level implementation, ensuring modularity. In the early 1980s, modularity was crucial for maintaining compatibility across diverse hardware configurations. Tim Paterson's work on MS-DOS emphasized adaptability, as the operating system had to function on IBM PCs and clones. This separation of logic influenced later practices in operating system design, where abstraction layers became standard. Modern systems like Linux and Windows continue to use modular interrupt handling to support a wide range of devices."
   - id: "setup-resident-code"
     line_start: 2145
-    line_end: 2323
+    line_end: 2183
     title: "Installing Resident Code for Devices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Terminate_and_Stay_Resident"
     image_url: ""
@@ -167,7 +167,7 @@ enhancements:
     content: "The `CHKHIT` and `CHKHIT2` routines verify whether a device name matches entries in predefined 'hitlists' for printers and RS-232 ports. If a match is found, the corresponding interrupt vector is set. This mechanism reflects the need to manage multiple devices in a constrained environment. In 1983, the IBM PC's hardware was limited, and MS-DOS had to provide flexible device support without overwhelming the system's resources. These routines demonstrate early techniques for dynamic device configuration, a concept that evolved into plug-and-play systems in later operating systems like Windows 95."
   - id: "parse-command-line-arguments"
     line_start: 2601
-    line_end: 2669
+    line_end: 2661
     title: "Parsing Command-Line Arguments with Switches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -175,7 +175,7 @@ enhancements:
     content: "The `PARSE` routine processes command-line arguments, identifying switches like 'C', 'P', and 'T'. It uses these switches to set flags or invoke specific routines. Command-line interfaces were the primary user interaction method in 1983, and efficient argument parsing was critical for usability. This routine showcases the structured approach MS-DOS took to handle user input, balancing simplicity and functionality. The concept of parsing arguments influenced scripting and programming languages, leading to standardized libraries for argument handling in environments like Python and Bash."
   - id: "search-loop-file-handling"
     line_start: 2777
-    line_end: 2837
+    line_end: 2817
     title: "Looping Through Files for Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
@@ -183,7 +183,7 @@ enhancements:
     content: "The `SRCHLOOP` routine iterates through files, attempting to open each one and perform operations. If an error occurs, it calls `OPENERR` to handle it gracefully. This loop demonstrates the file handling capabilities of MS-DOS, which relied on File Control Blocks (FCBs) for managing file metadata. In 1983, FCBs were a standard approach, but they were eventually replaced by more robust file systems like FAT. The iterative file processing in this routine influenced later file system APIs, such as those in Windows and Unix, which abstracted file operations for greater flexibility and reliability."
   - id: "getsplist-error-count-check"
     line_start: 2919
-    line_end: 3001
+    line_end: 2999
     title: "Checking Error Counts in Spool Lists"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spooling"
     image_url: ""
@@ -231,7 +231,7 @@ enhancements:
     content: "The sj2 routine detects switch characters (e.g., '/') in user input and stores them in the token buffer. It compares the input character (`CMP AL, DL`) to the switch character and calls supporting routines like `kill_bl` and `move_char` to process and store the character. If a carriage return is detected afterward, it exits with an error condition. Switch characters were a staple of command-line interfaces, allowing users to specify options or flags for commands. MS-DOS v2.0 expanded on earlier systems by formalizing their handling, ensuring that switch characters were properly identified and stored for later processing. This routine reflects the influence of Unix, where similar conventions were already in use. The handling of switch characters in MS-DOS set a precedent for later operating systems and programming languages. Command-line tools in Windows, Linux, and macOS continue to use similar conventions, with switch characters enabling powerful and flexible user interactions. The sj2 routine's efficient approach to parsing and storing these characters became a model for developers building their own command-line utilities."
   - id: "anum-char-alphanumeric-parsing"
     line_start: 3187
-    line_end: 3239
+    line_end: 3221
     title: "Parsing Alphanumeric Strings with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/String_(computer_science)"
     image_url: ""

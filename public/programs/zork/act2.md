@@ -55,15 +55,15 @@ enhancements:
     content: "The GRUE-FUNCTION subroutine provides lore and warnings about the infamous Grue, a creature that preys on adventurers in dark places. The code delivers descriptive text when players examine or search for the Grue, emphasizing its fear of light and its deadly nature. The Grue became a cultural icon in gaming, symbolizing the dangers of unprepared exploration. Its origins in Zork influenced countless games that incorporated environmental hazards and unseen threats, cementing its legacy as a hallmark of early interactive fiction."
   - id: "balloon-mechanics"
     line_start: 421
-    line_end: 612
+    line_end: 501
     title: "How a Balloon Navigates a Volcano"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "The BALLOON subroutine governs the logic for inflating, navigating, and interacting with a hot-air balloon. Players must use specific items, such as a burning object, to inflate the balloon, which then ascends or descends based on environmental conditions. The code includes checks for tied ropes, volcanic ledges, and the player's position, creating a complex system of cause-and-effect interactions. This mechanic reflects the developers' ingenuity in simulating realistic constraints within a text-based environment. It influenced later games with intricate vehicle mechanics, such as Sierra's King's Quest series, and demonstrated how environmental storytelling could enhance immersion."
   - id: "gnome-ledges"
-    line_start: 758
-    line_end: 794
+    line_start: 754
+    line_end: 756
     title: "A Gnome That Opens Secret Doors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""

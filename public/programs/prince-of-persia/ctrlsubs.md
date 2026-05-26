@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "read-block-recursive-offscreen"
     line_start: 132
-    line_end: 176
+    line_end: 173
     title: "Recursive Trick for Offscreen Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Recursion_(computer_science)"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "The RDBLOCK and RDBLOCK1 subroutines handle the retrieval of block data, including offscreen references. When a block's coordinates fall outside the visible screen, the handler subroutine recursively adjusts the coordinates and traces them back to their home screen using helper routines like offleft, offrt, offtop, and offbot. This approach ensures that even blocks outside the immediate screen are correctly mapped and processed. In 1989, recursion in assembly was a rare and risky technique due to limited stack space and the absence of high-level debugging tools. Mechner's implementation reflects a deep understanding of the Apple II's memory layout and constraints. This technique influenced later games that required complex spatial calculations, such as Ultima VI and early tile-based RPGs, where offscreen data handling became a standard feature."
   - id: "screen-adjacency-lookup"
     line_start: 236
-    line_end: 250
+    line_end: 274
     title: "Calculating Adjacent Screens with Lookup Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The GETLEFT, GETRIGHT, GETUP, and GETDOWN subroutines calculate adjacent screen numbers based on the current screen number. These routines use bitwise operations and lookup tables (MAP offsets) to efficiently determine screen adjacency. The GETSCRNS routine builds on these by retrieving all eight surrounding screens, including diagonals, and storing them in dedicated variables like scrnAbove and scrnBelowR. In the late 1980s, lookup tables were a popular optimization technique for systems with limited processing power, such as the Apple II. By precomputing adjacency relationships, Mechner avoided costly arithmetic operations during runtime, ensuring smooth gameplay. This approach was later adopted in games like SimCity and Civilization, where adjacency calculations were crucial for map-based mechanics."
   - id: "dynamic-character-x-coord"
     line_start: 320
-    line_end: 352
+    line_end: 340
     title: "Dynamic Character X-Coord Adjustments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The SETUPSWORD subroutine determines whether a character's sword should be visible and, if so, calculates its position relative to the character. It checks conditions like the character's life status, position, and current frame to decide whether the sword is sheathed or drawn. If visible, the sword's frame data is decoded and added to the object table for rendering. This attention to detail contributed to the game's cinematic feel, where every element of the character's appearance was carefully managed. The sword mechanics influenced later action-adventure games, such as the Legend of Zelda series, where weapon visibility and placement became integral to gameplay."
   - id: "decode-sword-image"
     line_start: 1007
-    line_end: 1055
+    line_end: 1039
     title: "How Sword Images Are Decoded"
     wikipedia_url: "https://en.wikipedia.org/wiki/6502"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The `GETEDGES` subroutine calculates the edges of the character image, including left, right, top, and bottom boundaries. These values are used for collision detection and determining the blocks affected by the character's movements. By converting coordinates and using auxiliary calculations like dividing by 2 for pixel width, Mechner ensured precise positioning and interaction within the game world. In the 1980s, collision detection was a critical aspect of game design, especially for platformers where precise movements were essential. Mechner's approach to edge calculation influenced how later games handled sprite-based collision detection, paving the way for more complex interactions in games like Super Mario Bros. and Sonic the Hedgehog."
   - id: "mark-floor-for-redraw"
     line_start: 1161
-    line_end: 1301
+    line_end: 1227
     title: "Marking Floor Pieces for Redraw"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `QUICKFLOOR` subroutine marks floor pieces for redraw based on the character's position and action. It uses block coordinates to identify affected areas and ensures that only necessary sections of the screen are updated. This optimization minimizes redraw overhead, a crucial technique for maintaining performance on the Apple II's limited hardware. Mechner's use of selective redraws reflects the ingenuity required to create visually dynamic games on early computers. This approach influenced later techniques like double buffering and partial screen updates, which became standard in game graphics rendering."
   - id: "crop-character-image"
     line_start: 1303
-    line_end: 1493
+    line_end: 1478
     title: "Cropping Character Images for Interaction"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "The `CROPCHAR` subroutine adjusts the character's visible boundaries based on their position and surroundings. It handles scenarios like climbing stairs, standing under solid floors, or interacting with panels. By dynamically cropping the character's image, Mechner ensured seamless integration with the environment, enhancing the game's cinematic feel. This technique of clipping graphics based on context was ahead of its time, influencing later games that required dynamic sprite manipulation, such as Another World and Flashback."
   - id: "compare-space-for-passability"
     line_start: 1495
-    line_end: 1583
+    line_end: 1522
     title: "Determining Passable Spaces in the Environment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pathfinding"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The `CMPSPACE` subroutine checks whether a given space is passable based on its object ID. It identifies spaces like solid blocks, pillars, and panels, returning whether the character can move through them. This logic is fundamental to the game's platforming mechanics, ensuring that the environment reacts realistically to the player's movements. Mechner's approach to space comparison laid the groundwork for more advanced pathfinding and environmental interaction systems in later games, such as Tomb Raider and Uncharted."
   - id: "add-objects-to-table"
     line_start: 1585
-    line_end: 1596
+    line_end: 1594
     title: "Adding Characters and Objects to the Game World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Object-oriented_programming"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The `ADDKIDOBJ`, `ADDREFLOBJ`, `ADDSHADOBJ`, and `ADDGUARDOBJ` subroutines add various characters and objects to the game world by assigning them specific types. This modular approach to object handling allowed Mechner to manage dynamic interactions efficiently. While not strictly object-oriented, this method shares principles with modern programming paradigms, influencing how games like The Legend of Zelda and Final Fantasy handled object management in their environments."
   - id: "recharge-strength-meter"
     line_start: 2015
-    line_end: 2031
+    line_end: 2025
     title: "Boosting and Recharging the Strength Meter"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_mechanics"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The `RECHARGEMETER` and `BOOSTMETER` subroutines manage the character's strength meter, recharging it to the maximum or boosting its capacity. This mechanic adds a layer of progression and strategy to the gameplay, encouraging players to manage their resources carefully. Mechner's implementation of strength meters influenced similar mechanics in RPGs and action games, such as the stamina systems in Dark Souls and Breath of the Wild."
   - id: "calculate-character-distance"
     line_start: 2052
-    line_end: 2098
+    line_end: 2102
     title: "How to Measure Distance in 6502 Assembly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""

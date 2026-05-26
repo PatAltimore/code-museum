@@ -31,22 +31,22 @@ summary:
 enhancements:
   - id: "name-section-initialization"
     line_start: 1
-    line_end: 11
+    line_end: 15
     title: "Why MS-DOS Needed a NAME Directive"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The NAME directive at the start of the file declares the module name as 'DIRCALL,' signaling its role in handling directory manipulation routines. This was crucial in the modular design of MS-DOS 2.0, where different segments of code were organized into logical units for easier maintenance and debugging. In 1983, when MS-DOS 2.0 was released, modular programming was becoming a necessity due to the increasing complexity of operating systems. The NAME directive helped developers identify and manage specific functionalities within the sprawling assembly codebase. This approach influenced later modular designs in operating systems and programming languages, including C's header files and object-oriented programming's class-based structure."
   - id: "include-dosseg-symbols"
-    line_start: 15
-    line_end: 35
+    line_start: 17
+    line_end: 17
     title: "The INCLUDE Directive: Borrowing Symbols"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
     content: "The INCLUDE directive pulls in external symbol definitions from 'DOSSEG.ASM' and 'DOSSYM.ASM,' providing constants and macros used throughout the file. This technique was a precursor to modern header files in C and other languages. By centralizing definitions, developers avoided duplication and ensured consistency across the codebase. In the early 1980s, this was a significant step toward modular programming, allowing MS-DOS to be more maintainable despite its assembly language roots. The use of external symbol files also reflects the influence of Unix and XENIX, which emphasized reusable components and system-wide conventions. This modularity became a cornerstone of software development, influencing practices like library linking and API design."
   - id: "nodeexists-check-directory"
-    line_start: 89
+    line_start: 83
     line_end: 277
     title: "NODEEXISTS: How MS-DOS Validates Directories"
     wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The NODEEXISTS routine checks whether a directory node already exists before creating a new one. This involves validating the path, checking for errors like 'path not found' or 'access denied,' and ensuring the directory structure is intact. In 1983, hierarchical directories were a new feature for MS-DOS, inspired by Unix. Implementing this required careful handling of edge cases, such as malformed paths or full disks. Tim Paterson and the Microsoft team designed these routines to be efficient on the limited hardware of the IBM PC, which had minimal memory and storage. NODEEXISTS laid the groundwork for robust directory management in later operating systems, influencing file systems like FAT32 and NTFS."
   - id: "mkdir-create-directory"
-    line_start: 277
+    line_start: 83
     line_end: 277
     title: "The $MKDIR Routine: Unix in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mkdir"
@@ -62,24 +62,24 @@ enhancements:
     image_caption: ""
     content: "The $MKDIR routine implements the 'make directory' functionality, a direct borrowing from Unix. It validates the path, checks for existing nodes, and creates a new directory entry. This was a significant addition to MS-DOS 2.0, transforming it from a flat file system into one capable of hierarchical organization. The routine reflects Microsoft's strategy to make MS-DOS more appealing to developers familiar with Unix/XENIX, which were popular in enterprise environments. By introducing subdirectories, MS-DOS became more versatile, paving the way for complex applications and multi-user systems. This routine influenced later operating systems, including Windows, which retained the mkdir command in its command-line interface."
   - id: "chdir-change-directory"
-    line_start: 281
-    line_end: 791
+    line_start: 83
+    line_end: 277
     title: "CHDIR: Navigating the New Hierarchy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cd_(command)"
     image_url: ""
     image_caption: ""
     content: "The CHDIR routine allows users to change the current working directory, a feature borrowed from Unix. It validates the path, updates internal pointers, and ensures the new directory is accessible. In the early 1980s, this was a revolutionary feature for MS-DOS, which previously operated on a flat file system. The ability to navigate subdirectories made the operating system more intuitive and powerful, enabling complex file organization. This routine also highlights the constraints of the IBM PC hardware, as it carefully manages memory and registers to perform the operation efficiently. CHDIR's design influenced later command-line interfaces, including those in Linux and Windows."
   - id: "rmdir-remove-directory"
-    line_start: 795
-    line_end: 997
+    line_start: 83
+    line_end: 277
     title: "RMDIR: Deleting Directories with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rmdir"
     image_url: ""
     image_caption: ""
     content: "The RMDIR routine removes directories, but only if they are empty and properly formatted. It checks for errors like 'path not found,' 'access denied,' and 'current directory.' This strict validation reflects the influence of Unix, where directory management required careful adherence to rules. In 1983, this was a critical feature for MS-DOS, ensuring the integrity of the new hierarchical file system. The routine also demonstrates the challenges of working within the constraints of the IBM PC, as it meticulously manages memory and registers. RMDIR influenced later file systems, including FAT and NTFS, which retained similar rules for directory deletion."
   - id: "rmdir-subdirectory-deletion"
-    line_start: 1001
-    line_end: 1009
+    line_start: 21
+    line_end: 77
     title: "How MS-DOS Learned to Delete Subdirectories"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""

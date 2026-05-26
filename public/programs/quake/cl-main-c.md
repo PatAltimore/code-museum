@@ -25,14 +25,14 @@ summary:
 enhancements:
   - id: "foundation-and-includes"
     line_start: 1
-    line_end: 37
+    line_end: 17
     title: "How Quake's Foundation Was Laid"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The opening lines of `cl_main.c` set the stage for Quake's client-side functionality. It includes essential headers like `quakedef.h` and `winquake.h`, ensuring compatibility across platforms, including Unix and Windows. This section also declares variables for mouse handling, even on Unix systems, highlighting id Software's foresight in cross-platform support. In 1996, cross-platform development was rare, as most games targeted specific operating systems. By laying this groundwork, Quake became accessible to a broader audience, paving the way for future games to adopt similar practices. The inclusion of the GNU General Public License (GPL) notice reflects id Software's commitment to open-source principles, a decision that influenced countless developers when the source code was released in 1999."
   - id: "qboolean-noclip-anglehack"
-    line_start: 34
+    line_start: 31
     line_end: 34
     title: "The Legacy of noclip_anglehack"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -41,30 +41,30 @@ enhancements:
     content: "The `noclip_anglehack` variable is a remnant from earlier versions of Quake, hinting at the iterative development process id Software employed. This variable likely facilitated debugging or testing during development, allowing developers to bypass collision detection and explore environments freely. Such hacks were common in the 1990s, as developers worked under tight deadlines and hardware constraints. While it may seem trivial, the presence of this variable underscores the challenges of creating a groundbreaking 3D engine and the creative solutions developers employed. Today, similar debugging tools are standard in game development environments, influenced by practices like this."
   - id: "static-allowremotecmd"
     line_start: 65
-    line_end: 65
+    line_end: 70
     title: "A Security Measure in Multiplayer Gaming"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""
     image_caption: ""
     content: "The `allowremotecmd` variable, set to `true` by default, controls whether remote commands can be executed. This reflects early considerations of security in multiplayer gaming. In the mid-1990s, online gaming was in its infancy, and developers were beginning to grapple with issues like unauthorized access and cheating. By introducing such variables, id Software demonstrated an awareness of these challenges, laying the groundwork for more robust security measures in future games. Modern multiplayer games have evolved significantly, employing encryption and authentication protocols, but the principles seen here remain foundational."
   - id: "cl-quit-f"
-    line_start: 143
-    line_end: 165
+    line_start: 147
+    line_end: 162
     title: "The Function That Ends It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `CL_Quit_f` function handles the game's quit command. It ensures a graceful exit by disconnecting from the server and shutting down the system. This function reflects id Software's meticulous attention to user experience, ensuring that quitting the game doesn't leave lingering connections or processes. In 1996, such considerations were vital as system resources were limited, and improper shutdowns could lead to crashes or corrupted data. This approach influenced later games, which adopted similar practices to ensure stability and reliability during exit operations."
   - id: "cl-send-connect-packet"
-    line_start: 173
-    line_end: 231
+    line_start: 175
+    line_end: 225
     title: "Sending Packets in the Age of Dial-Up"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `CL_SendConnectPacket` function is a cornerstone of Quake's multiplayer architecture. It constructs and sends a connection packet to the server, including information like protocol version, user info, and challenge data. This function also accounts for DNS lookup delays, a common issue in the dial-up era. By adding lookup time to the connection time, id Software addressed a subtle but impactful problem, ensuring smoother multiplayer experiences. This level of detail reflects the team's deep understanding of networking challenges in the 1990s. The techniques seen here influenced later multiplayer games, which built upon Quake's pioneering client-server model."
   - id: "cl-disconnect"
-    line_start: 398
+    line_start: 400
     line_end: 446
     title: "Disconnecting with Grace and Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -72,55 +72,55 @@ enhancements:
     image_caption: ""
     content: "The `CL_Disconnect` function ensures a clean disconnection from the server, stopping sounds, resetting states, and sending a 'drop' command multiple times to guarantee the server acknowledges the disconnect. This meticulous approach reflects id Software's commitment to reliability in multiplayer gaming. In 1996, maintaining stable connections and handling disconnections gracefully was a significant challenge, especially with the limited bandwidth and high latency of dial-up connections. By addressing these issues, Quake set a standard for multiplayer games, influencing how disconnections are handled in modern gaming systems."
   - id: "cl-read-packets"
-    line_start: 930
-    line_end: 984
+    line_start: 932
+    line_end: 989
     title: "Reading Packets in a Connected World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Packet_switching"
     image_url: ""
     image_caption: ""
     content: "The `CL_ReadPackets` function processes incoming network packets, distinguishing between connectionless packets and server messages. It also checks for timeout conditions, disconnecting if the server fails to respond within the specified timeframe. This function highlights the complexities of real-time multiplayer gaming in the 1990s, where packet loss and latency were common issues. By implementing robust packet handling and timeout mechanisms, id Software ensured a smoother gaming experience, even under challenging network conditions. These techniques became foundational in the development of modern multiplayer protocols."
   - id: "cl-download-f"
-    line_start: 986
-    line_end: 1028
+    line_start: 990
+    line_end: 1033
     title: "Downloading Files in the Pre-Broadband Era"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `CL_Download_f` function allows clients to download files from the server, creating necessary directories and handling file operations. In 1996, this feature was innovative, enabling players to acquire custom maps, mods, or other assets directly from servers. This functionality reflects Quake's role in fostering a modding community, as players could easily share and access custom content. The approach seen here influenced later games, which expanded on this concept with integrated mod marketplaces and automatic updates. Quake's emphasis on community-driven content helped shape the modern gaming landscape."
   - id: "cl-windows-function"
-    line_start: 1030
-    line_end: 1042
+    line_start: 1034
+    line_end: 1046
     title: "A Windows-specific shortcut for system commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Windows_API"
     image_url: ""
     image_caption: ""
     content: "The `CL_Windows_f` function provides a Windows-specific implementation for handling system commands, such as minimizing the game window or sending system messages. This reflects id Software's focus on optimizing Quake for the dominant operating system of the time, Windows 95. By directly interacting with the Windows API, the developers ensured smoother integration with the OS, which was critical for performance and user experience. This approach highlights the era's reliance on platform-specific optimizations, a necessity given the lack of cross-platform frameworks available in 1996. The technique influenced later games, which often included platform-specific code to leverage hardware and OS features."
   - id: "client-initialization"
-    line_start: 1043
-    line_end: 1178
+    line_start: 1047
+    line_end: 1182
     title: "How Quake initializes its multiplayer client"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""
     image_caption: ""
     content: "The `CL_Init` function is responsible for initializing the client-side components of QuakeWorld. It sets up default user information, registers configuration variables (`cvars`), and initializes subsystems like input handling, prediction, and camera controls. This modular initialization process reflects id Software's design philosophy of separating concerns, allowing individual systems to be updated or replaced without affecting others. In 1996, multiplayer gaming was still in its infancy, and Quake's approach to client initialization laid the groundwork for modern multiplayer architectures. The modularity and extensibility of this system influenced later engines like Unreal Engine and Source, which adopted similar principles for managing complex game state and user interactions."
   - id: "host-endgame-error-handling"
-    line_start: 1181
-    line_end: 1211
+    line_start: 1183
+    line_end: 1206
     title: "Graceful error handling in a multiplayer world"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
     content: "The `Host_EndGame` and `Host_Error` functions provide mechanisms for handling errors and exiting gracefully. `Host_EndGame` drops the client to the console without exiting the application, while `Host_Error` shuts down the client entirely. Both functions use formatted output to display error messages and ensure proper cleanup of resources, such as disconnecting from the server and resetting state variables. This robust error handling was crucial for multiplayer stability, where unexpected network conditions or bugs could otherwise crash the game. The use of `longjmp` for error recovery reflects the constraints of C programming in the 1990s, where structured exception handling was not yet standard. These techniques influenced later game engines, which adopted more sophisticated error handling mechanisms to improve reliability."
   - id: "write-configuration-to-file"
-    line_start: 1237
-    line_end: 1301
+    line_start: 1239
+    line_end: 1269
     title: "Saving user preferences to disk"
     wikipedia_url: "https://en.wikipedia.org/wiki/Configuration_file"
     image_url: ""
     image_caption: ""
     content: "The `Host_WriteConfiguration` function writes key bindings and archived configuration variables (`cvars`) to a file (`config.cfg`). This ensures that user preferences persist across sessions, a feature that was becoming standard in games by the mid-1990s. The function checks if the host is initialized before attempting to write, preventing errors during shutdown or initialization. By using plain text files for configuration, id Software made it easy for players to manually edit settings, a practice that became popular among enthusiasts and modders. This approach influenced later games, which often included editable configuration files to allow advanced customization and troubleshooting."
   - id: "host-frame-simulation"
-    line_start: 1302
+    line_start: 1296
     line_end: 1393
     title: "The heartbeat of Quake's client-side simulation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
@@ -128,23 +128,23 @@ enhancements:
     image_caption: ""
     content: "The `Host_Frame` function is the central loop for client-side simulation in QuakeWorld. It determines the simulation time, processes input events, executes console commands, reads packets from the server, and updates the screen and audio. The function also includes framerate limiting logic to ensure smooth gameplay on hardware constrained by the era's limitations. This loop is an early example of the game engine architecture that became standard in later titles, where a central frame function coordinates all subsystems. The modular design of `Host_Frame` allowed id Software to iterate quickly and optimize individual components, influencing the development of engines like Unity and Unreal, which adopted similar frame-based architectures."
   - id: "simple-encryption-for-model-names"
-    line_start: 1395
-    line_end: 1399
+    line_start: 37
+    line_end: 63
     title: "A lightweight trick for obfuscating data"
     wikipedia_url: "https://en.wikipedia.org/wiki/XOR_cipher"
     image_url: ""
     image_caption: ""
     content: "The `simple_crypt` function uses a basic XOR operation to obfuscate model names and other strings. This lightweight encryption technique was likely used to prevent casual tampering with game assets or to obscure internal data during debugging. While not secure by modern standards, it reflects the practical constraints of the era, where performance and simplicity often outweighed security concerns. The use of XOR encryption in games became a common practice for lightweight obfuscation, influencing later titles that used similar techniques for asset protection or debugging purposes."
   - id: "host-initialization"
-    line_start: 1410
-    line_end: 1504
+    line_start: 1414
+    line_end: 1508
     title: "Bootstrapping QuakeWorld's client environment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bootstrapping"
     image_url: ""
     image_caption: ""
     content: "The `Host_Init` function initializes the client environment for QuakeWorld, setting up memory, subsystems, and loading essential assets like textures and palettes. It also configures networking and audio systems, ensuring the client is ready to connect to a server. This comprehensive initialization process reflects the complexity of multiplayer gaming in 1996, where developers had to manage every aspect of the system manually. The function includes platform-specific code for Linux and Windows, demonstrating id Software's commitment to cross-platform compatibility. The modular design of `Host_Init` influenced later engines, which adopted similar approaches to system initialization to support diverse hardware and operating systems."
   - id: "host-shutdown-procedure"
-    line_start: 1507
+    line_start: 1509
     line_end: 1534
     title: "Closing the game without leaving a mess"
     wikipedia_url: "https://en.wikipedia.org/wiki/Shutdown_(computing)"

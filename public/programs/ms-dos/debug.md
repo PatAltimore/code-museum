@@ -39,7 +39,7 @@ enhancements:
     content: "The DEBUG entry point begins with a simple jump to the DSTRT routine, setting the stage for the debugger's initialization. This section includes a version header ('Vers 2.30') that reflects the evolution of DEBUG over time. At this moment, the programmer is ensuring that the debugger starts cleanly and identifies itself. In the early 1980s, debugging tools were essential for developers working close to hardware, and DEBUG provided a way to inspect memory, registers, and execute assembly instructions interactively. Tim Paterson's original 86-DOS debugger laid the groundwork for this tool, which was later refined by Microsoft engineers. DEBUG became a staple utility for PC developers, influencing the design of debugging tools in operating systems like Windows and Linux. Its modular design and direct device I/O were particularly innovative for the time, enabling compatibility across different hardware setups."
   - id: "dos-version-check"
     line_start: 227
-    line_end: 249
+    line_end: 239
     title: "Checking DOS Version for Compatibility"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The DSTRT routine checks the DOS version using interrupt 21h, function GET_VERSION. By comparing the returned version number against a predefined constant (2.00 in hex), the code ensures that the debugger is running on a compatible version of MS-DOS. If the version is too low, the program jumps to GOTBADDOS, which displays an error message and terminates. This check reflects the challenges of software compatibility in the early PC era, where multiple DOS versions existed, and developers had to account for differences in system calls and features. The inclusion of this routine highlights Microsoft's focus on robustness and user experience, ensuring that DEBUG would not attempt to run on unsupported systems. This approach to version checking became a standard practice in software development, influencing how applications handle compatibility across different operating system versions."
   - id: "parity-error-handling"
     line_start: 253
-    line_end: 363
+    line_end: 353
     title: "Trapping Parity Errors in Real Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parity_bit"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The INBUF routine reads the input line and converts all characters outside of quotes to uppercase. This ensures consistency in command processing, as MS-DOS commands were case-insensitive. The routine uses ASCII value comparisons to identify lowercase letters and convert them to their uppercase equivalents. This design reflects the simplicity and efficiency required in early PC software, where memory and processing constraints shaped every decision. By handling input conversion at the assembly level, DEBUG minimizes overhead and ensures reliable command interpretation. This approach influenced the design of text processing routines in later software, emphasizing the importance of normalization in user input handling."
   - id: "hex-addition-subtraction"
     line_start: 981
-    line_end: 1017
+    line_end: 1013
     title: "Adding and Subtracting Hexadecimals"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hexadecimal"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The HEXADD routine performs addition and subtraction on hexadecimal values, showcasing the utility of DEBUG for low-level arithmetic operations. It reads two hex values, adds and subtracts them, and outputs the results in hexadecimal format. This routine reflects the needs of early PC developers, who often worked directly with memory addresses and binary data. By providing built-in support for hex arithmetic, DEBUG simplifies tasks like memory inspection and manipulation. This feature influenced the design of debugging tools in later operating systems, where similar capabilities are integrated into development environments to support low-level programming and diagnostics."
   - id: "hex-address-output-routine"
     line_start: 1021
-    line_end: 1039
+    line_end: 1033
     title: "Hexadecimal Address Output: A Debugger's Backbone"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugger"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The QUIT routine sets a flag (QFLAG) and prepares the system for a clean exit. It interacts with the USER_PROC_PDB to ensure that the debugger's state is properly released. This routine highlights the importance of graceful termination in software design, especially in tools that interact directly with hardware and system resources. In the early 1980s, debugging tools had to account for the limited stability of operating systems and hardware, making clean exits essential to avoid corruption or crashes. The principles demonstrated here influenced the design of later debugging and profiling tools, ensuring reliability in critical system utilities."
   - id: "find-debug-routine"
     line_start: 1653
-    line_end: 1667
+    line_end: 1653
     title: "FIND_DEBUG: Locating Debug Resources in Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

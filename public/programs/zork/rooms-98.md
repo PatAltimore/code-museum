@@ -33,14 +33,14 @@ enhancements:
     content: "The ALT-FLAG is set to true at the start of the file, signaling a global state variable used throughout the game logic. This flag likely controls alternative behaviors or modes in the game. In the context of Zork, global flags like this were essential for managing state transitions, given the limited memory and processing power of the DEC PDP-10. The PDP-10's architecture required programmers to be highly efficient with their use of variables and flags, as memory was a scarce resource. This approach influenced later adventure games, which adopted similar global state management techniques to handle complex branching narratives."
   - id: "save-it-subroutine"
     line_start: 8
-    line_end: 13
+    line_end: 65
     title: "The Subroutine That Saved Zork"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "The SAVE-IT subroutine is responsible for saving the player's progress in Zork. It determines the save file name based on the environment (e.g., MADADV.SAVE for MADMAN mode) and interacts with the file system to store game state. This was a critical feature for Zork, as its complex puzzles and lengthy gameplay required players to save and resume their progress. In 1977, saving game state was a novel feature, as most games were designed to be completed in a single session. The SAVE-IT routine reflects the PDP-10's file system constraints and the developers' ingenuity in working within them. This innovation influenced the design of save systems in later games, becoming a standard feature in adventure and role-playing games."
   - id: "diverting-garbage-collection"
-    line_start: 65
+    line_start: 67
     line_end: 105
     title: "How Zork Managed Garbage Collection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)"
@@ -56,7 +56,7 @@ enhancements:
     image_caption: ""
     content: "The XUNAME function extracts and processes usernames from the PDP-10 environment. It maps characters from the GXUNAME system call, filtering out invalid or non-printable characters. This function reflects the integration of Zork with ITS (Incompatible Timesharing System), the operating system running on the PDP-10. ITS was designed for multi-user environments, and Zork leveraged its features to personalize gameplay. By identifying players through their usernames, Zork could tailor experiences, such as saving progress or displaying custom messages. This personalization was groundbreaking for its time and influenced the development of user-centric features in later games and software."
   - id: "room-info-routine"
-    line_start: 458
+    line_start: 490
     line_end: 552
     title: "The Routine That Made Rooms Come Alive"
     wikipedia_url: "https://en.wikipedia.org/wiki/Text-based_game"
@@ -73,15 +73,15 @@ enhancements:
     content: "The SCORE routine calculates and displays the player's score, rank, and progress in the game. It uses the player's achievements, moves, and deaths to assign a rank, ranging from 'Beginner' to 'Wizard.' This ranking system added a competitive element to Zork, encouraging players to improve their performance. In the late 1970s, scoring systems were common in arcade games but rare in adventure games. Zork's implementation of a detailed scoring mechanism influenced the design of point-based systems in later games, including role-playing and strategy games. The ranks also reflect the developers' humor and creativity, adding personality to the gameplay."
   - id: "record-logging"
     line_start: 717
-    line_end: 790
+    line_end: 792
     title: "Logging Your Journey Through Zork"
     wikipedia_url: "https://en.wikipedia.org/wiki/Log_file"
     image_url: ""
     image_caption: ""
     content: "The RECORD routine logs the player's progress, including score, moves, deaths, and location. It interacts with the PDP-10's file system to create and update log files, ensuring persistence across sessions. Logging was an advanced feature for its time, allowing players to review their journey and developers to debug the game. The routine includes checks for file access and handles errors gracefully, reflecting the constraints of the PDP-10's multi-user environment. This feature influenced the development of save and logging systems in later games, providing a foundation for tracking player progress and debugging complex software."
   - id: "flag-names-and-short-names"
-    line_start: 792
-    line_end: 822
+    line_start: 794
+    line_end: 826
     title: "Flags and Short Names: A Compact State Tracker"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -97,7 +97,7 @@ enhancements:
     content: "The PDSKDATE routine formats a date stored as a word (WD) into a human-readable string, including the month, day, and time. It extracts bits from the word using MDL's GETBITS function and converts them to fixed-point numbers. This was necessary because the PDP-10 stored data in compact formats that required bitwise manipulation to interpret. The routine also accounts for AM/PM distinctions and handles edge cases like unknown dates. This kind of low-level manipulation was common in the era, as developers had to work directly with hardware-specific data representations. Techniques like this laid the groundwork for modern date/time libraries in programming languages."
   - id: "jigs-up-death-handler"
     line_start: 865
-    line_end: 945
+    line_end: 947
     title: "The Death Handler: When Grues Attack"
     wikipedia_url: "https://en.wikipedia.org/wiki/Grue_(monster)"
     image_url: ""
@@ -129,7 +129,7 @@ enhancements:
     content: "This subroutine converts a string to uppercase by iterating through each character and checking its ASCII value. If the character is a lowercase letter (ASCII 97–122), it subtracts 32 to convert it to uppercase. This was necessary because early text-based games like Zork relied heavily on string comparisons for commands, and ensuring uniform case avoided errors caused by mismatched input. In the late 1970s, ASCII was the dominant character encoding standard, and the PDP-10's ITS operating system provided low-level tools for manipulating strings. This approach reflects the constraints of the era: developers had to manually handle text transformations due to the lack of higher-level libraries. Techniques like this influenced later text parsers in games and utilities, including the command-line interfaces of Unix systems."
   - id: "time-passes-message"
     line_start: 1611
-    line_end: 1618
+    line_end: 1620
     title: "The Subtle Art of Passing Time in Zork"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
     image_url: ""

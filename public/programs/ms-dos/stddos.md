@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "early-build-switches-ms-dos"
-    line_start: 1
+    line_start: 3
     line_end: 19
     title: "Why MS-DOS Had Multiple Build Variants"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"

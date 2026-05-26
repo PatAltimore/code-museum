@@ -86,8 +86,8 @@ enhancements:
     image_caption: ""
     content: "FindResponseFile processes command-line arguments to locate and parse response files, which contain additional arguments for the game. It reads the file into memory, appends its contents to the argument list, and displays the updated arguments for debugging purposes. This feature allows users to specify complex configurations without typing lengthy command lines. In the early 1990s, command-line interfaces were a common way to configure software. Response files provided a convenient way to manage complex setups, especially for developers and advanced users. DOOM's implementation reflects id Software's focus on flexibility and user empowerment. Response files influenced later tools and engines, which adopted similar mechanisms for batch processing and configuration. They remain relevant in modern development workflows, where scripts and configuration files are used to automate tasks. DOOM's code serves as a historical example of how to balance usability with technical sophistication."
   - id: "command-line-options-flexibility"
-    line_start: 792
-    line_end: 935
+    line_start: 807
+    line_end: 934
     title: "How Command-Line Arguments Shaped Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
@@ -102,7 +102,7 @@ enhancements:
     image_caption: ""
     content: "DOOM's support for custom WAD files revolutionized gaming by enabling user-generated content. This section adds WAD files specified via the '-file' command-line argument to the game's resource list, marking the game as 'modified.' The code even includes a hack to allow '-wart' commands to load specific maps. In the 1990s, modding was in its infancy, and DOOM's modular file structure made it a pioneer. Players could create and share custom levels, fostering a vibrant community. This openness inspired later games like Quake and Half-Life, which built on DOOM's modding legacy. Today, modding is a cornerstone of PC gaming, with tools and platforms like Steam Workshop making it accessible to millions."
   - id: "subsystem-initialization"
-    line_start: 1009
+    line_start: 1011
     line_end: 1112
     title: "Why Modular Engines Win Every Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Modular_programming"

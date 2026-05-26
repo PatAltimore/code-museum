@@ -30,16 +30,16 @@ summary:
 
 enhancements:
   - id: "revision-history-timeline"
-    line_start: 5
-    line_end: 32
+    line_start: 36
+    line_end: 61
     title: "The Timeline of MS-DOS Evolution"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section documents the revision history of MS-DOS, highlighting key milestones in its development. Tim Paterson's original 86-DOS evolved rapidly between December 1980 and March 1982, adapting to new hardware and user needs. For example, version 0.42 introduced 32-byte directory entries, a precursor to the FAT file system. Version 1.10 added hidden files and fatal error trapping, crucial for robust operation on the IBM PC. These updates reflect the intense pace of development in the early PC era, where software had to adapt quickly to hardware constraints and market demands. The revision history also underscores Microsoft's strategy of continuous improvement, which helped MS-DOS dominate the personal computing landscape. Later versions inspired features in Windows and other operating systems."
   - id: "interrupt-entry-points"
-    line_start: 36
-    line_end: 61
+    line_start: 63
+    line_end: 74
     title: "Interrupts: The Backbone of MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This section defines key interrupt entry points that form the backbone of MS-DOS's functionality. Interrupts allowed the operating system to respond to hardware and software events efficiently, a necessity in the resource-constrained environment of the IBM PC. For example, INTBASE+14H handles BIOS disk reads, while INTBASE+40H provides a long jump to the CALL entry point. These interrupt-driven mechanisms were inspired by earlier systems like CP/M and became a standard in operating system design. By abstracting hardware interactions, MS-DOS enabled software portability across different OEM implementations, a feature that contributed to its widespread adoption. Modern operating systems still rely on interrupt handling, though at a higher level of abstraction."
   - id: "fcblock-structure"
     line_start: 76
-    line_end: 96
+    line_end: 97
     title: "The FCB: Managing Files in 32 Bytes"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
@@ -55,14 +55,14 @@ enhancements:
     content: "The FCBLOCK structure defines the File Control Block (FCB), a compact data structure for managing files in MS-DOS. It includes fields for the file name, size, date, time, and cluster information. This 32-byte structure was a direct adaptation of CP/M's file management system, optimized for the FAT file system. The FCB's simplicity allowed MS-DOS to operate efficiently on the limited memory and storage of early PCs. However, its design also imposed constraints, such as a fixed file name length and limited attribute support. The FCB was eventually replaced by more flexible file handle systems in MS-DOS 2.0, influenced by Unix. Despite its limitations, the FCB's design laid the groundwork for modern file systems and is a fascinating example of early OS engineering."
   - id: "drive-parameter-block"
     line_start: 126
-    line_end: 142
+    line_end: 146
     title: "Drive Parameter Block: Disk Geometry in Bytes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"
     image_url: ""
     image_caption: ""
     content: "The DPBLOCK structure encapsulates the geometry and configuration of a physical disk drive. It includes fields for sector size, cluster size, FAT location, and directory entries. This structure allowed MS-DOS to abstract disk operations, enabling compatibility with different storage devices. At the time, disk drives varied widely in capacity and performance, and the DPBLOCK provided a standardized interface for the operating system. This abstraction was crucial for OEM licensing, as it allowed MS-DOS to run on hardware from multiple manufacturers. The DPBLOCK's influence can be seen in modern partition tables and disk management systems, which continue to use similar abstractions to manage storage devices."
   - id: "bios-segment"
-    line_start: 166
+    line_start: 162
     line_end: 193
     title: "BIOS Segment: Bridging Hardware and Software"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
@@ -95,7 +95,7 @@ enhancements:
     content: "The DELETE subroutine implements file deletion in MS-DOS, including support for wildcard patterns like '*.*'. It marks directory entries as free and releases associated clusters in the FAT. This process reflects the simplicity of early file systems, where deletion was primarily a matter of updating metadata. The subroutine also includes checks to prevent deletion of I/O devices, highlighting the need for robustness in system calls. File deletion was a critical feature for managing limited storage on early PCs, and its implementation in MS-DOS influenced later file systems. Modern systems have built on this foundation, adding features like undelete and secure deletion."
   - id: "fat-write-dirty-bit-reset"
     line_start: 1055
-    line_end: 1093
+    line_end: 1110
     title: "How MS-DOS Kept FAT Updates Efficient"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "BREAKDOWN calculates how a disk transfer should be divided across sectors, ensuring efficient use of disk space and memory. This routine accounts for partial sectors at the start and end of a transfer, optimizing data placement. In 1981, disk drives had strict sector alignment requirements, making this calculation essential. Paterson's careful handling of sector boundaries reflects the precision needed to maximize performance on early hardware. The principles demonstrated here influenced later file system designs, including those in embedded systems and SSDs."
   - id: "buffered-sector-management"
     line_start: 1660
-    line_end: 1726
+    line_end: 1765
     title: "How MS-DOS Made Disk Buffers Smarter"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
@@ -191,7 +191,7 @@ enhancements:
     content: "The `RELEASE` routine frees cluster chains starting from a given cluster, marking them as available in the FAT. This process was essential for reclaiming disk space when files were deleted or truncated. In 1981, efficient disk space management was a critical feature, as hard drives were small and expensive. This routine ensured that MS-DOS could handle file deletions gracefully, a feature that became standard in all subsequent operating systems. The concept of freeing cluster chains influenced garbage collection techniques in modern file systems and memory management."
   - id: "console-input-buffering"
     line_start: 2705
-    line_end: 3002
+    line_end: 3013
     title: "Console Input Buffering: A Hidden Complexity"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -215,7 +215,7 @@ enhancements:
     content: "This section implements the RAWIO system call, handling raw input and output operations directly with the BIOS. The code checks for special cases, such as an end-of-file marker (-1), and interacts with the BIOS routines BIOSSTAT, BIOSIN, and BIOSOUT for device-level input/output. In 1981, direct BIOS calls were essential for compatibility with the IBM PC's hardware, as MS-DOS had to support a wide range of peripherals without assuming standardization. Tim Paterson's design reflects the era's reliance on BIOS for low-level operations, a necessity given the lack of robust device drivers or abstractions. This approach influenced later operating systems, which gradually moved away from BIOS dependency, but the raw I/O model persisted in debugging tools and embedded systems for decades."
   - id: "make-file-control-block"
     line_start: 3189
-    line_end: 3257
+    line_end: 3340
     title: "The Routine That Built File Control Blocks"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
@@ -231,7 +231,7 @@ enhancements:
     content: "This section handles date and time management, including routines like READTIME, SETYEAR, and WKDAY. MS-DOS relies on BIOS calls to retrieve the current time and date, then processes this data to calculate day counts, leap years, and weekdays. The code includes tables for days in each month and year, adjusting February's length for leap years. In the early 1980s, PCs lacked real-time clocks, so MS-DOS depended on BIOS for timekeeping. These routines highlight the challenges of managing time in software, especially when hardware support was minimal. The techniques developed here influenced later operating systems, which integrated real-time clocks and more sophisticated time APIs."
   - id: "system-initialization"
     line_start: 3755
-    line_end: 3994
+    line_end: 3763
     title: "Bootstrapping MS-DOS: System Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""

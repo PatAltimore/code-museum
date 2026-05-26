@@ -25,7 +25,7 @@ summary:
 enhancements:
   - id: "object-type-constants"
     line_start: 4
-    line_end: 32
+    line_end: 37
     title: "Why Objects Are Numbers, Not Words"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "This section defines specific values for game mechanics, such as the extension and retraction states of spikes and slicers. For example, 'spikeExt' is set to 5, representing the frame where spikes are fully extended, and 'spikeRet' is set to 9, marking their retracted state. Similarly, slicer values ('slicerExt' and 'slicerRet') define the frames for the slicer's movement. These values are critical for synchronizing animations with gameplay. Mechner's rotoscoping technique, which involved tracing real-life movements frame by frame, required precise timing to ensure the animations felt natural. By hardcoding these values, Mechner could guarantee consistent behavior across different game scenarios. In the late 1980s, animation in games was often rudimentary, limited by hardware capabilities. Prince of Persia's smooth transitions and realistic movements were groundbreaking, thanks to Mechner's meticulous attention to detail. These values also highlight the interplay between technical constraints and creative ambition. The game's innovative approach to animation influenced later titles like Flashback (1992) and the Tomb Raider series, which prioritized lifelike character movements."
   - id: "moveparams-gravity-values"
-    line_start: 53
+    line_start: 51
     line_end: 57
     title: "Gravity: A Cinematic Platformer’s Secret Ingredient"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"

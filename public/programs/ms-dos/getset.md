@@ -24,16 +24,16 @@ summary:
 
 enhancements:
   - id: "name-getset-intro"
-    line_start: 1
-    line_end: 3
+    line_start: 3
+    line_end: 41
     title: "Why MS-DOS Needed 'Get and Set'"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "This section introduces the purpose of the 'GETSET' module, which provides system calls for querying and modifying various MS-DOS parameters. At the time, MS-DOS 2.0 was transitioning from a simple CP/M-like operating system to one inspired by Unix, adding features like subdirectories and file handles. These routines allowed applications to interact with the operating system at a deeper level, enabling functionality like verifying writes, managing DMA addresses, and handling interrupt vectors. Tim Paterson, the original author of 86-DOS, laid the groundwork for these system-level interactions, but by version 2.0, the codebase had been heavily rewritten by Microsoft engineers to accommodate IBM PC hardware and Unix-inspired abstractions. These routines became foundational for DOS's extensibility, influencing later operating systems like Windows and even Linux, which adopted similar system call paradigms."
   - id: "include-dosseg-dossym"
-    line_start: 5
-    line_end: 83
+    line_start: 43
+    line_end: 109
     title: "The Hidden Role of INCLUDE Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
@@ -48,63 +48,63 @@ enhancements:
     image_caption: ""
     content: "The $GET_VERSION routine retrieves the MS-DOS version number, OEM identifier, and user number. This was essential for compatibility, as software often needed to adapt its behavior based on the operating system version. Early DOS versions lacked standardization, and applications frequently encountered quirks or missing features. By providing a system call for version querying, Microsoft enabled developers to write more robust software. This routine reflects the growing importance of backward compatibility in the software industry, a principle that continues to shape operating systems like Windows and macOS. Interestingly, the routine also highlights the transition from single-user systems to environments where user identification mattered, foreshadowing multi-user operating systems."
   - id: "international-country-info"
-    line_start: 195
-    line_end: 355
+    line_start: 139
+    line_end: 191
     title: "The Subroutine That Knew Your Country"
     wikipedia_url: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
     image_url: ""
     image_caption: ""
     content: "The $INTERNATIONAL routine provides country-specific information, such as date formats, currency symbols, and separators. This was a significant step towards internationalization in MS-DOS, accommodating the global market for IBM PCs. At the time, most software was region-specific, but the rise of personal computing demanded broader compatibility. This routine allowed applications to adapt to local conventions, making DOS more appealing to international OEMs. The implementation uses a lookup table to retrieve country-specific data efficiently, a technique still common in modern software. This approach influenced later systems like Windows, which expanded localization support to include languages, keyboards, and cultural preferences."
   - id: "verify-write-flag"
-    line_start: 359
-    line_end: 417
+    line_start: 139
+    line_end: 191
     title: "The Flag That Verified Every Write"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
     content: "The $GET_VERIFY_ON_WRITE and $SET_VERIFY_ON_WRITE routines manage a flag that determines whether the system verifies data after writing to disk. This feature was crucial for ensuring data integrity on early PC hardware, where disk errors were common. By toggling this flag, users could balance reliability against performance, as verification added overhead. The concept of write verification influenced later file systems, including journaling systems like NTFS and ext4, which incorporate mechanisms for ensuring data consistency. These routines highlight the trade-offs developers faced in optimizing for hardware constraints while maintaining user trust in the system's reliability."
   - id: "ctrl-c-trapping"
-    line_start: 421
-    line_end: 475
+    line_start: 139
+    line_end: 191
     title: "How MS-DOS Handled Ctrl+C Interrupts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control-C"
     image_url: ""
     image_caption: ""
     content: "The $SET_CTRL_C_TRAPPING routine enables or disables the handling of Ctrl+C interrupts, allowing applications to control whether the system responds to user interruptions. This feature was vital for long-running processes, such as file transfers or computations, where premature termination could corrupt data. By providing a system call for managing this behavior, MS-DOS gave developers finer control over application stability. The implementation reflects the low-level nature of DOS, where interrupt handling was a core part of programming. This approach influenced later operating systems, which expanded interrupt handling to include signals, exceptions, and event-driven programming models."
   - id: "drive-freespace"
-    line_start: 545
-    line_end: 647
+    line_start: 139
+    line_end: 191
     title: "The Routine That Measured Free Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_storage"
     image_url: ""
     image_caption: ""
     content: "The $GET_DRIVE_FREESPACE routine calculates the amount of free disk space on a specified drive, returning details like allocation units, sector size, and cluster mask. This was essential for applications managing large files or performing disk-intensive operations. Early PCs often had limited storage, making efficient space management critical. The routine uses low-level disk structures, such as the File Allocation Table (FAT), to perform its calculations. This technique laid the groundwork for modern storage APIs, influencing file systems like FAT32 and exFAT. It also highlights the challenges of programming for hardware with severe constraints, where every byte of storage mattered."
   - id: "dma-address"
-    line_start: 651
-    line_end: 715
+    line_start: 139
+    line_end: 191
     title: "Direct Memory Access: Set and Forget"
     wikipedia_url: "https://en.wikipedia.org/wiki/Direct_memory_access"
     image_url: ""
     image_caption: ""
     content: "The $GET_DMA and $SET_DMA routines manage the Disk Transfer Address (DMA), a critical feature for efficient data movement between memory and peripherals. DMA allowed the CPU to offload data transfer tasks, improving performance on early PCs with limited processing power. These routines reflect the low-level nature of MS-DOS, where developers interacted directly with hardware registers. The concept of DMA remains vital in modern computing, enabling high-speed data transfers for devices like GPUs and network cards. This implementation showcases the balance between hardware abstraction and direct control, a principle that influenced later operating systems and device driver architectures."
   - id: "default-drive"
-    line_start: 799
-    line_end: 859
+    line_start: 139
+    line_end: 191
     title: "Setting the Default Drive in DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
     content: "The $GET_DEFAULT_DRIVE and $SET_DEFAULT_DRIVE routines manage the default drive, a fundamental concept in DOS's single-drive-centric design. These routines allowed applications to query or modify the current drive, enabling seamless navigation across storage devices. At the time, PCs typically had one or two drives, making this feature both practical and necessary. The implementation reflects DOS's simplicity, where drive management was tied directly to hardware constraints. This concept influenced later operating systems, which expanded drive management to include mount points, network drives, and virtual file systems, paving the way for modern storage paradigms."
   - id: "interrupt-vector"
-    line_start: 865
-    line_end: 933
+    line_start: 195
+    line_end: 937
     title: "Mapping Interrupts in MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
     image_caption: ""
     content: "The $GET_INTERRUPT_VECTOR routine retrieves the address of an interrupt handler, while $SET_INTERRUPT_VECTOR modifies it. Interrupts were a cornerstone of early PC architecture, enabling asynchronous event handling for tasks like I/O operations and error management. By providing system calls for managing interrupt vectors, MS-DOS allowed developers to customize hardware interactions, a necessity for supporting diverse peripherals. This approach reflects the low-level nature of DOS, where direct hardware control was both a feature and a challenge. The concept of interrupt vector management influenced later systems, including BIOS and modern operating systems, which abstract these interactions into device drivers and APIs."
   - id: "break-char-oper-hack"
-    line_start: 1015
+    line_start: 939
     line_end: 1053
     title: "The Hack That Made XENIX Look Like DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Xenix"
@@ -128,8 +128,8 @@ enhancements:
     image_caption: ""
     content: "This subroutine reads the availability of devices, storing the result in the `DL` register. The programmer was solving the problem of determining whether device names required a `/DEV/` prefix, a convention borrowed from Unix-like systems. The routine uses a flag stored in memory at `device_availability` to indicate the current state. This flag-based approach was a common technique in early operating systems, where simplicity and efficiency were crucial. The ability to query device availability helped MS-DOS manage devices more effectively, paving the way for more sophisticated device management in later systems like Windows."
   - id: "setdpb-create-valid-dpb"
-    line_start: 1103
-    line_end: 1241
+    line_start: 139
+    line_end: 191
     title: "Building Disk Parameter Blocks: File System Foundations"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""

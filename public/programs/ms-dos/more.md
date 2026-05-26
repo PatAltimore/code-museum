@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "version-check-and-exit"
-    line_start: 31
+    line_start: 27
     line_end: 47
     title: "The Version Check That Ends It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "This section checks the MS-DOS version using INT 21H, a BIOS interrupt for system services. If the version is below 2.0, the program outputs an error message and terminates via INT 20H. At the time, MS-DOS was rapidly evolving, and version 2.0 introduced significant features like subdirectories and file handles. Ensuring compatibility was crucial for programs relying on these new features. Tim Paterson and Microsoft engineers designed this mechanism to gracefully handle older systems while leveraging new capabilities. This approach influenced future software development practices, where version checks became standard for compatibility and feature detection."
   - id: "initialize-screen-dimensions"
-    line_start: 53
+    line_start: 49
     line_end: 103
     title: "Setting Screen Dimensions for Pagination"
     wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
@@ -47,7 +47,7 @@ enhancements:
     content: "This section initializes screen dimensions based on hardware capabilities. MAXROW is set to 24 or 25 depending on the IBM version and Kanji support, while MAXCOL is determined by querying the keyboard buffer via INT 16H. The code then prepares the cursor position and redirects standard input/output handles for text processing. In the early 1980s, IBM PCs had fixed screen sizes, and programs had to adapt to these constraints. This routine exemplifies the tight coupling between software and hardware in the era, where developers wrote code tailored to specific machine configurations. The technique of dynamically adapting to hardware became a precursor to modern responsive design principles."
   - id: "buffered-file-read-loop"
     line_start: 107
-    line_end: 123
+    line_end: 125
     title: "Reading Files in 4KB Chunks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "The ALOOP subroutine reads up to 4KB of data into a buffer using INT 21H's file read service. This buffered approach minimizes disk I/O, which was slow on early PCs with floppy drives. The code checks the read result and exits if no data remains. Buffering was a critical optimization in the 1980s, as it reduced the overhead of frequent disk access. This technique influenced later file handling practices, becoming a standard in operating systems and programming languages. Developers of text editors and utilities like MORE relied on such efficient I/O handling to ensure smooth user experiences."
   - id: "control-character-handling"
     line_start: 133
-    line_end: 225
+    line_end: 241
     title: "How MS-DOS Handles Tabs, Backspaces, and Line Feeds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""

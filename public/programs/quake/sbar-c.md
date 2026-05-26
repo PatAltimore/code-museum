@@ -30,15 +30,15 @@ summary:
 
 enhancements:
   - id: "status-bar-initialization"
-    line_start: 126
-    line_end: 231
+    line_start: 128
+    line_end: 228
     title: "How Quake's Status Bar Was Built"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
     image_url: ""
     image_caption: ""
     content: "This section initializes the status bar graphics and assets, such as numbers, weapon icons, armor icons, and player faces. The function `Sbar_Init` loads these assets from the game's WAD file format using `Draw_PicFromWad`. The WAD format, originally developed for Doom, was repurposed here to manage Quake's more sophisticated graphical assets. At the time, hardware constraints like limited memory and low-resolution displays meant developers had to carefully manage graphical resources. John Carmack and Michael Abrash, known for their optimization prowess, ensured that these assets were loaded efficiently and reused throughout the game. This initialization laid the groundwork for dynamic status updates during gameplay, a feature that became critical in multiplayer matches. The modular design of the status bar influenced later games, such as Unreal Tournament and Counter-Strike, which adopted similar approaches to displaying player stats and inventory."
   - id: "dynamic-score-display"
-    line_start: 365
+    line_start: 367
     line_end: 396
     title: "Bubble Sort for Real-Time Rankings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bubble_sort"
@@ -46,56 +46,56 @@ enhancements:
     image_caption: ""
     content: "The `Sbar_SortFrags` function uses a bubble sort algorithm to rank players based on their frag count. While bubble sort is not the most efficient sorting algorithm, its simplicity and predictable behavior made it a practical choice for real-time updates in a multiplayer environment. The function iterates through the list of players, sorting them by their frag count while handling edge cases like spectators and negative scores. In 1996, real-time ranking systems were a novelty in multiplayer games, and Quake's implementation set a precedent for competitive gaming. This approach influenced later games like Team Fortress and Dota 2, where ranking systems are integral to gameplay. The use of bubble sort here highlights the trade-offs developers made between computational efficiency and ease of implementation in an era of constrained hardware."
   - id: "solo-scoreboard-display"
-    line_start: 472
-    line_end: 491
+    line_start: 474
+    line_end: 496
     title: "Solo Scoreboard: A Minimalist Approach"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
     image_url: ""
     image_caption: ""
     content: "The `Sbar_SoloScoreboard` function provides a simplified scoreboard for solo players, displaying essential stats like time elapsed. This minimalist approach ensured that players could focus on gameplay without being overwhelmed by information. The function calculates time in minutes and seconds, formatting it neatly for display. In the mid-1990s, user interface design in games was still evolving, and Quake's approach to balancing information density with usability was ahead of its time. The solo scoreboard influenced UI design in later single-player games, such as Half-Life and Portal, where clean and intuitive interfaces became a hallmark of the genre."
   - id: "inventory-rendering"
-    line_start: 493
-    line_end: 599
+    line_start: 497
+    line_end: 604
     title: "Rendering Inventory with Flashing Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
     image_url: ""
     image_caption: ""
     content: "The `Sbar_DrawInventory` function handles the rendering of the player's inventory, including weapons, ammo, and items. It uses flashing effects to highlight recently acquired items, a technique that draws the player's attention to changes in their inventory. This function also adapts the display based on the player's HUD settings, showcasing id Software's commitment to customizable user interfaces. In 1996, dynamic inventory displays were relatively rare in games, and Quake's implementation demonstrated how thoughtful UI design could enhance gameplay. The flashing effects and adaptable HUD influenced later games like Diablo and Skyrim, where inventory management plays a central role."
   - id: "team-overlay-display"
-    line_start: 890
-    line_end: 982
+    line_start: 892
+    line_end: 985
     title: "Team Overlay: Competitive Play Made Visible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""
     image_caption: ""
     content: "The `Sbar_TeamOverlay` function displays team-based statistics, including ping times, frag counts, and player numbers. This feature was added by Zoid (David Kirsch), a developer known for his contributions to QuakeWorld and multiplayer enhancements. The overlay sorts teams using a bubble sort algorithm and highlights the player's own team for clarity. In the mid-1990s, team-based multiplayer games were gaining popularity, and features like this helped players coordinate and strategize more effectively. The design of the team overlay influenced the development of later team-based games, such as Battlefield and Overwatch, where clear and accessible team stats are crucial. Zoid's work on QuakeWorld and this overlay cemented his reputation as a pioneer in multiplayer game design."
   - id: "deathmatch-overlay-rendering"
-    line_start: 984
-    line_end: 1147
+    line_start: 986
+    line_end: 1150
     title: "How Quake's Scoreboard Handles Large Games"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Sbar_DeathmatchOverlay` function dynamically renders the multiplayer scoreboard during deathmatch games. It adjusts its layout based on the number of players and screen dimensions, ensuring the scoreboard remains legible even in large games. The routine sorts players by their frag count, draws their ping, packet loss, time played, and team information (if applicable), and highlights the local player's entry for easy identification. In cases where the scoreboard exceeds the screen height, it switches to a 'large game' mode, reducing spacing between entries. This design reflects the constraints of 1996 hardware, where screen resolutions and memory were limited, and real-time rendering had to be efficient. Carmack and Abrash's experience with optimizing graphics and gameplay for low-latency environments is evident here. The approach influenced later multiplayer games, including Unreal Tournament and Counter-Strike, which adopted similar techniques for dynamic scoreboards."
   - id: "mini-deathmatch-overlay"
-    line_start: 1149
-    line_end: 1293
+    line_start: 1151
+    line_end: 1297
     title: "The Compact Scoreboard for Tight Spaces"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Sbar_MiniDeathmatchOverlay` function provides a condensed scoreboard for situations where screen space is limited, such as lower resolutions or when other HUD elements occupy significant space. It prioritizes essential information, including frag counts and player names, while omitting less critical details. The routine dynamically determines the number of lines to display based on available space and centers the local player's entry within the list for context. If teamplay is enabled, it includes team scores and separators for clarity. This function showcases id Software's attention to usability and adaptability, ensuring the game remains playable across diverse hardware configurations. By focusing on core gameplay metrics, it set a precedent for minimalist HUD designs in competitive games like Quake III Arena and later esports titles."
   - id: "intermission-overlay-logic"
-    line_start: 1296
-    line_end: 1311
+    line_start: 1298
+    line_end: 1315
     title: "Switching Overlays Based on Game Mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Sbar_IntermissionOverlay` function determines which overlay to display during intermission screens based on the game mode. If teamplay is active and score visibility is disabled, it calls `Sbar_TeamOverlay` to display team scores. Otherwise, it defaults to the deathmatch scoreboard. This conditional logic reflects the game's flexibility in accommodating different multiplayer styles, from free-for-all deathmatches to team-based modes. By centralizing overlay decisions, the function simplifies the game's rendering pipeline and ensures consistency across different scenarios. This modular approach to HUD rendering influenced later engines, such as Unreal Engine and Source, which adopted similar strategies for handling diverse game modes."
   - id: "finale-overlay-rendering"
-    line_start: 1314
-    line_end: 1328
+    line_start: 1316
+    line_end: 1327
     title: "Rendering the Finale Screen with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

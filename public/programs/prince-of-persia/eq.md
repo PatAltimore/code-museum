@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "bank-switched-memory-layout"
     line_start: 3
-    line_end: 17
+    line_end: 28
     title: "How 128KB Became Enough for Cinematic Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines memory locations across the Apple II's bank-switched architecture, splitting data between main memory, auxiliary memory, and language card banks. The addresses like `$d000` and `$400` represent specific regions used for graphics buffers, tables, and game logic. Jordan Mechner had to work within the constraints of the Apple IIe/IIc, which had only 128KB of RAM. Bank switching allowed him to dynamically swap memory banks, effectively increasing usable memory without requiring additional hardware. This technique was common in the 1980s for systems with limited RAM, and it required careful planning to ensure that critical data was accessible when needed. By defining these equates upfront, Mechner laid the groundwork for efficient memory management, enabling complex animations and gameplay mechanics. This approach influenced later developers working on constrained systems, including those creating games for early consoles like the NES and Sega Master System."
   - id: "jump-table-function-pointers"
     line_start: 41
-    line_end: 55
+    line_end: 71
     title: "The Jump Table That Simplified Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "This extensive block defines jump tables, which are arrays of function pointers used to streamline calls to various subroutines. Each entry, such as `_firstboot` or `_loadlevel`, corresponds to a specific game function. On the 6502 processor, jump tables were a practical solution to avoid hardcoding addresses, making the code more modular and easier to update. Mechner used these tables to handle everything from loading levels to managing animations and user inputs. In the 1980s, jump tables were a common technique for optimizing performance on systems with limited memory and processing power. They allowed developers to implement dynamic behavior without the overhead of conditional branching. This design influenced later programming practices, including the use of virtual function tables in object-oriented programming languages like C++."
   - id: "blueprint-and-image-lists"
     line_start: 260
-    line_end: 265
+    line_end: 287
     title: "How Prince of Persia Organized Its World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "This section defines variables stored in the zero page, the first 256 bytes of memory on the 6502 processor. Accessing zero-page memory is faster and requires fewer cycles than accessing other memory regions, making it ideal for frequently used variables like `PAGE` and `XCO`. Mechner leveraged this optimization to improve performance, ensuring smooth gameplay even on the Apple II's limited hardware. Zero-page optimization was a hallmark of 6502 programming, and it shaped the design of countless games and applications. By carefully allocating zero-page variables, Mechner maximized the efficiency of his code, a technique that influenced other developers working on 8-bit systems like the Commodore 64 and NES."
   - id: "screen-dimensions-and-bitmasks"
     line_start: 471
-    line_end: 492
+    line_end: 486
     title: "Defining the World in Pixels and Bits"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""

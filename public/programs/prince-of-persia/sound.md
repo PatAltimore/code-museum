@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "lookup-table-for-sound-routines"
     line_start: 23
-    line_end: 53
+    line_end: 51
     title: "The Lookup Table That Made Sound Cinematic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The ZEROSOUND routine clears the sound table by setting its size to zero. This ensures that no residual sound effects are played after a new scene or event begins. On the Apple II, memory management was a manual process, and routines like this were critical to maintaining the integrity of gameplay. By resetting the sound table, Mechner avoided potential bugs where old sound effects might interfere with new ones. This kind of meticulous memory handling was a hallmark of programming for early home computers, where every byte of RAM was precious. The technique of zeroing tables or buffers before reuse became standard practice in game development, influencing later systems with more sophisticated sound engines."
   - id: "adding-sounds-to-the-table"
     line_start: 69
-    line_end: 99
+    line_end: 91
     title: "The Routine That Packed Sounds into RAM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Random-access_memory"
     image_url: ""
@@ -55,15 +55,15 @@ enhancements:
     content: "ADDSOUND adds a new sound effect to the sound table, preserving registers to avoid disrupting other processes. The routine checks if the table is full, and if not, increments the table size and stores the sound effect number. This careful management of sound effects reflects the constraints of the Apple II, which had limited RAM and could only handle a small number of simultaneous sounds. Mechner's approach ensured that sound effects were queued efficiently without exceeding memory limits. This routine exemplifies the kind of low-level optimization required to make complex games like Prince of Persia run smoothly on early hardware. The concept of queuing sound effects influenced later sound engines, including those used in arcade machines and early consoles like the NES."
   - id: "self-modifying-code-for-sound-playback"
     line_start: 120
-    line_end: 147
+    line_end: 140
     title: "Why Prince of Persia's Sound Code Writes Itself"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""
     image_caption: ""
     content: "The makesound routine uses self-modifying code to dynamically jump to the correct sound routine based on the sound number. It calculates the address of the routine in the lookup table, then overwrites the jump instruction to point to that address. Self-modifying code was a controversial but effective technique for optimizing performance on systems like the Apple II, where memory and processing power were extremely limited. By avoiding the overhead of a traditional function call, Mechner was able to make sound playback faster and more responsive. This technique was rarely used in later systems due to its complexity and potential for bugs, but it remains a fascinating example of the ingenuity required to push early hardware to its limits."
   - id: "tone-generation-for-apple-ii-speaker"
-    line_start: 323
-    line_end: 352
+    line_start: 316
+    line_end: 357
     title: "The Algorithm That Made the Apple II Sing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Speaker_(audio)"
     image_url: ""

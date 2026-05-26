@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "mod-init-memory-setup"
-    line_start: 42
+    line_start: 44
     line_end: 50
     title: "Why Quake Starts With a Clean Slate"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -39,134 +39,134 @@ enhancements:
     content: "The `Mod_Init` function initializes the `mod_novis` array to all 0xFF values, effectively marking all map leaves as visible. This is a foundational step in Quake's model system, ensuring that visibility data starts in a consistent state. In 1996, memory management was a critical concern due to hardware limitations, with typical PCs having only 8–16 MB of RAM. By preemptively setting visibility data, the engine avoids undefined behavior during rendering. This approach influenced later game engines, which adopted similar initialization techniques to ensure stability in complex systems."
   - id: "mod-extradata-cache-check"
     line_start: 52
-    line_end: 72
+    line_end: 75
     title: "The Cache That Keeps Quake Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `Mod_Extradata` function checks if a model's extra data is already cached. If not, it triggers a reload via `Mod_LoadModel`. This caching mechanism was vital for Quake's performance, as it minimized redundant disk reads and memory allocations. John Carmack and Michael Abrash, known for their optimization expertise, implemented this system to address the slow disk speeds and limited memory of mid-90s PCs. The concept of caching frequently used data became a cornerstone of game engine design, influencing successors like Unreal Engine and Unity."
   - id: "mod-point-in-leaf-spatial-query"
-    line_start: 74
-    line_end: 102
+    line_start: 76
+    line_end: 106
     title: "How Quake Finds Its Place in Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
     content: "The `Mod_PointInLeaf` function determines which leaf node a given point resides in within a model's BSP tree. BSP trees were a revolutionary spatial organization technique, enabling efficient visibility determination and collision detection. This method was adapted from earlier work in computer graphics and became synonymous with real-time 3D engines. Quake's use of BSP trees inspired their adoption in other engines, including Source and Unreal, shaping the way 3D environments are structured to this day."
   - id: "mod-decompress-vis-visibility-data"
-    line_start: 105
-    line_end: 152
+    line_start: 107
+    line_end: 333
     title: "The Compression Trick That Made Maps Work"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `Mod_DecompressVis` function decompresses visibility data for map leaves, converting compacted data into a usable format. This compression was necessary to fit large maps into limited memory while maintaining fast access during rendering. By using run-length encoding, Quake's developers optimized memory usage without sacrificing performance. This technique became a standard in game development, influencing how visibility data is handled in modern engines like Unity and Unreal."
   - id: "mod-loadtextures-animated-textures"
-    line_start: 332
-    line_end: 485
+    line_start: 334
+    line_end: 482
     title: "Animating Textures in a 3D World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadTextures` function loads texture data, including support for animated textures. Textures with names starting with '+' are sequenced into animations, enabling dynamic visual effects like flowing water or flickering lights. This feature added realism to Quake's environments, setting it apart from earlier games with static visuals. The concept of animated textures influenced later games and engines, including Half-Life and Unreal, where dynamic environmental effects became a staple."
   - id: "mod-loadnodes-bsp-tree-hierarchy"
-    line_start: 827
-    line_end: 872
+    line_start: 829
+    line_end: 875
     title: "Building the Backbone of Quake's Maps"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadNodes` function constructs the BSP tree nodes for a map, linking them hierarchically and setting parent-child relationships. BSP trees were a groundbreaking method for organizing 3D space, enabling efficient rendering and collision detection. Quake's implementation of BSP trees was a direct evolution of techniques pioneered in Doom, refined to handle true 3D environments. This hierarchical system influenced countless games, from Counter-Strike to Call of Duty, where spatial organization remains critical."
   - id: "mod-loadleafs-leaf-data-for-rendering"
-    line_start: 874
-    line_end: 919
+    line_start: 876
+    line_end: 922
     title: "The Leaves That Make Quake's Maps Work"
     wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadLeafs` function loads leaf data, including visibility information and ambient sound levels. Leafs are the smallest units in Quake's BSP tree, representing areas of space used for rendering and collision detection. By compressing visibility data and associating sound levels with leaves, Quake created immersive environments that felt alive. This granular approach to spatial data influenced later engines like Source, which expanded on the concept with more detailed environmental interactions."
   - id: "mod-loadclipnodes-clipping-hulls"
-    line_start: 921
-    line_end: 979
+    line_start: 923
+    line_end: 974
     title: "How Quake Handles Collision with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadClipnodes` function loads clipnodes, which define collision hulls for models. These hulls are used to determine whether objects intersect with the environment, ensuring accurate collision detection. Quake's use of multiple hulls allowed for different collision sizes, accommodating players, projectiles, and other entities. This system was a significant improvement over Doom's simpler collision model and influenced later engines, including Unreal and Unity, where precise collision handling is essential."
   - id: "mod-loadmarksurfaces-error-checking"
-    line_start: 1012
-    line_end: 1039
+    line_start: 1014
+    line_end: 1042
     title: "Error Checking: Why Lump Sizes Matter"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This function, `Mod_LoadMarksurfaces`, processes a lump of data representing surface markers in the BSP file format. It begins by validating the lump size to ensure it is a multiple of the expected data structure size. This error-checking mechanism prevents corrupted or malformed data from causing crashes or undefined behavior during runtime. In the mid-1990s, game developers often worked with proprietary file formats like BSP, which were optimized for the hardware of the time but prone to errors during creation or modification. John Carmack and his team prioritized robustness in their code, knowing that Quake would be modded extensively. This approach influenced later game engines, such as Unreal Engine and Source, which adopted similar error-checking practices for their asset loaders."
   - id: "mod-loadsurfedges-memory-allocation"
-    line_start: 1041
-    line_end: 1062
+    line_start: 1043
+    line_end: 1065
     title: "Memory Allocation for Edge Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadSurfedges` function allocates memory for edge data in the BSP file format, a crucial step for rendering surfaces in Quake's 3D environments. By using `Hunk_AllocName`, the function ensures that memory is allocated efficiently and tagged with a name for debugging purposes. This technique reflects the constraints of 1990s hardware, where memory management was critical due to limited RAM and CPU resources. The use of named memory allocations became a hallmark of id Software's development style, influencing memory management practices in subsequent engines like Doom 3 and Rage."
   - id: "mod-loadplanes-signbits-optimization"
-    line_start: 1064
-    line_end: 1100
+    line_start: 1066
+    line_end: 1103
     title: "Signbits: Optimizing Plane Calculations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "In `Mod_LoadPlanes`, the code calculates the signbits for each plane's normal vector, a clever optimization that speeds up geometric calculations during rendering. Signbits allow the engine to quickly determine the orientation of a plane relative to the camera, avoiding costly floating-point operations. This technique was particularly important for real-time 3D rendering on the limited x86 processors of the era. The concept of precomputing data for faster runtime performance influenced later graphics engines, including OpenGL and DirectX."
   - id: "radiusfrombounds-calculating-model-radius"
-    line_start: 1102
-    line_end: 1118
+    line_start: 1104
+    line_end: 1121
     title: "Calculating Model Radius for Collision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
     content: "The `RadiusFromBounds` function calculates the bounding radius of a model based on its minimum and maximum coordinates. This radius is used for collision detection and visibility checks, ensuring that models interact correctly within the game world. In the mid-1990s, collision detection was a computationally expensive task, and simplifying it with bounding spheres was a common optimization. This approach laid the groundwork for more advanced collision systems in later engines, such as Havok and PhysX."
   - id: "mod-loadbrushmodel-bsp-loading"
-    line_start: 1120
-    line_end: 1217
+    line_start: 1122
+    line_end: 1220
     title: "Loading BSP Models: The Heart of Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadBrushModel` function is responsible for loading BSP models, the core data structure used in Quake's level design. BSP (Binary Space Partitioning) divides a 3D space into convex regions, optimizing rendering and collision detection. This function swaps the endianness of the BSP data to ensure compatibility across different systems and calculates checksums to verify data integrity. The BSP format was revolutionary in 1996, enabling complex 3D environments to run smoothly on hardware with limited processing power. Its influence can be seen in subsequent engines like Source and Unreal, which adapted and extended BSP techniques for their own rendering pipelines."
   - id: "mod-loadaliasframe-animation-data"
-    line_start: 1219
-    line_end: 1272
+    line_start: 1229
+    line_end: 1276
     title: "Loading Animation Frames for Alias Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_animation"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadAliasFrame` function processes individual animation frames for alias models, which represent characters and objects in Quake. By copying vertex data and bounding box information, the function prepares models for rendering and animation. Alias models were a significant step forward in 3D graphics, allowing detailed and animated characters to populate game worlds. This technique influenced the development of skeletal animation systems in later engines, such as Unity and Unreal Engine."
   - id: "mod-loadaliasgroup-frame-groups"
-    line_start: 1275
-    line_end: 1344
+    line_start: 1277
+    line_end: 1341
     title: "Handling Frame Groups for Smooth Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadAliasGroup` function loads groups of animation frames, enabling smooth transitions between different states. By precomputing intervals and bounding box data, the function optimizes animation playback. This approach was crucial for creating fluid character movements in Quake, a feature that set it apart from earlier games with rigid animations. Frame grouping techniques were later expanded in engines like Unreal to support complex animations and blending."
   - id: "mod-loadaliasmodel-comprehensive-alias-loading"
-    line_start: 1434
-    line_end: 1691
+    line_start: 1436
+    line_end: 1688
     title: "Comprehensive Alias Model Loading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadAliasModel` function is a comprehensive loader for alias models, handling everything from vertex data to animation frames and skins. It includes extensive error checking to ensure data integrity and uses memory allocation techniques to optimize performance. Alias models were a key innovation in Quake, allowing detailed and animated characters to interact in a fully 3D environment. This function's robust design influenced the development of model loaders in later engines, such as Source and Unreal."
   - id: "mod-loadspritemodel-2d-sprite-handling"
-    line_start: 1796
-    line_end: 1870
+    line_start: 1798
+    line_end: 1875
     title: "Handling 2D Sprites in a 3D World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `Mod_LoadSpriteModel` function loads 2D sprite models, which are used for effects and decorations in Quake's 3D world. By calculating bounding boxes and loading frame data, the function integrates sprites seamlessly into the game environment. Sprites were a staple of earlier 2D games, but their use in Quake demonstrated how they could complement 3D graphics for visual effects. This technique influenced hybrid graphics systems in later games, such as particle effects in Unreal Engine."
   - id: "debugging-cached-models-in-real-time"
-    line_start: 1872
+    line_start: 1876
     line_end: 1889
     title: "Debugging Cached Models in Real Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"

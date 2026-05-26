@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines 29 unique piece IDs, each representing a background element or interactive object in Prince of Persia. From 'spikes' to 'exit doors,' these IDs are the building blocks of the game's environment. Jordan Mechner meticulously categorized each element to streamline rendering and interaction logic. In the mid-1980s, memory constraints on the Apple II forced developers to think in terms of compact identifiers rather than verbose descriptions. Mechner's approach reflects the era's need for efficiency, as each ID ties directly to pre-defined graphics and behaviors stored elsewhere in memory. These IDs enabled modular level design, allowing Mechner to construct intricate scenes by combining reusable components. This technique influenced later games with tile-based environments, such as Super Mario Bros. and The Legend of Zelda, which also relied on compact data representations for their worlds."
   - id: "mask-and-piece-tables"
     line_start: 37
-    line_end: 63
+    line_end: 84
     title: "Hex Tables That Made Animation Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
@@ -47,14 +47,14 @@ enhancements:
     content: "The mask and piece tables define offsets and graphical data for background elements. These hex tables are compact representations of visual and positional information, optimized for the Apple II's limited memory. Mechner used these tables to manage animations and interactions without requiring complex calculations at runtime. For example, 'maska' and 'maskb' specify masking patterns for different sections, while 'piecea' and 'pieceb' define graphical data for specific elements. This approach reflects the ingenuity required to work within the constraints of 6502 assembly and the Apple II hardware. By precomputing these values, Mechner reduced CPU load during gameplay, ensuring smooth animations even on a machine with limited processing power. The technique of using lookup tables for animation became a staple in game development, influencing titles like Doom and Quake, which relied on similar methods for efficient rendering."
   - id: "special-pieces-and-gate-data"
     line_start: 86
-    line_end: 98
+    line_end: 112
     title: "The Gate That Defined Cinematic Tension"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section introduces special pieces related to gates, including their graphical and masking data. Gates play a crucial role in Prince of Persia's gameplay, often serving as obstacles or time-sensitive challenges. Mechner's design ensures that gates are visually distinct and mechanically consistent, with predefined hex values for their appearance and behavior. The use of 'gatebotSTA' and 'gatebotORA' reflects the precision required to manage interactions in a cinematic platformer. In 1989, dynamic elements like gates were groundbreaking, adding a layer of tension and strategy to platforming gameplay. This innovation inspired future games to incorporate interactive environmental elements, such as the doors in Resident Evil or the puzzles in Tomb Raider."
   - id: "spike-animation-frames"
-    line_start: 37
+    line_start: 114
     line_end: 122
     title: "Animating Danger: The Spike Sequence"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
@@ -71,7 +71,7 @@ enhancements:
     content: "The slicer animation frames define the movement of another iconic hazard: the slicing blade. Using hex and byte tables, Mechner crafted a sequence that captures the blade's deadly precision. The 'slicerExt' and 'slicerRet' values ensure that the blade's extension and retraction align perfectly with the game's timing and collision mechanics. In the late 1980s, creating such dynamic hazards was a technical challenge, especially on hardware as limited as the Apple II. Mechner's solution showcases his ability to balance cinematic storytelling with technical constraints. The slicer became a memorable element of Prince of Persia, influencing the design of traps and hazards in later games like Dark Souls and Celeste."
   - id: "loose-floor-data"
     line_start: 139
-    line_end: 152
+    line_end: 189
     title: "When the Floor Falls Beneath You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The loose floor data defines the behavior and animation of collapsing platforms, a staple of Prince of Persia's gameplay. Using hex and byte tables, Mechner created a sequence that simulates the floor breaking away under the player's weight. The 'loosea' and 'loosed' values specify the graphical changes, while 'looseby' defines positional adjustments during the animation. This mechanic added a layer of unpredictability and challenge to the game, forcing players to think quickly and adapt to changing environments. Loose floors became a hallmark of cinematic platformers, influencing similar mechanics in games like Crash Bandicoot and Rayman."
   - id: "moveparams-and-gravity"
     line_start: 191
-    line_end: 197
+    line_end: 195
     title: "Gravity: The Invisible Hand of Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""

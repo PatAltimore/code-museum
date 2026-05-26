@@ -30,24 +30,24 @@ summary:
 
 enhancements:
   - id: "memory-layout-optimization"
-    line_start: 3
-    line_end: 39
+    line_start: 28
+    line_end: 28
     title: "How Memory Layout Made Cinematic Gameplay Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
     image_url: ""
     image_caption: ""
     content: "This section defines the memory layout for various game elements, including character tables, background tables, and control systems. Each equate assigns a specific memory address to a game component, ensuring efficient access during runtime. Jordan Mechner was working within the constraints of the Apple II's 128K memory, which required bank-switching to access auxiliary and main memory. By carefully organizing these memory locations, Mechner could fit the game's cinematic animations and complex gameplay mechanics into the limited space. At the time, memory management was a critical skill for developers, as hardware limitations dictated the scope of their designs. This approach influenced later games on constrained systems, demonstrating how thoughtful memory allocation could enable ambitious projects."
   - id: "jump-table-efficiency"
-    line_start: 41
-    line_end: 67
+    line_start: 48
+    line_end: 63
     title: "The Jump Tables That Kept Gameplay Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
     image_url: ""
     image_caption: ""
     content: "Jump tables are used here to efficiently dispatch subroutines based on game state or input. By predefining memory locations for various actions, such as sound effects and object control, the game avoids costly conditional branching. This technique was essential for maintaining performance on the Apple II, where CPU cycles were precious. Mechner's use of jump tables reflects the influence of earlier assembly programming practices, where direct memory manipulation was the norm. This method became a standard for performance-critical applications, influencing game engines and real-time systems in later decades."
   - id: "zero-page-game-state"
-    line_start: 379
-    line_end: 384
+    line_start: 391
+    line_end: 394
     title: "Packing Game State into Zero-Page Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The character data structures defined here include positions, velocities, actions, and sequences for the game's protagonist (Kid), shadow counterpart (Shad), and other entities. These structures enable the game's cinematic animations, which were rotoscoped from live-action footage. Mechner filmed his brother performing the moves, then traced each frame to create fluid motion. This approach was groundbreaking for its time, as most games relied on simpler sprite-based animation. The detailed character data allowed Prince of Persia to achieve a level of realism that set it apart from other platformers. This technique inspired future developers to explore more sophisticated animation methods, leading to innovations in motion capture and procedural animation."
   - id: "miscellaneous-game-data"
     line_start: 648
-    line_end: 671
+    line_end: 655
     title: "Flags and Constants That Defined the World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
     image_url: ""

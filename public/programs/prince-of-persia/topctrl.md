@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "start-game-initialization"
-    line_start: 17
+    line_start: 92
     line_end: 102
     title: "How a Game Starts in 1989"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
@@ -47,7 +47,7 @@ enhancements:
     content: "The `STARTRESUME` subroutine resumes a saved game, re-enabling the alternate zero page (`ALTZPon`) and loading saved game data. This routine uses an arbitrary value to differentiate resumed games from new ones. In the era of floppy disks, saving and resuming games was a delicate process, requiring careful handling of disk I/O and memory state. Mechner's implementation ensured that players could pick up where they left off, a feature that became standard in gaming. The reliance on hardware-specific operations like `ALTZPon` highlights the ingenuity required to work within the Apple II's constraints. This approach laid groundwork for save systems in later games, influencing titles like Monkey Island and other adventure games of the early 1990s."
   - id: "initialize-system-on-boot"
     line_start: 115
-    line_end: 128
+    line_end: 139
     title: "Booting Up: System Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
@@ -63,15 +63,15 @@ enhancements:
     content: "The `StartGame` subroutine sets up the initial conditions for a new or resumed game. It assigns the level number, cues the \"Danger\" theme for level 1, and initializes the player's strength. This routine embodies the cinematic nature of Prince of Persia, where music and gameplay are tightly integrated to create an immersive experience. Mechner's use of music cues and strength initialization reflects his focus on storytelling and player experience, a hallmark of cinematic platformers. This technique influenced later games like Another World and Flashback, which also blended gameplay with narrative elements."
   - id: "resume-game-subroutine"
     line_start: 165
-    line_end: 225
+    line_end: 219
     title: "Resuming a Game: Disk Swapping Drama"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
     image_caption: ""
     content: "The `ResumeGame` subroutine handles the complex process of resuming a saved game, including disk swapping and restoring player state. It checks for saved game data, restores strength and timer values, and resumes from the beginning of the saved level. Disk swapping was a common challenge for Apple II games, requiring players to physically flip disks to access different parts of the game. Mechner's implementation ensured a seamless transition, preserving the cinematic flow of the game. This approach influenced save systems in later games, particularly those on floppy disk-based platforms like the Amiga and early PCs."
   - id: "initialize-game-variables"
-    line_start: 130
-    line_end: 139
+    line_start: 221
+    line_end: 249
     title: "Zeroing Out: Game Variable Initialization"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The `MainLoop` subroutine is the central game loop, handling input, timers, frame updates, and sound playback. It ensures the game runs smoothly, updating the screen and responding to player actions. This loop reflects the real-time nature of Prince of Persia, where gameplay and storytelling are tightly integrated. Mechner's design influenced game loops in later titles, particularly those with real-time elements like platformers and action-adventure games. The use of a central loop became a standard in game development, appearing in engines like Unity and Unreal."
   - id: "load-next-level"
     line_start: 403
-    line_end: 492
+    line_end: 418
     title: "Loading Levels: Disk-Side Logic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
     image_url: ""
@@ -103,15 +103,15 @@ enhancements:
     content: "The `LoadNextLevel` subroutine prepares the game to transition to the next level, managing strength levels and disk-side logic. This routine reflects the constraints of floppy disk-based systems, where levels were often stored on different sides of the disk. Mechner's implementation ensured a smooth transition, preserving the cinematic flow of the game. This approach influenced level loading mechanics in later games, particularly those on disk-based platforms."
   - id: "next-frame-determination"
     line_start: 494
-    line_end: 1038
+    line_end: 597
     title: "What Happens in the Next Frame?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Frame_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `NextFrame` subroutine determines the appearance of the next frame, updating mobile objects, transitional objects, and the player character. This routine reflects the real-time nature of Prince of Persia, where gameplay is tightly integrated with animation and storytelling. Mechner's approach influenced frame update mechanics in later games, particularly those with cinematic elements like Another World and Flashback."
   - id: "prep-cut-screen-transition"
-    line_start: 956
-    line_end: 1122
+    line_start: 1028
+    line_end: 1064
     title: "The Screen Transition That Wins the Game"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The 'PrepCut' routine determines whether to transition to a new screen and handles the special case of reaching the princess's room, which triggers the game's victory sequence. This routine checks if the current screen matches the target screen, updates the visible screen, and invokes subroutines to load the necessary elements like guards, torches, and crumble animations. The victory condition is hardcoded: level 14, screen 5 marks the end of the player's journey. In 1989, cinematic transitions like this were groundbreaking, creating a sense of narrative progression. Mechner's approach to embedding story moments directly into gameplay influenced later cinematic platformers like Another World and Flashback."
   - id: "you-lose-cutscene"
     line_start: 1066
-    line_end: 1082
+    line_end: 1076
     title: "The Cutscene That Ends It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_over"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The 'ctrlplayer' routine handles player control and death mechanics. When the player's character dies, the routine increments a death timer and displays a 'Press Button to Continue' message after a delay. It also includes a temporary resurrection feature for debugging or development purposes. This level of detail in handling player death reflects Mechner's focus on creating a seamless and immersive experience. The idea of giving players a chance to continue after dying became a staple in platformers and action games, influencing titles like Super Mario Bros. and Sonic the Hedgehog."
   - id: "death-song-selection"
     line_start: 1195
-    line_end: 1219
+    line_end: 1213
     title: "The Music That Marks Your Demise"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_music"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The 'deathsong' routine selects and cues music based on the circumstances of the player's death. If the player dies heroically in battle, a 'heroic death' song is played; otherwise, an 'accidental death' song is triggered. This dynamic use of music to reflect gameplay events was innovative for its time, enhancing the emotional impact of the player's actions. Mechner's approach to integrating music into gameplay influenced later games like The Legend of Zelda and Final Fantasy, where music became a key storytelling tool."
   - id: "copy-protection-flip-disk"
     line_start: 1541
-    line_end: 1678
+    line_end: 1591
     title: "The Copy Protection Hidden in Disk Flipping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
     image_url: ""
@@ -167,7 +167,7 @@ enhancements:
     content: "The 'yellowcheck' routine is a copy protection mechanism tied to the game's final sequence. It checks the next level identifier and sets a flag if the conditions are met, ensuring the player has a legitimate copy of the game before proceeding to the princess cutscene. This level of integration between gameplay and copy protection was rare, showcasing Mechner's ingenuity in safeguarding his work while maintaining immersion. Similar techniques were later used in games like EarthBound, which featured anti-piracy measures embedded in gameplay."
   - id: "development-patch-redraw"
     line_start: 1713
-    line_end: 1736
+    line_end: 1734
     title: "The Debugging Patch That Fixed the Screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""

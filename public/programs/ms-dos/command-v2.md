@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "userpath-default-path-null"
-    line_start: 157
-    line_end: 159
+    line_start: 239
+    line_end: 245
     title: "Why MS-DOS Defaulted to a Null Path"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The ENVIREND label marks the end of the environment block, a critical structure in MS-DOS for storing environment variables like PATH and COMSPEC. These variables allowed programs to access system-wide settings, a concept borrowed from Unix. The environment block's size was calculated using the ENVIRONSIZ and ENVIRONSIZ2 constants, ensuring efficient memory allocation. This design was a precursor to more advanced environment management systems in later operating systems, such as Windows and Linux. By defining a clear boundary for the environment, MS-DOS enabled predictable behavior and simplified debugging, a necessity in an era of limited development tools."
   - id: "progstart-jump-to-resident-code"
     line_start: 311
-    line_end: 313
+    line_end: 317
     title: "The Jump That Started It All"
     wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "The do_exec subroutine implements the EXEC system call, enabling the creation of new processes in MS-DOS. This routine saves the current state of the CPU registers and stack, allocates memory for the new process, and switches to the new stack if necessary. EXEC was inspired by Unix's fork and exec system calls but adapted for the simpler MS-DOS environment. Process creation was a novel feature for early personal computers, allowing users to run multiple programs sequentially. This routine laid the groundwork for multitasking in later operating systems and influenced the design of process management in Windows."
   - id: "get-mem-memory-allocation"
     line_start: 385
-    line_end: 493
+    line_end: 485
     title: "The Trick That Allocated All Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -71,7 +71,7 @@ enhancements:
     content: "The Get_mem subroutine allocates all available memory for the transient portion of COMMAND.COM. By using the INT instruction with the ALLOC function, MS-DOS dynamically managed memory in the constrained environment of the IBM PC. This routine checks whether enough memory is available for the EXEC system call and adjusts memory allocation accordingly. Memory management was a critical challenge in the early 1980s, as the IBM PC's 8086 processor supported only 1MB of addressable memory, with most systems equipped with far less. This subroutine's efficient allocation strategy influenced later memory management techniques in DOS and Windows, including the use of memory arenas and dynamic allocation."
   - id: "exec-err-error-handling"
     line_start: 559
-    line_end: 593
+    line_end: 583
     title: "The Error Messages That Saved Users"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_message"
     image_url: ""
@@ -79,7 +79,7 @@ enhancements:
     content: "The EXEC_ERR subroutine selects and displays error messages based on the error code returned by the EXEC system call. This routine handles common errors like file not found, access denied, insufficient memory, and bad format, providing users with clear feedback. Error handling was a critical feature in MS-DOS, as it operated in a low-trust environment where hardware and software compatibility issues were common. By categorizing errors and displaying specific messages, MS-DOS improved usability and debugging. This approach influenced error handling in later operating systems, which adopted more sophisticated methods for diagnosing and reporting issues."
   - id: "ext-exec-stack-management"
     line_start: 597
-    line_end: 639
+    line_end: 627
     title: "The Stack Trick That Prevented Crashes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
     image_url: ""
@@ -87,7 +87,7 @@ enhancements:
     content: "The EXT_EXEC subroutine moves the stack to allocated memory before executing a new process. This prevents the stack from being overwritten during process execution, a common issue in early operating systems. By ensuring stack integrity, MS-DOS avoided crashes and unpredictable behavior, improving system stability. This technique reflects the careful attention to detail required in the constrained environment of the IBM PC, where memory was scarce and errors could easily propagate. Stack management became a standard practice in later operating systems, influencing the design of multitasking and process isolation mechanisms."
   - id: "lodcom-memory-recovery"
     line_start: 837
-    line_end: 1027
+    line_end: 879
     title: "Recovering Memory After a Crash"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "The LODCOM subroutine handles memory allocation and recovery for the transient portion of COMMAND.COM. If the transient portion is corrupted or insufficient memory is available, this routine attempts to allocate new memory and reload the command interpreter. Memory recovery was a critical feature in MS-DOS, as crashes and memory corruption were common in the early days of personal computing. By implementing robust recovery mechanisms, MS-DOS improved reliability and user experience. This approach influenced memory management in later operating systems, which adopted more sophisticated techniques for detecting and recovering from errors."
   - id: "havcom-path-separator-selection"
     line_start: 1029
-    line_end: 1067
+    line_end: 1041
     title: "Why MS-DOS Supports Two Path Separators"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -103,7 +103,7 @@ enhancements:
     content: "This section determines whether the default path separator should be '/' or '\\'. The code checks the value of the 'RSWITCHAR' variable and sets the alternative separator accordingly. This decision reflects compatibility concerns during the early 1980s, as MS-DOS aimed to accommodate both Unix-like conventions (using '/') and IBM PC conventions (using '\\'). At the time, Unix systems were gaining traction, and Microsoft wanted MS-DOS to appeal to a broad audience, including developers familiar with Unix. This dual-path separator approach became a hallmark of MS-DOS and influenced later systems like Windows, which inherited the '\\' convention. The choice also highlights the pragmatic design philosophy of MS-DOS: prioritize compatibility and ease of use over strict adherence to one standard."
   - id: "remcheck-media-type-detection"
     line_start: 1079
-    line_end: 1159
+    line_end: 1145
     title: "How MS-DOS Identified Removable Media"
     wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
@@ -111,7 +111,7 @@ enhancements:
     content: "The REMCHECK routine determines whether the media in a drive is removable or fixed. It uses an interrupt call to retrieve equipment information and performs bitwise operations to classify the media type. This functionality was crucial for MS-DOS, as removable floppy disks were the primary storage medium for early PCs. IBM PCs, launched in 1981, relied heavily on floppy drives, and software needed to differentiate between removable and fixed media to manage file systems effectively. The routine's reliance on hardware-specific interrupts underscores the tight coupling between software and hardware during this era. This approach influenced later operating systems, which continued to refine media detection mechanisms as storage technologies evolved."
   - id: "savhand-stdin-stdout-redirection"
     line_start: 1223
-    line_end: 1259
+    line_end: 1255
     title: "Redirecting Input and Output for Transient Programs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Standard_streams"
     image_url: ""
@@ -119,7 +119,7 @@ enhancements:
     content: "The SAVHAND routine temporarily redirects standard input (stdin) and standard output (stdout) to the standard error (stderr) stream. This is achieved by saving the current handles, duplicating stderr, and updating the process's header table. Such redirection was essential for transient programs like COMMAND.COM, which needed to manage user input and output streams dynamically. In the early 1980s, transient programs were a novel concept, allowing MS-DOS to load and execute small utilities without permanently occupying memory. This technique influenced later operating systems and programming practices, where stream redirection became a standard feature for managing subprocesses and logging."
   - id: "readcom-loading-command-com"
     line_start: 1391
-    line_end: 1455
+    line_end: 1463
     title: "The Routine That Loaded COMMAND.COM"
     wikipedia_url: "https://en.wikipedia.org/wiki/COMMAND.COM"
     image_url: ""
@@ -127,7 +127,7 @@ enhancements:
     content: "The READCOM routine loads the COMMAND.COM file into memory, ensuring the transient program is ready for execution. It performs file operations like opening, seeking, and reading, while handling errors such as 'too many open files.' COMMAND.COM was the default command-line interpreter for MS-DOS, and its efficient loading was critical for system performance. This routine reflects the constraints of early PCs, where memory and file handles were limited resources. By carefully managing these resources, MS-DOS ensured reliability and usability. The techniques used here laid the groundwork for modern operating systems, which continue to optimize program loading and error handling."
   - id: "chksum-transient-program-validation"
     line_start: 1467
-    line_end: 1497
+    line_end: 1475
     title: "Checksum Validation for Transient Programs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Checksum"
     image_url: ""
@@ -135,7 +135,7 @@ enhancements:
     content: "The CHKSUM routine computes a checksum for transient programs loaded into memory. It iterates through the program's data, summing 16-bit words to produce a validation value. Checksums were a common method for verifying data integrity in the 1980s, especially in systems like MS-DOS that operated close to hardware. This routine ensured that transient programs were correctly loaded and not corrupted, a critical feature for maintaining system stability. The use of checksums influenced later software development, where more sophisticated integrity checks, such as cryptographic hashes, became standard practice. This routine exemplifies the careful attention to reliability in early operating systems."
   - id: "setvect-interrupt-vector-setup"
     line_start: 1501
-    line_end: 1521
+    line_end: 1525
     title: "Setting Interrupt Vectors for Error Handling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
     image_url: ""
@@ -143,7 +143,7 @@ enhancements:
     content: "The SETVECT routine configures interrupt vectors for critical system functions, including termination, Ctrl-C handling, and disk error management. Interrupt vectors are pointers to routines that the CPU executes in response to specific events. By setting these vectors, MS-DOS ensured that the system could respond gracefully to errors and user actions. This approach reflects the low-level nature of early PC operating systems, where developers had to manage hardware interrupts directly. The routine's design influenced later systems, which abstracted interrupt handling into higher-level APIs. However, the concept of interrupt vectors remains foundational in computing, underpinning modern hardware and software interactions."
   - id: "transtart-memory-alignment-for-transients"
     line_start: 1541
-    line_end: 1541
+    line_end: 1543
     title: "Aligning Memory for Transient Program Loading"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
@@ -151,7 +151,7 @@ enhancements:
     content: "The TRANSTART segment aligns memory for loading transient programs, ensuring proper placement and execution. Memory alignment was a critical consideration for early PCs, where misaligned data could lead to crashes or performance degradation. By defining a PARA-aligned label, MS-DOS optimized memory usage and ensured compatibility with the 8086 architecture. This technique reflects the meticulous memory management required in the constrained environments of the 1980s. It influenced later operating systems, which continued to refine memory alignment strategies to support more complex programs and architectures."
   - id: "execstart-executable-segment-alignment"
     line_start: 1559
-    line_end: 1559
+    line_end: 1561
     title: "Preparing Memory for Executable Segments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Executable"
     image_url: ""

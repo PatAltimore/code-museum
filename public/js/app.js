@@ -344,7 +344,7 @@ function renderSection({ lines, startLine, enhancement, highlighted }, highlight
 
   let html = '';
   if (lines.length > 0) {
-    html += `<div class="code-section"><div class="code-block">${codeHtml}</div></div>`;
+    html += `<div class="code-section"><div class="code-block"><div class="code-lines">${codeHtml}</div></div></div>`;
   }
 
   if (enhancement) {

@@ -39,7 +39,7 @@ enhancements:
     content: "The BLO function is an example of Zork's reliance on MDL's ability to manipulate types dynamically. This function checks the type of an object and sets up a custom read table for ASCII characters, allowing the game to parse and evaluate input efficiently. In the late 1970s, programming languages like MDL were pushing the boundaries of what interactive software could do. The DEC PDP-10, Zork's host machine, had limited memory and processing power, so developers had to use clever tricks like this to optimize performance. This approach to type handling influenced later games and programming languages, demonstrating the power of dynamic typing and evaluation in interactive systems."
   - id: "define-east-house-description"
     line_start: 23
-    line_end: 35
+    line_end: 33
     title: "Behind the White House: A Window's Story"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -95,7 +95,7 @@ enhancements:
     content: "DAM-ROOM describes the top of Flood Control Dam #3, a location with dynamic water levels and interactive elements like a control panel. Players can manipulate the sluice gates to change the environment, showcasing Zork's innovative approach to environmental puzzles. The dam became a memorable part of the game, influencing the design of later titles with dynamic environments, such as 'Half-Life' and 'Bioshock.'"
   - id: "define-maint-room"
     line_start: 737
-    line_end: 753
+    line_end: 778
     title: "Maintenance Room: The Water Rises"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
@@ -166,16 +166,16 @@ enhancements:
     image_caption: ""
     content: "The TURNER subroutine determines whether an object can be turned and whether the player has the appropriate tool to do so. If the tool isn't suitable, the game provides humorous feedback, reinforcing its narrative tone. This routine exemplifies the game's emphasis on logical puzzles and player experimentation. In the late 1970s, interactive fiction was in its infancy, and Zork's detailed object interactions set a standard for the genre. The idea of tool-based object manipulation became a staple in later adventure games, influencing titles like King's Quest and The Secret of Monkey Island."
   - id: "indestructible-door-and-player-frustration"
-    line_start: 1634
-    line_end: 1650
+    line_start: 1641
+    line_end: 1660
     title: "The Indestructible Door and Player Frustration"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
     content: "The DOORMUNGS data structure and DDOOR-FUNCTION subroutine define humorous responses to players attempting to open, burn, or damage an indestructible door. The game uses randomized messages from DOORMUNGS to keep interactions fresh and entertaining. This playful approach highlights Zork's blend of challenge and humor, engaging players while subtly guiding them toward alternative solutions. The use of randomized text responses influenced later games, encouraging developers to add variety and personality to repetitive actions."
   - id: "inflating-and-deflating-boats"
-    line_start: 1652
-    line_end: 1660
+    line_start: 1662
+    line_end: 1666
     title: "Inflating and Deflating Boats"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""

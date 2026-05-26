@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "high-resolution-graphics-tables"
     line_start: 9
-    line_end: 36
+    line_end: 26
     title: "How Lookup Tables Made Graphics Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines a series of lookup tables used for high-resolution graphics manipulation on the Apple II. The tables include pixel shift values (`SHIFT0` through `SHIFT6`), carry values (`CARRY0` through `CARRY6`), and masks (`MIRROR`, `MASKTAB`). These tables were essential for efficiently rendering sprites and animations within the constraints of the Apple II's limited graphics hardware. The Apple II's high-resolution mode allowed for 280x192 pixels, but manipulating individual pixels required precise bit-level operations due to the machine's 6-color palette and memory layout. By precomputing values for common operations like shifting and masking, Jordan Mechner reduced the computational overhead during runtime, enabling smoother animations and faster rendering. At the time, this approach was a clever workaround for the lack of dedicated graphics hardware. Mechner's use of lookup tables reflects the ingenuity required to push the Apple II's capabilities to their limits. This technique influenced later games on similar hardware, as developers increasingly relied on precomputed data to optimize performance. The tables also supported Mechner's rotoscoping-based animation, where smooth transitions between frames were critical. The lookup table approach became a staple in game development, appearing in titles like Karateka (Mechner's earlier work) and inspiring techniques in modern game engines for efficient rendering."
   - id: "sprite-manipulation-parameters"
     line_start: 45
-    line_end: 62
+    line_end: 64
     title: "The Parameters Behind Cinematic Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""

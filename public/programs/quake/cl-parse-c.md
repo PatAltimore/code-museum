@@ -31,38 +31,38 @@ summary:
 enhancements:
   - id: "svc-strings-lookup-table"
     line_start: 1
-    line_end: 102
+    line_end: 17
     title: "The Lookup Table That Defined Multiplayer Messages"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
     image_url: ""
     image_caption: ""
     content: "This section defines a lookup table for server message types, mapping numeric codes to descriptive strings like 'svc_disconnect' or 'svc_sound'. At the time, multiplayer gaming was still in its infancy, and efficient communication between server and client was critical. This table allowed developers to quickly identify and debug server messages, a necessity given the limited debugging tools available in 1996. John Carmack and his team created this system to streamline message handling in Quake's groundbreaking multiplayer mode. The approach influenced later game engines, including Unreal Engine and Source Engine, which adopted similar message parsing techniques. Today, this concept persists in protocols like WebSocket and REST APIs, where structured message handling is key."
   - id: "cl-calcnet-latency-calculation"
-    line_start: 114
-    line_end: 144
+    line_start: 19
+    line_end: 102
     title: "How Quake Measured Multiplayer Latency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Latency_(engineering)"
     image_url: ""
     image_caption: ""
     content: "This function calculates network latency by comparing the time a frame was sent to the time it was received. It accounts for dropped packets, choked connections, and invalid deltas, assigning specific codes to each scenario. In 1996, latency was a major challenge for multiplayer games, as most players connected via dial-up modems. Carmack's team designed this system to provide real-time feedback on network performance, enabling players to diagnose issues and developers to optimize server communication. The technique influenced later multiplayer games, including Counter-Strike and World of Warcraft, where latency monitoring became standard practice. It also contributed to the development of modern network diagnostic tools like ping and traceroute."
   - id: "cl-check-or-download-file"
-    line_start: 146
-    line_end: 197
+    line_start: 104
+    line_end: 200
     title: "The Trick That Made Missing Files Downloadable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
     image_url: ""
     image_caption: ""
     content: "This function checks if a required file exists locally and initiates a server download if it doesn't. It includes safeguards against malicious paths (e.g., '..') and prevents downloads during demo recording or playback. In the mid-90s, distributing game assets over the internet was novel, as most games relied on physical media. Quake's dynamic downloading system allowed players to join servers without manually installing additional content, a feature that became a hallmark of online gaming. This innovation paved the way for systems like Steam's content delivery and automatic patching in modern games. The concept of downloading missing resources dynamically is now ubiquitous in multiplayer games and software distribution platforms."
   - id: "model-next-download"
-    line_start: 199
-    line_end: 255
+    line_start: 201
+    line_end: 258
     title: "How Quake Managed Model Downloads"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
     image_url: ""
     image_caption: ""
     content: "This function handles the downloading and caching of model files required for gameplay. It iterates through a list of model names, skipping inline brush models and attempting downloads for missing files. If a model cannot be downloaded, the function disconnects the client with an error message. In 1996, managing game assets dynamically was a significant technical challenge, as players often lacked the bandwidth for large downloads. Carmack's team implemented this system to ensure seamless gameplay, even on slow connections. The approach influenced asset management in later engines like Unity and Unreal, which adopted similar techniques for dynamic resource loading. It also laid the groundwork for modern content delivery systems like CDN-based game updates."
   - id: "cl-parse-download"
-    line_start: 327
+    line_start: 259
     line_end: 436
     title: "What Happens When You Download a File in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
@@ -70,39 +70,39 @@ enhancements:
     image_caption: ""
     content: "This function processes a download message from the server, handling file creation, data writing, and completion checks. It uses temporary filenames to avoid leaving incomplete files if interrupted. The function also manages download progress, displaying percentages to the user. In 1996, this level of detail in file handling was rare, as most games relied on pre-installed assets. Quake's system ensured players could join servers with custom content without manual intervention. This technique influenced later games like Team Fortress and Minecraft, which adopted dynamic content downloading. It also contributed to the development of modern patching systems, where partial downloads and resumable updates are standard."
   - id: "cl-new-translation"
-    line_start: 866
-    line_end: 929
+    line_start: 438
+    line_end: 932
     title: "The Color Translation That Made Quake Personal"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This function updates player color translations based on their customization choices, such as top and bottom colors. It modifies the color map to reflect these changes, ensuring each player's appearance is unique. In 1996, player customization was a novel feature, as most games offered limited personalization options. Carmack's team implemented this system to enhance player identity in multiplayer matches, a key factor in Quake's success. The approach influenced later games like World of Warcraft and Fortnite, where player customization became a major selling point. It also contributed to the rise of microtransactions, as players began valuing unique appearances in online games."
   - id: "cl-update-userinfo"
-    line_start: 953
-    line_end: 972
+    line_start: 933
+    line_end: 975
     title: "How Quake Kept Player Info Up-to-Date"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This function updates player information, including name, colors, and spectator status, based on server messages. It ensures the client maintains accurate data for all players in a match. In 1996, managing player data dynamically was a technical challenge, as most games relied on static configurations. Quake's system allowed real-time updates, enhancing the multiplayer experience. This technique influenced later games like Call of Duty and Overwatch, where dynamic player data is critical for matchmaking and gameplay. It also contributed to the development of modern multiplayer systems, where player profiles are updated seamlessly across sessions."
   - id: "set-stat-bitwise-flash"
-    line_start: 1026
-    line_end: 1048
+    line_start: 976
+    line_end: 1051
     title: "The Bitwise Trick Behind Flashing Items"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
     image_caption: ""
     content: "This function, `CL_SetStat`, updates player statistics and uses bitwise operations to detect changes in item states. If a new item is acquired, it sets a 'flash time' to visually indicate the acquisition to the player. The use of bitwise operations here is a hallmark of efficient programming, especially vital in the constrained environments of mid-90s gaming. At the time, memory and processing power were limited, and techniques like these allowed developers to pack more functionality into less space. John Carmack and his team were known for their mastery of such optimizations, which became a defining feature of id Software's games. This approach influenced later games by demonstrating how to handle state changes efficiently, especially in multiplayer scenarios where real-time updates are critical."
   - id: "dynamic-muzzle-flash-lighting"
-    line_start: 1050
-    line_end: 1087
+    line_start: 1052
+    line_end: 1092
     title: "Dynamic Lighting for Muzzle Flashes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmapping"
     image_url: ""
     image_caption: ""
     content: "`CL_MuzzleFlash` creates a dynamic light effect when a player fires a weapon. It calculates the position and color of the light based on the player's view angles and origin, adding realism to the game. The function uses the `AngleVectors` method to derive forward, right, and up vectors, then offsets the light's position slightly to simulate the flash. Dynamic lighting was a groundbreaking feature in Quake, showcasing id Software's commitment to immersive 3D environments. This technique inspired later advancements in real-time lighting, influencing engines like Unreal Engine and Unity, which now include sophisticated lighting systems as standard."
   - id: "server-message-parser"
-    line_start: 1097
+    line_start: 1093
     line_end: 1381
     title: "Parsing Multiplayer Commands in Real Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
