@@ -54,8 +54,8 @@ enhancements:
     image_caption: ""
     content: "The `ProjectileTryMove` function checks whether a projectile's movement is valid by testing for collisions with walls and other objects. It uses bitwise shifts to convert coordinates into tile indices, optimizing performance on MS-DOS systems with limited processing power. This method of collision detection was groundbreaking for its time, enabling fast-paced gameplay without sacrificing accuracy. The technique influenced later games, including Doom, which expanded on these principles to handle more complex environments and interactions."
   - id: "state-based-ai-projectile-behavior"
-    line_start: 156
-    line_end: 181
+    line_start: 294
+    line_end: 844
     title: "State-Based AI for Projectiles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""

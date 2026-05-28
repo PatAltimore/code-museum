@@ -32,16 +32,16 @@ enhancements:
     image_caption: ""
     content: "The `ClearSplitVWB` function initializes the viewport dimensions and clears the update buffer, setting up the graphical environment for split-screen rendering. This was crucial for Wolfenstein 3D's intermission screens, which displayed information while maintaining the game's immersive feel. At the time, split-screen rendering was a novel technique, allowing developers to overlay dynamic content on static backgrounds efficiently. The function's simplicity reflects id Software's focus on performance optimization, ensuring smooth transitions even on limited hardware. This approach influenced later games that relied on similar techniques for HUDs and intermission screens, including Doom and Quake."
   - id: "end-screen-transitions"
-    line_start: 7
-    line_end: 24
+    line_start: 27
+    line_end: 47
     title: "Creating Cinematic End Screens with Fading Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(audio-visual)"
     image_url: ""
     image_caption: ""
     content: "The `EndScreen` function combines screen caching, palette manipulation, and fading effects to create cinematic transitions between game states. By caching graphical chunks and fading them in and out, id Software achieved a polished presentation that enhanced the game's storytelling. This technique was particularly impactful in an era when hardware constraints limited graphical fidelity. The use of fading effects became a staple in video games, influencing titles like Myst and Half-Life, where transitions were used to convey mood and narrative seamlessly."
   - id: "victory-sequence-calculations"
-    line_start: 7
-    line_end: 24
+    line_start: 95
+    line_end: 296
     title: "Calculating Player Performance in Victory Screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Score_(game)"
     image_url: ""
@@ -72,7 +72,7 @@ enhancements:
     image_caption: ""
     content: "The `BJ_Breathe` function animates the protagonist's breathing by alternating between two graphical frames. This subtle animation adds a layer of realism to the character, making him feel alive even during intermission screens. Such attention to detail was uncommon in early 1990s games, showcasing id Software's dedication to immersion. The technique inspired other developers to incorporate idle animations into their characters, a feature now standard in modern games."
   - id: "level-completed-intermission"
-    line_start: 410
+    line_start: 427
     line_end: 969
     title: "Rewarding Players with Detailed Level Completion Stats"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intermission_(video_games)"
@@ -112,16 +112,16 @@ enhancements:
     image_caption: ""
     content: "The `NonShareware` function displays a notice informing players that the game is not shareware and should not be distributed freely. This was a direct response to the rampant piracy of the era, where games were often copied and shared without regard for licensing. The notice uses graphical elements and localized text (e.g., Spanish translations) to reach a broader audience. In 1992, software piracy was a significant concern for developers, especially for small teams like id Software. This function highlights their efforts to protect their intellectual property while educating players about the importance of purchasing games legally. Although piracy remains an issue, modern games have shifted toward DRM and online activation methods to combat unauthorized distribution."
   - id: "copy-protection-backdoor"
-    line_start: 1310
-    line_end: 1458
+    line_start: 1461
+    line_end: 1482
     title: "The Easter Egg Hidden in Copy Protection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Copy_protection"
     image_url: ""
     image_caption: ""
     content: "This section defines strings and logic for copy protection in Spear of Destiny, a follow-up to Wolfenstein 3D. It includes humorous backdoor phrases like 'a spoon?' and 'bite me!' that bypass the protection mechanism. These phrases reflect id Software's playful culture, where developers often embedded jokes and Easter eggs into their code. Copy protection was a critical feature in the early 1990s, as physical distribution made piracy relatively easy. By incorporating randomized quizzes and secret phrases, id Software created a system that was both functional and entertaining. This approach influenced later games, where developers continued to embed humor and personality into otherwise mundane features."
   - id: "copy-protection-quizzes"
-    line_start: 1461
-    line_end: 1482
+    line_start: 1485
+    line_end: 1714
     title: "The Quiz That Protected Spear of Destiny"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spear_of_Destiny_(video_game)"
     image_url: ""

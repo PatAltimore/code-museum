@@ -27,40 +27,40 @@ summary:
 
 enhancements:
   - id: "text-formatting-commands"
-    line_start: 9
-    line_end: 28
+    line_start: 60
+    line_end: 75
     title: "Text Commands That Controlled Layouts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section defines the text formatting commands used throughout Wolfenstein 3D's article and help screens. Commands like '^C' for changing text color and '^G' for drawing graphics allowed developers to dynamically control how text and images were displayed. At the time, MS-DOS systems lacked sophisticated graphical interfaces, so developers had to create their own systems for rendering text and graphics together. These commands were a clever abstraction, enabling layouts to be defined in a simple text-based format. The approach influenced later games, which adopted similar systems for in-game text rendering and layout management."
   - id: "rip-to-eol"
-    line_start: 31
-    line_end: 68
+    line_start: 60
+    line_end: 75
     title: "The Routine That Skipped Lines"
     wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""
     image_caption: ""
     content: "The `RipToEOL` function scans text until it reaches the end of a line, effectively skipping over irrelevant data. This was a simple yet essential utility for parsing text commands. In the early 1990s, text parsing was a common challenge due to limited memory and processing power. By efficiently handling line breaks, this function ensured smooth operation of the game's text rendering system. Techniques like this became standard in text processing libraries, influencing how developers approached parsing in constrained environments."
   - id: "parse-number"
-    line_start: 31
-    line_end: 68
+    line_start: 78
+    line_end: 110
     title: "Extracting Numbers from Text Streams"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parsing"
     image_url: ""
     image_caption: ""
     content: "The `ParseNumber` function extracts numeric values from a text stream. It scans for digits, assembles them into a string, and converts the result into an integer. This was crucial for interpreting commands like '^Gyyy,xxx,ppp', where numbers specified coordinates and graphics IDs. Parsing numbers efficiently was a key requirement in early game engines, where performance and memory constraints dictated every decision. This technique laid the groundwork for more sophisticated parsers in later engines, such as those used in Quake and Unreal."
   - id: "timed-pic-command"
-    line_start: 31
-    line_end: 68
+    line_start: 144
+    line_end: 175
     title: "Graphics with Built-In Delays"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
     content: "The `TimedPicCommand` function draws a graphic on the screen after a specified delay. It uses the `VW_UpdateScreen` function to refresh the display and waits for a timer to elapse before rendering the image. This technique allowed Wolfenstein 3D to create dynamic visual effects, such as timed animations or transitions. The use of delays and screen updates was a precursor to double buffering and other advanced rendering techniques that became standard in later games. Developers studying this code learned how to synchronize graphics with gameplay events, a skill that shaped the evolution of real-time rendering."
   - id: "handle-command"
-    line_start: 31
-    line_end: 68
+    line_start: 178
+    line_end: 278
     title: "Interpreting Text Commands for Layouts"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""

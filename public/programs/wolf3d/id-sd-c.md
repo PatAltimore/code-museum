@@ -30,24 +30,24 @@ summary:
 
 enhancements:
   - id: "soundblaster-macros"
-    line_start: 2
-    line_end: 82
+    line_start: 173
+    line_end: 199
     title: "Macros That Simplified SoundBlaster Programming"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
     image_url: ""
     image_caption: ""
     content: "This section defines macros for interacting with SoundBlaster and AdLib hardware. These macros abstract away low-level operations like writing to ports and handling delays, making the code more readable and maintainable. At the time, programming sound hardware required precise timing and direct manipulation of I/O ports, which was error-prone and hardware-specific. By encapsulating these operations in macros, the developers streamlined the process of issuing commands to the sound card, such as resetting the DSP or writing data for playback. This approach influenced later game engines and sound libraries, which adopted similar abstractions to simplify hardware interaction."
   - id: "timer-configuration"
-    line_start: 84
-    line_end: 215
+    line_start: 201
+    line_end: 261
     title: "Reprogramming the System Timer for Audio"
     wikipedia_url: "https://en.wikipedia.org/wiki/Programmable_interval_timer"
     image_url: ""
     image_caption: ""
     content: "The SDL_SetTimer0 and SDL_SetIntsPerSec functions reconfigure the PC's system timer to generate interrupts at a specific frequency, enabling precise timing for audio playback. This was critical for synchronizing sound effects and music with gameplay. The programmable interval timer (PIT) on IBM-compatible PCs allowed developers to adjust the interrupt rate, but doing so required careful handling to avoid disrupting other system functions. By dynamically adjusting the timer based on the active sound mode, id Software optimized audio performance while maintaining flexibility. This technique became a standard practice in real-time applications, influencing sound systems in later games and multimedia software."
   - id: "dma-soundblaster-playback"
-    line_start: 216
-    line_end: 337
+    line_start: 288
+    line_end: 338
     title: "DMA: The Secret to Smooth Sound Playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Direct_memory_access"
     image_url: ""
@@ -94,8 +94,8 @@ enhancements:
     image_caption: ""
     content: "The SD_StopDigitized function halts any ongoing digitized sound playback and resets related variables. It uses assembly instructions like `pushf` and `cli` to safely disable interrupts during critical operations, ensuring no conflicts arise with other system processes. This level of hardware control was necessary on early PCs, where sound cards shared resources with other peripherals. The routine also unlocks memory pages used for sound data, reflecting the tight memory constraints of the era. By ensuring clean shutdowns, id Software avoided bugs that could crash the game or leave the sound hardware in an unstable state—a common issue in early PC gaming."
   - id: "polling-for-sound"
-    line_start: 1081
-    line_end: 1105
+    line_start: 1083
+    line_end: 1106
     title: "Polling for Sound Playback: A Clever Workaround"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polling_(computer_science)"
     image_url: ""
@@ -126,24 +126,24 @@ enhancements:
     image_caption: ""
     content: "SD_Startup initializes the game's sound system, detecting available hardware and configuring playback modes. It supports multiple devices, including AdLib, SoundBlaster, and PC speaker, using modular routines for each. This flexibility was a hallmark of id Software's design philosophy, allowing Wolfenstein 3D to run on a wide range of hardware. The routine also installs a custom interrupt service routine (ISR) for timer-based sound synchronization, showcasing the team's expertise in low-level programming. The modularity demonstrated here influenced future game engines, which adopted similar strategies to support diverse hardware configurations while maintaining performance."
   - id: "default-sound-settings"
-    line_start: 2003
-    line_end: 2053
+    line_start: 2005
+    line_end: 2054
     title: "Setting Defaults: Making Sound Work Everywhere"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
     content: "SD_Default configures the game's sound system based on detected hardware and user preferences. It ensures fallback options are available if the requested devices are unsupported, prioritizing AdLib and PC speaker modes. This routine highlights id Software's commitment to accessibility, ensuring Wolfenstein 3D could deliver audio on nearly any PC setup. By abstracting hardware details and providing sensible defaults, the code reduces complexity for users and developers alike. This philosophy of graceful degradation influenced later software design, where robust defaults became standard practice for handling diverse environments."
   - id: "sound-shutdown-routine"
-    line_start: 2054
-    line_end: 2088
+    line_start: 2056
+    line_end: 2089
     title: "How Wolfenstein Freed Sound Hardware at Exit"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "The `SD_Shutdown` function is responsible for gracefully shutting down the sound system when the game exits. It ensures that all sound devices are properly turned off, including the SoundBlaster and SoundSource hardware, if present. The routine also disables interrupts temporarily to safely reset the hardware timer and restore the original interrupt vector. In the early 1990s, sound hardware was often finicky, and failing to clean up properly could leave the system in an unstable state. John Carmack and the team at id Software prioritized robustness in their code, ensuring that players wouldn’t experience lingering issues after quitting the game. This approach set a precedent for responsible hardware management in PC gaming, influencing later titles that relied on similar techniques to handle sound resources."
   - id: "user-hook-timer"
-    line_start: 2089
-    line_end: 2100
+    line_start: 2091
+    line_end: 2101
     title: "The 1/70th Second Sound Hook"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""

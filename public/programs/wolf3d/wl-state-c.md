@@ -30,32 +30,32 @@ summary:
 
 enhancements:
   - id: "opposite-direction-table"
-    line_start: 24
-    line_end: 38
+    line_start: 68
+    line_end: 99
     title: "The Table That Knows Opposite Directions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Array_data_structure"
     image_url: ""
     image_caption: ""
     content: "This small table defines the opposite direction for each of the eight cardinal and diagonal directions used in the game. By precomputing these relationships, the code avoids recalculating them dynamically, saving precious CPU cycles on the limited hardware of 1992. At the time, MS-DOS systems often ran on processors like the Intel 386, which lacked the speed and memory of modern machines. This approach reflects the era's emphasis on efficiency and simplicity. The concept of precomputing values in lookup tables became a staple in game development, influencing later engines like DOOM and Quake, where similar techniques were used for lighting and texture calculations."
   - id: "diagonal-direction-table"
-    line_start: 24
-    line_end: 38
+    line_start: 68
+    line_end: 99
     title: "Diagonal Movement Made Predictable"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
     image_caption: ""
     content: "This two-dimensional array maps combinations of cardinal directions to their diagonal equivalents. For example, moving north and east simultaneously results in northeast. This table ensures consistent behavior for diagonal movement, a crucial feature in Wolfenstein 3D's tile-based world. The design reflects the constraints of the time, where computational efficiency was paramount. Similar techniques were later adapted in pathfinding algorithms like A* and in games with grid-based movement, such as Civilization and Fire Emblem."
   - id: "spawn-new-actor"
-    line_start: 42
-    line_end: 43
+    line_start: 103
+    line_end: 178
     title: "How Wolfenstein Spawns New Enemies"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spawn_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `SpawnNewObj` function initializes a new actor in the game world, setting its position, state, and other properties. It uses a combination of tile-based coordinates and global units to ensure precise placement. The function also assigns a random tic count to the actor's state, introducing variability to enemy behavior. This approach highlights the game's reliance on deterministic yet dynamic systems to create engaging gameplay. The spawning mechanism influenced later games like DOOM, where enemies could appear dynamically based on player actions."
   - id: "try-walk-movement-check"
-    line_start: 45
-    line_end: 99
+    line_start: 181
+    line_end: 332
     title: "The AI's Struggle to Walk Forward"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
@@ -102,8 +102,8 @@ enhancements:
     image_caption: ""
     content: "The `DamageActor` function applies damage to an enemy, potentially killing it or putting it into a stun state. It doubles damage if the enemy is not in attack mode, encouraging players to strike preemptively. This mechanic adds depth to combat, rewarding strategic play. The function's design reflects the game's emphasis on fast-paced, tactical encounters. Similar damage systems became standard in FPS games, influencing titles like Half-Life and Call of Duty."
   - id: "check-line-visibility-algorithm"
-    line_start: 45
-    line_end: 99
+    line_start: 51
+    line_end: 51
     title: "The Algorithm That Checks Line of Sight"
     wikipedia_url: "https://en.wikipedia.org/wiki/Line_of_sight"
     image_url: ""
@@ -118,8 +118,8 @@ enhancements:
     image_caption: ""
     content: "The `CheckSight` function determines whether an enemy can see the player based on proximity, direction, and line-of-sight checks. It first ensures the player and enemy are in connected areas, then checks if the player is close enough for automatic detection. If not, it considers the enemy's facing direction and calls `CheckLine` to verify visibility. This routine showcases Wolfenstein 3D's AI design, which was groundbreaking for its time. It introduced a basic yet effective model of awareness, combining spatial reasoning with directional checks. The simplicity of this approach reflects the constraints of early 1990s hardware, where CPU cycles were precious, and developers had to prioritize gameplay responsiveness over complex calculations. The concept of directional awareness influenced stealth mechanics in later games, such as Thief and Metal Gear Solid. It also inspired more sophisticated AI routines in first-person shooters, where enemies react dynamically to player actions. The function's reliance on tile-based maps and integer math remains a study in efficient game design, influencing AI development in modern engines."
   - id: "first-sighting-reaction-mechanism"
-    line_start: 42
-    line_end: 43
+    line_start: 52
+    line_end: 65
     title: "The Reaction That Starts the Chase"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""

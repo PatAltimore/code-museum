@@ -46,16 +46,16 @@ enhancements:
     image_caption: ""
     content: "The `attackinfo` table is a compact lookup structure that defines the timing, type, and animation frames for player attacks. By organizing attack data in this way, the developers could easily adjust weapon behaviors without rewriting code. This technique was essential in an era when memory was limited and performance was paramount. Lookup tables like this became a staple in game development, appearing in later titles for managing animations, AI behaviors, and physics calculations. The influence of such data-driven design can be seen in modern game engines like Unity and Unreal, where configuration files and tables drive much of the gameplay logic."
   - id: "player-movement-control"
-    line_start: 54
-    line_end: 55
+    line_start: 134
+    line_end: 225
     title: "The Algorithm That Made Strafing Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Strafing_(gaming)"
     image_url: ""
     image_caption: ""
     content: "The `ControlMovement` function handles player movement, including strafing and angle adjustments. It uses variables like `controlx` and `controly` to determine movement direction and speed, applying trigonometric calculations to update the player’s position. The function also includes a hack to mitigate rounding errors at high frame rates, showcasing the developers’ attention to precision. In 1992, strafing was a novel mechanic that added depth to first-person gameplay, allowing players to dodge and maneuver effectively. This innovation influenced countless FPS titles, from Doom to Counter-Strike, and remains a fundamental feature in the genre."
   - id: "status-window-draw"
-    line_start: 54
-    line_end: 55
+    line_start: 236
+    line_end: 259
     title: "How Wolfenstein Updated Its HUD"
     wikipedia_url: "https://en.wikipedia.org/wiki/Heads-up_display_(video_games)"
     image_url: ""

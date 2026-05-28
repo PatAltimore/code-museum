@@ -30,24 +30,24 @@ summary:
 
 enhancements:
   - id: "quit-error-handling"
-    line_start: 7
-    line_end: 54
+    line_start: 333
+    line_end: 399
     title: "The Error Handler That Stops Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
     content: "The `Quit` function is a simple yet critical error handler that halts the program when a severe issue arises, such as running out of memory or encountering corrupted data. This approach reflects the constraints of early 1990s game development, where graceful recovery from errors was often impractical due to limited system resources and the need for performance. John Carmack's decision to implement a hard stop ensured that debugging was straightforward, as the program would fail immediately and visibly. This technique influenced later game engines, where similar error-handling mechanisms were used to prioritize stability during development."
   - id: "check-xms-driver"
-    line_start: 57
-    line_end: 74
+    line_start: 117
+    line_end: 143
     title: "How to Check for Extra Memory in 1992"
     wikipedia_url: "https://en.wikipedia.org/wiki/Expanded_memory"
     image_url: ""
     image_caption: ""
     content: "The `MML_CheckForXMS` function queries the presence of an Extended Memory Specification (XMS) driver by invoking interrupt `0x2f`. This low-level interaction with the hardware was necessary to determine whether the system supported extended memory, a crucial feature for running complex programs on MS-DOS. At the time, memory management was a significant challenge due to the 640KB conventional memory limit imposed by the IBM PC architecture. By checking for XMS, the game could utilize additional memory beyond this limit, enabling smoother gameplay and more complex features. This approach laid the groundwork for memory management techniques in later games and operating systems, where detecting and utilizing hardware capabilities became standard practice."
   - id: "allocate-upper-memory-blocks"
-    line_start: 76
-    line_end: 143
+    line_start: 146
+    line_end: 197
     title: "Allocating Upper Memory Blocks for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
