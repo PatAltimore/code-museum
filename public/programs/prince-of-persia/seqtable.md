@@ -9,170 +9,170 @@ year: 1989
 author: "Jordan Mechner"
 slug: "seqtable"
 order: 3
-description: "Sequence table and animation routines for Prince of Persia (1989), defining character movements and interactions in 6502 assembly for the Apple II."
+description: "Sequence table and animation routines for Prince of Persia's cinematic platforming on the Apple II."
 
 summary:
-  - point: "Defines animation sequences for cinematic platforming"
+  - point: "Sequence table maps animation states to routines"
     link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    link_label: "Prince of Persia (1989)"
-  - point: "Uses rotoscoping to create fluid character animations"
+    link_label: "Prince of Persia"
+  - point: "Routines use rotoscoped animation frames"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
-  - point: "Optimized for Apple II's 128K memory with bank-switching"
-    link: "https://en.wikipedia.org/wiki/Apple_II_series"
-    link_label: "Apple II series"
-  - point: "Introduced cinematic platforming genre"
-    link: "https://en.wikipedia.org/wiki/Cinematic_platformer"
-    link_label: "Cinematic platformer"
-  - point: "Solo development by Jordan Mechner over four years"
-    link: "https://en.wikipedia.org/wiki/Jordan_Mechner"
-    link_label: "Jordan Mechner"
+  - point: "Bank-switched memory enables complex animations in 128K"
+    link: "https://en.wikipedia.org/wiki/Bank_switching"
+    link_label: "Bank switching"
+  - point: "Innovative use of 6502 assembly for cinematic movement"
+    link: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
+    link_label: "6502 Assembly"
+  - point: "Influenced later cinematic platformers like Another World"
+    link: "https://en.wikipedia.org/wiki/Another_World_(video_game)"
+    link_label: "Another World"
 
 enhancements:
   - id: "sequence-table-instructions"
     line_start: 7
-    line_end: 11
-    title: "How 14 Instructions Controlled Everything"
+    line_end: 146
+    title: "How a Table Turns Code Into Cinematics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section defines 14 key instructions that drive the sequence table and animation logic for Prince of Persia. Each instruction corresponds to a specific action or state transition, such as 'goto' for jumping to another sequence, 'aboutface' for turning, or 'setfall' for initiating a fall. These instructions are the building blocks of the game's movement system. Jordan Mechner designed them to be compact and versatile, enabling complex animations to be encoded efficiently in assembly language. In the mid-1980s, memory constraints on the Apple II were severe, with only 128K available. Mechner's approach ensured that the game could fit within these limits while maintaining fluid animations. This instruction set became a precursor to scripting systems in later games, influencing how developers structured animation logic in titles like Another World and Flashback."
-  - id: "sequence-table-data"
+    content: "The opening lines define a set of instructions for the sequence table, mapping abstract actions like 'goto', 'up', and 'die' to numerical codes. These codes are later used to control animation routines and transitions. In this moment, Jordan Mechner is laying the groundwork for a modular animation system, where each action can be reused across different sequences. This approach was essential for the cinematic feel of Prince of Persia, as it allowed smooth transitions between complex movements like running, jumping, and fighting. In 1989, the Apple II's 6502 processor was limited to 128K of memory, requiring clever optimization. Mechner's use of a sequence table minimized redundant code and maximized the reuse of animation routines. This modularity influenced later games, including Another World and Flashback, which adopted similar techniques for cinematic platforming."
+  - id: "sequence-table-mapping"
     line_start: 1
     line_end: 5
-    title: "The Table That Made Animation Cinematic"
+    title: "The Table That Made Movement Fluid"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
-    content: "The sequence table maps animation frames to specific routines, defining how the Prince moves, jumps, fights, and interacts with the environment. Each entry in the table points to a subroutine that handles the corresponding animation logic. This design allowed Mechner to implement rotoscoped animations, traced from film footage of his brother performing the moves. The table's compact format was crucial for fitting the game into the Apple II's limited memory. At the time, cinematic animation in games was rare, and Mechner's work set a new standard for realism. The sequence table concept influenced later games like Another World, which also used rotoscoping to create lifelike movement."
-  - id: "running-animation-loop"
+    content: "This section defines the sequence table, mapping animation states to specific routines. Each entry links a numeric identifier to a routine like 'startrun' or 'climbup'. This mapping is the backbone of Prince of Persia's fluid animations. Mechner used rotoscoping to trace real-life movements, ensuring the animations felt lifelike. The sequence table ties these animations to gameplay logic, enabling transitions like running to jumping or climbing to falling. In the late 1980s, this level of detail was rare, especially on hardware as constrained as the Apple II. By organizing animations in a table, Mechner could efficiently manage memory and processor cycles. This technique inspired future developers to adopt similar systems, seen in games like Another World and even modern animation engines."
+  - id: "running-animation-routine"
     line_start: 148
     line_end: 154
-    title: "The Loop That Kept the Prince Running"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
+    title: "The Secret to Cinematic Running"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
     image_url: ""
     image_caption: ""
-    content: "The 'running' routine defines the animation loop for the Prince's running motion. It uses a series of frames and transitions to create the illusion of continuous movement. The loop cycles through frames stored in 'runcyc1' and other related variables, ensuring smooth animation. Mechner's use of loops and frame cycling was a clever way to achieve fluid motion on hardware with limited graphical capabilities. This technique became a staple in game development, influencing animation systems in later platformers and action games."
-  - id: "start-run-sequence"
-    line_start: 156
-    line_end: 177
-    title: "How the Prince Starts Running"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The 'startrun' routine handles the transition from standing to running. It initializes the animation frames and sets the horizontal movement speed using 'chx' values. This sequence ensures a smooth and realistic start to the running motion. Mechner's attention to detail in transitions like this contributed to the game's cinematic feel. The use of incremental frame adjustments and precise timing was groundbreaking for its era, influencing animation systems in games like Flashback and Oddworld."
-  - id: "stand-animation"
+    content: "The 'running' routine defines the animation and logic for the character's running state. It uses a series of frames ('runcyc1') and transitions to maintain fluid motion. Mechner's goal here was to make running feel natural and responsive, a key element of the game's cinematic platforming. On the Apple II, achieving smooth animation required precise timing and memory management. The routine leverages the sequence table to loop through frames efficiently, avoiding unnecessary calculations. This approach was groundbreaking for its time, setting a standard for lifelike movement in games. The technique influenced later games like Flashback, which also prioritized fluid character animations."
+  - id: "stand-animation-routine"
     line_start: 179
     line_end: 186
-    title: "The Simplicity of Standing Still"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
-    image_url: ""
-    image_caption: ""
-    content: "The 'stand' routine defines the Prince's idle animation when not performing any actions. It uses a single frame ('act,0') to represent the standing state. While simple, this routine is essential for grounding the character in the environment and providing a baseline for other animations. Mechner's minimalist approach to idle states ensured that memory was conserved for more complex sequences. This design influenced idle animations in later games, where standing states often serve as the foundation for transitions into movement or action."
-  - id: "alert-stand-animation"
-    line_start: 188
-    line_end: 196
-    title: "The Animation That Warned of Danger"
+    title: "Standing Still, But Never Static"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The 'alertstand' routine represents the Prince's reaction to nearby danger, transitioning from a neutral standing state to an alert posture. This animation loop ('loop db 166') adds tension and realism to the gameplay, signaling the player's need to prepare for action. Mechner's inclusion of subtle animations like this contributed to the game's immersive and cinematic quality. Alert animations became a common feature in later action-adventure games, enhancing player engagement and environmental storytelling."
+    content: "The 'stand' routine handles the character's idle state, ensuring even standing still feels dynamic. It loops through a single frame, maintaining the illusion of life. Mechner's attention to detail here reflects his cinematic ambitions—every moment, even inactivity, contributes to the game's immersive experience. In the constrained environment of the Apple II, routines like this had to be efficient, using minimal memory while still conveying realism. This focus on lifelike idle animations influenced later games, including Tomb Raider, which emphasized character presence even in stillness."
   - id: "arise-skeleton-animation"
     line_start: 198
     line_end: 209
-    title: "Animating the Skeleton's Resurrection"
+    title: "Animating the Undead: Skeleton Revival"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The 'arise' routine animates the skeleton's resurrection, a key moment in the game's narrative. It uses a sequence of frames and position adjustments ('chx' and 'chy') to create the illusion of the skeleton rising from the ground. This dramatic animation showcases Mechner's ability to blend storytelling with gameplay mechanics. The skeleton's resurrection became an iconic moment in Prince of Persia, influencing cinematic sequences in later games like Dark Souls and Shadow of the Colossus."
-  - id: "guard-engarde-animation"
-    line_start: 211
-    line_end: 216
-    title: "The Guard Takes a Defensive Stance"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The 'guardengarde' routine transitions the guard character into a defensive stance, preparing for combat. This routine uses a simple 'goto' instruction to loop back to the 'ready' state, ensuring the guard remains in position until an action occurs. Mechner's use of defensive stances added depth to the game's combat system, influencing enemy AI behavior in later games like Assassin's Creed and The Witcher series."
-  - id: "engarde-animation"
-    line_start: 218
-    line_end: 227
-    title: "The Prince Prepares to Duel"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The 'engarde' routine transitions the Prince into a combat-ready stance, setting the stage for sword fights. It adjusts the character's position ('chx') and initializes the animation frames for the dueling sequence. Mechner's focus on fluid transitions between states ensured that combat felt dynamic and responsive. This approach influenced the design of combat systems in later games, including the fencing mechanics in The Legend of Zelda: Twilight Princess."
-  - id: "ready-animation"
-    line_start: 228
-    line_end: 236
-    title: "The Calm Before the Sword Strike"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The 'ready' routine represents the Prince's preparation for combat, transitioning into a poised stance. This animation loop ('loop db 171') maintains tension while waiting for the player's input. Mechner's use of anticipation in animations added a cinematic quality to the gameplay, influencing how readiness states were implemented in later action games like God of War and Devil May Cry."
-  - id: "testfoot-animation-trigger"
-    line_start: 1037
-    line_end: 1054
-    title: "How a Footstep Became Cinematic"
+    content: "The 'arise' routine animates the skeleton enemy coming to life. It uses a series of coordinated movements ('chx', 'chy') to simulate the skeleton assembling itself. This moment showcases Mechner's cinematic storytelling—turning a simple enemy introduction into a dramatic event. The Apple II's limited graphics capabilities made such sequences challenging, requiring precise frame control and memory optimization. Mechner's use of rotoscoping and modular animation routines allowed him to create this memorable sequence. The skeleton's revival became an iconic moment in Prince of Persia, influencing later games to incorporate cinematic enemy introductions, such as Dark Souls' boss awakenings."
+  - id: "jumpfall-animation"
+    line_start: 685
+    line_end: 698
+    title: "Falling with Style: Jump Transitions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
-    content: "The 'testfoot' sequence encodes animation frames for a footstep, including horizontal movement (chx) and visual frame transitions. This sequence is part of the game's rotoscoped animation system, where Jordan Mechner traced filmed footage of his brother to create lifelike movement. At the time, encoding such detailed animations in assembly was groundbreaking, especially given the Apple II's hardware constraints. The use of 'goto' and 'dw stand' ensures smooth transitions between animation states. This technique influenced later cinematic platformers, such as Flashback and Another World, which also prioritized fluid character motion."
-  - id: "stepback-retreat-animation"
+    content: "The 'jumpfall' routine handles the transition from jumping to falling, using a series of frames to simulate gravity and momentum. Mechner's goal was to make every movement feel intentional and weighty, enhancing the game's cinematic realism. The routine uses 'chx' and 'chy' to adjust the character's position frame by frame, creating a smooth descent. On the Apple II, simulating physics was a significant challenge due to hardware limitations. Mechner's solution was to predefine movement patterns, optimizing for both memory and processor cycles. This approach influenced later platformers like Another World, which also emphasized realistic movement and transitions."
+  - id: "climbup-animation"
+    line_start: 813
+    line_end: 845
+    title: "Scaling Walls: The Art of Climbing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The 'climbup' routine animates the character scaling a ledge, a signature move in Prince of Persia. It uses a series of frames to depict the climb, adjusting 'chx' and 'chy' to simulate vertical movement. Mechner's rotoscoping technique ensured the animation felt lifelike, capturing the effort and precision of climbing. On the Apple II, this level of detail was rare, requiring careful optimization to fit within memory constraints. The climbing mechanic became a hallmark of cinematic platformers, influencing games like Tomb Raider and Uncharted, which expanded on the concept with more complex climbing systems."
+  - id: "superhijump-animation"
+    line_start: 928
+    line_end: 961
+    title: "Defying Gravity: The Super High Jump"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
+    image_url: ""
+    image_caption: ""
+    content: "The 'superhijump' routine animates an exaggerated jump, simulating weightlessness. It adjusts 'chy' values to create the illusion of floating, a rare and dramatic movement in the game. Mechner designed this routine to add variety and surprise to the gameplay, breaking the monotony of standard jumps. On the Apple II, such sequences pushed the limits of the 6502 processor, requiring precise timing and memory management. The super high jump's dramatic flair influenced later games, inspiring developers to include unique movement mechanics, such as the gravity-defying jumps in Ori and the Blind Forest."
+  - id: "testfoot-animation-sequence"
+    line_start: 1037
+    line_end: 1054
+    title: "How 'Testfoot' Anchored Animation Logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    image_url: ""
+    image_caption: ""
+    content: "The 'testfoot' sequence defines a foundational animation frame for the Prince character, focusing on foot placement and movement. This sequence uses data bytes to specify frame transitions, offsets (via 'chx'), and the next animation state ('goto stand'). At the time, Jordan Mechner was pioneering cinematic animation in games, leveraging rotoscoping techniques to trace real-life movements for fluidity. The Apple II's hardware constraints meant every byte had to be meticulously optimized, and sequences like 'testfoot' were crucial in ensuring smooth transitions between states without consuming excessive memory. This approach influenced later cinematic platformers, such as Another World (1991), which also emphasized lifelike animations."
+  - id: "stepback-prince-movement"
     line_start: 1056
     line_end: 1062
-    title: "The Art of Stepping Back"
+    title: "The Prince Takes a Step Back"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The 'stepback' sequence defines a retreating motion, a subtle yet critical animation for Prince of Persia's gameplay. It uses 'chx,-5' to move the character backward while transitioning to a standing state. This animation reflects the game's emphasis on precision and timing, as players often need to retreat to avoid traps or enemies. Mechner's attention to detail in animating such movements set a standard for realistic character interactions in platformers, influencing games like Tomb Raider and Uncharted decades later."
-  - id: "step-forward-pixel-precision"
+    content: "The 'stepback' routine encodes the Prince's backward movement, a subtle yet essential animation for gameplay. By adjusting the horizontal position ('chx,-5') and transitioning to the 'stand' state, this sequence allows the Prince to retreat gracefully—a movement critical for avoiding traps or repositioning during combat. In 1989, such detailed animations were groundbreaking, as most games relied on simpler, less fluid character motions. Mechner's focus on realism set a new standard, inspiring developers to prioritize character believability in games like Flashback (1992)."
+  - id: "step-forward-precision"
     line_start: 1064
-    line_end: 1069
-    title: "Pixel-Perfect Forward Steps"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    line_end: 1083
+    title: "Precision in Forward Steps: 14 Pixels"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
-    content: "The 'step14' sequence encodes a forward step spanning 14 pixels, with precise adjustments to the character's position (chx) and visual frames. This level of detail was essential for the game's platforming mechanics, where every movement had to align perfectly with the environment. Mechner's use of incremental steps (step14, step13, etc.) allowed for granular control over animations, ensuring smooth transitions and responsiveness. This approach influenced the design of later platformers, where pixel-perfect movement became a hallmark of the genre."
-  - id: "stoop-crouch-animation"
+    content: "The 'step14' routine encodes a forward movement of 14 pixels, showcasing the game's attention to detail in character animation. Each byte specifies frame transitions, horizontal offsets ('chx'), and the next animation state. Mechner's rotoscoping technique ensured these movements mirrored real-life actions, filmed and traced frame by frame. This precision was vital for the Prince's interactions with the environment, such as jumping gaps or avoiding traps. The technique influenced later games that sought to replicate lifelike motion, including the Tomb Raider series, which emphasized realistic character movement."
+  - id: "rotoscoping-step11"
+    line_start: 1115
+    line_end: 1125
+    title: "Step11: Directly Traced from Film"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    image_url: ""
+    image_caption: ""
+    content: "The 'step11' routine is explicitly noted as corresponding directly to filmed sequences, highlighting Mechner's use of rotoscoping. By filming his brother performing movements and tracing them frame by frame, Mechner achieved an unprecedented level of realism in animation. This sequence encodes the Prince's movement with precise offsets ('chx') and transitions between frames. The technique was revolutionary for its time, influencing not only cinematic platformers but also the broader gaming industry, where lifelike animations became a hallmark of immersive storytelling."
+  - id: "stoop-animation"
     line_start: 1224
     line_end: 1236
-    title: "The Low Profile: Stoop and Crouch"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    title: "The Prince Stoops: A Cinematic Gesture"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
     image_url: ""
     image_caption: ""
-    content: "The 'stoop' sequence encodes the animation for crouching, a vital action for avoiding traps and navigating tight spaces. It transitions smoothly to a crouch state using 'goto' and 'dw :crouch'. This animation showcases Mechner's focus on realistic character movements, which were rare in games of the era. The crouching mechanic added depth to the gameplay, requiring players to think strategically about their movements. This innovation paved the way for stealth mechanics in later games like Metal Gear Solid."
+    content: "The 'stoop' sequence encodes the Prince crouching, a subtle yet expressive animation that adds depth to his character. Using 'chx' offsets and frame transitions, this routine allows the Prince to interact with the environment, such as ducking under obstacles or preparing for a jump. Mechner's focus on cinematic storytelling meant even minor movements were carefully crafted to enhance immersion. This attention to detail influenced later games like Limbo (2010), where character animations played a key role in conveying emotion and narrative."
   - id: "pickupsword-animation"
     line_start: 1255
     line_end: 1265
-    title: "How to Pick Up a Sword"
+    title: "Picking Up the Sword: A Hero's Moment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The 'pickupsword' sequence defines the animation for retrieving the sword, a pivotal moment in the game. It uses 'effect,1' to trigger visual effects, followed by a series of frames representing the action. This sequence highlights Mechner's cinematic approach, treating even mundane actions as opportunities for storytelling. The sword pickup is not just functional but symbolic, marking the player's readiness to face combat challenges. This attention to detail influenced the narrative-driven animations in games like The Last of Us."
-  - id: "climbstairs-complex-motion"
+    content: "The 'pickupsword' routine encodes the Prince's iconic moment of picking up his sword, marking his transition from a vulnerable protagonist to a capable hero. This sequence uses animation frames ('db') and effects ('effect,1') to emphasize the significance of the action. In 1989, such cinematic moments were rare in games, and Mechner's emphasis on storytelling through animation set a new standard. This approach inspired later games to integrate narrative and gameplay seamlessly, as seen in The Last of Us (2013)."
+  - id: "drinkpotion-animation"
+    line_start: 1294
+    line_end: 1311
+    title: "Drinking Potion: Animation Frames Cut for Memory"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
+    image_url: ""
+    image_caption: ""
+    content: "The 'drinkpotion' routine encodes the Prince's animation for consuming a potion, a critical gameplay mechanic. Notably, comments suggest cutting frames (202/204 or 201/203) if memory constraints arise, reflecting the challenges of developing for the Apple II's limited 128K memory. Mechner's use of bank-switched memory allowed him to fit complex animations into the hardware, a technique that influenced optimization strategies in later games. Developers of titles like Diablo (1996) would similarly balance animation detail with memory constraints."
+  - id: "hardland-animation"
+    line_start: 1376
+    line_end: 1388
+    title: "Hard Land: The Splat Heard Around the World"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cinematic_platformer"
+    image_url: ""
+    image_caption: ""
+    content: "The 'hardland' routine encodes the Prince's fall from a height greater than two stories, resulting in his death ('die'). This sequence uses dramatic animation frames to convey the impact, emphasizing the game's cinematic approach to storytelling. Mechner's focus on realism extended to consequences, making the Prince's vulnerability a core part of the gameplay experience. This approach influenced later games like Dark Souls (2011), where player mortality and realism were central themes."
+  - id: "climbstairs-animation"
     line_start: 1459
     line_end: 1491
-    title: "Climbing Stairs: A Technical Feat"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
+    title: "Climbing Stairs: A Fluid Motion"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
     image_url: ""
     image_caption: ""
-    content: "The 'climbstairs' sequence encodes a complex climbing animation, involving both horizontal (chx) and vertical (chy) movements. This sequence demonstrates Mechner's ability to simulate realistic motion within the Apple II's constraints. The use of 'tap' and incremental adjustments creates a fluid climbing action, essential for the game's platforming challenges. This technique inspired similar climbing mechanics in games like Assassin's Creed, where smooth transitions between movements are critical."
-  - id: "princess-embrace-animation"
-    line_start: 1601
-    line_end: 1619
-    title: "The Princess's Embrace: A Cinematic Touch"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The 'Pembrace' sequence encodes the animation for the Princess's embrace, a tender moment in the game's narrative. It uses precise adjustments (chx) to simulate lifelike movements, adding emotional depth to the interaction. This sequence reflects Mechner's cinematic vision, where character animations serve both gameplay and storytelling. The embrace scene influenced the use of animation to convey emotion in later games, such as Journey and Shadow of the Colossus."
-  - id: "mouse-scurry-animation"
+    content: "The 'climbstairs' routine encodes the Prince's fluid motion as he ascends stairs, using precise offsets ('chx' and 'chy') and frame transitions. This sequence showcases Mechner's dedication to lifelike animations, achieved through rotoscoping. The Apple II's hardware constraints required careful optimization, and routines like 'climbstairs' balanced realism with memory efficiency. This technique influenced later games that emphasized environmental interaction, such as Assassin's Creed (2007), which built on the legacy of cinematic platformers."
+  - id: "mouse-animation-sequences"
     line_start: 1665
-    line_end: 1669
-    title: "The Mouse That Scurries"
+    line_end: 1675
+    title: "The Mouse: A Supporting Character's Animation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The 'Mscurry1' sequence encodes the animation for a mouse scurrying across the screen, adding a dynamic element to the environment. It uses 'chx' to adjust the mouse's position, creating a sense of urgency and motion. This small detail showcases Mechner's commitment to creating a living world, where even minor characters have lifelike behaviors. The mouse's scurry influenced the inclusion of ambient animations in later games, enhancing immersion and realism."
+    content: "The mouse sequences ('Mscurry', 'Mstop', 'Mraise', 'Mleave', 'Mclimb') encode the animations for one of the game's supporting characters. These routines use offsets ('chx', 'chy') and looping frames to create lifelike movements, adding charm and depth to the game's world. Mechner's attention to detail extended to minor characters, enhancing the game's cinematic feel. This approach influenced later games that used supporting characters to enrich storytelling, such as Ori and the Blind Forest (2015)."
 
 ---
 
