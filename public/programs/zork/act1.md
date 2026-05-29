@@ -9,146 +9,124 @@ year: 1977
 author: "Anderson, Blank, Daniels, Lebling"
 slug: "act1"
 order: 4
-description: "This file contains a portion of Zork's source code, showcasing its innovative use of MDL for interactive storytelling and environmental manipulation."
+description: "This file contains MDL source code for Zork's first act, showcasing early interactive fiction mechanics and room-based gameplay logic."
 
 summary:
-  - point: "Zork's code demonstrates early interactive fiction mechanics."
+  - point: "MDL's Lisp-like syntax enabled complex game logic in Zork"
+    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
+    link_label: "MDL Programming Language"
+  - point: "Zork pioneered interactive storytelling on ARPANET"
     link: "https://en.wikipedia.org/wiki/Zork"
     link_label: "Zork"
-  - point: "MDL's Lisp-like syntax enabled complex game logic."
-    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    link_label: "MDL"
-  - point: "Environmental interactivity, such as trap doors and grates, was groundbreaking."
+  - point: "Room descriptions and object interactions defined early text-based adventure game design"
     link: "https://en.wikipedia.org/wiki/Interactive_fiction"
     link_label: "Interactive Fiction"
-  - point: "Zork pioneered text-based adventure games on ARPANET."
-    link: "https://en.wikipedia.org/wiki/ARPANET"
-    link_label: "ARPANET"
-  - point: "The game influenced later adventure games like Infocom's titles."
-    link: "https://en.wikipedia.org/wiki/Infocom"
-    link_label: "Infocom"
 
 enhancements:
   - id: "define-blo-type-checking"
     line_start: 3
     line_end: 10
-    title: "Why Zork Needed Custom Type Handling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
+    title: "How Zork Validated Types in MDL"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Type_system"
     image_url: ""
     image_caption: ""
-    content: "The BLO function is an example of Zork's reliance on MDL's ability to manipulate types dynamically. This function checks the type of an object and sets up a custom read table for ASCII characters, allowing the game to parse and evaluate input efficiently. In the late 1970s, programming languages like MDL were pushing the boundaries of what interactive software could do. The DEC PDP-10, Zork's host machine, had limited memory and processing power, so developers had to use clever tricks like this to optimize performance. This approach to type handling influenced later games and programming languages, demonstrating the power of dynamic typing and evaluation in interactive systems."
-  - id: "define-east-house-description"
+    content: "This section defines the BLO function, which performs type checking and sets up read tables for parsing game data. The programmer's immediate goal was to ensure that the game engine could handle various types of input and data structures dynamically. In 1977, type checking was a critical feature for interactive systems, especially in MDL, a Lisp dialect. MDL's flexibility allowed Zork's developers to create a robust parsing system for player commands. This approach influenced later text-based games and engines, such as Infocom's Z-machine, which inherited many of MDL's dynamic capabilities."
+  - id: "define-east-house-room-description"
     line_start: 23
-    line_end: 33
-    title: "Behind the White House: A Window's Story"
+    line_end: 37
+    title: "Behind the White House: A Room Description"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The EAST-HOUSE function describes the area behind the iconic white house, a memorable location for Zork players. It dynamically adjusts the description based on the state of the kitchen window (open or ajar). This level of environmental interactivity was revolutionary for its time, creating a sense of immersion in a purely text-based world. The white house became a symbol of adventure gaming, and its detailed descriptions inspired future games to include similarly interactive environments."
-  - id: "define-window-function"
+    content: "The EAST-HOUSE function provides a detailed description of the area behind the white house, including the state of a small window. This room description is a hallmark of Zork's immersive storytelling, where environmental details are tied to gameplay mechanics. In the late 1970s, text-based games relied heavily on evocative descriptions to engage players. The white house became an iconic location in Zork, influencing the design of narrative-driven games like King's Quest and later RPGs. The use of conditional flags to describe the window's state showcases early dynamic storytelling techniques."
+  - id: "define-window-function-interaction"
     line_start: 39
     line_end: 44
-    title: "Opening Windows with Text Commands"
+    title: "Opening and Closing the Kitchen Window"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "WINDOW-FUNCTION allows players to interact with the kitchen window, opening or closing it with text commands. This function uses the OPEN-CLOSE subroutine to handle the state changes and provide appropriate feedback. In the 1970s, such interactivity was groundbreaking, as most games were limited to static environments. Zork's ability to let players manipulate objects in the game world set a precedent for interactive fiction, influencing titles like 'Adventure' and later graphical adventure games."
-  - id: "define-leaf-pile-burning"
+    content: "The WINDOW-FUNCTION handles player interactions with the kitchen window, allowing it to be opened or closed. This mechanic demonstrates Zork's emphasis on interactive environments, where objects respond to player actions. In 1977, such interactivity was groundbreaking, as most games were limited to static environments. This function uses conditional logic to provide feedback based on the player's actions, a technique that became standard in adventure games. The ability to manipulate objects in the game world laid the groundwork for more complex systems in later titles like Ultima and The Legend of Zelda."
+  - id: "define-leaf-pile-burning-consequences"
     line_start: 77
     line_end: 91
-    title: "Burning Leaves: A Neighbor's Complaint"
+    title: "Burning Leaves: A Risky Interaction"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The LEAF-PILE function showcases Zork's humor and environmental interactivity. Players can attempt to burn or move a pile of leaves, triggering amusing consequences like complaints from neighbors or being barred from the game world. This function reflects the developers' creativity in crafting a rich, reactive world. The ability to interact with seemingly mundane objects added depth to the game and influenced the design of later adventure games, where environmental storytelling became a key feature."
-  - id: "define-glacier-room"
+    content: "The LEAF-PILE function allows players to interact with a pile of leaves, including burning them. This interaction showcases Zork's ability to simulate consequences for player actions, such as upsetting neighbors or triggering game-ending events. In the late 1970s, games rarely included such detailed cause-and-effect systems. Zork's developers, inspired by tabletop role-playing games, sought to create a world where player choices mattered. This approach influenced later games like Fallout and The Sims, which expanded on the idea of dynamic consequences in simulated environments."
+  - id: "define-glacier-room-dynamic-environment"
     line_start: 101
     line_end: 107
-    title: "Melting the Glacier: Fire Meets Ice"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    title: "Melting the Glacier: Environmental Change"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Environmental_storytelling"
     image_url: ""
     image_caption: ""
-    content: "GLACIER-ROOM describes a location with giant icicles and a melting glacier. The room dynamically changes based on the player's actions, such as throwing a torch to melt the glacier and reveal a passageway. This environmental manipulation was a hallmark of Zork, showcasing the developers' ingenuity in creating puzzles that felt logical and rewarding. The technique of altering environments based on player input influenced the design of puzzles in later games like 'Myst' and 'The Legend of Zelda.'"
-  - id: "define-living-room"
+    content: "The GLACIER-ROOM function describes a room with a glacier that can be melted, revealing a passageway. This mechanic highlights Zork's use of environmental storytelling, where players alter the game world to progress. In 1977, such dynamic environments were rare, as most games featured static levels. The ability to change the state of a room based on player actions was a precursor to modern environmental storytelling in games like Half-Life and Bioshock. Zork's developers leveraged MDL's flexibility to create these interactive scenarios, pushing the boundaries of text-based gameplay."
+  - id: "define-living-room-trap-door"
     line_start: 176
     line_end: 209
-    title: "The Living Room: A Trap Door's Secret"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    title: "Living Room: The Trap Door Puzzle"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Puzzle_video_game"
     image_url: ""
     image_caption: ""
-    content: "The LIVING-ROOM function describes one of Zork's most iconic locations, complete with a trap door hidden under a rug. Players can interact with the environment to discover the trap door and descend into the dungeon. This room exemplifies Zork's layered storytelling, where simple descriptions hide deeper secrets. The concept of hidden pathways and interactive environments became a staple in adventure games, inspiring titles like 'Ultima' and 'King's Quest.'"
-  - id: "define-mirror-room"
+    content: "The LIVING-ROOM function describes the room and its iconic trap door, which can be opened or closed based on specific conditions. This puzzle exemplifies Zork's innovative approach to integrating puzzles into the narrative. In the late 1970s, puzzles in games were often abstract and disconnected from the story. Zork's developers aimed to create puzzles that felt organic to the game's world, a design philosophy that influenced titles like Myst and Portal. The trap door became a memorable feature of Zork, showcasing the game's blend of storytelling and gameplay."
+  - id: "define-mirror-room-reflection-mechanics"
     line_start: 419
     line_end: 430
-    title: "Breaking Mirrors: Seven Years of Luck"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    title: "Mirror Room: Reflections and Destruction"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "MIRROR-ROOM and MIRROR-MIRROR introduce a fascinating mechanic where players can interact with a giant mirror, even breaking it to trigger consequences. The mirror's state affects the room description and gameplay, reflecting Zork's commitment to reactive storytelling. The idea of objects with multiple states influencing the game world inspired later games like 'The Sims,' where player actions dynamically change the environment."
-  - id: "define-dam-room"
+    content: "The MIRROR-ROOM function describes a room with a giant mirror that can be broken or interacted with. This mechanic adds a layer of complexity to Zork's gameplay, where player actions have lasting effects on the environment. In 1977, such mechanics were groundbreaking, as they introduced the idea of persistent world changes. The mirror's destruction serves as a narrative and gameplay element, influencing the player's experience. This feature inspired later games like The Legend of Zelda: Ocarina of Time, which used environmental changes to enhance storytelling and gameplay."
+  - id: "define-dam-room-control-panel"
     line_start: 679
     line_end: 699
-    title: "Flood Control Dam #3: A Tourist Attraction"
+    title: "Flood Control Dam #3: A Scenic Puzzle"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "DAM-ROOM describes the top of Flood Control Dam #3, a location with dynamic water levels and interactive elements like a control panel. Players can manipulate the sluice gates to change the environment, showcasing Zork's innovative approach to environmental puzzles. The dam became a memorable part of the game, influencing the design of later titles with dynamic environments, such as 'Half-Life' and 'Bioshock.'"
-  - id: "define-maint-room"
-    line_start: 737
-    line_end: 778
-    title: "Maintenance Room: The Water Rises"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    content: "The DAM-ROOM function describes the top of Flood Control Dam #3, including a control panel with a bolt and a glowing green bubble. This room combines scenic description with puzzle mechanics, requiring players to manipulate the dam's sluice gates. In the late 1970s, Zork's developers used such puzzles to challenge players while immersing them in the game's world. The dam's control panel is an early example of environmental puzzles, influencing later adventure games like Tomb Raider and Uncharted. The room's detailed description showcases Zork's commitment to creating a believable and engaging game world."
+  - id: "object-interactions-filling-bottles"
+    line_start: 829
+    line_end: 839
+    title: "Object Interactions: Filling Bottles with Water"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
     image_url: ""
     image_caption: ""
-    content: "MAINT-ROOM introduces a mechanic where players can raise the water level by interacting with buttons. This dynamic environment adds tension and challenge, as flooding the room can lead to the player's demise. The concept of environmental hazards influenced later games like 'Tomb Raider' and 'Uncharted,' where players navigate dangerous, changing landscapes."
-  - id: "with-tell-object-description"
-    line_start: 801
-    line_end: 803
-    title: "How Objects Gain Personality in Text"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "The `WITH-TELL` subroutine generates descriptive text for objects, adding flavor to the game world. It combines static text ('With a ') with dynamic object descriptions (`<ODESC2 .OBJ>`), creating a personalized message for the player. This technique was vital in making Zork's world feel alive and interactive. In 1977, text-based games relied heavily on evocative descriptions to engage players, as graphical interfaces were non-existent. The authors, Anderson, Blank, Daniels, and Lebling, drew inspiration from their experience at MIT's Dynamic Modeling Group, where MDL was developed. This approach influenced later interactive fiction titles, such as Infocom's subsequent games, and laid the groundwork for rich narrative-driven games like The Secret of Monkey Island."
-  - id: "cave2-room-candle-extinguish"
-    line_start: 805
-    line_end: 814
-    title: "The Wind That Blows Out Candles"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "The `CAVE2-ROOM` subroutine simulates environmental effects, such as wind extinguishing candles. It checks if the player is carrying a candle (`<MEMQ <SET C <FIND-OBJ \"CANDL\">> <AOBJS ,WINNER>>`) and applies a random probability (`<PROB 50>`). If conditions are met, the candle's light is disabled (`<PUT .C ,OLIGHT? -1>`), and the player is informed via a message. This mechanic added realism and tension to the gameplay, emphasizing resource management. In the late 1970s, such dynamic interactions were groundbreaking, as most games relied on static environments. The technique inspired environmental storytelling in later games, influencing titles like Ultima and The Legend of Zelda."
-  - id: "bottle-function-destruction"
-    line_start: 816
-    line_end: 827
-    title: "When Bottles Meet Walls"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "The `BOTTLE-FUNCTION` subroutine handles player interactions with bottles, such as throwing or destroying them. It checks the action (`<==? <1 .PRSACT> THROW!-WORDS>`) and provides context-sensitive responses, including removing the bottle from the game world (`<REMOVE-OBJECT <2 ,PRSVEC>>`). This mechanic reflects the game's emphasis on player agency and consequences. In 1977, Zork's developers were pioneering ways to make text-based worlds feel responsive. The ability to destroy objects added depth to gameplay, influencing later adventure games like King's Quest, where object permanence and consequences became staples."
-  - id: "cyclops-character-behavior"
+    content: "This section handles the logic for filling bottles with water, a common puzzle mechanic in adventure games. The code checks conditions like the presence of water, the state of the bottle (open or closed), and the player's location. If successful, the bottle is filled, and the game updates its state accordingly. In the late 1970s, object interactions like this were innovative, as most games had limited environmental manipulation. Zork's detailed handling of objects and their states set a precedent for future adventure games, where solving puzzles often involved manipulating items in creative ways. This mechanic influenced games like King's Quest and Myst, which expanded on the concept of object-based puzzles."
+  - id: "cyclops-encounter-dynamic-responses"
     line_start: 934
     line_end: 999
-    title: "Cyclops: The Hungry Guardian"
+    title: "Cyclops Encounter: Dynamic Responses to Player Actions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The `CYCLOPS` subroutine defines the behavior of the Cyclops, a key character in Zork. It reacts dynamically to player actions, such as offering food or engaging in combat. The Cyclops can fall asleep (`<SETG CYCLOPS-FLAG!-FLAG T>`), wake up (`<TRZ <SET CYC <FIND-OBJ \"CYCLO\">> ,SLEEPBIT>`), or even eat the player (`<JIGS-UP \"The cyclops... eats you.\">`). This level of interactivity was revolutionary in 1977, showcasing how characters could feel alive in a text-based world. The Cyclops's behavior influenced NPC design in later games, such as Baldur's Gate, where characters had complex AI-driven responses."
-  - id: "robber-character-interaction"
+    content: "This section defines the Cyclops encounter, a memorable part of Zork's gameplay. The Cyclops reacts dynamically to player actions such as fighting, throwing items, or offering food. The logic includes humorous responses, like the Cyclops refusing garlic or commenting on hot peppers. Written in MDL, the code uses conditional statements to handle varying player inputs and outcomes. In 1977, text-based games were still in their infancy, and Zork's ability to simulate a living world with responsive characters was groundbreaking. The Cyclops encounter exemplifies the game's blend of humor and challenge, setting a standard for NPC interactions in adventure games. This approach influenced later games like Infocom's other titles and even modern RPGs, where NPCs exhibit complex behaviors."
+  - id: "randomized-humor-player-feedback"
+    line_start: 1156
+    line_end: 1161
+    title: "Randomized Humor: Feedback for Jumping Actions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Text-based_game"
+    image_url: ""
+    image_caption: ""
+    content: "The 'WHEEEEE' responses provide randomized feedback for jumping actions, showcasing Zork's playful tone. Players receive humorous messages like 'Have you tried hopping around the dungeon, too?' or 'Do you expect me to applaud?' This feature reflects the game's design philosophy of engaging players with wit and surprise. In the late 1970s, humor in games was rare, as most were focused on technical challenges or simulations. Zork's use of humor helped distinguish it from other text-based games, creating a more immersive and enjoyable experience. This technique of injecting personality into game responses influenced later adventure games, including LucasArts' Monkey Island series, which became famous for its comedic dialogue."
+  - id: "player-actions-curses-feedback"
+    line_start: 1270
+    line_end: 1278
+    title: "Curses and Feedback: Player Actions with Humor"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Text-based_game"
+    image_url: ""
+    image_caption: ""
+    content: "The 'CURSES' routine provides humorous feedback when players use inappropriate language. Responses range from 'You ought to be ashamed of yourself' to 'Tough shit, asshole.' This feature highlights Zork's playful and irreverent tone, which was a departure from the serious or mechanical nature of most games at the time. By acknowledging and reacting to unconventional player input, Zork created a more interactive and engaging experience. This approach to player feedback influenced later games that embraced humor and player agency, such as The Stanley Parable and Undertale, where unconventional actions are met with unique responses."
+  - id: "robber-character-dynamic-npc"
     line_start: 1284
     line_end: 1460
-    title: "The Robber Who Steals Everything"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    title: "The Robber: A Dynamic NPC with Complex Logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Non-player_character"
     image_url: ""
     image_caption: ""
-    content: "The `ROBBER` subroutine introduces a character who interacts unpredictably with the player. The Robber can steal items (`<ROB-ROOM .RM .HH 100>`), fight (`<FIGHTING? .HOBJ>`), or flee (`<REMOVE-OBJECT .HOBJ>`). His behavior is influenced by probabilities and the player's actions. This mechanic added tension and unpredictability to Zork, making encounters memorable. In 1977, such dynamic NPCs were rare, as most games relied on static characters. The Robber's design influenced later RPGs, such as Skyrim, where NPCs could steal, fight, or react dynamically to the player's choices."
-  - id: "chalice-take-prevention"
-    line_start: 1587
-    line_end: 1597
-    title: "The Chalice You Can't Take"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
-    image_url: ""
-    image_caption: ""
-    content: "The `CHALICE` subroutine prevents players from taking the chalice under specific conditions. If the chalice is guarded by the thief (`<HACTION ,ROBBER-DEMON>`), the player is warned about the danger (`<TELL \"Realizing just in time...\">`). This mechanic emphasizes risk assessment and strategic thinking, hallmarks of Zork's design. In 1977, such nuanced object interactions were groundbreaking, as most games offered binary choices. The chalice's design influenced later puzzle games, such as Myst, where players had to consider consequences before acting."
+    content: "The Robber character is a dynamic NPC who interacts with the player and the environment in sophisticated ways. He can steal items, fight, flee, and even drop items deemed worthless. The logic includes probabilistic outcomes and detailed responses based on the player's actions and the Robber's state. This level of complexity was rare in 1977, as most games featured static or predictable NPCs. The Robber's behavior adds tension and unpredictability to the gameplay, making him a memorable antagonist. This approach to NPC design influenced later games with dynamic characters, such as Ultima and The Elder Scrolls series, where NPCs have schedules, personalities, and adaptive behaviors."
   - id: "burning-objects-and-player-consequences"
     line_start: 1602
     line_end: 1622
@@ -156,63 +134,71 @@ enhancements:
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The BURNER subroutine handles interactions where players attempt to burn objects. It checks whether the object is flammable, whether the player is holding it, and whether the burning action results in destruction or harm to the player. This routine reflects the game's focus on realism and humor, as players who burn objects they're holding face immediate consequences. Written in MDL, this logic showcases the flexibility of the language for handling conditional and narrative-driven outcomes. At the time, text-based games like Zork were pioneering the concept of interactive storytelling, where player actions directly influenced the game world. This approach inspired later adventure games, such as Infocom's subsequent titles and Sierra's graphical adventures, which built on the idea of dynamic object interactions."
-  - id: "turning-objects-with-tools"
+    content: "The 'BURNER' routine handles the interaction where players attempt to burn objects. It checks if the object is flammable and whether the player possesses it. If the object is held by the player, it catches fire, resulting in the player's demise—a humorous yet brutal consequence. This reflects Zork's penchant for blending dark humor with gameplay mechanics. In the late 1970s, interactive fiction was still in its infancy, and Zork's developers were experimenting with ways to make the game world feel responsive and alive. The idea of objects having specific properties, like 'flammable,' was groundbreaking and influenced object-oriented programming concepts in later games. The consequences of burning objects, such as removing them from the game world, laid the groundwork for dynamic environments seen in modern RPGs and adventure games like Ultima and The Legend of Zelda."
+  - id: "turning-mechanics-and-tool-restrictions"
     line_start: 1624
     line_end: 1632
-    title: "Turning Objects with Tools"
+    title: "Turning Mechanics and Tool Restrictions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "The TURNER subroutine determines whether an object can be turned and whether the player has the appropriate tool to do so. If the tool isn't suitable, the game provides humorous feedback, reinforcing its narrative tone. This routine exemplifies the game's emphasis on logical puzzles and player experimentation. In the late 1970s, interactive fiction was in its infancy, and Zork's detailed object interactions set a standard for the genre. The idea of tool-based object manipulation became a staple in later adventure games, influencing titles like King's Quest and The Secret of Monkey Island."
-  - id: "indestructible-door-and-player-frustration"
+    content: "The 'TURNER' routine defines the mechanics for turning objects. It checks if the object has a 'turnable' property and whether the player is using an appropriate tool. If the tool isn't suitable, the game provides humorous feedback, such as 'You certainly can't turn it with a...' This routine showcases the developers' attention to detail and their desire to create a world where objects behave realistically within the constraints of the game. In the context of 1977, the PDP-10's limited memory and processing power made such detailed interactions a technical achievement. This approach influenced later games like Infocom's other titles, which expanded on object-specific actions and player feedback."
+  - id: "invulnerable-door-and-humorous-responses"
     line_start: 1641
-    line_end: 1660
-    title: "The Indestructible Door and Player Frustration"
+    line_end: 1650
+    title: "The Invulnerable Door and Humorous Responses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The DOORMUNGS data structure and DDOOR-FUNCTION subroutine define humorous responses to players attempting to open, burn, or damage an indestructible door. The game uses randomized messages from DOORMUNGS to keep interactions fresh and entertaining. This playful approach highlights Zork's blend of challenge and humor, engaging players while subtly guiding them toward alternative solutions. The use of randomized text responses influenced later games, encouraging developers to add variety and personality to repetitive actions."
+    content: "The 'DOORMUNGS' data structure and 'DDOOR-FUNCTION' routine define the behavior of an invulnerable door. Attempts to open, burn, or damage the door result in humorous responses, such as 'The door is still under warranty.' This reflects Zork's unique blend of wit and challenge, ensuring that even failed actions entertain the player. In the 1970s, humor in games was rare, and Zork's developers leveraged it to enhance player engagement. This approach influenced the tone of later interactive fiction and adventure games, including The Hitchhiker's Guide to the Galaxy, which leaned heavily on humor."
   - id: "inflating-and-deflating-boats"
-    line_start: 1662
-    line_end: 1666
+    line_start: 1652
+    line_end: 1660
     title: "Inflating and Deflating Boats"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
     image_url: ""
     image_caption: ""
-    content: "The INFLATER and DEFLATER subroutines handle interactions with inflatable boats, checking whether the player has the correct tools and providing feedback based on the object's state. These routines showcase Zork's attention to environmental detail and logical consistency, ensuring that players can't perform nonsensical actions. By simulating realistic object behaviors, Zork set a precedent for immersive gameplay mechanics in adventure games, influencing titles like Myst and The Legend of Zelda series."
+    content: "The 'INFLATER' and 'DEFLATER' routines handle the mechanics of inflating and deflating boats. These routines check the objects involved, such as pumps or boats, and provide context-sensitive feedback. For example, attempting to inflate a boat further might result in warnings about bursting it. This reflects the developers' focus on creating a logical and immersive world where objects interact in meaningful ways. At the time, such detailed object interactions were rare, and Zork's implementation set a standard for realism in adventure games. This influenced later titles like King's Quest, which expanded on object manipulation and environmental logic."
   - id: "locking-and-unlocking-grates"
     line_start: 1668
     line_end: 1681
     title: "Locking and Unlocking Grates"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "The LOCKER and UNLOCKER subroutines manage interactions with a grate, including locking and unlocking it using specific objects like keys. These routines update the game's environment dynamically, altering descriptions and accessibility based on the player's actions. This level of interactivity was groundbreaking in 1977, as it allowed players to feel like their choices had tangible effects on the game world. The concept of dynamic environmental changes became a cornerstone of adventure game design, influencing RPGs like Ultima and The Elder Scrolls."
-  - id: "sword-glow-and-environmental-threats"
+    content: "The 'LOCKER' and 'UNLOCKER' routines manage the state of grates in the game. Players can lock or unlock grates using specific objects, such as keys. These routines update the game's environment dynamically, altering descriptions and accessibility. This mechanic highlights Zork's emphasis on environmental interactivity and player agency. In the late 1970s, such dynamic changes were innovative, paving the way for games like Myst, which relied heavily on environmental puzzles and state changes."
+  - id: "sword-glow-and-environmental-feedback"
     line_start: 1878
     line_end: 1898
-    title: "Sword Glow and Environmental Threats"
+    title: "Sword Glow and Environmental Feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The SWORD-GLOW subroutine determines whether the player's sword glows based on nearby environmental threats, such as infested rooms. This mechanic adds an atmospheric layer to the game, warning players of danger while enhancing immersion. The glowing sword became a memorable feature of Zork, inspiring similar mechanics in fantasy games like The Legend of Zelda and Dark Souls, where weapons and items react to the environment."
-  - id: "lighting-candles-and-resource-management"
+    content: "The 'SWORD-GLOW' routine manages the glowing state of the player's sword based on environmental factors, such as nearby infestations. The sword's glow provides feedback about the player's surroundings, serving as an early example of environmental storytelling through object behavior. This mechanic was groundbreaking for its time, as it created a sense of immersion and tension. The idea of objects reacting to the environment influenced later games like Diablo, where weapons and items dynamically interact with the game world."
+  - id: "match-lighting-and-resource-management"
+    line_start: 1926
+    line_end: 1946
+    title: "Match Lighting and Resource Management"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
+    image_url: ""
+    image_caption: ""
+    content: "The 'MATCH-FUNCTION' routine handles the lighting and extinguishing of matches. It tracks the number of matches remaining and provides feedback when they run out. This introduces resource management to the game, adding a layer of strategy to the player's actions. In the context of 1977, managing consumable resources was a novel concept in interactive fiction, influencing later games like The Oregon Trail and survival-based titles where resource scarcity plays a critical role."
+  - id: "candle-lighting-and-dynamic-object-states"
     line_start: 1948
     line_end: 1995
-    title: "Lighting Candles and Resource Management"
+    title: "Candle Lighting and Dynamic Object States"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The CANDLES subroutine handles interactions with candles, including lighting them with matches or extinguishing them. It incorporates resource management, as players must ensure they have enough matches and that the candles haven't burned out. This mechanic reflects Zork's emphasis on survival and planning, requiring players to think ahead and manage their inventory wisely. Resource management became a key feature in later games, influencing survival horror titles like Resident Evil and crafting systems in games like Minecraft."
-  - id: "light-intensity-and-object-durability"
+    content: "The 'CANDLES' routine manages the lighting and extinguishing of candles, including their gradual depletion over time. It checks for appropriate tools to light the candles and provides humorous feedback for improper attempts. This mechanic showcases Zork's dynamic object states and attention to detail, creating a world where objects behave realistically. Such mechanics influenced later games like Baldur's Gate, which expanded on dynamic object interactions and environmental storytelling."
+  - id: "light-intensity-and-object-lifecycle"
     line_start: 2007
     line_end: 2018
-    title: "Light Intensity and Object Durability"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    title: "Light Intensity and Object Lifecycle"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "The LIGHT-INT subroutine calculates the remaining duration of light-emitting objects, such as lanterns or candles, and updates their state accordingly. This mechanic adds realism to the game, as players must monitor their light sources to avoid being stranded in darkness. The concept of object durability and time-based effects influenced later games, including RPGs and survival games, where managing limited resources is a core gameplay element."
+    content: "The 'LIGHT-INT' routine manages the lifecycle of light-emitting objects, such as lamps and candles. It tracks their remaining duration and provides feedback as they dim or extinguish. This mechanic adds realism and urgency to the game, encouraging players to plan their actions carefully. In the late 1970s, such mechanics were innovative, influencing resource management systems in later games like Fallout and survival horror titles."
 
 ---
 

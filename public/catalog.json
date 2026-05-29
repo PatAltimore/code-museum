@@ -7,7 +7,7 @@
       "author": "Anderson, Blank, Daniels, Lebling",
       "year": 1977,
       "language": "MDL (Muddle)",
-      "description": "The game that invented the text adventure — built organically at MIT on a PDP-10, recovered from a 1990 tape, and released open-source in 2025. Its parser, its puzzles, and its sarcastic error messages changed computing forever.",
+      "description": "One of the earliest and most influential text adventures — built organically at MIT on a PDP-10, inspired by Colossal Cave Adventure, recovered from a 1990 tape, and released open-source in 2025. Its sophisticated parser, intricate puzzles, and sarcastic error messages set the template for the genre.",
       "github_url": "https://github.com/MITDDC/zork",
       "files": [
         {
@@ -115,94 +115,114 @@
           "generated": true
         }
       ],
-      "introduction": "In the fall of 1977, deep within the halls of MIT's Laboratory for Computer Science, a group of young programmers gathered around a DEC PDP-10 mainframe. Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling were not just colleagues; they were adventurers in a new frontier of computing. Inspired by Will Crowther's Colossal Cave Adventure, the first text-based adventure game, they set out to create something even more ambitious—a game that could understand complex sentences, immerse players in a richly detailed world, and push the boundaries of what interactive fiction could achieve. The result was Zork, a landmark in the history of gaming and software development.\n\nThe computing world of the late 1970s was defined by constraints. The PDP-10, a mainframe computer costing hundreds of thousands of dollars, was a marvel of its time, yet it offered only 36-bit words and limited memory by modern standards. The team worked under the ITS (Incompatible Timesharing System), an operating system that emphasized collaboration and experimentation. MDL (Muddle), a Lisp dialect developed at MIT, became their language of choice for its flexibility in handling complex data structures and symbolic computation. Every decision was shaped by the need to optimize performance, conserve memory, and deliver an engaging experience to players accessing the game over ARPANET, the precursor to the modern internet.\n\nEach member of the team brought unique skills and perspectives to the project. Dave Lebling, a science fiction enthusiast, contributed to the game's intricate puzzles and narrative depth. Marc Blank, with his background in medicine and computer science, focused on the natural language parser, crafting a system that could interpret commands far beyond the simple verb-noun structure of Colossal Cave Adventure. Tim Anderson and Bruce Daniels, both seasoned programmers, tackled the technical challenges of building a sprawling virtual world within the PDP-10's constraints. Together, they created a game that felt alive, with sarcastic error messages, clever wordplay, and a sense of humor that became a hallmark of the genre.\n\nZork's impact was immediate and profound. Players were captivated by the Great Underground Empire, a labyrinth of hundreds of locations filled with treasures, traps, and enigmatic characters. The game's parser, capable of understanding complex sentences, set a new standard for interactivity in gaming. By 1979, the team had founded Infocom to commercialize their creation, splitting Zork into three episodes to fit the limited memory of personal computers. These episodes—Zork I, Zork II, and Zork III—became some of the best-selling games of the early 1980s, with sales exceeding 680,000 copies by 1986.\n\nThe legacy of Zork extends far beyond its commercial success. It established interactive fiction as a legitimate genre, influencing countless adventure games, MUDs, and even modern MMORPGs. Its witty writing and innovative gameplay inspired generations of developers and players. In 2007, the Library of Congress recognized Zork as one of the ten most important video games in history, cementing its place as a cultural and technological milestone. Today, thanks to MIT's decision to release the source code as open-source in 2025, Zork continues to be studied, celebrated, and enjoyed, a testament to the ingenuity and creativity of its creators.",
+      "introduction": "In the fall of 1977, inside the hallowed halls of MIT's Laboratory for Computer Science, a group of young programmers gathered around a DEC PDP-10 mainframe running the ITS operating system. Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling were not just computer scientists—they were storytellers, dreamers, and adventurers. Fresh off the success of Will Crowther and Don Woods' Colossal Cave Adventure, they had a bold ambition: to create a text-based game that could understand natural language with unprecedented sophistication. Their tool of choice was MDL, a Lisp dialect developed at MIT, which offered the flexibility and power they needed to bring their vision to life.\n\nThe computing world of the late 1970s was a landscape of constraints. The PDP-10, a towering machine costing hundreds of thousands of dollars, was shared by multiple users over ARPANET, the precursor to the modern internet. Memory was measured in kilobytes, and every program had to fight for its share of the system's limited resources. Yet, these limitations fueled creativity. The developers of Zork embraced the challenge, crafting intricate puzzles, detailed descriptions, and a parser capable of interpreting full sentences—a leap forward from the two-word commands of Colossal Cave Adventure.\n\nEach member of the team brought unique strengths to the project. Dave Lebling, a linguistics enthusiast, pushed the boundaries of the game's parser, ensuring it could handle complex input. Marc Blank, with his background in medicine and computer science, focused on the game's structure and flow. Tim Anderson and Bruce Daniels contributed their expertise in programming and systems design, ensuring the game ran smoothly on the PDP-10. Together, they built Zork organically, iterating on ideas and refining the code over two years. Lebling later reflected, \"We wanted to create something that felt alive, a world you could explore and interact with in meaningful ways.\"\n\nThe result was a masterpiece of interactive fiction. Zork transported players to the Great Underground Empire, a sprawling labyrinth filled with treasures, traps, and enigmatic characters. Its sarcastic error messages and clever puzzles became hallmarks of the genre, setting a template that countless games would follow. Players accessed the game over ARPANET, marveling at its depth and complexity. By 1979, the team had founded Infocom, a company that would commercialize Zork and expand it into a trilogy, bringing the magic of text adventures to personal computers.\n\nZork's influence reverberated far beyond its original release. It sold hundreds of thousands of copies in the 1980s, becoming a cornerstone of Infocom's success and a cultural touchstone in gaming history. Its innovations in natural language processing paved the way for modern interactive fiction, while its immersive world inspired the creation of MUDs and MMORPGs. In 2007, the Library of Congress recognized Zork as one of the ten most important video games in history, cementing its legacy as a foundational work in the medium.\n\nToday, Zork endures as a testament to the ingenuity and passion of its creators. Recovered from MIT's Tapes of Tech Square collection and released as open-source in 2025, the game's source code offers a window into the early days of computer gaming—a time when imagination and technical skill converged to create something truly extraordinary.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Zork-map.jpg/330px-Zork-map.jpg",
       "image_caption": "Zork map (CC BY 4.0)",
       "highlights": [
         {
           "id": "natural-language-parser",
-          "title": "The Algorithm That Understood Players",
-          "description": "Zork's natural language parser was a groundbreaking feature that allowed players to type full sentences, rather than the two-word commands used in earlier games like Colossal Cave Adventure. This parser could interpret complex inputs like 'take the sword and attack the troll,' making gameplay feel more intuitive and immersive. The challenge was to design this system within the constraints of the PDP-10 mainframe, which had limited memory and processing power. The parser's sophistication inspired future text-based games and laid the foundation for interactive fiction as a genre. Its influence can even be seen in modern AI-driven systems that interpret human language.",
+          "title": "GWIM: Get What I Mean",
+          "description": "Zork's natural language parser was a groundbreaking feature that allowed players to type complex, conversational commands instead of rigid two-word phrases. This innovation solved the problem of limited player interaction seen in earlier text adventures like Colossal Cave Adventure. The parser could interpret ambiguous input, resolve orphaned commands, and even infer meaning through subroutines like GWIM ('Get What I Mean') and FWIM ('Find What I Mean'). This leap in user-friendly design influenced countless adventure games and laid the groundwork for modern interactive fiction and conversational AI systems.",
           "links": [
             {
-              "label": "Sparse: The Heart of Command Interpretation",
+              "label": "GWIM: Get What I Mean",
               "file": "np",
-              "enhancement": "sparse-parsing-routine"
+              "enhancement": "gwim-get-what-i-mean"
             },
             {
-              "label": "GWIM: The 'Get What I Mean' Algorithm",
+              "label": "FWIM: Finding What I Mean",
               "file": "np",
-              "enhancement": "get-what-i-mean"
+              "enhancement": "fwim-find-what-i-mean"
+            },
+            {
+              "label": "Sparse Parsing: Handling Ambiguity in Commands",
+              "file": "np",
+              "enhancement": "sparse-parsing-subroutine"
             }
           ]
         },
         {
           "id": "dynamic-room-descriptions",
-          "title": "Dynamic Room Descriptions: A Text Adventure Breakthrough",
-          "description": "Zork's dynamic room description system brought its world to life by tailoring text based on the player's actions and the state of the game. For example, if a player extinguished a light source, the room's description would change to reflect the darkness. This innovation solved the problem of static, repetitive text in earlier games, making exploration feel more immersive and responsive. The system influenced later adventure games and interactive fiction, setting a standard for environmental storytelling in text-based formats.",
+          "title": "Dynamic Room Descriptions Based on State",
+          "description": "Zork's world felt alive because its room descriptions dynamically changed based on the player's actions and the state of the game. For example, lighting a candle or extinguishing it would alter the text describing a room's ambiance. This design solved the challenge of creating immersive environments in a text-based medium, where static descriptions could feel repetitive. By tying room descriptions to game state, Zork set a standard for environmental storytelling, influencing later games like Infocom's own Planetfall and graphical adventures such as Myst.",
           "links": [
             {
-              "label": "Dynamic Room Descriptions: A New Frontier",
+              "label": "Dynamic Room Descriptions Based on State",
               "file": "act1-37",
               "enhancement": "dynamic-room-descriptions"
             },
             {
-              "label": "Dynamic Room Descriptions: A Text Adventure Breakthrough",
+              "label": "Room Descriptions: Pitch Black and the Grue",
               "file": "rooms",
-              "enhancement": "room-description-system"
+              "enhancement": "room-info-subroutine"
             }
           ]
         },
         {
-          "id": "clock-demon-event-scheduler",
-          "title": "The Demon That Kept Zork Alive",
-          "description": "Zork's clock demon was a clever event scheduler that enabled timed actions and dynamic events, such as the appearance of the thief or the expiration of a light source. This system operated in the background, tracking time and triggering events based on predefined conditions. It overcame the challenge of simulating a living world on the PDP-10's limited hardware. The clock demon's approach to event handling influenced the design of real-time systems in later games, including RPGs and MUDs.",
+          "id": "clock-demon-event-handler",
+          "title": "The Clock That Drives Zork’s Events",
+          "description": "Zork introduced a 'clock demon' system to manage timed events, adding a layer of realism and urgency to gameplay. This mechanism allowed for dynamic interactions, such as light sources dimming over time or NPCs like the Robber Demon appearing unpredictably. The clock demon solved the problem of creating a sense of progression and tension in a static, turn-based environment. This innovation influenced the design of real-time systems in later adventure games and RPGs, including Ultima and Baldur's Gate.",
           "links": [
             {
-              "label": "The Demon That Kept Zork Alive",
+              "label": "Managing Timed Events with Demons",
               "file": "rooms",
               "enhancement": "clock-demon-event-handler"
             },
             {
-              "label": "How Zork Handles Timed Events",
-              "file": "makstr",
-              "enhancement": "cevent-event-handler-definition"
-            }
-          ]
-        },
-        {
-          "id": "maze-navigation-logic",
-          "title": "Twisty Little Passages: Zork's Maze Design",
-          "description": "Zork's maze navigation logic created one of the game's most memorable challenges: navigating the 'twisty little passages, all alike.' The maze was designed to confuse players with identical descriptions for multiple locations, requiring careful mapping and logical deduction to solve. This design pushed the boundaries of puzzle complexity in early games and became a hallmark of the adventure genre. It inspired similar mazes in later games, as well as the concept of spatial puzzles in modern gaming.",
-          "links": [
-            {
-              "label": "Twisty Little Passages: Zork's Maze Design",
+              "label": "Setting Up Light Interrupts for Immersion",
               "file": "dung",
-              "enhancement": "maze-navigation-logic"
+              "enhancement": "lamp-clock-interrupt-setup"
             }
           ]
         },
         {
-          "id": "villain-and-combat-system",
-          "title": "The Troll That Blocked Your Path",
-          "description": "Zork introduced a simple yet effective combat system, exemplified by the troll encounter. Players could engage in dynamic battles using text commands, with outcomes influenced by their inventory and prior actions. This system added a layer of strategy and tension to the game, solving the problem of static puzzles by incorporating interactive challenges. The troll encounter paved the way for combat mechanics in later adventure games and RPGs, influencing titles like Ultima and early MUDs.",
+          "id": "mirror-room-puzzle",
+          "title": "Breaking and Swapping the Mirror Room",
+          "description": "The Mirror Room in Zork was a clever puzzle where players could interact with their reflection, break the mirror, and even swap rooms. This mechanic added a surreal, magical element to the game while also showcasing Zork's ability to dynamically alter the game world. It solved the challenge of creating engaging puzzles in a text-based format and inspired similar mechanics in later games like The Legend of Zelda series, where reflective surfaces and mirrored worlds became staples.",
           "links": [
             {
-              "label": "The Troll That Blocked Your Path",
+              "label": "Mirror Room: Reflections and Destruction",
+              "file": "act1",
+              "enhancement": "define-mirror-room-reflection-mechanics"
+            },
+            {
+              "label": "Breaking and Swapping the Mirror Room",
+              "file": "act1-37",
+              "enhancement": "mirror-room-hackery"
+            }
+          ]
+        },
+        {
+          "id": "robber-dynamic-npc",
+          "title": "The Robber: Zork's Dynamic Thief",
+          "description": "The Robber Demon was one of Zork's most memorable NPCs, capable of stealing items from the player and dynamically reacting to their actions. This character added unpredictability and tension to the game, solving the problem of static, predictable NPC behavior in early text adventures. The Robber's dynamic logic influenced the design of interactive NPCs in later games like Fallout and The Elder Scrolls series, where characters have complex behaviors and interactions.",
+          "links": [
+            {
+              "label": "The Robber: A Dynamic NPC with Complex Logic",
+              "file": "act1",
+              "enhancement": "robber-character-dynamic-npc"
+            },
+            {
+              "label": "The Robber Demon: Dynamic NPCs",
               "file": "dung",
-              "enhancement": "villain-and-combat-system"
+              "enhancement": "robber-demon"
             }
           ]
         },
         {
-          "id": "grue-lore",
-          "title": "The Monster That Lurks in Darkness",
-          "description": "Zork introduced the grue, a terrifying creature that would attack players who ventured into dark areas without a light source. This mechanic added a sense of danger and urgency to exploration, encouraging players to manage their resources carefully. The grue became a cultural icon in gaming, referenced in countless titles and even inspiring elements of survival horror games. Its legacy endures as a symbol of the unknown and the importance of preparation in adventure games.",
+          "id": "grue-darkness-mechanics",
+          "title": "The Grue: Fear of the Dark",
+          "description": "Zork introduced the Grue, a creature that lurked in dark areas and would devour players who ventured without a light source. This mechanic added a layer of tension and resource management, as players had to carefully manage their light sources to avoid certain death. The Grue became an iconic element of Zork and inspired similar mechanics in later games, such as survival horror titles like Resident Evil, where darkness and limited resources heighten the sense of danger.",
           "links": [
             {
-              "label": "The Monster That Lurks in Darkness",
+              "label": "The Grue: Fear of the Dark",
               "file": "act2",
-              "enhancement": "grue-lore"
+              "enhancement": "grue-description-darkness"
+            },
+            {
+              "label": "Room Descriptions: Pitch Black and the Grue",
+              "file": "rooms",
+              "enhancement": "room-info-subroutine"
             }
           ]
         }
@@ -1091,7 +1111,7 @@
       "author": "John Carmack, John Romero, Tom Hall",
       "year": 1992,
       "language": "C, x86 Assembly",
-      "description": "The groundbreaking source code for Wolfenstein 3D, a seminal first-person shooter that defined the genre.",
+      "description": "The groundbreaking source code for Wolfenstein 3D, a seminal first-person shooter that popularized the genre and established the template for games like DOOM and Quake.",
       "subtitle": "MS-DOS, 1992",
       "github_url": "https://github.com/id-Software/wolf3d",
       "files": [
@@ -1797,7 +1817,7 @@
       "author": "John Carmack, Michael Abrash, John Cash",
       "year": 1996,
       "language": "C, x86 Assembly",
-      "description": "The groundbreaking source code for Quake, a seminal first-person shooter that defined 3D gaming.",
+      "description": "The groundbreaking source code for Quake, a seminal first-person shooter with a fully 3D engine that influenced an entire generation of game developers.",
       "github_url": "https://github.com/id-Software/Quake",
       "files": [
         {

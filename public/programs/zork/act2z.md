@@ -9,18 +9,24 @@ year: 1977
 author: "Anderson, Blank, Daniels, Lebling"
 slug: "act2z"
 order: 12
-description: "This file is a corrupted or improperly decoded segment of Zork's source code, making it unreadable and unannotatable."
+description: "This file from Zork's source code is corrupted or improperly decoded, making it unreadable. It represents an artifact from the early days of interactive fiction, written in MDL for the PDP-10."
 
 summary:
-  - point: "The file appears to be corrupted or misinterpreted, rendering it unreadable"
+  - point: "Zork was one of the first text-based adventure games"
     link: "https://en.wikipedia.org/wiki/Zork"
     link_label: "Zork"
-  - point: "MDL (Muddle) was a Lisp dialect used in Zork's development"
-    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    link_label: "MDL Language"
-  - point: "Zork ran on DEC PDP-10 under ITS, accessed via ARPANET"
+  - point: "Written in MDL, a Lisp dialect developed at MIT"
+    link: "https://en.wikipedia.org/wiki/MIT_Lisp"
+    link_label: "MIT Lisp"
+  - point: "Ran on the DEC PDP-10 under ITS (Incompatible Timesharing System)"
+    link: "https://en.wikipedia.org/wiki/DEC_PDP-10"
+    link_label: "DEC PDP-10"
+  - point: "Players accessed Zork over ARPANET during development"
     link: "https://en.wikipedia.org/wiki/ARPANET"
     link_label: "ARPANET"
+  - point: "Source code was preserved in MIT's Tapes of Tech Square collection"
+    link: "https://en.wikipedia.org/wiki/Tapes_of_Tech_Square"
+    link_label: "Tapes of Tech Square"
 
 ---
 

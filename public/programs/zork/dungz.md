@@ -9,36 +9,34 @@ year: 1977
 author: "Anderson, Blank, Daniels, Lebling"
 slug: "dungz"
 order: 13
-description: "This file is part of the Zork source code, one of the earliest and most influential text-based adventure games, written in MDL for the PDP-10."
+description: "This file is part of the Zork source code, one of the earliest and most influential text-based adventure games, written in MDL for the DEC PDP-10."
 
 summary:
-  - point: "Zork was developed in MDL, a Lisp dialect created at MIT."
-    link: "https://en.wikipedia.org/wiki/Zork"
-    link_label: "Zork"
-  - point: "The game ran on the DEC PDP-10 under ITS, accessed via ARPANET."
-    link: "https://en.wikipedia.org/wiki/Incompatible_Timesharing_System"
-    link_label: "ITS"
-  - point: "Zork pioneered interactive fiction and inspired countless successors."
-    link: "https://en.wikipedia.org/wiki/Interactive_fiction"
-    link_label: "Interactive Fiction"
+  - point: "Zork was written in MDL, a Lisp dialect developed at MIT."
+    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
+    link_label: "MDL programming language"
+  - point: "Players accessed Zork over ARPANET during its development."
+    link: "https://en.wikipedia.org/wiki/ARPANET"
+    link_label: "ARPANET"
+  - point: "The game ran on the DEC PDP-10 under ITS (Incompatible Timesharing System)."
+    link: "https://en.wikipedia.org/wiki/DEC_PDP-10"
+    link_label: "DEC PDP-10"
+  - point: "The source code was preserved in MIT's Tapes of Tech Square collection."
+    link: "https://en.wikipedia.org/wiki/MIT_Laboratory_for_Computer_Science"
+    link_label: "MIT LCS"
+  - point: "MIT released Zork's source code under an open-source license in 2025."
+    link: "https://opensource.org/licenses/MIT"
+    link_label: "MIT License"
 
 enhancements:
-  - id: "file-corruption-or-encoding-error"
-    line_start: 1
-    line_end: 12
-    title: "Why Does This File Look Corrupted?"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Character_encoding"
-    image_url: ""
-    image_caption: ""
-    content: "The contents of this file appear to be corrupted or improperly encoded, rendering it unreadable. This could be due to several reasons: the original file may have been damaged during archival, or the encoding format used in the PDP-10 environment (such as ASCII or a proprietary format) may not have been correctly interpreted during extraction. The Zork source code was preserved from MIT's Tapes of Tech Square collection, which contains software from the 1970s and 1980s. Files like this were often stored in formats specific to the hardware and operating systems of the time, such as ITS (Incompatible Timesharing System). When these files are extracted decades later, mismatches in encoding standards can lead to garbled text. This underscores the challenges of digital preservation, especially for software written in niche languages like MDL. Despite the apparent corruption, Zork's source code has been successfully reconstructed and released as open-source, allowing modern developers to study its design and implementation. The game's influence persists in interactive fiction and adventure game design, inspiring titles like Infocom's later works and modern text-based games."
-  - id: "final-chunk-corrupted-data"
-    line_start: 2401
-    line_end: 3061
-    title: "Why Is This Code Full of Gibberish?"
+  - id: "corrupted-data-block"
+    line_start: 1601
+    line_end: 2400
+    title: "Why Does This Section Look Corrupted?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The final chunk of Zork's MDL source code appears corrupted or unreadable, filled with nonsensical characters and symbols. This could be due to file degradation over time, improper encoding during archival, or errors during extraction from the original tape image. The Tapes of Tech Square collection, where this file originated, was an effort to preserve MIT's computing history, but such preservation often encounters technical challenges. In the 1970s, data was stored on magnetic tapes, which were prone to physical wear and data loss. Additionally, the encoding methods used on systems like the DEC PDP-10 under ITS were specific to the hardware and software of the era, making modern interpretation difficult without specialized tools. Zork itself was a milestone in interactive fiction, influencing countless games and genres. The corrupted data here reminds us of the fragility of digital preservation and the importance of maintaining readable archives. Despite the unreadable content, the legacy of Zork lives on in modern adventure games, from Infocom's later titles to contemporary narrative-driven games like The Stanley Parable and Disco Elysium. Efforts to restore such files continue, often requiring collaboration between historians, archivists, and programmers skilled in retrocomputing. This corrupted segment serves as a cautionary tale about the challenges of preserving early computing history and the need for robust archival practices. It also highlights the ingenuity of the original developers, who worked within the constraints of MDL and PDP-10 hardware to create a groundbreaking experience that still resonates today."
+    content: "The section provided appears to be corrupted or improperly decoded data rather than readable MDL source code. This could be due to errors in extraction from the original tape image or issues with encoding during archival. Zork's source code, written in MDL (a Lisp dialect), typically features readable function definitions, data structures, and logic for the game's text-based adventure mechanics. This file, however, is filled with seemingly random characters and symbols, which do not align with the expected format. In the 1970s, Zork was developed on the DEC PDP-10 under the ITS operating system, and its source code was stored on magnetic tapes. These tapes were later archived and digitized, but the process was not always perfect. Errors during tape imaging or subsequent handling could lead to corrupted sections like this. The original developers—Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling—likely never envisioned their work being preserved in this form. Despite the apparent corruption, the historical significance of Zork remains intact. It was among the first interactive fiction games, influencing countless successors like Infocom's later titles (e.g., 'The Hitchhiker's Guide to the Galaxy') and modern narrative-driven games. The techniques pioneered in Zork's source code, such as its parser and world-building logic, became foundational for the genre. Efforts to recover and restore corrupted files like this are part of preserving computing history, ensuring that future generations can study and appreciate the ingenuity of early software development."
 
 ---
 

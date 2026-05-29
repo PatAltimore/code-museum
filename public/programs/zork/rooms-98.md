@@ -9,180 +9,180 @@ year: 1977
 author: "Anderson, Blank, Daniels, Lebling"
 slug: "rooms-98"
 order: 11
-description: "This file defines core routines for Zork's room descriptions, player interactions, and game state management, showcasing early text-based adventure game programming techniques in MDL."
+description: "This file defines core mechanics and room-related functionality for Zork, one of the earliest text-based adventure games."
 
 summary:
-  - point: "Zork's MDL code pioneered text-based adventure mechanics"
+  - point: "MDL's Lisp-like syntax enabled rapid prototyping of complex game mechanics"
+    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
+    link_label: "MDL programming language"
+  - point: "Zork's room descriptions and object interactions set a standard for text-based adventure games"
     link: "https://en.wikipedia.org/wiki/Zork"
     link_label: "Zork"
-  - point: "MDL was a Lisp dialect developed at MIT for AI research"
-    link: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
-    link_label: "MDL Programming Language"
-  - point: "Zork ran on the DEC PDP-10 under ITS, leveraging ARPANET"
-    link: "https://en.wikipedia.org/wiki/DEC_PDP-10"
-    link_label: "DEC PDP-10"
+  - point: "The file demonstrates early techniques for memory management and user interaction on PDP-10 hardware"
+    link: "https://en.wikipedia.org/wiki/PDP-10"
+    link_label: "PDP-10"
 
 enhancements:
   - id: "alt-flag-initialization"
     line_start: 4
     line_end: 4
-    title: "Why Zork Needed an ALT-FLAG"
+    title: "Why Initialize ALT-FLAG to True?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The ALT-FLAG is set to true at the start of the file, signaling a global state variable used throughout the game logic. This flag likely controls alternative behaviors or modes in the game. In the context of Zork, global flags like this were essential for managing state transitions, given the limited memory and processing power of the DEC PDP-10. The PDP-10's architecture required programmers to be highly efficient with their use of variables and flags, as memory was a scarce resource. This approach influenced later adventure games, which adopted similar global state management techniques to handle complex branching narratives."
+    content: "The <SETG ALT-FLAG T> line initializes a global flag used throughout the game logic. ALT-FLAG likely serves as a toggle for alternative behaviors or debugging modes. In the context of Zork's development, debugging and testing were critical due to the constraints of the PDP-10 hardware and the complexity of the game. By setting ALT-FLAG to true at startup, the developers could ensure certain fallback or alternative behaviors were enabled during early testing phases. This approach reflects the iterative nature of software development in the 1970s, where debugging tools were minimal and developers often embedded debugging aids directly into the code."
   - id: "save-it-subroutine"
     line_start: 8
     line_end: 65
-    title: "The Subroutine That Saved Zork"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
-    image_url: ""
-    image_caption: ""
-    content: "The SAVE-IT subroutine is responsible for saving the player's progress in Zork. It determines the save file name based on the environment (e.g., MADADV.SAVE for MADMAN mode) and interacts with the file system to store game state. This was a critical feature for Zork, as its complex puzzles and lengthy gameplay required players to save and resume their progress. In 1977, saving game state was a novel feature, as most games were designed to be completed in a single session. The SAVE-IT routine reflects the PDP-10's file system constraints and the developers' ingenuity in working within them. This innovation influenced the design of save systems in later games, becoming a standard feature in adventure and role-playing games."
-  - id: "diverting-garbage-collection"
-    line_start: 67
-    line_end: 105
-    title: "How Zork Managed Garbage Collection"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines routines for diverting garbage collection (GC) in Zork. The DIVERT-FCN and GC-FCN manage memory allocation and cleanup, ensuring the game runs smoothly without interruptions. Garbage collection was a significant challenge on the PDP-10, as its limited memory required frequent cleanup to prevent crashes. The developers implemented a clever system to track and limit diversions, resetting counters and invoking GC when thresholds were exceeded. This approach demonstrates their deep understanding of the PDP-10's architecture and the constraints of MDL. Techniques like these laid the groundwork for modern memory management systems in programming languages and game engines."
-  - id: "xuname-function"
-    line_start: 110
-    line_end: 119
-    title: "Extracting Usernames on a PDP-10"
-    wikipedia_url: "https://en.wikipedia.org/wiki/ITS_(operating_system)"
-    image_url: ""
-    image_caption: ""
-    content: "The XUNAME function extracts and processes usernames from the PDP-10 environment. It maps characters from the GXUNAME system call, filtering out invalid or non-printable characters. This function reflects the integration of Zork with ITS (Incompatible Timesharing System), the operating system running on the PDP-10. ITS was designed for multi-user environments, and Zork leveraged its features to personalize gameplay. By identifying players through their usernames, Zork could tailor experiences, such as saving progress or displaying custom messages. This personalization was groundbreaking for its time and influenced the development of user-centric features in later games and software."
-  - id: "room-info-routine"
-    line_start: 490
-    line_end: 552
-    title: "The Routine That Made Rooms Come Alive"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Text-based_game"
-    image_url: ""
-    image_caption: ""
-    content: "The ROOM-INFO routine is central to Zork's gameplay, handling room descriptions, object visibility, and player interactions. It checks for light conditions, warns players of dangers (e.g., being eaten by a grue), and provides detailed descriptions of the surroundings. This routine showcases the developers' mastery of text-based storytelling, creating immersive environments with limited resources. The use of flags like BRIEF!-FLAG and SUPER-BRIEF!-FLAG allows players to toggle between detailed and concise descriptions, a feature that enhances replayability. ROOM-INFO's design influenced the narrative mechanics of later adventure games, setting a standard for dynamic and interactive storytelling."
-  - id: "score-calculation"
-    line_start: 663
-    line_end: 693
-    title: "How Zork Measured Your Adventure"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Score_(video_gaming)"
-    image_url: ""
-    image_caption: ""
-    content: "The SCORE routine calculates and displays the player's score, rank, and progress in the game. It uses the player's achievements, moves, and deaths to assign a rank, ranging from 'Beginner' to 'Wizard.' This ranking system added a competitive element to Zork, encouraging players to improve their performance. In the late 1970s, scoring systems were common in arcade games but rare in adventure games. Zork's implementation of a detailed scoring mechanism influenced the design of point-based systems in later games, including role-playing and strategy games. The ranks also reflect the developers' humor and creativity, adding personality to the gameplay."
-  - id: "record-logging"
-    line_start: 717
-    line_end: 792
-    title: "Logging Your Journey Through Zork"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Log_file"
-    image_url: ""
-    image_caption: ""
-    content: "The RECORD routine logs the player's progress, including score, moves, deaths, and location. It interacts with the PDP-10's file system to create and update log files, ensuring persistence across sessions. Logging was an advanced feature for its time, allowing players to review their journey and developers to debug the game. The routine includes checks for file access and handles errors gracefully, reflecting the constraints of the PDP-10's multi-user environment. This feature influenced the development of save and logging systems in later games, providing a foundation for tracking player progress and debugging complex software."
-  - id: "flag-names-and-short-names"
-    line_start: 794
-    line_end: 826
-    title: "Flags and Short Names: A Compact State Tracker"
+    title: "How Zork Saved Your Progress"
     wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "This section defines two vectors: FLAG-NAMES and SHORT-NAMES. FLAG-NAMES is a UVECTOR (a specialized MDL data structure) containing identifiers for various game states, such as 'KITCHEN-WINDOW' and 'MAGIC-FLAG'. SHORT-NAMES provides abbreviated string representations of these flags, like 'KI' for 'KITCHEN-WINDOW'. These vectors allow the game to efficiently track and reference states using compact identifiers. In 1977, memory constraints on the DEC PDP-10 made such optimizations essential. The approach influenced later adventure games, which adopted similar compact state-tracking mechanisms to manage complex game worlds within limited memory."
-  - id: "pdskdate-date-formatting"
+    content: "The SAVE-IT subroutine is responsible for saving the player's progress. It uses conditional logic to determine the save file's name and location based on the version of the MDL interpreter and the system environment. This was a crucial feature for Zork, as it allowed players to resume their adventures—a groundbreaking capability for games at the time. The subroutine includes humorous comments like \"REMARKABLY-DISGUSTING-CODE,\" reflecting the developers' personality and the challenges of working within the constraints of the PDP-10. This save functionality influenced later adventure games, which adopted similar mechanisms to enhance player experience."
+  - id: "diverting-garbage-collection"
+    line_start: 67
+    line_end: 96
+    title: "The Trick to Managing Memory in Zork"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "This section introduces a clever workaround for garbage collection (GC) in the MDL environment. The DIVERT-FCN subroutine tracks memory usage and triggers GC when thresholds are exceeded. By diverting requests for storage, the developers could ensure the game remained responsive even under heavy memory usage. Managing memory efficiently was critical on the PDP-10, which had limited resources compared to modern systems. Techniques like this laid the groundwork for more sophisticated memory management in later programming languages and game engines."
+  - id: "xuname-subroutine"
+    line_start: 110
+    line_end: 119
+    title: "Extracting Usernames from PDP-10 Sessions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/ITS_(operating_system)"
+    image_url: ""
+    image_caption: ""
+    content: "The XUNAME subroutine processes the username of the current player session, stripping out non-printable characters and spaces. This was essential for identifying players in a multi-user environment like ITS on the PDP-10. By ensuring usernames were clean and consistent, the developers could implement features like personalized save files and player rankings. This approach reflects the early challenges of managing user identity in shared computing environments, a problem that persists in modern systems."
+  - id: "room-info-subroutine"
+    line_start: 490
+    line_end: 552
+    title: "How Zork Described Its World"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: ""
+    image_caption: ""
+    content: "The ROOM-INFO subroutine generates descriptions of the player's current location, including objects and environmental details. It uses flags like BRIEF!-FLAG and SUPER-BRIEF!-FLAG to customize the verbosity of descriptions, catering to different player preferences. This dynamic approach to room descriptions was a hallmark of Zork's immersive gameplay, setting a standard for text-based adventure games. The subroutine's ability to adapt descriptions based on player actions and game state influenced later games like Infocom's other titles and even modern RPGs with dynamic storytelling."
+  - id: "score-subroutine"
+    line_start: 663
+    line_end: 693
+    title: "Ranking Players in the Dungeon"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: ""
+    image_caption: ""
+    content: "The SCORE subroutine calculates and displays the player's score, including their rank based on predefined thresholds. This feature added a competitive element to Zork, encouraging players to achieve higher ranks like \"Wizard\" or \"Master.\" The ranking system reflects the game's roots in the collaborative and competitive culture of MIT's computer lab. This mechanic influenced later games by introducing leaderboards and achievements as standard features in gaming."
+  - id: "record-subroutine"
+    line_start: 717
+    line_end: 790
+    title: "Logging Your Adventures in Zork"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: ""
+    image_caption: ""
+    content: "The RECORD subroutine logs the player's progress, including their score, moves, deaths, and location, to a file. This feature allowed players to review their performance and provided a way to track game statistics over time. The subroutine includes checks for file access and handles errors gracefully, reflecting the challenges of working with file systems on the PDP-10. Logging player data became a standard practice in games, influencing features like save files, analytics, and post-game summaries in modern titles."
+  - id: "flag-management-for-game-state"
+    line_start: 801
+    line_end: 816
+    title: "How Flags Controlled Zork’s World State"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines a UVECTOR (a specialized vector in MDL) to store flags representing various states in the game world, such as whether the troll has been defeated or the magic flag is active. Flags like 'RAINBOW' and 'CAROUSEL-FLIP' correspond to specific puzzles or events, enabling the game to track progress and react dynamically to player actions. In the late 1970s, game state management was a novel concept, and Zork’s use of flags allowed for a complex, non-linear narrative. The authors, all MIT alumni, leveraged MDL’s advanced data structures to create a rich interactive experience. This approach influenced later adventure games, including Infocom’s text-based titles, which used similar flag-based systems to manage state transitions and player progress."
+  - id: "custom-date-formatting-pdp10"
     line_start: 828
     line_end: 847
-    title: "Date Formatting on the PDP-10"
+    title: "The PDP-10 Routine That Told Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/DEC_PDP-10"
     image_url: ""
     image_caption: ""
-    content: "The PDSKDATE routine formats a date stored as a word (WD) into a human-readable string, including the month, day, and time. It extracts bits from the word using MDL's GETBITS function and converts them to fixed-point numbers. This was necessary because the PDP-10 stored data in compact formats that required bitwise manipulation to interpret. The routine also accounts for AM/PM distinctions and handles edge cases like unknown dates. This kind of low-level manipulation was common in the era, as developers had to work directly with hardware-specific data representations. Techniques like this laid the groundwork for modern date/time libraries in programming languages."
-  - id: "jigs-up-death-handler"
+    content: "The PDSKDATE routine formats a date stored in a PDP-10 word into a human-readable string. It extracts month, day, and time using bit manipulation and arithmetic, then converts the time to a 12-hour format with AM/PM. This was essential for displaying timestamps in a user-friendly way, especially given the PDP-10’s limited native support for such operations. The routine reflects the ingenuity required to work within the constraints of 36-bit words and ITS (Incompatible Timesharing System). The authors adapted techniques from earlier Lisp systems, showcasing MDL’s flexibility. This kind of low-level manipulation became less common as higher-level languages and libraries abstracted such details, but it remains a testament to the skill of early programmers."
+  - id: "player-death-and-recovery-mechanics"
     line_start: 865
     line_end: 947
-    title: "The Death Handler: When Grues Attack"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Grue_(monster)"
-    image_url: ""
-    image_caption: ""
-    content: "The JIGS-UP routine handles player death scenarios, including interactions with the infamous 'grue'. It updates the game state by removing the player from the active room, deducting points, and optionally offering a humorous 'patch' to restore the player. The routine reflects Zork's blend of dark humor and technical ingenuity. Written in MDL, it demonstrates the game's ability to dynamically adjust object states and player inventory. The concept of handling player death with both narrative and mechanical consequences influenced later adventure games, which adopted similar systems to maintain immersion while penalizing players for mistakes."
-  - id: "lamp-on-and-lamp-off"
-    line_start: 1500
-    line_end: 1516
-    title: "Turning On and Off the Light"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Text-based_game"
-    image_url: ""
-    image_caption: ""
-    content: "These routines manage the state of light sources in the game, such as the player's lamp. LAMP-ON checks if the lamp can be lit, updates its state, and adjusts the room's lighting. LAMP-OFF reverses the process, potentially plunging the room into darkness. Light sources are critical to Zork's gameplay, as certain areas are inaccessible without illumination. The routines showcase MDL's ability to manipulate object properties dynamically. This mechanic became a staple in adventure games, influencing titles like Infocom's later works and even modern survival games where light plays a strategic role."
-  - id: "parsing-player-input"
-    line_start: 1551
-    line_end: 1589
-    title: "Parsing Player Input: Making Sense of Commands"
+    title: "What Happens When You Die in Zork?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "The LEX routine and related functions parse player input, breaking it into tokens and handling syntax errors. It uses vectors and strings to store parsed words, ensuring efficient processing. The parser also includes error handling to provide feedback when input cannot be understood. This was a groundbreaking feature in 1977, as it allowed players to interact with the game using natural language commands. The parser's design influenced the development of text-based interfaces in interactive fiction and even modern voice-controlled systems, demonstrating the enduring impact of Zork's innovations."
+    content: "The JIGS-UP routine handles player death, providing descriptive text and consequences based on the number of deaths. If the player dies repeatedly, they are humorously exiled to the 'Land of the Living Dead.' This routine also includes a recovery mechanism, attempting to restore the player’s state and inventory. Such mechanics were groundbreaking in 1977, adding depth and replayability to the game. The humorous tone reflects the authors’ personalities and the experimental nature of early interactive fiction. This approach influenced later games like 'The Hitchhiker’s Guide to the Galaxy,' which similarly blended humor with gameplay consequences."
+  - id: "object-manipulation-take-put"
+    line_start: 1094
+    line_end: 1139
+    title: "How Zork Let You Take and Put Things"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: ""
+    image_caption: ""
+    content: "The TAKE and PUTTER routines allow players to interact with objects in the game world, checking constraints like weight limits and visibility. TAKE ensures objects can be picked up, while PUTTER handles placing objects into containers or the environment. These routines showcase MDL’s ability to model complex interactions, a key feature of Zork’s immersive gameplay. The authors drew inspiration from tabletop role-playing games, translating physical interactions into code. This system became foundational for interactive fiction, influencing object manipulation in games like 'Ultima' and 'King’s Quest.'"
+  - id: "text-parsing-and-lexical-analysis"
+    line_start: 1551
+    line_end: 1589
+    title: "How Zork Understood Your Commands"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MDL_(programming_language)"
+    image_url: ""
+    image_caption: ""
+    content: "The LEX routine parses player input, breaking it into tokens and handling special cases like quoted strings. It uses MDL’s string manipulation capabilities to prepare commands for further processing. This was crucial for enabling natural language interaction, a hallmark of Zork’s gameplay. The authors built on techniques from earlier AI research at MIT, where parsing and understanding text were active areas of study. This routine laid the groundwork for more sophisticated parsers in later games and even influenced early chatbot development."
   - id: "uppercase-string-conversion"
     line_start: 1602
     line_end: 1609
-    title: "How Zork Handles Uppercase Conversion"
+    title: "Turning lowercase into uppercase, byte by byte"
     wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
     image_url: ""
     image_caption: ""
-    content: "This subroutine converts a string to uppercase by iterating through each character and checking its ASCII value. If the character is a lowercase letter (ASCII 97–122), it subtracts 32 to convert it to uppercase. This was necessary because early text-based games like Zork relied heavily on string comparisons for commands, and ensuring uniform case avoided errors caused by mismatched input. In the late 1970s, ASCII was the dominant character encoding standard, and the PDP-10's ITS operating system provided low-level tools for manipulating strings. This approach reflects the constraints of the era: developers had to manually handle text transformations due to the lack of higher-level libraries. Techniques like this influenced later text parsers in games and utilities, including the command-line interfaces of Unix systems."
-  - id: "time-passes-message"
+    content: "The `UPPERCASE` function converts a string to uppercase by iterating through each character and checking its ASCII value. If the character is a lowercase letter (ASCII values 97–122), it subtracts 32 to convert it to uppercase. This approach reflects the low-level manipulation typical of programming in MDL, where developers worked directly with ASCII codes to handle text. In the late 1970s, text processing was often manual, as libraries for such operations were rare or nonexistent. This function would have been essential for ensuring consistent text formatting in Zork's parser, which needed to interpret player commands regardless of case. Techniques like this laid the groundwork for modern string manipulation libraries, influencing languages like C and Python."
+  - id: "time-passes-wait-function"
     line_start: 1611
-    line_end: 1620
-    title: "The Subtle Art of Passing Time in Zork"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
-    image_url: ""
-    image_caption: ""
-    content: "The WAIT subroutine introduces a simple mechanic to simulate the passage of time. It outputs the message 'Time passes...' and repeats a loop for a specified number of iterations. This loop checks conditions like whether the clock demon should trigger an event. In the context of Zork, this mechanic allowed players to pause and wait for in-game events, adding a layer of realism to the text-based world. In the late 1970s, real-time mechanics in games were rare due to hardware limitations. Zork's implementation of time-based events was innovative for its era, influencing later adventure games like Infocom's subsequent titles, which expanded on timed puzzles and dynamic worlds."
-  - id: "clock-demon-event-handler"
-    line_start: 1622
-    line_end: 1645
-    title: "The Clock Demon: Zork’s Event Scheduler"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Scheduling_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The CLOCK-DEMON subroutine is a central piece of Zork's event system. It iterates through scheduled events (CEVENTs) and decrements their timers. When a timer reaches zero, it triggers the associated action, either by dispatching it or applying it directly. This mechanism was crucial for implementing timed puzzles and dynamic world changes. The PDP-10's ITS operating system provided limited support for scheduling, so Zork's developers had to create their own lightweight scheduler. This approach influenced later game engines, which adopted similar event-driven architectures. The concept of demons (background processes) in Zork predates modern asynchronous programming paradigms and demonstrates the ingenuity required to simulate real-time behavior on constrained hardware."
-  - id: "boarding-vehicles"
-    line_start: 1661
-    line_end: 1681
-    title: "Boarding Vehicles: Immersion Through Interaction"
+    line_end: 1618
+    title: "Simulating time with a simple loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "The BOARD subroutine handles the logic for entering vehicles in Zork. It checks whether the object is a vehicle and whether the player is already inside one. If successful, it updates the player's state to reflect that they are now inside the vehicle. This mechanic added depth to the game's world by allowing players to interact with objects in a meaningful way. In 1977, interactive fiction was still in its infancy, and Zork's ability to simulate complex interactions like boarding vehicles set a new standard for immersion. This feature influenced later adventure games, which expanded on object interaction to create richer narratives and gameplay mechanics."
+    content: "The `WAIT` function simulates the passage of time by printing \"Time passes...\" and looping for a specified number of iterations. It uses a decrementing counter (`NUM`) and checks conditions to exit early if certain events occur. This mechanic was crucial for creating a sense of pacing and urgency in Zork, where time-sensitive puzzles and events added depth to gameplay. In the late 1970s, interactive fiction relied heavily on text-based cues to immerse players, as graphical interfaces were not feasible on systems like the PDP-10. This function exemplifies how early developers used simple constructs to create dynamic narratives, influencing later games like Infocom's other titles and even modern text-based adventures."
+  - id: "clock-demon-event-handler"
+    line_start: 1622
+    line_end: 1645
+    title: "Managing timed events with demons"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Daemon_(computing)"
+    image_url: ""
+    image_caption: ""
+    content: "The `CLOCK-DEMON` function handles timed events by iterating through a list of event objects (`HOBJS`) and decrementing their timers (`CTICK`). When an event's timer reaches zero, it triggers an associated action, either by dispatching or applying it. This mechanism allowed Zork to implement dynamic game elements, such as timed puzzles or environmental changes. In the context of the PDP-10, demons (background processes) were a powerful tool for managing asynchronous tasks. This design reflects the influence of ITS and Lisp-based systems, where such constructs were common. The demon-based approach inspired similar event systems in later games, including real-time strategy titles and RPGs, where background processes are integral to gameplay."
+  - id: "boarding-vehicles"
+    line_start: 1661
+    line_end: 1681
+    title: "Boarding vehicles: a new layer of interaction"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
+    image_url: ""
+    image_caption: ""
+    content: "The `BOARD` function allows players to enter vehicles, checking conditions like whether the vehicle is present and accessible. If the player is already in a vehicle, it provides humorous feedback. This mechanic added complexity to Zork's world, enabling richer interactions and scenarios. Vehicles were a novel concept in text-based games of the era, reflecting the authors' ambition to push the boundaries of interactive fiction. The ability to board and unboard objects influenced later adventure games, where multi-state objects became standard. This design also foreshadowed mechanics in graphical RPGs, where vehicles and mounts are common gameplay elements."
   - id: "unboarding-vehicles"
     line_start: 1683
     line_end: 1698
-    title: "Unboarding: Safeguarding Players from Fatal Errors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Game_design"
+    title: "Unboarding vehicles: safety checks included"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interactive_fiction"
     image_url: ""
     image_caption: ""
-    content: "The UNBOARD subroutine allows players to exit vehicles, provided certain conditions are met. If the player attempts to disembark in a dangerous location, the game warns them and prevents the action. This design choice reflects the developers' commitment to balancing realism with player safety. In the late 1970s, game design often involved trial-and-error learning, but Zork's developers recognized the importance of guiding players away from irreversible mistakes. This mechanic influenced later games, which adopted similar safeguards to enhance user experience and reduce frustration."
-  - id: "room-navigation-logic"
+    content: "The `UNBOARD` function lets players disembark from vehicles, ensuring they are in a safe location before doing so. If the player attempts to unboard in a dangerous area, the game warns them of potential fatal consequences. This mechanic highlights the authors' attention to detail and commitment to creating a believable world. By incorporating safety checks, Zork avoided frustrating or unfair outcomes, a hallmark of good game design. The concept of conditional object interactions influenced later games, where context-sensitive actions became standard. This approach also contributed to the evolution of environmental storytelling, where player actions are tied to the game's narrative and setting."
+  - id: "goto-room-navigation"
     line_start: 1700
     line_end: 1722
-    title: "Navigating Rooms: Vehicles and Restrictions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Adventure_game"
+    title: "Room navigation with vehicle constraints"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Zork"
     image_url: ""
     image_caption: ""
-    content: "The GOTO subroutine manages room transitions, accounting for factors like whether the player is in a vehicle or whether the destination has specific restrictions. It updates the player's location and score, reflecting the importance of exploration in Zork's design. Room-based navigation was a staple of text-based adventure games, but Zork's implementation stands out for its attention to detail and dynamic checks. This subroutine influenced later games by demonstrating how to create immersive worlds with interconnected locations and logical constraints."
-  - id: "room-munging"
+    content: "The `GOTO` function handles room transitions, checking conditions like whether the player is in a vehicle and whether the destination is accessible. If the player cannot move to the target room, the game provides feedback explaining why. This mechanic was essential for maintaining logical consistency in Zork's world, ensuring players could not bypass obstacles or enter inaccessible areas. The authors' use of detailed checks reflects their background in computer science and their commitment to robust design. Room navigation mechanics like this influenced later adventure games, where spatial logic and movement constraints became integral to gameplay. It also laid the groundwork for pathfinding algorithms in modern games."
+  - id: "mung-room-random-messages"
     line_start: 1732
     line_end: 1735
-    title: "Munging Rooms: Randomness and Replayability"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Procedural_generation"
+    title: "Adding randomness to room descriptions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Randomness"
     image_url: ""
     image_caption: ""
-    content: "The MUNG-ROOM subroutine assigns random properties to rooms, adding an element of unpredictability to the game. By setting a random string description, it creates a dynamic environment that feels less static. In the late 1970s, procedural generation was a novel concept, and Zork's use of randomness helped make each playthrough unique. This technique influenced later games, including roguelikes and procedurally generated worlds like those in Minecraft and No Man's Sky."
-  - id: "command-parsing"
+    content: "The `MUNG-ROOM` function assigns random messages to rooms, adding variety to the game's descriptions. By setting the `RRAND` property, the authors introduced an element of unpredictability, enhancing replayability and immersion. This technique reflects the limitations of text-based games, where dynamic content was necessary to keep players engaged. Randomized room descriptions influenced later interactive fiction and RPGs, where procedurally generated content became a key feature. The concept of adding variability to static environments also inspired modern sandbox games, where dynamic world-building is central to gameplay."
+  - id: "command-parser"
     line_start: 1737
     line_end: 1747
-    title: "Parsing Commands: Player Interaction Simplified"
+    title: "Parsing commands with auxiliary checks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Parser_(programming)"
     image_url: ""
     image_caption: ""
-    content: "The COMMAND subroutine processes player input by checking the parsed vector and executing the appropriate action. It ensures that commands are directed at valid objects and updates the game state accordingly. This parsing logic was essential for creating a responsive and intuitive text-based interface. In the late 1970s, command parsing was a challenging task due to hardware limitations and the lack of established libraries. Zork's approach influenced the design of parsers in later interactive fiction and text-based games, setting a benchmark for user-friendly input handling."
+    content: "The `COMMAND` function interprets player input, ensuring commands are directed at valid objects and actors. It uses auxiliary variables to track the player's state and location, providing feedback when commands are invalid. This parser was a cornerstone of Zork's gameplay, enabling complex interactions in a text-based environment. The authors drew on their experience with Lisp and MDL to create a robust system capable of handling ambiguous input. Command parsing techniques like this influenced later adventure games and even modern voice-controlled systems, where interpreting user intent is critical. The function's design reflects the early challenges of creating intuitive interfaces for interactive fiction."
 
 ---
 
@@ -1934,4 +1934,5 @@ kingdom of winners.  In any case, \"back\" doesn't work.">>
 	   <SETG WINNER .PLAY>
 	   <SETG HERE .HS>)
 	  (<TELL "You cannot talk to that!">)>>
+
 ```
