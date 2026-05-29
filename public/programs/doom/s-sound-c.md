@@ -9,50 +9,58 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "s-sound-c"
 order: 4
-description: "This file demonstrates how DOOM implemented its immersive sound system, balancing hardware constraints and gameplay needs."
+description: "This file orchestrates DOOM's sound system, enabling its immersive audio experience on limited hardware."
 
 summary:
-  - point: "Dynamic sound attenuation based on distance and stereo separation"
-    link: "https://en.wikipedia.org/wiki/Sound_localization"
-    link_label: "Sound Localization"
-  - point: "Efficient sound channel management for limited hardware"
+  - point: "Dynamic sound channel allocation to manage limited resources"
     link: "https://en.wikipedia.org/wiki/Sound_card"
     link_label: "Sound Card"
-  - point: "Integration of music and sound effects in a unified system"
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM"
-  - point: "Caching and priority-based sound playback optimization"
+  - point: "Stereo separation and volume attenuation based on listener position"
+    link: "https://en.wikipedia.org/wiki/Stereophonic_sound"
+    link_label: "Stereophonic Sound"
+  - point: "Integration of sound effects and music playback in real-time"
+    link: "https://en.wikipedia.org/wiki/Real-time_computing"
+    link_label: "Real-Time Computing"
+  - point: "Caching and priority-based sound management for performance"
     link: "https://en.wikipedia.org/wiki/Cache_(computing)"
     link_label: "Cache"
-  - point: "Use of pseudo-Euclidean distance for sound attenuation"
-    link: "https://en.wikipedia.org/wiki/Euclidean_distance"
-    link_label: "Euclidean Distance"
+  - point: "DOOM's sound system influenced later game engines like Quake and Unreal"
+    link: "https://en.wikipedia.org/wiki/Game_engine"
+    link_label: "Game Engine"
 
 enhancements:
-  - id: "sound-system-initialization-and-level-reset"
+  - id: "sound-prefix-array"
     line_start: 196
     line_end: 465
-    title: "Building DOOM's Sound System: Channel Setup and Level-by-Level Music"
+    title: "Channels, Prefixes, and Initialization: DOOM's Sound Foundation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
     image_caption: ""
-    content: "This large section covers the full lifecycle of DOOM's audio infrastructure, from startup to each new level. The `S_Init` function is called once at boot: it sets SFX and music volume from the command line, allocates a flat array of `channel_t` structs sized to match the Sound Blaster's capability (typically 2–8 simultaneous voices), zeros out every channel, and marks all SFX lump numbers as uncached. The design is deliberately flat — no heap, no linked list — because cache-friendly access patterns and predictable memory layout matter more than flexibility when the mixer runs every game tic. The lump array records which sound data has been loaded, avoiding redundant disk reads for frequently triggered effects. `S_Start` runs at the beginning of every level and does two things. First, it silences all active channels unconditionally — a simple but important reset that prevents gunfire or monster sounds from the previous level bleeding into the new one. Second, it determines which music track to play: Doom II maps use a direct index into the commercial music list, while episode-based maps cross-reference a handcrafted table that handles Ultimate DOOM's remixed episode four tracks. The fact that music selection uses a lookup table rather than a formula reflects the organic way id Software composed their soundtrack — certain maps were scored by specific team members and did not follow a mechanical pattern. Together, these two functions establish the sound system's contract: allocate once at startup, silence and rescore at every level boundary, and let subsequent functions handle moment-to-moment playback."
-  - id: "spatial-sound-system"
+    content: "This block establishes the three pillars of DOOM's sound architecture. The snd_prefixen array assigns a letter prefix to each of twelve sound device categories, a low-level convention inherited from the DMX sound library that helped route sounds to the correct hardware device in an era when PC audio cards varied wildly. The channel_t struct provides the per-channel bookkeeping: a pointer to the sfxinfo_t being played, the map object that originated the sound, and an integer handle returned by the hardware layer. S_Init brings it all together by setting sfx and music volumes, allocating the channel array from zone memory, clearing all channel slots, marking every sound effect lump as uncached (lumpnum = -1), and deferring the actual hardware initialization to the platform-specific I_SetChannels call. By separating the high-level channel manager (s_sound.c) from hardware specifics (i_sound.c), DOOM established a portability boundary that let the Linux source release compile cleanly while keeping the original DOS audio path intact."
+  - id: "level-start-sound-reset"
     line_start: 470
     line_end: 483
-    title: "How DOOM Made Sound Feel 3D on 1993 Hardware"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_localization"
+    title: "Level Reset and Sound Playback: S_Start and S_StartSoundAtVolume"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
     image_url: ""
     image_caption: ""
-    content: "This section contains the two functions that give DOOM's audio its spatial character. In `S_StartSoundAtVolume`, before any sound is queued, the game calculates volume and stereo separation based on where the sound source sits relative to the listener — then adds randomized pitch variation on top. The chainsaw, for instance, gets a random pitch nudge in the range of plus or minus 8 units every time it fires, while most other effects receive a slightly wider variance of 16 units. This randomization prevents the audio from feeling mechanical and repetitive, a small touch that contributes enormously to DOOM's atmosphere. The underlying math lives in `S_AdjustSoundParams`, which uses a pseudo-Euclidean distance formula — `adx + ady - min(adx, ady)/2` — to approximate true distance without a square root. It then consults the player's facing angle to derive stereo panning, placing enemies convincingly to the left or right. On Sound Blaster hardware with no 3D audio API, this lightweight formula was the only tool available, and it worked remarkably well. Sounds beyond 1200 map units were silenced entirely, and sources within 160 units played at full volume, giving designers a reliable audible bubble around every threat. These techniques — efficient distance approximation, angle-based panning, and pitch randomization — became foundational patterns in game audio, influencing engines from Quake to Source."
-  - id: "sound-channel-priority-management"
-    line_start: 493
-    line_end: 503
-    title: "How DOOM Decided Which Sound to Play"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
+    content: "S_Start stops every active channel at the beginning of a new level and selects the appropriate MIDI music track based on game mode and episode or map number, including a hand-curated spmus[] lookup table for Episode 4 which reused Episode 2 and 3 music in a different order. S_StartSoundAtVolume is the core emission function: it validates the sound ID, merges linked-sound volume offsets, calls S_AdjustSoundParams to compute distance-based volume and stereo separation relative to the console player, applies randomized pitch perturbation (wider for non-special sounds, narrower for chainsaw variants), stops any existing sound from the same origin, requests a channel from S_getChannel, lazily loads the lump number if needed, and finally passes the adjusted parameters to I_StartSound. Together these two functions define the complete lifetime of a sound event from level boot to hardware submission. The pitch randomization in particular gave DOOM's audio a lively, non-mechanical feel that would have been absent if every pistol shot or imp fireball sounded identical."
+  - id: "sound-update-listener"
+    line_start: 515
+    line_end: 612
+    title: "Real-Time Sound Updates for Immersion"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
     image_url: ""
     image_caption: ""
-    content: "The `S_getChannel` function manages sound channels by finding an available channel or replacing a lower-priority sound if all channels are occupied. This priority-based approach ensured that important sounds, like enemy attacks or player actions, were never missed. In the early '90s, sound cards had limited channels, often just 2-4 simultaneous sounds. DOOM's dynamic channel management was a clever solution to this constraint, influencing later games that adopted similar techniques for handling audio playback on limited hardware."
+    content: "The `S_UpdateSounds` function updates sound parameters in real-time based on the listener's position, ensuring that audio remains synchronized with gameplay. This includes adjusting volume and stereo separation for sounds originating from different locations. The function also cleans up unused sound data, optimizing memory usage. This real-time sound management was groundbreaking for its time, contributing to DOOM's immersive experience. The technique of dynamically updating sound parameters based on player movement became a staple in game audio design, influencing titles like Quake and Unreal Tournament."
+  - id: "sound-parameter-adjustment"
+    line_start: 707
+    line_end: 741
+    title: "Spatial Audio Math and Channel Allocation"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Stereophonic_sound"
+    image_url: ""
+    image_caption: ""
+    content: "S_AdjustSoundParams computes volume, stereo separation, and pitch for a sound based on the Chebyshev-approximated distance between listener and source (adx + ady - min/2, the fast integer approximation from Graphics Gems), clips sounds beyond S_CLIPPING_DIST (1200 map units) except on map 8, and calculates the stereo pan angle using finesine lookup so that sounds to the left attenuate in the right channel and vice versa. S_getChannel searches the channel pool for a free slot or a slot already playing sound from the same origin (to avoid stacking duplicates), and if all channels are busy it finds the lowest-priority active sound and displaces it with the new request, printing the memorable FUCK! comment if nothing can be preempted. Together these two functions give DOOM its convincing sense of positional audio despite using only two hardware output channels and no DSP hardware. The priority-preemption scheme in S_getChannel ensured that loud, close, gameplay-critical sounds like rocket impacts and player pain always displaced quiet ambient effects, a design heuristic that remains standard in game audio middleware such as FMOD and Wwise."
 
 ---
 
@@ -931,4 +939,8 @@ S_getChannel
 
     return cnum;
 }
+
+
+
+
 ```

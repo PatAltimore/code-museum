@@ -9,58 +9,68 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-doors-c"
 order: 26
-description: "This file contains the door animation logic for DOOM, a groundbreaking 1993 game that defined the FPS genre and pushed the limits of consumer hardware."
+description: "This file contains the code responsible for handling door animations and mechanics in DOOM, showcasing techniques that pushed the limits of 1990s hardware."
 
 summary:
-  - point: "Introduces vertical door mechanics central to DOOM's level design"
+  - point: "Introduces vertical and sliding door mechanics, a key part of DOOM's immersive level design."
     link: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
     link_label: "DOOM (1993)"
-  - point: "Implements locked door logic tied to collectible keys"
-    link: "https://doomwiki.org/wiki/Keys"
-    link_label: "DOOM Keys"
-  - point: "Includes abandoned sliding door code, hinting at unused features"
-    link: "https://doomwiki.org/wiki/Sliding_doors"
-    link_label: "Sliding Doors in DOOM"
-  - point: "Optimized for real-time gameplay on 1993 hardware"
-    link: "https://en.wikipedia.org/wiki/Intel_80486"
-    link_label: "Intel 80486"
-  - point: "Demonstrates modular 'thinker' system for game object behaviors"
-    link: "https://doomwiki.org/wiki/Thinker"
-    link_label: "Thinker System"
+  - point: "Optimizes door animations for real-time gameplay on limited hardware."
+    link: "https://en.wikipedia.org/wiki/Real-time_computing"
+    link_label: "Real-time computing"
+  - point: "Demonstrates modular programming with reusable door types and behaviors."
+    link: "https://en.wikipedia.org/wiki/Modular_programming"
+    link_label: "Modular programming"
 
 enhancements:
+  - id: "sliding-door-frame-data"
+    line_start: 42
+    line_end: 51
+    title: "Why Sliding Doors Were Abandoned"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines sliding door frame data, including texture names for front and back frames of sliding doors. Sliding doors were intended for DOOM II but were ultimately abandoned, as noted in the comments. The decision likely stemmed from technical constraints or time pressures during development. Sliding doors would have added complexity to the rendering engine, which was already optimized for vertical movement and limited texture animations. While the sliding door concept was shelved, the modular approach to defining door types and animations influenced later games, including Quake, where more advanced door mechanics were implemented."
   - id: "vertical-door-mechanics"
     line_start: 55
-    line_end: 498
-    title: "How DOOM Made Doors Feel Alive"
-    wikipedia_url: "https://doomwiki.org/wiki/Door"
+    line_end: 197
+    title: "The Code Behind DOOM's Vertical Doors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `T_VerticalDoor` function is the heart of DOOM's door mechanics, handling the opening, closing, and waiting states of vertical doors. It uses a state machine approach, where the door's behavior changes based on its current state (`direction`) and type (`normal`, `blazeRaise`, etc.). The function also integrates sound effects to enhance the player's experience, such as the distinct 'door open' and 'door close' sounds. At the time, real-time animation and interaction with the environment were rare, and this implementation helped make DOOM's world feel dynamic and immersive. In 1993, DOOM was designed to run on consumer PCs equipped with Intel 80486 processors, which had limited computational power. John Carmack's programming expertise ensured that even complex mechanics like doors were optimized for performance. The modular 'thinker' system allowed objects like doors to have their own behavior routines, making the codebase extensible and easier to manage. The vertical door mechanics became a staple in level design for FPS games, influencing titles like Quake and Half-Life. The state machine approach and modular object behavior inspired game developers to adopt similar systems for interactive environments. Today, this technique is foundational in game engines like Unity and Unreal Engine, where state-driven animations are ubiquitous."
-  - id: "locked-door-logic"
+    content: "The `T_VerticalDoor` function handles the behavior of vertical doors, including their opening, closing, and waiting states. Each door type—such as `blazeRaise` or `close30ThenOpen`—is defined with unique properties, including speed and sound effects. This modular design allowed DOOM's levels to feature varied door behaviors without duplicating code. In 1993, hardware constraints meant developers had to carefully balance functionality with performance. John Carmack's focus on efficiency ensured that even complex mechanics like doors ran smoothly on consumer PCs. The vertical door system inspired similar mechanics in later games, such as Half-Life, which expanded on interactive environments."
+  - id: "locked-door-checks"
     line_start: 200
     line_end: 259
-    title: "The Keys That Locked DOOM's Levels"
-    wikipedia_url: "https://doomwiki.org/wiki/Keys"
+    title: "How DOOM Checked for Keycards"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `EV_DoLockedDoor` function implements the logic for locked doors in DOOM, requiring players to collect specific keys (blue, red, or yellow) to progress. If the player lacks the necessary key, the game provides feedback through a message and a sound effect ('oof'). This mechanic added a layer of strategy and exploration to DOOM's fast-paced gameplay, encouraging players to thoroughly explore levels. In the early '90s, key-based progression was a common design choice in adventure games, but DOOM adapted it to the FPS genre, integrating it seamlessly into its labyrinthine level design. The locked door mechanic was a collaborative effort by id Software's team, including John Romero, who focused on level design and player experience. This approach influenced countless games, from Duke Nukem 3D to modern titles like DOOM Eternal. The concept of collectible items unlocking new areas became a staple in game design, appearing in genres ranging from RPGs to platformers. The feedback system—providing both visual and auditory cues—set a precedent for clear player communication that remains standard in game design today."
-  - id: "spawn-door-close-in-30"
+    content: "The `EV_DoLockedDoor` function checks whether a player has the required keycard or skull to open a locked door. If the player lacks the necessary item, a message is displayed, and a sound effect (`sfx_oof`) is played to indicate failure. This mechanic added an element of progression and exploration to DOOM's levels, encouraging players to search for keys to advance. The use of keycards became a staple in first-person shooters, appearing in games like Duke Nukem 3D and System Shock. The implementation here is straightforward but effective, leveraging DOOM's modular design to integrate seamlessly with the game's other mechanics."
+  - id: "door-spawning-in-30-seconds"
     line_start: 501
-    line_end: 521
-    title: "The Door That Waited 30 Seconds"
-    wikipedia_url: "https://doomwiki.org/wiki/Door"
+    line_end: 563
+    title: "The Countdown to Closing Doors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `P_SpawnDoorCloseIn30` function creates a door that automatically closes after 30 seconds. This mechanic added tension and urgency to DOOM's gameplay, forcing players to act quickly or risk being trapped. The countdown is implemented using the game's 'thinker' system, which schedules behaviors for objects in the game world. Timed events like this were innovative in 1993, as most games relied on static environments. The ability to dynamically alter the game world based on time was a testament to John Carmack's programming ingenuity. It showcased how DOOM's engine could handle complex interactions efficiently, even on limited hardware. Timed mechanics like these became a hallmark of interactive level design, influencing games like Portal and Half-Life. The concept of environmental changes tied to player actions or time constraints is now a common feature in modern game design, demonstrating DOOM's lasting impact on the industry."
-  - id: "abandoned-sliding-door-code"
-    line_start: 553
-    line_end: 762
-    title: "The Sliding Doors That Never Opened"
-    wikipedia_url: "https://doomwiki.org/wiki/Sliding_doors"
+    content: "The `P_SpawnDoorCloseIn30` function spawns a door that automatically closes after 30 seconds. This mechanic added dynamic elements to DOOM's levels, creating time-sensitive challenges for players. The countdown is implemented using a `topcountdown` variable, which decrements every game tick. Such time-based mechanics were innovative for 1993, as they required precise synchronization with the game's real-time engine. The concept of timed events influenced later games, including Unreal Tournament, which used similar techniques for dynamic level interactions."
+  - id: "sliding-door-initialization"
+    line_start: 565
+    line_end: 602
+    title: "The Sliding Door Textures That Never Were"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The sliding door code, marked as abandoned, reveals an intriguing glimpse into DOOM's development process. The `EV_SlidingDoor` function and related routines were intended to implement horizontally sliding doors, complete with animated textures. However, these features were ultimately unused in the final game, possibly due to time constraints or hardware limitations. Sliding doors were a novel idea in 1993, as most games featured simple vertical or static doors. The code includes logic for animating textures frame by frame and removing blocking properties from the door once fully opened. This level of detail highlights id Software's ambition to push the boundaries of environmental interactivity. Although unused in DOOM, sliding doors appeared in later games like Quake and Unreal, where more advanced engines could support such features. The concept of animated environmental objects influenced modern game engines, where dynamic textures and object states are standard. This abandoned code serves as a reminder of the iterative nature of game development and the trade-offs developers must make to meet deadlines."
+    content: "The `P_InitSlidingDoorFrames` function initializes texture data for sliding doors, mapping texture names to numerical IDs. This system was designed for DOOM II but ultimately abandoned, as noted in the comments. The function highlights the modular approach id Software took, allowing new mechanics to be added without disrupting existing systems. While sliding doors never appeared in DOOM II, the groundwork laid here influenced later games, such as Quake, which featured more advanced door animations and interactions."
+  - id: "sliding-door-animation"
+    line_start: 624
+    line_end: 707
+    title: "Animating Sliding Doors Frame by Frame"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `T_SlidingDoor` function animates sliding doors frame by frame, updating textures and handling transitions between opening, waiting, and closing states. This detailed animation system was ahead of its time, showcasing id Software's ambition to push the limits of level interactivity. However, sliding doors were ultimately abandoned for DOOM II, likely due to technical or time constraints. The frame-by-frame approach influenced later games, such as Quake and Unreal, which used similar techniques for animating complex objects in 3D environments."
 
 ---
 

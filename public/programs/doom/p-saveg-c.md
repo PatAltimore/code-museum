@@ -9,98 +9,84 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-saveg-c"
 order: 31
-description: "This file handles the save and load functionality for DOOM's game state, including players, world geometry, and active game objects ('thinkers'). It showcases the ingenuity required to serialize complex game states on 1990s hardware."
+description: "This file implements DOOM's savegame system, allowing players to persist their progress in a groundbreaking 3D environment."
 
 summary:
-  - point: "Introduces padding for cross-platform save compatibility"
-    link: "https://en.wikipedia.org/wiki/Data_structure_alignment"
-    link_label: "Data structure alignment"
-  - point: "Efficiently serializes and deserializes player states"
-    link: "https://en.wikipedia.org/wiki/Serialization"
-    link_label: "Serialization"
-  - point: "Handles dynamic game objects ('thinkers') in save files"
+  - point: "Introduces a modular save/load system for game state"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM (1993)"
+  - point: "Uses memory alignment tricks for cross-platform compatibility"
+    link: "https://en.wikipedia.org/wiki/Memory_alignment"
+    link_label: "Memory Alignment"
+  - point: "Handles complex game entities like players, world geometry, and active thinkers"
     link: "https://doomwiki.org/wiki/Thinker"
-    link_label: "Thinker system in DOOM"
-  - point: "Uses fixed-point arithmetic for world geometry serialization"
-    link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
-    link_label: "Fixed-point arithmetic"
-  - point: "Demonstrates modular save/load design for extensibility"
-    link: "https://en.wikipedia.org/wiki/Modular_programming"
-    link_label: "Modular programming"
+    link_label: "Thinker System in DOOM"
 
 enhancements:
-  - id: "pad-save-pointer-for-cross-platform"
-    line_start: 37
-    line_end: 39
-    title: "Why Save Files Needed Padding"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure_alignment"
-    image_url: ""
-    image_caption: ""
-    content: "This macro ensures that the save pointer (`save_p`) aligns to a 4-byte boundary, a requirement for compatibility across different architectures such as SGI and Gecko systems. In the early 1990s, hardware differences often led to subtle bugs in data serialization, as some systems required strict alignment for memory access. By padding the pointer, id Software avoided potential crashes or corrupted save files when transferring game states between platforms. This technique reflects the careful attention to cross-platform compatibility that was necessary in an era when gaming PCs varied widely in architecture. The padding approach influenced later serialization practices, especially in engines like Quake and Unreal, which also had to handle diverse hardware environments."
-  - id: "archive-players-game-state"
+  - id: "archive-players-savegame"
     line_start: 43
     line_end: 71
-    title: "How DOOM Saved Its Players"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Serialization"
+    title: "How DOOM Saved Player State in 1993"
+    wikipedia_url: "https://doomwiki.org/wiki/Savegame"
     image_url: ""
     image_caption: ""
-    content: "The `P_ArchivePlayers` function serializes the state of all active players into the save file. It iterates through the `players` array, skipping inactive slots, and copies the player data into the save buffer (`save_p`). To ensure consistency, it adjusts pointers to sprite states by converting them into offsets relative to the global `states` array. This approach allowed DOOM to save complex player states, including their inventory, position, and animation frames, while maintaining portability across systems. At the time, saving such detailed game states was cutting-edge, as many games relied on simpler checkpoint systems. The technique laid the groundwork for more sophisticated save systems in later games, including RPGs and open-world titles."
-  - id: "unarchive-players-game-state"
+    content: "The `P_ArchivePlayers` function saves the state of all active players into a memory buffer for later retrieval. It iterates over the `players` array, skipping inactive players, and copies their data into the save buffer. A clever trick adjusts sprite state pointers to relative offsets, ensuring compatibility across memory layouts. This was crucial for DOOM's portability, as the game ran on multiple platforms, including SGI workstations and consumer PCs. At the time, saving game state was a technical challenge due to limited memory and the need for cross-platform compatibility. John Carmack's focus on modularity and efficiency led to this design, which influenced later games like Quake and Unreal. The modular savegame system became a standard feature in modern game engines, allowing developers to persist complex game states reliably."
+  - id: "unarchive-players-loadgame"
     line_start: 75
     line_end: 107
-    title: "Rebuilding Players from Save Files"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Serialization"
+    title: "Rebuilding Players from Save Data"
+    wikipedia_url: "https://doomwiki.org/wiki/Savegame"
     image_url: ""
     image_caption: ""
-    content: "The `P_UnArchivePlayers` function reverses the serialization process, restoring player states from the save buffer. It carefully reconstructs pointers to sprite states and resets transient fields like `mo` (map object) and `message`. This meticulous restoration ensures that players resume their game exactly as they left it, including animations and interactions. The function also highlights the challenges of pointer-based data structures in save files, as pointers must be recalculated during deserialization. This technique influenced later game engines, which adopted similar methods for reconstructing complex game states, such as NPC behaviors and player inventories."
-  - id: "archive-world-geometry"
+    content: "The `P_UnArchivePlayers` function restores player data from a save buffer, reversing the process of `P_ArchivePlayers`. It carefully reconstructs pointers, such as sprite states, which were stored as relative offsets. This design ensured that saved games could be loaded seamlessly across different platforms and memory layouts. The function also resets transient player attributes like messages and attackers, which are not saved. In the early 1990s, savegame systems were often rudimentary, but DOOM's approach demonstrated how to handle complex game entities efficiently. This technique influenced the development of save/load systems in later games, including Quake and Half-Life, which built on DOOM's innovations to manage increasingly complex game states."
+  - id: "archive-world-savegame"
     line_start: 110
     line_end: 159
-    title: "Saving DOOM's World in Fixed-Point"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    title: "Saving the Geometry of Hell"
+    wikipedia_url: "https://doomwiki.org/wiki/Savegame"
     image_url: ""
     image_caption: ""
-    content: "The `P_ArchiveWorld` function serializes the game's world geometry, including sectors (rooms) and lines (walls). It uses fixed-point arithmetic to store heights and offsets, dividing by `FRACBITS` to convert from the internal representation to integers suitable for saving. Fixed-point arithmetic was a common choice in the 1990s, as floating-point operations were slow or unavailable on consumer CPUs. By saving only the essential attributes, such as floor textures and light levels, id Software optimized the save file size for the limited storage capacities of the era. This approach influenced later engines, which also prioritized efficient serialization of game worlds to minimize load times and disk usage."
-  - id: "unarchive-world-geometry"
+    content: "The `P_ArchiveWorld` function saves the state of the game's world, including sectors, lines, and sides. It writes attributes like floor and ceiling heights, textures, and light levels into the save buffer. This was a critical feature for DOOM's immersive environments, as it allowed players to return to their exact position in the game's labyrinthine levels. The function uses fixed-point arithmetic to store fractional values efficiently, reflecting the constraints of 1990s hardware. Saving world geometry was a novel challenge at the time, as most games were simpler and did not require such detailed persistence. DOOM's savegame system inspired similar features in later 3D games, including Duke Nukem 3D and Unreal, which expanded on this approach to handle even more complex environments."
+  - id: "unarchive-world-loadgame"
     line_start: 163
     line_end: 210
-    title: "Reconstructing DOOM's World from Disk"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    title: "Restoring Hell's Geometry from Memory"
+    wikipedia_url: "https://doomwiki.org/wiki/Savegame"
     image_url: ""
     image_caption: ""
-    content: "The `P_UnArchiveWorld` function restores the world geometry from a save file, reversing the fixed-point conversion to reconstruct heights and offsets. It also resets transient fields, such as `specialdata`, which are not saved but are required for gameplay. This function demonstrates the complexity of deserializing interconnected game elements, as sectors and lines must be restored in a way that preserves their relationships. The technique was essential for DOOM's fast-paced gameplay, allowing players to seamlessly reload their progress without noticeable delays. Similar methods were later adopted by engines like Quake and Source, which also needed to reconstruct dynamic worlds efficiently."
-  - id: "archive-thinkers-game-objects"
+    content: "The `P_UnArchiveWorld` function loads world geometry from a save buffer, reconstructing sectors, lines, and sides. It reverses the fixed-point arithmetic used during saving and resets transient attributes like special data and sound targets. This meticulous reconstruction ensures that the game's intricate levels are restored accurately, preserving the player's experience. In the early 1990s, such detailed save/load systems were rare, as most games relied on simpler checkpoint systems. DOOM's ability to persist complex environments set a new standard for 3D games, influencing titles like Hexen and System Shock, which adopted similar techniques for saving and loading detailed game worlds."
+  - id: "archive-thinkers-savegame"
     line_start: 228
     line_end: 258
-    title: "Saving DOOM's Dynamic Game Objects"
+    title: "Saving the Minds of DOOM's Monsters"
     wikipedia_url: "https://doomwiki.org/wiki/Thinker"
     image_url: ""
     image_caption: ""
-    content: "The `P_ArchiveThinkers` function serializes active game objects, known as 'thinkers,' into the save file. Thinkers include enemies, projectiles, and other dynamic entities that require ongoing updates. The function iterates through the thinker list, saving each object's state and converting pointers to offsets for portability. It also adds a terminating marker (`tc_end`) to signal the end of the thinker list. This modular approach allowed DOOM to handle a wide variety of game objects without hardcoding their behaviors into the save system. The thinker system became a hallmark of id Software's engines, influencing later games like Quake and even modern engines like Unity, which use similar component-based architectures."
-  - id: "unarchive-thinkers-game-objects"
+    content: "The `P_ArchiveThinkers` function saves the state of active 'thinkers'—game entities with ongoing behavior, such as monsters and projectiles. It iterates through the linked list of thinkers, identifying those with specific functions like `P_MobjThinker`. Each thinker's data is written to the save buffer, with pointers converted to relative offsets for portability. This design reflects John Carmack's emphasis on modularity and efficiency, allowing DOOM to manage complex interactions while saving memory. The thinker system was a groundbreaking feature, enabling dynamic and responsive gameplay. It influenced later games like Quake and Unreal, which adopted similar systems to manage AI and game logic."
+  - id: "unarchive-thinkers-loadgame"
     line_start: 262
     line_end: 322
-    title: "Reanimating DOOM's Thinkers from Save Files"
+    title: "Reanimating DOOM's Monsters from Save Files"
     wikipedia_url: "https://doomwiki.org/wiki/Thinker"
     image_url: ""
     image_caption: ""
-    content: "The `P_UnArchiveThinkers` function reconstructs dynamic game objects ('thinkers') from the save file. It clears the current thinker list, initializes new thinkers based on the saved data, and recalculates pointers to ensure proper functionality. This process includes restoring connections between objects, such as a player's link to their map object (`mo`). The function highlights the challenges of deserializing complex systems, as it must handle various thinker types and ensure their interactions are preserved. The thinker system's flexibility influenced later engines, which adopted similar designs to manage dynamic entities in games ranging from first-person shooters to strategy titles."
-  - id: "archive-specials-game-events"
+    content: "The `P_UnArchiveThinkers` function restores active thinkers from a save buffer, reconstructing their attributes and re-linking them into the game's logic. It removes existing thinkers before loading new ones, ensuring a clean slate. This function demonstrates DOOM's ability to manage complex game entities dynamically, a feature that was rare in 1993. The thinker system became a foundational concept in game development, influencing AI and entity management in titles like Half-Life and Unreal. By enabling dynamic persistence, DOOM set a precedent for how games could handle intricate gameplay systems across save/load cycles."
+  - id: "archive-specials-savegame"
     line_start: 343
     line_end: 468
-    title: "How DOOM Saved Its Active Events"
-    wikipedia_url: "https://doomwiki.org/wiki/Thinker"
+    title: "Preserving DOOM's Moving Floors and Flashing Lights"
+    wikipedia_url: "https://doomwiki.org/wiki/Savegame"
     image_url: ""
     image_caption: ""
-    content: "The `P_ArchiveSpecials` function serializes active game events, such as moving platforms, doors, and lighting effects, into the save file. It iterates through the thinker list, identifying special event types and saving their state. By converting sector pointers to offsets, it ensures portability across systems. This modular approach allowed DOOM to handle a wide variety of active events without hardcoding their behaviors into the save system. The ability to save and restore dynamic events was critical for maintaining gameplay continuity, especially in levels with complex interactions. This technique influenced later engines, which adopted similar methods to serialize dynamic game elements, enabling features like mid-mission saves in modern titles."
-  - id: "unarchive-specials-game-events"
+    content: "The `P_ArchiveSpecials` function saves the state of special game elements, such as moving floors, doors, and lighting effects. It iterates through the thinker list, identifying specific types of specials and writing their data to the save buffer. This function highlights DOOM's ability to handle dynamic environments, a feature that set it apart from other games of the era. By saving active specials, DOOM ensured that its levels retained their interactive elements, enhancing immersion. This approach influenced later games like Duke Nukem 3D and Unreal, which expanded on DOOM's techniques to create even more dynamic and interactive worlds."
+  - id: "unarchive-specials-loadgame"
     line_start: 471
     line_end: 584
-    title: "Reactivating DOOM's Special Events"
-    wikipedia_url: "https://doomwiki.org/wiki/Thinker"
+    title: "Reactivating DOOM's Dynamic Level Elements"
+    wikipedia_url: "https://doomwiki.org/wiki/Savegame"
     image_url: ""
     image_caption: ""
-    content: "The `P_UnArchiveSpecials` function restores active game events from the save file, including platforms, doors, and lighting effects. It reconstructs pointers to sectors and reinitializes thinker functions to ensure proper behavior. This process highlights the complexity of deserializing interconnected systems, as each event must be restored in a way that preserves its relationships with other game elements. The function's modular design allowed DOOM to handle a wide variety of special events, setting a precedent for extensible save systems in later engines. Games like Quake and Unreal adopted similar techniques to manage dynamic events, enabling features like scripted sequences and interactive environments."
+    content: "The `P_UnArchiveSpecials` function restores special game elements from a save buffer, re-linking them into the game's logic. It reconstructs attributes like sector pointers and thinker functions, ensuring that dynamic elements like moving floors and flashing lights resume their behavior. This meticulous process reflects DOOM's commitment to preserving its immersive environments across save/load cycles. The ability to persist dynamic elements was a groundbreaking feature in 1993, influencing later games like Hexen and System Shock, which adopted similar techniques to manage interactive environments. DOOM's savegame system set a new standard for how games could handle complex, dynamic worlds."
 
 ---
 
@@ -689,4 +675,5 @@ void P_UnArchiveSpecials (void)
     }
 
 }
+
 ```

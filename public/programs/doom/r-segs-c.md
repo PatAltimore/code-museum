@@ -9,50 +9,44 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "r-segs-c"
 order: 36
-description: "This file contains critical rendering routines for DOOM's wall segments, showcasing techniques that defined real-time 3D graphics in the early 1990s."
+description: "This file contains key rendering routines that helped DOOM achieve its groundbreaking performance and visual fidelity on 1990s hardware."
 
 summary:
-  - point: "Introduces texture mapping and lighting calculations for wall rendering"
+  - point: "DOOM's rendering pipeline relied on efficient wall segment drawing."
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM (1993)"
+  - point: "Innovative use of light tables and texture mapping for dynamic visuals."
     link: "https://en.wikipedia.org/wiki/Texture_mapping"
     link_label: "Texture Mapping"
-  - point: "Optimizes rendering by marking floor and ceiling planes"
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM"
-  - point: "Handles masked textures for transparent walls and special effects"
-    link: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
-    link_label: "Transparency in Graphics"
-  - point: "Uses fixed-point arithmetic for performance on limited hardware"
+  - point: "Optimizations for limited hardware capabilities of the era."
     link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
-    link_label: "Fixed-Point Arithmetic"
-  - point: "Core rendering loop demonstrates early real-time graphics techniques"
-    link: "https://en.wikipedia.org/wiki/Real-time_computer_graphics"
-    link_label: "Real-Time Graphics"
+    link_label: "Fixed-point Arithmetic"
 
 enhancements:
-  - id: "masked-texture-rendering"
-    line_start: 98
+  - id: "masked-segment-rendering"
+    line_start: 99
     line_end: 189
-    title: "How DOOM Made Transparent Walls Possible"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
-    image_url: ""
-    image_caption: ""
-    content: "This subroutine, `R_RenderMaskedSegRange`, is responsible for rendering masked textures, such as transparent walls or grates, in DOOM. Masked textures allow parts of the wall to be see-through, enabling effects like windows or fences. The routine calculates lighting based on the wall's orientation and light levels, adjusts texture positioning based on flags like `ML_DONTPEGBOTTOM`, and iterates over each column of the wall segment to render the texture. The use of fixed-point arithmetic ensures performance on the limited hardware of the early 1990s, where floating-point operations were expensive. In 1993, the computing landscape was dominated by machines like the Intel 486, which lacked hardware acceleration for graphics. Developers had to rely on clever software techniques to achieve effects that are now trivial with GPUs. John Carmack, DOOM's lead programmer, was known for his ability to push hardware to its limits. The masked texture system was a direct response to the need for dynamic and immersive environments, allowing players to see through barriers while maintaining high frame rates. This technique influenced countless games that followed, particularly in the first-person shooter genre. Titles like Quake and Unreal built on these ideas, incorporating more advanced transparency effects as hardware improved. Even today, the concept of masked textures persists in modern engines like Unity and Unreal Engine, albeit implemented with vastly more powerful tools. Carmack's work on DOOM laid the foundation for real-time rendering techniques that remain relevant decades later."
-  - id: "core-rendering-loop"
-    line_start: 194
-    line_end: 363
-    title: "The Loop That Drew DOOM's Walls"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computer_graphics"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_RenderSegLoop` routine is the heart of DOOM's wall rendering system. It draws wall textures, handles lighting, and marks floor and ceiling planes for further rendering. The loop iterates over each pixel column of a wall segment, calculating texture offsets and lighting values dynamically. It also supports multi-tiered walls, drawing separate textures for the top, middle, and bottom sections as needed. Special cases like masked textures are handled here, ensuring transparent walls are rendered correctly. In the early 1990s, real-time graphics were still in their infancy. DOOM's rendering engine was groundbreaking, achieving smooth 3D visuals on hardware with no dedicated graphics acceleration. The use of fixed-point arithmetic and precomputed lookup tables allowed the game to perform complex calculations quickly. Carmack's approach to rendering was heavily influenced by earlier games like Wolfenstein 3D but introduced innovations like variable lighting and texture alignment. This rendering loop became a cornerstone of real-time graphics programming. Its influence can be seen in later engines like Quake's, which expanded on these ideas with true 3D environments and hardware acceleration. Modern game engines still rely on similar principles, albeit implemented with shaders and parallel processing. The techniques pioneered in DOOM's rendering loop remain a testament to the ingenuity of early game developers."
-  - id: "wall-segment-storage"
-    line_start: 368
-    line_end: 744
-    title: "How DOOM Decided What to Draw"
+    title: "How DOOM Painted Overlapping Wall Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `R_StoreWallRange` routine determines which wall segments are visible and prepares them for rendering. It calculates distances, scales, and texture offsets, marking floor and ceiling planes as necessary. The routine also handles special cases like single-sided walls and masked textures, ensuring they are drawn correctly. By optimizing the storage and processing of wall segments, this code minimizes rendering overhead and maintains high performance. In 1993, consumer PCs were limited by slow CPUs and minimal memory. DOOM's developers had to carefully manage resources to achieve smooth gameplay. This routine reflects that constraint, using fixed-point arithmetic and precomputed values to reduce computational load. The decision to mark floor and ceiling planes separately was a clever optimization, allowing the engine to skip unnecessary calculations for invisible areas. This approach influenced later games and engines, particularly in the first-person shooter genre. Quake, Unreal, and other titles built on these ideas, introducing more advanced visibility algorithms like BSP trees and portal rendering. Even modern engines like Unity and Unreal Engine use similar principles to optimize rendering. The techniques developed in DOOM's wall segment storage routine helped shape the evolution of real-time graphics programming."
+    content: "This section implements `R_RenderMaskedSegRange`, a routine responsible for rendering masked textures on wall segments. Masked textures are used for elements like windows or fences, where transparency allows the player to see through. The function calculates lighting based on the segment's orientation and distance, dynamically adjusting brightness using light tables. It also handles texture alignment and positioning, ensuring textures appear correctly relative to the player's viewpoint. In 1993, consumer PCs lacked dedicated graphics hardware, so games like DOOM relied on CPU-based rendering. Developers had to optimize every calculation, often using fixed-point arithmetic instead of floating-point math to save cycles. The lighting adjustments here reflect DOOM's innovative approach to creating immersive environments despite hardware constraints. John Carmack, the lead programmer, famously prioritized performance, stating, \"It's all about speed.\" The masked texture rendering technique influenced later games by demonstrating how to handle semi-transparent surfaces efficiently. Titles like Quake and Unreal built upon these ideas, incorporating more advanced transparency and lighting systems. Today, the concept of masked textures persists in modern engines like Unity and Unreal Engine, albeit implemented with hardware acceleration. This routine showcases the ingenuity required to deliver visually complex scenes on early PCs."
+  - id: "core-rendering-loop"
+    line_start: 194
+    line_end: 363
+    title: "The Loop That Rendered DOOM's Walls"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "`R_RenderSegLoop` is the core routine responsible for drawing wall segments in DOOM. It iterates over horizontal screen coordinates, calculating texture offsets, lighting, and visibility for each pixel column. The function handles both single-sided and double-sided walls, applying textures and marking floor and ceiling boundaries for subsequent rendering. In the early 1990s, real-time 3D rendering was in its infancy. DOOM's approach to rendering walls was groundbreaking, using a combination of fixed-point arithmetic and precomputed tables to achieve high performance. The game avoided floating-point operations, which were slow on the Intel 486 processors common at the time. Carmack's focus on optimization led to techniques like column-based rendering, which minimized memory access and computation. This loop became a template for efficient rendering in subsequent games. Quake, Carmack's next project, expanded on these ideas with true 3D environments and hardware acceleration. The principles demonstrated here—efficient iteration, precomputed data, and careful memory management—remain relevant in modern game development. Developers studying DOOM's source code often cite this loop as a masterclass in performance-oriented programming."
+  - id: "wall-segment-storage"
+    line_start: 367
+    line_end: 743
+    title: "How DOOM Organized Wall Segments for Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "`R_StoreWallRange` handles the preparation of wall segments for rendering. It calculates distances, scales, and texture boundaries, storing the necessary data for the rendering loop. The function also determines whether floor and ceiling planes need to be marked, ensuring seamless transitions between different sectors. This routine reflects the challenges of rendering complex environments on limited hardware. DOOM's sector-based architecture allowed for intricate level designs, but it required careful management of visibility and texture alignment. The function uses fixed-point math and precomputed tables to optimize calculations, a hallmark of Carmack's programming philosophy. The efficient organization of wall segments influenced later games and engines. Quake introduced BSP trees for even faster visibility determination, while modern engines use spatial partitioning techniques like octrees and voxel grids. The ideas here laid the groundwork for these advancements, demonstrating how to balance complexity and performance in real-time rendering. Developers continue to study DOOM's source code for insights into efficient game engine design."
 
 ---
 
@@ -801,4 +795,5 @@ R_StoreWallRange
     }
     ds_p++;
 }
+
 ```

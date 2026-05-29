@@ -9,68 +9,66 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "f-wipe-c"
 order: 18
-description: "This file implements the screen wipe effects in DOOM, a visual transition technique that added polish and immersion to the game's level changes."
+description: "This file implements DOOM's screen wipe effects, a visual transition between game states that added polish and immersion to the experience."
 
 summary:
-  - point: "Introduces column-major transformations for faster memory access during wipes"
+  - point: "Introduces column-major transformations for faster memory access"
     link: "https://en.wikipedia.org/wiki/Column-major_order"
     link_label: "Column-major order"
-  - point: "Demonstrates a modular approach to screen wipe effects with reusable routines"
-    link: "https://en.wikipedia.org/wiki/Modular_programming"
-    link_label: "Modular programming"
-  - point: "Uses randomization to create visually dynamic transitions"
+  - point: "Uses randomized initial positions for dynamic visual effects"
     link: "https://en.wikipedia.org/wiki/Random_number_generation"
     link_label: "Random number generation"
+  - point: "Implements modular screen wipe routines for flexibility"
+    link: "https://en.wikipedia.org/wiki/Modular_programming"
+    link_label: "Modular programming"
+  - point: "Optimizes memory allocation for constrained hardware"
+    link: "https://en.wikipedia.org/wiki/Memory_management"
+    link_label: "Memory management"
+  - point: "Pioneered visual transitions in early 3D games"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM"
 
 enhancements:
   - id: "shitty-col-major-transform"
     line_start: 276
     line_end: 285
-    title: "Why Call It 'ShittyColMajorXform'?"
+    title: "Why DOOM Called This 'Shitty' Transform"
     wikipedia_url: "https://en.wikipedia.org/wiki/Column-major_order"
     image_url: ""
     image_caption: ""
-    content: "This function performs a column-major transformation on a 2D array, rearranging its memory layout to optimize access patterns for certain operations. The name 'shittyColMajorXform' reflects a candid, informal naming style often seen in development teams under pressure. At the time, DOOM's developers were working on hardware with limited memory bandwidth and CPU power, so optimizing memory access was critical. Column-major order, while less intuitive for row-major programmers, could reduce cache misses and improve performance in specific scenarios. The function uses dynamic memory allocation to create a temporary buffer, performs the transformation, and then copies the result back to the original array. This technique, though labeled 'shitty,' was effective enough to be used in the game's wipe effects, demonstrating the pragmatic trade-offs developers made to meet deadlines. The approach influenced later games and engines, where memory layout optimization became a standard practice in high-performance graphics programming."
+    content: "This function, humorously named `wipe_shittyColMajorXform`, converts a 2D array from row-major to column-major order. The transformation rearranges memory layout to optimize access patterns for certain operations, particularly in graphics rendering. At the time, DOOM's developers were working on machines with limited memory and CPU power, where even small optimizations could have significant impacts. John Carmack, known for his technical prowess, often experimented with unconventional solutions to squeeze performance out of hardware. The name reflects the developers' frustration with the complexity or inelegance of the solution, but it was effective. Column-major order is still relevant in modern computing, particularly in scientific computing and graphics APIs like OpenGL. This function demonstrates the team's willingness to embrace low-level optimizations to achieve their goals."
   - id: "color-xform-initialization"
-    line_start: 225
-    line_end: 233
-    title: "Setting Up for a Smooth Transition"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Screen_transition"
+    line_start: 170
+    line_end: 223
+    title: "Initializing the Color and Melt Screen Transitions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Color_mapping"
     image_url: ""
     image_caption: ""
-    content: "The `wipe_initColorXForm` function initializes the color transformation wipe effect by copying the starting screen into a working buffer. This setup ensures that the wipe effect begins with a clean slate, ready to interpolate between the start and end screens. In 1993, screen transitions were a novel way to enhance the visual experience of games, making level changes feel more fluid and immersive. DOOM's developers leveraged this technique to mask loading times and maintain the game's fast-paced rhythm. The function's simplicity reflects the constraints of the era, where memory and CPU cycles were precious resources. By preloading the start screen into a buffer, the game could perform incremental updates without re-reading data, a technique that influenced later real-time graphics systems."
-  - id: "color-xform-execution"
-    line_start: 225
-    line_end: 233
-    title: "Pixel by Pixel: How DOOM Wipes Screens"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
+    content: "This region contains the init functions for both of DOOM's screen-wipe modes. `wipe_initColorXForm` simply copies the starting screen into the working buffer so that the subsequent per-pixel color interpolation begins from a clean baseline. `wipe_initMelt` does considerably more: it copies the start screen, runs both the start and end buffers through the column-major reformat for cache-friendly access, then seeds each screen column with a random negative offset so columns begin their downward slide at slightly different times, producing the organic dripping look. Randomness was cheap to generate and made the effect feel handcrafted rather than mechanical. Together the two init routines reflect id Software's pragmatic design philosophy: the color transform was a straightforward palette blend that cost little to initialize, while the melt demanded upfront setup work that paid for itself by enabling the more visually striking effect DOOM became famous for."
+  - id: "color-xform-transition"
+    line_start: 71
+    line_end: 125
+    title: "How DOOM Made Colors Melt Together"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `wipe_doColorXForm` function executes the color transformation wipe effect, gradually interpolating pixel values between the start and end screens. It uses a loop to traverse each pixel, adjusting its value based on the difference between the current and target states. If the current pixel is brighter or darker than its target, it increments or decrements the value by a fixed amount (`ticks`), ensuring a smooth transition. This approach was a clever workaround for the lack of hardware acceleration in 1993, relying entirely on CPU calculations to produce visually appealing effects. The algorithm's simplicity and efficiency were critical for DOOM's performance on consumer-grade PCs. Later graphics engines adopted similar techniques, often enhanced with hardware support, to create seamless transitions in games and applications."
-  - id: "melt-initialization"
-    line_start: 225
-    line_end: 233
-    title: "Randomized Melt: A Dynamic Screen Transition"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Screen_transition"
+    content: "The `wipe_doColorXForm` function performs the actual color transformation between two screens. It iterates through each pixel, adjusting its value incrementally toward the target screen's pixel value. This creates a smooth, melting effect as one screen transitions into another. The algorithm uses a simple comparison and adjustment mechanism, ensuring that the transition is visually coherent and avoids abrupt changes. In the early 1990s, this kind of effect was computationally expensive, but DOOM's developers optimized it to run efficiently on hardware like the Intel 486. The technique inspired similar effects in later games, contributing to the evolution of graphical transitions in interactive media."
+  - id: "melt-transition"
+    line_start: 127
+    line_end: 168
+    title: "Simulating Pixel Columns Dripping Down"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `wipe_initMelt` function initializes the 'melt' screen wipe effect, setting up column positions and randomizing their starting states. This randomness adds a dynamic, organic feel to the transition, making it visually distinct from other wipes. The function also converts the start and end screens to column-major format, optimizing memory access for the subsequent operations. Randomization was a hallmark of DOOM's design philosophy, used not just for gameplay but also for visual effects, creating an unpredictable and engaging experience. By combining randomness with memory layout optimization, the developers achieved a balance between aesthetic appeal and performance. The melt effect became iconic, influencing later games that sought to replicate DOOM's immersive transitions."
-  - id: "melt-execution"
+    content: "The `wipe_doMelt` function executes the melt effect, moving columns of pixels downward to reveal the target screen. It uses a combination of incremental adjustments and memory copying to simulate the dripping motion. The algorithm dynamically adjusts the speed of each column based on its position, creating a visually engaging effect. This kind of transition was rare in early 3D games, as hardware constraints often limited graphical complexity. DOOM's implementation demonstrated how careful optimization and creative algorithms could achieve impressive results on modest hardware. The melt effect became a signature visual transition, influencing later games and even inspiring similar effects in modern UI design."
+  - id: "screen-wipe-controller"
     line_start: 225
-    line_end: 233
-    title: "Melting Pixels: A Column-Based Transition"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Screen_transition"
+    line_end: 274
+    title: "The Function That Tied It All Together"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Modular_programming"
     image_url: ""
     image_caption: ""
-    content: "The `wipe_doMelt` function executes the 'melt' screen wipe effect, simulating columns of pixels sliding downward to reveal the next screen. It uses a combination of incremental updates and memory manipulation to achieve the effect. Each column's position is tracked, and pixels are copied from the end screen to the working buffer as the column progresses downward. The function also handles the transition from the start screen to the working buffer, ensuring a seamless visual effect. This technique was a testament to DOOM's developers' ingenuity, as they created visually striking effects with limited hardware capabilities. The melt effect became a memorable part of DOOM's aesthetic, inspiring similar transitions in later games and multimedia applications."
-  - id: "screenwipe-controller"
-    line_start: 225
-    line_end: 233
-    title: "The Master Switch for Screen Wipes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Screen_transition"
-    image_url: ""
-    image_caption: ""
-    content: "The `wipe_ScreenWipe` function serves as the central controller for all screen wipe effects, managing their initialization, execution, and cleanup. It uses a modular approach, with an array of function pointers to handle different wipe types. This design allows for easy addition of new effects, demonstrating the developers' foresight in creating extensible systems. The function also integrates with DOOM's rendering pipeline, marking the screen area for updates and ensuring smooth transitions. Modular programming was a key principle in DOOM's development, enabling rapid iteration and experimentation. The screen wipe system, with its clean separation of concerns, influenced later game engines, where modularity became a cornerstone of design."
+    content: "The `wipe_ScreenWipe` function serves as the central controller for DOOM's screen wipe effects. It uses a modular approach, selecting the appropriate wipe routine based on the input parameters. This design allowed developers to easily add or modify wipe effects without disrupting the overall system. Modular programming was a forward-thinking approach in the early 1990s, enabling greater flexibility and maintainability. The function also handles initialization, execution, and cleanup, ensuring that transitions are seamless and free of artifacts. This architecture influenced later game engines, where modular systems became standard practice for managing graphical effects and other subsystems."
 
 ---
 

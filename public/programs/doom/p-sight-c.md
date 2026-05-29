@@ -9,60 +9,60 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-sight-c"
 order: 32
-description: "Line-of-sight and visibility checks in DOOM's engine, enabling efficient enemy AI and player interaction."
+description: "This file implements line-of-sight checks in DOOM, a foundational mechanic for AI behavior and player interaction in the game."
 
 summary:
-  - point: "Uses a REJECT table to optimize visibility checks"
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)#Technology"
-    link_label: "DOOM Technology"
-  - point: "Implements BSP traversal for spatial calculations"
+  - point: "Uses BSP traversal for efficient visibility checks"
     link: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     link_label: "Binary Space Partitioning"
-  - point: "Introduces efficient slope-based occlusion testing"
-    link: "https://en.wikipedia.org/wiki/Visibility_(geometry)"
-    link_label: "Visibility in Geometry"
+  - point: "Incorporates REJECT table optimization to skip unnecessary checks"
+    link: "https://doomwiki.org/wiki/Reject_table"
+    link_label: "REJECT Table"
+  - point: "Demonstrates early use of fixed-point arithmetic for performance"
+    link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    link_label: "Fixed-Point Arithmetic"
 
 enhancements:
   - id: "divline-side-classification"
-    line_start: 280
-    line_end: 285
-    title: "Classifying Points: Front, Back, or On?"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Line_(geometry)"
-    image_url: ""
-    image_caption: ""
-    content: "The `P_DivlineSide` function classifies a point relative to a dividing line, returning whether the point is on the front side, back side, or directly on the line. This geometric classification is foundational for DOOM's spatial calculations, including visibility checks and BSP traversal. The function uses fixed-point arithmetic to perform comparisons efficiently, a necessity given the hardware constraints of the era. By determining the relative position of points, the engine can decide which subsectors to process, avoiding unnecessary calculations. This technique was inspired by computational geometry methods used in CAD software and adapted for real-time applications in gaming. The concept of dividing space into regions influenced later engines, including Quake's 3D BSP system, which extended these principles into true 3D environments."
-  - id: "intercept-point-calculation"
-    line_start: 107
-    line_end: 127
-    title: "Finding Intercept Points in Fixed-Point Math"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
-    image_url: ""
-    image_caption: ""
-    content: "The `P_InterceptVector2` function calculates the fractional intercept point between two lines, a critical operation for determining whether a line crosses a subsector. This function uses fixed-point arithmetic, a method that avoids the performance penalties of floating-point calculations on early CPUs like the Intel 486. Fixed-point math was a hallmark of DOOM's engine, enabling precise calculations with minimal computational overhead. The intercept calculation is used in visibility checks and collision detection, ensuring that DOOM's fast-paced gameplay remains smooth even in complex environments. This reliance on fixed-point arithmetic influenced later engines, such as Build (used in Duke Nukem 3D), which also prioritized performance on limited hardware. Modern engines have largely transitioned to floating-point math, but DOOM's efficient techniques remain a benchmark in game optimization history."
-  - id: "slope-based-occlusion-testing"
-    line_start: 129
-    line_end: 247
-    title: "Slope Calculations: DOOM's Clever Occlusion Test"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(geometry)"
-    image_url: ""
-    image_caption: ""
-    content: "The `P_CrossSubsector` function performs detailed visibility checks by calculating slopes to determine whether an object is occluded. It examines the geometry of subsectors, comparing floor and ceiling heights to detect potential blockers. If the slopes of the top and bottom edges of a target overlap, the line of sight is considered obstructed. This slope-based approach was a clever solution to the problem of occlusion in a 2.5D engine, where true 3D calculations were infeasible on consumer hardware. By using fixed-point arithmetic and precomputed geometry data, DOOM achieved fast and accurate visibility checks, enabling realistic enemy AI and player interactions. This technique was a precursor to more advanced occlusion culling methods used in modern engines, such as Umbra's visibility solutions in Unity and Unreal."
-  - id: "bsp-traversal-for-visibility"
-    line_start: 251
-    line_end: 289
-    title: "BSP Traversal: The Backbone of DOOM's World"
+    line_start: 279
+    line_end: 284
+    title: "How DOOM Decides Which Side You're On"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
-    content: "The `P_CrossBSPNode` function traverses DOOM's binary space partitioning (BSP) tree to determine whether a line crosses a given node. BSP trees were a groundbreaking spatial representation technique in the early 1990s, allowing efficient partitioning of 2D and 3D spaces. In DOOM, the BSP tree organizes the game world into convex subsectors, enabling rapid visibility checks and collision detection. The traversal algorithm recursively checks which side of a partition plane the line starts and ends on, ensuring that only relevant subsectors are processed. This approach minimized the computational overhead of rendering and AI calculations, crucial for achieving DOOM's smooth performance on 486-class CPUs. BSP trees became a standard in game development, influencing titles like Quake and Half-Life. Even modern engines like Source and Unreal incorporate similar spatial partitioning techniques for efficient scene management."
-  - id: "reject-table-optimization"
-    line_start: 298
-    line_end: 346
-    title: "How DOOM's REJECT Table Saved CPU Cycles"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)#Technology"
+    content: "This function, `P_DivlineSide`, determines whether a point lies on the front, back, or directly on a dividing line in the game's BSP tree. It uses fixed-point arithmetic to calculate the relative position of a point to a line defined by two coordinates (x, y) and directional vectors (dx, dy). At the time, fixed-point arithmetic was a common optimization in games because it avoided the computational overhead of floating-point operations on hardware like the Intel 486. The BSP tree itself was a revolutionary data structure for games, enabling efficient spatial partitioning and visibility checks. John Carmack adapted this technique from academic papers on computer graphics, tailoring it to DOOM's fast-paced gameplay and the constraints of consumer PCs. The approach influenced countless games that followed, including Quake, which refined BSP trees further for real-time 3D environments."
+  - id: "intercept-vector-calculation"
+    line_start: 104
+    line_end: 127
+    title: "The Math Behind Line Intersections in DOOM"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Line_intersection"
     image_url: ""
     image_caption: ""
-    content: "The `P_CheckSight` function is the centerpiece of DOOM's visibility system, determining whether one object can 'see' another. It begins by consulting the REJECT table, a precomputed matrix that flags pairs of sectors as potentially unconnected. This avoids expensive geometric calculations for objects that are trivially blocked by walls or other structures. The REJECT table was generated during map compilation, leveraging the binary space partitioning (BSP) structure to precompute relationships between sectors. In the early 1990s, CPUs like the Intel 486 were limited in processing power, making such optimizations essential for maintaining DOOM's fast-paced gameplay. By skipping unnecessary checks, the REJECT table allowed DOOM to handle complex environments with dozens of enemies without overwhelming the hardware. This technique influenced later games, including Quake, which further refined spatial optimization methods. Today, similar precomputed visibility techniques are used in engines like Unreal and Unity to optimize rendering and AI."
+    content: "The `P_InterceptVector2` function calculates the fractional point of intersection between two lines, represented as divlines. This is crucial for determining whether the player's line of sight crosses a particular boundary in the game world. The function uses fixed-point arithmetic for precision and performance, avoiding the pitfalls of floating-point inaccuracies on early PC hardware. This technique was part of DOOM's broader strategy to optimize visibility checks, ensuring smooth gameplay even on systems with limited processing power. By calculating intersections efficiently, DOOM could handle complex environments with numerous walls and objects without significant slowdowns. The method was later studied by developers of other 3D engines, influencing techniques in games like Unreal and Half-Life."
+  - id: "cross-subsector-visibility-check"
+    line_start: 129
+    line_end: 247
+    title: "How DOOM Determines If You Can See Through a Room"
+    wikipedia_url: "https://doomwiki.org/wiki/Subsector"
+    image_url: ""
+    image_caption: ""
+    content: "`P_CrossSubsector` checks whether the player's line of sight crosses a given subsector in the BSP tree. It iterates through all the lines in the subsector, determining if any block visibility based on their properties, such as floor and ceiling heights. The function uses the REJECT table to skip unnecessary checks, a clever optimization that precomputes visibility relationships between sectors. This approach was critical for DOOM's performance, enabling it to run smoothly on hardware with limited memory and processing power. The subsector-based visibility checks laid the groundwork for efficient spatial partitioning in later games, influencing engines like Quake and Unreal Engine."
+  - id: "cross-bsp-node-traversal"
+    line_start: 251
+    line_end: 289
+    title: "The Recursive Algorithm That Powers DOOM's BSP Tree"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
+    image_url: ""
+    image_caption: ""
+    content: "`P_CrossBSPNode` is a recursive function that traverses the BSP tree to determine if the player's line of sight crosses a given node. It uses `P_DivlineSide` to decide which side of the node the line starts on and recursively checks both sides if necessary. This traversal is the backbone of DOOM's visibility system, allowing the game to efficiently determine what the player can see in complex environments. The recursive nature of the function reflects the hierarchical structure of BSP trees, which were adapted from computer graphics research for use in real-time games. The technique became a standard in game development, influencing engines like Source and Unity."
+  - id: "reject-table-optimization"
+    line_start: 297
+    line_end: 345
+    title: "The Table That Made DOOM Run Faster"
+    wikipedia_url: "https://doomwiki.org/wiki/Reject_table"
+    image_url: ""
+    image_caption: ""
+    content: "`P_CheckSight` uses the REJECT table to quickly determine if visibility checks between two sectors are unnecessary. The table precomputes relationships between sectors, allowing the game to skip expensive line-of-sight calculations for pairs of sectors that cannot possibly be connected. This optimization was essential for DOOM's performance, as it reduced the computational overhead of visibility checks in large and complex maps. The REJECT table exemplifies DOOM's innovative use of preprocessing to overcome hardware limitations, a technique that inspired similar optimizations in later games and engines. Developers studying DOOM's source code have praised this approach for its simplicity and effectiveness."
 
 ---
 
@@ -413,4 +413,6 @@ P_CheckSight
     // the head node is the last node output
     return P_CrossBSPNode (numnodes-1);	
 }
+
+
 ```

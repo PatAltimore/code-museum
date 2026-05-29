@@ -1393,7 +1393,7 @@
     },
     {
       "slug": "doom",
-      "introduction": "It was May 1992, and the team at id Software was riding high on the success of their groundbreaking game, Wolfenstein 3D. But John Carmack, the brilliant programmer behind the studio’s technological feats, was restless. He envisioned a new frontier in gaming—something darker, faster, and more immersive than anything players had experienced before. Alongside John Romero, the charismatic designer who would shape the game’s visceral tone, and Dave Taylor, a skilled programmer with a knack for refining systems, Carmack began work on what would become DOOM. The project was ambitious, and the stakes were high: id Software was still a small, independent studio, and failure could mean the end of their meteoric rise.\n\nThe computing world of 1993 was a landscape of constraints and ingenuity. Consumer PCs were powered by Intel 386 processors, with clock speeds measured in megahertz and memory capped at a few megabytes. Graphics cards were rudimentary, and VGA monitors displayed resolutions that seem quaint by today’s standards. Yet Carmack saw opportunity in these limitations. He developed a revolutionary 3D engine capable of rendering environments with unprecedented speed and fluidity, using techniques like binary space partitioning (BSP) to optimize performance. The game’s “2.5D” graphics—where 3D environments were populated with 2D sprites—allowed DOOM to create a sense of depth and immersion without overwhelming the hardware.\n\nThe team’s creative process was as chaotic as the game itself. Tom Hall, originally tasked with writing a science fiction narrative, clashed with Romero over the game’s direction. Hall’s vision of a complex story was ultimately discarded in favor of Romero’s focus on raw, adrenaline-pumping action. Sandy Petersen joined the team to design levels that would become iconic for their labyrinthine layouts and relentless pacing. Carmack, ever the pragmatist, famously declared, \"Story in a game is like a story in a porn movie. It’s expected to be there, but it’s not that important.\" This ethos shaped DOOM into a visceral experience where gameplay reigned supreme.\n\nWhen DOOM was released in December 1993, it was nothing short of a phenomenon. Distributed as shareware, the first episode was free to download, allowing millions of players to experience its revolutionary gameplay. Within two years, an estimated 20 million people had played DOOM, and its full version sold millions of copies. The game’s multiplayer mode—allowing players to battle each other over local networks—sparked the rise of online gaming communities and laid the foundation for modern esports. Its graphic violence and satanic imagery courted controversy, but this only fueled its notoriety and cultural impact.\n\nDOOM’s legacy is immeasurable. It redefined the first-person shooter genre, inspiring countless imitators and establishing id Software as a powerhouse in the gaming industry. Its modding capabilities fostered a vibrant community that continues to create new levels, modifications, and even entirely new games using the DOOM engine. The source code, released in 1997, became a treasure trove for developers and enthusiasts, allowing them to dissect and learn from its groundbreaking techniques. Today, DOOM is preserved in the Library of Congress and remains a touchstone for game design, a testament to the ingenuity and audacity of its creators.",
+      "introduction": "It was late 1992, and the offices of id Software in Mesquite, Texas buzzed with the energy of a team on the brink of revolutionizing gaming. John Carmack, the programming prodigy whose work had already pushed the boundaries of computer graphics, was deep in the creation of a new engine that promised to deliver immersive 3D environments like never before. Alongside him were John Romero, the irreverent designer with a flair for action-packed gameplay, and Dave Taylor, a versatile programmer who would help bring the project to life. Their goal was ambitious: to create a game that would not only surpass their previous hit, Wolfenstein 3D, but redefine what was possible in interactive entertainment. They called it DOOM.\n\nThe computing world of 1993 was a landscape of constraints and ingenuity. Personal computers like the IBM-compatible 386 and 486 were becoming more common, but they were far from powerful by today’s standards. With processors running at mere tens of megahertz and memory often capped at 4 or 8 megabytes, developers had to squeeze every ounce of performance from the hardware. Graphics cards were rudimentary, and the VGA standard offered only 256 colors. Yet Carmack’s new engine exploited these limitations with brilliance, using techniques like binary space partitioning (BSP) to render complex 3D environments efficiently and fixed-point arithmetic to ensure smooth gameplay even on modest systems.\n\nThe team at id Software was a mix of technical virtuosity and creative audacity. Carmack, the architect of the engine, famously prioritized technical excellence over narrative, stripping away much of the story initially envisioned by designer Tom Hall. Romero, on the other hand, infused the game with a visceral, fast-paced design that emphasized action and player empowerment. Sandy Petersen joined the team to craft levels that blended horror and challenge, while Taylor contributed to the engine’s networking capabilities, enabling multiplayer deathmatches that would become a cultural phenomenon. Together, they made key decisions that shaped DOOM’s identity, from its shareware distribution model to its unapologetically violent and demonic aesthetic.\n\nWhen DOOM was released on December 10, 1993, it was nothing short of a sensation. Within weeks, it was installed on more computers than Microsoft Windows, and its shareware model ensured that millions of players could experience the first episode for free. The game’s groundbreaking 2.5D graphics, dynamic lighting effects, and pulse-pounding soundtrack captivated audiences, while its multiplayer mode laid the foundation for online gaming as we know it. DOOM’s success was not just commercial—it became a cultural touchstone, inspiring countless imitators and establishing the first-person shooter as a dominant genre.\n\nThe legacy of DOOM is monumental. Its source code, released in 1997, became a treasure trove for developers and hobbyists, fueling a vibrant modding community and influencing game design for decades. It sparked the rise of speedrunning, birthed online gaming communities, and even attracted controversy for its graphic violence, which ignited debates about the impact of video games on society. Today, DOOM is preserved in the Library of Congress and continues to be ported to new platforms, ensuring its place as one of the most important and enduring works in the history of interactive entertainment.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Doom_%E2%80%93_Game%E2%80%99s_logo.svg/330px-Doom_%E2%80%93_Game%E2%80%99s_logo.svg.png",
       "image_caption": "Logo of the video game (series) Doom. (Public domain)",
       "title": "DOOM",
@@ -1727,74 +1727,89 @@
       ],
       "highlights": [
         {
-          "id": "bsp-rendering-backbone",
-          "title": "Recursive BSP Traversal: DOOM's Rendering Backbone",
-          "description": "DOOM used Binary Space Partitioning (BSP) trees to efficiently render its 3D environments on limited hardware. This technique split the game world into hierarchical segments, allowing the engine to quickly determine which parts of the scene were visible and needed to be drawn. BSP traversal solved the problem of rendering complex levels on 1993 consumer PCs with minimal processing power. It became a foundational technique in game development, influencing engines like Quake and Unreal, and remains a staple in modern graphics programming.",
+          "id": "bsp-tree-spatial-masterstroke",
+          "title": "The BSP Tree: DOOM's Spatial Masterstroke",
+          "description": "DOOM's Binary Space Partitioning (BSP) tree revolutionized real-time rendering by organizing the game's 3D environment into a hierarchical structure. This allowed the engine to efficiently determine which parts of the map were visible to the player, dramatically reducing rendering overhead. On 1993 hardware, where processing power and memory were limited, this technique enabled DOOM to deliver fast-paced gameplay with complex environments. The BSP tree became a foundational technique in game development, influencing engines like Unreal and Quake, and remains a cornerstone in modern graphics optimization.",
           "links": [
             {
-              "label": "Recursive BSP traversal for rendering",
+              "label": "Building the BSP Tree",
+              "file": "p-setup-c",
+              "enhancement": "load-nodes-for-bsp-tree"
+            },
+            {
+              "label": "Recursive Traversal for Rendering",
               "file": "r-bsp-c",
-              "enhancement": "render-bsp-node"
+              "enhancement": "render-bsp-node-recursive-traversal-for-rendering"
             }
           ]
         },
         {
-          "id": "visplane-overdraw-solution",
-          "title": "The Data Structure That Solved Overdraw",
-          "description": "DOOM's visplane system tackled the issue of overdraw, where multiple layers of graphics could waste rendering time. By grouping pixels with similar heights and textures into 'visplanes,' the engine minimized redundant calculations and optimized floor and ceiling rendering. This innovation allowed DOOM to maintain high frame rates despite its detailed environments. The visplane concept was a clever workaround for hardware limitations and influenced subsequent optimizations in rendering engines.",
+          "id": "fuzzy-rendering-spectres",
+          "title": "The Fuzzy Trick That Made Spectres Invisible",
+          "description": "DOOM's 'fuzzy rendering' effect gave Spectres their ghostly, semi-invisible appearance. Instead of using transparency, which was computationally expensive on early PCs, the engine applied a pixel-blurring effect to the Spectre's sprite, creating an eerie visual distortion. This clever hack worked within the constraints of limited hardware while enhancing the game's horror atmosphere. The technique inspired similar visual effects in later games, including stealth mechanics and cloaking devices in titles like Metal Gear Solid and Halo.",
           "links": [
             {
-              "label": "Visplane data structure for efficient rendering",
-              "file": "r-plane-c",
-              "enhancement": "visplane-data-structure"
+              "label": "Fuzzy Rendering for Spectres",
+              "file": "r-draw-c",
+              "enhancement": "fuzzy-rendering-for-spectres"
             }
           ]
         },
         {
-          "id": "dynamic-lighting-on-90s-hardware",
-          "title": "Dynamic Lighting on 1990s Hardware",
-          "description": "DOOM implemented dynamic lighting effects, such as flickering firelight and strobe lights, to enhance its atmospheric environments. These effects were calculated in real-time, adding depth and immersion to the game world while running on hardware without dedicated graphics processors. Dynamic lighting not only set a new standard for visual storytelling in games but also inspired techniques used in later titles like Quake and Half-Life.",
+          "id": "dynamic-lighting-doom",
+          "title": "Dynamic Lighting in DOOM's World",
+          "description": "DOOM implemented dynamic lighting effects to create atmospheric environments, such as flickering firelight, strobe lights, and glowing sectors. These effects were achieved through algorithms that adjusted light levels in real-time, adding depth and tension to the game's levels. On hardware with limited graphical capabilities, this approach provided a sense of realism and immersion without requiring advanced lighting engines. Dynamic lighting became a staple in game design, influencing titles like Half-Life and modern engines like Unity and Unreal.",
           "links": [
             {
-              "label": "Dynamic lighting calculations",
+              "label": "Dynamic Lighting Effects",
               "file": "r-main-c",
-              "enhancement": "dynamic-lighting"
+              "enhancement": "dynamic-light-levels"
+            },
+            {
+              "label": "Firelight Flicker Algorithm",
+              "file": "p-lights-c",
+              "enhancement": "firelight-flicker-algorithm"
             }
           ]
         },
         {
-          "id": "fast-fixed-point-math",
-          "title": "How DOOM Multiplied Without Floating-Point",
-          "description": "DOOM relied on fixed-point arithmetic to perform calculations quickly on CPUs lacking floating-point units. This approach used integers to simulate decimal values, enabling fast and precise operations for rendering, physics, and gameplay mechanics. Fixed-point math was crucial for achieving DOOM's smooth performance on early PCs and influenced the design of many subsequent game engines, particularly those targeting constrained hardware.",
+          "id": "wad-files-modding-revolution",
+          "title": "The WAD Files That Redefined Modding",
+          "description": "DOOM's use of WAD (Where's All the Data) files made it one of the first games to support extensive modding. These files stored game assets like maps, textures, and sounds in a modular format, allowing players and developers to create custom levels and content. This design empowered a vibrant modding community and led to the creation of tools like DEU and Doom Builder. The WAD system influenced future games, including Quake and Skyrim, and laid the groundwork for the modern modding ecosystem.",
           "links": [
             {
-              "label": "Fixed-point multiplication optimization",
-              "file": "m-fixed-c",
-              "enhancement": "fixed-multiplication-optimization"
-            }
-          ]
-        },
-        {
-          "id": "cheat-code-iddqd",
-          "title": "The Code That Made 'IDDQD' Legendary",
-          "description": "DOOM's cheat code system, including the iconic 'IDDQD' for invincibility, was implemented with a scrambled input mapping table to obscure the sequences. This design allowed players to discover cheats organically while ensuring they were not easily guessed. The cheat system became a cultural phenomenon, influencing how secrets and Easter eggs were integrated into games, and remains a nostalgic hallmark of gaming history.",
-          "links": [
-            {
-              "label": "Cheat code validation logic",
-              "file": "st-stuff-c",
-              "enhancement": "cheat-code-responder"
-            }
-          ]
-        },
-        {
-          "id": "modding-wad-file-hack",
-          "title": "The Hack That Made Modding Easy",
-          "description": "DOOM's use of WAD files for storing game assets revolutionized modding. By separating game data from the engine, players and developers could create custom levels, textures, and sounds without altering the core code. This modular approach not only fostered a thriving modding community but also laid the groundwork for user-generated content in games like Half-Life and Minecraft.",
-          "links": [
-            {
-              "label": "WAD file handling and modding support",
+              "label": "WAD File Support and Modding",
               "file": "d-main-c",
-              "enhancement": "wad-file-handling"
+              "enhancement": "wad-file-support-and-modding"
+            },
+            {
+              "label": "Dynamic WAD File Addition",
+              "file": "w-wad-c",
+              "enhancement": "wad-file-addition"
+            }
+          ]
+        },
+        {
+          "id": "bfg-explosion-simulation",
+          "title": "The Code Behind DOOM's Iconic BFG Spray",
+          "description": "The BFG 9000's unique explosion mechanic made it one of DOOM's most memorable weapons. When fired, the BFG released a massive projectile that exploded into a spray of invisible rays, damaging enemies in its path. This innovative approach simulated area-of-effect damage without requiring complex collision calculations, optimizing performance on limited hardware. The BFG's design became a benchmark for over-the-top weaponry in games, influencing titles like Duke Nukem 3D and Borderlands.",
+          "links": [
+            {
+              "label": "BFG Explosion Simulation",
+              "file": "p-pspr-c",
+              "enhancement": "bfg-explosion-simulation"
+            }
+          ]
+        },
+        {
+          "id": "recursive-sound-propagation",
+          "title": "How DOOM's Monsters Hear You Through Walls",
+          "description": "DOOM's sound propagation system allowed monsters to detect players through walls by simulating sound waves traveling across the map. This recursive algorithm checked spatial relationships between sectors, triggering enemy awareness and creating dynamic gameplay moments. On hardware with no advanced AI capabilities, this system added depth to enemy behavior and tension to encounters. The concept of sound-based AI influenced later games like Thief and The Last of Us, where audio cues play a critical role in gameplay.",
+          "links": [
+            {
+              "label": "Recursive Sound Propagation",
+              "file": "p-enemy-c",
+              "enhancement": "recursive-sound-propagation"
             }
           ]
         }

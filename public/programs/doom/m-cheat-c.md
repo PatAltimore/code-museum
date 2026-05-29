@@ -9,44 +9,36 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "m-cheat-c"
 order: 17
-description: "This file implements cheat code handling in DOOM, showcasing clever techniques for input validation and sequence recognition."
+description: "This file implements cheat code handling in DOOM, showcasing how developers ingeniously integrated secret sequences into gameplay."
 
 summary:
-  - point: "Implements cheat code sequence validation"
-    link: "https://en.wikipedia.org/wiki/Cheat_code"
-    link_label: "Cheat Code"
-  - point: "Uses a scrambled translation table for input mapping"
+  - point: "Cheat codes are processed using a sequence validation system."
+    link: "https://en.wikipedia.org/wiki/Cheating_in_video_games"
+    link_label: "Cheating in video games"
+  - point: "The cheat_xlate_table scrambles input keys for validation."
+    link: "https://doomwiki.org/wiki/Cheat_codes"
+    link_label: "DOOM cheat codes"
+  - point: "Cheat codes were an iconic feature of 1990s gaming culture."
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM"
-  - point: "Demonstrates modular design for input handling"
-    link: "https://en.wikipedia.org/wiki/Modular_programming"
-    link_label: "Modular Programming"
+    link_label: "DOOM (1993 video game)"
 
 enhancements:
-  - id: "scrambled-input-mapping-table"
-    line_start: 34
-    line_end: 34
-    title: "The Scrambled Table That Hid Cheat Codes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
-    image_url: ""
-    image_caption: ""
-    content: "Lines 34–35 define a scrambled translation table (`cheat_xlate_table`) used to map user input into a predefined sequence for cheat code validation. This table is initialized with scrambled values derived from the `SCRAMBLE` macro, which obfuscates the mapping. The purpose of this approach was to prevent players from easily guessing or brute-forcing cheat codes by analyzing the game's input handling. At the time, cheat codes were a popular feature in games, offering players secret abilities or shortcuts. However, developers often sought ways to make these codes less predictable to maintain the sense of discovery. This technique reflects the ingenuity of DOOM's developers in balancing accessibility with challenge. The scrambled table approach influenced later games, where obfuscation techniques were used to protect sensitive data or prevent tampering. It also foreshadows modern practices in cryptography and input validation."
-  - id: "cheat-code-sequence-validation"
+  - id: "cheat-validation-sequence"
     line_start: 37
     line_end: 74
-    title: "How DOOM Checked Your Cheat Codes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    title: "How DOOM Validated Cheat Codes"
+    wikipedia_url: "https://doomwiki.org/wiki/Cheat_codes"
     image_url: ""
     image_caption: ""
-    content: "Lines 42–75 implement the `cht_CheckCheat` function, which validates user input against predefined cheat code sequences. The function uses the scrambled translation table to match keystrokes to the expected sequence. If the sequence is completed successfully, the cheat is activated. This routine cleverly handles edge cases, such as resetting the sequence if an incorrect key is pressed, and initializing the sequence pointer (`cht->p`) on first use. In 1993, cheat codes were a hallmark of gaming culture, often serving as Easter eggs or developer tools. DOOM's implementation was notable for its robustness and modularity, allowing the cheat system to integrate seamlessly with the game's input handling. The technique of sequence validation influenced later games, where cheat codes evolved into unlockable achievements or developer modes. It also highlights the meticulous attention to detail that defined DOOM's programming, contributing to its reputation as a technical masterpiece."
-  - id: "extracting-cheat-code-parameters"
+    content: "This function, `cht_CheckCheat`, is responsible for validating cheat code sequences entered by the player. It uses a `cheatseq_t` structure to track the progress of the input sequence and compares each keypress against a scrambled translation table (`cheat_xlate_table`). If the sequence matches, the cheat is activated. In the early 1990s, cheat codes were a popular feature in video games, allowing players to unlock hidden abilities, skip levels, or access debug features. DOOM's implementation was particularly clever: it scrambled the input keys using a macro called `SCRAMBLE`, ensuring that the cheat codes couldn't be easily guessed or exploited without insider knowledge. The function initializes the translation table on its first call, a design choice likely made to optimize memory usage and avoid unnecessary computation during gameplay. The cheat sequence is processed character by character, resetting if the input deviates from the expected sequence. When the end-of-sequence character (`0xff`) is reached, the cheat is successfully activated. This approach reflects the constraints of the era: DOOM had to run efficiently on hardware like the Intel 386 processor with limited memory. By using a simple state machine and a scrambled lookup table, id Software ensured that cheat code handling was both secure and performant. The cheat code system became a hallmark of DOOM, with iconic sequences like \"IDDQD\" (God mode) and \"IDKFA\" (all weapons and keys). These codes were widely shared among players, contributing to the game's cultural impact. Later games, including Quake and other first-person shooters, adopted similar systems for cheat code validation, cementing this technique as a staple of game development."
+  - id: "extracting-cheat-parameters"
     line_start: 76
     line_end: 98
-    title: "The Function That Read Cheat Code Secrets"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
+    title: "Extracting Parameters from Cheat Codes"
+    wikipedia_url: "https://doomwiki.org/wiki/Cheat_codes"
     image_url: ""
     image_caption: ""
-    content: "Lines 77–99 define the `cht_GetParam` function, which extracts parameters embedded within cheat code sequences. This function scans the sequence for a special marker (`1`) indicating the start of parameters, then copies the subsequent characters into a buffer. Parameters could represent numeric values, strings, or other data used to customize the cheat's effect. For example, a cheat might unlock a specific level or grant a set amount of resources. This design reflects the flexibility of DOOM's cheat system, allowing developers to encode complex behaviors within simple sequences. In the early 1990s, such functionality was rare, as most games used hardcoded cheats with fixed effects. DOOM's approach influenced later games that implemented parameterized cheats, enabling more dynamic and user-driven gameplay. It also demonstrates the game's modular architecture, where input handling, cheat validation, and parameter extraction were cleanly separated into distinct functions."
+    content: "The `cht_GetParam` function is tasked with extracting parameters embedded within cheat code sequences. For example, certain cheats might include additional data, such as a level number or a specific setting. This function reads the sequence stored in the `cheatseq_t` structure and copies the parameter data into a buffer for further processing. The function begins by locating the special marker (`1`) that signifies the start of the parameter data within the sequence. It then iterates through the sequence, copying characters to the buffer until it encounters either a null character (`0`) or the end-of-sequence marker (`0xff`). This ensures that only valid parameter data is extracted, while resetting the sequence for future use. In the context of 1993, embedding parameters within cheat codes was an innovative way to extend their functionality. For instance, a cheat might allow players to warp to a specific level by appending the level number after the main code. This design reflects the ingenuity of id Software's developers, who were constantly pushing the boundaries of what games could do within the constraints of limited hardware. The parameter extraction system influenced later games by demonstrating how cheat codes could be made more versatile. Developers of titles like Duke Nukem 3D and Unreal Tournament adopted similar techniques, enabling players to customize their gameplay experience through detailed cheat inputs. Today, while cheat codes are less common in mainstream games, their legacy lives on in modding communities and debug tools, many of which trace their lineage back to systems like this."
 
 ---
 
@@ -149,4 +141,6 @@ cht_GetParam
 	*buffer = 0;
 
 }
+
+
 ```

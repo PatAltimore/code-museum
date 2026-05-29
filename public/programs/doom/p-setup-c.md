@@ -9,82 +9,106 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "p-setup-c"
 order: 11
-description: "This file handles the setup of DOOM's game levels, including loading map data, initializing player states, and preparing lookup tables for efficient gameplay."
+description: "This file handles the loading and setup of DOOM's map data, a critical part of its groundbreaking 3D engine."
 
 summary:
-  - point: "Efficient spatial subdivision via blockmaps"
-    link: "https://en.wikipedia.org/wiki/Spatial_partitioning"
-    link_label: "Spatial Partitioning"
-  - point: "Preloading map data for fast access"
-    link: "https://en.wikipedia.org/wiki/WAD_(file_format)"
-    link_label: "WAD File Format"
-  - point: "Dynamic setup of multiplayer starting points"
-    link: "https://en.wikipedia.org/wiki/Deathmatch"
-    link_label: "Deathmatch"
-  - point: "Reject matrix optimization for enemy AI"
-    link: "https://en.wikipedia.org/wiki/Line_of_sight"
-    link_label: "Line of Sight"
-  - point: "Level-specific resource caching"
-    link: "https://en.wikipedia.org/wiki/Cache_(computing)"
-    link_label: "Caching"
+  - point: "Efficient spatial data structures for collision detection"
+    link: "https://en.wikipedia.org/wiki/Collision_detection"
+    link_label: "Collision detection"
+  - point: "Custom memory allocation for game-specific needs"
+    link: "https://en.wikipedia.org/wiki/Memory_management"
+    link_label: "Memory management"
+  - point: "Preloading map data for seamless gameplay"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM (1993 video game)"
+  - point: "Use of fixed-point arithmetic for performance"
+    link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    link_label: "Fixed-point arithmetic"
+  - point: "Sector-based sound propagation for immersive audio"
+    link: "https://en.wikipedia.org/wiki/Sound_propagation"
+    link_label: "Sound propagation"
 
 enhancements:
-  - id: "map-data-lookup-tables"
+  - id: "load-vertex-data-from-wad"
     line_start: 118
     line_end: 151
-    title: "How DOOM Organized Its World Data"
-    wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines lookup tables for various map elements, including vertices, linedefs, sidedefs, and sectors. These tables are central to DOOM's ability to render and interact with its 3D world efficiently. By preloading this data into memory, the game avoids costly disk I/O during gameplay, ensuring smooth performance on the limited hardware of the early 1990s. The design reflects id Software's mastery of optimizing for constrained environments, as PCs of the era often had limited RAM and slow hard drives. This approach influenced future game engines, which adopted similar strategies for organizing and accessing world data."
-  - id: "blockmap-spatial-subdivision"
-    line_start: 155
-    line_end: 195
-    title: "The Trick That Sped Up Collision Detection"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Spatial_partitioning"
-    image_url: ""
-    image_caption: ""
-    content: "The blockmap system divides the game map into a grid of blocks, enabling efficient spatial subdivision for collision detection. By associating objects with specific blocks, DOOM reduces the number of checks required to determine interactions, such as whether a projectile hits a wall or an enemy. This technique was crucial for maintaining high framerates on hardware like the 486 processor, which lacked dedicated graphics acceleration. Spatial subdivision remains a cornerstone of game development, influencing techniques like quadtrees and BSP trees used in modern engines."
-  - id: "reject-matrix-ai-optimization"
-    line_start: 198
-    line_end: 223
-    title: "How DOOM Made Enemies Smarter, Faster"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Line_of_sight"
-    image_url: ""
-    image_caption: ""
-    content: "The reject matrix is a precomputed data structure used to optimize enemy AI by skipping unnecessary line-of-sight calculations. If two areas of the map are known to be disconnected, the matrix allows the game to reject visibility checks outright, saving CPU cycles. This innovation was particularly important for DOOM's fast-paced gameplay, where multiple enemies could be active simultaneously. The idea of precomputing visibility relationships influenced later games and engines, including Quake and Unreal, which expanded on this concept with more sophisticated visibility algorithms."
-  - id: "deathmatch-spawn-system"
-    line_start: 227
-    line_end: 257
-    title: "Dynamic Player Spawning for Multiplayer Chaos"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Deathmatch"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines data structures for player and deathmatch starting points. In multiplayer modes, players are spawned at random deathmatch spots, ensuring unpredictable gameplay. This system contributed to the chaotic and competitive nature of DOOM's multiplayer experience, which became a defining feature of the game. The concept of dynamic spawn points influenced later multiplayer games, including first-person shooters like Quake and Counter-Strike, where map design and spawn logic play a critical role in gameplay balance."
-  - id: "vertex-loading-and-conversion"
-    line_start: 118
-    line_end: 151
-    title: "Why DOOM Converted Coordinates to Fixed-Point"
+    title: "How DOOM Converts Map Vertices to Fixed Point"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
-    content: "The `P_LoadVertexes` function reads vertex data from the map file and converts coordinates to fixed-point format. Fixed-point arithmetic was chosen because it offered faster calculations compared to floating-point operations on the hardware available in 1993. This decision reflects the constraints of the era, where performance optimization often involved trading precision for speed. Fixed-point arithmetic became a staple in early 3D engines and is still used in embedded systems and mobile games where hardware constraints persist."
-  - id: "level-setup-sequence"
+    content: "The `P_LoadVertexes` function reads vertex data from a WAD file and converts it into the game's internal fixed-point format. This conversion ensures precision while avoiding the computational overhead of floating-point arithmetic, which was expensive on the hardware of the early 1990s. At the time, consumer PCs often lacked dedicated floating-point units, making fixed-point arithmetic a practical choice for real-time applications like games. The function allocates memory for vertex storage, loads the data, and performs the conversion using bit-shifting operations. This approach was a hallmark of John Carmack's programming style, emphasizing efficiency and direct control over hardware. Fixed-point arithmetic became a standard technique in many games of the era, influencing engines such as Build (used in Duke Nukem 3D) and later iterations of id Software's own engines."
+  - id: "load-segments-for-map-geometry"
+    line_start: 155
+    line_end: 195
+    title: "Mapping Segments to Geometry: A Spatial Puzzle"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_LoadSegs` function processes map segments, which are line segments that define the edges of subsectors in DOOM's map geometry. Each segment is linked to vertices, line definitions, and sidedefs, forming the building blocks of the game's spatial representation. This function also calculates angles and offsets for each segment, preparing them for rendering and collision detection. The approach reflects Carmack's focus on optimizing spatial data structures for performance. By precomputing relationships between map elements, DOOM achieves its fast-paced gameplay without sacrificing visual complexity. The segment-loading process laid the groundwork for techniques used in later engines, such as BSP trees in Quake, which further refined spatial partitioning for 3D environments."
+  - id: "subsectors-and-visibility"
+    line_start: 198
+    line_end: 223
+    title: "Subsectors: The Key to Efficient Visibility Checks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_LoadSubsectors` function loads subsector data, which are smaller partitions of sectors used in DOOM's binary space partitioning (BSP) system. Each subsector contains a list of line segments that define its boundaries. By organizing map geometry into subsectors, DOOM's engine can efficiently determine visibility and render only the parts of the map that are within the player's view. This technique was revolutionary for its time, enabling smooth gameplay on hardware with limited processing power. BSP-based visibility checks became a cornerstone of 3D rendering in games, influencing engines like Unreal Engine and Source. Carmack's work on subsectors demonstrated how careful data organization could overcome hardware constraints and deliver groundbreaking performance."
+  - id: "load-sector-properties"
+    line_start: 227
+    line_end: 257
+    title: "Sectors: Where Geometry Meets Gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_LoadSectors` function reads sector data from the WAD file, defining properties like floor and ceiling heights, textures, and lighting levels. Sectors are the foundation of DOOM's gameplay, as they determine the physical layout of the map and interact with player movement, enemy AI, and environmental effects. By precomputing these properties, the engine ensures smooth transitions between areas and consistent rendering. The concept of sectors influenced level design in subsequent games, allowing designers to create complex environments with varied gameplay mechanics. This function highlights the interplay between technical constraints and creative possibilities, a hallmark of DOOM's design philosophy."
+  - id: "load-nodes-for-bsp-tree"
+    line_start: 260
+    line_end: 294
+    title: "Building the BSP Tree: DOOM's Spatial Masterstroke"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_LoadNodes` function constructs the nodes of DOOM's binary space partitioning (BSP) tree, a data structure that organizes the map into a hierarchy of partitions. Each node contains information about its position, direction, and bounding box, enabling efficient visibility checks and collision detection. BSP trees were a groundbreaking innovation in game engines, allowing DOOM to render complex 3D environments on hardware with limited processing power. Carmack's implementation of BSP trees set a new standard for spatial organization in games, influencing engines like Quake and Unreal. The technique remains relevant today, demonstrating the enduring impact of DOOM's technical achievements."
+  - id: "spawn-map-things"
+    line_start: 297
+    line_end: 349
+    title: "Spawning Monsters and Items: Gameplay Comes Alive"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_LoadThings` function populates the map with 'things'—a term encompassing monsters, items, and other interactive elements. Each 'thing' is loaded from the WAD file and converted into the game's internal format. The function includes logic to exclude certain monsters in non-commercial versions of the game, reflecting id Software's approach to differentiating product tiers. By centralizing the spawning process, the engine ensures consistent behavior across maps and modes. This function exemplifies DOOM's modular design, which allowed for easy customization and expansion. The concept of 'things' influenced object-oriented approaches in later game engines, paving the way for dynamic and interactive environments."
+  - id: "load-linedefs-and-slopes"
+    line_start: 352
+    line_end: 431
+    title: "LineDefs: Geometry Meets Functionality"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_LoadLineDefs` function processes line definitions, which represent the edges of sectors and define their properties. Each LineDef includes flags, special effects, and tags that link it to gameplay mechanics like doors, switches, and triggers. The function also calculates slope types for each line, enabling efficient collision detection and rendering. LineDefs are a key part of DOOM's map format, bridging the gap between geometry and gameplay. This modular approach to level design influenced subsequent games, allowing designers to create interactive environments with minimal programming effort. The concept of LineDefs remains a cornerstone of level design in modern engines."
+  - id: "group-lines-for-sectors"
     line_start: 493
     line_end: 692
-    title: "The Sequence That Built DOOM's Levels"
-    wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
+    title: "Grouping Lines: Organizing the Chaos of Geometry"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `P_SetupLevel` function orchestrates the loading and initialization of a game level. It reads map data from WAD files, sets up blockmaps, vertices, sectors, and other structures, and initializes player states. This function demonstrates the importance of ordering in level setup, as certain data must be loaded before others to ensure consistency. The modular design of this sequence allowed for easy modification and expansion, enabling the creation of custom maps and mods by the community. This modularity contributed to DOOM's enduring legacy as one of the most modded games in history."
-  - id: "sprite-initialization"
+    content: "The `P_GroupLines` function organizes lines into sectors, creating lists of lines that belong to each sector and calculating bounding boxes for collision detection. This organization is crucial for gameplay mechanics like sound propagation and enemy AI, which rely on sector-based interactions. The function also adjusts bounding boxes to align with the map's block grid, ensuring efficient spatial queries. By precomputing these relationships, DOOM's engine achieves fast and consistent performance, even in complex maps. The concept of grouping lines into sectors influenced spatial partitioning techniques in later engines, demonstrating the importance of data organization in game design."
+  - id: "setup-level-data"
+    line_start: 581
+    line_end: 692
+    title: "Level Setup: Loading the World in Seconds"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `P_SetupLevel` function orchestrates the loading and initialization of all map data, including vertices, sectors, LineDefs, and 'things'. It ensures that each component is loaded in the correct order, reflecting the dependencies between data structures. The function also handles player spawning, special effects, and precaching graphics for seamless gameplay. This level setup process was a technical marvel in 1993, enabling DOOM to load complex maps in seconds on modest hardware. The modular design of `P_SetupLevel` influenced the architecture of later game engines, demonstrating how careful planning and organization could overcome hardware limitations and deliver groundbreaking performance."
+  - id: "initialize-gameplay-components"
     line_start: 696
     line_end: 704
-    title: "How DOOM Brought Monsters to Life"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    title: "Initializing Sprites and Animations: The Final Touch"
+    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `P_Init` function initializes sprites, animations, and switches, preparing the visual elements of the game. Sprites were a key graphical feature in DOOM, used to represent enemies, items, and effects. By organizing sprite data efficiently, DOOM achieved a visually rich experience despite hardware limitations. This approach influenced sprite handling in later games and engines, paving the way for more advanced 2D and 3D graphics systems."
+    content: "The `P_Init` function initializes gameplay components like switch lists, animated textures, and sprites. These elements add visual and interactive richness to DOOM's environments, enhancing the player's immersion. By centralizing initialization, the engine ensures consistency across maps and modes. This function highlights the importance of modular design in game development, allowing for easy customization and expansion. The initialization process influenced the architecture of later engines, demonstrating how small details could contribute to the overall experience."
 
 ---
 
@@ -793,4 +817,7 @@ void P_Init (void)
     P_InitPicAnims ();
     R_InitSprites (sprnames);
 }
+
+
+
 ```
