@@ -30,47 +30,47 @@ summary:
 
 enhancements:
   - id: "dynamic-light-allocation"
-    line_start: 38
-    line_end: 81
+    line_start: 34
+    line_end: 124
     title: "Dynamic Light Allocation for Real-Time Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `CL_AllocDlight` function dynamically allocates light sources in the game world based on a unique key. This ensures that lights can be reused efficiently, minimizing memory usage and computational overhead. In 1996, real-time lighting was a cutting-edge feature, as most games relied on precomputed lighting or static light maps. John Carmack and Michael Abrash designed this system to handle dynamic events like explosions and projectiles, which required lights to appear and disappear seamlessly. This approach influenced later engines, such as Unreal Engine and Source Engine, which adopted dynamic lighting as a standard feature."
   - id: "color-coded-light-effects"
-    line_start: 82
-    line_end: 121
+    line_start: 34
+    line_end: 117
     title: "Color-Coded Light Effects for Immersion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `CL_NewDlight` function assigns specific colors to dynamic lights based on their type, enhancing visual feedback for players. For example, blue lights might indicate a shield effect, while red lights signify danger or damage. This design choice reflects id Software's focus on creating an immersive experience, where visual cues help players interpret the game state. The use of color-coded lighting became a hallmark of modern game design, influencing titles like Halo and Call of Duty, which use similar techniques for player communication."
   - id: "light-decay-over-time"
-    line_start: 122
-    line_end: 145
+    line_start: 120
+    line_end: 141
     title: "Light Decay Over Time for Realism"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `CL_DecayLights` function gradually reduces the radius of dynamic lights over time, simulating natural light decay. This feature added a layer of realism to Quake's visuals, as lights from explosions or projectiles would fade rather than disappear abruptly. This technique was innovative for its time, as it required careful management of computational resources to ensure smooth gameplay. The concept of light decay has since been refined in modern engines, such as Unity and Unreal Engine, where it is used to create realistic lighting effects in open-world environments."
   - id: "delta-compression-for-network-packets"
-    line_start: 154
-    line_end: 224
+    line_start: 160
+    line_end: 220
     title: "Delta Compression for Efficient Network Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Delta_encoding"
     image_url: ""
     image_caption: ""
     content: "The `CL_ParseDelta` function implements delta compression, which transmits only the differences between successive states of an entity. This technique drastically reduces the amount of data sent over the network, enabling smoother multiplayer gameplay even on slow connections. In the mid-1990s, network bandwidth was a significant constraint, and id Software's use of delta compression was a breakthrough in optimizing online gaming. This method influenced later multiplayer games, including Counter-Strike and World of Warcraft, which rely on similar techniques to handle large-scale player interactions."
   - id: "projectile-parsing-and-linking"
-    line_start: 579
-    line_end: 612
+    line_start: 577
+    line_end: 609
     title: "Efficient Parsing and Linking of Projectiles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Entity_component_system"
     image_url: ""
     image_caption: ""
     content: "The `CL_ParseProjectiles` and `CL_LinkProjectiles` functions handle temporary entities like nails and rockets, ensuring they are rendered efficiently without permanent allocation. This approach allowed Quake to simulate high-speed projectiles and their effects without overwhelming the engine. By treating projectiles as temporary entities, id Software optimized memory usage and computational load, paving the way for modern entity systems used in games like Fortnite and Apex Legends."
   - id: "player-prediction-for-smooth-gameplay"
-    line_start: 942
+    line_start: 940
     line_end: 1009
     title: "Player Prediction for Smooth Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Latency_(engineering)"
@@ -78,16 +78,16 @@ enhancements:
     image_caption: ""
     content: "The `CL_SetUpPlayerPrediction` function predicts player movements to compensate for network latency, ensuring smooth gameplay even in high-lag scenarios. By calculating future positions based on past inputs, the engine minimizes the effects of delay, creating a responsive experience for players. This technique was revolutionary in 1996, as online gaming was still in its infancy. Today, player prediction is a standard feature in multiplayer games, influencing titles like Overwatch and Valorant, which rely on similar methods to deliver competitive gameplay."
   - id: "solid-player-collision-management"
-    line_start: 901
-    line_end: 938
+    line_start: 1011
+    line_end: 1053
     title: "How Quake Made Players Solid (or Not)"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
     content: "This subroutine, `CL_SetSolidPlayers`, determines which players in a multiplayer session should be treated as solid objects for collision detection. It loops through all players, skipping inactive ones, the current player, and those flagged as dead. For active players, it sets up their bounding boxes (`mins` and `maxs`) and adds them to the physics entity list. This ensures accurate collision handling during gameplay. In 1996, multiplayer games were transitioning from simple sprite-based interactions to fully 3D environments. Quake's groundbreaking engine had to manage complex interactions between players in real-time, all while running on hardware like the Intel 486 and early Pentium processors with limited memory and processing power. The decision to exclude dead players and the current player from collision checks was not just logical but also a performance optimization, reducing unnecessary calculations. This approach influenced later multiplayer engines, including Unreal and Source, which adopted similar strategies for managing player entities. The concept of dynamically updating physics entities based on player state became a standard in game development, ensuring efficient use of computational resources while maintaining gameplay realism. Developers studying Quake's source code often cite this routine as an elegant example of balancing complexity and performance in real-time systems."
   - id: "dynamic-entity-linking"
-    line_start: 1058
-    line_end: 1081
+    line_start: 1056
+    line_end: 1082
     title: "The Routine That Linked Quake’s World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

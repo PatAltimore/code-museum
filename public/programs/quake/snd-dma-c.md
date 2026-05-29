@@ -30,32 +30,32 @@ summary:
 
 enhancements:
   - id: "foundation-sound-initialization"
-    line_start: 19
-    line_end: 42
+    line_start: 103
+    line_end: 103
     title: "Foundation: Sound Initialization Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section defines foundational variables and structures for Quake's sound system, including the `channels` array for managing sound channels and the `snd_initialized` flag to track system readiness. At the time, sound systems in games were often rudimentary, but Quake aimed to create an immersive experience by managing multiple dynamic and ambient sound channels. The use of `volatile dma_t` reflects the direct interaction with hardware buffers, a technique common in the era of limited CPU resources. By establishing these variables, the developers laid the groundwork for a sound engine that could spatialize audio and dynamically allocate resources. This approach influenced subsequent game engines, including Unreal Engine and Source Engine, which adopted similar abstractions for sound management."
   - id: "user-settable-sound-variables"
-    line_start: 43
-    line_end: 46
+    line_start: 109
+    line_end: 109
     title: "User-Settable Sound Variables: Fine-Tuning Audio"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section introduces configurable sound variables, such as `volume`, `ambient_level`, and `bgmvolume`, allowing players to adjust audio settings to their preferences. In the mid-1990s, user customization was becoming a hallmark of PC gaming, and Quake's inclusion of adjustable sound parameters reflected this trend. These variables were registered with the console system, enabling real-time adjustments during gameplay—a feature that enhanced player immersion and control. By exposing these settings, id Software empowered players to tailor their experience, a practice that became standard in modern game engines. Games like Half-Life and Counter-Strike later expanded on this concept, offering even more granular control over audio and other settings."
   - id: "ambient-sound-control"
-    line_start: 1
-    line_end: 17
+    line_start: 104
+    line_end: 106
     title: "Ambient Sound Control: On and Off Switch"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effect"
     image_url: ""
     image_caption: ""
     content: "The `S_AmbientOff` and `S_AmbientOn` functions toggle ambient sound effects, reflecting Quake's focus on creating an immersive environment. Ambient sounds, such as water or wind, were crucial for establishing the game's atmosphere, but they also added computational overhead. By providing these toggles, id Software allowed players to disable ambient sounds if performance issues arose—a practical consideration for hardware of the era, such as Intel Pentium processors and Sound Blaster cards. This feature demonstrated a balance between technical ambition and user accessibility, influencing later games like Doom 3 and Skyrim, which offered similar options to optimize performance."
   - id: "sound-system-startup"
-    line_start: 43
-    line_end: 137
+    line_start: 134
+    line_end: 162
     title: "Sound System Startup: Initialization Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Direct_memory_access"
     image_url: ""
@@ -86,8 +86,8 @@ enhancements:
     image_caption: ""
     content: "The `S_UpdateAmbientSounds` function dynamically adjusts ambient sound levels based on the player's location in the game world. By calculating sound levels from the surrounding environment, the function creates a seamless audio experience that responds to player movement. This innovation was part of Quake's effort to integrate audio into its immersive 3D environments. The technique influenced later games like Half-Life, which used similar systems to enhance atmosphere and storytelling through sound."
   - id: "debugging-sound-channels"
-    line_start: 666
-    line_end: 722
+    line_start: 717
+    line_end: 811
     title: "Debugging Sound Channels: Real-Time Insights"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""

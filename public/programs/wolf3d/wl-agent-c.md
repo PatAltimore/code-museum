@@ -30,24 +30,24 @@ summary:
 
 enhancements:
   - id: "player-state-management"
-    line_start: 32
-    line_end: 41
+    line_start: 97
+    line_end: 97
     title: "How Wolfenstein Tracked Player State"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section defines the `objtype` structure, which tracks the state of the player and other objects in the game. The `LastAttacker` variable records the last entity that damaged the player, enabling contextual responses such as displaying the attacker’s face in the HUD. In 1992, games like Wolfenstein 3D were pioneering ways to make player interactions feel personal and immersive. Tracking state was critical for implementing features like health updates, weapon changes, and damage feedback. This approach influenced later games that relied on object-oriented designs for managing entities and interactions, such as Doom and Quake."
   - id: "attack-info-table"
-    line_start: 36
-    line_end: 50
+    line_start: 99
+    line_end: 131
     title: "The Lookup Table Behind Player Attacks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
     content: "The `attackinfo` table is a compact lookup structure that defines the timing, type, and animation frames for player attacks. By organizing attack data in this way, the developers could easily adjust weapon behaviors without rewriting code. This technique was essential in an era when memory was limited and performance was paramount. Lookup tables like this became a staple in game development, appearing in later titles for managing animations, AI behaviors, and physics calculations. The influence of such data-driven design can be seen in modern game engines like Unity and Unreal, where configuration files and tables drive much of the gameplay logic."
   - id: "player-movement-control"
-    line_start: 134
-    line_end: 225
+    line_start: 99
+    line_end: 131
     title: "The Algorithm That Made Strafing Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Strafing_(gaming)"
     image_url: ""
@@ -78,8 +78,8 @@ enhancements:
     image_caption: ""
     content: "The `GetBonus` function handles interactions with collectible items, such as health packs, ammo, and treasure. Each item triggers specific effects, like increasing health or awarding points, and plays a corresponding sound. This system encouraged players to explore levels thoroughly, rewarding curiosity and persistence. In 1992, such mechanics were relatively new, as most games focused on linear progression. Wolfenstein 3D’s emphasis on exploration and rewards influenced later titles like Doom and Duke Nukem 3D, where secret areas and collectibles became integral to gameplay."
   - id: "collision-detection"
-    line_start: 43
-    line_end: 50
+    line_start: 87
+    line_end: 89
     title: "The Tile-Based Collision System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
     image_url: ""
@@ -142,8 +142,8 @@ enhancements:
     image_caption: ""
     content: "The `T_Attack` function orchestrates the player's combat actions, including weapon handling, ammo management, and attack animations. It updates the player's state based on their chosen weapon and tracks the attack frame to determine when to fire or strike. This function integrates multiple systems, such as sound playback, damage calculation, and visual updates, to create a cohesive combat experience. In 1992, combining these elements into a seamless routine was a technical achievement, showcasing id Software's ability to push the boundaries of real-time gameplay. The modular design of this function influenced later FPS engines, enabling developers to create dynamic and responsive combat systems."
   - id: "t-player-movement-and-actions"
-    line_start: 54
-    line_end: 55
+    line_start: 90
+    line_end: 95
     title: "The Code That Moves the Player"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

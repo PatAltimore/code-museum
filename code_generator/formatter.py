@@ -125,11 +125,28 @@ def _format_from_data(
     code_lines: list[str],
     data: dict,
     is_excerpt: bool,
+    preserved_ranges: dict | None = None,
 ) -> str:
-    """Write YAML front matter + fenced code block from an already-parsed data dict."""
+    """Write YAML front matter + fenced code block from an already-parsed data dict.
+
+    preserved_ranges: optional mapping of enhancement id → (line_start, line_end).
+    When provided, any enhancement whose id appears in the mapping will have its
+    line_start/line_end replaced with the preserved values, protecting range work
+    from being overwritten by fresh LLM output.
+    """
     description = data.get("description", file_cfg.get("description", ""))
     summary = data.get("summary", [])
     enhancements = _clean_enhancements(data.get("enhancements", []), code_lines)
+
+    if preserved_ranges:
+        patched = []
+        for enh in enhancements:
+            eid = enh.get("id", "")
+            if eid in preserved_ranges:
+                enh = dict(enh)
+                enh["line_start"], enh["line_end"] = preserved_ranges[eid]
+            patched.append(enh)
+        enhancements = patched
 
     # Build a mapping from original 1-based line numbers to filtered 1-based line
     # numbers, removing lines that would break GitHub's markdown renderer (e.g.
@@ -219,9 +236,11 @@ def format_file(
     code_lines: list[str],
     raw_json: str,
     is_excerpt: bool,
+    preserved_ranges: dict | None = None,
 ) -> str:
     data = _parse_json(raw_json)
-    return _format_from_data(program, file_cfg, code_lines, data, is_excerpt)
+    return _format_from_data(program, file_cfg, code_lines, data, is_excerpt,
+                             preserved_ranges=preserved_ranges)
 
 
 def format_file_from_dict(
@@ -230,6 +249,8 @@ def format_file_from_dict(
     code_lines: list[str],
     data: dict,
     is_excerpt: bool,
+    preserved_ranges: dict | None = None,
 ) -> str:
     """Format a file from an already-parsed data dict (skips JSON parsing)."""
-    return _format_from_data(program, file_cfg, code_lines, data, is_excerpt)
+    return _format_from_data(program, file_cfg, code_lines, data, is_excerpt,
+                             preserved_ranges=preserved_ranges)

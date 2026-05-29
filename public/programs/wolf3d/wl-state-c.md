@@ -46,8 +46,8 @@ enhancements:
     image_caption: ""
     content: "This two-dimensional array maps combinations of cardinal directions to their diagonal equivalents. For example, moving north and east simultaneously results in northeast. This table ensures consistent behavior for diagonal movement, a crucial feature in Wolfenstein 3D's tile-based world. The design reflects the constraints of the time, where computational efficiency was paramount. Similar techniques were later adapted in pathfinding algorithms like A* and in games with grid-based movement, such as Civilization and Fire Emblem."
   - id: "spawn-new-actor"
-    line_start: 103
-    line_end: 178
+    line_start: 68
+    line_end: 99
     title: "How Wolfenstein Spawns New Enemies"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spawn_(computing)"
     image_url: ""

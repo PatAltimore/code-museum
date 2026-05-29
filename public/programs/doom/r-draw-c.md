@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "column-rendering-optimization"
     line_start: 97
-    line_end: 147
+    line_end: 206
     title: "The Trick That Made Walls Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawColumn` function is responsible for rendering vertical slices of wall textures, a technique optimized for DOOM's fixed-view perspective. By leveraging lookup tables (`ylookup` and `columnofs`), the function avoids costly multiplications to calculate framebuffer addresses, instead relying on precomputed offsets. This approach is rooted in techniques used in earlier games like Wolfenstein 3D, where fixed-view angles simplified rendering calculations. In 1993, consumer PCs had limited processing power, often lacking hardware acceleration for graphics. John Carmack's decision to optimize for fixed-view angles allowed DOOM to achieve its groundbreaking speed and fluidity on modest hardware. This technique influenced later games and engines, including Quake, which built on these principles while introducing more advanced 3D rendering."
   - id: "unused-loop-unrolling"
-    line_start: 151
+    line_start: 97
     line_end: 206
     title: "The Loop Unrolling That Never Shipped"
     wikipedia_url: "https://en.wikipedia.org/wiki/Loop_unrolling"
@@ -63,7 +63,7 @@ enhancements:
     content: "The `R_DrawTranslatedColumn` function uses translation tables to dynamically remap colors, allowing sprites to appear in different color schemes. This technique is used for player sprites and enemies like the Hell Knight, which shares the Baron of Hell's sprites but uses a brighter color palette. The translation tables are precomputed to map specific color ramps to alternate colors, enabling efficient runtime remapping. This approach reflects Carmack's focus on performance, as it avoids recalculating color mappings during gameplay. Dynamic color remapping became a standard feature in game engines, enabling customization and variety without increasing asset sizes."
   - id: "translation-table-initialization"
     line_start: 451
-    line_end: 482
+    line_end: 514
     title: "Mapping Green to Gray, Brown, and Red"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_mapping"
     image_url: ""
@@ -71,15 +71,15 @@ enhancements:
     content: "The `R_InitTranslationTables` function initializes the translation tables used for dynamic color remapping. It maps the green color ramp (used for player sprites) to gray, brown, and red, allowing for visual differentiation between players or sprite variants. The function assumes a specific structure for the PLAYPAL lump, which defines the game's color palette. This design choice reflects the constraints of the era, where memory and storage limitations required developers to maximize the utility of existing assets. Translation tables became a common feature in game engines, enabling efficient color customization and paving the way for features like team-based multiplayer color schemes."
   - id: "span-rendering-for-floors-and-ceilings"
     line_start: 517
-    line_end: 562
+    line_end: 635
     title: "The Horizontal Trick Behind DOOM's Floors"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawSpan` function handles rendering horizontal spans for floors and ceilings. Unlike walls, which are rendered column by column, floors and ceilings are drawn as horizontal slices with constant z-depth. This method leverages DOOM's fixed-view orientation to simplify calculations, using precomputed steps to traverse texture space. The function avoids perspective-correct texture mapping, which would have been computationally expensive on 1993 hardware. Instead, it uses a faster approximation that was sufficient for the game's visual style. This technique influenced later engines, which adopted similar optimizations for rendering large flat surfaces efficiently."
   - id: "framebuffer-lookup-table"
-    line_start: 687
-    line_end: 719
+    line_start: 724
+    line_end: 810
     title: "The Lookup Table That Sped Up Pixels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
     image_url: ""

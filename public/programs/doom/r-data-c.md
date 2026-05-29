@@ -30,24 +30,24 @@ summary:
 
 enhancements:
   - id: "texture-definition-structure"
-    line_start: 60
-    line_end: 124
+    line_start: 221
+    line_end: 288
     title: "How DOOM Built Textures from Patches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
     content: "This section defines the structures used for textures in DOOM, including `mappatch_t`, `maptexture_t`, and `texture_t`. Each texture is composed of patches, which are smaller graphical elements stored in WAD files. These patches are positioned within a texture using origin coordinates and other attributes. The modular design allowed DOOM to efficiently reuse graphical assets, reducing memory consumption—a critical consideration for 1993 hardware like the Intel 486, which often had only 4–8 MB of RAM. The concept of combining smaller graphical elements into larger composite textures influenced later games and engines, including Quake and Unreal Engine, which adopted similar modular approaches to texture management."
   - id: "r-draw-column-in-cache"
-    line_start: 178
-    line_end: 217
+    line_start: 221
+    line_end: 288
     title: "The Routine That Cached Columns"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawColumnInCache` function clips and draws a column from a patch into a cached post. This caching mechanism was crucial for DOOM's performance, as it avoided recalculating texture data during gameplay. By storing columns in memory, the renderer could quickly access precomputed graphics data, enabling smooth frame rates even on modest hardware. John Carmack's focus on optimizing memory usage and rendering speed was a hallmark of DOOM's development, and this routine exemplifies his approach. Techniques like this laid the groundwork for efficient graphics handling in later engines, including the id Tech series."
   - id: "r-generate-composite"
-    line_start: 178
-    line_end: 217
+    line_start: 221
+    line_end: 288
     title: "Generating Composite Textures Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -62,8 +62,8 @@ enhancements:
     image_caption: ""
     content: "The `R_InitTextures` function initializes the texture list by loading texture definitions from WAD files. It handles both shareware and commercial texture lumps (`TEXTURE1` and `TEXTURE2`), ensuring compatibility across different versions of the game. The function also precomputes lookup tables for texture rendering, optimizing performance. This modular initialization process reflects DOOM's well-structured design, which separated data preparation from rendering logic. The use of WAD files for storing texture data became a standard in game development, influencing titles like Duke Nukem 3D and Half-Life."
   - id: "r-init-sprite-lumps"
-    line_start: 577
-    line_end: 593
+    line_start: 596
+    line_end: 625
     title: "Preloading Sprite Metadata for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""

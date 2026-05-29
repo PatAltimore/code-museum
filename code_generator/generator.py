@@ -15,7 +15,7 @@ from fetch_code import fetch_source
 from prompts import build_prompt, build_chunk_prompt, CHUNK_THRESHOLD, _asm_landmarks
 from intro_prompts import build_intro_prompt
 from formatter import format_file, format_file_from_dict, parse_response_json
-from find_images import fill_file_images, find_program_image
+from find_images import fill_file_images, find_program_image, fetch_wiki_extract
 from range_fixer import fix_ranges
 from highlights_prompts import build_highlights_prompt
 import catalog_sync
@@ -24,6 +24,33 @@ load_dotenv()
 console = Console()
 
 _CATALOG_PATH = Path(__file__).parent.parent / "public" / "catalog.json"
+
+
+def _load_existing_ranges(path: Path) -> dict:
+    """Read an existing .md file and return {enhancement_id: (line_start, line_end)}.
+
+    Used by --preserve-ranges to protect manually-corrected ranges from being
+    overwritten when regenerating enhancement content.
+    """
+    if not path.exists():
+        return {}
+    try:
+        text = path.read_text(encoding="utf-8")
+        # Extract the YAML frontmatter between the first pair of --- delimiters
+        m = re.match(r"^---\n(.*?)\n---", text, re.DOTALL)
+        if not m:
+            return {}
+        meta = yaml.safe_load(m.group(1))
+        result = {}
+        for enh in meta.get("enhancements") or []:
+            eid = enh.get("id")
+            ls = enh.get("line_start")
+            le = enh.get("line_end")
+            if eid and ls is not None and le is not None:
+                result[eid] = (int(ls), int(le))
+        return result
+    except Exception:
+        return {}
 
 
 def save_introduction(slug: str, intro_text: str) -> None:
@@ -108,7 +135,9 @@ def generate_highlights(program: dict, client, gen_cfg: dict, force: bool,
         return False
 
     console.print(f"[cyan]gen   {slug}/highlights[/cyan]")
-    messages = build_highlights_prompt(program, files_with_enhancements)
+    wiki_url = program.get("wikipedia_url")
+    wiki_text = fetch_wiki_extract(wiki_url) if wiki_url else None
+    messages = build_highlights_prompt(program, files_with_enhancements, wiki_text=wiki_text)
 
     try:
         raw = client.complete(
@@ -267,7 +296,17 @@ def generate_intro(program: dict, client, gen_cfg: dict, force: bool, fetch_imag
 
     console.print(f"[cyan]gen   {slug}/introduction[/cyan]")
 
-    messages = build_intro_prompt(program)
+    wiki_url = program.get("wikipedia_url")
+    wiki_text = None
+    if wiki_url:
+        console.print("  fetching Wikipedia article…")
+        wiki_text = fetch_wiki_extract(wiki_url)
+        if wiki_text:
+            console.print(f"  [dim]-> {len(wiki_text)} chars fetched[/dim]")
+        else:
+            console.print("  [dim]Wikipedia fetch returned nothing[/dim]")
+
+    messages = build_intro_prompt(program, wiki_text=wiki_text)
 
     console.print("  calling model (intro)…")
     try:
@@ -335,6 +374,7 @@ def main() -> None:
     parser.add_argument("--replace-images", action="store_true", help="Clear and re-fetch all images (replaces bad ones); implies --find-images")
     parser.add_argument("--program-image", action="store_true", help="Fetch (or replace) the program intro image only; skip file images")
     parser.add_argument("--fix-ranges", action="store_true", help="Post-process existing .md files to correct enhancement line ranges and exit")
+    parser.add_argument("--preserve-ranges", action="store_true", help="When regenerating, keep existing line_start/line_end values (matched by enhancement id) instead of using the LLM's new ranges")
     parser.add_argument("--config", default="config/programs.yaml", help="Path to programs.yaml")
     args = parser.parse_args()
 
@@ -485,6 +525,16 @@ def main() -> None:
 
             console.print(f"[cyan]gen   {prog_slug}/{file_slug}[/cyan]")
 
+            # Load existing ranges before regeneration so --preserve-ranges can
+            # patch them back in after the LLM produces new content.
+            existing_path = output_dir / prog_slug / f"{file_slug}.md"
+            preserved_ranges = (
+                _load_existing_ranges(existing_path)
+                if args.preserve_ranges else None
+            )
+            if preserved_ranges:
+                console.print(f"  [dim]preserving {len(preserved_ranges)} existing range(s)[/dim]")
+
             max_lines = file_cfg.get("max_lines") or gen_cfg.get("default_max_lines") or None
             try:
                 code_lines, is_excerpt = fetch_source(
@@ -558,7 +608,8 @@ def main() -> None:
                     continue
 
                 merged = _merge_chunk_responses(parsed_chunks)
-                content = format_file_from_dict(program, file_cfg, code_lines, merged, is_excerpt)
+                content = format_file_from_dict(program, file_cfg, code_lines, merged, is_excerpt,
+                                                preserved_ranges=preserved_ranges)
 
             else:
                 # --- Standard path for small files ---
@@ -582,7 +633,8 @@ def main() -> None:
                     console.print(f"  [red]{e}[/red]")
                     continue
 
-                content = format_file(program, file_cfg, code_lines, raw, is_excerpt)
+                content = format_file(program, file_cfg, code_lines, raw, is_excerpt,
+                                     preserved_ranges=preserved_ranges)
 
             path = ckpt.save(prog_slug, file_slug, content)
             console.print(f"  [green]-> {path}[/green]")

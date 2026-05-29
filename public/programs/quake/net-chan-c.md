@@ -30,39 +30,31 @@ summary:
 
 enhancements:
   - id: "packet-header-design"
-    line_start: 1
-    line_end: 79
-    title: "How Quake Solved Multiplayer Packet Reliability"
+    line_start: 83
+    line_end: 104
+    title: "Packet Header Design and the Random qport Workaround"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section defines the structure of the packet header used in Quake's multiplayer networking system. The header includes fields for sequence numbers, reliability flags, acknowledgment numbers, and a 'qport' field to address issues caused by routers remapping client source ports. At the time, multiplayer gaming faced significant challenges due to unreliable network conditions and hardware limitations. John Carmack and Michael Abrash designed this system to ensure reliable delivery of critical game data while allowing non-critical data to be sent without acknowledgment. The inclusion of the 'qport' field was a clever workaround for NAT issues, ensuring that connections remained stable even when IP ports were dynamically altered. This approach influenced later multiplayer systems, including those in Half-Life and Unreal Tournament, and laid the groundwork for modern game networking protocols."
-  - id: "netchan-init-random-port"
-    line_start: 85
-    line_end: 107
-    title: "Random Ports: A Security and Stability Hack"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Random_number_generation"
-    image_url: ""
-    image_caption: ""
-    content: "The `Netchan_Init` function initializes the network channel system and assigns a random port value to the `qport` variable. On Windows, this randomness is derived from the system time, while on Unix-like systems, it combines the process ID and user ID with the current time. This randomness helps mitigate issues with port remapping by routers and adds a layer of security against spoofing attacks. In the mid-1990s, network security and stability were critical concerns for multiplayer games, as malicious actors could exploit predictable port assignments. By introducing randomness, id Software ensured that Quake's multiplayer connections were more robust and less prone to interference. This technique became a common practice in networking systems, influencing later games and even broader network security protocols."
+    content: "This section defines the packet header layout — sequence numbers, reliability flag, acknowledgment number, and the qport field — and implements Netchan_Init, which seeds qport with a value derived from the system clock and (on Unix) the process and user IDs. The qport field solved a real problem: consumer routers using NAT frequently remapped UDP source ports, making it impossible for the server to correlate packets from the same client session. Embedding a random application-layer port in every packet gave the server a stable identifier that survived NAT translation. On Windows the seed is the tick count; on Unix it mixes PID, UID, and time for greater entropy. This randomness also raised the bar against connection spoofing. The combination of a structured reliable/unreliable header and a random application port influenced networking layers in Half-Life and Unreal Tournament and foreshadowed practices now standard in UDP-based game networking."
   - id: "out-of-band-datagram"
-    line_start: 108
-    line_end: 135
+    line_start: 106
+    line_end: 132
     title: "Sending Messages Outside the Game Loop"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_Datagram_Protocol"
     image_url: ""
     image_caption: ""
     content: "The `Netchan_OutOfBand` function sends out-of-band datagrams, which are packets not tied to the main game loop. These packets are marked with a sequence number of -1, signaling their special status. Out-of-band messages are used for tasks like server discovery, error reporting, or administrative commands, ensuring they bypass the regular packet handling logic. This design reflects the constraints of the era, where UDP was preferred for its low latency but lacked built-in reliability. By implementing custom handling for out-of-band messages, Quake could efficiently manage critical network operations without disrupting gameplay. This technique influenced later multiplayer engines, including Source and Unreal Engine, which adopted similar out-of-band messaging systems for server communication and matchmaking."
   - id: "reliable-unreliable-packet-combo"
-    line_start: 215
-    line_end: 317
+    line_start: 211
+    line_end: 314
     title: "Combining Reliable and Unreliable Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transmission_Control_Protocol"
     image_url: ""
     image_caption: ""
     content: "The `Netchan_Transmit` function is the heart of Quake's network channel system, handling the transmission of both reliable and unreliable packets. Reliable packets are guaranteed to be delivered and acknowledged, while unreliable packets are sent without confirmation. This hybrid approach balances the need for reliability in critical game data (e.g., player actions) with the speed required for non-critical updates (e.g., visual effects). The function also manages retransmission of dropped reliable packets and ensures that the packet header includes all necessary metadata for proper sequencing and acknowledgment. This design was groundbreaking in 1996, as it provided a robust solution for multiplayer gaming over unreliable networks. The concept of combining reliable and unreliable data streams influenced many subsequent multiplayer engines, including those used in Counter-Strike and World of Warcraft."
   - id: "packet-processing-and-statistics"
-    line_start: 318
+    line_start: 316
     line_end: 451
     title: "How Quake Tracks Network Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Network_performance"

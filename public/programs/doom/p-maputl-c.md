@@ -62,8 +62,8 @@ enhancements:
     image_caption: ""
     content: "The `P_UnsetThingPosition` function removes an object (or 'thing') from the game's spatial structures, including the blockmap and sector lists. This is necessary whenever an object's position changes, ensuring the game's lookup tables remain accurate. The function handles both dynamic and static objects, checking flags to determine whether they need to be unlinked. This approach reflects DOOM's modular design, where objects are dynamically managed within a grid-based map system. The ability to efficiently update spatial data was crucial for DOOM's fast-paced gameplay, allowing objects to move seamlessly without causing lag or errors. This dynamic management system influenced later engines, where similar techniques are used to handle object interactions in real-time."
   - id: "path-traverse-algorithm"
-    line_start: 676
-    line_end: 729
+    line_start: 473
+    line_end: 560
     title: "Tracing Paths Through DOOM's World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Line_algorithm"
     image_url: ""

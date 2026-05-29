@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "toupper-string-conversion"
-    line_start: 162
-    line_end: 166
+    line_start: 66
+    line_end: 71
     title: "Why DOOM Converts Strings to Uppercase"
     wikipedia_url: "https://en.wikipedia.org/wiki/Case_sensitivity"
     image_url: ""
@@ -33,15 +33,15 @@ enhancements:
     content: "This small utility function converts strings to uppercase, ensuring case-insensitive comparisons throughout the WAD handling code. In the early 1990s, case sensitivity in filenames and identifiers was a common source of bugs, especially when software needed to run on multiple operating systems with differing conventions (e.g., MS-DOS vs. UNIX). By standardizing all names to uppercase, DOOM sidesteps these issues entirely. This approach reflects John Carmack's pragmatic programming philosophy: eliminate potential pitfalls with simple, robust solutions. The technique became a standard practice in many game engines and tools, influencing how developers approached cross-platform compatibility."
   - id: "file-length-detection"
     line_start: 73
-    line_end: 81
+    line_end: 137
     title: "How DOOM Measures File Sizes Without Errors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stat_(system_call)"
     image_url: ""
     image_caption: ""
     content: "The `filelength` function uses the `fstat` system call to determine the size of a file. This was crucial for handling WAD files, which contain variable-length lumps of data. By relying on system-level calls, DOOM ensures accurate file size detection regardless of the underlying filesystem. In the early 1990s, developers often had to deal with quirks in file handling across different operating systems. This function reflects Carmack's focus on reliability and portability, ensuring DOOM's WAD system could function seamlessly on both MS-DOS and UNIX-based systems. The technique influenced later game engines, which adopted similar methods to handle asset files dynamically."
   - id: "extract-file-base"
-    line_start: 84
-    line_end: 113
+    line_start: 140
+    line_end: 225
     title: "The Eight-Character Filename Limit Explained"
     wikipedia_url: "https://en.wikipedia.org/wiki/8.3_filename"
     image_url: ""
@@ -49,7 +49,7 @@ enhancements:
     content: "The `ExtractFileBase` function extracts the base name of a file, limited to eight characters, and converts it to uppercase. This design stems from the 8.3 filename convention used in MS-DOS, where filenames were restricted to eight characters plus a three-character extension. By enforcing this limit, DOOM ensures compatibility with legacy systems while maintaining a consistent naming scheme for WAD lumps. The function also validates the length, throwing an error if the base name exceeds eight characters. This reflects the constraints of the era, where hardware and software limitations shaped design decisions. The eight-character limit became iconic in early PC gaming and influenced how modders named their custom assets."
   - id: "wad-file-validation"
     line_start: 140
-    line_end: 160
+    line_end: 225
     title: "How DOOM Distinguishes IWADs from PWADs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
     image_url: ""
@@ -64,8 +64,8 @@ enhancements:
     image_caption: ""
     content: "The `W_Reload` function enables the reloading of WAD files, specifically for lumps marked as reloadable. This feature was designed to facilitate map reloads during development, allowing designers to test changes without restarting the game. However, the implementation is described as a 'fragile hack' in the comments, reflecting the challenges of adding dynamic features to a system not originally designed for them. Despite its limitations, this feature highlights DOOM's iterative development process and the team's willingness to experiment with new workflows. Reloadable assets became a standard feature in modern game engines, streamlining the development and testing of dynamic content."
   - id: "wad-cache-system"
-    line_start: 471
-    line_end: 499
+    line_start: 278
+    line_end: 519
     title: "How DOOM's Cache Kept Gameplay Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""

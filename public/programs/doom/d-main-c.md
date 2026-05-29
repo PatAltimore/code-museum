@@ -95,14 +95,14 @@ enhancements:
     content: "This section of the code processes command-line arguments to customize gameplay. Options like '-nomonsters', '-respawn', and '-fast' allow players to modify the game's behavior, while '-deathmatch' sets up multiplayer modes. The '-turbo' option adjusts movement speed, demonstrating how DOOM catered to both casual players and advanced users. In the early 1990s, command-line interfaces were a common way to configure software, especially on DOS-based systems. John Carmack's design philosophy emphasized user control and flexibility, which was rare for games at the time. This approach influenced later games, inspiring developers to include similar customization options. Today, command-line arguments remain a staple in software development, especially in debugging and server applications."
   - id: "wad-file-handling"
     line_start: 937
-    line_end: 944
+    line_end: 945
     title: "The Hack That Made Modding Easy"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
     image_caption: ""
     content: "DOOM's support for custom WAD files revolutionized gaming by enabling user-generated content. This section adds WAD files specified via the '-file' command-line argument to the game's resource list, marking the game as 'modified.' The code even includes a hack to allow '-wart' commands to load specific maps. In the 1990s, modding was in its infancy, and DOOM's modular file structure made it a pioneer. Players could create and share custom levels, fostering a vibrant community. This openness inspired later games like Quake and Half-Life, which built on DOOM's modding legacy. Today, modding is a cornerstone of PC gaming, with tools and platforms like Steam Workshop making it accessible to millions."
   - id: "subsystem-initialization"
-    line_start: 1011
+    line_start: 1009
     line_end: 1112
     title: "Why Modular Engines Win Every Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Modular_programming"

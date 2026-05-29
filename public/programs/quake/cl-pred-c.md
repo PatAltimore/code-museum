@@ -30,40 +30,32 @@ summary:
 
 enhancements:
   - id: "foundation-variables-for-prediction"
-    line_start: 1
-    line_end: 23
-    title: "The Variables That Define Prediction"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines two key variables: `cl_nopred` and `cl_pushlatency`. These variables control whether prediction is enabled and adjust latency compensation, respectively. In 1996, multiplayer gaming faced significant challenges due to high latency and limited bandwidth. By allowing players to tweak these settings, id Software gave users some control over how their game handled network-induced delays. This was a novel approach at the time, as most games relied entirely on server-side calculations. These variables laid the groundwork for client-side prediction, a technique that would become standard in online gaming. Developers of later games like Counter-Strike and World of Warcraft borrowed heavily from these ideas to improve the responsiveness of their multiplayer experiences."
-  - id: "cl-nudge-position-solid-check"
-    line_start: 26
-    line_end: 29
-    title: "How Quake Handles Stuck Players"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
-    image_url: ""
-    image_caption: ""
-    content: "The `CL_NudgePosition` function attempts to resolve situations where a player's position ends up inside a solid object due to network precision errors. By nudging the player's position slightly along the X and Y axes, the function tries to find a valid, non-solid location. This was crucial for maintaining gameplay continuity in QuakeWorld, where network latency and packet loss could cause desynchronization between the server and client. At the time, collision detection was a challenging problem, especially in 3D environments. The solution here reflects id Software's pragmatic approach to game development: prioritize playability over perfect accuracy. This technique influenced later games that needed to handle similar edge cases in multiplayer scenarios, such as Unreal Tournament and Halo."
-  - id: "split-long-moves-for-prediction"
-    line_start: 30
+    line_start: 28
     line_end: 57
+    title: "Prediction Variables and Unstick Logic"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Client-side_prediction"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines the two cvars that govern client-side prediction — cl_nopred and cl_pushlatency — and implements CL_NudgePosition, the function that rescues players who get stuck inside solid geometry after a network precision error. cl_pushlatency lets players compensate for connection delay, while cl_nopred disables prediction entirely for debugging. CL_NudgePosition iterates over a small grid of X/Y offsets to find the nearest non-solid location, a pragmatic fix that prioritizes playability over geometric purity. In 1996 both problems — latency-induced misprediction and coordinate quantization errors — were novel challenges for online FPS games, and id Software's approach of exposing them as tweakable variables and applying quiet on-the-fly corrections became standard practice in later engines including Half-Life and Unreal Tournament."
+  - id: "split-long-moves-for-prediction"
+    line_start: 59
+    line_end: 103
     title: "Breaking Long Moves for Accuracy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Client-side_prediction"
     image_url: ""
     image_caption: ""
     content: "The `CL_PredictUsercmd` function splits long movement commands into smaller segments to improve prediction accuracy. This ensures that even if a player issues a command with a long duration (e.g., holding a movement key for an extended period), the game can process it in smaller increments, reducing the risk of errors caused by network latency. This technique was essential for QuakeWorld's fast-paced gameplay, where precise movement was critical. By breaking commands into smaller pieces, id Software effectively mitigated the impact of latency on player actions. This approach became a cornerstone of client-side prediction, influencing games like Team Fortress and Overwatch, which rely on similar techniques to maintain smooth gameplay in high-latency environments."
   - id: "predict-move-interpolation"
-    line_start: 61
-    line_end: 103
+    line_start: 107
+    line_end: 212
     title: "Interpolating Movement for Smooth Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interpolation"
     image_url: ""
     image_caption: ""
     content: "The `CL_PredictMove` function interpolates player movement between frames to create a smoother gameplay experience. By calculating intermediate positions based on the player's velocity and the time elapsed, the function reduces the visual impact of latency and packet loss. This was a groundbreaking feature in 1996, as most games relied on server-side calculations that often resulted in jittery or delayed movement. The interpolation technique used here reflects id Software's commitment to delivering a seamless multiplayer experience, even on the limited hardware and networks of the era. This approach influenced the development of physics engines and networking code in later games, such as Half-Life and Battlefield, which built on these ideas to enhance their own multiplayer systems."
   - id: "init-prediction-variables"
-    line_start: 109
-    line_end: 212
+    line_start: 215
+    line_end: 224
     title: "Initializing Prediction Settings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(programming)"
     image_url: ""

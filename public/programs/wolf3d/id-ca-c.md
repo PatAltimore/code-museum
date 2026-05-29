@@ -32,16 +32,16 @@ enhancements:
     image_caption: ""
     content: "This brief section introduces the caching manager, a foundational system for Wolfenstein 3D. The caching manager was designed to handle the game's assets dynamically, ensuring that critical data like graphics and audio headers were loaded into memory before the memory manager initialized. This approach was necessary because early PCs, particularly those running MS-DOS, had severe memory limitations. By structuring the asset management system this way, id Software could maximize the use of available memory while maintaining the game's fast-paced action. The caching manager became a template for asset management in later games, influencing systems in Doom and Quake."
   - id: "huffman-node-structure"
-    line_start: 148
-    line_end: 175
+    line_start: 129
+    line_end: 147
     title: "The Huffman Node Structure That Saved Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Huffman_coding"
     image_url: ""
     image_caption: ""
     content: "This structure defines a Huffman node, a key component of the compression system used in Wolfenstein 3D. Huffman coding is a method of lossless data compression that represents frequently used data with shorter codes. The node structure here uses two fields, `bit0` and `bit1`, which either point to another node or represent a character. This efficient representation allowed id Software to compress large amounts of data, such as graphics and audio, into a format that could fit within the limited memory of early PCs. Huffman coding was not new—it was invented in 1952—but its application in real-time game asset management was groundbreaking. This technique influenced compression systems in later games and software."
   - id: "grfilepos-three-byte-offsets"
-    line_start: 148
-    line_end: 175
+    line_start: 129
+    line_end: 147
     title: "The Trick That Made 3 Bytes Do the Work of 4"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

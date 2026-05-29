@@ -23,72 +23,48 @@ summary:
     link_label: "Polygon Clipping"
 
 enhancements:
-  - id: "foundation-entity-info"
-    line_start: 1
-    line_end: 29
-    title: "Entity Info: The Root of Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section sets up foundational variables for rendering entities in Quake, including flags and pointers for the current entity being processed. It establishes the groundwork for tracking transformations and visibility during rendering. In 1996, real-time 3D graphics were still in their infancy, and managing entity-specific data efficiently was critical for performance on hardware like the Intel 486 and early Pentium processors. John Carmack and his team designed these structures to minimize memory overhead while enabling complex 3D scenes. This approach influenced later engines, such as Unreal Engine and Source Engine, which adopted similar entity-centric rendering pipelines."
-  - id: "vec3t-modelorg-base"
-    line_start: 30
-    line_end: 33
-    title: "Model Origin: Tracking Viewpoint in 3D"
-    wikipedia_url: "https://en.wikipedia.org/wiki/3D_computer_graphics"
-    image_url: ""
-    image_caption: ""
-    content: "These variables define the position of the viewpoint relative to the entity being rendered. In the mid-90s, handling 3D coordinates efficiently was a major challenge due to limited floating-point performance in consumer-grade CPUs. By separating world coordinates from entity-relative coordinates, Quake's engine could perform transformations and visibility checks more efficiently. This technique laid the groundwork for modern camera systems in 3D engines, where separating world-space and object-space calculations remains a best practice."
-  - id: "entity-rotation-matrix"
-    line_start: 34
-    line_end: 42
-    title: "Rotation Matrix: Turning Objects in Space"
+  - id: "entity-rotation-foundation"
+    line_start: 56
+    line_end: 71
+    title: "Entity Variables and the Dot-Product Rotation Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotation_matrix"
     image_url: ""
     image_caption: ""
-    content: "This section defines the rotation matrix used to transform entities in 3D space. Rotation matrices were a standard mathematical tool for 3D transformations, but their implementation in real-time engines like Quake demanded optimization for speed. Carmack's use of precomputed matrices and efficient dot product calculations allowed Quake to achieve smooth rotations even on hardware without dedicated graphics acceleration. This approach influenced later engines, which continued to refine matrix-based transformations for real-time rendering."
-  - id: "entity-rotate-function"
-    line_start: 60
-    line_end: 75
-    title: "Entity Rotate: A Simple Yet Powerful Trick"
-    wikipedia_url: "https://en.wikipedia.org/wiki/3D_computer_graphics"
-    image_url: ""
-    image_caption: ""
-    content: "This function applies the entity's rotation matrix to a given vector, effectively transforming it into the entity's local space. By leveraging dot products, the function minimizes computational overhead while maintaining precision. In the context of 1996 hardware, this was a clever optimization that avoided the need for more expensive matrix multiplications. The technique remains relevant today, as modern engines often use similar methods to transform vectors efficiently during rendering and physics calculations."
+    content: "This compact section packs two responsibilities into sixteen lines: declaring the per-entity rendering state and implementing the core rotation transform. The variables track the current entity pointer, rendering flags, the viewpoint position in model space (`modelorg`), and a 3×3 rotation matrix stored as three vec3_t rows. The rotation function itself is a single dot-product per output axis — three multiplications and two additions — applied to transform a world-space vector into the entity's local frame. In 1996, consumer CPUs like the Pentium lacked dedicated SIMD or floating-point pipelines fast enough for matrix math in the inner rendering loop, so Carmack kept the transform as tight as possible: no function-call overhead, no temporary allocations, just three dot products inline. The `modelorg` variable — the viewer's position expressed in the entity's coordinate frame — drives the back-face culling and BSP traversal logic that follows in this file; getting it wrong by even a sign flip would render the inside of models instead of the outside. The pattern of separating world-space from object-space coordinates and using a flat rotation matrix (rather than quaternions or Euler angles evaluated at runtime) became standard practice in subsequent engines including Quake II, Half-Life, and their descendants, where similar per-entity transform blocks appear in virtually every software renderer of the era."
   - id: "rotate-bmodel-function"
-    line_start: 76
-    line_end: 154
+    line_start: 74
+    line_end: 150
     title: "Rotating BSP Models: A Three-Axis Challenge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
     content: "This function calculates the rotation of BSP models around the yaw, pitch, and roll axes. It combines three separate rotation matrices into a single transformation matrix, which is then applied to the model's origin and frustum vectors. The comments hint at potential optimizations, such as caching results or using lookup tables, which were common techniques for improving performance on hardware with limited computational power. This approach to model rotation influenced later engines, which adopted similar methods for handling complex 3D transformations."
   - id: "recursive-clip-poly"
-    line_start: 155
-    line_end: 324
+    line_start: 153
+    line_end: 320
     title: "Clipping Polygons: Recursive Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_clipping"
     image_url: ""
     image_caption: ""
     content: "This function recursively clips polygons against BSP planes, ensuring that only visible portions are rendered. The recursive approach allows the engine to efficiently traverse the BSP tree, a technique that was revolutionary for real-time graphics in the mid-90s. By breaking down complex polygons into smaller, manageable pieces, Quake's engine could render scenes with high detail while maintaining performance. This method became a cornerstone of real-time rendering, influencing engines like Unreal and CryEngine."
   - id: "draw-solid-clipped-polygons"
-    line_start: 325
-    line_end: 406
+    line_start: 323
+    line_end: 402
     title: "Drawing Solid Polygons: Handling Complexity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_rendering"
     image_url: ""
     image_caption: ""
     content: "This function handles the drawing of solid polygons that have been clipped to fit within the view frustum. By iterating through surfaces and edges, it ensures that only visible geometry is processed. The comments highlight potential improvements, such as using bounding-box-based frustum clipping, which would later become standard practice in graphics engines. This function demonstrates the balance between precision and performance that defined Quake's rendering pipeline."
   - id: "recursive-world-node"
-    line_start: 445
-    line_end: 644
+    line_start: 443
+    line_end: 639
     title: "Recursive World Node: Traversing the BSP Tree"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
     content: "This function recursively traverses the BSP tree to determine visibility and render geometry. By leveraging the hierarchical structure of BSP trees, the engine can efficiently cull unseen geometry and focus on rendering visible surfaces. The recursive approach was a key innovation in Quake, enabling complex 3D environments to be rendered in real-time. This technique became a foundational concept in game engine design, influencing countless projects and developers."
   - id: "render-world-function"
-    line_start: 645
+    line_start: 643
     line_end: 672
     title: "Rendering the World: Bringing 3D to Life"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

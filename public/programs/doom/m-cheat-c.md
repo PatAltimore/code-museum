@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "scrambled-input-mapping-table"
-    line_start: 27
+    line_start: 34
     line_end: 34
     title: "The Scrambled Table That Hid Cheat Codes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cheat_code"
@@ -33,7 +33,7 @@ enhancements:
     content: "Lines 34–35 define a scrambled translation table (`cheat_xlate_table`) used to map user input into a predefined sequence for cheat code validation. This table is initialized with scrambled values derived from the `SCRAMBLE` macro, which obfuscates the mapping. The purpose of this approach was to prevent players from easily guessing or brute-forcing cheat codes by analyzing the game's input handling. At the time, cheat codes were a popular feature in games, offering players secret abilities or shortcuts. However, developers often sought ways to make these codes less predictable to maintain the sense of discovery. This technique reflects the ingenuity of DOOM's developers in balancing accessibility with challenge. The scrambled table approach influenced later games, where obfuscation techniques were used to protect sensitive data or prevent tampering. It also foreshadows modern practices in cryptography and input validation."
   - id: "cheat-code-sequence-validation"
     line_start: 37
-    line_end: 73
+    line_end: 74
     title: "How DOOM Checked Your Cheat Codes"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""

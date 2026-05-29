@@ -63,7 +63,7 @@ enhancements:
     content: "`P_CheckMeleeRange` determines whether an enemy is close enough to attack the player with a melee strike. It calculates the distance between the enemy and the player, factoring in the player's radius and checking line-of-sight. This ensures that melee attacks are realistic and only occur when the player is within reach. In 1993, such precise distance calculations were rare in games, as most relied on simple proximity checks. DOOM's implementation set a precedent for realistic enemy behavior, influencing later titles like Quake (1996) and Unreal (1998)."
   - id: "missile-range-check"
     line_start: 193
-    line_end: 208
+    line_end: 255
     title: "The Algorithm Behind DOOM's Missile Attacks"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
@@ -143,15 +143,15 @@ enhancements:
     content: "The `A_VileTarget` function spawns a 'hellfire' object that tracks the Arch-Vile's target. This routine ensures the fire remains dynamically linked to the target's position, creating a visually striking and mechanically impactful attack. The use of tracer objects to maintain positional updates was a clever solution to simulate tracking behavior on limited hardware. This technique influenced later games by demonstrating how to create visually compelling effects that also serve gameplay purposes, inspiring similar mechanics in titles like Unreal Tournament and World of Warcraft."
   - id: "skull-missile-attack"
     line_start: 1412
-    line_end: 1441
+    line_end: 1504
     title: "Flying Skulls as Guided Missiles"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `A_SkullAttack` function turns enemies into flying projectiles that home in on the player. By setting the 'skull fly' flag and calculating trajectory based on the target's position, this routine creates a unique attack pattern that combines mobility and aggression. The use of fixed-point arithmetic for movement calculations reflects the technical limitations of the era, where floating-point operations were often too costly. This mechanic added variety to enemy behavior and inspired similar features in later games, such as the homing projectiles in Metroid Prime and Halo."
   - id: "lost-soul-spawning-limit"
-    line_start: 1444
-    line_end: 1504
+    line_start: 1507
+    line_end: 1518
     title: "Why DOOM Limits Lost Souls to 20"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -175,7 +175,7 @@ enhancements:
     content: "The `A_BossDeath` function handles the logic for triggering special events when a boss enemy dies. Depending on the game mode, episode, and map, specific actions are performed, such as lowering floors or opening doors. This logic ensures that defeating a boss not only signifies victory but also progresses the game by altering the environment. Written by John Carmack and team, this approach reflects the careful integration of gameplay mechanics with level design. In 1993, games often relied on scripted sequences, but DOOM's dynamic event system was groundbreaking. It allowed players to experience unique outcomes based on their actions, enhancing replayability. The concept of tying environmental changes to enemy deaths influenced later games like Quake and Half-Life, where scripted events and dynamic environments became standard."
   - id: "hoof-metal-sounds-for-immersive-feedback"
     line_start: 1758
-    line_end: 1762
+    line_end: 1768
     title: "Hoof and Metal Sounds for Immersive Feedback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_effect"
     image_url: ""
@@ -199,7 +199,7 @@ enhancements:
     content: "The `A_BrainAwake` function initializes the targeting system for the final boss, the Icon of Sin. It scans the game world for specific target objects (`MT_BOSSTARGET`) and stores them in an array for later use. This mechanic ensures that the boss can dynamically interact with the environment by spawning projectiles aimed at these targets. In 1993, such dynamic behavior was rare in games, which often relied on static patterns. The Icon of Sin's targeting system added unpredictability and challenge to the final encounter, influencing boss design in later games like Dark Souls, where environmental interaction plays a key role."
   - id: "brain-explode-and-telefrag"
     line_start: 1874
-    line_end: 1922
+    line_end: 1892
     title: "Brain Explode and Telefrag Mechanics"
     wikipedia_url: "https://doomwiki.org/wiki/Telefrag"
     image_url: ""
@@ -207,7 +207,7 @@ enhancements:
     content: "The `A_BrainExplode` and `A_SpawnFly` functions handle the spawning of monsters and the telefrag mechanic, where a spawned monster instantly kills anything occupying its spawn location. This clever use of spatial logic creates tension and unpredictability, as players must constantly adapt to new threats. The telefrag mechanic became a signature feature of DOOM, influencing multiplayer games like Quake, where telefragging became a competitive tactic. The random monster spawning adds replayability, ensuring that each playthrough feels unique. This procedural approach to gameplay design laid the groundwork for modern roguelike and sandbox games."
   - id: "player-death-sounds"
     line_start: 1993
-    line_end: 2007
+    line_end: 2003
     title: "Player Death Sounds: Health-Based Variation"
     wikipedia_url: "https://doomwiki.org/wiki/Player_sounds"
     image_url: ""

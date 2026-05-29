@@ -29,33 +29,17 @@ summary:
     link_label: "Transparency in Graphics"
 
 enhancements:
-  - id: "sprite-rotation-perspective"
-    line_start: 66
-    line_end: 71
-    title: "How DOOM Made Sprites Face You"
+  - id: "sprite-rotation-clipping-initialization"
+    line_start: 161
+    line_end: 280
+    title: "How DOOM Built Its Sprite Foundation: Rotation, Clipping, and Error Checking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "This section defines the logic for sprite rotation, ensuring that objects in the game dynamically adjust their appearance based on the player's perspective. Sprite rotation 0 represents the sprite facing the viewer, while other rotations represent incremental clockwise turns. This approach was necessary in DOOM's pseudo-3D environment, where sprites needed to simulate depth and orientation without true 3D models. At the time, hardware constraints made polygonal models impractical for real-time rendering, so developers relied on sprites and clever rotation logic to create the illusion of a 3D world. This technique influenced later games like Duke Nukem 3D and even modern engines that use billboarding for distant objects."
-  - id: "sprite-clipping-arrays"
-    line_start: 78
-    line_end: 84
-    title: "Arrays That Keep Sprites in Bounds"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
-    image_url: ""
-    image_caption: ""
-    content: "The `negonearray` and `screenheightarray` are constant arrays used for clipping sprites to the screen boundaries. These arrays prevent sprites from being drawn outside the visible area, a crucial optimization for performance on 1990s hardware. At the time, CPUs like the Intel 486 lacked the power to handle unnecessary rendering, so efficient clipping was essential. This technique influenced later graphics engines, where clipping remains a fundamental part of rendering pipelines."
-  - id: "sprite-initialization-checks"
-    line_start: 100
-    line_end: 156
-    title: "The Error-Checking That Saved DOOM"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_InstallSpriteLump` function initializes sprite frames and rotations, while performing rigorous error checks to ensure consistency in sprite definitions. For example, it verifies that no sprite frame has overlapping rotations or missing data. This meticulous attention to detail reflects John Carmack's philosophy of robust software engineering, which was critical to DOOM's success. By catching errors early, this function prevented crashes and visual glitches, ensuring a smooth gameplay experience. The approach set a standard for error handling in game engines, influencing later titles like Quake and Unreal."
+    content: "This section establishes the three interlocking systems that make DOOM's sprites work correctly. First, it defines the sprite rotation model: rotation 0 means the sprite faces the viewer directly, while rotations 1–8 represent clockwise turns around the object's vertical axis. Without true 3D models — impractical on 1993 hardware — this gave monsters and props a convincing sense of orientation as the player circled them, a technique later generalized as billboarding in modern engines. Second, two constant arrays — `negonearray` and `screenheightarray` — serve as clipping boundaries, preventing any sprite column from being drawn above the ceiling or below the floor. These arrays are loaded once and referenced throughout every frame, avoiding redundant comparisons and saving the precious CPU cycles that the Intel 486 could not spare. Third, the `R_InstallSpriteLump` function ties everything together at load time, assigning each sprite lump to the correct frame and rotation slot while performing rigorous consistency checks — detecting duplicate rotation assignments and incomplete rotation sets before the game ever runs. John Carmack's insistence on catching errors early meant that malformed sprite WADs caused an immediate, descriptive crash rather than a silent rendering glitch mid-game. Together these three elements — rotation logic, screen-boundary clipping arrays, and strict initialization — formed a blueprint for sprite handling that influenced Duke Nukem 3D, Quake, and virtually every 2.5D engine that followed."
   - id: "masked-texture-rendering"
     line_start: 350
-    line_end: 386
+    line_end: 387
     title: "Transparency Tricks in DOOM's Sprites"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""

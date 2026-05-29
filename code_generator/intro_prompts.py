@@ -5,8 +5,8 @@ page. Think of it as the opening sequence of a documentary film: you are placing
 reader inside the moment this program was created, helping them feel the constraints, \
 the urgency, and the ingenuity of the people who wrote it.
 
-You will receive metadata about a historically important program. Write a 4–6 paragraph \
-historical narrative introduction about it.
+You will receive metadata about a historically important program, and when available, \
+the Wikipedia article about it. Write a 4–6 paragraph historical narrative introduction.
 
 Output valid JSON with no markdown fences and no extra text:
 {"introduction": "paragraph1\n\nparagraph2\n\n..."}
@@ -26,10 +26,15 @@ Rules for the narrative:
 - Be specific: name the people, the machines, the years, the dollar amounts, the deadlines
 - Do not end any paragraph with: "This underscores", "This highlights", "This reflects", \
   "This reinforces", "This exemplifies", "It is worth noting", "It is important to note"
+- FACTUAL ACCURACY: When a Wikipedia article is provided, treat it as the authoritative \
+  source for all historical claims. Do not assert facts that contradict or are absent from \
+  the Wikipedia article. Pay special attention to superlatives and "first" claims — only \
+  make them if the Wikipedia article supports them. If Wikipedia mentions notable \
+  predecessors or context that complicates a claim, reflect that nuance.
 """
 
 
-def build_intro_prompt(program: dict) -> list[dict]:
+def build_intro_prompt(program: dict, wiki_text: str | None = None) -> list[dict]:
     parts = [
         f"Title: {program['title']}",
         f"Year: {program['year']}",
@@ -52,6 +57,13 @@ def build_intro_prompt(program: dict) -> list[dict]:
         for f in files:
             desc = f.get("description", "")
             parts.append(f"  - {f['title']}: {desc}")
+
+    if wiki_text:
+        parts.append(
+            "\n--- Wikipedia article (authoritative factual source) ---\n"
+            + wiki_text.strip()
+            + "\n--- End Wikipedia article ---"
+        )
 
     user_content = "\n".join(parts)
 

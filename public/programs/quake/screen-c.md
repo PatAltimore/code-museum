@@ -30,15 +30,15 @@ summary:
 
 enhancements:
   - id: "center-printing-dynamic-messaging"
-    line_start: 124
-    line_end: 126
+    line_start: 136
+    line_end: 224
     title: "How Quake Made Messages Feel Immediate"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section implements dynamic center printing for important messages in Quake. The `SCR_CenterPrint` function stores a message string, calculates its display duration, and determines the number of lines for proper centering. The subsequent functions handle erasing and drawing the message on the screen. At the time, conveying critical information to players in a visually impactful way was a challenge, especially in fast-paced games. John Carmack and Michael Abrash designed this mechanism to ensure messages were prominent without disrupting gameplay. The approach reflects the era's constraints: limited screen space and the need for efficient rendering on hardware like the Intel 486. This technique influenced later games, where center-screen messages became a standard for alerts, objectives, and achievements. Developers studying Quake's source code often adapted this method for their own engines, such as in Unreal Engine and Source Engine."
   - id: "calc-fov-optimal-3d-viewing"
-    line_start: 246
+    line_start: 242
     line_end: 264
     title: "The Math Behind Quake's Immersive Views"
     wikipedia_url: "https://en.wikipedia.org/wiki/Field_of_view"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `CalcFov` function calculates the vertical field of view based on the horizontal field of view and screen dimensions. This ensures that the player's perspective adapts correctly to different resolutions and aspect ratios. In 1996, most players used CRT monitors with varying resolutions, and optimizing the field of view was crucial for maintaining immersion. The formula uses trigonometric functions to derive the vertical FOV, balancing performance and visual fidelity. This approach was groundbreaking for its time, as it allowed Quake to deliver a consistent experience across hardware configurations. The technique influenced later engines, including Unity and Unreal, where dynamic FOV calculations are standard practice. It also laid the groundwork for modern VR applications, where precise FOV calculations are essential for user comfort."
   - id: "dynamic-console-resizing"
-    line_start: 508
+    line_start: 506
     line_end: 553
     title: "Quake's Console: Adapting to the Game State"
     wikipedia_url: "https://en.wikipedia.org/wiki/Console_(video_game)"
@@ -54,15 +54,15 @@ enhancements:
     image_caption: ""
     content: "The `SCR_SetUpToDrawConsole` function dynamically adjusts the console's visibility based on the game's state. Whether the player is actively gaming, viewing the console, or in a menu, the function calculates the appropriate height and smoothly transitions the display. This design reflects id Software's commitment to usability, ensuring the console never obstructs gameplay unnecessarily. In the mid-1990s, consoles were essential for debugging and player communication, but their integration into 3D environments posed challenges. Quake's solution influenced later engines, where dynamic UI elements became standard. For instance, the Source Engine and Unreal Engine adopted similar approaches to manage overlays and HUD elements, enhancing user experience across genres."
   - id: "screenshot-pcx-format"
-    line_start: 587
-    line_end: 650
+    line_start: 654
+    line_end: 697
     title: "Why Quake Saved Screenshots as PCX Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/PCX"
     image_url: ""
     image_caption: ""
     content: "The `WritePCXfile` function enables Quake to save screenshots in the PCX format, a popular choice in the 1990s due to its simplicity and widespread support. The function packs image data and appends a palette for color information, ensuring compatibility with tools like Paint Shop Pro. At the time, developers needed a reliable way to capture and analyze game visuals for debugging and promotional purposes. The choice of PCX reflects the era's focus on formats that balanced file size and ease of implementation. This functionality influenced game development workflows, where screenshot tools became essential for QA and marketing. Modern engines like Unity and Unreal offer similar features, though they use formats like PNG or JPEG. Quake's approach demonstrated the importance of integrating debugging tools directly into the game engine."
   - id: "remote-screenshot-multiplayer"
-    line_start: 778
+    line_start: 776
     line_end: 900
     title: "Taking Screenshots in Multiplayer Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `SCR_RSShot_f` function allows remote screenshots in multiplayer sessions, a feature designed to assist server admins and developers in monitoring gameplay. The function scales the screen buffer to a predefined resolution, averages pixel colors, and saves the result as a PCX file. This capability highlights id Software's foresight in addressing multiplayer-specific needs, such as verifying player behavior or capturing moments for promotional use. In 1996, multiplayer gaming was still emerging, and tools like this helped establish best practices for server management. The feature influenced later multiplayer games, where screenshot and replay systems became integral. For example, Valve's Source Engine includes similar functionality for demos and replays, enabling community-driven content creation and competitive analysis."
   - id: "dynamic-screen-update-logic"
-    line_start: 998
+    line_start: 996
     line_end: 1165
     title: "How Quake Dynamically Updates the Screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -78,21 +78,13 @@ enhancements:
     image_caption: ""
     content: "This section implements the main screen update logic in Quake, ensuring the game renders the correct visuals based on player actions, game state, and hardware constraints. The function `SCR_UpdateScreen` begins by checking various conditions, such as whether the screen update should be skipped due to loading or minimization on Windows. It dynamically recalculates the screen's reference definition (`vid.recalc_refdef`) when parameters like field of view (`scr_fov`) or screen size (`scr_viewsize`) change. This recalculation ensures the visuals adapt to gameplay changes without unnecessary rendering overhead. The function also integrates multiple rendering components, including the console, HUD, and game overlays. For example, during intermissions or finales, specific overlays like `Sbar_IntermissionOverlay` or `Sbar_FinaleOverlay` are drawn. The code uses conditional logic to prioritize rendering tasks, such as drawing the console (`SCR_DrawConsole`) or displaying notifications (`SCR_DrawNotifyString`). The back buffer access is enabled and disabled strategically to accommodate hardware limitations, such as linear writes on older adapters. This optimization minimizes the performance impact of rendering operations. Additionally, the function supports clearing the screen entirely (`Draw_TileClear`) during full updates and updates specific screen areas (`VID_Update`) based on the game state. In 1996, hardware constraints like limited memory and processing power on x86 systems required such meticulous optimization. John Carmack and Michael Abrash, known for their expertise in low-level programming and performance tuning, designed these routines to maximize efficiency. Their work influenced later game engines, including id Tech 2 and id Tech 3, which adopted similar rendering pipelines. Techniques like conditional rendering and back buffer management became standard practices in game development, shaping the industry’s approach to real-time graphics."
   - id: "whole-screen-refresh-trigger"
-    line_start: 1169
+    line_start: 1167
     line_end: 1176
     title: "The Shortcut for Whole-Screen Refreshes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "The `SCR_UpdateWholeScreen` function is a concise wrapper that forces a complete screen refresh by resetting the `scr_fullupdate` flag to zero and calling `SCR_UpdateScreen`. This ensures that all screen elements are redrawn, regardless of their previous state. Such functionality is particularly useful during moments when the game requires a visual reset, such as transitioning between levels or recovering from minimized states. This approach reflects the careful design philosophy of id Software during Quake's development. In the mid-1990s, hardware constraints like limited VRAM and slow CPUs meant that unnecessary rendering could severely impact performance. By isolating the logic for full-screen updates, the developers ensured that these operations were only triggered when absolutely necessary. The concept of a forced refresh became a staple in game engines, influencing later systems like Unreal Engine and Unity. It also aligns with modern practices in graphics programming, where selective rendering and efficient state management are critical for performance optimization. This function exemplifies the balance between simplicity and functionality that defined Quake’s codebase, showcasing how small, focused routines can have a significant impact on overall system behavior."
-  - id: "final-cleanup-wrapper"
-    line_start: 1169
-    line_end: 1176
-    title: "The Final Cleanup for Screen Updates"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The final lines of the file define a simple wrapper function, `SCR_UpdateWholeScreen`, which resets the `scr_fullupdate` flag and calls `SCR_UpdateScreen`. This design encapsulates the logic for refreshing the entire screen into a single reusable function, ensuring consistency and reducing code duplication. This minimalist approach reflects the programming ethos of John Carmack and his team, who prioritized clarity and efficiency in Quake's codebase. By abstracting the full-screen update process, the developers made it easier to maintain and extend the rendering system. This function also highlights the modularity of Quake's architecture, where small, focused routines interact seamlessly to create a complex and responsive system. The influence of such modular design can be seen in later game engines, which adopted similar principles to manage rendering pipelines. For example, the Source engine and CryEngine both emphasize modularity and encapsulation in their graphics subsystems. This function serves as a reminder of how even the simplest code can contribute to the robustness and longevity of a software project."
+    content: "SCR_UpdateWholeScreen is a two-line wrapper that zeroes scr_fullupdate and calls SCR_UpdateScreen, forcing every region of the screen to be redrawn on the next frame regardless of what the partial-update logic would otherwise skip. The flag is the mechanism by which SCR_UpdateScreen avoids redundant work: when it is non-zero, only dirty regions are refreshed. Resetting it to zero at level transitions, after minimizing under Windows, or whenever a caller knows the entire display is stale prevents visual artifacts without the cost of always repainting everything. This pattern — a lightweight invalidation flag gating expensive rendering work, with a forced-invalidation helper for exceptional cases — was common across id Software’s engines and carried forward into later renderers including those of Half-Life and Quake II."
 
 ---
 

@@ -30,23 +30,23 @@ summary:
 
 enhancements:
   - id: "z-clearzone-initializes-memory-zone"
-    line_start: 71
-    line_end: 95
+    line_start: 69
+    line_end: 91
     title: "How Quake Initializes Memory Zones"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `Z_ClearZone` function initializes a memory zone by setting up a linked list of memory blocks. It creates a single large free block spanning the entire zone, ensuring efficient allocation and deallocation. This approach minimizes fragmentation and simplifies memory management by maintaining a contiguous block structure. In 1996, memory constraints were severe, with typical PCs having only 8–16 MB of RAM. Developers like John Carmack and Michael Abrash innovated by using techniques like this to optimize memory usage for games like Quake, which pushed the boundaries of 3D graphics and multiplayer gaming. This method influenced later game engines, such as Unreal Engine, which adopted similar memory zone techniques for managing resources efficiently."
   - id: "z-free-merges-free-blocks"
-    line_start: 96
-    line_end: 138
+    line_start: 94
+    line_end: 134
     title: "The Clever Trick Behind Z_Free"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "The `Z_Free` function deallocates a memory block and merges adjacent free blocks to prevent fragmentation. This ensures that the memory zone remains efficient and avoids wasting space. The function uses checks to verify block integrity, such as ensuring the block has the correct `ZONEID`. This technique reflects the careful attention to memory management required in the mid-1990s, when hardware constraints demanded innovative solutions. The merging of free blocks is a precursor to modern garbage collection techniques and influenced memory management practices in subsequent game engines and operating systems."
   - id: "z-malloc-handles-small-allocations"
-    line_start: 139
+    line_start: 137
     line_end: 153
     title: "Dynamic Allocation for Small Objects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
@@ -54,24 +54,24 @@ enhancements:
     image_caption: ""
     content: "`Z_Malloc` is a dynamic memory allocation function designed for small objects like strings and structures. It ensures memory alignment and initializes allocated memory to zero, preventing undefined behavior. In the 1990s, developers had to carefully manage memory to avoid performance bottlenecks. This function exemplifies the meticulous engineering that went into Quake's codebase, enabling it to run efficiently on hardware with limited resources. The concept of zone-based memory allocation influenced later systems, including the Source engine used in games like Half-Life 2."
   - id: "hunk-allocname-for-large-allocations"
-    line_start: 396
-    line_end: 435
+    line_start: 394
+    line_end: 432
     title: "Hunk Allocations: Memory for Big Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
     content: "`Hunk_AllocName` allocates memory for large data structures, such as textures or game levels, using a contiguous block from the hunk memory pool. This approach ensures predictable performance by avoiding fragmentation and maintaining a simple allocation model. The function uses sentinel values to detect memory corruption, a common issue in low-level programming. This technique was critical for Quake's ability to handle complex 3D environments and large multiplayer maps efficiently. The hunk memory model influenced later game engines, including id Tech 3 (used in Quake III Arena)."
   - id: "cache-move-reclaims-memory"
-    line_start: 577
-    line_end: 605
+    line_start: 575
+    line_end: 602
     title: "Reclaiming Memory with Cache_Move"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
     image_url: ""
     image_caption: ""
     content: "`Cache_Move` attempts to reclaim memory by relocating cache blocks to free up space. It uses a least-recently-used (LRU) strategy to prioritize blocks for eviction. This function reflects the challenges of managing memory in performance-critical applications like Quake, where caching was essential for smooth gameplay. The LRU approach became a standard technique in memory management, influencing systems like modern CPU cache hierarchies and database management systems."
   - id: "memory-init-bootstraps-resource-management"
-    line_start: 915
-    line_end: 939
+    line_start: 913
+    line_end: 926
     title: "Bootstrapping Memory Management in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""

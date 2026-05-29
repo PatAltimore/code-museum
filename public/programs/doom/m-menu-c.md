@@ -25,76 +25,68 @@ summary:
 enhancements:
   - id: "menu-data-structures"
     line_start: 136
-    line_end: 166
+    line_end: 535
     title: "How DOOM Structured Its Menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
     image_caption: ""
     content: "This section defines the core data structures for DOOM's menu system, including `menuitem_t` and `menu_t`. These structures encapsulate menu items and their properties, such as status, name, hotkey, and associated routines, as well as the overall menu layout. In 1993, this approach was considered highly modular, allowing developers to easily add or modify menus without disrupting the rest of the code. The use of function pointers (`routine`) to handle menu actions was a clever way to decouple the menu's visual representation from its behavior, a technique that would later become standard in game development. The modularity here laid the groundwork for more sophisticated UI systems in later games, such as Quake and Unreal."
   - id: "main-menu-definition"
-    line_start: 249
-    line_end: 258
+    line_start: 538
+    line_end: 551
     title: "The Main Menu: A Gateway to DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Menu_(computing)"
     image_url: ""
     image_caption: ""
     content: "The `MainMenu` array and `MainDef` structure define DOOM's main menu, including options like New Game, Load Game, and Quit. Each menu item is associated with a function pointer, enabling dynamic behavior based on user input. This design reflects the constraints of the era, where memory and processing power were limited, necessitating efficient and straightforward implementations. The menu's layout and functionality were designed to be intuitive, ensuring players could quickly access game features. This approach influenced the design of menus in later games, emphasizing simplicity and usability."
   - id: "episode-selection-menu"
-    line_start: 283
-    line_end: 289
+    line_start: 555
+    line_end: 571
     title: "Selecting Episodes in DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "The `EpisodeMenu` and `EpiDef` structures define the episode selection menu, allowing players to choose between different chapters of the game. This menu reflects DOOM's episodic structure, a design choice influenced by the shareware distribution model popular in the early 1990s. By offering a free episode and charging for additional ones, id Software could reach a wide audience while monetizing the game's full experience. The episodic menu design also influenced the structure of later games, including expansions and DLCs, where content is segmented into distinct chapters or levels."
   - id: "save-load-system"
-    line_start: 506
-    line_end: 535
+    line_start: 575
+    line_end: 588
     title: "The Save and Load System: Persistence in DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "The `M_ReadSaveStrings`, `M_DrawLoad`, and `M_LoadSelect` functions implement DOOM's save and load system, allowing players to persist their progress. Save files are read from disk and displayed in the menu, with empty slots marked accordingly. This system was designed to be robust and user-friendly, ensuring players could easily manage their save data. The reliance on file I/O operations (`open`, `read`, `close`) reflects the low-level programming practices of the time, where developers interacted directly with the operating system. This approach influenced future games, where save systems became increasingly sophisticated, incorporating features like autosave and cloud storage."
   - id: "quick-save-load"
-    line_start: 689
-    line_end: 710
+    line_start: 590
+    line_end: 603
     title: "Quick Save and Load: Speeding Up Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "The `M_QuickSave` and `M_QuickLoad` functions provide a streamlined way for players to save and load their progress without navigating the full menu system. This feature was a response to the fast-paced nature of DOOM, where players needed to quickly resume gameplay after a mistake or interruption. Quick save/load systems became a staple in gaming, emphasizing convenience and reducing downtime. The implementation here reflects id Software's focus on player experience, ensuring the game remained engaging and accessible."
   - id: "help-screens"
-    line_start: 747
-    line_end: 768
+    line_start: 606
+    line_end: 625
     title: "Help Screens: Guiding Players Through DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_guide"
     image_url: ""
     image_caption: ""
     content: "The `M_DrawReadThis1` and `M_DrawReadThis2` functions display help screens, providing players with instructions and credits. These screens were essential in an era where games often lacked comprehensive manuals, relying instead on in-game guidance. The use of `V_DrawPatchDirect` to render graphics reflects the low-level graphics programming typical of the time. The inclusion of help screens highlights id Software's commitment to accessibility, ensuring players could understand the game's mechanics and context. This approach influenced later games, where tutorials and in-game guides became standard features."
   - id: "sound-volume-control"
-    line_start: 796
-    line_end: 808
+    line_start: 627
+    line_end: 638
     title: "How DOOM Let Players Adjust Sound Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Volume_control"
     image_url: ""
     image_caption: ""
     content: "This section implements sound volume control for both sound effects and music within DOOM's menu system. The functions `M_SfxVol` and `M_MusicVol` allow players to increase or decrease volume levels, constrained between 0 and 15. These values are then passed to `S_SetSfxVolume` and `S_SetMusicVolume`, which adjust the game's audio output. In 1993, sound cards were becoming more common in consumer PCs, but their capabilities varied widely. By providing granular control over sound levels, DOOM ensured compatibility with a range of hardware setups, from basic PC speakers to advanced sound cards like the Sound Blaster. This approach influenced later games, which adopted similar volume control mechanisms in their menus."
-  - id: "menu-rendering-patches"
-    line_start: 863
-    line_end: 870
-    title: "Rendering Menus with Cached Patches"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
-    image_url: ""
-    image_caption: ""
-    content: "The `M_DrawNewGame` function demonstrates how DOOM renders menu elements using cached patches. Each menu item, such as 'New Game' or 'Skill Level,' is drawn using the `V_DrawPatchDirect` function, which retrieves graphical assets from memory via `W_CacheLumpName`. This technique minimizes disk access during gameplay, ensuring smooth transitions between menus. In the early 1990s, memory constraints and slow storage devices necessitated efficient asset management. John Carmack's use of cached patches became a standard approach for rendering UI elements in games, influencing engines like Quake and Unreal."
-  - id: "episode-selection-hacks"
-    line_start: 918
-    line_end: 939
-    title: "The Hack Behind DOOM's Episode Selection"
+  - id: "menu-rendering-and-episode-selection"
+    line_start: 640
+    line_end: 653
+    title: "Cached Patches and the Episode Hack Behind DOOM's New Game Menu"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `M_Episode` function handles episode selection in DOOM, including a workaround for Ultimate DOOM's fourth episode. If the player selects an unavailable episode, the game prints an error message and defaults to the first episode. This hack reflects the challenges of supporting multiple game versions, such as shareware, registered, and commercial editions. In the early 1990s, developers often relied on such conditional logic to manage content across different releases. This technique influenced later games, which adopted more sophisticated methods for version-specific content management."
+    content: "This section handles both the visual rendering of the New Game menu and the conditional logic that controls which episodes a player can actually reach. On the rendering side, `M_DrawNewGame` uses `V_DrawPatchDirect` together with `W_CacheLumpName` to pull pre-loaded graphical patches from memory and stamp them directly into the frame buffer. There is no on-demand disk access during rendering — all assets are cached in advance, keeping menu transitions smooth even on slow hard drives typical of 1993. The same approach applied to skill-level artwork, skill names, and every other graphical element in the menu tree. On the selection side, `M_Episode` wraps episode choice with version-aware guards: shareware players trying to pick episode two see an error message and bounce back to episode one, while retail players proceed normally. A separate special case handles the fourth episode added in Ultimate DOOM, printing a blunt error comment in the code that reflects the rushed nature of the addition. This dual pattern — cache assets aggressively and gate content by edition — reflects id Software's practical approach to supporting multiple commercial releases from a single codebase. The cached-patch rendering model influenced Quake and the GoldSrc engine, and edition-specific content gating became standard practice in games that shipped in shareware, registered, and retail tiers."
   - id: "menu-string-rendering"
     line_start: 1251
     line_end: 1270

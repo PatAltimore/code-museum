@@ -30,64 +30,64 @@ summary:
 
 enhancements:
   - id: "menu-state-enumeration"
-    line_start: 19
-    line_end: 26
+    line_start: 102
+    line_end: 115
     title: "How Quake Organized Its Menu States"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
     image_caption: ""
     content: "This enumeration defines the various states of the menu system, such as 'm_main' for the main menu and 'm_options' for the options menu. By using an enumerated type, the developers ensured that the menu system could transition cleanly between states without ambiguity. In 1996, finite-state machines were a common design pattern for managing UI logic in games, but Quake's implementation stood out for its modularity and extensibility. This approach allowed for rapid iteration during development and influenced later games like Half-Life and Unreal Tournament, which adopted similar state-driven menu systems."
   - id: "translation-table-palette"
-    line_start: 28
-    line_end: 87
+    line_start: 150
+    line_end: 172
     title: "The Palette Trick That Saved Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Indexed_color"
     image_url: ""
     image_caption: ""
     content: "This section builds a translation table for color palettes, enabling dynamic remapping of colors during rendering. By manipulating the palette directly, Quake avoided the need for expensive per-pixel operations, which would have been prohibitive on 1990s hardware. This technique was particularly useful for rendering player skins in multiplayer mode, where different colors could represent different teams. The idea of using translation tables for indexed color manipulation was borrowed from earlier graphics systems like VGA, but Quake's implementation pushed it further by integrating it seamlessly into the game's rendering pipeline. This approach influenced later engines, including the Source engine, which used similar techniques for texture manipulation."
   - id: "menu-toggle-function"
-    line_start: 89
-    line_end: 243
+    line_start: 240
+    line_end: 268
     title: "The Function That Controlled Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
     image_url: ""
     image_caption: ""
     content: "The `M_ToggleMenu_f` function is the central entry point for toggling the game's menu system. It handles transitions between the game, console, and menu states based on user input. This function embodies the principles of event-driven programming, where user actions dictate the flow of the program. In the mid-1990s, this was a cutting-edge approach for game UI design, allowing for responsive and intuitive interfaces. The modularity of this function influenced later games and engines, such as Doom 3 and Unity, which adopted similar event-driven systems for managing UI states."
   - id: "dynamic-slider-adjustments"
-    line_start: 1
-    line_end: 17
+    line_start: 35
+    line_end: 35
     title: "How Quake Made Sliders Feel Smooth"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_interface_design"
     image_url: ""
     image_caption: ""
     content: "The `M_AdjustSliders` function dynamically adjusts various game settings, such as screen size, gamma, and mouse sensitivity, based on user input. By mapping slider values to game variables, the developers created an intuitive way for players to customize their experience. This was a significant step forward in user interface design for games, as it provided immediate visual feedback and granular control. The technique of using sliders for configuration became standard in later games, including titles like The Sims and World of Warcraft, which expanded on this idea with more complex UI frameworks."
   - id: "keybinding-system"
-    line_start: 1
-    line_end: 17
+    line_start: 36
+    line_end: 38
     title: "The Keybinding System That Empowered Players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Key_binding"
     image_url: ""
     image_caption: ""
     content: "This section implements Quake's keybinding system, allowing players to customize controls by assigning actions to specific keys. The `M_FindKeysForCommand` and `M_UnbindCommand` functions provide the core logic for managing bindings, while the menu interface lets players make changes interactively. In 1996, customizable keybindings were a relatively novel feature, and Quake's implementation set a precedent for player empowerment in game design. This system directly influenced later games like Counter-Strike and Team Fortress, which built on the idea by adding more sophisticated binding options and scripting capabilities."
   - id: "quit-menu-humor"
-    line_start: 1
-    line_end: 17
+    line_start: 39
+    line_end: 57
     title: "The Quit Menu That Mocked You"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
     image_url: ""
     image_caption: ""
     content: "The quit menu in Quake features humorous and sometimes sarcastic messages designed to entertain players as they decide whether to exit the game. This playful approach reflects the culture of id Software at the time, where developers often injected personality and humor into their work. The quit menu became a memorable part of Quake's identity and inspired similar features in later games, such as the tongue-in-cheek error messages in Portal and the humorous loading screens in Borderlands."
   - id: "multiplayer-menu-with-web-links"
-    line_start: 1
-    line_end: 17
+    line_start: 32
+    line_end: 34
     title: "Why QuakeWorld Advertised Websites in 1996"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
     image_url: ""
     image_caption: ""
     content: "This section draws the multiplayer menu for QuakeWorld, prominently featuring links to external websites like www.quakeworld.net and www.quakespy.com. In 1996, the internet was still a novelty for many users, and integrating URLs directly into a game menu was groundbreaking. John Carmack and the team at id Software recognized the growing importance of online communities and multiplayer gaming. By directing players to these resources, they helped foster the burgeoning QuakeWorld community and ensured players had access to tools and guides for finding matches. This approach prefigured the integration of online services directly into games, a standard practice today. The decision to include web links in the menu highlights id Software's foresight in leveraging the internet to build a loyal player base."
   - id: "quit-menu-credits-and-legal-notices"
-    line_start: 1
-    line_end: 17
+    line_start: 58
+    line_end: 100
     title: "The Quit Screen That Doubled as Credits"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -96,27 +96,11 @@ enhancements:
   - id: "menu-subsystem-initialization"
     line_start: 1
     line_end: 17
-    title: "How QuakeWorld Bootstrapped Its Menus"
+    title: "How QuakeWorld Bootstrapped, Drew, and Routed Input for Its Menus"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command_pattern"
     image_url: ""
     image_caption: ""
-    content: "This section initializes the menu subsystem by registering commands like 'menu_main' and 'menu_options'. Each command corresponds to a specific menu function, enabling modular and dynamic menu handling. The use of command-based initialization reflects id Software's focus on extensibility and maintainability, allowing developers to add or modify menu functionality without disrupting the overall system. This approach aligns with the Command Pattern, a design principle that became increasingly popular in the 1990s. By structuring the menu system in this way, id Software ensured that QuakeWorld could adapt to future updates and expansions, a necessity given the game's pioneering role in online multiplayer gaming."
-  - id: "recursive-menu-drawing"
-    line_start: 1
-    line_end: 17
-    title: "The Recursive Trick Behind QuakeWorld's Menus"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
-    image_url: ""
-    image_caption: ""
-    content: "The M_Draw function handles the rendering of QuakeWorld's menus, using a recursive approach to manage complex UI states. If the menu is already being drawn (indicated by m_recursiveDraw), the function avoids redundant rendering by toggling the flag. This technique is a clever workaround for the limited processing power of 1996-era hardware, ensuring smooth menu transitions without overloading the system. The function also integrates sound effects and screen updates, enhancing the user experience. This recursive drawing method influenced later game engines, demonstrating how careful state management can optimize rendering performance. It also highlights id Software's ingenuity in overcoming hardware constraints while delivering a polished UI experience."
-  - id: "menu-key-handling"
-    line_start: 1
-    line_end: 17
-    title: "Mapping Keys to Menu States in QuakeWorld"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The M_Keydown function maps key presses to specific menu states, enabling dynamic navigation through QuakeWorld's menus. Each case in the switch statement corresponds to a menu state, such as 'm_main' or 'm_multiplayer', and invokes the appropriate key handling function. This design ensures that the menu system responds intuitively to user input, a critical feature for enhancing accessibility and usability. The modular structure of the function reflects id Software's commitment to clean and maintainable code, allowing developers to easily add or modify menu states. This approach influenced the design of UI systems in later games, setting a standard for responsive and user-friendly interfaces."
+    content: "The top of this file sets up the three pillars of QuakeWorld's menu system. M_Init registers console commands like menu_main and menu_options, wiring each to a handler function so menus can be invoked from scripts or key bindings — an application of the Command Pattern that kept the menu logic extensible without touching the input or console systems. M_Draw renders the active menu and uses a m_recursiveDraw flag to prevent re-entrant calls on 1996-era hardware where reentrant rendering could corrupt the frame buffer or overrun limited stack space. M_Keydown dispatches key presses to the appropriate per-screen handler via a switch on the current menu state enum, making it trivial to add new screens. Together these three functions define a small but complete state-machine UI framework that influenced menu architectures in Half-Life, Unreal Tournament, and beyond."
 
 ---
 

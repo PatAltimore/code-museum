@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "clear-draw-segments"
     line_start: 64
-    line_end: 70
+    line_end: 237
     title: "Why DOOM Clears Draw Segments Before Rendering"
     wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
     image_url: ""
@@ -54,7 +54,7 @@ enhancements:
     image_caption: ""
     content: "The `R_ClipPassWallSegment` function handles walls that act as windows, allowing partial visibility through textures. Unlike solid walls, these segments are not added to the clip list but are processed for rendering. This distinction between solid and passable walls was crucial for creating DOOM's immersive environments, where players could see through windows or openings while maintaining performance. The function's design reflects the game's reliance on efficient algorithms to manage complex scenes on limited hardware. This approach influenced later games that needed to balance visual fidelity with computational constraints, especially in early 3D engines."
   - id: "check-bounding-box"
-    line_start: 358
+    line_start: 380
     line_end: 486
     title: "The Bounding Box Trick That Saved DOOM's Frame Rate"
     wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"

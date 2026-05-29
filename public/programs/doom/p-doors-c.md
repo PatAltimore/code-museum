@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "vertical-door-mechanics"
     line_start: 55
-    line_end: 197
+    line_end: 498
     title: "How DOOM Made Doors Feel Alive"
     wikipedia_url: "https://doomwiki.org/wiki/Door"
     image_url: ""
