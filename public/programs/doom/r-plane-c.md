@@ -9,60 +9,76 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "r-plane-c"
 order: 35
-description: "This file implements the rendering of floors and ceilings in DOOM, a groundbreaking technique that contributed to the game's immersive environments and efficient 3D graphics."
+description: "This file implements floor and ceiling rendering in DOOM, a groundbreaking technique for real-time 3D graphics on early consumer PCs."
 
 summary:
-  - point: "DOOM's visplane algorithm optimized floor and ceiling rendering"
-    link: "https://doomwiki.org/wiki/Visplane"
-    link_label: "Visplane Algorithm"
-  - point: "Efficient texture mapping enabled real-time rendering on 1993 hardware"
-    link: "https://en.wikipedia.org/wiki/Texture_mapping"
-    link_label: "Texture Mapping"
-  - point: "Sky rendering was handled separately for brightness consistency"
-    link: "https://doomwiki.org/wiki/Sky"
-    link_label: "Sky Rendering in DOOM"
+  - point: "DOOM's floor and ceiling rendering pushed the limits of 1993 hardware"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM"
+  - point: "Visplane overflow was a notorious bug tied to this rendering system"
+    link: "https://doomwiki.org/wiki/Visplane_overflow"
+    link_label: "Visplane Overflow"
+  - point: "The span-based rendering approach influenced later engines"
+    link: "https://doomwiki.org/wiki/Rendering_engine"
+    link_label: "Rendering Engine"
 
 enhancements:
-  - id: "visplane-data-structure"
+  - id: "initialize-plane-rendering"
     line_start: 96
     line_end: 177
-    title: "The Data Structure That Solved Overdraw"
-    wikipedia_url: "https://doomwiki.org/wiki/Visplane"
+    title: "Why DOOM's planes needed initialization"
+    wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
     image_url: ""
     image_caption: ""
-    content: "The visplane data structure is central to DOOM's floor and ceiling rendering. It tracks regions of the screen that correspond to a specific height, texture, and light level. By grouping pixels into contiguous spans, visplanes prevent redundant rendering of overlapping areas, a problem known as overdraw. In 1993, consumer PCs were limited by slow CPUs and no dedicated GPUs, making efficient algorithms critical. John Carmack devised the visplane system to minimize computational overhead while maintaining visual fidelity. This approach allowed DOOM to render complex 3D environments in real time on hardware like the Intel 486. The visplane concept influenced later engines, including Quake, and remains a foundational idea in optimizing rasterization for real-time graphics."
-  - id: "r-mapplane-function"
+    content: "The `R_InitPlanes` function is a placeholder for initializing the plane rendering system at game startup. While the function itself is empty, its presence reflects the modular design philosophy of DOOM's codebase, where rendering components are initialized separately to ensure flexibility and maintainability. In the early 1990s, modularity was critical for game engines, as developers often had to adapt their code to different hardware configurations. John Carmack, the lead programmer, was known for his focus on clean, reusable code, which allowed DOOM to be ported to numerous platforms. This initialization step laid the groundwork for the plane rendering system, which handled floors and ceilings efficiently using span-based techniques. These techniques were later studied and adapted by developers of engines like Build (used in Duke Nukem 3D) and Quake, influencing the evolution of real-time graphics."
+  - id: "map-plane-span-rendering"
+    line_start: 117
+    line_end: 177
+    title: "How DOOM mapped spans for floors and ceilings"
+    wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_MapPlane` function is the core of DOOM's span-based rendering system for floors and ceilings. It calculates texture mapping and lighting for a horizontal span of pixels, using precomputed values like `yslope` and `distscale` to optimize performance. This approach was revolutionary for its time, as it allowed DOOM to render complex 3D environments on hardware with limited processing power. In 1993, most consumer PCs lacked dedicated graphics hardware, so games relied on clever software techniques to achieve real-time rendering. Carmack's use of fixed-point arithmetic and precomputed tables minimized computational overhead, enabling DOOM to run smoothly on machines like the 486. The span-based rendering method influenced later engines, including Quake, which expanded on these ideas with true 3D rendering."
+  - id: "clear-plane-frame-start"
     line_start: 180
     line_end: 358
-    title: "Mapping Pixels to World Coordinates"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
+    title: "Resetting planes at the start of each frame"
+    wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
     image_url: ""
     image_caption: ""
-    content: "The `R_MapPlane` function calculates texture mapping for floor and ceiling spans. It uses precomputed values like `yslope` and `distscale` to determine the distance from the viewer to each pixel, enabling accurate perspective correction. This was a critical innovation in DOOM's rendering pipeline, as it allowed textures to appear correctly aligned and scaled despite the lack of hardware acceleration. Carmack's use of fixed-point arithmetic ensured precision while avoiding the performance hit of floating-point calculations. This function exemplifies the ingenuity required to deliver immersive graphics on early PCs. Techniques from `R_MapPlane` influenced later advancements in texture mapping, including mipmapping and anisotropic filtering in modern GPUs."
-  - id: "r-clearplanes-function"
-    line_start: 180
+    content: "The `R_ClearPlanes` function resets the plane rendering system at the beginning of each frame. It clears clipping values and initializes texture mapping parameters, ensuring that the rendering process starts with a clean slate. This step is crucial for maintaining performance and avoiding graphical artifacts in DOOM's fast-paced gameplay. In the early 1990s, real-time rendering was constrained by limited memory and processing power, so developers had to carefully manage resources. By resetting planes each frame, Carmack ensured that DOOM's rendering system could handle dynamic environments without slowing down or crashing. This technique of per-frame initialization became standard practice in game engines, influencing the design of later systems like Unreal Engine and Unity."
+  - id: "find-plane-reuse"
+    line_start: 214
+    line_end: 258
+    title: "Reusing visplanes for efficient rendering"
+    wikipedia_url: "https://doomwiki.org/wiki/Visplane_overflow"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_FindPlane` function searches for an existing visplane that matches the given height, texture, and lighting level. If no match is found, it creates a new visplane. This system was designed to optimize rendering by reusing visplanes whenever possible, reducing memory usage and computational overhead. Visplanes are a key component of DOOM's rendering engine, representing horizontal spans of pixels for floors and ceilings. However, this system was also the source of the infamous \"visplane overflow\" bug, which occurred when too many visplanes were created in complex scenes. Despite this limitation, the visplane system was a clever solution to the constraints of 1993 hardware, and its principles influenced later rendering techniques in games like Quake and Unreal."
+  - id: "check-plane-span-merging"
+    line_start: 262
+    line_end: 323
+    title: "Merging spans to avoid redundant visplanes"
+    wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_CheckPlane` function attempts to merge spans within a visplane, reducing the need to create new visplanes. By checking for overlap and continuity between spans, this function optimizes memory usage and improves rendering performance. In the early 1990s, memory constraints were a significant challenge for game developers, as most consumer PCs had only a few megabytes of RAM. Carmack's approach to span merging reflects his focus on efficiency and resource management, which were critical for achieving DOOM's groundbreaking graphics. This technique of span optimization influenced later engines, including Build and Quake, which expanded on these ideas to handle more complex environments."
+  - id: "make-spans-for-rendering"
+    line_start: 329
     line_end: 358
-    title: "Resetting the Frame for Efficient Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Frame_buffer"
+    title: "Generating spans for floor and ceiling rendering"
+    wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
     image_url: ""
     image_caption: ""
-    content: "The `R_ClearPlanes` function initializes data structures at the start of each frame, including `floorclip` and `ceilingclip` arrays that define the visible bounds of floors and ceilings. It also resets cached height values and calculates texture scaling based on the player's view angle. This setup ensures that rendering begins with a clean slate, avoiding artifacts and maintaining performance. In the early 1990s, memory management was a critical concern, as PCs had limited RAM and no virtual memory. By efficiently resetting and reusing buffers, DOOM could maintain high frame rates even in complex scenes. This approach influenced later real-time rendering systems, including those in Quake and Unreal Engine."
-  - id: "r-findplane-function"
+    content: "The `R_MakeSpans` function generates spans for floor and ceiling rendering, dividing horizontal sections into manageable chunks for processing. This function works in tandem with `R_MapPlane` to apply texture mapping and lighting to each span. The span-based approach was a key innovation in DOOM's rendering engine, allowing the game to create immersive 3D environments on hardware with limited capabilities. By breaking rendering tasks into smaller spans, Carmack optimized performance and minimized computational overhead, ensuring smooth gameplay even on low-end PCs. This method of span generation became a foundational concept in real-time graphics, influencing the design of later engines like Quake and Unreal."
+  - id: "draw-planes-end-frame"
     line_start: 362
     line_end: 452
-    title: "Grouping Pixels by Height and Texture"
-    wikipedia_url: "https://doomwiki.org/wiki/Visplane"
+    title: "Rendering floors and ceilings at frame end"
+    wikipedia_url: "https://doomwiki.org/wiki/Rendering_engine"
     image_url: ""
     image_caption: ""
-    content: "The `R_FindPlane` function searches for an existing visplane that matches the specified height, texture, and light level. If no match is found, it creates a new visplane. This grouping mechanism is key to DOOM's efficient rendering, as it minimizes redundant calculations for areas of the screen that share visual properties. By consolidating spans into visplanes, the engine reduces memory usage and computational overhead. This technique was groundbreaking in 1993, when real-time 3D rendering was still in its infancy. The visplane system inspired similar optimizations in later engines, helping to establish best practices for rasterization and span-based rendering."
-  - id: "r-drawplanes-function"
-    line_start: 362
-    line_end: 452
-    title: "Rendering Floors, Ceilings, and Skies"
-    wikipedia_url: "https://doomwiki.org/wiki/Rendering"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_DrawPlanes` function is responsible for rendering all floor and ceiling spans at the end of each frame. It iterates through visplanes, calculates lighting and texture scaling, and invokes the span drawing function. Sky textures are handled separately, using a fixed brightness to ensure visual consistency. This separation of sky rendering from other spans was a clever hack to simplify lighting calculations. The function also includes range checks to prevent buffer overflows, a common concern in early PC programming. DOOM's ability to render floors, ceilings, and skies in real time was a major technical achievement, paving the way for more advanced rendering techniques in Quake and beyond."
+    content: "The `R_DrawPlanes` function renders floors and ceilings at the end of each frame, processing visplanes and applying texture mapping and lighting. This function handles both sky textures and regular flats, ensuring that DOOM's environments are visually consistent and immersive. The rendering process uses precomputed values like `zlight` and `cachedheight` to optimize performance, reflecting Carmack's focus on efficiency. In 1993, real-time graphics were constrained by the limitations of consumer hardware, so developers had to use innovative techniques to achieve high-quality visuals. The span-based rendering system implemented in `R_DrawPlanes` was a major breakthrough, influencing the design of later engines like Quake and Unreal. This function also highlights the modularity of DOOM's codebase, which allowed developers to adapt and expand the engine for new platforms and features."
 
 ---
 

@@ -9,76 +9,76 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "w-wad-c"
 order: 5
-description: "This file implements WAD file handling in DOOM, enabling the game's modular content system and paving the way for its legendary modding community."
+description: "This file defines the handling of WAD files, a format central to DOOM's modding ecosystem and efficient data management."
 
 summary:
-  - point: "Introduced modular WAD file handling for game assets"
-    link: "https://en.wikipedia.org/wiki/Doom_WAD"
-    link_label: "Doom WAD"
-  - point: "Enabled dynamic loading and caching of game data"
+  - point: "Introduced the WAD file format for modular game data storage"
+    link: "https://en.wikipedia.org/wiki/WAD_(file_format)"
+    link_label: "WAD File Format"
+  - point: "Implemented caching and reload mechanisms for game assets"
     link: "https://en.wikipedia.org/wiki/Cache_(computing)"
-    link_label: "Cache"
-  - point: "Facilitated user-created content and modding"
-    link: "https://en.wikipedia.org/wiki/Mod_(video_games)"
-    link_label: "Game modding"
+    link_label: "Caching"
+  - point: "Optimized lump-based data access for performance on 1990s hardware"
+    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    link_label: "DOOM"
 
 enhancements:
   - id: "toupper-string-conversion"
     line_start: 66
-    line_end: 71
+    line_end: 70
     title: "Why DOOM Converts Strings to Uppercase"
     wikipedia_url: "https://en.wikipedia.org/wiki/Case_sensitivity"
     image_url: ""
     image_caption: ""
-    content: "This small utility function converts strings to uppercase, ensuring case-insensitive comparisons throughout the WAD handling code. In the early 1990s, case sensitivity in filenames and identifiers was a common source of bugs, especially when software needed to run on multiple operating systems with differing conventions (e.g., MS-DOS vs. UNIX). By standardizing all names to uppercase, DOOM sidesteps these issues entirely. This approach reflects John Carmack's pragmatic programming philosophy: eliminate potential pitfalls with simple, robust solutions. The technique became a standard practice in many game engines and tools, influencing how developers approached cross-platform compatibility."
-  - id: "file-length-detection"
+    content: "The `strupr` function converts a string to uppercase, ensuring case-insensitive comparisons. This was crucial for DOOM's lump-based data system, where lump names had to be matched regardless of case. In the early 1990s, case sensitivity was a common source of bugs in software, especially when dealing with file systems that varied in their handling of case (e.g., MS-DOS vs. UNIX). By standardizing all names to uppercase, DOOM avoided mismatches and ensured consistent behavior across platforms. This approach influenced later game engines, which often adopted similar case-insensitivity strategies for asset management."
+  - id: "file-length-calculation"
     line_start: 73
     line_end: 137
-    title: "How DOOM Measures File Sizes Without Errors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Stat_(system_call)"
+    title: "How DOOM Measured File Sizes Efficiently"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The `filelength` function uses the `fstat` system call to determine the size of a file. This was crucial for handling WAD files, which contain variable-length lumps of data. By relying on system-level calls, DOOM ensures accurate file size detection regardless of the underlying filesystem. In the early 1990s, developers often had to deal with quirks in file handling across different operating systems. This function reflects Carmack's focus on reliability and portability, ensuring DOOM's WAD system could function seamlessly on both MS-DOS and UNIX-based systems. The technique influenced later game engines, which adopted similar methods to handle asset files dynamically."
+    content: "The `filelength` function retrieves the size of a file using `fstat`. This was a direct and efficient method to determine the size of game asset files, which were often small and accessed frequently. In the constrained environment of 1993, where memory and disk I/O were bottlenecks, minimizing overhead in file operations was critical. By relying on system calls like `fstat`, DOOM ensured compatibility with various operating systems while maintaining performance. This technique became a staple in game development, influencing asset loading strategies in later engines like Quake and Unreal."
   - id: "extract-file-base"
     line_start: 140
     line_end: 225
-    title: "The Eight-Character Filename Limit Explained"
+    title: "MS-DOS Filename Extraction and Dynamic WAD File Loading"
     wikipedia_url: "https://en.wikipedia.org/wiki/8.3_filename"
     image_url: ""
     image_caption: ""
-    content: "The `ExtractFileBase` function extracts the base name of a file, limited to eight characters, and converts it to uppercase. This design stems from the 8.3 filename convention used in MS-DOS, where filenames were restricted to eight characters plus a three-character extension. By enforcing this limit, DOOM ensures compatibility with legacy systems while maintaining a consistent naming scheme for WAD lumps. The function also validates the length, throwing an error if the base name exceeds eight characters. This reflects the constraints of the era, where hardware and software limitations shaped design decisions. The eight-character limit became iconic in early PC gaming and influenced how modders named their custom assets."
-  - id: "wad-file-validation"
-    line_start: 140
-    line_end: 225
-    title: "How DOOM Distinguishes IWADs from PWADs"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Doom_WAD"
-    image_url: ""
-    image_caption: ""
-    content: "The `W_AddFile` function is responsible for loading WAD files, validating their headers, and populating the lump directory. It distinguishes between IWADs (core game data) and PWADs (custom or user-created content). This distinction allowed DOOM to support modding while protecting the integrity of its original game assets. The function reads the WAD header to determine the number of lumps and their locations, ensuring compatibility with both official and homebrew levels. This modular approach to game content was revolutionary, enabling users to create and share custom levels. The concept of separating core assets from user-generated content influenced countless games and engines, including Quake and Unreal."
-  - id: "reloadable-wad-support"
+    content: "This range contains two tightly coupled utilities. `ExtractFileBase` strips a full path down to the bare filename stem, truncated to eight uppercase characters to conform to the MS-DOS 8.3 naming convention. Because WAD lump names were derived from filenames at build time, enforcing this limit at runtime meant that a patch WAD named e1m1extra.wad was guaranteed to produce a lump called E1M1EXTR rather than silently failing or overflowing an eight-byte name field. `W_AddFile` uses the extracted base name as part of its work: it opens a file, determines whether it is a standalone single-lump resource or a proper multi-lump WAD by inspecting the four-byte magic identifier, then appends the appropriate directory entries to the global lump table. A reload-capable path for wad files prefixed with a tilde was deliberately described in the comments as a fragile hack, a rare moment of candor that reveals the pressures of id Software's shipping schedule. Together the two functions explain why DOOM's modding scene was built around strict naming conventions and why WAD files remained backward-compatible across patches and expansion packs: the engine simply concatenated lump tables and let later entries shadow earlier ones, a scheme so effective that it survived essentially unchanged through Quake and into the Source engine."
+  - id: "wad-reload-mechanism"
     line_start: 230
     line_end: 274
-    title: "The Hack That Made Map Reloads Possible"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Reload_(computing)"
+    title: "The Reload Hack That Enabled Map Editing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Mod_(video_games)"
     image_url: ""
     image_caption: ""
-    content: "The `W_Reload` function enables the reloading of WAD files, specifically for lumps marked as reloadable. This feature was designed to facilitate map reloads during development, allowing designers to test changes without restarting the game. However, the implementation is described as a 'fragile hack' in the comments, reflecting the challenges of adding dynamic features to a system not originally designed for them. Despite its limitations, this feature highlights DOOM's iterative development process and the team's willingness to experiment with new workflows. Reloadable assets became a standard feature in modern game engines, streamlining the development and testing of dynamic content."
-  - id: "wad-cache-system"
+    content: "The `W_Reload` function flushes reloadable lumps from memory and reloads their directory. This feature was crucial for developers and modders, as it allowed changes to map files without restarting the game. However, the comments acknowledge its fragility, highlighting the challenges of implementing dynamic asset reloading in an era of limited memory and disk speed. Despite its imperfections, this mechanism empowered the early DOOM modding community, laying the groundwork for the vibrant ecosystem of custom levels and total conversions that followed."
+  - id: "multiple-file-initialization"
     line_start: 278
-    line_end: 519
-    title: "How DOOM's Cache Kept Gameplay Smooth"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
+    line_end: 315
+    title: "How DOOM Handled Multiple WAD Files"
+    wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
     image_caption: ""
-    content: "The `W_CacheLumpNum` function implements a caching system for WAD lumps, ensuring frequently accessed data is stored in memory for quick retrieval. This optimization was critical for maintaining DOOM's fast-paced gameplay on limited hardware. The function checks if a lump is already cached; if not, it reads the lump into memory and tags it for future use. By minimizing disk I/O during gameplay, DOOM achieves smoother performance and shorter load times. This caching strategy influenced later game engines, which adopted similar techniques to manage large asset libraries efficiently. The concept of caching remains a cornerstone of performance optimization in modern software."
-  - id: "wad-profiling-tool"
+    content: "The `W_InitMultipleFiles` function initializes DOOM's lump system from a list of WAD files. It supports overriding lumps from earlier files, enabling modular asset management. This backward search mechanism ensured that patches or updates could replace existing assets without modifying the original files. The function's design reflects id Software's focus on flexibility and extensibility, which became a hallmark of their engines. This approach influenced later game engines, where modular file systems became standard practice for handling downloadable content and user-generated mods."
+  - id: "lump-name-checking"
+    line_start: 345
+    line_end: 389
+    title: "The Backward Search for Lump Names"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Hash_table"
+    image_url: ""
+    image_caption: ""
+    content: "The `W_CheckNumForName` function searches for a lump by name, scanning backward through the lump directory. This ensures that later entries take precedence, allowing patches or custom WADs to override earlier assets. The function converts names to uppercase and splits them into integers for efficient comparison, reflecting the era's emphasis on performance optimization. This backward search mechanism became a standard in game engines, influencing asset management strategies in titles like Quake and Unreal Tournament."
+  - id: "wad-profiling"
     line_start: 521
     line_end: 574
-    title: "The Hidden Tool That Profiles WAD Usage"
+    title: "Tracking Lump Usage for Performance Insights"
     wikipedia_url: "https://en.wikipedia.org/wiki/Profiling_(computer_programming)"
     image_url: ""
     image_caption: ""
-    content: "The `W_Profile` function provides a diagnostic tool for analyzing WAD lump usage. It tracks which lumps are cached and their memory tags, outputting the results to a file named 'waddump.txt'. This profiling data helped the developers optimize memory usage and identify performance bottlenecks. Profiling tools like this were rare in early game development, reflecting DOOM's forward-thinking approach to performance tuning. By providing visibility into the game's inner workings, the function also laid the groundwork for modern debugging and profiling tools. Developers studying DOOM's source code often cite this function as an example of Carmack's meticulous attention to detail."
+    content: "The `W_Profile` function tracks the usage of lumps in memory, categorizing them as static ('S') or purgeable ('P'). This profiling data is written to a file, providing insights into memory allocation and asset usage. In the constrained environment of 1993, understanding memory behavior was critical for optimizing performance on consumer PCs. This profiling approach reflects id Software's meticulous attention to detail, ensuring DOOM ran smoothly despite its ambitious graphics and gameplay. Profiling tools like this influenced later engines, where memory management became increasingly sophisticated."
 
 ---
 
@@ -657,4 +657,6 @@ void W_Profile (void)
     }
     fclose (f);
 }
+
+
 ```

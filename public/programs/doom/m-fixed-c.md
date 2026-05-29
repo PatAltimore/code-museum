@@ -9,44 +9,44 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "m-fixed-c"
 order: 15
-description: "This file implements fixed-point arithmetic routines, a critical technique for achieving fast calculations on hardware without floating-point support."
+description: "This file implements fixed-point arithmetic routines, a critical technique for performance optimization in DOOM's rendering engine."
 
 summary:
-  - point: "Fixed-point arithmetic was used to bypass the lack of floating-point hardware on early PCs."
+  - point: "Fixed-point arithmetic replaced floating-point calculations for speed on 1990s hardware"
     link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     link_label: "Fixed-point arithmetic"
-  - point: "DOOM's performance relied heavily on efficient mathematical operations."
-    link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    link_label: "DOOM (1993)"
-  - point: "These routines highlight Carmack's focus on optimization and hardware constraints."
-    link: "https://en.wikipedia.org/wiki/John_Carmack"
-    link_label: "John Carmack"
+  - point: "DOOM's source code popularized fixed-point math in game development"
+    link: "https://doomwiki.org/wiki/Source_code"
+    link_label: "DOOM source code"
+  - point: "These routines were tailored to handle precision and overflow constraints"
+    link: "https://en.wikipedia.org/wiki/Integer_overflow"
+    link_label: "Integer overflow"
 
 enhancements:
   - id: "fixed-multiplication-optimization"
-    line_start: 40
-    line_end: 48
-    title: "How DOOM Multiplied Without Floating-Point"
+    line_start: 39
+    line_end: 47
+    title: "How DOOM Multiplied Without Floating Point"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
-    content: "The `FixedMul` function performs multiplication using fixed-point arithmetic, a technique where numbers are represented as integers scaled by a constant factor (here defined by `FRACBITS`). This avoids the need for floating-point operations, which were slow or unavailable on consumer hardware in the early 1990s. By shifting the result right by `FRACBITS`, the function scales the product back to the fixed-point range. In 1993, most PCs lacked dedicated floating-point units (FPUs), and software-based floating-point calculations were prohibitively slow. John Carmack and the id Software team designed DOOM to run efficiently on such hardware, leveraging fixed-point arithmetic for critical calculations like rendering and physics. This approach was inspired by earlier games and graphics techniques but refined to meet DOOM's demanding performance goals. The use of fixed-point arithmetic in DOOM influenced countless other games and engines of the era. Developers studying DOOM's source code adopted similar techniques for their own projects, ensuring compatibility with low-cost hardware. Even today, fixed-point arithmetic remains relevant in embedded systems, mobile devices, and performance-critical applications where floating-point operations are costly or unavailable."
-  - id: "fixed-division-edge-case-handling"
-    line_start: 52
-    line_end: 58
-    title: "The Division That Prevented Crashes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    content: "This section implements `FixedMul`, a function that performs fixed-point multiplication. Fixed-point arithmetic uses integers to represent fractional values, avoiding the computational overhead of floating-point math. In this routine, two fixed-point numbers are multiplied as 64-bit integers (`long long`), and the result is shifted right by `FRACBITS` to scale it back to the fixed-point domain. At the time DOOM was developed, consumer PCs often lacked hardware floating-point units, and even when available, floating-point operations were slower than integer math. John Carmack, DOOM's lead programmer, favored fixed-point arithmetic for its speed and predictability, enabling the game to run smoothly on modest hardware like the 386 and 486 processors. This approach was crucial for real-time rendering, where every millisecond counted. Fixed-point math became a staple in game development during the 1990s, influencing engines like Quake and Unreal. While modern hardware has made floating-point math ubiquitous, fixed-point techniques remain relevant in embedded systems and mobile devices, where performance and power efficiency are critical."
+  - id: "fixed-division-overflow-handling"
+    line_start: 56
+    line_end: 64
+    title: "Preventing Overflow in Fixed-Point Division"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Integer_overflow"
     image_url: ""
     image_caption: ""
-    content: "The `FixedDiv` function handles division in fixed-point arithmetic, but with added safeguards to prevent catastrophic errors. If the absolute value of the numerator (`a`) shifted right by 14 bits exceeds the denominator (`b`), the function returns a predefined minimum or maximum integer value based on the signs of `a` and `b`. This prevents division by zero or overflow errors, which could crash the game. In the early 1990s, error handling was a critical concern for game developers. PCs of the era lacked robust operating systems capable of gracefully recovering from crashes, and a single unhandled exception could force players to reboot their machines. Carmack's meticulous attention to edge cases ensured DOOM's stability, even under extreme conditions. This defensive programming approach became a hallmark of id Software's coding style and influenced other developers who studied DOOM's source code. Modern game engines continue to incorporate similar safeguards, ensuring reliability across diverse hardware and software environments."
-  - id: "fixed-division-with-floating-point"
-    line_start: 59
-    line_end: 79
-    title: "When Fixed-Point Needed Floating-Point"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    content: "The `FixedDiv` function performs fixed-point division while guarding against overflow. It first checks whether the absolute value of the numerator, shifted right by 14 bits, exceeds the denominator. If so, the result would overflow the fixed-point range, and the function returns the maximum or minimum integer value depending on the sign of the inputs. This safeguard reflects the constraints of fixed-point arithmetic, where precision is limited by the number of bits allocated to the fractional part. Overflow was a common concern in 1990s game programming, as developers worked within tight hardware limits. By incorporating these checks, Carmack ensured DOOM's calculations remained stable, even under extreme conditions. This meticulous attention to edge cases contributed to the game's reputation for reliability and performance. Techniques like this influenced later engines, including Quake, which continued to refine fixed-point math for real-time applications. Today, overflow handling remains a critical aspect of software development, especially in systems programming and embedded applications."
+  - id: "fixed-division-with-double-precision"
+    line_start: 68
+    line_end: 86
+    title: "Switching to Double Precision for Stability"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Double_precision_floating-point_format"
     image_url: ""
     image_caption: ""
-    content: "The `FixedDiv2` function provides an alternative implementation of fixed-point division, using floating-point arithmetic for intermediate calculations. By casting the numerator and denominator to `double` and scaling the result by `FRACUNIT`, the function achieves higher precision than purely integer-based methods. However, it includes a critical error check: if the result exceeds the range of a 32-bit signed integer, the function triggers an error. This hybrid approach reflects the evolving hardware landscape of the mid-1990s. By the time DOOM's source code was released, many PCs included FPUs, making floating-point calculations feasible for certain operations. Carmack's decision to incorporate floating-point arithmetic here demonstrates his pragmatism: while fixed-point was essential for performance-critical routines, floating-point offered a simpler solution for less frequent calculations. The inclusion of floating-point arithmetic in DOOM's code foreshadowed its increasing adoption in later games and engines. As hardware improved, developers transitioned away from fixed-point techniques, leveraging FPUs for more complex simulations and rendering. This shift paved the way for modern game engines like Unreal Engine and Unity, which rely heavily on floating-point math for their physics and graphics systems."
+    content: "The `FixedDiv2` function provides an alternative implementation of fixed-point division, using double-precision floating-point arithmetic for intermediate calculations. By casting the inputs to `double`, the routine avoids the precision and overflow issues inherent in integer math. The result is scaled back to fixed-point format by multiplying by `FRACUNIT`. This approach sacrifices some of the performance benefits of fixed-point arithmetic but ensures greater stability and accuracy. The inclusion of this routine reflects the pragmatic mindset of DOOM's developers, who balanced performance with reliability. Double precision was less common in real-time applications at the time due to its computational cost, but Carmack's willingness to use it in specific cases highlights his focus on delivering a robust experience. The error check for division by zero further underscores this commitment to stability. While fixed-point math dominated early game engines, the gradual adoption of floating-point techniques paved the way for modern graphics programming, where GPUs handle floating-point operations efficiently. This transition influenced successors like Quake and Unreal, which embraced floating-point math as hardware capabilities improved."
 
 ---
 

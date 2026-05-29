@@ -9,188 +9,146 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "wi-stuff-c"
 order: 40
-description: "This file handles the intermission screens in DOOM, including animations, statistics, and map displays."
+description: "This file handles the intermission screens in DOOM, showcasing level transitions, statistics, and animations that added depth to the gameplay experience."
 
 summary:
-  - point: "Defines animation structures for intermission screens"
+  - point: "Defines intermission animations and their logic"
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     link_label: "DOOM (1993)"
-  - point: "Introduces pixel-perfect positioning for graphics"
-    link: "https://en.wikipedia.org/wiki/Computer_graphics"
-    link_label: "Computer Graphics"
-  - point: "Optimizes intermission rendering using patches instead of full-screen frames"
+  - point: "Optimizes graphics using patches instead of full-screen frames"
     link: "https://en.wikipedia.org/wiki/Framebuffer"
     link_label: "Framebuffer"
+  - point: "Introduces modular animation structures for episodic maps"
+    link: "https://en.wikipedia.org/wiki/Animation"
+    link_label: "Animation"
+  - point: "Handles multiplayer-specific intermission details"
+    link: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
+    link_label: "Multiplayer gaming"
+  - point: "Pushes hardware limits with efficient rendering techniques"
+    link: "https://en.wikipedia.org/wiki/Computer_graphics"
+    link_label: "Computer graphics"
 
 enhancements:
-  - id: "intermission-screen-constants"
-    line_start: 729
-    line_end: 746
-    title: "Constants That Define Intermission Layout"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines constants that control the layout and positioning of elements on the intermission screens. These include coordinates for single-player statistics, net game results, and deathmatch matrices. By using predefined constants, the developers ensured consistent rendering across different game modes and screen resolutions. In the early 1990s, screen resolutions varied widely, and DOOM's reliance on fixed pixel coordinates reflects the era's approach to graphics programming. This design choice allowed DOOM to achieve visually appealing layouts on modest hardware without requiring dynamic scaling or resolution independence. Later games, such as Quake and Unreal Tournament, would adopt more flexible systems, but DOOM's hardcoded approach remains a snapshot of early graphical design practices."
-  - id: "animation-data-structures"
-    line_start: 729
-    line_end: 746
-    title: "How DOOM Handles Animations"
+  - id: "animation-structure-for-intermission-screens"
+    line_start: 405
+    line_end: 409
+    title: "Animation Structure for Intermission Screens"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
-    content: "This section introduces the data structures used to manage animations on intermission screens. The `anim_t` structure encapsulates details such as animation type, frame count, location, and timing. Animations are categorized into 'always', 'random', and 'level-specific', reflecting the game's need to balance dynamic visuals with performance constraints. In 1993, animations were a luxury on consumer-grade PCs, and DOOM's implementation showcases clever optimization. By using patches (small graphical elements) instead of full-screen frames, DOOM reduced memory usage and improved rendering speed. This technique influenced later games, which adopted similar strategies to manage animations efficiently."
-  - id: "world-map-node-locations"
-    line_start: 729
-    line_end: 746
-    title: "Mapping Levels to World Coordinates"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines the coordinates for level nodes on the world map for each episode. Each node corresponds to a level's position on the intermission screen, allowing players to visualize their progress. The coordinates are hardcoded, reflecting the static nature of DOOM's map design. This approach was typical of games in the early 1990s, where dynamic map generation was rare due to hardware limitations. The concept of visualizing level progression influenced later games, such as Diablo and StarCraft, which used similar techniques to enhance player immersion."
-  - id: "animated-background-initialization"
-    line_start: 502
-    line_end: 529
-    title: "Initializing Animated Intermission Backgrounds"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
-    image_url: ""
-    image_caption: ""
-    content: "This function initializes the animated backgrounds for intermission screens based on the current episode. It sets up timing and state variables for each animation, ensuring smooth transitions and consistent behavior. The use of randomization in 'ANIM_RANDOM' animations adds variety, enhancing the visual appeal. In the context of 1993 hardware, this approach was innovative, as it balanced complexity with performance constraints. The technique of precomputing animation states influenced later games, which adopted similar methods to optimize rendering pipelines."
-  - id: "animated-background-rendering"
-    line_start: 582
-    line_end: 720
-    title: "Rendering Animated Backgrounds"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
-    image_url: ""
-    image_caption: ""
-    content: "This function renders the animated backgrounds during intermission screens. It iterates through the animations for the current episode, drawing the appropriate patch for each frame. The use of patches instead of full-screen images reflects DOOM's focus on efficiency, minimizing memory usage and maximizing rendering speed. This technique was crucial for achieving smooth animations on hardware with limited graphical capabilities. The idea of modular rendering influenced later engines, such as Unreal Engine, which adopted similar strategies to manage complex scenes."
-  - id: "drawing-level-completion-time"
-    line_start: 419
+    content: "This section introduces the `animenum_t` enumeration, which defines three types of animations: `ANIM_ALWAYS`, `ANIM_RANDOM`, and `ANIM_LEVEL`. These categories allow the intermission screens to display dynamic content tailored to the player's progress and the game's episodic structure. At the time, animation systems in games were often hardcoded or limited in flexibility. By creating a modular approach, DOOM's developers ensured that animations could be reused and adapted across different levels and episodes. This innovation influenced later games by encouraging developers to think of animations as modular components rather than static assets. The flexibility of this system also made it easier to port DOOM to various platforms, as the animation logic was abstracted from the hardware-specific rendering details."
+  - id: "point-data-for-level-maps"
+    line_start: 411
     line_end: 433
-    title: "Displaying Level Completion Time"
+    title: "Intermission Screen Data: Coordinates, Animation Structures, and Episode Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This function displays the player's completion time for a level, along with the par time or a 'sucks' message if the time exceeds a certain threshold. The use of modular rendering techniques, such as drawing individual digits and symbols, reflects DOOM's optimization for limited hardware. By avoiding full-screen redraws, the game achieved high performance on early PCs. The concept of displaying performance metrics influenced later games, which adopted similar features to enhance player engagement and replayability."
-  - id: "deathmatch-stats-initialization"
-    line_start: 848
-    line_end: 873
-    title: "How DOOM Tracks Deathmatch Frags"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Deathmatch"
+    content: "This compact region contains all the static data that drives DOOM's episode intermission screens. The `point_t` struct is simply an (x, y) screen coordinate used to pin level markers and animation cells to specific pixels on the background map graphic. The runtime `anim_t` struct combines an animation type (ANIM_ALWAYS for looping effects, ANIM_RANDOM for occasional flickers, ANIM_LEVEL for progress-tied reveals), a tick period, a frame count, a point_t location, and the loaded patch pointers; every animation cell on an intermission screen is one instance of this struct. Below the structs, three arrays, `epsd0animinfo`, `epsd1animinfo`, and `epsd2animinfo`, hard-code the full animation schedules for the three episodes: Knee-Deep in the Dead, The Shores of Hell, and Inferno. The companion `NUMANIMS` array derives each episode's count with a sizeof divide, avoiding the maintenance hazard of a manually updated constant. Finally, the `anims` pointer array indexes all three episode tables by episode number so that a single runtime expression selects the correct schedule. Together these declarations replaced what could have been a maze of switch statements with a small table-driven system that is easy to read, easy to extend, and entirely content-side, illustrating how id Software separated data from code even under the time pressure of a 1993 ship date."
+  - id: "wi-draw-no-state"
+    line_start: 811
+    line_end: 815
+    title: "Why Draw Nothing? A Placeholder Function"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Placeholder"
     image_url: ""
     image_caption: ""
-    content: "This section initializes the data structures required for tracking deathmatch statistics, including individual frags between players and total scores. At the time, deathmatch was a novel concept, popularized by DOOM itself. The code ensures that all players in the game are accounted for and sets up a matrix to track frags between every pair of players. This approach reflects the game's focus on competitive multiplayer, which was groundbreaking in 1993. The initialization also includes a call to set up an animated background, adding visual flair to the intermission screens. This system laid the foundation for multiplayer stat tracking in later games, influencing titles like Quake and Unreal Tournament."
-  - id: "deathmatch-stats-update"
-    line_start: 877
-    line_end: 976
-    title: "Dynamic Deathmatch Stats with Sound Cues"
-    wikipedia_url: "https://doomwiki.org/wiki/Deathmatch"
-    image_url: ""
-    image_caption: ""
-    content: "This section updates deathmatch statistics dynamically during intermission screens. It uses sound effects like 'barexp' and 'pistol' to signal transitions and changes, enhancing player engagement. The code iterates through players and updates the frag matrix and totals, ensuring that changes are reflected in real-time. It also caps scores at ±99 to prevent overflow, a practical safeguard given the hardware constraints of the era. The use of sound cues and real-time updates was innovative, creating a more immersive experience. This technique influenced later multiplayer games, where dynamic scoreboards and sound effects became standard features."
-  - id: "netgame-stats-initialization"
-    line_start: 1077
-    line_end: 1101
-    title: "Setting Up Netgame Stats for Co-op Play"
-    wikipedia_url: "https://doomwiki.org/wiki/Cooperative_gameplay"
-    image_url: ""
-    image_caption: ""
-    content: "This section initializes statistics for netgame modes, focusing on cooperative gameplay. It tracks kills, items, secrets, and frags for each player, ensuring that all aspects of performance are recorded. The code also calculates whether frags are relevant for the current game mode, optimizing memory usage. Cooperative modes were less common in 1993, but DOOM's implementation showcased its versatility in multiplayer design. This initialization routine influenced later co-op games, where detailed stat tracking became a key feature for enhancing teamwork and competition."
-  - id: "netgame-stats-update"
-    line_start: 1105
-    line_end: 1256
-    title: "Real-Time Updates for Cooperative Stats"
-    wikipedia_url: "https://doomwiki.org/wiki/Cooperative_gameplay"
-    image_url: ""
-    image_caption: ""
-    content: "This section dynamically updates netgame statistics during intermission screens. It uses incremental counters to animate the display of kills, items, secrets, and frags, creating a sense of progression. Sound effects like 'pistol' and 'barexp' signal changes, adding auditory feedback to the visual updates. The code ensures that stats are capped at their maximum values, preventing anomalies. This real-time update system was ahead of its time, adding depth to cooperative gameplay. It influenced later games with similar modes, such as Left 4 Dead and Borderlands, where detailed stat tracking and dynamic updates are integral to the experience."
-  - id: "single-player-stats-initialization"
-    line_start: 1317
-    line_end: 1327
-    title: "Preparing Stats for Solo Missions"
-    wikipedia_url: "https://doomwiki.org/wiki/Single-player"
-    image_url: ""
-    image_caption: ""
-    content: "This section sets up statistics for single-player missions, including kills, items, secrets, and time. It initializes counters to -1, a common practice to indicate uninitialized values. The code also sets up an animated background, maintaining the visual consistency of intermission screens. Single-player modes were the core of DOOM's appeal, and this initialization routine ensured that players received detailed feedback on their performance. The focus on stats influenced later single-player games, where performance tracking became a staple feature."
-  - id: "single-player-stats-update"
-    line_start: 1329
-    line_end: 1433
-    title: "Animating Single-Player Stats with Precision"
-    wikipedia_url: "https://doomwiki.org/wiki/Single-player"
-    image_url: ""
-    image_caption: ""
-    content: "This section updates single-player statistics during intermission screens, animating the display of kills, items, secrets, and time. It uses incremental counters to create a sense of progression and employs sound effects like 'pistol' and 'barexp' for auditory feedback. The code ensures that stats are capped at their maximum values and synchronizes time and par values for accurate display. This attention to detail enhanced the single-player experience, making players feel rewarded for their performance. The technique influenced later games with similar stat tracking, such as Resident Evil and Dark Souls."
-  - id: "check-for-accelerate"
-    line_start: 1469
-    line_end: 1497
-    title: "Skipping Delays with Button Presses"
-    wikipedia_url: "https://doomwiki.org/wiki/Controls"
-    image_url: ""
-    image_caption: ""
-    content: "This section checks for button presses to accelerate intermission screens, allowing players to skip delays. It monitors the 'attack' and 'use' buttons, setting flags to bypass animations. This feature reflects DOOM's responsiveness to player input, prioritizing user experience. The ability to skip delays became a standard feature in later games, allowing players to control pacing during transitions. It influenced titles like Half-Life and Portal, where user control over transitions enhances immersion."
-  - id: "load-intermission-data"
-    line_start: 1537
-    line_end: 1705
-    title: "Loading Graphics for Intermission Screens"
-    wikipedia_url: "https://doomwiki.org/wiki/Intermission_screen"
-    image_url: ""
-    image_caption: ""
-    content: "This section loads the graphics and patches required for intermission screens, including background images and 'you are here' markers. It uses memory allocation techniques to optimize resource usage, reflecting the constraints of 1993 hardware. The code dynamically selects assets based on the game mode and episode, ensuring that intermission screens are visually consistent. This approach influenced later games, where dynamic asset loading became a key technique for optimizing performance and enhancing visual fidelity."
-  - id: "animation-data-loading-hacks"
-    line_start: 1537
-    line_end: 1705
-    title: "The Animation Hack That Saved DOOM"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section loads animation data for the intermission screens, with a notable hack to reuse animation assets for Episode 1, Level 8. The code bypasses standard loading logic by directly referencing assets from Episode 1, Level 4. This 'MONDO HACK' reflects the practical constraints of 1993 hardware, where memory was precious and reusing assets was a necessity. John Carmack and the team often prioritized performance and resource efficiency over pristine code. This approach allowed DOOM to run smoothly on consumer-grade PCs while delivering visually rich intermission screens. Such hacks were common in early game development, where developers had to creatively work around hardware limitations. The technique of reusing assets influenced later games, especially in the era of sprite-based graphics, where memory optimization was critical."
-  - id: "intermission-text-and-symbol-loading"
-    line_start: 1537
-    line_end: 1705
-    title: "How DOOM Loaded Its Intermission Symbols"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section loads various text and symbols used in the intermission screens, such as numbers, percent signs, and phrases like 'finished' and 'entering.' Each element is cached using the W_CacheLumpName function, ensuring efficient memory usage. The intermission screens were a crucial part of DOOM's storytelling, providing players with a sense of progression and accomplishment. The choice to cache these assets reflects the team's focus on performance, as reloading these elements repeatedly would have slowed down the game. The inclusion of specific assets like 'sucks' and 'par' also highlights DOOM's irreverent tone, which resonated with its audience. This method of caching graphical assets became standard practice in game development, influencing engines like Quake and Unreal."
-  - id: "multiplayer-statistics-loading"
-    line_start: 1537
-    line_end: 1705
-    title: "Multiplayer Stats: DOOM's Competitive Edge"
+    content: "The `WI_drawNoState` function is a simple placeholder that sets a flag (`snl_pointeron`) and calls another function, `WI_drawShowNextLoc`. This function is part of the intermission screen logic but does not perform any significant drawing itself. It serves as a minimal state handler for scenarios where no specific intermission screen needs rendering. In the early 1990s, placeholder functions like this were common in game development, ensuring modularity and allowing future expansion without breaking existing code. This approach reflects John Carmack's emphasis on clean, modular programming. While the function itself is trivial, it contributes to the broader architecture of DOOM's intermission system, which influenced later games like Quake and Unreal Tournament by demonstrating how to handle transitions between gameplay states efficiently."
+  - id: "wi-frag-sum"
+    line_start: 817
+    line_end: 838
+    title: "Negative Frags: A Hack for Multiplayer Stats"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""
     image_caption: ""
-    content: "This section loads player-specific assets for multiplayer modes, including icons and statistics. The use of sprintf to dynamically generate asset names allowed DOOM to support up to four players in deathmatch mode. Multiplayer was a groundbreaking feature in DOOM, setting the stage for competitive gaming. The ability to track individual player stats and display them visually on intermission screens added depth to the multiplayer experience. This feature was a precursor to modern multiplayer stat tracking, seen in games like Counter-Strike and Call of Duty. By laying the groundwork for competitive gaming, DOOM's multiplayer innovations helped define an entire genre."
-  - id: "data-unloading-and-memory-management"
+    content: "The `WI_fragSum` function calculates the total frags (kills) for a given player, excluding self-frags. Interestingly, it includes a commented-out hack for handling negative frags, a rare feature in multiplayer games of the era. This reflects the experimental nature of DOOM's multiplayer design, where edge cases like self-inflicted damage were considered. Multiplayer gaming in 1993 was still in its infancy, with DOOM pioneering networked deathmatch gameplay. The ability to track and display frags dynamically was groundbreaking, influencing later games like Quake, which expanded on DOOM's multiplayer innovations. The commented-out code hints at the iterative development process, where features were tested and sometimes abandoned based on player feedback or technical constraints."
+  - id: "wi-init-deathmatch-stats"
+    line_start: 848
+    line_end: 873
+    title: "Initializing Deathmatch: Stats from Scratch"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Deathmatch_(gaming)"
+    image_url: ""
+    image_caption: ""
+    content: "The `WI_initDeathmatchStats` function sets up the data structures for tracking player stats in deathmatch mode, initializing arrays for frags and totals. This function reflects the modular design philosophy of DOOM, where each game mode has dedicated initialization routines. Deathmatch was a revolutionary concept in 1993, allowing players to compete directly against each other over local networks. The function ensures that all stats are reset at the start of a match, preventing carryover errors. This modular approach influenced later multiplayer games, which adopted similar initialization techniques to manage complex game states efficiently. The inclusion of animated backgrounds (`WI_initAnimatedBack`) adds visual flair, showcasing DOOM's ability to combine technical innovation with engaging aesthetics."
+  - id: "wi-update-deathmatch-stats"
+    line_start: 877
+    line_end: 976
+    title: "Dynamic Deathmatch: Updating Frags in Real-Time"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
+    image_url: ""
+    image_caption: ""
+    content: "The `WI_updateDeathmatchStats` function dynamically updates player stats during deathmatch gameplay. It checks for changes in frags and adjusts totals accordingly, ensuring that the intermission screen reflects the latest game state. This real-time updating was a technical challenge in the early 1990s, given the limited processing power of consumer PCs. The function also includes sound effects (`S_StartSound`) to enhance the player experience, tying visual updates to auditory cues. Real-time stat tracking became a standard feature in multiplayer games, with DOOM setting the precedent. Later games like Counter-Strike and Team Fortress 2 built on this foundation, incorporating more sophisticated algorithms for tracking and displaying player performance."
+  - id: "wi-draw-deathmatch-stats"
+    line_start: 980
+    line_end: 1071
+    title: "Drawing Deathmatch Stats: A Visual Breakdown"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
+    image_url: ""
+    image_caption: ""
+    content: "The `WI_drawDeathmatchStats` function renders the intermission screen for deathmatch mode, displaying player frags and totals in a matrix format. It uses patch graphics (`V_DrawPatch`) to create a visually appealing layout, with icons representing players and their stats. This function highlights DOOM's innovative use of computer graphics to enhance gameplay. The matrix format was a clever way to present complex data in an easily digestible form, a design choice that influenced later games like Unreal Tournament. The function also includes special handling for the local player (`me`), drawing additional icons to indicate their position. This attention to detail reflects the team's commitment to creating an immersive multiplayer experience."
+  - id: "wi-init-netgame-stats"
+    line_start: 1077
+    line_end: 1101
+    title: "Netgame Stats: Preparing for Cooperative Play"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cooperative_gameplay"
+    image_url: ""
+    image_caption: ""
+    content: "The `WI_initNetgameStats` function initializes stats for netgame mode, a cooperative multiplayer experience. It resets counters for kills, items, secrets, and frags, ensuring a clean slate for each session. Cooperative gameplay was a unique feature in DOOM, allowing players to work together to complete levels. This function reflects the game's versatility, supporting both competitive and cooperative modes. The modular initialization routine influenced later games like Diablo and Left 4 Dead, which adopted similar techniques to manage multiplayer stats. The inclusion of animated backgrounds (`WI_initAnimatedBack`) adds polish, demonstrating DOOM's ability to combine technical innovation with engaging visual design."
+  - id: "wi-update-netgame-stats"
+    line_start: 1105
+    line_end: 1256
+    title: "Cooperative Stats: Tracking Progress Together"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Cooperative_gameplay"
+    image_url: ""
+    image_caption: ""
+    content: "The `WI_updateNetgameStats` function updates player stats during netgame mode, tracking kills, items, secrets, and frags. It uses incremental updates to create a sense of progression, with sound effects (`S_StartSound`) enhancing the experience. Cooperative gameplay was a novel concept in 1993, and DOOM's implementation set the standard for future games. The function ensures that stats are updated dynamically, reflecting the team's focus on real-time feedback. This approach influenced later cooperative games like Borderlands, which expanded on DOOM's stat-tracking techniques to create more immersive multiplayer experiences. The function's modular design also highlights the team's commitment to clean, maintainable code."
+  - id: "wi-draw-netgame-stats"
+    line_start: 1260
+    line_end: 1313
+    title: "Rendering Cooperative Stats: A Shared Victory"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Heads-up_display"
+    image_url: ""
+    image_caption: ""
+    content: "The `WI_drawNetgameStats` function renders the intermission screen for netgame mode, displaying player stats in a visually appealing format. It uses patch graphics (`V_DrawPatch`) and percentage displays (`WI_drawPercent`) to showcase kills, items, secrets, and frags. This function reflects DOOM's innovative use of heads-up displays (HUDs) to enhance gameplay. The layout emphasizes teamwork, highlighting each player's contributions to the group's success. This design choice influenced later cooperative games like Halo and Destiny, which adopted similar HUD techniques to foster collaboration. The function also includes special handling for the local player (`me`), adding visual cues to indicate their position. This attention to detail underscores the team's commitment to creating an engaging multiplayer experience."
+  - id: "animation-hacks-for-episode-logic"
+    line_start: 1537
+    line_end: 1705
+    title: "The Animation Hack That Saved Episode 2"
+    wikipedia_url: "https://doomwiki.org/wiki/Source_code"
+    image_url: ""
+    image_caption: ""
+    content: "This section of code loads animation data for the intermission screen, with a notable hack for Episode 2's animations. The programmer bypasses a specific animation (index 8) by reusing data from another animation (index 4). This workaround avoids creating redundant resources, saving memory and simplifying logic. At the time, DOOM was designed to run on hardware with limited memory, often as low as 4MB of RAM. Such constraints demanded clever tricks like this to optimize resource usage. John Carmack, known for his technical ingenuity, likely implemented this hack to meet tight deadlines and hardware limitations. This approach reflects the era's pragmatic programming style, where functionality often trumped elegance. The hack underscores the challenges of developing games for heterogeneous PC configurations. Techniques like this influenced later game engines, including id Tech, which continued to prioritize performance optimization. Developers studying DOOM's source code often cite these hacks as examples of resourceful problem-solving under constraints."
+  - id: "resource-unloading-for-intermission-screen"
     line_start: 1707
     line_end: 1769
-    title: "How DOOM Freed Memory for the Next Level"
+    title: "How DOOM Frees Memory Between Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "This section unloads intermission data and changes memory tags to PU_CACHE, preparing the system for the next level. Efficient memory management was critical for DOOM, as PCs in 1993 had limited RAM. By freeing unused assets and caching others, the game ensured smooth transitions between levels. The Z_ChangeTag function reflects the team's deep understanding of hardware constraints and their ability to optimize for performance. This approach influenced later game engines, which adopted similar memory management techniques to handle complex assets. The practice of dynamically managing memory tags became a hallmark of efficient game design, seen in engines like Unity and Unreal."
-  - id: "intermission-screen-drawing"
+    content: "The WI_unloadData function systematically frees or caches resources used during the intermission screen. It changes memory tags for various assets, ensuring they are available for reuse or safely discarded. This memory management approach was critical for DOOM's performance on low-end PCs. By dynamically managing resources, the game avoided crashes and ensured smooth transitions between levels. In 1993, memory management was a cornerstone of game development, as PCs lacked the abundance of RAM seen in modern systems. Carmack's team leveraged techniques like this to maximize the game's efficiency. The systematic unloading of resources influenced later engines, including Quake and Unreal Engine, which adopted similar strategies to handle large-scale environments. This function exemplifies the meticulous attention to memory optimization that defined early PC gaming."
+  - id: "state-based-intermission-drawing"
     line_start: 1771
     line_end: 1792
-    title: "Drawing DOOM's Intermission Screens"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    title: "Switching States: Drawing Intermission Screens"
+    wikipedia_url: "https://en.wikipedia.org/wiki/State_machine"
     image_url: ""
     image_caption: ""
-    content: "This section handles the drawing logic for intermission screens, switching between different states like StatCount, ShowNextLoc, and NoState. The intermission screens were a key part of DOOM's pacing, giving players a brief respite while providing crucial information about their performance. The modular design of WI_Drawer allowed the game to adapt its intermission logic based on the mode (single-player, deathmatch, or netgame). This flexibility was ahead of its time, showcasing the team's foresight in designing systems that could accommodate diverse gameplay scenarios. The modular approach to screen drawing influenced later games, encouraging developers to separate logic into manageable states for easier maintenance and expansion."
-  - id: "variable-initialization-for-intermissions"
+    content: "WI_Drawer uses a state machine to determine which intermission screen to draw based on the current game state. It handles deathmatch stats, network game stats, or single-player stats, depending on the context. State machines were a common programming pattern in the early '90s, especially for games, as they provided a structured way to manage complex behaviors. This design allowed DOOM to support multiple gameplay modes without duplicating code. The use of a state machine here reflects the game's modular architecture, which was ahead of its time. This approach influenced later games and engines, where state-based systems became standard for managing UI and gameplay logic. Developers studying DOOM's source code often point to its state machine implementations as a model for clean, maintainable design."
+  - id: "variable-initialization-for-intermission-logic"
     line_start: 1795
     line_end: 1835
-    title: "Setting Up DOOM's Intermission Variables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    title: "Initializing Variables for Post-Level Stats"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Variable_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "This section initializes variables for intermission screens, ensuring all data structures are properly set up before rendering. The code includes range-checking logic, which prevents out-of-bounds errors—a critical feature in a time when debugging tools were limited. The initialization process reflects the team's meticulous attention to detail, ensuring the game could handle edge cases like missing kill counts or secret items. By standardizing variable setup, the team created a robust foundation for intermission logic. This practice of thorough initialization became a best practice in game development, influencing later engines and frameworks."
-  - id: "intermission-start-sequence"
+    content: "WI_initVariables initializes key variables for the intermission screen, including player stats, kill counts, and item totals. It also performs range checks to ensure data integrity. This function reflects the meticulous attention to detail required in game programming, where even minor errors could cause crashes or corrupt data. In the early '90s, debugging tools were limited, so developers often relied on manual checks like these. The range-checking code highlights the team's commitment to stability, even as they pushed the limits of hardware. This initialization routine influenced later games, where robust variable handling became a hallmark of reliable software. DOOM's source code remains a touchstone for developers seeking to understand the foundations of modern game programming."
+  - id: "starting-intermission-screen-logic"
     line_start: 1837
-    line_end: 1849
-    title: "How DOOM Began Its Intermissions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
+    line_end: 1848
+    title: "The Function That Starts It All"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Function_(computer_programming)"
     image_url: ""
     image_caption: ""
-    content: "This section starts the intermission sequence by initializing variables, loading data, and determining the appropriate stats logic based on the game mode. The intermission screens were a vital part of DOOM's storytelling, providing players with a sense of progression and accomplishment. By dynamically adapting the sequence to the game mode, the team ensured a seamless experience for both single-player and multiplayer scenarios. The modular design of WI_Start reflects the team's ability to balance complexity and performance, a hallmark of DOOM's development. This approach influenced later games, encouraging developers to create adaptable systems that could handle diverse gameplay scenarios."
+    content: "WI_Start is the entry point for the intermission screen logic. It initializes variables, loads resources, and determines which stats to display based on the gameplay mode. This function encapsulates the modular design philosophy of DOOM, where each component is self-contained and reusable. By separating initialization, resource loading, and mode-specific logic, the developers created a system that was easy to extend and debug. In the context of 1993, this modularity was a significant achievement, as many games of the era relied on monolithic codebases. WI_Start's design influenced later engines, where modularity became a cornerstone of scalability and maintainability. Developers studying DOOM's source code often cite this function as an example of clean, efficient design."
 
 ---
 

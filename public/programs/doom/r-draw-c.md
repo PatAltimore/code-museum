@@ -9,90 +9,90 @@ year: 1993
 author: "John Carmack, John Romero, Dave Taylor"
 slug: "r-draw-c"
 order: 13
-description: "This file contains the rendering routines for DOOM's graphics engine, showcasing techniques that pushed the limits of 1993-era hardware."
+description: "This file contains the core rendering routines for DOOM, showcasing techniques that pushed the limits of 1990s hardware."
 
 summary:
-  - point: "Column-based rendering optimized for fixed-view angles"
+  - point: "DOOM's rendering optimized for fixed view orientations"
     link: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     link_label: "DOOM (1993)"
-  - point: "Use of lookup tables to avoid expensive calculations"
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup Table"
-  - point: "Innovative framebuffer manipulation for effects like invisibility"
+  - point: "Column and span rendering tailored for low memory systems"
     link: "https://en.wikipedia.org/wiki/Framebuffer"
     link_label: "Framebuffer"
-  - point: "Translation tables for dynamic color remapping"
-    link: "https://en.wikipedia.org/wiki/Color_mapping"
-    link_label: "Color Mapping"
-  - point: "Efficient handling of variable screen sizes and borders"
-    link: "https://en.wikipedia.org/wiki/Aspect_ratio_(image)"
-    link_label: "Aspect Ratio"
+  - point: "Innovative use of translation tables for player customization"
+    link: "https://doomwiki.org/wiki/Translation_table"
+    link_label: "Translation Table"
+  - point: "Fuzzy rendering technique for invisibility effects"
+    link: "https://doomwiki.org/wiki/Spectre"
+    link_label: "Spectre"
+  - point: "Border rendering for variable screen sizes"
+    link: "https://doomwiki.org/wiki/Scaled_viewport"
+    link_label: "Scaled Viewport"
 
 enhancements:
   - id: "column-rendering-optimization"
     line_start: 97
     line_end: 206
-    title: "The Trick That Made Walls Fast"
+    title: "R_DrawColumn: Optimized Wall Rendering and Abandoned Loop Unrolling"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawColumn` function is responsible for rendering vertical slices of wall textures, a technique optimized for DOOM's fixed-view perspective. By leveraging lookup tables (`ylookup` and `columnofs`), the function avoids costly multiplications to calculate framebuffer addresses, instead relying on precomputed offsets. This approach is rooted in techniques used in earlier games like Wolfenstein 3D, where fixed-view angles simplified rendering calculations. In 1993, consumer PCs had limited processing power, often lacking hardware acceleration for graphics. John Carmack's decision to optimize for fixed-view angles allowed DOOM to achieve its groundbreaking speed and fluidity on modest hardware. This technique influenced later games and engines, including Quake, which built on these principles while introducing more advanced 3D rendering."
-  - id: "unused-loop-unrolling"
-    line_start: 97
-    line_end: 206
-    title: "The Loop Unrolling That Never Shipped"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Loop_unrolling"
+    content: "This range contains the active `R_DrawColumn` function and, guarded by an #ifdef USEASM block that was never enabled in the release build, a manually unrolled variant that was explored and ultimately discarded. The shipping version walks down each vertical wall slice one pixel at a time, computing framebuffer addresses with prebuilt ylookup and columnofs tables so that every iteration reduces to a single table lookup and an indexed write instead of a multiply-add. On a 486 processor, eliminating the multiply was a meaningful win given that R_DrawColumn was one of the most-called functions in the entire engine. The shelved unrolled version processed multiple pixels per iteration to amortize loop-control overhead, a valid strategy but one that bloated the instruction cache footprint and yielded diminishing returns on the in-order integer pipelines of the era. Leaving the dead code in the source is itself historically instructive: it documents that Carmack explored the technique, measured it, and chose the simpler loop. This kind of iterative, evidence-driven optimization became a defining characteristic of id Software's engineering culture and influenced how later engine teams approached renderer micro-optimization."
+  - id: "low-resolution-rendering"
+    line_start: 210
+    line_end: 252
+    title: "Rendering for Blocky Mode: A Low-Res Hack"
+    wikipedia_url: "https://doomwiki.org/wiki/Low_detail_mode"
     image_url: ""
     image_caption: ""
-    content: "This section contains an unused, loop-unrolled version of the `R_DrawColumn` function. Loop unrolling is a common optimization technique that reduces the overhead of loop control by manually expanding iterations. While this approach can improve performance, it increases code size and complexity. The inclusion of this code suggests that Carmack experimented with various optimization strategies to squeeze every ounce of performance from the hardware. Ultimately, this version was not used, likely because the benefits did not outweigh the trade-offs in maintainability or memory usage. Loop unrolling remains a staple in performance-critical applications, and its presence here highlights the meticulous attention to optimization that defined DOOM's development."
-  - id: "fuzzy-rendering-for-invisibility"
+    content: "The `R_DrawColumnLow` function handles rendering in DOOM's 'blocky mode,' a low-resolution setting designed to improve performance on slower systems. By doubling pixel width and height, the game reduces the computational load, allowing it to run on hardware that might otherwise struggle. This mode was a practical solution for players with older PCs, ensuring DOOM's accessibility to a broader audience. The trade-off was a noticeable reduction in visual fidelity, but the gameplay experience remained intact. This approach reflects the era's emphasis on scalability, a principle that continues to influence game development today."
+  - id: "fuzzy-rendering-for-spectres"
     line_start: 276
     line_end: 367
-    title: "How DOOM Made Spectres Invisible"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
+    title: "The Fuzzy Trick That Made Spectres Invisible"
+    wikipedia_url: "https://doomwiki.org/wiki/Spectre"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawFuzzColumn` function creates a 'fuzzy' rendering effect by copying pixels from adjacent columns, simulating invisibility for spectres and players. This effect relies on a predefined table (`fuzzoffset`) to determine pixel offsets, combined with a black colormap to darken the image. In the early 1990s, hardware limitations made true transparency effects impractical, so developers often resorted to creative hacks like this. Carmack's implementation is a clever workaround that achieves a visually convincing result without requiring additional hardware support. The fuzzy effect became iconic, influencing later games that sought to simulate transparency or invisibility within similar constraints."
-  - id: "dynamic-color-remapping"
+    content: "The `R_DrawFuzzColumn` function implements DOOM's 'fuzzy' rendering effect, used to create the illusion of invisibility for Spectres and invisible players. By offsetting pixels horizontally and applying a specific colormap, the function creates a distorted, ghostly appearance. This technique was a clever workaround for the lack of advanced transparency effects on 1990s hardware. Spectres became one of DOOM's most iconic enemies, and the fuzzy rendering effect was widely praised for its eerie realism. The concept of manipulating pixels to simulate transparency influenced later games, including Quake and Unreal, which built upon these ideas with more advanced graphics hardware."
+  - id: "player-color-customization"
     line_start: 384
     line_end: 446
-    title: "The Translation Tables That Changed Colors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Color_mapping"
+    title: "How DOOM Let Players Choose Their Colors"
+    wikipedia_url: "https://doomwiki.org/wiki/Translation_table"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawTranslatedColumn` function uses translation tables to dynamically remap colors, allowing sprites to appear in different color schemes. This technique is used for player sprites and enemies like the Hell Knight, which shares the Baron of Hell's sprites but uses a brighter color palette. The translation tables are precomputed to map specific color ramps to alternate colors, enabling efficient runtime remapping. This approach reflects Carmack's focus on performance, as it avoids recalculating color mappings during gameplay. Dynamic color remapping became a standard feature in game engines, enabling customization and variety without increasing asset sizes."
+    content: "The `R_DrawTranslatedColumn` function uses translation tables to remap color ramps, enabling player customization and enemy variations. For example, the green color ramp of player sprites could be mapped to gray, red, or other colors, allowing multiple players to be visually distinct in multiplayer mode. This feature also allowed enemies like the Hell Knight to share sprites with the Baron of Hell, saving memory while maintaining visual diversity. The use of translation tables was an ingenious solution to the constraints of 1990s hardware, where memory was limited and every byte mattered. This technique influenced later games that sought to optimize resource usage while offering customization options."
   - id: "translation-table-initialization"
     line_start: 451
     line_end: 514
-    title: "Mapping Green to Gray, Brown, and Red"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Color_mapping"
+    title: "Mapping Green to Gray: Translation Tables"
+    wikipedia_url: "https://doomwiki.org/wiki/Translation_table"
     image_url: ""
     image_caption: ""
-    content: "The `R_InitTranslationTables` function initializes the translation tables used for dynamic color remapping. It maps the green color ramp (used for player sprites) to gray, brown, and red, allowing for visual differentiation between players or sprite variants. The function assumes a specific structure for the PLAYPAL lump, which defines the game's color palette. This design choice reflects the constraints of the era, where memory and storage limitations required developers to maximize the utility of existing assets. Translation tables became a common feature in game engines, enabling efficient color customization and paving the way for features like team-based multiplayer color schemes."
-  - id: "span-rendering-for-floors-and-ceilings"
+    content: "The `R_InitTranslationTables` function initializes the translation tables that remap the green color ramp to gray, brown, and red. This functionality was essential for multiplayer customization and enemy differentiation. By assuming a specific structure of the PLAYPAL lump, the function avoids the need for additional data files, keeping DOOM's resource footprint small. This approach reflects id Software's focus on efficiency and adaptability, ensuring the game could run on a wide range of systems. Translation tables became a standard technique in game development, influencing sprite-based games and even modern engines that use palette-based rendering."
+  - id: "span-rendering-for-floors"
     line_start: 517
     line_end: 635
-    title: "The Horizontal Trick Behind DOOM's Floors"
+    title: "The Algorithm Behind DOOM's Floors and Ceilings"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawSpan` function handles rendering horizontal spans for floors and ceilings. Unlike walls, which are rendered column by column, floors and ceilings are drawn as horizontal slices with constant z-depth. This method leverages DOOM's fixed-view orientation to simplify calculations, using precomputed steps to traverse texture space. The function avoids perspective-correct texture mapping, which would have been computationally expensive on 1993 hardware. Instead, it uses a faster approximation that was sufficient for the game's visual style. This technique influenced later engines, which adopted similar optimizations for rendering large flat surfaces efficiently."
-  - id: "framebuffer-lookup-table"
-    line_start: 724
-    line_end: 810
-    title: "The Lookup Table That Sped Up Pixels"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Framebuffer"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_InitBuffer` function creates lookup tables (`ylookup` and `columnofs`) to simplify framebuffer address calculations. By precomputing offsets for rows and columns, the function eliminates the need for multiplications during rendering, significantly improving performance. This optimization was critical for DOOM's ability to run smoothly on early 1990s hardware, where CPU cycles were precious. The use of lookup tables for address calculations became a standard technique in graphics programming, influencing the design of later engines and contributing to the industry's understanding of performance optimization."
+    content: "The `R_DrawSpan` function handles rendering horizontal spans for floors and ceilings. Unlike walls, which are rendered as vertical columns, floors and ceilings require traversal in both texture space u and v. This function uses a simple yet effective algorithm to step through the texture at an angle, ensuring consistent z-depth. In the early 1990s, perspective-correct texture mapping was computationally expensive, so DOOM's approach prioritized speed over accuracy. This decision allowed the game to maintain high frame rates while delivering visually impressive environments. The technique influenced later engines, which refined span rendering for more complex 3D worlds."
   - id: "variable-screen-size-border"
     line_start: 724
     line_end: 810
-    title: "How DOOM Drew Its Iconic Borders"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Aspect_ratio_(image)"
+    title: "Drawing Borders for Scaled Viewports"
+    wikipedia_url: "https://doomwiki.org/wiki/Scaled_viewport"
     image_url: ""
     image_caption: ""
-    content: "The `R_FillBackScreen` function handles drawing the background pattern and beveled edges for variable screen sizes. It uses predefined patches (like `FLOOR7_2` and `GRNROCK`) to fill the screen and draws borders around the view window. This feature accommodates different aspect ratios and resolutions, ensuring a consistent visual experience across hardware configurations. The ability to dynamically adjust screen borders was a forward-thinking design choice, reflecting id Software's commitment to accessibility and compatibility. This technique influenced later games that needed to support diverse display setups, laying the groundwork for modern scalable UI design."
+    content: "The `R_FillBackScreen` function draws borders and fills the background for variable screen sizes. This feature was crucial for supporting different resolutions and aspect ratios, ensuring DOOM could run on a wide range of hardware configurations. The function uses predefined patches to create beveled edges and decorative patterns, enhancing the game's visual appeal. This attention to detail reflects id Software's commitment to delivering a polished experience, even on lower-end systems. The concept of scalable viewports and adaptive rendering influenced later games, which continued to prioritize accessibility and compatibility across diverse hardware."
+  - id: "view-border-rendering"
+    line_start: 842
+    line_end: 874
+    title: "How DOOM Defined Its View Borders"
+    wikipedia_url: "https://doomwiki.org/wiki/Scaled_viewport"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_DrawViewBorder` function renders the border around the game view for different window sizes. By erasing sections of the screen and marking regions for updates, the function ensures a seamless transition between gameplay and UI elements. This approach was particularly important for players using smaller viewports, as it maintained visual consistency while optimizing performance. The function exemplifies id Software's focus on scalability, a principle that influenced later engines and games aiming to support diverse hardware setups. The concept of view borders remains relevant in modern UI design, where adaptive layouts are essential for cross-platform compatibility."
 
 ---
 
