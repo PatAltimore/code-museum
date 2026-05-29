@@ -30,16 +30,16 @@ summary:
 
 enhancements:
   - id: "keyboard-interrupt-handling"
-    line_start: 1
-    line_end: 79
+    line_start: 135
+    line_end: 209
     title: "How Wolfenstein 3D Captured Every Keystroke"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)"
     image_url: ""
     image_caption: ""
     content: "This section defines `INL_KeyService`, a routine that handles keyboard interrupts. It reads scan codes directly from the keyboard controller (port 0x60) and processes them to determine key states, ASCII values, and special key events like Caps Lock. The programmer, Jason Blochowiak, uses direct hardware interaction to bypass the BIOS, enabling faster and more flexible input handling. In 1992, this approach was critical for real-time games like Wolfenstein 3D, where responsiveness was paramount. The routine also includes logic for handling shifted and unshifted ASCII mappings and toggling Caps Lock behavior. This technique influenced how later games handled low-level input, particularly in the DOS era, where direct hardware access was often necessary for performance."
   - id: "mouse-movement-retrieval"
-    line_start: 1
-    line_end: 79
+    line_start: 211
+    line_end: 223
     title: "The Interrupt That Tracked Your Mouse"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_interrupt_call"
     image_url: ""
@@ -62,8 +62,8 @@ enhancements:
     image_caption: ""
     content: "The `INL_StartKbd` function sets up a custom keyboard interrupt handler by replacing the BIOS interrupt vector for IRQ 1 (keyboard) with the game's own `INL_KeyService` routine. This allows Wolfenstein 3D to process keyboard input directly, bypassing the slower BIOS routines. By storing the original interrupt vector and restoring it later, the function ensures compatibility with other software. This technique was widely used in DOS games to achieve faster and more responsive input handling. It reflects the low-level programming skills required to optimize performance on early PC hardware. The approach influenced later game engines, which continued to use custom interrupt handlers for specialized input processing."
   - id: "joystick-calibration"
-    line_start: 241
-    line_end: 316
+    line_start: 509
+    line_end: 538
     title: "Calibrating Joysticks for Precise Control"
     wikipedia_url: "https://en.wikipedia.org/wiki/Joystick"
     image_url: ""

@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "statics-object-management"
-    line_start: 15
-    line_end: 114
+    line_start: 116
+    line_end: 127
     title: "How Static Objects Were Packed Into Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
@@ -46,32 +46,32 @@ enhancements:
     image_caption: ""
     content: "The `InitStaticList` function initializes the static object list by setting `laststatobj` to the beginning of the array. This simple yet crucial step ensures that the game starts with a clean slate for static objects. Without it, uninitialized pointers could lead to crashes or undefined behavior. In the early 1990s, such bugs were common due to the lack of modern debugging tools. This function exemplifies the meticulous attention to detail required to create stable software in an era of limited resources. The technique of initializing object lists became standard practice in game development, influencing countless titles that followed."
   - id: "spawn-static-object"
-    line_start: 116
-    line_end: 127
+    line_start: 131
+    line_end: 184
     title: "Spawning Objects That Blocked or Rewarded Players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "The `SpawnStatic` function places static objects in the game world, assigning properties based on their type. Objects can block movement, provide bonuses, or serve as decorations. The function increments the treasure count for collectible items, ensuring accurate tracking of player progress. This routine highlights the game's interactive environment, where objects are not just visual elements but integral to gameplay. The concept of dynamic object spawning influenced later games, enabling developers to create rich, interactive worlds. It also showcases the balance between performance and functionality, as the routine avoids excessive computation while maintaining flexibility."
   - id: "door-mechanics"
-    line_start: 254
-    line_end: 256
+    line_start: 283
+    line_end: 305
     title: "Doors That Connected the Game World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section introduces the mechanics of doors in Wolfenstein 3D. Doors connect areas, allowing sound and sight to pass through when open. The `doorposition` array tracks the state of each door, ranging from fully closed to fully open. The limited number of doors (64) reflects the constraints of the tile-based system and the need to optimize memory usage. By dynamically recalculating area connectivity, the game creates a sense of immersion and realism. This technique influenced later games by demonstrating how to handle dynamic environments efficiently. It also laid the groundwork for more complex systems, such as pathfinding and AI navigation."
   - id: "recursive-area-connectivity"
-    line_start: 116
-    line_end: 127
+    line_start: 283
+    line_end: 305
     title: "Recursive Algorithm for Dynamic Area Connectivity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "The `RecursiveConnect` function scans outward from the player's current area, marking all connected areas. This recursive algorithm ensures that the game world remains dynamically connected, allowing for realistic sound propagation and AI behavior. The use of recursion reflects the developers' ingenuity in solving complex problems with simple techniques. In the early 1990s, recursion was a powerful tool for tasks like connectivity and pathfinding, despite the risks of stack overflow on limited hardware. This approach influenced later games by demonstrating the potential of dynamic systems to enhance immersion and gameplay."
   - id: "spawn-door"
-    line_start: 116
-    line_end: 127
+    line_start: 342
+    line_end: 388
     title: "Spawning Doors That Blocked and Opened Worlds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

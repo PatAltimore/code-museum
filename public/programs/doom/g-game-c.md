@@ -24,16 +24,16 @@ summary:
 
 enhancements:
   - id: "game-state-and-global-variables"
-    line_start: 96
-    line_end: 157
+    line_start: 218
+    line_end: 227
     title: "How DOOM Tracks Game State in Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section defines global variables that track the state of the game, such as the current level, episode, player states, and multiplayer flags. These variables are critical for maintaining consistency across gameplay sessions and ensuring smooth transitions between levels or game modes. In 1993, memory management was a significant concern, as DOOM had to run efficiently on hardware with limited RAM (often 4–8 MB). By centralizing state management in a few key structures, the developers minimized overhead and simplified debugging. This approach influenced later games, including Quake and Unreal, which adopted similar centralized state-tracking mechanisms for multiplayer and single-player modes."
   - id: "input-handling-and-ticcmd"
-    line_start: 218
-    line_end: 442
+    line_start: 230
+    line_end: 436
     title: "The Input System That Made DOOM Fast"
     wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
     image_url: ""
@@ -49,7 +49,7 @@ enhancements:
     content: "The `G_DoLoadLevel` function initializes a new level, including setting up sky textures based on the episode and game version. This dynamic texture selection added variety and immersion to the game's environments, a novel feature at the time. The function also resets player states and clears input buffers to ensure a clean transition. In 1993, texture mapping was still a relatively new technique, and DOOM's use of dynamic textures demonstrated its technical prowess. This approach influenced later games like Duke Nukem 3D and Unreal, which expanded on dynamic environmental effects."
   - id: "event-handling-responder"
     line_start: 499
-    line_end: 603
+    line_end: 596
     title: "How DOOM Handles Player Events"
     wikipedia_url: "https://en.wikipedia.org/wiki/Event-driven_programming"
     image_url: ""
@@ -72,16 +72,16 @@ enhancements:
     image_caption: ""
     content: "This section resets a player's state when they respawn, restoring health, weapons, and ammo to default values. The logic ensures players are ready to re-enter the game without carrying over unintended states from their previous life. In 1993, multiplayer gaming was still in its infancy, and DOOM's implementation of respawning was a foundational step for deathmatch gameplay. John Carmack and the team designed this system to ensure fairness and balance, critical for competitive play. The respawn logic influenced later multiplayer games, including Quake and Unreal Tournament, which expanded on these ideas with more complex respawn mechanics."
   - id: "spot-check-respawn"
-    line_start: 834
-    line_end: 888
+    line_start: 891
+    line_end: 918
     title: "Checking Respawn Spots for Players"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spawn_point"
     image_url: ""
     image_caption: ""
     content: "The G_CheckSpot function determines whether a player can respawn at a specific location, ensuring the spot isn't occupied by other objects or players. This logic prevents players from spawning into inaccessible or obstructed areas, a common issue in early multiplayer games. The function also handles removing old player corpses and spawning teleportation fog effects for visual feedback. This approach reflects the team's attention to detail, ensuring smooth gameplay even in chaotic multiplayer matches. The concept of validating spawn points became a standard in multiplayer game design, influencing titles like Counter-Strike and Halo."
   - id: "deathmatch-spawn-logic"
-    line_start: 891
-    line_end: 922
+    line_start: 920
+    line_end: 966
     title: "Randomized Deathmatch Spawn Points"
     wikipedia_url: "https://en.wikipedia.org/wiki/Deathmatch"
     image_url: ""
@@ -89,7 +89,7 @@ enhancements:
     content: "This routine selects a random spawn point for players in deathmatch mode, ensuring dynamic and unpredictable gameplay. If no valid spot is found after multiple attempts, the player spawns at a default location, even if it might lead to being stuck. This randomness was a deliberate choice by the developers to enhance the chaotic nature of deathmatch gameplay. The idea of randomized spawn points influenced later multiplayer games, including Call of Duty and Battlefield, where spawn logic evolved to include dynamic adjustments based on player density and map control."
   - id: "level-completion-logic"
     line_start: 1019
-    line_end: 1145
+    line_end: 1140
     title: "Transitioning Between Levels in DOOM"
     wikipedia_url: "https://doomwiki.org/wiki/Intermission_screen"
     image_url: ""

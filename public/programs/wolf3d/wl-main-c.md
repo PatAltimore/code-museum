@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "read-config-file"
-    line_start: 65
+    line_start: 82
     line_end: 182
     title: "Dynamic hardware-based configuration setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hardware_detection"
@@ -38,8 +38,8 @@ enhancements:
     image_caption: ""
     content: "The `ReadConfig` function reads a configuration file to initialize game settings such as sound modes, joystick configurations, and view size. If no configuration file is found, the function dynamically selects settings based on the hardware detected. This approach ensured compatibility across a wide range of MS-DOS systems, which varied greatly in capabilities during the early 1990s. By detecting hardware like AdLib and Sound Blaster cards, the game could provide optimized audio experiences for players with advanced setups while gracefully degrading for simpler systems. This technique influenced later games by emphasizing adaptability to hardware constraints, a necessity in the era of diverse PC configurations. Developers at id Software, including John Carmack, leveraged this flexibility to make Wolfenstein 3D accessible to a broader audience, setting a precedent for hardware-aware game design."
   - id: "patch-386-optimization"
-    line_start: 29
-    line_end: 49
+    line_start: 241
+    line_end: 262
     title: "Optimizing for 386 processors with custom patches"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
     image_url: ""

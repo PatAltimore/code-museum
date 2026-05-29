@@ -24,7 +24,7 @@ summary:
 
 enhancements:
   - id: "intermission-screen-constants"
-    line_start: 736
+    line_start: 729
     line_end: 746
     title: "Constants That Define Intermission Layout"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -32,7 +32,7 @@ enhancements:
     image_caption: ""
     content: "This section defines constants that control the layout and positioning of elements on the intermission screens. These include coordinates for single-player statistics, net game results, and deathmatch matrices. By using predefined constants, the developers ensured consistent rendering across different game modes and screen resolutions. In the early 1990s, screen resolutions varied widely, and DOOM's reliance on fixed pixel coordinates reflects the era's approach to graphics programming. This design choice allowed DOOM to achieve visually appealing layouts on modest hardware without requiring dynamic scaling or resolution independence. Later games, such as Quake and Unreal Tournament, would adopt more flexible systems, but DOOM's hardcoded approach remains a snapshot of early graphical design practices."
   - id: "animation-data-structures"
-    line_start: 736
+    line_start: 729
     line_end: 746
     title: "How DOOM Handles Animations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
@@ -40,7 +40,7 @@ enhancements:
     image_caption: ""
     content: "This section introduces the data structures used to manage animations on intermission screens. The `anim_t` structure encapsulates details such as animation type, frame count, location, and timing. Animations are categorized into 'always', 'random', and 'level-specific', reflecting the game's need to balance dynamic visuals with performance constraints. In 1993, animations were a luxury on consumer-grade PCs, and DOOM's implementation showcases clever optimization. By using patches (small graphical elements) instead of full-screen frames, DOOM reduced memory usage and improved rendering speed. This technique influenced later games, which adopted similar strategies to manage animations efficiently."
   - id: "world-map-node-locations"
-    line_start: 736
+    line_start: 729
     line_end: 746
     title: "Mapping Levels to World Coordinates"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
@@ -57,15 +57,15 @@ enhancements:
     content: "This function initializes the animated backgrounds for intermission screens based on the current episode. It sets up timing and state variables for each animation, ensuring smooth transitions and consistent behavior. The use of randomization in 'ANIM_RANDOM' animations adds variety, enhancing the visual appeal. In the context of 1993 hardware, this approach was innovative, as it balanced complexity with performance constraints. The technique of precomputing animation states influenced later games, which adopted similar methods to optimize rendering pipelines."
   - id: "animated-background-rendering"
     line_start: 582
-    line_end: 601
+    line_end: 720
     title: "Rendering Animated Backgrounds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""
     image_caption: ""
     content: "This function renders the animated backgrounds during intermission screens. It iterates through the animations for the current episode, drawing the appropriate patch for each frame. The use of patches instead of full-screen images reflects DOOM's focus on efficiency, minimizing memory usage and maximizing rendering speed. This technique was crucial for achieving smooth animations on hardware with limited graphical capabilities. The idea of modular rendering influenced later engines, such as Unreal Engine, which adopted similar strategies to manage complex scenes."
   - id: "drawing-level-completion-time"
-    line_start: 682
-    line_end: 719
+    line_start: 419
+    line_end: 433
     title: "Displaying Level Completion Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
@@ -129,31 +129,31 @@ enhancements:
     content: "This section checks for button presses to accelerate intermission screens, allowing players to skip delays. It monitors the 'attack' and 'use' buttons, setting flags to bypass animations. This feature reflects DOOM's responsiveness to player input, prioritizing user experience. The ability to skip delays became a standard feature in later games, allowing players to control pacing during transitions. It influenced titles like Half-Life and Portal, where user control over transitions enhances immersion."
   - id: "load-intermission-data"
     line_start: 1537
-    line_end: 1599
+    line_end: 1705
     title: "Loading Graphics for Intermission Screens"
     wikipedia_url: "https://doomwiki.org/wiki/Intermission_screen"
     image_url: ""
     image_caption: ""
     content: "This section loads the graphics and patches required for intermission screens, including background images and 'you are here' markers. It uses memory allocation techniques to optimize resource usage, reflecting the constraints of 1993 hardware. The code dynamically selects assets based on the game mode and episode, ensuring that intermission screens are visually consistent. This approach influenced later games, where dynamic asset loading became a key technique for optimizing performance and enhancing visual fidelity."
   - id: "animation-data-loading-hacks"
-    line_start: 1601
-    line_end: 1622
+    line_start: 1537
+    line_end: 1705
     title: "The Animation Hack That Saved DOOM"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section loads animation data for the intermission screens, with a notable hack to reuse animation assets for Episode 1, Level 8. The code bypasses standard loading logic by directly referencing assets from Episode 1, Level 4. This 'MONDO HACK' reflects the practical constraints of 1993 hardware, where memory was precious and reusing assets was a necessity. John Carmack and the team often prioritized performance and resource efficiency over pristine code. This approach allowed DOOM to run smoothly on consumer-grade PCs while delivering visually rich intermission screens. Such hacks were common in early game development, where developers had to creatively work around hardware limitations. The technique of reusing assets influenced later games, especially in the era of sprite-based graphics, where memory optimization was critical."
   - id: "intermission-text-and-symbol-loading"
-    line_start: 1625
-    line_end: 1668
+    line_start: 1537
+    line_end: 1705
     title: "How DOOM Loaded Its Intermission Symbols"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
     image_url: ""
     image_caption: ""
     content: "This section loads various text and symbols used in the intermission screens, such as numbers, percent signs, and phrases like 'finished' and 'entering.' Each element is cached using the W_CacheLumpName function, ensuring efficient memory usage. The intermission screens were a crucial part of DOOM's storytelling, providing players with a sense of progression and accomplishment. The choice to cache these assets reflects the team's focus on performance, as reloading these elements repeatedly would have slowed down the game. The inclusion of specific assets like 'sucks' and 'par' also highlights DOOM's irreverent tone, which resonated with its audience. This method of caching graphical assets became standard practice in game development, influencing engines like Quake and Unreal."
   - id: "multiplayer-statistics-loading"
-    line_start: 1694
-    line_end: 1703
+    line_start: 1537
+    line_end: 1705
     title: "Multiplayer Stats: DOOM's Competitive Edge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
     image_url: ""

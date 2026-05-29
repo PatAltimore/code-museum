@@ -54,8 +54,8 @@ enhancements:
     image_caption: ""
     content: "The `ProjectileTryMove` function checks whether a projectile's movement is valid by testing for collisions with walls and other objects. It uses bitwise shifts to convert coordinates into tile indices, optimizing performance on MS-DOS systems with limited processing power. This method of collision detection was groundbreaking for its time, enabling fast-paced gameplay without sacrificing accuracy. The technique influenced later games, including Doom, which expanded on these principles to handle more complex environments and interactions."
   - id: "state-based-ai-projectile-behavior"
-    line_start: 156
-    line_end: 181
+    line_start: 294
+    line_end: 844
     title: "State-Based AI for Projectiles"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "This routine dynamically spawns patrolling enemies based on their type, position, and direction. Each enemy type is assigned specific attributes such as speed, hitpoints, and flags that determine their behavior. The routine also updates the game state to track the total number of enemies. This approach allowed Wolfenstein 3D to create a sense of a living, reactive world within the constraints of 1992 hardware. The idea of dynamically spawning and managing enemies influenced later games like Doom and Quake, which expanded on this concept with more complex AI."
   - id: "death-scream-audio"
-    line_start: 156
+    line_start: 169
     line_end: 181
     title: "The Death Screams That Defined Immersion"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
@@ -158,8 +158,8 @@ enhancements:
     image_caption: ""
     content: "The `T_GiftThrow` function defines how the enemy Gift throws rockets at the player. Similar to Schabbs' needle-throwing routine, it uses trigonometry to calculate the angle and trajectory. Rockets, a staple of first-person shooters, were introduced here as a high-damage projectile, adding tension and strategy to encounters. This mechanic foreshadowed the prominence of rocket launchers in Doom, where they became a signature weapon. The inclusion of rockets in Wolfenstein 3D marked a shift towards more varied and explosive gameplay, influencing the design of enemy attacks in countless future titles."
   - id: "hitler-morphing-mechanic"
-    line_start: 156
-    line_end: 181
+    line_start: 222
+    line_end: 252
     title: "Hitler's Transformation: A Morphing Mechanic"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""

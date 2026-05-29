@@ -134,6 +134,40 @@ def _is_relevant(topic: str, image_name: str, caption: str, client) -> bool:
 
 
 # ---------------------------------------------------------------------------
+# Wikipedia text extract
+# ---------------------------------------------------------------------------
+
+def fetch_wiki_extract(wikipedia_url: str, max_chars: int = 3000) -> str | None:
+    """Return the plain-text extract for a Wikipedia article URL, or None.
+
+    Fetches the full article extract (intro + body sections) so the caller
+    can use it as a factual grounding source when generating LLM content.
+    Truncates to *max_chars* characters to keep prompts manageable.
+    """
+    if not wikipedia_url:
+        return None
+    m = re.search(r"/wiki/(.+)$", wikipedia_url)
+    if not m:
+        return None
+    title = m.group(1)
+    try:
+        data = _post(WIKIPEDIA_API, {
+            "action": "query",
+            "titles": title,
+            "prop": "extracts",
+            "explaintext": "true",
+            "exsectionformat": "plain",
+        })
+        for page in data.get("query", {}).get("pages", {}).values():
+            extract = page.get("extract", "")
+            if extract:
+                return extract[:max_chars]
+    except Exception:
+        pass
+    return None
+
+
+# ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
 

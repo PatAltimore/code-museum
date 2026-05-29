@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "quakeasm-header-setup"
-    line_start: 4
+    line_start: 1
     line_end: 17
     title: "Why Quake Needed id386-Specific Optimizations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
@@ -46,8 +46,8 @@ enhancements:
     image_caption: ""
     content: "The definition of `TRANSPARENT_COLOR` as 255 is a simple yet critical decision. This constant represents the color value used to denote transparency in Quake's rendering pipeline. By reserving a specific value for transparency, the engine can efficiently handle textures and sprites that require portions to be invisible, such as windows or character models. In the mid-1990s, transparency was a computationally expensive feature, especially on hardware without dedicated graphics acceleration. Quake's software renderer had to manage transparency manually, blending pixels and ensuring that transparent areas did not overwrite the background. This choice of 255 likely stems from its position as the maximum value in an 8-bit color palette, making it easy to identify and process. Transparency handling in Quake laid the groundwork for more sophisticated alpha blending techniques in later games. Modern engines like Unity and Unreal use similar principles but leverage GPU acceleration to handle transparency more efficiently. The concept of reserving specific values for transparency persists in formats like PNG, where alpha channels define pixel opacity."
   - id: "external-variable-references"
-    line_start: 4
-    line_end: 6
+    line_start: 19
+    line_end: 202
     title: "The Web of Variables That Made Quake Tick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""

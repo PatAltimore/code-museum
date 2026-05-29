@@ -295,14 +295,23 @@ def _extract_boundaries_c(code_lines: list[str]) -> list[tuple[int, str]]:
             continue
 
         # We want lines that open a brace block (end with '{' or next non-blank
-        # line is '{') when the resulting depth is 1 (was 0 before)
+        # line is '{') when the resulting depth is 1 (was 0 before).
+        #
+        # Two sub-cases:
+        #  a) Inline '{': the '{' is on this line → brace_depth was already
+        #     incremented above, so top-level functions land at depth == 1.
+        #  b) Lookahead '{': the '{' is on the next line → brace_depth was NOT
+        #     incremented for that '{' yet, so top-level functions sit at
+        #     depth == 0.  We check depth == 0 in this case.
         opens_block = stripped.endswith('{')
+        lookahead_brace = False
         if not opens_block and i + 1 < total:
             # Look ahead for the opening brace on its own line
             for j in range(i + 1, min(i + 5, total)):
                 ns = code_lines[j].strip()
                 if ns == '{':
                     opens_block = True
+                    lookahead_brace = True
                     break
                 if ns:
                     break
@@ -310,8 +319,9 @@ def _extract_boundaries_c(code_lines: list[str]) -> list[tuple[int, str]]:
         if not opens_block:
             continue
 
-        # At depth 1 now means it was a top-level opener
-        if brace_depth != 1:
+        # Depth check depends on where the '{' lives
+        expected_depth = 0 if lookahead_brace else 1
+        if brace_depth != expected_depth:
             continue
 
         # Extract function name — last identifier before '('
@@ -361,11 +371,17 @@ def _extract_boundaries(
     """Dispatch boundary extraction based on language.
 
     Returns a list of (line_number, name) tuples for each structural unit.
+
+    Order matters for mixed-language files (e.g. "C, x86 Assembly"):
+    C is checked first because its extractor is selective (looks for brace-block
+    openers), whereas the ASM extractor is very broad (any identifier at column 0)
+    and would misidentify C type keywords like `unsigned`, `void`, `extern` as
+    labels, polluting the boundary map.
     """
-    if _is_asm_like(language):
-        return _extract_boundaries_asm(code_lines)
-    elif _is_c_like(language):
+    if _is_c_like(language):
         return _extract_boundaries_c(code_lines)
+    elif _is_asm_like(language):
+        return _extract_boundaries_asm(code_lines)
     elif _is_lisp_like(language):
         return _extract_boundaries_lisp(code_lines)
     else:
@@ -1161,12 +1177,41 @@ def _resolve_single(
     if new_e is None:
         new_e = approx_end
 
-    # ASM extension: if the boundary/anchor resolved a non-None end but the
-    # structural scan would extend it by a small amount (≤ RTS_EXTEND_LINES),
-    # prefer the structural result.  This captures labeled return stubs like
-    # "CHRRTS: RTS" that appear 1–4 lines past the LLM-resolved next_boundary.
-    RTS_EXTEND_LINES = 15
-    if _is_asm_like(language) and new_e is not None:
+    # ── Language-aware structural alignment ──────────────────────────────────
+    #
+    # After boundary/anchor resolution, compare with the language-specific
+    # structural scan.  Each language has different reliability and direction:
+    #
+    # C / C++:  Brace-depth counting (_find_end_c) is highly reliable and
+    #   authoritative.  Apply BIDIRECTIONALLY within C_ALIGN_WINDOW lines —
+    #   this corrects both "ended too early" (missing closing }) and "ended
+    #   too late" (crept into next function).
+    #
+    # ASM:  Return-instruction scanning (_find_end_asm) is reliable in the
+    #   forward direction but can overshoot if there are many nested labels.
+    #   Apply ONLY as an extension (never shrink) within RTS_EXTEND_LINES to
+    #   capture labeled return stubs like "CHRRTS: RTS" that sit a few lines
+    #   past the LLM's next_boundary.
+    #
+    # Lisp / MDL:  Depth counting (_find_end_lisp) is reliable.  Apply
+    #   bidirectionally within LISP_ALIGN_WINDOW lines.
+    #
+    C_ALIGN_WINDOW       = 30
+    C_MIN_PLAUSIBLE_RANGE = 15   # skip C alignment if initial range is suspiciously short
+    RTS_EXTEND_LINES     = 15
+    LISP_ALIGN_WINDOW    = 20
+    LISP_MIN_PLAUSIBLE   = 10
+
+    if _is_c_like(language):
+        # Only apply structural alignment when the resolved range is plausibly
+        # non-trivial.  If new_e - new_s is very small, found_start is likely
+        # wrong (e.g. corrupted YAML), and _find_end_c would snap to the wrong
+        # closing brace — compounding the error rather than fixing it.
+        if new_e - new_s + 1 >= C_MIN_PLAUSIBLE_RANGE:
+            struct_end = _find_end_c(code_lines, found_start)
+            if struct_end is not None and abs(struct_end - new_e) <= C_ALIGN_WINDOW:
+                new_e = struct_end
+    elif _is_asm_like(language):
         struct_end = _find_end_asm(code_lines, found_start)
         if (
             struct_end is not None
@@ -1174,12 +1219,17 @@ def _resolve_single(
             and struct_end - new_e <= RTS_EXTEND_LINES
         ):
             new_e = struct_end
+    elif _is_lisp_like(language):
+        if new_e - new_s + 1 >= LISP_MIN_PLAUSIBLE:
+            struct_end = _find_end_lisp(code_lines, found_start)
+            if struct_end is not None and abs(struct_end - new_e) <= LISP_ALIGN_WINDOW:
+                new_e = struct_end
 
-    # Sanity: if the anchor/boundary resolution produced a suspiciously short
-    # range (< 5 lines), the LLM gave a bad next_boundary/next_anchor that
-    # happens to be right after the start.  In that case, try the structural
-    # scan as a better fallback.  This prevents "1671-1671" single-line ranges.
-    MIN_RANGE = 5
+    # Sanity: if the range is still suspiciously short (< language-appropriate
+    # minimum), the LLM gave a next_boundary right after the start and the
+    # structural scan above either didn't fire or wasn't close enough.  Try an
+    # unconstrained structural scan, then fall back to approx_end.
+    MIN_RANGE = 10 if _is_c_like(language) else 5
     if new_e - new_s + 1 < MIN_RANGE:
         structural_end: int | None = None
         if _is_c_like(language):
@@ -1408,14 +1458,19 @@ def _verify_ranges(
         # Sanity guards: reject corrections that produce nonsensical ranges.
         #   1. Range is tiny (< 3 lines) — very rarely correct, usually a
         #      sign the LLM latched onto a wrong anchor.
-        #   2. Start drifted more than START_DRIFT lines from the original —
-        #      same heuristic applied in the primary resolution pass.
+        #   2. Start drifted more than VERIFY_START_DRIFT lines from the resolved
+        #      start.  Verify is reviewing already-resolved ranges, so only small
+        #      adjustments are expected; large start shifts are almost always wrong.
         #   3. The new range is more than 4× smaller than the original — the
         #      verify LLM is almost certainly trimming too aggressively.
-        START_DRIFT = 300
+        #   4. New start is line 1 but original was not — nearly always a sign
+        #      the verify LLM anchored to the file header instead of the section.
+        VERIFY_START_DRIFT = 60
         if new_e - new_s + 1 < 3:
             continue
-        if abs(new_s - old_s) > START_DRIFT:
+        if abs(new_s - old_s) > VERIFY_START_DRIFT:
+            continue
+        if new_s == 1 and old_s > 5:
             continue
         orig_len = max(old_e - old_s + 1, 1)
         new_len  = new_e - new_s + 1

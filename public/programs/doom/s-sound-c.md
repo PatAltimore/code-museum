@@ -29,41 +29,25 @@ summary:
     link_label: "Euclidean Distance"
 
 enhancements:
-  - id: "sound-initialization-and-channel-allocation"
-    line_start: 155
-    line_end: 191
-    title: "How DOOM Allocated Sound Channels Dynamically"
+  - id: "sound-system-initialization-and-level-reset"
+    line_start: 196
+    line_end: 465
+    title: "Building DOOM's Sound System: Channel Setup and Level-by-Level Music"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
     image_caption: ""
-    content: "This section initializes the sound system, setting up sound effect (SFX) and music volumes, allocating memory for sound channels, and preparing the sound lookup table. The function `S_Init` is responsible for configuring the game's audio environment, ensuring that the limited number of sound channels can be efficiently utilized during gameplay. In 1993, consumer PCs had limited audio capabilities, often restricted to basic sound cards like the Sound Blaster. DOOM's developers had to work within these constraints, dynamically allocating channels to ensure that the most critical sounds were played. This approach influenced later games, which adopted similar dynamic sound management techniques to handle audio playback on constrained hardware."
-  - id: "level-specific-sound-reset-and-music-selection"
-    line_start: 196
-    line_end: 247
-    title: "Resetting Sounds and Picking Music Per Level"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_(1993_video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `S_Start` function resets all playing sounds at the start of a new level and selects the appropriate music track based on the game mode and level. This ensures a clean audio slate, preventing overlapping or lingering sounds from the previous level. The music selection logic also highlights DOOM's modular design, allowing different tracks to be assigned to levels dynamically. In the early '90s, this was a novel approach, as many games used static soundtracks. By dynamically associating music with levels, DOOM enhanced its immersive experience, a technique that became standard in later games like Quake and Unreal."
-  - id: "dynamic-sound-parameters-and-pitch-variation"
-    line_start: 253
-    line_end: 394
-    title: "Dynamic Sound Adjustments and Randomized Pitch"
+    content: "This large section covers the full lifecycle of DOOM's audio infrastructure, from startup to each new level. The `S_Init` function is called once at boot: it sets SFX and music volume from the command line, allocates a flat array of `channel_t` structs sized to match the Sound Blaster's capability (typically 2–8 simultaneous voices), zeros out every channel, and marks all SFX lump numbers as uncached. The design is deliberately flat — no heap, no linked list — because cache-friendly access patterns and predictable memory layout matter more than flexibility when the mixer runs every game tic. The lump array records which sound data has been loaded, avoiding redundant disk reads for frequently triggered effects. `S_Start` runs at the beginning of every level and does two things. First, it silences all active channels unconditionally — a simple but important reset that prevents gunfire or monster sounds from the previous level bleeding into the new one. Second, it determines which music track to play: Doom II maps use a direct index into the commercial music list, while episode-based maps cross-reference a handcrafted table that handles Ultimate DOOM's remixed episode four tracks. The fact that music selection uses a lookup table rather than a formula reflects the organic way id Software composed their soundtrack — certain maps were scored by specific team members and did not follow a mechanical pattern. Together, these two functions establish the sound system's contract: allocate once at startup, silence and rescore at every level boundary, and let subsequent functions handle moment-to-moment playback."
+  - id: "spatial-sound-system"
+    line_start: 470
+    line_end: 483
+    title: "How DOOM Made Sound Feel 3D on 1993 Hardware"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_localization"
     image_url: ""
     image_caption: ""
-    content: "The `S_StartSoundAtVolume` function dynamically adjusts sound parameters like volume, stereo separation, and pitch based on the listener's position relative to the sound source. It also introduces randomized pitch variations for certain sound effects, adding a layer of realism and variety to the audio experience. This technique was critical for creating DOOM's immersive soundscape, as it simulated spatial audio effects on hardware that lacked advanced 3D sound capabilities. The use of pseudo-random pitch adjustments influenced later game engines, which adopted similar techniques to enhance realism in sound effects."
-  - id: "sound-attenuation-and-stereo-separation"
-    line_start: 745
-    line_end: 817
-    title: "The Formula Behind DOOM's Sound Attenuation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_localization"
-    image_url: ""
-    image_caption: ""
-    content: "The `S_AdjustSoundParams` function calculates sound attenuation based on the distance between the listener and the sound source, using a pseudo-Euclidean distance formula for efficiency. It also determines stereo separation based on the relative angle of the sound source. These calculations allowed DOOM to simulate spatial audio effects on hardware with limited capabilities, creating a sense of directionality and immersion. The use of efficient distance calculations and stereo separation techniques influenced later game engines, which refined these methods to support more advanced audio systems."
+    content: "This section contains the two functions that give DOOM's audio its spatial character. In `S_StartSoundAtVolume`, before any sound is queued, the game calculates volume and stereo separation based on where the sound source sits relative to the listener — then adds randomized pitch variation on top. The chainsaw, for instance, gets a random pitch nudge in the range of plus or minus 8 units every time it fires, while most other effects receive a slightly wider variance of 16 units. This randomization prevents the audio from feeling mechanical and repetitive, a small touch that contributes enormously to DOOM's atmosphere. The underlying math lives in `S_AdjustSoundParams`, which uses a pseudo-Euclidean distance formula — `adx + ady - min(adx, ady)/2` — to approximate true distance without a square root. It then consults the player's facing angle to derive stereo panning, placing enemies convincingly to the left or right. On Sound Blaster hardware with no 3D audio API, this lightweight formula was the only tool available, and it worked remarkably well. Sounds beyond 1200 map units were silenced entirely, and sources within 160 units played at full volume, giving designers a reliable audible bubble around every threat. These techniques — efficient distance approximation, angle-based panning, and pitch randomization — became foundational patterns in game audio, influencing engines from Quake to Source."
   - id: "sound-channel-priority-management"
-    line_start: 745
-    line_end: 817
+    line_start: 493
+    line_end: 503
     title: "How DOOM Decided Which Sound to Play"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""

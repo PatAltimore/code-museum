@@ -38,16 +38,16 @@ enhancements:
     image_caption: ""
     content: "This section defines two 256x3 arrays, `palette1` and `palette2`, which store RGB color values for VGA graphics. These palettes were critical for controlling the appearance of the game, as VGA hardware allowed only 256 colors to be displayed simultaneously. By manipulating these palettes, the developers could create effects like fading, color transitions, and dynamic lighting. In 1992, VGA was the dominant graphics standard for MS-DOS games, and efficient use of its capabilities was essential for achieving smooth and visually appealing gameplay. The approach here influenced later games that relied on similar palette manipulation techniques for visual effects, including Doom and Quake."
   - id: "vga-plane-mode-switch"
-    line_start: 35
-    line_end: 57
+    line_start: 107
+    line_end: 122
     title: "Switching VGA to Plane Mode for Speed"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
     image_url: ""
     image_caption: ""
     content: "The `VL_SetVGAPlaneMode` function switches the VGA graphics card into a mode where the screen is divided into four memory planes. This mode allows for more efficient rendering by enabling direct access to specific planes. The function uses BIOS interrupt 0x10 to set the graphics mode and then adjusts VGA registers to optimize rendering. Plane mode was a common technique in the early 1990s for maximizing performance on hardware with limited memory bandwidth. By leveraging this mode, Wolfenstein 3D achieved its signature fast-paced gameplay. This technique influenced other developers working on VGA-based games, setting a standard for efficient graphics programming."
   - id: "clear-video-buffer"
-    line_start: 35
-    line_end: 57
+    line_start: 139
+    line_end: 172
     title: "Clearing the Video Buffer in One Sweep"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
     image_url: ""

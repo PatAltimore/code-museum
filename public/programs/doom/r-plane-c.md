@@ -24,16 +24,16 @@ summary:
 
 enhancements:
   - id: "visplane-data-structure"
-    line_start: 46
-    line_end: 55
+    line_start: 96
+    line_end: 177
     title: "The Data Structure That Solved Overdraw"
     wikipedia_url: "https://doomwiki.org/wiki/Visplane"
     image_url: ""
     image_caption: ""
     content: "The visplane data structure is central to DOOM's floor and ceiling rendering. It tracks regions of the screen that correspond to a specific height, texture, and light level. By grouping pixels into contiguous spans, visplanes prevent redundant rendering of overlapping areas, a problem known as overdraw. In 1993, consumer PCs were limited by slow CPUs and no dedicated GPUs, making efficient algorithms critical. John Carmack devised the visplane system to minimize computational overhead while maintaining visual fidelity. This approach allowed DOOM to render complex 3D environments in real time on hardware like the Intel 486. The visplane concept influenced later engines, including Quake, and remains a foundational idea in optimizing rasterization for real-time graphics."
   - id: "r-mapplane-function"
-    line_start: 106
-    line_end: 177
+    line_start: 180
+    line_end: 358
     title: "Mapping Pixels to World Coordinates"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -41,15 +41,15 @@ enhancements:
     content: "The `R_MapPlane` function calculates texture mapping for floor and ceiling spans. It uses precomputed values like `yslope` and `distscale` to determine the distance from the viewer to each pixel, enabling accurate perspective correction. This was a critical innovation in DOOM's rendering pipeline, as it allowed textures to appear correctly aligned and scaled despite the lack of hardware acceleration. Carmack's use of fixed-point arithmetic ensured precision while avoiding the performance hit of floating-point calculations. This function exemplifies the ingenuity required to deliver immersive graphics on early PCs. Techniques from `R_MapPlane` influenced later advancements in texture mapping, including mipmapping and anisotropic filtering in modern GPUs."
   - id: "r-clearplanes-function"
     line_start: 180
-    line_end: 208
+    line_end: 358
     title: "Resetting the Frame for Efficient Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Frame_buffer"
     image_url: ""
     image_caption: ""
     content: "The `R_ClearPlanes` function initializes data structures at the start of each frame, including `floorclip` and `ceilingclip` arrays that define the visible bounds of floors and ceilings. It also resets cached height values and calculates texture scaling based on the player's view angle. This setup ensures that rendering begins with a clean slate, avoiding artifacts and maintaining performance. In the early 1990s, memory management was a critical concern, as PCs had limited RAM and no virtual memory. By efficiently resetting and reusing buffers, DOOM could maintain high frame rates even in complex scenes. This approach influenced later real-time rendering systems, including those in Quake and Unreal Engine."
   - id: "r-findplane-function"
-    line_start: 213
-    line_end: 258
+    line_start: 362
+    line_end: 452
     title: "Grouping Pixels by Height and Texture"
     wikipedia_url: "https://doomwiki.org/wiki/Visplane"
     image_url: ""

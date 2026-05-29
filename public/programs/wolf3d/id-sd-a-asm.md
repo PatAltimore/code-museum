@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "data-segment-setup"
     line_start: 17
-    line_end: 58
+    line_end: 83
     title: "Why Sound Data Needs Its Own Segment"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
     image_url: ""
@@ -47,7 +47,7 @@ enhancements:
     content: "The `COMMONSTART` macro encapsulates boilerplate setup code for sound routines. It pushes registers onto the stack, sets the data segment, and increments a debug counter. Macros like this were essential in assembly programming, reducing repetitive code and minimizing errors. Debugging tools were rudimentary in 1992, so macros provided a way to standardize operations across multiple routines. The inclusion of debug-specific instructions, such as changing the overscan color, highlights the team's focus on testing under constrained conditions. This macro reflects the meticulous attention to detail required to develop complex software on early PCs. The practice of using macros for common setup tasks influenced later programming paradigms, including inline functions in C and preprocessor directives in modern languages."
   - id: "pc-speaker-sound-effect"
     line_start: 123
-    line_end: 176
+    line_end: 205
     title: "How Wolfenstein Made the PC Speaker Sing"
     wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
     image_url: ""
@@ -63,7 +63,7 @@ enhancements:
     content: "This section manages sound effects for the AdLib sound card, a popular audio device in the early 1990s. The code interacts with the AdLib's FM synthesis capabilities, sending frequency and block data to its registers via the `alOut` routine. The AdLib card was revolutionary, offering richer audio compared to the PC speaker. Its FM synthesis allowed developers to create dynamic soundscapes, enhancing immersion in games like Wolfenstein 3D. The routines here demonstrate id Software's mastery of hardware-level programming, using direct register manipulation to achieve precise control over audio playback. The AdLib's influence extended far beyond Wolfenstein, shaping the soundtracks of countless DOS games and establishing FM synthesis as a staple of early PC gaming."
   - id: "timer-driven-sound-service"
     line_start: 276
-    line_end: 345
+    line_end: 341
     title: "Interrupts: The Secret to Real-Time Sound"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""

@@ -30,55 +30,39 @@ summary:
 
 enhancements:
   - id: "foundation-alias-models"
-    line_start: 1
-    line_end: 17
-    title: "Alias Models: A Foundation for 3D Graphics"
+    line_start: 79
+    line_end: 245
+    title: "Alias Model Foundations: Constants, Structures, and Frustum Culling"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_computer_graphics"
     image_url: ""
     image_caption: ""
-    content: "This section sets up foundational constants and variables for alias model rendering, including light minimum thresholds and affine triangle descriptors. Alias models were id Software's solution for rendering 3D objects efficiently on hardware like the Intel 80386. By minimizing light clamping and predefining structures, the code ensures smooth rendering while avoiding computational overhead. In 1996, 3D graphics were still in their infancy, and developers had to work within tight constraints of memory and processing power. John Carmack and Michael Abrash, known for their expertise in optimization, designed this system to balance performance and visual fidelity. The alias model approach influenced later engines like Unreal Engine and Unity, which adopted similar techniques for handling 3D objects efficiently."
+    content: "This large section establishes the alias model subsystem from its global constants to the first major optimization gate. LIGHT_MIN sets the floor for per-vertex lighting so the inner draw loop never needs to clamp against zero, and the affine triangle descriptor structures lay out the data passed between the setup and rasterization stages. R_AliasCheckBBox then tests whether the model's axis-aligned bounding box falls entirely outside the view frustum, discarding it before any further work is done. Frustum culling was critical on mid-1990s hardware: skipping invisible models freed CPU cycles that were desperately needed for visible ones. id Software's combination of tightly defined data structures and an early rejection test became a template for alias model pipelines in subsequent engines, including the Quake II and Half-Life renderers."
   - id: "vertex-normals-lighting"
-    line_start: 58
-    line_end: 61
-    title: "Vertex Normals: Lighting Made Efficient"
+    line_start: 248
+    line_end: 258
+    title: "Precomputed Vertex Normals and Model-Space Vector Transforms"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vertex_normal"
     image_url: ""
     image_caption: ""
-    content: "This section defines a lookup table for vertex normals, used to calculate lighting effects on 3D models. The table, stored in 'anorms.h', contains precomputed normal vectors for 162 orientations, enabling fast lighting calculations without runtime computation. In the mid-1990s, real-time lighting was a significant challenge due to limited hardware capabilities. By using precomputed normals, Quake achieved realistic shading while maintaining high performance. This technique became a standard in 3D graphics, influencing games and engines that followed. Modern graphics pipelines still use similar optimizations, albeit with more advanced shaders and hardware acceleration."
-  - id: "bounding-box-check"
-    line_start: 86
-    line_end: 249
-    title: "Bounding Box Check: Rejecting Invisible Models"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"
-    image_url: ""
-    image_caption: ""
-    content: "The 'R_AliasCheckBBox' function determines whether a model's bounding box is visible on the screen, rejecting models that are entirely outside the view frustum. This optimization prevents unnecessary rendering calculations for objects that won't appear in the final frame. In the 1990s, frustum culling was a critical technique for maintaining performance in 3D games. By focusing computational resources only on visible objects, Quake could deliver smooth gameplay on hardware with limited processing power. This approach laid the groundwork for modern culling techniques used in engines like Unreal and Unity, which extend the concept to more complex visibility checks."
-  - id: "transform-vector-matrix"
-    line_start: 250
-    line_end: 262
-    title: "Transforming Vectors with Matrices"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Transformation_matrix"
-    image_url: ""
-    image_caption: ""
-    content: "The 'R_AliasTransformVector' function applies a transformation matrix to a vector, converting model coordinates into world coordinates. This is a fundamental operation in 3D graphics, enabling models to be positioned and oriented in a scene. In the era of Quake's development, matrix transformations were computationally expensive, but essential for creating dynamic 3D environments. John Carmack's implementation balances precision and performance, leveraging the capabilities of x86 processors. This technique remains a cornerstone of 3D graphics, with modern GPUs accelerating matrix operations for real-time rendering."
+    content: "This short section includes the precomputed normal table from anorms.h — 162 unit vectors distributed roughly uniformly over the sphere — and implements R_AliasTransformVector, which multiplies a model-space vector by the current alias transform matrix to produce a view-space result. The normal table lets lighting be computed as a simple dot product with a table lookup rather than a cosine calculation, a significant saving on processors without fast floating-point. R_AliasTransformVector is called repeatedly during transform setup and gradient calculation, so its tight three-multiply-and-add form was critical to frame rate. Together they represent id Software's standard approach to avoiding runtime trigonometry and matrix inversion on 1996 hardware, a style that carried forward into Quake II and beyond."
   - id: "setup-transform-matrix"
-    line_start: 334
-    line_end: 411
+    line_start: 332
+    line_end: 457
     title: "Setting Up Transformation Matrices"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transformation_matrix"
     image_url: ""
     image_caption: ""
     content: "The 'R_AliasSetUpTransform' function initializes transformation matrices for alias models, combining scaling, rotation, and translation. This prepares models for rendering in world space. In 1996, matrix operations were a computational bottleneck, but essential for realistic 3D graphics. Carmack's implementation optimizes these calculations, ensuring Quake's models could be rendered efficiently on consumer hardware. This method influenced later engines, which adopted similar matrix setups for handling transformations in 3D scenes."
   - id: "lighting-setup"
-    line_start: 629
-    line_end: 661
+    line_start: 627
+    line_end: 658
     title: "Lighting Setup: Guaranteeing Minimum Brightness"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The 'R_AliasSetupLighting' function ensures that no vertex is lit below a minimum brightness level, avoiding overly dark scenes. It also rotates the lighting vector into the model's frame of reference, enabling directional lighting effects. In the mid-1990s, lighting calculations were constrained by hardware limitations, requiring clever optimizations to achieve realism. This function reflects id Software's commitment to visual fidelity, ensuring Quake's environments felt immersive despite technical constraints. The principles here influenced modern lighting systems, which build on these foundations with advanced shaders and dynamic lighting."
   - id: "draw-model-alias"
-    line_start: 715
+    line_start: 713
     line_end: 767
     title: "Drawing Alias Models: The Final Step"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"

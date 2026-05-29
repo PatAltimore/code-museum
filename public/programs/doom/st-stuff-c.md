@@ -29,22 +29,14 @@ summary:
     link_label: "DOOM Status Bar"
 
 enhancements:
-  - id: "status-bar-constants"
-    line_start: 728
-    line_end: 742
-    title: "Why DOOM's Status Bar Was Perfectly Positioned"
+  - id: "status-bar-layout-and-cheat-codes"
+    line_start: 493
+    line_end: 511
+    title: "The Constants That Defined DOOM's HUD and Hid Its Cheat Codes"
     wikipedia_url: "https://doomwiki.org/wiki/Status_bar"
     image_url: ""
     image_caption: ""
-    content: "This section defines constants for the layout and behavior of DOOM's status bar, including positions, dimensions, and color palettes for various elements like health, armor, weapons, and keys. The status bar was designed to fit neatly within the bottom portion of the screen, ensuring it didn't obstruct gameplay while providing critical information at a glance. In 1993, screen resolutions were limited, typically 320x200 pixels, so every pixel had to be used efficiently. The constants here reflect a meticulous effort to balance functionality and aesthetics. This design became iconic, influencing HUD layouts in countless games that followed, from Quake to modern FPS titles."
-  - id: "cheat-code-implementation"
-    line_start: 745
-    line_end: 921
-    title: "How DOOM Hid Its Cheat Codes in Plain Sight"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Cheating_in_video_games"
-    image_url: ""
-    image_caption: ""
-    content: "This section implements DOOM's cheat codes, including 'IDDQD' (god mode), 'IDKFA' (full ammo and keys), and 'IDSPISPOPD' (no clipping). The codes are stored as sequences of hexadecimal values, making them harder to decipher directly from the binary. Cheat codes were a staple of 1990s gaming, providing players with a way to experiment, explore, or simply have fun without the usual constraints. John Carmack and John Romero included these cheats partly as debugging tools during development. Their inclusion in the final game added to DOOM's mystique, as players shared and discovered them through word of mouth and gaming magazines. Cheat codes became a cultural phenomenon, influencing games like GTA and The Sims."
+    content: "This section simultaneously establishes two of DOOM's most iconic features. The first half is a dense block of `#define` constants pinning every pixel of the status bar in place — ammo readout at column 44, health at 90, face widget at 143, armor at 221, keys at 239, and so on — all within the 320x200-pixel screen that 1993 PCs offered. With no resolution scaling or dynamic layouts, these hardcoded positions had to be right the first time, and the meticulous pixel-counting reflects the team's care in making the HUD both functional and visually tight. The bar's design became iconic, influencing first-person shooter HUD conventions for decades. The second half introduces the cheat code sequences: byte arrays like `0xb2, 0x26, 0x26, 0xaa, 0x26` for IDDQD and `0xb2, 0x26, 0xea, 0x2a, 0xb2, 0xea, 0x2a, 0xf6, 0x2a, 0x26` for IDSPISPOPD. The values are simple character encodings obfuscated just enough to slow down casual hex-dumping of the binary — John Romero's comment says it all: 'Massive bunches of cheat shit to keep it from being easy to figure them out. Yeah, right...' These codes began as development shortcuts and became a cultural phenomenon, shared in gaming magazines and on bulletin board systems before the internet made them trivial to find. The tradition they started — hidden debug codes left in for players — shaped gaming culture well into the era of Grand Theft Auto and beyond."
   - id: "status-bar-refresh"
     line_start: 923
     line_end: 985

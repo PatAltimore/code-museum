@@ -5,7 +5,8 @@ Highlights are the most memorable, technically fascinating, and influential feat
 They are the things that made it legendary: the innovations that changed how software or games were built, \
 the tricks that made developers' jaws drop, the moments that defined a genre or an industry.
 
-You will receive a program's metadata and a list of its annotated source files with their section titles. \
+You will receive a program's metadata, a list of its annotated source files with their section titles, \
+and when available, the Wikipedia article about the program. \
 Use this to identify which files contain the code behind each highlight.
 
 Output valid JSON only — no markdown fences and no extra text:
@@ -41,10 +42,18 @@ Rules:
 - Write past tense for history; present tense for what the code does
 - Do not end any paragraph with: "This underscores", "This highlights", "This reflects", \
   "This reinforces", "This exemplifies", "It is worth noting", "It is important to note"
+- FACTUAL ACCURACY: When a Wikipedia article is provided, treat it as the authoritative \
+  source for all historical claims. Do not assert facts that contradict or are absent from \
+  the Wikipedia article. Only use "first" or superlative claims if the Wikipedia article \
+  supports them explicitly.
 """
 
 
-def build_highlights_prompt(program: dict, files_with_enhancements: list[dict]) -> list[dict]:
+def build_highlights_prompt(
+    program: dict,
+    files_with_enhancements: list[dict],
+    wiki_text: str | None = None,
+) -> list[dict]:
     """Build a prompt for generating program highlights.
 
     files_with_enhancements: list of dicts with:
@@ -61,6 +70,13 @@ def build_highlights_prompt(program: dict, files_with_enhancements: list[dict]) 
         parts.append(f"Platform: {program['subtitle']}")
     if program.get("context"):
         parts.append(f"Historical context: {program['context'].strip()}")
+
+    if wiki_text:
+        parts.append(
+            "\n--- Wikipedia article (authoritative factual source) ---\n"
+            + wiki_text.strip()
+            + "\n--- End Wikipedia article ---"
+        )
 
     parts.append("\nAnnotated source files (slug — title):")
     for f in files_with_enhancements:

@@ -94,7 +94,7 @@ enhancements:
     image_caption: ""
     content: "The `P_SpawnPlayer` function initializes players when they enter a level, setting properties like health, position, and view height. It also equips players with all keycards in deathmatch mode, ensuring they can access every area. This function highlights DOOM's focus on multiplayer accessibility and level design flexibility. The concept of player spawning influenced multiplayer game design in titles like Counter-Strike and Call of Duty, where spawn points are critical for gameplay balance."
   - id: "spawn-missile"
-    line_start: 884
+    line_start: 862
     line_end: 926
     title: "Missile Spawning: Precision and Chaos Combined"
     wikipedia_url: "https://doom.fandom.com/wiki/Missile"

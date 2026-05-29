@@ -29,73 +29,65 @@ summary:
     link_label: "GPL"
 
 enhancements:
-  - id: "foundation-initialization"
-    line_start: 1
-    line_end: 17
-    title: "Foundation: Setting Up Rendering Variables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section initializes key variables for the rendering system, such as the world entity, visibility frame count, and texture management. These variables are foundational to Quake's rendering pipeline, enabling efficient tracking of visible objects and textures. In 1996, hardware limitations such as low memory and slow processors necessitated careful management of resources. John Carmack and his team at id Software optimized every aspect of the rendering process to ensure smooth gameplay on machines like the Intel 486 and early Pentium processors. This groundwork paved the way for techniques like texture caching and visibility determination, which influenced later engines such as Unreal Engine and Source Engine."
   - id: "r-cullbox-frustum-check"
-    line_start: 106
-    line_end: 118
-    title: "Frustum Check: Efficient Visibility Testing"
+    line_start: 104
+    line_end: 119
+    title: "Frustum Culling: The Gate Before Every Draw Call"
     wikipedia_url: "https://en.wikipedia.org/wiki/Frustum_culling"
     image_url: ""
     image_caption: ""
-    content: "The `R_CullBox` function determines whether a bounding box is entirely outside the viewing frustum, a key optimization for rendering only visible objects. This technique, known as frustum culling, was essential in 1996 due to the limited computational power of consumer hardware. By skipping the rendering of objects outside the player's view, Quake achieved significant performance gains. The approach was inspired by earlier 3D graphics research but refined by id Software for real-time gameplay. Frustum culling remains a standard practice in modern game engines, ensuring efficient rendering in titles like Unity and Unreal Engine."
+    content: "This small section is the entry point to Quake's visibility pipeline. The `extern cvar_t scr_fov` declaration ties the rendering module to the player's field-of-view setting, and `R_CullBox` uses the four precomputed frustum planes (built each frame in `R_SetFrustum`) to test whether an axis-aligned bounding box lies entirely outside the view volume. The test is four `BoxOnPlaneSide` calls — one per frustum plane — and returns true on the first miss, so objects far off screen exit in a single test. In 1996, when even a Pentium could be overwhelmed by transform overhead, skipping any geometry outside the frustum was a meaningful win. The technique carries forward unchanged into id Tech 2 and 3, and the same pattern — precompute per-frame planes, test AABBs before submitting to the GPU — remains the standard first-pass culling step in virtually every real-time renderer today."
   - id: "r-getspriteframe-animation"
-    line_start: 142
-    line_end: 193
+    line_start: 132
+    line_end: 189
     title: "Sprite Animation: Choosing the Right Frame"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `R_GetSpriteFrame` function selects the appropriate animation frame for a sprite based on the current time and entity state. This enables smooth animations for objects like explosions or character movements. In the mid-1990s, sprite-based animations were a common technique for representing dynamic objects in games. Quake's implementation extended this approach to a 3D environment, blending traditional 2D techniques with cutting-edge 3D rendering. This method influenced the development of hybrid 2D/3D systems in later games, such as Diablo II and StarCraft."
   - id: "gl-drawaliasframe-triangle-rendering"
-    line_start: 290
-    line_end: 339
+    line_start: 288
+    line_end: 335
     title: "Triangle Rendering: Alias Model Frames"
     wikipedia_url: "https://en.wikipedia.org/wiki/Triangle_mesh"
     image_url: ""
     image_caption: ""
     content: "The `GL_DrawAliasFrame` function renders a single frame of an alias model using triangle strips and fans. This approach minimizes the number of vertices sent to the GPU, optimizing performance on hardware with limited processing power. In 1996, GPUs lacked the advanced capabilities of modern hardware, so efficient use of primitives like triangles was crucial. Quake's alias model system laid the groundwork for modern mesh-based rendering techniques, influencing engines like Unreal and CryEngine."
   - id: "r-setupgl-viewpoint-setup"
-    line_start: 856
-    line_end: 939
+    line_start: 854
+    line_end: 936
     title: "Viewpoint Setup: Transforming the Camera"
     wikipedia_url: "https://en.wikipedia.org/wiki/Camera_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `R_SetupGL` function configures the OpenGL projection and modelview matrices to match the player's viewpoint. This transformation ensures that the rendered scene aligns with the player's perspective. In the mid-1990s, OpenGL was emerging as a powerful tool for 3D graphics, and Quake's use of it demonstrated its potential for real-time applications. This setup process became a standard in 3D engines, influencing the design of graphics APIs like DirectX and Vulkan."
   - id: "r-render-scene-pipeline"
-    line_start: 940
-    line_end: 975
+    line_start: 938
+    line_end: 971
     title: "Rendering Pipeline: Building the Scene"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `R_RenderScene` function orchestrates the rendering pipeline, combining frustum culling, lighting, and entity drawing into a cohesive process. This function represents the culmination of Quake's rendering system, showcasing the team's ability to balance performance and visual fidelity. By leveraging techniques like dynamic lighting and particle effects, Quake set a new standard for real-time graphics. This pipeline influenced the development of subsequent engines, including Unreal Engine and Source Engine, and remains a foundational concept in modern game development."
   - id: "r-clear-depth-buffer-trick"
-    line_start: 976
-    line_end: 1028
+    line_start: 974
+    line_end: 1024
     title: "Depth Buffer Trick: Optimizing Z-Clears"
     wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"
     image_url: ""
     image_caption: ""
     content: "The `R_Clear` function implements a clever optimization for clearing the depth buffer using a technique known as 'z-trick'. By alternating depth ranges between frames, Quake reduces the need for full buffer clears, improving performance on hardware with limited memory bandwidth. This trick was particularly effective on mid-1990s GPUs, which struggled with the demands of real-time 3D rendering. The approach inspired similar optimizations in later engines, contributing to the evolution of efficient graphics rendering techniques."
   - id: "mirror-rendering-reflective-surfaces"
-    line_start: 1029
-    line_end: 1097
+    line_start: 1026
+    line_end: 1093
     title: "How Quake Simulated Reflective Mirrors"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mirror_(computing)"
     image_url: ""
     image_caption: ""
     content: "This section of code implements the `R_Mirror` function, which handles rendering reflective surfaces in Quake. The function begins by checking if a mirror surface exists (`mirror` variable) and exits early if none is present. It then manipulates the view matrix and angles to simulate the reflection by flipping the player's perspective relative to the mirror plane. This involves calculating a dot product and applying transformations to the view origin and direction vectors. The depth buffer (`glDepthRange`) is adjusted to ensure proper layering of the mirrored scene. The mirrored scene is rendered using `R_RenderScene` and `R_DrawWaterSurfaces`, followed by blending the mirror texture on top using OpenGL functions like `glEnable(GL_BLEND)` and `glScalef`. Finally, brush polygons associated with the mirror texture are rendered, and blending is disabled. In 1996, rendering realistic reflections was a significant challenge due to hardware limitations. Quake's approach used clever matrix manipulations and OpenGL state changes to simulate mirrors without requiring additional hardware support. John Carmack and Michael Abrash were pioneers in pushing the boundaries of real-time graphics, leveraging their deep understanding of mathematics and hardware constraints. This technique was groundbreaking for its time, as it allowed immersive environments with reflective surfaces on consumer-grade hardware. The mirror rendering technique influenced later games and engines, such as Unreal Engine and Source Engine, which adopted similar concepts for reflective surfaces. It also inspired developers to explore advanced rendering effects, leading to innovations like real-time ray tracing decades later. Quake's source code, released under GPL in 1999, became a treasure trove for aspiring game developers, spreading these techniques across the industry."
   - id: "view-rendering-conditional-optimization"
-    line_start: 1098
-    line_end: 1142
+    line_start: 1094
+    line_end: 1144
     title: "Rendering the Player's View with Speed in Mind"
     wikipedia_url: "https://en.wikipedia.org/wiki/Optimization_(computer_science)"
     image_url: ""

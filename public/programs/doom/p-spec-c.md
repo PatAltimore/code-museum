@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "texture-animation-structures"
     line_start: 55
-    line_end: 78
+    line_end: 67
     title: "Animating Textures: A Simple Yet Effective Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
@@ -39,7 +39,7 @@ enhancements:
     content: "This section defines structures and data for animating textures and planes in DOOM. The `anim_t` and `animdef_t` structures specify the animation properties, such as whether the animation applies to textures or flats, the sequence of frames, and the speed of the animation. The `animdefs` array lists predefined animations, including iconic effects like flowing lava and dripping blood. In 1993, texture animation was a novel way to make environments feel alive and dynamic, especially on hardware with limited graphical capabilities. John Carmack's approach leveraged the WAD file format to define animations using sequential frames found in the game's resource files. This technique inspired later games to use similar methods for environmental effects, and it remains a fundamental concept in modern game engines like Unity and Unreal Engine."
   - id: "initialize-texture-animations"
     line_start: 147
-    line_end: 186
+    line_end: 192
     title: "Initializing Texture Animations: A WAD-driven Method"
     wikipedia_url: "https://en.wikipedia.org/wiki/DOOM_WAD"
     image_url: ""
@@ -55,7 +55,7 @@ enhancements:
     content: "Functions like `getSide`, `getSector`, `twoSided`, and `getNextSector` provide essential utilities for navigating and querying DOOM's sector-based level geometry. These functions allow the game to determine properties of adjacent sectors, such as whether a line is two-sided or which sector lies on the other side of a line. In the early 1990s, sector-based level design was a practical solution for creating complex environments on limited hardware. DOOM's efficient handling of sector relationships enabled dynamic interactions like doors, lifts, and teleportation. This approach influenced the design of other games that used similar geometry systems, including Duke Nukem 3D and Build Engine games."
   - id: "floor-and-ceiling-height-algorithms"
     line_start: 265
-    line_end: 425
+    line_end: 380
     title: "Finding Heights: Algorithms for Dynamic Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Algorithm"
     image_url: ""
@@ -70,8 +70,8 @@ enhancements:
     image_caption: ""
     content: "The `P_FindSectorFromLineTag` function retrieves the next sector associated with a line tag, enabling scripted events like opening doors or triggering teleportation. Line tags were a simple yet powerful mechanism for defining interactions in DOOM's levels. By associating tags with sectors and lines, designers could create complex behaviors without hardcoding them into the game logic. This approach was a precursor to modern event-driven programming in games, where triggers and actions are defined declaratively. Line tags influenced the scripting systems of later games, including Quake's entity-based triggers and Half-Life's input-output system."
   - id: "light-level-calculations"
-    line_start: 1174
-    line_end: 1218
+    line_start: 1080
+    line_end: 1080
     title: "Dynamic Lighting: Calculating Surrounding Light Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(rendering)"
     image_url: ""

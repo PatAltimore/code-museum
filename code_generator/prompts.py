@@ -248,12 +248,26 @@ became standard practice
 "It is important to note"
 - Write in present tense for descriptions of what the code does; past tense for history
 - Be specific: name the people, the machines, the years, the dollar amounts, the deadlines
+- FACTUAL ACCURACY: Avoid unsupported superlatives. Only assert that something was \
+"the first" or "pioneered" something if you are certain of this from well-documented \
+history. When in doubt, prefer "among the earliest", "one of the first", or "influential \
+in popularizing" over absolute claims. Do not describe a program as "inventing" a genre \
+or technique if notable predecessors existed.
 """
 
 
 def _is_c_like(language: str) -> bool:
+    """Return True for C, C++, and mixed C/assembly language strings.
+
+    Matches the same logic as range_fixer._is_c_like so that files tagged
+    "C, x86 Assembly" use the C landmark extractor rather than the noisier
+    ASM extractor, which would treat type keywords like `unsigned` as labels.
+    """
     lang = language.lower()
-    return any(t in lang for t in ("c++", "c/c++", "objective-c")) or lang in ("c", "c++")
+    return (
+        any(t in lang for t in ("c++", "c/c++", " c ", "c,", "objective-c"))
+        or lang in ("c", "c++")
+    )
 
 
 def _c_landmarks(code_lines: list[str]) -> list[tuple[int, int, str]]:
@@ -363,18 +377,18 @@ def build_prompt(program: dict, file_cfg: dict, code_lines: list[str]) -> list[d
     # Pre-parse structural boundaries and inject a landmark table so the model
     # copies exact line numbers rather than counting manually.
     lang = program.get("language", "").lower()
-    if "assembly" in lang or "asm" in lang:
-        landmarks = _asm_landmarks(code_lines)
-        if landmarks:
-            context_parts.append("")
-            context_parts.append(_landmarks_block(landmarks, len(code_lines)))
-    elif _is_c_like(program.get("language", "")):
+    if _is_c_like(program.get("language", "")):
         c_lm = _c_landmarks(code_lines)
         if c_lm:
             block = _c_landmarks_block(c_lm, len(code_lines))
             if block:
                 context_parts.append("")
                 context_parts.append(block)
+    elif "assembly" in lang or "asm" in lang:
+        landmarks = _asm_landmarks(code_lines)
+        if landmarks:
+            context_parts.append("")
+            context_parts.append(_landmarks_block(landmarks, len(code_lines)))
 
     user_content = "\n".join(context_parts) + "\n\n" + numbered
 
@@ -422,7 +436,17 @@ def build_chunk_prompt(
 
     lang = program.get("language", "").lower()
     chunk_size = chunk_end - chunk_start + 1
-    if "assembly" in lang or "asm" in lang:
+    if _is_c_like(program.get("language", "")):
+        c_lm = _c_landmarks(code_lines)
+        chunk_c_lm = [(s, e, n) for s, e, n in c_lm
+                      if s >= chunk_start and e <= chunk_end]
+        if chunk_c_lm:
+            block = _c_landmarks_block(chunk_c_lm, chunk_end,
+                                       density_denominator=chunk_size)
+            if block:
+                context_parts.append("")
+                context_parts.append(block)
+    elif "assembly" in lang or "asm" in lang:
         landmarks = _asm_landmarks(code_lines)
         chunk_landmarks = [(ln, name) for ln, name in landmarks
                            if chunk_start <= ln <= chunk_end]
@@ -432,16 +456,6 @@ def build_chunk_prompt(
                 chunk_end,
                 density_denominator=chunk_size,
             )
-            if block:
-                context_parts.append("")
-                context_parts.append(block)
-    elif _is_c_like(program.get("language", "")):
-        c_lm = _c_landmarks(code_lines)
-        chunk_c_lm = [(s, e, n) for s, e, n in c_lm
-                      if s >= chunk_start and e <= chunk_end]
-        if chunk_c_lm:
-            block = _c_landmarks_block(chunk_c_lm, chunk_end,
-                                       density_denominator=chunk_size)
             if block:
                 context_parts.append("")
                 context_parts.append(block)

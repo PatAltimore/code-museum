@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "boolean-variable-initialization"
-    line_start: 20
-    line_end: 30
+    line_start: 112
+    line_end: 156
     title: "Why Boolean Variables Were Crucial"
     wikipedia_url: "https://en.wikipedia.org/wiki/Boolean_data_type"
     image_url: ""
@@ -46,24 +46,24 @@ enhancements:
     image_caption: ""
     content: "This section defines two lookup tables, `righttable` and `lefttable`, which are used to calculate sound positioning based on the player's location relative to sound sources. These tables precompute values to avoid expensive runtime calculations, a necessity given the limited processing power of early 1990s hardware. John Carmack and his team leveraged this technique to create immersive 3D audio effects, enhancing the player's experience. Lookup tables like these became a common optimization in game development, influencing later titles such as Doom and Quake, where similar techniques were used for lighting and texture mapping."
   - id: "set-sound-location"
-    line_start: 41
-    line_end: 93
+    line_start: 112
+    line_end: 156
     title: "How Sound Was Positioned in 3D Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/3D_audio_effects"
     image_url: ""
     image_caption: ""
     content: "The `SetSoundLoc` function calculates the relative position of a sound source to the player's ears, using trigonometric transformations and the precomputed lookup tables. This method allowed Wolfenstein 3D to simulate directional sound, a groundbreaking feature for its time. The function's design reflects the team's focus on maximizing immersion within the constraints of MS-DOS and Sound Blaster hardware. This approach laid the groundwork for advanced sound systems in later games, influencing audio engines like FMOD and OpenAL."
   - id: "scan-info-plane"
-    line_start: 41
-    line_end: 93
+    line_start: 211
+    line_end: 613
     title: "Dynamic Actor Spawning from Map Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/Procedural_generation"
     image_url: ""
     image_caption: ""
     content: "The `ScanInfoPlane` function reads map data to spawn actors and place objects dynamically. This technique allowed the developers to create varied and complex levels without manually placing every entity. By interpreting tile values from the map, the game could adjust difficulty and populate levels with enemies, items, and special objects. This approach was influenced by earlier games like Rogue and Ultima, which used similar methods for procedural generation. The technique became a staple in game development, appearing in titles like Diablo and Minecraft, where dynamic content generation is central to gameplay."
   - id: "setup-game-level"
-    line_start: 41
-    line_end: 93
+    line_start: 42
+    line_end: 44
     title: "Building Levels on the Fly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Level_generation"
     image_url: ""
@@ -86,7 +86,7 @@ enhancements:
     image_caption: ""
     content: "The `StartDemoRecord` function initializes a demo recording system, capturing gameplay data for later playback. This feature served multiple purposes: debugging, marketing, and showcasing the game's capabilities. Demo recording was a novel concept at the time, allowing developers to share gameplay sequences without requiring users to play the game themselves. This technique influenced later games like Quake and Counter-Strike, where demo recording became a standard feature for esports and community content creation."
   - id: "finish-demo-record"
-    line_start: 927
+    line_start: 937
     line_end: 965
     title: "Saving Demos for Posterity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_demo"
@@ -118,8 +118,8 @@ enhancements:
     image_caption: ""
     content: "The 'Died' routine animates the player's death, including a dramatic rotation to face the attacker and a fade-to-red effect. It calculates the angle between the player and the killer using the atan2 function, then rotates the player's view smoothly to match. This visual feedback added immersion and emphasized the consequences of failure. In 1992, such animations were rare in first-person games, as most focused on static transitions or simple effects. The use of trigonometry and smooth interpolation demonstrated id Software's commitment to creating a visceral experience. This technique influenced later games, including Doom, which expanded on death animations with more elaborate effects and sound design."
   - id: "game-loop-management"
-    line_start: 94
-    line_end: 1244
+    line_start: 45
+    line_end: 110
     title: "The Loop That Runs Wolfenstein"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""

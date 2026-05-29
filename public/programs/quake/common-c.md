@@ -30,32 +30,32 @@ summary:
 
 enhancements:
   - id: "foundation-initialization-constants"
-    line_start: 1
-    line_end: 33
+    line_start: 101
+    line_end: 101
     title: "Why Quake Needed Safe Startup Defaults"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section sets up foundational constants and variables for Quake's initialization process, including safe defaults for command-line arguments (`safeargvs`) and a zeroed user command (`nullcmd`). At the time, PCs varied widely in hardware and configuration, and games often failed to run due to incompatible settings. By defining safe defaults, id Software ensured Quake could start reliably across different systems. This approach reflects John Carmack's philosophy of robustness, minimizing user frustration while debugging. The safe argument list also hints at the modularity of Quake's design, allowing features like sound and joystick support to be toggled off for compatibility or testing. This initialization strategy influenced later games and engines, including the Unreal Engine and Source Engine, which adopted similar practices for handling diverse hardware environments."
+    content: "This section sets up foundational constants and variables for Quake's initialization process, including safe defaults for command-line arguments (safeargvs) and a zeroed user command (nullcmd). At the time, PCs varied widely in hardware and configuration, and games often failed to run due to incompatible settings. By defining safe defaults, id Software ensured Quake could start reliably across different systems. This approach reflects John Carmack's philosophy of robustness, minimizing user frustration while debugging. The safe argument list also hints at the modularity of Quake's design, allowing features like sound and joystick support to be toggled off for compatibility or testing. This initialization strategy influenced later games and engines, including the Unreal Engine and Source Engine, which adopted similar practices for handling diverse hardware environments."
   - id: "pop-graphic-check"
-    line_start: 59
-    line_end: 80
+    line_start: 61
+    line_end: 98
     title: "The Graphic That Prevented Piracy"
     wikipedia_url: "https://en.wikipedia.org/wiki/Software_piracy"
     image_url: ""
     image_caption: ""
     content: "The `pop` array defines a graphic used to verify whether the game is running with official data files. This was a clever anti-piracy measure: if the graphic was missing or altered, certain features would be disabled. In the mid-1990s, software piracy was rampant, and developers often relied on creative methods to protect their intellectual property. By embedding this check directly into the code, id Software ensured that unauthorized modifications to the game's data files would be detected. This technique was later studied by other developers looking for non-intrusive ways to enforce licensing, influencing approaches in games like Half-Life and Diablo II."
   - id: "clearlink-and-linked-list-management"
-    line_start: 49
-    line_end: 59
+    line_start: 102
+    line_end: 126
     title: "How Quake Managed Dynamic Linked Lists"
     wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
     image_url: ""
     image_caption: ""
-    content: "This section defines functions for managing linked lists, including `ClearLink`, `RemoveLink`, and `InsertLinkBefore/After`. Linked lists were a common data structure in the 1990s, used for dynamic memory management and efficient traversal. Quake relied on linked lists for various subsystems, such as entity management and collision detection. These functions demonstrate id Software's focus on performance and modularity, ensuring that list operations were both fast and reusable. Michael Abrash, known for his expertise in optimization, likely contributed to these routines. The use of linked lists in Quake influenced later game engines, which adopted similar structures for handling dynamic game objects."
+    content: "This section defines functions for managing linked lists, including ClearLink, RemoveLink, and InsertLinkBefore/After. Linked lists were a common data structure in the 1990s, used for dynamic memory management and efficient traversal. Quake relied on linked lists for various subsystems, such as entity management and collision detection. These functions demonstrate id Software's focus on performance and modularity, ensuring that list operations were both fast and reusable. Michael Abrash, known for his expertise in optimization, likely contributed to these routines. The use of linked lists in Quake influenced later game engines, which adopted similar structures for handling dynamic game objects."
   - id: "library-replacement-functions"
-    line_start: 61
-    line_end: 80
+    line_start: 128
+    line_end: 442
     title: "Why Quake Rewrote Standard Library Functions"
     wikipedia_url: "https://en.wikipedia.org/wiki/C_standard_library"
     image_url: ""
@@ -80,27 +80,19 @@ enhancements:
   - id: "com-skip-path-and-file-utilities"
     line_start: 49
     line_end: 80
-    title: "File Management Tricks for Game Modding"
+    title: "File Path Utilities, Registration Check, Safe Mode, and Byte-Order Init"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_modding"
     image_url: ""
     image_caption: ""
-    content: "Functions like `COM_SkipPath`, `COM_StripExtension`, and `COM_FileBase` simplify file path manipulation, enabling Quake's flexible file system. These utilities were essential for handling game assets and supporting mods, which often required custom file structures. By abstracting file operations, id Software made it easier for developers and modders to work with the game's data. This modular approach contributed to Quake's legacy as a highly moddable game, inspiring communities and tools like QuakeC and later modding frameworks for games like Skyrim and Minecraft."
+    content: "This broad section covers several foundational subsystems. Path-manipulation helpers like COM_SkipPath, COM_StripExtension, and COM_FileBase abstract file operations that mod authors depended on, making Quake unusually moddable for 1996. COM_CheckRegistered verifies the presence of pop.lmp using CRC comparison against the embedded pop[] array, gracefully falling back to shareware mode or exiting if restricted features are requested without a valid license. COM_InitArgv adds the six safe-mode switches (disabling sound, joystick, mouse, etc.) when the -safe flag is present, a robustness measure for crash recovery. COM_Init detects the system's byte order at runtime and assigns the correct ShortSwap/LongSwap/FloatSwap variants, ensuring data consistency between x86 (little-endian) clients and any big-endian server. Together these routines exemplify id Software's attention to cross-platform compatibility and user-friendly failure modes."
   - id: "com-parse-tokenization"
     line_start: 59
     line_end: 80
-    title: "Parsing Tokens for Command-Line Magic"
+    title: "How Quake Parses Tokens and Skips Whitespace and Comments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""
     image_caption: ""
-    content: "The `COM_Parse` function extracts tokens from strings, a crucial utility for handling command-line arguments and scripting. This capability allowed Quake to support complex configurations and commands, empowering users to customize their gameplay experience. The tokenization approach reflects id Software's focus on flexibility and user control, which became a defining feature of their games. Techniques like this influenced scripting systems in later engines, including Lua integration in World of Warcraft and Python scripting in Blender."
-  - id: "skipwhite-comment-handling"
-    line_start: 59
-    line_end: 80
-    title: "How Quake Parses Arguments and Ignores Comments"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
-    image_url: ""
-    image_caption: ""
-    content: "The `skipwhite` function is designed to parse input strings, skipping over whitespace and handling quoted strings and comments. This utility is crucial for processing command-line arguments and configuration files in Quake. At the time, parsing input efficiently was a necessity due to limited CPU power and memory. The function's ability to handle quoted strings and comments ensures flexibility in user input, allowing complex configurations to be expressed succinctly. John Carmack and Michael Abrash were known for their focus on optimization, and this function reflects their attention to detail in handling edge cases. This approach influenced later games and engines by demonstrating the importance of robust input parsing, which remains a standard practice in modern software development."
+    content: "The COM_Parse function extracts one token at a time from a string, and the skipwhite label inside it handles whitespace, C++-style line comments (//), and quoted strings as special cases. Together they form Quake's universal tokenizer, used for reading configuration files, console commands, and scripted sequences. At the time, parsing input efficiently on limited hardware was non-trivial, and handling edge cases like embedded quotes and comments was essential for a moddable game. The tokenizer's simplicity and predictability influenced later engines and scripting systems, including the console command parsers in Half-Life and the broader trend of embedding lightweight scripting in game engines."
   - id: "com-checkparm-argument-search"
     line_start: 45
     line_end: 47
@@ -109,30 +101,6 @@ enhancements:
     image_url: ""
     image_caption: ""
     content: "The `COM_CheckParm` function searches for specific arguments in the program's command-line input. It returns the position of the argument or zero if not found. This functionality is essential for enabling features like safe mode or debugging options. In the mid-1990s, command-line interfaces were a primary method for configuring software, especially in gaming. The function includes a workaround for a bug in NEXTSTEP, an operating system used during development, showcasing id Software's adaptability to diverse platforms. This technique influenced later engines by emphasizing the importance of flexible and reliable argument parsing, which is now a staple in game development and software engineering."
-  - id: "com-checkregistered-file-verification"
-    line_start: 49
-    line_end: 80
-    title: "Verifying Quake's Registration Status"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Software_registration"
-    image_url: ""
-    image_caption: ""
-    content: "The `COM_CheckRegistered` function checks for the presence and integrity of the `pop.txt` file to determine whether the user is running the registered or shareware version of Quake. It uses CRC checks to verify file integrity, a technique that ensures data hasn't been corrupted or tampered with. This was critical in the 1990s for enforcing software licensing and preventing piracy. The function also exits if an unregistered user attempts to access restricted features, reflecting the era's approach to shareware distribution. This method of file verification influenced later games and software by demonstrating the effectiveness of CRC checks for maintaining data integrity and enforcing licensing."
-  - id: "com-initargv-safe-mode"
-    line_start: 49
-    line_end: 80
-    title: "Enabling Safe Mode in Quake"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Safe_mode"
-    image_url: ""
-    image_caption: ""
-    content: "The `COM_InitArgv` function initializes the argument list, adding a safe mode option if specified. Safe mode forces certain switches to ensure stability, particularly useful for debugging or recovering from crashes. This feature reflects id Software's commitment to robustness, allowing users to troubleshoot issues without requiring extensive technical knowledge. The implementation reserves extra space for safe mode arguments, showcasing foresight in memory management. This approach influenced later software by highlighting the importance of stability features, which are now standard in operating systems and applications."
-  - id: "com-init-byte-swapping"
-    line_start: 49
-    line_end: 80
-    title: "Handling Byte Order for Cross-Platform Compatibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Endianness"
-    image_url: ""
-    image_caption: ""
-    content: "The `COM_Init` function sets up byte-swapping functions based on the system's endianness. Byte order differences between big-endian and little-endian systems were a significant challenge in the 1990s, especially for cross-platform software. By dynamically assigning the correct swapping functions, Quake ensures compatibility across diverse hardware architectures. This technique reflects id Software's expertise in low-level programming and optimization. The approach influenced later engines and software by demonstrating how to handle endianness efficiently, a practice that remains relevant in modern cross-platform development."
   - id: "com-loadpackfile-pak-file-system"
     line_start: 1630
     line_end: 1699
@@ -142,45 +110,29 @@ enhancements:
     image_caption: ""
     content: "The `COM_LoadPackFile` function loads and verifies Quake's pack files, which contain game assets like textures and models. It reads the pack file header and directory, checks for modifications using CRC, and parses the file list. Pack files were an innovative solution for organizing and compressing game data, enabling faster loading and easier distribution. The CRC check ensures the integrity of the files, preventing issues caused by corruption or tampering. This system influenced later games by popularizing the use of pack files for asset management, a practice still used in modern engines like Unity and Unreal."
   - id: "com-addgamedirectory-dynamic-paths"
-    line_start: 49
-    line_end: 57
+    line_start: 1702
+    line_end: 1747
     title: "Adding Game Directories Dynamically"
     wikipedia_url: "https://en.wikipedia.org/wiki/Filesystem"
     image_url: ""
     image_caption: ""
     content: "The `COM_AddGameDirectory` function adds a game directory to the search path and loads associated pack files. This modular approach allows Quake to dynamically switch between different game directories, enabling features like mods and expansions. By iterating through pack files in a directory, the function ensures that new assets override previous ones, providing flexibility for developers and users. This system reflects id Software's forward-thinking design, which influenced the development of modding frameworks in later games and engines. The ability to dynamically manage game directories remains a cornerstone of modern game development."
   - id: "info-valueforkey-key-value-parsing"
-    line_start: 59
-    line_end: 80
+    line_start: 1855
+    line_end: 1911
     title: "Parsing Key-Value Pairs in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Key-value_database"
     image_url: ""
     image_caption: ""
     content: "The `Info_ValueForKey` function searches a string for a specific key and returns its associated value. This utility is used for parsing configuration and metadata, a common requirement in games for handling settings and player information. The function uses a static buffer system to avoid overwriting data during comparisons, showcasing id Software's attention to detail in memory management. This approach influenced later games and engines by demonstrating efficient methods for handling key-value pairs, which are now ubiquitous in software development."
   - id: "info-setvalueforstarkey-validation"
-    line_start: 49
-    line_end: 59
-    title: "Why Quake Rejects Certain Characters in Keys"
+    line_start: 2007
+    line_end: 2082
+    title: "Validating, Setting, and Printing Multiplayer Key-Value Pairs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "This function, `Info_SetValueForStarKey`, validates and sets key-value pairs in a string format used for client-server communication. It rejects keys and values containing problematic characters like backslashes or quotes, which could disrupt parsing or introduce security vulnerabilities. It also enforces a maximum length for keys and values to prevent buffer overflows. The function ensures ASCII compliance and applies specific rules for 'name' and 'team' keys, such as auto-lowercasing team names. In 1996, multiplayer games faced unique challenges in handling user input securely and efficiently. This routine reflects id Software's meticulous approach to data validation, essential for maintaining robust communication in Quake's groundbreaking multiplayer environment. Techniques like these influenced later multiplayer systems, including those in Half-Life and Counter-Strike, where robust input validation became a standard practice."
-  - id: "info-setvalueforkey-wrapper"
-    line_start: 49
-    line_end: 59
-    title: "A Wrapper That Enforces Key Rules"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `Info_SetValueForKey` function acts as a wrapper around `Info_SetValueForStarKey`, adding an additional check to disallow keys that start with an asterisk ('*'). This small but crucial addition prevents misuse of reserved keys, ensuring consistency in the game's internal data structures. In the mid-1990s, such defensive programming techniques were vital for maintaining stability in complex systems like Quake's multiplayer engine. This approach influenced later game engines, where strict key validation became a common feature to prevent unexpected behavior or exploits."
-  - id: "info-print-debugging"
-    line_start: 49
-    line_end: 59
-    title: "Debugging Multiplayer Data with Key-Value Printing"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `Info_Print` function provides a way to display key-value pairs stored in Quake's info strings. It formats the output for readability, ensuring that keys align neatly and missing values are flagged. This debugging utility reflects id Software's commitment to developer-friendly tools, enabling quick identification of issues in multiplayer data exchange. In an era when debugging tools were less sophisticated, such utilities were essential for rapid iteration and troubleshooting. Similar debugging functions became standard in game engines like Unreal Engine and Unity, helping developers maintain clarity in complex systems."
+    content: "This block covers Info_SetValueForStarKey, its thin wrapper Info_SetValueForKey, and the diagnostic Info_Print. Info_SetValueForStarKey validates and inserts key-value pairs into the backslash-delimited info strings used for client-server communication, rejecting backslashes, quotes, and oversized keys to prevent parsing corruption or buffer overflows, and auto-lowercasing team names for consistency. Info_SetValueForKey adds one further guard: it refuses keys beginning with an asterisk, protecting reserved server-side fields. Info_Print formats the info string for human-readable console output, padding keys to a fixed width and flagging missing values — an essential debugging aid when connection problems arose. In 1996 these routines were an early example of layered input validation in networked software, a practice that became standard in later multiplayer engines including Half-Life and Counter-Strike."
   - id: "chktbl-checksum-table"
     line_start: 35
     line_end: 43

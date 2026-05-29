@@ -24,16 +24,16 @@ summary:
 
 enhancements:
   - id: "networking-data-structures"
-    line_start: 43
-    line_end: 74
+    line_start: 86
+    line_end: 86
     title: "The Data Structures That Made Multiplayer Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
     image_caption: ""
     content: "This section defines key data structures used for DOOM's networking functionality, including `doomcom_t` and `doomdata_t`. These structures store information about the state of the network, such as player commands (`ticcmd_t`), game ticks, and node statuses. The `nettics` array tracks the progress of each player, ensuring synchronization across nodes. Multiplayer gaming in 1993 was still in its infancy, and DOOM's approach to managing state and communication was groundbreaking. John Carmack's focus on efficiency and simplicity allowed the game to run smoothly even on modest hardware. These data structures laid the groundwork for future multiplayer protocols, influencing games like Quake and Unreal Tournament."
   - id: "netbuffer-checksum"
-    line_start: 220
-    line_end: 258
+    line_start: 94
+    line_end: 114
     title: "How DOOM Verified Multiplayer Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Checksum"
     image_url: ""
@@ -41,15 +41,15 @@ enhancements:
     content: "The `NetbufferChecksum` function calculates a checksum to verify the integrity of network packets. This ensures that data transmitted between players is accurate and uncorrupted. The checksum algorithm uses a combination of multiplication and addition, incorporating the packet's contents and position. At the time, network reliability was a significant concern, especially on consumer-grade hardware. By implementing checksums, DOOM reduced the risk of errors disrupting gameplay. This technique became a standard practice in networking, influencing protocols used in later games and even broader applications like TCP/IP."
   - id: "expand-tics"
     line_start: 116
-    line_end: 133
+    line_end: 185
     title: "Solving the Tic Synchronization Problem"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clock_synchronization"
     image_url: ""
     image_caption: ""
     content: "The `ExpandTics` function resolves synchronization issues by reconstructing full tic numbers from their lower byte. In DOOM's multiplayer protocol, only the lower byte of tic numbers is transmitted to save bandwidth. This function uses the game's current tic to infer the missing higher bytes, ensuring consistency across nodes. Synchronization was critical for maintaining the fast-paced gameplay DOOM was known for. This clever optimization reflects Carmack's ability to balance performance with functionality, and similar techniques are still used in modern game engines to handle synchronization efficiently."
   - id: "hsendpacket-function"
-    line_start: 138
-    line_end: 185
+    line_start: 187
+    line_end: 252
     title: "How DOOM Sent Multiplayer Packets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Packet-switched_network"
     image_url: ""

@@ -30,32 +30,32 @@ summary:
 
 enhancements:
   - id: "map-data-lookup-tables"
-    line_start: 51
-    line_end: 74
+    line_start: 118
+    line_end: 151
     title: "How DOOM Organized Its World Data"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
     image_caption: ""
     content: "This section defines lookup tables for various map elements, including vertices, linedefs, sidedefs, and sectors. These tables are central to DOOM's ability to render and interact with its 3D world efficiently. By preloading this data into memory, the game avoids costly disk I/O during gameplay, ensuring smooth performance on the limited hardware of the early 1990s. The design reflects id Software's mastery of optimizing for constrained environments, as PCs of the era often had limited RAM and slow hard drives. This approach influenced future game engines, which adopted similar strategies for organizing and accessing world data."
   - id: "blockmap-spatial-subdivision"
-    line_start: 77
-    line_end: 94
+    line_start: 155
+    line_end: 195
     title: "The Trick That Sped Up Collision Detection"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spatial_partitioning"
     image_url: ""
     image_caption: ""
     content: "The blockmap system divides the game map into a grid of blocks, enabling efficient spatial subdivision for collision detection. By associating objects with specific blocks, DOOM reduces the number of checks required to determine interactions, such as whether a projectile hits a wall or an enemy. This technique was crucial for maintaining high framerates on hardware like the 486 processor, which lacked dedicated graphics acceleration. Spatial subdivision remains a cornerstone of game development, influencing techniques like quadtrees and BSP trees used in modern engines."
   - id: "reject-matrix-ai-optimization"
-    line_start: 97
-    line_end: 104
+    line_start: 198
+    line_end: 223
     title: "How DOOM Made Enemies Smarter, Faster"
     wikipedia_url: "https://en.wikipedia.org/wiki/Line_of_sight"
     image_url: ""
     image_caption: ""
     content: "The reject matrix is a precomputed data structure used to optimize enemy AI by skipping unnecessary line-of-sight calculations. If two areas of the map are known to be disconnected, the matrix allows the game to reject visibility checks outright, saving CPU cycles. This innovation was particularly important for DOOM's fast-paced gameplay, where multiple enemies could be active simultaneously. The idea of precomputing visibility relationships influenced later games and engines, including Quake and Unreal, which expanded on this concept with more sophisticated visibility algorithms."
   - id: "deathmatch-spawn-system"
-    line_start: 107
-    line_end: 112
+    line_start: 227
+    line_end: 257
     title: "Dynamic Player Spawning for Multiplayer Chaos"
     wikipedia_url: "https://en.wikipedia.org/wiki/Deathmatch"
     image_url: ""
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The `P_LoadVertexes` function reads vertex data from the map file and converts coordinates to fixed-point format. Fixed-point arithmetic was chosen because it offered faster calculations compared to floating-point operations on the hardware available in 1993. This decision reflects the constraints of the era, where performance optimization often involved trading precision for speed. Fixed-point arithmetic became a staple in early 3D engines and is still used in embedded systems and mobile games where hardware constraints persist."
   - id: "level-setup-sequence"
-    line_start: 579
+    line_start: 493
     line_end: 692
     title: "The Sequence That Built DOOM's Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"

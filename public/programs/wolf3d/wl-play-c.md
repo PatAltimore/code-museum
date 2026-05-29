@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "multi-device-input-polling"
-    line_start: 85
-    line_end: 234
+    line_start: 246
+    line_end: 579
     title: "Multi-Device Input: Keyboard, Mouse, Joystick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
     image_url: ""

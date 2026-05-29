@@ -24,24 +24,16 @@ summary:
 
 enhancements:
   - id: "key-state-tracking"
-    line_start: 19
-    line_end: 44
-    title: "How Quake Tracks Simultaneous Key Presses"
+    line_start: 57
+    line_end: 84
+    title: "How Quake Tracks and Handles Simultaneous Key Presses"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section defines key state tracking using `kbutton_t` structures, which allow Quake to handle simultaneous inputs from multiple sources, such as a keyboard and mouse. The state bits track whether a key is currently pressed, transitioning from up to down, or transitioning from down to up. This design solves the problem of overlapping inputs, ensuring that a button remains 'pressed' until all associated keys are released. In 1996, this was a novel approach to input handling in games, as most systems relied on simpler, single-source input models. John Carmack and Michael Abrash, known for their optimization prowess, likely implemented this to ensure smooth gameplay even with hardware limitations. This technique influenced later game engines, including id Tech 2 and id Tech 3, and became a standard in multiplayer games where precise input handling is critical."
-  - id: "key-down-subroutine"
-    line_start: 48
-    line_end: 54
-    title: "The Subroutine That Handles Key Presses"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `KeyDown` function processes key press events, storing the key number in the `down` array and updating the state bits to reflect the 'down' and 'impulse down' states. This ensures that repeated presses of the same key are ignored and that the system can handle up to two simultaneous keys for a single action. The function also includes error handling for cases where more than two keys are pressed, printing a warning message. In the mid-1990s, handling multiple simultaneous inputs was a challenge due to limited hardware capabilities and the lack of standardized input APIs. This function reflects id Software's focus on creating robust systems that could adapt to various input configurations. The technique of tracking impulses became a foundation for advanced input systems in later games, influencing titles like Half-Life and Unreal Tournament."
+    content: "This section defines the kbutton_t structures and the KeyDown function that together form Quake's multi-source key tracking system. The state bits record whether a key is currently down, whether it transitioned down this frame, or transitioned up this frame, allowing a single action to be held by two independent keys simultaneously — a keyboard key and a mouse button, for example — without releasing until both are up. The KeyDown function stores each pressing key's number in the down array, ignores repeats, and warns if a third source attempts to claim the same button. In 1996 this two-source tracking was uncommon; most engines used a single boolean per action. The impulse-state design carried forward into id Tech 2 and id Tech 3 and became standard practice in multiplayer games where precise per-frame input accounting is critical."
   - id: "key-up-subroutine"
-    line_start: 48
-    line_end: 54
+    line_start: 86
+    line_end: 114
     title: "Releasing Keys: A Surprisingly Complex Problem"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -49,36 +41,20 @@ enhancements:
     content: "The `KeyUp` function handles the release of keys, ensuring that the corresponding 'down' state is cleared and updating the state bits to reflect the 'impulse up' state. It includes logic to handle cases where a key release event occurs without a prior press, which can happen due to menu interactions or manual console commands. This level of detail was necessary for Quake's fast-paced gameplay, where precise input handling could mean the difference between victory and defeat. The function's design demonstrates id Software's commitment to creating a responsive and error-tolerant input system. This approach influenced the development of input handling in later game engines, including Source and Unreal Engine, which adopted similar techniques for managing complex input scenarios."
   - id: "movement-speed-cvars"
     line_start: 1
-    line_end: 17
+    line_end: 54
     title: "Customizable Movement Speeds via Cvars"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This section defines several `cvar_t` variables that control movement speeds, including forward, backward, side, and up speeds. These variables allow players to customize their movement experience, a feature that was relatively rare in 1996. By exposing these values as console variables, id Software empowered players to tweak gameplay to their liking, enhancing the game's appeal to competitive players and modders. The use of cvars became a hallmark of id Software's engines, influencing the design of configuration systems in games like Counter-Strike and Team Fortress. Today, customizable settings are a standard feature in games, but Quake's implementation was one of the earliest examples of this approach."
   - id: "angle-adjustment"
-    line_start: 45
-    line_end: 45
+    line_start: 224
+    line_end: 273
     title: "Adjusting Angles for Precision Movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `CL_AdjustAngles` function modifies the player's view angles based on input states, ensuring smooth and precise control over yaw, pitch, and roll. It incorporates constraints to prevent excessive angle values, keeping the gameplay experience intuitive and preventing disorientation. This function also stops automatic pitch drifting when manual adjustments are made, a feature that enhances player control. In the context of 1996, this level of precision was groundbreaking, as most games relied on simpler, less responsive control schemes. The function reflects id Software's focus on creating a fluid and immersive gameplay experience. Techniques from this function influenced later FPS games, including Call of Duty and Battlefield, which adopted similar methods for handling player view angles."
-  - id: "movement-command-serialization"
-    line_start: 57
-    line_end: 84
-    title: "How Quake Sends Player Commands to the Server"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `CL_SendCmd` function serializes player movement commands into a network message, ensuring that the server receives accurate and complete input data. It includes mechanisms for handling dropped packets by resending previous commands and calculates checksums to verify data integrity. This function also supports delta compression, reducing bandwidth usage by sending only changes from the last state. In 1996, network play was still in its infancy, and handling unreliable connections was a significant challenge. John Carmack and his team designed this system to optimize multiplayer performance on the limited bandwidth of dial-up connections. The serialization and compression techniques pioneered here influenced the development of networking in later games, including World of Warcraft and League of Legends, which built on these principles to handle massive multiplayer environments."
-  - id: "input-initialization"
-    line_start: 57
-    line_end: 84
-    title: "Initializing Quake's Modular Input System"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `CL_InitInput` function sets up Quake's input system by registering commands for all possible player actions, such as movement, attacking, and using items. This modular approach allows for easy extension and customization, enabling players and modders to add new commands or modify existing ones. In 1996, this level of flexibility was rare, as most games hardcoded input handling. By exposing input commands through a centralized initialization function, id Software created a system that could adapt to different hardware configurations and player preferences. This design philosophy influenced later engines, including Unity and Unreal Engine, which adopted similar modular input systems to support diverse gameplay experiences."
 
 ---
 

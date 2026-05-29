@@ -24,8 +24,8 @@ summary:
 
 enhancements:
   - id: "foundation-player-movement-variables"
-    line_start: 24
-    line_end: 32
+    line_start: 51
+    line_end: 51
     title: "Foundation: Player Movement Variables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
@@ -40,64 +40,64 @@ enhancements:
     image_caption: ""
     content: "The `player_mins` and `player_maxs` variables define the dimensions of the player's bounding box, which is used for collision detection. This was a critical innovation for 3D games in the 1990s, as it allowed precise interactions between the player and the environment. At the time, collision detection was a challenging problem due to limited computational resources. By using a simple axis-aligned bounding box (AABB), id Software optimized collision checks, ensuring smooth gameplay without overloading the CPU. This technique became a standard in game development, influencing titles like Unreal Tournament and Halo."
   - id: "pm-clipvelocity-sliding-physics"
-    line_start: 64
-    line_end: 99
+    line_start: 62
+    line_end: 95
     title: "Sliding Physics: PM_ClipVelocity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Physics_engine"
     image_url: ""
     image_caption: ""
     content: "The `PM_ClipVelocity` function calculates how the player slides off surfaces during collisions. It adjusts the player's velocity based on the normal of the surface they impact, simulating realistic sliding behavior. This approach was groundbreaking for its time, as it introduced nuanced physics to 3D environments. The function also accounts for overbounce, a parameter that adds a slight rebound effect. John Carmack and Michael Abrash, known for their expertise in optimization, implemented this to ensure smooth gameplay even on hardware like the Intel 486. The sliding mechanics inspired similar systems in later games, such as Counter-Strike's movement physics."
   - id: "pm-flymove-multi-plane-collision"
-    line_start: 100
-    line_end: 228
+    line_start: 98
+    line_end: 225
     title: "Multi-Plane Collision Handling in PM_FlyMove"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `PM_FlyMove` function handles complex collision scenarios where the player interacts with multiple surfaces simultaneously. It uses a series of clip planes to adjust the player's velocity, ensuring they slide smoothly along walls and floors. This was a major innovation in 3D game physics, as it allowed for realistic movement in environments with intricate geometry. The function also includes safeguards against edge cases, such as being trapped in solid objects. This level of detail set Quake apart from earlier games, like Doom, which relied on simpler 2D collision models. The technique influenced later engines, including Unreal Engine, which expanded on multi-plane collision handling for more immersive worlds."
   - id: "pm-groundmove-stair-navigation"
-    line_start: 229
-    line_end: 304
+    line_start: 227
+    line_end: 313
     title: "Navigating Stairs with PM_GroundMove"
     wikipedia_url: "https://en.wikipedia.org/wiki/Stair_climbing"
     image_url: ""
     image_caption: ""
     content: "The `PM_GroundMove` function enables players to navigate stairs and uneven terrain seamlessly. It calculates the best path forward by comparing movement distances on flat ground and elevated steps, choosing the option that allows the player to move farther. This was a critical feature for Quake's 3D levels, which often included complex architecture. The stair-climbing logic was optimized to prevent players from getting stuck on small ledges, a common issue in earlier games. This innovation influenced level design in subsequent titles, encouraging developers to create more vertical and dynamic environments."
   - id: "pm-friction-environmental-resistance"
-    line_start: 319
-    line_end: 386
+    line_start: 317
+    line_end: 382
     title: "Environmental Resistance: PM_Friction"
     wikipedia_url: "https://en.wikipedia.org/wiki/Friction"
     image_url: ""
     image_caption: ""
     content: "The `PM_Friction` function simulates the resistance players experience when moving across different surfaces, such as water or solid ground. It dynamically adjusts the player's velocity based on environmental factors, ensuring realistic deceleration. This was a significant advancement in game physics, as it added depth to player movement. The function also includes a feature to increase friction near drop-offs, preventing players from sliding uncontrollably. This attention to detail enhanced immersion and set a new standard for realism in 3D games. The concept of dynamic friction was later adopted by engines like Unity and Unreal."
   - id: "pm-airmove-gravity-and-air-control"
-    line_start: 500
-    line_end: 570
+    line_start: 498
+    line_end: 565
     title: "Gravity and Air Control in PM_AirMove"
     wikipedia_url: "https://en.wikipedia.org/wiki/Gravity_(physics)"
     image_url: ""
     image_caption: ""
     content: "The `PM_AirMove` function governs player movement while airborne, incorporating gravity and limited air control. It calculates the player's velocity based on input and environmental factors, ensuring realistic trajectories. This was a key feature for Quake, as it allowed players to perform precise maneuvers in mid-air, a hallmark of advanced gameplay. The function also clamps movement speed to prevent exploits, such as excessive acceleration. This innovation influenced later games, including Team Fortress Classic, which expanded on air control mechanics for competitive play."
   - id: "jumpbutton-context-sensitive-jumping"
-    line_start: 642
-    line_end: 687
+    line_start: 640
+    line_end: 684
     title: "Context-Sensitive Jumping: JumpButton"
     wikipedia_url: "https://en.wikipedia.org/wiki/Jump_(game_mechanics)"
     image_url: ""
     image_caption: ""
     content: "The `JumpButton` function handles player jumping, adapting behavior based on the environment. For instance, it adjusts jump velocity when underwater and prevents jumping while the player is dead or already airborne. This level of context sensitivity was a significant innovation, as it ensured intuitive and responsive controls. The function also includes a cooldown mechanism to prevent repeated jumps, adding a layer of realism. This approach influenced later games, such as Portal, which relied on precise jumping mechanics for puzzle-solving."
   - id: "spectatormove-freeform-camera-movement"
-    line_start: 773
-    line_end: 853
+    line_start: 771
+    line_end: 850
     title: "Freeform Camera Movement in Spectator Mode"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spectator_mode"
     image_url: ""
     image_caption: ""
     content: "The `SpectatorMove` function provides freeform movement for players in spectator mode, allowing them to navigate the environment without physical constraints. It includes friction and acceleration calculations to ensure smooth camera control. This feature was a groundbreaking addition to Quake, as it enhanced multiplayer gameplay by enabling players to observe matches from any angle. The spectator mode became a staple in competitive gaming, influencing titles like Counter-Strike and Overwatch, which refined the concept for esports."
   - id: "player-move-centralized-movement-logic"
-    line_start: 854
-    line_end: 903
+    line_start: 852
+    line_end: 863
     title: "Centralized Movement Logic in PlayerMove"
     wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""

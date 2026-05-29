@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "fatal-error-handler-ms-dos"
-    line_start: 42
-    line_end: 66
+    line_start: 68
+    line_end: 158
     title: "The Fatal Error Handler That Saved DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
@@ -46,16 +46,16 @@ enhancements:
     image_caption: ""
     content: "The `US_Startup` function initializes the User Manager, a critical subsystem for handling user input and feedback in Wolfenstein 3D. It sets up error handling, random number generation, and parses command-line parameters for compatibility and debugging options. The inclusion of TED-level detection reflects id Software's workflow, where levels were often designed using internal tools. In the early 1990s, game developers had to build their own frameworks for managing user interaction, as no standardized libraries existed for MS-DOS. This startup routine ensured the game could adapt to various configurations and debugging scenarios, laying the groundwork for robust user management systems in future id Software titles like Doom and Quake."
   - id: "parameter-checking-case-insensitivity"
-    line_start: 68
-    line_end: 158
+    line_start: 229
+    line_end: 262
     title: "Case-Insensitive Parameter Matching"
     wikipedia_url: "https://en.wikipedia.org/wiki/String_(computer_science)"
     image_url: ""
     image_caption: ""
     content: "The `US_CheckParm` function implements case-insensitive string matching for command-line arguments. It skips non-alphabetic characters and compares strings by converting uppercase letters to lowercase. This was a practical solution for handling user input in an era when command-line interfaces were the norm. By ensuring flexibility in parameter matching, id Software made their game more accessible to players and developers alike. This technique, while simple, became a standard practice in software development, influencing how modern applications parse user input. It also reflects the meticulous attention to detail required to create a seamless user experience in the constrained environment of MS-DOS."
   - id: "centered-text-printing"
-    line_start: 163
-    line_end: 212
+    line_start: 365
+    line_end: 381
     title: "How to Center Text Without a GUI"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap_fonts"
     image_url: ""

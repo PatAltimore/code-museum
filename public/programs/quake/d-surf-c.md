@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "surface-cache-size-calculation"
-    line_start: 29
+    line_start: 35
     line_end: 53
     title: "How Quake Calculated Surface Cache Sizes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Surface_cache"
@@ -46,23 +46,23 @@ enhancements:
     image_caption: ""
     content: "The `D_CheckCacheGuard` function checks for memory corruption by verifying guard bytes placed at the end of the surface cache. If the guard bytes are altered, the program halts with an error. This technique was critical in an era when debugging tools were rudimentary, and memory corruption bugs could lead to unpredictable crashes. By implementing this safeguard, id Software ensured greater stability in Quake's rendering pipeline. This method became a standard debugging practice, influencing tools like Valgrind and modern memory debugging frameworks."
   - id: "cache-initialization"
-    line_start: 79
-    line_end: 101
+    line_start: 77
+    line_end: 97
     title: "Initializing Surface Caches for 3D Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `D_InitCaches` function sets up the surface cache, allocating memory and preparing it for use in rendering. It also clears the guard bytes to prevent false positives during corruption checks. This initialization step was essential for ensuring efficient memory usage and stability in Quake's rendering system. The technique of preallocating and managing memory for graphical elements became a foundational concept in game engine design, influencing engines like Source and Unity."
   - id: "dynamic-cache-allocation"
-    line_start: 126
-    line_end: 216
+    line_start: 124
+    line_end: 212
     title: "Dynamic Allocation for Surface Caching"
     wikipedia_url: "https://en.wikipedia.org/wiki/Surface_cache"
     image_url: ""
     image_caption: ""
     content: "The `D_SCAlloc` function dynamically allocates memory for surface caches, ensuring that each surface has enough space for its texture data. It handles fragmentation by combining smaller blocks into larger ones and creates new fragments when necessary. This approach was a direct response to the limited memory available on consumer-grade PCs in 1996. By carefully managing memory allocation, id Software enabled Quake to render detailed 3D environments without exceeding hardware limits. This technique influenced later engines, which adopted similar strategies for handling dynamic resource allocation in real-time applications."
   - id: "surface-cache-reuse"
-    line_start: 264
+    line_start: 260
     line_end: 336
     title: "Reusing Cached Surfaces for Performance Gains"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"

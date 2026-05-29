@@ -46,56 +46,56 @@ enhancements:
     image_caption: ""
     content: "Here, the menu item configurations are defined, specifying positions, dimensions, and starting states for various menus. This modular design allowed for easy customization and expansion, a necessity given the hardware constraints of early 1990s PCs. By abstracting menu properties into reusable structures, id Software demonstrated an early example of object-oriented thinking in C. This approach influenced later game engines, such as the Quake engine, which adopted similar modular systems for UI and gameplay elements."
   - id: "control-panel-setup"
-    line_start: 327
-    line_end: 404
+    line_start: 603
+    line_end: 615
     title: "Custom Control Panel Setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/User_interface"
     image_url: ""
     image_caption: ""
     content: "This section defines the control panel interface, including handling function keys for in-game settings like sound, controls, and saving/loading. The code demonstrates a thoughtful design that prioritizes user accessibility, allowing players to adjust settings without exiting the game. In the early 1990s, such features were rare, as most games had static menus with limited interactivity. The control panel's flexibility influenced later games to adopt dynamic, in-game settings menus, seen in titles like Doom and Quake, which expanded on this concept."
   - id: "quick-save-load"
-    line_start: 642
-    line_end: 863
+    line_start: 616
+    line_end: 641
     title: "Quick-Save and Quick-Load Functionality"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_(video_gaming)"
     image_url: ""
     image_caption: ""
     content: "The code here implements quick-save and quick-load features, allowing players to save or load their progress with minimal interruption. This was a significant innovation in 1992, as many games required navigating through cumbersome menus to save or load. By streamlining this process, Wolfenstein 3D enhanced the player's experience and set a precedent for future games. Quick-save/load became a standard feature in PC gaming, influencing titles like Half-Life and Skyrim, which rely on similar systems for seamless gameplay."
   - id: "high-score-viewing"
-    line_start: 888
-    line_end: 918
+    line_start: 642
+    line_end: 856
     title: "Viewing High Scores with Music Integration"
     wikipedia_url: "https://en.wikipedia.org/wiki/High_score"
     image_url: ""
     image_caption: ""
     content: "This routine handles the display of high scores, accompanied by music to enhance the experience. High scores were a staple of arcade culture, and their inclusion in Wolfenstein 3D reflects the game's roots in that tradition. The integration of music adds emotional weight to the achievement, a technique that became common in later games. Titles like Unreal Tournament and Halo adopted similar approaches, using music to underscore player accomplishments and create memorable moments."
   - id: "episode-selection-menu"
-    line_start: 921
-    line_end: 932
+    line_start: 859
+    line_end: 885
     title: "The Menu That Sold Episodes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
     content: "This section implements the episode selection menu, a critical part of Wolfenstein 3D's shareware model. Players could select episodes, but only the first was freely available; the others required purchase. The menu dynamically checks availability and displays a message encouraging users to order additional episodes from Apogee Software. This approach was pivotal in the shareware distribution model of the early 1990s, where games were partially free to play but monetized through additional content. The integration of sound effects and user prompts made the experience engaging while subtly driving sales. This model influenced later games like Doom and Quake, which adopted similar distribution strategies."
   - id: "draw-new-episode-menu"
-    line_start: 1045
-    line_end: 1086
+    line_start: 888
+    line_end: 918
     title: "Rendering Menus with Pixel Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_display_resolution"
     image_url: ""
     image_caption: ""
     content: "The `DrawNewEpisode` function handles the rendering of the episode selection menu. It uses low-level graphics calls to draw windows, text, and images, ensuring compatibility with the limited graphical capabilities of early 1990s PCs. The function includes localization support, displaying messages in Spanish or Japanese based on the user's configuration. This attention to detail reflects id Software's commitment to creating immersive and accessible experiences despite hardware constraints. Techniques like these laid the groundwork for modern UI frameworks in games, which now handle localization and dynamic rendering seamlessly."
   - id: "sound-menu-handling"
-    line_start: 1130
-    line_end: 1251
+    line_start: 921
+    line_end: 1042
     title: "Customizing Sound for Every Player"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
     image_url: ""
     image_caption: ""
     content: "The `CP_Sound` function allows players to configure sound settings, including sound effects, digitized sound, and music. It supports multiple sound modes, such as AdLib and Sound Blaster, reflecting the diverse hardware landscape of the era. The menu dynamically disables options based on hardware availability, ensuring a smooth user experience. This adaptability was crucial in the early 1990s, when PC configurations varied widely. The function's modular design influenced later games, which adopted similar approaches to hardware detection and configuration."
   - id: "save-game-functionality"
-    line_start: 1368
-    line_end: 1467
+    line_start: 1045
+    line_end: 1080
     title: "Saving Progress in the Age of DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
@@ -190,16 +190,16 @@ enhancements:
     image_caption: ""
     content: "The `DrawWindow` function creates a visually distinct menu window by combining a solid background color with an outlined border. This design choice helped Wolfenstein 3D's menus stand out, making them easier to navigate and aesthetically pleasing. The use of `VWB_Bar` and `DrawOutline` reflects the game's commitment to leveraging graphical primitives efficiently. At the time, menu systems were often utilitarian, but Wolfenstein 3D's approach demonstrated how thoughtful design could enhance user experience. This influenced later first-person shooters, including Doom, which further refined menu aesthetics."
   - id: "setup-control-panel-save-game-management"
-    line_start: 3024
-    line_end: 3088
+    line_start: 3015
+    line_end: 3021
     title: "Save game metadata and control panel setup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Save_game"
     image_url: ""
     image_caption: ""
     content: "The `SetupControlPanel` function initializes the control panel, including caching assets and loading save game metadata. It scans for available save files, reads their contents, and populates the menu with descriptive names. This streamlined approach to save game management was ahead of its time, offering players a clear and organized way to resume their progress. The function also centers the mouse cursor, ensuring intuitive navigation. Such attention to detail influenced later games, which adopted similar methods for handling save files and user settings."
   - id: "handle-menu-dynamic-cursor-animation"
-    line_start: 3101
-    line_end: 3351
+    line_start: 3024
+    line_end: 3081
     title: "Dynamic cursor animations for menu navigation"
     wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_user_interface"
     image_url: ""
@@ -214,8 +214,8 @@ enhancements:
     image_caption: ""
     content: "The `ReadAnyControl` function integrates input from multiple devices, including mouse, keyboard, and joystick. It interprets directional movements and button presses, ensuring seamless gameplay regardless of the player's preferred input method. This flexibility was a hallmark of Wolfenstein 3D, accommodating a wide range of hardware configurations. The function's ability to detect subtle movements and button states reflects the game's commitment to precision and responsiveness. Multi-input support became a standard feature in later games, influencing titles like Quake and Unreal."
   - id: "confirm-localized-menu-responses"
-    line_start: 3587
-    line_end: 3716
+    line_start: 3349
+    line_end: 3361
     title: "Localized menu responses for global audiences"
     wikipedia_url: "https://en.wikipedia.org/wiki/Localization_(video_games)"
     image_url: ""

@@ -25,47 +25,47 @@ summary:
 enhancements:
   - id: "key-clear-typing"
     line_start: 55
-    line_end: 62
+    line_end: 59
     title: "Clearing Typing: A Simple Reset Mechanism"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "This function clears the player's current typing input by resetting the relevant buffer and cursor position. At the time, Quake's console system was a groundbreaking feature that allowed players to interact with the game engine directly, executing commands and debugging in real-time. The simplicity of this function reflects the era's focus on efficiency and minimalism, as memory and processing power were limited on mid-1990s hardware like the Intel 80386. The ability to reset typing ensured smooth user experience during gameplay. This approach influenced later game engines, such as Unreal Engine and Source, which expanded on console functionality for debugging and scripting."
   - id: "toggle-console-function"
-    line_start: 63
-    line_end: 82
+    line_start: 61
+    line_end: 79
     title: "Switching Between Console and Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Con_ToggleConsole_f` function toggles the visibility of the console, switching between gameplay and console interaction. This feature was essential for debugging and executing commands during development and gameplay. In the mid-1990s, such functionality was rare, as most games lacked real-time debugging tools. John Carmack and his team at id Software prioritized developer efficiency and player empowerment, allowing users to modify game settings and troubleshoot issues without restarting. This design philosophy influenced later games like Half-Life and Counter-Strike, which incorporated similar console systems for advanced user control."
   - id: "console-resize"
-    line_start: 151
-    line_end: 210
+    line_start: 149
+    line_end: 206
     title: "Dynamic Console Resizing for Changing Displays"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Con_Resize` function dynamically adjusts the console's dimensions based on the screen resolution. This was crucial for adapting to different hardware configurations, as Quake was designed to run on a variety of systems, from high-end PCs to less powerful machines. The function recalculates line width and total lines, ensuring the console remains functional regardless of display size. This adaptability was forward-thinking, as it anticipated the diverse hardware landscape of PC gaming. The technique of dynamic resizing became standard in game engines, influencing titles like Doom 3 and modern engines like Unity and Unreal."
   - id: "console-print"
-    line_start: 269
-    line_end: 345
+    line_start: 267
+    line_end: 341
     title: "Real-Time Text Rendering in a 3D World"
     wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
     image_url: ""
     image_caption: ""
     content: "The `Con_Print` function handles text rendering for the console, including cursor positioning, line wrapping, and word wrapping. This was a technical challenge in the mid-1990s, as rendering text in real-time within a 3D environment required careful optimization. The function ensures that text is displayed correctly even when the console is not visible, popping up notifications when necessary. This approach reflects the team's deep understanding of hardware constraints and their ability to innovate within them. Techniques like these paved the way for advanced text rendering systems in later engines, influencing games like World of Warcraft and Skyrim."
   - id: "console-drawing"
-    line_start: 535
-    line_end: 637
+    line_start: 533
+    line_end: 633
     title: "Rendering the Console with a Solid Background"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
     content: "The `Con_DrawConsole` function draws the console with a solid background, ensuring readability in a visually complex 3D environment. It includes features like backscroll indicators and a download progress bar, showcasing id Software's attention to detail and user experience. This function highlights the team's ability to balance functionality and aesthetics, making the console an integral part of the game rather than an afterthought. The design influenced later games and engines, where console systems became more visually integrated and user-friendly, such as in the Source engine used for Half-Life 2."
   - id: "notify-box"
-    line_start: 638
-    line_end: 672
+    line_start: 636
+    line_end: 668
     title: "Displaying Critical Messages During Startup"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

@@ -20,6 +20,7 @@ programs:
   language: 6502 Assembly
   description: The game that invented cinematic platformers — built by one developer over four years on Apple II hardware
     with 128K of RAM. The source code was recovered in 2012 from 22-year-old floppy disks.
+  wikipedia_url: https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)
   github_url: https://github.com/jmechner/Prince-of-Persia-Apple-II
   github_repo: jmechner/Prince-of-Persia-Apple-II
   github_branch: master
@@ -182,8 +183,10 @@ programs:
   author: Anderson, Blank, Daniels, Lebling
   year: 1977
   language: MDL (Muddle)
-  description: The game that invented the text adventure — built organically at MIT on a PDP-10, recovered from a 1990 tape,
-    and released open-source in 2025. Its parser, its puzzles, and its sarcastic error messages changed computing forever.
+  description: One of the earliest and most influential text adventures — built organically at MIT on a PDP-10, inspired
+    by Colossal Cave Adventure, recovered from a 1990 tape, and released open-source in 2025. Its sophisticated parser,
+    intricate puzzles, and sarcastic error messages set the template for the genre.
+  wikipedia_url: https://en.wikipedia.org/wiki/Zork
   github_url: https://github.com/MITDDC/zork
   github_repo: MITDDC/zork
   github_branch: master
@@ -269,6 +272,7 @@ programs:
   language: 8086 Assembly
   description: Written in six weeks by one programmer, acquired by Microsoft for $25,000, and licensed to IBM — then to every
     IBM clone maker on earth. The source code of the PC era.
+  wikipedia_url: https://en.wikipedia.org/wiki/MS-DOS
   github_url: https://github.com/microsoft/MS-DOS
   github_repo: microsoft/MS-DOS
   github_branch: main
@@ -523,6 +527,7 @@ programs:
   year: 1977
   language: 6502 Assembly
   description: Microsoft's implementation of BASIC for the 6502 microprocessor, a pivotal moment in personal computing history.
+  wikipedia_url: https://en.wikipedia.org/wiki/Microsoft_BASIC
   context: Microsoft BASIC for the 6502 was a key enabler for early personal computers, including the Apple II. Written in
     assembly language, it was designed to fit within the tight memory constraints of the era, often just a few kilobytes.
     This version showcases the ingenuity required to deliver a functional programming language on limited hardware.
@@ -543,7 +548,9 @@ programs:
   author: John Carmack, John Romero, Tom Hall
   year: 1992
   language: C, x86 Assembly
-  description: The groundbreaking source code for Wolfenstein 3D, a seminal first-person shooter that defined the genre.
+  description: The groundbreaking source code for Wolfenstein 3D, a seminal first-person shooter that popularized the genre
+    and established the template for games like DOOM and Quake.
+  wikipedia_url: https://en.wikipedia.org/wiki/Wolfenstein_3D
   context: Wolfenstein 3D was developed by id Software and released in 1992 for MS-DOS. It introduced fast-paced, first-person
     action with smooth scrolling and immersive gameplay, pushing the limits of hardware at the time. The source code, later
     released as open source, showcases the ingenuity behind one of gaming's most influential titles.
@@ -697,6 +704,7 @@ programs:
   language: C
   description: The source code for DOOM, one of the most influential video games of all time, showcasing early 3D graphics
     and multiplayer networking.
+  wikipedia_url: https://en.wikipedia.org/wiki/Doom_(1993_video_game)
   context: DOOM revolutionized gaming with its fast-paced action, immersive 3D environments, and multiplayer capabilities.
     Originally released in 1993, its source code was later made available, allowing developers and enthusiasts to study its
     groundbreaking techniques. The game ran on modest hardware of the era, pushing the limits of what was possible on consumer
@@ -921,7 +929,9 @@ programs:
   author: John Carmack, Michael Abrash, John Cash
   year: 1996
   language: C, x86 Assembly
-  description: The groundbreaking source code for Quake, a seminal first-person shooter that defined 3D gaming.
+  description: The groundbreaking source code for Quake, a seminal first-person shooter with a fully 3D engine that
+    influenced an entire generation of game developers.
+  wikipedia_url: https://en.wikipedia.org/wiki/Quake_(video_game)
   context: Quake was developed by id Software and released in 1996, introducing true 3D environments and multiplayer capabilities
     that revolutionized the gaming industry. The codebase showcases advanced rendering techniques and optimization for hardware
     constraints of the era, such as x86 processors and limited memory. The release of the source code under the GPL in 1999

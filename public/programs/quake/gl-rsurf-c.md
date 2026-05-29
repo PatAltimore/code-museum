@@ -38,15 +38,15 @@ enhancements:
     image_caption: ""
     content: "The `R_AddDynamicLights` function calculates the contribution of dynamic lights to a surface, iterating through all active lights and determining their impact based on distance and radius. This was a critical feature for Quake, enabling realistic lighting effects in real-time 3D environments. In 1996, hardware constraints meant developers had to optimize every calculation to fit within the limited processing power of CPUs like the Intel Pentium. John Carmack and Michael Abrash were known for their ability to push hardware to its limits, and this function exemplifies their approach. Dynamic lighting became a hallmark of immersive gaming experiences, influencing later engines like Unreal Engine and Unity, which expanded on these principles with GPU acceleration."
   - id: "lightmap-combination"
-    line_start: 133
-    line_end: 226
+    line_start: 131
+    line_end: 222
     title: "Combining Lightmaps for Realistic Illumination"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
     image_url: ""
     image_caption: ""
     content: "The `R_BuildLightMap` function combines static and dynamic lightmaps into a single texture, scaling and blending light contributions into an 8.8 format. This process was essential for achieving Quake's visually complex environments without overwhelming the hardware. In the mid-1990s, lightmaps were a novel solution to the challenge of rendering realistic lighting on limited hardware. By precomputing static lighting and dynamically updating only affected areas, id Software created a system that balanced performance and visual fidelity. This technique influenced later engines like Source and CryEngine, which refined lightmap handling for more advanced effects."
   - id: "texture-animation"
-    line_start: 227
+    line_start: 225
     line_end: 259
     title: "Animating Textures for Dynamic Environments"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
@@ -54,15 +54,15 @@ enhancements:
     image_caption: ""
     content: "The `R_TextureAnimation` function selects the appropriate texture frame for animated surfaces based on the current time. This allowed Quake to display moving textures, such as flowing water or flickering flames, adding dynamism to its environments. Texture animation was a relatively new concept in 1996, as most games relied on static textures. By integrating this feature, id Software enhanced the realism and immersion of their levels. Modern engines like Unreal and Unity have expanded this concept, enabling complex shader-based animations and procedural texture generation."
   - id: "multitexture-handling"
-    line_start: 57
-    line_end: 64
+    line_start: 287
+    line_end: 287
     title: "Multitexture: Lightmaps Meet Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multitexturing"
     image_url: ""
     image_caption: ""
     content: "The `GL_EnableMultitexture` and `GL_DisableMultitexture` functions manage multitexturing capabilities, allowing Quake to blend lightmaps with base textures in a single rendering pass. This optimization significantly improved performance by reducing the number of state changes and draw calls. Multitexturing was cutting-edge in the mid-1990s, enabled by advancements in OpenGL and hardware like the Voodoo Graphics card. It became a standard feature in modern graphics APIs, influencing techniques like deferred rendering and PBR (Physically Based Rendering)."
   - id: "water-surface-warping"
-    line_start: 592
+    line_start: 590
     line_end: 618
     title: "Warping Water: A Visual Trick"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
@@ -70,48 +70,48 @@ enhancements:
     image_caption: ""
     content: "The `DrawGLWaterPoly` function applies a sine-wave distortion to vertex coordinates, creating the illusion of rippling water. This effect was achieved by manipulating vertex positions in real-time, a clever workaround for hardware that lacked programmable shaders. In 1996, such visual tricks were necessary to simulate complex phenomena within the constraints of fixed-function pipelines. Quake's water effects inspired similar techniques in other games, and the concept of vertex manipulation evolved into modern GPU-based vertex shaders, enabling far more sophisticated effects."
   - id: "lightmap-blending"
-    line_start: 666
-    line_end: 762
+    line_start: 664
+    line_end: 759
     title: "Blending Lightmaps for Depth and Realism"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
     image_url: ""
     image_caption: ""
     content: "The `R_BlendLightmaps` function blends multiple lightmaps into the scene, ensuring smooth transitions and realistic lighting effects. By leveraging OpenGL's blending capabilities, Quake achieved a level of visual fidelity that was unprecedented for its time. This technique was a precursor to more advanced lighting systems, such as HDR (High Dynamic Range) and global illumination, which are now standard in modern engines like Unreal and Unity."
   - id: "brush-poly-rendering"
-    line_start: 763
-    line_end: 841
+    line_start: 761
+    line_end: 838
     title: "Rendering Brush Polygons with Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
     image_url: ""
     image_caption: ""
     content: "The `R_RenderBrushPoly` function handles the rendering of brush-based surfaces, including texture binding, lightmap application, and dynamic updates. Brush models were a cornerstone of Quake's level geometry, enabling complex 3D structures. This function exemplifies id Software's modular approach to rendering, where each surface type is treated as a distinct entity. The concept of brush-based geometry influenced later engines like Source, which expanded on the idea with tools like Hammer Editor for level design."
   - id: "dynamic-lightmap-updates"
-    line_start: 898
-    line_end: 899
+    line_start: 840
+    line_end: 896
     title: "Dynamic Lightmap Updates in Real-Time"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
     image_url: ""
     image_caption: ""
     content: "The `R_RenderDynamicLightmaps` function updates lightmaps dynamically based on changes in lighting conditions, such as moving light sources. This feature was critical for maintaining visual consistency in Quake's dynamic environments. In the 1990s, real-time updates to lightmaps were a significant technical achievement, as they required efficient memory management and fast calculations. The principles behind this function laid the groundwork for dynamic lighting systems in modern engines, which now leverage GPU acceleration for even greater complexity."
   - id: "draw-texture-chains"
-    line_start: 1036
-    line_end: 1084
+    line_start: 1032
+    line_end: 1081
     title: "Sorting Textures for Efficient Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
     content: "This function, `DrawTextureChains`, organizes textures into chains for rendering, ensuring that surfaces sharing the same texture are drawn sequentially. This minimizes state changes in the graphics pipeline, which were costly on 1990s hardware. The function also handles special cases like sky textures and mirrors, which require unique rendering techniques. At the time, hardware constraints such as limited VRAM and slow texture swapping necessitated such optimizations. John Carmack and Michael Abrash, both renowned for their expertise in graphics programming, implemented these techniques to push the limits of what was possible on consumer-grade hardware. This approach influenced later engines like Unreal Engine and Unity, which continue to optimize rendering by batching similar operations together."
   - id: "draw-brush-model"
-    line_start: 1085
-    line_end: 1196
+    line_start: 1083
+    line_end: 1185
     title: "Rendering Rotated Brush Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Brush_(computer_graphics)"
     image_url: ""
     image_caption: ""
     content: "The `R_DrawBrushModel` function is responsible for rendering brush models, which are 3D objects defined by planes. It accounts for rotation and dynamic lighting, ensuring that models are correctly positioned and lit in the scene. Brush models were a staple of Quake's level design, enabling complex structures like doors and platforms. The function also includes a workaround for a bug in Quake's handling of angles, highlighting the challenges of debugging in a high-pressure development environment. Carmack's innovative use of dynamic lighting here laid the groundwork for more advanced lighting systems in later games, such as Doom 3's per-pixel lighting."
   - id: "recursive-world-node"
-    line_start: 1197
-    line_end: 1324
+    line_start: 1187
+    line_end: 1319
     title: "Traversing the World with Binary Space Partitioning"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
@@ -126,16 +126,16 @@ enhancements:
     image_caption: ""
     content: "The `AllocBlock` function allocates space for lightmaps within texture blocks, ensuring efficient use of memory. Lightmaps store precomputed lighting information, enabling realistic shading without the computational cost of dynamic lighting. This function uses a clever packing algorithm to fit lightmaps into fixed-size blocks, a necessity given the limited memory of 1990s hardware. The technique was a precursor to modern texture atlases, which optimize GPU memory usage in contemporary engines. Quake's lightmap system inspired similar approaches in games like Half-Life and Counter-Strike, which relied heavily on precomputed lighting."
   - id: "build-surface-display-list"
-    line_start: 1463
-    line_end: 1576
+    line_start: 1461
+    line_end: 1573
     title: "Eliminating Co-linear Vertices for Faster Rendering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_mesh"
     image_url: ""
     image_caption: ""
     content: "The `BuildSurfaceDisplayList` function constructs the display list for a surface, optimizing its polygon data by removing co-linear vertices. This reduces the number of vertices sent to the GPU, improving rendering performance. The function also calculates texture and lightmap coordinates for each vertex, ensuring that surfaces are correctly shaded and textured. The elimination of co-linear vertices reflects the meticulous attention to detail in Quake's engine, where every optimization was crucial for achieving high frame rates on mid-90s hardware. This technique influenced later engines, which adopted similar preprocessing steps to streamline rendering."
   - id: "gl-build-lightmaps"
-    line_start: 1600
-    line_end: 1604
+    line_start: 1598
+    line_end: 1696
     title: "Building Lightmaps for Realistic Lighting"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
     image_url: ""

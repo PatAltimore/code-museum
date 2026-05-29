@@ -30,15 +30,15 @@ summary:
 
 enhancements:
   - id: "sys-debug-log-file-io"
-    line_start: 47
-    line_end: 72
+    line_start: 57
+    line_end: 69
     title: "Logging Game Events to Debug Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""
     image_caption: ""
     content: "This section implements a simple yet effective debug logging mechanism that writes formatted strings to a file. The function `Sys_DebugLog` uses `va_list` to handle variable arguments, allowing developers to log messages dynamically. Debugging was crucial during Quake's development, as the team pushed the limits of hardware and software capabilities. At the time, debugging tools were less sophisticated, and manual logging was a common practice. This approach ensured developers could trace issues in real-time, especially in a complex, performance-critical application like Quake. Debug logging became a standard feature in game engines, influencing later systems like Unreal Engine and Unity, where robust logging frameworks are integral to development workflows."
   - id: "filelength-function"
-    line_start: 74
+    line_start: 71
     line_end: 95
     title: "Determining File Length Without Metadata"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `filelength` function calculates the size of a file by seeking to the end and measuring the offset from the beginning. This was a practical solution in an era when file metadata was not always readily accessible or standardized across operating systems. By directly querying the file pointer position, the function avoids reliance on external libraries or APIs. This technique reflects the low-level programming mindset of the 1990s, where developers often worked close to the hardware and operating system. Such methods influenced later file handling practices in game engines, particularly in resource management systems that need to load assets efficiently."
   - id: "sys-make-code-writeable"
-    line_start: 130
+    line_start: 127
     line_end: 147
     title: "Making Memory Writeable for Dynamic Code"
     wikipedia_url: "https://en.wikipedia.org/wiki/Virtual_memory"
@@ -54,24 +54,24 @@ enhancements:
     image_caption: ""
     content: "The `Sys_MakeCodeWriteable` function uses the Windows API `VirtualProtect` to change memory protection settings, allowing code to be modified at runtime. This capability was essential for Quake's dynamic nature, where certain operations required modifying executable code or data in memory. The use of `VirtualProtect` reflects the team's deep understanding of Windows internals and their ability to leverage system-level features for performance and flexibility. This technique was not unique to Quake but became a hallmark of advanced game engines, enabling features like dynamic shaders and runtime code generation. It influenced later engines like Source and CryEngine, which also manipulate memory for similar purposes."
   - id: "sys-init-performance-timer"
-    line_start: 130
-    line_end: 147
+    line_start: 150
+    line_end: 226
     title: "Initializing High-Precision Timing"
     wikipedia_url: "https://en.wikipedia.org/wiki/QueryPerformanceCounter"
     image_url: ""
     image_caption: ""
     content: "The `Sys_Init` function initializes various system-level features, including a high-precision timer using `timeBeginPeriod`. Accurate timing was critical for Quake's gameplay, ensuring smooth frame updates and synchronization in multiplayer environments. The use of high-resolution timers reflects the team's commitment to precision, as standard timers often lacked the granularity required for real-time applications. This approach set a precedent for game engines, where timing accuracy directly impacts performance and user experience. Modern engines continue to rely on high-precision timers, often abstracting them into cross-platform APIs to ensure consistent behavior across different systems."
   - id: "sys-error-handling"
-    line_start: 47
-    line_end: 49
+    line_start: 229
+    line_end: 248
     title: "Graceful Error Handling in Real-Time Applications"
     wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
     image_url: ""
     image_caption: ""
     content: "The `Sys_Error` function provides a mechanism for handling fatal errors by displaying a message box and shutting down the application gracefully. This approach ensures users receive clear feedback when something goes wrong, rather than experiencing a silent crash. Error handling was particularly important in Quake, given its complexity and the potential for unexpected issues during runtime. By combining user-facing feedback with internal cleanup operations, the function minimizes disruption and aids debugging. This technique influenced later game engines, where robust error handling frameworks are standard practice, helping developers diagnose problems and maintain stability in live applications."
   - id: "sys-console-input"
-    line_start: 278
-    line_end: 343
+    line_start: 396
+    line_end: 494
     title: "Processing Console Input for Debugging and Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
     image_url: ""

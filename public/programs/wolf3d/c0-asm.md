@@ -30,16 +30,16 @@ summary:
 
 enhancements:
   - id: "segment-declarations-memory-organization"
-    line_start: 61
-    line_end: 74
+    line_start: 1
+    line_end: 143
     title: "How Segments Organized MS-DOS Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
     image_url: ""
     image_caption: ""
     content: "This section defines various memory segments such as CODE, DATA, BSS, STACK, and others, which are essential for organizing memory in an MS-DOS environment. Memory segmentation was a hallmark of x86 architecture, particularly in real mode, where programs had to manage memory within the 1MB address space. The programmers at id Software used these segments to ensure efficient memory usage and compatibility across different hardware configurations. At the time, MS-DOS programs relied heavily on manual memory management, as there was no built-in memory protection or virtual memory. These declarations laid the groundwork for the game's runtime environment, ensuring that data, stack, and code were properly isolated. This approach influenced later DOS-based games and applications, which adopted similar segmentation techniques to optimize performance."
   - id: "processor-check-286-compatibility"
-    line_start: 75
-    line_end: 90
+    line_start: 144
+    line_end: 507
     title: "The Check That Excluded Older PCs"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80286"
     image_url: ""
