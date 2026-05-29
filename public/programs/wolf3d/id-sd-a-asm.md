@@ -9,24 +9,24 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-sd-a-asm"
 order: 23
-description: "This file implements the sound manager for Wolfenstein 3D, showcasing ingenious techniques to handle sound effects on limited hardware."
+description: "This file implements sound management routines for Wolfenstein 3D, showcasing the ingenuity required to deliver immersive audio on constrained hardware."
 
 summary:
-  - point: "Introduces efficient sound handling for PC speaker and AdLib hardware"
+  - point: "Direct manipulation of PC speaker and AdLib sound card hardware"
     link: "https://en.wikipedia.org/wiki/PC_speaker"
     link_label: "PC Speaker"
-  - point: "Uses assembly macros to streamline sound effect processing"
-    link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly Language"
-  - point: "Demonstrates interrupt-driven sound playback for real-time effects"
+  - point: "Macros for modular sound effect handling"
+    link: "https://en.wikipedia.org/wiki/Macro_(computer_science)"
+    link_label: "Macro"
+  - point: "Efficient use of interrupt service routines for sound playback"
     link: "https://en.wikipedia.org/wiki/Interrupt"
     link_label: "Interrupts"
-  - point: "Optimizes sound playback by leveraging lookup tables and hardware registers"
+  - point: "Lookup tables for sound frequency translation"
     link: "https://en.wikipedia.org/wiki/Lookup_table"
     link_label: "Lookup Table"
-  - point: "Pushes the limits of 1992-era hardware for immersive audio experiences"
-    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    link_label: "Wolfenstein 3D"
+  - point: "Timer-based sequencing for sound effects"
+    link: "https://en.wikipedia.org/wiki/Programmable_interval_timer"
+    link_label: "Programmable Interval Timer"
 
 enhancements:
   - id: "data-segment-setup"
@@ -36,39 +36,47 @@ enhancements:
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_segmentation"
     image_url: ""
     image_caption: ""
-    content: "This section defines the DATASEG, which houses external variables and constants required for sound management. The programmer sets aside a dedicated memory segment for sound-related data, ensuring efficient access and organization. At the time, memory segmentation was a fundamental part of x86 programming, as the Intel 286 processor required programmers to manage memory in discrete segments. By isolating sound-related variables, id Software could optimize performance and simplify debugging. This approach reflects the constraints of early DOS systems, where memory was scarce and every byte counted. The variables defined here, such as `pcSound` and `alSound`, represent pointers and counters for sound effects, while lookup tables like `pcdtab` translate raw sound data into frequencies. This segmentation strategy influenced later game engines, which adopted similar practices for organizing memory-intensive operations like audio and graphics."
-  - id: "commonstart-macro"
-    line_start: 99
-    line_end: 121
-    title: "The Macro That Simplified Everything"
+    content: "This section defines the data segment for sound-related variables and external references. In the segmented memory model of x86 architecture, separating sound data into its own segment allows for efficient access and management. The variables include pointers to sound samples, lengths, and control flags for both PC speaker and AdLib sound card effects. At the time, memory segmentation was a necessity due to the 16-bit addressing limitations of the 80286 processor. By organizing sound data in this way, id Software ensured that sound routines could operate independently of other game logic, reducing complexity and improving performance. This approach influenced later sound libraries and engines, which often adopted similar modular designs for handling audio."
+  - id: "sdl-setds"
+    line_start: 90
+    line_end: 97
+    title: "Setting the Data Segment: A Simple Yet Vital Routine"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Segmented_memory"
+    image_url: ""
+    image_caption: ""
+    content: "The `SDL_SetDS` procedure sets the data segment register (`ds`) to point to the sound data segment. This operation is critical in the segmented memory model, where different segments are used for code, data, and stack. By explicitly setting the segment, the routine ensures that subsequent sound operations access the correct memory. This kind of manual memory management was a hallmark of programming in the DOS era, requiring developers to carefully orchestrate segment registers to avoid crashes or data corruption. While modern systems abstract away such details, understanding this routine provides insight into the challenges of low-level programming in the early 1990s."
+  - id: "macro-dofx"
+    line_start: 123
+    line_end: 205
+    title: "The Macro That Handles Sound Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Macro_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The `COMMONSTART` macro encapsulates boilerplate setup code for sound routines. It pushes registers onto the stack, sets the data segment, and increments a debug counter. Macros like this were essential in assembly programming, reducing repetitive code and minimizing errors. Debugging tools were rudimentary in 1992, so macros provided a way to standardize operations across multiple routines. The inclusion of debug-specific instructions, such as changing the overscan color, highlights the team's focus on testing under constrained conditions. This macro reflects the meticulous attention to detail required to develop complex software on early PCs. The practice of using macros for common setup tasks influenced later programming paradigms, including inline functions in C and preprocessor directives in modern languages."
-  - id: "pc-speaker-sound-effect"
-    line_start: 123
-    line_end: 205
-    title: "How Wolfenstein Made the PC Speaker Sing"
-    wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
-    image_url: ""
-    image_caption: ""
-    content: "This section handles sound effects for the PC speaker, a primitive audio device capable of producing simple tones. The code uses a lookup table (`pcSoundLookup`) to map sound data to frequencies, then manipulates hardware registers to play the sound. The speaker is toggled on and off using precise timing, creating the illusion of more complex audio. In the early 1990s, the PC speaker was the most common sound output device, but its limitations forced developers to innovate. John Carmack and the team at id Software used clever techniques like frequency modulation and rapid toggling to enhance the speaker's capabilities. These methods were groundbreaking at the time, inspiring other developers to push the boundaries of low-cost audio hardware. The PC speaker routines in Wolfenstein 3D laid the groundwork for more sophisticated sound engines in later games."
-  - id: "adlib-sound-effect"
-    line_start: 178
-    line_end: 205
-    title: "AdLib: The Sound Card That Changed Gaming"
-    wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
-    image_url: ""
-    image_caption: ""
-    content: "This section manages sound effects for the AdLib sound card, a popular audio device in the early 1990s. The code interacts with the AdLib's FM synthesis capabilities, sending frequency and block data to its registers via the `alOut` routine. The AdLib card was revolutionary, offering richer audio compared to the PC speaker. Its FM synthesis allowed developers to create dynamic soundscapes, enhancing immersion in games like Wolfenstein 3D. The routines here demonstrate id Software's mastery of hardware-level programming, using direct register manipulation to achieve precise control over audio playback. The AdLib's influence extended far beyond Wolfenstein, shaping the soundtracks of countless DOS games and establishing FM synthesis as a staple of early PC gaming."
-  - id: "timer-driven-sound-service"
+    content: "The `DOFX` macro encapsulates the logic for playing sound effects on both the PC speaker and AdLib sound card. It checks for active sound pointers, retrieves sound data, and manipulates hardware registers to produce audio. This modular approach simplifies the codebase by abstracting repetitive tasks into a reusable macro. At the time, macros were a powerful tool for assembly programming, enabling developers to write cleaner and more maintainable code. The `DOFX` macro exemplifies id Software's commitment to efficient and organized programming, a philosophy that influenced the design of later game engines like Quake and Unreal Engine."
+  - id: "timer-extreme-service"
     line_start: 276
     line_end: 341
-    title: "Interrupts: The Secret to Real-Time Sound"
+    title: "7000Hz Interrupts: Extreme Sound Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
     image_caption: ""
-    content: "The `SDL_t0ExtremeAsmService` routine handles sound playback using a high-frequency timer interrupt. By executing sound routines during 7000Hz interrupts, the code achieves real-time audio effects. Interrupt-driven programming was a hallmark of performance-critical applications in the early 1990s. It allowed developers to synchronize audio with gameplay without sacrificing responsiveness. This routine showcases id Software's ability to exploit hardware features for maximum efficiency. The use of interrupts for sound playback became a standard technique in game development, influencing audio engines in later titles like Doom and Quake. The legacy of this approach is evident in modern real-time systems, where interrupt handling remains a cornerstone of performance optimization."
+    content: "The `SDL_t0ExtremeAsmService` routine handles 7000Hz timer interrupts, enabling high-frequency sound playback. This level of precision was rare in games of the era, as it required careful timing and efficient code to avoid performance degradation. The routine manipulates the PC speaker directly, using bitwise operations to control the output. By leveraging the timer interrupt, id Software achieved smoother and more dynamic audio effects, enhancing the immersion of Wolfenstein 3D. This technique demonstrates the team's mastery of hardware-level programming, laying the groundwork for more advanced sound systems in later games."
+  - id: "timer-fast-service"
+    line_start: 343
+    line_end: 479
+    title: "700Hz Interrupts: Balancing Speed and Complexity"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Programmable_interval_timer"
+    image_url: ""
+    image_caption: ""
+    content: "The `SDL_t0FastAsmService` routine handles 700Hz timer interrupts, striking a balance between precision and performance. It uses the `DOFX` macro to play sound effects and manages sequencing for both PC speaker and AdLib sound card. This routine also incorporates timekeeping logic, ensuring synchronized playback. The choice of 700Hz reflects the constraints of the era, where developers had to optimize interrupt frequency to avoid overwhelming the CPU. This routine showcases id Software's ability to balance technical limitations with gameplay requirements, a skill that contributed to the success of Wolfenstein 3D and later titles like Doom."
+  - id: "timer-slow-service"
+    line_start: 481
+    line_end: 524
+    title: "140Hz Interrupts: Slower, But Still Effective"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
+    image_url: ""
+    image_caption: ""
+    content: "The `SDL_t0SlowAsmService` routine handles 140Hz timer interrupts, providing a lower-frequency option for sound playback. This routine is similar to the fast service but operates at a reduced rate, which could be useful for less time-sensitive audio effects or conserving CPU resources. By offering multiple interrupt frequencies, id Software demonstrated their adaptability to varying hardware capabilities and performance needs. This flexibility was crucial in an era when PC configurations varied widely, ensuring that Wolfenstein 3D could run smoothly on a broad range of systems."
 
 ---
 

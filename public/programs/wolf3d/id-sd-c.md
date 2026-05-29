@@ -9,186 +9,210 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-sd-c"
 order: 4
-description: "This file integrates sound effects and music into Wolfenstein 3D, showcasing innovative techniques for handling audio on early PC hardware."
+description: "This file showcases the sound management system for Wolfenstein 3D, a groundbreaking title that pushed the limits of MS-DOS hardware in 1992."
 
 summary:
-  - point: "Introduces macros for efficient SoundBlaster and AdLib hardware interaction"
+  - point: "Introduced efficient sound handling for multiple hardware devices"
     link: "https://en.wikipedia.org/wiki/Sound_Blaster"
     link_label: "Sound Blaster"
-  - point: "Demonstrates interrupt-driven audio playback for real-time sound effects"
-    link: "https://en.wikipedia.org/wiki/Interrupt"
-    link_label: "Interrupts"
-  - point: "Implements hardware detection routines for multiple sound devices"
+  - point: "Used assembly and C for low-level hardware interaction"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
+  - point: "Optimized audio playback for AdLib, SoundBlaster, and PC speaker"
     link: "https://en.wikipedia.org/wiki/AdLib"
     link_label: "AdLib"
-  - point: "Optimizes DMA programming for sampled sound playback"
+  - point: "Implemented interrupt-driven sound playback"
+    link: "https://en.wikipedia.org/wiki/Interrupt"
+    link_label: "Interrupts"
+  - point: "Demonstrated clever DMA programming for audio streaming"
     link: "https://en.wikipedia.org/wiki/Direct_memory_access"
     link_label: "DMA"
-  - point: "Innovative use of PC speaker for digitized sound effects"
-    link: "https://en.wikipedia.org/wiki/PC_speaker"
-    link_label: "PC Speaker"
 
 enhancements:
-  - id: "soundblaster-macros"
+  - id: "sound-finished-macro"
     line_start: 173
     line_end: 199
-    title: "Macros That Simplified SoundBlaster Programming"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
+    title: "The Macro That Silences Everything"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Macro_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "This section defines macros for interacting with SoundBlaster and AdLib hardware. These macros abstract away low-level operations like writing to ports and handling delays, making the code more readable and maintainable. At the time, programming sound hardware required precise timing and direct manipulation of I/O ports, which was error-prone and hardware-specific. By encapsulating these operations in macros, the developers streamlined the process of issuing commands to the sound card, such as resetting the DSP or writing data for playback. This approach influenced later game engines and sound libraries, which adopted similar abstractions to simplify hardware interaction."
-  - id: "timer-configuration"
-    line_start: 201
-    line_end: 214
-    title: "Reprogramming the System Timer for Audio"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Programmable_interval_timer"
-    image_url: ""
-    image_caption: ""
-    content: "The SDL_SetTimer0 and SDL_SetIntsPerSec functions reconfigure the PC's system timer to generate interrupts at a specific frequency, enabling precise timing for audio playback. This was critical for synchronizing sound effects and music with gameplay. The programmable interval timer (PIT) on IBM-compatible PCs allowed developers to adjust the interrupt rate, but doing so required careful handling to avoid disrupting other system functions. By dynamically adjusting the timer based on the active sound mode, id Software optimized audio performance while maintaining flexibility. This technique became a standard practice in real-time applications, influencing sound systems in later games and multimedia software."
-  - id: "dma-soundblaster-playback"
+    content: "The `SDL_SoundFinished` macro resets the sound system by clearing the `SoundNumber` and `SoundPriority` variables. This simple one-liner encapsulates the idea of quickly halting audio playback without additional overhead. In the context of 1992, when Wolfenstein 3D was developed, efficient sound management was crucial due to the limited processing power of MS-DOS systems running on Intel 386 processors. By using macros, the developers avoided function call overhead and ensured that sound-related operations were fast and predictable. This approach reflects the era's emphasis on squeezing maximum performance from hardware. The macro's simplicity and effectiveness influenced later game engines, where similar mechanisms were used to manage audio states efficiently."
+  - id: "soundblaster-dma-programming"
     line_start: 288
     line_end: 338
-    title: "DMA: The Secret to Smooth Sound Playback"
+    title: "DMA Programming for Seamless Audio Playback"
     wikipedia_url: "https://en.wikipedia.org/wiki/Direct_memory_access"
     image_url: ""
     image_caption: ""
-    content: "The SDL_SBPlaySeg function programs the DMA controller to transfer sampled sound data directly to the SoundBlaster's DAC, bypassing the CPU for efficient playback. This method ensures smooth audio performance, even during high-intensity gameplay. DMA was a game-changer for audio processing on early PCs, as it allowed large chunks of data to be moved without CPU intervention, freeing up resources for other tasks. The function also handles edge cases like bank boundaries in memory, showcasing the developers' deep understanding of hardware limitations. This approach laid the groundwork for modern audio APIs, which continue to rely on DMA for high-performance sound playback."
-  - id: "soundblaster-detection"
-    line_start: 441
-    line_end: 488
-    title: "How Wolfenstein Found Your Sound Card"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
-    image_url: ""
-    image_caption: ""
-    content: "The SDL_CheckSB and SDL_DetectSoundBlaster functions scan the system for a SoundBlaster card, verifying its presence by resetting the DSP and checking for a specific response code. This was necessary because early PCs lacked standardized methods for hardware detection. Developers had to implement custom routines to probe I/O ports and interpret device-specific signals. The detection logic here is robust, accounting for multiple possible configurations and fallback scenarios. This approach influenced later sound libraries and operating systems, which gradually standardized hardware detection mechanisms, reducing the complexity for developers."
-  - id: "sound-source-detection"
-    line_start: 750
-    line_end: 805
-    title: "Detecting the Elusive Sound Source"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_source_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "The SDL_DetectSoundSource function iterates through possible ports to detect the presence of a Sound Source device, a lesser-known audio hardware option. This routine highlights the challenges of supporting diverse hardware in the early 1990s, when compatibility was a major concern for game developers. By implementing detection for multiple devices, id Software ensured that Wolfenstein 3D could deliver audio on a wide range of systems. This commitment to compatibility set a precedent for future games, which increasingly prioritized broad hardware support to reach larger audiences."
-  - id: "pc-speaker-digitized-sound"
-    line_start: 829
-    line_end: 841
-    title: "Making the PC Speaker Sing (Digitally)"
-    wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
-    image_url: ""
-    image_caption: ""
-    content: "The SDL_PCPlaySample function plays digitized sound effects on the PC speaker, a feat considered groundbreaking at the time. The PC speaker was originally designed for simple beeps, but clever manipulation of its timer allowed for rudimentary playback of sampled audio. This required precise timing and CPU intervention, as the speaker lacked the advanced capabilities of dedicated sound cards. By leveraging this technique, id Software ensured that players without high-end sound hardware could still experience immersive audio. This innovation inspired other developers to push the limits of basic hardware, leading to creative solutions in resource-constrained environments."
-  - id: "play-digitized-sound"
-    line_start: 1027
-    line_end: 1042
-    title: "How Wolfenstein Played Digitized Sound"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Digitized_sound"
-    image_url: ""
-    image_caption: ""
-    content: "This routine, SDL_PlayDigiSegment, is responsible for playing digitized sound samples based on the active sound device (PC speaker, Sound Source, or SoundBlaster). In 1992, digitized sound was a luxury on PCs, as most games relied on simple beeps or FM synthesis. The code dynamically selects the appropriate playback function for the hardware detected, ensuring compatibility across devices. This approach reflects id Software's commitment to making Wolfenstein 3D accessible to a wide audience, even those with basic PC setups. The technique of abstracting hardware-specific functions into a unified interface influenced later game engines, including id's own DOOM engine."
-  - id: "stop-digitized-sound"
-    line_start: 1044
-    line_end: 1081
-    title: "Stopping Sounds: A Hardware-Safe Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
-    image_url: ""
-    image_caption: ""
-    content: "The SD_StopDigitized function halts any ongoing digitized sound playback and resets related variables. It uses assembly instructions like `pushf` and `cli` to safely disable interrupts during critical operations, ensuring no conflicts arise with other system processes. This level of hardware control was necessary on early PCs, where sound cards shared resources with other peripherals. The routine also unlocks memory pages used for sound data, reflecting the tight memory constraints of the era. By ensuring clean shutdowns, id Software avoided bugs that could crash the game or leave the sound hardware in an unstable state—a common issue in early PC gaming."
-  - id: "polling-for-sound"
-    line_start: 1083
-    line_end: 1106
-    title: "Polling for Sound Playback: A Clever Workaround"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Polling_(computer_science)"
-    image_url: ""
-    image_caption: ""
-    content: "The SD_Poll function checks the status of digitized sound playback and loads the next segment if necessary. This polling mechanism compensates for the lack of advanced hardware interrupts on some sound devices, ensuring smooth playback without gaps. By dynamically loading sound data in chunks, the routine minimizes memory usage while maintaining performance. This technique was crucial for Wolfenstein 3D, which had to balance audio processing with the demands of rendering its groundbreaking 3D graphics. The concept of polling for audio playback persisted in many early game engines and influenced how developers approached sound synchronization in resource-constrained environments."
-  - id: "adlib-register-manipulation"
-    line_start: 1264
-    line_end: 1331
-    title: "Direct Register Manipulation: AdLib's Secrets"
-    wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
-    image_url: ""
-    image_caption: ""
-    content: "The alOut function directly manipulates AdLib sound card registers to produce audio effects. By writing values to specific ports, the routine controls FM synthesis parameters like frequency, waveform, and volume. This low-level programming was common in the early 1990s, as developers had to interface directly with hardware due to the lack of standardized APIs. AdLib cards, based on Yamaha's OPL2 chip, were popular for their rich sound capabilities, but programming them required intimate knowledge of their architecture. The techniques demonstrated here laid the groundwork for more sophisticated audio libraries, such as DirectSound, which abstracted hardware details from developers."
-  - id: "detecting-adlib-card"
-    line_start: 1578
-    line_end: 1621
-    title: "Detecting AdLib: How Games Found Their Sound Cards"
-    wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
-    image_url: ""
-    image_caption: ""
-    content: "SDL_DetectAdLib determines whether an AdLib sound card (or a SoundBlaster emulating AdLib) is present. It writes and reads specific values to the card's registers, checking for expected responses. This hardware detection was critical in the early 1990s, as PCs lacked standardized ways to identify peripherals. Developers often had to implement custom routines for each device type, leading to complex and error-prone code. By automating detection, id Software ensured Wolfenstein 3D could adapt to a variety of setups, enhancing its accessibility. This approach influenced later APIs like DirectX, which standardized device enumeration and reduced the burden on developers."
-  - id: "sound-manager-startup"
-    line_start: 1861
-    line_end: 2003
-    title: "Starting the Sound Manager: A Modular Approach"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
-    image_url: ""
-    image_caption: ""
-    content: "SD_Startup initializes the game's sound system, detecting available hardware and configuring playback modes. It supports multiple devices, including AdLib, SoundBlaster, and PC speaker, using modular routines for each. This flexibility was a hallmark of id Software's design philosophy, allowing Wolfenstein 3D to run on a wide range of hardware. The routine also installs a custom interrupt service routine (ISR) for timer-based sound synchronization, showcasing the team's expertise in low-level programming. The modularity demonstrated here influenced future game engines, which adopted similar strategies to support diverse hardware configurations while maintaining performance."
-  - id: "default-sound-settings"
-    line_start: 2005
-    line_end: 2054
-    title: "Setting Defaults: Making Sound Work Everywhere"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
-    image_url: ""
-    image_caption: ""
-    content: "SD_Default configures the game's sound system based on detected hardware and user preferences. It ensures fallback options are available if the requested devices are unsupported, prioritizing AdLib and PC speaker modes. This routine highlights id Software's commitment to accessibility, ensuring Wolfenstein 3D could deliver audio on nearly any PC setup. By abstracting hardware details and providing sensible defaults, the code reduces complexity for users and developers alike. This philosophy of graceful degradation influenced later software design, where robust defaults became standard practice for handling diverse environments."
-  - id: "sound-shutdown-routine"
-    line_start: 2056
-    line_end: 2089
-    title: "How Wolfenstein Freed Sound Hardware at Exit"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    image_url: ""
-    image_caption: ""
-    content: "The `SD_Shutdown` function is responsible for gracefully shutting down the sound system when the game exits. It ensures that all sound devices are properly turned off, including the SoundBlaster and SoundSource hardware, if present. The routine also disables interrupts temporarily to safely reset the hardware timer and restore the original interrupt vector. In the early 1990s, sound hardware was often finicky, and failing to clean up properly could leave the system in an unstable state. John Carmack and the team at id Software prioritized robustness in their code, ensuring that players wouldn’t experience lingering issues after quitting the game. This approach set a precedent for responsible hardware management in PC gaming, influencing later titles that relied on similar techniques to handle sound resources."
-  - id: "user-hook-timer"
-    line_start: 2091
-    line_end: 2101
-    title: "The 1/70th Second Sound Hook"
+    content: "The `SDL_SBPlaySeg` function programs the SoundBlaster's DMA controller to play a chunk of sampled sound. It ensures that the sound data does not cross a memory bank boundary, a critical consideration for hardware of the time. The function calculates the data's page and offset, configures the DMA controller, and initiates playback by sending commands to the SoundBlaster DSP. This low-level manipulation of the DMA controller highlights the ingenuity required to achieve smooth audio playback on MS-DOS systems. In 1992, sound cards like the SoundBlaster were becoming standard, but programming them required intimate knowledge of their hardware registers and quirks. This function exemplifies how id Software leveraged hardware capabilities to deliver immersive audio experiences. Techniques like these laid the groundwork for modern audio APIs, abstracting such complexities from developers."
+  - id: "interrupt-driven-audio-service"
+    line_start: 340
+    line_end: 370
+    title: "Interrupts: The Backbone of Real-Time Audio"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
     image_caption: ""
-    content: "The `SD_SetUserHook` function allows developers to set a custom routine that is called every 1/70th of a second by the sound manager’s timer interrupt. This feature enabled precise synchronization with the game’s audio system, a critical capability for creating immersive sound effects and music playback. During the early 1990s, interrupt-driven programming was a common technique for achieving real-time responsiveness on MS-DOS systems. By leveraging the timer interrupt, id Software ensured that audio updates could occur seamlessly alongside gameplay. This mechanism became a standard practice in game development, influencing sound engines in later titles such as Doom and Quake."
-  - id: "stereo-positioning"
-    line_start: 2103
-    line_end: 2115
-    title: "Dynamic Stereo Sound Placement"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Stereophonic_sound"
-    image_url: ""
-    image_caption: ""
-    content: "The `SD_PositionSound` function sets up stereo imaging for the next sound to be played, allowing developers to specify the left and right channel volumes. This technique creates a sense of spatial audio, enhancing the player’s immersion by simulating the directionality of sounds in the game world. In the early 1990s, stereo sound was a relatively new feature for PC games, made possible by hardware like the SoundBlaster. By implementing dynamic sound positioning, id Software pushed the boundaries of audio design, paving the way for more sophisticated sound systems in later games. This feature would inspire other developers to experiment with spatial audio, leading to advancements in 3D sound technologies."
-  - id: "play-sound-routine"
-    line_start: 2117
-    line_end: 2202
-    title: "The Routine That Played Wolfenstein’s Sounds"
+    content: "The `SDL_SBService` function handles SoundBlaster DMA interrupts, ensuring continuous audio playback. When an interrupt occurs, the function acknowledges it and processes the next segment of audio data. If no data remains, it stops the sample and signals that playback is complete. Interrupt-driven audio was a necessity in the early 1990s, as it allowed the CPU to perform other tasks while audio played in the background. This approach reflects the constraints of MS-DOS systems, where multitasking was limited and every cycle counted. By using interrupts, id Software achieved smooth audio playback without monopolizing the CPU. This technique influenced later sound systems, including those in Windows and Linux, where interrupt-driven architectures remain foundational for real-time audio processing."
+  - id: "soundblaster-detection"
+    line_start: 490
+    line_end: 525
+    title: "Finding the SoundBlaster in a Sea of Ports"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
     image_url: ""
     image_caption: ""
-    content: "The `SD_PlaySound` function is the heart of Wolfenstein 3D’s sound system. It handles the playback of sound effects, determining the appropriate hardware (PC speaker, AdLib, or digitized sound) based on the game’s configuration. The routine includes priority checks to ensure that higher-priority sounds can interrupt lower-priority ones, a feature critical for maintaining audio clarity during intense gameplay. The use of assembly language for hardware control reflects the constraints of the era, where direct interaction with sound cards was necessary to achieve optimal performance. This function showcases id Software’s mastery of low-level programming, a skill that would later be instrumental in the development of Doom’s sound engine."
-  - id: "music-sequencer-on"
+    content: "The `SDL_DetectSoundBlaster` function scans for a SoundBlaster card by probing various I/O ports. If the user specifies a port, it checks that directly; otherwise, it scans through all possible locations. This function demonstrates the challenges of hardware detection in the early PC era, where devices lacked standardized plug-and-play interfaces. Developers had to manually query hardware registers and interpret responses to determine device presence. The SoundBlaster was a dominant sound card in the early 1990s, and ensuring compatibility with it was vital for games like Wolfenstein 3D. This detection logic reflects the meticulous attention to detail required to support a wide range of hardware configurations. The approach influenced later systems, eventually leading to the development of standardized detection protocols like PCI and USB."
+  - id: "pc-speaker-sample-playback"
+    line_start: 829
+    line_end: 841
+    title: "Making the PC Speaker Sing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/PC_speaker"
+    image_url: ""
+    image_caption: ""
+    content: "The `SDL_PCPlaySample` function plays a sampled sound on the PC speaker, a primitive audio device built into early IBM-compatible PCs. It sets up the sample data and length, then enables the speaker for playback. The PC speaker was limited to simple beeps and tones, but clever programming techniques allowed developers to simulate more complex sounds. By rapidly toggling the speaker's state, games like Wolfenstein 3D could produce rudimentary sound effects, enhancing the player's experience. This function highlights id Software's resourcefulness in using every available hardware feature to its fullest. While the PC speaker was eventually replaced by dedicated sound cards, the techniques developed for it influenced early audio programming and demonstrated the potential of software-driven sound synthesis."
+  - id: "digitized-sound-loading"
+    line_start: 991
+    line_end: 1025
+    title: "Loading Digitized Sounds into Memory"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Digital_audio"
+    image_url: ""
+    image_caption: ""
+    content: "The `SDL_LoadDigiSegment` function loads a segment of digitized sound into memory, locking the page to prevent it from being swapped out. This ensures that the sound data remains accessible during playback. Digitized sound was a major advancement in gaming audio, allowing developers to include realistic sound effects and voice clips. In 1992, memory management was a critical concern, as most PCs had limited RAM and no virtual memory. By locking sound pages, id Software avoided playback interruptions caused by memory paging. This function reflects the era's emphasis on optimizing memory usage and ensuring reliability. The ability to play digitized sounds contributed to Wolfenstein 3D's immersive atmosphere and influenced the adoption of similar techniques in later games, including Doom and Quake."
+  - id: "stop-digitized-sound"
+    line_start: 1044
+    line_end: 1081
+    title: "How Wolfenstein 3D Stopped Sounds Mid-Game"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
+    image_url: ""
+    image_caption: ""
+    content: "The `SD_StopDigitized` function halts playback of digitized sound effects, ensuring that no lingering audio disrupts gameplay. It clears various state variables, such as `DigiPlaying` and `DigiMissed`, and invokes device-specific stop routines depending on the active sound mode (`sds_PC`, `sds_SoundSource`, or `sds_SoundBlaster`). The use of inline assembly (`asm pushf` and `asm cli`) disables interrupts temporarily, preventing timing issues during the cleanup process. In the early 1990s, sound hardware like the SoundBlaster was becoming a standard, but programming it required careful handling of registers and memory. This function reflects the meticulous attention to detail required to manage sound hardware directly. By ensuring clean transitions between sound effects, this routine contributed to the immersive experience of Wolfenstein 3D. Techniques like these influenced later game engines, including id Software's Doom engine, which also prioritized seamless audio integration."
+  - id: "polling-digitized-sound"
+    line_start: 1083
+    line_end: 1106
+    title: "Polling for Smooth Sound Playback"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Digital_audio"
+    image_url: ""
+    image_caption: ""
+    content: "The `SD_Poll` function manages the playback of digitized sound by checking if additional sound data needs to be loaded and played. It ensures that sound segments are loaded into memory (`SDL_LoadDigiSegment`) and played (`SDL_PlayDigiSegment`) in a timely manner. This polling mechanism was crucial for maintaining smooth audio playback on hardware with limited processing power and memory. In the early 1990s, games often relied on polling loops to manage hardware interactions, as interrupt-driven approaches were less common due to complexity. This function exemplifies how Wolfenstein 3D balanced performance and simplicity in its audio subsystem. The polling approach influenced other games of the era, particularly those running on MS-DOS, where direct hardware control was necessary."
+  - id: "set-sound-position"
+    line_start: 1108
+    line_end: 1127
+    title: "Positioning Sounds in a 3D Space"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Stereo_sound"
+    image_url: ""
+    image_caption: ""
+    content: "The `SD_SetPosition` function adjusts the left and right audio channels to simulate sound positioning within the game world. It validates the input positions and calls `SDL_PositionSBP` for SoundBlaster-specific adjustments. This feature added a layer of immersion by allowing sounds to appear as though they were coming from specific directions relative to the player. In the early 1990s, stereo sound was a novel feature in games, and Wolfenstein 3D's implementation showcased how directional audio could enhance gameplay. This technique laid the groundwork for more advanced spatial audio systems in later games, including Quake and Unreal."
+  - id: "play-digitized-sound"
+    line_start: 1129
+    line_end: 1162
+    title: "Playing Digitized Sounds on Demand"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Digital_audio"
+    image_url: ""
+    image_caption: ""
+    content: "The `SD_PlayDigitized` function initiates playback of a specific digitized sound effect, setting its position and loading the necessary data into memory. It uses the `DigiList` array to determine the sound's memory page and length, ensuring efficient handling of large audio files. This function highlights the challenges of working with limited memory and storage in the early 1990s, where sound data often had to be paged in and out of memory dynamically. By prioritizing performance and responsiveness, this routine contributed to Wolfenstein 3D's fast-paced gameplay. The approach influenced other games and engines, particularly those that needed to manage audio efficiently on constrained hardware."
+  - id: "setup-digitized-sound"
+    line_start: 1234
+    line_end: 1262
+    title: "Preparing Digitized Sound for Playback"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Digital_audio"
+    image_url: ""
+    image_caption: ""
+    content: "The `SDL_SetupDigi` function initializes the digitized sound system by loading sound data into memory and preparing lookup tables (`DigiList` and `DigiMap`). It uses low-level memory management functions like `PM_UnlockMainMem` and `MM_GetPtr` to allocate and copy sound data. This setup process reflects the constraints of early MS-DOS systems, where memory management was a critical aspect of game development. By organizing sound data efficiently, this function enabled Wolfenstein 3D to deliver high-quality audio without compromising performance. The techniques used here influenced later games that relied on digitized sound, including Doom and Duke Nukem 3D."
+  - id: "adlib-register-output"
+    line_start: 1264
+    line_end: 1331
+    title: "Directly Programming the AdLib Card"
+    wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
+    image_url: ""
+    image_caption: ""
+    content: "The `alOut` function writes values directly to the AdLib sound card's registers, controlling its FM synthesis capabilities. It disables interrupts temporarily (`asm cli`) to ensure precise timing during register manipulation. This low-level approach was necessary in the early 1990s, as developers often had to program hardware directly to achieve desired effects. The AdLib card was one of the first widely adopted sound cards for PC gaming, and its FM synthesis capabilities were a major step forward in audio quality. By mastering the intricacies of AdLib programming, id Software set a precedent for other developers, paving the way for more sophisticated audio systems in games like Doom and Quake."
+  - id: "detect-adlib-card"
+    line_start: 1578
+    line_end: 1621
+    title: "How Wolfenstein 3D Found the AdLib Card"
+    wikipedia_url: "https://en.wikipedia.org/wiki/AdLib"
+    image_url: ""
+    image_caption: ""
+    content: "The `SDL_DetectAdLib` function checks for the presence of an AdLib sound card by writing and reading specific registers. It uses a combination of direct register manipulation and timing loops to verify the card's response. This detection routine ensured that Wolfenstein 3D could adapt to the player's hardware configuration, enabling or disabling features as needed. In the early 1990s, hardware detection was a common challenge for game developers, as PCs lacked standardized APIs for sound devices. By implementing robust detection routines, id Software ensured compatibility with a wide range of systems, contributing to the game's commercial success. This approach influenced later games and engines, which continued to prioritize hardware compatibility."
+  - id: "startup-sound-manager"
+    line_start: 1861
+    line_end: 2003
+    title: "Bootstrapping Audio for Wolfenstein 3D"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
+    image_url: ""
+    image_caption: ""
+    content: "The `SD_Startup` function initializes the sound manager, detecting available hardware and setting up the necessary subsystems. It checks for AdLib, SoundBlaster, and Sound Source devices, configuring them based on environment variables and command-line parameters. This comprehensive startup routine reflects the complexity of audio management in the early 1990s, where developers had to account for a wide variety of hardware configurations. By ensuring robust detection and initialization, id Software maximized compatibility and delivered a seamless audio experience to players. The techniques used here influenced later games and engines, which continued to prioritize flexible hardware support."
+  - id: "shutdown-audio-subsystem"
+    line_start: 2056
+    line_end: 2089
+    title: "How Wolfenstein 3D Shut Down Audio"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_request_(IRQ)"
+    image_url: ""
+    image_caption: ""
+    content: "This section of code handles the shutdown of the audio subsystem when the game exits or transitions to a state where sound is no longer needed. It disables sound playback, cleans up device resources, and restores the system timer interrupt vector to its original state. The use of assembly instructions (`pushf`, `cli`, `popf`) reflects the need for precise control over hardware interrupts, ensuring that the game does not leave the system in an unstable state. In 1992, managing hardware directly was common practice due to the lack of standardized APIs for sound devices. This approach allowed id Software to support multiple sound hardware configurations, including Sound Blaster and AdLib cards, which were popular among gamers at the time. The shutdown routine exemplifies the meticulous attention to system stability required in DOS programming, where improper cleanup could crash the user's machine. Techniques like these influenced later game engines, including id's own Doom engine, which also featured robust hardware management."
+  - id: "set-user-hook-timer"
+    line_start: 2091
+    line_end: 2101
+    title: "A Timer Hook for Real-Time Audio"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    image_url: ""
+    image_caption: ""
+    content: "This function allows the programmer to set a custom routine that the sound manager will call every 1/70th of a second, leveraging the timer interrupt. This capability was critical for real-time audio processing in Wolfenstein 3D, enabling precise synchronization of sound effects with gameplay events. At the time, games relied heavily on hardware interrupts to achieve real-time responsiveness, as CPUs lacked multitasking capabilities and dedicated sound processors were rare. By providing this hook, id Software gave developers flexibility to extend or modify the audio behavior without altering the core sound manager. This technique influenced later game engines, where similar hooks became standard practice for handling real-time events, including audio, physics, and AI."
+  - id: "stereo-sound-positioning"
+    line_start: 2103
+    line_end: 2115
+    title: "Stereo Sound in a 2D World"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Stereophonic_sound"
+    image_url: ""
+    image_caption: ""
+    content: "This function sets up stereo positioning for sound effects, allowing sounds to be perceived as coming from specific directions. It adjusts the volume for the left and right audio channels, creating a rudimentary spatial audio effect. In the early 1990s, stereo sound was a novel feature for games, as most PC speakers were monophonic. By implementing stereo positioning, id Software enhanced the immersion of Wolfenstein 3D, making players feel more connected to the game's environment. This technique paved the way for more sophisticated spatial audio systems in later games, such as those found in 3D engines like Unreal Engine."
+  - id: "play-sound-effects"
+    line_start: 2117
+    line_end: 2202
+    title: "Playing Sounds Across Multiple Devices"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
+    image_url: ""
+    image_caption: ""
+    content: "This function handles the playback of sound effects, supporting multiple hardware configurations, including PC speaker, AdLib, and Sound Blaster. It prioritizes sounds based on their importance, ensuring critical effects are heard even under resource constraints. The code includes assembly-level optimizations to manage hardware interrupts and prevent conflicts during playback. In the early 1990s, supporting diverse sound hardware was essential, as gamers had a wide range of setups. This flexibility contributed to Wolfenstein 3D's broad appeal and set a precedent for cross-hardware compatibility in games. Techniques like sound prioritization and hardware-specific optimizations influenced later engines, including the Doom engine, which further refined audio handling."
+  - id: "check-sound-playing"
+    line_start: 2204
+    line_end: 2229
+    title: "Is a Sound Still Playing?"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
+    image_url: ""
+    image_caption: ""
+    content: "This function checks whether a sound is currently playing and returns its identifier if so. It uses hardware-specific flags to determine the playback state, reflecting the low-level nature of audio programming in the DOS era. Real-time checks like these were crucial for synchronizing sound effects with gameplay, ensuring that overlapping sounds did not disrupt the player's experience. This approach influenced later game engines, where real-time audio state management became a standard feature."
+  - id: "stop-sound-effects"
+    line_start: 2231
+    line_end: 2255
+    title: "Stopping Sounds Without Crashing"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    image_url: ""
+    image_caption: ""
+    content: "This function stops any currently playing sound, ensuring that resources are freed and the audio subsystem remains stable. It includes checks for digitized sound playback and hardware-specific routines for PC speaker and AdLib cards. Properly stopping sounds was critical in the DOS era, as failing to do so could leave hardware in an unstable state or cause crashes. The robust handling of sound termination in Wolfenstein 3D influenced later engines, where similar safeguards became standard practice."
+  - id: "music-on-off"
     line_start: 2269
     line_end: 2278
-    title: "Activating Wolfenstein’s Music Sequencer"
+    title: "Turning Music On and Off"
     wikipedia_url: "https://en.wikipedia.org/wiki/MIDI"
     image_url: ""
     image_caption: ""
-    content: "The `SD_MusicOn` function activates the game’s music sequencer, enabling playback of background music during gameplay. This routine is part of id Software’s implementation of a MIDI-like system for controlling musical tracks. In the early 1990s, AdLib sound cards were widely used for music playback in games, offering a significant upgrade over the basic PC speaker. By integrating a sequencer, the developers could create dynamic and atmospheric music that complemented the game’s fast-paced action. This approach influenced the design of music systems in later games, including Doom, which featured a more advanced MIDI-based music engine."
+    content: "These functions manage the music sequencer, turning it on and off as needed. The code interacts directly with AdLib hardware, sending commands to stop playback and reset registers. Music was an essential part of Wolfenstein 3D's atmosphere, and the ability to control it dynamically allowed the game to adapt its audio to different gameplay scenarios. This direct hardware interaction reflects the low-level programming required in the early 1990s, where APIs for music playback were virtually nonexistent. The techniques used here influenced later engines, which built on these foundations to implement more sophisticated music systems."
   - id: "fade-out-music"
     line_start: 2327
     line_end: 2343
-    title: "The Quick Hack for Fading Music"
+    title: "Fading Out Music with a Quick Hack"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(audio_engineering)"
     image_url: ""
     image_caption: ""
-    content: "The `SD_FadeOutMusic` function initiates a fade-out effect for the currently playing music. Interestingly, the implementation is described as a \"quick hack,\" simply turning off the music rather than gradually reducing its volume. This reflects the time pressures faced by the developers, who often had to prioritize functionality over polish. Despite its simplicity, the concept of fading out music became a standard feature in game audio systems, contributing to smoother transitions between gameplay and menus. The function’s straightforward design highlights the pragmatic approach id Software took to meet deadlines while delivering a groundbreaking game."
+    content: "This function initiates a fade-out effect for the music, reducing its volume gradually until it stops. The implementation includes a quick hack for immediate music termination, reflecting the constraints of the development timeline. Fade-out effects were rare in games of this era, as they required additional processing and careful timing. By implementing this feature, id Software added a layer of polish to Wolfenstein 3D's audio experience, enhancing its overall immersion. This technique influenced later games, where dynamic audio transitions became a hallmark of high-quality sound design."
   - id: "music-playing-check"
     line_start: 2345
     line_end: 2367
-    title: "Is Music Playing? A Debugging Stub"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
+    title: "Is Music Still Playing?"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Real-time_computing"
     image_url: ""
     image_caption: ""
-    content: "The `SD_MusicPlaying` function checks whether music is currently playing, returning a boolean result. However, the implementation is incomplete, with a \"DEBUG - not written\" comment indicating that the functionality was left unfinished. This stub reflects the iterative development process at id Software, where some features were deprioritized to focus on critical gameplay elements. Despite its limitations, the function provides insight into the team’s debugging practices and their use of placeholder code during development. Such stubs were common in the era, serving as reminders for future improvements or as temporary solutions to meet tight deadlines."
+    content: "This function checks whether music is currently playing, returning a boolean result. It interacts directly with AdLib hardware, reflecting the low-level nature of audio programming in the DOS era. Real-time checks like these were essential for synchronizing music with gameplay, ensuring smooth transitions between tracks and gameplay events. Although the implementation is incomplete, it demonstrates the challenges of managing music playback on limited hardware. Techniques like these influenced later engines, where real-time music state management became standard practice."
 
 ---
 

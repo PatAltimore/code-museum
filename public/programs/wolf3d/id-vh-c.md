@@ -9,74 +9,74 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-vh-c"
 order: 21
-description: "This file showcases the graphical routines and optimizations that powered Wolfenstein 3D's groundbreaking visuals."
+description: "This file contains graphical rendering routines for Wolfenstein 3D, showcasing the ingenuity behind its fast-paced visuals and efficient use of hardware."
 
 summary:
-  - point: "Proportional font rendering optimized for VGA hardware"
+  - point: "Proportional font rendering optimized for VGA"
     link: "https://en.wikipedia.org/wiki/VGA"
     link_label: "VGA"
-  - point: "Double-buffering techniques for smooth graphics updates"
+  - point: "Double-buffering techniques for smooth updates"
     link: "https://en.wikipedia.org/wiki/Double_buffering"
     link_label: "Double Buffering"
-  - point: "Randomized pixel effects used in transitions"
-    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    link_label: "Wolfenstein 3D"
-  - point: "Efficient memory management for graphical assets"
+  - point: "Randomized pixel effects for transitions"
+    link: "https://en.wikipedia.org/wiki/Fade_(graphics)"
+    link_label: "Fade Effects"
+  - point: "Efficient memory management for graphics chunks"
     link: "https://en.wikipedia.org/wiki/Memory_management"
     link_label: "Memory Management"
-  - point: "Assembly language optimizations for pixel manipulation"
+  - point: "Assembly optimizations for pixel manipulation"
     link: "https://en.wikipedia.org/wiki/Assembly_language"
     link_label: "Assembly Language"
 
 enhancements:
-  - id: "byte-array-update-grid"
-    line_start: 235
-    line_end: 289
-    title: "The Grid That Tracks Screen Updates"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines a two-dimensional byte array named `update`, which serves as a grid to track which parts of the screen need to be refreshed during gameplay. By marking tiles in this grid, the game avoids unnecessary redraws, optimizing performance on hardware with limited processing power. In 1992, MS-DOS games often relied on such techniques to achieve smooth graphics updates without overloading the CPU. This approach was particularly important for Wolfenstein 3D, which aimed to deliver fast-paced action at a consistent frame rate. The concept of marking update regions influenced later games, where similar techniques were used in engines like Doom and Quake to manage rendering efficiently."
   - id: "proportional-font-rendering"
     line_start: 38
     line_end: 93
-    title: "How Wolfenstein Drew Proportional Fonts"
+    title: "Proportional Font Rendering on VGA"
     wikipedia_url: "https://en.wikipedia.org/wiki/VGA"
     image_url: ""
     image_caption: ""
-    content: "The `VW_DrawPropString` function handles the rendering of proportional fonts, where each character has a variable width. This was a departure from fixed-width fonts and added a touch of polish to the game's text displays. The routine uses VGA-specific hardware instructions to manipulate pixels directly, ensuring that the text is drawn efficiently. At the time, VGA graphics were state-of-the-art, and leveraging its capabilities required deep knowledge of assembly language and hardware quirks. John Carmack's mastery of these techniques allowed Wolfenstein 3D to stand out visually. The use of proportional fonts became standard in later games, enhancing readability and aesthetics in user interfaces."
-  - id: "assembly-optimized-color-string"
+    content: "The `VW_DrawPropString` function is responsible for rendering proportional-width fonts on the VGA screen. It calculates the width of each character dynamically based on font metadata and uses assembly instructions to manipulate pixels directly. This approach was necessary for achieving high performance on the limited hardware of the time, where VGA graphics required precise control over memory-mapped video buffers. In 1992, VGA was the dominant graphics standard, offering 256 colors and resolutions up to 640x480. John Carmack's use of assembly here reflects his obsession with squeezing every ounce of performance from the hardware. This technique influenced later games that needed fast text rendering, especially in dialogue-heavy RPGs and strategy games."
+  - id: "color-prop-string-rendering"
     line_start: 96
     line_end: 156
-    title: "Assembly Optimizations for Colorful Text"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    title: "Dynamic Color Shifting in Text Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""
     image_caption: ""
-    content: "The `VW_DrawColorPropString` function builds on the previous routine by adding color variation to the rendered text. Using assembly language, the routine manipulates VGA registers to increment the font color dynamically as each character is drawn. This technique showcases Carmack's ability to push hardware to its limits, creating visually engaging effects with minimal performance overhead. Assembly optimizations like these were crucial for achieving smooth gameplay on early PCs, where every CPU cycle mattered. This approach influenced later game engines, which continued to use low-level optimizations for graphical effects, particularly in resource-constrained environments like mobile devices."
-  - id: "vl-munge-pic-data-reorganization"
+    content: "The `VW_DrawColorPropString` function extends the functionality of `VW_DrawPropString` by introducing dynamic color shifts during rendering. As each character is drawn, the font color is incremented, creating a gradient effect. This was a clever way to add visual flair without requiring additional graphics assets. In the early 1990s, color manipulation was a popular technique for enhancing visuals on hardware with limited graphical capabilities. By leveraging assembly language, Carmack ensured that this effect was both fast and memory-efficient. This approach inspired similar techniques in later games, such as dynamic lighting effects and palette cycling, which became staples in 2D game engines."
+  - id: "image-munging-for-performance"
     line_start: 162
     line_end: 204
-    title: "Reorganizing Image Data for Performance"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    title: "Image Munging: Packing Pixels for Speed"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Pixel"
     image_url: ""
     image_caption: ""
-    content: "The `VL_MungePic` function reorganizes image data into a format optimized for VGA's planar memory layout. By copying the image into a temporary buffer and then rearranging its pixels, the routine ensures that the data aligns with VGA's requirements for efficient rendering. This technique reflects the constraints of early PC graphics hardware, where developers often had to adapt their data structures to fit the quirks of the display system. Such optimizations were common in the era and laid the groundwork for more sophisticated memory management techniques in later game engines. The concept of preprocessing graphical assets for performance remains relevant in modern game development."
-  - id: "vw-mark-update-block"
+    content: "The `VL_MungePic` function rearranges image data to optimize rendering performance. It divides the image into four planes and reorganizes the pixel data to align with VGA's planar memory model. This preprocessing step ensures that subsequent rendering operations can access data more efficiently. In the early 1990s, developers often had to adapt their graphics routines to the quirks of hardware like VGA, which stored pixel data in separate planes. This technique highlights Carmack's deep understanding of hardware constraints and his ability to work within them. Similar preprocessing methods were later used in sprite-based games and image compression algorithms."
+  - id: "double-buffer-update-blocks"
     line_start: 235
     line_end: 289
-    title: "Marking Tiles for Redraw Efficiency"
+    title: "Marking Update Blocks for Double Buffering"
     wikipedia_url: "https://en.wikipedia.org/wiki/Double_buffering"
     image_url: ""
     image_caption: ""
-    content: "The `VW_MarkUpdateBlock` function calculates which tiles on the screen need to be updated based on their coordinates. By marking these tiles in the `update` grid, the routine minimizes the amount of rendering required, focusing only on areas that have changed. This technique was essential for maintaining high performance on hardware with limited graphical capabilities. It reflects the broader trend in game development of optimizing rendering pipelines to achieve smooth gameplay. The idea of marking regions for redraw influenced later engines like Unreal Engine, where similar principles are applied in modern rendering systems to optimize performance."
-  - id: "fizzle-fade-transition-effect"
+    content: "The `VW_MarkUpdateBlock` function identifies which portions of the screen need to be updated during rendering. By dividing the screen into blocks and marking only those that have changed, the game minimizes the amount of data sent to the VGA buffer. This technique is a form of double buffering, which reduces flickering and improves visual smoothness. In the constrained environment of MS-DOS, where CPU cycles and memory were precious, this approach was essential for maintaining high frame rates. Double buffering became a standard practice in game development and is still used in modern graphics engines to ensure smooth rendering."
+  - id: "latch-memory-loading"
     line_start: 387
-    line_end: 539
-    title: "The Randomized Pixel Transition Effect"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    line_end: 455
+    title: "Loading Graphics into Latch Memory"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The `FizzleFade` function creates a transition effect by randomly copying pixels from one buffer to another. This visually striking effect was used for screen fades and transitions, adding a layer of polish to the game's presentation. The routine employs assembly language to generate random coordinates and manipulate VGA memory directly, showcasing Carmack's expertise in low-level programming. Such effects were rare in early games, as they required both technical skill and a willingness to experiment with hardware capabilities. The concept of randomized transitions influenced later games and engines, where similar effects are used to enhance visual storytelling and immersion."
+    content: "The `LoadLatchMem` function loads graphical assets into a special area of memory called latch memory. This memory is used to store preprocessed graphics, such as tiles and sprites, for quick access during gameplay. By caching these assets in latch memory, the game avoids the overhead of recalculating or reloading them during rendering. This technique reflects the constraints of MS-DOS systems, where memory management was a critical aspect of performance optimization. The use of latch memory influenced later game engines, which adopted similar caching strategies to handle large graphical assets efficiently."
+  - id: "randomized-fizzle-fade"
+    line_start: 471
+    line_end: 547
+    title: "Randomized Pixel Effects: FizzleFade"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Fade_(graphics)"
+    image_url: ""
+    image_caption: ""
+    content: "The `FizzleFade` function creates a randomized fade effect by copying pixels from one buffer to another in a pseudo-random order. This effect was used during transitions, such as level changes or game over screens, to add visual interest. The randomness is generated using a simple algorithm that advances through a sequence of pseudo-random values. In the early 1990s, such effects were a novel way to enhance immersion without requiring additional hardware capabilities. The concept of randomized transitions inspired similar effects in later games, including particle systems and procedural animations."
 
 ---
 

@@ -9,58 +9,58 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "h-ldiv-asm"
 order: 25
-description: "This file implements a long division routine used in Wolfenstein 3D, showcasing how assembly language was leveraged to optimize mathematical operations on constrained hardware."
+description: "A deep dive into Wolfenstein 3D's long division routine, showcasing optimization for 386 processors and clever handling of signed and unsigned division."
 
 summary:
-  - point: "Uses 386-specific instructions for optimized division"
+  - point: "Optimized long division leveraging 386 instructions"
     link: "https://en.wikipedia.org/wiki/Intel_80386"
     link_label: "Intel 80386"
-  - point: "Handles signed and unsigned division with clever flag manipulation"
+  - point: "Handles signed and unsigned division with modular control"
     link: "https://en.wikipedia.org/wiki/Division_(mathematics)"
-    link_label: "Division"
-  - point: "Includes fallback logic for older CPUs without 386 features"
-    link: "https://en.wikipedia.org/wiki/Backward_compatibility"
-    link_label: "Backward Compatibility"
-  - point: "Optimizes division and remainder calculations with bitwise operations"
-    link: "https://en.wikipedia.org/wiki/Bitwise_operation"
-    link_label: "Bitwise Operations"
-  - point: "Demonstrates stack manipulation for parameter passing and control flow"
-    link: "https://en.wikipedia.org/wiki/Call_stack"
-    link_label: "Call Stack"
+    link_label: "Division in mathematics"
+  - point: "Fallback mechanism for older processors without 386 instructions"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly language"
+  - point: "Efficient remainder and quotient extraction"
+    link: "https://en.wikipedia.org/wiki/Integer_division"
+    link_label: "Integer division"
+  - point: "Influence on later game engines requiring fast math routines"
+    link: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
+    link_label: "Doom"
 
 enhancements:
-  - id: "long-division-on-386-cpus"
+  - id: "long-division-386-optimization"
     line_start: 28
     line_end: 64
-    title: "Long Division on 386 CPUs: Faster Math"
+    title: "Why Long Division Needed 386 Instructions"
     wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
     image_url: ""
     image_caption: ""
-    content: "This section implements a long division routine optimized for Intel 386 processors. The programmer uses the `idiv` instruction, which performs signed division directly on 32-bit registers (`eax` and `edx`). The code sets up the stack frame to retrieve the dividend and divisor, performs the division, and then adjusts the result to fit the expected format. The use of `cdq` ensures the sign extension of the dividend, a critical step for signed division. At the time, the 386 processor was a major leap forward, introducing 32-bit registers and instructions that allowed faster and more efficient mathematical operations compared to earlier 16-bit CPUs. This optimization reflects the programmer's deep understanding of the hardware and the need for speed in a game like Wolfenstein 3D, where every CPU cycle mattered. The reliance on 386-specific instructions also highlights the transition in the early 1990s toward more powerful processors, enabling developers to push the boundaries of real-time graphics and gameplay. This approach influenced later game engines, where hardware-specific optimizations became standard practice to achieve high performance."
-  - id: "signed-vs-unsigned-division"
+    content: "This section implements a long division routine optimized for Intel 386 processors. The code begins by setting up the stack frame to handle the dividend and divisor, then uses the `idiv` instruction to perform signed division directly on 32-bit values. The `cdq` instruction ensures proper sign extension for the dividend, a crucial step for signed division. The routine concludes by restoring the stack and returning to the caller. In 1992, the Intel 386 processor was becoming standard in consumer PCs, offering significant performance improvements over its predecessors. By leveraging the 386's native instructions, id Software ensured Wolfenstein 3D could run efficiently on modern hardware while maintaining compatibility with older systems. This dual-path approach—using patched NOPs for older processors—allowed the game to reach a wider audience. The optimization here was critical for Wolfenstein 3D's fast-paced gameplay. Division operations are computationally expensive, and the ability to execute them quickly contributed to the game's smooth scrolling and responsive controls. Later game engines, including Doom, built on these techniques, further refining math routines for real-time applications. The use of processor-specific optimizations became a hallmark of id Software's programming style, influencing the development of high-performance engines like Quake and beyond."
+  - id: "modular-control-for-division"
     line_start: 68
-    line_end: 84
-    title: "Signed vs. Unsigned Division: A Flag-Based Solution"
+    line_end: 92
+    title: "How Modular Control Simplifies Division"
     wikipedia_url: "https://en.wikipedia.org/wiki/Division_(mathematics)"
     image_url: ""
     image_caption: ""
-    content: "This section introduces a flag-based mechanism to handle signed and unsigned division. The `cx` register is set to different values depending on whether the operation is signed (`xor cx, cx`) or unsigned (`mov cx, 1`). The code later uses these flags to determine how to process the division and remainder calculations. This approach reflects the constraints of assembly programming, where explicit control over data types and operations is necessary. In the early 1990s, high-level languages like C were gaining popularity, but assembly was still essential for performance-critical tasks. The use of flags to distinguish signed and unsigned operations demonstrates the programmer's ingenuity in managing low-level details efficiently. This technique influenced later game engines and software libraries, where similar mechanisms were used to optimize mathematical operations in performance-sensitive contexts."
-  - id: "slow-division-algorithm"
-    line_start: 94
+    content: "This section introduces modular control for handling signed and unsigned division, as well as remainders. The control bits stored in the `di` register dictate the operation: whether the division is signed or unsigned, and whether the remainder or quotient is returned. The modular approach allows the same code to handle multiple scenarios, reducing redundancy and simplifying maintenance. In the early 1990s, modular programming was gaining traction as developers sought ways to manage increasing code complexity. This technique reflects id Software's emphasis on efficiency and adaptability. By encoding operation details in control bits, the routine avoids branching into separate functions for each case, saving precious cycles and memory. This modular control mechanism influenced later game engines and libraries that required flexible math operations. For example, the Quake engine incorporated similar techniques to handle floating-point math efficiently. The concept of encoding operation details in compact formats persists in modern programming, seen in instruction set architectures and shader programming for GPUs."
+  - id: "slow-path-for-legacy-processors"
+    line_start: 123
     line_end: 212
-    title: "Slow Division Algorithm: When Hardware Falls Short"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
+    title: "The Slow Path for Legacy Processors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
     image_url: ""
     image_caption: ""
-    content: "This section implements a slow division algorithm using bitwise operations for environments where the hardware does not support efficient division. The algorithm shifts the dividend left one bit at a time (`shl ax, 1`) and compares it to the divisor, subtracting when necessary to build the quotient. This approach is a fallback for CPUs that lack the `idiv` instruction or when high words in the divisor and dividend are non-zero. In the early 1990s, developers often had to account for hardware limitations, especially when targeting a broad range of machines. This algorithm reflects the ingenuity required to perform complex mathematical operations without relying on advanced hardware features. While slower than the 386-specific implementation, it ensures correctness and compatibility across different CPUs. Techniques like this influenced later software development, where fallback algorithms became a standard way to handle diverse hardware capabilities, ensuring broader accessibility and reliability."
-  - id: "quick-division-path"
+    content: "This section implements a fallback mechanism for processors lacking 386 instructions. When the high words of the dividend and divisor are non-zero, the routine enters a slower loop-based division algorithm. This approach manually shifts and subtracts bits to compute the quotient and remainder, mimicking the behavior of hardware division. In 1992, not all PCs had 386 processors. Many users still relied on older 286 or even 8086 machines, which lacked native support for 32-bit division. By including a slow path, id Software ensured Wolfenstein 3D could run on a broader range of hardware, maximizing its market reach. The loop-based algorithm reflects the constraints of the era, where developers often had to write software that could adapt to varying hardware capabilities. This fallback mechanism highlights the importance of backward compatibility in software design. It influenced later game engines, which adopted similar strategies to support diverse hardware configurations. Today, the principle of accommodating legacy systems persists in software development, from operating systems to web browsers, ensuring accessibility for users with older devices."
+  - id: "quick-path-for-unsigned-division"
     line_start: 214
     line_end: 224
-    title: "Quick Division Path: Optimizing for Zero Cases"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Division_(mathematics)"
+    title: "The Quick Path for Unsigned Division"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Integer_division"
     image_url: ""
     image_caption: ""
-    content: "This section handles quick division cases where the high words of the dividend and divisor are zero. The `div` instruction is used directly on the low words (`div bx`), bypassing the slower bitwise algorithm. This optimization reflects the programmer's attention to common cases where division can be simplified. In performance-critical applications like Wolfenstein 3D, identifying and optimizing for frequent scenarios is crucial to maintaining smooth gameplay. By implementing a quick path for zero cases, the routine minimizes unnecessary computations, saving valuable CPU cycles. This approach influenced later game engines and software libraries, where optimizing for common cases became a standard practice to improve performance."
+    content: "This section implements a fast path for unsigned division when the high words of the dividend and divisor are zero. The routine uses the `div` instruction to compute the quotient and remainder directly, bypassing the slower loop-based algorithm. It then checks the control bits to determine whether to return the remainder or quotient. Unsigned division is simpler than signed division, as it avoids the need for sign extension and negation. By optimizing for this case, id Software reduced the computational overhead for common scenarios, contributing to Wolfenstein 3D's performance. The quick path reflects the game's design philosophy: prioritize speed and responsiveness to enhance the player's experience. This optimization influenced later game engines and libraries, which adopted similar techniques to handle math operations efficiently. The concept of fast paths for specific cases persists in modern programming, seen in branch prediction and SIMD (Single Instruction, Multiple Data) operations. The legacy of these optimizations can be traced to the high-performance demands of real-time applications like games."
 
 ---
 
