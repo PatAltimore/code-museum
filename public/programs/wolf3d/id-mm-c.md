@@ -9,66 +9,98 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "id-mm-c"
 order: 14
-description: "This file implements the memory manager for Wolfenstein 3D, showcasing techniques for managing limited memory resources on early 1990s hardware."
+description: "Memory management routines for Wolfenstein 3D, showcasing innovative techniques for handling constrained resources on early PCs."
 
 summary:
-  - point: "Innovative use of EMS and XMS memory management"
+  - point: "Introduced a custom memory manager to handle conventional, EMS, and XMS memory efficiently."
     link: "https://en.wikipedia.org/wiki/Expanded_memory"
     link_label: "Expanded Memory"
-  - point: "Dynamic allocation and purging of memory blocks"
+  - point: "Used assembly language for direct hardware interaction, such as querying XMS drivers."
+    link: "https://en.wikipedia.org/wiki/Extended_memory"
+    link_label: "Extended Memory"
+  - point: "Implemented purgeable memory blocks to optimize memory usage dynamically."
     link: "https://en.wikipedia.org/wiki/Memory_management"
     link_label: "Memory Management"
-  - point: "Integration with hardware interrupts for memory queries"
-    link: "https://en.wikipedia.org/wiki/Interrupt"
-    link_label: "Interrupts"
-  - point: "Visualization of memory usage for debugging"
-    link: "https://en.wikipedia.org/wiki/Debugging"
-    link_label: "Debugging"
-  - point: "Efficient compression and reuse of fragmented memory"
-    link: "https://en.wikipedia.org/wiki/Fragmentation_(computing)"
-    link_label: "Memory Fragmentation"
+  - point: "Designed to support fast-paced gameplay by ensuring memory availability for critical tasks."
+    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    link_label: "Wolfenstein 3D"
+  - point: "Influenced later game engines, including Doom and Quake, by demonstrating efficient memory handling."
+    link: "https://en.wikipedia.org/wiki/Doom_(1993_video_game)"
+    link_label: "Doom"
 
 enhancements:
-  - id: "quit-error-handling"
-    line_start: 333
-    line_end: 399
-    title: "The Error Handler That Stops Everything"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
-    image_url: ""
-    image_caption: ""
-    content: "The `Quit` function is a simple yet critical error handler that halts the program when a severe issue arises, such as running out of memory or encountering corrupted data. This approach reflects the constraints of early 1990s game development, where graceful recovery from errors was often impractical due to limited system resources and the need for performance. John Carmack's decision to implement a hard stop ensured that debugging was straightforward, as the program would fail immediately and visibly. This technique influenced later game engines, where similar error-handling mechanisms were used to prioritize stability during development."
-  - id: "check-xms-driver"
+  - id: "check-for-xms-driver"
     line_start: 117
     line_end: 143
-    title: "How to Check for Extra Memory in 1992"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Expanded_memory"
+    title: "How Wolfenstein Detected Extended Memory"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Extended_memory"
     image_url: ""
     image_caption: ""
-    content: "The `MML_CheckForXMS` function queries the presence of an Extended Memory Specification (XMS) driver by invoking interrupt `0x2f`. This low-level interaction with the hardware was necessary to determine whether the system supported extended memory, a crucial feature for running complex programs on MS-DOS. At the time, memory management was a significant challenge due to the 640KB conventional memory limit imposed by the IBM PC architecture. By checking for XMS, the game could utilize additional memory beyond this limit, enabling smoother gameplay and more complex features. This approach laid the groundwork for memory management techniques in later games and operating systems, where detecting and utilizing hardware capabilities became standard practice."
-  - id: "allocate-upper-memory-blocks"
+    content: "This routine checks for the presence of an Extended Memory Specification (XMS) driver by invoking interrupt 0x2F with function 0x4300. If the driver is installed, the function returns true; otherwise, it returns false. At the time, XMS was a standard for accessing memory beyond the 640KB conventional memory limit on MS-DOS systems. John Carmack's use of this technique reflects the necessity of squeezing every bit of performance out of limited hardware. By detecting XMS, the game could utilize upper memory blocks (UMBs) for non-critical data, freeing conventional memory for gameplay-critical tasks. This approach was crucial for running a complex game like Wolfenstein 3D on early PCs with constrained resources. The technique influenced later games and engines by demonstrating the importance of dynamic memory management in performance-critical applications."
+  - id: "setup-upper-memory-blocks"
     line_start: 146
     line_end: 197
-    title: "Allocating Upper Memory Blocks for Performance"
+    title: "Allocating Upper Memory Blocks for Efficiency"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Upper_memory_block"
+    image_url: ""
+    image_caption: ""
+    content: "This routine attempts to allocate all available Upper Memory Blocks (UMBs) using XMS calls. UMBs were segments of memory located between 640KB and 1MB, often used for storing non-critical data. The code iteratively requests the largest available UMBs, marking them as usable by the memory manager. This technique allowed Wolfenstein 3D to maximize the memory available for gameplay while adhering to the limitations of MS-DOS systems. The use of assembly language for direct interaction with the XMS driver highlights the low-level optimization required to achieve smooth performance. This approach influenced later game engines by demonstrating how to effectively manage memory in constrained environments, paving the way for more sophisticated memory management techniques in games like Doom and Quake."
+  - id: "shutdown-xms-memory"
+    line_start: 200
+    line_end: 221
+    title: "Releasing Extended Memory on Shutdown"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Extended_memory"
+    image_url: ""
+    image_caption: ""
+    content: "This routine frees all allocated Upper Memory Blocks (UMBs) during the game's shutdown process. By iterating through the list of allocated UMBs and invoking the XMS_FREEUMB function, the code ensures that memory is properly released back to the system. This meticulous cleanup reflects the importance of responsible resource management in an era when memory leaks could severely impact system stability. John Carmack's attention to detail in memory handling set a standard for game developers, emphasizing the need for robust shutdown procedures. This approach influenced later game engines, which adopted similar practices to ensure stability and reliability in complex software systems."
+  - id: "marking-memory-as-usable"
+    line_start: 223
+    line_end: 284
+    title: "Claiming Memory Blocks for the Game"
     wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The `MML_SetupXMS` function attempts to allocate Upper Memory Blocks (UMBs), which were segments of memory located between conventional memory and extended memory. This was a clever way to maximize memory usage on systems with limited resources. The function uses the XMS driver to request the largest available UMB and marks it as usable by the memory manager. This technique reflects the ingenuity required to work within the constraints of MS-DOS, where memory was fragmented and difficult to manage. By leveraging UMBs, Wolfenstein 3D could allocate more memory for game assets, improving performance and enabling richer gameplay. This strategy influenced memory management in later games and applications, particularly those targeting resource-constrained environments."
-  - id: "compress-fragmented-memory"
-    line_start: 76
-    line_end: 143
-    title: "The Algorithm That Packs Memory Like Tetris"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Fragmentation_(computing)"
+    content: "This routine marks a range of memory segments as usable by the game's memory manager. It modifies the linked list of memory blocks to reflect the newly allocated space, ensuring that the memory manager can efficiently track and utilize available resources. The code includes checks to prevent overlapping segments and handles edge cases where a segment spans multiple blocks. This level of precision was necessary to optimize memory usage on early PCs with limited resources. By dynamically adjusting memory allocation, Wolfenstein 3D could maintain high performance and responsiveness during gameplay. This technique influenced later game engines by demonstrating the importance of flexible and efficient memory management in real-time applications."
+  - id: "dynamic-memory-compression"
+    line_start: 654
+    line_end: 759
+    title: "Compressing Memory for Performance Gains"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "The `MM_SortMem` function compresses fragmented memory by moving blocks to eliminate gaps and free up contiguous space. It first locks critical blocks, such as those related to audio playback, and then purges non-essential blocks to reclaim memory. Finally, it moves remaining blocks to consolidate free space. This algorithm reflects the challenges of memory management on systems with limited resources and no built-in garbage collection. By manually compressing memory, Wolfenstein 3D could optimize performance and reduce the risk of running out of memory during gameplay. This approach influenced memory management techniques in later games and operating systems, where similar strategies were used to handle fragmentation and optimize resource usage."
-  - id: "visualize-memory-usage"
-    line_start: 76
-    line_end: 143
-    title: "Debugging Memory with Colorful Graphics"
+    content: "This routine compresses memory by throwing out purgeable blocks and moving non-purgeable blocks to consolidate free space. The code includes special handling for locked blocks and dynamically adjusts memory allocation to optimize usage. By compressing memory, Wolfenstein 3D could ensure that sufficient resources were available for critical tasks, such as rendering and audio playback. This technique reflects the ingenuity required to manage memory on early PCs, where hardware constraints often dictated software design. The approach influenced later game engines by demonstrating how to dynamically adapt to changing memory requirements, a principle that remains relevant in modern game development."
+  - id: "memory-visualization-tool"
+    line_start: 762
+    line_end: 810
+    title: "Visualizing Memory Usage in Real-Time"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "This routine provides a graphical representation of memory usage, displaying blocks as colored segments on the screen. Locked blocks are shown in red, purgeable blocks in purple, and non-purgeable blocks in blue. Free memory is represented in black. The visualization helps developers understand how memory is being allocated and identify potential issues, such as fragmentation or corruption. This tool reflects John Carmack's commitment to transparency and debugging, enabling the team to optimize memory usage during development. The concept of visualizing memory influenced later debugging tools and development environments, which adopted similar techniques to provide insights into resource management."
+  - id: "memory-dump-for-debugging"
+    line_start: 812
+    line_end: 874
+    title: "Dumping Memory Data to a File"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""
     image_caption: ""
-    content: "The `MM_ShowMemory` function visualizes memory usage by drawing colored lines and blocks on the screen, representing different types of memory allocations. Locked memory is shown in red, purgable memory in purple, and free memory in black. This graphical debugging tool was invaluable for understanding how memory was being used and identifying fragmentation or corruption. The visualization reflects the hands-on approach of early game developers, who often built custom tools to debug complex systems. This technique influenced later debugging tools, such as memory profilers and visualizers, which became standard in game development and software engineering."
+    content: "This routine creates a detailed dump of memory data, writing information about each block to a file named 'MMDUMP.TXT'. The dump includes attributes such as lock and purge status, as well as the block's length and owner. This debugging tool was invaluable for diagnosing issues with memory allocation and ensuring the stability of the game. By providing a clear view of memory usage, the routine helped developers identify and resolve problems quickly. The concept of memory dumps influenced later debugging practices, becoming a standard feature in development tools and operating systems."
+  - id: "unused-memory-calculation"
+    line_start: 879
+    line_end: 904
+    title: "Calculating Free Memory Without Purging"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "This routine calculates the total amount of free memory without purging any blocks. By iterating through the linked list of memory blocks, the code sums up the gaps between allocated segments. This calculation was essential for understanding the game's memory usage and ensuring that sufficient resources were available for gameplay. The technique reflects the meticulous attention to resource management required in an era of constrained hardware. It influenced later systems by demonstrating the importance of tracking and optimizing memory usage in real-time applications."
+  - id: "total-free-memory-with-purging"
+    line_start: 909
+    line_end: 936
+    title: "Finding Maximum Free Memory with Purging"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    image_url: ""
+    image_caption: ""
+    content: "This routine calculates the total amount of free memory, including space that could be reclaimed by purging blocks. It iterates through the linked list of memory blocks, summing up gaps and the lengths of purgeable blocks. This calculation was crucial for optimizing memory usage and ensuring that the game could adapt to changing resource requirements. The technique highlights the dynamic nature of memory management in Wolfenstein 3D, where every byte counted. It influenced later game engines by demonstrating how to balance performance and resource utilization effectively."
 
 ---
 
@@ -1024,4 +1056,6 @@ void MM_BombOnError (boolean bomb)
 {
 	bombonerror = bomb;
 }
+
+
 ```

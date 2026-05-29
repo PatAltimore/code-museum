@@ -9,130 +9,114 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-state-c"
 order: 16
-description: "This file contains the state management and movement logic for actors in Wolfenstein 3D, showcasing techniques that shaped the first-person shooter genre."
+description: "This file contains the state management and movement logic for actors in Wolfenstein 3D, showcasing groundbreaking AI techniques for 1992."
 
 summary:
-  - point: "Innovative use of tile-based movement for AI"
+  - point: "Introduces diagonal movement logic for AI"
     link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     link_label: "Wolfenstein 3D"
-  - point: "Randomized direction selection for dodging"
-    link: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
-    link_label: "AI in games"
-  - point: "Actor spawning and state transitions"
-    link: "https://en.wikipedia.org/wiki/Game_engine"
-    link_label: "Game engine"
-  - point: "Efficient collision detection in tile-based maps"
+  - point: "Optimized enemy pathfinding for tile-based maps"
+    link: "https://en.wikipedia.org/wiki/Pathfinding"
+    link_label: "Pathfinding"
+  - point: "AI state transitions for combat and death animations"
+    link: "https://en.wikipedia.org/wiki/Finite-state_machine"
+    link_label: "Finite State Machine"
+  - point: "Innovative use of randomness in enemy behavior"
+    link: "https://en.wikipedia.org/wiki/Randomness"
+    link_label: "Randomness"
+  - point: "Efficient collision detection and movement checks"
     link: "https://en.wikipedia.org/wiki/Collision_detection"
-    link_label: "Collision detection"
-  - point: "Dynamic response to player actions"
-    link: "https://en.wikipedia.org/wiki/Video_game_AI"
-    link_label: "Video game AI"
+    link_label: "Collision Detection"
 
 enhancements:
-  - id: "opposite-direction-table"
-    line_start: 68
-    line_end: 99
-    title: "The Table That Knows Opposite Directions"
+  - id: "opposite-direction-array"
+    line_start: 24
+    line_end: 25
+    title: "Why Enemies Always Know Their Opposite Direction"
     wikipedia_url: "https://en.wikipedia.org/wiki/Array_data_structure"
     image_url: ""
     image_caption: ""
-    content: "This small table defines the opposite direction for each of the eight cardinal and diagonal directions used in the game. By precomputing these relationships, the code avoids recalculating them dynamically, saving precious CPU cycles on the limited hardware of 1992. At the time, MS-DOS systems often ran on processors like the Intel 386, which lacked the speed and memory of modern machines. This approach reflects the era's emphasis on efficiency and simplicity. The concept of precomputing values in lookup tables became a staple in game development, influencing later engines like DOOM and Quake, where similar techniques were used for lighting and texture calculations."
-  - id: "diagonal-direction-table"
-    line_start: 68
-    line_end: 99
-    title: "Diagonal Movement Made Predictable"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
+    content: "This array defines the opposite direction for each of the eight cardinal and diagonal directions, plus a 'nodir' placeholder. The purpose is to simplify AI decision-making when an enemy needs to reverse course, such as when dodging or chasing the player. In 1992, memory constraints meant that such arrays had to be compact and efficient, as every byte mattered. This approach influenced later games by demonstrating how simple data structures could streamline pathfinding logic. Developers of Doom and Quake would expand on this concept, integrating more complex directionality into their AI systems."
+  - id: "diagonal-movement-matrix"
+    line_start: 27
+    line_end: 38
+    title: "The Matrix That Made Diagonal Movement Possible"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Matrix_(mathematics)"
     image_url: ""
     image_caption: ""
-    content: "This two-dimensional array maps combinations of cardinal directions to their diagonal equivalents. For example, moving north and east simultaneously results in northeast. This table ensures consistent behavior for diagonal movement, a crucial feature in Wolfenstein 3D's tile-based world. The design reflects the constraints of the time, where computational efficiency was paramount. Similar techniques were later adapted in pathfinding algorithms like A* and in games with grid-based movement, such as Civilization and Fire Emblem."
+    content: "This 2D matrix maps diagonal movement possibilities based on cardinal directions. For example, moving northeast combines north and east. The matrix ensures that enemies can navigate the grid in a way that feels natural, even when constrained by tile-based movement. At the time, diagonal movement was rare in games, as it added complexity to collision detection and pathfinding. John Carmack's implementation here was a precursor to more fluid navigation systems in later 3D games. The matrix also highlights how Wolfenstein 3D balanced realism with computational efficiency, paving the way for more sophisticated AI in Doom."
   - id: "spawn-new-actor"
     line_start: 68
     line_end: 99
-    title: "How Wolfenstein Spawns New Enemies"
+    title: "How Wolfenstein Created Its Enemies on the Fly"
     wikipedia_url: "https://en.wikipedia.org/wiki/Spawn_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `SpawnNewObj` function initializes a new actor in the game world, setting its position, state, and other properties. It uses a combination of tile-based coordinates and global units to ensure precise placement. The function also assigns a random tic count to the actor's state, introducing variability to enemy behavior. This approach highlights the game's reliance on deterministic yet dynamic systems to create engaging gameplay. The spawning mechanism influenced later games like DOOM, where enemies could appear dynamically based on player actions."
-  - id: "try-walk-movement-check"
+    content: "The `SpawnNewObj` function initializes a new actor at specified tile coordinates, setting its state and position. It uses bitwise operations to calculate global positions, a technique common in performance-critical applications of the era. The function also assigns a random tic count to add variability to enemy behavior. This randomness helped make encounters feel less predictable, enhancing the game's replayability. The concept of spawning dynamic entities influenced countless games, from Doom's monster closets to modern procedural generation techniques in roguelikes."
+  - id: "enemy-state-transition"
+    line_start: 103
+    line_end: 178
+    title: "The Code Behind Enemy Behavior Changes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
+    image_url: ""
+    image_caption: ""
+    content: "The `NewState` function transitions an enemy to a new state, resetting its tic count to match the state's duration. This finite-state machine approach was crucial for managing complex enemy behaviors, such as patrolling, attacking, and dying. In 1992, this was a sophisticated way to simulate AI without consuming excessive CPU cycles. The technique became a standard in game development, influencing AI systems in Doom, Quake, and beyond. It demonstrated how state machines could efficiently model dynamic behaviors in real-time applications."
+  - id: "try-walk-movement"
     line_start: 181
     line_end: 332
-    title: "The AI's Struggle to Walk Forward"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
-    image_url: ""
-    image_caption: ""
-    content: "The `TryWalk` function determines whether an actor can move in its current direction without hitting a wall, another actor, or a closed door. It uses macros like `CHECKDIAG` and `CHECKSIDE` to evaluate potential collisions efficiently. If a door blocks the way, the function initiates its opening. This logic showcases the game's tile-based collision system, which was groundbreaking for its time. The ability to handle dynamic obstacles influenced the design of later AI systems in games like Half-Life, where NPCs navigated complex environments."
-  - id: "select-dodge-direction"
-    line_start: 45
-    line_end: 99
-    title: "Dodging Bullets: AI Picks a Path"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
-    image_url: ""
-    image_caption: ""
-    content: "The `SelectDodgeDir` function allows enemies to choose a movement direction that avoids the player's attacks while still advancing toward them. It prioritizes cardinal and diagonal directions based on proximity to the player, randomizing choices to make behavior less predictable. This technique reflects early attempts at creating dynamic and reactive AI in games. The randomness added a layer of unpredictability, making encounters more engaging. This approach influenced later games like Unreal Tournament, where AI bots exhibited similar dodging behaviors."
-  - id: "select-chase-direction"
-    line_start: 42
-    line_end: 99
-    title: "Chasing the Player: AI's Single-Minded Pursuit"
+    title: "The Algorithm That Let Enemies Navigate the Maze"
     wikipedia_url: "https://en.wikipedia.org/wiki/Pathfinding"
     image_url: ""
     image_caption: ""
-    content: "The `SelectChaseDir` function directs enemies to pursue the player without attempting to dodge. It calculates the optimal path based on the player's position and adjusts direction accordingly. If the direct path is blocked, the function tries alternative directions, ensuring relentless pursuit. This straightforward chasing logic was a precursor to more advanced pathfinding algorithms like A*, which became standard in later games. The relentless AI in Wolfenstein 3D set the stage for the intense enemy behaviors seen in DOOM and Quake."
-  - id: "move-object"
-    line_start: 103
-    line_end: 754
-    title: "Moving Objects Without Breaking the Game"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
+    content: "The `TryWalk` function attempts to move an enemy in its current direction, checking for obstacles like walls, doors, or other actors. It uses macros (`CHECKDIAG` and `CHECKSIDE`) to simplify collision checks. If a door blocks the way, the function initiates its opening. This logic was groundbreaking in 1992, as it allowed enemies to navigate complex environments dynamically. The approach influenced pathfinding algorithms in later games, including Doom's monster AI and even modern stealth games like Metal Gear Solid. It showcased how efficient code could create the illusion of intelligent behavior."
+  - id: "select-dodge-direction"
+    line_start: 45
+    line_end: 99
+    title: "Enemy Dodge, Chase, and Sight-Check Routines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "The `MoveObj` function moves an actor in its current direction by a specified distance. It ensures that actors do not overlap with the player, backing them up if necessary. This safeguard prevents gameplay-breaking collisions and maintains the integrity of the tile-based world. The function's design reflects the era's focus on stability and predictability in game mechanics. Similar movement systems were later refined in games like Diablo, where collision handling was critical to gameplay."
-  - id: "kill-actor"
+    content: "This region of WL_STATE.C contains the three core AI decision functions that give Wolfenstein 3D enemies their sense of awareness and aggression. SelectDodgeDir calculates a movement direction that lets a guard approach the player while strafing sideways to make itself harder to shoot, blending randomness with prioritized cardinal and diagonal choices to avoid feeling mechanical. SelectChaseDir is the simpler counterpart, driving an enemy straight toward the player along the most direct axis when stealth is abandoned and pursuit is the only goal. CheckSight determines whether an enemy can actually perceive the player by first testing a proximity threshold, then verifying that the guard is facing toward the player, and finally tracing a tile-by-tile line of sight through the map to confirm no wall or closed door blocks the view. Together these three routines established the layered awareness model, proximity detection, directional facing, and obstructed sightlines, that became foundational for first-person shooter AI throughout the 1990s and influenced enemy design in Doom, Quake, and the stealth genre that grew out of them."
+  - id: "select-chase-direction"
     line_start: 42
     line_end: 99
-    title: "The Code That Makes Enemies Die"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Death_(video_games)"
+    title: "The Pursuit Logic That Kept You Running"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Chase_(gaming)"
     image_url: ""
     image_caption: ""
-    content: "The `KillActor` function handles the death of an enemy, updating its state and dropping items based on its type. It also increments the player's kill count and awards points. The function's detailed handling of different enemy types adds variety to the game, rewarding players for defeating tougher foes. This approach influenced later games like DOOM, where enemy deaths were accompanied by dramatic animations and item drops, enhancing the player's sense of accomplishment."
+    content: "The `SelectChaseDir` function determines the best direction for an enemy to move directly toward the player, ignoring dodge logic. It prioritizes cardinal directions based on proximity and adjusts for obstacles. This relentless pursuit behavior added tension to gameplay, as enemies felt unyielding. The algorithm influenced later games, including Doom's monster AI, which used similar logic to create a sense of urgency in combat. It highlighted how simple rules could produce compelling gameplay dynamics."
   - id: "damage-actor"
     line_start: 42
     line_end: 43
-    title: "When Enemies Take Damage"
+    title: "The Code That Made Enemies Feel Pain"
     wikipedia_url: "https://en.wikipedia.org/wiki/Hit_points"
     image_url: ""
     image_caption: ""
-    content: "The `DamageActor` function applies damage to an enemy, potentially killing it or putting it into a stun state. It doubles damage if the enemy is not in attack mode, encouraging players to strike preemptively. This mechanic adds depth to combat, rewarding strategic play. The function's design reflects the game's emphasis on fast-paced, tactical encounters. Similar damage systems became standard in FPS games, influencing titles like Half-Life and Call of Duty."
+    content: "The `DamageActor` function handles the effects of player attacks on enemies, reducing hit points and transitioning them to pain or death states. It doubles damage if the enemy is not in attack mode, encouraging aggressive gameplay. This mechanic added depth to combat, making encounters more strategic. The concept of hit points and state transitions became a staple in game design, influencing RPGs, FPS games, and even modern action titles like Dark Souls. It demonstrated how simple mechanics could create engaging player-enemy interactions."
   - id: "check-line-visibility-algorithm"
     line_start: 51
-    line_end: 51
-    title: "The Algorithm That Checks Line of Sight"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Line_of_sight"
-    image_url: ""
-    image_caption: ""
-    content: "This function, `CheckLine`, determines whether a straight line between an object and the player is unobstructed by walls or closed doors. It uses tile-based precision (1/256th of a tile) to trace the path, checking for blocking tiles and door positions. The algorithm calculates distances, steps, and fractional increments to simulate a raycasting-like approach for visibility checks. In 1992, hardware constraints were severe, especially on MS-DOS systems with limited memory and processing power. Wolfenstein 3D's developers, led by John Carmack, needed a fast and efficient method to determine visibility in a tile-based map. This function reflects Carmack's mastery of optimization, leveraging integer math and bitwise operations to minimize computational overhead. The approach influenced later games, particularly those using raycasting or similar visibility algorithms. It laid groundwork for more advanced AI systems in first-person shooters, such as those seen in Doom and Quake. Developers studying this method learned how to balance precision and performance, a lesson that resonated in modern game engines like Unity and Unreal Engine."
-  - id: "check-sight-ai-awareness"
-    line_start: 45
-    line_end: 99
-    title: "How Enemies Decide If They See You"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
-    image_url: ""
-    image_caption: ""
-    content: "The `CheckSight` function determines whether an enemy can see the player based on proximity, direction, and line-of-sight checks. It first ensures the player and enemy are in connected areas, then checks if the player is close enough for automatic detection. If not, it considers the enemy's facing direction and calls `CheckLine` to verify visibility. This routine showcases Wolfenstein 3D's AI design, which was groundbreaking for its time. It introduced a basic yet effective model of awareness, combining spatial reasoning with directional checks. The simplicity of this approach reflects the constraints of early 1990s hardware, where CPU cycles were precious, and developers had to prioritize gameplay responsiveness over complex calculations. The concept of directional awareness influenced stealth mechanics in later games, such as Thief and Metal Gear Solid. It also inspired more sophisticated AI routines in first-person shooters, where enemies react dynamically to player actions. The function's reliance on tile-based maps and integer math remains a study in efficient game design, influencing AI development in modern engines."
-  - id: "first-sighting-reaction-mechanism"
-    line_start: 52
     line_end: 65
-    title: "The Reaction That Starts the Chase"
+    title: "The Algorithm That Checks Enemy Line-of-Sight"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Line_of_sight_(gaming)"
+    image_url: ""
+    image_caption: ""
+    content: "The `CheckLine` function implements a tile-based line-of-sight algorithm to determine whether an enemy can see the player. It traces a straight line between the enemy's position and the player's position, checking for obstacles such as walls or closed doors. The algorithm uses fixed-point arithmetic to handle fractional tile precision, a necessity given the hardware constraints of early 1990s PCs. At the time, floating-point operations were prohibitively slow, so developers like John Carmack relied on integer math tricks to achieve similar results efficiently. In 1992, Wolfenstein 3D ran on MS-DOS systems with limited processing power and memory. The game’s tile-based map structure allowed for rapid visibility checks, which were critical for maintaining the fast-paced gameplay. This approach was influenced by earlier grid-based games but adapted for the first-person perspective. Carmack’s focus on efficiency was legendary—he often described his work as \"writing code that barely fits\" within the constraints. The consequences of this work were profound. The line-of-sight algorithm became a foundational element in AI for first-person shooters, influencing later games like Doom and Quake. Developers studied this code to understand how to balance performance with realism, and the technique appeared in textbooks on game programming. Today, while modern games use more advanced raycasting or GPU-based visibility checks, the principles established here remain relevant for grid-based and tile-based games."
+  - id: "first-sighting-combat-initiation"
+    line_start: 1242
+    line_end: 1386
+    title: "The Moment Enemies Switch to Attack Mode"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    image_url: ""
+    image_caption: ""
+    content: "The `FirstSighting` function triggers an enemy’s transition into attack mode when the player is detected. It adjusts the enemy’s speed based on their type and sets their state to a chase frame. This ensures that enemies react differently depending on their class, adding variety to gameplay. For example, guards move faster when chasing the player, while bosses have unique sound effects and behaviors. This design reflects id Software’s philosophy of creating memorable encounters. Tom Hall, the creative director, emphasized the importance of distinct enemy personalities to keep players engaged. Each enemy type in Wolfenstein 3D has a unique sound and behavior, making them instantly recognizable and adding to the game’s atmosphere. The concept of dynamic enemy states influenced later games, including Doom and Quake, where enemies could transition between idle, alert, and attack modes. It also inspired developers outside id Software to create more nuanced AI systems. Today, the idea of state-based AI is ubiquitous, appearing in everything from stealth games to real-time strategy titles."
+  - id: "sight-player-detection-and-reaction"
+    line_start: 1390
+    line_end: 1478
+    title: "How Enemies React to Sight, Noise, and Proximity"
     wikipedia_url: "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
     image_url: ""
     image_caption: ""
-    content: "The `FirstSighting` function transitions an enemy into attack mode upon detecting the player. It adjusts the enemy's speed based on its type and plays a sound effect to signal the change. For certain enemies, it also reverses direction if the player is behind them, ensuring a realistic reaction. This mechanic highlights the game's emphasis on immersive AI behavior. By tailoring reactions to enemy types, id Software created a varied and engaging experience. The function also demonstrates the team's attention to detail, with sound effects and animations enhancing the player's sense of danger. The idea of dynamic enemy reactions influenced later games, such as Doom and Half-Life, where AI behaviors became more nuanced. The use of sound cues and speed adjustments remains a staple in modern game design, contributing to the realism and tension of encounters. This function exemplifies how Wolfenstein 3D balanced simplicity with depth, setting a standard for AI-driven gameplay."
-  - id: "sight-player-detection-and-delay"
-    line_start: 45
-    line_end: 49
-    title: "How Enemies Detect and React to You"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Stealth_game"
-    image_url: ""
-    image_caption: ""
-    content: "The `SightPlayer` function is called by enemies not already chasing the player. It checks for player detection based on noise, proximity, or visibility. If detected, the enemy enters combat mode after a randomized reaction delay. This delay varies by enemy type, adding unpredictability to encounters. This function reflects the game's innovative AI design, where detection isn't instantaneous but incorporates a sense of reaction time. The randomness adds realism, making enemies feel less robotic and more lifelike. The inclusion of ambush mechanics, where enemies remain hidden until sighting the player, further enhances the tension. Wolfenstein 3D's approach to detection and reaction influenced stealth mechanics in later games, such as Splinter Cell and Dishonored. The idea of reaction delays and ambush flags became standard in AI design, contributing to immersive gameplay. This function showcases id Software's ability to create engaging systems within the constraints of early 1990s hardware, a legacy that continues to inspire developers today."
+    content: "The `SightPlayer` function is called by enemies not currently chasing the player. It checks whether the player is detected via sight, noise, or proximity, and incorporates a random reaction delay to simulate lifelike behavior. If the player is detected, the enemy transitions into combat mode using the `FirstSighting` function. This function highlights id Software’s attention to detail in creating immersive AI. The random reaction delay prevents enemies from responding instantly, making their behavior feel more natural. The inclusion of noise detection adds another layer of realism, as players can inadvertently alert enemies by firing weapons or opening doors. The techniques used in `SightPlayer` influenced AI design in later games, particularly in stealth and survival horror genres. Games like Thief and Alien: Isolation expanded on these ideas, incorporating advanced noise and visibility systems to create tense, dynamic encounters. While modern AI systems are far more complex, the principles established in Wolfenstein 3D remain foundational for creating engaging enemy behaviors."
 
 ---
 
@@ -1615,4 +1599,6 @@ boolean SightPlayer (objtype *ob)
 
 	return true;
 }
+
+
 ```

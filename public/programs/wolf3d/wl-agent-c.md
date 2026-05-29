@@ -9,146 +9,154 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-agent-c"
 order: 11
-description: "This file implements player actions, movement, and status updates in Wolfenstein 3D, showcasing techniques that defined early FPS game design."
+description: "This file implements player actions and movement logic in Wolfenstein 3D, showcasing techniques that defined early FPS gameplay."
 
 summary:
-  - point: "Innovative player movement mechanics with strafing and angle adjustments"
+  - point: "Innovative use of fixed-point arithmetic for movement calculations"
+    link: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    link_label: "Fixed-point arithmetic"
+  - point: "Efficient handling of player state and interactions with game objects"
+    link: "https://en.wikipedia.org/wiki/Game_programming"
+    link_label: "Game programming"
+  - point: "Introduction of strafing mechanics in early FPS games"
     link: "https://en.wikipedia.org/wiki/Strafing_(gaming)"
     link_label: "Strafing"
-  - point: "Dynamic status updates for health, score, and inventory"
+  - point: "Dynamic status updates for health, ammo, and score"
     link: "https://en.wikipedia.org/wiki/Heads-up_display_(video_games)"
     link_label: "HUD in video games"
-  - point: "Efficient collision detection using tile-based checks"
-    link: "https://en.wikipedia.org/wiki/Tile-based_video_game"
-    link_label: "Tile-based game design"
-  - point: "Bonus item interactions that reward exploration"
-    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
-    link_label: "Wolfenstein 3D"
-  - point: "Early implementation of victory and progression mechanics"
-    link: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
-    link_label: "Level progression"
+  - point: "Use of lookup tables for trigonometric calculations"
+    link: "https://en.wikipedia.org/wiki/Lookup_table"
+    link_label: "Lookup table"
 
 enhancements:
-  - id: "player-state-management"
-    line_start: 97
-    line_end: 97
-    title: "How Wolfenstein Tracked Player State"
+  - id: "check-weapon-change"
+    line_start: 99
+    line_end: 131
+    title: "The Subroutine That Made Knives Mandatory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "This section defines the `objtype` structure, which tracks the state of the player and other objects in the game. The `LastAttacker` variable records the last entity that damaged the player, enabling contextual responses such as displaying the attacker’s face in the HUD. In 1992, games like Wolfenstein 3D were pioneering ways to make player interactions feel personal and immersive. Tracking state was critical for implementing features like health updates, weapon changes, and damage feedback. This approach influenced later games that relied on object-oriented designs for managing entities and interactions, such as Doom and Quake."
-  - id: "attack-info-table"
-    line_start: 99
-    line_end: 131
-    title: "The Lookup Table Behind Player Attacks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
-    image_url: ""
-    image_caption: ""
-    content: "The `attackinfo` table is a compact lookup structure that defines the timing, type, and animation frames for player attacks. By organizing attack data in this way, the developers could easily adjust weapon behaviors without rewriting code. This technique was essential in an era when memory was limited and performance was paramount. Lookup tables like this became a staple in game development, appearing in later titles for managing animations, AI behaviors, and physics calculations. The influence of such data-driven design can be seen in modern game engines like Unity and Unreal, where configuration files and tables drive much of the gameplay logic."
-  - id: "player-movement-control"
-    line_start: 99
-    line_end: 131
-    title: "The Algorithm That Made Strafing Possible"
+    content: "This function, `CheckWeaponChange`, handles weapon selection based on player input. If the player has no ammo, the game forces them to use the knife, a design decision that emphasizes resource management and survival. In 1992, FPS games were still defining their mechanics, and this approach underscored the tension of limited resources in Wolfenstein 3D. The logic prioritizes the best available weapon but ensures fallback to the knife when necessary. This mechanic influenced later survival-oriented games, where players had to adapt to dwindling resources, such as Resident Evil and Doom."
+  - id: "control-movement"
+    line_start: 134
+    line_end: 225
+    title: "How Strafing Became a Staple of FPS Games"
     wikipedia_url: "https://en.wikipedia.org/wiki/Strafing_(gaming)"
     image_url: ""
     image_caption: ""
-    content: "The `ControlMovement` function handles player movement, including strafing and angle adjustments. It uses variables like `controlx` and `controly` to determine movement direction and speed, applying trigonometric calculations to update the player’s position. The function also includes a hack to mitigate rounding errors at high frame rates, showcasing the developers’ attention to precision. In 1992, strafing was a novel mechanic that added depth to first-person gameplay, allowing players to dodge and maneuver effectively. This innovation influenced countless FPS titles, from Doom to Counter-Strike, and remains a fundamental feature in the genre."
-  - id: "status-window-draw"
+    content: "The `ControlMovement` function processes player movement and angle changes based on input. It introduces strafing, allowing players to move sideways while maintaining their aim—a mechanic that became fundamental in FPS games. The function also compensates for rounding errors at high frame rates, a clever workaround for the hardware limitations of the era. This innovation set the stage for more fluid and tactical movement in later FPS titles, such as Quake and Counter-Strike. John Carmack's focus on precision and responsiveness in player controls was pivotal in making Wolfenstein 3D's gameplay feel immersive and dynamic."
+  - id: "status-draw-pic"
     line_start: 236
     line_end: 259
-    title: "How Wolfenstein Updated Its HUD"
+    title: "The HUD That Kept Players Informed"
     wikipedia_url: "https://en.wikipedia.org/wiki/Heads-up_display_(video_games)"
     image_url: ""
     image_caption: ""
-    content: "The `StatusDrawPic` function updates the game’s heads-up display (HUD) by drawing status elements like health, ammo, and keys. It uses the `bufferofs` variable to manage screen buffers, ensuring smooth updates across different display pages. This approach was crucial for maintaining performance on hardware with limited graphical capabilities. The HUD design in Wolfenstein 3D set a precedent for visualizing player status in real-time, influencing later games like Doom and Half-Life. The concept of a dynamic HUD has evolved into modern UI systems, where overlays and interactive elements provide players with critical information."
-  - id: "damage-and-healing"
-    line_start: 54
-    line_end: 55
-    title: "The Code That Made BJ Bleed"
+    content: "The `StatusDrawPic` function updates the game's heads-up display (HUD), drawing status icons for health, ammo, and other indicators. By directly manipulating the screen buffer, it ensures fast updates despite the limited graphical capabilities of early PCs. This approach to HUD design influenced countless games, creating a standard for real-time feedback that persists in modern titles. The function's efficiency and clarity were essential in maintaining the player's situational awareness during intense gameplay."
+  - id: "take-damage"
+    line_start: 378
+    line_end: 423
+    title: "Making Damage Feel Personal"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "The `TakeDamage` and `HealSelf` functions manage the player’s health, updating the HUD and triggering visual feedback. When BJ takes significant damage, his face changes to reflect pain, adding a visceral connection to gameplay. This mechanic was groundbreaking in 1992, as it provided players with immediate, emotional feedback. The concept of dynamic health representation influenced later games, such as Doom’s face animations and modern titles like Dead Space, where visual cues enhance immersion. These functions also highlight the developers’ focus on creating a responsive and engaging experience."
-  - id: "bonus-item-interactions"
-    line_start: 54
-    line_end: 55
-    title: "How Wolfenstein Rewarded Exploration"
+    content: "The `TakeDamage` function processes damage to the player and updates their health. It also triggers visual feedback, such as BJ Blazkowicz's face showing pain or shock, enhancing immersion. The function adjusts damage based on difficulty level and includes a dramatic death sequence when health drops to zero. This emphasis on visceral feedback was groundbreaking in 1992, adding emotional weight to gameplay. The mechanic influenced later games like Doom, where player damage was similarly tied to visual and auditory cues."
+  - id: "give-points"
+    line_start: 515
+    line_end: 532
+    title: "The Points System That Rewarded Exploration"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Score_(game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `GivePoints` function adds points to the player's score and awards extra lives upon reaching specific thresholds. This incentivized exploration and treasure collection, a hallmark of Wolfenstein 3D's gameplay. The function's design reflects the arcade roots of early video games, where high scores were a primary motivator. This scoring system influenced later FPS games, encouraging players to engage with the environment and seek hidden rewards."
+  - id: "get-bonus"
+    line_start: 660
+    line_end: 788
+    title: "Treasure Hunting in a Nazi Stronghold"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "The `GetBonus` function handles interactions with collectible items, such as health packs, ammo, and treasure. Each item triggers specific effects, like increasing health or awarding points, and plays a corresponding sound. This system encouraged players to explore levels thoroughly, rewarding curiosity and persistence. In 1992, such mechanics were relatively new, as most games focused on linear progression. Wolfenstein 3D’s emphasis on exploration and rewards influenced later titles like Doom and Duke Nukem 3D, where secret areas and collectibles became integral to gameplay."
-  - id: "collision-detection"
-    line_start: 87
-    line_end: 89
-    title: "The Tile-Based Collision System"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Tile-based_video_game"
+    content: "The `GetBonus` function handles interactions with collectible items, such as health packs, ammo, and treasure. Each item triggers specific effects, from healing to score increases, reinforcing the game's reward system. This mechanic added depth to Wolfenstein 3D, encouraging players to explore every corner of the map. The function's modular design allowed for easy expansion, as seen in later id Software titles like Doom, which featured similar collectible systems."
+  - id: "clip-move"
+    line_start: 858
+    line_end: 898
+    title: "Walking Through Walls (Sometimes)"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The `TryMove` function implements collision detection by checking the player’s position against solid walls and other actors within a tile-based grid. This approach was efficient and suited the hardware limitations of the time, as it avoided complex geometric calculations. Tile-based collision systems were common in early games, but Wolfenstein 3D’s implementation stood out for its speed and reliability. This technique influenced later FPS titles and game engines, where grid-based systems remain a popular choice for level design and pathfinding."
-  - id: "player-thrust-mechanics"
-    line_start: 54
-    line_end: 55
-    title: "The Code That Made BJ Move"
+    content: "The `ClipMove` function checks whether the player can move to a new position, accounting for walls and obstacles. It includes a 'noclip' mode, allowing players to bypass collisions—a feature often used for debugging or cheats. This function showcases the challenges of collision detection in early 3D environments. The concept of clipping became a cornerstone of game development, influencing level design and player movement in later titles like Half-Life and Unreal."
+  - id: "thrust"
+    line_start: 920
+    line_end: 963
+    title: "Fixed-Point Math for Smooth Movement"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+    image_url: ""
+    image_caption: ""
+    content: "The `Thrust` function calculates player movement based on angle and speed, using fixed-point arithmetic to optimize performance on limited hardware. It updates the player's position and checks for victory conditions, such as reaching the exit tile. This technique was crucial in achieving smooth and responsive movement in Wolfenstein 3D, setting a precedent for efficient calculations in FPS games. The use of fixed-point math influenced later engines, including the Doom engine, which expanded on these principles."
+  - id: "cmd-fire"
+    line_start: 975
+    line_end: 996
+    title: "The Code Behind BJ's Trigger Finger"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "The `Thrust` function calculates player movement based on angle and speed, using trigonometric functions to determine x and y offsets. It also updates the player’s tile position and checks for victory conditions, such as reaching an exit tile. This function showcases the developers’ ability to optimize movement calculations for smooth gameplay on limited hardware. The thrust mechanics in Wolfenstein 3D laid the groundwork for movement systems in later FPS games, influencing titles like Doom and Quake, where fluid motion became a hallmark of the genre."
-  - id: "cmd-use-player-direction"
-    line_start: 54
-    line_end: 55
-    title: "How Player Direction Shapes Interaction"
+    content: "The `Cmd_Fire` function initiates the player's attack, setting up weapon frames and animation sequences. It ties player input directly to the game's visual and auditory feedback, creating a satisfying loop of action and response. This function exemplifies the tight integration of gameplay mechanics and player interaction in Wolfenstein 3D. Its design influenced the development of weapon systems in later FPS games, including Doom and Quake, where similar principles were applied to create engaging combat experiences."
+  - id: "cmd-use-interactions"
+    line_start: 998
+    line_end: 1080
+    title: "How Wolfenstein Doors Became Interactive"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "This section defines the `Cmd_Use` function, which determines the player's interaction with the environment based on their facing direction. The code calculates the cardinal direction the player is facing and checks the tile in front of them for interactive objects like doors, elevators, or pushable walls. The function handles different scenarios, such as flipping elevator switches or opening doors, and plays corresponding sound effects to enhance immersion. In 1992, real-time interaction with the environment was a cutting-edge feature in games, especially on hardware like the IBM PC with limited processing power. John Carmack's efficient use of lookup tables and bitwise operations ensured smooth gameplay even on machines without dedicated graphics hardware. This approach influenced later games by demonstrating how to optimize player-environment interactions in constrained systems. Games like Doom and Quake built on these principles, further refining real-time interactivity."
-  - id: "spawn-player-initialization"
-    line_start: 54
-    line_end: 55
-    title: "The Code That Places You in the World"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    content: "Cmd_Use handles player interactions with the environment, such as opening doors, activating elevators, and pushing walls. The function determines the player's facing direction and checks the tilemap for interactive objects. If the player is facing a pushable wall, it triggers the PushWall function, moving the wall in the specified direction. For elevators, it flips a tile switch and updates the game state to indicate level completion or entry into a secret level. This mechanic was groundbreaking in 1992, as it allowed players to interact dynamically with their surroundings, creating a sense of agency and immersion. At the time, most games relied on static environments, but Wolfenstein 3D introduced interactive elements that became staples of the FPS genre. This approach influenced later titles like Doom and Half-Life, where environmental interaction became a core gameplay feature."
+  - id: "spawnplayer-initialization"
+    line_start: 1092
+    line_end: 1118
+    title: "The Code That Spawns a Hero"
+    wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
     image_url: ""
     image_caption: ""
-    content: "The `SpawnPlayer` function initializes the player's position, state, and attributes when the game begins or a level starts. It calculates the player's coordinates, sets their initial angle based on the starting direction, and assigns flags to manage their behavior. This routine also calls `InitAreas`, which prepares the game's spatial awareness system. In the early '90s, initializing player states efficiently was crucial for games like Wolfenstein 3D, where fast-paced action demanded quick transitions between levels. Carmack's use of bit-shifting for coordinate calculations highlights his mastery of low-level optimization techniques. This function laid the groundwork for player initialization routines in later first-person shooters, ensuring seamless gameplay and consistent player experience."
-  - id: "knife-attack-close-combat"
-    line_start: 54
-    line_end: 55
-    title: "The Algorithm for Close Combat"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    content: "SpawnPlayer initializes the player’s position, direction, and state when entering a level. It sets up the player’s coordinates, area number, and angle based on the provided tile and direction. The function also calls Thrust to set additional variables and InitAreas to prepare the map. This initialization was crucial for ensuring smooth transitions between levels and maintaining gameplay consistency. In 1992, the concept of a player object with dynamic attributes was still evolving, and Wolfenstein 3D's implementation laid the groundwork for modern game engines. The idea of spawning a player with predefined attributes influenced later FPS games, including Doom and Quake, where player initialization became more complex with additional stats and equipment."
+  - id: "knifeattack-close-combat"
+    line_start: 1121
+    line_end: 1164
+    title: "The Algorithm Behind Knife Combat"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_combat"
     image_url: ""
     image_caption: ""
-    content: "The `KnifeAttack` function handles close-range combat by identifying the nearest shootable enemy within a specific range. It iterates through visible objects, calculates their distance, and determines the closest target. If an enemy is within striking distance, it applies damage using a random number generator. This mechanic added tension and strategy to the gameplay, as players had to manage proximity and timing during knife attacks. In the early '90s, implementing such mechanics on limited hardware required ingenious design. Carmack's approach to object visibility and distance checks influenced later games, including Doom, which expanded on these ideas with more complex enemy behaviors and weapon systems."
-  - id: "gun-attack-targeting"
-    line_start: 54
-    line_end: 55
-    title: "How Wolfenstein 3D Aimed and Fired"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    content: "KnifeAttack defines the mechanics of close-range combat. It checks for shootable and visible objects within the player’s view and calculates the closest target. If a target is within range, the function calls DamageActor to apply damage. This simple yet effective algorithm allowed Wolfenstein 3D to simulate melee combat without requiring complex physics or collision detection. At the time, most games relied on ranged attacks, but Wolfenstein 3D's inclusion of melee combat added variety to gameplay. This approach influenced later FPS games, where melee attacks became a standard feature, often with more sophisticated animations and effects."
+  - id: "gunattack-ranged-combat"
+    line_start: 1168
+    line_end: 1243
+    title: "How Wolfenstein Simulated Gunfire"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_combat"
     image_url: ""
     image_caption: ""
-    content: "The `GunAttack` function is responsible for ranged combat, finding targets and calculating damage based on distance. It iterates through potential enemies, checks visibility, and traces a line to ensure the shot is unobstructed. Damage is scaled based on proximity, adding realism to the shooting mechanics. This function also plays sound effects for different weapons, enhancing the player's experience. In 1992, simulating realistic gunfire on limited hardware was a technical challenge. Carmack's use of efficient loops and conditional checks ensured smooth gameplay without sacrificing performance. This targeting system influenced later FPS games, including Doom and Quake, which expanded on these mechanics with more sophisticated physics and AI."
-  - id: "victory-spin-celebration"
-    line_start: 54
-    line_end: 55
-    title: "The Code Behind Victory Spins"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    content: "GunAttack handles ranged combat by identifying targets within the player’s view and simulating a line of sight check. The function iterates through potential targets, calculates their distance, and determines whether the player hits or misses based on random values and distance thresholds. If a hit occurs, it applies damage proportional to the distance. This algorithm was a clever workaround for the lack of true 3D collision detection, relying instead on 2D calculations and approximations. In 1992, this approach was innovative, as it allowed Wolfenstein 3D to deliver fast-paced gunplay on limited hardware. The technique influenced later games like Doom, which expanded on these mechanics with more advanced hit detection and weapon systems."
+  - id: "victoryspin-animation"
+    line_start: 1245
+    line_end: 1280
+    title: "The Celebration Code: VictorySpin"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Animation"
     image_url: ""
     image_caption: ""
-    content: "The `VictorySpin` function animates the player's celebratory spin upon completing a level. It adjusts the player's angle and position incrementally to create a smooth spinning effect. This visual flair added a sense of accomplishment and style to the game, rewarding players for their progress. In the early '90s, such animations were rare in games due to hardware limitations, but id Software prioritized player satisfaction and immersion. This function exemplifies their attention to detail, influencing later games to include celebratory animations and effects as part of the gameplay experience."
-  - id: "t-attack-player-actions"
-    line_start: 54
-    line_end: 55
-    title: "The Heart of Player Combat"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    content: "VictorySpin creates a celebratory animation when the player completes a level. It adjusts the player’s angle and position to simulate a spinning motion and moves the player toward a destination tile. This simple yet effective animation added a sense of accomplishment and flair to the end of each level. In 1992, animations like these were rare in FPS games, which often focused solely on gameplay mechanics. VictorySpin demonstrated id Software’s attention to detail and their desire to enhance player experience. This approach influenced later games, where end-of-level animations became more elaborate, often incorporating cinematic sequences or dynamic camera movements."
+  - id: "t-attack-gameplay-loop"
+    line_start: 1283
+    line_end: 1379
+    title: "The Attack Loop That Defined FPS Combat"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_loop"
     image_url: ""
     image_caption: ""
-    content: "The `T_Attack` function orchestrates the player's combat actions, including weapon handling, ammo management, and attack animations. It updates the player's state based on their chosen weapon and tracks the attack frame to determine when to fire or strike. This function integrates multiple systems, such as sound playback, damage calculation, and visual updates, to create a cohesive combat experience. In 1992, combining these elements into a seamless routine was a technical achievement, showcasing id Software's ability to push the boundaries of real-time gameplay. The modular design of this function influenced later FPS engines, enabling developers to create dynamic and responsive combat systems."
-  - id: "t-player-movement-and-actions"
-    line_start: 90
-    line_end: 95
-    title: "The Code That Moves the Player"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    content: "T_Attack orchestrates the player’s attack actions, including weapon handling and frame updates. It checks the player’s current weapon and ammo, updates the attack frame, and calls KnifeAttack or GunAttack based on the weapon type. The function also handles weapon switching and ammo display. This gameplay loop was a key innovation in Wolfenstein 3D, enabling fluid and responsive combat mechanics. In 1992, such loops were groundbreaking, as they allowed for real-time action without sacrificing performance. T_Attack influenced the design of combat systems in later FPS games, including Doom and Quake, where similar loops were used to manage complex weapon and attack mechanics."
+  - id: "t-player-game-loop"
+    line_start: 1383
+    line_end: 1419
+    title: "The Code That Runs the Player"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_loop"
     image_url: ""
     image_caption: ""
-    content: "The `T_Player` function handles the player's movement and interactions during gameplay. It checks for victory conditions, updates the player's face animation, and processes input for actions like using objects or attacking. This function also recalculates the player's position and tile coordinates, ensuring accurate collision detection and interaction. In the early '90s, real-time player control was a novel feature, requiring efficient algorithms to handle input and movement seamlessly. Carmack's implementation set a standard for FPS games, influencing titles like Doom and Quake, which expanded on these mechanics with more complex environments and player abilities."
+    content: "T_Player serves as the main gameplay loop for player actions and movement. It checks for victory conditions, updates the player’s face and weapon state, handles interactions through Cmd_Use and Cmd_Fire, and calculates the player’s position on the map. This loop was essential for maintaining the game’s real-time responsiveness and ensuring smooth gameplay. In 1992, the concept of a centralized player loop was still evolving, and Wolfenstein 3D’s implementation set a precedent for FPS game design. The approach influenced later titles like Doom and Half-Life, where similar loops were used to manage player actions and interactions in increasingly complex environments."
 
 ---
 
@@ -1572,4 +1580,6 @@ void	T_Player (objtype *ob)
 	player->tilex = player->x >> TILESHIFT;		// scale to tile values
 	player->tiley = player->y >> TILESHIFT;
 }
+
+
 ```

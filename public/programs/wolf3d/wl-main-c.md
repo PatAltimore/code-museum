@@ -9,114 +9,122 @@ year: 1992
 author: "John Carmack, John Romero, Tom Hall"
 slug: "wl-main-c"
 order: 5
-description: "The main execution file for Wolfenstein 3D, showcasing critical game mechanics, hardware interactions, and creative solutions to technical constraints."
+description: "The central execution file of Wolfenstein 3D, showcasing foundational game systems and hardware optimizations."
 
 summary:
-  - point: "Innovative use of lookup tables for trigonometric calculations"
-    link: "https://en.wikipedia.org/wiki/Lookup_table"
-    link_label: "Lookup Table"
-  - point: "Dynamic configuration based on hardware detection"
-    link: "https://en.wikipedia.org/wiki/Hardware_detection"
-    link_label: "Hardware Detection"
-  - point: "Efficient memory management techniques for MS-DOS"
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "MS-DOS"
-  - point: "Custom sound mapping for immersive gameplay"
-    link: "https://en.wikipedia.org/wiki/Sound_card"
-    link_label: "Sound Card"
-  - point: "Projection and scaling calculations for 3D rendering"
+  - point: "Dynamic configuration handling for hardware compatibility"
+    link: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    link_label: "Wolfenstein 3D"
+  - point: "Innovative use of projection math for 3D rendering"
     link: "https://en.wikipedia.org/wiki/3D_projection"
     link_label: "3D Projection"
+  - point: "Efficient sound mapping for limited hardware"
+    link: "https://en.wikipedia.org/wiki/Sound_Blaster"
+    link_label: "Sound Blaster"
+  - point: "Memory management techniques for constrained environments"
+    link: "https://en.wikipedia.org/wiki/MS-DOS"
+    link_label: "MS-DOS"
+  - point: "Game save/load system with checksum validation"
+    link: "https://en.wikipedia.org/wiki/Data_integrity"
+    link_label: "Data Integrity"
 
 enhancements:
-  - id: "read-config-file"
+  - id: "read-config-dynamic-hardware-detection"
     line_start: 82
     line_end: 182
-    title: "Dynamic hardware-based configuration setup"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Hardware_detection"
-    image_url: ""
-    image_caption: ""
-    content: "The `ReadConfig` function reads a configuration file to initialize game settings such as sound modes, joystick configurations, and view size. If no configuration file is found, the function dynamically selects settings based on the hardware detected. This approach ensured compatibility across a wide range of MS-DOS systems, which varied greatly in capabilities during the early 1990s. By detecting hardware like AdLib and Sound Blaster cards, the game could provide optimized audio experiences for players with advanced setups while gracefully degrading for simpler systems. This technique influenced later games by emphasizing adaptability to hardware constraints, a necessity in the era of diverse PC configurations. Developers at id Software, including John Carmack, leveraged this flexibility to make Wolfenstein 3D accessible to a broader audience, setting a precedent for hardware-aware game design."
-  - id: "patch-386-optimization"
-    line_start: 241
-    line_end: 262
-    title: "Optimizing for 386 processors with custom patches"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
-    image_url: ""
-    image_caption: ""
-    content: "The `Patch386` function checks if the system is running on an Intel 386 processor and applies a custom patch (`jabhack2`) to optimize division operations using 32-bit instructions. This highlights id Software’s focus on squeezing performance out of available hardware. The Intel 386 was a significant upgrade over earlier processors, introducing 32-bit computing to personal computers. By tailoring the game for this architecture, Wolfenstein 3D could achieve smoother gameplay and faster calculations, critical for its fast-paced action. This optimization reflects Carmack’s reputation for technical ingenuity, as he often pushed hardware to its limits. The technique of processor-specific optimization became less common as hardware standards converged, but it was pivotal in the early PC gaming era, influencing other developers to consider hardware-specific enhancements."
-  - id: "build-tables-for-3d-rendering"
-    line_start: 65
-    line_end: 182
-    title: "Lookup tables for fast trigonometric calculations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
-    image_url: ""
-    image_caption: ""
-    content: "The `BuildTables` function precomputes trigonometric values like sine and tangent into lookup tables, enabling rapid calculations during gameplay. This approach avoids the computational overhead of calculating these values in real-time, a necessity given the limited processing power of early 1990s PCs. The tables are cleverly structured to overlap and reuse data, minimizing memory usage while maintaining precision. This technique was inspired by earlier work in computer graphics and became a staple in game development, especially for 3D engines. By reducing the computational burden, id Software could achieve the smooth and fast rendering that defined Wolfenstein 3D. The use of lookup tables influenced later engines, including the Doom engine, and remains a fundamental optimization in modern graphics programming."
-  - id: "calc-projection-for-3d-view"
-    line_start: 65
-    line_end: 182
-    title: "Projection math for immersive 3D gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
-    image_url: ""
-    image_caption: ""
-    content: "The `CalcProjection` function calculates the projection constants needed for rendering the 3D view. It uses focal length and screen dimensions to determine scaling factors and pixel angles, ensuring accurate perspective rendering. This function also calculates the maximum slope for determining visibility within the view area. The math behind this routine was critical for creating the illusion of depth and realism in Wolfenstein 3D, a groundbreaking achievement for its time. John Carmack’s mastery of mathematical optimizations allowed the game to run efficiently on hardware with limited graphical capabilities. The projection techniques pioneered here laid the groundwork for more advanced 3D engines, influencing games like Doom and Quake, and are still foundational in modern 3D graphics."
-  - id: "init-digi-map-sound"
-    line_start: 45
-    line_end: 49
-    title: "Custom sound mapping for immersive audio"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
-    image_url: ""
-    image_caption: ""
-    content: "The `InitDigiMap` function initializes a mapping between in-game sound effects and their corresponding digital sound IDs. This mapping allows the game to dynamically trigger sounds based on gameplay events, enhancing immersion. The sound effects range from enemy shouts to weapon fire, each carefully chosen to match the game's atmosphere. The function supports multiple configurations, including variations for different game versions like Spear of Destiny. This modular approach to sound design reflects id Software’s attention to detail and adaptability, ensuring the game could deliver a rich audio experience across diverse hardware setups. The use of sound mapping influenced later games by demonstrating the importance of audio in creating immersive environments, a principle that remains central to game design today."
-  - id: "dynamic-jukebox-menu"
-    line_start: 65
-    line_end: 182
-    title: "Dynamic Jukebox Menu for In-Game Music"
+    title: "Dynamic Config: Adapting to Hardware Limits"
     wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
     image_url: ""
     image_caption: ""
-    content: "This section implements a dynamic jukebox menu, allowing players to select and play various in-game music tracks. The routine begins by checking hardware compatibility for sound playback, ensuring that either AdLib or SoundBlaster is present. It then initializes graphical elements for the menu, such as font caching and drawing windows. The menu itself is interactive, with players able to navigate and select tracks, which are then played using the `StartCPMusic` function. This feature highlights id Software's attention to detail in creating immersive experiences, even in auxiliary features like music selection. At the time, sound cards were becoming more common, but compatibility was still a concern, especially for games targeting a broad audience. This jukebox system reflects the era's push toward enhancing audio experiences in games. The concept of interactive music menus later influenced games with customizable soundtracks, such as Grand Theft Auto and rhythm games like Dance Dance Revolution."
-  - id: "initgame-memory-check"
-    line_start: 65
-    line_end: 182
-    title: "Memory Check and Game Initialization"
+    content: "The `ReadConfig` function dynamically configures the game based on the available hardware. It reads a configuration file (`CONFIG.`) to set up sound modes, joystick settings, and screen size. If the file is missing, the function defaults to hardware detection, enabling features like AdLib sound if supported. In 1992, hardware compatibility was a major challenge for developers, as MS-DOS systems varied widely in capabilities. This approach ensured Wolfenstein 3D could run smoothly on a broad range of setups, from basic PCs to high-end machines with Sound Blaster cards. By detecting hardware and adjusting settings, id Software avoided alienating players with incompatible configurations. This technique influenced later games, which adopted similar dynamic detection methods to maximize compatibility."
+  - id: "write-config-preserving-player-settings"
+    line_start: 185
+    line_end: 224
+    title: "Saving Player Preferences to Disk"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Data_persistence"
+    image_url: ""
+    image_caption: ""
+    content: "The `WriteConfig` function writes player settings and high scores to disk, ensuring persistence across sessions. It saves sound modes, joystick configurations, and view size, among other parameters. This was a crucial feature in an era when games often lacked save functionality, forcing players to reconfigure settings every time they launched the game. By storing preferences, Wolfenstein 3D enhanced user experience and set a precedent for modern games, where saving configurations is standard. The use of binary file formats for compactness and speed reflects the constraints of early PCs, where disk space and processing power were limited."
+  - id: "patch386-optimizing-for-32-bit-cpus"
+    line_start: 241
+    line_end: 262
+    title: "Optimizing for 386 CPUs: A Clever Hack"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
+    image_url: ""
+    image_caption: ""
+    content: "The `Patch386` function checks if the system is running on a 386 processor and applies optimizations accordingly. The Intel 80386 introduced 32-bit instructions, which significantly improved performance over older 16-bit processors. By detecting this hardware and enabling specific optimizations, id Software ensured Wolfenstein 3D could leverage the capabilities of modern CPUs while remaining compatible with older systems. This dual-path approach was critical in the early '90s, as the gaming market was transitioning from 286 to 386 processors. The technique demonstrated id Software's commitment to performance and influenced other developers to adopt hardware-specific optimizations."
+  - id: "save-the-game-checksum-validation"
+    line_start: 315
+    line_end: 431
+    title: "Saving Games with Integrity Checks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Data_integrity"
+    image_url: ""
+    image_caption: ""
+    content: "The `SaveTheGame` function writes the game's state to disk, including player data, level progress, and object positions. It calculates a checksum for the saved data to ensure integrity during future loads. This approach prevents corrupted or tampered save files from breaking the game. In the early '90s, data corruption was a common issue due to unreliable storage media like floppy disks. By implementing checksum validation, id Software added a layer of robustness to Wolfenstein 3D, enhancing player trust. This technique became a standard in game development, influencing save systems in titles like Doom and Quake."
+  - id: "build-tables-precise-math-for-3d-rendering"
+    line_start: 586
+    line_end: 626
+    title: "Building Math Tables for Fast 3D Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
+    image_url: ""
+    image_caption: ""
+    content: "The `BuildTables` function precomputes mathematical tables for 3D rendering, including tangent and sine values. These tables allow the game to perform complex calculations quickly during gameplay, avoiding the need for expensive real-time computations. In 1992, CPUs lacked floating-point units, making trigonometric calculations slow. By precomputing values, id Software optimized Wolfenstein 3D for the limited hardware of the time. This technique was instrumental in achieving the game's smooth scrolling and fast-paced action. Precomputed tables became a hallmark of early 3D games, influencing engines like Doom and Unreal."
+  - id: "calc-projection-geometry-for-3d-world"
+    line_start: 631
+    line_end: 690
+    title: "Calculating Projection: Geometry Meets Gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/3D_projection"
+    image_url: ""
+    image_caption: ""
+    content: "The `CalcProjection` function calculates the geometric projection of the game world onto the player's screen. Using focal length and view width, it determines scaling factors and pixel angles for rendering. This math is the backbone of Wolfenstein 3D's pseudo-3D environment, where walls and objects appear to recede into the distance. In the early '90s, true 3D rendering was computationally prohibitive, so developers relied on tricks like this to simulate depth. John Carmack's mastery of projection math enabled Wolfenstein 3D to deliver an immersive experience on hardware that was never designed for 3D graphics. The technique laid the groundwork for future engines, including Doom and Quake."
+  - id: "init-digi-map-sound-mapping-for-gameplay"
+    line_start: 962
+    line_end: 1011
+    title: "Mapping Sounds to Gameplay Events"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_Blaster"
+    image_url: ""
+    image_caption: ""
+    content: "The `InitDigiMap` function maps sound effects to gameplay events using a lookup table. This allows the game to play specific sounds, such as gunfire or enemy screams, in response to player actions. In the early '90s, sound cards like the Sound Blaster were becoming popular, but their APIs were limited. By creating a custom mapping system, id Software ensured Wolfenstein 3D could deliver rich audio experiences tailored to its gameplay. This approach influenced sound systems in later games, where event-driven audio became standard."
+  - id: "dynamic-music-selection-dojukebox"
+    line_start: 1012
+    line_end: 1131
+    title: "Dynamic Music Selection: The DoJukebox Function"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Wolfenstein_3D"
+    image_url: ""
+    image_caption: ""
+    content: "The DoJukebox function allows players to select and play music tracks dynamically during gameplay. It initializes a menu with selectable tracks, caches necessary graphical and sound assets, and handles user input to start and stop music playback. This feature highlights id Software's attention to player immersion, giving users control over the auditory experience. In 1992, dynamic music selection was rare in games, as most titles had static soundtracks. The function also includes platform-specific optimizations, such as different track lists for the 'Spear of Destiny' expansion. By caching and un-caching assets, the developers ensured efficient memory usage on limited MS-DOS systems. This approach influenced later games, where customizable soundtracks became a standard feature, especially in genres like racing and sports."
+  - id: "initgame-memory-checks-and-startup"
+    line_start: 1135
+    line_end: 1266
+    title: "InitGame: Memory Checks and Startup Procedures"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The `InitGame` function is responsible for initializing the game environment, including memory checks, hardware setup, and loading essential assets. A notable feature is the memory check that ensures the system has sufficient main memory to run the game. If the memory is insufficient, an error screen is displayed, and the program exits gracefully. This reflects the constraints of early 1990s MS-DOS systems, where memory availability varied significantly across machines. The function also builds lookup tables for map tiles and initializes various subsystems, such as sound and input handling. This meticulous setup process ensured that Wolfenstein 3D could run efficiently on a wide range of hardware, contributing to its widespread popularity. The memory management techniques seen here influenced later games, particularly those developed for constrained environments like handheld consoles."
-  - id: "set-view-size-scaling"
-    line_start: 45
-    line_end: 49
-    title: "Custom View Size and Scaling Calculations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
+    content: "The InitGame function is responsible for initializing key systems and verifying hardware capabilities. It checks available memory, ensuring the game can run on systems with at least 235KB (or 257KB for 'Spear of Destiny'). If insufficient memory is detected, an error screen is displayed, and the game exits gracefully. This reflects the constraints of early 1990s PCs, where memory was a scarce resource. InitGame also builds essential tables for gameplay, such as map lookups and screen update pointers, and loads configuration files. The function's modular startup sequence—initializing graphics, input, sound, and memory subsystems—became a blueprint for modern game engines. Its memory checks and fallback mechanisms influenced how later games handled hardware compatibility, ensuring broader accessibility."
+  - id: "setviewsize-performance-and-aspect-ratio"
+    line_start: 1268
+    line_end: 1306
+    title: "SetViewSize: Performance and Aspect Ratio Optimization"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Aspect_ratio_(image)"
     image_url: ""
     image_caption: ""
-    content: "The `SetViewSize` function allows the game to adjust the viewport dimensions dynamically, optimizing performance and player experience. By ensuring the width is divisible by 16 and the height is even, the function aligns with hardware constraints of the time, particularly the VGA graphics standard. It calculates projection constants and trace angles, which are critical for rendering the 3D environment efficiently. This approach demonstrates id Software's innovative use of mathematical optimizations to achieve smooth gameplay on limited hardware. The concept of adjustable viewports became a standard feature in many later games, allowing players to balance graphical fidelity and performance. Techniques like these laid the groundwork for modern rendering engines, such as Unity and Unreal Engine."
-  - id: "quit-error-handling"
-    line_start: 185
-    line_end: 237
-    title: "Graceful Error Handling and Exit Routine"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Software_testing"
+    content: "SetViewSize adjusts the game's viewport dimensions, ensuring compatibility with various screen resolutions and optimizing performance. By enforcing divisibility constraints (width by 16, height by 2), the function aligns with hardware requirements for efficient memory access and rendering. It calculates projection constants and trace angles, essential for the game's pseudo-3D perspective. This function exemplifies id Software's meticulous approach to balancing visual fidelity and performance on early PCs. The ability to dynamically adjust view size influenced later games, enabling scalable graphics settings for diverse hardware configurations. Techniques like these laid the groundwork for modern resolution scaling and aspect ratio adjustments in 3D engines."
+  - id: "demo-loop-showcasing-gameplay"
+    line_start: 1411
+    line_end: 1570
+    title: "DemoLoop: Showcasing Gameplay and Features"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Demo_(computer_program)"
     image_url: ""
     image_caption: ""
-    content: "The `Quit` function handles game termination, including error reporting and cleanup. If an error message is provided, it displays the message on the screen and exits the program. Otherwise, it writes the configuration to disk and displays an order screen, encouraging players to purchase the full game. This dual-purpose exit routine reflects id Software's business model at the time, which relied on shareware distribution to attract players. The function also clears memory and shuts down subsystems, ensuring a clean exit. This attention to detail in error handling and user experience influenced later games, particularly those distributed as shareware or demos. It also highlights the importance of robust termination routines in software development, a practice that remains relevant today."
-  - id: "demo-loop-gameplay-showcase"
-    line_start: 45
-    line_end: 49
-    title: "Demo Loop: Showcasing Gameplay Dynamically"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Video_game_demo"
+    content: "The DemoLoop function orchestrates the game's demo playback cycle, showcasing its features to attract and engage players. It includes title screens, credits, high scores, and gameplay demos, cycling through these elements until user input interrupts. This was a common practice in the early 1990s, where demos served as marketing tools and tutorials. The function integrates memory sorting, asset caching, and user input handling, ensuring smooth transitions between demo segments. By leveraging pre-recorded gameplay sequences, id Software demonstrated the game's capabilities without requiring active participation. DemoLoop influenced the design of attract modes in arcade games and later served as inspiration for tutorial and preview systems in modern titles."
+  - id: "main-function-game-orchestration"
+    line_start: 1586
+    line_end: 1615
+    title: "Main Function: Orchestrating Initialization and Gameplay"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Game_engine"
     image_url: ""
     image_caption: ""
-    content: "The `DemoLoop` function is a central feature for showcasing Wolfenstein 3D's gameplay to players. It includes a sequence of title screens, credits, high scores, and gameplay demos, creating a compelling introduction to the game. The loop also checks for special launch parameters, such as starting from the TED level editor, allowing developers to test specific levels directly. This feature reflects id Software's understanding of marketing and user engagement, as the demo loop was often the first impression players had of the game. By automating gameplay showcases, id Software ensured that even passive viewers could appreciate the game's mechanics and visuals. Demo loops became a standard feature in many games, influencing titles like Doom and Quake, and remain a staple in modern game development for trailers and promotional materials."
-  - id: "main-beta-expiration"
-    line_start: 29
-    line_end: 44
-    title: "Beta Expiration and Main Execution"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Software_testing"
-    image_url: ""
-    image_caption: ""
-    content: "The `main` function is the entry point for Wolfenstein 3D, orchestrating the game's initialization and execution. A unique feature is the beta expiration mechanism, which checks the system date and exits if the beta testing period has ended. This reflects id Software's commitment to controlled testing environments and highlights the importance of managing pre-release software. The function also calls key routines like `InitGame` and `DemoLoop`, ensuring the game starts correctly and transitions smoothly into its main cycle. The beta expiration mechanism is an early example of time-based software controls, a concept later used in trial versions and subscription-based software. This approach underscores id Software's innovative practices in software development and distribution."
+    content: "The main function is the entry point of Wolfenstein 3D, tying together initialization routines and the gameplay loop. It checks for beta expiration (in development builds), initializes subsystems via InitGame, and starts the DemoLoop. This structure reflects id Software's organized approach to game development, ensuring modularity and clarity. The main function's simplicity belies its importance, as it establishes the game's execution flow. Its design influenced how modern game engines structure their main loops, emphasizing initialization, resource management, and gameplay orchestration. The modularity seen here became a hallmark of id Software's later engines, including the Doom and Quake series."
 
 ---
 
@@ -1736,4 +1744,5 @@ void main (void)
 
 	Quit("Demo loop exited???");
 }
+
 ```

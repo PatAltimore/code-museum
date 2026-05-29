@@ -1104,7 +1104,7 @@
     },
     {
       "slug": "wolf3d",
-      "introduction": "In the spring of 1992, in a modest office in Madison, Wisconsin, a small team of developers at id Software was about to change the face of gaming forever. John Carmack, John Romero, and Tom Hall were working tirelessly to finalize their latest creation: Wolfenstein 3D. The project was born from a bold idea to reimagine Muse Software's 1981 stealth game, Castle Wolfenstein, as a fast-paced, visceral action experience. Carmack had recently developed an innovative 3D engine, capable of rendering environments with unprecedented speed by restricting gameplay to a single plane. This technological breakthrough, combined with Romero's vision for intense combat and Hall's knack for creative design, set the stage for a revolution in interactive entertainment.\n\nThe computing world of 1992 was defined by limitations. MS-DOS was the dominant operating system, and most personal computers relied on Intel 286 or 386 processors with minimal memory and rudimentary graphics capabilities. VGA graphics cards and AdLib sound systems were cutting-edge, but developers faced severe constraints: memory management was a constant battle, and rendering 3D environments required ingenious optimization. Carmack's engine, built in C and x86 Assembly, was a marvel of efficiency. It used a technique called raycasting to simulate 3D spaces on hardware that was never designed for such tasks. Every line of code had to be meticulously crafted to squeeze performance out of machines with as little as 640 KB of RAM.\n\nThe team behind Wolfenstein 3D was small but formidable. John Carmack, the programming prodigy, was obsessed with pushing technical boundaries. His innovations in rendering and memory management were the backbone of the game. John Romero, the charismatic designer, brought a passion for fast-paced gameplay and a flair for dramatic encounters. Tom Hall, the creative visionary, infused the game with personality, crafting the Nazi-infested corridors and the dark humor that permeated the experience. Together, they made key decisions that defined the game: the shift from stealth to action, the episodic shareware model for distribution, and the unapologetically violent tone that stood out in an era dominated by family-friendly titles like Commander Keen.\n\nWhen Wolfenstein 3D was released in May 1992, it was nothing short of a sensation. The game’s smooth scrolling, responsive controls, and immersive environments captivated players, while its shareware distribution model made it accessible to millions. By the end of 1995, it had sold over 250,000 copies and earned its place as the “grandfather of 3D shooters.” It popularized the first-person shooter genre, paving the way for later masterpieces like DOOM and Quake. The source code, released in 1995, became a cornerstone for aspiring developers, spawning countless mods and inspiring new games built on its engine.\n\nWolfenstein 3D’s legacy endures to this day. It established the template for fast-paced, action-oriented gameplay that remains central to the genre. Its influence can be seen in modern shooters, and its technical innovations continue to be studied by programmers. The game’s bold design decisions and groundbreaking technology remind us of a time when a handful of visionaries could redefine an industry from a small office, armed with little more than ingenuity and a passion for pushing boundaries.",
+      "introduction": "It was 1991, and the small team at id Software was on the cusp of revolutionizing the gaming world. John Carmack, the brilliant programmer whose technical prowess had already begun to reshape the industry, was experimenting with ways to push the limits of personal computers. His earlier work on Hovertank 3D and Catacomb 3-D had laid the groundwork for a new kind of game engine, one capable of rendering fast, smooth 3D graphics on the limited hardware of the time. Alongside him were John Romero, the creative force behind the studio's game design, and Tom Hall, whose storytelling and level design would bring their ideas to life. Together, they were about to create a game that would redefine what was possible in interactive entertainment.\n\nThe computing world of 1992 was dominated by MS-DOS machines, most of which were equipped with Intel 286 or 386 processors and VGA graphics cards. Memory was scarce, with many systems offering only a few megabytes of RAM, and storage was limited to floppy disks or small hard drives. These constraints shaped every decision the team made. Carmack's engine relied on clever optimizations, such as restricting gameplay to a single plane and using a raycasting technique to simulate 3D environments. The result was a game that felt fast and fluid, even on modest hardware. The team had to balance technical ingenuity with artistic vision, creating a game that was both visually striking and mechanically engaging.\n\nInspired by Muse Software's 1981 stealth shooter Castle Wolfenstein, Romero proposed reimagining the concept as a fast-paced, violent action game. The idea resonated with the team, and Wolfenstein 3D began to take shape. Adrian Carmack contributed gritty, evocative artwork, while Bobby Prince composed the game's iconic sound effects and music, adding to its immersive atmosphere. The game was released under the shareware model, with the first episode offered for free to entice players to purchase the remaining episodes. This approach proved wildly successful, helping the game reach a wide audience and cementing id Software's reputation as a pioneer in the industry.\n\nWolfenstein 3D was not just a technical marvel; it was a cultural phenomenon. Players took on the role of Allied spy B.J. Blazkowicz, battling Nazis, guard dogs, and bosses in a series of increasingly challenging levels. The game's fast-paced action, responsive controls, and immersive environments set a new standard for the first-person shooter genre. It sold over 250,000 copies by 1995 and earned numerous awards, becoming one of the most influential games of its era. Critics hailed it as the \"grandfather of 3D shooters,\" a title that underscored its role in popularizing the genre and establishing the template for future classics like DOOM and Quake.\n\nThe legacy of Wolfenstein 3D extends far beyond its initial release. In 1995, id Software made the groundbreaking decision to release the game's source code for free, allowing developers and enthusiasts to study and build upon their work. The engine was licensed for numerous other titles, and the game's influence can still be seen in modern first-person shooters. Meanwhile, the Wolfenstein series has continued to evolve, with new installments developed by other studios since 2001. Yet the original remains a touchstone in gaming history, a testament to the creativity and ingenuity of its creators and the transformative power of technology.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Wolfenstein_logo.svg",
       "image_caption": "Wolfenstein 3D is a first-person shooter video game developed by id Software (John Carmack,  John Romero, Tom Hall) and released  May 5, 1992 (CC BY 2.0)",
       "title": "Wolfenstein 3D",
@@ -1318,84 +1318,74 @@
       ],
       "highlights": [
         {
-          "id": "carmacks-compression-algorithm",
-          "title": "Carmack's Compression: A Game-Changing Algorithm",
-          "description": "John Carmack devised a custom compression algorithm that allowed Wolfenstein 3D to store large amounts of graphics and level data in limited memory. This algorithm used Huffman coding combined with a unique expansion routine to decompress data quickly during gameplay, ensuring smooth performance on hardware with severe memory constraints. This innovation not only enabled Wolfenstein 3D's detailed environments but also influenced subsequent game engines like Doom and Quake, which built on similar principles for handling large datasets efficiently.",
+          "id": "carmacks-compression-magic",
+          "title": "Carmack's Compression Magic",
+          "description": "John Carmack devised a custom compression algorithm to store graphics data efficiently, enabling Wolfenstein 3D to fit detailed textures and sprites within the limited memory of early 1990s PCs. By combining Huffman coding with run-length encoding, the game achieved rapid decompression speeds while minimizing storage requirements. This innovation allowed for richer visuals and faster loading times, setting a precedent for data compression techniques in game engines, influencing titles like Doom and Quake.",
           "links": [
             {
-              "label": "Compression and decompression routines",
+              "label": "Carmack's graphics compression routine",
               "file": "id-ca-c",
-              "enhancement": "carmack-expand-compression"
+              "enhancement": "cal-carmack-expand"
             }
           ]
         },
         {
-          "id": "raycasting-rendering-engine",
-          "title": "The Raycasting Engine That Defined FPS Graphics",
-          "description": "Wolfenstein 3D's graphics engine used a groundbreaking raycasting technique to simulate a 3D environment on a 2D plane. By casting rays from the player's viewpoint and calculating wall intersections, the game rendered immersive environments with minimal computational overhead. This approach was a clever workaround for the lack of dedicated 3D hardware in early PCs. The engine's efficiency and simplicity laid the foundation for the first-person shooter genre, inspiring games like Doom and countless others in the decades to follow.",
+          "id": "raycasting-pseudo-3d-graphics",
+          "title": "Raycasting Walls for Pseudo-3D Graphics",
+          "description": "Wolfenstein 3D used a groundbreaking raycasting algorithm to simulate 3D environments on hardware incapable of true 3D rendering. By tracing rays from the player's viewpoint to detect walls and calculating their distance, the game rendered textured walls with depth perception in real time. This approach circumvented the need for advanced graphics hardware, enabling smooth gameplay on MS-DOS systems. Raycasting became a cornerstone of early FPS development, influencing games like Doom and inspiring modern techniques in 3D rendering.",
           "links": [
             {
-              "label": "Projection math for 3D rendering",
-              "file": "wl-main-c",
-              "enhancement": "calc-projection-for-3d-view"
-            },
-            {
-              "label": "Rendering walls and objects",
+              "label": "Raycasting implementation for wall rendering",
               "file": "wl-draw-c",
-              "enhancement": "three-d-refresh-full-render-loop"
+              "enhancement": "wall-refresh-pseudo-3d-rendering"
             }
           ]
         },
         {
-          "id": "adaptive-timing-smooth-gameplay",
-          "title": "Adaptive Timing for Smooth Gameplay",
-          "description": "Wolfenstein 3D implemented an adaptive timing system to ensure consistent gameplay across a wide range of PC hardware. By dynamically adjusting game speed based on the processor's performance, the game maintained smooth animations and input responsiveness even on slower machines. This innovation was critical for reaching a broad audience during an era of diverse hardware capabilities. The adaptive timing technique became a staple in game development, influencing how performance scaling was handled in later titles.",
+          "id": "dynamic-door-rendering",
+          "title": "Dynamic Door Rendering and Interaction",
+          "description": "Wolfenstein 3D introduced dynamic doors that could open and close in response to player actions, adding interactivity to its grid-based levels. The code handled door animations and state transitions efficiently, ensuring smooth gameplay even on constrained hardware. This innovation enhanced the game's sense of immersion and influenced level design in subsequent FPS titles, paving the way for more interactive environments in games like Duke Nukem 3D and Half-Life.",
           "links": [
             {
-              "label": "Timing calculations for smooth performance",
+              "label": "Code for dynamic door mechanics",
               "file": "wl-draw-c",
-              "enhancement": "adaptive-timing-calc-tics"
+              "enhancement": "dynamic-door-handling"
             }
           ]
         },
         {
-          "id": "pushable-walls-secret-mechanic",
-          "title": "Pushable Walls: The Secret Mechanic",
-          "description": "Wolfenstein 3D introduced pushable walls as a hidden gameplay feature, allowing players to discover secret areas by interacting with certain wall tiles. This mechanic added depth to exploration and rewarded players for curiosity, setting a precedent for interactive environments in games. The concept of hidden mechanics and secret areas became a hallmark of id Software's design philosophy and influenced level design in future games like Doom and Quake.",
+          "id": "pushable-wall-secrets",
+          "title": "The Secret Walls That Defined Exploration",
+          "description": "Wolfenstein 3D featured pushable walls as a unique gameplay mechanic, allowing players to uncover hidden areas and treasures. The code implemented smooth animations and collision checks for these movable walls, creating a sense of discovery and rewarding exploration. This feature became a hallmark of the game's design and influenced similar mechanics in later titles like Doom and Rise of the Triad, encouraging players to interact with their environments creatively.",
           "links": [
             {
-              "label": "Code for pushable walls",
+              "label": "Implementation of pushable wall mechanics",
               "file": "wl-act1-c",
-              "enhancement": "pushable-walls"
-            },
-            {
-              "label": "Animation logic for moving walls",
-              "file": "wl-act1-c",
-              "enhancement": "move-pushable-walls"
+              "enhancement": "pushable-wall-secret-mechanic"
             }
           ]
         },
         {
-          "id": "pc-speaker-digitized-sound",
-          "title": "Making the PC Speaker Sing (Digitally)",
-          "description": "Wolfenstein 3D achieved digitized sound playback on the primitive PC speaker, a feat considered groundbreaking at the time. By rapidly toggling the speaker's state, the game simulated audio waveforms, producing surprisingly rich sound effects on hardware not designed for such capabilities. This clever hack allowed players without advanced sound cards to experience immersive audio, showcasing id Software's ingenuity in overcoming hardware limitations. The technique inspired similar approaches in other early PC games.",
+          "id": "interrupt-driven-audio",
+          "title": "Interrupts: The Backbone of Real-Time Audio",
+          "description": "Wolfenstein 3D's audio system used interrupt-driven programming to deliver seamless sound effects and music on MS-DOS systems. By leveraging hardware interrupts, the game maintained real-time audio playback without disrupting gameplay. This technique allowed for immersive soundscapes despite limited CPU resources, influencing audio design in subsequent games and demonstrating the potential of hardware-level optimization in game development.",
           "links": [
             {
-              "label": "Digitized sound playback on PC speaker",
+              "label": "Interrupt-driven audio service implementation",
               "file": "id-sd-c",
-              "enhancement": "pc-speaker-digitized-sound"
+              "enhancement": "interrupt-driven-audio-service"
             }
           ]
         },
         {
-          "id": "dynamic-stereo-sound-placement",
-          "title": "Dynamic Stereo Sound Placement",
-          "description": "Wolfenstein 3D featured dynamic stereo sound positioning, enhancing immersion by adjusting audio based on the player's location and orientation. This innovation used simple calculations to simulate directional audio, making enemy movements and gunfire feel spatially accurate. At a time when sound design was often an afterthought, this feature elevated the game's atmosphere and influenced how audio was integrated into later first-person shooters, including Doom and Half-Life.",
+          "id": "palette-shifting-effects",
+          "title": "The Palette Shifting That Made Damage Visible",
+          "description": "Wolfenstein 3D used palette-shifting effects to visually indicate player damage, such as the screen flashing red upon being hit. This technique manipulated VGA color palettes in real time to create dynamic visual feedback, enhancing the game's sense of urgency and immersion. Palette shifting became a widely adopted method in early PC games, influencing visual effects in titles like Doom and other VGA-based games of the era.",
           "links": [
             {
-              "label": "Stereo sound placement logic",
-              "file": "id-sd-c",
-              "enhancement": "stereo-positioning"
+              "label": "Code for palette shifting effects",
+              "file": "wl-play-c",
+              "enhancement": "palette-shifting-effects"
             }
           ]
         }
