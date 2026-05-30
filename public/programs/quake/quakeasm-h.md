@@ -9,58 +9,58 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "quakeasm-h"
 order: 7
-description: "This file encapsulates the low-level assembly optimizations that powered Quake's groundbreaking 3D rendering and multiplayer capabilities on 1990s hardware."
+description: "This file encapsulates the low-level assembly optimizations that enabled Quake to achieve groundbreaking performance on 1990s hardware."
 
 summary:
-  - point: "Defines assembly-level constants and macros for x86 optimizations"
-    link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly language"
-  - point: "Includes external references to critical rendering variables"
+  - point: "Defines macros for x86-specific optimizations"
+    link: "https://en.wikipedia.org/wiki/X86"
+    link_label: "x86 architecture"
+  - point: "Centralizes external references to critical rendering variables"
     link: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
-    link_label: "Rendering"
-  - point: "Optimized for id386 architecture, targeting Intel processors"
-    link: "https://en.wikipedia.org/wiki/Intel_80386"
-    link_label: "Intel 80386"
-  - point: "Showcases Carmack's and Abrash's mastery of hardware constraints"
-    link: "https://en.wikipedia.org/wiki/John_Carmack"
-    link_label: "John Carmack"
-  - point: "Influenced modern game engines and rendering techniques"
+    link_label: "Rendering in computer graphics"
+  - point: "Demonstrates id Software's meticulous focus on performance"
+    link: "https://en.wikipedia.org/wiki/Id_Software"
+    link_label: "id Software"
+  - point: "Highlights the constraints of 1990s hardware"
+    link: "https://en.wikipedia.org/wiki/Personal_computer_hardware"
+    link_label: "1990s PC hardware"
+  - point: "Influenced later game engines and optimization techniques"
     link: "https://en.wikipedia.org/wiki/Game_engine"
-    link_label: "Game engine"
+    link_label: "Game engines"
 
 enhancements:
-  - id: "quakeasm-header-setup"
-    line_start: 1
-    line_end: 17
-    title: "Why Quake Needed id386-Specific Optimizations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_80386"
+  - id: "x86-optimization-macros"
+    line_start: 24
+    line_end: 32
+    title: "Why Quake Needed x86-Specific Optimizations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/X86"
     image_url: ""
     image_caption: ""
-    content: "This section sets up architecture-specific flags to enable optimizations for Intel's 386 processors, the dominant CPU architecture of the mid-1990s. By defining `id386`, the code ensures that assembly routines tailored for x86 processors are included only when running on compatible hardware. This was crucial for Quake, as its performance depended heavily on low-level optimizations that exploited the specific capabilities of the 386 and later processors, such as pipelining and instruction-level parallelism. In 1996, the gaming industry was transitioning from DOS-based games to Windows-based environments, and developers were grappling with the limitations of early PC hardware. The 386, introduced in 1985, was still widely used, though faster processors like the Pentium were becoming more common. John Carmack and Michael Abrash, both renowned for their deep understanding of hardware, leveraged these constraints to push the boundaries of what was possible. Abrash's work on assembly optimizations and Carmack's expertise in engine design ensured Quake could deliver unprecedented 3D graphics on consumer-grade PCs. This approach influenced later game engines, such as Unreal Engine and Source, which continued to optimize for specific hardware architectures. The practice of tailoring software for hardware capabilities persists in modern development, especially in console and mobile gaming, where understanding the underlying hardware is key to maximizing performance."
+    content: "This section defines macros to detect and enable x86-specific optimizations (`id386`). By checking the architecture (`__i386__`), the code ensures compatibility with Intel's x86 processors, which dominated the PC market in the mid-1990s. Quake's performance depended heavily on leveraging the quirks and strengths of this architecture, such as its efficient integer math instructions and limited floating-point capabilities. At the time, developers often wrote assembly code to bypass compiler inefficiencies and extract maximum performance from hardware. John Carmack and Michael Abrash were renowned for their expertise in this area, with Abrash's book 'Graphics Programming Black Book' detailing many of the techniques used in Quake. These macros laid the groundwork for conditional compilation, allowing Quake to run efficiently on x86 systems while maintaining portability to other platforms. This approach influenced later game engines, which adopted similar strategies to optimize for specific hardware architectures."
   - id: "transparent-color-definition"
-    line_start: 4
-    line_end: 9
-    title: "The Magic Number Behind Transparency"
+    line_start: 34
+    line_end: 35
+    title: "The Magic Number for Transparency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""
     image_caption: ""
-    content: "The definition of `TRANSPARENT_COLOR` as 255 is a simple yet critical decision. This constant represents the color value used to denote transparency in Quake's rendering pipeline. By reserving a specific value for transparency, the engine can efficiently handle textures and sprites that require portions to be invisible, such as windows or character models. In the mid-1990s, transparency was a computationally expensive feature, especially on hardware without dedicated graphics acceleration. Quake's software renderer had to manage transparency manually, blending pixels and ensuring that transparent areas did not overwrite the background. This choice of 255 likely stems from its position as the maximum value in an 8-bit color palette, making it easy to identify and process. Transparency handling in Quake laid the groundwork for more sophisticated alpha blending techniques in later games. Modern engines like Unity and Unreal use similar principles but leverage GPU acceleration to handle transparency more efficiently. The concept of reserving specific values for transparency persists in formats like PNG, where alpha channels define pixel opacity."
+    content: "The `TRANSPARENT_COLOR` macro defines the value `255` as the transparent color in Quake's rendering pipeline. This constant is used to identify pixels that should not be drawn, allowing for effects like sprites and overlays to blend seamlessly into the environment. Transparency was critical for creating immersive visuals, such as explosions and particle effects, in Quake's true 3D world. At the time, hardware constraints meant that transparency calculations had to be simple and efficient. Using a predefined color value was a pragmatic solution, avoiding the computational overhead of alpha blending on systems without dedicated graphics acceleration. This technique influenced later games and engines, which refined transparency handling as hardware capabilities improved."
   - id: "external-variable-references"
     line_start: 19
-    line_end: 202
-    title: "The Web of Variables That Made Quake Tick"
+    line_end: 260
+    title: "The Variables That Made Quake Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "This section lists external references to critical variables used throughout Quake's rendering pipeline. These variables, such as `d_zistepu`, `r_turb_s`, and `d_viewbuffer`, represent the building blocks of the game's 3D graphics system. They control everything from depth buffering to texture mapping and lighting calculations. In 1996, real-time 3D rendering was still a nascent field. Developers had to invent techniques to simulate depth, perspective, and lighting on hardware that lacked dedicated graphics processors. Quake's software renderer was a marvel of engineering, using these variables to manage complex calculations efficiently. For example, depth buffering (`d_pzbuffer`) ensured that closer objects occluded farther ones, while texture coordinates (`r_turb_s`, `r_turb_t`) enabled detailed surfaces. The modularity of these variables reflects the influence of Michael Abrash, who advocated for clean, reusable code even in assembly-heavy projects. This approach allowed Quake's engine to be adapted for later games like Quake II and influenced the design of modern engines. Developers studying Quake's source code learned how to structure rendering systems, a lesson that resonates in today's industry standards."
-  - id: "sound-system-hooks"
-    line_start: 4
-    line_end: 6
-    title: "How Quake's Sound System Kept Pace"
+    content: "This section lists external references to critical rendering variables, such as `d_zistepu`, `r_turb_s`, and `d_viewbuffer`. These variables are central to Quake's rendering pipeline, controlling aspects like depth buffering, texture mapping, and lighting calculations. By declaring them as externs, the assembly code can access these variables directly, bypassing the overhead of higher-level abstractions. This approach reflects the low-level optimization ethos of id Software, where every cycle mattered on 1990s hardware. The sheer number of variables underscores the complexity of Quake's rendering system, which had to manage true 3D environments, dynamic lighting, and multiplayer networking within tight memory and processing constraints. These techniques influenced the design of later game engines, such as Unreal Engine and Source, which built upon the foundation laid by Quake's rendering innovations."
+  - id: "sound-buffer-references"
+    line_start: 261
+    line_end: 272
+    title: "Optimizing Sound: The Forgotten Challenge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
     image_caption: ""
-    content: "This section includes external references to variables used in Quake's sound system, such as `snd_scaletable` and `snd_linear_count`. These variables controlled sound playback, volume scaling, and buffer management, ensuring that Quake's audio matched the quality of its visuals. In 1996, sound cards like the Sound Blaster were common, but their capabilities varied widely. Quake's sound system had to accommodate different hardware configurations while delivering immersive audio effects. By using assembly-level hooks, the engine could directly manipulate sound buffers and optimize playback for each system. Quake's approach to sound influenced later games, which continued to prioritize audio quality as a key component of immersion. The modularity of its sound system inspired modern audio engines, such as FMOD and Wwise, which provide similar flexibility and performance optimization. Quake demonstrated that sound was not just an afterthought but an integral part of the gaming experience."
+    content: "This section declares external references for sound-related variables, such as `snd_scaletable` and `paintbuffer`. Sound was an often-overlooked aspect of game development in the 1990s, but Quake's immersive experience depended on high-quality audio. These variables were part of the sound mixing and playback system, which had to operate efficiently alongside the demanding rendering pipeline. The use of assembly-level optimizations ensured that sound processing did not become a bottleneck, even on systems with limited CPU power. This attention to detail influenced later games, which increasingly prioritized audio as a key component of the gaming experience."
 
 ---
 

@@ -9,52 +9,76 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "cl-input-c"
 order: 18
-description: "This file handles input processing for Quake's client-side logic, including key states, movement commands, and server communication."
+description: "This file handles input processing for Quake's client-side logic, showcasing innovative techniques for managing player commands and interactions in a multiplayer 3D environment."
 
 summary:
-  - point: "Innovative key state tracking for simultaneous inputs"
+  - point: "Innovative edge-triggered input tracking for multiplayer gaming"
     link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     link_label: "Quake"
-  - point: "Efficient movement command serialization for network play"
+  - point: "Key state management optimized for simultaneous inputs"
+    link: "https://en.wikipedia.org/wiki/Input_device"
+    link_label: "Input device"
+  - point: "Efficient movement command serialization for network transmission"
     link: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
-    link_label: "Multiplayer gaming"
-  - point: "Introduced modular input handling for extensibility"
-    link: "https://en.wikipedia.org/wiki/Game_engine"
-    link_label: "Game engines"
+    link_label: "Multiplayer video game"
 
 enhancements:
-  - id: "key-state-tracking"
+  - id: "key-down-edge-triggering"
     line_start: 57
     line_end: 84
-    title: "How Quake Tracks and Handles Simultaneous Key Presses"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    title: "Edge-triggered input: solving simultaneous key presses"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
     image_url: ""
     image_caption: ""
-    content: "This section defines the kbutton_t structures and the KeyDown function that together form Quake's multi-source key tracking system. The state bits record whether a key is currently down, whether it transitioned down this frame, or transitioned up this frame, allowing a single action to be held by two independent keys simultaneously — a keyboard key and a mouse button, for example — without releasing until both are up. The KeyDown function stores each pressing key's number in the down array, ignores repeats, and warns if a third source attempts to claim the same button. In 1996 this two-source tracking was uncommon; most engines used a single boolean per action. The impulse-state design carried forward into id Tech 2 and id Tech 3 and became standard practice in multiplayer games where precise per-frame input accounting is critical."
-  - id: "key-up-subroutine"
+    content: "The `KeyDown` function is a cornerstone of Quake's input system, designed to handle simultaneous key presses from multiple input sources. It tracks the state of each key using a combination of flags: bit 0 for the current state, bit 1 for the transition from up to down, and bit 2 for the transition from down to up. This mechanism ensures that commands like `+forward` or `+attack` remain consistent even when triggered by multiple devices, such as a keyboard and mouse. In 1996, managing input was challenging due to the variety of hardware players used, and this approach was a clever solution to avoid conflicts. John Carmack and Michael Abrash, known for their optimization expertise, likely devised this system to ensure smooth gameplay in Quake's groundbreaking multiplayer mode. This technique influenced later games, including Unreal Tournament and Half-Life, which adopted similar systems for handling complex input scenarios."
+  - id: "key-up-edge-triggering"
     line_start: 86
     line_end: 114
-    title: "Releasing Keys: A Surprisingly Complex Problem"
+    title: "Handling key releases with impulse tracking"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
+    image_url: ""
+    image_caption: ""
+    content: "The `KeyUp` function complements `KeyDown` by managing the release of keys and ensuring proper state transitions. When a key is released, the function clears its state and triggers an impulse up event (bit 2). This design prevents issues like 'stuck keys,' where a button remains active due to improper state management. The function also handles manual console inputs, allowing players to reset key states if needed—a practical debugging feature for developers and users alike. In the mid-1990s, such robust input handling was rare, as most games relied on simpler systems that couldn't handle simultaneous inputs effectively. Quake's approach set a precedent for future games, influencing input handling frameworks in engines like Unreal Engine and Source."
+  - id: "cl-key-state"
+    line_start: 160
+    line_end: 204
+    title: "Quantifying key states for precise movement"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `KeyUp` function handles the release of keys, ensuring that the corresponding 'down' state is cleared and updating the state bits to reflect the 'impulse up' state. It includes logic to handle cases where a key release event occurs without a prior press, which can happen due to menu interactions or manual console commands. This level of detail was necessary for Quake's fast-paced gameplay, where precise input handling could mean the difference between victory and defeat. The function's design demonstrates id Software's commitment to creating a responsive and error-tolerant input system. This approach influenced the development of input handling in later game engines, including Source and Unreal Engine, which adopted similar techniques for managing complex input scenarios."
-  - id: "movement-speed-cvars"
-    line_start: 1
-    line_end: 54
-    title: "Customizable Movement Speeds via Cvars"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines several `cvar_t` variables that control movement speeds, including forward, backward, side, and up speeds. These variables allow players to customize their movement experience, a feature that was relatively rare in 1996. By exposing these values as console variables, id Software empowered players to tweak gameplay to their liking, enhancing the game's appeal to competitive players and modders. The use of cvars became a hallmark of id Software's engines, influencing the design of configuration systems in games like Counter-Strike and Team Fortress. Today, customizable settings are a standard feature in games, but Quake's implementation was one of the earliest examples of this approach."
-  - id: "angle-adjustment"
+    content: "The `CL_KeyState` function calculates a floating-point value representing the state of a key during a frame. This value ranges from 0.0 (key held then released) to 1.0 (key held for the entire frame), enabling nuanced control over movement and actions. By clearing impulse flags after calculation, the function ensures accurate state tracking without residual effects. This level of precision was critical for Quake's fast-paced gameplay, where even minor input delays could disrupt the experience. The technique reflects id Software's commitment to optimization and responsiveness, a hallmark of their development philosophy. It influenced later games that required precise input handling, such as Counter-Strike and Battlefield."
+  - id: "cl-adjust-angles"
     line_start: 224
     line_end: 273
-    title: "Adjusting Angles for Precision Movement"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    title: "Dynamic angle adjustment for immersive control"
+    wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
     image_url: ""
     image_caption: ""
-    content: "The `CL_AdjustAngles` function modifies the player's view angles based on input states, ensuring smooth and precise control over yaw, pitch, and roll. It incorporates constraints to prevent excessive angle values, keeping the gameplay experience intuitive and preventing disorientation. This function also stops automatic pitch drifting when manual adjustments are made, a feature that enhances player control. In the context of 1996, this level of precision was groundbreaking, as most games relied on simpler, less responsive control schemes. The function reflects id Software's focus on creating a fluid and immersive gameplay experience. Techniques from this function influenced later FPS games, including Call of Duty and Battlefield, which adopted similar methods for handling player view angles."
+    content: "The `CL_AdjustAngles` function updates the player's view angles based on input states and frame timing. It accounts for strafing, looking up/down, and pitch drift, ensuring smooth and responsive camera movement. Constraints like pitch limits (-70 to 80 degrees) prevent disorienting views, while roll limits enhance stability. This function exemplifies id Software's attention to detail in creating immersive 3D environments. In 1996, such dynamic adjustments were groundbreaking, as most games featured static or limited camera controls. Quake's implementation paved the way for modern first-person shooters, influencing titles like Call of Duty and Halo, which rely on similar systems for fluid player interaction."
+  - id: "cl-base-move"
+    line_start: 275
+    line_end: 316
+    title: "Serializing movement commands for multiplayer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
+    image_url: ""
+    image_caption: ""
+    content: "The `CL_BaseMove` function constructs a `usercmd_t` structure containing movement commands to send to the server. It integrates inputs like strafing, jumping, and speed adjustments, applying modifiers for frame timing and speed keys. By serializing these commands, the function ensures efficient network transmission, a critical feature for Quake's multiplayer mode. In the mid-1990s, networked gaming was still in its infancy, and optimizing data flow was a significant challenge. Quake's solution influenced the development of network protocols in engines like Unreal Engine and Source, which adopted similar serialization techniques to support large-scale multiplayer games."
+  - id: "cl-send-cmd"
+    line_start: 378
+    line_end: 475
+    title: "Recovering lost packets in multiplayer games"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
+    image_url: ""
+    image_caption: ""
+    content: "The `CL_SendCmd` function handles the transmission of movement commands to the server, including mechanisms for recovering lost packets. It writes delta-compressed commands and calculates checksums to ensure data integrity. By sending multiple frames' worth of commands, the function allows the server to reconstruct dropped packets, maintaining smooth gameplay even under poor network conditions. This approach was revolutionary in 1996, as most games lacked robust error recovery systems. Quake's implementation influenced networking in later multiplayer games, such as World of Warcraft and Fortnite, which rely on similar techniques to deliver seamless online experiences."
+  - id: "cl-init-input"
+    line_start: 479
+    line_end: 523
+    title: "Mapping commands to input events"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input_device"
+    image_url: ""
+    image_caption: ""
+    content: "The `CL_InitInput` function registers commands like `+forward` and `-attack` to corresponding input events, creating a flexible and extensible input system. By linking commands to functions like `IN_ForwardDown`, the system allows players to customize controls and developers to add new inputs easily. This modular design was ahead of its time, enabling Quake to support diverse input devices and configurations. It laid the groundwork for modern input mapping systems in engines like Unity and Unreal Engine, which offer similar flexibility for developers and players."
 
 ---
 
@@ -591,4 +615,5 @@ CL_ClearStates
 void CL_ClearStates (void)
 {
 }
+
 ```

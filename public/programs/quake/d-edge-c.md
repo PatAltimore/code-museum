@@ -9,66 +9,66 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "d-edge-c"
 order: 26
-description: "This file showcases advanced rendering techniques used in Quake to optimize for hardware constraints of the mid-1990s, contributing to its groundbreaking 3D graphics."
+description: "This file showcases critical rendering techniques used in Quake's groundbreaking 3D engine, balancing hardware constraints and visual fidelity."
 
 summary:
   - point: "Introduces mipmapping for texture scaling"
     link: "https://en.wikipedia.org/wiki/Mipmap"
     link_label: "Mipmap"
   - point: "Optimizes rendering with span-based drawing"
-    link: "https://en.wikipedia.org/wiki/Scanline_rendering"
-    link_label: "Scanline rendering"
-  - point: "Handles gradients for texture mapping"
+    link: "https://en.wikipedia.org/wiki/Span_buffer"
+    link_label: "Span Buffer"
+  - point: "Calculates texture gradients for perspective correction"
     link: "https://en.wikipedia.org/wiki/Texture_mapping"
-    link_label: "Texture mapping"
-  - point: "Includes submodel transformations for dynamic objects"
-    link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    link_label: "Quake"
-  - point: "Demonstrates early use of modular rendering pipelines"
-    link: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
-    link_label: "Rendering"
+    link_label: "Texture Mapping"
+  - point: "Handles dynamic submodels for complex scenes"
+    link: "https://en.wikipedia.org/wiki/Quake_engine"
+    link_label: "Quake Engine"
+  - point: "Demonstrates early use of software-based Z-buffering"
+    link: "https://en.wikipedia.org/wiki/Z-buffering"
+    link_label: "Z-buffering"
 
 enhancements:
-  - id: "foundation-initialization-variables"
+  - id: "polygon-span-draw"
     line_start: 38
     line_end: 47
-    title: "Rendering Setup Variables and Why Polygons Became Spans"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    title: "Why Quake Avoided Drawing Polygons Directly"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Span_buffer"
     image_url: ""
     image_caption: ""
-    content: "This section declares the global variables that underpin the entire rendering pipeline: miplevel and scale_for_mip drive texture LOD selection, screenwidth ties pixel addresses to scan rows, and transformed_modelorg holds the viewer-space origin of the current submodel so that texture gradients can be computed correctly for brush entities. The stub D_DrawPoly function makes the architecture explicit — this driver works with horizontal spans, not polygons. Span-based rendering was a key optimization on mid-1990s x86 hardware, allowing the innermost drawing loops to advance linearly through memory rather than performing per-polygon setup for every pixel. Preloading these values at the start of the frame and sharing them across the draw-surfaces functions was a typical Carmack tactic for minimizing redundant computation, a pattern that propagated into later software-rendered and hardware-accelerated engines alike."
-  - id: "d-miplevelforscale-mipmapping"
+    content: "The `D_DrawPoly` function is a placeholder that highlights a key design decision in Quake: it avoids drawing polygons directly and instead relies on spans. Spans are horizontal lines of pixels that represent a portion of a polygon, enabling efficient rendering by skipping empty spaces between spans. This approach was crucial for performance on mid-1990s hardware, where CPUs lacked dedicated graphics acceleration. By focusing on spans, Quake minimized the computational overhead of rasterizing polygons pixel-by-pixel. John Carmack and Michael Abrash were heavily influenced by techniques from earlier games like Doom, but Quake took this further by adapting span-based rendering to true 3D environments. This decision laid the groundwork for techniques used in later engines, including Unreal Engine and Source Engine, which optimized rendering pipelines for increasingly complex scenes."
+  - id: "mip-level-selection"
     line_start: 50
     line_end: 72
-    title: "How Mipmapping Saved the Day"
+    title: "How Quake Picked the Right Texture Detail"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mipmap"
     image_url: ""
     image_caption: ""
-    content: "The 'D_MipLevelForScale' function determines the appropriate mipmap level based on the scale of a texture. Mipmapping, introduced in the 1980s, became a staple in 3D graphics by the mid-1990s. It involves precomputing multiple levels of texture detail, allowing the renderer to select the best level based on the object's distance from the camera. This reduces aliasing and improves performance by avoiding unnecessary high-resolution texture sampling. Quake's implementation of mipmapping was a key factor in its ability to render complex scenes smoothly on hardware like the Pentium processors of the era. The technique remains a cornerstone of modern graphics engines."
-  - id: "d-drawsolidsurface-span-optimization"
+    content: "The `D_MipLevelForScale` function determines the appropriate mipmap level based on the scale of a texture. Mipmaps are precomputed, lower-resolution versions of a texture, used to improve performance and reduce aliasing when rendering distant objects. This function selects a mipmap level by comparing the scale against predefined thresholds (`d_scalemip`) and ensures the level does not fall below a minimum (`d_minmip`). In 1996, this was a cutting-edge optimization, as memory and processing power were limited on consumer-grade hardware. By dynamically adjusting texture detail, Quake maintained high frame rates without sacrificing visual quality. This technique became a standard in 3D graphics, influencing APIs like OpenGL and DirectX, and remains a cornerstone of rendering pipelines in modern engines such as Unity and Unreal."
+  - id: "solid-surface-drawing"
     line_start: 75
     line_end: 115
-    title: "The Span Loop That Sped Up Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
+    title: "The Hack That Made Solid Colors Fast"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
     image_url: ""
     image_caption: ""
-    content: "The 'D_DrawSolidSurface' function draws solid surfaces using a span-based loop. It optimizes rendering by grouping pixels into spans and processing them in batches, reducing the overhead of individual pixel operations. The function includes clever tricks like aligning spans to 4-byte boundaries for faster memory access, leveraging the x86 architecture's strengths. This approach was critical for achieving high frame rates on mid-1990s hardware, where memory bandwidth and processing power were limited. The span-based optimization influenced later engines, including Doom 3 and Half-Life, which adapted similar techniques for more advanced graphics pipelines."
-  - id: "d-calcgradients-texture-mapping"
+    content: "The `D_DrawSolidSurface` function handles the rendering of solid-colored surfaces, such as flat walls or backgrounds. It uses a clever optimization: packing the color into a 32-bit integer (`pix`) and writing it directly to memory in chunks of four pixels at a time. This reduces the number of memory writes and leverages the alignment of modern CPUs, which were optimized for handling 32-bit operations. The function also includes fallback logic for spans shorter than eight pixels, ensuring correctness without sacrificing speed. This approach reflects the constraints of the era, where every cycle counted on processors like the Intel Pentium. The technique inspired similar optimizations in later engines, particularly in handling flat shading and background rendering efficiently."
+  - id: "gradient-calculation"
     line_start: 118
     line_end: 166
-    title: "The Math Behind Texture Gradients"
+    title: "The Math Behind Quake's Perspective Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
-    content: "The 'D_CalcGradients' function calculates gradients for texture mapping, ensuring that textures are correctly aligned and scaled across surfaces. It uses vector transformations and scaling factors to compute texture coordinates, a process that was computationally intensive on 1990s hardware. The function's reliance on fixed-point arithmetic reflects the era's constraints, where floating-point operations were expensive. This technique allowed Quake to render detailed textures with minimal distortion, setting a new standard for visual fidelity in games. The gradient calculations influenced later engines, which adopted similar methods for handling texture mapping in complex 3D environments."
-  - id: "d-drawsurfaces-modular-rendering"
+    content: "The `D_CalcGradients` function calculates texture gradients for perspective-correct mapping, a technique that ensures textures appear correctly on surfaces at varying angles and distances. It transforms texture vectors (`p_saxis` and `p_taxis`) into screen space and computes step values (`d_sdivzstepu`, `d_tdivzstepu`) for interpolation. This ensures that textures do not distort as they recede into the distance—a common issue in early 3D games. The function also adjusts for mipmap scaling and texture extents, preventing artifacts at the edges. Perspective correction was a major leap forward in rendering realism, and Quake's implementation influenced later engines, including those used in Half-Life and Unreal Tournament. The technique remains foundational in modern graphics programming."
+  - id: "surface-rendering-loop"
     line_start: 169
-    line_end: 203
-    title: "The Modular Pipeline That Changed Everything"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
+    line_end: 335
+    title: "Rendering Quake's World, One Surface at a Time"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_engine"
     image_url: ""
     image_caption: ""
-    content: "The 'D_DrawSurfaces' function represents the modular rendering pipeline of Quake, processing surfaces based on their type and flags. It handles solid surfaces, skyboxes, and turbulent textures, applying different rendering techniques to each. This modularity was a significant innovation, allowing developers to extend the pipeline for new surface types without rewriting core rendering logic. The function also integrates submodel transformations, enabling dynamic objects to interact seamlessly with the environment. This approach influenced modern engines like Unity and Unreal, which use modular pipelines to support diverse rendering techniques and dynamic environments."
+    content: "The `D_DrawSurfaces` function is the heart of Quake's rendering pipeline, iterating through all visible surfaces and drawing them based on their type. It handles flat shading, skyboxes, background gradients, and turbulent water effects, dynamically adjusting rendering parameters for each. For submodels (e.g., moving objects), it recalculates transformations to account for their position and orientation. This modular approach allowed Quake to render complex scenes efficiently, even on hardware with limited processing power. The function also integrates Z-buffering to handle depth correctly, ensuring surfaces are drawn in the right order. This level of detail and flexibility set a new standard for game engines, influencing the design of successors like the Source Engine and Unreal Engine. The modular rendering loop remains a key concept in modern graphics programming, enabling dynamic and diverse visual effects."
 
 ---
 
@@ -408,4 +408,5 @@ void D_DrawSurfaces (void)
 		}
 	}
 }
+
 ```

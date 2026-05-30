@@ -9,76 +9,76 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "r-edge-c"
 order: 10
-description: "This file implements edge-based rendering techniques crucial to Quake's groundbreaking 3D graphics."
+description: "This file implements edge-based span generation for Quake's software renderer, a critical part of its groundbreaking 3D rendering pipeline."
 
 summary:
-  - point: "Introduces edge-based span generation for rendering polygons efficiently"
+  - point: "Edge-based rendering optimized for 1990s hardware constraints"
     link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     link_label: "Quake"
-  - point: "Optimizes rendering for hardware constraints of 1996-era PCs"
-    link: "https://en.wikipedia.org/wiki/Intel_80486"
-    link_label: "Intel 80486"
-  - point: "Demonstrates advanced sorting and span management for visibility determination"
-    link: "https://en.wikipedia.org/wiki/Z-buffering"
-    link_label: "Z-buffering"
+  - point: "Span generation techniques for visibility determination"
+    link: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
+    link_label: "Visibility in graphics"
+  - point: "Influence on modern rendering pipelines and game engines"
+    link: "https://en.wikipedia.org/wiki/Game_engine"
+    link_label: "Game engines"
 
 enhancements:
-  - id: "r-draw-culled-polys"
+  - id: "draw-culled-polys-back-to-front"
     line_start: 79
     line_end: 119
-    title: "Why Quake Avoided Drawing Hidden Polygons"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Hidden_surface_determination"
+    title: "Why Quake Drew Polygons Back-to-Front"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Painter%27s_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawCulledPolys` function iterates through surfaces and selectively renders polygons that are visible to the player, skipping those flagged as background or hidden. This optimization was essential for achieving playable frame rates on mid-1990s hardware, such as Intel 486 and early Pentium processors, which lacked dedicated graphics acceleration. At the time, rendering every polygon in a scene—even those obscured—would have been computationally prohibitive. John Carmack and Michael Abrash, both renowned for their expertise in performance optimization, implemented this approach to prioritize visible geometry. The technique influenced later games and engines, including Unreal Engine and Source Engine, which adopted similar visibility determination methods to manage rendering workloads efficiently."
-  - id: "r-begin-edge-frame"
+    content: "The `R_DrawCulledPolys` function handles rendering polygons in either back-to-front or front-to-back order, depending on the `r_worldpolysbacktofront` flag. This approach ensures proper visibility and blending, especially for transparent surfaces, using a technique similar to the painter's algorithm. In 1996, hardware lacked z-buffer support in many cases, forcing developers to rely on sorting polygons manually for correct rendering. John Carmack and Michael Abrash, both known for their mastery of low-level optimization, implemented this as part of Quake's software renderer. The decision to sort polygons manually was driven by the limited capabilities of consumer-grade CPUs and GPUs of the time, such as the Intel Pentium and early 3D accelerators like the Voodoo Graphics. This technique influenced later engines by demonstrating how software rendering could achieve high performance and visual fidelity under tight constraints. While modern GPUs use hardware z-buffers, the principles of sorting and visibility determination remain foundational in graphics programming."
+  - id: "begin-edge-frame-initialization"
     line_start: 122
     line_end: 158
-    title: "Setting the Stage for Edge-Based Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Scanline_rendering"
+    title: "Setting Up the Edge Frame for Spanning"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Edge_detection"
     image_url: ""
     image_caption: ""
-    content: "The `R_BeginEdgeFrame` function initializes data structures for edge-based rendering, including active edges and surfaces. It sets up the background surface and determines the drawing order based on user preferences (`r_draworder`). This setup reflects the scanline rendering approach, where edges are processed line by line to generate spans for visible surfaces. In 1996, this method was a practical alternative to Z-buffering for software-rendered 3D graphics, as it required less memory and computational power. The function's reliance on sorted edges and surfaces laid the groundwork for Quake's efficient polygon rendering, influencing subsequent engines like GoldSrc and id Tech 3."
-  - id: "r-insert-new-edges"
+    content: "The `R_BeginEdgeFrame` function initializes the edge frame, preparing data structures like `surfaces` and `edges` for span generation. It sets up the background surface and determines the drawing order based on the `r_draworder` flag. This initialization is crucial for Quake's edge-based rendering pipeline, which processes surfaces and edges to generate visible spans efficiently. In the mid-1990s, real-time 3D rendering was constrained by memory and CPU performance. By organizing surfaces and edges in a predictable manner, Quake's renderer minimized computational overhead while ensuring accurate visibility determination. The approach reflects the influence of earlier rendering techniques, such as BSP trees, which id Software had pioneered in Doom. This initialization routine laid the groundwork for the edge-scanning process, which would later be adapted in other software renderers and even hardware-accelerated pipelines."
+  - id: "insert-new-edges-to-active-list"
     line_start: 161
     line_end: 202
-    title: "Sorting Edges for Scanline Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Active_edge_table"
+    title: "The Linked List Trick for Edge Sorting"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
     image_url: ""
     image_caption: ""
-    content: "The `R_InsertNewEdges` function adds new edges to the active edge table, ensuring they are sorted by their horizontal position (`u`). This sorting is critical for scanline rendering, where spans are generated by processing edges sequentially. The function uses a linked list structure to maintain order efficiently, a technique borrowed from earlier 2D graphics algorithms. By adapting this method to 3D environments, Quake achieved smooth polygon rendering without requiring hardware acceleration. The approach influenced later software renderers and contributed to the development of hybrid rendering techniques that combined scanline methods with Z-buffering."
-  - id: "r-step-active-u"
+    content: "The `R_InsertNewEdges` function inserts new edges into the active edge list, ensuring they remain sorted by their `u` coordinate. This linked list-based approach is a clever optimization for maintaining order without resorting to computationally expensive sorting algorithms. The active edge list represents the edges currently intersecting the scanline, a concept derived from scanline rendering techniques used in earlier 2D graphics systems. In Quake, this method was adapted for 3D rendering, enabling efficient span generation for complex scenes. The reliance on linked lists reflects the constraints of the era, where memory and CPU cycles were at a premium. By avoiding unnecessary sorting, the renderer could focus on processing spans and surfaces. This technique influenced later rendering systems by demonstrating how data structures like linked lists could be leveraged for real-time graphics."
+  - id: "remove-edges-from-active-list"
+    line_start: 207
+    line_end: 222
+    title: "How Quake Cleaned Up Edges Mid-Frame"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Edge_detection"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_RemoveEdges` function removes edges from the active edge list when they are no longer intersecting the current scanline. This cleanup process ensures that the active edge list remains accurate and efficient for span generation. By linking edges to their `nextremove` pointers, the renderer avoids redundant checks and operations. This technique was critical for handling complex scenes with many overlapping surfaces, a hallmark of Quake's true 3D environments. The function reflects the meticulous attention to detail that id Software applied to their rendering pipeline, optimizing every step for performance on mid-1990s hardware. The edge removal process is a precursor to modern visibility determination techniques, which continue to rely on efficient data structures for managing rendering complexity."
+  - id: "step-active-u-for-edge-sorting"
     line_start: 227
     line_end: 292
-    title: "Keeping Edges Sorted During Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Polygon_mesh"
+    title: "Keeping Edges Sorted as They Move"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sorting_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The `R_StepActiveU` function updates the horizontal position (`u`) of active edges as the rendering progresses. If an edge's position becomes unsorted, it is moved back into the correct position in the list. This ensures that spans generated from these edges remain accurate and consistent. Sorting edges dynamically during rendering was a clever workaround for the lack of hardware support for Z-buffering on mid-1990s PCs. The technique exemplifies the ingenuity required to implement 3D graphics in software, influencing later engines that sought to balance performance and visual fidelity."
-  - id: "r-cleanup-span"
+    content: "The `R_StepActiveU` function updates the `u` coordinates of active edges and ensures they remain sorted within the active edge list. If an edge's `u` coordinate moves out of order, it is pushed back into the correct position. This dynamic sorting mechanism is a key part of Quake's edge-based rendering pipeline, allowing the renderer to handle moving edges efficiently. The algorithm reflects the constraints of the era, where real-time sorting had to be implemented without the luxury of modern hardware acceleration. By using a combination of linked lists and incremental updates, the renderer achieves high performance despite the complexity of the scenes it processes. This approach influenced later rendering techniques by demonstrating how careful management of edge data could optimize visibility determination and span generation."
+  - id: "cleanup-span-finalize-surfaces"
     line_start: 297
     line_end: 328
-    title: "Finalizing Spans for Visible Surfaces"
+    title: "Finalizing Spans at the Screen's Edge"
     wikipedia_url: "https://en.wikipedia.org/wiki/Span_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The `R_CleanupSpan` function finalizes spans for surfaces that are visible at the end of a scanline. It emits spans for the topmost surface and resets span states for all active surfaces. This ensures that rendering proceeds smoothly to the next scanline without leaving unfinished spans. The function's design reflects the meticulous attention to detail required for scanline rendering, where every pixel must be accounted for. By managing spans efficiently, Quake achieved high performance on hardware with limited resources, paving the way for more advanced rendering techniques in later engines."
-  - id: "r-leading-edge-backwards"
-    line_start: 331
-    line_end: 408
-    title: "Handling Inverted Spans in Backward Rendering"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Backface_culling"
-    image_url: ""
-    image_caption: ""
-    content: "The `R_LeadingEdgeBackwards` function processes edges in reverse order for backward rendering, ensuring that spans are generated correctly even for inverted edges. This approach was necessary for handling complex scenes with overlapping surfaces, where edges could appear out of order. By accommodating inverted spans, Quake maintained visual accuracy without sacrificing performance. The function highlights the challenges of implementing 3D graphics in software and the innovative solutions developed by id Software to overcome them. Techniques like this influenced later engines that sought to optimize rendering for diverse hardware configurations."
-  - id: "r-scan-edges"
+    content: "The `R_CleanupSpan` function finalizes spans for surfaces that intersect the right edge of the screen. It emits a span for the topmost surface and resets the span state for all surfaces in the stack. This operation ensures that the renderer correctly handles visibility and occlusion for surfaces that extend beyond the scanline. In the context of 1996 hardware, this meticulous cleanup was necessary to avoid rendering artifacts and maintain performance. The function highlights the challenges of real-time rendering on CPUs like the Intel Pentium, which lacked dedicated graphics capabilities. By carefully managing spans and surfaces, Quake's renderer achieved visual fidelity that was unmatched at the time. This technique influenced later software renderers and demonstrated the importance of finalizing rendering operations to ensure correctness."
+  - id: "scan-edges-to-generate-spans"
     line_start: 651
     line_end: 768
-    title: "The Heart of Quake's Edge-Based Rendering"
+    title: "The Scanline Algorithm That Made Quake Possible"
     wikipedia_url: "https://en.wikipedia.org/wiki/Scanline_rendering"
     image_url: ""
     image_caption: ""
-    content: "The `R_ScanEdges` function is the central routine for Quake's edge-based rendering system. It processes all scanlines in the viewport, updating active edges and generating spans for visible surfaces. The function integrates multiple subroutines, including `R_InsertNewEdges`, `R_RemoveEdges`, and `R_StepActiveU`, to manage edge sorting and span generation dynamically. This comprehensive approach allowed Quake to render complex 3D scenes efficiently on hardware with limited computational power. The function's design reflects the state-of-the-art techniques of the mid-1990s and influenced the development of later engines that sought to balance performance and visual fidelity in real-time rendering."
+    content: "The `R_ScanEdges` function is the heart of Quake's edge-based rendering pipeline. It processes edges and surfaces for each scanline, generating spans that represent visible portions of surfaces. This function combines several techniques, including edge insertion, active edge sorting, and span generation, to create a complete rendering solution. The scanline approach was adapted from earlier 2D rendering systems but extended to handle the complexities of 3D environments. In 1996, this method was groundbreaking, enabling Quake to render true 3D scenes on consumer-grade hardware. John Carmack and Michael Abrash's expertise in optimization and low-level programming is evident in the function's design, which balances performance and accuracy. The scanline algorithm influenced later rendering systems, including hardware-accelerated pipelines, by demonstrating how edge-based techniques could be applied to complex scenes."
 
 ---
 
@@ -851,4 +851,6 @@ void R_ScanEdges (void)
 	else
 		D_DrawSurfaces ();
 }
+
+
 ```

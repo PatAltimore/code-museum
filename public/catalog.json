@@ -230,7 +230,7 @@
     },
     {
       "slug": "basic-m6502",
-      "introduction": "In the fall of 1977, in a small office in Albuquerque, New Mexico, Bill Gates and Paul Allen were racing against time and the constraints of emerging microprocessor technology. The Apple II, Commodore PET, and other early personal computers were beginning to take shape, and BASIC—the Beginner's All-purpose Symbolic Instruction Code—was poised to become the lingua franca of home computing. Microsoft, still a fledgling company, had already made waves with Altair BASIC for the Intel 8080 microprocessor, but the 6502 microprocessor presented a new challenge. With its unique architecture and widespread adoption in machines like the Apple II, the 6502 demanded a tailored solution. Gates and Allen knew that delivering a robust BASIC interpreter for this chip could cement Microsoft's role as a key player in the software industry.\n\nThe computing world of 1977 was defined by scarcity and ingenuity. Memory was measured in kilobytes, not megabytes, and every byte mattered. The Apple II, for instance, shipped with as little as 4 KB of RAM, and even expanded models rarely exceeded 48 KB. The 6502 microprocessor, designed by MOS Technology, was inexpensive and efficient but lacked many of the features of its contemporaries, such as the Intel 8080. Writing software for such constrained environments required not only technical skill but also an almost obsessive focus on optimization. Gates and Allen, working primarily in 6502 assembly language, had to ensure that their BASIC interpreter was compact enough to fit within these limits while still offering the functionality users expected.\n\nBill Gates, a Harvard dropout with a sharp intellect and an unrelenting drive, had already proven his programming prowess with Altair BASIC. Paul Allen, his equally brilliant partner, brought a deep understanding of hardware and systems. Together, they formed a complementary team, blending Gates's algorithmic precision with Allen's architectural insight. Their work on Microsoft BASIC for the 6502 was informed by their earlier experiences with Altair BASIC, which had introduced innovations like single-byte tokens for keywords and floating-point arithmetic. These features were adapted and refined for the 6502 version, ensuring that it could handle complex calculations and support the burgeoning needs of personal computer users.\n\nThe result was a software masterpiece that fit within the tight confines of early microcomputers while delivering a full-featured programming environment. Microsoft BASIC for the 6502 included essential commands like PRINT, INPUT, IF...THEN, and FOR...NEXT, as well as support for string manipulation and floating-point arithmetic. Its efficiency and versatility made it the default BASIC interpreter for many 6502-based systems, including the Apple II, which would go on to become one of the most iconic personal computers of the era. By empowering users to write their own programs, Microsoft BASIC helped democratize computing, transforming the personal computer from a hobbyist's toy into a tool for education, business, and creativity.\n\nThe legacy of Microsoft BASIC for the 6502 is profound. It not only solidified Microsoft's reputation as a software powerhouse but also set the stage for the company's future dominance in the industry. BASIC itself became a cornerstone of early computing, spawning countless dialects and inspiring generations of programmers. Even as newer languages and platforms emerged, the principles of accessibility and user empowerment that defined Microsoft BASIC continued to shape the software world. Today, the source code for Microsoft BASIC for the 6502 stands as a testament to the ingenuity and determination of its creators, offering a glimpse into the foundational moments of personal computing history.",
+      "introduction": "In the summer of 1977, two young programmers, Bill Gates and Paul Allen, were working tirelessly to adapt their fledgling company's BASIC interpreter to the 6502 microprocessor. The 6502, a revolutionary chip designed by MOS Technology, was gaining traction as the heart of affordable personal computers like the Apple II. The stakes were high: Microsoft, still a small operation, had already made waves with Altair BASIC, but the 6502 presented new challenges. With only a few kilobytes of memory available on these machines, every byte of code had to be meticulously optimized. The duo worked in assembly language, a painstakingly low-level approach, to ensure their interpreter could fit within the constraints of the hardware.\n\nThe computing landscape of 1977 was a world of pioneers and tinkerers. Personal computers were still a novelty, largely confined to hobbyists who assembled kits in their garages. The Apple II, introduced that year, was one of the first machines to make computing accessible to a broader audience, but it needed software to unlock its potential. BASIC, a high-level programming language originally developed at Dartmouth College in the 1960s, was the perfect candidate. It was simple enough for beginners to learn yet powerful enough to enable meaningful applications. For Gates and Allen, porting BASIC to the 6502 was not just a technical challenge; it was an opportunity to cement Microsoft's role in the burgeoning personal computer revolution.\n\nBill Gates, a Harvard dropout with a passion for programming, and Paul Allen, his equally driven partner, were no strangers to the demands of early microcomputers. They had already proven their mettle with Altair BASIC, which ran on the Intel 8080 processor. The 6502, however, was a different beast. It was cheaper and simpler than the 8080 but came with its own quirks and limitations. Gates and Allen had to rethink their approach, optimizing every routine to squeeze functionality into the tiny memory spaces available. Their work was influenced by the PDP-10 minicomputer, where Gates had first encountered BASIC during his high school years. The result was a lean, efficient interpreter that could run on machines with as little as 4 KB of RAM.\n\nMicrosoft BASIC for the 6502 was a triumph of ingenuity and perseverance. It provided users with a robust set of commands and functions, enabling them to write programs for games, business applications, and educational tools. The language supported floating-point arithmetic, string manipulation, and control structures, all packed into a compact footprint. This efficiency was achieved through clever techniques like single-byte tokens for keywords and optimized memory management routines. The interpreter's success on the Apple II and other 6502-based systems helped establish BASIC as the lingua franca of early personal computing and solidified Microsoft's reputation as a software powerhouse.\n\nThe legacy of Microsoft BASIC for the 6502 is profound. It played a pivotal role in democratizing computing, empowering a generation of users to create their own software. The Apple II, running Microsoft BASIC, became a cornerstone of the personal computer industry, inspiring competitors and spurring innovation. While BASIC's prominence waned in later decades, its influence persists in modern programming languages and development environments. Gates and Allen's work on the 6502 remains a testament to the transformative power of software, proving that even within the tightest constraints, creativity and determination can reshape the world.",
       "title": "Microsoft BASIC for 6502 Microprocessor",
       "author": "Bill Gates, Paul Allen",
       "year": 1977,
@@ -251,73 +251,61 @@
       "highlights": [
         {
           "id": "reserved-word-compression",
-          "title": "Single-Byte Reserved Word Compression",
-          "description": "Microsoft BASIC used an ingenious technique to compress reserved words like PRINT and INPUT into single-byte tokens. This drastically reduced memory usage, allowing the interpreter to fit within the tight constraints of early microcomputers, often limited to just 4KB. By tokenizing keywords, BASIC could store and parse programs efficiently without sacrificing functionality. This approach inspired similar compression techniques in later programming languages and interpreters, influencing the design of compact software for constrained environments.",
+          "title": "Single-Byte Reserved Word Tokens",
+          "description": "Microsoft BASIC compressed reserved words like PRINT and INPUT into single-byte tokens, dramatically reducing the memory footprint of programs. This innovation was crucial for fitting a functional BASIC interpreter into the limited memory of early microcomputers, often just 4KB. By using tokens instead of full strings, BASIC could store and process programs efficiently without sacrificing readability for the user. This technique became a standard for BASIC interpreters and influenced the design of other compact programming languages for constrained hardware.",
           "links": [
             {
-              "label": "The Trick That Saved BASIC's Memory",
+              "label": "How reserved words became single bytes",
               "file": "m6502-asm",
               "enhancement": "reserved-word-compression"
             }
           ]
         },
         {
-          "id": "floating-point-math-package",
-          "title": "Floating-Point Math on 8-Bit Hardware",
-          "description": "Microsoft BASIC implemented a custom floating-point math package to enable calculations with 32-bit precision on the 8-bit 6502 microprocessor. This overcame the lack of hardware support for floating-point arithmetic, allowing BASIC to handle scientific and engineering computations. The package included routines for addition, subtraction, multiplication, division, and exponentiation, all optimized for minimal memory usage. This innovation paved the way for advanced mathematical capabilities in early personal computers and influenced later software designs for constrained systems.",
+          "id": "floating-point-arithmetic",
+          "title": "Floating-Point Math in 24 Bits",
+          "description": "Microsoft BASIC implemented floating-point arithmetic using a custom 24-bit format, enabling precise calculations on hardware without native floating-point support. This was a groundbreaking solution to the problem of performing complex mathematical operations on early microprocessors like the 6502, which lacked dedicated floating-point instructions. The design influenced later BASIC implementations and demonstrated how software could overcome hardware limitations, paving the way for scientific and educational applications on early personal computers.",
           "links": [
             {
-              "label": "Floating-Point Math on an 8-Bit Processor",
+              "label": "Floating-point math in 24 bits",
               "file": "m6502-asm",
-              "enhancement": "floating-point-math-package"
+              "enhancement": "floating-point-arithmetic"
             }
           ]
         },
         {
-          "id": "chrget-subroutine",
-          "title": "Efficient Text Parsing with CHRGET",
-          "description": "The CHRGET subroutine in Microsoft BASIC was a key component for parsing text input and program statements. It efficiently retrieved the next character from the input stream, enabling smooth interpretation of user commands and BASIC programs. Designed to minimize memory and CPU usage, CHRGET exemplified the clever coding required to operate within the constraints of early microcomputers. This subroutine influenced the development of text parsers in later programming languages and interpreters, showcasing the importance of efficient input handling.",
+          "id": "efficient-multiplication-routine",
+          "title": "Multiplication via Bit Shifting",
+          "description": "Instead of relying on slow, iterative multiplication methods, Microsoft BASIC used bit-shifting techniques to perform multiplication efficiently. This approach exploited the binary nature of numbers to achieve faster calculations, a critical optimization for the 6502 microprocessor's limited processing power. By reducing computational overhead, this trick allowed BASIC to handle arithmetic operations swiftly, influencing similar optimizations in other programming languages for constrained systems.",
           "links": [
             {
-              "label": "The CHRGET Subroutine: Text Parsing Made Efficient",
+              "label": "The trick that multiplies using shifts",
               "file": "m6502-asm",
-              "enhancement": "chrget-subroutine"
+              "enhancement": "efficient-multiplication-routine"
             }
           ]
         },
         {
-          "id": "pseudo-random-number-generator",
-          "title": "The First Pseudo-Random Number Generator in BASIC",
-          "description": "Microsoft BASIC included a pseudo-random number generator (PRNG) to enable random number generation for games and simulations. This routine used a simple yet effective algorithm to produce sequences of numbers that appeared random, despite the deterministic nature of the computation. The PRNG was a crucial feature for early software developers, enabling creativity in game design and statistical modeling. Its implementation influenced the development of random number algorithms in later programming environments.",
+          "id": "pseudo-random-number-generation",
+          "title": "Compact Random Number Generator",
+          "description": "Microsoft BASIC included a pseudo-random number generator that used a simple yet effective algorithm to produce random values. This feature was essential for games, simulations, and educational software, all of which relied on randomness for functionality. The generator's compact design fit within the tight memory constraints of early microcomputers, demonstrating how clever algorithms could deliver robust functionality without consuming excessive resources. It inspired similar implementations in other BASIC dialects and lightweight programming environments.",
           "links": [
             {
-              "label": "The Random Number Generator That Started It All",
+              "label": "The random number trick that worked",
               "file": "m6502-asm",
-              "enhancement": "pseudo-random-number-generator"
+              "enhancement": "pseudo-random-number-generation"
             }
           ]
         },
         {
-          "id": "line-input-editing",
-          "title": "The Built-In Line Editor in 4KB",
-          "description": "Microsoft BASIC featured a built-in line editor that allowed users to modify program lines directly within the interpreter. This editor was inspired by the TOPS-10 EDIT text editor and fit within the tight memory constraints of early microcomputers. It provided essential functionality for program development without requiring external tools, making BASIC highly accessible to hobbyists and early computer users. The line editor set a precedent for integrated development environments and influenced the design of text editing features in later software.",
+          "id": "string-handling-and-garbage-collection",
+          "title": "Memory-Efficient String Management",
+          "description": "Microsoft BASIC introduced an innovative system for handling strings and garbage collection, balancing memory usage in environments with as little as 4KB of RAM. Strings were stored compactly, and unused memory was reclaimed through a lightweight garbage collection routine. This approach solved the problem of memory fragmentation and allowed BASIC to support dynamic string operations, a feature critical for user input and text processing. The techniques developed here influenced later programming languages and memory management systems.",
           "links": [
             {
-              "label": "The Line Editor That Fit in 4KB",
+              "label": "Strings and garbage: A memory balancing act",
               "file": "m6502-asm",
-              "enhancement": "line-input-editing"
-            }
-          ]
-        },
-        {
-          "id": "peek-poke-direct-memory-access",
-          "title": "PEEK and POKE: Direct Memory Access",
-          "description": "Microsoft BASIC introduced PEEK and POKE commands, which allowed users to directly read and write memory locations. This feature provided unprecedented control over the hardware, enabling advanced programming techniques and hardware manipulation. PEEK and POKE became iconic commands in BASIC, empowering users to experiment with low-level operations and extend the capabilities of their computers. These commands influenced the design of similar features in later programming languages and contributed to the popularity of BASIC among early computer enthusiasts.",
-          "links": [
-            {
-              "label": "PEEK and POKE: Direct Memory Access",
-              "file": "m6502-asm",
-              "enhancement": "peek-poke-direct-memory-access"
+              "enhancement": "string-handling-and-garbage-collection"
             }
           ]
         }
@@ -2135,107 +2123,77 @@
           "generated": true
         }
       ],
-      "introduction": "In the spring of 1996, inside the offices of id Software in Mesquite, Texas, a team of brilliant developers was racing against time to finalize a project that would redefine the gaming landscape. John Carmack, the programming prodigy behind Doom, was deep in the trenches of code, pushing the boundaries of what was possible on contemporary hardware. Alongside him were Michael Abrash, a renowned expert in performance optimization, and John Cash, a versatile programmer with a knack for systems-level ingenuity. Together, they were crafting Quake, a first-person shooter that would introduce true 3D environments and revolutionize multiplayer gaming. The stakes were high; id Software had already set the bar with Doom, and expectations for their next project were astronomical.\n\nThe computing world of 1996 was a patchwork of limitations and emerging possibilities. PCs were powered by Intel’s x86 processors, with clock speeds hovering around 100 MHz and memory often capped at 16 MB. Graphics acceleration was in its infancy, with most games relying on software rendering. Carmack and his team had to squeeze every ounce of performance from these machines, writing critical sections of the code in x86 assembly to maximize speed. Abrash’s expertise in span-based polygon rendering was pivotal, enabling Quake’s engine to handle complex 3D environments without grinding to a halt. The team also had to contend with the constraints of network latency, crafting a groundbreaking UDP-based netcode that would later be refined in QuakeWorld.\n\nJohn Carmack, the technical visionary, was driven by a relentless pursuit of innovation. “I don’t want to see the same thing done over and over again,” he once said, a sentiment that fueled his ambition to move beyond Doom’s 2.5D engine to fully three-dimensional worlds. Michael Abrash brought decades of experience in systems programming and optimization, contributing key algorithms that made Quake’s rendering pipeline a marvel of efficiency. John Cash focused on the practicalities of gameplay and systems integration, ensuring that the engine’s technical brilliance translated into a seamless player experience. Together, they made critical decisions, such as adopting OpenGL for hardware acceleration—a bold move that positioned Quake as one of the first games to embrace emerging graphics technologies.\n\nWhen Quake launched, it was nothing short of a revelation. Players marveled at its immersive 3D environments, dynamic lighting, and fluid animations. The multiplayer experience, enabled by the game’s innovative netcode, became a cultural phenomenon, laying the groundwork for modern esports. Quake’s influence extended far beyond its immediate success; its engine became the foundation for countless games, from Half-Life to Call of Duty. The release of the source code under the GPL in 1999 further cemented its legacy, empowering a new generation of developers to learn from and build upon id Software’s groundbreaking work.\n\nQuake’s impact on the gaming industry is still felt today. Its technical innovations reshaped expectations for what games could achieve, while its open-source release fostered a culture of collaboration and experimentation. The game’s DNA lives on in modern engines, multiplayer frameworks, and even the design philosophies of contemporary developers. For Carmack, Abrash, and Cash, Quake was not just a triumph of programming—it was a testament to the power of vision, ingenuity, and the willingness to challenge the status quo.",
+      "introduction": "It was the spring of 1996, and the offices of id Software in Mesquite, Texas, were buzzing with a mix of tension and excitement. John Carmack, the programming prodigy behind Doom, was deep in the throes of developing a new engine that would redefine the boundaries of what video games could achieve. Alongside him were Michael Abrash, a renowned expert in graphics optimization, and John Cash, a skilled programmer with a knack for systems-level problem-solving. The team was racing against time to deliver Quake, a first-person shooter that promised to leap beyond the 2.5D environments of Doom into the realm of true 3D. The stakes were high: id Software had set the bar for the industry with Doom, and now they had to surpass their own legacy.\n\nThe computing world of 1996 was a landscape of rapid change. PCs equipped with Intel’s x86 processors were becoming more powerful, but memory and processing power were still limited. Graphics acceleration was in its infancy, with OpenGL just beginning to make its mark on consumer hardware. Carmack and his team faced the daunting challenge of creating a fully 3D engine that could run smoothly on machines with as little as 8 MB of RAM. Every line of code had to be meticulously optimized, and every algorithm had to squeeze the most out of the available hardware. Abrash’s expertise in span-based polygon rendering and Carmack’s relentless pursuit of efficiency were critical in overcoming these constraints.\n\nThe development of Quake was not without its struggles. Creative differences within the team led to friction, and the ambitious scope of the project pushed everyone to their limits. Carmack’s vision for a revolutionary engine drove the technical side, while the game’s gothic, Lovecraft-inspired aesthetic emerged from the creative minds of other id Software members. The team’s Dungeons & Dragons campaigns even influenced the game’s design, blending medieval fantasy with futuristic elements. Despite the challenges, the team’s ingenuity resulted in groundbreaking features like real-time 3D rendering, dynamic lighting, and networked multiplayer—a first for a game of this scale.\n\nWhen Quake was released in June 1996, it was a seismic event for the gaming industry. Players marveled at its immersive 3D environments, fluid movement, and visceral combat. The multiplayer mode, enhanced by the later release of QuakeWorld, introduced reliable online play and set the standard for competitive gaming. The engine itself became a cornerstone for future development, inspiring countless game developers and spawning a lineage of successors. The release of Quake’s source code under the GPL in 1999 further cemented its legacy, allowing developers to study, modify, and build upon its innovations.\n\nQuake’s influence endures to this day. Its engine laid the groundwork for modern game development, and its multiplayer innovations helped shape the esports landscape. The game’s blend of technical mastery and creative vision remains a touchstone for developers striving to push the boundaries of interactive entertainment. For Carmack, Abrash, and Cash, Quake was more than just a game—it was a testament to what could be achieved when technology and imagination collided.",
       "highlights": [
         {
-          "id": "quake-bsp-tree-rendering",
-          "title": "Traversing the BSP Tree for 3D Worlds",
-          "description": "Quake introduced Binary Space Partitioning (BSP) trees to efficiently render its fully 3D environments. BSP trees divide the game world into hierarchical nodes, allowing the engine to quickly determine visible areas and objects while ignoring hidden ones. This was crucial for optimizing rendering on hardware with limited processing power and memory. The technique not only enabled Quake's groundbreaking real-time 3D graphics but also influenced countless game engines, including Unreal Engine and Source Engine, which adopted and refined BSP-based rendering.",
+          "id": "recursive-bsp-tree-clipping",
+          "title": "Recursive BSP Tree Clipping for 3D Worlds",
+          "description": "Quake's BSP (Binary Space Partitioning) tree algorithm divided the game world into hierarchical sections, enabling efficient rendering and collision detection. This solved the problem of rendering complex 3D environments on limited hardware by determining visible areas and optimizing geometry processing. The technique became foundational for 3D game engines, influencing titles like Unreal and Half-Life, and is still used in modern engines for spatial partitioning.",
           "links": [
             {
-              "label": "Recursive traversal of BSP nodes",
+              "label": "Recursive clipping with BSP trees",
               "file": "r-bsp-c",
-              "enhancement": "recursive-world-node"
-            },
-            {
-              "label": "Rendering the world using BSP",
-              "file": "r-bsp-c",
-              "enhancement": "render-world-function"
+              "enhancement": "recursive-bsp-clipping"
             }
           ]
         },
         {
-          "id": "quake-dynamic-lighting",
-          "title": "Dynamic Lighting: Real-Time Illumination",
-          "description": "Quake's dynamic lighting system allowed light sources to interact with the environment in real time, creating immersive effects like flickering torches and muzzle flashes. This was achieved through lightmaps and dynamic updates that marked affected areas in the BSP tree. The system overcame hardware constraints by blending precomputed lightmaps with dynamic light sources, ensuring performance remained smooth. Dynamic lighting became a staple in modern game engines, influencing titles like Half-Life and the broader adoption of real-time lighting techniques.",
+          "id": "dynamic-lighting-entities",
+          "title": "Dynamic Lighting That Brought Quake to Life",
+          "description": "Quake introduced dynamic lighting, where light sources interacted with moving entities and the environment in real time. This created immersive effects like flickering torches and muzzle flashes, solving the challenge of static lighting in previous games. Dynamic lighting inspired future games like Unreal and Doom 3, and remains a staple in modern graphics engines for realism and atmosphere.",
           "links": [
             {
-              "label": "Dynamic light marking in BSP trees",
-              "file": "r-light-c",
-              "enhancement": "dynamic-light-marking-in-bsp-trees"
-            },
-            {
-              "label": "Dynamic updates to lightmaps",
-              "file": "gl-rsurf-c",
-              "enhancement": "dynamic-lightmap-updates"
-            }
-          ]
-        },
-        {
-          "id": "quake-edge-scanline-rendering",
-          "title": "Edge-Based Scanline Rendering",
-          "description": "Quake's edge-based scanline rendering algorithm was a key innovation for drawing 3D scenes efficiently. By sorting edges and processing spans line-by-line, the engine minimized overdraw and ensured sharp visuals even on low-end hardware. This method was particularly effective for rendering complex geometry without requiring a GPU, a major constraint in the mid-1990s. The algorithm inspired future optimizations in software rendering and laid the groundwork for techniques used in engines like GoldSrc and early versions of Unreal Engine.",
-          "links": [
-            {
-              "label": "Sorting edges for rendering",
-              "file": "r-edge-c",
-              "enhancement": "r-insert-new-edges"
-            },
-            {
-              "label": "Scanline rendering logic",
-              "file": "r-edge-c",
-              "enhancement": "r-scan-edges"
-            }
-          ]
-        },
-        {
-          "id": "quake-network-packet-reliability",
-          "title": "Reliable Multiplayer Packets",
-          "description": "Quake revolutionized online multiplayer gaming with its packet reliability system, combining reliable and unreliable data transmission. Reliable packets ensured critical game state updates were delivered, while unreliable packets handled less essential data like player movements. This hybrid approach addressed the challenges of latency and packet loss in dial-up connections, paving the way for smoother online experiences. The system influenced networking models in games like Counter-Strike and World of Warcraft, which adopted similar techniques for multiplayer stability.",
-          "links": [
-            {
-              "label": "Reliable and unreliable packet combo",
-              "file": "net-chan-c",
-              "enhancement": "reliable-unreliable-packet-combo"
-            },
-            {
-              "label": "Packet header design for reliability",
-              "file": "net-chan-c",
-              "enhancement": "packet-header-design"
-            }
-          ]
-        },
-        {
-          "id": "quake-player-movement-physics",
-          "title": "Physics-Driven Player Movement",
-          "description": "Quake's player movement system introduced physics-based mechanics like air control, friction, and stair navigation, creating a fluid and responsive experience. These systems were designed to handle complex environments while maintaining precise control over the player's actions. The innovations in movement physics became a defining feature of first-person shooters, influencing games like Half-Life, Team Fortress, and even modern titles like Apex Legends, which continue to refine these mechanics for competitive gameplay.",
-          "links": [
-            {
-              "label": "Air control and gravity handling",
-              "file": "pmove-c",
-              "enhancement": "pm-airmove-gravity-and-air-control"
-            },
-            {
-              "label": "Stair navigation logic",
-              "file": "pmove-c",
-              "enhancement": "pm-groundmove-stair-navigation"
-            }
-          ]
-        },
-        {
-          "id": "quake-turbulent-texture-effects",
-          "title": "Rendering Turbulent Textures",
-          "description": "Quake's turbulent texture rendering created dynamic visual effects like rippling water and warped surfaces. Using precomputed sine wave tables, the engine applied mathematical transformations to texture coordinates, simulating fluid-like motion. This technique was a creative solution to hardware limitations, enabling visually striking effects without taxing the CPU. Turbulent textures became a hallmark of id Software's games and inspired similar effects in titles like Unreal Tournament and modern shaders used in 3D engines.",
-          "links": [
-            {
-              "label": "Precomputed sine wave tables for effects",
+              "label": "The dynamic lighting for entities",
               "file": "r-main-c",
-              "enhancement": "precomputed-sine-wave-tables"
-            },
+              "enhancement": "dynamic-lighting-entities"
+            }
+          ]
+        },
+        {
+          "id": "predictive-player-movement",
+          "title": "Predictive Movement to Beat Multiplayer Lag",
+          "description": "Quake's predictive movement algorithm anticipated player actions to compensate for network latency in multiplayer games. By interpolating and extrapolating positions, it ensured smooth gameplay even with high ping. This innovation addressed the challenge of real-time multiplayer on 1990s internet infrastructure and influenced the development of netcode in games like Counter-Strike and Overwatch.",
+          "links": [
             {
-              "label": "Span drawing for turbulent textures",
-              "file": "d-scan-c",
-              "enhancement": "turbulent-span-drawing"
+              "label": "Predicting player movement for latency",
+              "file": "cl-pred-c",
+              "enhancement": "cl-predict-move-interpolation-and-latency"
+            }
+          ]
+        },
+        {
+          "id": "scanline-texture-mapping",
+          "title": "The Scanline Algorithm That Made Quake Possible",
+          "description": "Quake's scanline-based texture mapping algorithm efficiently rendered 3D surfaces by breaking them into horizontal spans. This approach optimized texture mapping for x86 processors, solving the problem of rendering detailed 3D environments on limited hardware. The technique influenced later engines, including Unreal Engine and Source, and demonstrated how software rendering could achieve high performance.",
+          "links": [
+            {
+              "label": "The scanline algorithm for rendering",
+              "file": "r-edge-c",
+              "enhancement": "scan-edges-to-generate-spans"
+            }
+          ]
+        },
+        {
+          "id": "water-surface-warping",
+          "title": "Creating Realistic Water with Vertex Warping",
+          "description": "Quake simulated rippling water surfaces using vertex warping driven by precomputed sine wave tables. This visual trick created dynamic and lifelike water effects, addressing the challenge of rendering fluid surfaces on limited hardware. The technique inspired similar effects in games like Unreal and influenced the development of shaders for modern graphics engines.",
+          "links": [
+            {
+              "label": "Warping water surfaces dynamically",
+              "file": "gl-rsurf-c",
+              "enhancement": "water-surface-warping"
+            }
+          ]
+        },
+        {
+          "id": "quakeworld-netcode",
+          "title": "Reliable Multiplayer with QuakeWorld Netcode",
+          "description": "QuakeWorld introduced groundbreaking netcode that improved online multiplayer reliability by implementing features like bandwidth throttling and packet retransmission. This solved the problem of unstable internet connections in the 1990s, enabling smoother gameplay for players worldwide. The innovations in QuakeWorld's netcode influenced the multiplayer systems of games like Counter-Strike and Team Fortress, setting the standard for online gaming.",
+          "links": [
+            {
+              "label": "Reliable message retransmission",
+              "file": "net-chan-c",
+              "enhancement": "reliable-message-retransmission"
             }
           ]
         }

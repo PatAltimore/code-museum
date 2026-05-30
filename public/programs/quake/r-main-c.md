@@ -9,60 +9,138 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "r-main-c"
 order: 2
-description: "This file showcases Quake's innovative rendering techniques, which laid the foundation for modern 3D game engines."
+description: "This file showcases Quake's groundbreaking rendering techniques, which set new standards for 3D graphics in gaming."
 
 summary:
-  - point: "Quake pioneered true 3D rendering in games"
+  - point: "Innovative use of dynamic lighting for entities"
     link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    link_label: "Quake (video game)"
-  - point: "Optimized for hardware constraints like x86 processors"
-    link: "https://en.wikipedia.org/wiki/X86"
-    link_label: "x86 architecture"
-  - point: "Introduced multiplayer capabilities in a 3D environment"
-    link: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
-    link_label: "Multiplayer video game"
+    link_label: "Quake"
+  - point: "Efficient texture initialization with memory constraints"
+    link: "https://en.wikipedia.org/wiki/Texture_mapping"
+    link_label: "Texture Mapping"
+  - point: "Optimized bounding box checks for frustum clipping"
+    link: "https://en.wikipedia.org/wiki/Frustum"
+    link_label: "Frustum Clipping"
+  - point: "Dynamic adjustment of view rectangle for screen resizing"
+    link: "https://en.wikipedia.org/wiki/Aspect_ratio_(image)"
+    link_label: "Aspect Ratio"
+  - point: "Advanced edge and surface caching for rendering"
+    link: "https://en.wikipedia.org/wiki/Z-buffering"
+    link_label: "Z-buffering"
 
 enhancements:
-  - id: "quake-rendering-foundation"
+  - id: "checkerboard-default-texture"
     line_start: 148
     line_end: 179
-    title: "Global State, Core Types, Alignment Guards, and the Renderer's Birth"
+    title: "Why Quake's Default Texture Was a Checkerboard"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_InitTextures` function creates a simple checkerboard texture as a fallback for cases where no texture is defined. This ensures that untextured surfaces are visually distinct during rendering, aiding debugging and preventing graphical artifacts. At the time, memory constraints were severe, and developers often relied on compact, easily recognizable patterns for default assets. John Carmack and the id Software team prioritized performance and simplicity, allocating just enough memory for a 16x16 texture and its mipmaps. This approach reflects the pragmatic mindset of 1990s game development, where every byte counted. The checkerboard texture became iconic, appearing in other games as a placeholder. Today, similar techniques are used in modern engines like Unity and Unreal Engine, where default textures signal missing assets during development."
+  - id: "initializing-rendering-state"
+    line_start: 181
+    line_end: 244
+    title: "How Quake Prepared for Rendering Each Frame"
     wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "This block lays the foundation on which Quake's entire 3D renderer stands. It opens with a sprawling declaration of global variables — flags for polygon drawing, warp effects, surface and edge overflow counters, floating-point precision state, and memory tracking pointers — that are read and written by virtually every function in the rendering pipeline. Carmack's pragmatic choice to expose all rendering state as globals rather than passing parameters was deliberate: on a single-core 486 or Pentium in 1996, function-call overhead added up, and globals were measurably faster. Two fundamental types also appear here. The `vec3_t` float triplet is Quake's universal currency for positions, directions, and velocities — nearly every physics, rendering, and collision calculation passes one through. The `entity_t` structure wraps origin, orientation, model reference, and frame data, providing the abstraction that lets monsters, players, items, and moving geometry be treated identically by the renderer. This represents Quake's leap from DOOM's sprite world into one where every object is a true 3D entity. The `R_RenderView` entry point includes a set of alignment and sanity checks — verifying stack pointer alignment, global variable addresses, and hunk memory marks — before any rendering begins. Misaligned memory access on x86 hardware in the mid-90s could cause silent data corruption or hard crashes, and these guards caught configuration problems on the heterogeneous PC hardware of the era. The initialization sequence that follows generates a 16×16 checkerboard fallback texture so any object missing real texture data still renders visibly rather than crashing — a pattern that lives on today in Unity's magenta error material. Together, these declarations, guards, and startup routines represent the moment Quake's renderer comes into existence, a foundation that influenced Source Engine, CryEngine, and the architecture of every software renderer that followed."
-  - id: "r-draw-entities-list"
+    content: "The `R_Init` function initializes critical rendering variables, commands, and memory buffers. It registers numerous configuration variables (`cvars`) that control rendering options, such as `r_draworder` and `r_speeds`, allowing developers to tweak and debug graphics performance. It also ensures compatibility with 386-specific optimizations, reflecting id Software's commitment to supporting a wide range of hardware. This initialization routine highlights the meticulous preparation required to manage limited resources while delivering cutting-edge visuals. The modular design influenced later engines, including id Tech 3, which adopted similar initialization patterns for flexibility and scalability."
+  - id: "handling-new-map-loading"
+    line_start: 246
+    line_end: 307
+    title: "What Happens When Quake Loads a New Map"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Level_(video_gaming)"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_NewMap` function resets rendering state when a new map is loaded. It clears entity fragments (`efrags`), initializes particle systems, and allocates memory for surfaces and edges based on the map's complexity. This dynamic allocation ensures efficient use of memory while accommodating maps of varying sizes. The function also addresses edge cases, such as ensuring a minimum number of surfaces (`MINSURFACES`) and edges (`MINEDGES`). This adaptability was crucial for Quake's success, as it allowed the game to handle diverse environments without compromising performance. The technique inspired later engines to adopt dynamic resource management, enabling open-world games like Skyrim to load vast environments seamlessly."
+  - id: "adjusting-view-rectangle"
+    line_start: 310
+    line_end: 367
+    title: "How Quake Dynamically Adjusted the View Rectangle"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Aspect_ratio_(image)"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_SetVrect` function calculates the view rectangle based on screen size, aspect ratio, and user settings like `scr_viewsize`. It ensures that the rendered scene fits within the screen while maintaining a minimum width for UI elements. This dynamic adjustment accommodates various resolutions and aspect ratios, a forward-thinking design in an era when monitors varied widely. The function's ability to handle intermission screens and full-screen views demonstrates id Software's attention to detail. Modern engines continue to rely on similar calculations to support widescreen displays and dynamic resolution scaling."
+  - id: "view-change-handling"
+    line_start: 370
+    line_end: 503
+    title: "The Code Behind Quake's Responsive Camera"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Field_of_view"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_ViewChanged` function updates rendering parameters whenever the camera's field of view or aspect ratio changes. It recalculates screen edges, scaling factors, and perspective projection values to ensure accurate rendering. This responsiveness was critical for Quake's immersive gameplay, allowing smooth transitions between different camera states. The function also includes optimizations for 386 processors, reflecting id Software's commitment to hardware compatibility. The techniques pioneered here influenced later engines, enabling features like dynamic FOV adjustments in VR applications and adaptive resolution scaling in modern games."
+  - id: "marking-visible-leaves"
+    line_start: 506
+    line_end: 539
+    title: "How Quake Determined What You Could See"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(geometry)"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_MarkLeaves` function identifies visible portions of the map based on the player's position. It uses a potentially visible set (PVS) to mark nodes in the world model's BSP tree, ensuring only visible geometry is rendered. This approach minimizes computational overhead, a necessity for real-time rendering on 1990s hardware. The use of PVS was a groundbreaking optimization, influencing later engines like Source and Unreal, which adopted similar techniques to handle complex environments efficiently."
+  - id: "dynamic-lighting-entities"
     line_start: 542
     line_end: 616
-    title: "Drawing Entities: The Heart of Quake's World"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
+    title: "The Dynamic Lighting That Brought Quake's Entities to Life"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_lighting"
     image_url: ""
     image_caption: ""
-    content: "The `R_DrawEntitiesOnList` function iterates through visible entities and renders them based on their type, such as sprites or alias models. This function is a key part of Quake's rendering loop, ensuring that dynamic objects like players and enemies are drawn correctly in the 3D world. In the mid-1990s, rendering entities was a challenging task due to hardware limitations and the need for real-time performance. Quake's approach, which included bounding box checks and dynamic lighting calculations, set a new standard for efficiency and visual fidelity. The techniques used here influenced later games like Half-Life and Doom 3, which built on Quake's entity rendering system to create even more immersive experiences."
-  - id: "r-edge-drawing"
+    content: "The `R_DrawEntitiesOnList` function applies dynamic lighting to entities, calculating ambient and shade light based on their position relative to light sources. It clamps lighting values to prevent over-brightening, ensuring visual consistency. This technique added depth and realism to Quake's 3D environments, making entities appear integrated with the world. Dynamic lighting became a staple in game engines, evolving into advanced systems like deferred shading and ray tracing in modern titles."
+  - id: "viewmodel-rendering"
+    line_start: 618
+    line_end: 685
+    title: "Why Quake's Gun Always Had Light"
+    wikipedia_url: "https://en.wikipedia.org/wiki/First-person_shooter"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_DrawViewModel` function renders the player's weapon model with dynamic lighting. It ensures the weapon is always visible, even in low-light conditions, by applying a minimum ambient light value. This decision enhanced gameplay by keeping the weapon readable during intense action. The technique influenced later FPS games, where weapon visibility remains a priority, and evolved into systems that dynamically adjust lighting for first-person models in engines like Unreal and Unity."
+  - id: "bounding-box-checks"
+    line_start: 688
+    line_end: 749
+    title: "How Quake Optimized Frustum Clipping"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Frustum"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_BmodelCheckBBox` function performs bounding box checks to determine whether brush models intersect the camera's frustum. It uses dot products and precomputed indices to quickly reject models outside the view. This optimization reduced rendering overhead, allowing Quake to maintain high frame rates. The technique became a standard practice in 3D engines, influencing games like Half-Life and Doom 3, which relied on efficient frustum culling for performance."
+  - id: "brush-entity-rendering"
+    line_start: 752
+    line_end: 881
+    title: "The Complex Process of Rendering Brush Entities"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Constructive_solid_geometry"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_DrawBEntitiesOnList` function handles the rendering of brush entities, such as doors and platforms. It calculates dynamic lighting, applies transformations, and clips polygons to the world BSP tree. This intricate process ensures that brush entities integrate seamlessly with the environment. The technique was a precursor to modern methods for handling complex geometry in real-time, influencing engines like Source and Unreal, which expanded on these ideas to support destructible environments and advanced physics."
+  - id: "edge-drawing-optimization"
     line_start: 884
     line_end: 956
-    title: "The Algorithm That Made Quake's Edges Sharp"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Computer_graphics"
+    title: "The Edge Drawing That Made Quake Fast"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Z-buffering"
     image_url: ""
     image_caption: ""
-    content: "The `R_EdgeDrawing` function handles edge rendering, a critical part of Quake's graphics pipeline. This function ensures that edges are drawn correctly, preventing visual artifacts and maintaining the integrity of the 3D world. Edge rendering was particularly challenging in the 1990s due to hardware constraints and the need for real-time performance. Quake's solution, which included efficient memory management and caching, was a testament to the ingenuity of its developers. The techniques used in `R_EdgeDrawing` influenced later engines and graphics libraries, contributing to the evolution of real-time rendering. This function highlights the attention to detail that made Quake a groundbreaking achievement in computer graphics."
-  - id: "render-view-visibility-and-debugging"
-    line_start: 959
+    content: "The `R_EdgeDrawing` function manages edge and surface buffers for rendering. It uses stack-based memory for efficiency, falling back to auxiliary buffers when necessary. This approach minimizes cache misses and ensures smooth rendering, even on hardware with limited resources. The function also integrates Z-buffering, a technique that became standard in 3D graphics. Quake's edge drawing influenced later engines, including id Tech 4, which refined these methods for more complex scenes."
+  - id: "floating-point-precision-tradeoff"
+    line_start: 981
     line_end: 1066
-    title: "Quake's Render Loop: Visibility Optimizations and Built-In Profiling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Visibility_(computer_graphics)"
+    title: "Why Quake Adjusted Floating-Point Precision"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Floating_point"
     image_url: ""
     image_caption: ""
-    content: "This section covers the outer shell of Quake's per-frame render pipeline, where visibility determination, floating-point precision management, and performance instrumentation all converge. The `R_RenderView_` function orchestrates the full rendering sequence: it calls `R_SetupFrame` to position the camera, then either invokes `SetVisibilityByPassages` (an experimental portal-based visibility system guarded by a compile-time `#ifdef PASSAGES`) or the shipped `R_MarkLeaves` function, which walks the BSP tree's PVS (Potentially Visible Set) bitmask to mark only the leaves the player can actually see. Skipping invisible geometry was essential — a Quake map might contain thousands of surfaces, but a well-built PVS meant only a few hundred needed to be drawn each frame on a Pentium 90. Immediately after visibility setup, the code calls `Sys_LowFPPrecision`, deliberately reducing the x87 FPU's precision from 80-bit to 64-bit. This is not a bug but a deliberate performance trade: FDIV on an x87 at reduced precision runs measurably faster, and the visual difference is imperceptible in game. At the end of the frame, the same pipeline that produced the image also produces telemetry: if `r_speeds`, `r_dspeeds`, or `r_aliasstats` are enabled in the console, functions like `R_PrintTimes`, `R_PrintDSpeeds`, and `R_PrintAliasStats` dump per-phase timings directly to the screen. These were Carmack and Abrash's live profiling instruments during development — no external profiler needed — and having them always compiled in meant bottlenecks could be identified on any playtest machine. This combination of visibility culling, precision tuning, and embedded profiling influenced every engine that followed, from GoldSrc to Source to id Tech 4."
+    content: "This section adjusts floating-point precision using `Sys_LowFPPrecision()`. The goal was to optimize FDIV (floating-point division) operations, which were notoriously slow on x86 processors of the era. By reducing precision temporarily, Quake could speed up calculations critical to rendering without globally sacrificing accuracy. This tradeoff was carefully timed to avoid disrupting other parts of the game, such as physics or sound calculations. In the mid-1990s, developers often had to balance precision and performance due to hardware limitations, especially in games with real-time requirements. This technique reflects the meticulous optimization id Software employed to ensure Quake ran smoothly on consumer-grade PCs. Later games and engines borrowed similar strategies, though advancements in hardware eventually rendered such precision adjustments unnecessary."
+  - id: "stack-alignment-sanity-checks"
+    line_start: 1068
+    line_end: 1087
+    title: "Stack Alignment: Preventing Silent Crashes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_RenderView` function begins with a series of alignment checks for the stack, heap, and global variables. These checks ensure memory alignment, which was critical for performance and stability on x86 processors. Misaligned memory could lead to crashes or degraded performance, especially during intensive operations like rendering. John Carmack and his team implemented these checks to catch issues early, preventing obscure bugs that might arise from hardware quirks or compiler behavior. This kind of defensive programming was common in high-performance applications of the era, where developers had to account for the idiosyncrasies of different CPUs and memory architectures. The practice influenced later game engines, which adopted similar checks to ensure cross-platform compatibility and robustness."
   - id: "precomputed-sine-wave-tables"
     line_start: 1089
-    line_end: 1103
-    title: "Precomputed Sine Wave Tables for Turbulent Effects"
+    line_end: 1101
+    title: "The Sine Table That Warped Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sine_wave"
     image_url: ""
     image_caption: ""
-    content: "The `R_InitTurb` function precomputes sine wave tables used for turbulent effects in water and other dynamic surfaces. By calculating these values in advance and storing them in arrays (`sintable` and `intsintable`), the game avoids expensive runtime calculations, significantly improving performance. This technique was essential in 1996, as real-time computation of trigonometric functions would have been prohibitively slow on consumer-grade hardware. Precomputing data for effects like these became a standard optimization in game development, influencing later engines to use lookup tables for lighting, physics, and other complex calculations. The use of sine waves also highlights the creative ways developers simulated natural phenomena within the constraints of early 3D graphics."
+    content: "The `R_InitTurb` function precomputes sine wave values into two tables, `sintable` and `intsintable`. These tables are used for texture warping effects, creating the illusion of dynamic, rippling surfaces. By precomputing these values, Quake avoids recalculating sine functions during gameplay, saving CPU cycles and ensuring smooth visual effects even on slower hardware. This approach reflects the era's reliance on lookup tables to optimize mathematical operations, a necessity given the limited processing power of consumer-grade PCs in 1996. The technique was inspired by earlier graphics programming practices, such as those used in demo scene productions and 2D games. It became a staple in real-time rendering, influencing later engines like Unreal Engine and Unity, which also use precomputed data for performance-critical tasks."
 
 ---
 
@@ -1170,4 +1248,5 @@ void R_InitTurb (void)
 		intsintable[i] = AMP2 + sin(i*3.14159*2/CYCLE)*AMP2;	// AMP2, not 20
 	}
 }
+
 ```

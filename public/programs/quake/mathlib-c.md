@@ -9,34 +9,50 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "mathlib-c"
 order: 6
-description: "This file defines the mathematical foundation for Quake's groundbreaking 3D graphics and physics systems."
+description: "This file lays the mathematical groundwork for Quake's groundbreaking 3D graphics and physics systems."
 
 summary:
-  - point: "Efficient vector math routines optimized for 1990s hardware"
+  - point: "Efficient vector math routines optimized for real-time 3D calculations"
     link: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
     link_label: "Vector Math"
-  - point: "Introduced modular geometric transformations for 3D rendering"
-    link: "https://en.wikipedia.org/wiki/Transformation_matrix"
-    link_label: "Transformation Matrix"
-  - point: "Innovative use of floating-point arithmetic in real-time applications"
+  - point: "Use of trigonometric functions for rotation and transformation"
+    link: "https://en.wikipedia.org/wiki/Rotation_matrix"
+    link_label: "Rotation Matrix"
+  - point: "Techniques for handling floating-point precision and hardware constraints"
     link: "https://en.wikipedia.org/wiki/Floating-point_arithmetic"
-    link_label: "Floating-point Arithmetic"
-  - point: "Optimized algorithms for collision detection and plane-side calculations"
+    link_label: "Floating Point Arithmetic"
+  - point: "Implementation of geometric algorithms for collision detection"
     link: "https://en.wikipedia.org/wiki/Collision_detection"
     link_label: "Collision Detection"
-  - point: "Mathematical groundwork for modern game engines like Unity and Unreal"
-    link: "https://en.wikipedia.org/wiki/Game_engine"
-    link_label: "Game Engines"
+  - point: "Recursive algorithm for computing the greatest common divisor"
+    link: "https://en.wikipedia.org/wiki/Euclidean_algorithm"
+    link_label: "Euclidean Algorithm"
 
 enhancements:
-  - id: "vector-math-foundation"
-    line_start: 30
-    line_end: 86
-    title: "The Vector Constants and Geometric Primitives Behind Quake's 3D Math"
+  - id: "initialize-origin-vector"
+    line_start: 27
+    line_end: 29
+    title: "Why Start with a Zero Vector?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
     image_url: ""
     image_caption: ""
-    content: "This section establishes the mathematical primitives that every other system in Quake's engine depends on. It opens with `vec3_origin`, the constant zero vector `{0, 0, 0}`, which serves as a universal reference point throughout the codebase — used to reset positions, compare against the null direction, and initialize state without allocating anything. Predefining this constant rather than constructing it inline may seem trivial, but in a codebase where the same zero-check or reset appears thousands of times per second, the clarity and marginal performance savings both matter. From that simple foundation, the section immediately moves into more sophisticated geometric work. `ProjectPointOnPlane` takes an arbitrary point in 3D space and computes its orthogonal projection onto a plane defined by a surface normal, using the dot product to find the signed distance from the point to the plane and then subtracting the scaled normal. This operation underlies collision response, surface-sliding physics, and light projection throughout the game. `PerpendicularVector` solves a different but related problem: given a normalized vector, find any vector guaranteed to be perpendicular to it. The function identifies the vector's smallest absolute component, builds a temporary axis-aligned vector that cannot be parallel, then uses a cross product to generate the perpendicular result. This avoids numerical degeneracy and produces a stable orthogonal frame even for edge-case input directions. The perpendicular vector is foundational to constructing camera coordinate systems, building rotation matrices, and orienting sprite billboards. Together, these three elements — a zero-vector constant, a point-to-plane projector, and a perpendicular constructor — represent the bedrock of Quake's geometry library, patterns that appear verbatim or in close variants in virtually every real-time 3D engine that followed, from GoldSrc and Unreal to modern game mathematics libraries."
+    content: "This line initializes `vec3_origin` as a zero vector, `{0,0,0}`. In 3D graphics, the zero vector often serves as a reference point or default value for calculations involving positions, directions, or transformations. By defining it explicitly, the code avoids repeated initialization and ensures consistency across mathematical operations. In the mid-1990s, such practices were crucial for optimizing performance on hardware with limited memory and processing power. This zero vector is used throughout the file as a baseline for operations like subtraction, normalization, and projection, forming the backbone of Quake's 3D engine."
+  - id: "project-point-on-plane"
+    line_start: 34
+    line_end: 51
+    title: "How to Flatten a Point onto a Plane"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Plane_(geometry)"
+    image_url: ""
+    image_caption: ""
+    content: "This function projects a 3D point onto a plane defined by a normal vector. It calculates the distance of the point from the plane and adjusts the point's position to lie on the plane. The use of `DotProduct` and normalization ensures accurate results even with non-unit normals. In the 1990s, such geometric operations were essential for collision detection, shadow rendering, and physics simulations in games. John Carmack and Michael Abrash, known for their mastery of optimization, likely designed this function to be both mathematically robust and computationally efficient. Techniques like this laid the groundwork for modern 3D engines, influencing successors like Unreal Engine and Unity."
+  - id: "perpendicular-vector"
+    line_start: 53
+    line_end: 86
+    title: "Finding a Perpendicular Vector in 3D"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Orthogonality"
+    image_url: ""
+    image_caption: ""
+    content: "This function computes a vector perpendicular to a given normalized vector. It first identifies the axis with the smallest magnitude to avoid numerical instability, then projects a unit vector onto the plane orthogonal to the input vector. Finally, it normalizes the result. This approach ensures robustness across all input vectors, a critical feature for dynamic 3D environments. In Quake, perpendicular vectors were vital for calculating surface normals, lighting, and physics interactions. The method reflects the era's focus on precision and efficiency, as developers worked within the constraints of 32-bit processors and limited floating-point capabilities."
   - id: "rotate-point-around-vector"
     line_start: 93
     line_end: 146
@@ -44,47 +60,39 @@ enhancements:
     wikipedia_url: "https://en.wikipedia.org/wiki/Rotation_matrix"
     image_url: ""
     image_caption: ""
-    content: "The `RotatePointAroundVector` function performs a complex transformation: rotating a point around an arbitrary axis by a specified angle. This involves constructing rotation matrices and concatenating them to achieve the desired effect. Such operations were groundbreaking in 1996, enabling dynamic object manipulation and realistic physics in Quake's 3D world. The function's efficiency and modularity set a precedent for game engine design, influencing systems like Unity's Transform component and Unreal's rotation utilities."
-  - id: "anglemod-precision"
+    content: "This function rotates a point around a specified axis by a given angle. It constructs rotation matrices based on the axis and angle, concatenates them, and applies the resulting matrix to the input point. The use of trigonometric functions like `sin` and `cos` highlights the mathematical rigor required for accurate transformations. In the mid-90s, such operations were groundbreaking for real-time graphics, enabling dynamic animations and camera movements in 3D spaces. This technique directly influenced later games and engines, which adopted similar matrix-based approaches for transformations. The function showcases the ingenuity of id Software's developers in balancing mathematical precision with computational efficiency."
+  - id: "anglemod-function"
     line_start: 148
     line_end: 164
-    title: "Optimizing Angle Modulo Operations for Speed"
+    title: "Optimizing Angle Wrapping for Performance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Modulo_operation"
     image_url: ""
     image_caption: ""
-    content: "The `anglemod` function ensures angles remain within a valid range (0 to 360 degrees) using bitwise operations. This avoids floating-point inaccuracies and improves performance, critical for real-time applications like Quake. By leveraging fixed-point arithmetic, the developers sidestepped hardware limitations of the era. This technique influenced later games and engines, where efficient angle normalization is vital for camera control, AI pathfinding, and physics simulations."
-  - id: "bsp-plane-tests-and-floor-division"
+    content: "The `anglemod` function ensures angles remain within a 0–360 degree range using bitwise operations. This approach avoids the computational overhead of floating-point division, a significant optimization for 1990s hardware. By leveraging fixed-point arithmetic, the function achieves high performance while maintaining accuracy. Such optimizations were critical for Quake's real-time rendering, where every millisecond counted. The technique reflects id Software's mastery of low-level programming and their ability to push hardware to its limits. Similar methods are still used in modern engines for efficient angle calculations in physics and graphics."
+  - id: "box-on-plane-side"
     line_start: 178
     line_end: 285
-    title: "BSP Plane-Side Testing and Correct Floor Division for Quake's Geometry"
+    title: "Classifying Boxes Relative to Planes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Collision_detection"
     image_url: ""
     image_caption: ""
-    content: "This section contains two functions that deal with exactness in geometry — one for spatial partitioning and one for arithmetic correctness. `BoxOnPlaneSide` determines which side of a BSP partition plane a given axis-aligned bounding box lies on. Rather than a general dot-product test, it uses the plane's type field to fast-path the three axial cases (where only one component of the normal is non-zero), falling back to a full dot product only for diagonal planes. It also precomputes which corner of the box is the 'reject' point and which is the 'accept' point from the plane's sign bits, so the test requires at most two dot products regardless of box size. This optimization was critical for Quake's BSP traversal: the engine calls `BoxOnPlaneSide` thousands of times per frame to cull entities against the view frustum and clip portals, so each saved multiply mattered on a Pentium 90. `FloorDivMod` addresses a more subtle problem: C's built-in integer division truncates toward zero, which means `-7 / 2` gives `-3` with a remainder of `-1`. For Quake's texture coordinate calculations and BSP node subdivision, the expected behavior is floor division — where `-7 / 2` gives `-4` with a remainder of `1`. Without this correction, surfaces near negative coordinates would exhibit one-pixel seams or misaligned textures. By explicitly detecting negative dividends and adjusting the quotient and remainder, `FloorDivMod` ensures consistent behavior regardless of sign. Together these two functions illustrate a recurring theme in Quake's math library: the hardware or language default is almost correct, but 'almost' is not enough for a real-time renderer."
-  - id: "angle-vectors"
-    line_start: 290
-    line_end: 314
-    title: "Converting Angles to Directional Vectors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Euler_angles"
-    image_url: ""
-    image_caption: ""
-    content: "The `AngleVectors` function converts Euler angles (yaw, pitch, roll) into forward, right, and up vectors. This is fundamental for camera orientation, object movement, and physics calculations. By precomputing sine and cosine values, the function balances precision and speed, essential for real-time gameplay. This approach became standard in game development, enabling intuitive control schemes and realistic movement in 3D environments."
+    content: "This function determines which side of a plane a bounding box resides on. It calculates distances from the box's corners to the plane and uses the results to classify the box's position. The function includes optimizations for axis-aligned planes and handles edge cases with a dedicated error routine. In Quake, this algorithm was essential for spatial partitioning and collision detection, enabling efficient rendering and physics calculations. The method reflects the era's focus on squeezing maximum performance from limited hardware, a hallmark of id Software's engineering prowess. Techniques like this influenced later games and engines, which adopted similar spatial algorithms for real-time applications."
   - id: "greatest-common-divisor"
     line_start: 540
     line_end: 559
-    title: "Recursive GCD: A Classic Algorithm in Action"
+    title: "Recursive GCD: A Classic Algorithm in Gaming"
     wikipedia_url: "https://en.wikipedia.org/wiki/Euclidean_algorithm"
     image_url: ""
     image_caption: ""
-    content: "The `GreatestCommonDivisor` function implements the Euclidean algorithm to find the GCD of two integers. This recursive approach is efficient and elegant, showcasing the developers' mathematical expertise. While not directly tied to graphics or physics, such utility functions reflect the comprehensive nature of Quake's codebase. The algorithm remains a staple in programming, taught in computer science courses and used in diverse applications."
+    content: "This function implements the Euclidean algorithm to compute the greatest common divisor (GCD) of two integers. The recursive approach is both elegant and efficient, reflecting the influence of classical mathematics on game development. While not directly tied to graphics or physics, such utility functions were often included in game engines to support diverse calculations. The presence of this algorithm in Quake's codebase highlights id Software's commitment to robust and reusable design. Recursive techniques like this remain a staple in programming, appearing in applications ranging from cryptography to numerical analysis."
   - id: "invert-24-to-16"
     line_start: 1
     line_end: 25
-    title: "Converting Fixed-Point Values for Precision"
+    title: "Converting Fixed-Point Precision: 24 to 16 Bits"
     wikipedia_url: "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
     image_url: ""
     image_caption: ""
-    content: "The `Invert24To16` function converts 8.24 fixed-point values to 16.16 format, ensuring compatibility and precision in calculations. Fixed-point arithmetic was common in the 90s due to limited floating-point support on hardware. This function reflects the team's ingenuity in overcoming constraints, paving the way for precise physics and rendering. While fixed-point math has largely been replaced by floating-point operations, its legacy persists in embedded systems and retro-style game development."
+    content: "This function converts an 8.24 fixed-point value to a 16.16 format, a process critical for maintaining precision while adapting to hardware constraints. Fixed-point arithmetic was commonly used in the 1990s to avoid the performance penalties of floating-point operations on consumer-grade CPUs. By scaling and rounding the input value, the function ensures accuracy in calculations involving large ranges and small increments. Such techniques were vital for Quake's physics and rendering systems, where precision directly impacted gameplay and visual fidelity. The function exemplifies id Software's ability to innovate within the constraints of the era's hardware, influencing later engines that adopted similar fixed-point strategies."
 
 ---
 

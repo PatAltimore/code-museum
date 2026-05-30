@@ -9,58 +9,58 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "cl-pred-c"
 order: 23
-description: "This file implements player movement prediction in QuakeWorld, a groundbreaking feature for multiplayer gaming in the mid-1990s."
+description: "This file implements player movement prediction in QuakeWorld, a groundbreaking multiplayer extension of Quake."
 
 summary:
-  - point: "Introduces client-side prediction to reduce latency effects in multiplayer gaming"
-    link: "https://en.wikipedia.org/wiki/Client-side_prediction"
-    link_label: "Client-side prediction"
-  - point: "Handles movement interpolation for smoother gameplay"
+  - point: "Introduces predictive movement to compensate for network latency."
+    link: "https://en.wikipedia.org/wiki/QuakeWorld"
+    link_label: "QuakeWorld"
+  - point: "Uses interpolation and extrapolation techniques for smooth gameplay."
     link: "https://en.wikipedia.org/wiki/Interpolation"
     link_label: "Interpolation"
-  - point: "Optimizes for limited network bandwidth and high latency environments"
+  - point: "Optimized for the hardware constraints of 1996, including x86 processors."
+    link: "https://en.wikipedia.org/wiki/X86"
+    link_label: "x86 architecture"
+  - point: "Demonstrates early solutions to multiplayer synchronization challenges."
+    link: "https://en.wikipedia.org/wiki/Multiplayer_video_game"
+    link_label: "Multiplayer video games"
+  - point: "Laid groundwork for predictive systems in modern online games."
     link: "https://en.wikipedia.org/wiki/Latency_(engineering)"
     link_label: "Latency"
-  - point: "Demonstrates advanced use of physics and networking concepts in game design"
-    link: "https://en.wikipedia.org/wiki/Physics_engine"
-    link_label: "Physics engine"
-  - point: "Part of Quake's legacy as a pioneer in multiplayer FPS games"
-    link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    link_label: "Quake"
 
 enhancements:
-  - id: "foundation-variables-for-prediction"
+  - id: "cl-nudge-position-solid-position-fix"
     line_start: 28
     line_end: 57
-    title: "Prediction Variables and Unstick Logic"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Client-side_prediction"
+    title: "The Trick That Unstuck Players in Walls"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
     image_url: ""
     image_caption: ""
-    content: "This section defines the two cvars that govern client-side prediction — cl_nopred and cl_pushlatency — and implements CL_NudgePosition, the function that rescues players who get stuck inside solid geometry after a network precision error. cl_pushlatency lets players compensate for connection delay, while cl_nopred disables prediction entirely for debugging. CL_NudgePosition iterates over a small grid of X/Y offsets to find the nearest non-solid location, a pragmatic fix that prioritizes playability over geometric purity. In 1996 both problems — latency-induced misprediction and coordinate quantization errors — were novel challenges for online FPS games, and id Software's approach of exposing them as tweakable variables and applying quiet on-the-fly corrections became standard practice in later engines including Half-Life and Unreal Tournament."
-  - id: "split-long-moves-for-prediction"
+    content: "The `CL_NudgePosition` function addresses a subtle but critical problem: ensuring player positions don't end up inside solid objects due to precision errors in networked coordinates. It attempts to 'nudge' the player's position slightly along all axes to find a valid, non-solid location. This was necessary because QuakeWorld's multiplayer relied on transmitting player positions over networks with limited precision, leading to occasional inaccuracies. At the time, network latency and packet loss were common issues, and this function reflects id Software's commitment to maintaining gameplay fluidity despite these constraints. In 1996, multiplayer gaming was still in its infancy, and QuakeWorld was pioneering techniques to make online play feasible. John Carmack and Michael Abrash, both renowned for their optimization skills, were deeply involved in solving these technical challenges. The idea of nudging positions was likely inspired by similar techniques used in collision detection algorithms, but its application to network precision errors was innovative. This approach influenced later games that faced similar challenges in synchronizing player states across unreliable networks. The concept of 'nudging' or adjusting positions to account for inaccuracies became a standard practice in multiplayer engines, including those used in Unreal Tournament and Counter-Strike. Today, this principle underlies many modern game engines' handling of networked player states, ensuring smooth and immersive experiences even in high-latency environments."
+  - id: "cl-predict-usercmd-splitting-long-moves"
     line_start: 59
     line_end: 103
-    title: "Breaking Long Moves for Accuracy"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Client-side_prediction"
+    title: "How Quake Predicted Your Next Move"
+    wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
     image_url: ""
     image_caption: ""
-    content: "The `CL_PredictUsercmd` function splits long movement commands into smaller segments to improve prediction accuracy. This ensures that even if a player issues a command with a long duration (e.g., holding a movement key for an extended period), the game can process it in smaller increments, reducing the risk of errors caused by network latency. This technique was essential for QuakeWorld's fast-paced gameplay, where precise movement was critical. By breaking commands into smaller pieces, id Software effectively mitigated the impact of latency on player actions. This approach became a cornerstone of client-side prediction, influencing games like Team Fortress and Overwatch, which rely on similar techniques to maintain smooth gameplay in high-latency environments."
-  - id: "predict-move-interpolation"
+    content: "`CL_PredictUsercmd` is the heart of QuakeWorld's movement prediction system. It takes the player's current state, a user command (such as movement or turning), and simulates the resulting state. If the command's duration exceeds a threshold, the function splits it into smaller segments to ensure precision. This technique was crucial for handling network latency, which could cause delays between player input and server acknowledgment. In the mid-1990s, online multiplayer games were grappling with the limitations of dial-up internet connections. Latency often exceeded 200 milliseconds, making real-time gameplay challenging. John Carmack and his team devised predictive algorithms to simulate player actions locally, allowing for smoother gameplay even when network conditions were poor. This function reflects their innovative approach to solving latency issues. The predictive movement system introduced in QuakeWorld became a cornerstone of multiplayer game design. It inspired similar systems in games like Half-Life and its multiplayer mod Counter-Strike, which relied on prediction to maintain responsiveness. Today, predictive algorithms are ubiquitous in online gaming, from first-person shooters to racing games, ensuring that players experience seamless interactions despite varying network conditions."
+  - id: "cl-predict-move-interpolation-and-latency"
     line_start: 107
     line_end: 212
-    title: "Interpolating Movement for Smooth Gameplay"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interpolation"
+    title: "The Algorithm That Smoothed Online Play"
+    wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
     image_url: ""
     image_caption: ""
-    content: "The `CL_PredictMove` function interpolates player movement between frames to create a smoother gameplay experience. By calculating intermediate positions based on the player's velocity and the time elapsed, the function reduces the visual impact of latency and packet loss. This was a groundbreaking feature in 1996, as most games relied on server-side calculations that often resulted in jittery or delayed movement. The interpolation technique used here reflects id Software's commitment to delivering a seamless multiplayer experience, even on the limited hardware and networks of the era. This approach influenced the development of physics engines and networking code in later games, such as Half-Life and Battlefield, which built on these ideas to enhance their own multiplayer systems."
-  - id: "init-prediction-variables"
+    content: "`CL_PredictMove` is a sophisticated function that combines prediction and interpolation to render smooth player movement in QuakeWorld. It calculates the current game time based on latency and extrapolates player states forward until the predicted time matches the server's last known state. If discrepancies arise, it interpolates between the last two valid states to avoid sudden jumps or 'teleportation.' In 1996, multiplayer games were plagued by jittery movement and synchronization issues due to high latency and packet loss. QuakeWorld's predictive system was a groundbreaking solution, allowing players to experience fluid motion even when network conditions were less than ideal. Carmack and Abrash's work on this system demonstrated their deep understanding of both hardware limitations and player psychology; smooth gameplay was essential to immersion. This interpolation technique influenced countless multiplayer games that followed. Titles like Unreal Tournament and Battlefield adopted similar methods to handle latency gracefully. The concept of blending states to avoid abrupt changes is now standard in game engines, ensuring that players perceive consistent and realistic motion in online environments."
+  - id: "cl-init-prediction-registering-variables"
     line_start: 215
     line_end: 224
-    title: "Initializing Prediction Settings"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Initialization_(programming)"
+    title: "The Setup Behind Predictive Movement"
+    wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
     image_url: ""
     image_caption: ""
-    content: "The `CL_InitPrediction` function registers the prediction-related variables (`cl_pushlatency` and `cl_nopred`) with the game's configuration system. This ensures that players can modify these settings through console commands or configuration files, giving them control over how the game handles latency and prediction. In the mid-1990s, this level of customization was rare in multiplayer games, which often provided little to no control over network-related settings. By exposing these variables, id Software empowered players to optimize their experience based on their specific hardware and network conditions. This philosophy of user empowerment influenced later games like Quake III Arena and Counter-Strike, which also provided extensive configuration options for advanced users."
+    content: "`CL_InitPrediction` initializes the variables necessary for QuakeWorld's predictive movement system. It registers `cl_pushlatency` and `cl_nopred`, which control latency compensation and enable or disable prediction, respectively. These variables give players and developers fine-grained control over the prediction system, allowing adjustments based on network conditions. In the mid-1990s, customization was a hallmark of PC gaming. id Software embraced this ethos by exposing internal mechanics like prediction to players through console commands and variables. This openness not only empowered players to optimize their experience but also fostered a culture of modding and experimentation. The ability to tweak prediction settings influenced later games that offered similar customization options. Developers of games like Team Fortress and Quake III Arena built on this idea, providing players with tools to adapt gameplay to their preferences. Today, exposing internal mechanics through developer consoles or configuration files remains a staple of PC gaming, a legacy of id Software's pioneering work."
 
 ---
 
@@ -289,4 +289,5 @@ void CL_InitPrediction (void)
 	Cvar_RegisterVariable (&cl_pushlatency);
 	Cvar_RegisterVariable (&cl_nopred);
 }
+
 ```
