@@ -30,7 +30,7 @@ summary:
 
 enhancements:
   - id: "linear-blast-stereo16"
-    line_start: 38
+    line_start: 36
     line_end: 62
     title: "The Algorithm That Prevents Audio Clipping"
     wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(audio)"

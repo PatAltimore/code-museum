@@ -55,7 +55,7 @@ enhancements:
     content: "The byte order functions (`ShortSwap`, `LongSwap`, `FloatSwap`, etc.) ensure that data is correctly interpreted regardless of the endianness of the platform. This was crucial in an era when games were increasingly ported to different architectures, such as PowerPC-based Macs. By abstracting byte order handling, Quake's code could operate seamlessly across platforms. This approach became standard practice in cross-platform development, influencing APIs like OpenGL and Vulkan that also account for endianness."
   - id: "msg-writechar-network-serialization"
     line_start: 498
-    line_end: 894
+    line_end: 522
     title: "Serializing Data for Multiplayer Networking"
     wikipedia_url: "https://en.wikipedia.org/wiki/Serialization"
     image_url: ""
@@ -119,15 +119,15 @@ enhancements:
     content: "The `Info_SetValueForStarKey` function is responsible for adding or updating key-value pairs in a string buffer, with strict constraints on the format and length of keys and values. It checks for invalid characters like backslashes and quotes, enforces a maximum length of 64 characters, and ensures the buffer does not exceed its maximum size. This meticulous validation was crucial in an era when malformed strings could easily lead to crashes or security vulnerabilities. The function also strips high ASCII bits unless the key is 'name' or 'team,' reflecting the need for compatibility with older hardware and software that often struggled with extended character sets. In the mid-1990s, game developers faced significant constraints due to limited memory and processing power. John Carmack and his team at id Software were known for their attention to detail and optimization, ensuring Quake could run smoothly on a wide range of systems. This function exemplifies their approach to robust input handling, which minimized the risk of errors and maintained performance. The strict handling of key-value pairs influenced later multiplayer games and engines, where similar techniques were used to manage player data and configuration settings. The concept of sanitizing input to prevent crashes or exploits became standard practice, and echoes of this approach can be found in modern game engines like Unity and Unreal Engine."
   - id: "key-value-printing"
     line_start: 2095
-    line_end: 2178
+    line_end: 2136
     title: "How Quake Debugged Key-Value Strings"
     wikipedia_url: "https://en.wikipedia.org/wiki/Debugging"
     image_url: ""
     image_caption: ""
     content: "The `Info_Print` function provides a debugging utility for displaying key-value pairs stored in a formatted string. It parses the string, extracts keys and values, and prints them in a readable format. If a key is less than 20 characters, it pads the output for alignment, ensuring clarity during debugging sessions. This function reflects the importance of developer tools in the Quake codebase, which was designed to be both performant and maintainable. In 1996, debugging tools were far less sophisticated than they are today. Developers often relied on custom utilities like this one to inspect and troubleshoot data structures. The alignment and formatting choices in `Info_Print` highlight id Software's commitment to making their code accessible to both their team and the broader community of modders and developers. This function's approach to debugging influenced later game engines, where built-in tools for inspecting and visualizing data became standard. The emphasis on clarity and usability in debugging tools helped shape the practices of modern game development, where robust debugging utilities are essential for managing complex systems."
   - id: "checksum-table"
-    line_start: 2180
-    line_end: 2223
+    line_start: 2138
+    line_end: 2174
     title: "The Lookup Table That Secured Multiplayer"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""

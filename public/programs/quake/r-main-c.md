@@ -118,7 +118,7 @@ enhancements:
     image_caption: ""
     content: "The `R_EdgeDrawing` function manages edge and surface buffers for rendering. It uses stack-based memory for efficiency, falling back to auxiliary buffers when necessary. This approach minimizes cache misses and ensures smooth rendering, even on hardware with limited resources. The function also integrates Z-buffering, a technique that became standard in 3D graphics. Quake's edge drawing influenced later engines, including id Tech 4, which refined these methods for more complex scenes."
   - id: "floating-point-precision-tradeoff"
-    line_start: 959
+    line_start: 981
     line_end: 1066
     title: "Why Quake Adjusted Floating-Point Precision"
     wikipedia_url: "https://en.wikipedia.org/wiki/Floating_point"
@@ -135,7 +135,7 @@ enhancements:
     content: "The `R_RenderView` function begins with a series of alignment checks for the stack, heap, and global variables. These checks ensure memory alignment, which was critical for performance and stability on x86 processors. Misaligned memory could lead to crashes or degraded performance, especially during intensive operations like rendering. John Carmack and his team implemented these checks to catch issues early, preventing obscure bugs that might arise from hardware quirks or compiler behavior. This kind of defensive programming was common in high-performance applications of the era, where developers had to account for the idiosyncrasies of different CPUs and memory architectures. The practice influenced later game engines, which adopted similar checks to ensure cross-platform compatibility and robustness."
   - id: "precomputed-sine-wave-tables"
     line_start: 1089
-    line_end: 1103
+    line_end: 1101
     title: "The Sine Table That Warped Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sine_wave"
     image_url: ""

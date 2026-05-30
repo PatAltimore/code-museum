@@ -55,7 +55,7 @@ enhancements:
     content: "The `CL_CheckOrDownloadFile` function checks if a required file exists locally and initiates a server download if it does not. It includes safeguards against malicious paths (`..`) and prevents downloads during demo recording or playback. This feature was crucial for Quake's multiplayer experience, where players often needed custom maps, models, or sounds to join servers. The concept of on-demand resource downloading was innovative for its time and laid the groundwork for modern game launchers and content delivery systems, such as Steam's workshop integration. By ensuring files were downloaded safely and efficiently, id Software set a precedent for handling dynamic game assets in real-time."
   - id: "model-next-download"
     line_start: 199
-    line_end: 255
+    line_end: 304
     title: "Preloading Models for Seamless Gameplay"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

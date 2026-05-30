@@ -30,8 +30,8 @@ summary:
 
 enhancements:
   - id: "client-side-cvars"
-    line_start: 37
-    line_end: 79
+    line_start: 143
+    line_end: 159
     title: "Why Quake Let Players Tweak Everything"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

@@ -63,7 +63,7 @@ enhancements:
     content: "The `Cache_Move` function implements a least recently used (LRU) eviction strategy to manage cache memory. When the cache runs out of space, this function moves or frees the least recently used items to make room for new allocations. In 1996, efficient cache management was critical for games like Quake, which relied on quick access to frequently used data, such as textures and models. The LRU strategy ensured that the cache remained performant while minimizing the impact of evictions. This approach became a standard in game development and influenced memory management in modern systems, including operating systems and database software."
   - id: "memory-initialization"
     line_start: 913
-    line_end: 939
+    line_end: 926
     title: "How Quake Bootstrapped Its Memory System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""

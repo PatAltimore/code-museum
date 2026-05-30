@@ -31,14 +31,14 @@ summary:
 enhancements:
   - id: "initialize-origin-vector"
     line_start: 27
-    line_end: 27
+    line_end: 29
     title: "Why Start with a Zero Vector?"
     wikipedia_url: "https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)"
     image_url: ""
     image_caption: ""
     content: "This line initializes `vec3_origin` as a zero vector, `{0,0,0}`. In 3D graphics, the zero vector often serves as a reference point or default value for calculations involving positions, directions, or transformations. By defining it explicitly, the code avoids repeated initialization and ensures consistency across mathematical operations. In the mid-1990s, such practices were crucial for optimizing performance on hardware with limited memory and processing power. This zero vector is used throughout the file as a baseline for operations like subtraction, normalization, and projection, forming the backbone of Quake's 3D engine."
   - id: "project-point-on-plane"
-    line_start: 30
+    line_start: 34
     line_end: 51
     title: "How to Flatten a Point onto a Plane"
     wikipedia_url: "https://en.wikipedia.org/wiki/Plane_(geometry)"

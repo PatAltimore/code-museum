@@ -47,7 +47,7 @@ enhancements:
     content: "The `S_SoundInfo_f` function outputs detailed information about the sound system to the console, including stereo channels, sample rate, and buffer details. This was invaluable for debugging audio issues during development and for advanced users tweaking their setups. In the mid-1990s, PC gaming was often a DIY affair, with players configuring hardware and software manually. Providing this level of transparency helped users diagnose problems with their sound cards or drivers. The practice of exposing system diagnostics via console commands influenced later games and engines, including Source and Unreal Engine, where developers and modders rely on similar tools."
   - id: "sound-system-initialization"
     line_start: 134
-    line_end: 244
+    line_end: 162
     title: "How Quake Bootstrapped Its Sound System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""

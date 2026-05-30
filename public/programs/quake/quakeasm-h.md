@@ -30,16 +30,16 @@ summary:
 
 enhancements:
   - id: "x86-optimization-macros"
-    line_start: 1
-    line_end: 17
+    line_start: 24
+    line_end: 32
     title: "Why Quake Needed x86-Specific Optimizations"
     wikipedia_url: "https://en.wikipedia.org/wiki/X86"
     image_url: ""
     image_caption: ""
     content: "This section defines macros to detect and enable x86-specific optimizations (`id386`). By checking the architecture (`__i386__`), the code ensures compatibility with Intel's x86 processors, which dominated the PC market in the mid-1990s. Quake's performance depended heavily on leveraging the quirks and strengths of this architecture, such as its efficient integer math instructions and limited floating-point capabilities. At the time, developers often wrote assembly code to bypass compiler inefficiencies and extract maximum performance from hardware. John Carmack and Michael Abrash were renowned for their expertise in this area, with Abrash's book 'Graphics Programming Black Book' detailing many of the techniques used in Quake. These macros laid the groundwork for conditional compilation, allowing Quake to run efficiently on x86 systems while maintaining portability to other platforms. This approach influenced later game engines, which adopted similar strategies to optimize for specific hardware architectures."
   - id: "transparent-color-definition"
-    line_start: 1
-    line_end: 17
+    line_start: 34
+    line_end: 35
     title: "The Magic Number for Transparency"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
     image_url: ""

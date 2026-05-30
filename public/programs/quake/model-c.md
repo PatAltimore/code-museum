@@ -38,7 +38,7 @@ enhancements:
     image_caption: ""
     content: "The `Mod_Init` function initializes the `mod_novis` array, setting all bits to 1 (0xff). This array is used later to represent a state where all map leaves are visible, effectively bypassing visibility calculations. At the time, memory management was a critical concern, and initializing data structures upfront was a common practice to avoid runtime errors and ensure predictable behavior. By preloading visibility data, the developers ensured that the game could handle scenarios where visibility data might be missing or corrupted. This approach reflects the era's emphasis on robustness in low-memory environments, where every byte counted. The technique influenced later practices in initializing game state, particularly in engines like Source and Unreal, where similar preloading strategies are used for spatial data."
   - id: "mod-extradata-cache-check"
-    line_start: 56
+    line_start: 52
     line_end: 72
     title: "The Cache Check That Prevented Crashes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -119,15 +119,15 @@ enhancements:
     content: "This function calculates the bounding radius of a model based on its minimum and maximum extents. By determining the furthest corner from the origin, the function provides a quick approximation for collision detection and rendering. In the 1990s, computational efficiency was paramount due to limited CPU power, and techniques like this allowed games to perform complex operations without sacrificing performance. The bounding radius calculation became a common optimization in game engines, influencing successors like Unity and Unreal Engine, where similar methods are used for spatial queries and physics simulations."
   - id: "mod-loadbrushmodel-bsp-loading"
     line_start: 1120
-    line_end: 1217
+    line_end: 1431
     title: "Loading BSP Models for 3D Worlds"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
     content: "This function loads brush models from BSP files, which are used to represent the geometry of Quake's 3D environments. The BSP format was revolutionary for its time, enabling efficient rendering and collision detection by organizing geometry into a hierarchical structure. The function also calculates checksums to verify data integrity and swaps lump data into memory for fast access. John Carmack and Michael Abrash's work on BSP technology influenced the entire gaming industry, with similar techniques appearing in later engines like Source and Unreal. The BSP format remains a foundational concept in real-time 3D rendering."
   - id: "mod-loadaliasframe-animation-frame-loading"
-    line_start: 1219
-    line_end: 1272
+    line_start: 1434
+    line_end: 1683
     title: "Loading Animation Frames for Alias Models"
     wikipedia_url: "https://en.wikipedia.org/wiki/Computer_animation"
     image_url: ""

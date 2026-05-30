@@ -31,7 +31,7 @@ summary:
 enhancements:
   - id: "menu-state-enumeration"
     line_start: 26
-    line_end: 100
+    line_end: 38
     title: "How Quake's Menus Became Modular"
     wikipedia_url: "https://en.wikipedia.org/wiki/Finite-state_machine"
     image_url: ""
@@ -70,7 +70,7 @@ enhancements:
     image_caption: ""
     content: "The M_Menu_Quit_f function introduces a series of humorous messages displayed when players attempt to quit the game. These messages, stored in the quitMessage array, reflect id Software's playful culture and their desire to engage players beyond gameplay. The random selection of messages adds an element of surprise, making the quit menu memorable. This approach influenced other developers to incorporate humor and personality into their games, enhancing player experience. Games like Portal and The Stanley Parable later embraced similar techniques, using humor to deepen player engagement and create iconic moments."
   - id: "multiplayer-menu-draw"
-    line_start: 1029
+    line_start: 1025
     line_end: 1046
     title: "The Menu That Promoted QuakeWorld"
     wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"

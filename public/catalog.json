@@ -230,7 +230,7 @@
     },
     {
       "slug": "basic-m6502",
-      "introduction": "In the fall of 1977, in a small office in Albuquerque, New Mexico, Bill Gates and Paul Allen were racing against time and the constraints of emerging microprocessor technology. The Apple II, Commodore PET, and other early personal computers were beginning to take shape, and BASIC—the Beginner's All-purpose Symbolic Instruction Code—was poised to become the lingua franca of home computing. Microsoft, still a fledgling company, had already made waves with Altair BASIC for the Intel 8080 microprocessor, but the 6502 microprocessor presented a new challenge. With its unique architecture and widespread adoption in machines like the Apple II, the 6502 demanded a tailored solution. Gates and Allen knew that delivering a robust BASIC interpreter for this chip could cement Microsoft's role as a key player in the software industry.\n\nThe computing world of 1977 was defined by scarcity and ingenuity. Memory was measured in kilobytes, not megabytes, and every byte mattered. The Apple II, for instance, shipped with as little as 4 KB of RAM, and even expanded models rarely exceeded 48 KB. The 6502 microprocessor, designed by MOS Technology, was inexpensive and efficient but lacked many of the features of its contemporaries, such as the Intel 8080. Writing software for such constrained environments required not only technical skill but also an almost obsessive focus on optimization. Gates and Allen, working primarily in 6502 assembly language, had to ensure that their BASIC interpreter was compact enough to fit within these limits while still offering the functionality users expected.\n\nBill Gates, a Harvard dropout with a sharp intellect and an unrelenting drive, had already proven his programming prowess with Altair BASIC. Paul Allen, his equally brilliant partner, brought a deep understanding of hardware and systems. Together, they formed a complementary team, blending Gates's algorithmic precision with Allen's architectural insight. Their work on Microsoft BASIC for the 6502 was informed by their earlier experiences with Altair BASIC, which had introduced innovations like single-byte tokens for keywords and floating-point arithmetic. These features were adapted and refined for the 6502 version, ensuring that it could handle complex calculations and support the burgeoning needs of personal computer users.\n\nThe result was a software masterpiece that fit within the tight confines of early microcomputers while delivering a full-featured programming environment. Microsoft BASIC for the 6502 included essential commands like PRINT, INPUT, IF...THEN, and FOR...NEXT, as well as support for string manipulation and floating-point arithmetic. Its efficiency and versatility made it the default BASIC interpreter for many 6502-based systems, including the Apple II, which would go on to become one of the most iconic personal computers of the era. By empowering users to write their own programs, Microsoft BASIC helped democratize computing, transforming the personal computer from a hobbyist's toy into a tool for education, business, and creativity.\n\nThe legacy of Microsoft BASIC for the 6502 is profound. It not only solidified Microsoft's reputation as a software powerhouse but also set the stage for the company's future dominance in the industry. BASIC itself became a cornerstone of early computing, spawning countless dialects and inspiring generations of programmers. Even as newer languages and platforms emerged, the principles of accessibility and user empowerment that defined Microsoft BASIC continued to shape the software world. Today, the source code for Microsoft BASIC for the 6502 stands as a testament to the ingenuity and determination of its creators, offering a glimpse into the foundational moments of personal computing history.",
+      "introduction": "In the summer of 1977, two young programmers, Bill Gates and Paul Allen, were working tirelessly to adapt their fledgling company's BASIC interpreter to the 6502 microprocessor. The 6502, a revolutionary chip designed by MOS Technology, was gaining traction as the heart of affordable personal computers like the Apple II. The stakes were high: Microsoft, still a small operation, had already made waves with Altair BASIC, but the 6502 presented new challenges. With only a few kilobytes of memory available on these machines, every byte of code had to be meticulously optimized. The duo worked in assembly language, a painstakingly low-level approach, to ensure their interpreter could fit within the constraints of the hardware.\n\nThe computing landscape of 1977 was a world of pioneers and tinkerers. Personal computers were still a novelty, largely confined to hobbyists who assembled kits in their garages. The Apple II, introduced that year, was one of the first machines to make computing accessible to a broader audience, but it needed software to unlock its potential. BASIC, a high-level programming language originally developed at Dartmouth College in the 1960s, was the perfect candidate. It was simple enough for beginners to learn yet powerful enough to enable meaningful applications. For Gates and Allen, porting BASIC to the 6502 was not just a technical challenge; it was an opportunity to cement Microsoft's role in the burgeoning personal computer revolution.\n\nBill Gates, a Harvard dropout with a passion for programming, and Paul Allen, his equally driven partner, were no strangers to the demands of early microcomputers. They had already proven their mettle with Altair BASIC, which ran on the Intel 8080 processor. The 6502, however, was a different beast. It was cheaper and simpler than the 8080 but came with its own quirks and limitations. Gates and Allen had to rethink their approach, optimizing every routine to squeeze functionality into the tiny memory spaces available. Their work was influenced by the PDP-10 minicomputer, where Gates had first encountered BASIC during his high school years. The result was a lean, efficient interpreter that could run on machines with as little as 4 KB of RAM.\n\nMicrosoft BASIC for the 6502 was a triumph of ingenuity and perseverance. It provided users with a robust set of commands and functions, enabling them to write programs for games, business applications, and educational tools. The language supported floating-point arithmetic, string manipulation, and control structures, all packed into a compact footprint. This efficiency was achieved through clever techniques like single-byte tokens for keywords and optimized memory management routines. The interpreter's success on the Apple II and other 6502-based systems helped establish BASIC as the lingua franca of early personal computing and solidified Microsoft's reputation as a software powerhouse.\n\nThe legacy of Microsoft BASIC for the 6502 is profound. It played a pivotal role in democratizing computing, empowering a generation of users to create their own software. The Apple II, running Microsoft BASIC, became a cornerstone of the personal computer industry, inspiring competitors and spurring innovation. While BASIC's prominence waned in later decades, its influence persists in modern programming languages and development environments. Gates and Allen's work on the 6502 remains a testament to the transformative power of software, proving that even within the tightest constraints, creativity and determination can reshape the world.",
       "title": "Microsoft BASIC for 6502 Microprocessor",
       "author": "Bill Gates, Paul Allen",
       "year": 1977,
@@ -251,73 +251,61 @@
       "highlights": [
         {
           "id": "reserved-word-compression",
-          "title": "Single-Byte Reserved Word Compression",
-          "description": "Microsoft BASIC used an ingenious technique to compress reserved words like PRINT and INPUT into single-byte tokens. This drastically reduced memory usage, allowing the interpreter to fit within the tight constraints of early microcomputers, often limited to just 4KB. By tokenizing keywords, BASIC could store and parse programs efficiently without sacrificing functionality. This approach inspired similar compression techniques in later programming languages and interpreters, influencing the design of compact software for constrained environments.",
+          "title": "Single-Byte Reserved Word Tokens",
+          "description": "Microsoft BASIC compressed reserved words like PRINT and INPUT into single-byte tokens, dramatically reducing the memory footprint of programs. This innovation was crucial for fitting a functional BASIC interpreter into the limited memory of early microcomputers, often just 4KB. By using tokens instead of full strings, BASIC could store and process programs efficiently without sacrificing readability for the user. This technique became a standard for BASIC interpreters and influenced the design of other compact programming languages for constrained hardware.",
           "links": [
             {
-              "label": "The Trick That Saved BASIC's Memory",
+              "label": "How reserved words became single bytes",
               "file": "m6502-asm",
               "enhancement": "reserved-word-compression"
             }
           ]
         },
         {
-          "id": "floating-point-math-package",
-          "title": "Floating-Point Math on 8-Bit Hardware",
-          "description": "Microsoft BASIC implemented a custom floating-point math package to enable calculations with 32-bit precision on the 8-bit 6502 microprocessor. This overcame the lack of hardware support for floating-point arithmetic, allowing BASIC to handle scientific and engineering computations. The package included routines for addition, subtraction, multiplication, division, and exponentiation, all optimized for minimal memory usage. This innovation paved the way for advanced mathematical capabilities in early personal computers and influenced later software designs for constrained systems.",
+          "id": "floating-point-arithmetic",
+          "title": "Floating-Point Math in 24 Bits",
+          "description": "Microsoft BASIC implemented floating-point arithmetic using a custom 24-bit format, enabling precise calculations on hardware without native floating-point support. This was a groundbreaking solution to the problem of performing complex mathematical operations on early microprocessors like the 6502, which lacked dedicated floating-point instructions. The design influenced later BASIC implementations and demonstrated how software could overcome hardware limitations, paving the way for scientific and educational applications on early personal computers.",
           "links": [
             {
-              "label": "Floating-Point Math on an 8-Bit Processor",
+              "label": "Floating-point math in 24 bits",
               "file": "m6502-asm",
-              "enhancement": "floating-point-math-package"
+              "enhancement": "floating-point-arithmetic"
             }
           ]
         },
         {
-          "id": "chrget-subroutine",
-          "title": "Efficient Text Parsing with CHRGET",
-          "description": "The CHRGET subroutine in Microsoft BASIC was a key component for parsing text input and program statements. It efficiently retrieved the next character from the input stream, enabling smooth interpretation of user commands and BASIC programs. Designed to minimize memory and CPU usage, CHRGET exemplified the clever coding required to operate within the constraints of early microcomputers. This subroutine influenced the development of text parsers in later programming languages and interpreters, showcasing the importance of efficient input handling.",
+          "id": "efficient-multiplication-routine",
+          "title": "Multiplication via Bit Shifting",
+          "description": "Instead of relying on slow, iterative multiplication methods, Microsoft BASIC used bit-shifting techniques to perform multiplication efficiently. This approach exploited the binary nature of numbers to achieve faster calculations, a critical optimization for the 6502 microprocessor's limited processing power. By reducing computational overhead, this trick allowed BASIC to handle arithmetic operations swiftly, influencing similar optimizations in other programming languages for constrained systems.",
           "links": [
             {
-              "label": "The CHRGET Subroutine: Text Parsing Made Efficient",
+              "label": "The trick that multiplies using shifts",
               "file": "m6502-asm",
-              "enhancement": "chrget-subroutine"
+              "enhancement": "efficient-multiplication-routine"
             }
           ]
         },
         {
-          "id": "pseudo-random-number-generator",
-          "title": "The First Pseudo-Random Number Generator in BASIC",
-          "description": "Microsoft BASIC included a pseudo-random number generator (PRNG) to enable random number generation for games and simulations. This routine used a simple yet effective algorithm to produce sequences of numbers that appeared random, despite the deterministic nature of the computation. The PRNG was a crucial feature for early software developers, enabling creativity in game design and statistical modeling. Its implementation influenced the development of random number algorithms in later programming environments.",
+          "id": "pseudo-random-number-generation",
+          "title": "Compact Random Number Generator",
+          "description": "Microsoft BASIC included a pseudo-random number generator that used a simple yet effective algorithm to produce random values. This feature was essential for games, simulations, and educational software, all of which relied on randomness for functionality. The generator's compact design fit within the tight memory constraints of early microcomputers, demonstrating how clever algorithms could deliver robust functionality without consuming excessive resources. It inspired similar implementations in other BASIC dialects and lightweight programming environments.",
           "links": [
             {
-              "label": "The Random Number Generator That Started It All",
+              "label": "The random number trick that worked",
               "file": "m6502-asm",
-              "enhancement": "pseudo-random-number-generator"
+              "enhancement": "pseudo-random-number-generation"
             }
           ]
         },
         {
-          "id": "line-input-editing",
-          "title": "The Built-In Line Editor in 4KB",
-          "description": "Microsoft BASIC featured a built-in line editor that allowed users to modify program lines directly within the interpreter. This editor was inspired by the TOPS-10 EDIT text editor and fit within the tight memory constraints of early microcomputers. It provided essential functionality for program development without requiring external tools, making BASIC highly accessible to hobbyists and early computer users. The line editor set a precedent for integrated development environments and influenced the design of text editing features in later software.",
+          "id": "string-handling-and-garbage-collection",
+          "title": "Memory-Efficient String Management",
+          "description": "Microsoft BASIC introduced an innovative system for handling strings and garbage collection, balancing memory usage in environments with as little as 4KB of RAM. Strings were stored compactly, and unused memory was reclaimed through a lightweight garbage collection routine. This approach solved the problem of memory fragmentation and allowed BASIC to support dynamic string operations, a feature critical for user input and text processing. The techniques developed here influenced later programming languages and memory management systems.",
           "links": [
             {
-              "label": "The Line Editor That Fit in 4KB",
+              "label": "Strings and garbage: A memory balancing act",
               "file": "m6502-asm",
-              "enhancement": "line-input-editing"
-            }
-          ]
-        },
-        {
-          "id": "peek-poke-direct-memory-access",
-          "title": "PEEK and POKE: Direct Memory Access",
-          "description": "Microsoft BASIC introduced PEEK and POKE commands, which allowed users to directly read and write memory locations. This feature provided unprecedented control over the hardware, enabling advanced programming techniques and hardware manipulation. PEEK and POKE became iconic commands in BASIC, empowering users to experiment with low-level operations and extend the capabilities of their computers. These commands influenced the design of similar features in later programming languages and contributed to the popularity of BASIC among early computer enthusiasts.",
-          "links": [
-            {
-              "label": "PEEK and POKE: Direct Memory Access",
-              "file": "m6502-asm",
-              "enhancement": "peek-poke-direct-memory-access"
+              "enhancement": "string-handling-and-garbage-collection"
             }
           ]
         }

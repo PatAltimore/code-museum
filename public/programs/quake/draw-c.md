@@ -30,15 +30,15 @@ summary:
 
 enhancements:
   - id: "rectdesc-data-structure"
-    line_start: 1
-    line_end: 32
+    line_start: 26
+    line_end: 34
     title: "The Data Structure That Shapes the Screen"
     wikipedia_url: "https://en.wikipedia.org/wiki/Data_structure"
     image_url: ""
     image_caption: ""
     content: "The `rectdesc_t` structure defines a rectangular region in memory, including its width, height, and pixel data. This abstraction was critical for managing screen regions efficiently in Quake's rendering pipeline. At the time, memory constraints and hardware limitations required developers to think carefully about how to represent graphical regions. By encapsulating these properties in a single structure, id Software streamlined operations like drawing tiles and filling areas. This approach influenced later game engines, which adopted similar abstractions for managing graphical assets and screen regions."
   - id: "cachepic-structure"
-    line_start: 40
+    line_start: 43
     line_end: 51
     title: "How Quake Cached Its Graphics"
     wikipedia_url: "https://en.wikipedia.org/wiki/Cache_(computing)"
@@ -46,7 +46,7 @@ enhancements:
     image_caption: ""
     content: "The `cachepic_t` structure is used to manage cached graphical assets, such as textures and sprites. With limited memory on 1990s hardware, caching was essential to avoid expensive disk reads during gameplay. This structure pairs a name with a `cache_user_t` object, enabling efficient lookup and reuse of assets. The idea of caching graphical assets became a cornerstone of game engine design, influencing systems like Unity's asset management and Unreal Engine's texture streaming."
   - id: "draw-picfromwad"
-    line_start: 54
+    line_start: 55
     line_end: 57
     title: "Loading Graphics from WAD Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
