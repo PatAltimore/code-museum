@@ -9,50 +9,50 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "proc"
 order: 40
-description: "This file contains process control routines for MS-DOS v2.0, showcasing the evolution of operating system design in the early 1980s."
+description: "This file implements process control system calls for MS-DOS v2.0, a pivotal version that introduced Unix-inspired features to the operating system."
 
 summary:
-  - point: "Introduced process management inspired by Unix-like systems"
+  - point: "Introduces process control routines like $WAIT and $EXIT for managing process lifecycle"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Implemented Terminate and Stay Resident (TSR) functionality"
+  - point: "Includes Terminate-and-Stay-Resident (TSR) functionality, enabling programs to remain in memory after execution"
     link: "https://en.wikipedia.org/wiki/Terminate_and_Stay_Resident"
     link_label: "TSR"
-  - point: "Optimized for IBM PC hardware constraints"
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
-  - point: "Used modular assembly structure for extensibility"
-    link: "https://en.wikipedia.org/wiki/Assembly_language"
-    link_label: "Assembly Language"
-  - point: "Highlighted early multitasking and memory management techniques"
+  - point: "Reflects the influence of Unix/XENIX on MS-DOS v2.0 design"
+    link: "https://en.wikipedia.org/wiki/Xenix"
+    link_label: "XENIX"
+  - point: "Demonstrates early memory management techniques for constrained hardware environments"
     link: "https://en.wikipedia.org/wiki/Memory_management"
     link_label: "Memory Management"
+  - point: "Highlights the modularity of MS-DOS source code via conditional assembly directives"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
 
 enhancements:
-  - id: "return-previous-process-error-code"
-    line_start: 25
-    line_end: 52
-    title: "The Routine That Passed Errors Forward"
+  - id: "wait-error-code-retrieval"
+    line_start: 32
+    line_end: 43
+    title: "How MS-DOS Returned Process Error Codes"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The `$WAIT` procedure retrieves the exit code of the previous process and resets it to zero. This routine is a simple yet critical piece of inter-process communication, ensuring that error codes are propagated correctly to parent processes. At the time, MS-DOS was evolving from a single-tasking environment to one that could mimic multitasking behaviors, inspired by Unix-like systems. Tim Paterson and Microsoft's team were working under constraints imposed by the 8086 processor and IBM PC hardware, which lacked advanced memory management or multitasking support. This routine reflects the pragmatic approach taken to implement basic process control in a constrained environment. Later operating systems, including Windows, built on these foundational ideas, introducing more sophisticated error handling and inter-process communication mechanisms."
-  - id: "terminate-stay-resident-handler"
-    line_start: 54
-    line_end: 99
-    title: "How MS-DOS Made Programs Stay Forever"
+    content: "The $WAIT procedure retrieves the exit code from the previous process and resets it to zero. This is accomplished by moving the value of the `exit_code` variable into the AX register, clearing DX, and resetting `exit_code` to zero. The procedure then transfers control back to the system with `SYS_RET_OK`. At the time, MS-DOS was designed to operate on the Intel 8086 processor with limited resources, and managing process lifecycle efficiently was crucial. Tim Paterson's original 86-DOS laid the groundwork for these conventions, but MS-DOS v2.0 expanded on them by adopting Unix-like features. This routine reflects the modularity and simplicity that characterized MS-DOS, making it accessible for developers working on early PCs. The concept of returning error codes became a standard practice in operating systems and programming languages, influencing later systems like Windows and Linux."
+  - id: "terminate-stay-resident"
+    line_start: 56
+    line_end: 98
+    title: "The Trick That Kept Programs in Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Terminate_and_Stay_Resident"
     image_url: ""
     image_caption: ""
-    content: "The `$Keep_process` and `Stay_resident` procedures implement Terminate and Stay Resident (TSR) functionality, allowing programs to remain in memory after termination. TSR was a groundbreaking feature in MS-DOS, enabling rudimentary multitasking by allowing background programs like keyboard enhancers or memory-resident utilities to persist. This was a clever workaround for the lack of hardware or OS-level multitasking support in the IBM PC. TSRs were inspired by similar techniques in earlier operating systems but adapted to fit the constraints of MS-DOS's single-tasking model. Developers quickly embraced TSRs to extend the capabilities of MS-DOS, leading to a proliferation of utilities that defined the PC experience in the 1980s. TSR functionality influenced later operating systems, including Windows, which incorporated background services and multitasking natively."
-  - id: "return-to-parent-process"
-    line_start: 101
+    content: "The $Keep_process and Stay_resident procedures implement the Terminate-and-Stay-Resident (TSR) functionality, allowing programs to remain in memory after execution. This was achieved by truncating the current memory block to a specified size and simulating an exit by resetting the CurrentPDB (Process Descriptor Block) and restoring system vectors. TSR programs were a clever workaround for the limited multitasking capabilities of MS-DOS, enabling utilities like pop-up calendars and keyboard enhancers to stay active in the background. TSR functionality became a hallmark of MS-DOS, influencing the design of later operating systems and inspiring the development of background processes and services in modern systems like Windows. Developers often used TSRs to extend the capabilities of early PCs, and their legacy can be seen in the way modern operating systems handle resident services."
+  - id: "exit-to-parent-process"
+    line_start: 103
     line_end: 125
-    title: "The Exit Routine That Closed the Loop"
+    title: "Exiting Processes the MS-DOS Way"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The `$EXIT` procedure handles the termination of a process and returns control to the parent process. It ensures proper cleanup by resetting the process environment and handling special cases like Ctrl+C interrupts. This routine reflects the influence of Unix-like systems on MS-DOS v2.0, which introduced structured process management and error handling. At the time, MS-DOS was transitioning from a simple disk operating system to one capable of supporting more complex applications and workflows. The `$EXIT` procedure exemplifies the careful balance between simplicity and functionality that defined MS-DOS's design. Its approach to process termination laid the groundwork for more advanced operating systems, influencing the design of Windows and other successors that built on MS-DOS's process management."
+    content: "The $EXIT procedure handles the termination of a process and returns control to the parent process. It sets the `Exit_type` variable to indicate the type of termination (normal or due to Ctrl+C), retrieves the user stack, and transfers control to the abort handler. This routine reflects MS-DOS's focus on simplicity and direct control over process management, which was essential for operating in constrained environments with limited memory and processing power. The design of $EXIT was influenced by Unix-like systems, which introduced structured process management to MS-DOS v2.0. This approach became foundational for subsequent operating systems, shaping how processes are terminated and error codes are propagated. The concept of structured process termination influenced not only DOS-based systems but also modern operating systems like Windows and Linux, where process lifecycle management remains a core feature."
 
 ---
 

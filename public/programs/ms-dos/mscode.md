@@ -9,90 +9,82 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "mscode"
 order: 4
-description: "The MS-DOS v2.0 source code represents a pivotal moment in personal computing history, transitioning the operating system from a simple CP/M clone to a more sophisticated system inspired by Unix."
+description: "The MS-DOS v2.0 source code represents a pivotal moment in the evolution of personal computing, introducing Unix-inspired features to the dominant operating system of the IBM PC era."
 
 summary:
-  - point: "MS-DOS v2.0 introduced subdirectories and file handles, inspired by Unix."
+  - point: "Introduced subdirectories and file handles, inspired by Unix"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Tim Paterson's original 86-DOS code evolved into the dominant OS for IBM PCs."
-    link: "https://en.wikipedia.org/wiki/86-DOS"
-    link_label: "86-DOS"
-  - point: "Microsoft's licensing strategy allowed MS-DOS to dominate the OEM market."
-    link: "https://en.wikipedia.org/wiki/MS-DOS"
-    link_label: "OEM Licensing"
-  - point: "Assembly language was used to optimize performance on the 8086 processor."
-    link: "https://en.wikipedia.org/wiki/Intel_8086"
-    link_label: "Intel 8086"
-  - point: "The source code was released to the Computer History Museum in 2014."
-    link: "https://www.computerhistory.org/press/ms-dos-source-code/"
-    link_label: "Computer History Museum"
+  - point: "OEM extensibility via custom handlers"
+    link: "https://en.wikipedia.org/wiki/Original_equipment_manufacturer"
+    link_label: "OEM"
+  - point: "Efficient interrupt handling for system calls"
+    link: "https://en.wikipedia.org/wiki/Interrupt"
+    link_label: "Interrupts"
+  - point: "Disk error handling and translation for backward compatibility"
+    link: "https://en.wikipedia.org/wiki/Disk_operating_system"
+    link_label: "Disk Operating System"
+  - point: "Implemented multitasking-like stack management for EXEC calls"
+    link: "https://en.wikipedia.org/wiki/Multitasking"
+    link_label: "Multitasking"
 
 enhancements:
-  - id: "include-directives-and-segment-assumptions"
+  - id: "include-directives-defining-environment"
     line_start: 1
-    line_end: 15
-    title: "Why INCLUDE Directives Were Vital"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
-    image_url: ""
-    image_caption: ""
-    content: "This section sets up the assembly environment by including external files like DOSSEG.ASM and STDSW.ASM. These files define segment structures and standard routines, ensuring modularity and reusability. In the early 1980s, assembly language programming was heavily reliant on such modular setups to manage the complexity of low-level code. Tim Paterson and later Microsoft engineers used these directives to structure the growing MS-DOS codebase, which had to support multiple hardware configurations. This modular approach influenced later operating systems, where header files and libraries became standard practice in languages like C."
-  - id: "copyright-header-and-versioning"
-    line_start: 57
-    line_end: 57
-    title: "The Header That Defined MS-DOS Versions"
+    line_end: 6
+    title: "How INCLUDE Directives Shaped MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section generates the version and copyright header displayed to users. It dynamically constructs the version string based on constants like DOS_MAJOR_VERSION and DOS_MINOR_VERSION. In the early 1980s, versioning was crucial for compatibility, as software often relied on specific OS features. The inclusion of Kanji support shows Microsoft's global ambitions, particularly in Japan. This dynamic header approach influenced later software practices, where versioning became integral to debugging and user communication. The copyright notice reflects Microsoft's growing dominance in the software industry, a strategy that would culminate in their near-monopoly on PC operating systems."
-  - id: "system-call-dispatcher"
-    line_start: 59
-    line_end: 210
-    title: "How MS-DOS Handled System Calls"
-    wikipedia_url: "https://en.wikipedia.org/wiki/System_call"
-    image_url: ""
-    image_caption: ""
-    content: "This section implements the entry points for system calls, including INT 20H and INT 21H. System calls are the bridge between user programs and the operating system, allowing tasks like file access and device control. MS-DOS's dispatcher checks the call number (AH register) and routes it to the appropriate handler. This design was inspired by CP/M but expanded in v2.0 to support Unix-like features. The modularity and efficiency of this dispatcher influenced later operating systems, including Windows, which built upon MS-DOS's system call architecture. It also set a precedent for interrupt-driven programming in personal computing."
-  - id: "save-and-restore-registers"
-    line_start: 91
-    line_end: 209
-    title: "The Multitasking Illusion: Saving Registers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Context_switch"
-    image_url: ""
-    image_caption: ""
-    content: "The SAVREGS, restore_world, and save_world routines manage the saving and restoring of CPU registers during system calls. This mechanism ensures that user programs can resume execution without interference from the operating system. While MS-DOS was not a multitasking OS, these routines simulate a form of task switching, laying the groundwork for more advanced systems. The concept of saving and restoring context became a cornerstone of modern operating systems, enabling features like multitasking and virtualization. MS-DOS's implementation influenced early Windows versions and other DOS-based multitasking environments like DESQview."
-  - id: "dispatch-table-for-system-functions"
-    line_start: 259
-    line_end: 401
-    title: "The Table That Mapped MS-DOS's Brain"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector_table"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines a dispatch table mapping system call numbers to their corresponding handlers. Each entry represents a function, such as file I/O or process management. The table simplifies the dispatcher logic, enabling quick lookups and modular expansion. This design reflects the influence of interrupt vector tables, a common pattern in assembly programming. By organizing functionality in this way, MS-DOS could efficiently handle a growing set of features without rewriting the dispatcher. This approach influenced later operating systems, where function tables became standard for API management and dynamic linking."
-  - id: "oem-handler-setup"
+    content: "This section defines the environment for the MS-DOS code by including external assembly files such as DOSSEG.ASM and DOSSYM.ASM. These files provide segment definitions, symbols, and macros that standardize and simplify the development process. In the early 1980s, modular programming was a necessity due to hardware constraints and the need for reusability across different system configurations. Tim Paterson and Microsoft's engineers used these directives to ensure compatibility and maintainability in a rapidly evolving PC market. This modular approach influenced later operating systems, including Windows, where header files and libraries became foundational."
+  - id: "copyright-header-and-version-display"
     line_start: 57
+    line_end: 87
+    title: "The Version String That Sold Millions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    image_url: ""
+    image_caption: ""
+    content: "This section constructs the version string displayed to users, including conditional handling for Kanji support and high memory configurations. The inclusion of a copyright notice reflects Microsoft's early efforts to establish intellectual property norms in software. By embedding the version string directly into the assembly code, MS-DOS ensured that users and OEMs could identify the software's lineage and compatibility. This practice became standard in software development, influencing how versioning and branding are handled in modern operating systems and applications."
+  - id: "system-call-entry-points"
+    line_start: 88
     line_end: 210
-    title: "Customizing MS-DOS for OEMs"
+    title: "INT 20H and INT 21H: The Gateway to MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines entry points for system calls, including INT 20H for program termination and INT 21H for general system services. These interrupts were the backbone of MS-DOS's interaction with user programs, providing a standardized interface for file handling, device control, and memory management. The design reflects the influence of CP/M, which used similar interrupt-driven mechanisms. By providing a consistent API, MS-DOS enabled a wide range of software to run on IBM PCs and clones, cementing its dominance in the market. The interrupt-driven model influenced later operating systems, including Windows and Linux, which expanded on this concept with more sophisticated system call interfaces."
+  - id: "stack-management-for-multitasking"
+    line_start: 121
+    line_end: 175
+    title: "Multitasking on a Single-Tasking OS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Multitasking"
+    image_url: ""
+    image_caption: ""
+    content: "The SAVREGS subroutine demonstrates MS-DOS's approach to managing user stacks during system calls, enabling features like EXEC (program execution) that mimic multitasking. By saving and restoring stack pointers and registers, MS-DOS could temporarily suspend a program's state while performing system-level operations. This technique was a clever workaround for the single-tasking nature of early PCs, allowing limited multitasking-like behavior. It laid the groundwork for more advanced process management in later operating systems, including Windows, which adopted true multitasking capabilities."
+  - id: "oem-handler-extension"
+    line_start: 412
+    line_end: 431
+    title: "OEM Extensibility: Customizing MS-DOS"
     wikipedia_url: "https://en.wikipedia.org/wiki/Original_equipment_manufacturer"
     image_url: ""
     image_caption: ""
-    content: "The $SET_OEM_HANDLER and DO_OEM_FUNC routines allow OEMs to define custom system call handlers. This feature was critical to Microsoft's licensing strategy, enabling hardware manufacturers to adapt MS-DOS to their specific needs. By providing this flexibility, Microsoft ensured widespread adoption of MS-DOS across diverse platforms. The ability to customize system behavior influenced later operating systems, where extensibility became a key selling point. This OEM-friendly design helped solidify Microsoft's dominance in the PC market, as manufacturers could tailor the OS without developing their own from scratch."
+    content: "The $SET_OEM_HANDLER and DO_OEM_FUNC routines allow OEMs to extend MS-DOS by setting custom interrupt handlers for INT 21H calls. This feature enabled hardware manufacturers to tailor MS-DOS to their specific needs, such as adding support for proprietary devices or features. Microsoft's decision to license MS-DOS to OEMs was a key factor in its widespread adoption, as it allowed manufacturers to differentiate their products while maintaining compatibility with the broader software ecosystem. This extensibility model influenced later operating systems, including Windows, which continued to support OEM customization through drivers and APIs."
   - id: "null-device-driver"
-    line_start: 57
-    line_end: 210
+    line_start: 212
+    line_end: 481
     title: "The Null Device: A Programmer's Shortcut"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_file"
     image_url: ""
     image_caption: ""
-    content: "The SNULDEV and INULDEV routines implement the null device driver, a special file that discards all data written to it. This 'black hole' device is useful for testing and redirecting output without affecting other processes. Null devices originated in Unix and were adopted by MS-DOS to provide similar functionality. Their simplicity and utility made them a standard feature in operating systems, appearing in Linux (/dev/null) and Windows (NUL). This implementation reflects MS-DOS's growing sophistication and its efforts to incorporate features from more advanced systems like Unix."
-  - id: "absolute-disk-read-and-write"
-    line_start: 57
-    line_end: 89
-    title: "Direct Disk Access: The Power and the Risk"
+    content: "The SNULDEV and INULDEV routines implement the null device driver, which discards all input and produces no output. This 'black hole' device is a staple of operating systems, providing a simple way for programs to test output routines or discard unwanted data. The null device in MS-DOS is an example of how the operating system borrowed concepts from Unix, where '/dev/null' serves a similar purpose. This feature remains a standard in modern operating systems, used for debugging, performance testing, and scripting."
+  - id: "disk-error-handling-and-translation"
+    line_start: 486
+    line_end: 558
+    title: "Backward Compatibility in Disk Error Codes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Disk_operating_system"
     image_url: ""
     image_caption: ""
-    content: "The ABSDRD and ABSDWRT routines provide low-level disk read and write operations. These functions bypass the file system, allowing direct access to disk sectors. While powerful, this approach risks data corruption if used improperly. Direct disk access was essential for tasks like bootstrapping and diagnostics, reflecting the low-level control required in early operating systems. MS-DOS's implementation influenced later systems, where direct disk access became restricted to privileged modes to prevent accidental damage. These routines highlight the trade-offs between power and safety in system design."
+    content: "The ABSDRD and ABSDWRT routines handle disk read and write operations, including translating BIOS error codes into MS-DOS error codes for backward compatibility. This translation ensured that programs written for earlier versions of MS-DOS could run seamlessly on newer versions, preserving the ecosystem of software developed for the platform. The focus on compatibility reflects Microsoft's strategy to dominate the PC market by minimizing friction for users and developers. This approach influenced later operating systems, which often prioritize backward compatibility to maintain user trust and software continuity."
 
 ---
 

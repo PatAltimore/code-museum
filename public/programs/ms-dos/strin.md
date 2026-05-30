@@ -9,82 +9,84 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "strin"
 order: 46
-description: "This file implements console input handling routines for MS-DOS 2.0, showcasing low-level assembly techniques used in early operating systems."
+description: "This file implements MS-DOS 2.0's console input handling, showcasing techniques for managing user input buffers and editing operations in assembly language."
 
 summary:
   - point: "Introduces buffer management for console input"
-    link: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
-    link_label: "Buffer"
-  - point: "Demonstrates handling of control characters like CR, LF, and ESC"
-    link: "https://en.wikipedia.org/wiki/Control_character"
-    link_label: "Control Character"
-  - point: "Highlights MS-DOS's adaptation of Unix-inspired features"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Uses clever tricks for template-based editing"
-    link: "https://en.wikipedia.org/wiki/Template_(programming)"
-    link_label: "Template"
-  - point: "Exemplifies the constraints of 1980s hardware and software design"
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
+  - point: "Demonstrates low-level assembly techniques for text editing"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly Language"
+  - point: "Reflects Unix-inspired design in MS-DOS 2.0"
+    link: "https://en.wikipedia.org/wiki/Unix"
+    link_label: "Unix"
 
 enhancements:
-  - id: "editon-buffer-reset"
+  - id: "editon-buffer-length-check"
     line_start: 26
     line_end: 28
-    title: "Why Resetting Buffers Was Crucial in 1983"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    title: "The Check That Prevented Buffer Overflows"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_overflow"
     image_url: ""
     image_caption: ""
-    content: "The EDITON routine resets the buffer length and prepares the system to accept new input. This was critical in MS-DOS 2.0, where memory constraints meant every byte had to be carefully managed. At the time, the IBM PC shipped with as little as 16 KB of RAM, so efficient buffer handling was essential. Tim Paterson, the original author of MS-DOS, designed these routines to ensure stability and prevent buffer overflows, which could crash the system or corrupt data. This approach influenced later operating systems, where buffer management became a cornerstone of input handling, appearing in Unix shells and even modern text editors."
+    content: "The `EDITON` section checks whether the buffer length is consistent with its contents, ensuring that the input buffer does not overflow. This is critical in low-level programming, where memory management is manual and errors can lead to system crashes or vulnerabilities. At the time MS-DOS 2.0 was written, buffer overflow attacks were not widely recognized, but robust input handling was essential for stability. Tim Paterson's approach here reflects the careful attention to detail required for operating system development in the early 1980s, especially on hardware with limited resources like the IBM PC. This technique influenced later systems, as input validation became a standard practice in secure software design."
   - id: "newline-buffer-build"
     line_start: 29
     line_end: 39
-    title: "Building a New Line, One Byte at a Time"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
+    title: "How MS-DOS Built a New Line"
+    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC"
     image_url: ""
     image_caption: ""
-    content: "The NEWLIN routine constructs a new line in the input buffer, filtering out unwanted characters like linefeeds (LF) and handling control characters. This was a direct response to the limitations of early keyboards and console interfaces, which often sent extraneous or unexpected characters. By carefully managing these inputs, MS-DOS ensured that user commands were interpreted correctly. This technique, rooted in the constraints of 1980s hardware, laid the groundwork for robust input parsing in later systems, influencing command-line interfaces in Unix, Linux, and beyond."
+    content: "The `NEWLIN` section initializes a new line in the input buffer, setting up variables to track cursor position and enabling insert mode. This routine reflects the constraints of early PC hardware, where memory and processing power were limited. By directly manipulating the buffer and using assembly-level instructions, MS-DOS could efficiently handle user input without relying on higher-level abstractions. This low-level approach was common in early operating systems, as it allowed developers to optimize performance and minimize resource usage. The techniques demonstrated here laid the groundwork for text editing features in later DOS versions and influenced the design of command-line interfaces in subsequent operating systems."
   - id: "gotch-character-filtering"
     line_start: 40
     line_end: 45
-    title: "Filtering Characters: The Early Days of Input Validation"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Input_validation"
+    title: "Filtering Out Unwanted Characters"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Control_character"
     image_url: ""
     image_caption: ""
-    content: "The GOTCH routine filters out specific characters, such as control sequences and invalid inputs, ensuring that only meaningful data is processed. This was a vital feature in MS-DOS 2.0, where user input was often unpredictable due to the variety of keyboards and terminal setups. By implementing these checks, MS-DOS reduced errors and improved reliability. This approach to input validation became standard practice in software development, influencing everything from web forms to database systems."
+    content: "The `GOTCH` section filters out unwanted control characters from user input, ensuring that only valid characters are processed. This routine demonstrates the challenges of handling raw console input in assembly language, where every character must be explicitly checked and managed. By excluding characters like linefeed (`LF`) and escape (`ESC`), MS-DOS maintains a clean and predictable input buffer. This approach reflects the influence of Unix, which also emphasized control over input and output streams. The filtering logic here influenced later command-line tools and text editors, which adopted similar techniques to handle user input robustly."
   - id: "savch-buffer-storage"
     line_start: 46
-    line_end: 86
-    title: "Saving Characters: A Buffering Breakthrough"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
+    line_end: 69
+    title: "Saving Characters to the Buffer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/IBM_PC_compatible"
     image_url: ""
     image_caption: ""
-    content: "The SAVCH routine stores characters in the buffer while ensuring there is enough space. If the buffer is full, it signals an error by invoking a bell sound. This was a clever workaround for the lack of dynamic memory allocation in early PCs. By predefining buffer sizes and managing them explicitly, MS-DOS avoided crashes and ensured predictable behavior. This technique influenced later systems, where dynamic memory allocation and error handling became more sophisticated but still relied on the principles established here."
-  - id: "copynew-template-copy"
+    content: "The `SAVCH` section stores characters in the input buffer, incrementing counters to track the buffer's state. This routine highlights the manual memory management required in early operating systems, where developers had to carefully allocate and update memory locations. By using assembly instructions like `STOSB` and `INC`, MS-DOS efficiently manages the buffer while minimizing overhead. This technique was essential for achieving high performance on the IBM PC's 4.77 MHz processor. The buffer management strategy demonstrated here influenced later systems, as efficient input handling became a key requirement for command-line interfaces and text editors."
+  - id: "bufful-buffer-full-handling"
+    line_start: 73
+    line_end: 76
+    title: "What Happens When the Buffer Fills"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bell_character"
+    image_url: ""
+    image_caption: ""
+    content: "The `BUFFUL` section handles the case where the input buffer becomes full, signaling the user with a bell character (`AL=7`). This routine reflects the constraints of early PC hardware, where memory was limited and buffers had fixed sizes. By providing immediate feedback to the user, MS-DOS ensures that input errors are quickly identified and corrected. The use of the bell character as an alert mechanism was common in early computing, as it provided a simple and effective way to signal errors. This approach influenced later systems, where user feedback became an integral part of error handling in command-line interfaces."
+  - id: "esc-function-key-transfer"
+    line_start: 78
+    line_end: 79
+    title: "The Escape Key's Special Role"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Escape_character"
+    image_url: ""
+    image_caption: ""
+    content: "The `ESC` section transfers control to an OEM-specific function key handler when the escape character is detected. This reflects the modular design of MS-DOS, which allowed OEMs to customize certain aspects of the operating system for their hardware. By providing hooks for OEM-specific functionality, MS-DOS could adapt to a wide range of devices while maintaining a consistent core. This modular approach influenced later operating systems, as extensibility became a key feature for supporting diverse hardware ecosystems."
+  - id: "endlin-buffer-finalization"
+    line_start: 81
+    line_end: 86
+    title: "Finalizing the Input Buffer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Carriage_return"
+    image_url: ""
+    image_caption: ""
+    content: "The `ENDLIN` section finalizes the input buffer by adding a carriage return (`CR`) and updating the buffer's length. This routine ensures that the input is properly terminated, allowing subsequent processing to handle the buffer as a complete line. The use of `CR` as a line terminator reflects the influence of early teletype machines, which used similar conventions for text formatting. By adhering to these conventions, MS-DOS maintains compatibility with existing software and hardware. The techniques demonstrated here influenced later systems, as proper buffer management became a standard practice in text processing and command-line interfaces."
+  - id: "copynew-buffer-copying"
     line_start: 87
     line_end: 102
-    title: "Copying Templates: A Step Toward Modern Text Editing"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Template_(programming)"
+    title: "Copying the Buffer to User Memory"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
     image_url: ""
     image_caption: ""
-    content: "COPYNEW copies the final line from the internal buffer to the user buffer, completing the input process. This routine also swaps the segment registers to facilitate the copy operation, a common technique in 8086 assembly programming. The use of templates for editing and copying was inspired by Unix text editors, which influenced MS-DOS 2.0's design. This approach paved the way for more advanced text editing features in later software, including word processors and integrated development environments (IDEs)."
-  - id: "findold-template-scan"
-    line_start: 232
-    line_end: 263
-    title: "Scanning Templates: Finding Matches in Assembly"
-    wikipedia_url: "https://en.wikipedia.org/wiki/String_searching_algorithm"
-    image_url: ""
-    image_caption: ""
-    content: "The FINDOLD routine scans the template for a match to the user's input, using REPNE SCASB to search efficiently. This was a low-level implementation of string searching, tailored to the constraints of assembly language and early hardware. By optimizing this process, MS-DOS ensured quick responses to user input, even on slow CPUs like the Intel 8088. This technique influenced later developments in string searching algorithms, which became a key area of study in computer science."
-  - id: "notfnd-error-handling"
-    line_start: 265
-    line_end: 292
-    title: "Handling Errors: When Matches Fail"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_handling"
-    image_url: ""
-    image_caption: ""
-    content: "NOTFND handles cases where the user's input does not match any part of the template, discarding the return address and jumping to the GETCH routine. This was an early example of error handling in assembly language, where the lack of high-level constructs made such tasks challenging. By carefully managing the stack and program flow, MS-DOS ensured stability and reliability. This approach influenced later error handling techniques, including structured exception handling in modern programming languages."
+    content: "The `COPYNEW` section copies the finalized input buffer to user memory, ensuring that the user's input is preserved for further processing. This routine demonstrates the manual memory management required in early operating systems, where developers had to explicitly move data between memory locations. By using assembly instructions like `REP MOVSB`, MS-DOS efficiently copies the buffer while minimizing overhead. This approach reflects the constraints of early PC hardware, where memory and processing power were limited. The techniques demonstrated here influenced later systems, as efficient memory management became a key requirement for operating systems and applications."
 
 ---
 

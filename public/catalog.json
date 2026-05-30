@@ -690,72 +690,89 @@
           "generated": true
         }
       ],
-      "introduction": "In the summer of 1981, a seismic shift in the computing world was quietly set into motion in a modest office in Bellevue, Washington. Tim Paterson, a young programmer at Seattle Computer Products, had just completed a remarkable feat: writing an operating system in only six weeks. Dubbed 86-DOS, it was designed to run on Intel's 8086 processor, a new architecture that promised to bring personal computing into the realm of affordability and accessibility. The operating system was inspired by Digital Research's CP/M but tailored for the emerging 16-bit hardware. Little did Paterson know that his creation would soon become the foundation of an empire.\n\nThe computing landscape of 1981 was defined by constraints. Memory was measured in kilobytes, storage revolved around floppy disks, and the idea of personal computing was still in its infancy. IBM, the colossus of the industry, was preparing to launch its first personal computer, the IBM PC. But there was a problem: IBM needed an operating system, and negotiations with Digital Research had stalled. Microsoft, then a small software company led by Bill Gates and Paul Allen, saw an opportunity. In July 1981, Microsoft purchased 86-DOS from Seattle Computer Products for $25,000, hired Paterson, and began adapting the code for IBM's specifications. By August, the IBM PC launched with PC DOS 1.0 — the rebranded version of 86-DOS — as its operating system.\n\nTim Paterson's work was both ingenious and pragmatic. He designed 86-DOS to be simple yet functional, borrowing concepts from CP/M while introducing innovations like improved disk sector buffering. The kernel, written in 8086 assembly language, was compact and efficient, reflecting the tight memory constraints of the era. Microsoft's adaptation of the code retained Paterson's core design but added refinements to meet IBM's requirements. As Paterson later remarked, \"I was just trying to solve a problem. I never imagined it would become the standard for an entire industry.\"\n\nThe licensing strategy that followed was a masterstroke. Microsoft retained the rights to license MS-DOS to other manufacturers, a decision that would prove transformative. As IBM clones flooded the market, MS-DOS became the de facto standard for personal computing. By 1982, Microsoft had over 70 licensees, and the operating system's reach extended far beyond the IBM PC. Subsequent versions, including MS-DOS 2.0 in 1983, introduced features inspired by Unix, such as subdirectories, file handles, and device drivers, further solidifying its dominance.\n\nMS-DOS was more than just an operating system; it was the cornerstone of Microsoft's rise to global prominence. It provided the revenue and market presence that enabled the company to expand into other software domains, including the development of Windows. For nearly two decades, MS-DOS and its derivatives were the backbone of personal computing, shaping the workflows of millions and spawning countless imitators. Even as graphical interfaces took over, the legacy of MS-DOS persisted, with its command-line interface remaining a vital tool for developers and power users.\n\nToday, the source code of MS-DOS stands as a testament to the ingenuity and resourcefulness of its creators. Released to the Computer History Museum in 2014 under the MIT license, it offers a glimpse into the formative years of personal computing. From its humble beginnings as 86-DOS to its evolution into a global standard, MS-DOS remains a defining chapter in the history of technology, a reminder of how a few lines of assembly code can change the world.",
+      "introduction": "In the summer of 1981, the computing world was on the brink of transformation. IBM, the undisputed giant of the industry, was preparing to launch its first personal computer, the IBM PC. But there was a problem: IBM needed an operating system, and they needed it fast. Enter Microsoft, a relatively small software company at the time, led by Bill Gates and Paul Allen. Microsoft had no operating system of its own, but they saw an opportunity to secure a foothold in the burgeoning PC market. To meet IBM's deadline, they turned to Tim Paterson, a programmer at Seattle Computer Products, who had written a rudimentary operating system called 86-DOS in just six weeks. Microsoft purchased 86-DOS for $25,000, hired Paterson, and began adapting it for IBM's new machine.\n\nThe computing landscape of 1981 was defined by constraints. The IBM PC was built around Intel's 8088 processor, a 16-bit chip with an 8-bit external bus, and came with a mere 16 KB of RAM in its base configuration. Storage was limited to floppy disks, and hard drives were still a luxury. Operating systems like CP/M dominated the microcomputer market, but they were designed for earlier 8-bit processors and lacked the features IBM needed. Microsoft and Paterson had to work within these limitations, crafting an operating system that could run efficiently on the IBM PC's modest hardware while supporting the machine's unique architecture. Every decision, from the file system to the command interpreter, was shaped by the need to balance functionality with minimal resource consumption.\n\nTim Paterson's original 86-DOS served as the foundation for what would become MS-DOS. Paterson had designed 86-DOS as a clone of CP/M, but with key improvements, such as a more efficient disk sector buffering system. When Microsoft acquired the software, they rebranded it as MS-DOS and began customizing it for IBM. Paterson himself joined Microsoft to oversee the transition, ensuring that the operating system met IBM's specifications. The first version, PC DOS 1.0, was ready in time for the IBM PC's launch on August 12, 1981. It was a bare-bones system, offering basic file management and program execution, but it was enough to get the PC off the ground.\n\nThe licensing agreement between Microsoft and IBM proved to be a masterstroke. While IBM marketed the operating system as PC DOS, Microsoft retained the rights to license MS-DOS to other manufacturers. As IBM PC clones flooded the market, MS-DOS became the de facto standard for personal computing, securing Microsoft's dominance in the software industry. By 1982, Microsoft had licensed MS-DOS to over 70 OEMs, and the operating system's influence continued to grow with each new version. The release of MS-DOS 2.0 in 1983 introduced features inspired by Unix, such as subdirectories and file handles, further solidifying its position as a versatile and powerful platform.\n\nMS-DOS was more than just an operating system; it was the foundation of an era. It powered millions of IBM PCs and compatibles throughout the 1980s, enabling the rise of software giants like Lotus and WordPerfect. It also laid the groundwork for Microsoft's own Windows operating system, which initially ran as a graphical shell on top of MS-DOS. Even as graphical interfaces became the norm, MS-DOS's legacy endured, with its command-line tools and file system influencing generations of software. Today, the source code of MS-DOS is preserved as a historical artifact, a testament to the ingenuity and pragmatism that defined the early days of personal computing.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/StartingMsdos.png",
       "image_caption": "MS-DOS 6.22 booting, from QEMU. Image created by Mike Swanson. MS-DOS © 1994 Microsoft. (Public domain)",
       "highlights": [
         {
-          "id": "fat-filesystem-setup",
-          "title": "The Algorithm Behind FAT Filesystem Setup",
-          "description": "MS-DOS introduced the File Allocation Table (FAT), a simple yet revolutionary filesystem that mapped file data to clusters on a disk. This design solved the problem of efficiently managing limited storage on floppy disks while maintaining compatibility across hardware. FAT's simplicity allowed it to scale from floppy disks to hard drives, becoming the backbone of storage systems for decades. It influenced modern filesystems and was foundational for early versions of Windows.",
+          "id": "file-allocation-table-design",
+          "title": "The File Allocation Table (FAT)",
+          "description": "The File Allocation Table (FAT) was a groundbreaking method for organizing files on disk storage. It allowed MS-DOS to efficiently track file locations using linked clusters, solving the problem of managing fragmented files on early floppy disks and hard drives. This design was compact and fast, crucial for the limited memory and processing power of the IBM PC. FAT became the foundation for file systems in later operating systems, including Windows, and inspired similar designs in other platforms. Its legacy persists in modern devices like USB drives and SD cards.",
           "links": [
             {
-              "label": "FAT setup algorithm",
+              "label": "How MS-DOS Organized Files with FAT",
               "file": "msdos",
-              "enhancement": "fat-filesystem-setup"
-            }
-          ]
-        },
-        {
-          "id": "interrupt-system-call-dispatcher",
-          "title": "How MS-DOS Handled System Calls",
-          "description": "MS-DOS used software interrupts to handle system calls, enabling efficient communication between applications and the operating system. This approach was crucial for the constrained 8086 hardware, where memory and processing power were limited. The dispatcher mapped function calls to specific routines, ensuring compatibility and extensibility. This mechanism inspired similar designs in later operating systems, including early Windows and Unix-like systems.",
-          "links": [
-            {
-              "label": "System call dispatcher",
-              "file": "msdos",
-              "enhancement": "system-call-dispatcher"
+              "enhancement": "file-storage-with-fat"
             },
             {
-              "label": "System call dispatcher table",
-              "file": "mscode",
-              "enhancement": "dispatch-table-for-system-functions"
-            }
-          ]
-        },
-        {
-          "id": "autoexec-bat-processing",
-          "title": "How MS-DOS Found and Ran AUTOEXEC.BAT",
-          "description": "MS-DOS introduced the concept of AUTOEXEC.BAT, a batch file that automatically executed commands during system startup. This feature streamlined the boot process, allowing users to configure their environment and launch programs without manual intervention. It addressed the need for automation in early personal computing and laid the groundwork for startup scripts in modern operating systems.",
-          "links": [
-            {
-              "label": "AUTOEXEC.BAT processing",
-              "file": "command",
-              "enhancement": "batch-file-autoexec-processing"
-            }
-          ]
-        },
-        {
-          "id": "memory-allocation-strategy",
-          "title": "Allocating Memory in a 64KB World",
-          "description": "MS-DOS implemented a memory allocation strategy tailored to the 8086 processor's segmented architecture, where memory was divided into 64KB segments. This design allowed efficient use of limited memory while maintaining compatibility with hardware constraints. It influenced memory management techniques in subsequent operating systems and was critical for running applications on early PCs.",
-          "links": [
-            {
-              "label": "Memory allocation strategy",
-              "file": "exec",
-              "enhancement": "memory-allocation-strategy"
-            }
-          ]
-        },
-        {
-          "id": "console-input-buffering",
-          "title": "Console Input Buffering: A Hidden Complexity",
-          "description": "MS-DOS implemented a sophisticated console input buffering system to manage user input efficiently. This design ensured smooth interaction with the command line, even on constrained hardware. By buffering keystrokes and handling them asynchronously, MS-DOS provided a responsive user experience that influenced input handling in later operating systems and applications.",
-          "links": [
-            {
-              "label": "Console input buffering",
+              "label": "Reading the File Allocation Table",
               "file": "msdos",
-              "enhancement": "console-input-buffering"
+              "enhancement": "fat-read-routine"
+            },
+            {
+              "label": "How MS-DOS Managed Disk FATs Efficiently",
+              "file": "msdos",
+              "enhancement": "fat-management-and-disk-initialization"
+            }
+          ]
+        },
+        {
+          "id": "buffered-disk-access",
+          "title": "Buffered Disk Access for Speed",
+          "description": "MS-DOS introduced a buffering system to speed up disk operations by temporarily storing data in memory before writing it to disk. This approach reduced the number of direct disk accesses, which were slow and prone to errors due to the mechanical nature of floppy drives. The buffered disk access mechanism was a critical optimization for the IBM PC's limited hardware, enabling faster and more reliable file operations. This technique influenced later operating systems and remains a standard practice in modern file systems.",
+          "links": [
+            {
+              "label": "The Buffer That Made Disk Access Faster",
+              "file": "msdos",
+              "enhancement": "buffered-disk-access"
+            }
+          ]
+        },
+        {
+          "id": "ctrl-c-interrupt-handler",
+          "title": "Ctrl-C: Graceful Interrupt Handling",
+          "description": "MS-DOS implemented a robust mechanism for handling the Ctrl-C keypress, allowing users to interrupt running programs without crashing the system. This feature was essential for early PCs, where multitasking was limited and user control over processes was critical. The interrupt handler ensured that programs could cleanly exit or return to the command prompt, solving the problem of abrupt program termination. This innovation became a standard in operating systems, influencing how modern systems handle user interrupts.",
+          "links": [
+            {
+              "label": "What Happens When You Press Ctrl-C",
+              "file": "msdos",
+              "enhancement": "ctrl-c-handler"
+            }
+          ]
+        },
+        {
+          "id": "autoexec-bat-batch-processing",
+          "title": "The Birth of AUTOEXEC.BAT",
+          "description": "MS-DOS introduced batch file processing, enabling users to automate sequences of commands. AUTOEXEC.BAT was a special batch file executed at boot, allowing users to configure the system and launch applications automatically. This feature addressed the need for customizable startup routines in a time when graphical interfaces were nonexistent. AUTOEXEC.BAT became iconic, influencing automation in later operating systems and inspiring scripting languages like PowerShell and Bash.",
+          "links": [
+            {
+              "label": "The Birth of AUTOEXEC.BAT",
+              "file": "command",
+              "enhancement": "batch-file-processing-autoexec"
+            }
+          ]
+        },
+        {
+          "id": "memory-sizing-at-boot",
+          "title": "Memory Sizing with Bitwise Arithmetic",
+          "description": "MS-DOS used a clever algorithm to determine the amount of RAM available during system initialization. By scanning memory and using bitwise arithmetic, the operating system could accurately size RAM, even on hardware with varying configurations. This technique was vital for the IBM PC, which needed to support a wide range of memory sizes while keeping initialization fast and reliable. The approach influenced memory management in later operating systems and demonstrated the ingenuity required to optimize early PC hardware.",
+          "links": [
+            {
+              "label": "The Trick That Sizes RAM at Boot",
+              "file": "sysinit",
+              "enhancement": "memory-sizing-memscan"
+            }
+          ]
+        },
+        {
+          "id": "checksum-reload-optimization",
+          "title": "Checksum Reload: A Clever Optimization",
+          "description": "MS-DOS implemented a checksum-based optimization to reload transient code efficiently. By verifying the integrity of memory blocks, the system avoided unnecessary reloading, saving time and reducing wear on floppy drives. This feature was particularly important for the IBM PC, where hardware constraints made every optimization critical. The checksum reload mechanism showcased the ingenuity of early software engineers and influenced similar techniques in later systems.",
+          "links": [
+            {
+              "label": "Checksum Reload: A Clever Optimization",
+              "file": "command",
+              "enhancement": "checksum-reload-transient"
             }
           ]
         }
