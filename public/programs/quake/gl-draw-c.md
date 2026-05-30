@@ -9,90 +9,138 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "gl-draw-c"
 order: 29
-description: "This file is a cornerstone of Quake's rendering system, showcasing techniques that optimized 3D graphics for mid-1990s hardware."
+description: "This file contains Quake's OpenGL-based drawing routines, showcasing innovative techniques for rendering textures and graphics under hardware constraints of the mid-1990s."
 
 summary:
-  - point: "Innovative texture management for constrained hardware"
-    link: "https://en.wikipedia.org/wiki/Texture_mapping"
-    link_label: "Texture Mapping"
-  - point: "Dynamic console background manipulation"
+  - point: "Introduces scrap texture allocation to optimize rendering on limited hardware"
     link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     link_label: "Quake"
-  - point: "Efficient scrap allocation for small textures"
-    link: "https://en.wikipedia.org/wiki/Graphics_processing_unit"
-    link_label: "Graphics Processing Unit"
-  - point: "Custom texture resampling algorithms"
-    link: "https://en.wikipedia.org/wiki/Resampling_(signal_processing)"
-    link_label: "Resampling"
-  - point: "Direct OpenGL calls for rendering primitives"
+  - point: "Implements texture resampling for scaling graphics efficiently"
+    link: "https://en.wikipedia.org/wiki/Texture_mapping"
+    link_label: "Texture Mapping"
+  - point: "Demonstrates OpenGL integration for 2D rendering in a 3D engine"
     link: "https://en.wikipedia.org/wiki/OpenGL"
     link_label: "OpenGL"
+  - point: "Uses clever hacks like embedding version numbers into textures dynamically"
+    link: "https://en.wikipedia.org/wiki/Quake_engine"
+    link_label: "Quake Engine"
+  - point: "Pioneers techniques for handling transparency and blending in real-time graphics"
+    link: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
+    link_label: "Transparency"
 
 enhancements:
-  - id: "foundation-variables-and-constants"
+  - id: "gl-bind-texture-switching"
     line_start: 84
     line_end: 96
-    title: "Rendering State Variables and the Compact Crosshair Texture"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    title: "Why Texture Binding Was a Big Deal"
+    wikipedia_url: "https://en.wikipedia.org/wiki/OpenGL"
     image_url: ""
     image_caption: ""
-    content: "This section declares the globals and constants that underpin the rendering system: external references to color-conversion tables and crosshair cvars, the OpenGL filter and format variables, the texture-count tracking, and the 64-byte static cs_data array that encodes the crosshair as a sparse 8x8 mask with 0xFE marking active pixels against a 0xFF transparent background. In 1996 GPU texture memory was scarce and texture-state changes were expensive, so embedding tiny HUD elements in a fixed byte array and uploading them once at startup was the sensible approach. The minimalist crosshair design balanced visual clarity with zero per-frame overhead and was easy for modders to replace — a philosophy that influenced HUD design in Half-Life and beyond."
-  - id: "scrap-allocation-for-small-textures"
+    content: "The `GL_Bind` function ensures that the correct texture is bound to the OpenGL rendering pipeline before drawing operations. This avoids redundant bindings, improving performance. In 1996, OpenGL was still a relatively new API, and managing state changes efficiently was critical for real-time applications like Quake. John Carmack and his team optimized every aspect of the rendering pipeline to squeeze maximum performance out of hardware like the Pentium processors and early 3D accelerators. This approach influenced subsequent game engines, where texture state management became a standard optimization technique."
+  - id: "scrap-alloc-block"
     line_start: 119
     line_end: 159
-    title: "The Scrap Allocation Hack"
+    title: "The Trick That Saved Texture Space"
     wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
-    content: "The Scrap_AllocBlock function allocates small textures into a single large texture block, addressing hardware limitations where GPUs struggled with multiple small textures. This technique minimizes texture switching overhead, a critical optimization for mid-1990s graphics cards. John Carmack and Michael Abrash, known for their low-level programming expertise, devised this solution to ensure Quake's performance remained smooth even on less capable systems. Scrap allocation became a standard practice in game development, influencing engines like Unreal Engine and Unity, which use similar texture atlasing techniques to optimize rendering pipelines."
-  - id: "dynamic-console-background"
-    line_start: 233
-    line_end: 279
-    title: "The Console Background That Writes Itself"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    content: "The `Scrap_AllocBlock` function allocates small textures into a single larger texture, known as a scrap texture. This technique was a workaround for hardware limitations, where older GPUs struggled with multiple small textures. By consolidating these textures, Quake reduced the overhead of switching textures during rendering. This method was particularly useful for status bar elements and small UI graphics. The idea of packing textures into a single atlas became a cornerstone of modern game development, influencing engines like Unity and Unreal."
+  - id: "draw-pic-from-wad"
+    line_start: 190
+    line_end: 230
+    title: "How Quake Loaded Graphics from WAD Files"
+    wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
     image_caption: ""
-    content: "This section dynamically modifies the console background to include the version number. By embedding text directly into the texture, id Software avoided the performance hit of rendering additional overlays. This technique reflects the ingenuity required to optimize for hardware with limited texture memory and processing power. The dynamic console background became a hallmark of Quake's user interface, setting a precedent for interactive and visually integrated HUDs in games. The approach also inspired modders, who extended the technique to create custom backgrounds and overlays for multiplayer servers."
-  - id: "draw-character-and-string"
+    content: "The `Draw_PicFromWad` function retrieves graphics stored in WAD files, a format id Software popularized in Doom. It loads small textures directly into scrap textures when possible, optimizing memory usage. WAD files were an efficient way to store game assets, and their use in Quake demonstrated the team's ability to adapt existing technology to new challenges. This function also highlights the transition from software rendering in Doom to hardware-accelerated rendering in Quake, paving the way for modern asset management systems in game engines."
+  - id: "draw-init-setup"
+    line_start: 369
+    line_end: 484
+    title: "Initializing Graphics: A 3Dfx Hack"
+    wikipedia_url: "https://en.wikipedia.org/wiki/3dfx_Interactive"
+    image_url: ""
+    image_caption: ""
+    content: "The `Draw_Init` function sets up textures and graphics for Quake's rendering system. Notably, it includes a check for 3Dfx hardware, limiting texture sizes to 256 pixels wide—a constraint specific to early 3Dfx GPUs. This reflects the challenges of developing for diverse hardware in the mid-1990s. The function also dynamically embeds the game version into the console background texture, a clever hack that demonstrates the team's resourcefulness. These techniques influenced how game engines handle initialization and hardware compatibility checks."
+  - id: "draw-character"
     line_start: 488
     line_end: 529
-    title: "Rendering Text One Character at a Time"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bitmap"
+    title: "Drawing Text with OpenGL Quads"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Font_rasterization"
     image_url: ""
     image_caption: ""
-    content: "The Draw_Character and Draw_String functions render text by mapping individual characters to texture coordinates. This bitmap-based approach was common in the 1990s, when GPUs lacked advanced text rendering capabilities. By preloading the character set as a texture, id Software ensured fast and efficient text rendering, crucial for console messages and debugging. This technique influenced later engines, where bitmap fonts were used for performance-critical applications. It also laid the groundwork for modern text rendering systems, which combine bitmap fonts with vector-based scaling for high-quality visuals."
+    content: "The `Draw_Character` function renders individual characters as textured quads, using an 8x8 pixel font stored in a texture. This approach allowed Quake to display text efficiently while maintaining flexibility for scaling and transparency. In the mid-1990s, rendering text in games was often a bespoke solution, and Quake's use of OpenGL for this purpose was ahead of its time. This technique laid the groundwork for modern text rendering systems in OpenGL-based engines, where fonts are often stored as textures and rendered dynamically."
+  - id: "draw-alpha-pic"
+    line_start: 634
+    line_end: 665
+    title: "Transparency in a World of Pixels"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
+    image_url: ""
+    image_caption: ""
+    content: "The `Draw_AlphaPic` function renders textures with adjustable transparency by enabling OpenGL's blending mode. This was a significant step forward in 1996, as real-time transparency effects were rare in games. By manipulating alpha values, Quake could create effects like translucent menus and overlays, enhancing visual fidelity. This technique influenced later games and engines, where alpha blending became a standard feature for rendering UI elements and special effects."
   - id: "gl-resample-texture"
     line_start: 321
     line_end: 367
-    title: "Resampling Textures for Any Resolution"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Resampling_(signal_processing)"
+    title: "Scaling Textures Without Losing Quality"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
     image_url: ""
     image_caption: ""
-    content: "The GL_ResampleTexture function adjusts textures to fit different resolutions, a necessity for supporting varied hardware configurations. This algorithm resamples texture data by calculating fractional steps, ensuring smooth scaling without artifacts. In the mid-1990s, hardware lacked automatic texture scaling, so developers had to implement custom solutions. This function exemplifies id Software's commitment to cross-platform compatibility, allowing Quake to run on a wide range of systems. The technique influenced later engines, where texture resampling became a standard feature for supporting high-resolution displays and dynamic scaling."
-  - id: "mipmapping-for-smoother-texture-scaling"
-    line_start: 369
-    line_end: 484
-    title: "Mipmapping for Smoother Texture Scaling"
+    content: "The `GL_ResampleTexture` function resizes textures while preserving visual quality, using linear interpolation. This was crucial for Quake's ability to adapt textures to different resolutions and hardware capabilities. Texture resampling ensured that graphics looked consistent across various setups, a challenge in the era of rapidly evolving GPUs. This method influenced texture handling in later engines, where resampling became a standard practice for supporting multiple resolutions and aspect ratios."
+  - id: "mipmapping-for-8-bit-textures"
+    line_start: 1048
+    line_end: 1078
+    title: "Mipmapping for 8-Bit Textures"
     wikipedia_url: "https://en.wikipedia.org/wiki/Mipmap"
     image_url: ""
     image_caption: ""
-    content: "This function, `GL_MipMap`, generates lower-resolution versions of a texture (mipmaps) by averaging pixel values. Mipmaps are crucial for rendering textures at varying distances, reducing aliasing and improving performance. At the time, hardware constraints made efficient texture scaling essential for real-time 3D graphics. John Carmack and Michael Abrash, known for their optimization prowess, implemented this technique to ensure Quake's groundbreaking 3D environments ran smoothly on 1996-era hardware. Mipmapping became a standard feature in graphics engines, influencing later titles like Unreal and Half-Life. Today, it remains a fundamental concept in texture mapping across all major game engines."
-  - id: "handling-8-bit-textures-with-alpha"
-    line_start: 53
-    line_end: 82
-    title: "Handling 8-Bit Textures with Alpha"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Alpha_compositing"
+    content: "The GL_MipMap8Bit function generates mipmaps for 8-bit textures by averaging color values from neighboring pixels. This process reduces texture resolution progressively, enabling efficient rendering of textures at varying distances. The function uses lookup tables (d_8to24table and d_15to8table) to convert 8-bit indices to RGB values and back, ensuring compatibility with the hardware's palette-based rendering. In 1996, hardware limitations such as low memory and slow processors made mipmapping essential for performance optimization. John Carmack and Michael Abrash, known for their expertise in graphics programming, implemented this technique to ensure Quake's groundbreaking 3D environments could run smoothly on consumer-grade PCs. Mipmapping became a standard feature in graphics engines, influencing later titles like Unreal and Half-Life, and remains a cornerstone of texture rendering in modern engines like Unity and Unreal Engine."
+  - id: "uploading-32-bit-textures"
+    line_start: 1080
+    line_end: 1168
+    title: "Uploading 32-Bit Textures with Scaling"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Graphics_processing_unit"
     image_url: ""
     image_caption: ""
-    content: "The `GL_Upload8_EXT` function processes 8-bit textures, checking for transparency (alpha) and optimizing the format accordingly. If no transparent pixels are found, the texture is converted to a simpler format to save memory and improve performance. This routine reflects the era's emphasis on squeezing every ounce of efficiency from hardware. By dynamically adjusting texture formats, id Software ensured Quake could deliver high-quality visuals without overwhelming systems with limited resources. This approach influenced later engines, which adopted similar strategies for handling texture formats dynamically based on content and hardware capabilities."
-  - id: "multitexture-selection-for-advanced-effects"
-    line_start: 37
-    line_end: 82
-    title: "Multitexture Selection for Advanced Effects"
+    content: "GL_Upload32 handles the upload of 32-bit textures to the GPU, scaling them to fit hardware constraints. It calculates the nearest power-of-two dimensions for textures, a requirement for many graphics cards of the era. The function also supports mipmapping, generating progressively smaller versions of the texture for efficient rendering. The scaled array, a static buffer, ensures memory efficiency by reusing storage. In the mid-1990s, GPUs lacked the flexibility of modern hardware, requiring developers to work within strict limits on texture size and format. This routine exemplifies id Software's ability to optimize for these constraints, ensuring Quake's textures could be rendered smoothly on a wide range of systems. Techniques like these influenced later engines, including the Source Engine, which adopted similar scaling and mipmapping strategies for texture management."
+  - id: "uploading-8-bit-textures-with-transparency"
+    line_start: 1170
+    line_end: 1256
+    title: "Uploading 8-Bit Textures with Transparency"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Transparency_(graphic)"
+    image_url: ""
+    image_caption: ""
+    content: "GL_Upload8_EXT processes 8-bit textures, handling transparency by checking for fully transparent pixels (value 255). If no transparency is detected, the texture is treated as opaque, reducing memory usage by storing fewer color components. The function also scales textures to fit hardware constraints and generates mipmaps if requested. This routine highlights id Software's meticulous attention to performance optimization, ensuring Quake could run efficiently on hardware with limited support for transparency and texture formats. The approach reflects the era's reliance on palette-based rendering and lookup tables to manage color data. Techniques for handling transparency in textures influenced later engines, such as Unreal Engine, which expanded on these ideas to support advanced alpha blending and shader effects."
+  - id: "fallback-for-8-bit-textures"
+    line_start: 1260
+    line_end: 1308
+    title: "Fallback for 8-Bit Textures"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
+    image_url: ""
+    image_caption: ""
+    content: "GL_Upload8 serves as a fallback for uploading 8-bit textures, converting them to 32-bit format if necessary. It checks for transparency and uses the d_8to24table lookup table to expand 8-bit indices into full RGB values. If the system supports 8-bit textures natively, the function delegates to GL_Upload8_EXT for optimized handling. This dual-path approach reflects id Software's adaptability in accommodating varying hardware capabilities. In 1996, consumer-grade PCs often lacked robust support for 8-bit textures, requiring developers to implement workarounds like this. The technique ensured Quake's textures could be rendered correctly on a wide range of systems, influencing later engines to adopt similar fallback mechanisms for texture compatibility."
+  - id: "texture-caching-and-binding"
+    line_start: 1310
+    line_end: 1350
+    title: "Texture Caching and Binding"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
+    image_url: ""
+    image_caption: ""
+    content: "GL_LoadTexture implements texture caching to avoid redundant uploads, checking if a texture identifier already exists in the cache. If found, the cached texture is reused; otherwise, the texture is uploaded and stored. The function also binds the texture to the GPU using GL_Bind, ensuring efficient access during rendering. This caching mechanism reflects id Software's focus on performance optimization, minimizing GPU overhead by reducing redundant operations. In the mid-1990s, texture caching was a novel approach, helping Quake achieve smooth rendering despite hardware limitations. The concept became a standard feature in graphics engines, influencing later systems like OpenGL and DirectX, which integrated texture caching into their APIs."
+  - id: "pic-texture-loader"
+    line_start: 1352
+    line_end: 1364
+    title: "Loading Picture Textures"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Texture_mapping"
+    image_url: ""
+    image_caption: ""
+    content: "GL_LoadPicTexture simplifies the process of loading textures from picture files (qpic_t structures). It delegates to GL_LoadTexture, passing default parameters for mipmapping and transparency. This abstraction reduces code duplication and ensures consistency in texture handling across the engine. In the context of Quake, picture textures were often used for UI elements and environmental details, requiring efficient loading and rendering. The function reflects id Software's emphasis on modular design, a principle that influenced later engines to adopt similar abstractions for resource management."
+  - id: "multitexture-selection"
+    line_start: 1366
+    line_end: 1378
+    title: "Multitexture Selection Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/Multitexturing"
     image_url: ""
     image_caption: ""
-    content: "The `GL_SelectTexture` function enables multitexture selection, allowing multiple textures to be applied simultaneously to a single surface. This capability was cutting-edge in 1996, enabling effects like lightmaps and detail textures that enhanced realism. The function includes platform-specific considerations, such as disabling multitexture under Linux due to driver limitations. Multitexturing was a key innovation in Quake's rendering pipeline, showcasing id Software's ability to push graphical boundaries. This technique became a staple in modern graphics engines, enabling complex visual effects in games like The Elder Scrolls series and Battlefield."
+    content: "GL_SelectTexture enables multitexturing by switching between texture units on supported hardware. It uses qglSelectTextureSGIS to activate the desired texture unit and updates internal state variables to track the current texture. Multitexturing was a cutting-edge feature in 1996, allowing Quake to render complex scenes with multiple textures applied simultaneously. This routine reflects id Software's ability to push the boundaries of hardware capabilities, leveraging extensions like SGIS_multitexture to enhance visual fidelity. Multitexturing became a standard feature in graphics APIs like OpenGL and DirectX, influencing the development of modern rendering techniques such as shader-based texture blending."
 
 ---
 

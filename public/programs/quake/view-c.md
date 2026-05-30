@@ -9,90 +9,90 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "view-c"
 order: 38
-description: "This file defines the player's view and rendering logic in Quake, showcasing innovative techniques for 3D environments and player feedback."
+description: "This file defines the player's view handling in Quake, including eye positioning, camera effects, and rendering logic, showcasing advanced techniques for immersive gameplay in 1996."
 
 summary:
-  - point: "Introduces player view bobbing and rolling for immersive motion effects"
+  - point: "Introduces dynamic camera effects like bobbing and rolling"
     link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     link_label: "Quake"
-  - point: "Implements palette shifts for environmental and damage feedback"
+  - point: "Optimizes rendering for limited hardware capabilities"
+    link: "https://en.wikipedia.org/wiki/Graphics_processing_unit"
+    link_label: "Graphics hardware"
+  - point: "Uses palette manipulation for visual effects like damage and power-ups"
     link: "https://en.wikipedia.org/wiki/Color_palette"
-    link_label: "Color Palette"
-  - point: "Optimizes rendering logic for limited hardware of the mid-1990s"
-    link: "https://en.wikipedia.org/wiki/Intel_80486"
-    link_label: "Intel 80486"
-  - point: "Defines intermission and gameplay-specific rendering adjustments"
+    link_label: "Color palette"
+  - point: "Defines player view logic for intermissions and gameplay"
     link: "https://en.wikipedia.org/wiki/First-person_shooter"
-    link_label: "First-Person Shooter"
-  - point: "Demonstrates early use of modular functions for player feedback and rendering"
-    link: "https://en.wikipedia.org/wiki/Software_modularity"
-    link_label: "Software Modularity"
+    link_label: "First-person shooter"
+  - point: "Includes gamma correction and crosshair customization"
+    link: "https://en.wikipedia.org/wiki/Gamma_correction"
+    link_label: "Gamma correction"
 
 enhancements:
-  - id: "foundation-player-eye-positioning"
+  - id: "v-calc-roll"
     line_start: 75
     line_end: 102
-    title: "View Origin Notes and the Roll Effect That Simulated Motion"
+    title: "How Quake Simulated Camera Roll"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section opens with an important design note: the view origin must equal the player origin before the renderer is called, or entities near zone boundaries (such as water surfaces) will be culled incorrectly. It then implements V_CalcRoll, which computes a sideways tilt of the camera based on the cross product of the player's velocity with their forward direction. The roll angle scales with speed and is capped by the cl_rollangle cvar, producing a subtle lean when strafing or rounding corners. In 1996 most games had a static camera with no inertial response; this small trick added a physical quality to movement that influenced first-person camera design in Half-Life, Counter-Strike, and later shooters. The accompanying comment about origin consistency reflects id Software's careful management of the client-side prediction and rendering boundary."
-  - id: "v-calc-bob-immersive-player-motion"
+    content: "The `V_CalcRoll` function calculates the roll angle of the player's view based on their velocity and movement direction. By projecting the velocity vector onto the right-hand axis of the player's orientation, it determines the magnitude and direction of the roll effect. This was used to simulate a subtle tilting of the camera during sharp movements, adding a sense of physicality to the player's movement. In 1996, such dynamic camera effects were rare in games, as most relied on static perspectives. John Carmack and Michael Abrash designed this feature to enhance immersion, leveraging the computational power of x86 processors. This technique influenced later games, such as Half-Life and Unreal, which adopted dynamic camera effects to improve realism."
+  - id: "v-calc-bob"
     line_start: 105
     line_end: 142
-    title: "The Bobbing Effect That Made Walking Real"
+    title: "The Algorithm Behind Quake's Head Bobbing"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `V_CalcBob` function adds a bobbing motion to the player's view based on their movement speed and ground state. This effect mimics the natural sway of walking or running, making the game feel more lifelike. At a time when most games featured static or rigid camera perspectives, this innovation stood out as a leap forward in player immersion. The function uses trigonometric calculations to create a smooth, periodic motion, ensuring the effect feels natural rather than mechanical. This technique became a staple in first-person games, influencing titles like Doom 3 and Call of Duty."
-  - id: "v-drift-pitch-auto-centering"
+    content: "The `V_CalcBob` function calculates the bobbing motion of the player's view based on their movement speed. It uses a sine wave to simulate the oscillation, ensuring smooth transitions. The bobbing effect is proportional to the player's velocity in the XY plane, excluding the Z-axis to avoid erratic behavior during jumps. This subtle effect was designed to mimic the natural sway of a person's head while walking or running, enhancing immersion. At the time, such visual effects were groundbreaking, as most games featured static or rigid camera perspectives. The technique inspired similar implementations in games like Counter-Strike and Call of Duty, where head bobbing became a staple of first-person movement."
+  - id: "v-drift-pitch"
     line_start: 175
     line_end: 245
-    title: "Auto-Centering the Player's Pitch Angle"
+    title: "Automatic Camera Pitch Adjustment in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `V_DriftPitch` function automatically adjusts the player's pitch angle toward an ideal value, creating a smoother and more intuitive gameplay experience. This feature ensures that the player's view gradually returns to center when manual adjustments are not being made, preventing disorienting camera angles. In the mid-1990s, such attention to detail was rare, as most games relied on manual camera control. The function's logic, including checks for user input and gradual velocity adjustments, reflects id Software's commitment to creating a polished and user-friendly experience. This approach influenced later games by demonstrating the importance of responsive and adaptive camera controls."
-  - id: "palette-flashes-damage-feedback"
+    content: "The `V_DriftPitch` function adjusts the pitch angle of the player's view to align with the ideal pitch sent by the server. It ensures smooth transitions by incrementally modifying the pitch angle based on the player's input and movement. This feature was particularly useful for maintaining a consistent view orientation during gameplay, especially when players released the mouse or keyboard controls. The algorithm reflects id Software's attention to detail in creating a seamless experience. Such automatic adjustments were later refined in games like Halo and Destiny, where camera control plays a critical role in gameplay."
+  - id: "build-gamma-table"
     line_start: 273
-    line_end: 483
-    title: "The Palette Trick That Showed Pain"
+    line_end: 295
+    title: "Gamma Correction: Quake's Visual Tuning"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Gamma_correction"
+    image_url: ""
+    image_caption: ""
+    content: "The `BuildGammaTable` function constructs a lookup table for gamma correction, allowing the game to adjust brightness levels dynamically. By applying a power function to each color value, it maps the original palette to a corrected version, ensuring consistent visual quality across different monitors. Gamma correction was crucial in 1996, as hardware and display standards varied widely. This feature demonstrated id Software's commitment to delivering a polished experience, even on less-than-ideal hardware. Gamma correction techniques like this became standard practice in graphics engines, influencing tools like OpenGL and DirectX."
+  - id: "v-parse-damage"
+    line_start: 318
+    line_end: 383
+    title: "Damage Feedback Through Color Shifts"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    image_url: ""
+    image_caption: ""
+    content: "The `V_ParseDamage` function processes damage events and applies visual feedback through color shifts and camera kicks. It adjusts the screen's color palette based on the severity and type of damage, creating a red tint for blood and varying shades for armor impacts. Additionally, it calculates roll and pitch kicks to simulate the physical impact of damage. This innovative approach to damage feedback enhanced player immersion, making the consequences of combat more visceral. The technique influenced later games like Doom 3 and Left 4 Dead, which expanded on visual and auditory damage cues."
+  - id: "v-update-palette"
+    line_start: 529
+    line_end: 706
+    title: "Dynamic Palette Updates for Immersive Effects"
     wikipedia_url: "https://en.wikipedia.org/wiki/Color_palette"
     image_url: ""
     image_caption: ""
-    content: "This section implements palette flashes to visually indicate damage, environmental effects, and power-ups. By altering the color palette dynamically, the game provides immediate feedback to the player, enhancing immersion and situational awareness. In 1996, real-time palette manipulation was a clever workaround for hardware limitations, allowing developers to simulate complex visual effects without taxing the CPU. This technique became a hallmark of id Software's games, influencing titles like Unreal Tournament and Quake II, which expanded on the concept with more sophisticated shaders and lighting effects."
-  - id: "v-calc-blend-environmental-color-shifts"
-    line_start: 486
-    line_end: 528
-    title: "Blending Colors for Environmental Feedback"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `V_CalcBlend` function calculates color blending effects based on environmental conditions and player state. This feature creates a seamless transition between different color shifts, such as underwater or lava effects, enhancing the game's visual realism. The function uses weighted averages to blend colors dynamically, ensuring smooth transitions without abrupt changes. In the mid-1990s, such techniques were cutting-edge, as most games lacked the ability to adapt their visuals in real-time. This innovation influenced later engines, including Unreal Engine and Source Engine, which adopted similar methods for dynamic lighting and color effects."
-  - id: "v-calc-refdef-dynamic-view-adjustments"
-    line_start: 863
-    line_end: 968
-    title: "Dynamic Adjustments for Player View"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `V_CalcRefdef` function dynamically adjusts the player's view based on their state, environment, and movement. This includes bobbing effects, roll adjustments, and height changes for different scenarios like being dead or gibbed. The function also ensures the view remains stable during stair-step movements, preventing visual glitches. In 1996, such comprehensive view management was revolutionary, setting a new standard for realism in first-person games. This approach influenced later titles like Halo and Battlefield, which adopted similar techniques to enhance immersion and responsiveness."
-  - id: "v-render-view-final-rendering"
+    content: "The `V_UpdatePalette` function dynamically adjusts the game's color palette based on environmental and gameplay factors, such as underwater effects, lava, and power-ups. It blends multiple color shifts to create smooth transitions, ensuring the visuals remain coherent despite rapid changes. This feature was a technical achievement in 1996, as it required efficient manipulation of limited hardware resources. The dynamic palette system contributed to Quake's immersive atmosphere, inspiring similar techniques in games like Unreal Tournament and Half-Life 2, where environmental effects play a significant role in storytelling."
+  - id: "v-render-view"
     line_start: 992
     line_end: 1022
-    title: "Rendering the Final Player View"
+    title: "Rendering the Player's Perspective in Quake"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "The `V_RenderView` function ties together all the view calculations and rendering logic, producing the final image seen by the player. This includes handling intermission views, gameplay-specific adjustments, and dynamic lighting effects. By modularizing the rendering process, id Software ensured that the game could adapt to different scenarios without compromising performance or visual quality. This function represents the culmination of the team's efforts to create a responsive and immersive 3D experience, influencing countless games and engines that followed."
-  - id: "quake-visual-initialization"
+    content: "The `V_RenderView` function is the core routine for rendering the player's perspective. It calculates the camera's position and orientation based on the player's state, applying effects like punch angles, bobbing, and idle swaying. It also handles intermission views and ensures the camera remains within valid bounds to avoid clipping issues. This function encapsulates id Software's mastery of real-time rendering, pushing the boundaries of what was possible on mid-90s hardware. The rendering techniques pioneered here influenced modern engines like Unity and Unreal Engine, which continue to build on the foundations laid by Quake."
+  - id: "v-init"
     line_start: 1024
     line_end: 1070
-    title: "How Quake Set the Stage for Visual Immersion"
+    title: "Initializing Quake's View System"
     wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section of code, `V_Init`, initializes a variety of commands and variables related to visual effects and player-centric controls in Quake. Commands like `v_cshift` and `bf` allow for dynamic color shifts and bonus flashes, enhancing the immersive visual experience. Variables such as `v_centermove` and `v_centerspeed` control the centering behavior of the player's view, while others like `cl_bob` and `cl_rollangle` govern the subtle movements of the camera to simulate walking and rolling effects. These details contribute to the realism of the game world. In 1996, the gaming landscape was transitioning from 2D sprite-based graphics to true 3D environments. Quake was at the forefront of this revolution, leveraging the capabilities of x86 processors and limited memory to deliver groundbreaking visuals. The modular design seen here reflects id Software's philosophy of creating reusable and extensible systems. The inclusion of gamma correction (`BuildGammaTable`) highlights the team's attention to detail in rendering, ensuring consistent brightness across different hardware setups—a critical consideration given the variability of monitors at the time. The techniques introduced in this section influenced not only Quake's sequels but also other game engines like Unreal Engine and Source Engine. The modular approach to visual settings became a standard practice in game development, allowing developers to easily tweak and expand functionality. Gamma correction, once a niche feature, is now a staple in rendering pipelines, ensuring visual fidelity across diverse hardware. This initialization routine exemplifies id Software's commitment to pushing the boundaries of technology while maintaining player-centric design principles."
+    content: "The `V_Init` function initializes the view system, registering variables and commands that control camera behavior, gamma correction, and crosshair settings. It sets up the game's visual parameters, ensuring a consistent experience across different configurations. This initialization routine reflects id Software's modular approach to engine design, allowing developers to tweak and extend functionality easily. The modularity of Quake's engine influenced later projects like Source Engine and id Tech 4, which adopted similar initialization patterns for flexibility and scalability."
 
 ---
 
@@ -1167,4 +1167,6 @@ void V_Init (void)
 	BuildGammaTable (1.0);	// no gamma yet
 	Cvar_RegisterVariable (&v_gamma);
 }
+
+
 ```

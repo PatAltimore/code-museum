@@ -9,90 +9,100 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "cmd-c"
 order: 14
-description: "This file implements Quake's command processing system, enabling dynamic scripting and interaction via the console, a feature that shaped the modding and customization culture in gaming."
+description: "This file implements the command processing module for Quake's scripting system, enabling dynamic execution of commands and scripts within the game engine."
 
 summary:
-  - point: "Introduces a flexible command buffer for script execution"
-    link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+  - point: "Introduced a flexible scripting system for in-game commands and aliases"
+    link: "https://en.wikipedia.org/wiki/Quake"
     link_label: "Quake"
-  - point: "Implements aliasing for custom commands"
-    link: "https://en.wikipedia.org/wiki/Console_command"
-    link_label: "Console commands"
-  - point: "Handles server-client command forwarding for multiplayer"
+  - point: "Optimized for hardware constraints of the mid-1990s, such as limited memory and x86 processors"
+    link: "https://en.wikipedia.org/wiki/Intel_80486"
+    link_label: "Intel 80486"
+  - point: "Enabled dynamic multiplayer interactions and server-side command forwarding"
     link: "https://en.wikipedia.org/wiki/QuakeWorld"
     link_label: "QuakeWorld"
-  - point: "Optimized for low memory environments with dynamic allocation"
-    link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory management"
-  - point: "Introduced techniques later adopted in game engines like Source and Unreal"
-    link: "https://en.wikipedia.org/wiki/Game_engine"
-    link_label: "Game engines"
 
 enhancements:
   - id: "cmd-wait-frame-delay"
     line_start: 41
     line_end: 55
-    title: "The Command That Waits a Frame"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    title: "The Trick That Delayed Commands by a Frame"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Quake"
     image_url: ""
     image_caption: ""
-    content: "Cmd_Wait_f introduces a simple yet powerful feature: delaying command execution until the next frame. This allows complex sequences of actions, such as binding a key to perform multiple operations with precise timing. For example, 'bind g \"impulse 5 ; +attack ; wait ; -attack ; impulse 2\"' enables a player to execute a weapon switch, attack, and revert seamlessly. In 1996, this was groundbreaking for scripting flexibility in games. The approach reflects id Software's focus on empowering players and modders to customize their experience. This technique became a staple in game engines, influencing scripting systems in Source and Unreal Engine."
+    content: "Cmd_Wait_f introduces a mechanism to delay the execution of commands until the next frame. This allowed for complex command sequences like 'bind g \"impulse 5 ; +attack ; wait ; -attack ; impulse 2\"', enabling players to create macros for nuanced gameplay actions. At the time, scripting systems in games were rudimentary, and this feature showcased id Software's focus on empowering players with customization. The idea of frame-delayed commands influenced scripting in later games, such as Half-Life and Unreal Tournament, where similar functionality became standard for user-defined macros."
   - id: "command-buffer-initialization"
     line_start: 68
     line_end: 77
-    title: "Initializing the Command Buffer"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
+    title: "How Quake Managed Its Command Buffer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command_buffer"
     image_url: ""
     image_caption: ""
-    content: "Cbuf_Init sets up the command buffer, allocating 8KB for storing commands. This buffer is the backbone of Quake's scripting system, allowing commands to be queued and executed sequentially. In the mid-1990s, memory constraints on PCs meant developers had to carefully manage resources, and this fixed-size buffer was a pragmatic solution. The modularity of this system influenced later engines, which adopted similar structures for handling user input and scripting. It also laid the groundwork for more sophisticated systems in multiplayer games, where command synchronization is critical."
-  - id: "command-buffer-overflow-check"
+    content: "Cbuf_Init initializes the command buffer, allocating a fixed-size memory block to store commands. This design reflects the hardware constraints of the era, where memory was limited, and dynamic allocation was avoided for performance reasons. The use of a preallocated buffer ensured predictable behavior and avoided fragmentation. This approach was common in game engines of the time and influenced later engines like Source and Unreal Engine, which also used fixed-size buffers for critical systems."
+  - id: "command-buffer-overflow-handling"
     line_start: 79
     line_end: 98
-    title: "Preventing Command Buffer Overflow"
+    title: "Preventing Buffer Overflow in Quake Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Buffer_overflow"
     image_url: ""
     image_caption: ""
-    content: "Cbuf_AddText ensures that commands added to the buffer do not exceed its maximum size. Overflow prevention was crucial in an era when buffer overflows were a common source of bugs and security vulnerabilities. The implementation reflects id Software's attention to robustness, even in performance-critical code. This technique influenced best practices in memory management and error handling, becoming standard in modern game development. The explicit check and error message ('Cbuf_AddText: overflow') highlight the team's commitment to debugging and user feedback."
-  - id: "dynamic-command-insertion"
+    content: "Cbuf_AddText appends text to the command buffer, but includes a critical overflow check to ensure the buffer size isn't exceeded. If the buffer is full, it prints an error message and discards the input. This defensive programming technique was essential in an era when buffer overflows were a common source of bugs and security vulnerabilities. By handling overflow explicitly, id Software ensured the stability of the game engine, setting a precedent for robust input handling in later game development."
+  - id: "command-buffer-reordering"
     line_start: 101
     line_end: 135
-    title: "Dynamic Command Insertion in Action"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    title: "Reordering Commands in Quake's Buffer"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command_buffer"
     image_url: ""
     image_caption: ""
-    content: "Cbuf_InsertText allows commands to be inserted immediately after the current command, enabling dynamic modification of the command buffer. This feature supports advanced scripting scenarios, such as executing commands from external files or dynamically altering gameplay behavior. The 'FIXME' comment suggests the developers were aware of potential inefficiencies in the implementation, highlighting the iterative nature of software development. This technique inspired similar systems in other engines, where dynamic command execution became essential for modding and real-time game customization."
+    content: "Cbuf_InsertText allows commands to be inserted immediately after the current command, enabling dynamic reordering of the command buffer. This feature was particularly useful for executing scripts that modified gameplay behavior on the fly. The implementation involves copying the existing buffer, inserting the new command, and appending the old data back. While this approach was computationally expensive, it provided the flexibility needed for advanced scripting. Later engines optimized this process by reducing memory copying, but the concept of command reordering remains foundational in scripting systems."
   - id: "command-execution-loop"
     line_start: 137
     line_end: 192
-    title: "Executing Commands in Real-Time"
-    wikipedia_url: "https://en.wikipedia.org/wiki/QuakeWorld"
+    title: "The Loop That Executes Quake Commands"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command_pattern"
     image_url: ""
     image_caption: ""
-    content: "Cbuf_Execute processes the command buffer, executing commands line by line. It handles special cases like quoted strings and line breaks, ensuring robust parsing. The ability to execute commands dynamically was pivotal for Quake's multiplayer capabilities, as players could issue commands to the server in real-time. This system influenced the development of scripting in multiplayer games, including QuakeWorld and later engines like Source. The modular design allowed for extensibility, enabling developers to add new commands and features without overhauling the system."
-  - id: "aliasing-custom-commands"
+    content: "Cbuf_Execute processes commands in the buffer, breaking them into individual lines and executing them sequentially. It handles quoted strings and supports multi-command lines separated by semicolons. The loop ensures that commands are executed in the correct order, even if new commands are inserted during execution. This design was influenced by command processing in operating systems and scripting languages, and it laid the groundwork for more sophisticated scripting systems in later games, such as Lua integration in World of Warcraft."
+  - id: "command-line-parameter-parsing"
+    line_start: 194
+    line_end: 268
+    title: "Parsing Command Line Parameters for Scripts"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
+    image_url: ""
+    image_caption: ""
+    content: "Cmd_StuffCmds_f parses command-line parameters provided when launching Quake and converts them into script commands. This feature allowed players to customize their gameplay experience by specifying scripts to run at startup. The implementation builds a combined string of parameters, identifies commands prefixed with '+', and inserts them into the command buffer. This approach was innovative for its time, enabling dynamic configuration without modifying game files. It influenced the design of command-line options in later games and tools, such as Steam's launch options."
+  - id: "script-file-execution"
+    line_start: 271
+    line_end: 300
+    title: "Executing Script Files in Quake"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Scripting_language"
+    image_url: ""
+    image_caption: ""
+    content: "Cmd_Exec_f loads and executes script files specified by the player. It reads the file into memory, inserts its contents into the command buffer, and frees the memory after execution. This feature allowed players to create and share custom scripts, enhancing the game's replayability and fostering a community of modders. The ability to execute external scripts became a standard feature in game engines, influencing the development of scripting systems in games like Skyrim and Minecraft."
+  - id: "alias-command-creation"
     line_start: 336
     line_end: 420
-    title: "Aliasing: Custom Commands Made Easy"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Console_command"
+    title: "Creating Custom Commands with Aliases"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Alias_(command)"
     image_url: ""
     image_caption: ""
-    content: "Cmd_Alias_f introduces a mechanism for creating custom commands by aliasing existing ones. This feature empowered players to define shortcuts and macros, enhancing gameplay and accessibility. For example, a player could alias 'rocketjump' to a sequence of commands that perform a rocket jump with a single keypress. The implementation reflects id Software's commitment to player agency and modding. Aliasing became a standard feature in game engines, influencing titles like Half-Life and Counter-Strike, where console commands and customization are integral to gameplay."
-  - id: "command-completion"
+    content: "Cmd_Alias_f allows players to define custom commands that execute a sequence of other commands. This feature was inspired by alias functionality in Unix shells, providing a familiar scripting tool for advanced users. The implementation involves storing aliases in a linked list and resolving them during command execution. Aliases enabled players to simplify complex actions, such as weapon switching or movement macros, and became a staple of game scripting systems. Similar functionality appeared in later games like Counter-Strike and Team Fortress 2."
+  - id: "command-tokenization"
+    line_start: 454
+    line_end: 504
+    title: "Breaking Down Commands into Tokens"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Lexical_analysis"
+    image_url: ""
+    image_caption: ""
+    content: "Cmd_TokenizeString parses a string into individual tokens, separating arguments for command execution. This process involves skipping whitespace, handling newlines, and storing tokens in a fixed-size array. Tokenization is a fundamental step in interpreting commands, and its implementation in Quake reflects the constraints of the era, such as limited memory and processing power. The technique influenced the design of scripting systems in later engines, where tokenization became more sophisticated to support complex syntax."
+  - id: "command-autocompletion"
     line_start: 563
     line_end: 596
-    title: "Autocomplete for Console Commands"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Autocomplete"
+    title: "Autocompleting Commands in Quake"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_completion"
     image_url: ""
     image_caption: ""
-    content: "Cmd_CompleteCommand implements autocomplete functionality for console commands, matching partial input to existing commands or aliases. This feature improves usability, allowing players to quickly access commands without memorizing their exact names. In 1996, this was a novel addition to gaming consoles, demonstrating id Software's focus on user experience. Autocomplete became a standard feature in game engines, influencing developer tools and IDEs. The design also inspired similar systems in multiplayer games, where quick access to commands is crucial during gameplay."
-  - id: "command-initialization"
-    line_start: 729
-    line_end: 747
-    title: "Initializing Quake's Command System"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "Cmd_Init registers core commands like 'exec', 'alias', and 'wait', setting up the foundation for Quake's scripting system. This initialization reflects the modular design philosophy of id Software, allowing developers to extend functionality easily. By registering commands dynamically, the system supports customization and modding, which became a hallmark of Quake's legacy. This approach influenced the design of scripting systems in later engines, where modularity and extensibility are critical for supporting diverse gameplay scenarios and user-generated content."
+    content: "Cmd_CompleteCommand provides autocompletion for commands and aliases, helping players find valid options quickly. The implementation checks for exact and partial matches against registered commands and aliases. Autocompletion was a user-friendly feature that reduced frustration and encouraged exploration of the game's scripting capabilities. It became a standard feature in game consoles and development tools, influencing the design of IDEs and command-line interfaces."
 
 ---
 
@@ -844,4 +854,5 @@ void Cmd_Init (void)
 	Cmd_AddCommand ("cmd", Cmd_ForwardToServer_f);
 #endif
 }
+
 ```

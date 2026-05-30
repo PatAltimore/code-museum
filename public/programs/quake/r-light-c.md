@@ -9,58 +9,66 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "r-light-c"
 order: 34
-description: "This file contains the lighting routines for Quake, showcasing innovative techniques for dynamic and static light rendering in a 3D environment."
+description: "This file implements dynamic and static lighting calculations for Quake's groundbreaking 3D engine, showcasing optimization techniques for hardware constraints of the mid-1990s."
 
 summary:
-  - point: "Introduces dynamic lighting calculations for real-time 3D environments"
+  - point: "Dynamic lighting updates for real-time effects"
     link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
     link_label: "Quake"
   - point: "Recursive algorithms for light sampling in BSP trees"
     link: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     link_label: "Binary Space Partitioning"
-  - point: "Optimized light animations using precomputed styles and maps"
+  - point: "Light animations based on predefined styles"
     link: "https://en.wikipedia.org/wiki/Lightmap"
     link_label: "Lightmap"
-  - point: "Pushes hardware limits of 1996-era x86 processors"
+  - point: "Optimization for limited memory and CPU power"
     link: "https://en.wikipedia.org/wiki/Intel_80486"
     link_label: "Intel 80486"
-  - point: "Code influenced modern game engines like Unreal and Source"
+  - point: "Influence on modern game engines and lighting techniques"
     link: "https://en.wikipedia.org/wiki/Game_engine"
-    link_label: "Game engine"
+    link_label: "Game Engine"
 
 enhancements:
-  - id: "dynamic-light-counter-and-animation"
+  - id: "light-animation-styles"
     line_start: 28
     line_end: 53
-    title: "The Frame Counter and the Character-Map Light Show"
+    title: "Animating Light with 'a' to 'z' Maps"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
     image_url: ""
     image_caption: ""
-    content: "This section opens with a single global — `r_dlightframecount` — that acts as a cheap dirty-flag system for dynamic lights. Each frame, the renderer increments this counter; any BSP leaf or surface tagged with a value less than the current count is known to be stale and needs its dynamic light recalculated. The check costs one integer comparison, avoiding redundant work across an entire BSP tree without a visited-bit array or hash set. Immediately following is `R_AnimateLight`, one of Quake's most charming tricks: light animation is encoded as plain ASCII strings of letters, where 'a' is fully dark, 'm' is normal brightness, and 'z' is double-bright. A flickering torch might be represented as \"mmamammmmammamamaaamammma\" — each character is looked up with a scaled index into `cl.time`, and the result is stuffed into the `d_lightstylevalue` array that the surface rasterizer samples on every lit polygon. This means an artist could prototype a flicker pattern by typing a string of letters in a text editor, with no code changes required. In 1996, when sound and lighting systems were often hard-coded state machines, the ASCII-string approach was refreshingly data-driven. Half-Life inherited the technique verbatim, and the same `'a'`–`'z'` light style encoding still appears in map compilers and engines built on the Quake lineage today."
-  - id: "dynamic-light-marking-in-bsp-trees"
+    content: "The `R_AnimateLight` function processes light animations based on predefined styles, where each style is represented as a sequence of characters ('a' for no light, 'm' for normal light, 'z' for double brightness). This approach allows designers to create dynamic lighting effects by mapping these sequences to time-based indices. At the time, hardware limitations meant that real-time lighting calculations were expensive, so precomputed light styles provided a compromise between visual fidelity and performance. The technique was influenced by earlier games like Doom, which used similar precomputed lighting tricks. This method became a stepping stone for more advanced dynamic lighting systems in later engines, such as Unreal Engine and Unity, which now support fully dynamic light sources and physically-based rendering."
+  - id: "dynamic-light-marking"
     line_start: 56
     line_end: 107
-    title: "Dynamic Light Marking in BSP Trees"
+    title: "Marking Surfaces for Dynamic Lights"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_space_partitioning"
     image_url: ""
     image_caption: ""
-    content: "The `R_MarkLights` function is a recursive routine that propagates dynamic light information through a Binary Space Partitioning (BSP) tree. BSP trees were a cornerstone of Quake's rendering engine, allowing efficient traversal and visibility determination in complex 3D environments. This function calculates the distance between a light source and the BSP node's splitting plane to decide whether to traverse the front or back child nodes. Surfaces within the node are then marked with dynamic light bits, enabling real-time lighting effects. In the mid-90s, BSP trees were considered state-of-the-art for 3D rendering, and Quake's use of them for dynamic lighting set a precedent for future engines. The recursive approach influenced later games like Half-Life and Counter-Strike, which relied on BSP-based techniques for both rendering and gameplay mechanics."
-  - id: "recursive-light-point-sampling"
-    line_start: 133
-    line_end: 236
-    title: "Recursive Light Point Sampling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Lightmap"
+    content: "The `R_MarkLights` function traverses the BSP tree to identify surfaces affected by a dynamic light source. By calculating the distance of the light from the splitting plane and marking surfaces within its radius, the function ensures that only relevant surfaces are updated for lighting effects. This recursive traversal minimizes computational overhead, which was critical for achieving real-time performance on mid-1990s hardware like the Intel 486 and Pentium processors. The technique reflects id Software's mastery of BSP trees, which were first popularized in Doom. This efficient handling of dynamic lights influenced later engines, including Source and CryEngine, which expanded on these principles to handle more complex lighting scenarios."
+  - id: "dynamic-light-propagation"
+    line_start: 110
+    line_end: 130
+    title: "Pushing Dynamic Lights Through the World"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Dynamic_lighting"
     image_url: ""
     image_caption: ""
-    content: "The `RecursiveLightPoint` function samples light intensity at a given point by traversing the BSP tree recursively. It calculates the midpoint between the start and end points, checks for intersections with surfaces, and evaluates lightmaps to determine the final light value. This algorithm is a testament to Quake's innovative use of BSP trees for spatial queries. Lightmaps, precomputed arrays of brightness values, were a critical optimization for achieving realistic lighting effects on limited hardware. By combining recursive traversal with lightmap sampling, id Software created a system that balanced accuracy and performance. This technique influenced modern engines, which continue to use variations of lightmaps and spatial partitioning for efficient rendering. The recursive approach also inspired algorithms in ray tracing and global illumination, fields that have since evolved to leverage GPU acceleration."
+    content: "The `R_PushDlights` function iterates over all dynamic lights in the scene, propagating their influence through the BSP tree using the `R_MarkLights` function. By associating each light with a unique bitmask, the system tracks which surfaces are affected by multiple lights, enabling additive lighting effects. This approach was a clever workaround for hardware constraints, as it avoided the need for per-pixel lighting calculations. Dynamic lighting was a standout feature of Quake, setting it apart from earlier games that relied solely on static lightmaps. The concept of dynamic light propagation laid the groundwork for modern techniques like deferred shading, which allows for hundreds of dynamic lights in scenes without significant performance penalties."
+  - id: "recursive-light-sampling"
+    line_start: 133
+    line_end: 236
+    title: "Recursive Sampling for Light Points"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Recursive_algorithm"
+    image_url: ""
+    image_caption: ""
+    content: "The `RecursiveLightPoint` function calculates the light intensity at a given point by recursively traversing the BSP tree. It determines the midpoint between the start and end vectors, checks for intersections with surfaces, and computes light contributions from the lightmap. This recursive approach ensures accurate sampling of light data while optimizing for the hierarchical structure of the BSP tree. In the mid-1990s, this method was revolutionary for achieving realistic lighting in real-time 3D environments. The technique influenced later games like Half-Life and Counter-Strike, which used similar recursive algorithms for light sampling. Today, ray tracing has largely replaced such techniques, but the principles of recursive traversal remain foundational in computer graphics."
   - id: "ambient-light-adjustment"
     line_start: 238
     line_end: 259
-    title: "Ambient Light Adjustment"
+    title: "Adjusting Light Points for Ambient Levels"
     wikipedia_url: "https://en.wikipedia.org/wiki/Ambient_light"
     image_url: ""
     image_caption: ""
-    content: "The `R_LightPoint` function calculates the light intensity at a specific point in the game world, incorporating ambient light adjustments to ensure minimum brightness levels. If no light is detected at the sampled point, the function defaults to the ambient light value defined in the rendering settings. This ensures that players can always see their surroundings, even in areas with no direct lighting. Ambient light was a practical solution for the hardware limitations of the 1990s, as fully dynamic lighting was computationally expensive. By blending dynamic and ambient light sources, Quake achieved a visually consistent experience without overburdening the CPU. This approach influenced later games, which adopted ambient lighting as a standard feature to enhance visibility and realism in 3D environments."
+    content: "The `R_LightPoint` function calculates the light intensity at a specific point in the world, adjusting it to ensure a minimum ambient light level. By extending the end vector downward and sampling light data recursively, the function accounts for both direct and indirect lighting contributions. Ambient light adjustments prevent areas from appearing completely dark, enhancing visual clarity and gameplay experience. This technique was crucial for Quake's immersive environments, as it balanced realism with playability. The concept of ambient light persists in modern engines, where it is often implemented as part of global illumination systems. Quake's approach influenced games like Unreal Tournament and Call of Duty, which refined ambient lighting to create more atmospheric scenes."
 
 ---
 
@@ -324,4 +332,5 @@ int R_LightPoint (vec3_t p)
 
 	return r;
 }
+
 ```

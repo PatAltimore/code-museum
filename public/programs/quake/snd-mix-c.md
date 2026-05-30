@@ -9,58 +9,82 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "snd-mix-c"
 order: 17
-description: "This file handles sound mixing for Quake, showcasing techniques for real-time audio processing on constrained hardware."
+description: "This file handles sound mixing for Quake, showcasing optimization techniques for real-time audio on constrained hardware."
 
 summary:
-  - point: "Efficient stereo sound mixing using linear sample blasts"
-    link: "https://en.wikipedia.org/wiki/Sound_card"
-    link_label: "Sound Card"
-  - point: "Dynamic handling of audio buffers for real-time playback"
-    link: "https://en.wikipedia.org/wiki/Buffer_(computer_science)"
-    link_label: "Buffer"
-  - point: "Optimization for both 8-bit and 16-bit audio formats"
-    link: "https://en.wikipedia.org/wiki/Audio_bit_depth"
-    link_label: "Audio Bit Depth"
-  - point: "Scaletable lookup for fast volume adjustments"
+  - point: "Introduces scalable sound mixing for stereo audio"
+    link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
+    link_label: "Quake"
+  - point: "Uses lookup tables to optimize audio scaling"
     link: "https://en.wikipedia.org/wiki/Lookup_table"
     link_label: "Lookup Table"
-  - point: "Support for looping sound effects in channels"
-    link: "https://en.wikipedia.org/wiki/Audio_signal_processing"
-    link_label: "Audio Signal Processing"
+  - point: "Handles multiple audio formats (8-bit and 16-bit)"
+    link: "https://en.wikipedia.org/wiki/Digital_audio"
+    link_label: "Digital Audio"
+  - point: "Employs platform-specific DirectSound integration for Windows"
+    link: "https://en.wikipedia.org/wiki/DirectSound"
+    link_label: "DirectSound"
+  - point: "Manages sound channels dynamically for real-time mixing"
+    link: "https://en.wikipedia.org/wiki/Sound_channel"
+    link_label: "Sound Channel"
 
 enhancements:
-  - id: "paint-buffer-and-stereo-write"
+  - id: "linear-blast-stereo16"
     line_start: 38
     line_end: 62
-    title: "512 Samples, One Tight Loop: Quake's Stereo Mixer Core"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Stereo"
+    title: "The Algorithm That Prevents Audio Clipping"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Clipping_(audio)"
     image_url: ""
     image_caption: ""
-    content: "This section defines the paint buffer — a 512-sample intermediate workspace — and implements `Snd_WriteLinearBlastStereo16`, the inner loop that flushes it to the hardware DMA buffer. The 512-sample size was a deliberate trade-off: large enough that the loop isn't called too often (reducing per-call overhead), small enough to fit comfortably in the L1 cache of a Pentium where the mixing hot path ran. The write function itself is a tight loop with no function calls: for each stereo frame it reads the left and right values from the paint buffer (stored as 32-bit integers to avoid overflow during accumulation), clamps them to the 16-bit signed range using explicit comparisons rather than a branch-predicting conditional, and writes them to the output pointer as 16-bit samples. The clamping is important — without it, even a single clipped transient would wrap around and produce a sharp crack. By using bitwise shifts for the volume scaling instead of integer division, and by keeping the loop body free of memory allocations or system calls, Carmack ensured this routine never became the audio bottleneck on Sound Blaster-class hardware. The same paint-buffer-plus-DMA-flush architecture appeared in every id Software game through Quake III and was adopted wholesale by the GoldSrc engine behind Half-Life."
-  - id: "stereo-transfer-buffer-lock"
+    content: "This function, `Snd_WriteLinearBlastStereo16`, processes stereo audio samples to prevent clipping, a common issue in digital sound mixing where values exceed the maximum range. The algorithm scales audio samples by a volume factor and clamps them within the permissible range of -32768 to 32767 (16-bit signed integers). At the time, real-time audio processing had to be efficient due to limited CPU power, especially on x86 processors. John Carmack and Michael Abrash, known for their expertise in optimization, likely designed this routine to ensure smooth audio playback without introducing distortion. The technique of clamping values to avoid clipping became a standard practice in audio programming and is still widely used in modern game engines and audio libraries."
+  - id: "transfer-stereo16-buffer"
     line_start: 63
     line_end: 137
-    title: "Locking Buffers for Stereo Sound Transfer"
-    wikipedia_url: "https://en.wikipedia.org/wiki/DirectSound"
+    title: "How Quake Mixed Stereo Audio in Real Time"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Stereo_sound"
     image_url: ""
     image_caption: ""
-    content: "The `S_TransferStereo16` function handles the transfer of stereo sound data to the DMA buffer, ensuring smooth playback. On Windows, it uses DirectSound's `Lock` method to access the sound buffer, retrying if the buffer is lost—a common issue with DirectSound in the 90s. This robust error handling reflects the challenges of programming for varied hardware configurations. The function also manages recirculating buffers, a technique to wrap audio data seamlessly within limited memory. This approach allowed Quake to deliver uninterrupted sound even on systems with constrained resources. The use of DirectSound here influenced how later games interfaced with audio APIs, paving the way for modern frameworks like OpenAL and FMOD."
-  - id: "paint-buffer-transfer"
+    content: "The `S_TransferStereo16` function transfers audio data from the paint buffer to the output buffer for playback. It integrates platform-specific features like DirectSound on Windows, ensuring compatibility with hardware sound buffers. This routine handles recirculating audio buffers, a technique required to manage continuous sound playback on constrained memory systems. By locking and unlocking sound buffers, it ensures synchronization between the game engine and the audio hardware. This approach reflects the challenges of real-time sound mixing in the mid-1990s, where developers had to balance performance with hardware limitations. The method influenced later game engines, including id Tech derivatives and other real-time audio systems."
+  - id: "transfer-paint-buffer"
     line_start: 139
     line_end: 247
-    title: "Painting the Buffer: Mixing Channels Dynamically"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Audio_signal_processing"
+    title: "Dynamic Sound Buffer Management for Multiple Formats"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Sound_card"
     image_url: ""
     image_caption: ""
-    content: "The `S_TransferPaintBuffer` function dynamically mixes audio channels into the paint buffer, accommodating different sample rates and bit depths. It supports both 8-bit and 16-bit audio, reflecting the diverse hardware landscape of the 90s. The function adjusts volume and clamps values to prevent distortion, ensuring high-quality sound output. By supporting multiple audio formats, Quake could run on a wide range of systems, from high-end gaming PCs to more modest setups. This adaptability contributed to its widespread popularity and set a precedent for cross-platform audio handling in games. Techniques from this function influenced later engines, including Unity and Unreal, which prioritize compatibility and performance."
-  - id: "scaletable-and-channel-mixing"
+    content: "The `S_TransferPaintBuffer` function dynamically handles sound data transfer for different audio formats, including 8-bit and 16-bit samples. It adjusts the output based on the number of channels and sample bits, ensuring compatibility with various sound cards. This flexibility was crucial in the 1990s, as PC hardware varied widely in capabilities. The function also integrates error handling for buffer locking, a necessary safeguard against hardware quirks. By supporting multiple formats, Quake set a precedent for adaptable audio systems in games, influencing engines like Unreal Engine and Unity, which continue to support diverse audio configurations."
+  - id: "paint-channels"
+    line_start: 261
+    line_end: 332
+    title: "Mixing Multiple Sound Channels in Real Time"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Audio_multichannel"
+    image_url: ""
+    image_caption: ""
+    content: "The `S_PaintChannels` function mixes audio from multiple sound channels into a single paint buffer for playback. It iterates through active channels, applying volume scaling and looping logic to ensure seamless sound effects. This routine supports dynamic channel management, allowing sounds to start, stop, or loop based on game events. In 1996, this level of audio sophistication was groundbreaking, enabling immersive soundscapes in Quake's 3D environments. The technique of real-time channel mixing became a cornerstone of game audio design, influencing subsequent engines like Source and CryEngine."
+  - id: "init-scaletable"
     line_start: 334
-    line_end: 397
-    title: "The Scaletable and the Per-Channel Mixers"
+    line_end: 341
+    title: "The Lookup Table That Speeds Up Audio Scaling"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "This section contains the three functions that form the beating heart of Quake's per-channel audio pipeline. `SND_InitScaletable` is called once at startup: it fills a 256×32 integer array indexed by [sample_byte][volume_step], so that at mix time a volume-adjusted sample is a single array lookup rather than a multiply. Trading 32 KB of memory for the elimination of 32-bit multiplies in the innermost loop was an obvious win on a Pentium where integer multiplies were still relatively expensive. `SND_PaintChannelFrom8` and `SND_PaintChannelFrom16` are the two actual mixers, differing only in how they read the source sample. The 8-bit variant reads a byte, sign-extends it, and hits the scaletable; the 16-bit variant reads a short and does an integer multiply by the volume directly — 16-bit CD-quality audio was rare enough in 1996 that the multiply penalty was acceptable on the code path almost nobody took. Both functions accumulate into the same 32-bit paint buffer, so the downstream stereo writer never needs to know which format the source was. The pattern — precomputed table for the common case, direct arithmetic for the rare case — is a textbook 90s game-audio optimization and was adopted unchanged in GoldSrc and early versions of the Source engine."
+    content: "The `SND_InitScaletable` function initializes a lookup table for fast audio scaling. Each entry precomputes the scaled value for a given volume and sample, reducing the computational overhead during playback. This optimization was critical for achieving real-time performance on 1990s hardware, where CPU cycles were precious. Lookup tables like this were a hallmark of Michael Abrash's optimization philosophy, emphasizing precomputation to save runtime costs. The technique remains relevant today, appearing in areas like graphics rendering and signal processing."
+  - id: "paint-channel-from8"
+    line_start: 344
+    line_end: 370
+    title: "Optimizing 8-Bit Sound Mixing with Precomputed Scaling"
+    wikipedia_url: "https://en.wikipedia.org/wiki/8-bit_audio"
+    image_url: ""
+    image_caption: ""
+    content: "The `SND_PaintChannelFrom8` function mixes 8-bit audio samples into the paint buffer using precomputed scaling values from the lookup table. By leveraging the `snd_scaletable`, it minimizes the computational cost of volume adjustments during playback. This approach reflects the constraints of 8-bit audio, which was still common in PC gaming during the mid-1990s. The function's efficiency allowed Quake to deliver high-quality sound effects without compromising performance, influencing audio handling in later engines and games."
+  - id: "paint-channel-from16"
+    line_start: 375
+    line_end: 397
+    title: "Precision Mixing for 16-Bit Audio Channels"
+    wikipedia_url: "https://en.wikipedia.org/wiki/16-bit_audio"
+    image_url: ""
+    image_caption: ""
+    content: "The `SND_PaintChannelFrom16` function processes 16-bit audio samples, applying precise volume scaling to mix them into the paint buffer. This routine handles higher-resolution audio, which was becoming more common in gaming by the mid-1990s. Its design ensures that sound effects retain their fidelity while adapting to dynamic volume changes. The function highlights id Software's commitment to leveraging emerging audio standards, paving the way for modern engines that prioritize sound quality alongside graphical fidelity."
 
 ---
 
@@ -462,4 +486,5 @@ void SND_PaintChannelFrom16 (channel_t *ch, sfxcache_t *sc, int count)
 
 	ch->pos += count;
 }
+
 ```

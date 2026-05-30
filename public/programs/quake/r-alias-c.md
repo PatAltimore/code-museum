@@ -9,66 +9,66 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "r-alias-c"
 order: 9
-description: "This file contains routines for rendering alias models in Quake, showcasing groundbreaking 3D graphics techniques optimized for 1990s hardware."
+description: "This file is a cornerstone of Quake's rendering pipeline, showcasing groundbreaking techniques for 3D model transformation, lighting, and projection in real-time environments."
 
 summary:
-  - point: "Introduces alias model rendering for true 3D environments"
-    link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    link_label: "Quake"
-  - point: "Optimized for x86 processors and constrained memory"
-    link: "https://en.wikipedia.org/wiki/Intel_80386"
-    link_label: "Intel 80386"
-  - point: "Utilizes lighting and transformation matrices for realism"
-    link: "https://en.wikipedia.org/wiki/3D_computer_graphics"
-    link_label: "3D Graphics"
-  - point: "Source code influenced modern game engines"
-    link: "https://en.wikipedia.org/wiki/Id_Tech"
-    link_label: "id Tech"
-  - point: "Released under GPL, fostering open-source innovation"
-    link: "https://en.wikipedia.org/wiki/GNU_General_Public_License"
-    link_label: "GPL"
+  - point: "Introduces efficient bounding box checks for 3D models"
+    link: "https://en.wikipedia.org/wiki/Bounding_volume"
+    link_label: "Bounding Volume"
+  - point: "Optimizes vertex transformations using matrix math"
+    link: "https://en.wikipedia.org/wiki/Transformation_matrix"
+    link_label: "Transformation Matrix"
+  - point: "Implements dynamic lighting calculations for 3D models"
+    link: "https://en.wikipedia.org/wiki/Lighting_(computer_graphics)"
+    link_label: "Lighting in Computer Graphics"
+  - point: "Handles skinning and animation frames for alias models"
+    link: "https://en.wikipedia.org/wiki/Skeletal_animation"
+    link_label: "Skeletal Animation"
+  - point: "Demonstrates early use of cache alignment for performance"
+    link: "https://en.wikipedia.org/wiki/CPU_cache"
+    link_label: "CPU Cache"
 
 enhancements:
-  - id: "foundation-alias-models"
-    line_start: 79
+  - id: "bounding-box-checks-for-trivial-rejects"
+    line_start: 84
     line_end: 245
-    title: "Alias Model Foundations: Constants, Structures, and Frustum Culling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/3D_computer_graphics"
+    title: "Bounding Box Checks for Trivial Rejects"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Bounding_volume"
     image_url: ""
     image_caption: ""
-    content: "This large section establishes the alias model subsystem from its global constants to the first major optimization gate. LIGHT_MIN sets the floor for per-vertex lighting so the inner draw loop never needs to clamp against zero, and the affine triangle descriptor structures lay out the data passed between the setup and rasterization stages. R_AliasCheckBBox then tests whether the model's axis-aligned bounding box falls entirely outside the view frustum, discarding it before any further work is done. Frustum culling was critical on mid-1990s hardware: skipping invisible models freed CPU cycles that were desperately needed for visible ones. id Software's combination of tightly defined data structures and an early rejection test became a template for alias model pipelines in subsequent engines, including the Quake II and Half-Life renderers."
-  - id: "vertex-normals-lighting"
+    content: "The `R_AliasCheckBBox` function determines whether a 3D model's bounding box is visible within the player's view frustum. By transforming the bounding box vertices into world space and checking against clipping planes, the function can quickly reject models that are entirely outside the view. This optimization prevents unnecessary rendering calculations for objects that won't appear on screen. In 1996, hardware constraints like limited CPU power and memory made such techniques essential for real-time performance. John Carmack and Michael Abrash, known for their mastery of low-level optimization, implemented this approach to ensure Quake could handle complex scenes efficiently. Bounding volume checks became a standard practice in graphics engines, influencing later games like Unreal and Unity's rendering pipelines."
+  - id: "transforming-vectors-with-matrix-math"
     line_start: 248
     line_end: 258
-    title: "Precomputed Vertex Normals and Model-Space Vector Transforms"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Vertex_normal"
-    image_url: ""
-    image_caption: ""
-    content: "This short section includes the precomputed normal table from anorms.h — 162 unit vectors distributed roughly uniformly over the sphere — and implements R_AliasTransformVector, which multiplies a model-space vector by the current alias transform matrix to produce a view-space result. The normal table lets lighting be computed as a simple dot product with a table lookup rather than a cosine calculation, a significant saving on processors without fast floating-point. R_AliasTransformVector is called repeatedly during transform setup and gradient calculation, so its tight three-multiply-and-add form was critical to frame rate. Together they represent id Software's standard approach to avoiding runtime trigonometry and matrix inversion on 1996 hardware, a style that carried forward into Quake II and beyond."
-  - id: "setup-transform-matrix"
-    line_start: 332
-    line_end: 457
-    title: "Setting Up Transformation Matrices"
+    title: "Transforming Vectors with Matrix Math"
     wikipedia_url: "https://en.wikipedia.org/wiki/Transformation_matrix"
     image_url: ""
     image_caption: ""
-    content: "The 'R_AliasSetUpTransform' function initializes transformation matrices for alias models, combining scaling, rotation, and translation. This prepares models for rendering in world space. In 1996, matrix operations were a computational bottleneck, but essential for realistic 3D graphics. Carmack's implementation optimizes these calculations, ensuring Quake's models could be rendered efficiently on consumer hardware. This method influenced later engines, which adopted similar matrix setups for handling transformations in 3D scenes."
-  - id: "lighting-setup"
+    content: "The `R_AliasTransformVector` function applies a transformation matrix to a vector, converting it from model space to world space. This operation is fundamental in 3D graphics, enabling objects to be positioned and oriented within a scene. In Quake, this matrix math was optimized for the x86 architecture, leveraging the CPU's floating-point capabilities. The use of matrix transformations in real-time rendering was still relatively novel in 1996, as many earlier games relied on simpler 2D projections or precomputed 3D transformations. This technique laid the groundwork for modern graphics engines, where matrix operations are ubiquitous in shaders and physics calculations."
+  - id: "lighting-calculations-for-dynamic-scenes"
     line_start: 627
     line_end: 658
-    title: "Lighting Setup: Guaranteeing Minimum Brightness"
+    title: "Lighting Calculations for Dynamic Scenes"
     wikipedia_url: "https://en.wikipedia.org/wiki/Lighting_(computer_graphics)"
     image_url: ""
     image_caption: ""
-    content: "The 'R_AliasSetupLighting' function ensures that no vertex is lit below a minimum brightness level, avoiding overly dark scenes. It also rotates the lighting vector into the model's frame of reference, enabling directional lighting effects. In the mid-1990s, lighting calculations were constrained by hardware limitations, requiring clever optimizations to achieve realism. This function reflects id Software's commitment to visual fidelity, ensuring Quake's environments felt immersive despite technical constraints. The principles here influenced modern lighting systems, which build on these foundations with advanced shaders and dynamic lighting."
-  - id: "draw-model-alias"
-    line_start: 713
-    line_end: 767
-    title: "Drawing Alias Models: The Final Step"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)"
+    content: "The `R_AliasSetupLighting` function calculates ambient and directional lighting for alias models, ensuring they appear correctly lit in dynamic scenes. By rotating the lighting vector into the model's frame of reference, the function adapts the lighting to the model's orientation. This approach was crucial for creating realistic environments in Quake, where players moved through dark corridors and brightly lit areas. Dynamic lighting was a significant advancement over static lightmaps, offering greater flexibility and immersion. The technique influenced later engines like Source and CryEngine, which expanded on dynamic lighting to include shadows and global illumination."
+  - id: "handling-animation-frames-for-alias-models"
+    line_start: 660
+    line_end: 710
+    title: "Handling Animation Frames for Alias Models"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Skeletal_animation"
     image_url: ""
     image_caption: ""
-    content: "The 'R_AliasDrawModel' function orchestrates the rendering of alias models, combining skin setup, lighting, transformation, and frame selection. This is the culmination of the alias model pipeline, turning raw data into visible 3D objects. In 1996, rendering pipelines were still evolving, and Quake's implementation was a milestone in real-time graphics. By modularizing the rendering process, id Software created a system that was both efficient and adaptable. This approach influenced the design of modern rendering engines, which continue to modularize graphics pipelines for flexibility and performance."
+    content: "The `R_AliasSetupFrame` function selects the appropriate animation frame for alias models, accounting for interpolation between frames in group animations. This ensures smooth transitions and realistic motion for characters and objects. In 1996, animation systems were often limited by hardware constraints, requiring clever techniques to achieve fluid movement. Quake's alias model system, developed by John Cash, used precomputed vertex positions and normals to simplify rendering. This approach influenced later animation systems, including skeletal animation frameworks in games like Half-Life and tools like Blender."
+  - id: "cache-alignment-for-performance-boosts"
+    line_start: 713
+    line_end: 767
+    title: "Cache Alignment for Performance Boosts"
+    wikipedia_url: "https://en.wikipedia.org/wiki/CPU_cache"
+    image_url: ""
+    image_caption: ""
+    content: "The `R_AliasDrawModel` function aligns vertex data to the CPU cache for optimal performance during rendering. By ensuring data structures are cache-aligned, the function minimizes memory access latency and maximizes throughput. This technique was particularly important in 1996, when CPUs like the Intel Pentium relied heavily on efficient cache usage to achieve high performance. Cache alignment is now a standard practice in performance-critical applications, influencing modern game engines and high-performance computing systems."
 
 ---
 
@@ -840,4 +840,5 @@ void R_AliasDrawModel (alight_t *plighting)
 	else
 		R_AliasPreparePoints ();
 }
+
 ```

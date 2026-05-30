@@ -9,52 +9,52 @@ year: 1996
 author: "John Carmack, Michael Abrash, John Cash"
 slug: "wad-c"
 order: 39
-description: "This file handles WAD file management in Quake, enabling efficient storage and retrieval of game assets."
+description: "This file handles the loading, management, and retrieval of data from WAD files, a format used for storing game assets in Quake."
 
 summary:
-  - point: "Introduces WAD2 format for asset storage"
+  - point: "Implements WAD file parsing for efficient asset management"
     link: "https://en.wikipedia.org/wiki/WAD_(file_format)"
-    link_label: "WAD file format"
-  - point: "Optimizes asset lookup with name cleaning and padding"
-    link: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    link_label: "Quake"
-  - point: "Implements byte swapping for cross-platform compatibility"
+    link_label: "WAD File Format"
+  - point: "Introduces byte-swapping for cross-platform compatibility"
     link: "https://en.wikipedia.org/wiki/Endianness"
     link_label: "Endianness"
+  - point: "Optimizes asset lookup using cleaned and padded names"
+    link: "https://en.wikipedia.org/wiki/Hash_table"
+    link_label: "Lookup Optimization"
 
 enhancements:
-  - id: "wad-foundation-and-name-cleanup"
+  - id: "cleanup-name-padding-for-fast-lookups"
     line_start: 30
     line_end: 59
-    title: "The WAD Variables and Name-Padding Trick That Made Asset Lookups Fast"
+    title: "Why Pad Names with Spaces for Fast Lookups?"
+    wikipedia_url: "https://en.wikipedia.org/wiki/String_(computer_science)"
+    image_url: ""
+    image_caption: ""
+    content: "The `W_CleanupName` function processes asset names by converting uppercase letters to lowercase and padding them with spaces up to a fixed length of 16 characters. This ensures that names are consistently formatted and aligned for rapid comparison during asset lookups. By standardizing the names, the function avoids costly string operations and enables comparisons to be performed four bytes at a time, leveraging the efficiency of aligned memory operations on x86 processors. In 1996, memory and CPU constraints were significant concerns for developers. Quake was designed to run on hardware like the Intel 486 and early Pentium processors, where every cycle mattered. John Carmack and Michael Abrash, known for their expertise in optimization, likely devised this approach to minimize overhead in asset management while maintaining human-readable names for debugging and tools. This technique influenced later game engines and asset management systems, where standardized naming conventions and memory alignment became common practice. Developers of engines like Unreal and Source adopted similar strategies to optimize asset lookup and retrieval, ensuring smooth performance even as game worlds grew more complex."
+  - id: "wad-file-loading-and-validation"
+    line_start: 63
+    line_end: 99
+    title: "How Quake Validates and Loads WAD Files"
     wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
     image_url: ""
     image_caption: ""
-    content: "This section establishes the core state for Quake's WAD file system and introduces the small but clever convention that makes every asset lookup efficient. Three global variables form the foundation: `wad_numlumps` holds the count of data blocks in the loaded WAD2 file, `wad_lumps` points to the array of lump metadata structs, and `wad_base` stores the base memory address of the file so that lump offsets can be resolved to actual pointers without arithmetic on every access. On 1996-era PCs with 8–16 MB of RAM, centralizing these pointers rather than passing them as parameters at every call site was a conscious optimization. Alongside these variables, the `W_CleanupName` function enforces a name format that the rest of the system depends on: it lowercases the incoming string, pads it with spaces to fill exactly 16 bytes, and null-terminates it. The space padding is not cosmetic — it means two lump names can be compared as four consecutive 32-bit integer comparisons rather than a character-by-character loop, taking full advantage of the x86 processor's 32-bit registers and eliminating branch-heavy string logic in the hot lookup path. This combination of centralized state and fixed-width padded names influenced later asset systems: the GoldSrc engine used in Half-Life adopted similar name conventions for its own WAD format, and the pattern of normalizing names at load time to enable fast fixed-width comparison appears throughout game engine design to this day."
-  - id: "byte-swapping-for-portability"
+    content: "The `W_LoadWadFile` function is responsible for loading WAD files, which store game assets like textures and models. It begins by loading the file into memory and verifying its identification header to ensure it matches the expected 'WAD2' format. This validation step prevents corrupted or incompatible files from being used, which could crash the game. Once validated, the function reads the number of lumps (individual assets) and their metadata, converting values from little-endian format to the system's native format using the `LittleLong` function. This byte-swapping ensures compatibility across platforms with different endianness. The lump names are cleaned and standardized using `W_CleanupName`, and assets of type `TYP_QPIC` are further processed by the `SwapPic` function to adjust their dimensions. In the mid-1990s, file formats like WAD were essential for organizing game assets efficiently, especially in an era of limited storage and memory. The modular design of WAD files allowed developers to update and manage assets without recompiling the entire game. This approach influenced later formats like PK3 (used in Quake III) and VPK (used in Source engine games), which continued the tradition of modular asset management."
+  - id: "asset-lookup-by-name"
+    line_start: 102
+    line_end: 123
+    title: "Finding Game Assets by Name in Quake"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Hash_table"
+    image_url: ""
+    image_caption: ""
+    content: "The `W_GetLumpinfo` function retrieves metadata for a specific asset (lump) by its name. It first cleans the input name using `W_CleanupName` to ensure consistent formatting, then iterates through the list of lumps to find a match. If no match is found, the function triggers a fatal error, halting the game. This linear search approach was sufficient for Quake's relatively small asset libraries, but it highlights the constraints of the era. With limited memory and processing power, more complex data structures like hash tables were often avoided due to their overhead. Instead, developers optimized simpler algorithms to meet performance requirements. The concept of asset lookup by name became a staple in game development, evolving into more sophisticated systems in later engines. For example, modern engines use hash tables or binary search trees to enable faster lookups for larger asset libraries. Quake's approach laid the groundwork for these advancements, demonstrating the importance of efficient asset management in real-time applications."
+  - id: "byte-swapping-for-cross-platform-compatibility"
     line_start: 146
     line_end: 158
-    title: "The Byte Swapping That Made Quake Portable Across Architectures"
+    title: "The Byte-Swapping Trick for Cross-Platform Assets"
     wikipedia_url: "https://en.wikipedia.org/wiki/Endianness"
     image_url: ""
     image_caption: ""
-    content: "This short but consequential section encapsulates Quake's entire approach to cross-platform data compatibility. The `SwapPic` function takes a `qpic_t` structure — Quake's basic picture format — and runs its width and height fields through the `LittleLong` macro to guarantee they are stored in little-endian byte order. On x86 machines, which are natively little-endian, this is a no-op; on PowerPC or SPARC hardware, it reverses the bytes. The reason this matters is that WAD2 files were authored on x86 workstations and then shipped verbatim. Any big-endian platform reading those files raw would interpret, say, a 64-pixel-wide image as a nonsensical 1073741824 pixels wide, causing immediate crashes or corrupted graphics. By placing `SwapPic` at the point where pictures are loaded from the WAD, the rest of the engine never needs to think about endianness — it always receives values in the expected order. This single-function pattern, applied consistently to every loaded data type across the codebase, was what enabled id Software to port Quake to Linux, Mac OS, and later SGI IRIX within months of the Windows release. Byte-swapping at the data boundary became a standard practice in cross-platform game development, adopted by later engines including GoldSrc, Unreal, and Unity, all of which face the same challenge when shipping assets built on one architecture to players on another."
-  - id: "wad-file-loading"
-    line_start: 63
-    line_end: 99
-    title: "Loading WAD Files with Error Handling"
-    wikipedia_url: "https://en.wikipedia.org/wiki/WAD_(file_format)"
-    image_url: ""
-    image_caption: ""
-    content: "The `W_LoadWadFile` function loads a WAD file into memory, verifies its format, and initializes lump metadata. It begins by calling `COM_LoadHunkFile`, which loads the file into a memory region managed by Quake's hunk allocator—a system designed to avoid fragmentation and maximize performance. The function then checks the file's identification string to ensure it adheres to the WAD2 format, a successor to Doom's WAD format that supports Quake's more complex asset types. Finally, it processes lump metadata, converting values to little-endian format and cleaning names for efficient lookup. This robust error handling and initialization process set a precedent for file loading routines in later engines, emphasizing reliability and performance."
-  - id: "wad-lumpinfo-retrieval"
-    line_start: 102
-    line_end: 123
-    title: "Finding Game Assets by Name"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Quake_(video_game)"
-    image_url: ""
-    image_caption: ""
-    content: "The `W_GetLumpinfo` function retrieves metadata for a lump (asset) by its name. It first cleans the name using `W_CleanupName` to ensure consistent formatting, then iterates through the lump metadata to find a match. If no match is found, it triggers a fatal error using `Sys_Error`. This design prioritizes fast lookups and strict error handling, reflecting the high performance and reliability standards of Quake's engine. By centralizing lump metadata access, this function simplifies asset management and debugging, influencing similar systems in later engines like Source and Unreal."
+    content: "The `SwapPic` function adjusts the width and height of a `qpic_t` structure by converting them from little-endian format to the system's native format using the `LittleLong` function. This ensures that asset dimensions are correctly interpreted regardless of the platform's endianness. In the 1990s, cross-platform compatibility was a growing concern as games began to target multiple operating systems, including DOS, Windows, and Linux. Endianness differences between architectures like x86 (little-endian) and others (big-endian) could lead to corrupted data if not handled properly. Byte-swapping functions like `SwapPic` were a simple yet effective solution to this problem. This technique became standard practice in game development and influenced the design of asset formats in later engines. Developers of engines like Unity and Unreal continue to use similar methods to ensure compatibility across diverse hardware and operating systems. Quake's handling of endianness demonstrated the importance of anticipating platform differences in a rapidly evolving industry."
 
 ---
 
