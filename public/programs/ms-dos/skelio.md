@@ -9,178 +9,178 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "skelio"
 order: 43
-description: "MS-DOS 2.0's IO.SYS file showcases early device driver architecture and hardware abstraction techniques, pivotal in shaping PC operating systems."
+description: "This file contains the I/O system for MS-DOS 2.0, showcasing the evolution of device drivers and system-level programming in the early 1980s."
 
 summary:
-  - point: "Device driver tables define hardware abstraction"
-    link: "https://en.wikipedia.org/wiki/Device_driver"
-    link_label: "Device Driver"
-  - point: "Simplistic I/O packet strategy for single-tasking systems"
+  - point: "Introduces device driver tables for MS-DOS 2.0"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "ANSI escape sequence translation for terminal compatibility"
+  - point: "Illustrates early use of dispatch tables for device operations"
+    link: "https://en.wikipedia.org/wiki/Dispatch_table"
+    link_label: "Dispatch Table"
+  - point: "Demonstrates integration with Altos ACS-86C hardware"
+    link: "https://en.wikipedia.org/wiki/Altos_Computer_Systems"
+    link_label: "Altos Computer Systems"
+  - point: "Simplistic strategy routine for non-multi-tasking systems"
+    link: "https://en.wikipedia.org/wiki/Multitasking"
+    link_label: "Multitasking"
+  - point: "Early implementation of ANSI escape sequences for console output"
     link: "https://en.wikipedia.org/wiki/ANSI_escape_code"
-    link_label: "ANSI Escape Code"
-  - point: "Error handling routines standardized device responses"
-    link: "https://en.wikipedia.org/wiki/Error_code"
-    link_label: "Error Code"
-  - point: "ROM-based console and disk operations reflect hardware constraints"
-    link: "https://en.wikipedia.org/wiki/BIOS"
-    link_label: "BIOS"
+    link_label: "ANSI Escape Codes"
 
 enhancements:
-  - id: "external-symbols-linking-sysinit"
+  - id: "extrn-definitions-for-sysinit"
     line_start: 57
     line_end: 69
-    title: "External Symbols: Linking to SYSINIT"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Linker_(computing)"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines external symbols that link the IO.SYS module to SYSINIT, the initialization module for MS-DOS. These symbols include pointers to the current and final DOS locations, the device list, memory size, and default drive. By exposing these symbols, the BIOS segment can coordinate with SYSINIT during system boot to establish the operating environment. In 1983, this modular design was crucial for adapting MS-DOS to different OEM hardware configurations. Tim Paterson's original 86-DOS design emphasized simplicity and portability, which Microsoft extended in MS-DOS 2.0 by introducing Unix-inspired abstractions like device drivers and file handles. This approach influenced later operating systems, including Windows, which retained modular initialization routines for hardware compatibility."
-  - id: "device-driver-headers"
-    line_start: 157
-    line_end: 233
-    title: "Device Driver Headers: Abstracting Hardware"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines headers for various devices (CON, AUX, PRN, CLOCK, and disk devices) using a standardized structure. Each header includes attributes, strategy pointers, interrupt pointers, and device names. For example, the CON device is marked as a character device with input/output capabilities and links to the STRATEGY and CON_INT routines. This abstraction allowed MS-DOS to interact with hardware using consistent interfaces, simplifying development and enabling portability across different machines. In the early 1980s, hardware-specific programming was common, but MS-DOS's device driver model helped establish a standard that influenced later systems like Windows and Linux. Device headers became a foundational concept in operating system design, enabling modular and extensible architectures."
-  - id: "dispatch-tables-for-device-commands"
-    line_start: 237
-    line_end: 379
-    title: "Dispatch Tables: Mapping Commands to Routines"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines dispatch tables for devices, mapping command codes to corresponding routines. For example, the DSKTBL table includes entries for initializing the driver, reading and writing blocks, and handling errors. These tables streamline command processing by providing a direct lookup mechanism, reducing the complexity of interrupt handling. In MS-DOS 2.0, this approach was part of the Unix-inspired enhancements, enabling more sophisticated device management compared to earlier versions. Dispatch tables became a standard technique in operating systems, influencing designs like Linux's system call tables and Windows' I/O request packets. By organizing commands in this way, MS-DOS set a precedent for efficient and scalable device communication."
-  - id: "strategy-routine-for-io-packets"
-    line_start: 429
-    line_end: 443
-    title: "Strategy Routine: Saving I/O Packet Pointers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
-    image_url: ""
-    image_caption: ""
-    content: "The STRATEGY routine saves pointers to I/O packets in a global variable (PTRSAV) for later processing by interrupt routines. This simplistic approach reflects the single-tasking nature of MS-DOS, where I/O operations were handled sequentially. In 1983, this design was sufficient for the hardware constraints of the IBM PC, which lacked multitasking capabilities. The routine's simplicity highlights the trade-offs made to optimize performance on limited hardware. While modern operating systems use more complex strategies for I/O management, the basic idea of saving and processing I/O packets influenced later designs, including Windows' I/O request packet system and Linux's block I/O layer."
-  - id: "console-interrupt-routine"
-    line_start: 455
-    line_end: 531
-    title: "Console Interrupt Routine: Handling I/O Packets"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
-    image_url: ""
-    image_caption: ""
-    content: "The CON_INT routine processes I/O packets for the console device by jumping to the ENTRY routine with the CONTBL dispatch table. This modular design allows the same ENTRY routine to handle different devices by switching the dispatch table. In MS-DOS 2.0, this approach simplified device management and reduced code duplication. The use of interrupt routines to process I/O packets was a common technique in early operating systems, enabling efficient handling of hardware events. This design influenced later systems, including Windows, which uses interrupt service routines for hardware communication. The modularity and reusability demonstrated here reflect the Unix-inspired enhancements in MS-DOS 2.0."
-  - id: "entry-routine-for-io-packet-processing"
-    line_start: 545
-    line_end: 607
-    title: "ENTRY Routine: Centralizing I/O Packet Processing"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
-    image_url: ""
-    image_caption: ""
-    content: "The ENTRY routine is the central handler for I/O packets, retrieving packet data, computing dispatch table entry points, and executing the corresponding command. It saves and restores registers to maintain system state during processing. This design reflects the simplicity and efficiency required for single-tasking systems like MS-DOS. By centralizing I/O packet handling, the routine reduces code duplication and simplifies device communication. The concept of a central I/O handler influenced later operating systems, which adopted similar designs for managing I/O requests. For example, Windows' I/O request packet system and Linux's block I/O layer build on the idea of centralized processing introduced here."
-  - id: "error-handling-and-exit-routines"
-    line_start: 611
-    line_end: 709
-    title: "Error Handling: Standardizing Device Responses"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_code"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines error handling and exit routines, including BUS_EXIT, CMDERR, ERR_EXIT, and EXIT. These routines set status codes and return control to the caller, ensuring consistent responses across devices. For example, CMDERR handles unknown commands by setting an error code and exiting. In MS-DOS 2.0, standardizing error handling was crucial for simplifying device communication and debugging. The use of predefined error codes influenced later systems, which adopted similar conventions for reporting device and system errors. For instance, Windows' error codes and Linux's errno values build on the principles established here, providing developers with consistent and actionable feedback."
-  - id: "console-character-output-routine"
-    line_start: 911
-    line_end: 919
-    title: "OUTCHR: Writing Characters to the Console"
-    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
-    image_url: ""
-    image_caption: ""
-    content: "The OUTCHR routine writes a single character to the console by calling a ROM-based function (ROM_CONOUT). It retrieves the current console port and passes the character for output. This reliance on ROM routines reflects the hardware constraints of the IBM PC, where BIOS functions provided essential services. In MS-DOS 2.0, leveraging BIOS routines simplified development and ensured compatibility across different machines. The use of ROM-based functions influenced later systems, which continued to rely on firmware for low-level hardware communication. For example, UEFI firmware in modern PCs builds on the legacy of BIOS, providing standardized interfaces for operating systems."
-  - id: "ansi-console-output-driver"
-    line_start: 1019
-    line_end: 1021
-    title: "CONOUT: Translating ANSI Escape Sequences"
-    wikipedia_url: "https://en.wikipedia.org/wiki/ANSI_escape_code"
-    image_url: ""
-    image_caption: ""
-    content: "The CONOUT routine handles ANSI escape sequences for console output, jumping to the current ANSI state. This implementation translates ANSI sequences into Zenith-specific commands, ensuring compatibility with the Z-19 terminal. In MS-DOS 2.0, supporting ANSI escape codes was part of the Unix-inspired enhancements, enabling more sophisticated text formatting and control. The use of finite state automata for ANSI translation reflects the ingenuity required to adapt standards to specific hardware. This approach influenced later systems, which adopted ANSI escape codes as a universal standard for terminal communication. For example, Linux and modern terminal emulators continue to use ANSI codes for text formatting and control."
-  - id: "state-driven-parsing-escape-sequences"
-    line_start: 1035
-    line_end: 1221
-    title: "State-Driven Parsing for Escape Sequences"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Escape_sequence"
-    image_url: ""
-    image_caption: ""
-    content: "This section implements a state-driven parser for handling escape sequences, a technique inspired by terminal control codes like ANSI escape codes. The code transitions through states (ST1, ST2, ST3) to process escape sequences and parameters. For example, ST1 identifies an ESC character, ST2 checks for the '[' character, and ST3 processes parameters separated by semicolons. In the early 1980s, terminal control was critical for text-based interfaces, and MS-DOS adopted these techniques to manage screen output efficiently. Tim Paterson likely borrowed ideas from Unix and terminal standards, adapting them to the constraints of the IBM PC's hardware. This approach influenced later DOS programs and utilities that relied on precise screen control, such as text editors and command-line tools. The state-driven design remains a foundational concept in parsing and is still taught in computer science curricula."
-  - id: "cursor-positioning-optimization"
-    line_start: 1233
-    line_end: 1403
-    title: "Optimizing Cursor Positioning with Binary Conversion"
-    wikipedia_url: "https://en.wikipedia.org/wiki/ANSI_escape_code"
-    image_url: ""
-    image_caption: ""
-    content: "The routines CUU, CUD, CUF, CUB, and CUP handle cursor movement and positioning on the screen. CUU moves the cursor up, CUD moves it down, CUF moves it forward, and CUB moves it backward. CUP directly positions the cursor using X and Y coordinates. These routines use binary-to-character conversion to translate numeric positions into escape sequences, a clever optimization that avoids complex arithmetic. In the early 1980s, cursor control was essential for creating interactive text-based applications on the IBM PC. The use of escape sequences aligns with ANSI standards, which were becoming popular at the time. This code reflects the influence of Unix-like systems, which heavily relied on terminal control. The techniques here paved the way for more sophisticated text-based user interfaces in later DOS applications, including word processors and spreadsheet programs."
-  - id: "auxiliary-io-and-printer-buffer-handling"
-    line_start: 1415
-    line_end: 1455
-    title: "Handling Auxiliary I/O and Printer Buffers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Parallel_port"
-    image_url: ""
-    image_caption: ""
-    content: "The routines PRN_STA, PRN_WRT, and PRN_WR1 manage printer status and data transfer, while AISTAT and AIN handle auxiliary I/O. PRN_WR1 uses a loop to send data bytes to the printer via ROM calls, ensuring compatibility with the IBM PC's parallel port. Similarly, AISTAT checks the auxiliary port for incoming data, and AIN reads it non-destructively. These routines highlight the low-level nature of device handling in early MS-DOS, where direct hardware access was common. In the early 1980s, printers and auxiliary devices were essential peripherals, and efficient handling of their I/O was crucial for business applications. These techniques influenced later device driver designs, which abstracted hardware interactions to improve portability and ease of development."
-  - id: "drive-initialization-tables"
-    line_start: 1801
-    line_end: 1857
-    title: "Defining Drive Initialization Tables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
-    image_url: ""
-    image_caption: ""
-    content: "This section defines drive initialization tables (INITTAB) and drive parameter blocks (DBP) for various floppy drive configurations. Each DBP specifies parameters like sector size, FAT count, and media ID, allowing MS-DOS to support multiple drive types. In 1983, floppy drives varied widely in capacity and density, and operating systems needed flexible mechanisms to accommodate them. MS-DOS's drive tables reflect its goal of supporting diverse hardware, a key factor in its success as an OEM-licensed OS. The concept of parameter blocks influenced later operating systems, which adopted similar structures for managing storage devices, including hard drives and SSDs."
-  - id: "media-change-detection-floppy-drives"
-    line_start: 1957
-    line_end: 2065
-    title: "Detecting Media Changes on Floppy Drives"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
-    image_url: ""
-    image_caption: ""
-    content: "The MEDIAC routine implements media change detection for floppy drives, a critical feature for ensuring data integrity when swapping disks. It checks the media byte and status flags to determine whether the disk has been changed, using hardware ports like DSELECT and DDENS to interact with the floppy controller. In 1983, floppy drives were the primary storage medium for personal computers, and detecting media changes was a challenging problem due to the lack of standardization across hardware. This routine reflects MS-DOS's adaptability to diverse hardware configurations, a key factor in its widespread adoption. The techniques here influenced later operating systems, which continued to refine media detection for removable storage devices like CDs, USB drives, and SD cards."
-  - id: "media5-disk-controller-command"
-    line_start: 2079
-    line_end: 2101
-    title: "How MS-DOS Controlled the 1793 Diskette Chip"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
-    image_url: ""
-    image_caption: ""
-    content: "This short routine interacts with the 1793 diskette controller chip, sending commands and waiting for their completion. The OUT instruction sends a command to the controller, while the subsequent loop ensures the chip has time to process it. This reflects the direct hardware manipulation common in early operating systems, where programmers had to manage timing and status checks manually. In 1983, floppy disk controllers were standard for personal computers, but their operation required intimate knowledge of the hardware. Tim Paterson's approach here is efficient but hardware-specific, tying MS-DOS closely to the IBM PC architecture. This reliance on hardware-specific routines influenced later operating systems, which began abstracting hardware interactions into device drivers, paving the way for portability across different platforms."
-  - id: "get-bpb-diskette-parameter-block"
-    line_start: 2145
-    line_end: 2257
-    title: "The Data Structure That Defined Disk Geometry"
-    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_parameter_block"
-    image_url: ""
-    image_caption: ""
-    content: "The GET_BPB routine constructs and returns a BIOS Parameter Block (BPB), a data structure describing the geometry and format of a diskette. This includes details like sector size, track count, and media type. At the time, disk geometry was critical for ensuring compatibility across different hardware and software environments. The BPB concept, borrowed from CP/M and later refined in MS-DOS, became a standard for describing disk formats. This routine highlights the transition from simple disk access to structured file systems, enabling features like subdirectories and logical drives. The BPB influenced later file systems, including FAT, and remains a foundational concept in storage management today."
-  - id: "disk-read-write-functions"
-    line_start: 2375
-    line_end: 2541
-    title: "Reading and Writing Floppy Disks, Byte by Byte"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
-    image_url: ""
-    image_caption: ""
-    content: "This section implements disk read and write functions, handling sector-based data transfers for floppy drives. It sets up parameters like sector size, retry count, and error masks, then calls ROM routines to perform the actual I/O. The code includes logic for handling partial tracks and adjusting sector counts dynamically, showcasing the complexity of low-level disk operations. In the early 1980s, floppy disks were the primary storage medium for personal computers, and efficient disk I/O was essential for performance. These routines influenced later abstractions like device drivers, which encapsulated hardware-specific logic into reusable modules. The techniques here laid the groundwork for modern storage APIs, which hide such details from application developers."
-  - id: "disk-error-handling"
-    line_start: 2553
-    line_end: 2621
-    title: "The Lookup Table That Decoded Disk Errors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_code"
-    image_url: ""
-    image_caption: ""
-    content: "The DERROR routine processes disk errors, using a lookup table to map error codes to specific conditions like write protection or CRC errors. This approach simplifies error handling by centralizing the logic in a single table, making it easier to update and debug. In 1983, error handling was a critical part of operating system design, as hardware failures were common and unpredictable. Tim Paterson's use of a lookup table reflects the influence of structured programming, which emphasized modularity and clarity. This technique became standard practice in later systems, influencing error handling in APIs and programming languages like C and Java."
-  - id: "hardware-initialization"
-    line_start: 2685
-    line_end: 2747
-    title: "Setting Up MS-DOS for the First Time"
+    title: "How MS-DOS communicates with SYSINIT"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The HWINIT routine initializes the MS-DOS environment, setting up the stack, memory locations, and device list. It also calls ROM routines to configure hardware, ensuring the system is ready for operation. This code reflects the challenges of bootstrapping an operating system in the early 1980s, when hardware was less standardized and initialization had to account for a wide range of configurations. Tim Paterson's design here balances simplicity with flexibility, allowing MS-DOS to run on different IBM PC-compatible machines. This initialization process influenced later operating systems, which adopted similar techniques for setting up runtime environments, including memory management and device configuration."
+    content: "This section defines external references to the SYSINIT module, which initializes the MS-DOS operating system during boot. The EXTRN directive declares external variables and functions that are resolved during linking. These include pointers to the device list, memory size, and default drive, among others. At the time, MS-DOS was designed to be modular, allowing hardware-specific BIOS routines to be swapped out for different OEM implementations. This modularity was crucial for Microsoft's strategy of licensing MS-DOS to multiple hardware manufacturers, as it allowed the operating system to be adapted to various machines without rewriting the entire system. The approach became a cornerstone of MS-DOS's success, enabling it to dominate the PC market and serve as the foundation for future Windows operating systems."
+  - id: "init-jump-to-hwinit"
+    line_start: 85
+    line_end: 93
+    title: "The jump that starts it all"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Booting"
+    image_url: ""
+    image_caption: ""
+    content: "The INIT section begins with a jump to HWINIT, the hardware initialization routine. This is the entry point for the I/O system, setting the stage for the initialization of device drivers and system resources. The jump ensures that the hardware is properly configured before the operating system begins interacting with devices. In the early 1980s, bootstrapping an operating system was a delicate process, as hardware was less standardized and often required specific initialization routines. The modular design of MS-DOS allowed it to be adapted to a wide range of hardware platforms, a key factor in its widespread adoption. This approach influenced later operating systems, including Windows, which retained the concept of hardware abstraction layers."
+  - id: "device-headers-for-con-aux-prn-tim-dsk"
+    line_start: 159
+    line_end: 233
+    title: "Headers that define MS-DOS devices"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
+    image_url: ""
+    image_caption: ""
+    content: "This section defines headers for MS-DOS devices such as CON (console), AUX (auxiliary), PRN (printer), TIM (clock), and DSK (disk). Each header includes attributes, strategy pointers, interrupt pointers, and device names. These headers are the backbone of MS-DOS's device driver model, enabling the operating system to interact with hardware in a standardized way. At the time, device drivers were a novel concept, allowing software to communicate with hardware without needing to know the specifics of the underlying implementation. This abstraction was inspired by Unix, which had introduced similar concepts. MS-DOS's device driver model influenced the design of future operating systems, including Windows, and contributed to the development of plug-and-play hardware compatibility."
+  - id: "dispatch-tables-for-device-operations"
+    line_start: 237
+    line_end: 411
+    title: "The dispatch tables that made MS-DOS modular"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Dispatch_table"
+    image_url: ""
+    image_caption: ""
+    content: "The dispatch tables define the operations available for each device, such as initialization, media checks, read/write operations, and error handling. Each entry in the table corresponds to a specific operation, with pointers to the appropriate subroutine. This design allows MS-DOS to dynamically call the correct function based on the operation requested by the user or application. The use of dispatch tables was a clever way to implement modularity and extensibility, enabling MS-DOS to support a wide range of devices with minimal changes to the core operating system. This approach was influenced by earlier systems like CP/M and Unix, and it became a standard practice in operating system design, influencing later systems such as Windows and Linux."
+  - id: "simplistic-strategy-routine"
+    line_start: 429
+    line_end: 443
+    title: "Saving I/O packet pointers for later"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Input/output"
+    image_url: ""
+    image_caption: ""
+    content: "The STRATEGY routine is a simple mechanism for saving I/O packet pointers in a global variable (PTRSAV) for later processing by interrupt routines. This design reflects the constraints of early PCs, which lacked support for multitasking and required straightforward solutions for managing I/O operations. By saving the pointers, the system could defer processing until the appropriate interrupt routine was called. This approach was a pragmatic solution to the limitations of the hardware and software of the time, and it highlights the ingenuity of early system programmers in working within such constraints. While modern operating systems have moved to more sophisticated I/O models, the basic concept of deferred processing remains relevant in areas such as asynchronous programming and event-driven architectures."
+  - id: "console-keyboard-handler"
+    line_start: 733
+    line_end: 783
+    title: "Buffering keystrokes with minimal resources"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Keyboard_buffer"
+    image_url: ""
+    image_caption: ""
+    content: "The CISTAT routine checks for a keystroke in the buffer and retrieves it if available. If no keystroke is present, it queries the ROM console for input. This design reflects the resource constraints of early PCs, which had limited memory and processing power. The small typeahead buffer (CHAR) is an example of how programmers optimized for minimal resource usage while still providing functionality. At the time, keyboard handling was a critical aspect of operating system design, as it directly impacted user experience. The approach used here influenced later systems, which expanded on the concept of input buffering to support more complex interactions, such as multitasking and graphical user interfaces."
+  - id: "ansi-console-output-driver"
+    line_start: 1019
+    line_end: 1031
+    title: "Translating ANSI escape codes for early PCs"
+    wikipedia_url: "https://en.wikipedia.org/wiki/ANSI_escape_code"
+    image_url: ""
+    image_caption: ""
+    content: "The CONOUT routine implements an ANSI console output driver, translating ANSI escape sequences into commands for the Zenith Z(H)-19 terminal. ANSI escape codes were a standard for controlling text formatting, cursor movement, and other console operations. This implementation is a minimal subset of the standard, tailored to the capabilities of the target hardware. At the time, supporting ANSI codes was a significant step forward, as it allowed software to interact with a wide range of terminals using a standardized protocol. This approach influenced the development of terminal emulators and text-based user interfaces, which continue to use ANSI codes today in systems like Linux and macOS."
+  - id: "state-machine-for-escape-sequences"
+    line_start: 1035
+    line_end: 1221
+    title: "State Machine for Escape Sequences"
+    wikipedia_url: "https://en.wikipedia.org/wiki/ANSI_escape_code"
+    image_url: ""
+    image_caption: ""
+    content: "This section implements a state machine to parse ANSI escape sequences, which were used to control cursor movement and text formatting in terminal emulators. The code transitions through states ST1, ST2, and ST3, checking for specific characters like ESC and '[' to determine the next action. Tim Paterson likely adapted this from Unix terminal handling, as MS-DOS v2.0 drew heavily from Unix concepts. At the time, terminals were essential for interacting with computers, and escape sequences allowed precise control over the display. This approach influenced later terminal emulators and text-based interfaces, including those in modern Linux systems and programming libraries like ncurses."
+  - id: "cursor-positioning-routines"
+    line_start: 1233
+    line_end: 1287
+    title: "Cursor Positioning Routines"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Terminal_emulator"
+    image_url: ""
+    image_caption: ""
+    content: "These routines handle cursor movement within a terminal window, supporting commands like CUU (cursor up), CUD (cursor down), CUF (cursor forward), and CUB (cursor back). The code uses escape sequences to send these commands to the terminal, leveraging the GETONE subroutine to calculate the number of positions to move. Cursor positioning was critical for creating user-friendly text interfaces in the early 1980s, when graphical interfaces were rare. This functionality laid the groundwork for text-based applications like word processors and spreadsheet programs, and it remains relevant in terminal emulators today."
+  - id: "erase-screen-and-line-functions"
+    line_start: 1299
+    line_end: 1459
+    title: "Erase Screen and Line Functions"
+    wikipedia_url: "https://en.wikipedia.org/wiki/ANSI_escape_code"
+    image_url: ""
+    image_caption: ""
+    content: "The ED and EL routines implement screen and line erasure commands, respectively. They use escape sequences to clear parts of the screen or line based on parameters passed to the functions. This functionality was essential for refreshing terminal displays and creating dynamic text interfaces. By enabling partial erasure, the routines optimized performance on slow hardware, avoiding the need to redraw the entire screen. These techniques influenced the design of text-based user interfaces in programs like Norton Commander and early IDEs, which relied on efficient screen manipulation."
+  - id: "auxiliary-port-communication"
+    line_start: 1471
+    line_end: 1759
+    title: "Auxiliary Port Communication"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Serial_port"
+    image_url: ""
+    image_caption: ""
+    content: "This section handles input and output for the auxiliary (serial) port, including routines like AISTAT (status check), AIN (read), and AOUT (write). Serial communication was vital in the early 1980s for connecting peripherals like modems and printers. The code interacts directly with ROM routines and hardware registers, reflecting the low-level nature of MS-DOS. These routines enabled MS-DOS to support a wide range of devices, contributing to its success as an OEM-friendly operating system. Serial port handling remains relevant in embedded systems and industrial applications today."
+  - id: "drive-parameter-blocks"
+    line_start: 1801
+    line_end: 1953
+    title: "Drive Parameter Blocks for Disk Configurations"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_partitioning"
+    image_url: ""
+    image_caption: ""
+    content: "The DBP structure defines drive parameter blocks, specifying details like sector size, allocation units, and FAT sectors. These blocks allowed MS-DOS to support various disk formats, including single-density and double-density floppy disks. The flexibility of this design was crucial for MS-DOS's adoption by OEMs, who needed to customize the operating system for their hardware. This approach influenced later file systems, such as FAT16 and FAT32, which became industry standards. The concept of parameter blocks also appears in modern storage systems, where metadata defines disk configurations."
+  - id: "media-check-routine"
+    line_start: 1957
+    line_end: 2035
+    title: "Media Check Routine for Disk Changes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
+    image_url: ""
+    image_caption: ""
+    content: "The MEDIAC routine checks whether a disk has been changed by interacting with hardware registers and density settings. It uses specific commands to verify the media status and updates flags accordingly. This functionality was critical for ensuring data integrity, as users frequently swapped floppy disks during operation. The routine reflects the challenges of working with early disk drives, which lacked sophisticated error detection. Media change detection became a standard feature in operating systems, influencing the design of removable storage systems like USB drives and SD cards."
+  - id: "head-unload-for-disk-drives"
+    line_start: 2039
+    line_end: 2063
+    title: "Head Unload for Disk Drives"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk"
+    image_url: ""
+    image_caption: ""
+    content: "The MEDIA4 routine unloads the disk drive head when switching drives, ensuring proper operation during subsequent reads. It achieves this by issuing a seek command with the head load bit reset. This technique was necessary for early floppy drives, which relied on mechanical operations to load and unload heads. By automating this process, MS-DOS improved reliability and reduced user intervention. The routine highlights the close integration between software and hardware in the era of floppy disks, a relationship that evolved with the advent of solid-state drives and modern storage technologies."
+  - id: "media5-diskette-controller-command"
+    line_start: 2065
+    line_end: 2141
+    title: "How MS-DOS Communicated with the Diskette Controller"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Floppy_disk_controller"
+    image_url: ""
+    image_caption: ""
+    content: "This section contains routines (`MEDIA5`, `DCOM`, `DCOM1`, and `DCOM2`) that interact with the 1793 diskette controller chip. The code sends commands to the chip via the `OUT` instruction, waits for the chip to process the command using a loop, and checks the chip's status using the `IN` instruction. The programmer's immediate goal was to ensure reliable communication with the hardware, a critical task in an era when hardware quirks could easily lead to system instability. The 1793 controller was widely used in early PCs, and this code reflects the low-level nature of assembly programming required to directly interface with such devices. These routines exemplify the challenges of programming hardware in the early 1980s, where developers had to account for timing, busy states, and error handling manually. This approach influenced later disk I/O systems, including those in MS-DOS and other operating systems, by establishing a foundation for direct hardware communication."
+  - id: "bios-parameter-block-disk-metadata"
+    line_start: 2145
+    line_end: 2337
+    title: "The Structure That Defined Disk Metadata"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_parameter_block"
+    image_url: ""
+    image_caption: ""
+    content: "The `GET_BPB` routine builds and returns a BIOS Parameter Block (BPB), a data structure containing metadata about a disk's format, such as sector size, cluster size, and total sectors. This metadata was essential for MS-DOS to manage file systems and perform disk operations. The BPB concept was inspired by similar structures in earlier operating systems like CP/M and Unix, but MS-DOS refined it to support more complex disk formats and subdirectories introduced in version 2.0. The BPB became a standard in PC-compatible operating systems, influencing the design of file systems like FAT12, FAT16, and FAT32. Its legacy persists in modern systems, where similar metadata structures are used to describe storage devices."
+  - id: "disk-error-handling-with-lookup-table"
+    line_start: 2553
+    line_end: 2621
+    title: "The Lookup Table That Diagnosed Disk Errors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Error_code"
+    image_url: ""
+    image_caption: ""
+    content: "The `DERROR` routine processes disk errors using a lookup table (`DERRTAB`) that maps error codes to specific conditions, such as write protection, CRC errors, and sector not found. This approach simplifies error handling by centralizing the logic for interpreting hardware error codes. In the early 1980s, disk drives were prone to errors due to mechanical issues, media defects, and environmental factors. By using a lookup table, MS-DOS could provide consistent error reporting and recovery mechanisms, improving reliability for users. This technique influenced later systems by demonstrating the value of abstraction in error handling, a principle that continues in modern software development with error codes and exception handling frameworks."
+  - id: "rom-call-for-disk-operations"
+    line_start: 2635
+    line_end: 2665
+    title: "The ROM Entry Point That Made It All Work"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Read-only_memory"
+    image_url: ""
+    image_caption: ""
+    content: "The `ROM_CALL` routine serves as a common entry point for invoking ROM-based disk operations. It saves the current CPU state, calls the ROM routine, and restores the state afterward. ROM chips in early PCs contained firmware routines for basic hardware interactions, such as reading and writing to disk drives. By abstracting these calls into a single routine, MS-DOS could leverage the ROM's functionality while maintaining portability across different hardware platforms. This design decision reflects the constraints of the era, where ROM routines were often the only reliable way to interact with hardware. The use of ROM calls influenced later operating systems by highlighting the importance of hardware abstraction layers, a concept that evolved into device drivers and APIs in modern systems."
+  - id: "hardware-initialization-and-stack-setup"
+    line_start: 2685
+    line_end: 2747
+    title: "How MS-DOS Prepared for Execution"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
+    image_url: ""
+    image_caption: ""
+    content: "The `HWINIT` routine initializes hardware and sets up the stack for MS-DOS execution. It zeroes the base pointer (`BP`), sets the stack segment (`SS`) and stack pointer (`SP`), and calls a ROM initialization routine (`ROM_INIT`). It also configures memory layout, including the current DOS location and memory size. This routine reflects the low-level nature of early operating systems, where developers had to manually configure hardware and memory before the system could run. The stack setup was crucial for managing function calls and interrupts, ensuring stability during execution. This initialization process influenced later systems by demonstrating the importance of structured startup routines, a principle that persists in modern bootloaders and operating system kernels."
 
 ---
 

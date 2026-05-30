@@ -9,122 +9,90 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "hrddrv"
 order: 35
-description: "The HRDDRV.ASM file implements the hard disk driver for MS-DOS v2.0, showcasing early device driver design in the 8086 assembly language."
+description: "This file implements the hard disk driver for MS-DOS 2.0, showcasing early device driver architecture and interaction with hardware."
 
 summary:
-  - point: "Introduced modular device driver architecture for MS-DOS v2.0"
+  - point: "Defines device driver tables for hard disk operations"
+    link: "https://en.wikipedia.org/wiki/Device_driver"
+    link_label: "Device Driver"
+  - point: "Introduces a simplistic strategy routine for non-multi-tasking systems"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Used dispatch tables for handling device-specific commands"
-    link: "https://en.wikipedia.org/wiki/Device_driver"
-    link_label: "Device driver"
-  - point: "Optimized for the Altos ACS-86C hardware environment"
-    link: "https://en.wikipedia.org/wiki/Altos_Computer_Systems"
-    link_label: "Altos Computer Systems"
-  - point: "Implemented error handling routines for disk operations"
-    link: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
-    link_label: "Error detection and correction"
-  - point: "Demonstrated early use of BIOS Parameter Blocks (BPB)"
-    link: "https://en.wikipedia.org/wiki/BIOS_parameter_block"
-    link_label: "BIOS Parameter Block"
+  - point: "Handles disk I/O operations using BIOS and ROM calls"
+    link: "https://en.wikipedia.org/wiki/BIOS"
+    link_label: "BIOS"
+  - point: "Implements error handling routines for disk operations"
+    link: "https://en.wikipedia.org/wiki/Error_code"
+    link_label: "Error Code"
+  - point: "Provides initialization routines for hard disk drives"
+    link: "https://en.wikipedia.org/wiki/Hard_disk_drive"
+    link_label: "Hard Disk Drive"
 
 enhancements:
-  - id: "dskdev-hard-disk-driver-header"
+  - id: "hard-disk-driver-header"
     line_start: 105
     line_end: 113
-    title: "Why Hard Disk Drivers Start with Headers"
+    title: "Why Hard Disk Drivers Start with Tables"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "The `DSKDEV` section defines the header for the hard disk driver, specifying attributes such as device type, strategy pointer, interrupt pointer, and the number of units supported. This header acts as the entry point for the driver, enabling MS-DOS to interface with the hardware. At the time, modularity was a key innovation, allowing MS-DOS to support diverse hardware configurations without rewriting the operating system. The structure reflects the influence of Unix-like systems, where device drivers were similarly abstracted. This modular approach allowed Microsoft to license MS-DOS to multiple OEMs, each with unique hardware setups. The concept of device headers became a standard in operating systems, influencing later systems like Windows and Linux."
-  - id: "dsk-tbl-dispatch-table"
+    content: "This section defines the header for the hard disk driver, including key attributes such as device type, strategy pointer, and interrupt pointer. The 'DSKDEV' label marks the entry point, and the structure is designed to identify the device as a block device (as opposed to a character device) and specify the number of units available. In 1983, MS-DOS 2.0 introduced device drivers to support a wider range of hardware, including hard disks, which were becoming more common in personal computers. This design reflects the need for modularity and extensibility in operating systems, a lesson learned from Unix. The approach influenced later operating systems, including Windows, which retained the concept of device drivers as modular components for hardware interaction."
+  - id: "dispatch-table-device-commands"
     line_start: 125
     line_end: 155
-    title: "The Dispatch Table That Simplified Drivers"
+    title: "The Table That Dispatches Disk Commands"
     wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
     image_url: ""
     image_caption: ""
-    content: "The `DSK_TBL` section defines a dispatch table mapping command codes to subroutine addresses. This design allows the driver to quickly route commands like initialization, media checks, and block reads/writes to the appropriate subroutine. Dispatch tables were a clever solution to the constraints of early hardware, where memory and processing power were limited. Tim Paterson adapted this approach from earlier systems, ensuring MS-DOS could efficiently handle I/O operations without hardcoding logic for every device. This technique influenced later operating systems, where dispatch tables became a common pattern for modular driver design. It also laid the groundwork for plug-and-play functionality in modern systems."
-  - id: "strategy-routine-save-io-pointers"
+    content: "The 'DSK_TBL' section defines a dispatch table mapping device commands to their corresponding routines. Each entry in the table represents a specific operation, such as initializing the driver, reading or writing blocks, or handling errors. This table-driven approach simplifies the implementation of device drivers by centralizing command handling. At the time, MS-DOS was heavily influenced by Unix's modular design principles, which emphasized the separation of concerns and reusability. This dispatch table concept became a standard practice in operating system design, influencing later systems like Linux and Windows, where similar tables are used to manage device operations efficiently."
+  - id: "strategy-routine-pointer-save"
     line_start: 209
     line_end: 219
-    title: "How Strategy Saved I/O Pointers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
+    title: "How Strategy Routines Save Pointers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The `STRATEGY` routine saves pointers to I/O packets in a global variable (`PTRSAV`) for later processing. This simplistic approach reflects the single-tasking nature of MS-DOS, where drivers did not need to manage concurrent operations. By saving these pointers, the driver could defer processing until an interrupt routine was triggered. In 1983, this was an efficient way to handle I/O in a constrained environment, avoiding the complexity of multitasking. This design influenced early single-threaded systems and demonstrated how to manage state in low-memory conditions. Later systems would evolve this concept into more sophisticated queue-based I/O management."
-  - id: "dsk-int-interrupt-routine"
+    content: "The 'STRATEGY' routine is a simplistic implementation for saving I/O packet pointers in a non-multi-tasking system. It stores the segment and offset of the I/O packet in a predefined memory location ('PTRSAV') for later processing by interrupt routines. This design reflects the constraints of early personal computers, which lacked advanced multitasking capabilities and relied on straightforward mechanisms for managing I/O operations. The strategy routine concept was foundational in MS-DOS and influenced the development of more sophisticated I/O management techniques in later operating systems, including Windows."
+  - id: "disk-interrupt-handler"
     line_start: 233
     line_end: 237
-    title: "The Interrupt Routine That Routed Commands"
+    title: "The Interrupt Routine That Handles Disk I/O"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt"
     image_url: ""
     image_caption: ""
-    content: "The `DSK_INT` routine processes I/O packets by routing commands to the appropriate subroutine in the dispatch table. It uses the `STRATEGY` pointer to retrieve the I/O packet and calculates the dispatch table entry based on the command code. This routine exemplifies the simplicity of MS-DOS's I/O handling, relying on direct memory manipulation and table lookups. In the early 1980s, this approach was necessary due to the limited capabilities of the 8086 processor and the absence of advanced hardware abstraction layers. The technique influenced later systems by demonstrating how to efficiently implement command routing in constrained environments."
-  - id: "common-exit-routines"
-    line_start: 315
-    line_end: 371
-    title: "The Exit Routines That Cleaned Up"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
-    image_url: ""
-    image_caption: ""
-    content: "The `BUS_EXIT`, `CMDERR`, `ERR_EXIT`, and `EXITP` routines handle various exit conditions for the driver, including normal completion, errors, and busy states. These routines restore registers and update the I/O packet status before returning control to MS-DOS. This meticulous cleanup was essential in assembly programming, where improper state management could crash the system. The design reflects the influence of structured programming principles, ensuring predictable behavior even in error conditions. These routines set a precedent for robust error handling in device drivers, influencing later systems where error codes and cleanup routines became standard practice."
-  - id: "mediac-media-check-routine"
-    line_start: 611
-    line_end: 621
-    title: "How MS-DOS Checked for Disk Changes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
-    image_url: ""
-    image_caption: ""
-    content: "The `MEDIAC` routine checks whether the disk media has changed by updating a flag in the I/O packet. This functionality was crucial for ensuring data integrity, as MS-DOS needed to detect when a user swapped disks. At the time, removable media like floppy disks were common, and detecting changes was a non-trivial problem. The routine's simplicity reflects the constraints of the era, relying on predefined flags rather than sophisticated hardware signals. This approach influenced later systems, where media change detection became more automated and integrated into hardware."
-  - id: "get-bpb-bios-parameter-block"
-    line_start: 647
-    line_end: 663
-    title: "The Routine That Built BPBs"
-    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS_parameter_block"
-    image_url: ""
-    image_caption: ""
-    content: "The `GET_BPB` routine constructs a BIOS Parameter Block (BPB) for the specified disk unit. BPBs describe disk geometry and layout, enabling MS-DOS to interface with different storage devices. This routine retrieves the BPB from the driver and updates the I/O packet with its address. In 1983, BPBs were a novel concept, borrowed from CP/M and adapted for MS-DOS to support diverse disk formats. This innovation allowed MS-DOS to handle disks with varying sector sizes, allocation units, and file system structures. BPBs became a standard in operating systems, influencing FAT file system design and modern storage management."
-  - id: "disk-io-functions"
-    line_start: 701
-    line_end: 835
-    title: "The Disk I/O Functions That Moved Data"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_operating_system"
-    image_url: ""
-    image_caption: ""
-    content: "The `DSK_RED`, `DSK_WRT`, and `DSK_COM` routines implement disk read and write operations by interacting with the Altos ROM and the I/O packet structure. These routines calculate sector addresses, manage retries, and handle errors using predefined masks. The design reflects the constraints of the Altos ACS-86C hardware, where direct manipulation of disk geometry was necessary. By abstracting these operations into reusable routines, MS-DOS enabled developers to write applications without worrying about hardware details. This modularity influenced later operating systems, where disk I/O became increasingly abstracted and standardized."
-  - id: "disk-error-handling"
-    line_start: 857
-    line_end: 893
-    title: "How MS-DOS Interpreted Disk Errors"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Error_detection_and_correction"
-    image_url: ""
-    image_caption: ""
-    content: "The `DERROR` routines process disk errors by mapping hardware error codes to MS-DOS error codes using a lookup table (`DERRTAB`). This design ensures consistent error reporting across different hardware platforms. The routines also update the I/O packet to indicate failure and exit through a common error routine. In 1983, error handling was a critical feature, as unreliable hardware and removable media often caused failures. By centralizing error processing, MS-DOS simplified debugging and improved user experience. This approach influenced later systems, where error codes and lookup tables became standard in driver design."
-  - id: "rom-call-routine"
-    line_start: 941
-    line_end: 973
-    title: "The ROM Call That Bridged Hardware"
+    content: "The 'DSK_INT' routine processes I/O packets for the hard disk driver. It uses a dispatch table ('DSK_TBL') to determine the appropriate action based on the command code in the I/O packet. This interrupt-driven approach was critical for handling asynchronous hardware events efficiently in MS-DOS. The use of interrupt routines allowed the operating system to respond to hardware signals without polling, a technique that was essential for performance on the limited hardware of the era. This mechanism influenced the design of interrupt handling in subsequent operating systems, including Windows and Linux."
+  - id: "entry-point-register-save"
+    line_start: 251
+    line_end: 311
+    title: "Saving Registers Before Disk Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
     image_url: ""
     image_caption: ""
-    content: "The `ROM_CALL` routine invokes the Altos ROM entry point to perform hardware-specific operations. By saving and restoring registers, the routine ensures compatibility with the ROM's calling conventions. This design abstracts hardware details, allowing MS-DOS to interact with the Altos ACS-86C without hardcoding device-specific logic. In the early 1980s, ROM calls were a common way to leverage hardware capabilities while maintaining portability. This approach influenced later systems, where BIOS and firmware interfaces became standardized, enabling cross-platform compatibility and reducing development costs."
+    content: "The 'ENTRY' routine saves all necessary registers before processing an I/O packet. It retrieves the packet pointer, extracts relevant information (e.g., unit code, media descriptor, sector count), and computes the entry pointer in the dispatch table. This meticulous register management was crucial for ensuring the integrity of data during hardware interactions. At the time, MS-DOS relied on BIOS routines for low-level hardware access, and preserving the state of registers was a standard practice to avoid corruption. This approach laid the groundwork for the development of robust hardware abstraction layers in later operating systems."
+  - id: "error-handling-routine"
+    line_start: 857
+    line_end: 893
+    title: "The Table That Translates Disk Errors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Error_code"
+    image_url: ""
+    image_caption: ""
+    content: "The 'DERROR' routine processes disk errors by mapping error codes to predefined values in the 'DERRTAB' table. This table associates specific error conditions (e.g., write protect violation, CRC error, sector not found) with corresponding error codes. By centralizing error handling, the routine simplifies debugging and ensures consistent behavior across different hardware implementations. In the early 1980s, error handling was a critical aspect of operating system design, as hardware failures were common and could easily disrupt operations. The concept of error tables influenced later systems, where similar mechanisms are used to provide meaningful error messages and facilitate troubleshooting."
+  - id: "rom-call-wrapper"
+    line_start: 941
+    line_end: 973
+    title: "Calling ROM Without Breaking Registers"
+    wikipedia_url: "https://en.wikipedia.org/wiki/BIOS"
+    image_url: ""
+    image_caption: ""
+    content: "The 'ROM_CALL' routine wraps calls to the ROM entry point while preserving all registers except CX, BX, and AX. This ensures that the state of the system remains intact after the ROM operation, which is critical for maintaining stability in low-level hardware interactions. ROM calls were a common way to access hardware functionality in early personal computers, as they provided a standardized interface for device operations. This wrapper technique influenced the design of hardware abstraction layers in later operating systems, where similar practices are used to ensure compatibility and reliability."
   - id: "disk-initialization-routine"
     line_start: 977
     line_end: 995
-    title: "How MS-DOS Initialized Disk Drivers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Device_driver"
+    title: "How MS-DOS Initialized Hard Disks"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Hard_disk_drive"
     image_url: ""
     image_caption: ""
-    content: "This routine, labeled `DSK_INI`, is responsible for initializing disk-related device drivers in MS-DOS 2.0. The code begins by loading a pointer from the `PTRSAV` variable into the `BX` register, which serves as the base for accessing device-specific data structures. It then sets the `MEDIA` byte to `1`, indicating a specific media type, and assigns the address of the `DSK_INI` routine itself to the `TRANS` field. This self-referential assignment allows the driver to reference its own initialization logic later. Additionally, the routine sets up pointers to the `INI_TAB` table, which likely contains initialization parameters or configuration data for the disk driver. In 1983, MS-DOS 2.0 introduced major architectural changes inspired by Unix and XENIX, including support for hierarchical directories and modular device drivers. This routine reflects those influences by using structured data and pointers to manage device-specific logic. At the time, hardware constraints demanded efficient use of memory and CPU cycles, making low-level assembly routines like this essential for performance. The modular design of MS-DOS device drivers laid the groundwork for future operating systems, including Windows. By abstracting hardware-specific details into drivers, developers could write applications that worked across a wide range of devices. This approach became standard practice and influenced later systems like Linux and Windows NT. The techniques demonstrated here—pointer manipulation, self-referential structures, and modular initialization—remain foundational in modern driver development."
-  - id: "code-section-end"
-    line_start: 29
-    line_end: 101
-    title: "The End of the Code Section"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
-    image_url: ""
-    image_caption: ""
-    content: "The `CODE ENDS` directive marks the conclusion of the code section in this file. It signals the assembler that the executable instructions have ended, and any subsequent lines will not be part of the active code segment. The `END` directive further indicates the end of the assembly source file, ensuring that the assembler knows where to stop processing. This structure reflects the conventions of assembly language programming in the early 1980s, where developers manually managed code and data segments to optimize memory usage. In MS-DOS 2.0, these directives were part of a broader effort to organize code into modular sections, enabling easier debugging and maintenance. The use of clear section boundaries influenced later programming practices, including the segmentation models in protected-mode operating systems like Windows 3.x and the organization of modern assembly files for embedded systems. While these directives may seem mundane, they represent the meticulous attention to detail required in low-level programming during an era of severe hardware constraints."
+    content: "The 'DSK_INI' routine initializes the hard disk driver by setting up key parameters, including the media byte and transfer address. It prepares the driver for subsequent operations and ensures that the system can interact with the hard disk reliably. Disk initialization was a critical step in operating system boot processes, as it established the foundation for file system access and data storage. This routine reflects the modular design principles of MS-DOS 2.0, which were influenced by Unix and aimed to support a wide range of hardware configurations. The initialization process became a standard feature in later operating systems, including Windows and Linux."
 
 ---
 

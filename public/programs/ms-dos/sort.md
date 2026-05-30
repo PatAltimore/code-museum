@@ -9,82 +9,66 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "sort"
 order: 19
-description: "This file implements the SORT command for MS-DOS 2.0, showcasing early assembly techniques for text processing and memory management in constrained environments."
+description: "This file implements the SORT command for MS-DOS 2.0, showcasing early techniques for text manipulation and memory management in constrained environments."
 
 summary:
-  - point: "Introduces memory allocation for sorting buffers using DOS system calls"
+  - point: "Introduces a reverse sort option via a clever patching mechanism"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Handles text sorting with linked lists and CR-LF termination"
-    link: "https://en.wikipedia.org/wiki/Control_character#Carriage_return_and_line_feed"
-    link_label: "CR-LF"
-  - point: "Demonstrates reverse sorting and column-based sorting"
-    link: "https://en.wikipedia.org/wiki/Sorting_algorithm"
-    link_label: "Sorting algorithm"
-  - point: "Includes internationalization support for Kanji character sets"
+  - point: "Demonstrates linked list creation by replacing CR-LF pairs with line lengths"
+    link: "https://en.wikipedia.org/wiki/Linked_list"
+    link_label: "Linked List"
+  - point: "Handles column-based sorting with dynamic parsing of command-line arguments"
+    link: "https://en.wikipedia.org/wiki/Command-line_interface"
+    link_label: "Command Line Interface"
+  - point: "Allocates memory dynamically for sorting, showcasing 8086 assembly's approach to memory management"
+    link: "https://en.wikipedia.org/wiki/Intel_8086"
+    link_label: "Intel 8086"
+  - point: "Includes internationalization support for Kanji sorting, reflecting early globalization efforts in software"
     link: "https://en.wikipedia.org/wiki/Kanji"
     link_label: "Kanji"
-  - point: "Uses inline assembly macros for system calls and register management"
-    link: "https://en.wikipedia.org/wiki/X86_assembly_language"
-    link_label: "x86 assembly language"
 
 enhancements:
   - id: "system-call-macro"
     line_start: 55
     line_end: 61
-    title: "The Macro That Simplified DOS Calls"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_API"
+    title: "The Macro That Simplified System Calls"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_21h"
     image_url: ""
     image_caption: ""
-    content: "This macro, named 'sys', encapsulates DOS system calls by setting the AH register to the desired function number and invoking interrupt 21h. At the time, system calls were the primary way to interact with the operating system, and this macro streamlined the process for developers. By abstracting the mechanics of setting up registers and invoking interrupts, it reduced boilerplate code and improved readability. In the early 1980s, MS-DOS provided a limited but essential API for file and device management, and this macro reflects the programmer's effort to make those interactions more efficient. The approach influenced later assembly programming practices, where macros became a staple for repeated patterns. This abstraction likely inspired similar constructs in higher-level languages and contributed to the evolution of APIs in modern operating systems."
-  - id: "version-checking"
-    line_start: 137
-    line_end: 169
-    title: "Why MS-DOS 2.0 Had Version Checks"
+    content: "This macro encapsulates the process of invoking MS-DOS system calls via interrupt 21h. By abstracting the mechanics of loading the function number into the AH register and triggering the interrupt, the macro reduces repetitive code and improves readability. In the early 1980s, assembly programming often required direct manipulation of hardware and operating system interfaces, making such macros invaluable for productivity. Tim Paterson's original 86-DOS laid the groundwork for this approach, and it became a staple in MS-DOS programming. This technique influenced later assembly-based operating systems and embedded systems programming, where macros are still used to simplify hardware interactions."
+  - id: "reverse-sort-patch"
+    line_start: 201
+    line_end: 223
+    title: "How a Reverse Sort Was 'Patched In'"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section checks the system's version number to ensure compatibility with MS-DOS 2.0. It uses the GET_VERSION system call and compares the returned value against the expected version. If the version is not 2.0 or higher, an error message is displayed, and the program exits gracefully. This was crucial in the early days of MS-DOS, as the operating system evolved rapidly, and programs often relied on specific features introduced in newer versions. The addition of version checks reflects the growing complexity of software development and the need for backward compatibility. This practice became standard in software engineering, influencing how modern applications handle version dependencies and compatibility checks."
-  - id: "command-line-parsing"
-    line_start: 201
-    line_end: 267
-    title: "Parsing Command Line Arguments in Assembly"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Command-line_interface"
-    image_url: ""
-    image_caption: ""
-    content: "This section parses command-line arguments to identify sorting options such as reverse sorting ('/R') and column-based sorting ('/+n'). It scans the command line character by character, looking for switches and their associated values. The use of assembly language for parsing reflects the constraints of early computing, where every byte of memory and CPU cycle mattered. Parsing command-line arguments was a common requirement for utilities in MS-DOS, as the operating system relied heavily on text-based interfaces. This approach influenced the design of command-line parsers in later systems, including Unix and Linux, where similar techniques are used to handle flags and arguments efficiently."
-  - id: "memory-allocation"
-    line_start: 287
+    content: "This section modifies the sorting behavior by patching a JAE (Jump if Above or Equal) instruction into a JB (Jump if Below) when the reverse sort flag is detected. This clever hack avoids rewriting the entire sorting logic, instead flipping the comparison direction dynamically. In 1983, memory constraints and tight deadlines often led to such ingenious solutions. Chris Peters, credited with writing this file, likely employed this trick to save both development time and precious bytes of code. This approach exemplifies the resourcefulness required in early software development and influenced later practices in optimizing conditional logic in constrained environments."
+  - id: "dynamic-memory-allocation"
+    line_start: 297
     line_end: 307
     title: "Allocating Memory in 64KB Chunks"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS_memory_management"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Intel_8086"
     image_url: ""
     image_caption: ""
-    content: "This section allocates memory for the sorting buffer using the ALLOC system call. It attempts to allocate 64KB (the maximum size allowed by the 16-bit segmented memory model) and retries with smaller chunks if the initial request fails. Memory allocation was a critical aspect of programming in the MS-DOS era, as developers had to work within the constraints of the segmented architecture and limited RAM. The technique of retrying with smaller allocations reflects the pragmatic approach taken by developers to ensure functionality even in low-memory environments. This memory management strategy influenced later systems, where dynamic allocation and garbage collection became standard practices."
-  - id: "linked-list-buffer"
-    line_start: 435
-    line_end: 451
-    title: "Turning Text into Linked Lists"
+    content: "This section dynamically allocates memory for the sorting buffer, attempting to secure up to 64KB in paragraphs (16-byte blocks). If the requested amount isn't available, the program retries with smaller allocations until successful. Memory management was a critical challenge in the 8086 era, as programs had to operate within the constraints of segmented memory architecture. This approach demonstrates the programmer's ingenuity in handling unpredictable hardware environments. Techniques like this influenced later memory allocation strategies in operating systems and programming languages, such as malloc in C and dynamic memory management in modern virtual machines."
+  - id: "linked-list-crlf-replacement"
+    line_start: 453
+    line_end: 491
+    title: "Turning Text into Linked Lists with CR-LF"
     wikipedia_url: "https://en.wikipedia.org/wiki/Linked_list"
     image_url: ""
     image_caption: ""
-    content: "This section transforms the text buffer into a linked list by replacing CR-LF pairs with the length of the following line. This clever use of linked lists enables efficient sorting by treating each line as a node in the list. Linked lists were a popular data structure in the early days of computing due to their simplicity and flexibility. By embedding metadata directly into the text buffer, the program avoids the overhead of separate data structures, a crucial optimization given the limited memory available. This technique influenced later text processing systems and algorithms, demonstrating the power of in-place data manipulation."
-  - id: "sorting-algorithm"
-    line_start: 505
-    line_end: 733
-    title: "Sorting Text with Nested Loops"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sorting_algorithm"
+    content: "This section transforms the input text buffer into a linked list by replacing CR-LF pairs (used for line endings) with the length of the following line. This ingenious use of text formatting as metadata allows the program to efficiently traverse and manipulate lines during sorting. In the early 1980s, memory was scarce, and techniques like this were critical for achieving functionality without exceeding hardware limits. The linked list structure here is a precursor to more sophisticated data structures used in modern text editors and database systems. This approach influenced future software that needed to process large text files efficiently, including Unix-based tools like 'sort' and 'awk'."
+  - id: "kanji-sort-support"
+    line_start: 583
+    line_end: 623
+    title: "Sorting Kanji in an ASCII World"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Kanji"
     image_url: ""
     image_caption: ""
-    content: "This section implements the core sorting algorithm using nested loops. The outer loop iterates over unsorted lines, while the inner loop finds the best insertion point for each line. The algorithm compares lines based on their length and content, adjusting for the specified column and handling reverse sorting if requested. Sorting algorithms were a critical component of utilities like SORT, as they directly impacted performance and usability. The use of nested loops and in-place manipulation reflects the constraints of early computing, where efficiency was paramount. This approach influenced the development of more advanced sorting algorithms and data structures, such as quicksort and binary trees, which became standard in modern programming."
-  - id: "crlf-replacement"
-    line_start: 743
-    line_end: 767
-    title: "Restoring CR-LF After Sorting"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Control_character#Carriage_return_and_line_feed"
-    image_url: ""
-    image_caption: ""
-    content: "After sorting the text buffer, this section restores the original CR-LF line terminators by replacing the length metadata with the appropriate control characters. This ensures that the output remains compatible with text-based applications and utilities in MS-DOS. Handling CR-LF pairs was a common requirement in early computing, as they were the standard line terminators in DOS and Windows environments. The careful restoration of these characters reflects the attention to detail required in text processing. This approach influenced later text processing systems, where compatibility with legacy formats remains a consideration."
+    content: "This section introduces internationalization support for sorting Kanji characters, using a translation table to map Kanji to sortable values. In 1983, software globalization was in its infancy, and supporting non-ASCII character sets required significant effort. MS-DOS's Kanji support reflects Microsoft's early recognition of the importance of international markets, particularly Japan. This feature paved the way for future operating systems to include robust internationalization libraries, influencing tools like Unicode and modern localization frameworks. Developers working on global software today still face similar challenges, though with more advanced tools at their disposal."
 
 ---
 

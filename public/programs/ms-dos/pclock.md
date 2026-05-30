@@ -9,24 +9,24 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "pclock"
 order: 39
-description: "This file implements clock interrupt handling for profiling in MS-DOS 2.0, showcasing early techniques for hardware-level timing control."
+description: "This file implements clock interrupt handling for MS-DOS 2.0, showcasing early techniques for hardware interaction and time profiling on the IBM PC."
 
 summary:
-  - point: "Introduces clock interrupt handling for profiling purposes"
-    link: "https://en.wikipedia.org/wiki/Interrupt"
-    link_label: "Interrupts"
-  - point: "Demonstrates low-level interaction with the 8086 hardware"
-    link: "https://en.wikipedia.org/wiki/Intel_8086"
-    link_label: "Intel 8086"
-  - point: "Uses clever arithmetic for timing calculations"
-    link: "https://en.wikipedia.org/wiki/Integer_arithmetic"
-    link_label: "Integer Arithmetic"
-  - point: "Reflects MS-DOS's evolution toward Unix-inspired features"
+  - point: "Direct manipulation of hardware registers for clock control"
+    link: "https://en.wikipedia.org/wiki/Programmable_Interval_Timer"
+    link_label: "Programmable Interval Timer"
+  - point: "Use of assembly-level interrupt vectors for precise timing"
+    link: "https://en.wikipedia.org/wiki/Interrupt_vector"
+    link_label: "Interrupt vector"
+  - point: "Optimization techniques for 8086 assembly programming"
+    link: "https://en.wikipedia.org/wiki/X86_assembly_language"
+    link_label: "x86 Assembly Language"
+  - point: "Integration of hardware interrupts into MS-DOS for profiling"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Highlights Tim Paterson's contributions to early PC software"
-    link: "https://en.wikipedia.org/wiki/Tim_Paterson"
-    link_label: "Tim Paterson"
+  - point: "Early example of modular assembly code organization"
+    link: "https://en.wikipedia.org/wiki/Modular_programming"
+    link_label: "Modular programming"
 
 enhancements:
   - id: "interrupt-vector-setup"
@@ -36,31 +36,31 @@ enhancements:
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_vector"
     image_url: ""
     image_caption: ""
-    content: "This section defines the interrupt vector table segment and sets up the vector for the clock interrupt. The programmer uses the `ORG` directive to position the interrupt vector at a specific memory location (60H + 7 * 4). This is a critical step in enabling hardware interrupts, as the CPU needs to know where to jump when an interrupt occurs. In 1983, this approach reflected the low-level nature of programming for the IBM PC, where developers had to manage hardware directly. Tim Paterson, the author of MS-DOS, adapted techniques from his earlier work on 86-DOS, which itself borrowed from CP/M. This method of interrupt handling influenced later operating systems, including Windows, which retained the concept of interrupt vectors in its kernel design."
-  - id: "clock-enable-routine"
+    content: "This section defines the interrupt vector table for the clock interrupt. The INTSEG segment is placed at a fixed memory address (0x60 + 7 * 4) to align with the hardware's expectations for interrupt handling. The interrupt vector table is a critical part of the 8086 architecture, allowing the CPU to locate the appropriate handler for hardware and software interrupts. Tim Paterson, the original author of MS-DOS, designed this mechanism to work seamlessly with the IBM PC's hardware, which included the Intel 8253 Programmable Interval Timer (PIT). At the time, direct manipulation of hardware registers was common practice, as operating systems were tightly coupled with hardware. This approach influenced later DOS versions and other operating systems, where interrupt vector tables remained a fundamental concept for managing hardware interactions."
+  - id: "enable-clock-interrupt"
     line_start: 61
     line_end: 145
-    title: "The Arithmetic Behind Clock Interrupts"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Timer_interrupt"
+    title: "The Routine That Started the Clock"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Programmable_Interval_Timer"
     image_url: ""
     image_caption: ""
-    content: "The `CLOCKON` routine enables the clock interrupt and configures the timer hardware. It begins by setting the mode register and loading the counter with a calculated value based on the desired interval in microseconds (passed in DX). The arithmetic here is notable: the code performs bit shifts and division to convert the interval into a value suitable for the timer hardware. This reflects the constraints of the 8086 CPU, which lacked floating-point arithmetic and required clever use of integer math. By directly interacting with hardware ports (`OUT` instructions), the routine demonstrates the hands-on nature of early PC programming. This approach laid the groundwork for profiling tools and performance monitoring software, influencing later systems like Windows Performance Monitor and third-party tools like Intel VTune."
-  - id: "clock-disable-routine"
+    content: "The CLOCKON subroutine enables the clock interrupt by configuring the hardware timer and setting the interrupt vector. It begins by programming the mode and load registers of the Intel 8253 PIT, specifying the clock frequency and interval in microseconds. The routine uses bitwise operations and register manipulation to set the timer's mode and load values. It then updates the interrupt vector to point to the CLK_INTER routine, ensuring the CPU knows where to jump when the timer interrupt occurs. Finally, it enables the interrupt by clearing the appropriate mask bit in the slave interrupt controller. This routine reflects the low-level programming required in the early 1980s, where developers worked directly with hardware registers to achieve precise control. The ability to profile execution time using clock interrupts was a significant innovation, influencing performance monitoring tools in later operating systems and development environments."
+  - id: "disable-clock-interrupt"
     line_start: 149
     line_end: 163
-    title: "Turning Off the Clock Interrupt"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
+    title: "Turning Off the Clock: A Simple Hack"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_mask"
     image_url: ""
     image_caption: ""
-    content: "The `CLOCKOFF` routine disables the clock interrupt by modifying the interrupt mask register. This simple operation ensures that the timer no longer triggers interrupts, allowing the system to conserve resources when profiling is not needed. The routine's brevity highlights the efficiency required in assembly programming, where every instruction counts. Disabling interrupts was a common practice in early operating systems to manage hardware resources effectively. This technique influenced later systems, where interrupt masking became a standard feature in device drivers and kernel-level programming."
-  - id: "leave-interrupt-routine"
+    content: "The CLOCKOFF subroutine disables the clock interrupt by setting the mask bit for the timer in the slave interrupt controller. This is a straightforward operation, reflecting the simplicity of early interrupt management on the 8086 architecture. By using the OR instruction to set the high bit of the mask register, the routine ensures that the timer interrupt is no longer triggered. This approach highlights the direct control programmers had over hardware in the early PC era, a necessity given the limited abstraction layers available at the time. The ability to enable and disable hardware interrupts dynamically became a cornerstone of operating system design, influencing the development of multitasking and real-time systems in later decades."
+  - id: "reset-interrupt-handler"
     line_start: 169
     line_end: 199
-    title: "Resetting the Clock After an Interrupt"
+    title: "Resetting the Clock Interrupt: A Precise Dance"
     wikipedia_url: "https://en.wikipedia.org/wiki/Interrupt_handler"
     image_url: ""
     image_caption: ""
-    content: "The `LEAVE_INT` routine handles the end-of-interrupt process for the clock. It clears the timer output, sends an end-of-interrupt command to the slave and master interrupt controllers, and reloads the timer to prepare for the next interrupt. This sequence ensures that the system remains responsive and the timer continues to function correctly. The use of `IRET` at the end of the routine is significant, as it restores the CPU state and resumes normal execution. This meticulous handling of interrupts reflects the challenges of programming the 8086, where developers had to manage hardware intricacies directly. The techniques used here influenced later interrupt handling mechanisms in operating systems like Windows and Linux, where similar concepts are implemented at a higher abstraction level."
+    content: "The LEAVE_INT routine is responsible for resetting the clock interrupt after it has been triggered and handled. It begins by saving the state of the accumulator register (AX) to preserve its value. The routine then clears the timer's output and sends an end-of-interrupt command to both the slave and master interrupt controllers, signaling that the interrupt has been processed. Finally, it reloads and arms the timer to prepare for the next interrupt and restores the accumulator's state before returning control to the interrupted program. This precise sequence ensures that the system can handle subsequent clock interrupts without errors or delays. The design reflects the meticulous attention to detail required in early assembly programming, where even minor mistakes could lead to system instability. The techniques used here laid the groundwork for interrupt handling in later operating systems, influencing designs ranging from Windows to embedded systems."
 
 ---
 

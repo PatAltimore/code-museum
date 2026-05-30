@@ -9,82 +9,74 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "exe2bin"
 order: 31
-description: "EXE2BIN.ASM is a utility from MS-DOS 2.0 that converts executable files (.EXE) into binary files (.BIN), showcasing early assembly programming techniques for file manipulation and memory management."
+description: "This file contains the source code for EXE2BIN, a utility in MS-DOS v2.0 that converts .EXE files into simpler .BIN files. It showcases early DOS file handling, memory management, and system call techniques."
 
 summary:
-  - point: "Introduces file handling via DOS interrupts"
+  - point: "Introduces memory and file handling routines for DOS utilities"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
   - point: "Demonstrates relocation table processing for executable files"
-    link: "https://en.wikipedia.org/wiki/Relocation_(computer_programming)"
-    link_label: "Relocation"
-  - point: "Uses memory constraints to optimize file conversion"
-    link: "https://en.wikipedia.org/wiki/Memory_management"
-    link_label: "Memory Management"
-  - point: "Highlights compatibility with older linkers"
+    link: "https://en.wikipedia.org/wiki/Executable_and_Linkable_Format"
+    link_label: "Executable format"
+  - point: "Uses DOS interrupt calls to interact with the file system"
+    link: "https://en.wikipedia.org/wiki/INT_21H"
+    link_label: "INT 21H"
+  - point: "Highlights constraints of early PC hardware and software"
+    link: "https://en.wikipedia.org/wiki/IBM_PC"
+    link_label: "IBM PC"
+  - point: "Shows adaptation to new linker formats in DOS v2.0"
     link: "https://en.wikipedia.org/wiki/Linker_(computing)"
     link_label: "Linker"
-  - point: "Reflects the transition from 86-DOS to MS-DOS 2.0"
-    link: "https://en.wikipedia.org/wiki/86-DOS"
-    link_label: "86-DOS"
 
 enhancements:
-  - id: "runvar-memory-variables"
+  - id: "runvar-memory-layout"
     line_start: 133
     line_end: 169
-    title: "Memory Variables for Relocation Operations"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_programming)"
+    title: "How Memory Layout Was Organized in DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The RUNVAR section defines memory locations used for relocation operations during the conversion of .EXE files to .BIN files. These variables, such as RELPT and RELSEG, store critical information about the executable's relocation table and memory layout. In 1983, memory management was a significant challenge due to the limited resources of early PCs, such as the IBM PC with its 640KB memory limit. This section reflects the programmer's need to handle relocation efficiently to ensure the converted binary files function correctly. The relocation process, which adjusts memory addresses in an executable to match its load location, was crucial for compatibility across different systems. This technique influenced later software development tools and operating systems, which adopted similar approaches for handling relocatable code."
+    content: "The RUNVAR section defines key memory variables used during the conversion process. These include RELPT, which holds relocation pointers, and RELSEG, which stores the segment base for relocation. In the early 1980s, memory management was critical due to the limited RAM available on IBM PCs (typically 64KB to 640KB). This section reflects the programmer's careful allocation of memory for different parts of the executable file, ensuring that the program could operate efficiently within these constraints. Tim Paterson, the original author of 86-DOS, designed the system to be simple and fast, and this approach carried over into MS-DOS. The memory layout techniques seen here influenced later DOS utilities and even early Windows applications, which had to manage memory manually in similar ways."
   - id: "locate-version-check"
     line_start: 197
     line_end: 261
-    title: "Version Check for DOS Compatibility"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "The Version Check That Prevented Crashes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Backward_compatibility"
     image_url: ""
     image_caption: ""
-    content: "The LOCATE procedure begins by checking the version of DOS using interrupt 21h, function AH=30h. If the DOS version is less than 2.0, the program displays an error message and exits. This reflects the transition from 86-DOS to MS-DOS 2.0, which introduced significant improvements, including better file handling and system calls. The version check ensured compatibility with the newer features of MS-DOS 2.0, such as subdirectories and file handles. At the time, backward compatibility was a critical concern, as many users were still running older versions of DOS. This approach influenced future software development, where version checks became standard practice to ensure compatibility and prevent runtime errors."
+    content: "The LOCATE procedure begins with a version check to ensure compatibility with DOS version 2.0 or higher. This was critical because earlier versions of DOS lacked the system calls and features required by EXE2BIN. The check uses the INT 21H interrupt to retrieve the DOS version number and compares it to the minimum required version. If the version is insufficient, the program gracefully exits, displaying an error message. This approach highlights the challenges of maintaining backward compatibility in the rapidly evolving PC software ecosystem of the early 1980s. As DOS matured, version checks like this became standard practice, ensuring that software could adapt to the capabilities of newer operating systems without crashing older ones. This technique influenced later software development practices, including the use of feature detection in modern APIs."
   - id: "file-name-parsing"
-    line_start: 301
-    line_end: 517
-    title: "Parsing File Names with Assembly Loops"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Assembly_language"
+    line_start: 299
+    line_end: 567
+    title: "Parsing Filenames in a World Without GUIs"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Filename"
     image_url: ""
     image_caption: ""
-    content: "This section parses file names provided by the user, storing them in memory while handling spaces and extensions. It uses assembly loops and conditional jumps to process each character, checking for spaces, carriage returns, and periods to identify extensions. In the early 1980s, user input was typically raw and unstructured, requiring programs to handle edge cases like missing extensions or invalid characters. The parsing logic here ensures that file names are properly formatted before proceeding with the conversion process. This technique, though basic by today's standards, was foundational for file handling in early operating systems. It influenced later developments in command-line utilities and scripting languages, where robust input parsing became a critical feature."
+    content: "This section parses the filenames provided by the user for the input and output files. It reads characters one by one, checks for spaces, carriage returns, and extension separators, and stores the filenames in memory. The code also handles cases where the user does not provide a file extension, automatically appending \".EXE\" or \".BIN\" as needed. In the early days of computing, filenames were often limited to 8 characters plus a 3-character extension, a constraint inherited from CP/M and carried into DOS. This routine reflects the manual handling required to process user input in a text-based environment. The techniques used here influenced later file handling routines in DOS utilities and even modern command-line tools, which often include similar logic for parsing and validating user input."
   - id: "exe-header-validation"
     line_start: 571
-    line_end: 603
-    title: "Validating and Adjusting EXE Headers"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Executable"
+    line_end: 913
+    title: "Validating EXE Headers to Avoid Corruption"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Executable_and_Linkable_Format"
     image_url: ""
     image_caption: ""
-    content: "The EXELOAD procedure reads the header of the .EXE file and validates its signature (5A4Dh, the 'MZ' magic number). It calculates the header size and adjusts it to ensure it fits within memory constraints. This validation step was crucial for ensuring the integrity of the executable file before converting it to a binary format. The 'MZ' signature, introduced by Mark Zbikowski, became a standard for DOS executables. This section reflects the meticulous attention to detail required in early software development, where even minor errors in file headers could lead to system crashes. The techniques used here influenced later file format standards and tools for analyzing and manipulating executables, such as PE (Portable Executable) format in Windows."
+    content: "The EXELOAD routine reads and validates the header of the input .EXE file. It checks for the 'MZ' signature (5A4D in hexadecimal), which identifies the file as a valid DOS executable. The routine also calculates the size of the header and ensures it does not exceed 64KB, a limitation imposed by the segmented memory model of the 8086 processor. This validation step prevents the program from attempting to process corrupted or incompatible files, which could lead to crashes or data loss. The 'MZ' signature, named after Mark Zbikowski, a Microsoft developer, became a defining feature of DOS executables and influenced the design of later executable formats, including the Portable Executable (PE) format used in Windows."
   - id: "relocation-table-processing"
     line_start: 915
     line_end: 949
-    title: "Processing Relocation Tables for Binary Conversion"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_programming)"
+    title: "Relocating Code for Flexible Memory Usage"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Relocation_(computer_science)"
     image_url: ""
     image_caption: ""
-    content: "The RELOC procedure processes the relocation table of the .EXE file, adjusting memory addresses to match the load location of the binary file. It reads relocation pointers from the file and applies the necessary adjustments to ensure the binary file functions correctly. Relocation was a critical operation in early computing, as programs needed to run in different memory locations depending on system configuration. This section showcases the programmer's deep understanding of memory management and file structures. The relocation logic here influenced later developments in dynamic linking and loading, where similar techniques are used to adjust memory addresses at runtime. It also laid the groundwork for modern executable formats that support relocatable code."
+    content: "The RELOC routine processes the relocation table in the .EXE file, adjusting memory addresses to account for the program's actual load location in memory. It reads relocation pointers from the file, calculates their new addresses based on the load segment, and updates the code accordingly. Relocation was essential in the segmented memory model of the 8086 processor, where programs could be loaded at different memory locations depending on system conditions. This technique allowed DOS to support larger and more complex programs than the earlier CP/M operating system. The relocation logic seen here influenced the design of modern executable formats, which continue to use relocation tables to enable dynamic linking and address adjustment."
   - id: "binary-file-creation"
     line_start: 951
     line_end: 1021
-    title: "Creating and Writing Binary Files"
+    title: "Writing .BIN Files for Simpler Execution"
     wikipedia_url: "https://en.wikipedia.org/wiki/Binary_file"
     image_url: ""
     image_caption: ""
-    content: "The STORE procedure creates a new .BIN file and writes the converted binary data to it. It uses DOS interrupts for file creation (AH=3Ch) and writing (AH=40h), ensuring compatibility with the operating system's file handling mechanisms. This section reflects the constraints of early PCs, where disk operations were slow and error-prone. The careful handling of file creation and writing here ensured the reliability of the conversion process. The techniques used in this section influenced later file manipulation utilities and programming libraries, where robust error handling and compatibility with operating system APIs became standard practice."
-  - id: "final-directives-and-program-entry"
-    line_start: 265
-    line_end: 485
-    title: "Why These Final Lines Matter"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "These closing lines of EXE2BIN.ASM serve as administrative markers in the assembly file. The `LOCATE ENDP` directive signals the end of the LOCATE subroutine, while `CODE ENDS` marks the conclusion of the code segment. Finally, the `END LOCATE` directive specifies the program's entry point, ensuring that execution begins at the LOCATE routine when the binary is loaded. In the context of MS-DOS development, these directives were essential for organizing and structuring assembly code. The EXE2BIN utility itself was a critical tool for developers working on early IBM PCs and compatible systems. It converted .EXE files (which included relocation information and could be loaded anywhere in memory) into .COM files (which were simpler, single-segment binaries loaded at a fixed memory address). This conversion was vital for creating compact, efficient programs that could run on systems with limited resources. By 1983, when MS-DOS 2.0 was released, the computing landscape had evolved significantly. Developers were transitioning from the constrained environments of CP/M and early DOS to more sophisticated systems inspired by Unix. Yet tools like EXE2BIN remained indispensable for bridging the gap between high-level programming and the raw binary execution required by the hardware. The influence of this utility extended beyond its immediate use. The principles of binary conversion and memory management it embodied became foundational for later software tools and operating systems. Developers working on compilers, linkers, and loaders for modern systems continue to grapple with similar challenges, albeit on a vastly larger scale. EXE2BIN's role in shaping the early PC software ecosystem underscores the ingenuity required to make computing accessible and practical in its formative years."
+    content: "The STORE routine creates the output .BIN file and writes the converted program data to it. It uses DOS system calls to open, write, and close the file, ensuring that the binary file is correctly formatted and ready for execution. .BIN files were simpler than .EXE files, lacking headers and relocation tables, and were often used for low-level system utilities or boot loaders. This routine reflects the programmer's focus on efficiency and simplicity, traits that were critical in the resource-constrained environment of early PCs. The ability to convert .EXE files to .BIN format provided flexibility for developers and influenced the design of later utilities that supported multiple executable formats."
 
 ---
 

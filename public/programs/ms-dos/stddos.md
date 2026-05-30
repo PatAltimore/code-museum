@@ -9,28 +9,28 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "stddos"
 order: 10
-description: "Configuration switches and assembly directives for MS-DOS 1.25, showcasing early design decisions in operating system development."
+description: "This file contains assembly code for MS-DOS 1.25, a pivotal operating system that shaped the PC era."
 
 summary:
-  - point: "Boolean switches control build variants for IBM and Microsoft versions."
+  - point: "Defines key configuration switches for MS-DOS behavior"
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "HIGHMEM switch reflects memory management constraints of early PCs."
-    link: "https://en.wikipedia.org/wiki/Conventional_memory"
-    link_label: "Conventional memory"
-  - point: "Re-entrant DOS testing enabled by DSKTEST switch."
+  - point: "Introduces re-entrant testing mode for disk I/O"
     link: "https://en.wikipedia.org/wiki/Reentrancy_(computing)"
     link_label: "Reentrancy"
+  - point: "Demonstrates early use of conditional assembly directives"
+    link: "https://en.wikipedia.org/wiki/Assembly_language"
+    link_label: "Assembly language"
 
 enhancements:
-  - id: "early-build-switches-ms-dos"
-    line_start: 3
-    line_end: 19
-    title: "Why MS-DOS Had Multiple Build Variants"
+  - id: "configuration-switches-ms-dos"
+    line_start: 7
+    line_end: 13
+    title: "The Switches That Defined MS-DOS Behavior"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "This section defines several boolean switches that control how MS-DOS is assembled. These include MSVER and IBM, which toggle between the Microsoft and IBM-specific builds of the operating system, HIGHMEM, which determines whether DOS relocates itself to the end of memory, and DSKTEST, a debugging mode that makes DOS re-entrant for disk I/O testing. At the time, the IBM PC had just launched, and MS-DOS needed to support both IBM's requirements and Microsoft's broader licensing strategy. The HIGHMEM option reflects the constraints of early PC memory management, where conventional memory was limited to 640KB and operating systems had to carefully manage their footprint. DSKTEST, meanwhile, hints at the challenges of debugging disk operations in an era when re-entrant code was rare and difficult to achieve. These switches reveal the flexibility baked into MS-DOS's design, allowing it to adapt to different hardware and licensing conditions. Tim Paterson, who originally wrote 86-DOS, carried forward this modular philosophy when adapting the code for Microsoft. The inclusion of debugging options like DSKTEST highlights the practical challenges of developing low-level software for new hardware. This modular approach influenced later operating systems, including MS-DOS 2.0, which introduced more sophisticated features like subdirectories and file handles. The HIGHMEM concept also foreshadowed memory management techniques that became critical as PCs evolved, such as extended and expanded memory. Debugging tools like DSKTEST paved the way for more robust testing environments in future software development. These switches represent an early example of how software could be tailored to meet diverse needs in a rapidly changing industry."
+    content: "This section defines several key configuration switches that control the behavior of MS-DOS during assembly. These include `MSVER` to distinguish between the Microsoft and IBM versions, `HIGHMEM` to determine whether DOS relocates itself to the end of memory, and `DSKTEST` for enabling a testing mode that makes disk I/O re-entrant. Conditional assembly directives (`EQU`) are used to toggle these features on or off, allowing flexibility in building different variants of the operating system. In 1982, these switches were vital for adapting MS-DOS to various hardware configurations and OEM requirements. The IBM PC, which launched in 1981, had limited memory and relied on MS-DOS as its operating system. Tim Paterson, who originally wrote 86-DOS (the precursor to MS-DOS), designed these switches to simplify customization and testing. The inclusion of a re-entrant mode (`DSKTEST`) reflects the growing complexity of disk operations and the need for robust debugging tools. This approach to modular configuration influenced later operating systems and development practices. Conditional assembly became a standard technique for tailoring software to specific environments, especially in embedded systems. The idea of relocating the OS (`HIGHMEM`) foreshadowed memory management innovations in later versions of MS-DOS and other operating systems. Re-entrant code, while not fully realized in MS-DOS 1.x, became a cornerstone of modern multitasking systems. Developers studying this file would have seen how early design decisions in MS-DOS laid the groundwork for the software flexibility we take for granted today."
 
 ---
 

@@ -9,132 +9,130 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "chkdsk"
 order: 22
-description: "The CHKDSK utility in MS-DOS v2.0 was a critical tool for verifying and repairing disk consistency, showcasing early efforts in filesystem maintenance and error handling."
+description: "The CHKDSK utility in MS-DOS v2.0 was a pivotal tool for ensuring disk integrity, showcasing early efforts to manage file systems under constrained hardware environments."
 
 summary:
-  - point: "CHKDSK introduced FAT-based disk verification and repair routines."
+  - point: "CHKDSK introduced FAT validation and repair routines."
     link: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     link_label: "File Allocation Table"
-  - point: "Version 2.0 rewrote CHKDSK to support subdirectories and internationalization."
+  - point: "Implemented techniques for handling fragmented files."
+    link: "https://en.wikipedia.org/wiki/Disk_fragmentation"
+    link_label: "Disk Fragmentation"
+  - point: "Used interrupt-driven I/O for disk operations."
+    link: "https://en.wikipedia.org/wiki/Interrupt"
+    link_label: "Interrupts"
+  - point: "Adapted Unix-inspired directory handling for MS-DOS."
+    link: "https://en.wikipedia.org/wiki/Unix"
+    link_label: "Unix"
+  - point: "CHKDSK became a standard utility in DOS-based systems."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "CHKDSK's modular design allowed assembly on early PCs."
-    link: "https://en.wikipedia.org/wiki/IBM_PC"
-    link_label: "IBM PC"
 
 enhancements:
-  - id: "dirbuf-initialization"
+  - id: "dirbuf-disk-buffering"
     line_start: 165
-    line_end: 165
-    title: "Why CHKDSK Needed a Dedicated Buffer"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
+    line_end: 187
+    title: "How CHKDSK Buffered Disk Searches"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_buffer"
     image_url: ""
     image_caption: ""
-    content: "This section defines `DIRBUF`, a buffer used for directory searches, along with related data structures like `VOLID` and `ALLFILE`. The programmer's goal here was to create a workspace for traversing and verifying the file allocation table (FAT) and directory entries. In the early 1980s, disk drives were slow, and memory was scarce—IBM PCs typically had 64KB to 256KB of RAM. Efficient use of buffers like `DIRBUF` minimized disk I/O, speeding up operations. Tim Paterson, the original author of 86-DOS, likely drew inspiration from CP/M's file control blocks (FCBs), adapting them for FAT-based systems. This approach influenced later utilities, including Norton Disk Doctor and modern filesystem checkers like `fsck` in Unix-based systems."
-  - id: "rootstr-and-internationalization"
-    line_start: 197
-    line_end: 257
-    title: "How MS-DOS Adapted to Global Users"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
+    content: "This section defines the DIRBUF label and related data structures, which serve as the entry buffer for disk searches. The buffer is used to temporarily store directory entries and file control blocks (FCBs) during disk operations. At the time, disk operations were slow due to the mechanical nature of hard drives and floppy drives, so buffering was essential to reduce the number of direct disk accesses. The inclusion of volume ID and extended FCBs reflects the growing complexity of file systems in MS-DOS v2.0, which introduced subdirectories and enhanced file handling capabilities. This approach to buffering would later influence the design of caching mechanisms in modern operating systems, such as Windows and Linux, where memory is used to optimize disk I/O performance."
+  - id: "rootstr-directory-handling"
+    line_start: 199
+    line_end: 319
+    title: "Unix-Inspired Directory Management in MS-DOS"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Directory_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The `ROOTSTR` section initializes constants like `DIRCHAR` and `SWITCHAR`, which define directory separators and command-line switches. These values were critical for internationalization, allowing CHKDSK to adapt to different regional conventions. For example, while the U.S. used backslashes (`\\`) for directories, other locales might prefer forward slashes (`/`). By abstracting these details, MS-DOS v2.0 became more versatile, accommodating diverse user bases and paving the way for global adoption. This modularity influenced later operating systems, including Windows, which retained similar abstractions for compatibility."
-  - id: "internatvars-block"
-    line_start: 323
-    line_end: 325
-    title: "The Hidden Variables Behind Localization"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "The `INTERNATVARS` block defines a placeholder for internationalization-specific variables. This design reflects Microsoft's growing awareness of the global market in the early 1980s. As MS-DOS expanded beyond the U.S., developers had to account for differences in language, character sets, and conventions. This foresight allowed MS-DOS to dominate the OEM market, influencing later systems like Windows NT, which inherited many localization features from MS-DOS."
-  - id: "fat-label-and-data"
-    line_start: 329
-    line_end: 331
-    title: "The Data Structure That Defined MS-DOS"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
-    image_url: ""
-    image_caption: ""
-    content: "The `FAT` label marks the start of the file allocation table handling logic. FAT was a revolutionary filesystem for its time, enabling efficient storage and retrieval on floppy disks and hard drives. This section sets up the groundwork for CHKDSK's ability to verify and repair FAT structures, ensuring data integrity. FAT's simplicity and adaptability made it the de facto standard for early PCs, influencing later filesystems like VFAT and exFAT, which extended FAT's capabilities for larger storage devices."
+    content: "The ROOTSTR section defines constants and data structures for managing directories, including special entries like \".\" and \"..\" for current and parent directories. These conventions were borrowed from Unix, which had established them as a standard for hierarchical file systems. MS-DOS v2.0 marked a significant departure from earlier versions by introducing support for subdirectories, a feature that was essential for organizing files on increasingly large and complex storage devices. This innovation made MS-DOS more competitive with Unix and other operating systems of the era, and it laid the groundwork for directory structures in later versions of Windows."
   - id: "chkdsk-entry-point"
     line_start: 367
     line_end: 369
-    title: "The Jump That Starts Disk Repair"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "The Entry Point That Starts It All"
+    wikipedia_url: "https://en.wikipedia.org/wiki/CHKDSK"
     image_url: ""
     image_caption: ""
-    content: "The `CHKDSK` label serves as the entry point for the utility, immediately jumping to `CHSTRT`. This design reflects the modularity of MS-DOS utilities, where initialization and execution were often separated for clarity and maintainability. By organizing the code this way, the developers ensured that CHKDSK could be easily updated or extended—a necessity in the rapidly evolving PC market of the 1980s. This modular approach influenced the design of later utilities and operating systems, including Unix tools like `fsck`."
-  - id: "chstrt-initialization"
-    line_start: 377
-    line_end: 407
-    title: "How CHKDSK Validates MS-DOS Versions"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    content: "The CHKDSK label marks the entry point of the disk consistency checker. It begins by jumping to the CHSTRT subroutine, which initializes the program by verifying the DOS version and setting up the stack. This entry point encapsulates the utility's primary purpose: to ensure the integrity of the file system and repair any issues found. CHKDSK was crucial in an era when disk errors were common due to hardware limitations and the lack of robust error-checking mechanisms. The utility's design influenced later diagnostic tools, such as Scandisk in Windows 95, and remains a foundational concept in file system maintenance."
+  - id: "stack-management"
+    line_start: 445
+    line_end: 451
+    title: "The Stack Adjustment That Prevented Crashes"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Call_stack"
     image_url: ""
     image_caption: ""
-    content: "The `CHSTRT` routine initializes CHKDSK by checking the MS-DOS version against predefined ranges (`DOSVER_LOW` and `DOSVER_HIGH`). This ensures compatibility and prevents errors on unsupported systems. In the early 1980s, backward compatibility was a major concern, as hardware and software evolved rapidly. By embedding version checks, Microsoft reduced the risk of crashes, enhancing user trust. This technique became standard practice in software development, influencing compatibility layers in modern systems like Windows and Linux."
-  - id: "gotbaddos-handler"
-    line_start: 409
-    line_end: 413
-    title: "What Happens When DOS Versions Clash"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
-    image_url: ""
-    image_caption: ""
-    content: "The `GOTBADDOS` routine handles cases where the MS-DOS version is outside the supported range. It displays an error message and exits gracefully, preventing undefined behavior. This defensive programming approach reflects the challenges of developing software for diverse hardware and software environments. By anticipating errors, Microsoft ensured CHKDSK's reliability, setting a precedent for robust error handling in utilities and operating systems."
-  - id: "okdos-stack-check"
-    line_start: 417
+    content: "The SETSTACK subroutine adjusts the stack pointer to ensure sufficient stack space for program execution. It uses a combination of direct memory manipulation and conditional checks to allocate more stack space if needed. This was a critical safeguard in MS-DOS, where the lack of memory protection meant that stack overflows could easily corrupt other parts of the program or operating system. By dynamically managing the stack, CHKDSK avoided crashes during complex operations, setting a precedent for robust memory management techniques in later software."
+  - id: "fat-validation"
+    line_start: 755
     line_end: 809
-    title: "The Stack Check That Prevented Crashes"
-    wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
+    title: "Reading and Validating the FAT"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Allocation_Table"
     image_url: ""
     image_caption: ""
-    content: "The `OKDOS` routine verifies stack space availability, adjusting the stack pointer if necessary. In the constrained memory environment of early PCs, stack overflows could easily crash a program. By proactively managing stack space, CHKDSK avoided such issues, ensuring stability. This technique influenced later systems, where dynamic stack management became a standard feature in operating system kernels and runtime environments."
-  - id: "file-system-integrity-check"
+    content: "The RDLOOP subroutine reads the File Allocation Table (FAT) from disk and validates its contents. The FAT is a critical component of the MS-DOS file system, storing information about the allocation of disk space for files. RDLOOP uses interrupt 25H to perform disk reads and checks the FAT ID byte to ensure its validity. If errors are detected, the subroutine attempts retries and prompts the user for action. This robust error-handling mechanism was essential in an era when disk errors were common due to hardware limitations. The techniques pioneered here influenced later file system utilities, including Scandisk and modern disk repair tools."
+  - id: "fragmentation-check"
+    line_start: 899
+    line_end: 1037
+    title: "Detecting Fragmentation in Specified Files"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Disk_fragmentation"
+    image_url: ""
+    image_caption: ""
+    content: "The CHECKFILES and FRAGCHK routines search the directory for files specified on the command line and report the number of fragmented allocation units found. Fragmentation occurs when files are stored in non-contiguous clusters on disk, leading to slower access times. These routines use the FAT to trace the chain of clusters for each file and count the fragments. This functionality was particularly important in the early 1980s, when disk drives had limited capacity and performance. By identifying fragmented files, CHKDSK helped users optimize their storage and improve system performance. The concept of fragmentation detection and repair became a standard feature in disk utilities, influencing tools like Defrag in later Windows versions."
+  - id: "file-system-check-trigger"
     line_start: 1039
-    line_end: 1047
-    title: "How MS-DOS Handles Missing Extents"
-    wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
+    line_end: 1051
+    title: "How CHKDSK Decides to Report Errors"
+    wikipedia_url: "https://en.wikipedia.org/wiki/CHKDSK"
     image_url: ""
     image_caption: ""
-    content: "The FILSPOK subroutine checks whether a file fragment has the expected extents. If the fragment count is incorrect, it calls the PRINT routine to display an error message. This routine reflects the importance of file system integrity in the early 1980s, when disk errors were common due to hardware limitations and lack of robust error correction. At the time, MS-DOS was competing with CP/M and needed to demonstrate reliability for IBM PC users. This approach influenced later file system utilities, such as scandisk in Windows, which expanded on these basic integrity checks."
+    content: "The FILSPOK routine checks whether a file system fragment count equals 2, indicating potential issues. If the condition is met, it jumps to CDONE, bypassing error reporting. Otherwise, it prints a 'NOEXTENTS' message. This simple decision-making mechanism reflects the constrained environment of early PCs, where diagnostics had to be efficient and direct. In the early 1980s, disk fragmentation was a common issue, and tools like CHKDSK were vital for maintaining system health. This approach laid the groundwork for more sophisticated disk utilities, influencing tools like Norton Disk Doctor and modern filesystem checkers in Linux and Windows."
   - id: "cluster-to-sector-conversion"
     line_start: 1057
-    line_end: 1085
-    title: "The Algorithm That Mapped Clusters to Sectors"
+    line_end: 1093
+    title: "Mapping Clusters to Sectors: FIGREC Routine"
     wikipedia_url: "https://en.wikipedia.org/wiki/File_system"
     image_url: ""
     image_caption: ""
-    content: "The FIGREC subroutine converts a cluster number into a sector number by applying a shift operation based on the cluster size and adding the first sector offset. This routine is pivotal for file system operations, as it translates logical cluster addresses into physical disk locations. In the early 1980s, efficient disk access was critical due to the slow speed of floppy drives and limited memory. Tim Paterson's design here reflects the constraints of the 8086 processor and the FAT12 file system. This algorithm laid the groundwork for later FAT file systems, which became ubiquitous in personal computing and embedded systems."
+    content: "The FIGREC routine converts a cluster number in BX to a sector number in DX. It uses the cluster shift value from the Disk Parameter Block (DPB) and calculates the first sector of the cluster. This routine exemplifies the low-level manipulation required to interact with the FAT filesystem, which was pivotal to MS-DOS. At the time, FAT was a groundbreaking filesystem, balancing simplicity and efficiency for small storage devices. FIGREC's logic influenced later filesystem utilities and the development of more advanced storage management techniques, such as those seen in NTFS and ext4."
   - id: "volume-id-printing"
     line_start: 1095
     line_end: 1149
-    title: "Printing Volume IDs with Internationalization"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Internationalization_and_localization"
+    title: "PRINTID: Displaying Volume Information"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Volume_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The PRINTID subroutine retrieves and prints the volume ID, including date and time formatting based on internationalization settings. This reflects MS-DOS v2.0's shift towards supporting global markets, as IBM PCs were sold worldwide. The use of INTERNATVARS for date/time formats demonstrates an early attempt at localization, predating modern libraries like ICU. This routine influenced later operating systems, including Windows, which expanded internationalization support significantly."
-  - id: "date-separator-printing"
-    line_start: 1201
+    content: "PRINTID retrieves and displays the volume ID, including the name and creation date. It uses INT 21H to access internationalization variables and formats the output based on the system's date and time settings. This routine highlights the importance of user-friendly diagnostics in early computing, where users relied on textual feedback to understand system states. The ability to print volume IDs became a standard feature in disk utilities, influencing tools like Windows' Disk Management and Linux's `lsblk` command."
+  - id: "date-formatting-routines"
+    line_start: 1153
     line_end: 1211
-    title: "The Separator That Bridged Cultures"
+    title: "USPDAT and EUPDAT: Formatting Dates for Output"
     wikipedia_url: "https://en.wikipedia.org/wiki/Date_and_time_representation_by_country"
     image_url: ""
     image_caption: ""
-    content: "The P_DSEP subroutine prints the date separator character, which is retrieved from the INTERNATVARS structure. This small but significant routine highlights the challenges of adapting software for international users. In 1983, most software assumed a single date format, but MS-DOS v2.0 began accommodating regional differences. This approach influenced later software, including Windows and Office, which offer extensive localization options."
-  - id: "month-name-printing"
+    content: "USPDAT and EUPDAT handle date formatting based on regional settings. USPDAT uses the month name followed by the day, while EUPDAT places the day before the month name. These routines reflect the growing need for internationalization in software during the 1980s, as MS-DOS expanded to global markets. The logic here influenced later date-handling libraries and APIs, such as those in Java and Python, which support diverse regional formats."
+  - id: "month-name-lookup"
     line_start: 1215
     line_end: 1263
-    title: "How MS-DOS Printed Month Names"
-    wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
+    title: "P_MONTH_NAM: Printing Month Names from a Table"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Lookup_table"
     image_url: ""
     image_caption: ""
-    content: "The P_MONTH_NAM subroutine retrieves and prints the name of a month based on the value in the DX register. It uses a lookup table (MONTAB) to map month indices to their ASCII representations. This routine is an example of efficient string manipulation in assembly language, where memory and processing constraints required careful optimization. The lookup table approach became a standard technique in programming, influencing later implementations in higher-level languages like C and Python."
-  - id: "ascii-filename-conversion"
+    content: "P_MONTH_NAM uses a lookup table to retrieve and print month names based on the input date. By calculating the offset into the table, it efficiently accesses the correct name. Lookup tables were a common optimization in assembly programming, reducing runtime computation at the cost of memory. This technique influenced later software design, where precomputed tables are used for tasks like character encoding and graphics rendering."
+  - id: "time-formatting-routine"
+    line_start: 1343
+    line_end: 1433
+    title: "P_TIME: Formatting Time for Display"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Time_format"
+    image_url: ""
+    image_caption: ""
+    content: "P_TIME formats and prints the current time, handling both 12-hour and 24-hour formats. It adjusts for AM/PM and suppresses leading zeros based on user preferences. This routine demonstrates the attention to detail required for user-friendly output in early software. The ability to toggle between time formats became a standard feature in operating systems and influenced the development of modern time-handling libraries."
+  - id: "ascii-conversion-routine"
     line_start: 1737
     line_end: 1797
-    title: "Turning File Control Blocks into ASCII Strings"
-    wikipedia_url: "https://en.wikipedia.org/wiki/ASCII"
+    title: "FCB_TO_ASCZ: Converting File Control Blocks to Strings"
+    wikipedia_url: "https://en.wikipedia.org/wiki/File_Control_Block"
     image_url: ""
     image_caption: ""
-    content: "The FCB_TO_ASCZ routine converts a File Control Block (FCB) structure into an ASCII string, appending a null terminator. This was essential for compatibility with programs expecting null-terminated strings, a convention popularized by C. In MS-DOS v2.0, this conversion reflects the transition from CP/M-style FCBs to Unix-inspired file handles. The routine's efficiency and adherence to conventions influenced later DOS utilities and third-party software, ensuring interoperability in the growing PC software ecosystem."
+    content: "FCB_TO_ASCZ converts a File Control Block (FCB) structure into an ASCII null-terminated string. This routine reflects the transition from legacy FCB-based file handling to more modern string-based methods. FCBs were an early DOS abstraction for file metadata, but their limitations led to the adoption of file handles in MS-DOS v2.0. This conversion routine influenced later APIs for file manipulation, such as POSIX's `open` and `read` functions."
 
 ---
 

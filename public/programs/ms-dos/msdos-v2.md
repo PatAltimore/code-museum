@@ -9,28 +9,28 @@ year: 1981
 author: "Tim Paterson / Microsoft"
 slug: "msdos-v2"
 order: 18
-description: "The foundational file for MS-DOS 2.0, marking a pivotal moment in personal computing history."
+description: "The foundational assembly file for MS-DOS 2.0, showcasing the evolution of early PC operating systems."
 
 summary:
-  - point: "MS-DOS 2.0 introduced Unix-inspired features like subdirectories and file handles."
+  - point: "MS-DOS 2.0 marked a major shift toward Unix-inspired features like subdirectories and file handles."
     link: "https://en.wikipedia.org/wiki/MS-DOS"
     link_label: "MS-DOS"
-  - point: "Tim Paterson's original 86-DOS formed the basis for Microsoft's operating system."
+  - point: "Tim Paterson's original 86-DOS design was rapidly adapted by Microsoft for the IBM PC."
     link: "https://en.wikipedia.org/wiki/Tim_Paterson"
     link_label: "Tim Paterson"
-  - point: "The source code was publicly released by the Computer History Museum in 2014."
-    link: "https://computerhistory.org/blog/ms-dos-source-code/"
-    link_label: "Computer History Museum"
+  - point: "The modular structure of MS-DOS 2.0, seen in the INCLUDE directives, reflects its extensibility for OEMs."
+    link: "https://en.wikipedia.org/wiki/IBM_PC"
+    link_label: "IBM PC"
 
 enhancements:
-  - id: "msdos-2-name-section"
+  - id: "name-declaration-msdos-2"
     line_start: 1
-    line_end: 2
-    title: "Why 'NAME MSDOS_2' Changed Everything"
+    line_end: 10
+    title: "Why MS-DOS 2.0 Declared Its Name Early"
     wikipedia_url: "https://en.wikipedia.org/wiki/MS-DOS"
     image_url: ""
     image_caption: ""
-    content: "The 'NAME MSDOS_2' directive at line 2 sets the symbolic name for this module, marking it as part of MS-DOS 2.0. This simple declaration ties the file to a historic rewrite of the operating system that transformed personal computing. MS-DOS 2.0 was a major departure from its predecessor, incorporating features inspired by Unix, such as hierarchical directories, file handles, and device drivers. These additions made the system far more versatile and capable, paving the way for widespread adoption by businesses and OEMs. In 1983, the computing landscape was rapidly evolving. IBM's PC had established itself as a dominant force, and Microsoft was positioning MS-DOS as the standard operating system for the burgeoning personal computer market. The rewrite was driven by the need to support more complex applications and hardware configurations. Paterson's original 86-DOS had been a quick solution for Seattle Computer Products, but MS-DOS 2.0 was a deliberate effort to create a robust, scalable system. The inclusion of Unix-like features reflected Microsoft's growing ambition to compete in the enterprise space, where Unix was already a respected standard. The consequences of this rewrite were profound. MS-DOS 2.0 became the foundation for countless software applications and hardware systems, influencing the design of later operating systems like Windows. Its hierarchical file system and device driver model became industry standards, shaping the expectations of developers and users alike. The decision to license MS-DOS to multiple OEMs ensured its dominance, making it the most widely used operating system of its time. Today, the legacy of MS-DOS 2.0 lives on in the structure and conventions of modern computing systems."
+    content: "This section begins with the declaration of the program name, 'MSDOS_2', using the NAME directive. In assembly language, NAME serves as a marker for the program's identity, often used by linkers and debuggers to associate the code with its intended purpose. Tim Paterson's original 86-DOS design was minimalistic, but by the time MS-DOS 2.0 was developed, the operating system had grown to accommodate features inspired by Unix, such as hierarchical file systems and device independence. Declaring the program name early reflects the structured approach Microsoft adopted as MS-DOS evolved from a quick-and-dirty solution into a robust, modular operating system. In 1983, the computing landscape was shifting rapidly. IBM's dominance in the PC market meant that MS-DOS had to be adaptable for a wide range of hardware configurations. The modularity seen here, with the inclusion of external files like 'STDSW.ASM', 'MSHEAD.ASM', and 'MSDATA.ASM', highlights Microsoft's strategy to make MS-DOS extensible for OEMs. These included hardware manufacturers who could tailor the operating system to their specific needs, a key factor in MS-DOS's widespread adoption. This approach influenced future operating systems, including Windows, which retained modularity and extensibility as core principles. The modular design also inspired other software ecosystems, such as Linux, which embraced similar principles of adaptability and open architecture. Microsoft's decision to license MS-DOS to multiple OEMs, combined with its modular structure, laid the groundwork for the company's dominance in the PC software market for decades."
 
 ---
 
