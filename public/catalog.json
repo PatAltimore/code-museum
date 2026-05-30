@@ -1016,87 +1016,84 @@
           "generated": true
         }
       ],
-      "introduction": "In the mid-1980s, Jordan Mechner was a young programmer and aspiring filmmaker, fresh off the success of his first game, Karateka. He had proven his ability to blend storytelling with gameplay, but he wanted to push the boundaries even further. By 1985, Mechner embarked on an ambitious solo project: to create a game that felt like a movie, with fluid animations and a gripping narrative. Working alone in his dorm room at Yale and later in his parents' home, he began crafting what would become Prince of Persia. Over four years, he poured his creative energy into the Apple II, a machine with just 128K of RAM and a 1 MHz 6502 processor. The constraints were daunting, but Mechner was determined to bring his vision to life.\n\nThe Apple II was already a decade old by the time Mechner started development, but it remained a popular platform for home computing. Its hardware limitations were well-known to developers: a 280×192 resolution for graphics, limited color palettes, and the need for bank-switched memory to access its full 128K. Every byte mattered, and every cycle of the processor had to be carefully optimized. Mechner wrote Prince of Persia entirely in 6502 assembly, crafting routines for collision detection, sprite blitting, and physics that squeezed every ounce of performance from the machine. To achieve the game's signature animation, he turned to rotoscoping—a technique borrowed from filmmaking. He filmed his younger brother performing acrobatic stunts, then traced each frame to create lifelike movement. This painstaking process gave the protagonist a level of realism that was unprecedented in video games.\n\nMechner's creative process was as much about storytelling as it was about technical innovation. Inspired by swashbuckling films like The Adventures of Robin Hood, he envisioned a tale set in medieval Persia, where an unnamed hero must rescue a princess from the clutches of the evil Grand Vizier Jaffar. The game's design revolved around tension and urgency: players had just 60 minutes to navigate treacherous dungeons, avoid deadly traps, and defeat enemies. Mechner's attention to detail extended to every aspect of the game, from the physics engine that governed jumps and falls to the sound effects that punctuated sword fights. He even included cheat codes and debug functions, hidden within the game's assembly code, as tools for testing and exploration.\n\nWhen Prince of Persia was released in 1989 by Broderbund, it was not an immediate commercial success. However, its critical acclaim was undeniable. Reviewers praised its cinematic quality, fluid animation, and engaging gameplay. Over time, as the game was ported to other platforms, it gained a devoted following and became a landmark in gaming history. It is widely regarded as the first cinematic platformer, a genre that would inspire titles like Another World and Flashback. The game's influence extended far beyond its initial release, spawning sequels, reboots, and even a major film adaptation. The Prince of Persia franchise became one of the most enduring and beloved in the industry.\n\nThe source code for Prince of Persia was thought to be lost until 2012, when Mechner discovered 22-year-old floppy disks in his father's garage. The recovery of the code was a momentous occasion, offering a glimpse into the ingenuity and craftsmanship that defined the game's creation. Today, the code stands as a testament to what one developer could achieve with limited resources and boundless creativity. Prince of Persia not only pushed the technical limits of the Apple II but also redefined what video games could be—a medium for storytelling, artistry, and innovation.",
+      "introduction": "In the mid-1980s, Jordan Mechner sat alone in his dorm room at Yale University, surrounded by stacks of floppy disks and an Apple II computer. It was here, amidst the hum of the machine and the flicker of its green monochrome screen, that Mechner began crafting what would become one of the most influential video games of all time: *Prince of Persia*. The project started as an ambitious experiment in animation and storytelling, inspired by Mechner’s love for classic swashbuckling films like *The Adventures of Robin Hood*. Over the next four years, Mechner would pour his creativity, technical ingenuity, and countless hours into a game that would redefine the platformer genre.\n\nThe computing world of 1985 was a landscape of constraints. The Apple II, released in 1977, was still a popular platform, but its hardware was limited by modern standards: a 1 MHz 6502 processor, 128K of RAM, and a 280×192 resolution for graphics. Every byte mattered, every cycle had to be optimized, and every visual effect had to be squeezed out of the machine’s modest capabilities. Mechner embraced these limitations as challenges. He used bank-switched memory to fit the game into the Apple II’s meager RAM and developed custom graphics routines to achieve smooth animations. To create lifelike movement, he filmed his younger brother performing acrobatic stunts, then traced each frame using a technique called rotoscoping. This painstaking process gave *Prince of Persia* its signature fluidity, setting it apart from other games of the era.\n\nMechner’s background as both a programmer and a filmmaker uniquely positioned him to blend technical precision with cinematic storytelling. His first game, *Karateka*, had already demonstrated his talent for merging gameplay with narrative, but *Prince of Persia* pushed the boundaries even further. “I wanted to create a game that felt like a movie you could play,” Mechner later recalled. He designed a world of perilous dungeons, deadly traps, and sword-wielding enemies, all set against the ticking clock of a 60-minute time limit. The protagonist’s quest to rescue the princess from the evil Grand Vizier Jaffar was simple yet compelling, driven by the urgency of the timer and the elegance of the game’s mechanics.\n\nWhen *Prince of Persia* was released in 1989, it was not an immediate commercial success. The Apple II was nearing the end of its lifespan, and the game’s groundbreaking design struggled to find an audience on its original platform. However, as the game was ported to other systems, its reputation grew. Critics praised its realistic animation, innovative gameplay, and cinematic atmosphere. It became the blueprint for a new subgenre: the cinematic platformer. Games like *Another World* and *Flashback* would follow in its footsteps, borrowing its emphasis on fluid animation and narrative-driven design.\n\nThe legacy of *Prince of Persia* is profound. It launched a franchise that spanned decades, including sequels, reboots, and even a Hollywood film adaptation. Its influence can still be seen in modern games that prioritize storytelling and immersive worlds. In 2012, Mechner recovered the original source code from 22-year-old floppy disks, preserving a vital piece of gaming history. Today, *Prince of Persia* stands as a testament to what one person can achieve with vision, determination, and a willingness to push the boundaries of technology.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Prince_of_Persia_1_-_Sketches_by_Jordan_Mechner.jpg/330px-Prince_of_Persia_1_-_Sketches_by_Jordan_Mechner.jpg",
       "image_caption": "Sketches of the storyboard of Prince of Persia by Jordan Mechner. (CC BY-SA 4.0)",
       "highlights": [
         {
           "id": "rotoscoped-animation-fluidity",
           "title": "Rotoscoped Animation: Fluidity in Motion",
-          "description": "Prince of Persia pioneered rotoscoped animation, a technique where Jordan Mechner traced video footage of his brother performing acrobatic stunts to create lifelike character movements. This approach solved the challenge of animating realistic motion on the Apple II's limited hardware, which lacked advanced graphical capabilities. The result was a groundbreaking level of fluidity that set the standard for cinematic platformers. Games like Another World and Flashback later adopted similar techniques, cementing rotoscoping as a hallmark of the genre.",
+          "description": "Prince of Persia's animations were groundbreaking for their time, achieving a level of fluidity that felt cinematic. Jordan Mechner used rotoscoping, a technique where live-action footage—specifically, his brother performing acrobatic stunts—was traced frame by frame to create realistic character movements. This approach solved the challenge of creating lifelike animations on the Apple II, a platform with limited graphical capabilities and memory constraints. The result was a game that set a new standard for animation in platformers, influencing titles like Another World and Flashback, and establishing the cinematic platformer genre.",
           "links": [
             {
-              "label": "Frame definitions for rotoscoped animation",
-              "file": "framedef",
-              "enhancement": "frame-definitions-for-rotoscoped-animation"
-            },
-            {
-              "label": "Sequence table data for animation logic",
+              "label": "Step11: Directly Traced from Film",
               "file": "seqtable",
-              "enhancement": "sequence-table-data"
-            }
-          ]
-        },
-        {
-          "id": "bank-switched-memory-expansion",
-          "title": "Bank-Switched Memory: Expanding 128KB",
-          "description": "To fit the expansive world of Prince of Persia into the Apple II's 128KB memory, Mechner used bank-switched memory, a technique that dynamically swapped between memory banks to access additional data. This clever workaround allowed the game to include detailed graphics, animations, and gameplay mechanics that would otherwise exceed hardware limitations. This approach influenced later developers working on constrained systems, showcasing how software ingenuity could push hardware boundaries.",
-          "links": [
-            {
-              "label": "Memory layout optimization for cinematic gameplay",
-              "file": "gameeq",
-              "enhancement": "memory-layout-optimization"
+              "enhancement": "rotoscoping-step11"
             },
             {
-              "label": "Auxiliary memory bank switching routine",
-              "file": "hires",
-              "enhancement": "auxmem-bank-switching"
+              "label": "How a Table Turns Code Into Cinematics",
+              "file": "seqtable",
+              "enhancement": "sequence-table-instructions"
             }
           ]
         },
         {
-          "id": "cinematic-sequence-handler",
-          "title": "Self-Modifying Code for Cinematic Sequences",
-          "description": "Prince of Persia utilized self-modifying code to handle cinematic sequences, allowing the game to dynamically alter its routines based on the current state of gameplay. This technique enabled seamless transitions between gameplay and story-driven moments, creating a cohesive cinematic experience. On hardware as limited as the Apple II, this approach was a masterstroke of efficiency and creativity. It inspired developers to explore dynamic code manipulation in other games, particularly in genres emphasizing narrative immersion.",
+          "id": "edge-grabbing-mechanics",
+          "title": "Edge-Grabbing Mechanics That Changed Platformers",
+          "description": "Prince of Persia introduced edge-grabbing, a mechanic where the protagonist could catch ledges during a fall, adding a layer of realism and suspense to platforming gameplay. This innovation addressed the challenge of creating believable movement in a game world constrained by limited memory and processing power. The mechanic became a hallmark of cinematic platformers and influenced later games like Tomb Raider and Assassin's Creed, which expanded on the idea with more complex climbing systems.",
           "links": [
             {
-              "label": "Handling cinematic sequences with self-modifying code",
+              "label": "The Edge-Grabbing Mechanics That Changed Platformers",
+              "file": "ctrl",
+              "enhancement": "fallon-edge-grabbing-mechanics"
+            }
+          ]
+        },
+        {
+          "id": "dynamic-level-loading",
+          "title": "Dynamic Level Loading for Cinematic Gameplay",
+          "description": "To fit the expansive world of Prince of Persia into the Apple II's 128KB memory, Jordan Mechner implemented dynamic level loading. This technique loaded only the necessary data for each level as the player progressed, enabling seamless transitions and cinematic pacing. It solved the problem of memory limitations while maintaining the game's immersive experience. This approach influenced future games with large worlds, laying the groundwork for techniques used in open-world titles and modern engines like Unity and Unreal.",
+          "links": [
+            {
+              "label": "Dynamic Level Loading for Cinematic Gameplay",
+              "file": "master",
+              "enhancement": "loadlevel-dynamic-level-loading"
+            }
+          ]
+        },
+        {
+          "id": "self-modifying-sound-code",
+          "title": "Self-Modifying Code for Dynamic Sound",
+          "description": "Prince of Persia's sound system used self-modifying code to dynamically adjust sound playback based on in-game events. This technique allowed the game to produce varied and context-sensitive audio effects despite the Apple II's limited sound capabilities. By modifying instructions in memory, the system could adapt to different scenarios, such as combat or environmental changes. This clever use of assembly programming influenced sound design in later games, showcasing how software could overcome hardware constraints.",
+          "links": [
+            {
+              "label": "The Self-Modifying Code That Made Sounds Dynamic",
+              "file": "sound",
+              "enhancement": "self-modifying-code-for-sound"
+            }
+          ]
+        },
+        {
+          "id": "falling-floor-animation",
+          "title": "When Floors Fall: A Physics Puzzle",
+          "description": "Prince of Persia featured falling floors that collapsed under the protagonist's weight, adding a dynamic environmental hazard to the gameplay. This mechanic required precise animation and collision detection to create a believable effect within the Apple II's constraints. It enhanced the game's sense of danger and urgency, influencing later titles with destructible environments and interactive physics, such as Half-Life and Uncharted.",
+          "links": [
+            {
+              "label": "When Floors Fall: A Physics Puzzle",
+              "file": "mover",
+              "enhancement": "falling-floor-animation"
+            }
+          ]
+        },
+        {
+          "id": "gravity-physics-simulation",
+          "title": "Gravity on a 6502: Falling with Style",
+          "description": "Prince of Persia simulated gravity using a custom physics engine written in 6502 assembly. This system calculated the protagonist's falls, jumps, and landings with a level of realism that was rare for its time. It addressed the challenge of creating believable movement on hardware with limited computational power. The game's physics engine inspired similar systems in later platformers and action-adventure games, setting a precedent for realistic character movement.",
+          "links": [
+            {
+              "label": "Gravity on a 6502: Falling with Style",
               "file": "subs",
-              "enhancement": "playcut-cinematic-sequence-handler"
-            }
-          ]
-        },
-        {
-          "id": "gravity-simulation-platforming",
-          "title": "Gravity Simulation: Platforming Precision",
-          "description": "Prince of Persia's gravity simulation brought realistic physics to the Apple II, ensuring the protagonist's movements felt natural as he jumped, fell, and climbed. This system was carefully calibrated to account for the constraints of 6502 assembly and the Apple II's limited processing power. By introducing believable physics into a platformer, the game set a new benchmark for realism in action-adventure titles, influencing later games like Tomb Raider and the 3D Prince of Persia reboots.",
-          "links": [
-            {
-              "label": "Simulating gravity on a 6502 processor",
-              "file": "subs",
-              "enhancement": "gravity-simulation"
-            },
-            {
-              "label": "Gravity values for cinematic gameplay",
-              "file": "movedata",
-              "enhancement": "moveparams-gravity-values"
-            }
-          ]
-        },
-        {
-          "id": "dynamic-object-rendering-depth",
-          "title": "Dynamic Object Rendering for Cinematic Depth",
-          "description": "Prince of Persia rendered objects dynamically to create a layered visual experience, where characters and environmental elements interacted seamlessly. This technique ensured that objects appeared in the correct depth order, enhancing the game's cinematic feel. Achieved on the Apple II's limited graphics hardware, this innovation demonstrated how careful programming could simulate visual complexity. It influenced later games that sought to balance gameplay mechanics with visual storytelling.",
-          "links": [
-            {
-              "label": "Sorting objects for cinematic depth",
-              "file": "frameadv",
-              "enhancement": "drawobjs-object-rendering"
-            },
-            {
-              "label": "Dynamic object rendering logic",
-              "file": "frameadv",
-              "enhancement": "drawobjx-dynamic-object-rendering"
+              "enhancement": "gravity-physics-simulation"
             }
           ]
         }

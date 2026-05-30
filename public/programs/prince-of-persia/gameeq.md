@@ -9,66 +9,60 @@ year: 1989
 author: "Jordan Mechner"
 slug: "gameeq"
 order: 19
-description: "This file defines key equates, memory layouts, and data structures for Prince of Persia's Apple II implementation, showcasing the meticulous optimization required for cinematic platforming on constrained hardware."
+description: "Equates and data structures for Prince of Persia's Apple II implementation, defining memory layout and gameplay variables."
 
 summary:
-  - point: "Memory bank-switching to fit 128K constraints"
-    link: "https://en.wikipedia.org/wiki/Bank_switching"
-    link_label: "Bank Switching"
-  - point: "Rotoscoping animation traced from live-action footage"
-    link: "https://en.wikipedia.org/wiki/Rotoscoping"
-    link_label: "Rotoscoping"
-  - point: "Game state and character data packed into zero-page memory"
-    link: "https://en.wikipedia.org/wiki/Zero_page"
-    link_label: "Zero Page"
-  - point: "Jump tables for efficient subroutine dispatch"
-    link: "https://en.wikipedia.org/wiki/Jump_table"
-    link_label: "Jump Table"
-  - point: "Custom equates for hardware-specific optimizations"
-    link: "https://en.wikipedia.org/wiki/Apple_II_series"
+  - point: "Memory addresses are mapped for key game components like characters, collisions, and sound."
+    link: "https://en.wikipedia.org/wiki/Apple_II"
     link_label: "Apple II"
+  - point: "Jump tables and zero-page variables optimize performance on the 6502 processor."
+    link: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
+    link_label: "MOS Technology 6502"
+  - point: "Data structures define gameplay elements like player actions, collisions, and animations."
+    link: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
+    link_label: "Prince of Persia (1989)"
 
 enhancements:
-  - id: "memory-layout-optimization"
-    line_start: 28
-    line_end: 28
-    title: "How Memory Layout Made Cinematic Gameplay Possible"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bank_switching"
+  - id: "memory-mapping-for-game-components"
+    line_start: 3
+    line_end: 18
+    title: "Memory Mapping for Game Components"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II"
     image_url: ""
     image_caption: ""
-    content: "This section defines the memory layout for various game elements, including character tables, background tables, and control systems. Each equate assigns a specific memory address to a game component, ensuring efficient access during runtime. Jordan Mechner was working within the constraints of the Apple II's 128K memory, which required bank-switching to access auxiliary and main memory. By carefully organizing these memory locations, Mechner could fit the game's cinematic animations and complex gameplay mechanics into the limited space. At the time, memory management was a critical skill for developers, as hardware limitations dictated the scope of their designs. This approach influenced later games on constrained systems, demonstrating how thoughtful memory allocation could enable ambitious projects."
-  - id: "jump-table-efficiency"
+    content: "This section defines memory addresses for major game components such as character tables, background tables, and control systems. Each address corresponds to a specific region in the Apple II's memory, which was bank-switched to fit the game within the 128KB limit. Jordan Mechner carefully allocated these addresses to optimize performance and ensure smooth gameplay. In 1989, memory constraints were a significant challenge, especially for cinematic games like Prince of Persia that relied on detailed animations and complex interactions. By mapping these components explicitly, Mechner ensured that the game could efficiently access critical data during runtime. This approach influenced later developers working on constrained systems, emphasizing the importance of careful memory planning."
+  - id: "jump-tables-for-efficient-control"
     line_start: 48
-    line_end: 63
-    title: "The Jump Tables That Kept Gameplay Smooth"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Jump_table"
+    line_end: 67
+    title: "Jump Tables for Efficient Control"
+    wikipedia_url: "https://en.wikipedia.org/wiki/MOS_Technology_6502"
     image_url: ""
     image_caption: ""
-    content: "Jump tables are used here to efficiently dispatch subroutines based on game state or input. By predefining memory locations for various actions, such as sound effects and object control, the game avoids costly conditional branching. This technique was essential for maintaining performance on the Apple II, where CPU cycles were precious. Mechner's use of jump tables reflects the influence of earlier assembly programming practices, where direct memory manipulation was the norm. This method became a standard for performance-critical applications, influencing game engines and real-time systems in later decades."
-  - id: "zero-page-game-state"
-    line_start: 391
-    line_end: 394
-    title: "Packing Game State into Zero-Page Memory"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Zero_page"
+    content: "Jump tables are used here to organize control flow efficiently. These tables store pointers to subroutines or data, allowing the program to quickly jump to the appropriate code based on the current state or input. On the 6502 processor, this technique was essential for optimizing performance due to its limited instruction set and lack of advanced features like hardware interrupts. Mechner's use of jump tables reflects the ingenuity required to create responsive gameplay on the Apple II. This technique became standard practice in assembly programming for constrained systems, influencing the design of later games and embedded systems."
+  - id: "saved-game-data-structure"
+    line_start: 28
+    line_end: 39
+    title: "Saved Game Data Structure"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section defines the game's global variables and state data, stored in the Apple II's zero-page memory ($40-$E7). Zero-page memory is faster to access due to its addressing mode, making it ideal for frequently used variables like character positions, collision flags, and timers. Mechner's decision to pack critical game state into this space reflects his deep understanding of the hardware's capabilities. In the mid-1980s, zero-page optimization was a hallmark of skilled assembly programming. This technique allowed Prince of Persia to deliver responsive gameplay despite the Apple II's modest processing power. The practice of optimizing memory access influenced later game developers working on similarly constrained systems."
+    content: "The saved game data structure defines variables like the player's level, strength, and timer. These values are stored in memory to allow players to resume their progress after restarting the game. In the late 1980s, saving game state was a relatively novel feature, especially for action games. Mechner's implementation ensured that players could continue their adventure without losing progress, enhancing the game's accessibility and appeal. This approach influenced the design of save systems in later games, becoming a standard feature in the industry."
   - id: "character-data-structures"
     line_start: 561
     line_end: 634
-    title: "How Characters Came to Life in 128K"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Rotoscoping"
+    title: "Character Data Structures"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "The character data structures defined here include positions, velocities, actions, and sequences for the game's protagonist (Kid), shadow counterpart (Shad), and other entities. These structures enable the game's cinematic animations, which were rotoscoped from live-action footage. Mechner filmed his brother performing the moves, then traced each frame to create fluid motion. This approach was groundbreaking for its time, as most games relied on simpler sprite-based animation. The detailed character data allowed Prince of Persia to achieve a level of realism that set it apart from other platformers. This technique inspired future developers to explore more sophisticated animation methods, leading to innovations in motion capture and procedural animation."
+    content: "This section defines data structures for characters, including the protagonist (Kid), shadow (Shad), and opponents (Op). Each structure contains variables for position, velocity, actions, and life points, enabling detailed control over character behavior. Mechner's meticulous design allowed for smooth animations and responsive gameplay, which were critical for the cinematic experience he envisioned. The use of structured data for characters influenced the development of later platformers and action games, where similar approaches were used to manage complex interactions and animations."
   - id: "miscellaneous-game-data"
     line_start: 648
-    line_end: 655
-    title: "Flags and Constants That Defined the World"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_series"
+    line_end: 663
+    title: "Miscellaneous Game Data"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
     image_url: ""
     image_caption: ""
-    content: "This section includes miscellaneous game data, such as flags for character types, floor height, and interaction marks. These constants define the rules and boundaries of the game's world, ensuring consistent behavior across different scenarios. Mechner's careful attention to detail is evident in the way these values are tailored to the Apple II's hardware capabilities. For example, the floor height and vertical distance parameters are optimized for the screen resolution and memory constraints. These constants provided a foundation for the game's mechanics, influencing how future platformers approached environmental design and character interaction."
+    content: "This section defines miscellaneous game data, including flags, constants, and type identifiers for objects like the Kid, shadow, guards, and swords. These values are used throughout the game to control behavior and interactions. Mechner's attention to detail ensured that the game could handle complex scenarios, such as combat and environmental hazards, without sacrificing performance. The use of constants and flags to manage game state became a common practice in game development, influencing the design of engines and frameworks in the years that followed."
 
 ---
 

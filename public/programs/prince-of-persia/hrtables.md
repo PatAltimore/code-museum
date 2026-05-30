@@ -9,68 +9,60 @@ year: 1989
 author: "Jordan Mechner"
 slug: "hrtables"
 order: 24
-description: "This file contains lookup tables and routines critical to the graphical rendering of Prince of Persia on the Apple II, showcasing the ingenuity required to achieve cinematic visuals in 6502 assembly."
+description: "This file defines lookup tables for graphics manipulation in Prince of Persia, enabling efficient rendering on the Apple II's constrained hardware."
 
 summary:
-  - point: "Uses lookup tables for efficient pixel manipulation"
+  - point: "Uses lookup tables to optimize pixel shifting and mirroring"
     link: "https://en.wikipedia.org/wiki/Lookup_table"
     link_label: "Lookup Table"
-  - point: "Optimized for Apple II's 128K memory constraints"
+  - point: "Designed for Apple II's 6502 assembly and memory constraints"
     link: "https://en.wikipedia.org/wiki/Apple_II_series"
     link_label: "Apple II"
-  - point: "Supports rotoscoped animation techniques"
+  - point: "Supports cinematic animations through efficient graphics handling"
     link: "https://en.wikipedia.org/wiki/Rotoscoping"
     link_label: "Rotoscoping"
 
 enhancements:
-  - id: "ylo-yhi-coordinate-mapping"
+  - id: "ylo-yhi-screen-addressing"
     line_start: 7
     line_end: 29
-    title: "How Screen Coordinates Map to Memory"
+    title: "How Screen Y-coordinates Map to Memory"
     wikipedia_url: "https://en.wikipedia.org/wiki/Apple_II_graphics"
     image_url: ""
     image_caption: ""
-    content: "The YLO and YHI tables map screen Y-coordinates (0–191) to base memory addresses on the Apple II's high-resolution graphics pages. YLO provides the low byte, while YHI provides the high byte of the address. This mapping is essential for rendering graphics efficiently, as it allows the program to calculate pixel positions without expensive arithmetic operations. At the time, the Apple II's graphics system was notoriously difficult to work with due to its non-linear memory layout, which required developers to account for gaps and irregularities in the address space. Jordan Mechner's approach here reflects a deep understanding of the Apple II hardware and a commitment to performance. These tables enabled the smooth scrolling and precise animations that defined Prince of Persia's groundbreaking visual style. Later games and engines borrowed similar techniques for efficient memory addressing, especially on constrained systems like the NES and Commodore 64."
-  - id: "shift-carry-pixel-manipulation"
+    content: "The YLO and YHI tables provide a mapping from screen Y-coordinates (0–191) to memory addresses on the Apple II's high-resolution graphics pages. Each entry corresponds to a base address for rendering pixels, with an offset to switch between page 1 and page 2. At the time, the Apple II's graphics system was notoriously difficult to work with due to its non-linear memory layout. Jordan Mechner's tables simplify this by precomputing the necessary addresses, allowing the game to quickly access pixel data without recalculating positions on the fly. This approach was crucial for achieving smooth animations in Prince of Persia, where precise control over graphics memory was needed to render the protagonist's fluid movements. The technique influenced later Apple II games, which adopted similar precomputed tables for efficient graphics handling."
+  - id: "shift-tables-for-pixel-manipulation"
     line_start: 46
     line_end: 126
-    title: "The Tables That Shift Pixels"
+    title: "The Tables That Shift Pixels Right"
     wikipedia_url: "https://en.wikipedia.org/wiki/Bitwise_operation"
     image_url: ""
     image_caption: ""
-    content: "The SHIFTn and CARRYn tables handle pixel shifting, a critical operation for rendering sprites and animations. SHIFTn shifts a byte's pixels to the right by 'n' positions, while CARRYn calculates the carryover pixels that spill into the next byte. These tables are precomputed to avoid runtime calculations, saving precious CPU cycles on the Apple II's 1 MHz 6502 processor. The need for such optimization arose from the hardware's limitations: the Apple II lacked dedicated graphics hardware, so all rendering had to be done in software. Mechner's use of lookup tables for pixel manipulation was innovative and allowed for the fluid animations that made Prince of Persia stand out. This technique influenced later developers working on similarly constrained systems, and the concept of precomputed tables remains a staple in graphics programming today."
-  - id: "mirror-byte-reflection"
+    content: "The SHIFT tables define precomputed values for shifting pixel data by 0 to 6 bits to the right, with the high bit set. This operation was essential for rendering sprites and animations on the Apple II, where the hardware lacked dedicated graphics acceleration. By using lookup tables, Mechner avoided the computational overhead of performing bitwise shifts in real-time, which would have been prohibitively slow on the 6502 processor. The tables also include corresponding CARRY tables, which handle the carryover bits for adjacent bytes, ensuring seamless pixel alignment across memory boundaries. This clever optimization allowed Prince of Persia to achieve its signature smooth animations despite the Apple II's limited processing power. The technique of using precomputed tables for graphics manipulation became a common practice in early game development, influencing titles on other 8-bit platforms like the Commodore 64 and ZX Spectrum."
+  - id: "mirror-byte-values"
     line_start: 198
     line_end: 215
-    title: "Mirroring Bytes for Sprite Symmetry"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Sprite_(computer_graphics)"
+    title: "Flipping Pixels Horizontally with MIRROR"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Mirroring_(graphics)"
     image_url: ""
     image_caption: ""
-    content: "The MIRROR table reflects a byte's bits horizontally, effectively flipping a sprite. This operation is crucial for rendering symmetrical animations, such as the Prince's movements when facing left versus right. By precomputing these mirrored values, the game avoids the need for complex bitwise operations during runtime. This approach was particularly important on the Apple II, where CPU resources were scarce. Mechner's decision to include a dedicated MIRROR table reflects his focus on performance and visual fidelity. The technique of precomputing mirrored sprites became common in later games, especially on systems like the NES and Sega Genesis, where developers faced similar constraints."
-  - id: "masktab-bit-masking"
+    content: "The MIRROR table provides precomputed values for horizontally mirroring byte data, with the high bit set. This operation was used to flip sprites, such as the protagonist's animations when facing left or right. Mirroring graphics efficiently was a challenge on the Apple II, as the hardware did not support such transformations natively. By precomputing the mirrored values, Mechner ensured that the game could render flipped sprites instantly without recalculating them in real-time. This optimization was particularly important for maintaining the game's fluidity and responsiveness. The use of precomputed mirroring tables influenced later games on similar hardware, where developers adopted similar techniques to handle sprite transformations efficiently."
+  - id: "masktab-byte-masks"
     line_start: 217
     line_end: 244
-    title: "Masks for Precise Pixel Control"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Bit_mask"
+    title: "MASKTAB: Byte Masks for Graphics Rendering"
+    wikipedia_url: "https://en.wikipedia.org/wiki/Mask_(computing)"
     image_url: ""
     image_caption: ""
-    content: "The MASKTAB table provides precomputed bit masks for manipulating individual pixels within a byte. Each mask corresponds to a specific bit offset, enabling precise control over which pixels are affected during rendering operations. This is particularly useful for tasks like sprite transparency and collision detection. On the Apple II, where graphics operations had to be performed manually in software, such masks were indispensable. Mechner's use of MASKTAB demonstrates his attention to detail and his ability to extract maximum performance from limited hardware. The concept of bit masking remains fundamental in graphics programming, and similar tables can be found in the rendering systems of many early consoles and computers."
-  - id: "shift-carry-addressing"
-    line_start: 246
-    line_end: 285
-    title: "Dynamic Addressing for Shift and Carry Tables"
-    wikipedia_url: "https://en.wikipedia.org/wiki/Memory_management"
-    image_url: ""
-    image_caption: ""
-    content: "The SHIFTL, SHIFTH, CARRYL, and CARRYH tables provide dynamic addressing for the SHIFTn and CARRYn tables. By indexing these tables with a bit offset, the program can quickly locate the appropriate shift or carry table for a given operation. This design minimizes the overhead of table lookups and streamlines the rendering process. On the Apple II, where memory and CPU cycles were at a premium, such optimizations were critical. Mechner's approach here reflects his deep understanding of the hardware and his ability to design systems that balance flexibility with performance. This dynamic addressing technique influenced later graphics engines, where similar methods were used to manage texture and sprite data efficiently."
-  - id: "opacity-opcode-self-modifying-code"
+    content: "The MASKTAB table defines byte masks used for graphics rendering, with the high bit set. Masks are essential for operations like blending sprites with the background or creating transparency effects. On the Apple II, these operations had to be performed manually, as the hardware lacked support for advanced graphics features. By precomputing masks, Mechner streamlined the process of applying them during rendering, saving valuable CPU cycles. This approach was a key part of the game's ability to overlay sprites on complex backgrounds without sacrificing performance. MASKTAB's use of precomputed masks reflects the ingenuity required to work within the constraints of 8-bit systems, and similar techniques were widely adopted in early game development."
+  - id: "opcode-self-modifying-code"
     line_start: 312
     line_end: 326
-    title: "Self-Modifying Code for Opacity Effects"
+    title: "Self-Modifying Code for Graphics Operations"
     wikipedia_url: "https://en.wikipedia.org/wiki/Self-modifying_code"
     image_url: ""
     image_caption: ""
-    content: "The OPCODE table provides opcodes for self-modifying code, enabling dynamic changes to rendering behavior based on sprite opacity. Each entry corresponds to a specific operation, such as AND or ORA, which is inserted into the code at runtime. This technique allows the game to adjust sprite blending and transparency effects without branching or conditional logic, saving CPU cycles. Self-modifying code was a common optimization on systems like the Apple II, where performance constraints often outweighed concerns about code maintainability. Mechner's use of this technique highlights his ingenuity in overcoming hardware limitations to achieve cinematic visuals. While self-modifying code fell out of favor in later years due to its complexity and security risks, it remains an important part of programming history, especially in the context of early game development."
+    content: "The OPCODE table defines opcodes for self-modifying code used in graphics operations. Each entry corresponds to an assembly instruction that is dynamically altered during runtime to optimize rendering tasks. Self-modifying code was a common technique on the Apple II, where memory and processing power were severely limited. By modifying instructions on the fly, Mechner was able to tailor the game's rendering routines to specific scenarios, minimizing overhead and maximizing efficiency. This technique allowed Prince of Persia to push the boundaries of what was possible on the Apple II, delivering a visually stunning experience that felt ahead of its time. While self-modifying code fell out of favor in later years due to its complexity and potential for bugs, it remains a fascinating example of the lengths developers went to in order to overcome hardware limitations."
 
 ---
 
