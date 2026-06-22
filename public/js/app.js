@@ -360,12 +360,12 @@ function renderEnhancement(enh) {
 
   const imageHtml = hasImage ? `
     <div class="enhancement-image-wrap">
-      <img src="${escapeAttr(enh.image_url)}" alt="${escapeAttr(enh.title)}" loading="lazy">
+      <img src="${escapeAttr(safeUrl(enh.image_url))}" alt="${escapeAttr(enh.title)}" loading="lazy">
       ${enh.image_caption ? `<p class="enhancement-caption">${escapeHtml(enh.image_caption)}${commonsUrl(enh.image_url) ? ` <a class="commons-link" href="${escapeAttr(commonsUrl(enh.image_url))}" target="_blank" rel="noopener">Wikimedia Commons</a>` : ''}</p>` : ''}
     </div>` : '';
 
   const wikiHtml = enh.wikipedia_url
-    ? `<a href="${escapeAttr(enh.wikipedia_url)}" target="_blank" rel="noopener">Wikipedia ↗</a>`
+    ? `<a href="${escapeAttr(safeUrl(enh.wikipedia_url))}" target="_blank" rel="noopener">Wikipedia ↗</a>`
     : '';
 
   return `
@@ -394,6 +394,21 @@ function escapeHtml(str) {
 
 function escapeAttr(str) {
   return String(str || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// Validate a URL before it is placed in an href/src attribute. Content here is
+// LLM-generated from untrusted GitHub/Wikipedia sources, so a `javascript:` (or
+// `data:`/`vbscript:`) URL could otherwise become stored XSS. Returns the URL
+// unchanged when its scheme is allowed (or it has no scheme — i.e. a relative
+// or hash link), and '' when the scheme is disallowed.
+function safeUrl(url) {
+  const raw = String(url || '');
+  // Browsers ignore control chars and whitespace when resolving a scheme, so
+  // strip them before testing to defeat obfuscation like "java\tscript:".
+  const probe = raw.replace(/[\u0000-\u0020]+/g, '').toLowerCase();
+  const scheme = probe.match(/^([a-z][a-z0-9+.-]*):/);
+  if (scheme && !['http', 'https', 'mailto'].includes(scheme[1])) return '';
+  return raw.trim();
 }
 
 function commonsUrl(url) {
@@ -434,7 +449,7 @@ function renderShelf(catalog) {
       <div class="program-meta">
         <span>${escapeHtml(p.author)}</span>
         <span>·</span>
-        <span>${p.year}</span>
+        <span>${escapeHtml(p.year)}</span>
         <span>·</span>
         <span>${(p.files || []).length} files</span>
       </div>
@@ -577,7 +592,7 @@ function renderProgramPage(program) {
 
   const introImageHtml = program.image_url ? `
   <figure class="intro-image">
-    <img src="${escapeAttr(program.image_url)}" alt="${escapeAttr(program.title)}" loading="lazy">
+    <img src="${escapeAttr(safeUrl(program.image_url))}" alt="${escapeAttr(program.title)}" loading="lazy">
     ${program.image_caption ? `<figcaption>${escapeHtml(program.image_caption)}${commonsUrl(program.image_url) ? ` <a class="commons-link" href="${escapeAttr(commonsUrl(program.image_url))}" target="_blank" rel="noopener">Wikimedia Commons</a>` : ''}</figcaption>` : ''}
   </figure>` : '';
 
@@ -587,13 +602,13 @@ function renderProgramPage(program) {
 <div class="program-page">
   <div class="program-page-header">
     <h1>${escapeHtml(program.title)}</h1>
-    <div class="byline">${escapeHtml(program.author)} · ${program.year} · ${escapeHtml(program.language)}</div>
+    <div class="byline">${escapeHtml(program.author)} · ${escapeHtml(program.year)} · ${escapeHtml(program.language)}</div>
     ${introImageHtml}
     ${introHtml}
   </div>
   ${highlightsHtml}
   <div class="file-tree">${treeHtml}</div>
-  ${program.github_url ? `<a class="github-badge" href="${escapeAttr(program.github_url)}" target="_blank" rel="noopener">View source on GitHub ↗</a>` : ''}
+  ${program.github_url ? `<a class="github-badge" href="${escapeAttr(safeUrl(program.github_url))}" target="_blank" rel="noopener">View source on GitHub ↗</a>` : ''}
 </div>`;
 }
 
@@ -626,7 +641,7 @@ function renderHeader(opts = {}) {
     </div>`;
   }
   if (githubUrl) {
-    right += `<a class="btn-icon" href="${escapeAttr(githubUrl)}" target="_blank" rel="noopener">GitHub ↗</a>`;
+    right += `<a class="btn-icon" href="${escapeAttr(safeUrl(githubUrl))}" target="_blank" rel="noopener">GitHub ↗</a>`;
   }
 
   return `
@@ -807,7 +822,7 @@ function renderReader(meta, body, program) {
   const nextFile = currentIdx >= 0 && currentIdx < files.length - 1 ? files[currentIdx + 1] : null;
 
   const summaryHtml = (meta.summary || []).map(s =>
-    `<li>${escapeHtml(s.point)}${s.link ? ` <a href="${escapeAttr(s.link)}" target="_blank" rel="noopener">${escapeHtml(s.link_label || 'Wikipedia')}</a>` : ''}</li>`
+    `<li>${escapeHtml(s.point)}${s.link ? ` <a href="${escapeAttr(safeUrl(s.link))}" target="_blank" rel="noopener">${escapeHtml(s.link_label || 'Wikipedia')}</a>` : ''}</li>`
   ).join('');
 
   const codeHtml = renderCodeWithEnhancements(body, meta.enhancements || [], meta.language);
@@ -825,7 +840,7 @@ function renderReader(meta, body, program) {
 <div class="reader-wrap">
   <div class="reader-header-meta">
     <h1>${escapeHtml(meta.title)}</h1>
-    <div class="file-byline">${escapeHtml(meta.program)} · ${escapeHtml(meta.language)} · ${meta.year}</div>
+    <div class="file-byline">${escapeHtml(meta.program)} · ${escapeHtml(meta.language)} · ${escapeHtml(meta.year)}</div>
     <p class="file-description">${escapeHtml(meta.description)}</p>
     ${summaryHtml ? `<ul class="summary-list">${summaryHtml}</ul>` : ''}
     ${mobileHtml}
