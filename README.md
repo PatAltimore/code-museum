@@ -3,7 +3,7 @@
 
 An enhanced code reader for historically significant open-sourced programs. Each featured file is presented with inline annotations that explain what the code does, why it matters, and the story behind it.
 
-**Live site:** [https://blue-rock-0e6a0831e.7.azurestaticapps.net/](https://blue-rock-0e6a0831e.7.azurestaticapps.net/)
+**Live site:** [https://pataltimore.github.io/code-museum/](https://pataltimore.github.io/code-museum/)
 
 ## Featured programs
 
@@ -61,37 +61,9 @@ npx serve public
 
 ## Deployment
 
-### Azure Developer CLI (azd)
+The site is hosted on GitHub Pages. The workflow in `.github/workflows/pages.yml` publishes the `public/` directory on every push to `main`.
 
-Provision and deploy to Azure Static Web Apps:
-
-```bash
-azd auth login
-azd up
-```
-
-`azd up` creates a resource group, provisions the Static Web App via `infra/main.bicep`, and deploys the `public/` directory. The deployed URL is printed at the end.
-
-To reprovision infrastructure without redeploying content:
-
-```bash
-azd provision
-```
-
-To redeploy content without reprovisioning:
-
-```bash
-azd deploy
-```
-
-### GitHub Actions
-
-The workflow in `.github/workflows/azure-static-web-apps.yml` deploys on every push to `main` and manages preview environments for pull requests.
-
-Add the deployment token as a repository secret:
-
-1. In the Azure portal, open the Static Web App → **Manage deployment token**
-2. In GitHub, go to **Settings → Secrets → Actions** and add `AZURE_STATIC_WEB_APPS_API_TOKEN`
+One-time setup: in the repository, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
 
 ## Project structure
 

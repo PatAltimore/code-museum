@@ -427,11 +427,11 @@ async function fetchText(url) {
 }
 
 async function loadCatalog() {
-  return JSON.parse(await fetchText('/catalog.json'));
+  return JSON.parse(await fetchText('catalog.json'));
 }
 
 async function loadFile(programSlug, fileSlug) {
-  const text = await fetchText(`/programs/${programSlug}/${fileSlug}.md`);
+  const text = await fetchText(`programs/${programSlug}/${fileSlug}.md`);
   return parseYamlFrontmatter(text);
 }
 
