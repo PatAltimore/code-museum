@@ -1214,3 +1214,132 @@ programs:
     title: 2actions.zil
     path: 2actions.zil
     description: Room and object action routines that implement Zork II's puzzles, the Wizard and the Bank of Zork
+- slug: zork3
+  title: Zork III
+  subtitle: Infocom Z-machine, 1982
+  author: Blank, Lebling, Daniels, Anderson
+  year: 1982
+  language: ZIL (Zork Implementation Language)
+  description: Infocom's 1982 conclusion to the Zork trilogy, a quieter and stranger game about a vanishing dungeon, a
+    Royal Puzzle and a Dungeon Master's final test. The repository holds the shared engine, the shipped game, and a
+    drawer of earlier files, among them the standalone time machine and Shadow sections that were later merged into the game.
+  wikipedia_url: https://en.wikipedia.org/wiki/Zork_III
+  github_url: https://github.com/historicalsource/zork3
+  github_repo: historicalsource/zork3
+  github_branch: master
+  context: 'Zork III: The Dungeon Master is the third of the three games into which the mainframe Zork was divided for
+    microcomputers. Its source is written in ZIL, compiled by Infocom''s ZILCH compiler on a TOPS-20 mainframe into ZAP
+    assembly for the Z-machine. The top-level file zork3.zil includes nine files: the generic library (gsyntax, gmacros,
+    gclock, gmain, gparser, gglobals, gverbs), which is byte-for-byte the same as the library in the Zork II repository,
+    and the game-specific 3dungeon and 3actions. The repository also keeps eleven files that zork3.zil does not include:
+    earlier 1982 forms of the library (macros, clock, demons, main, parser, verbs, syntax), an earlier actions file, an
+    older dungeon, and the shadow and tm files, whose contents were later merged into 3actions.zil. It is a snapshot of the Infocom
+    source archive at shutdown, contributed anonymously.
+
+    '
+  files:
+  - order: 1
+    slug: zork3
+    title: zork3.zil
+    path: zork3.zil
+    description: The top-level file that sets the game number to 3 and includes the nine files that make up the shipped game
+  - order: 2
+    slug: gmacros
+    title: gmacros.zil
+    path: gmacros.zil
+    description: The shared macro layer, byte-identical to Zork II's, as it expands in Zork III
+  - order: 3
+    slug: gglobals
+    title: gglobals.zil
+    path: gglobals.zil
+    description: Shared global objects, with the Zork III branches for the invisible player, the sailor and the Viking ship
+  - order: 4
+    slug: gsyntax
+    title: gsyntax.zil
+    path: gsyntax.zil
+    description: The shared verb table, where Zork III keeps the smallest set of spell words
+  - order: 5
+    slug: gparser
+    title: gparser.zil
+    path: gparser.zil
+    description: The shared parser, including the Zork III direction-as-noun case and the orphaning machinery
+  - order: 6
+    slug: gverbs
+    title: gverbs.zil
+    path: gverbs.zil
+    description: The shared default verbs, with Zork III's dark rooms, ship landings and puzzle exceptions
+  - order: 7
+    slug: gmain
+    title: gmain.zil
+    path: gmain.zil
+    description: The shared main loop, which queues Zork III's I-CLEFT event after the first command
+  - order: 8
+    slug: gclock
+    title: gclock.zil
+    path: gclock.zil
+    description: The shared clock, which every timed event in Zork III's collapsing dungeon hangs from
+  - order: 9
+    slug: 3dungeon
+    title: 3dungeon.zil
+    path: 3dungeon.zil
+    description: The Royal Puzzle entrance, the Hall of Guardians, the mirror box and the Dungeon Master's prison as ZIL data
+  - order: 10
+    slug: 3actions
+    title: 3actions.zil
+    path: 3actions.zil
+    description: Zork III's rooms and puzzles in code, from the lake and the cliff to the Royal Puzzle and the final test
+  - order: 11
+    slug: macros
+    title: macros.zil
+    path: macros.zil
+    description: An earlier 1982 macro file, before the trilogy shared one generic library
+  - order: 12
+    slug: clock
+    title: clock.zil
+    path: clock.zil
+    description: An earlier clock with separate DEMON and QUEUE entry points
+  - order: 13
+    slug: demons
+    title: demons.zil
+    path: demons.zil
+    description: The sword demon in its earlier standalone form, before it moved into 3actions.zil
+  - order: 14
+    slug: main
+    title: main.zil
+    path: main.zil
+    description: An earlier main loop and PERFORM, with six handlers and a move counter in the loop
+  - order: 15
+    slug: parser
+    title: parser.zil
+    path: parser.zil
+    description: An earlier parser, a few hundred lines shorter than the shared one, with GWIM switched by a flag
+  - order: 16
+    slug: verbs
+    title: verbs.zil
+    path: verbs.zil
+    description: An earlier verb file, before the library was made generic
+  - order: 17
+    slug: syntax
+    title: syntax.zil
+    path: syntax.zil
+    description: An earlier syntax table that still carries the Zork II header and vocabulary
+  - order: 18
+    slug: actions
+    title: actions.zil
+    path: actions.zil
+    description: An earlier actions file, close to the first 2,000 lines of the shipped 3actions file
+  - order: 19
+    slug: dungeon
+    title: dungeon.zil
+    path: dungeon.zil
+    description: An earlier dungeon file, almost identical to 3dungeon, that still queues the cleft at start-up
+  - order: 20
+    slug: shadow
+    title: shadow.zil
+    path: shadow.zil
+    description: The standalone Shadow file, the lake, the cliff and the other main-game rooms, before they were merged into 3actions.zil
+  - order: 21
+    slug: tm
+    title: tm.zil
+    path: tm.zil
+    description: The standalone Incredibly Bizarre Time Machine Problem, before it was merged into 3actions.zil
