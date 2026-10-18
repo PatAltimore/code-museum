@@ -794,7 +794,7 @@
           "title": "zork2.zil",
           "description": "The top-level file that stitches the game together, including the shared library and game-specific parts",
           "path": "zork2.zil",
-          "generated": false
+          "generated": true
         },
         {
           "order": 2,
@@ -802,7 +802,7 @@
           "title": "gmacros.zil",
           "description": "ZIL macros that expand into Z-machine operations for common game idioms",
           "path": "gmacros.zil",
-          "generated": false
+          "generated": true
         },
         {
           "order": 3,
@@ -810,7 +810,7 @@
           "title": "gglobals.zil",
           "description": "Global variables, the player object, pronoun tracking and the shared object definitions",
           "path": "gglobals.zil",
-          "generated": false
+          "generated": true
         },
         {
           "order": 4,
@@ -818,7 +818,7 @@
           "title": "gsyntax.zil",
           "description": "The verb syntax table mapping player sentences to action routines",
           "path": "gsyntax.zil",
-          "generated": false
+          "generated": true
         },
         {
           "order": 5,
@@ -834,7 +834,7 @@
           "title": "gverbs.zil",
           "description": "Default verb handlers — take, drop, open, attack and the other standard actions",
           "path": "gverbs.zil",
-          "generated": false
+          "generated": true
         },
         {
           "order": 7,
@@ -858,7 +858,7 @@
           "title": "2dungeon.zil",
           "description": "The world of Zork II — every room, exit and object, from the Barrow to the Wizard's Workshop",
           "path": "2dungeon.zil",
-          "generated": false
+          "generated": true
         },
         {
           "order": 10,
@@ -866,7 +866,7 @@
           "title": "2actions.zil",
           "description": "Room and object action routines that implement Zork II's puzzles, the Wizard and the Bank of Zork",
           "path": "2actions.zil",
-          "generated": false
+          "generated": true
         }
       ]
     },
