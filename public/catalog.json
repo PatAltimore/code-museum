@@ -1011,6 +1011,341 @@
       ]
     },
     {
+      "slug": "zork3",
+      "title": "Zork III",
+      "subtitle": "Infocom Z-machine, 1982",
+      "author": "Blank, Lebling, Daniels, Anderson",
+      "year": 1982,
+      "language": "ZIL (Zork Implementation Language)",
+      "description": "Infocom's 1982 conclusion to the Zork trilogy, a quieter and stranger game about a vanishing dungeon, a Royal Puzzle and a Dungeon Master's final test. The repository holds the shared engine, the shipped game, and a drawer of earlier files, among them the standalone time machine and Shadow sections that were later merged into the game.",
+      "github_url": "https://github.com/historicalsource/zork3",
+      "files": [
+        {
+          "order": 1,
+          "slug": "zork3",
+          "title": "zork3.zil",
+          "description": "The top-level file that sets the game number to 3 and includes the nine files that make up the shipped game",
+          "path": "zork3.zil",
+          "generated": true
+        },
+        {
+          "order": 2,
+          "slug": "gmacros",
+          "title": "gmacros.zil",
+          "description": "The shared macro layer, byte-identical to Zork II's, as it expands in Zork III",
+          "path": "gmacros.zil",
+          "generated": true
+        },
+        {
+          "order": 3,
+          "slug": "gglobals",
+          "title": "gglobals.zil",
+          "description": "Shared global objects, with the Zork III branches for the invisible player, the sailor and the Viking ship",
+          "path": "gglobals.zil",
+          "generated": true
+        },
+        {
+          "order": 4,
+          "slug": "gsyntax",
+          "title": "gsyntax.zil",
+          "description": "The shared verb table, where Zork III keeps the smallest set of spell words",
+          "path": "gsyntax.zil",
+          "generated": true
+        },
+        {
+          "order": 5,
+          "slug": "gparser",
+          "title": "gparser.zil",
+          "description": "The shared parser, including the Zork III direction-as-noun case and the orphaning machinery",
+          "path": "gparser.zil",
+          "generated": true
+        },
+        {
+          "order": 6,
+          "slug": "gverbs",
+          "title": "gverbs.zil",
+          "description": "The shared default verbs, with Zork III's dark rooms, ship landings and puzzle exceptions",
+          "path": "gverbs.zil",
+          "generated": true
+        },
+        {
+          "order": 7,
+          "slug": "gmain",
+          "title": "gmain.zil",
+          "description": "The shared main loop, which queues Zork III's I-CLEFT event after the first command",
+          "path": "gmain.zil",
+          "generated": true
+        },
+        {
+          "order": 8,
+          "slug": "gclock",
+          "title": "gclock.zil",
+          "description": "The shared clock, which every timed event in Zork III's collapsing dungeon hangs from",
+          "path": "gclock.zil",
+          "generated": true
+        },
+        {
+          "order": 9,
+          "slug": "3dungeon",
+          "title": "3dungeon.zil",
+          "description": "The Royal Puzzle entrance, the Hall of Guardians, the mirror box and the Dungeon Master's prison as ZIL data",
+          "path": "3dungeon.zil",
+          "generated": true
+        },
+        {
+          "order": 10,
+          "slug": "3actions",
+          "title": "3actions.zil",
+          "description": "Zork III's rooms and puzzles in code, from the lake and the cliff to the Royal Puzzle and the final test",
+          "path": "3actions.zil",
+          "generated": true
+        },
+        {
+          "order": 11,
+          "slug": "macros",
+          "title": "macros.zil",
+          "description": "An earlier 1982 macro file, before the trilogy shared one generic library",
+          "path": "macros.zil",
+          "generated": true
+        },
+        {
+          "order": 12,
+          "slug": "clock",
+          "title": "clock.zil",
+          "description": "An earlier clock with separate DEMON and QUEUE entry points",
+          "path": "clock.zil",
+          "generated": true
+        },
+        {
+          "order": 13,
+          "slug": "demons",
+          "title": "demons.zil",
+          "description": "The sword demon in its earlier standalone form, before it moved into 3actions.zil",
+          "path": "demons.zil",
+          "generated": true
+        },
+        {
+          "order": 14,
+          "slug": "main",
+          "title": "main.zil",
+          "description": "An earlier main loop and PERFORM, with six handlers and a move counter in the loop",
+          "path": "main.zil",
+          "generated": true
+        },
+        {
+          "order": 15,
+          "slug": "parser",
+          "title": "parser.zil",
+          "description": "An earlier parser, a few hundred lines shorter than the shared one, with GWIM switched by a flag",
+          "path": "parser.zil",
+          "generated": true
+        },
+        {
+          "order": 16,
+          "slug": "verbs",
+          "title": "verbs.zil",
+          "description": "An earlier verb file, before the library was made generic",
+          "path": "verbs.zil",
+          "generated": true
+        },
+        {
+          "order": 17,
+          "slug": "syntax",
+          "title": "syntax.zil",
+          "description": "An earlier syntax table that still carries the Zork II header and vocabulary",
+          "path": "syntax.zil",
+          "generated": true
+        },
+        {
+          "order": 18,
+          "slug": "actions",
+          "title": "actions.zil",
+          "description": "An earlier actions file, close to the first 2,000 lines of the shipped 3actions file",
+          "path": "actions.zil",
+          "generated": true
+        },
+        {
+          "order": 19,
+          "slug": "dungeon",
+          "title": "dungeon.zil",
+          "description": "An earlier dungeon file, almost identical to 3dungeon, that still queues the cleft at start-up",
+          "path": "dungeon.zil",
+          "generated": true
+        },
+        {
+          "order": 20,
+          "slug": "shadow",
+          "title": "shadow.zil",
+          "description": "The standalone Shadow file, the lake, the cliff and the other main-game rooms, before they were merged into 3actions.zil",
+          "path": "shadow.zil",
+          "generated": true
+        },
+        {
+          "order": 21,
+          "slug": "tm",
+          "title": "tm.zil",
+          "description": "The standalone Incredibly Bizarre Time Machine Problem, before it was merged into 3actions.zil",
+          "path": "tm.zil",
+          "generated": true
+        }
+      ],
+      "introduction": "Zork III: The Dungeon Master, released in 1982, is the last of the three games into which Infocom divided the mainframe Zork, and it is the strangest. Marc Blank, Dave Lebling, Bruce Daniels and Tim Anderson had spent the first two games building a dungeon of treasures and monsters. In the third they built something quieter. The score is a 'potential' of seven points, there are almost no treasures to carry, and a player who dies wakes in a prison cell and is told by an old man that the journey will be long. After four deaths the game ends. What takes the place of loot is a sequence of tests of character.\n\nThe tests are set in a collapsing dungeon. Earthquakes crack walls and bring down an aqueduct on a timer. A stranger on a cliff offers to help if you tie his chest to a rope. A hooded figure with a sword like yours bars the way. A museum holds a Royal Puzzle and a time machine that rewrites the building as you travel. At the end a Dungeon Master judges you on kindness, patience and trust, and then, in the Treasury, offers you his place. His speech names the old man at the secret door, the stranger and the hooded figure as his own faces.\n\nThe source in this collection is the Infocom archive as it stood at shutdown, a snapshot of a working directory that holds both the shipped game and the drawer of files around it. The top-level file, zork3.zil, includes nine files. Seven are the generic library of parser, verbs, clock, macros, syntax, globals and main loop, which is byte for byte the same as the library in the Zork II repository. The other two, 3dungeon and 3actions, hold this game alone; 3actions runs to more than five thousand lines and contains the puzzles and the whole main map. Eleven more files are earlier forms that the build leaves out: a 1982 parser, verb and syntax file, an older main loop and clock, and standalone versions of the time machine and Shadow sections that were later merged into 3actions.\n\nReading it shows a team working at the limit of what a table, a flag and a clock can express. The Royal Puzzle is a six-by-six array of numbers with objects swapped in and out of a single room. The time machine rewrites three copies of each hall and sets flags that the present reads back. The duel is two strengths and a handful of shuffled replies, and the mirror box is an angle in degrees and a position along a channel. Compile-time conditionals let the shared library carry the Viking sailor, the 'FROTZ OZMOO' password and the earthquake clock for this game alone, and a joke room called Zork IV teases a fourth game.\n\nThe comparison with the earlier files shows how much of the finish was done late. A first-person 'I can't see any ladder here' became 'You can't see any ladder here'. A vague 'wearing a few simple jewels' became a list of an amulet, a ring and a book that tells the player what to carry. A line that hid a pedestal was commented out, and a stray character in a museum warning was removed. Zork III ended the trilogy with the interface unchanged and the ambitions altered, and the code shows the care it took to fit a game about character into an 88-kilobyte story file.",
+      "highlights": [
+        {
+          "id": "a-maze-in-thirty-six-numbers",
+          "title": "A Maze in Thirty-Six Numbers",
+          "description": "Credited in the source to Will Weng, the Royal Puzzle is a sliding-block maze that fits inside one room. Its thirty-six cells are entries in a table, with codes for open floor, fixed wall, pushable wall and ladder. When the player pushes a wall, CPWALL-OBJECT moves a value in the table and the player follows it. CPGOTO then stores every object lying in the old cell and brings back those of the new one, so the world seems to change while the game's room tree never does. After the first successful push the game prints text-art diagrams in a fixed-width font and explains its legend. The exit is a ladder at the entrance, and leaving through the steel door costs the lore book. A big maze would have taken dozens of rooms and descriptions. Here arithmetic on a list does the work of a map, and the same swapping trick runs the eight-cell dial puzzle on the parapet.",
+          "links": [
+            {
+              "label": "The Royal Puzzle as thirty-six numbers",
+              "file": "3actions",
+              "enhancement": "cp-tables"
+            },
+            {
+              "label": "Pushing a wall and learning to read a diagram",
+              "file": "3actions",
+              "enhancement": "cp-push"
+            },
+            {
+              "label": "CPGOTO: swapping objects between cells",
+              "file": "3actions",
+              "enhancement": "cp-goto"
+            },
+            {
+              "label": "The puzzle's three rooms",
+              "file": "3dungeon",
+              "enhancement": "royal-puzzle-rooms"
+            }
+          ]
+        },
+        {
+          "id": "a-time-machine-that-rewrites-the-rooms",
+          "title": "A Time Machine That Rewrites the Rooms",
+          "description": "The golden machine in the Royal Museum sends the player to the year on its dial, in a calendar where the museum was built in 776, the jewels caged in 777 and the present is 948. Pressing the button runs TGOTO, which sets flags for the new year, moves the machine, the jewels and the plaques between three copies of each hall, and starts a forty-turn timer that snaps the player back home. The past can be changed. A player who hides the ring under the seat and leaves 776 sets RING-STOLEN, and the plaque in the present then reports the unexplained disappearance of a priceless ring and says that Lord Flathead hid his gaudy crown in a volcano, the crown of Zork II. The cause is in the player's hands and the effect is in the text they read later, joined by a few global flags. It is a time-travel loop built from a table of years and a handful of conditionals.",
+          "links": [
+            {
+              "label": "TGOTO: rewriting the world when you travel",
+              "file": "3actions",
+              "enhancement": "time-travel"
+            },
+            {
+              "label": "The plaque that tells you what you did",
+              "file": "3actions",
+              "enhancement": "plaque-paradox"
+            },
+            {
+              "label": "Each hall exists three times",
+              "file": "3actions",
+              "enhancement": "three-eras"
+            }
+          ]
+        },
+        {
+          "id": "a-duel-with-yourself",
+          "title": "A Duel With Yourself",
+          "description": "A hooded figure carrying a sword like the player's blocks a randomly chosen exit in the Land of Shadow. The duel that follows is two numbers and a few dice. P-STRENGTH and S-STRENGTH each start at five. Each attack rolls against ten times the attacker's strength plus ten, most hits cost one point and some cost two, and four tables of replies are shuffled so that no hit or miss message repeats until all have been used. A routine called I-CURE restores a point to each side every ten turns, so a fight can be broken off. The sting is at the end: if the figure's strength is down to one, the player can remove the hood and see their own face, weary and wounded, change into an old, wizened one. The same machinery of strengths and timers that would make a monster fight makes a moral scene, and it ties this fight to the Dungeon Master at the end of the game.",
+          "links": [
+            {
+              "label": "A duel in numbers",
+              "file": "3actions",
+              "enhancement": "duel"
+            },
+            {
+              "label": "Taking off the hood",
+              "file": "3actions",
+              "enhancement": "hood-and-cloak"
+            },
+            {
+              "label": "The hooded figure and its blocked direction",
+              "file": "3actions",
+              "enhancement": "shadow-object"
+            }
+          ]
+        },
+        {
+          "id": "a-box-that-turns-in-a-corridor",
+          "title": "A Box That Turns in a Corridor",
+          "description": "The Hall of the Guardians is a corridor where two identical stone warriors will kill anyone they see. The way through is a wooden box that slides along a channel in the floor and rotates, so the player is hidden inside it. The state is MLOC, the box's place in the corridor, and MDIR, its heading in degrees. Pushing a coloured panel turns the box 45 degrees clockwise or counter-clockwise, and pushing the mahogany panel slides it a room north or south. The long room description is built from those two numbers and the position of the poles. A red beam of light across the north end of the Beam Room is broken by dropping anything on the floor, and only then does the button in the next room open the mirror. All of it is a mechanical model written as a few globals and tables, with deadly consequences for a wrong turn, and a potion of invisibility is the other way past.",
+          "links": [
+            {
+              "label": "The Guardians of Zork",
+              "file": "3actions",
+              "enhancement": "guardians"
+            },
+            {
+              "label": "The mirror box described in full",
+              "file": "3actions",
+              "enhancement": "magic-mirror"
+            },
+            {
+              "label": "Sliding the box along the channel",
+              "file": "3actions",
+              "enhancement": "mirror-motion"
+            },
+            {
+              "label": "The red beam and the button",
+              "file": "3actions",
+              "enhancement": "beam-and-button"
+            }
+          ]
+        },
+        {
+          "id": "a-test-made-of-what-you-did",
+          "title": "A Test Made of What You Did",
+          "description": "The Dungeon Master's door opens only to a player who is dressed as him: a cloak, a hood, an amulet, a staff, a ring, the lore book and a key, each picked up in an earlier scene. LOOK-LIKE-DM? checks all seven, and DMISH counts them to choose one of seven hints. Inside, the Master explains that the old man at the secret door, the stranger at the cliff and the hooded figure were his faces, and that the player was tested for kindness, compassion, patience and trust. The final test is a dial with eight cells and a button, one of which has a bronze door that leads to the Treasury. The game then lets the player take the Master's place. The structure ties earlier scenes together without a score: the costume is the inventory of what the player did, and the early version of the death text, which said only 'a few simple jewels', was later changed to name an amulet, a ring and a book.",
+          "links": [
+            {
+              "label": "Knocking, and the seven things he wears",
+              "file": "3actions",
+              "enhancement": "front-door"
+            },
+            {
+              "label": "The old man who wants bread",
+              "file": "3actions",
+              "enhancement": "old-man"
+            },
+            {
+              "label": "Eight cells and a dial",
+              "file": "3actions",
+              "enhancement": "cells-and-dial"
+            },
+            {
+              "label": "SAY \"FROTZ OZMOO\"",
+              "file": "gverbs",
+              "enhancement": "say"
+            }
+          ]
+        },
+        {
+          "id": "one-library-three-games",
+          "title": "One Library, Three Games",
+          "description": "Seven of the nine files in Zork III's build are identical, byte for byte, to the files in Zork II's, and they were written to serve all three games. The trick is the compile-time conditional: a line beginning with a percent sign is evaluated by the compiler, and the branch not taken never reaches the story file. In this game the shared code gives the sailor a Viking ship and a gift of a vial, makes SAY understand FROTZ OZMOO, lets a bare direction word serve as an object, queues the earthquake clock after the player's first command, and adds a branch to the carry rules that scores nothing for treasures. The same lines in the other two games compile to different behaviour, so a joke in the globals file pays off in only one of them. The repository's own note says Infocom built games by copying the previous game's directory, and these files show what that cost in discipline.",
+          "links": [
+            {
+              "label": "I-CLEFT starts after the first command",
+              "file": "gmain",
+              "enhancement": "clefts"
+            },
+            {
+              "label": "The sailor who finally has a scene",
+              "file": "gglobals",
+              "enhancement": "sailor"
+            },
+            {
+              "label": "Two spell words instead of fifteen",
+              "file": "gsyntax",
+              "enhancement": "vocabulary"
+            },
+            {
+              "label": "GET-OBJECT and the direction that is a noun",
+              "file": "gparser",
+              "enhancement": "get-object"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "prince-of-persia",
       "title": "Prince of Persia",
       "subtitle": "Apple II, 1989",
