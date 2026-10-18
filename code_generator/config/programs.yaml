@@ -1143,3 +1143,74 @@ programs:
   github_url: https://github.com/id-Software/Quake
   github_repo: id-Software/Quake
   github_branch: master
+- slug: zork2
+  title: Zork II
+  subtitle: Infocom Z-machine, 1981
+  author: Blank, Lebling, Daniels, Anderson
+  year: 1981
+  language: ZIL (Zork Implementation Language)
+  description: Infocom's 1981 sequel to Zork I, written in ZIL for the portable Z-machine. Its Wizard of Frobozz, the
+    Bank of Zork and the Carousel Room gave a harder, more puzzle-dense game, and its parser and verb code show the
+    engine Infocom reused across a decade of interactive fiction.
+  wikipedia_url: https://en.wikipedia.org/wiki/Zork_II
+  github_url: https://github.com/historicalsource/zork2
+  github_repo: historicalsource/zork2
+  github_branch: master
+  context: 'ZIL is a refactoring of MDL (Muddle), the MIT Lisp dialect used for the PDP-10 Zork. Infocom''s ZILCH compiler
+    on a TOPS-20 mainframe turned ZIL into ZAP assembly for the Z-machine, a virtual machine that let one story file run
+    on many microcomputers. Games were built by copying a prior game''s directory and modifying it, so the parser, verbs
+    and globals here share ancestry with Zork I. The repository is a snapshot of the Infocom source archive at shutdown,
+    contributed anonymously. Files prefixed g are the shared game library; files prefixed 2 are specific to Zork II.
+
+    '
+  files:
+  - order: 1
+    slug: zork2
+    title: zork2.zil
+    path: zork2.zil
+    description: The top-level file that stitches the game together, including the shared library and game-specific parts
+  - order: 2
+    slug: gmacros
+    title: gmacros.zil
+    path: gmacros.zil
+    description: ZIL macros that expand into Z-machine operations for common game idioms
+  - order: 3
+    slug: gglobals
+    title: gglobals.zil
+    path: gglobals.zil
+    description: Global variables, the player object, pronoun tracking and the shared object definitions
+  - order: 4
+    slug: gsyntax
+    title: gsyntax.zil
+    path: gsyntax.zil
+    description: The verb syntax table mapping player sentences to action routines
+  - order: 5
+    slug: gparser
+    title: gparser.zil
+    path: gparser.zil
+    description: The Infocom parser — sentence parsing, object resolution, disambiguation and orphaning
+  - order: 6
+    slug: gverbs
+    title: gverbs.zil
+    path: gverbs.zil
+    description: Default verb handlers — take, drop, open, attack and the other standard actions
+  - order: 7
+    slug: gmain
+    title: gmain.zil
+    path: gmain.zil
+    description: The main loop that reads input, runs the parser and dispatches actions each turn
+  - order: 8
+    slug: gclock
+    title: gclock.zil
+    path: gclock.zil
+    description: The interrupt and clock system that schedules timed events such as lamp burnout
+  - order: 9
+    slug: 2dungeon
+    title: 2dungeon.zil
+    path: 2dungeon.zil
+    description: The world of Zork II — every room, exit and object, from the Barrow to the Wizard's Workshop
+  - order: 10
+    slug: 2actions
+    title: 2actions.zil
+    path: 2actions.zil
+    description: Room and object action routines that implement Zork II's puzzles, the Wizard and the Bank of Zork

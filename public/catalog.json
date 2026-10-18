@@ -779,6 +779,98 @@
       ]
     },
     {
+      "slug": "zork2",
+      "title": "Zork II",
+      "subtitle": "Infocom Z-machine, 1981",
+      "author": "Blank, Lebling, Daniels, Anderson",
+      "year": 1981,
+      "language": "ZIL (Zork Implementation Language)",
+      "description": "Infocom's 1981 sequel to Zork I, written in ZIL for the portable Z-machine. Its Wizard of Frobozz, the Bank of Zork and the Carousel Room gave a harder, more puzzle-dense game, and its parser and verb code show the engine Infocom reused across a decade of interactive fiction.",
+      "github_url": "https://github.com/historicalsource/zork2",
+      "files": [
+        {
+          "order": 1,
+          "slug": "zork2",
+          "title": "zork2.zil",
+          "description": "The top-level file that stitches the game together, including the shared library and game-specific parts",
+          "path": "zork2.zil",
+          "generated": false
+        },
+        {
+          "order": 2,
+          "slug": "gmacros",
+          "title": "gmacros.zil",
+          "description": "ZIL macros that expand into Z-machine operations for common game idioms",
+          "path": "gmacros.zil",
+          "generated": false
+        },
+        {
+          "order": 3,
+          "slug": "gglobals",
+          "title": "gglobals.zil",
+          "description": "Global variables, the player object, pronoun tracking and the shared object definitions",
+          "path": "gglobals.zil",
+          "generated": false
+        },
+        {
+          "order": 4,
+          "slug": "gsyntax",
+          "title": "gsyntax.zil",
+          "description": "The verb syntax table mapping player sentences to action routines",
+          "path": "gsyntax.zil",
+          "generated": false
+        },
+        {
+          "order": 5,
+          "slug": "gparser",
+          "title": "gparser.zil",
+          "description": "The Infocom parser — sentence parsing, object resolution, disambiguation and orphaning",
+          "path": "gparser.zil",
+          "generated": true
+        },
+        {
+          "order": 6,
+          "slug": "gverbs",
+          "title": "gverbs.zil",
+          "description": "Default verb handlers — take, drop, open, attack and the other standard actions",
+          "path": "gverbs.zil",
+          "generated": false
+        },
+        {
+          "order": 7,
+          "slug": "gmain",
+          "title": "gmain.zil",
+          "description": "The main loop that reads input, runs the parser and dispatches actions each turn",
+          "path": "gmain.zil",
+          "generated": true
+        },
+        {
+          "order": 8,
+          "slug": "gclock",
+          "title": "gclock.zil",
+          "description": "The interrupt and clock system that schedules timed events such as lamp burnout",
+          "path": "gclock.zil",
+          "generated": true
+        },
+        {
+          "order": 9,
+          "slug": "2dungeon",
+          "title": "2dungeon.zil",
+          "description": "The world of Zork II — every room, exit and object, from the Barrow to the Wizard's Workshop",
+          "path": "2dungeon.zil",
+          "generated": false
+        },
+        {
+          "order": 10,
+          "slug": "2actions",
+          "title": "2actions.zil",
+          "description": "Room and object action routines that implement Zork II's puzzles, the Wizard and the Bank of Zork",
+          "path": "2actions.zil",
+          "generated": false
+        }
+      ]
+    },
+    {
       "slug": "prince-of-persia",
       "title": "Prince of Persia",
       "subtitle": "Apple II, 1989",
