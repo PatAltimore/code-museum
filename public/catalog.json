@@ -868,6 +868,146 @@
           "path": "2actions.zil",
           "generated": true
         }
+      ],
+      "introduction": "In 1977 a handful of programmers at MIT's Laboratory for Computer Science built a game on a DEC PDP-10 that let people type sentences and get answers. Tim Anderson, Marc Blank, Bruce Daniels and Dave Lebling called it Zork, wrote it in the MIT Lisp dialect MDL, and kept enlarging it until it was too big for any home computer. In 1979 several of them, with other colleagues from the laboratory, founded Infocom to sell it. To do so they split the mainframe game into three, and to run those three on the Apple II, the TRS-80 and a growing list of other machines they invented a portable virtual machine, the Z-machine, and a language to drive it, ZIL, the Zork Implementation Language.\n\nZork II: The Wizard of Frobozz came out in 1981, the second of those three games. It is the one where the dungeon turns clever. Players meet a dragon whose temper has to be managed and a three-headed dog that must be leashed. They are scrambled by the Carousel Room and lost in a maze shaped like a baseball diamond, and they cross the Bank of Zork through a curtain of light and wander into an underground Alice in Wonderland. Above all there is the Wizard himself, who turns up at random to cast spells on the player, every one of them with a name beginning with F.\n\nThe source in this collection is the Infocom code as it stood when the company shut down. It is a snapshot of a working directory, not a polished release. A README in the repository says no one knows how to rebuild a story file from it, because the compiler, ZILCH, ran on a TOPS-20 mainframe and the means to recreate it is lost. The files carry 1983 copyright headers and a 'Renovated' banner, and the generic ones are shared with Zork I and III. Their names show the arrangement: files that begin with g form the library of parser, verbs, clock and globals, and files that begin with 2 hold the world of this game alone. Infocom's habit was to copy the previous game's directory and change what the new story needed, so this code carries the lineage of the whole catalogue.\n\nReading it shows how much of what feels like intelligence was built from tables, flags and a single clock. The parser sorts words into verbs, prepositions and noun clauses, then matches them to syntax lines. When a sentence is incomplete it asks a question, saves the fragment and stitches the answer back in. A scheduler of one 180-word table runs everything that happens without the player's input, from lamp batteries to the Wizard's visits. Rooms and objects are data, and most behaviour is a short routine the engine offers a command to before the default verb runs. Darkness, carrying capacity, scoring and death are rules at the foot of the file, not special effects.\n\nThe game sits at a hinge in the history of interactive fiction. It is a sequel whose authors already knew what players expected, and it answers by being harder and more inventive, not by changing the interface. The ideas in it, guessing the missing object, queueing events on a clock, letting an object veto a verb, were the machinery Infocom reused for the rest of its run until Activision absorbed the company in 1986 and closed it in 1989. Read together, the files show a small team solving the problem of making a machine seem to understand English with the memory of a floppy disk.",
+      "highlights": [
+        {
+          "id": "the-parser-that-asks-back",
+          "title": "The Parser That Asks Back",
+          "description": "Infocom's parser did more than match two words. It sorted a typed sentence into a verb, prepositions and up to two noun clauses, then matched that shape against the verb's syntax lines. When a line wanted an object the player had not given, GWIM, short for Get What I Mean, searched the room for the one thing that made sense and announced its guess in parentheses, as in '(the brass lantern)'. If no single answer existed, the game orphaned the sentence, asked 'What do you want to take?' and merged the next line into the saved fragment. This solved the problem that haunted earlier adventures, which either guessed silently or forced the player to retype everything. The same design descends from the original MIT parser and, as the repository's notes say, the structure was copied from game to game, so the same questions and the same guesses were what players met across a decade of Infocom titles.",
+          "links": [
+            {
+              "label": "GWIM: guessing the missing object",
+              "file": "gparser",
+              "enhancement": "gwim"
+            },
+            {
+              "label": "ORPHAN-MERGE: answering the game's question",
+              "file": "gparser",
+              "enhancement": "orphan-merge"
+            },
+            {
+              "label": "Reading a SYNTAX line",
+              "file": "gsyntax",
+              "enhancement": "syntax-anatomy"
+            }
+          ]
+        },
+        {
+          "id": "who-gets-the-first-say",
+          "title": "Who Gets the First Say?",
+          "description": "Every command in Zork II, whether typed by the player or issued by the game, goes through one routine, PERFORM. It offers the action to seven handlers in a fixed order: the actor, the room, a pre-action for the verb, the indirect object, the container of the direct object, the direct object itself and finally the default verb. The first to answer wins. The point was to let a single sword, door or room change the meaning of a verb without touching the verb. A cursed object can refuse to be dropped, a room can forbid fighting, and a puzzle can intercept TAKE, all in a few lines beside the thing it concerns. The alternative was a thicket of conditions inside every verb. With this order, Infocom's writers could add a puzzle to the game by writing one routine, and the dungeon grew to a file of four thousand lines of them without the engine changing.",
+          "links": [
+            {
+              "label": "PERFORM: who gets the first say",
+              "file": "gmain",
+              "enhancement": "perform-dispatch"
+            },
+            {
+              "label": "One verb, many objects",
+              "file": "gmain",
+              "enhancement": "multiple-objects"
+            },
+            {
+              "label": "ITAKE: everything that can stop you taking something",
+              "file": "gverbs",
+              "enhancement": "itake"
+            }
+          ]
+        },
+        {
+          "id": "a-clock-made-of-one-table",
+          "title": "A Clock Made of One Table",
+          "description": "Everything in Zork II that happens without the player, the lamp growing dim, the dragon growing bored, the Wizard appearing in a puff of air, runs from a table of 180 words. Each event is a six-word record with an enabled flag, a countdown and a routine to call. QUEUE adds a record, ENABLE and DISABLE switch it, and CLOCKER, called once per turn from the main loop, decrements each countdown and fires the routines that reach zero. Time in the game is therefore counted in moves, not seconds, which makes the world fair: nothing happens while the player thinks. The design needed no threads, no operating system and only a few hundred bytes, so it fitted on every machine the Z-machine reached. Many of the puzzles in this game, from the balloon to the fuse on a brick, are written as events scheduled on this clock.",
+          "links": [
+            {
+              "label": "The event table layout",
+              "file": "gclock",
+              "enhancement": "event-table-layout"
+            },
+            {
+              "label": "CLOCKER: one tick per turn",
+              "file": "gclock",
+              "enhancement": "clocker-tick"
+            },
+            {
+              "label": "The lamp's countdown table",
+              "file": "2actions",
+              "enhancement": "lantern"
+            }
+          ]
+        },
+        {
+          "id": "darkness-as-a-rule",
+          "title": "Darkness as a Rule, Not a Scene",
+          "description": "The grue is never seen, yet it is the best-known monster in the series, and in the code it is a handful of rules about light. LIT? asks whether the room or anything the player can reach carries the lit flag. GOTO recomputes light on every move, and the first step into darkness is only a warning; moving from one dark place into another has an eighty percent chance of being eaten. DESCRIBE-ROOM says 'It is pitch black' and reminds the player that a grue may be near, unless a can of grue repellent has been sprayed. The brass lantern is a countdown that gives about 650 turns of light. The effect was to make light a resource the player manages, with real tension and no animation, and it taught players that a text adventure could frighten them through absence. The same lit-room logic runs in all three Zork games.",
+          "links": [
+            {
+              "label": "LIT?: is there enough light?",
+              "file": "gparser",
+              "enhancement": "lit"
+            },
+            {
+              "label": "GOTO: moving the player",
+              "file": "gverbs",
+              "enhancement": "goto"
+            },
+            {
+              "label": "The Grue gets a definition",
+              "file": "gglobals",
+              "enhancement": "grue"
+            }
+          ]
+        },
+        {
+          "id": "a-wizard-built-from-twelve-f-words",
+          "title": "A Wizard Built From Twelve F-Words",
+          "description": "Zork II's Wizard of Frobozz casts twelve spells, Feeble, Fumble, Fear, Filch, Freeze, Fall, Ferment, Fierce, Float, Fireproof, Fence and Fantasize, and the player can borrow them. The system is a global holding the active spell and a few tables of names, hints and wear-off messages. While a spell is on, an action routine installed on the player rewrites what their commands do: Freeze blocks nearly everything, Fierce forces an attack on whatever creature is present, Ferment staggers the player in random directions. A wand with a recharge delay lets the player cast them back at puzzle objects, so Float lifts a menhir and Filch empties a protected case. This solved the problem of giving a text game magic without writing a new verb for each effect, and it let a dozen words reshape the whole map. The F-words are part of the vocabulary as well, so the parser accepts them as ordinary words.",
+          "links": [
+            {
+              "label": "Twelve F-words",
+              "file": "2actions",
+              "enhancement": "spell-table"
+            },
+            {
+              "label": "Spells take over the player",
+              "file": "2actions",
+              "enhancement": "magic-actor"
+            },
+            {
+              "label": "The wand and its recharge",
+              "file": "2actions",
+              "enhancement": "wand"
+            },
+            {
+              "label": "ENCHANT: what a spell does",
+              "file": "gverbs",
+              "enhancement": "enchant"
+            }
+          ]
+        },
+        {
+          "id": "puzzles-that-cheat-back",
+          "title": "Puzzles That Cheat Back",
+          "description": "The best puzzles in Zork II are small simulations. The dragon has an anger meter that rises with everything the player does, and a timer turns that number into behaviour: bore it and it wanders off, anger it and it follows you, lure it to the glacier and it mistakes its reflection for a rival, melts the ice with its own fire and dies. The Carousel Room replaces your direction with a random one, from a table that quietly omits west. The baseball-diamond maze counts correct steps around the bases and resets your count, and sometimes teleports you, on a wrong one, while a window on the floor glows brighter as you progress. These designs used the engine's ordinary pieces, flags, tables and the clock, to make rooms behave like opponents. Solving them means understanding a system, not finding the right word.",
+          "links": [
+            {
+              "label": "I-DRAGON: anger, boredom and the glacier",
+              "file": "2actions",
+              "enhancement": "dragon-timer"
+            },
+            {
+              "label": "The Carousel Room scrambles every move",
+              "file": "2actions",
+              "enhancement": "carousel"
+            },
+            {
+              "label": "A baseball diamond for a maze",
+              "file": "2actions",
+              "enhancement": "diamond-maze"
+            }
+          ]
+        }
       ]
     },
     {
