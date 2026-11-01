@@ -312,6 +312,476 @@
       ]
     },
     {
+      "slug": "rogue",
+      "title": "Rogue",
+      "subtitle": "Unix, 1980 (source version 5.4.4, 1999)",
+      "author": "Toy, Arnold, Wichman",
+      "year": 1980,
+      "language": "C",
+      "description": "The dungeon crawler that gave a genre its name: a hero drawn as an @ explores randomly built levels of rooms and passages on a text terminal, fights monsters named by letters, and hunts for the Amulet of Yendor. This is version 5.4.4, the 1999 release of the original sources, with a portability layer that builds it on modern systems.",
+      "github_url": "https://github.com/Davidslv/rogue",
+      "files": [
+        {
+          "order": 1,
+          "slug": "main-c",
+          "title": "main.c",
+          "description": "The program's entry point: set up the user and the random seed, build the first level and start the daemons.",
+          "path": "main.c",
+          "generated": true
+        },
+        {
+          "order": 2,
+          "slug": "rogue-h",
+          "title": "rogue.h",
+          "description": "The master header: every constant, flag, structure and prototype that the rest of the game shares.",
+          "path": "rogue.h",
+          "generated": true
+        },
+        {
+          "order": 3,
+          "slug": "extern-h",
+          "title": "extern.h",
+          "description": "Platform switches, the random number generator and the machine-dependent function list.",
+          "path": "extern.h",
+          "generated": true
+        },
+        {
+          "order": 4,
+          "slug": "score-h",
+          "title": "score.h",
+          "description": "The layout of one scoreboard entry and the two functions that read and write the table.",
+          "path": "score.h",
+          "generated": true
+        },
+        {
+          "order": 5,
+          "slug": "extern-c",
+          "title": "extern.c",
+          "description": "All the global data: flags, tables of monsters and objects, experience levels and the help screen.",
+          "path": "extern.c",
+          "generated": true
+        },
+        {
+          "order": 6,
+          "slug": "init-c",
+          "title": "init.c",
+          "description": "Creating the player's starting kit and the randomised names, colours and materials that make every game unfamiliar.",
+          "path": "init.c",
+          "generated": true
+        },
+        {
+          "order": 7,
+          "slug": "new-level-c",
+          "title": "new_level.c",
+          "description": "Building a fresh level each time the stairs are taken: rooms, passages, objects, traps, stairs and the hero.",
+          "path": "new_level.c",
+          "generated": true
+        },
+        {
+          "order": 8,
+          "slug": "rooms-c",
+          "title": "rooms.c",
+          "description": "Digging the nine rooms, filling them with gold and monsters, drawing mazes, and showing and erasing rooms as the hero comes and goes.",
+          "path": "rooms.c",
+          "generated": true
+        },
+        {
+          "order": 9,
+          "slug": "passages-c",
+          "title": "passages.c",
+          "description": "Connecting the nine rooms with corridors, hiding some of them, and numbering the passages.",
+          "path": "passages.c",
+          "generated": true
+        },
+        {
+          "order": 10,
+          "slug": "command-c",
+          "title": "command.c",
+          "description": "One turn of the game: read a key, run the command it names, then let the daemons act.",
+          "path": "command.c",
+          "generated": true
+        },
+        {
+          "order": 11,
+          "slug": "move-c",
+          "title": "move.c",
+          "description": "Moving the hero: legality, running, secret traps and what each kind of trap does.",
+          "path": "move.c",
+          "generated": true
+        },
+        {
+          "order": 12,
+          "slug": "chase-c",
+          "title": "chase.c",
+          "description": "How monsters move: choosing a goal, walking toward it one greedy step at a time, and breathing fire.",
+          "path": "chase.c",
+          "generated": true
+        },
+        {
+          "order": 13,
+          "slug": "fight-c",
+          "title": "fight.c",
+          "description": "Combat for both sides: the to-hit roll, damage dice, each monster's special attack, and the messages.",
+          "path": "fight.c",
+          "generated": true
+        },
+        {
+          "order": 14,
+          "slug": "monsters-c",
+          "title": "monsters.c",
+          "description": "Choosing which monster appears, building it from the master table, waking it, and the saving throw.",
+          "path": "monsters.c",
+          "generated": true
+        },
+        {
+          "order": 15,
+          "slug": "things-c",
+          "title": "things.c",
+          "description": "Naming items, dropping them, creating random ones, and the list of what the hero has discovered.",
+          "path": "things.c",
+          "generated": true
+        },
+        {
+          "order": 16,
+          "slug": "pack-c",
+          "title": "pack.c",
+          "description": "The hero's pack: picking up, stacking, dropping, listing and choosing items, plus gold.",
+          "path": "pack.c",
+          "generated": true
+        },
+        {
+          "order": 17,
+          "slug": "potions-c",
+          "title": "potions.c",
+          "description": "Quaffing: what each of the fourteen potions does, and the helper routines for sight, stairs and levels.",
+          "path": "potions.c",
+          "generated": true
+        },
+        {
+          "order": 18,
+          "slug": "scrolls-c",
+          "title": "scrolls.c",
+          "description": "Reading a scroll: one function with a case for each of the eighteen scrolls.",
+          "path": "scrolls.c",
+          "generated": true
+        },
+        {
+          "order": 19,
+          "slug": "sticks-c",
+          "title": "sticks.c",
+          "description": "Wands and staffs: their charges, the zap command, life drain, and bolts that bounce off walls.",
+          "path": "sticks.c",
+          "generated": true
+        },
+        {
+          "order": 20,
+          "slug": "rings-c",
+          "title": "rings.c",
+          "description": "Putting rings on and taking them off, and the food that wearing a ring costs.",
+          "path": "rings.c",
+          "generated": true
+        },
+        {
+          "order": 21,
+          "slug": "weapons-c",
+          "title": "weapons.c",
+          "description": "Weapons: the table of damage dice, throwing and where things land, wielding, and stacks of missiles.",
+          "path": "weapons.c",
+          "generated": true
+        },
+        {
+          "order": 22,
+          "slug": "armor-c",
+          "title": "armor.c",
+          "description": "Putting on and taking off armour, and the routine that lets a turn pass.",
+          "path": "armor.c",
+          "generated": true
+        },
+        {
+          "order": 23,
+          "slug": "daemon-c",
+          "title": "daemon.c",
+          "description": "The game's scheduler: a table of twenty slots for things that happen every turn or after a delay.",
+          "path": "daemon.c",
+          "generated": true
+        },
+        {
+          "order": 24,
+          "slug": "daemons-c",
+          "title": "daemons.c",
+          "description": "The functions that daemons and fuses call: healing, hunger, wandering monsters, and the end of each potion's effect.",
+          "path": "daemons.c",
+          "generated": true
+        },
+        {
+          "order": 25,
+          "slug": "misc-c",
+          "title": "misc.c",
+          "description": "Odds and ends that nothing else owns: looking around, eating, levelling up, strength, direction prompts.",
+          "path": "misc.c",
+          "generated": true
+        },
+        {
+          "order": 26,
+          "slug": "io-c",
+          "title": "io.c",
+          "description": "Messages at the top of the screen, the status line at the bottom, and reading a key.",
+          "path": "io.c",
+          "generated": true
+        },
+        {
+          "order": 27,
+          "slug": "options-c",
+          "title": "options.c",
+          "description": "The player's settings: a table of ten options, the screen to change them, and a parser for the environment string.",
+          "path": "options.c",
+          "generated": true
+        },
+        {
+          "order": 28,
+          "slug": "wizard-c",
+          "title": "wizard.c",
+          "description": "Identification, teleportation, and the wizard's debugging commands: create any item, see the whole map.",
+          "path": "wizard.c",
+          "generated": true
+        },
+        {
+          "order": 29,
+          "slug": "rip-c",
+          "title": "rip.c",
+          "description": "The end of a game: the tombstone, the score table, the winner's tally of loot, and the names of killers.",
+          "path": "rip.c",
+          "generated": true
+        },
+        {
+          "order": 30,
+          "slug": "save-c",
+          "title": "save.c",
+          "description": "Saving and restoring a game, with a home-made cipher and checks meant to stop a player cheating by reloading.",
+          "path": "save.c",
+          "generated": true
+        },
+        {
+          "order": 31,
+          "slug": "list-c",
+          "title": "list.c",
+          "description": "The doubly linked lists that hold every monster and object, and where items are created and freed.",
+          "path": "list.c",
+          "generated": true
+        },
+        {
+          "order": 32,
+          "slug": "vers-c",
+          "title": "vers.c",
+          "description": "The version strings, and the two key strings for the save-file cipher.",
+          "path": "vers.c",
+          "generated": true
+        },
+        {
+          "order": 33,
+          "slug": "mach-dep-c",
+          "title": "mach_dep.c",
+          "description": "Machine-dependent set-up: the score file and its lock, the terminal modes, and a limit on playing when a shared computer is busy.",
+          "path": "mach_dep.c",
+          "generated": true
+        },
+        {
+          "order": 34,
+          "slug": "xcrypt-c",
+          "title": "xcrypt.c",
+          "description": "A complete DES-based crypt(3), by a different author, so that the wizard-mode password works on every platform.",
+          "path": "xcrypt.c",
+          "generated": true
+        },
+        {
+          "order": 35,
+          "slug": "state-c",
+          "title": "state.c",
+          "description": "Portable save and restore: every global, list and pointer of the running game is written out, then rebuilt.",
+          "path": "state.c",
+          "generated": true
+        },
+        {
+          "order": 36,
+          "slug": "mdport-c",
+          "title": "mdport.c",
+          "description": "The portability layer: everything that touches the operating system, with a branch for each platform.",
+          "path": "mdport.c",
+          "generated": true
+        }
+      ],
+      "introduction": "Rogue is the game that gave a genre its name. Michael Toy and Glenn Wichman began it around 1980 at the University of California, Santa Cruz, and Ken Arnold, at Berkeley, wrote the curses library that let a program draw on any text terminal without knowing which one. The hero is an @, walls are dashes and bars, floors are dots, and every monster is a capital letter. Copies travelled with BSD Unix, and the many later games built on its generated levels, permanent death and unidentified items came to be called roguelikes. This archive is version 5.4.4, the 1999 release: nearly seventeen thousand lines of C in thirty-six files.\n\nEverything the player sees is generated. A level is a three-by-three grid of cells, and rooms.c puts at most one room in each, turns some into nothing more than a bend in a corridor, and sometimes carves one into a maze. passages.c joins the rooms with a randomised spanning tree, so that every room can be reached, and then adds a few extra passages so that the level has loops. When the hero takes the stairs, new_level.c builds the next level from scratch: rooms are filled with gold and monsters, objects are scattered, and, with a chance that rises with depth, traps are hidden.\n\nMuch of the game is a game of knowledge, and init.c sets it up. Once per game it gives every potion a colour, every scroll a title made of random syllables, every ring a stone and every wand or staff a metal or wood. The player learns what they are by using them, by reading an identify scroll, or by naming them with a guess, and an unknown ring or weapon may turn out to be cursed. What turns up is decided by tables of running percentages, and the monsters get meaner the deeper one goes.\n\nTime and combat are handled with small tools. daemon.c is a table of twenty slots for work that happens every turn, like hunger and healing, and for fuses that count down and go off once, like the end of a potion. A blow is decided by a twenty-sided die against a number built from level and armour class, and damage is written as dice in text, such as 1x8, parsed as the fight is fought. Eight monsters add a special effect on a hit: rust, freezing, poison, draining, holding, and the theft of gold or an item.\n\nThe oldest code is the Rogue authors' own; the rest was added later to keep it alive. mdport.c, by Nicholas Kisseberth, hides every operating-system difference behind a name beginning md_. His state.c saves the whole game field by field, so a save file does not depend on the machine. xcrypt.c, David Burren's DES, guards the wizard's password. Begin with main.c and rogue.h, follow a level being built, then a turn being played, then the items, and leave the portability code until last.",
+      "highlights": [
+        {
+          "id": "a-level-is-a-randomised-tree",
+          "title": "A Level Is a Randomised Tree",
+          "description": "Rogue draws its levels with two small algorithms. rooms.c divides the screen into nine cells and puts at most one room in each, of random size, with up to three cells left as mere corners in a corridor. Deeper levels make dark rooms more likely, and one dark room in fifteen is carved into a maze by a depth-first search. passages.c then joins the rooms. A table of adjacency flags encodes the three-by-three grid, so the algorithm itself does not know the shape of the map. It grows a spanning tree from a random room, choosing each new neighbour at random, which guarantees that every room can be reached. A few extra passages, from none to four, are then added so that the player and the monsters can go round in loops. The same count-and-replace trick makes the random choice in the maze, in the tree, and when a thrown item looks for a square to land on.",
+          "links": [
+            {
+              "label": "Placing the rooms",
+              "file": "rooms-c",
+              "enhancement": "do-rooms"
+            },
+            {
+              "label": "Carving a maze",
+              "file": "rooms-c",
+              "enhancement": "do-maze"
+            },
+            {
+              "label": "The spanning tree",
+              "file": "passages-c",
+              "enhancement": "spanning-tree"
+            },
+            {
+              "label": "Extra passages",
+              "file": "passages-c",
+              "enhancement": "extra-passages"
+            }
+          ]
+        },
+        {
+          "id": "secrets-drawn-fresh-each-game",
+          "title": "Secrets Drawn Fresh Each Game",
+          "description": "No two games of Rogue use the same names. At the start, init.c gives each potion kind an unused colour, builds a title for each scroll from random syllables, gives each ring kind a stone, and tosses a coin for each stick, so that a metal makes it a wand and a wood a staff. All of it comes from the game's own random generator, so a given seed brings the same names. inv_name then shows an item by what the player knows: its appearance, a name the player has typed, or its true name. Using an item may identify the whole kind, and a scroll of identify does so by calling set_know, which also throws away the player's guess. Some effects are plain, and others, such as seeing invisible, are not marked known by drinking, so the player has to give them a name.",
+          "links": [
+            {
+              "label": "Colours and scroll titles",
+              "file": "init-c",
+              "enhancement": "init-colors-names"
+            },
+            {
+              "label": "Stones and materials",
+              "file": "init-c",
+              "enhancement": "init-stones-materials"
+            },
+            {
+              "label": "What an item is called",
+              "file": "things-c",
+              "enhancement": "inv-name"
+            },
+            {
+              "label": "Knowing a whole kind",
+              "file": "wizard-c",
+              "enhancement": "set-know"
+            }
+          ]
+        },
+        {
+          "id": "odds-as-running-totals",
+          "title": "Odds as Running Totals",
+          "description": "Every table of things in the game, the kinds of object, the potions, the scrolls, the rings and the rest, stores its odds as a running total instead of a single chance. sumprobs in init.c adds each entry to the one before, so the last must be 100, and in a wizard build a check prints the table and waits for a key at start-up if it is not. To choose, pick_one rolls a number from 0 to 99 and returns the first entry whose total is above it, which is a cumulative distribution table. new_thing uses it for the kind of object, then adds its own rules. Food is forced if more than three levels have passed without any. A weapon is cursed one time in ten and enchanted one in twenty, armour is cursed one in five, and a ring of teleportation or aggravate monster is always cursed.",
+          "links": [
+            {
+              "label": "Turning percentages into totals",
+              "file": "init-c",
+              "enhancement": "probabilities"
+            },
+            {
+              "label": "Picking from a table",
+              "file": "things-c",
+              "enhancement": "pick-one"
+            },
+            {
+              "label": "Making an object",
+              "file": "things-c",
+              "enhancement": "new-thing"
+            },
+            {
+              "label": "Choosing a monster by depth",
+              "file": "monsters-c",
+              "enhancement": "randmonster"
+            }
+          ]
+        },
+        {
+          "id": "time-in-twenty-slots",
+          "title": "Time in Twenty Slots",
+          "description": "Everything that happens by itself in Rogue goes through d_list, an array of twenty records in daemon.c. A daemon has a time of minus one and runs every turn. A fuse has a count that falls each turn and clears its slot just before it calls its function, which lets that function set the same fuse again. The game runs the table twice in each turn, once before the hero acts and once after. main.c starts three daemons, runners, doctor and stomach, and a fuse that later begins the roll for wandering monsters. stomach counts the food in the hero's belly and warns at 300 and at 150 before fainting at zero. A potion is a flag plus a fuse that clears it, and do_pot lengthens the fuse that is already running when a second potion is drunk.",
+          "links": [
+            {
+              "label": "Daemons",
+              "file": "daemon-c",
+              "enhancement": "daemons"
+            },
+            {
+              "label": "Fuses",
+              "file": "daemon-c",
+              "enhancement": "fuses"
+            },
+            {
+              "label": "Hunger",
+              "file": "daemons-c",
+              "enhancement": "stomach"
+            },
+            {
+              "label": "A potion as a fuse",
+              "file": "potions-c",
+              "enhancement": "do-pot"
+            }
+          ]
+        },
+        {
+          "id": "combat-in-three-lines",
+          "title": "Combat in Three Lines",
+          "description": "The rule for hitting is swing in fight.c: roll a twenty-sided die, add the weapon's bonus, and compare it with twenty minus the attacker's level minus the defender's armour class. Damage is not a number but a piece of text. A monster's attacks are written as a string such as 1x8/1x8/3x10, and roll_em reads it one attack at a time, rolling the dice, adding strength bonuses from two tables. Around that core, eight monsters have a special effect on a hit. The flytrap holds the hero and rewrites its own damage string so that each blow hurts more than the last. The nymph steals an item, the leprechaun gold. In sticks.c a bolt of fire or ice flies in a line, bounces off walls and can come back to hit the hero who fired it.",
+          "links": [
+            {
+              "label": "The to-hit roll",
+              "file": "fight-c",
+              "enhancement": "swing"
+            },
+            {
+              "label": "Rolling a damage string",
+              "file": "fight-c",
+              "enhancement": "roll-em"
+            },
+            {
+              "label": "The flytrap, leprechaun and nymph",
+              "file": "fight-c",
+              "enhancement": "effects-hold-steal"
+            },
+            {
+              "label": "Bouncing bolts",
+              "file": "sticks-c",
+              "enhancement": "bolt-flight"
+            }
+          ]
+        },
+        {
+          "id": "saving-a-world-full-of-pointers",
+          "title": "Saving a World Full of Pointers",
+          "description": "A running game is a web of pointers, and pointers mean nothing in a file. state.c saves everything in a fixed order and one field at a time, with integers in a set byte order and a numbered marker ahead of each structure so a damaged file is noticed. A pointer into a list is written as its position in the list. A monster's destination, which may be the hero, another monster, an object or a room's gold, is written as a pair of numbers, and rebuilt in a second pass once every monster exists. The daemon table's function pointers become small codes. save.c passes the bytes through an XOR cipher keyed by two strings in vers.c, and restore deletes the file as it loads, and refuses a file that has links, so a save can be used once.",
+          "links": [
+            {
+              "label": "Saving a monster",
+              "file": "state-c",
+              "enhancement": "write-thing"
+            },
+            {
+              "label": "Fixing pointers on load",
+              "file": "state-c",
+              "enhancement": "read-thing"
+            },
+            {
+              "label": "Function pointers as codes",
+              "file": "state-c",
+              "enhancement": "daemons"
+            },
+            {
+              "label": "Loading a game once",
+              "file": "save-c",
+              "enhancement": "restore"
+            },
+            {
+              "label": "The cipher",
+              "file": "save-c",
+              "enhancement": "cipher"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "ms-dos",
       "title": "MS-DOS",
       "subtitle": "IBM PC, 1981–1983",

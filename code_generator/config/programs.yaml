@@ -1343,3 +1343,209 @@ programs:
     title: tm.zil
     path: tm.zil
     description: The standalone Incredibly Bizarre Time Machine Problem, before it was merged into 3actions.zil
+- slug: rogue
+  title: Rogue
+  subtitle: Unix, 1980 (source version 5.4.4, 1999)
+  author: Toy, Arnold, Wichman
+  year: 1980
+  language: C
+  description: 'The dungeon crawler that gave a genre its name: a hero drawn as an @ explores randomly built levels of rooms
+    and passages on a text terminal, fights monsters named by letters, and hunts for the Amulet of Yendor. This is version
+    5.4.4, the 1999 release of the original sources, with a portability layer that builds it on modern systems.'
+  wikipedia_url: https://en.wikipedia.org/wiki/Rogue_(video_game)
+  github_url: https://github.com/Davidslv/rogue
+  github_repo: Davidslv/rogue
+  github_branch: master
+  context: 'Rogue: Exploring the Dungeons of Doom was written from 1980 by Michael Toy, Glenn Wichman and Ken Arnold; Arnold
+    also wrote the curses library the game is built on. This repository is an archive of version 5.4.4, the 1999 release,
+    which is under a BSD-style licence (LICENSE.TXT). Most files carry the authors'' copyright; state.c, the portable save
+    code, and mdport.c, the operating-system layer, are by Nicholas J. Kisseberth, and xcrypt.c is David Burren''s FreeSec
+    crypt. The repository''s README says the original code line is kept as the game stood in 1999, and puts changes on a separate
+    modern-rogue branch. The museum shows all 36 C source and header files of the game, in a reading order that starts with
+    main.c and the shared header, then follows a level being built, a turn being played, items, the end of the game, and the
+    portability code.'
+  files:
+  - order: 1
+    slug: main-c
+    title: main.c
+    path: main.c
+    description: 'The program''s entry point: set up the user and the random seed, build the first level and start the daemons.'
+  - order: 2
+    slug: rogue-h
+    title: rogue.h
+    path: rogue.h
+    description: 'The master header: every constant, flag, structure and prototype that the rest of the game shares.'
+  - order: 3
+    slug: extern-h
+    title: extern.h
+    path: extern.h
+    description: Platform switches, the random number generator and the machine-dependent function list.
+  - order: 4
+    slug: score-h
+    title: score.h
+    path: score.h
+    description: The layout of one scoreboard entry and the two functions that read and write the table.
+  - order: 5
+    slug: extern-c
+    title: extern.c
+    path: extern.c
+    description: 'All the global data: flags, tables of monsters and objects, experience levels and the help screen.'
+  - order: 6
+    slug: init-c
+    title: init.c
+    path: init.c
+    description: Creating the player's starting kit and the randomised names, colours and materials that make every game unfamiliar.
+  - order: 7
+    slug: new-level-c
+    title: new_level.c
+    path: new_level.c
+    description: 'Building a fresh level each time the stairs are taken: rooms, passages, objects, traps, stairs and the hero.'
+  - order: 8
+    slug: rooms-c
+    title: rooms.c
+    path: rooms.c
+    description: Digging the nine rooms, filling them with gold and monsters, drawing mazes, and showing and erasing rooms
+      as the hero comes and goes.
+  - order: 9
+    slug: passages-c
+    title: passages.c
+    path: passages.c
+    description: Connecting the nine rooms with corridors, hiding some of them, and numbering the passages.
+  - order: 10
+    slug: command-c
+    title: command.c
+    path: command.c
+    description: 'One turn of the game: read a key, run the command it names, then let the daemons act.'
+  - order: 11
+    slug: move-c
+    title: move.c
+    path: move.c
+    description: 'Moving the hero: legality, running, secret traps and what each kind of trap does.'
+  - order: 12
+    slug: chase-c
+    title: chase.c
+    path: chase.c
+    description: 'How monsters move: choosing a goal, walking toward it one greedy step at a time, and breathing fire.'
+  - order: 13
+    slug: fight-c
+    title: fight.c
+    path: fight.c
+    description: 'Combat for both sides: the to-hit roll, damage dice, each monster''s special attack, and the messages.'
+  - order: 14
+    slug: monsters-c
+    title: monsters.c
+    path: monsters.c
+    description: Choosing which monster appears, building it from the master table, waking it, and the saving throw.
+  - order: 15
+    slug: things-c
+    title: things.c
+    path: things.c
+    description: Naming items, dropping them, creating random ones, and the list of what the hero has discovered.
+  - order: 16
+    slug: pack-c
+    title: pack.c
+    path: pack.c
+    description: 'The hero''s pack: picking up, stacking, dropping, listing and choosing items, plus gold.'
+  - order: 17
+    slug: potions-c
+    title: potions.c
+    path: potions.c
+    description: 'Quaffing: what each of the fourteen potions does, and the helper routines for sight, stairs and levels.'
+  - order: 18
+    slug: scrolls-c
+    title: scrolls.c
+    path: scrolls.c
+    description: 'Reading a scroll: one function with a case for each of the eighteen scrolls.'
+  - order: 19
+    slug: sticks-c
+    title: sticks.c
+    path: sticks.c
+    description: 'Wands and staffs: their charges, the zap command, life drain, and bolts that bounce off walls.'
+  - order: 20
+    slug: rings-c
+    title: rings.c
+    path: rings.c
+    description: Putting rings on and taking them off, and the food that wearing a ring costs.
+  - order: 21
+    slug: weapons-c
+    title: weapons.c
+    path: weapons.c
+    description: 'Weapons: the table of damage dice, throwing and where things land, wielding, and stacks of missiles.'
+  - order: 22
+    slug: armor-c
+    title: armor.c
+    path: armor.c
+    description: Putting on and taking off armour, and the routine that lets a turn pass.
+  - order: 23
+    slug: daemon-c
+    title: daemon.c
+    path: daemon.c
+    description: 'The game''s scheduler: a table of twenty slots for things that happen every turn or after a delay.'
+  - order: 24
+    slug: daemons-c
+    title: daemons.c
+    path: daemons.c
+    description: 'The functions that daemons and fuses call: healing, hunger, wandering monsters, and the end of each potion''s
+      effect.'
+  - order: 25
+    slug: misc-c
+    title: misc.c
+    path: misc.c
+    description: 'Odds and ends that nothing else owns: looking around, eating, levelling up, strength, direction prompts.'
+  - order: 26
+    slug: io-c
+    title: io.c
+    path: io.c
+    description: Messages at the top of the screen, the status line at the bottom, and reading a key.
+  - order: 27
+    slug: options-c
+    title: options.c
+    path: options.c
+    description: 'The player''s settings: a table of ten options, the screen to change them, and a parser for the environment
+      string.'
+  - order: 28
+    slug: wizard-c
+    title: wizard.c
+    path: wizard.c
+    description: 'Identification, teleportation, and the wizard''s debugging commands: create any item, see the whole map.'
+  - order: 29
+    slug: rip-c
+    title: rip.c
+    path: rip.c
+    description: 'The end of a game: the tombstone, the score table, the winner''s tally of loot, and the names of killers.'
+  - order: 30
+    slug: save-c
+    title: save.c
+    path: save.c
+    description: Saving and restoring a game, with a home-made cipher and checks meant to stop a player cheating by reloading.
+  - order: 31
+    slug: list-c
+    title: list.c
+    path: list.c
+    description: The doubly linked lists that hold every monster and object, and where items are created and freed.
+  - order: 32
+    slug: vers-c
+    title: vers.c
+    path: vers.c
+    description: The version strings, and the two key strings for the save-file cipher.
+  - order: 33
+    slug: mach-dep-c
+    title: mach_dep.c
+    path: mach_dep.c
+    description: 'Machine-dependent set-up: the score file and its lock, the terminal modes, and a limit on playing when a
+      shared computer is busy.'
+  - order: 34
+    slug: xcrypt-c
+    title: xcrypt.c
+    path: xcrypt.c
+    description: A complete DES-based crypt(3), by a different author, so that the wizard-mode password works on every platform.
+  - order: 35
+    slug: state-c
+    title: state.c
+    path: state.c
+    description: 'Portable save and restore: every global, list and pointer of the running game is written out, then rebuilt.'
+  - order: 36
+    slug: mdport-c
+    title: mdport.c
+    path: mdport.c
+    description: 'The portability layer: everything that touches the operating system, with a branch for each platform.'
